@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
@@ -12,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
     {
         private readonly ScenarioContext _context;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
-        private ModerationApplicationsPage _moderationApplicationsPage;
+        private RoatpApplicationsHomePage _moderationApplicationsPage;
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
 
@@ -63,7 +62,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         }
 
         [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
-        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _moderationApplicationsPage.VerifyOutcomeStatus(expectedStatus);
+        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => new RoatpApplicationsHomePage(_context).VerifyOutcomeStatus(expectedStatus);
 
         [Then(@"the Clarification tab is updated")]
         public void ThenTheClarificationTabIsUpdated() => _moderationApplicationsPage.VerifyClarificationStatus();

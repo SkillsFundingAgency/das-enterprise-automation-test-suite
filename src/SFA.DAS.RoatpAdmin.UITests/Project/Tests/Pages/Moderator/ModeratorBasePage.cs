@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project;
-using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
@@ -21,17 +18,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         {
             SelectFailAndContinueToSubSection();
             return new ModerationApplicationAssessmentOverviewPage(_context);
-        }
-
-        public ModerationApplicationsPage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
-        {
-            var linkText = objectContext.GetProviderName();
-
-            action.Invoke();
-
-            VerifyElement(() => tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);
-            
-            return new ModerationApplicationsPage(_context);
         }
 
         public ModerationApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)

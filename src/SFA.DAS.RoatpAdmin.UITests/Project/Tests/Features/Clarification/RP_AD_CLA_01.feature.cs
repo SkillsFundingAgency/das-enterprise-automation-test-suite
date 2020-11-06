@@ -121,6 +121,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Then("the Clarification assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 13
+ testRunner.Then("the Clarification assessor assesses the outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.Then("the Outcome tab is updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

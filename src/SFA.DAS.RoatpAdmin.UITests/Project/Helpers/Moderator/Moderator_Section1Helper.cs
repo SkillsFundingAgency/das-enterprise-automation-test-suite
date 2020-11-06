@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section1Helper
     {
-        public ModerationApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_EqualityAndDiversityPolicy()
@@ -28,7 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection1Link2Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_SafeguardingAndPreventDutyPolicy()
@@ -38,7 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection1Link3Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_HealthAndSafetyPolicy()
@@ -47,7 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection1Link4Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassActingAsASubcontractor(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassActingAsASubcontractor(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_ActingAsASubcontractor()
@@ -55,7 +55,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection1Link5Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_ActingAsASubcontractor()

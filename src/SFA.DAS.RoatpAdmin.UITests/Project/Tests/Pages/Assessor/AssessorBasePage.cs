@@ -1,4 +1,7 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
@@ -19,6 +22,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusTextLocator(linkText)), $"Status of '{linkText}' is Incorrect");
             return new ApplicationAssessmentOverviewPage(_context);
+        }
+
+        public RoatpApplicationsHomePage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
+        {
+            var linkText = objectContext.GetProviderName();
+
+            action.Invoke();
+
+            VerifyElement(() => tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);
+
+            return new RoatpApplicationsHomePage(_context);
         }
     }
 }

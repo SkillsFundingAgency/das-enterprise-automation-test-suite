@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -7,6 +8,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public abstract class RoatpNewAdminBasePage : RoatpBasePage
     {
+        private readonly ObjectContext _objectContext;
+
         protected By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
 
         protected By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
@@ -21,6 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public RoatpNewAdminBasePage(ScenarioContext context) : base(context)
         {
+            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -54,8 +58,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private void EnterClarificationResponse() 
         { 
-            if (pageInteractionHelper.FindElements(ClarificationResponse).Any())
-            formCompletionHelper.EnterText(ClarificationResponse, "Clarification Response"); 
+            if (_objectContext.IsClarificationJourney())
+            {
+                formCompletionHelper.EnterText(ClarificationResponse, "Clarification Response");
+
+                if (pageInteractionHelper.FindElements(ChooseFileSelector).Any())
+                {
+                    ChooseFile();
+                }
+            }
         }
 
         protected By StatusTextLocator(string linkText) =>
