@@ -126,7 +126,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider Approves the Cohort")]
         public void ThenProviderApprovesTheCohort()
         {
-            //ProviderApprenticeDetailsPage providerApprenticeDetailsPage =
             _providerStepsHelper
                 .GoToProviderHomePage(false)
                 .GoToYourCohorts()
@@ -135,15 +134,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectContinueToApproval()
                 .SubmitApproveAndSendToEmployerForApproval()
                 .SendInstructionsToEmployerForAnApprovedCohort();
-
-            //EditApprentice()
-            //.SelectContinueToApproval()
-            //.SubmitApproveAndSendToEmployerForApproval()
-            //.SendInstructionsToEmployerForAnApprovedCohort();
-
-
-
-            //_providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
         }
 
         [When(@"Provider deletes the Cohort")]
@@ -205,7 +195,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                     .SelectEditApprentice()
                                                     .GetAllEditBoxes();
 
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort id editable on View apprentice details page");
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
 
     }
