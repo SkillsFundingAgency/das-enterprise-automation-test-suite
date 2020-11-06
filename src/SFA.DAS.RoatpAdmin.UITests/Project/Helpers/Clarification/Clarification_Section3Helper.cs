@@ -15,7 +15,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusClarification);
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.StatusClarification);
+            }
 
             return base.PassSupportingApprentices(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }

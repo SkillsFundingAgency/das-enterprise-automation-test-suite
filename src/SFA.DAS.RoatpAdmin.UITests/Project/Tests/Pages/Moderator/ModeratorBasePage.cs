@@ -23,7 +23,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         public ModerationApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)
         {
             VerifyStatusBesideGenericQuestion(linkText, expectedStatus);
-
             return new ModerationApplicationAssessmentOverviewPage(_context);
         }
     }

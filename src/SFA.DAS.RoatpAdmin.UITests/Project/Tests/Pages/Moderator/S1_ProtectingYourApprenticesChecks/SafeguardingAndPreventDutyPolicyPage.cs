@@ -11,6 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
 
         public AssessorOverallResponsibilityForSafeguardingPage SelectPassAndContinueInSafeguardingAndPreventDutyPolicyPage()
         {
+            objectContext.SetIsUploadFile();
             SelectPassAndContinueToSubSection();
             return new AssessorOverallResponsibilityForSafeguardingPage(_context);
         }

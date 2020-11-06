@@ -39,7 +39,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         {
             string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
             formCompletionHelper.EnterText(ChooseFileSelector, File);
-            Continue();
         }
     }
 }

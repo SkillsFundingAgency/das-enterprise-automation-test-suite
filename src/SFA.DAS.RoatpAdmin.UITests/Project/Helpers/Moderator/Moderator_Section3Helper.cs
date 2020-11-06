@@ -79,7 +79,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInSupportingApprenticesPage()
                     .SelectPassAndContinueInWaysOfSupportingApprenticesPage()
                     .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .VerifySection3Link2Status(StatusHelper.StatusPass);
             }
             else
             {
