@@ -2,7 +2,7 @@
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class RoatpAdminLoginStepsHelper
     {

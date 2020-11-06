@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
+﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public static class StatusHelper
     {

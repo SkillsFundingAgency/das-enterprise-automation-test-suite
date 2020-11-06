@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class YourOrganisation_Section1_Helper
     {
@@ -458,5 +458,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .Verify_Section4(StatusHelper.NotRequired)
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired);
         }
-        }
+    }
 }

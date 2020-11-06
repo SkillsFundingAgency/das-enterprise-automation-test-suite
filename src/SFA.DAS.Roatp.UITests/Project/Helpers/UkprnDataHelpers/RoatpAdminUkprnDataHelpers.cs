@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
     public class RoatpAdminUkprnDataHelpers : RoatpUkprnDataHelpers
     {
         public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
 
-        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetAdminData(FindKeyValuePairs(_adminData, key), providernamekey, ukprnkey);
+        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(FindKeyValuePairs(_adminData, key), providernamekey, ukprnkey);
 
         private void AddAdminDatahelpers()
         {
@@ -99,12 +99,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             {
                     new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
                     new KeyValuePair<string, string>(ukprnkey, "10038763"),
-            });
-        _adminData.Add("rpadendtoend01",
-        new List<KeyValuePair<string, string>>
-            {
-                    new KeyValuePair<string, string>(providernamekey, "SIMPLY CREATING CHANGE LTD"),
-                    new KeyValuePair<string, string>(ukprnkey, "10082167"),
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;

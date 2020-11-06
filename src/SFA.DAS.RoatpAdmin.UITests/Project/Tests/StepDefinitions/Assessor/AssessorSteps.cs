@@ -33,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
             }
             else if (assessorUser.Equals("Assessor2"))
             {
-                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAdmin");
+                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAssessor2");
                 _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor2Login();
             }
         }
@@ -42,10 +42,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         public void SelectsTheRouteApplication(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor1SelectsAssignToMe(); 
+            _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor1SelectsAssignToMe();
         }
 
-        [When(@"the Assessor selects the same application")]
+        [When(@"the Assessor2 selects the same application")]
         public void WhenTheAssessorSelectsTheSameApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor2SelectsAssignToMe();
 
 
