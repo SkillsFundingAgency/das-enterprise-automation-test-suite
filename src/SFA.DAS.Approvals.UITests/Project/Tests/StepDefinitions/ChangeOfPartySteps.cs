@@ -127,9 +127,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderApprovesTheCohort()
         {
             //ProviderApprenticeDetailsPage providerApprenticeDetailsPage =
-              //  _providerStepsHelper.GoToProviderHomePage(false);
+            _providerStepsHelper
+                .GoToProviderHomePage(false)
+                .GoToYourCohorts()
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectContinueToApproval()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
 
-            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+            //EditApprentice()
+            //.SelectContinueToApproval()
+            //.SubmitApproveAndSendToEmployerForApproval()
+            //.SendInstructionsToEmployerForAnApprovedCohort();
+
+
+
+            //_providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
         }
 
         [When(@"Provider deletes the Cohort")]
