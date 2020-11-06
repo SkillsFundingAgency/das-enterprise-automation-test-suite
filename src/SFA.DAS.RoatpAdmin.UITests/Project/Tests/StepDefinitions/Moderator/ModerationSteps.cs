@@ -11,7 +11,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
     {
         private readonly ScenarioContext _context;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
-        private RoatpApplicationsHomePage _moderationApplicationsPage;
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
 
@@ -38,7 +37,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as PASS")]
         public void ThenTheModeratorAssessesTheOutcomeAsPASS()
         {
-            _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator FAILS few sections")]
@@ -52,19 +51,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as FAIL")]
         public void ThenTheModeratorAssessesTheOutcomeAsFAIL()
         {
-               _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
+            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator assesses the outcome as CLARIFICATION")]
         public void ThenTheModeratorAssessesTheOutcomeAsCLARIFICATION()
         {
-            _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
+            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
         }
-
-        [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
-        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => new RoatpApplicationsHomePage(_context).VerifyOutcomeStatus(expectedStatus);
-
-        [Then(@"the Clarification tab is updated")]
-        public void ThenTheClarificationTabIsUpdated() => _moderationApplicationsPage.VerifyClarificationStatus();
     }
 }

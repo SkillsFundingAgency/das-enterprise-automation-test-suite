@@ -3,7 +3,7 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Roatp.UITests.Project;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class RoatpAdminLoginSteps
