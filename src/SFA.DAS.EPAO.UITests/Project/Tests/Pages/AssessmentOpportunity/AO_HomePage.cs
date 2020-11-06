@@ -27,8 +27,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public void VerifyApprovedTab()
         {
-            pageInteractionHelper.VerifyPage(ApprovedTab);
-            pageInteractionHelper.VerifyPage(TabHeader, "Approved Standards");
+            VerifyPage(ApprovedTab);
+            VerifyPage(TabHeader, "Approved Standards");
         }
 
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()

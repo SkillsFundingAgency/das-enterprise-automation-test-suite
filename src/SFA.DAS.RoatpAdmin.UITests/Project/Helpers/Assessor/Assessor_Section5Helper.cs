@@ -6,9 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class Assessor_Section5Helper
     {
-        private readonly ScenarioContext _context;
-
-        public Assessor_Section5Helper(ScenarioContext context) => _context = context;
+        public Assessor_Section5Helper() { }
 
         public ApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfTrainingDelivered(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
@@ -28,9 +26,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection5Link2Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()

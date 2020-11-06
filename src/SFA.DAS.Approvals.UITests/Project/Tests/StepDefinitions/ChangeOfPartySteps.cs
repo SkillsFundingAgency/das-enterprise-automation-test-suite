@@ -1,0 +1,146 @@
+﻿using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
+using System;
+using System.Linq;
+using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+
+namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
+{
+    [Binding]
+    public class ChangeOfPartySteps
+    {
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+
+        private readonly string _oldEmployer;
+        private readonly string _newEmployer;
+
+        public ChangeOfPartySteps(ScenarioContext context)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
+            _providerStepsHelper = new ProviderStepsHelper(context);
+            _employerStepsHelper = new EmployerStepsHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(context);
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.GetApprovalsConfig<ApprovalsConfig>());
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
+            _oldEmployer = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
+            _newEmployer = context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
+
+        }
+
+        [Given(@"the provider has an apprentice with stopped status")]
+        [Given(@"the employer has an apprentice with stopped status")]
+        public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("changeOfEmployer"))
+            {
+                _objectContext.UpdateOrganisationName(_oldEmployer);
+                Login();
+            }
+            else
+            {
+                _loginHelper.Login(_context.GetUser<LevyUser>(), true);
+            }
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            _employerStepsHelper.SetCohortReference(cohortReference);
+            _providerStepsHelper.Approve();
+            _employerStepsHelper.StopApprenticeThisMonth();
+        }
+
+        [When(@"employer sends COP request to new provider")]
+        public void WhenEmployerSendsCOPRequestToNewProvider()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails()
+                                .ClickOnChangeOfProviderLink()
+                                .ClickOnContinueButton()
+                                .ChooseTrainingProviderPage();
+
+
+            //un-comment below line when new cohort is ready
+            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
+        }
+
+        [Then(@"a new live apprenticeship record is created with new Provider")]
+        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
+        {
+            //add the steps here to validate new apprentice record is created. 
+            // Use below steps as reference and write your own please
+            new EmployerStepsHelper(_context)
+                .GoToManageYourApprenticesPage()
+                .VerifyApprenticeExists();
+        }
+
+        [When(@"provider sends COE request to new employer")]
+        public void WhenProviderSendsCOERequestToNewEmployer()
+        {
+            _providerStepsHelper.StartChangeOfEmployerJourney();
+
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+
+            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
+        }
+
+        [When(@"new employer approves the cohort")]
+        public void WhenNewEmployerApprovesTheCohort()
+        {
+            _objectContext.UpdateOrganisationName(_newEmployer);
+            _employerStepsHelper.Approve();
+        }
+
+        [Then(@"a new live apprenticeship record is created")]
+        public void ThenANewLiveApprenticeshipRecordIsCreated()
+        {
+            _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                .VerifyApprenticeExists();
+        }
+
+        [When(@"new employer rejects the cohort")]
+        public void WhenNewEmployerRejectsTheCohort()
+        {
+            _objectContext.UpdateOrganisationName(_newEmployer);
+            _employerStepsHelper.Reject();
+        }
+
+        [When(@"Provider Approves the Cohort")]
+        public void WhenProviderApprovesTheCohort()
+        {
+            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+        }
+
+        [When(@"Provider deletes the Cohort")]
+        public void WhenProviderDeletesTheCohort()
+        {
+            _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
+        }
+
+        [Then(@"provider can change employer again")]
+        public void ThenProviderCanChangeEmployerAgain()
+        {
+            _providerStepsHelper.StartChangeOfEmployerJourney();
+        }
+
+        private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
+    }
+
+
+
+}

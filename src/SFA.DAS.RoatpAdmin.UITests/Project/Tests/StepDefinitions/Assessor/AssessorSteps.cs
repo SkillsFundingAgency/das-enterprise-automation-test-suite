@@ -3,23 +3,25 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
     [Binding]
     public class AssessorSteps
     {
+        private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private AssessorApplicationsPage _assessorApplicationsPage;
         private ApplicationAssessmentOverviewPage _applicationAssessmentOverviewPage;
-        private AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
+        private ApplicationRoute _applicationRoute;
 
         public AssessorSteps(ScenarioContext context)
         {
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(context);
-            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper(context);
+            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
         }
 
         [When(@"the (Assessor1|Assessor2) is on the RoATP assessor applications dashboard")]
@@ -31,22 +33,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
             }
             else if (assessorUser.Equals("Assessor2"))
             {
-                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAdmin");
+                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAssessor2");
                 _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor2Login();
             }
         }
 
-        [When(@"selects the Main provider route application")]
-        [When(@"selects the Supporting provider route application")]
-        [When(@"selects the Employer provider route application")]
-        public void AndSelectsTheRouteApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMe();
+        [When(@"selects the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application")]
+        public void SelectsTheRouteApplication(ApplicationRoute applicationroute)
+        {
+            _applicationRoute = applicationroute;
+            _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor1SelectsAssignToMe();
+        }
 
-        [Then(@"the Assessor assesses all the sections of the application as PASS")]
-        public void ThenTheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
-            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage);
+        [When(@"the Assessor2 selects the same application")]
+        public void WhenTheAssessorSelectsTheSameApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor2SelectsAssignToMe();
+
 
         [Then(@"marks the Application as Ready for moderation")]
         public void ThenMarksTheApplicationAsReadyForModeration() =>
             _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(_applicationAssessmentOverviewPage);
+
+        [Then(@"the Assessor assesses all the sections of the application as PASS")]
+        public void TheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
+            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, _applicationRoute);
+        
     }
 }

@@ -46,6 +46,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AreYouSureYouWantToRemovePage(_context);
         }
 
+        public AccessDeniedPage ClickToRemoveAnOrg()
+        {
+            tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
+            return new AccessDeniedPage(_context);
+        }
+
         public bool IsRemoveLinkBesideNewlyAddedOrg() => pageInteractionHelper.IsElementDisplayed(RemoveLinkBesideNewlyAddedOrg);
 
         public bool VerifyOrgRemovedMessageInHeader() => pageInteractionHelper.VerifyText(OrgRemovedMessageInHeader, $"You have removed {objectContext.GetOrganisationName()}");

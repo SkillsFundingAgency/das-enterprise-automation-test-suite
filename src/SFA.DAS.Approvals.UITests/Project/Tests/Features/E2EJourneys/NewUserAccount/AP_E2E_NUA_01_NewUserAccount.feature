@@ -1,5 +1,7 @@
-﻿Feature: AP_E2E_NUA_01_NewUserAccount
+﻿@approvals
+Feature: AP_E2E_NUA_01_NewUserAccount
 
+@regression
 @addpayedetails
 @addlevyfunds
 @e2escenarios

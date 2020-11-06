@@ -16,15 +16,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             _config = context.GetRoatpConfig<RoatpConfig>();
         }
 
-        public AssessorApplicationsPage Assessor1Login()
-        {
-            new AssessorSignInPage(_context).Login(_config.Assessor1UserName, _config.Assessor1Password);
-            return new AssessorApplicationsPage(_context);
-        }
+        public AssessorApplicationsPage Assessor1Login() => AssessorLogin(_config.Assessor1UserName, _config.Assessor1Password);
 
-        public AssessorApplicationsPage Assessor2Login()
+        public AssessorApplicationsPage Assessor2Login() => AssessorLogin(_config.Assessor2UserName, _config.Assessor2Password);
+
+        private AssessorApplicationsPage AssessorLogin(string username, string password)
         {
-            new AssessorSignInPage(_context).Login(_config.Assessor2UserName, _config.Assessor2Password);
+            new AssessorSignInPage(_context).Login(username, password);
             return new AssessorApplicationsPage(_context);
         }
     }

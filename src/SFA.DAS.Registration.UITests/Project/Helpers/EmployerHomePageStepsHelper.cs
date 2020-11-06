@@ -29,6 +29,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             OpenInNewTab();
 
+            if (_loginHelper.IsIndexPageDisplayed())
+            {
+                new IndexPage(_context).ClickSignInLinkOnIndexPage();
+            }
+            
             if (_loginHelper.IsSignInPageDisplayed())
             {
                 return _loginHelper.ReLogin();

@@ -1,18 +1,12 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class Assessor_Section3Helper
     {
-        private readonly ScenarioContext _context;
-
-        public Assessor_Section3Helper(ScenarioContext context) => _context = context;
-
-        public ApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
@@ -22,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
-            else if (_context.ScenarioInfo.Tags.Contains("rpadas02"))
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
@@ -44,9 +38,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -61,9 +55,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_ForecastingStarts()
@@ -80,9 +74,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassOffTheJobTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassOffTheJobTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_OffTheJobTraining()
@@ -97,9 +91,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return applicationAssessmentOverviewPage
                 .Access_Section3_WhereWillYourApprenticesBeTrained()

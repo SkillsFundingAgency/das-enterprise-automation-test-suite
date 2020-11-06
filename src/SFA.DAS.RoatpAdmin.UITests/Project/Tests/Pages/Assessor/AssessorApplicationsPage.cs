@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
@@ -8,34 +9,30 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
     public class AssessorApplicationsPage : AssessorBasePage
     {
         protected override string PageTitle => "RoATP assessor applications";
+
         private readonly ScenarioContext _context;
 
-        public By AssignToMeLink => By.XPath($"//td[contains(text(),'{objectContext.GetProviderName()}')]//following-sibling::td//a");
+        private By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
+        private By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
+        private By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
 
         public AssessorApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe()
+        public ApplicationAssessmentOverviewPage Assessor1SelectsAssignToMe() => AssessorSelectsAssignToMe(Assessor1Link);
+
+        public ApplicationAssessmentOverviewPage Assessor2SelectsAssignToMe() => AssessorSelectsAssignToMe(Assessor2Link);
+
+        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMe()
         {
-            formCompletionHelper.Click(AssignToMeLink);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ModerationTab));
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+
+        private ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe(By columnIdentifier)
+        {
+            formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(objectContext.GetUkprn(), columnIdentifier));
             return new ApplicationAssessmentOverviewPage(_context);
-        }
-        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForMainProvider()
-        {
-            formCompletionHelper.ClickLinkByText("Moderation");
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ModerationApplicationAssessmentOverviewPage(_context);
-        }
-        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForSupportingProvider()
-        {
-            formCompletionHelper.ClickLinkByText("Moderation");
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ModerationApplicationAssessmentOverviewPage(_context);
-        }
-        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForEmployerProvider()
-        {
-            formCompletionHelper.ClickLinkByText("Moderation");
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ModerationApplicationAssessmentOverviewPage(_context);
         }
     }
 }

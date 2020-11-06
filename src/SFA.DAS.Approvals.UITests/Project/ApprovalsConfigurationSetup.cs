@@ -41,6 +41,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var transfersConfig = _configSection.GetConfigSection<TransfersConfig>();
             _context.SetTransfersConfig(transfersConfig);
+
+            var changeOfPartyConfig = _configSection.GetConfigSection<ChangeOfPartyConfig>();
+            _context.SetChangeOfPartyConfig(changeOfPartyConfig);
         }
     }
 }
