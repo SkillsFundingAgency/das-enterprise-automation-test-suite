@@ -13,7 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project
 
         internal static bool IsClarificationJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(ClarificationJourney);
 
-        internal static void SetIsUploadFile(this ObjectContext objectContext) => objectContext.Set(UploadFile, true);
+        internal static void SetIsUploadFile(this ObjectContext objectContext) => objectContext.Replace(UploadFile, true);
 
         internal static void ResetIsUploadFile(this ObjectContext objectContext) => objectContext.Remove<bool>(UploadFile);
 
