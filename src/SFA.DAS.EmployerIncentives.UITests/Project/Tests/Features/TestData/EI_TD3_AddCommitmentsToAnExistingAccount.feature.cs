@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_TD2_AddCommitmentsToAnExistingAccount")]
-    public partial class EI_TD2_AddCommitmentsToAnExistingAccountFeature
+    [NUnit.Framework.DescriptionAttribute("EI_TD3_AddCommitmentsToAnExistingAccount")]
+    public partial class EI_TD3_AddCommitmentsToAnExistingAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_TD2_AddCommitmentsToAnExistingAccount.feature"
+#line 1 "EI_TD3_AddCommitmentsToAnExistingAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD2_AddCommitmentsToAnExistingAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD3_AddCommitmentsToAnExistingAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_TD2_AddCommitmentsToAnExistingAccount")]
-        public virtual void EI_TD2_AddCommitmentsToAnExistingAccount()
+        [NUnit.Framework.DescriptionAttribute("EI_TD3_AddCommitmentsToAnExistingAccount")]
+        public virtual void EI_TD3_AddCommitmentsToAnExistingAccount()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD2_AddCommitmentsToAnExistingAccount", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD3_AddCommitmentsToAnExistingAccount", null, tagsOfScenario, argumentsOfScenario);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -104,8 +104,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
- testRunner.And("the Employer adds 5 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
-                        "nth 1 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds 2 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
+                        "nth 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
