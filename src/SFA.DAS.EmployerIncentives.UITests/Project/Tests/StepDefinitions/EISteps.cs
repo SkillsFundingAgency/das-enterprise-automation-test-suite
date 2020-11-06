@@ -6,6 +6,7 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using System.Linq;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
 
@@ -74,6 +75,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
+            var email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _objectContext.Get("registeredemailaddress");
+
             _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
                 .SubmitApprentices()
@@ -83,9 +86,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ContinueToAddBankDetails()
                 .ContinueToOrgDetailsPage()
                 .ContinueToAddressDetailsPage()
-                .SubmitAddressDetails(_eILevyUser.Username)
+                .SubmitAddressDetails(email)
                 .SubmitBankDetails()
-                .SubmitSubmitterDetails(_eILevyUser.Username)
+                .SubmitSubmitterDetails(email)
                 .SubmitSummaryPage()
                 .ReturnToEasPage()
                 .ReturnToAccountHomePage();
