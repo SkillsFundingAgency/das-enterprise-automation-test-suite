@@ -32,6 +32,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public void SelectFailAndContinueToSubSection()
         {
+            EnterClarificationResponse();
             SelectRadioOptionByText("Fail");
             EnterFailInternalComments();
             Continue();

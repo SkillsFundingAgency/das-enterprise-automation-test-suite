@@ -56,7 +56,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public virtual  ModerationApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -98,6 +98,38 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInWorkingWithSubcontractorsPage()
                     .SelectPassAndContinue()
                     .VerifySection2Link6Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                    .VerifySection2Link6Status(StatusHelper.NotRequired);
+            }
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                    .Access_Section2_CommitmentStatementTemplate()
+                    .SelectFailAndContinue()
+                    .VerifySection2Link4Status(StatusHelper.StatusFail);
+            }
+            else
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                    .VerifySection2Link4Status(StatusHelper.NotRequired);
+            }
+        }
+        public virtual ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                    .Access_Section2_WorkingWithSubcontractors()
+                    .SelectContinueInWorkingWithSubcontractorsPage()
+                    .SelectFailAndContinue()
+                    .VerifySection2Link6Status(StatusHelper.StatusFail);
             }
             else
             {

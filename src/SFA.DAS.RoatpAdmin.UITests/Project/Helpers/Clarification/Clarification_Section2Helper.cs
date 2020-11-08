@@ -28,8 +28,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusClarification);
-
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusClarification);
+            }
             return base.PassCommitmentStatementTemplate(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
 
@@ -42,9 +44,31 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusClarification);
-
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusClarification);
+            }
             return base.PassWorkingWithSubcontractors(moderatorApplicationAssessmentOverviewPage, applicationroute);
+        }
+
+        public override ModerationApplicationAssessmentOverviewPage FailCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusClarification);
+            }
+
+            return base.FailCommitmentStatementTemplate(moderatorApplicationAssessmentOverviewPage, applicationroute);
+        }
+
+        public override ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusClarification);
+            }
+
+            return base.FailWorkingWithSubcontractors(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
     }
 }

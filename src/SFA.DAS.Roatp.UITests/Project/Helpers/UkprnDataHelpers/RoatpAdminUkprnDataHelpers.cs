@@ -106,6 +106,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082168"),
             });
+            _adminData.Add("rpadcla02",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
+                    new KeyValuePair<string, string>(ukprnkey, "10063154"),
+            });
         }
     }
 }

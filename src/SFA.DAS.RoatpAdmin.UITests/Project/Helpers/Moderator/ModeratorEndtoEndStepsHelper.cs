@@ -6,11 +6,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class ModeratorEndtoEndStepsHelper
     {
-        private readonly Moderator_Section1Helper _section1Helper;
-        private readonly Moderator_Section2Helper _section2Helper;
-        private readonly Moderator_Section3Helper _section3Helper;
-        private readonly Moderator_Section4Helper _section4Helper;
-        private readonly Moderator_Section5Helper _section5Helper;
+        protected readonly Moderator_Section1Helper _section1Helper;
+        protected readonly Moderator_Section2Helper _section2Helper;
+        protected readonly Moderator_Section3Helper _section3Helper;
+        protected readonly Moderator_Section4Helper _section4Helper;
+        protected readonly Moderator_Section5Helper _section5Helper;
 
         public ModeratorEndtoEndStepsHelper()
         {

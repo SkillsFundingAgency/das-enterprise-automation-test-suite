@@ -38,6 +38,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection1Link3Status(StatusHelper.StatusPass);
         }
 
+        public virtual ModerationApplicationAssessmentOverviewPage FailSafeguardingAndPreventDutyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section1_SafeguardingAndPreventDutyPolicy()
+                .SelectFailAndContinueInSafeguardingAndPreventDutyPolicyPage()
+                .SelectFailAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
+                .SelectFailAndContinue()
+                .VerifySection1Link3Status(StatusHelper.StatusFail);
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage

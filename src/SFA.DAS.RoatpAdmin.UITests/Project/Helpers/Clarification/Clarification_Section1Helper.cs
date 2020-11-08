@@ -39,5 +39,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
             return base.PassActingAsASubcontractor(moderationApplicationAssessmentOverviewPage);
         }
+
+        public override ModerationApplicationAssessmentOverviewPage FailSafeguardingAndPreventDutyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            moderationApplicationAssessmentOverviewPage.VerifySection1Link3Status(StatusHelper.StatusClarification);
+
+            return base.FailSafeguardingAndPreventDutyPolicy(moderationApplicationAssessmentOverviewPage);
+        }
     }
 }

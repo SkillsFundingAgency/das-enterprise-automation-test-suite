@@ -39,8 +39,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
+            }
 
+            return base.PassWhereWillYourApprenticesBeTrained(moderatorApplicationAssessmentOverviewPage, applicationroute);
+        }
+
+        public override ModerationApplicationAssessmentOverviewPage FailWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
+            }
             return base.PassWhereWillYourApprenticesBeTrained(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
     }

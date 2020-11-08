@@ -39,10 +39,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Clarification
             _moderationApplicationAssessmentOverviewPage = _clarificationEndtoEndStepsHelper.CompleteAllSectionsWithPass(_moderationApplicationAssessmentOverviewPage, _applicationRoute);
         }
 
+        [Then(@"the Clarification assessor assesses all the sections of the application as FAIL")]
+        public void ThenTheClarificationAssessorAssessesAllTheSectionsOfTheApplicationAsFAIL()
+        {
+            _moderationApplicationAssessmentOverviewPage = _clarificationEndtoEndStepsHelper.CompleteSomeSectionsWithFail(_moderationApplicationAssessmentOverviewPage, _applicationRoute);
+        }
+
         [Then(@"the Clarification assessor assesses the outcome as PASS")]
         public void ThenTheClarificationAssessorAssessesTheOutcomeAsPASS()
         {
             _clarificationEndtoEndStepsHelper.CompleteClarificationOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Clarification assessor assesses the outcome as FAIL")]
+        public void ThenTheClarificationAssessorAssessesTheOutcomeAsFAIL()
+        {
+            _clarificationEndtoEndStepsHelper.CompleteClarificationOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
         }
     }
 }

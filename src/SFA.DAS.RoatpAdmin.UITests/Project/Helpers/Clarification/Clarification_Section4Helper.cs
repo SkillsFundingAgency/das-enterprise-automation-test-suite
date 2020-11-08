@@ -47,5 +47,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
             return base.PassPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
         }
+
+        public override ModerationApplicationAssessmentOverviewPage FailQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            moderationApplicationAssessmentOverviewPage.VerifySection4Link3Status(StatusHelper.StatusClarification);
+
+            return base.FailQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
+        }
     }
 }

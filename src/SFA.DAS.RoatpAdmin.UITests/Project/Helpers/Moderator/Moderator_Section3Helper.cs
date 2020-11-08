@@ -138,5 +138,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     VerifySection3Link5Status(StatusHelper.NotRequired);
             }
         }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                .Access_Section3_WhereWillYourApprenticesBeTrained()
+                .SelectFailAndContinue()
+                .VerifySection3Link5Status(StatusHelper.StatusFail);
+            }
+            else
+            {
+                return moderatorApplicationAssessmentOverviewPage.
+                    VerifySection3Link5Status(StatusHelper.NotRequired);
+            }
+        }
     }
 }
