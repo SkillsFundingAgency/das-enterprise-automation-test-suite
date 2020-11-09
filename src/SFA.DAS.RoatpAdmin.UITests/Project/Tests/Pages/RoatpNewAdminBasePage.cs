@@ -18,10 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
 
-        public RoatpNewAdminBasePage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public RoatpNewAdminBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void SelectPassAndContinueToSubSection()
         {

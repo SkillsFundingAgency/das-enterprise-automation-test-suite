@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
@@ -8,13 +7,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         protected override string PageTitle => "Application moderation overview";
 
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
 
-        public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) => _context = context;
 
         #region Section-1
         private string Section1_Link1 => "Continuity plan for apprenticeship training";

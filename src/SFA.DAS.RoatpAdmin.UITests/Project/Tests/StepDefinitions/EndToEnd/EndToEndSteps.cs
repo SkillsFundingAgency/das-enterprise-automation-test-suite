@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
