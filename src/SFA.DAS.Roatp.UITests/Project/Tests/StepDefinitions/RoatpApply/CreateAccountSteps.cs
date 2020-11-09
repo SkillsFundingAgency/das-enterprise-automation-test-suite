@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -13,6 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     public class CreateAccountSteps
     {
         private readonly ScenarioContext _context;
+        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         private readonly RoatpApplyDataHelpers _applydataHelpers;
         private readonly AssertHelper _assertHelper;
@@ -24,17 +26,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _objectContext = context.Get<ObjectContext>();
             _applydataHelpers = context.Get<RoatpApplyDataHelpers>();
             _assertHelper = context.Get<AssertHelper>();
+            _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.GetRoatpConfig<RoatpConfig>());
         }
 
         [When(@"user submits the details to create an account")]
-        public void WhenUserSubmitsTheDetailsToCreateAnAccount()
-        {
-            new RoatpServiceStartPage(_context)
-                .ClickApplyNow()
-                .SelectNoCreateAccountAndContinue()
-                .EnterAccountDetailsAndClickCreateAccount();
-        }
+        public void WhenUserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
 
         [Then(@"the user is able to create an account using the invitation")]
         public void ThenTheUserIsAbleToCreateAnAccountUsingTheInvitation()
