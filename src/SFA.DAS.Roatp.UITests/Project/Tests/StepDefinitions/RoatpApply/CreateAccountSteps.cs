@@ -30,7 +30,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"user submits the details to create an account")]
         public void WhenUserSubmitsTheDetailsToCreateAnAccount()
         {
-            new ServiceStartPage(_context)
+            new RoatpServiceStartPage(_context)
                 .ClickApplyNow()
                 .SelectNoCreateAccountAndContinue()
                 .EnterAccountDetailsAndClickCreateAccount();

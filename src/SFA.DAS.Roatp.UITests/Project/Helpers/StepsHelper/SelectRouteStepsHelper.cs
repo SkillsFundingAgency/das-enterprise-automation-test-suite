@@ -25,10 +25,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         private ConfirmOrganisationsDetailsPage ConfirmOrganisationsDetailsPage()
         {
-            return new ServiceStartPage(_context)
+            return new RoatpServiceStartPage(_context)
                 .ClickApplyNow()
                 .SelectOptionToSignInToASAccountAndContinue()
-                .SubmitValidUserDetails()
+                .SubmitValidUserDetailsEnterUkprnPage()
                 .EnterOrgTypeCompanyProvidersUkprn();
         }
 

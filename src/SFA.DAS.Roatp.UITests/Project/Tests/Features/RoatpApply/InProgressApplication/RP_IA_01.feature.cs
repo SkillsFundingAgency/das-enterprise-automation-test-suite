@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvider
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.InProgressApplication
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01")]
-    public partial class RP_AD_DP_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_IA_01")]
+    public partial class RP_IA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_AD_DP_01.feature"
+#line 1 "RP_IA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_DP_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_IA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01_Download List of Training Providers and Fat File")]
+        [NUnit.Framework.DescriptionAttribute("RP_IA_01_InProgress_Application")]
+        [NUnit.Framework.CategoryAttribute("roatpapplyinprogressapplication")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmindownloadprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_DP_01_DownloadListOfTrainingProvidersAndFatFile()
+        [NUnit.Framework.CategoryAttribute("rpip01")]
+        public virtual void RP_IA_01_InProgress_Application()
         {
             string[] tagsOfScenario = new string[] {
+                    "roatpapplyinprogressapplication",
                     "roatp",
-                    "roatpadmindownloadprovider",
-                    "regression"};
+                    "regression",
+                    "rpip01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_DP_01_Download List of Training Providers and Fat File", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_IA_01_InProgress_Application", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,8 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Then("the admin can download list of training providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.When("a user with in progress application login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("the application can be launched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
