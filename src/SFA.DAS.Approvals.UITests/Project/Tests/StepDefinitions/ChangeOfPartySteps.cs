@@ -102,6 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"new employer approves the cohort")]
+        [When(@"new employer approves the cohort")]
         public void ThenNewEmployerApprovesTheCohort()
         {
             _objectContext.UpdateOrganisationName(_newEmployer);
