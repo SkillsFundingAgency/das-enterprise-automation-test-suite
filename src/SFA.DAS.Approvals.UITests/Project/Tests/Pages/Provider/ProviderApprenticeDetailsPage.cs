@@ -1,5 +1,4 @@
 ﻿using System;
-using Dynamitey;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
