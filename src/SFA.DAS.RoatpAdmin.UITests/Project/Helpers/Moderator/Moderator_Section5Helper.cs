@@ -4,6 +4,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section5Helper
     {
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link1Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link2Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link3Status(StatusHelper.StatusPass);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfTrainingDelivered(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
