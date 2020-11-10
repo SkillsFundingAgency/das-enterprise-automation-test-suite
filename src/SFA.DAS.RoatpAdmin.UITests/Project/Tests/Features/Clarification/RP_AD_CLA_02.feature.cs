@@ -127,6 +127,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.Then("the Outcome tab is updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 15
+ testRunner.Then("the subsections outcome are updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

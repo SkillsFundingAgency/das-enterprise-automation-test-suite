@@ -13,17 +13,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
+        private readonly ObjectContext _objectContext;
+        private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         protected readonly RoatpConfig config;
-        protected readonly ObjectContext objectContext;
-        protected readonly RoatpApplyAndQnASqlDbHelper roatpApplyAndQnASqlDbHelper;
 
         public RoatpBaseHooks(ScenarioContext context)
         {
             _context = context;
-            objectContext = context.Get<ObjectContext>();
-            config = context.GetRoatpConfig<RoatpConfig>();
+            _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
-            roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(objectContext, config);
+            config = context.GetRoatpConfig<RoatpConfig>();
+            _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, config);
         }
 
         protected void GoToUrl(string url) => _tabHelper.GoToUrl(url);
@@ -32,41 +32,44 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers(_context.Get<RandomDataGenerator>()));
 
-        protected void ClearDownApplyData() => roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
+        protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
-        protected void WhiteListProviders() => roatpApplyAndQnASqlDbHelper.WhiteListProviders();
+        protected void WhiteListProviders() => _roatpApplyAndQnASqlDbHelper.WhiteListProviders();
 
         protected void GetRoatpAppplyData()
         {
             // every scenario (apply) should only have one tag which starts with rp, which is mapped to the test data.
-            var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rp"));
+            var (email, ukprn) = new RoatpApplyUkprnDataHelpers().GetRoatpAppplyData(GetTag("rp"));
 
-            var (email, ukprn) = new RoatpApplyUkprnDataHelpers().GetRoatpAppplyData(tag);
-
-            objectContext.SetEmail(email);
-            objectContext.SetUkprn(ukprn);
+            SetEmail(email);
+            SetUkprn(ukprn);
         }
 
         public void GetRoatpAdminData()
         {
             // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
-            var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rpad"));
-            var (providername, ukprn) = new RoatpAdminUkprnDataHelpers().GetRoatpAdminData(tag);
+            var (providername, ukprn) = new RoatpAdminUkprnDataHelpers().GetRoatpAdminData(GetTag("rpad"));
 
-            objectContext.SetProviderName(providername);
-            objectContext.SetUkprn(ukprn);
+            SetProviderName(providername);
+            SetUkprn(ukprn);
         }
 
         public void GetRoatpFullData()
         {
             // every scenario should only have one tag which starts with rp, which is mapped to the test data.
-            var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rp"));
+            (string email, string providername, string ukprn) = new RoatpFullUkprnDataHelpers().GetRoatpE2EData(GetTag("rp"));
 
-            (string email, string providername, string ukprn) = new RoatpFullUkprnDataHelpers().GetRoatpE2EData(tag);
-
-            objectContext.SetEmail(email);
-            objectContext.SetProviderName(providername);
-            objectContext.SetUkprn(ukprn);
+            SetEmail(email);
+            SetProviderName(providername);
+            SetUkprn(ukprn);
         }
+
+        protected string GetUkprn() => _objectContext.GetUkprn();
+
+        private void SetEmail(string email) => _objectContext.SetEmail(email);
+        private void SetProviderName(string providername) => _objectContext.SetProviderName(providername);
+        private void SetUkprn(string ukprn) => _objectContext.SetUkprn(ukprn);
+
+        private string GetTag(string tag) => _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith(tag));
     }
 }

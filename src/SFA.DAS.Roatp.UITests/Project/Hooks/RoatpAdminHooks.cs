@@ -29,42 +29,42 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public void ClearDownAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
-                _adminClearDownDataHelpers.DeleteTrainingProvider(objectContext.GetUkprn());
+                _adminClearDownDataHelpers.DeleteTrainingProvider(GetUkprn());
         }
 
         [BeforeScenario(Order = 35)]
         public void ClearDownGateWayAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew"))
-                _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(GetUkprn());
         }
 
         [BeforeScenario(Order = 36)]
         public void ClearDownFHAAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
-                _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(GetUkprn());
         }
 
         [BeforeScenario(Order = 37)]
         public void ClearDownAssessorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
-                _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(GetUkprn());
         }
 
         [BeforeScenario(Order = 38)]
         public void ClearDownModeratorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpmoderator"))
-                _roatpApplyClearDownDataHelpers.ModeratorClearDownDataFromApply(objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.ModeratorClearDownDataFromApply(GetUkprn());
         }
 
         [BeforeScenario(Order = 39)]
         public void ClearDownClarificationAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpclarification"))
-                _roatpApplyClearDownDataHelpers.ClarificationClearDownFromApply(objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.ClarificationClearDownFromApply(GetUkprn());
         }
     }
 }

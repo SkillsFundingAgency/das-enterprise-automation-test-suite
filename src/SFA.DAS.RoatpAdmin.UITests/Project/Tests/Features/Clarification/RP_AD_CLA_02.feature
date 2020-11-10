@@ -12,3 +12,4 @@ Scenario: RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route
 	Then the Clarification assessor assesses all the sections of the application as FAIL
 	Then the Clarification assessor assesses the outcome as FAIL
 	Then the Outcome tab is updated as FAIL
+	Then the subsections outcome are updated as FAIL

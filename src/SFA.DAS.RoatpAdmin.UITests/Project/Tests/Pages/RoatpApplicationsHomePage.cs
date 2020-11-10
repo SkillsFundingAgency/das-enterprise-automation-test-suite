@@ -38,6 +38,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new ClarificationApplicationAssessmentOverviewPage(_context);
         }
 
+        public ModerationApplicationAssessmentOverviewPage SelectFromOutcomeTab()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab));
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+
         public RoatpApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
         {
             return VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));

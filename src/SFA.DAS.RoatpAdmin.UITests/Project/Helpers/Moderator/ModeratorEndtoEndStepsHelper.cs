@@ -35,6 +35,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             _section5Helper = moderator_Section5Helper;
         }
 
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section1Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section5Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section1Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
 
         public ModerationApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
