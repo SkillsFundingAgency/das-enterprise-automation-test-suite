@@ -10,8 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private string HomePageLinkText => "Go back to the service home page";
 
-        private string ReturnToAccountHome => "Return to account home";
-
         public AccessDeniedPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,16 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage GoBackToTheServiceHomePage()
         {
             objectContext.UpdateOrganisationName(config.RE_OrganisationName);
-
             formCompletionHelper.ClickLinkByText(HomePageLinkText);
-            
-            return new HomePage(_context);
-        }
-
-        public HomePage ReturnToAccountHomePage()
-        {
-            formCompletionHelper.ClickLinkByText(ReturnToAccountHome);
-
             return new HomePage(_context);
         }
     }

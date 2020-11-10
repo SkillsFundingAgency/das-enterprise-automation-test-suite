@@ -60,13 +60,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"Access to EI Application is denied to the Employer")]
         public void ThenAccessToEIApplicationIsDeniedToTheEmployer()
         {
-            new HomePageFinancesSection(_context).AccessEIAndAndRedirectedToAccessDeniedPage().ReturnToAccountHomePage();
+            new HomePageFinancesSection(_context).AccessEIRedirectsToAccessDeniedPage().ReturnToAccountHomePage();
         }
 
         [Then(@"to the view EI applications")]
         public void ThenToTheViewEIApplications()
         {
-            new HomePageFinancesSection(_context).AccessViewEIApplicationsRedirectToAccessDeniedPage().ReturnToAccountHomePage();
+            new HomePageFinancesSection(_context).AccessViewEIApplicationsRedirectsToAccessDeniedPage().ReturnToAccountHomePage();
         }
 
         [Then(@"the Employer is able to navigate to EI application Select apprentices page")]
