@@ -28,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EmployerReference => By.Id("Reference");
         private By SaveButton => By.CssSelector("#addApprenticeship > button");
         private By DeleteButton => By.LinkText("Delete");
+        private By InputBox => By.TagName("input");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -80,6 +81,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
             Assert.True(options.All(x => x.Contains("(Standard)")));
             return this;
+        }
+
+        internal List<IWebElement> GetAllEditBoxes()
+        {
+            return pageInteractionHelper.FindElements(InputBox);
         }
     }
 }
