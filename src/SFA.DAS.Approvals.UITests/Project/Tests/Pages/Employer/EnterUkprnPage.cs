@@ -29,10 +29,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
         }
 
-        public void ChooseTrainingProviderPage()
+        public ConfirmRequestForChangeOfProviderPage ChooseTrainingProviderPage()
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _changeOfPartyConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
+            return new ConfirmRequestForChangeOfProviderPage(_context);
         }
     }
 }

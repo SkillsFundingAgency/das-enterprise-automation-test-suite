@@ -20,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By Name => By.Id("apprentice-name");
         private By DateOfBirth => By.Id("apprentice-dob");
         private By Reference => By.Id("apprentice-reference");
+        private By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
+        private By ViewChanges => By.Id("change-employer-link");
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -64,5 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
 
         }
+        public string GetCoPBanner()
+        {
+            return pageInteractionHelper.GetText(ChangeOfPartyBanner);
+        }
+        public ProviderViewChangesPage ClickViewChangesLink()
+        {
+            formCompletionHelper.Click(ViewChanges);
+            return new ProviderViewChangesPage(_context);
+        } 
     }
 }
