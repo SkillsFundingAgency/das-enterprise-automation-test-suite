@@ -18,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusFail);
-            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link5Status(StatusHelper.StatusFail);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusFail);
             return moderationApplicationAssessmentOverviewPage;
         }
 
