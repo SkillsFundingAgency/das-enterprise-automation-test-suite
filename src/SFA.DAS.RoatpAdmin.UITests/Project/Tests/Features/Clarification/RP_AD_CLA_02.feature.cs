@@ -74,14 +74,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route and mark a" +
+            "s FAIL")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadcla02")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("roatpclarification")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_CLA_02CompleteClarificationJourneyAsEmployerProviderRoute()
+        public virtual void RP_AD_CLA_02CompleteClarificationJourneyAsEmployerProviderRouteAndMarkAsFAIL()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -91,7 +92,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route and mark a" +
+                    "s FAIL", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("selects the Employer Provider Route application from Clarification Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("the Clarification assessor assesses all the sections of the application as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Clarification assessor FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.Then("the Clarification assessor assesses the outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

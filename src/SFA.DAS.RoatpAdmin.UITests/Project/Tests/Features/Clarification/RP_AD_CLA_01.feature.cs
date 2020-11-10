@@ -74,14 +74,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
+            "SS")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadcla01")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("roatpclarification")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_CLA_01CompleteClarificationJourneyAsMainProviderRoute()
+        public virtual void RP_AD_CLA_01CompleteClarificationJourneyAsMainProviderRouteAndMarkAsPASS()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -91,7 +92,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
+                    "SS", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
