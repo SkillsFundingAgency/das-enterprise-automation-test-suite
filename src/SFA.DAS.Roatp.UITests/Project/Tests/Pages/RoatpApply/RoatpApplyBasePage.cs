@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -23,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public RoatpApplyBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            applydataHelpers = context.Get<RoatpApplyDataHelpers>();
+            applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
         }
         
         protected void UploadFile()

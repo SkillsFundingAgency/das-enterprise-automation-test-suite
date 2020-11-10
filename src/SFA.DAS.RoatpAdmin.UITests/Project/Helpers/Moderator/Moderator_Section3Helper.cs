@@ -4,6 +4,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section3Helper
     {
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link4Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusPass);
+
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.StatusPass);
+            }
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.InProgressApplication
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_02")]
-    public partial class RP_AD_CLA_02Feature
+    [NUnit.Framework.DescriptionAttribute("RP_IA_01")]
+    public partial class RP_IA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_AD_CLA_02.feature"
+#line 1 "RP_IA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_CLA_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_IA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,27 +74,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route and mark a" +
-            "s FAIL")]
+        [NUnit.Framework.DescriptionAttribute("RP_IA_01_InProgress_Application")]
+        [NUnit.Framework.CategoryAttribute("roatpapplyinprogressapplication")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpadcla02")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
-        [NUnit.Framework.CategoryAttribute("roatpclarification")]
-        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_CLA_02CompleteClarificationJourneyAsEmployerProviderRouteAndMarkAsFAIL()
+        [NUnit.Framework.CategoryAttribute("rpip01")]
+        public virtual void RP_IA_01_InProgress_Application()
         {
             string[] tagsOfScenario = new string[] {
+                    "roatpapplyinprogressapplication",
                     "roatp",
-                    "rpadcla02",
-                    "roatpadmin",
-                    "roatpclarification",
-                    "newroatpadmin",
-                    "regression"};
+                    "regression",
+                    "rpip01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route and mark a" +
-                    "s FAIL", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_IA_01_InProgress_Application", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,23 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 9
+ testRunner.When("a user with in progress application login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 10
- testRunner.Given("the admin lands on the Dashboard as Assessor1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 11
- testRunner.When("selects the Employer Provider Route application from Clarification Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("the Clarification assessor FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.Then("the Clarification assessor assesses the outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 14
- testRunner.Then("the Outcome tab is updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.Then("the subsections outcome are updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user will be directed to their current application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

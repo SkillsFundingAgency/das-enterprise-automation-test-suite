@@ -4,6 +4,24 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section2Helper
     {
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link1Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link2Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link3Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link5Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusPass);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusFail);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusFail);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassEngagingWithEmployers(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute)
