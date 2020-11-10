@@ -1,14 +1,11 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class SignInPage : SignInBasePage
+    public class SignInPage : EsfaSignInPage
     {
-        protected override string PageTitle => "ESFA Sign in";
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

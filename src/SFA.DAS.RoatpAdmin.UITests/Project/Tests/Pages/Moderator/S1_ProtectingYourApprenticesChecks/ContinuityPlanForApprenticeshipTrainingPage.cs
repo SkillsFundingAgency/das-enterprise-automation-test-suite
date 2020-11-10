@@ -6,6 +6,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
     {
         protected override string PageTitle => "Continuity plan for apprenticeship training";
 
-        public ContinuityPlanForApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
+        public ContinuityPlanForApprenticeshipTrainingPage(ScenarioContext context) : base(context) { objectContext.SetIsUploadFile(); }
     }
 }

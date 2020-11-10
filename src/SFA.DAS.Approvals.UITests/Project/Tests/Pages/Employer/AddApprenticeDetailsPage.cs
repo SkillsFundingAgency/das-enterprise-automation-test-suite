@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private DateTime SetEIJourneyTestData()
         {
-            if (objectContext.GetIsEIJourney())
+            if (objectContext.IsEIJourney())
             {
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
