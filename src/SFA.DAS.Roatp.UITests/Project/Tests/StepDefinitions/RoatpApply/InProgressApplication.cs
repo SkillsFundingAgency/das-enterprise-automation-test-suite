@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"a user with in progress application login")]
         public void WhenAUserWithInProgressApplicationLogin() => _applicationOverviewPage = _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetailsApplicationOverviewPage();
 
-        [Then(@"the application can be launched")]
-        public void ThenTheApplicationCanBeLaunched() => _applicationOverviewPage.VerifyApplicationDetails();
+        [Then(@"the user will be directed to their current application")]
+        public void ThenTheUserWillBeDirectedToTheirCurrentApplication() => _applicationOverviewPage.VerifyApplicationDetails();
     }
 }
