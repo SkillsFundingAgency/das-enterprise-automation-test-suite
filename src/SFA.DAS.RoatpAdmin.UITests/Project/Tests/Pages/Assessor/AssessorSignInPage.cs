@@ -3,10 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
-    public class AssessorSignInPage : SignInBasePage
+    public class AssessorSignInPage : EsfaSignInPage
     {
-        protected override string PageTitle => "ESFA Sign in";
-
         public AssessorSignInPage(ScenarioContext context) : base(context) { }
 
         public void Login(string userName, string password)

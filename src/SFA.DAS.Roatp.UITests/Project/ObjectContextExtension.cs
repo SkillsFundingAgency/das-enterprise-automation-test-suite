@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         internal static void UpdateOrganisationType(this ObjectContext objectContext, string organisationType) => objectContext.Replace(OrganisationTypeKey, organisationType);
         public static void SetUkprn(this ObjectContext objectContext, string Ukprn) => objectContext.Replace(UkprnKey, Ukprn);
         internal static void SetApplicationReference(this ObjectContext objectContext, string applicationReference) => objectContext.Replace(ApplicationReference, applicationReference);
-
+        
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         internal static string GetOrganisationType(this ObjectContext objectContext) => objectContext.Get(OrganisationTypeKey);
         internal static string GetEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);

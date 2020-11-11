@@ -11,6 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
 
         public OverallResponsibilityForHealthAndSafetyPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
         {
+            objectContext.SetIsUploadFile();
             SelectPassAndContinueToSubSection();
             return new OverallResponsibilityForHealthAndSafetyPage(_context);
         }

@@ -6,6 +6,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
     {
         protected override string PageTitle => "Equality and diversity policy";
 
-        public EqualityAndDiversityPolicyPage(ScenarioContext context) : base(context) { }
+        public EqualityAndDiversityPolicyPage(ScenarioContext context) : base(context) { objectContext.SetIsUploadFile(); }
     }
 }

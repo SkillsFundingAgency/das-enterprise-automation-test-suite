@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
@@ -14,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public RoatpAdminBasePage(ScenarioContext context) : base(context)
         {
-            admindataHelpers = context.Get<RoatpAdminDataHelpers>();
+            admindataHelpers = context.GetValue<RoatpAdminDataHelpers>();
             VerifyPage();
         }
 

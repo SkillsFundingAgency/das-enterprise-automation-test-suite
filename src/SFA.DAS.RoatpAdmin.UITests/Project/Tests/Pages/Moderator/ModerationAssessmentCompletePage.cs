@@ -14,10 +14,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public ModerationAssessmentCompletePage(ScenarioContext context) : base(context) => _context = context;
 
-        public ModerationApplicationsPage GoToRoATPAssessorApplicationsPage()
+        public RoatpApplicationsHomePage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPAssessorApplicationsLink);
-            return new ModerationApplicationsPage(_context);
+            return new RoatpApplicationsHomePage(_context);
         }
     }
 }

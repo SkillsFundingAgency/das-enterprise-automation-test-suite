@@ -75,22 +75,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01_Download List of Training Providers and Fat File")]
-        [NUnit.Framework.CategoryAttribute("rpaddp01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
+        [NUnit.Framework.CategoryAttribute("roatpadmindownloadprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_DP_01_DownloadListOfTrainingProvidersAndFatFile()
         {
             string[] tagsOfScenario = new string[] {
-                    "rpaddp01",
                     "roatp",
-                    "roatpadmin",
-                    "notestdata",
+                    "roatpadmindownloadprovider",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_DP_01_Download List of Training Providers and Fat File", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
  testRunner.Then("the admin can download list of training providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

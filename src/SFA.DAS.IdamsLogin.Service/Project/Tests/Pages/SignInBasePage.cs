@@ -17,7 +17,7 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
 
         protected SignInBasePage(ScenarioContext context) : base(context) { }
 
-        protected void SubmitValidLoginDetails(string username, string password)
+        public void SubmitValidLoginDetails(string username, string password)
         {
             formCompletionHelper.EnterText(UsernameField, username);
             formCompletionHelper.EnterText(PasswordField, password);

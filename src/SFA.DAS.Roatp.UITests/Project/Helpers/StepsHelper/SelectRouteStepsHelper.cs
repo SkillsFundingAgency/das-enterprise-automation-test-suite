@@ -5,9 +5,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class SelectRouteStepsHelper
     {
-        private readonly ScenarioContext _context;
+        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
 
-        public SelectRouteStepsHelper(ScenarioContext context) => _context = context;
+        public SelectRouteStepsHelper(ScenarioContext context) => _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
 
         internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions() => ConfirmUkprn().SelectApplicationRouteAsMain().DoNotAcceptTermsConditions();
 
@@ -25,10 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         private ConfirmOrganisationsDetailsPage ConfirmOrganisationsDetailsPage()
         {
-            return new ServiceStartPage(_context)
-                .ClickApplyNow()
-                .SelectOptionToSignInToASAccountAndContinue()
-                .SubmitValidUserDetails()
+            return _roatpApplyLoginHelpers.SignInToRegisterPage()
+                .SubmitValidUserDetailsEnterUkprnPage()
                 .EnterOrgTypeCompanyProvidersUkprn();
         }
 

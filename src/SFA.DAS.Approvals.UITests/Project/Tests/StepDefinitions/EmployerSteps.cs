@@ -199,7 +199,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         public void TheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
         {
-            _objectContext.SetIsEIJourney(true);
+            _objectContext.SetIsEIJourney();
             _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
             _objectContext.SetEIStartMonth(eIStartmonth);
             _objectContext.SetEIStartYear(eIStartyear);

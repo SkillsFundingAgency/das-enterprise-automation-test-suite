@@ -3,22 +3,15 @@ using System.Linq;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
-    public abstract class RoatpUkprnDataHelpers
+    public abstract class RoatpUkprnBaseDataHelpers
     {
-        protected readonly Dictionary<string, List<KeyValuePair<string, string>>> _applyData;
-        protected readonly Dictionary<string, List<KeyValuePair<string, string>>> _adminData;
-        protected readonly Dictionary<string, List<KeyValuePair<string, string>>> _e2eData;
-
+        protected readonly Dictionary<string, List<KeyValuePair<string, string>>> _data;
+        
         protected const string ukprnkey = "ukprnkey";
         protected const string providernamekey = "providernamekey";
         protected const string emailkey = "emailkey";
 
-        public RoatpUkprnDataHelpers()
-        {
-            _adminData = new Dictionary<string, List<KeyValuePair<string, string>>>();
-            _applyData = new Dictionary<string, List<KeyValuePair<string, string>>>();
-            _e2eData = new Dictionary<string, List<KeyValuePair<string, string>>>();
-        }
+        public RoatpUkprnBaseDataHelpers() => _data = new Dictionary<string, List<KeyValuePair<string, string>>>();
 
         protected (string value1, string value2) GetData(List<KeyValuePair<string, string>> keyValuePair, string value1Key, string value2Key)
         {

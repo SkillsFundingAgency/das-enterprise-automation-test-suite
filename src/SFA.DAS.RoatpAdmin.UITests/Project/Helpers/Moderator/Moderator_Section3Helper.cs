@@ -4,7 +4,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section3Helper
     {
-        public ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link4Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusPass);
+
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.StatusPass);
+            }
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
@@ -38,7 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         }
 
-        public ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
@@ -70,7 +84,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusFail);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -79,7 +93,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInSupportingApprenticesPage()
                     .SelectPassAndContinueInWaysOfSupportingApprenticesPage()
                     .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .VerifySection3Link2Status(StatusHelper.StatusPass);
             }
             else
             {
@@ -87,7 +101,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -106,7 +120,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -123,7 +137,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -131,6 +145,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .Access_Section3_WhereWillYourApprenticesBeTrained()
                 .SelectPassAndContinue()
                 .VerifySection3Link5Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return moderatorApplicationAssessmentOverviewPage.
+                    VerifySection3Link5Status(StatusHelper.NotRequired);
+            }
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage
+                .Access_Section3_WhereWillYourApprenticesBeTrained()
+                .SelectFailAndContinue()
+                .VerifySection3Link5Status(StatusHelper.StatusFail);
             }
             else
             {
