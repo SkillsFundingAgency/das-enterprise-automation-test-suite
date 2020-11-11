@@ -3,21 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class EIAccessDeniedPage : EIBasePage
+    public class EIAccessDeniedPage : AccessDeniedPage
     {
         protected override string PageTitle => "Your account does not have the right access";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        private string ReturnToAccountHomeButton => "Return to account home";
-        #endregion
+        protected override string HomePageLinkText => "Return to account home";
 
-        public EIAccessDeniedPage(ScenarioContext context) : base(context) => _context = context;
-
-        public HomePage ReturnToAccountHomePage()
-        {
-            formCompletionHelper.ClickLinkByText(ReturnToAccountHomeButton);
-            return new HomePage(_context);
-        }
+        public EIAccessDeniedPage(ScenarioContext context) : base(context) { }
     }
 }
