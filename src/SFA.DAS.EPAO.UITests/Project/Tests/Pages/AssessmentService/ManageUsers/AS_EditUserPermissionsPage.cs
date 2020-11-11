@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
+using System.Linq;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
 {
@@ -10,13 +11,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By SaveButton => By.LinkText("Edit user permissions");
-        private By ChangeOrganisationDetailsCheckBox => By.Id("PrivilegeViewModels[1].Selected");
-        private By ChangPipelineCheckBox => By.Id("PrivilegeViewModels[5].Selected");
-        private By ChangeCompletedAssessmentsCheckBox => By.Id("PrivilegeViewModels[3].Selected");
-        private By ChangeApplyForAStandardCheckBox => By.Id("PrivilegeViewModels[0].Selected");
-        private By ChangeManageUsersCheckBox => By.Id("PrivilegeViewModels[4].Selected");
-        private By ChangeRecordGradesCheckBox => By.Id("PrivilegeViewModels[2].Selected");
+        private By ChangeOrganisationDetailsCheckBox => By.Id(Getid("Change organisation details"));
+        private By ChangPipelineCheckBox => By.Id(Getid("Pipeline"));
+        private By ChangeCompletedAssessmentsCheckBox => By.Id(Getid("Completed assessments"));
+        private By ChangeApplyForAStandardCheckBox => By.Id(Getid("Apply for a Standard"));
+        private By ChangeManageUsersCheckBox => By.Id(Getid("Manage users"));
+        private By ChangeRecordGradesCheckBox => By.Id(Getid("Record grades and issue certificates"));
         #endregion
 
         public AS_EditUserPermissionsPage(ScenarioContext context) : base(context)
@@ -60,5 +60,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             formCompletionHelper.UnSelectCheckbox(ChangeRecordGradesCheckBox);
             return this;
         }
+
+        private string Getid(string labeltext) => pageInteractionHelper.FindElements(CheckBoxLabels).ToList().SingleOrDefault(x => x?.Text == labeltext).GetAttribute("for");
     }
 }
