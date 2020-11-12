@@ -124,7 +124,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectEducationalInstituteAndContinue()
                 .SelectSixthFormCollegeAndContinue()
                 .SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
-                .SelectInYourOrganisationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
@@ -134,7 +133,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectNoneOfTheAboveAndContinue()
-                .SelectInYourOrganisationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
@@ -164,7 +162,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEducationalInstituteAndContinue()
                 .SelectHigherEducationInstituteAndContinueForEmplopyer()
-                .SelectInYourOrganisationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
