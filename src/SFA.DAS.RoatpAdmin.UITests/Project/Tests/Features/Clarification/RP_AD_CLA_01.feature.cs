@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Outcome tab is updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.Then("the subsections outcome are updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("verify subsections outcome passed by Clarification assessor are updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

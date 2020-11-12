@@ -28,16 +28,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Then(@"the Clarification tab is updated")]
         public void ThenTheClarificationTabIsUpdated() => _roatpApplicationsHomePage = new RoatpApplicationsHomePage(_context).VerifyClarificationStatus();
 
-        [Then(@"the subsections outcome are updated as PASS")]
-        public void ThenTheSubsectionsOutcomeAreUpdatedAsPASS()
+        [Then(@"verify subsections outcome passed by Clarification assessor are updated as PASS")]
+        public void ThenVerifySubsectionsOutcomePassedByClarificationAssessorAreUpdatedAsPASS()
         {
             (var page, var route) = GetApplicationRoute();
 
             _moderatorEndtoEndStepsHelper.VerifySubSectionsAsPass(page, route);
         }
 
-        [Then(@"the subsections outcome are updated as FAIL")]
-        public void ThenTheSubsectionsOutcomeAreUpdatedAsFAIL()
+        [Then(@"verify subsections outcome failed by Clarification assessor are updated as FAIL")]
+        public void ThenVerifySubsectionsOutcomeFailedByClarificationAssessorAreUpdatedAsFAIL()
         {
             (var page, var route) = GetApplicationRoute();
 
