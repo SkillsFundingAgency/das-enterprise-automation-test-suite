@@ -12,4 +12,4 @@ Scenario: RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and
 	Then the Clarification assessor assesses all the sections of the application as PASS
 	Then the Clarification assessor assesses the outcome as PASS
 	Then the Outcome tab is updated as PASS
-	Then the subsections outcome are updated as PASS
+	Then verify subsections outcome passed by Clarification assessor are updated as PASS
