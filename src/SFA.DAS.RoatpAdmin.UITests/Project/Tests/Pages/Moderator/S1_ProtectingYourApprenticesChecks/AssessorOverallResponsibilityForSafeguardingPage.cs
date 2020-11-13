@@ -14,5 +14,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
             SelectPassAndContinueToSubSection();
             return new SafeguardingPolicyIncludePreventDutyPolicyPage(_context);
         }
+
+        public SafeguardingPolicyIncludePreventDutyPolicyPage SelectFailAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
+        {
+            SelectFailAndContinueToSubSection();
+            return new SafeguardingPolicyIncludePreventDutyPolicyPage(_context);
+        }
     }
 }

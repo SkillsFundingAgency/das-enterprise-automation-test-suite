@@ -115,8 +115,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("provider sends COE request to new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 10
+ testRunner.Then("a banner is displayed for provider with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 11
- testRunner.And("new employer rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("new employer rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("a banner is displayed for provider with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.And("Provider Approves the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -125,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("new employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

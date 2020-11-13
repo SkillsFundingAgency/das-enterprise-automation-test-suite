@@ -5,10 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class SignInPage : SignInBasePage
+    public class SignInPage : EsfaSignInPage
     {
-        protected override string PageTitle => "ESFA Sign in";
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly EPAOAdminUser _user;

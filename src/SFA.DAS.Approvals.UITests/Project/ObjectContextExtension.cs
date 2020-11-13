@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIAgeCategoryAsOfAug2020 = "EIAgeCategoryAsOfAug2020";
         private const string EIStartMonth = "EIStartMonth";
         private const string EIStartYear = "EIStartYear";
-        private const string IsEIJourney = "IsEIJourney";
+        private const string EIJourney = "IsEIJourney";
         #endregion
 
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
 
-        internal static void SetIsEIJourney(this ObjectContext objectContext, bool value) => objectContext.Replace(IsEIJourney, value);
+        internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
 
         internal static void SetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2020, value);
 
@@ -59,6 +59,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
 
-        internal static bool GetIsEIJourney(this ObjectContext objectContext) => objectContext.Get<bool>(IsEIJourney);
+        internal static bool IsEIJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EIJourney);
     }
 }

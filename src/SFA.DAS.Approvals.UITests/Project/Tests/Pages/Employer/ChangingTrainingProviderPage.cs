@@ -16,9 +16,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ChangingTrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void ClickOnContinueButton()
+        public EnterUkprnPage ClickOnContinueButton()
         {
             Continue();
+            return new EnterUkprnPage(_context);
         } 
     }
 }

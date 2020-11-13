@@ -9,5 +9,7 @@
         internal static string StatusInProgress => "IN PROGRESS";
 
         internal static string StatusFail => "FAIL";
+
+        internal static string StatusClarification => "CLARIFICATION";
     }
 }

@@ -78,7 +78,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         [NUnit.Framework.CategoryAttribute("rpe2e01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
-        [NUnit.Framework.CategoryAttribute("roatpe2e")]
+        [NUnit.Framework.CategoryAttribute("roatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_E2E_01_MainRoute_Company()
         {
@@ -86,7 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
                     "rpe2e01",
                     "roatp",
                     "roatpapply",
-                    "roatpe2e",
+                    "roatpapplye2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_01_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);

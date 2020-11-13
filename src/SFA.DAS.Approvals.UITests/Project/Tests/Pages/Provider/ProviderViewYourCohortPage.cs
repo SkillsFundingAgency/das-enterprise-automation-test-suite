@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    class ProviderViewYourCohortPage : ApprovalsBasePage
+    public class ProviderViewYourCohortPage : ApprovalsBasePage
     {
         protected override string PageTitle => "View your cohort";
         private By ViewApprenticeLink => By.LinkText("View");

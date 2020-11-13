@@ -11,6 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
 
         public WebsiteLinkForTheCompliantsPolicyPage SelectPassAndContinueInComplaintsPolicyPage()
         {
+            objectContext.SetIsUploadFile();
             SelectPassAndContinueToSubSection();
             return new WebsiteLinkForTheCompliantsPolicyPage(_context);
         }

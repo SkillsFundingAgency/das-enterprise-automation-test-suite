@@ -14,5 +14,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
             SelectPassAndContinueToSubSection();
             return new DueDiligenceOnSubcontractorsPage(_context);
         }
+
+        public DueDiligenceOnSubcontractorsPage SelectContinueInWorkingWithSubcontractorsPage()
+        {
+            Continue();
+            return new DueDiligenceOnSubcontractorsPage(_context);
+        }
     }
 }

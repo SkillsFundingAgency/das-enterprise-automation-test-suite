@@ -3,7 +3,7 @@
 @rpe2e04
 @roatp
 @roatpapply
-@roatpe2e
+@roatpapplye2e
 @regression
 Scenario: RP_E2E_04_MainRoute-CompanyAndCharity
 	Given the provider initates an application as main route company

@@ -74,13 +74,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.Existing
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_ELevyAc_01_Existing Levy Account with one legal entity adds commitments an" +
-            "d applies for Incentive")]
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account with one legal" +
+            " entity")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
-        public virtual void EI_E2E_ELevyAc_01_ExistingLevyAccountWithOneLegalEntityAddsCommitmentsAndAppliesForIncentive()
+        public virtual void EI_E2E_ELevyAc_01_ApplyForIncentiveForAnExistingLevyAccountWithOneLegalEntity()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -88,8 +88,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.Existing
                     "dfeuatachieveservice",
                     "eie2ejourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_ELevyAc_01_Existing Levy Account with one legal entity adds commitments an" +
-                    "d applies for Incentive", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account with one legal" +
+                    " entity", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

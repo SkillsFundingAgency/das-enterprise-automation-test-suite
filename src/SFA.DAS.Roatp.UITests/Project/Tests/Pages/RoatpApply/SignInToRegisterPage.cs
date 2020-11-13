@@ -21,12 +21,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public EnterUkprnPage SubmitValidUserDetails()
+        public EnterUkprnPage SubmitValidUserDetailsEnterUkprnPage()
+        {
+            SubmitValidUserDetails();
+            return new EnterUkprnPage(_context);
+        }
+
+        public ApplicationOverviewPage SubmitValidUserDetailsApplicationOverviewPage()
+        {
+            SubmitValidUserDetails();
+            return new ApplicationOverviewPage(_context);
+        }
+
+        private void SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
             formCompletionHelper.EnterText(EnterPassword, roatpConfig.ApplyPassword);
             Continue();
-            return new EnterUkprnPage(_context);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [AfterScenario(Order = 14)]
+        [AfterScenario(Order = 101)]
         public void ReportErrorMessages()
         {
             var exception = _context.TestError;
@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
             {
                 var messages = new List<string>();
 
-                messages.AddRange(_objectContext.GetAfterScenarioExceptions().Select(x => x.Message));
+                messages.AddRange(_objectContext.GetAfterScenarioExceptions().Select(x => x?.Message));
 
                 var url = _objectContext.GetUrl();
 

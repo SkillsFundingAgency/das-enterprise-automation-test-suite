@@ -5,6 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     public partial class ModerationApplicationAssessmentOverviewPage : ModeratorBasePage
     {
         protected override string PageTitle => "Application moderation overview";
+
         private readonly ScenarioContext _context;
 
         public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) => _context = context;
