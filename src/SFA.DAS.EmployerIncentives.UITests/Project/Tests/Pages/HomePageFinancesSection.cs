@@ -9,16 +9,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection(ScenarioContext context) : base(context) => _context = context;
 
-        public AccessDeniedPage AccessEIAndAndRedirectedToAccessDeniedPage()
+        public EIAccessDeniedPage AccessEIRedirectsToAccessDeniedPage()
         {
             formCompletionHelper.Click(ApplyForEILink);
-            return new AccessDeniedPage(_context);
+            return new EIAccessDeniedPage(_context);
         }
 
-        public AccessDeniedPage AccessViewEIApplicationsRedirectToAccessDeniedPage()
+        public EIAccessDeniedPage AccessViewEIApplicationsRedirectsToAccessDeniedPage()
         {
             formCompletionHelper.Click(ViewEIApplicationsLink);
-            return new AccessDeniedPage(_context);
+            return new EIAccessDeniedPage(_context);
         }
 
         public EIStartPage NavigateToEIStartPage()

@@ -1,32 +1,21 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
-    public abstract class AssessorBasePage : RoatpBasePage
+    public abstract class AssessorBasePage : RoatpNewAdminBasePage
     {
         private readonly ScenarioContext _context;
-        public By StatusTextLocator(string linkText) =>
-            By.XPath($"//span[contains(text(), '{linkText}')]/following-sibling::strong | //a[contains(text(),'{linkText}')]/../following-sibling::strong");
-
-        protected AssessorBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        protected AssessorBasePage(ScenarioContext context) : base(context) => _context = context;
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinue()
         {
             SelectPassAndContinueToSubSection();
             return new ApplicationAssessmentOverviewPage(_context);
-        }
-
-        public void SelectPassAndContinueToSubSection()
-        {
-            SelectRadioOptionByText("Pass");
-            Continue();
         }
 
         public ApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)
@@ -35,7 +24,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             return new ApplicationAssessmentOverviewPage(_context);
         }
 
-        public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
-           Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusTextLocator(linkText)), $"Status of '{linkText}' is Incorrect");
+        public RoatpApplicationsHomePage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
+        {
+            var linkText = objectContext.GetProviderName();
+
+            action.Invoke();
+
+            VerifyElement(() => tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);
+
+            return new RoatpApplicationsHomePage(_context);
+        }
     }
 }

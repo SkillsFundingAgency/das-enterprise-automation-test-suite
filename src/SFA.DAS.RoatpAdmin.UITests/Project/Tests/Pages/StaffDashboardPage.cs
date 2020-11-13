@@ -1,15 +1,12 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-   public class StaffDashboardPage : RoatpAdminBasePage
+    public class StaffDashboardPage : RoatpAdminBasePage
     {
         protected override string PageTitle => "Staff dashboard";
 
@@ -31,10 +28,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(FinancialApplicationLink);
             return new FinancialLandingPage(_context);
         }
-        public AssessorApplicationsPage AccessAssessorAndModerationApplications()
+        public RoatpApplicationsHomePage AccessAssessorAndModerationApplications()
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
-            return new AssessorApplicationsPage(_context);
+            return new RoatpApplicationsHomePage(_context);
         }
     }
 }

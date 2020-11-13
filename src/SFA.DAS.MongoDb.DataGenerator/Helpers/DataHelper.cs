@@ -10,7 +10,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public DataHelper(string[] tags)
         {
-            LevyOrNonLevy = tags.Contains("levypaye")
+            LevyOrNonLevy = tags.Contains("addlevyprefix")
+         || tags.Contains("levypaye")
          || tags.Contains("addlevyfunds")
          || tags.Contains("addtransferslevyfunds")
          || tags.Contains("levy")
