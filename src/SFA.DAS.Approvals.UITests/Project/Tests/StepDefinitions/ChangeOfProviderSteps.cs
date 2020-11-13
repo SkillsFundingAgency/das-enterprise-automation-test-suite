@@ -26,7 +26,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
-            //ProviderLoginUser _newProviderLoginDetails = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
 
             new ProviderYourCohortsPage(_context, true)
@@ -42,8 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"employer approves the cohort")]
         public void WhenEmployerApprovesTheCohort()
         {
-            new EmployerStepsHelper(_context)
-                .Approve();
+            new EmployerStepsHelper(_context).Approve();
         }
 
         [Then(@"a new live apprenticeship record is created with new Provider")]
@@ -51,8 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderManageYourApprenticesPage(_context, true)
-                .SelectViewCurrentApprenticeDetails();
+            new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
         }
     }
 }
