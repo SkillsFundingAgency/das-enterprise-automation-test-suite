@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
-    public partial class AP_COP_01_ChangeOfProvider_HappyPathFeature
+    [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
+    public partial class AP_COP_02_NewProviderRequestsChangeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_COP_01_Change Of Provider_HappyPath.feature"
+#line 1 "AP_COP_02_NewProviderRequestsChange.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_01_Change Of Provider_HappyPath", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_02_NewProviderRequestsChange", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
         [NUnit.Framework.CategoryAttribute("changeOfProvider")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        public virtual void AP_COP_01_ChangeOfProvider_HappyPath()
+        public virtual void AP_COP_02_NewProviderRequestsChange()
         {
             string[] tagsOfScenario = new string[] {
                     "changeOfProvider",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_01_Change Of Provider_HappyPath", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_02_NewProviderRequestsChange", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,12 +111,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.And("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("a banner is displayed for employer with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
+ testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.When("employer Approves the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.And("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
  testRunner.Then("a new live apprenticeship record is created with new Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
