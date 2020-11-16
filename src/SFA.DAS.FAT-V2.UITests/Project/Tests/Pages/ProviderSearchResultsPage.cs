@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
@@ -11,6 +12,9 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         private readonly ScenarioContext _context;
 
+        private By SelectSpecifiedProvider => By.Id("provider-10004596");
+
+
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderSummaryPage SelectFirstProviderInTheList()
@@ -18,6 +22,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             var firstProviderLinkText = pageInteractionHelper.GetText(FirstProviderResultLink);
             objectContext.SetProviderName(firstProviderLinkText);
             formCompletionHelper.ClickLinkByText(firstProviderLinkText);
+            return new ProviderSummaryPage(_context);
+        }
+        public ProviderSummaryPage SelectASpecificProvider(string provider = "")
+        {
+            formCompletionHelper.Click(SelectSpecifiedProvider);
             return new ProviderSummaryPage(_context);
         }
     }

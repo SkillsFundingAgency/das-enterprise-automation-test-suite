@@ -46,6 +46,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User chooses the first course from the Search Results page")]
+        [Given(@"the User chooses the first course from the Search Results page")]
         public void WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage()
         {
             _trainingCourseSummaryPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult();
@@ -68,6 +69,34 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         {
             _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
         }
+
+        [Given(@"the User searches a course then navigates to the provider list")]
+        public void GivenTheUserSearchesACourseThenNavigatesToTheProviderList()
+        {
+            WhenTheUserSearchesWithATerm("Advanced golf");
+            WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
+
+            _providerSearchResultsPage = _trainingCourseSummaryPage.ClickViewProvidersForThisCourse();
+        }
+
+        [When(@"the User selects (.*) from the list")]
+        public void WhenTheUserSelectsAProviderFromTheList(string provider)
+        {
+            _providerSummaryPage = _providerSearchResultsPage.SelectASpecificProvider();
+        }
+
+        [When(@"enters the location (.*)")]
+        public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);
+
+
+        [Then(@"the User is presented with option to view other training providers")]
+        public void ThenTheUserIsPresentedWithOptionToViewOtherTrainingProviders()
+        {
+            _providerSearchResultsPage = _providerSummaryPage.SelectViewOtherTrainingProviders();
+        }
+
+
+
 
     }
 }
