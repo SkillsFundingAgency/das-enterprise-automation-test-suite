@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
@@ -19,21 +16,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GatewayLandingPage(ScenarioContext context) : base(context)
         {
             _context = context;
+
             VerifyPage();
         }
 
-        public GWApplicationOverviewPage SelectingMainRouteApplication()
-        {
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new GWApplicationOverviewPage(_context);
-        }
-
-        public GWApplicationOverviewPage SelectingEmployerRouteApplication()
-        {
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new GWApplicationOverviewPage(_context);
-        }
-        public GWApplicationOverviewPage SelectingSupportingRouteApplication()
+        public GWApplicationOverviewPage SelectApplication()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);

@@ -12,8 +12,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         #endregion
 
         private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication");
-
         private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
+        private By ConfirmFurtherCommunicationSubmitApplication = By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
         public SubmitApplicationPage(ScenarioContext context) : base(context)
         {
@@ -25,6 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmSubmitApplication));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherInfoSubmitApplication));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherCommunicationSubmitApplication));
             Continue();
             return new ApplicationSubmittedPage(_context);
         }

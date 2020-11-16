@@ -62,5 +62,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
             ExecuteSqlCommand(ModeratorResetQuery);
         }
+
+        public void ClarificationClearDownFromApply(string ukprn)
+        {
+            var ClarificationResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE[UKPRN] = {ukprn};" +
+                $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent', [OversightStatus] = 'New', [ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
+                $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, ClarificationFile = NULL, " +
+                $"ClarificationResponse = NULL, ClarificationUpdatedAt = NULL WHERE ApplicationId = @ApplicationID ";
+            
+            ExecuteSqlCommand(ClarificationResetQuery);
+        }
     }
 }

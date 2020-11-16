@@ -10,7 +10,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
         public DisposeWebDriverTeardown(ScenarioContext context) => _helper = new DisposeWebDriverTeardownHelper(context);
 
-        [AfterScenario(Order = 13)]
+        [AfterScenario(Order = 19)]
         public void DisposeWebDriver() => _helper.DisposeWebDriver();
     }
 }

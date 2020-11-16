@@ -4,7 +4,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section4Helper
     {
-        public ModerationApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link1Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link2Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link3Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link4Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link5Status(StatusHelper.StatusPass);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link6Status(StatusHelper.StatusPass);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link3Status(StatusHelper.StatusFail);
+            moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link6Status(StatusHelper.StatusFail);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_OverallAccountabilityForApprenticeships()
@@ -12,7 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link1Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
@@ -20,7 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_QualityAndHighStandardsInApprenticeshipTraining()
@@ -31,7 +49,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link3Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
@@ -63,7 +81,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
@@ -77,7 +95,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link5Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
@@ -91,7 +109,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                .VerifySection4Link5Status(StatusHelper.StatusFail);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()
@@ -100,5 +118,27 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .SelectPassAndContinue()
                 .VerifySection4Link6Status(StatusHelper.StatusPass);
         }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_QualityAndHighStandardsInApprenticeshipTraining()
+                .SelectContinueInQualityAndHighStandardsInApprenticeshipTrainingPage()
+                .SelectContinueInHowExpectationsForQualityPage()
+                .SelectFailAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
+                .SelectContinue()
+                .VerifySection4Link3Status(StatusHelper.StatusFail);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()
+                .SelectFailAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
+                .SelectContinueInAnExampleOfHowThePolicyToImprovePage()
+                .SelectFailAndContinue()
+                .VerifySection4Link6Status(StatusHelper.StatusFail);
+        }
+
     }
 }

@@ -11,10 +11,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         public BlindAssessmentCompletePage(ScenarioContext context) : base(context) => _context = context;
 
-        public AssessorApplicationsPage GoToRoATPAssessorApplicationsPage()
+        public RoatpApplicationsHomePage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPAssessorApplicationsLink);
-            return new AssessorApplicationsPage(_context);
+            return new RoatpApplicationsHomePage(_context);
         }
     }
 }

@@ -14,5 +14,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
             SelectPassAndContinueToSubSection();
             return new AnExampleOfHowThePolicyToMaintainPage(_context);
         }
+
+        public AnExampleOfHowThePolicyToMaintainPage SelectContinueInAnExampleOfHowThePolicyToImprovePage()
+        {
+            Continue();
+            return new AnExampleOfHowThePolicyToMaintainPage(_context);
+        }
     }
 }

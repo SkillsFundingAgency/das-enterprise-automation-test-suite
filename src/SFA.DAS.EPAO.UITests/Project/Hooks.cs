@@ -13,13 +13,15 @@ namespace SFA.DAS.EPAO.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _config;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
-
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
             _config = context.GetEPAOConfig<EPAOConfig>();
         }
 
@@ -57,14 +59,15 @@ namespace SFA.DAS.EPAO.UITests.Project
 
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]
-        public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
+        public void ClearContact() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email));
 
         [AfterScenario(Order = 33)]
         [Scope(Tag = "deleteorganisation")]
-        public void ClearOrganisation() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn);
+        public void ClearOrganisation() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn));
 
         [AfterScenario(Order = 34)]
         [Scope(Tag = "makeorganisationlive")]
-        public void MakeOrganisationLive() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
-    }
+        public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
+
+   }
 }

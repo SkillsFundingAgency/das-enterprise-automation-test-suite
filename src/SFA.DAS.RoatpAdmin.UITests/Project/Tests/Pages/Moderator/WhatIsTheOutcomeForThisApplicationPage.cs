@@ -27,7 +27,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         public AreYouSureYouWantToAskPage SelectAskForClarificationAndContinueAreYouSurePage()
         {
             SelectRadioOptionByText("Ask for clarification");
-            EnterClarificationInternalComments();
+            EnterAskForClarificationInternalComments();
             Continue();
             return new AreYouSureYouWantToAskPage(_context);
         }

@@ -1,6 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
@@ -12,7 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         
         private ApplicationOverviewPage _overviewPage;
-        private ApplicationSubmittedPage _applicationSubmittedPage;
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
 
         public End2EndSteps(ScenarioContext context)
@@ -110,9 +108,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
 
         [Then(@"the provider completes Finish section")]
-        public void ThenTheProviderCompletesFinishSection() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
+        public void ThenTheProviderCompletesFinishSection() => _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
 
         [Then(@"the provider completes Finish section for supporting route")]
-        public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
+        public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
     }
 }

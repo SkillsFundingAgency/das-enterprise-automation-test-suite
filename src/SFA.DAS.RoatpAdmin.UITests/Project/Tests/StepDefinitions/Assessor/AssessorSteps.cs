@@ -4,6 +4,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
@@ -13,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private AssessorApplicationsPage _assessorApplicationsPage;
+        private RoatpApplicationsHomePage _roatpApplicationsHomePage;
         private ApplicationAssessmentOverviewPage _applicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
 
@@ -29,12 +30,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         {
             if (assessorUser.Equals("Assessor1"))
             {
-                _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor1Login();
+                _roatpApplicationsHomePage = _assessorLoginStepsHelper.Assessor1Login();
             }
             else if (assessorUser.Equals("Assessor2"))
             {
-                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAdmin");
-                _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor2Login();
+                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAssessor2");
+                _roatpApplicationsHomePage = _assessorLoginStepsHelper.Assessor2Login();
             }
         }
 
@@ -42,11 +43,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         public void SelectsTheRouteApplication(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor1SelectsAssignToMe(); 
+
+            _applicationAssessmentOverviewPage = _roatpApplicationsHomePage.Assessor1SelectsAssignToMe();
         }
 
-        [When(@"the Assessor selects the same application")]
-        public void WhenTheAssessorSelectsTheSameApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor2SelectsAssignToMe();
+        [When(@"the Assessor2 selects the same application")]
+        public void WhenTheAssessorSelectsTheSameApplication() => _applicationAssessmentOverviewPage = _roatpApplicationsHomePage.Assessor2SelectsAssignToMe();
 
 
         [Then(@"marks the Application as Ready for moderation")]

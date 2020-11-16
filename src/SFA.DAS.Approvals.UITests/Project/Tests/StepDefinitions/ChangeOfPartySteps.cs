@@ -11,6 +11,8 @@ using System.Linq;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using NUnit.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -70,22 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.ViewCurrentApprenticeDetails()
                                 .ClickOnChangeOfProviderLink()
                                 .ClickOnContinueButton()
-                                .ChooseTrainingProviderPage();
+                                .ChooseTrainingProviderPage()
+                                .SelectYesAndContinue();
 
 
-            //un-comment below line when new cohort is ready
-            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
-        }
-
-        [Then(@"a new live apprenticeship record is created with new Provider")]
-        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
-        {
-            //add the steps here to validate new apprentice record is created. 
-            // Use below steps as reference and write your own please
-            new EmployerStepsHelper(_context)
-                .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
         [When(@"provider sends COE request to new employer")]
@@ -98,8 +90,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
+        [Then(@"new employer approves the cohort")]
         [When(@"new employer approves the cohort")]
-        public void WhenNewEmployerApprovesTheCohort()
+        public void ThenNewEmployerApprovesTheCohort()
         {
             _objectContext.UpdateOrganisationName(_newEmployer);
             _employerStepsHelper.Approve();
@@ -120,10 +113,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.Reject();
         }
 
-        [When(@"Provider Approves the Cohort")]
-        public void WhenProviderApprovesTheCohort()
+        [Then(@"Provider Approves the Cohort")]
+        public void ThenProviderApprovesTheCohort()
         {
-            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+            _providerStepsHelper
+                .GoToProviderHomePage(false)
+                .GoToYourCohorts()
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectContinueToApproval()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         [When(@"Provider deletes the Cohort")]
@@ -138,9 +138,55 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.StartChangeOfEmployerJourney();
         }
 
+        [Then(@"a banner is displayed for provider with a link to ""(.*)"" cohort")]
+        public void ThenABannerIsDisplayedForProviderWithALinkToCohort(string status)
+        {
+            bool editable = status == "editable" ? true : false;
+
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage =
+                _providerStepsHelper.GoToProviderHomePage(editable)
+                                    .GoToProviderManageYourApprenticePage()
+                                    .SelectViewCurrentApprenticeDetails();
+
+            if (editable)
+                 ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
+            else
+                ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
+        }
+
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
+    
+        private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+        {
+            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the new employer.";
+            string actualText = providerApprenticeDetailsPage.GetCoPBanner();
+
+            Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
+
+            var EditBoxOnApprenticeDetailsPage = providerApprenticeDetailsPage
+                                                    .ClickViewChangesLink()
+                                                    .ClickOnReviewNewDetailsLink()
+                                                    .SelectViewApprentice()
+                                                    .GetAllEditBoxes();
+
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
+        }
+
+        private void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+        {
+            string expectedText = "The new employer has requested changes to this apprentice's details.";
+            string actualText = providerApprenticeDetailsPage.GetCoPBanner();
+
+            Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
+
+            var EditBoxOnApprenticeDetailsPage = providerApprenticeDetailsPage
+                                                    .ClickViewChangesLink()
+                                                    .ClickOnReviewNewDetailsToUpdateLink()
+                                                    .SelectEditApprentice()
+                                                    .GetAllEditBoxes();
+
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
+        }
+
     }
-
-
-
 }
