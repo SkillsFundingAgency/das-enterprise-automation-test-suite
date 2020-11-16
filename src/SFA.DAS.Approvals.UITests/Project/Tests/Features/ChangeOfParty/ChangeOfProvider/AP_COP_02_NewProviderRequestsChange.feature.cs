@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.When("employer Approves the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.And("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

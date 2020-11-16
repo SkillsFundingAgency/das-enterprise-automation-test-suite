@@ -8,6 +8,6 @@ Scenario: AP_COP_02_NewProviderRequestsChange
 	Then a banner is displayed for employer with a link to "non-editable" cohort
 	When new provider rejects the cohort
 	Then a banner is displayed for employer with a link to "editable" cohort
-	When employer Approves the Cohort
+	When employer approves the cohort
 	And new provider approves the cohort
 	Then a new live apprenticeship record is created with new Provider
