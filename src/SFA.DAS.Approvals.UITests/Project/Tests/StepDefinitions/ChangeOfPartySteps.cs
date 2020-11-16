@@ -76,19 +76,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .SelectYesAndContinue();
 
 
-            //un-comment below line when new cohort is ready
-            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
-        }
-
-        [Then(@"a new live apprenticeship record is created with new Provider")]
-        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
-        {
-            //add the steps here to validate new apprentice record is created. 
-            // Use below steps as reference and write your own please
-            new EmployerStepsHelper(_context)
-                .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
         [When(@"provider sends COE request to new employer")]

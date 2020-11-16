@@ -1,18 +1,30 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderManageYourApprenticesPage : ApprovalsBasePage
+    public class ProviderManageYourApprenticesPage : Navigate
     {
         protected override string PageTitle => "Manage your apprentices";
+        protected override string Linktext => "Manage your apprentices";
+        protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
-        public ProviderManageYourApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
+            VerifyPage();
+        }
 
         private By ApprenticeSearchField => By.Id("searchTerm");
         private By SearchButton => By.CssSelector(".das-search-form__button");

@@ -70,6 +70,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReviewYourCohortPage(_context);
         }
 
+        public ProviderReviewYourCohortPage EditCopApprenticeDetails()
+        {
+            formCompletionHelper.ClickElement(StartDateMonth);
+            DateTime now = DateTime.Now;
+            formCompletionHelper.EnterText(StartDateMonth, now.Month);
+            formCompletionHelper.EnterText(StartDateYear, now.Year);
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
+
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ProviderReviewYourCohortPage(_context);
+        }
+
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
         {
             formCompletionHelper.ClickElement(DeleteButton);
