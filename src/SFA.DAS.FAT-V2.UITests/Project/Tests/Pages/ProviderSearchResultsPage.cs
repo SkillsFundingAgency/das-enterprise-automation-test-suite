@@ -12,8 +12,9 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         private readonly ScenarioContext _context;
 
-        private By SelectSpecifiedProvider => By.Id("provider-10004596");
-
+        #region Locators
+        private By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
+        #endregion
 
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -24,10 +25,12 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(firstProviderLinkText);
             return new ProviderSummaryPage(_context);
         }
-        public ProviderSummaryPage SelectASpecificProvider(string provider = "")
+        public ProviderSummaryPage SelectASpecificProvider(string provider = "10004596")
         {
-            formCompletionHelper.Click(SelectSpecifiedProvider);
+            ClickSpecifiedProvider(provider);
             return new ProviderSummaryPage(_context);
         }
+        private void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
+
     }
 }
