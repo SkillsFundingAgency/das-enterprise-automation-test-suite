@@ -121,6 +121,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("a new live apprenticeship record is created with new Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.And("Employer can only edit start date, end date and Price on the new record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

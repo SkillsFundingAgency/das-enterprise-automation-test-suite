@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Helpers;
@@ -14,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ChangeOfPartyConfig _changeOfPartyConfig;
         private readonly ProviderLoginUser _newProviderLoginDetails;
+
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
@@ -31,6 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderYourCohortsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
+                .IsAddApprenticeButtonDisplayed()
+                .IsBulkUpLoadButtonDisplayed()
                 .SelectEditApprentice()
                 .EditCopApprenticeDetails()
                 .SelectContinueToApproval()
@@ -41,7 +46,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"employer approves the cohort")]
         public void WhenEmployerApprovesTheCohort()
         {
-            new EmployerStepsHelper(_context).Approve();
+            new EmployerStepsHelper(_context)
+                .EmployerReviewCohort()
+                .IsAddApprenticeLinkDisplayed()
+                .EmployerDoesSecondApproval();
         }
 
         [Then(@"a new live apprenticeship record is created with new Provider")]
@@ -50,6 +58,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
             new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
+        }
+
+        [Then(@"Employer can only edit start date, end date and Price on the new record")]
+        public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
+        {
+            new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
+                .SelectApprentices("Live")
+                .ClickEditApprenticeDetailsLink();
+
+            ValidateOnlyEditableApprenticeDetails();
+        }
+
+        private void ValidateOnlyEditableApprenticeDetails()
+        {
+            EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
+            var EditApprenticeDetails = editApprenticePage
+                                                     .GetAllEditBoxes();
+
+            Assert.IsTrue(EditApprenticeDetails.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
     }
 }
