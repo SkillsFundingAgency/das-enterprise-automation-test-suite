@@ -37,11 +37,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
-        public TrainApprenticesPage SelectNoneOfTheAboveAndContinue()
+        public DescribeYourOrganisationPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
             formCompletionHelper.ClickElement(SaveAndContinue);
-            return new TrainApprenticesPage(_context);
+            return new DescribeYourOrganisationPage(_context);
         }
         public DescribeYourOrganisationPage SelectGroupTrainingAssociationAndContinue()
         {

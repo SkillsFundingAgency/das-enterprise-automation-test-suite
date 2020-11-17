@@ -15,10 +15,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             _context = context;
             VerifyPage();
         }
-        public TrainApprenticesPage SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
+        public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
         {
             SelectYesAndContinue();
-            return new TrainApprenticesPage(_context);
+            return new DescribeYourOrganisationPage(_context);
         }
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
