@@ -7,5 +7,3 @@ Scenario: FATV2_SAWCINO_03_Search Training Where Course Is Not Offered
 	When the User selects Newbury College from the list
 	And enters the location Exeter, Devon
 	Then the User is presented with option to view other training providers
-
-	

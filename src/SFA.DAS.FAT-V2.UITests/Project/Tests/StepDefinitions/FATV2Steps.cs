@@ -94,9 +94,5 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         {
             _providerSearchResultsPage = _providerSummaryPage.SelectViewOtherTrainingProviders();
         }
-
-
-
-
     }
 }
