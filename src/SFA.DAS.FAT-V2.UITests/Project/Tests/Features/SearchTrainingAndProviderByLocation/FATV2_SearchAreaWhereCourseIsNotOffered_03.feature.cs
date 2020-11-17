@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the User selects Newbury College from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User selects 10004596 from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
  testRunner.And("enters the location Exeter, Devon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

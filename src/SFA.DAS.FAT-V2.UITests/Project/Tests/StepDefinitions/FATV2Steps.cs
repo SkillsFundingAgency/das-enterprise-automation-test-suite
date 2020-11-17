@@ -80,10 +80,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User selects (.*) from the list")]
-        public void WhenTheUserSelectsAProviderFromTheList(string provider)
-        {
-            _providerSummaryPage = _providerSearchResultsPage.SelectASpecificProvider();
-        }
+        public void WhenTheUserSelectsAProviderFromTheList(string provider) => _providerSummaryPage = _fATV2StepsHelper.SelectASpecificProvider(provider);
 
         [When(@"enters the location (.*)")]
         public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);

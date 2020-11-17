@@ -25,12 +25,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(firstProviderLinkText);
             return new ProviderSummaryPage(_context);
         }
-        public ProviderSummaryPage SelectASpecificProvider(string provider = "10004596")
-        {
-            ClickSpecifiedProvider(provider);
-            return new ProviderSummaryPage(_context);
-        }
-        private void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
+
+        public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
 
     }
 }

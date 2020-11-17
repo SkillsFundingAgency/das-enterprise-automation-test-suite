@@ -18,5 +18,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
             new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
             return new TrainingCourseSearchResultsPage(_context);
         }
+        public ProviderSummaryPage SelectASpecificProvider(string provider = "")
+        {
+            new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
+            return new ProviderSummaryPage(_context);
+        }
     }
 }
