@@ -34,10 +34,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         #region Section6
         public ApplicationOverviewPage VerifyIntroductionStatus_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_1, status);
         public ApplicationOverviewPage VerifyTypeOfTrainning_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_2, status);
-        public ApplicationOverviewPage VerifySupporting_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_3, status);
-        public ApplicationOverviewPage VerifyForecasting_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_4, status);
-        public ApplicationOverviewPage VerifyOffTheJobTrainning_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_5, status);
-        public ApplicationOverviewPage VerifyWhereWillYourApprenticesBeTrained_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_6, status);
+        public ApplicationOverviewPage VerifySupporting_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_4, status);
+        public ApplicationOverviewPage VerifyForecasting_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_5, status);
+        public ApplicationOverviewPage VerifyOffTheJobTrainning_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_6, status);
+        public ApplicationOverviewPage VerifyWhereWillYourApprenticesBeTrained_Section6(string status) => Verify_Section6(PlanningApprenticeshipTraining_7, status);
         #endregion
 
         #region Section5

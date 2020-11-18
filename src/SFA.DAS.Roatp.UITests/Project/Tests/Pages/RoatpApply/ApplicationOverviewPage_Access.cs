@@ -129,23 +129,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4);
             return new EnsureApprenticesSupportedPage(_context);
         }
 
         public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5);
             return new ForecastInFirst12MonthsPage(_context);
         }
         public WhatTeachingMethodsPage Access_Section6_OffTheJobTraining()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6);
             return new WhatTeachingMethodsPage(_context);
         }
         public WhereWillApprenticesBeTrainedPage Access_Section6_WhereWillYourApprenticesBeTrained()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_7);
             return new WhereWillApprenticesBeTrainedPage(_context);
         }
         #endregion
