@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeButtonDisplayed()
                 .IsBulkUpLoadButtonDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(4)
+                .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
                 .SelectContinueToApproval()
                 .SubmitApproveAndSendToEmployerForApproval()
