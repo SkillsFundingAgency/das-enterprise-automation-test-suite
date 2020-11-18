@@ -1,6 +1,5 @@
 ﻿Feature: AP_COP_01_Change Of Provider_HappyPath
 
-@CON-2567
 @changeOfProvider
 @liveapprentice
 Scenario: AP_COP_01_Change Of Provider_HappyPath
