@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EmployerReference => By.Id("Reference");
         private By SaveButton => By.CssSelector("#addApprenticeship > button");
         private By DeleteButton => By.LinkText("Delete");
-        private By InputBox => By.TagName("input");
+        private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -98,6 +98,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
+        {
+            var x = GetAllEditBoxes();
+            int numberOfTextBoxesDisplayed = GetAllEditBoxes().Count;
+
+            if (numberOfTextBoxesDisplayed != numberOfExpectedTextBoxes)
+                throw new Exception($"expected editable boxes were: [{numberOfExpectedTextBoxes}] actual editable boxes displayed are: [{numberOfTextBoxesDisplayed}]");
+            else
+                return this;
+        }
         internal List<IWebElement> GetAllEditBoxes()
         {
             return pageInteractionHelper.FindElements(InputBox);

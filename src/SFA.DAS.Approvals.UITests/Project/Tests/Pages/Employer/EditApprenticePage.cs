@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -22,7 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditEmployerReference => By.Id("Reference");
         private By EditSaveAndContinueButton => By.Id("continue-button");
         private By DeleteButton => By.LinkText("Delete");
-        
+        private By InputBox => By.TagName("input");
+
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            base.formCompletionHelper.ClickElement(DeleteButton);
@@ -58,6 +60,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
             return new AfterEditApproveApprenticeDetailsPage(_context);
-        }       
+        }
+
+        internal List<IWebElement> GetAllEditBoxes()
+        {
+            return pageInteractionHelper.FindElements(InputBox);
+        }
     }
 }
