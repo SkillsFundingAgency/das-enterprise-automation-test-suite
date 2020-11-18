@@ -128,7 +128,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
-        public RoatpApplicationsHomePage CompleteModeratorOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
@@ -137,7 +137,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        public RoatpApplicationsHomePage CompleteModeratorOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
@@ -146,7 +146,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        public RoatpApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()

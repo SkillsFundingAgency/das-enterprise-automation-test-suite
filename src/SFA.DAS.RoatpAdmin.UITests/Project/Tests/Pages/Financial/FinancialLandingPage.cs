@@ -22,5 +22,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             formCompletionHelper.ClickLinkByText( objectContext.GetProviderName());
             return new FinancialHealthAssessmentOverviewPage(_context);
         }
+
     }
 }

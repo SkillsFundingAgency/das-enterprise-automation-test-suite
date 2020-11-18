@@ -24,7 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             return new ApplicationAssessmentOverviewPage(_context);
         }
 
-        public RoatpApplicationsHomePage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
+        public RoatpAssessorApplicationsHomePage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
         {
             var linkText = objectContext.GetProviderName();
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
             VerifyElement(() => tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);
 
-            return new RoatpApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(_context);
         }
     }
 }

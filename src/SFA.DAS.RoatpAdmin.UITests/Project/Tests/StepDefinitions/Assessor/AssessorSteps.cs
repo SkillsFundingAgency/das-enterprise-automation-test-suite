@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private RoatpApplicationsHomePage _roatpApplicationsHomePage;
+        private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
         private ApplicationAssessmentOverviewPage _applicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
 

@@ -17,5 +17,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Outstanding")]
         public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsOutstanding() => financialHealthAssessmentOverviewPage.ConfirmFHAReviewAsOutstanding();
+
+        [Then(@"the Financial Applications Outcome tab is updated as (Outstanding|Inadequate)")]
+        public void ThenTheFinancialApplicationsOutcomeTabIsUpdatedAs(string expectedStatus) => financialHealthAssessmentOverviewPage.VerifyOutcomeStatus(expectedStatus);
+
     }
 }

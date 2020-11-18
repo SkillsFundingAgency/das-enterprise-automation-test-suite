@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-    public class RoatpApplicationsHomePage : AssessorBasePage
+    public class RoatpAssessorApplicationsHomePage : AssessorBasePage
     {
         protected override string PageTitle => "RoATP assessor applications";
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
         private By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
-        public RoatpApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
+        public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public ApplicationAssessmentOverviewPage Assessor1SelectsAssignToMe() => AssessorSelectsAssignToMe(Assessor1Link);
 
@@ -45,12 +45,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new ModerationApplicationAssessmentOverviewPage(_context);
         }
 
-        public RoatpApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
+        public RoatpAssessorApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
         {
             return VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));
         }
 
-        public RoatpApplicationsHomePage VerifyClarificationStatus()
+        public RoatpAssessorApplicationsHomePage VerifyClarificationStatus()
         {
             return VerifyApplicationStatus(UkprnStatus, objectContext.GetUkprn(), () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab)));
         }

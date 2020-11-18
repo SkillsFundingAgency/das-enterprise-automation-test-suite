@@ -122,6 +122,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Financial assessor completes assessment by confirming the Gateway outcome as " +
                         "Outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 13
+ testRunner.Then("the Financial Applications Outcome tab is updated as Outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

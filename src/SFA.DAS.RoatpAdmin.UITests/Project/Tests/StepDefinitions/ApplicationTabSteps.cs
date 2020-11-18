@@ -13,7 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
-        private RoatpApplicationsHomePage _roatpApplicationsHomePage;
+        private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
 
         public ApplicationTabSteps(ScenarioContext context)
         {
@@ -23,10 +23,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
-        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _roatpApplicationsHomePage = new RoatpApplicationsHomePage(_context).VerifyOutcomeStatus(expectedStatus);
+        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _roatpApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context).VerifyOutcomeStatus(expectedStatus);
 
         [Then(@"the Clarification tab is updated")]
-        public void ThenTheClarificationTabIsUpdated() => _roatpApplicationsHomePage = new RoatpApplicationsHomePage(_context).VerifyClarificationStatus();
+        public void ThenTheClarificationTabIsUpdated() => _roatpApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context).VerifyClarificationStatus();
 
         [Then(@"verify subsections outcome passed by Clarification assessor are updated as PASS")]
         public void ThenVerifySubsectionsOutcomePassedByClarificationAssessorAreUpdatedAsPASS()
