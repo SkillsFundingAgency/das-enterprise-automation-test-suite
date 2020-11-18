@@ -15,8 +15,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
         private By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
-        private By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
-        private By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
         public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
 
@@ -45,20 +43,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new ModerationApplicationAssessmentOverviewPage(_context);
         }
 
-        public RoatpAssessorApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
-        {
-            return VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));
-        }
-
-        public RoatpAssessorApplicationsHomePage VerifyClarificationStatus()
-        {
-            return VerifyApplicationStatus(UkprnStatus, objectContext.GetUkprn(), () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab)));
-        }
-
         private ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe(By columnIdentifier)
         {
             formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(objectContext.GetUkprn(), columnIdentifier));
             return new ApplicationAssessmentOverviewPage(_context);
+        }
+
+        public new RoatpAssessorApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
+        {
+            base.VerifyOutcomeStatus(expectedStatus);
+            return new RoatpAssessorApplicationsHomePage(_context);
+        }
+
+        public RoatpAssessorApplicationsHomePage VerifyClarificationStatus()
+        {
+            VerifyClarificationStatus(UkprnStatus, objectContext.GetUkprn());
+            return new RoatpAssessorApplicationsHomePage(_context);
         }
     }
 }

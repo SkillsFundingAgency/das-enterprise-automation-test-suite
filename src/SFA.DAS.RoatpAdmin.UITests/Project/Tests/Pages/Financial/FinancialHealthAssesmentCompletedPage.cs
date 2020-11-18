@@ -1,13 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
 {
-    public class FinancialHealthAssesmentCompletedPage : RoatpGateWayBasePage
+    public class FinancialHealthAssesmentCompletedPage : RoatpNewAdminBasePage
     {
         protected override string PageTitle => "Financial health assessment completed";
         private By GoToRoATPFinancialApplicationsLink => By.LinkText("Back to RoATP financial applications");
@@ -21,10 +17,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             _context = context;
             VerifyPage();
         }
-        public FinancialHealthAssessmentOverviewPage GoToRoATPAssessorApplicationsPage()
+
+        public FinancialLandingPage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPFinancialApplicationsLink);
-            return new FinancialHealthAssessmentOverviewPage(_context);
+            return new FinancialLandingPage(_context);
         }
     }
 }
