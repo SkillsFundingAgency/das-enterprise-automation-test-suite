@@ -12,9 +12,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         public FHASteps(ScenarioContext context) => _context = context;
 
-        [When(@"the admin access the FinancialApplications")]
+        [When(@"the admin access the Financial Applications")]
         public void WhenTheAdminAccessTheFinancialApplications() => _financialLandingPage = new StaffDashboardPage(_context).AccessFinancialApplications();
-
 
         [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Outstanding")]
         public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsOutstanding()
@@ -25,22 +24,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Inadequate")]
-        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsInadequate()
+        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Clarification")]
+        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsClarification()
         {
             _financialLandingPage = _financialLandingPage
                 .SelectNewApplication()
                 .ConfirmNeedsClarification()
                 .GoToRoATPAssessorApplicationsPage();
+        }
 
+        [Then(@"the Financial assessor completes the Clarification process by confirming the Gateway outcome as Inadequate")]
+        public void ThenTheFinancialAssessorCompletesTheClarificationProcessByConfirmingTheGatewayOutcomeAsInadequate()
+        {
             _financialLandingPage = _financialLandingPage.SelectClarificationApplication()
                 .EnterClarificationResponse()
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-
-        [Then(@"the Financial Applications Outcome tab is updated as (Outstanding|Inadequate)")]
-        public void ThenTheFinancialApplicationsOutcomeTabIsUpdatedAs(string expectedStatus) => _financialLandingPage = _financialLandingPage.VerifyOutcomeStatus(expectedStatus);
+        [Then(@"the Financial Applications Outcome tab is updated with (Outstanding|Inadequate) outcome for this Application")]
+        public void ThenTheFinancialApplicationsOutcomeTabIsUpdated(string expectedStatus) => _financialLandingPage = _financialLandingPage.VerifyOutcomeStatus(expectedStatus);
 
     }
 }
