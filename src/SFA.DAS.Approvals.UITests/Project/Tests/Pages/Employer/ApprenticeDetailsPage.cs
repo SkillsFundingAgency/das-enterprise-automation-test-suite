@@ -64,12 +64,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
+        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
             formCompletionHelper.ClickElement(changeTrainingProviderLink);
             return new ChangingTrainingProviderPage(_context);
-        } 
-
+        }
 
     }
 }

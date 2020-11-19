@@ -42,11 +42,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
               .SelectViewCurrentCohortDetails();
 
 
-        internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
-        internal HomePage GotoEmployerHomePage() => _homePageStepsHelper.GotoEmployerHomePage();
-        internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
+        internal ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+        internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
+        internal ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
-            GotoEmployerHomePage();
+            GotoEmployerHomePage(openInNewTab);
             return new ApprenticesHomePage(_context, true);
         }
 
@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ValidateRedundancyStatusAndStopDate();
         }
 
-        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
         internal EditApprenticePage EditApprenticeDetailsPagePostApproval() => ViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
 
