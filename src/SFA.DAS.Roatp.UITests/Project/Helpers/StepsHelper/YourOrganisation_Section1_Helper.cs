@@ -5,6 +5,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class YourOrganisation_Section1_Helper
     {
+        internal ApplicationOverviewPage VerifySection1Status(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .VerifyIntroductionStatus(StatusHelper.StatusCompleted)
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted)
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted)
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

@@ -22,6 +22,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
+        [When(@"the provider completes Your organisation section for a ukprn")]
+        public void TheProviderCompletesYourOrganisationSectionForAUkprn()
+        {
+            _overviewPage = new ApplicationOverviewPage(_context);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_NotACompany(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_GovernmentStatue(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeHEIEmplopyerRoute(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
+            _yourOrganisationSectionHelper.VerifySection1Status(_overviewPage);
+        }
+
         [Then(@"the provider completes Introduction and what you'll need section for main and employer route")]
         public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedSectionForMainAndEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(new ApplicationOverviewPage(_context));
 

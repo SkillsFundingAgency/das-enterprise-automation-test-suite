@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
 
@@ -8,14 +9,38 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     public class SelectRouteSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private AlreadyOnRoatpPage _alreadyOnRoatpPage;
+        private ApplicationOverviewPage _applicationOverviewPage;
+        private readonly YourOrganisation_Section1_Helper _section1_Helper;
 
         public SelectRouteSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _section1_Helper = new YourOrganisation_Section1_Helper();
         }
+
+        [Then(@"the provider can change ukprn")]
+        public void ThenTheProviderCanChangeUkprn()
+        {
+            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+                .Access_ChangeUkprn()
+                .SelectNoToChangeUkprnAndContinue();
+
+            _section1_Helper.VerifySection1Status(_applicationOverviewPage);
+
+            var page = _applicationOverviewPage
+                .Access_ChangeUkprn()
+                .SelectYesToChangeUkprnAndContinue()
+                .EnterOrgTypeCompanyProvidersUkprn(_objectContext.GetNewUkprn()).ClickConfirmAndContinue()
+                .SelectApplicationRouteAsMain();
+
+            _selectRouteStepsHelper.AcceptAndContinue(page);
+        }
+
 
         [Given(@"the provider initates an application as employer who is already on Roatp as employer")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerWhoIsAlreadyOnRoatpAsEmployer() => _alreadyOnRoatpPage = _selectRouteStepsHelper.CompleteProviderCharityRouteWhoisAlreayOnRoatp();

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprenticeshipTraining_Section8;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence_Section2;
@@ -12,9 +13,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public partial class ApplicationOverviewPage : RoatpApplyBasePage
     {
+        private By ChangeUkprn => By.CssSelector("a[href*='change-ukprn?']");
+
+        private By ChangeRoute => By.CssSelector("a[href*='ChangeRoute?']");
+
         #region Section9
 
         private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), () => formCompletionHelper.ClickLinkByText("Application overview"));
+
+        public ChangeUkprnPage Access_ChangeUkprn()
+        {
+            formCompletionHelper.ClickElement(ChangeUkprn);
+            return new ChangeUkprnPage(_context);
+        }
 
         public PermissionsFromEveryoneNamedPage Access_Section9_ApplicationPermissionChecks()
         {

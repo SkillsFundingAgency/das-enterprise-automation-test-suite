@@ -14,7 +14,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 40)]
         public void RoatpLaunchApplication()
         {
-            if (_tags.Any(x => x == "roatpapply" || x == "roatpapplycreateaccount" || x == "roatpfulle2e" || x == "roatpapplyinprogressapplication")) GoToUrl(UrlConfig.Apply_BaseUrl);
+            if (_tags.Any(x => x == "roatpapply" || x == "roatpapplycreateaccount" || x == "roatpfulle2e" 
+            || x == "roatpapplyinprogressapplication" || x == "roatpapplychangeukprn")) GoToUrl(UrlConfig.Apply_BaseUrl);
 
             if (_tags.Any(x => x == "roatpadmin" || x == "roatpadmindownloadprovider")) GoToUrl(UrlConfig.Admin_BaseUrl);
 
