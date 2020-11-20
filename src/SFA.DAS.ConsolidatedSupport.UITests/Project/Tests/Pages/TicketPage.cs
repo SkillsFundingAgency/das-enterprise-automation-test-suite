@@ -28,9 +28,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By CommentsSections => By.CssSelector(".zd-comment");
 
-        private By TicketDropdownFields => By.CssSelector("[data-garden-id='dropdowns.field']");
+        private By TicketDropdownFields => By.CssSelector("[data-garden-id='forms.field']");
 
-        private By TicketDropdownLabel => By.CssSelector("[data-garden-id='dropdowns.label']");
+        private By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
 
         private By TicketFormsLabel => By.CssSelector("[data-garden-id='forms.text_label']");
 
