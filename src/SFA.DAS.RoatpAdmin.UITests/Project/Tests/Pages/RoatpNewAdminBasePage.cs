@@ -1,14 +1,16 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public abstract class RoatpNewAdminBasePage : RoatpBasePage
     {
-        protected By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
+        protected virtual By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
 
-        protected By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
+        protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
 
         protected By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
 
@@ -17,6 +19,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+
+        protected By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
+
+        protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
         public RoatpNewAdminBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -44,6 +50,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
                     VerifyElement(() => pageInteractionHelper.FindElement(StatusTextLocator(linkText)), expectedStatus, null);
+
+        protected void VerifyOutcomeStatus(string expectedStatus)
+        {
+            VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));
+        }
+
+        protected void VerifyClarificationStatus(By statusSelector, string expectedStatus)
+        {
+            VerifyApplicationStatus(statusSelector, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab)));
+        }
+
+        protected void VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
+        {
+            var linkText = objectContext.GetProviderName();
+
+            action.Invoke();
+
+            VerifyElement(() => tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);
+        }
 
         protected void EnterFailInternalComments() => formCompletionHelper.EnterText(FailInternalComments, "Internal comments");
 
