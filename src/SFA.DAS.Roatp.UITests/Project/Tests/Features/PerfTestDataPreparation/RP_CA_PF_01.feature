@@ -11,3 +11,12 @@ Scenario Outline: RP_CA_PF_01_Create_Account_TestData
 		Examples: 
 		| GivenName        | FamilyName |
 		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
+		| sudhakar.chinoor | +perftest  |
