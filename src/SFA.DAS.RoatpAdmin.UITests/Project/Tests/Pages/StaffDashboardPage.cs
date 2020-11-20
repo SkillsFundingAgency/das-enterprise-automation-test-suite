@@ -28,10 +28,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(FinancialApplicationLink);
             return new FinancialLandingPage(_context);
         }
-        public RoatpApplicationsHomePage AccessAssessorAndModerationApplications()
+        public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications()
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
-            return new RoatpApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(_context);
         }
     }
 }

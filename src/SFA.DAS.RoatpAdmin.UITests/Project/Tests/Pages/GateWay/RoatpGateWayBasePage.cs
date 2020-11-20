@@ -1,23 +1,22 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
-    public abstract class RoatpGateWayBasePage : RoatpBasePage
+    public abstract class RoatpGateWayBasePage : RoatpNewAdminBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        protected By EnterCommentsForFail => By.Id("OptionFailText");
-
         protected RoatpGateWayBasePage(ScenarioContext context) : base(context) => _context = context;
 
-        public GWApplicationOverviewPage SelectFailAndContinue(string text)
+        public GWApplicationOverviewPage SelectFailAndContinue()
         {
             SelectRadioOptionByText("Fail");
-            formCompletionHelper.EnterText(EnterCommentsForFail, text);
+            EnterFailInternalComments();
             Continue();
             return new GWApplicationOverviewPage(_context);
         }
