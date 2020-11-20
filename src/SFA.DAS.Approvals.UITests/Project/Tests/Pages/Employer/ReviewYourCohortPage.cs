@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -17,6 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApproveMessage => By.CssSelector("#approve-details");
 		private By ReviewMessage => By.CssSelector("#send-details");
 		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
+        private By AddAnotherApprenticeLink = By.LinkText("Add another apprentice");
 
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context, false)
@@ -82,5 +84,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");
+
+        public ReviewYourCohortPage IsAddApprenticeLinkDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(AddAnotherApprenticeLink))
+                throw new Exception("Link is still available to add another apprentice record");
+            else
+                return this;
+        }
     }
 }
