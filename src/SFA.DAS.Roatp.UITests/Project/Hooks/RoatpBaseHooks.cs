@@ -89,7 +89,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected string GetUkprn() => _objectContext.GetUkprn();
 
-        private void SetEmail(string email) => _objectContext.SetEmail(email);
+        private void SetEmail(string email)
+        { 
+            _objectContext.SetEmail(email);
+
+            if (_context.ScenarioInfo.Tags.Contains("roatpapplye2e"))
+            {
+                _objectContext.SetPassword("RoatpAutomation123");
+            }
+            else
+            {
+                _objectContext.SetPassword(config.ApplyPassword);
+            }
+        }
         private void SetProviderName(string providername) => _objectContext.SetProviderName(providername);
         private void SetUkprn(string ukprn) => _objectContext.SetUkprn(ukprn);
         private void SetNewUkprn(string ukprn) => _objectContext.SetNewUkprn(ukprn);
