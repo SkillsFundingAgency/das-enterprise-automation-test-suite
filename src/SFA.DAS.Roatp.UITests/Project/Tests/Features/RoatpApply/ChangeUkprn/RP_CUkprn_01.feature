@@ -5,6 +5,6 @@
 @roatpapplychangeukprn
 @regression
 Scenario: RP_CUkprn_01
-    Given the provider initates an application as employer route charity
-    When the provider completes Your organisation section for a ukprn
-    Then the provider can change ukprn
+    Given the provider initates an application as employer route
+    When the provider completes Your organisation section using an ukprn
+    Then the provider should be able to change the ukprn
