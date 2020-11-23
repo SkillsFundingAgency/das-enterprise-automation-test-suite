@@ -16,11 +16,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             VerifyPage();
         }
 
-        public DescribeYourOrganisationPage SelectHigherEducationInstituteAndContinue()
+        public OrgMonitoredSupportedByOFSPage SelectHigherEducationInstituteAndContinue()
         {
             SelectRadioOptionByText("Higher Education Institute");
             Continue();
-            return new DescribeYourOrganisationPage(_context);
+            return new OrgMonitoredSupportedByOFSPage(_context);
         }
 
         public AlreadyRegisteredWithEsfaPage SelectSixthFormCollegeAndContinue()
@@ -35,13 +35,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectRadioOptionByText("Academy");
             Continue();
             return new AlreadyRegisteredWithEsfaPage(_context);
-        }
-
-        public DescribeYourOrganisationPage SelectHigherEducationInstituteAndContinueForEmplopyer()
-        {
-            SelectRadioOptionByText("Higher Education Institute");
-            Continue();
-            return new DescribeYourOrganisationPage(_context);
         }
     }
 }
