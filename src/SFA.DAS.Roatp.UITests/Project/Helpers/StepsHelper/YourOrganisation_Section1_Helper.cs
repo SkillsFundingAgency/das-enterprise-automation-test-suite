@@ -197,7 +197,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllMainRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectNoForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectNoForMonitoringVisitAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllForEmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSectionForEmployerRoute()
@@ -217,8 +227,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         }
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -230,8 +239,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeOutstanding(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
