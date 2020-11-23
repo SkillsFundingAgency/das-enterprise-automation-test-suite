@@ -22,8 +22,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
-        [When(@"the provider completes Your organisation section for a ukprn")]
-        public void TheProviderCompletesYourOrganisationSectionForAUkprn()
+        [When(@"the provider completes Your organisation section using an ukprn")]
+        public void WhenTheProviderCompletesYourOrganisationSectionUsingAnUkprn()
         {
             _overviewPage = new ApplicationOverviewPage(_context);
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(_overviewPage);
@@ -89,7 +89,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypePublicBody() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypePublicBody(_overviewPage);
 
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
-        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(_overviewPage);
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAllMainRoute(_overviewPage);
+
+        [Then(@"the provider completes Experience and Accreditations section by selecting No to all Employer Route")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAllEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAllForEmployerRoute(_overviewPage);
 
         [Then(@"the provider completes Experience and Accreditations section by selecting Yes to Subcontractor training")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingYesToSubcontractorTraining() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_Support(_overviewPage);

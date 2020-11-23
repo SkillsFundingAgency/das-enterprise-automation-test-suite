@@ -23,12 +23,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _section1_Helper = new YourOrganisation_Section1_Helper();
         }
 
-        [Then(@"the provider can change ukprn")]
-        public void ThenTheProviderCanChangeUkprn()
+        [Then(@"the provider should be able to change the ukprn")]
+        public void ThenTheProviderShouldBeAbleToChangeTheUkprn()
         {
             _applicationOverviewPage = new ApplicationOverviewPage(_context)
-                .Access_ChangeUkprn()
-                .SelectNoToChangeUkprnAndContinue();
+             .Access_ChangeUkprn()
+             .SelectNoToChangeUkprnAndContinue();
 
             _section1_Helper.VerifySection1Status(_applicationOverviewPage);
 
@@ -40,7 +40,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             _selectRouteStepsHelper.AcceptAndContinue(page);
         }
-
 
         [Given(@"the provider initates an application as employer who is already on Roatp as employer")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerWhoIsAlreadyOnRoatpAsEmployer() => _alreadyOnRoatpPage = _selectRouteStepsHelper.CompleteProviderCharityRouteWhoisAlreayOnRoatp();

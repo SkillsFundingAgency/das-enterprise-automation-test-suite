@@ -162,6 +162,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEducationalInstituteAndContinue()
                 .SelectHigherEducationInstituteAndContinue()
+                .SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
@@ -171,7 +172,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEducationalInstituteAndContinue()
-                .SelectHigherEducationInstituteAndContinueForEmplopyer()
+                .SelectHigherEducationInstituteAndContinue()
+                .SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
@@ -205,11 +207,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllMainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectNoForMonitoringVisitAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllForEmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectNoForITTAndContinue()
                 .SelectNoForFullOfstedInspectionAndContinue()
                 .SelectNoForMonitoringVisitAndContinue()
@@ -219,16 +230,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
-                .AccessExperienceAndAccreditationsSection()
-                .SelectNoForFundedbyOFSAndContinueForSupportingRoute()
+                .AccessExperienceAndAccreditationsSectionForSupportingRoute()
                 .SelectYesForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
                 .UploadLegallyBindingContractAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -240,8 +249,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeOutstanding(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -256,7 +264,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_YesToPGTA(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                .SelectYesForFundedbyOFSAndContinue()
                .SelectYesForITTAndContinue()
                .SelectYesForPGTAAndContinue()
@@ -265,7 +273,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Ofsted(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
@@ -308,7 +316,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
                 .SelectNoForITTAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -317,7 +325,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesForInadequateGradeWithinThreeYearsAndContinue()
                 .ReturnToApplicationOverview()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
                 .SelectNoForITTAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -330,11 +338,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .ReturnToApplicationOverview()
                 .Verify_Section4(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectYesForPGTAAndContinue()
@@ -343,7 +351,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
@@ -357,7 +365,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
@@ -373,7 +381,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
@@ -384,7 +392,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesForGradeMaintainedFromEducationAgencyAndContinue()
                 .Verify_Section4(StatusHelper.NotRequired)
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
@@ -401,8 +409,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectYesForPGTAAndContinue()
                 .Verify_Section4(StatusHelper.NotRequired)
@@ -410,8 +417,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -424,8 +430,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -440,8 +445,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.NotRequired)
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
@@ -451,8 +455,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesForGradeMaintainedFromEducationAgencyAndContinue()
                 .Verify_Section4(StatusHelper.NotRequired)
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired)
-                .AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()
