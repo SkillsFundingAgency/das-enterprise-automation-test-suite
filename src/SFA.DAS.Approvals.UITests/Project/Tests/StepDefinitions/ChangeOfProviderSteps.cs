@@ -79,5 +79,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(EditApprenticeDetails.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
+
+        [When(@"new provider rejects the cohort")]
+        public void WhenNewProviderRejectsTheCohort()
+        {
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
+
+            new ProviderYourCohortsPage(_context, true)
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprentice()
+                .EditCopApprenticeDetails()
+                .SelectContinueToApproval()
+                .SubmitSendToEmployerToReview();
+        }
+
+        [When(@"employer deletes the Cohort")]
+        public void WhenEmployerDeletesTheCohort()
+        {
+            new EmployerStepsHelper(_context)
+               .EmployerReviewCohort()
+               .SelectDeleteThisGroup();
+        }
+
+        [Then(@"employer can change provider again")]
+        public void ThenEmployerCanChangeProviderAgain()
+        {
+            new EmployerStepsHelper(_context).StartChangeofNewTrainingProvider();        
+        }
     }
 }

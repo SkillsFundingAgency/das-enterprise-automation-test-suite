@@ -279,5 +279,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             Assert.True(apprenticeDetailsPage.IsEditEndDateLinkVisible());
         }
 
+        public ChangeOfTrainingProviderRequestedPage StartChangeofNewTrainingProvider()
+        {
+            return GoToManageYourApprenticesPage()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickOnChangeOfProviderLink()
+                  .ClickOnContinueButton()
+                  .ChooseTrainingProviderPage()
+                  .SelectYesAndContinue();
+        }
     }
 }
