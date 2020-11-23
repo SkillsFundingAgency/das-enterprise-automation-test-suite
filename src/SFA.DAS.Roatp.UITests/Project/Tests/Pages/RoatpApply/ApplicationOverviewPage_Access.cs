@@ -1,14 +1,13 @@
-﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprenticeshipTraining_Section6;
+using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprenticeshipTraining_Section8;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence_Section2;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprenticeshipTraining_Section6;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApprentices_Section4;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage_Section5;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1;
-
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public partial class ApplicationOverviewPage : RoatpApplyBasePage
@@ -124,7 +123,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         #endregion
 
-        #region Section6
+        #region Section6 
 
         public PlanningApprenticeshipTrainingPage Access_Section6_IntroductionWhatYouwillNeed()
         {
@@ -138,25 +137,31 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             return new TypeOfApprenticeshipTrainingPage(_context);
         }
 
-        public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
+        public TrainApprenticesPage Access_Section6_TrainingApprentices()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3);
-            return new EnsureApprenticesSupportedPage(_context);
-        }
+            return new TrainApprenticesPage(_context);
+        } 
 
-        public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
+        public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4);
+            return new EnsureApprenticesSupportedPage(_context);
+        }
+      
+        public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
+        {
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5);
             return new ForecastInFirst12MonthsPage(_context);
         }
         public WhatTeachingMethodsPage Access_Section6_OffTheJobTraining()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6);
             return new WhatTeachingMethodsPage(_context);
         }
         public WhereWillApprenticesBeTrainedPage Access_Section6_WhereWillYourApprenticesBeTrained()
         {
-            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6);
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_7);
             return new WhereWillApprenticesBeTrainedPage(_context);
         }
         #endregion
@@ -325,10 +330,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             NavigateToTask(Yourorganisation, YourOrganisation_4);
             return new WhatIsYourOrganisationPage(_context);
         }
-        public FundedByTheOfficeForStudentsPage AccessExperienceAndAccreditationsSection()
+        public FundedByTheOfficeForStudentsPage AccessExperienceAndAccreditationsSectionForMainRoute()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_5);
             return new FundedByTheOfficeForStudentsPage(_context);
+        }
+        public InitialTeacherTrainingPage AccessExperienceAndAccreditationsSectionForEmployerRoute()
+        {
+            NavigateToTask(Yourorganisation, YourOrganisation_5);
+            return new InitialTeacherTrainingPage(_context);
+        }
+        public ApprenticeshipTrainingAsSubcontractorPage AccessExperienceAndAccreditationsSectionForSupportingRoute()
+        {
+            NavigateToTask(Yourorganisation, YourOrganisation_5);
+            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
         }
         #endregion
     }

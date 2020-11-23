@@ -10,6 +10,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section6(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.Access_Section6_TrainingApprentices()
+               .SelectInYourOrganisationAndContinue()
+                .VerifyTrainingApprentices_Section6(StatusHelper.StatusCompleted);
+        }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_TypeOfApprenticeshipTraining()
@@ -40,7 +46,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_SupportingApprentices()
                 .EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
@@ -48,7 +54,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextForOtherWaysToSupportApprenticesAndContinue()
                 .VerifySupporting_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_ForeCastingStarts()
                 .SelectOneTo49ForecastAndContinue()
@@ -57,14 +63,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectOneTrainerBetween10OrLessApprenticesAndContinue()
                 .VerifyForecasting_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_OffTheJobTraining()
                 .SelectLearningSupportAndWrritenAssignmentsAndContinue()
                 .EnterTextForOffTheJobTrainingIsRelevantAndContinue()
                 .VerifyOffTheJobTrainning_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_WhereWillYourApprenticesBeTrained()
                 .EnterTrainingLocationDetailsAndContinue()
