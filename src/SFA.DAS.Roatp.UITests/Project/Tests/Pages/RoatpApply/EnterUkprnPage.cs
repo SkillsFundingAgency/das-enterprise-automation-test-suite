@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private readonly ScenarioContext _context;
         #endregion
 
-        private By UkprnField => By.Id("UKPRN");
+        private By UkprnField => By.CssSelector("#UKPRN, #Ukprn");
         private By EmptyUkprnErrorMessage => By.LinkText("Enter a UKPRN");
         private By InvalidUkprnErrorMessage => By.LinkText("Enter a UKPRN using 8 numbers");
 
@@ -21,9 +21,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public ConfirmOrganisationsDetailsPage EnterOrgTypeCompanyProvidersUkprn()
+        public ConfirmOrganisationsDetailsPage EnterOrgTypeCompanyProvidersUkprn() => EnterOrgTypeCompanyProvidersUkprn(objectContext.GetUkprn());
+
+        public ConfirmOrganisationsDetailsPage EnterOrgTypeCompanyProvidersUkprn(string ukprn)
         {
-            formCompletionHelper.EnterText(UkprnField, objectContext.GetUkprn());
+            formCompletionHelper.EnterText(pageInteractionHelper.FindElement(UkprnField), ukprn);
             Continue();
             return new ConfirmOrganisationsDetailsPage(_context);
         }

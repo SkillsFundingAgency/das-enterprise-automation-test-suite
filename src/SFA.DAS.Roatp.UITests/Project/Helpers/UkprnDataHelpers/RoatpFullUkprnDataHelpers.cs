@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
     {
         public RoatpFullUkprnDataHelpers() : base() => AddE2EDatahelpers();
 
-        public (string email, string providername, string ukprn) GetRoatpE2EData(string key) => GetData(FindKeyValuePairs(_data, key), emailkey, providernamekey, ukprnkey);
+        public (string email, string providername, string ukprn) GetRoatpE2EData(string key) => GetData(key, emailkey, providernamekey, ukprnkey);
 
         private void AddE2EDatahelpers()
         {
