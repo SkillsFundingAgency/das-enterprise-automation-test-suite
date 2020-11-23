@@ -84,14 +84,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenNewProviderRejectsTheCohort()
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
-
             new ProviderYourCohortsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
                 .EditCopApprenticeDetails()
                 .SelectContinueToApproval()
-                .SubmitSendToEmployerToReview();
+                .SubmitSendToEmployerToReview()
+                .SendInstructionsToEmployerForCohortToReview();
         }
 
         [When(@"employer deletes the Cohort")]
@@ -99,7 +99,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new EmployerStepsHelper(_context)
                .EmployerReviewCohort()
-               .SelectDeleteThisGroup();
+               .SelectDeleteThisGroup()
+               .ConfirmDeleteAndSubmit();
         }
 
         [Then(@"employer can change provider again")]
