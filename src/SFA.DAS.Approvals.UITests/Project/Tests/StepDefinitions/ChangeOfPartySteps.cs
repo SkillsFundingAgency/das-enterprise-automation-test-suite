@@ -69,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"employer sends COP request to new provider")]
         public void WhenEmployerSendsCOPRequestToNewProvider()
         {
-            _employerStepsHelper.ViewCurrentApprenticeDetails()
+            _employerStepsHelper.ViewCurrentApprenticeDetails(false)
                                 .ClickOnChangeOfProviderLink()
                                 .ClickOnContinueButton()
                                 .ChooseTrainingProviderPage ()
@@ -79,6 +79,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
             _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
+
+        [Then(@"employer should not be able to see change link for another CoP")]
+        public void ThenEmployerShouldNotBeAbleToSeeChangeLinkForAnotherCoP()
+        {
+            Assert.IsFalse(_employerStepsHelper.ViewCurrentApprenticeDetails(false).IsChangeOfProviderLinkDisplayed());
+        }
+
 
         [When(@"provider sends COE request to new employer")]
         public void WhenProviderSendsCOERequestToNewEmployer()
