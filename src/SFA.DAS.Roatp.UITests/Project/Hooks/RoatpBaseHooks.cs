@@ -93,7 +93,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         { 
             _objectContext.SetEmail(email);
 
-            if (_context.ScenarioInfo.Tags.Contains("roatpapplye2e"))
+            if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
             {
                 _objectContext.SetPassword("RoatpAutomation123");
             }
