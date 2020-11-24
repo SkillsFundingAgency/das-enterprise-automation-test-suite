@@ -25,9 +25,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
-        public HomePage GotoEmployerHomePage()
+        public HomePage GotoEmployerHomePage(bool openInNewTab = true)
         {
-            OpenInNewTab();
+            if (openInNewTab)
+            {
+                OpenInNewTab();
+            }                
 
             if (_loginHelper.IsIndexPageDisplayed())
             {
@@ -45,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                     .GoToHomePage(_objectContext.GetOrganisationName());
             }
 
-            return new HomePage(_context);
+            return new HomePage(_context, !openInNewTab);
         }
 
         public MyAccountWithOutPayePage GotoEmployerHomePage(MyAccountWithOutPayeLoginHelper loginHelper)
