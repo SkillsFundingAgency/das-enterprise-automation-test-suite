@@ -18,6 +18,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
         }
 
+        public string ClearDownDataUkprnFromApply(string ukprn)
+        {
+            var applicationIdQuery = $"SELECT ApplicationId from dbo.Apply where ukprn = {ukprn}";
+
+            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, connectionString);
+
+            return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownFullDataFromApply(queryResult);
+        }
+
         public string ClearDownDataFromApply()
         {
             var applicationIdQuery = $"SELECT ApplicationId from dbo.Apply a " +
@@ -39,16 +48,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
         }
 
-        public int WhiteListProviders()
+        public int WhiteListProviders(string ukprn)
         {
+            ukprn ??= _objectContext.GetUkprn();
+
             var insertWhiteListProviderQuery =
-                $"IF NOT EXISTS(SELECT * FROM WhitelistedProviders WHERE [UKPRN] = {_objectContext.GetUkprn()}) " +
+                $"IF NOT EXISTS(SELECT * FROM WhitelistedProviders WHERE [UKPRN] = {ukprn}) " +
                 $"BEGIN " +
-                $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({_objectContext.GetUkprn()}) " +
+                $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({ukprn}) " +
                 $"END";
 
             return ExecuteSqlCommand(insertWhiteListProviderQuery);
         }
+
 
         private string ClearDownFullDataFromApply(List<object[]> queryResult)
         {

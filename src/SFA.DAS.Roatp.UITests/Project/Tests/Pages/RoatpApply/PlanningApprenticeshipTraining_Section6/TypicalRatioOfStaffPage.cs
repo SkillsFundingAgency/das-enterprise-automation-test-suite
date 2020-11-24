@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         private readonly ScenarioContext _context;
         #endregion
 
-        private By OneTrainerBetween10OrLessAoorenticesRadio => By.Id("PAT-643");
+        private By OneTrainerBetween10OrLessAoorenticesRadio => By.Id("PAT-653");
 
         public TypicalRatioOfStaffPage(ScenarioContext context) : base(context)
         {

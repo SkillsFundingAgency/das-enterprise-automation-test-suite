@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprenticeshipTraining_Section6
 {
     public class TrainApprenticesPage : RoatpApplyBasePage
     {
@@ -16,12 +16,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             VerifyPage();
         }
 
-        public DescribeYourOrganisationPage SelectInYourOrganisationAndContinue()
+        public ApplicationOverviewPage SelectInYourOrganisationAndContinue()
         {
             
             SelectRadioOptionByText("In your organisation");
             Continue();
-            return new DescribeYourOrganisationPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

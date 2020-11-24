@@ -47,6 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         {
             UploadFile();
             RemoveOneFile();
+            UploadFile();
             formCompletionHelper.EnterText(ClarificationResponseBox, "Clarification Response Comments");
             SelectRadioOptionByForAttribute("inadequate");
             formCompletionHelper.EnterText(InadequateCommentBox, "PMO Clarification Internal Comments for Inadequate");

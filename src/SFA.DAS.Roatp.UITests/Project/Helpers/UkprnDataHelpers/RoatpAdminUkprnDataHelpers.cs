@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
     {
         public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
 
-        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(FindKeyValuePairs(_data, key), providernamekey, ukprnkey);
+        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(key, providernamekey, ukprnkey);
 
         private void AddAdminDatahelpers()
         {

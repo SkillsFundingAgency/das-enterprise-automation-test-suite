@@ -13,9 +13,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
-        private readonly ObjectContext _objectContext;
+        protected readonly ObjectContext _objectContext;
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         protected readonly RoatpConfig config;
+
+        private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;
+        private readonly RoatpApplyChangeUkprnDataHelpers _roatpApplyChangeUkprnDataHelpers;
+        private readonly RoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
+        private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
         {
@@ -24,6 +29,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             _tabHelper = context.Get<TabHelper>();
             config = context.GetRoatpConfig<RoatpConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, config);
+            _roatpApplyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
+            _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();
+            _roatpAdminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
+            _roatpFullUkprnDataHelpers = new RoatpFullUkprnDataHelpers();
         }
 
         protected void GoToUrl(string url) => _tabHelper.GoToUrl(url);
@@ -34,21 +43,33 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
-        protected void WhiteListProviders() => _roatpApplyAndQnASqlDbHelper.WhiteListProviders();
+        protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
+
+        protected void WhiteListProviders(string ukprn = null) => _roatpApplyAndQnASqlDbHelper.WhiteListProviders(ukprn);
 
         protected void GetRoatpAppplyData()
         {
             // every scenario (apply) should only have one tag which starts with rp, which is mapped to the test data.
-            var (email, ukprn) = new RoatpApplyUkprnDataHelpers().GetRoatpAppplyData(GetTag("rp"));
+            var (email, ukprn) = _roatpApplyUkprnDataHelpers.GetRoatpAppplyData(GetTag("rp"));
 
             SetEmail(email);
             SetUkprn(ukprn);
         }
 
+        protected void GetRoatpChangeUkprnAppplyData()
+        {
+            // every scenario (apply) should only have one tag which starts with rp, which is mapped to the test data.
+            var (email, ukprn, newukprn) = _roatpApplyChangeUkprnDataHelpers.GetRoatpChangeUkprnAppplyData(GetTag("rpchangeukprn"));
+
+            SetEmail(email);
+            SetUkprn(ukprn);
+            SetNewUkprn(newukprn);
+        }
+
         public void GetRoatpAdminData()
         {
             // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
-            var (providername, ukprn) = new RoatpAdminUkprnDataHelpers().GetRoatpAdminData(GetTag("rpad"));
+            var (providername, ukprn) = _roatpAdminUkprnDataHelpers.GetRoatpAdminData(GetTag("rpad"));
 
             SetProviderName(providername);
             SetUkprn(ukprn);
@@ -57,7 +78,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public void GetRoatpFullData()
         {
             // every scenario should only have one tag which starts with rp, which is mapped to the test data.
-            (string email, string providername, string ukprn) = new RoatpFullUkprnDataHelpers().GetRoatpE2EData(GetTag("rp"));
+            (string email, string providername, string ukprn) = _roatpFullUkprnDataHelpers.GetRoatpE2EData(GetTag("rp"));
 
             SetEmail(email);
             SetProviderName(providername);
@@ -69,6 +90,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private void SetEmail(string email) => _objectContext.SetEmail(email);
         private void SetProviderName(string providername) => _objectContext.SetProviderName(providername);
         private void SetUkprn(string ukprn) => _objectContext.SetUkprn(ukprn);
+        private void SetNewUkprn(string ukprn) => _objectContext.SetNewUkprn(ukprn);
 
         private string GetTag(string tag) => _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith(tag));
     }
