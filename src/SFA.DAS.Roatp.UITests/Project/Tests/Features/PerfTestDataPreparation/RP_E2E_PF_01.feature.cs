@@ -88,16 +88,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("rpperfe2e01")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
         public virtual void RP_E2E_PF_01_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapply",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e01"};
+                    "rpperfe2e01",
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_01_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 12
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -139,7 +141,7 @@ this.FeatureBackground();
                     "rpperfe2e02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_02_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 18
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -181,7 +183,7 @@ this.FeatureBackground();
                     "rpperfe2e03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_03_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 24
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -223,7 +225,7 @@ this.FeatureBackground();
                     "rpperfe2e04"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_04_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 30
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -265,7 +267,7 @@ this.FeatureBackground();
                     "rpperfe2e05"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_05_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 36
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -307,7 +309,7 @@ this.FeatureBackground();
                     "rpperfe2e06"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_06_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 42
+#line 43
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -349,7 +351,7 @@ this.FeatureBackground();
                     "rpperfe2e07"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_07_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 48
+#line 49
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -391,7 +393,7 @@ this.FeatureBackground();
                     "rpperfe2e08"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_08_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 54
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -433,7 +435,7 @@ this.FeatureBackground();
                     "rpperfe2e09"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_09_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 60
+#line 61
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -475,7 +477,7 @@ this.FeatureBackground();
                     "rpperfe2e10"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_10_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
-#line 66
+#line 67
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);

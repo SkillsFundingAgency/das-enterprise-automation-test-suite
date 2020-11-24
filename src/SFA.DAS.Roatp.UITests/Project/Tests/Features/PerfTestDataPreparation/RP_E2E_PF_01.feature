@@ -9,6 +9,7 @@ Background:
 @perftestroatpapplye2e
 @donottakescreenshot
 @rpperfe2e01
+@ignore
 Scenario: RP_E2E_PF_01_MainRoute-Company
 
 @roatpapply
