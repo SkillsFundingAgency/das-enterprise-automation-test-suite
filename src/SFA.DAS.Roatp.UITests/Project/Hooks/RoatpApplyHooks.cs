@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "roatpapply")]
+    [Binding, Scope(Tag = "roatpapply"), Scope(Tag = "roatpapplytestdataprep")]
     public class RoatpApplyHooks : RoatpBaseHooks
     {
         public RoatpApplyHooks(ScenarioContext context) : base(context) { }
