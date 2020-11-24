@@ -75,12 +75,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_COP_03_EmployerDeletesTheCohort")]
-        [NUnit.Framework.CategoryAttribute("changeOfProvider_WIP")]
+        [NUnit.Framework.CategoryAttribute("changeOfProvider")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_COP_03_EmployerDeletesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
-                    "changeOfProvider_WIP",
+                    "changeOfProvider",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_03_EmployerDeletesTheCohort", null, tagsOfScenario, argumentsOfScenario);
