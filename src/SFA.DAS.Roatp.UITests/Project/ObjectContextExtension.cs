@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
@@ -13,6 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private const string UkprnKey = "ukprnkey";
         private const string NewUkprnKey = "newukprnkey";
         private const string ApplicationReference = "applicationreference";
+        private const string ApplicationRoute = "applicationroute";
         #endregion
 
         internal static void SetCreateAccountCreds(this ObjectContext objectContext, string email, string password) => objectContext.Set(CreateAccountCredsKey, $"Email : {email}, Password : {password}");
@@ -23,7 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project
         public static void SetUkprn(this ObjectContext objectContext, string Ukprn) => objectContext.Replace(UkprnKey, Ukprn);
         public static void SetNewUkprn(this ObjectContext objectContext, string NewUkprn) => objectContext.Replace(NewUkprnKey, NewUkprn);
         internal static void SetApplicationReference(this ObjectContext objectContext, string applicationReference) => objectContext.Replace(ApplicationReference, applicationReference);
-        
+        public static void SetApplicationRoute(this ObjectContext objectContext, ApplicationRoute applicationRoute) => objectContext.Set(ApplicationRoute, applicationRoute);
+
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         internal static string GetOrganisationType(this ObjectContext objectContext) => objectContext.Get(OrganisationTypeKey);
         internal static string GetEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
@@ -31,5 +34,6 @@ namespace SFA.DAS.Roatp.UITests.Project
         public static string GetUkprn(this ObjectContext objectContext) => objectContext.Get(UkprnKey);
         public static string GetNewUkprn(this ObjectContext objectContext) => objectContext.Get(NewUkprnKey);
         internal static string GetApplicationReference(this ObjectContext objectContext) => objectContext.Get(ApplicationReference);
+        public static ApplicationRoute GetApplicationRoute(this ObjectContext objectContext) => objectContext.Get<ApplicationRoute>(ApplicationRoute);
     }
 }

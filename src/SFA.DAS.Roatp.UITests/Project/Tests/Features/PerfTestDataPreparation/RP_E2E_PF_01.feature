@@ -2,16 +2,8 @@
 Feature: RP_E2E_PF_01
 
 Background: 
-	Given the provider initates an application as main route company
-	When the provider completes Your organisation section
-	And the provider completes Financial evidence section
-	And the provider completes Criminal and Compliance section
-	And the provider completes Protecting your apprentices section
-	And the provider completes Readiness to engage section
-	And the provider completes Planning apprenticeship training section
-	And the provider completes Delivering apprenticeship training section for main route
-	And the provider completes Evaluating apprenticeship training section
-	Then the provider completes Finish section
+	Given the provider completes the Apply Journey as Main Provider Route
+
 
 @roatpapply
 @perftestroatpapplye2e

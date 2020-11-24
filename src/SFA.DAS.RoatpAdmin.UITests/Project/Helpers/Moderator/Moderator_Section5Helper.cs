@@ -1,10 +1,11 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section5Helper
     {
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link1Status(StatusHelper.StatusPass);
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link2Status(StatusHelper.StatusPass);

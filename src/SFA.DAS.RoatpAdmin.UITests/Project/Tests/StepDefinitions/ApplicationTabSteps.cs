@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
@@ -39,9 +40,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Then(@"verify subsections outcome failed by Clarification assessor are updated as FAIL")]
         public void ThenVerifySubsectionsOutcomeFailedByClarificationAssessorAreUpdatedAsFAIL()
         {
-            (var page, var route) = GetApplicationRoute();
+            (var page, var _) = GetApplicationRoute();
 
-            _moderatorEndtoEndStepsHelper.VerifySubSectionsAsFail(page, route);
+            _moderatorEndtoEndStepsHelper.VerifySubSectionsAsFail(page);
         }
 
         private (ModerationApplicationAssessmentOverviewPage page, ApplicationRoute route) GetApplicationRoute() => (_roatpApplicationsHomePage.SelectFromOutcomeTab(), _objectContext.GetApplicationRoute());
