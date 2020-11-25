@@ -78,7 +78,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
-        [NUnit.Framework.CategoryAttribute("ignore")]
         [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
         [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
         [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
@@ -94,8 +93,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
             string[] @__tags = new string[] {
                     "roatpapplycreateaccount",
                     "donottakescreenshot",
-                    "perftestroatpapplycreateaccount",
-                    "ignore"};
+                    "perftestroatpapplycreateaccount"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -105,7 +103,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
             argumentsOfScenario.Add("GivenName", givenName);
             argumentsOfScenario.Add("FamilyName", familyName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CA_PF_01_Create_Account_TestData", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -131,10 +129,10 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             string.Format("{0}", givenName),
                             string.Format("{0}", familyName)});
-#line 8
+#line 7
  testRunner.When("user submits the details to create an account", ((string)(null)), table1, "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the user is able to create an account using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

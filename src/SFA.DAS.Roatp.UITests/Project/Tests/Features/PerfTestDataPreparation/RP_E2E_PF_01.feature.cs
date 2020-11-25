@@ -87,14 +87,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e01")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e01")]
         public virtual void RP_E2E_PF_01_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e01"};
+                    "rptestdataperfe2e01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_01_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 12
@@ -129,14 +129,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e02")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e02")]
         public virtual void RP_E2E_PF_02_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e02"};
+                    "rptestdataperfe2e02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_02_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 18
@@ -171,14 +171,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e03")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e03")]
         public virtual void RP_E2E_PF_03_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e03"};
+                    "rptestdataperfe2e03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_03_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 24
@@ -213,14 +213,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e04")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e04")]
         public virtual void RP_E2E_PF_04_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e04"};
+                    "rptestdataperfe2e04"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_04_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 30
@@ -255,14 +255,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e05")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e05")]
         public virtual void RP_E2E_PF_05_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e05"};
+                    "rptestdataperfe2e05"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_05_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 36
@@ -297,14 +297,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e06")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e06")]
         public virtual void RP_E2E_PF_06_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e06"};
+                    "rptestdataperfe2e06"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_06_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 42
@@ -339,14 +339,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e07")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e07")]
         public virtual void RP_E2E_PF_07_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e07"};
+                    "rptestdataperfe2e07"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_07_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 48
@@ -381,14 +381,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e08")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e08")]
         public virtual void RP_E2E_PF_08_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e08"};
+                    "rptestdataperfe2e08"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_08_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 54
@@ -423,14 +423,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e09")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e09")]
         public virtual void RP_E2E_PF_09_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e09"};
+                    "rptestdataperfe2e09"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_09_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 60
@@ -465,14 +465,14 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("roatpapplytestdataprep")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplye2e")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpperfe2e10")]
+        [NUnit.Framework.CategoryAttribute("rptestdataperfe2e10")]
         public virtual void RP_E2E_PF_10_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplytestdataprep",
                     "perftestroatpapplye2e",
                     "donottakescreenshot",
-                    "rpperfe2e10"};
+                    "rptestdataperfe2e10"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_PF_10_MainRoute-Company", null, tagsOfScenario, argumentsOfScenario);
 #line 66

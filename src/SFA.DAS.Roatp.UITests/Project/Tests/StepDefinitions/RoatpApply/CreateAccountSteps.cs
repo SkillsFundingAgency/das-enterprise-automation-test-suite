@@ -6,7 +6,6 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -33,20 +32,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [When(@"user submits the details to create an account")]
-        public void WhenUserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
+        public void UserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
 
         [When(@"user submits the details to create an account")]
         public void WhenUserSubmitsTheDetailsToCreateAnAccount(Table table)
         {
-            var row = table.CreateInstance<RoatpApplyCreateUserDataHelpers>();
+            _applydataHelpers.UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelpers>());
 
-            _applydataHelpers.GivenName = row.GivenName;
-            var familyname = $"{row.FamilyName}{DateTime.Now:ddMMMyyyy_HHmmss}";
-            _applydataHelpers.FamilyName = familyname;
-            _applydataHelpers.CreateAccountEmail = $"{row.GivenName}{familyname}@digital.education.gov.uk";
-            _applydataHelpers.Password = "RoatpAutomation123";
-
-            _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
+            UserSubmitsTheDetailsToCreateAnAccount();
         }
 
         [Then(@"the user is able to create an account using the invitation")]
