@@ -1,4 +1,7 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
@@ -16,8 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
     public class EndToEndSteps
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
-        private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
+        private readonly ObjectContext _objectContext;
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
@@ -30,37 +32,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         public EndToEndSteps(ScenarioContext context)
         {
             _context = context;
-            _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
+            _objectContext = context.Get<ObjectContext>();
             _roatpAdminLoginStepsHelper = new RoatpAdminLoginStepsHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(_context);
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _gatewayEndToEndStepsHelpers = new GatewayEndtoEndStepsHelpers();
             _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
             _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
-        [Given(@"the provider completes the Apply Journey as Main route company")]
-        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany()
-        {
-            _applicationRoute = ApplicationRoute.MainProviderRoute;
-
-            var overviewPage = _selectRouteStepsHelper.CompleteProviderMainRouteSection();
-            overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesReadinessToEngage_Section5(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(overviewPage);
-            overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8(overviewPage);
-            
-            _end2EndStepsHelper.CompletesFinish_Section9(overviewPage);
-        }
-
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
         public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
         {
+            _applicationRoute = _objectContext.GetApplicationRoute();
+
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
 
             staffDashboardPage.AccessGatewayApplications().SelectApplication();

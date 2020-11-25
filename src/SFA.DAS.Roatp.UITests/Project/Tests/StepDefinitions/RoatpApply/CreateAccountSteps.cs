@@ -7,6 +7,7 @@ using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
@@ -16,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly ScenarioContext _context;
         private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
-        private readonly RoatpApplyDataHelpers _applydataHelpers;
+        private readonly RoatpApplyCreateUserDataHelpers _applydataHelpers;
         private readonly AssertHelper _assertHelper;
         private readonly ObjectContext _objectContext;
 
@@ -24,14 +25,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _applydataHelpers = context.Get<RoatpApplyDataHelpers>();
+            _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelpers>();
             _assertHelper = context.Get<AssertHelper>();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.GetRoatpConfig<RoatpConfig>());
         }
 
         [When(@"user submits the details to create an account")]
-        public void WhenUserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
+        public void UserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage().EnterAccountDetailsAndClickCreateAccount();
+
+        [When(@"user submits the details to create an account")]
+        public void WhenUserSubmitsTheDetailsToCreateAnAccount(Table table)
+        {
+            _applydataHelpers.UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelpers>());
+
+            UserSubmitsTheDetailsToCreateAnAccount();
+        }
 
         [Then(@"the user is able to create an account using the invitation")]
         public void ThenTheUserIsAbleToCreateAnAccountUsingTheInvitation()
