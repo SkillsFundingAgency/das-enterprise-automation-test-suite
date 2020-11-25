@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -12,10 +10,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.TagName("h1");
         protected override string PageTitle => "Enter the new training provider's name or reference number (UKPRN)";
         protected override By ContinueButton => By.Id("Ukprn-button");
+        private By InvalidProivderErrorMessage = By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ChangeOfPartyConfig _changeOfPartyConfig;
+        private readonly ProviderConfig _providerConfig;
         #endregion
 
 
@@ -27,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
+            _providerConfig = context.GetProviderConfig<ProviderConfig>();
         }
 
         public ConfirmRequestForChangeOfProviderPage ChooseTrainingProviderPage()
@@ -34,6 +35,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _changeOfPartyConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
             return new ConfirmRequestForChangeOfProviderPage(_context);
+        }
+
+        internal EnterUkprnPage ChooseInvalidProvider()
+        {
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _providerConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
+            Continue();
+            pageInteractionHelper.VerifyText(InvalidProivderErrorMessage, "Select another training provider - you cannot select the current training provider as the new training provider");
+            return new EnterUkprnPage(_context);
         }
     }
 }
