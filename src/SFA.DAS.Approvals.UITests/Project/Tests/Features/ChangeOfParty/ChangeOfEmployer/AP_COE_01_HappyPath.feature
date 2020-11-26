@@ -10,4 +10,4 @@ Scenario: AP_COE_01_Change Of Employer_HappyPath
 	And Validate that old Employer cannot request CoP during in-flight CoE
 	And new employer approves the cohort
 	Then a new live apprenticeship record is created
-	#And Validate that old Employer cannot request CoP after successful CoE
+	And Validate that old Employer cannot request CoP after successful CoE
