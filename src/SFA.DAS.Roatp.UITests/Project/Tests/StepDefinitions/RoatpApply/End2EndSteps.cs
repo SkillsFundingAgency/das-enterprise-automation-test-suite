@@ -21,8 +21,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
-        [Given(@"the provider completes the Apply Journey as (Main Provider Route)")]
-        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute _) => _end2EndStepsHelper.CompletesTheApplyJourneyAsMainRouteCompany(_selectRouteStepsHelper);
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
+        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute) => _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();

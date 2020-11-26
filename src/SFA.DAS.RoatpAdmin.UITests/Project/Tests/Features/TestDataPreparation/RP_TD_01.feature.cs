@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.PerfTestDataPreparation
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -75,18 +75,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.PerfTestDataPreparat
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_TD_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpendtoend01apply")]
-        [NUnit.Framework.CategoryAttribute("roatpfulle2e")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("rpadgw01")]
         public virtual void RP_TD_01_TestDataPreparation_For_RP_AD_GW_01_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatp",
-                    "rpendtoend01apply",
-                    "roatpfulle2e"};
+                    "roatpadmintestdataprep",
+                    "roatpadmingwtestdataprep",
+                    "donottakescreenshot",
+                    "rpadgw01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("the provider completes the Apply Journey as Main Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }

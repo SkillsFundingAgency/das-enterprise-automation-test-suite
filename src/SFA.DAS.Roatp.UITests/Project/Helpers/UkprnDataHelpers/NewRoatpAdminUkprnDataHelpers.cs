@@ -13,19 +13,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpadgw01",
               new List<KeyValuePair<string, string>>
              {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw0126Nov2020_141810@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10065592"),
              }); //rpe2e01
             _data.Add("rpadgw02",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "WOODLANDS SPEAKS"),
                     new KeyValuePair<string, string>(ukprnkey, "10065665"),
             }); //rpe2e02
             _data.Add("rpadgw03",
            new List<KeyValuePair<string, string>>
            {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw03@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "JOHN MICHAEL PLANT"),
                     new KeyValuePair<string, string>(ukprnkey, "10066541"),
            }); //rpe2e03

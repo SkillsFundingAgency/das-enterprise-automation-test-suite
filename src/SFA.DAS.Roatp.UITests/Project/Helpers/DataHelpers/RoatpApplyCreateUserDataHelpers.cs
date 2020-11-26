@@ -5,6 +5,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpApplyCreateUserDataHelpers
     {
+        public RoatpApplyCreateUserDataHelpers()
+        {
+
+        }
         public RoatpApplyCreateUserDataHelpers(RoatpConfig config)
         {
             GivenName = "Test";
@@ -21,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public void UpdateData(RoatpApplyCreateUserDataHelpers data)
         {
             GivenName = data.GivenName;
-            var familyname = $"{data.FamilyName}{DateTime.Now:ddMMMyyyy_HHmmss}";
+            var familyname = $"{data.FamilyName}";
             FamilyName = familyname;
             CreateAccountEmail = $"{data.GivenName}{familyname}@digital.education.gov.uk";
         }
