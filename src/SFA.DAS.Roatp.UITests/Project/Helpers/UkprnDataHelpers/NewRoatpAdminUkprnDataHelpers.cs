@@ -2,17 +2,18 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
-    public class RoatpAdminUkprnDataHelpers : RoatpUkprnBaseDataHelpers
+    public class NewRoatpAdminUkprnDataHelpers : RoatpUkprnBaseDataHelpers
     {
-        public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
+        public NewRoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
 
-        public (string providername, string ukprn) GetNewRoatpAdminData(string key) => GetData(key, providernamekey, ukprnkey);
+        public (string email, string providername, string ukprn) GetNewRoatpAdminData(string key) => GetData(key, emailkey, providernamekey, ukprnkey);
 
         private void AddAdminDatahelpers()
         {
             _data.Add("rpadgw01",
               new List<KeyValuePair<string, string>>
              {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw0126Nov2020_141810@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10065592"),
              }); //rpe2e01

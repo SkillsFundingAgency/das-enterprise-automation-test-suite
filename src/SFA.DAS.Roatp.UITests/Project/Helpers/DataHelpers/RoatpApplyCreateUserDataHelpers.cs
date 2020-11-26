@@ -5,12 +5,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpApplyCreateUserDataHelpers
     {
-        public RoatpApplyCreateUserDataHelpers()
+        public RoatpApplyCreateUserDataHelpers(RoatpConfig config)
         {
             GivenName = "Test";
             FamilyName = "CreateAccount";
             CreateAccountEmail = $"{GivenName}.{FamilyName}@mailinator.com";
-            Password = "RoatpAutomation123";
+            Password = config.ApplyPassword;
         }
 
         public string GivenName { get; set; }

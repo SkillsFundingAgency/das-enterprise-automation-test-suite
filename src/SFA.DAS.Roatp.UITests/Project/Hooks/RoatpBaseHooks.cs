@@ -20,8 +20,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;
         private readonly RoatpApplyTestDataPrepDataHelpers _roatpApplyTestDataPrepDataHelpers;
         private readonly RoatpApplyChangeUkprnDataHelpers _roatpApplyChangeUkprnDataHelpers;
-        private readonly RoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
-        private readonly RoatpOldAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
+        private readonly NewRoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
+        private readonly OldRoatpAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
         private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
@@ -34,8 +34,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             _roatpApplyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
             _roatpApplyTestDataPrepDataHelpers = new RoatpApplyTestDataPrepDataHelpers();
             _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();
-            _roatpAdminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
-            _roatpOldAdminUkprnDataHelpers = new RoatpOldAdminUkprnDataHelpers();
+            _roatpAdminUkprnDataHelpers = new NewRoatpAdminUkprnDataHelpers();
+            _roatpOldAdminUkprnDataHelpers = new OldRoatpAdminUkprnDataHelpers();
             _roatpFullUkprnDataHelpers = new RoatpFullUkprnDataHelpers();
         }
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers(_context.Get<RandomDataGenerator>()));
 
-        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers());
+        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers(config));
 
         protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
@@ -53,23 +53,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void WhiteListProviders(string ukprn = null) => _roatpApplyAndQnASqlDbHelper.WhiteListProviders(ukprn);
 
-        protected void GetRoatpAppplyData()
-        {
-            // every scenario (apply) should only have one tag which starts with rp, which is mapped to the test data.
-            var (email, ukprn) = _roatpApplyUkprnDataHelpers.GetRoatpAppplyData(GetTag("rp"));
+        protected void GetRoatpAppplyData() => SetDetails(_roatpApplyUkprnDataHelpers.GetRoatpAppplyData(GetTag("rp")));
 
-            SetEmail(email);
-            SetUkprn(ukprn);
-        }
-
-        protected void GetRoatpApplyTestDataPrepData()
-        {
-            // every scenario (apply) should only have one tag which starts with rp, which is mapped to the test data.
-            var (email, ukprn) = _roatpApplyTestDataPrepDataHelpers.GetRoatpAppplyData(GetTag("rptestdata"));
-
-            SetEmail(email);
-            SetUkprn(ukprn);
-        }
+        protected void GetRoatpApplyTestDataPrepData() => SetDetails(_roatpApplyTestDataPrepDataHelpers.GetRoatpAppplyData(GetTag("rptestdata")));
 
         protected void GetRoatpChangeUkprnAppplyData()
         {
@@ -81,7 +67,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             SetNewUkprn(newukprn);
         }
 
-        public void GetOldRoatpAdminData()
+        protected void GetOldRoatpAdminData()
         {
             // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
             var (providername, ukprn) = _roatpOldAdminUkprnDataHelpers.GetOldRoatpAdminData(GetTag("rpad"));
@@ -90,24 +76,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             SetUkprn(ukprn);
         }
 
-        public void GetNewRoatpAdminData()
-        {
-            // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
-            var (providername, ukprn) = _roatpAdminUkprnDataHelpers.GetNewRoatpAdminData(GetTag("rpad"));
+        protected void GetNewRoatpAdminData() => SetDetails(_roatpAdminUkprnDataHelpers.GetNewRoatpAdminData(GetTag("rpad")));
 
-            SetProviderName(providername);
-            SetUkprn(ukprn);
-        }
-
-        public void GetRoatpFullData()
-        {
-            // every scenario should only have one tag which starts with rp, which is mapped to the test data.
-            (string email, string providername, string ukprn) = _roatpFullUkprnDataHelpers.GetRoatpE2EData(GetTag("rp"));
-
-            SetEmail(email);
-            SetProviderName(providername);
-            SetUkprn(ukprn);
-        }
+        protected void GetRoatpFullData() => SetDetails(_roatpFullUkprnDataHelpers.GetRoatpE2EData(GetTag("rp")));
 
         protected string GetUkprn() => _objectContext.GetUkprn();
 
@@ -123,6 +94,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             {
                 _objectContext.SetPassword(config.ApplyPassword);
             }
+        }
+
+        private void SetDetails((string email, string providername, string ukprn) p)
+        {
+            SetEmail(p.email);
+            SetProviderName(p.providername);
+            SetUkprn(p.ukprn);
+        }
+
+        private void SetDetails((string email, string ukprn) p)
+        {
+            SetEmail(p.email);
+            SetUkprn(p.ukprn);
         }
 
         private void SetProviderName(string providername) => _objectContext.SetProviderName(providername);
