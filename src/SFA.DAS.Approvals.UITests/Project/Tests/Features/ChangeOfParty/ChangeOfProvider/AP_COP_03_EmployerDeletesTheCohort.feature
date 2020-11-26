@@ -1,6 +1,7 @@
 ﻿@approvals
 Feature: AP_COP_03_EmployerDeletesTheCohort
 
+@regression
 @changeOfProvider
 @liveapprentice
 Scenario: AP_COP_03_EmployerDeletesTheCohort

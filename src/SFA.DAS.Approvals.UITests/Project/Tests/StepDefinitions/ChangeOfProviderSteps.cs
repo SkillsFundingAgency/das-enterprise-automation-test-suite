@@ -71,15 +71,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ValidateOnlyEditableApprenticeDetails();
         }
 
-        private void ValidateOnlyEditableApprenticeDetails()
-        {
-            EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
-            var EditApprenticeDetails = editApprenticePage
-                                                     .GetAllEditBoxes();
-
-            Assert.IsTrue(EditApprenticeDetails.Count > 3, "validate that cohort is editable on View apprentice details page");
-        }
-
         [When(@"new provider rejects the cohort")]
         public void WhenNewProviderRejectsTheCohort()
         {
@@ -107,6 +98,43 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanChangeProviderAgain()
         {
             new EmployerStepsHelper(_context).StartChangeofNewTrainingProvider();        
+        }
+
+        [When(@"new provider approves the changes")]
+        public void WhenNewProviderApprovesTheChanges()
+        {
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
+
+            new ProviderYourCohortsPage(_context, true)
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .IsAddApprenticeButtonDisplayed()
+                .IsBulkUpLoadButtonDisplayed()
+                .SelectEditApprentice()
+                .ValidateEditableTextBoxes(6)
+                .EditCopApprenticeDetails()
+                .SelectContinueToApproval()
+                .SubmitApprove();
+        }
+
+        [Then(@"Prevent employer from requesting CoP on the original apprenticeship")]
+        public void ThenPreventEmployerFromRequestingCoPOnTheOriginalApprenticeship()
+        {
+            bool IsChangeOfProviderLinkDisplayed 
+                = new EmployerStepsHelper(_context)
+                .GoToManageYourApprenticesPage()
+                .SelectApprentices("Stopped")
+                .IsChangeOfProviderLinkDisplayed();
+
+            Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link on the original apprentice record has been removed");
+        }
+
+        private void ValidateOnlyEditableApprenticeDetails()
+        {
+            EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
+            var EditApprenticeDetails = editApprenticePage.GetAllEditBoxes();
+
+            Assert.IsTrue(EditApprenticeDetails.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
     }
 }
