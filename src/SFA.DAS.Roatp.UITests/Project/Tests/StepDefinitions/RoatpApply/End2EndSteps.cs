@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
 
@@ -19,6 +20,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
+
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route)")]
+        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute _) => _end2EndStepsHelper.CompletesTheApplyJourneyAsMainRouteCompany(_selectRouteStepsHelper);
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();

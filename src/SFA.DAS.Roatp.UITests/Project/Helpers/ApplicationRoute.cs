@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
+﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
     public enum ApplicationRoute
     {

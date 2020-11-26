@@ -1,4 +1,5 @@
-﻿Feature: AP_COP_03_EmployerDeletesTheCohort
+﻿@approvals
+Feature: AP_COP_03_EmployerDeletesTheCohort
 
 @changeOfProvider
 @liveapprentice
