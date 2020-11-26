@@ -24,9 +24,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public ConfirmYourIdentityPage EnterAccountDetailsAndClickCreateAccount()
         {
-            formCompletionHelper.EnterText(GivenNameTextbox, applydataHelpers.GivenName);
-            formCompletionHelper.EnterText(FamilyNameTextbox, applydataHelpers.FamilyName);
-            formCompletionHelper.EnterText(EmailAddressTextbox, applydataHelpers.CreateAccountEmail);
+            formCompletionHelper.EnterText(GivenNameTextbox, applyCreateUserDataHelpers.GivenName);
+            formCompletionHelper.EnterText(FamilyNameTextbox, applyCreateUserDataHelpers.FamilyName);
+            formCompletionHelper.EnterText(EmailAddressTextbox, applyCreateUserDataHelpers.CreateAccountEmail);
             Continue();
             return new ConfirmYourIdentityPage(_context);
         }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_FullEndToEnd_01")]
-    public partial class RP_FullEndToEnd_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01")]
+    public partial class RP_CA_PF_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_FullEndToEnd_01.feature"
+#line 1 "RP_CA_PF_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_FullEndToEnd_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_CA_PF_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,35 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Mode" +
-            "ration_Checks")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpendtoend01apply")]
-        [NUnit.Framework.CategoryAttribute("roatpfulle2e")]
-        public virtual void RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks()
+        [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01_Create_Account_TestData")]
+        [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        public virtual void RP_CA_PF_01_Create_Account_TestData(string givenName, string familyName, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "roatp",
-                    "rpendtoend01apply",
-                    "roatpfulle2e"};
+            string[] @__tags = new string[] {
+                    "roatpapplycreateaccount",
+                    "donottakescreenshot",
+                    "perftestroatpapplycreateaccount"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Mode" +
-                    "ration_Checks", null, tagsOfScenario, argumentsOfScenario);
+            argumentsOfScenario.Add("GivenName", givenName);
+            argumentsOfScenario.Add("FamilyName", familyName);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CA_PF_01_Create_Account_TestData", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -108,22 +123,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "GivenName",
+                            "FamilyName"});
+                table1.AddRow(new string[] {
+                            string.Format("{0}", givenName),
+                            string.Format("{0}", familyName)});
 #line 7
- testRunner.Given("the provider completes the Apply Journey as Main Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.When("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("the Financial user assess the application by confirming Finance outcome as Outsta" +
-                        "nding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user submits the details to create an account", ((string)(null)), table1, "When ");
 #line hidden
 #line 10
- testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
-                        "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("the Moderation user assess the application and marks outcomes as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user is able to create an account using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

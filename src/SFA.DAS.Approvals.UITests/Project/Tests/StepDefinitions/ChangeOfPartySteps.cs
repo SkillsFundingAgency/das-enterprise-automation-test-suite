@@ -72,6 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.ViewCurrentApprenticeDetails(false)
                                 .ClickOnChangeOfProviderLink()
                                 .ClickOnContinueButton()
+                                .ChooseInvalidProvider()
                                 .ChooseTrainingProviderPage()
                                 .SelectYesAndContinue();
 
