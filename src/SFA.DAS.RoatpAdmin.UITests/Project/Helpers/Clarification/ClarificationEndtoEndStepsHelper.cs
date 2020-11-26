@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
 
@@ -16,12 +17,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         }
 
-        public RoatpApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
         }
 
-        public RoatpApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
         }

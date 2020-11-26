@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         private readonly ScenarioContext _context;
         #endregion
 
-        private By BuildingAndStreetTextBox => By.Id("PAT-660");
+        private By BuildingAndStreetTextBox => By.Id("PAT-670");
 
-        private By TownOrCityTextBox => By.Id("PAT-662");
+        private By TownOrCityTextBox => By.Id("PAT-671");
 
-        private By CountyTextBox => By.Id("PAT-663");
+        private By CountyTextBox => By.Id("PAT-672");
 
-        private By PostcodeTextBox => By.Id("PAT-664");
+        private By PostcodeTextBox => By.Id("PAT-673");
 
         public WhereWillApprenticesBeTrainedPage(ScenarioContext context) : base(context)
         {

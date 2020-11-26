@@ -73,6 +73,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 ProviderRef = apprenticeDataHelper.EmployerReference
             };
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -22,7 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private By DeleteCohortbutton => By.ClassName("delete-button");
-        
+        private By BulkUploadButton => By.LinkText("Bulk upload apprentices");
+
         public ProviderReviewYourCohortPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
@@ -81,5 +83,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderBulkUploadApprenticesPage(_context);
         }
 
+        public ProviderReviewYourCohortPage IsAddApprenticeButtonDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(AddAnApprenticeButton))
+                throw new Exception("Button is still available to add an apprentice record");
+            else
+                return this;
+        }
+
+        public ProviderReviewYourCohortPage IsBulkUpLoadButtonDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(BulkUploadButton))
+                throw new Exception("Button is still available to upload bulk apprentices record");
+            else
+                return this;
+        }
     }
 }

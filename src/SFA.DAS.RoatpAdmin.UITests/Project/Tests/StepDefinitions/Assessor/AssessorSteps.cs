@@ -3,8 +3,8 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private RoatpApplicationsHomePage _roatpApplicationsHomePage;
+        private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
         private ApplicationAssessmentOverviewPage _applicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
 

@@ -21,7 +21,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected virtual By SearchButton => By.Id("filters-submit");
         protected virtual By FirstResultLink => By.ClassName("das-no-wrap");
         protected virtual By FirstProviderResultLink => By.ClassName("das-search-results__link");
-        protected virtual By HomePageLink => By.LinkText("Home: Find apprenticeship training");
+        protected virtual By HomePageLink => By.LinkText("Home");
         #endregion
 
         protected FATV2BasePage(ScenarioContext context) : base(context)

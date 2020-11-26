@@ -27,6 +27,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
             return new ProviderSearchResultsPage(_context);
         }
+        public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
+        {
+            formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+            return new ProviderSearchResultsPage(_context);
+        }
 
     }
 }

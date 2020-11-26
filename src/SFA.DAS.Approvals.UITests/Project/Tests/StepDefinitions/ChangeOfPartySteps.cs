@@ -69,27 +69,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"employer sends COP request to new provider")]
         public void WhenEmployerSendsCOPRequestToNewProvider()
         {
-            _employerStepsHelper.ViewCurrentApprenticeDetails()
+            _employerStepsHelper.ViewCurrentApprenticeDetails(false)
                                 .ClickOnChangeOfProviderLink()
                                 .ClickOnContinueButton()
+                                .ChooseInvalidProvider()
                                 .ChooseTrainingProviderPage()
                                 .SelectYesAndContinue();
 
 
-            //un-comment below line when new cohort is ready
-            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
-        [Then(@"a new live apprenticeship record is created with new Provider")]
-        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
+        [Then(@"employer should not be able to see change link for another CoP")]
+        public void ThenEmployerShouldNotBeAbleToSeeChangeLinkForAnotherCoP()
         {
-            //add the steps here to validate new apprentice record is created. 
-            // Use below steps as reference and write your own please
-            new EmployerStepsHelper(_context)
-                .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();
+            Assert.IsFalse(_employerStepsHelper.ViewCurrentApprenticeDetails(false).IsChangeOfProviderLinkDisplayed());
         }
+
 
         [When(@"provider sends COE request to new employer")]
         public void WhenProviderSendsCOERequestToNewEmployer()
@@ -163,6 +160,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                  ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
             else
                 ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
+        }
+
+        [When(@"Validate that old Employer cannot request CoP during in-flight CoE")]
+        public void WhenValidateThatOldEmployerCannotRequestCoPDuringIn_FlightCoE()
+        {
+            bool IsChangeOfProviderLinkDisplayed
+               = _employerStepsHelper
+               .GoToManageYourApprenticesPage()
+               .SelectViewCurrentApprenticeDetails()
+               .IsChangeOfProviderLinkDisplayed();
+
+            Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
+        }
+
+        [Then(@"Validate that old Employer cannot request CoP after successful CoE")]
+        public void ThenValidateThatOldEmployerCannotRequestCoPAfterSuccessfulCoE()
+        {
+            _objectContext.UpdateOrganisationName(_oldEmployer);
+
+            bool IsChangeOfProviderLinkDisplayed
+              = _employerStepsHelper
+              .GoToManageYourApprenticesPage()
+              .SelectViewCurrentApprenticeDetails()
+              .IsChangeOfProviderLinkDisplayed();
+
+            Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
         }
 
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);

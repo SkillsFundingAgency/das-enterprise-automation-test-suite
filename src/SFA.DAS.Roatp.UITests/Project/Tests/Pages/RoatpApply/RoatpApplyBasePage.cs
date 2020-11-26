@@ -11,6 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         #region Helpers and Context
         private readonly ScenarioContext _context;
         protected readonly RoatpApplyDataHelpers applydataHelpers;
+        protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
         #endregion
 
         private By Dob => By.CssSelector("#dob");
@@ -25,6 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             _context = context;
             applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
+            applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
         }
         
         protected void UploadFile()

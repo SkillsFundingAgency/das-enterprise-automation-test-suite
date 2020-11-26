@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
     {
         public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
 
-        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(FindKeyValuePairs(_data, key), providernamekey, ukprnkey);
+        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(key, providernamekey, ukprnkey);
 
         private void AddAdminDatahelpers()
         {
@@ -64,6 +64,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "HENRI BAPTISTE"),
                     new KeyValuePair<string, string>(ukprnkey, "10054031"),
              });
+            _data.Add("rpadfha02",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "CHURCHILL COLLEGE IN THE UNIVERSITY OF CAMBRIDGE"),
+                    new KeyValuePair<string, string>(ukprnkey, "10056258"),
+            });
             _data.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {
