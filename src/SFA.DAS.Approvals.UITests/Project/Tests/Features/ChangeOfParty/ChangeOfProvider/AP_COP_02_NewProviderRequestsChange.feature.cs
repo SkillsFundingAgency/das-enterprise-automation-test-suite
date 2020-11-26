@@ -21,12 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_COP_02_NewProviderRequestsChangeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "approvals"};
         
 #line 1 "AP_COP_02_NewProviderRequestsChange.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_02_NewProviderRequestsChange", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_02_NewProviderRequestsChange", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,16 +78,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("changeOfProvider_WIP")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_COP_02_NewProviderRequestsChange()
         {
             string[] tagsOfScenario = new string[] {
+                    "regression",
                     "changeOfProvider_WIP",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_02_NewProviderRequestsChange", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,26 +109,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
  testRunner.Given("the employer has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 9
  testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
- testRunner.Then("a banner is displayed for employer with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
+#line 11
  testRunner.When("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 13
  testRunner.When("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.And("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("new provider approves the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 15
  testRunner.Then("a new live apprenticeship record is created with new Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 16
+ testRunner.And("Prevent employer from requesting CoP on the original apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
