@@ -116,9 +116,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
- testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 11
  testRunner.When("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

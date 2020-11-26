@@ -40,8 +40,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
                 .SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitSendToEmployerToReview()
+                .SendInstructionsToEmployerForCohortToReview();
         }
 
         [When(@"employer approves the cohort")]
@@ -107,6 +107,56 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanChangeProviderAgain()
         {
             new EmployerStepsHelper(_context).StartChangeofNewTrainingProvider();        
+        }
+
+        [Then(@"a banner is displayed for employer with a link to ""(.*)"" cohort")]
+        public void ThenABannerIsDisplayedForEmployerWithALinkToCohort(string status)
+        {
+            bool editable = status == "editable" ? true : false;
+
+            var employerApprenticeDetailsPage = new EmployerStepsHelper(_context).ViewCurrentApprenticeDetails(true);
+          
+            if (editable)
+                ValidateBannerWithLinkToEditableCohort(employerApprenticeDetailsPage);
+            else
+                ValidateBannerWithLinkToNonEditableCohort(employerApprenticeDetailsPage);
+        }
+
+        private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
+        {
+            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the training provider.";
+            string actualText = apprenticeDetailsPage.GetAlertBanner();
+
+            Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
+
+            var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
+                .ClickViewChangesLink();
+            /*
+                //.ClickOnReviewNewDetailsLink()
+                //.SelectViewApprentice()
+                //.GetAllEditBoxes();
+
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
+            */
+        }
+
+        private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
+        {
+            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the training provider.";
+            string actualText = apprenticeDetailsPage.GetAlertBanner();
+
+            Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
+            
+            var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
+                    .ClickViewChangesLink();
+            
+            /*
+                .ClickOnReviewNewDetailsToUpdateLink()
+                .SelectEditApprentice()
+                .GetAllEditBoxes();
+
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
+            */
         }
     }
 }
