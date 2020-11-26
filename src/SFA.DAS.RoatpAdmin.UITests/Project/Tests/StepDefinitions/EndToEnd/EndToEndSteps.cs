@@ -41,16 +41,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
+        [Given(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
-        public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
+        public void TheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
         {
-            _applicationRoute = _objectContext.GetApplicationRoute();
-
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
 
-            staffDashboardPage.AccessGatewayApplications().SelectApplication();
+            var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            var gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((new GWApplicationOverviewPage(_context)));
+            gwApplicationOverviewPage = CompleteAllSectionsWithPass(gwApplicationOverviewPage);
 
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
         }
@@ -117,6 +116,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(applicationAssessmentOverviewPage, _applicationRoute);
 
             _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(applicationAssessmentOverviewPage);
+        }
+
+        private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            _applicationRoute = _objectContext.GetApplicationRoute();
+
+            if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((gwApplicationOverviewPage));
+
+            if (_applicationRoute == ApplicationRoute.EmployerProviderRoute) 
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
+
+            if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
+
+            return gwApplicationOverviewPage;
         }
     }
 }

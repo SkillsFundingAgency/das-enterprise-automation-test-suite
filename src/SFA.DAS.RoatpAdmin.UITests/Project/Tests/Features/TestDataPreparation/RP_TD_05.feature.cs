@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01")]
-    public partial class RP_CA_PF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_TD_05")]
+    public partial class RP_TD_05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_CA_PF_01.feature"
+#line 1 "RP_TD_05.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_CA_PF_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_TD_05", "TestDataPreparation for RP_AD_FHA_02", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,28 +74,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01_Create_Account_TestData")]
-        [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
+        [NUnit.Framework.DescriptionAttribute("RP_TD_04_TestDataPreparation-For_RP_AD_FHA_02")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminfhatestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+rpadfha01", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+rpadfha02", null)]
-        public virtual void RP_CA_PF_01_Create_Account_TestData(string givenName, string familyName, string[] exampleTags)
+        [NUnit.Framework.CategoryAttribute("rpadfha02")]
+        public virtual void RP_TD_04_TestDataPreparation_For_RP_AD_FHA_02()
         {
-            string[] @__tags = new string[] {
-                    "roatpapplycreateaccount",
+            string[] tagsOfScenario = new string[] {
+                    "roatpadmintestdataprep",
+                    "roatpadminfhatestdataprep",
                     "donottakescreenshot",
-                    "perftestroatpapplycreateaccount"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+                    "rpadfha02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("GivenName", givenName);
-            argumentsOfScenario.Add("FamilyName", familyName);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CA_PF_01_Create_Account_TestData", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_04_TestDataPreparation-For_RP_AD_FHA_02", null, tagsOfScenario, argumentsOfScenario);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -115,17 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "GivenName",
-                            "FamilyName"});
-                table1.AddRow(new string[] {
-                            string.Format("{0}", givenName),
-                            string.Format("{0}", familyName)});
-#line 7
- testRunner.When("user submits the details to create an account", ((string)(null)), table1, "When ");
-#line hidden
 #line 10
- testRunner.Then("the user is able to create an account using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the provider completes the Apply Journey as Employer Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 11
+ testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
