@@ -1,6 +1,7 @@
 ﻿@approvals
 Feature: AP_COP_01_Change Of Provider_HappyPath
 
+@regression
 @changeOfProvider
 @liveapprentice
 Scenario: AP_COP_01_Change Of Provider_HappyPath
