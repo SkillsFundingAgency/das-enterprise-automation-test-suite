@@ -6,70 +6,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
     {
         public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
 
-        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetData(key, providernamekey, ukprnkey);
+        public (string providername, string ukprn) GetNewRoatpAdminData(string key) => GetData(key, providernamekey, ukprnkey);
 
         private void AddAdminDatahelpers()
         {
-            _data.Add("rpadsp01",
-               new List<KeyValuePair<string, string>>
-               {
-                   new KeyValuePair<string, string>(providernamekey, "BARNARDO'S"),
-                   new KeyValuePair<string, string>(ukprnkey, "10000532"),
-               });
-            _data.Add("rpadup01",
-               new List<KeyValuePair<string, string>>
-               {
-                   new KeyValuePair<string, string>(providernamekey, "PHILIPS HAIR SALONS LIMITED"),
-                   new KeyValuePair<string, string>(ukprnkey, "10005089"),
-               });
-            _data.Add("rpadnp01",
-               new List<KeyValuePair<string, string>>
-               {
-                   new KeyValuePair<string, string>(providernamekey, "BUSINESS CONTINUITY TRAINING LIMITED"),
-                   new KeyValuePair<string, string>(ukprnkey, "10023959"),
-               });
-            _data.Add("rpadnp02",
-               new List<KeyValuePair<string, string>>
-               {
-                    new KeyValuePair<string, string>(providernamekey, "LOCUS INTERNATIONAL LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10036913"),
-               });
-            _data.Add("rpadnp03",
-               new List<KeyValuePair<string, string>>
-               {
-                    new KeyValuePair<string, string>(providernamekey, "OLMEC"),
-                    new KeyValuePair<string, string>(ukprnkey, "10033872"),
-               });
             _data.Add("rpadgw01",
               new List<KeyValuePair<string, string>>
              {
                     new KeyValuePair<string, string>(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10065592"),
-             });
+             }); //rpe2e01
             _data.Add("rpadgw02",
             new List<KeyValuePair<string, string>>
             {
                     new KeyValuePair<string, string>(providernamekey, "WOODLANDS SPEAKS"),
                     new KeyValuePair<string, string>(ukprnkey, "10065665"),
-            });
+            }); //rpe2e02
             _data.Add("rpadgw03",
            new List<KeyValuePair<string, string>>
            {
                     new KeyValuePair<string, string>(providernamekey, "JOHN MICHAEL PLANT"),
                     new KeyValuePair<string, string>(ukprnkey, "10066541"),
-           });
+           }); //rpe2e03
             _data.Add("rpadfha01",
              new List<KeyValuePair<string, string>>
              {
                     new KeyValuePair<string, string>(providernamekey, "HENRI BAPTISTE"),
                     new KeyValuePair<string, string>(ukprnkey, "10054031"),
-             });
+             }); //rpe2e03, rpadgw03
             _data.Add("rpadfha02",
             new List<KeyValuePair<string, string>>
             {
                     new KeyValuePair<string, string>(providernamekey, "CHURCHILL COLLEGE IN THE UNIVERSITY OF CAMBRIDGE"),
                     new KeyValuePair<string, string>(ukprnkey, "10056258"),
-            });
+            }); //rpe2e02, rpadgw02
             _data.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {

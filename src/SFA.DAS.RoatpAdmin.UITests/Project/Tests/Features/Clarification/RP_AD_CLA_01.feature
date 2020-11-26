@@ -2,7 +2,6 @@
 
 @roatp
 @rpadcla01
-@roatpadmin
 @roatpclarification
 @newroatpadmin
 @regression

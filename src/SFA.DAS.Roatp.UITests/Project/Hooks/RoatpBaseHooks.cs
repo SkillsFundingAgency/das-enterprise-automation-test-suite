@@ -21,6 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly RoatpApplyTestDataPrepDataHelpers _roatpApplyTestDataPrepDataHelpers;
         private readonly RoatpApplyChangeUkprnDataHelpers _roatpApplyChangeUkprnDataHelpers;
         private readonly RoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
+        private readonly RoatpOldAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
         private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
@@ -34,6 +35,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             _roatpApplyTestDataPrepDataHelpers = new RoatpApplyTestDataPrepDataHelpers();
             _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();
             _roatpAdminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
+            _roatpOldAdminUkprnDataHelpers = new RoatpOldAdminUkprnDataHelpers();
             _roatpFullUkprnDataHelpers = new RoatpFullUkprnDataHelpers();
         }
 
@@ -79,10 +81,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             SetNewUkprn(newukprn);
         }
 
-        public void GetRoatpAdminData()
+        public void GetOldRoatpAdminData()
         {
             // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
-            var (providername, ukprn) = _roatpAdminUkprnDataHelpers.GetRoatpAdminData(GetTag("rpad"));
+            var (providername, ukprn) = _roatpOldAdminUkprnDataHelpers.GetOldRoatpAdminData(GetTag("rpad"));
+
+            SetProviderName(providername);
+            SetUkprn(ukprn);
+        }
+
+        public void GetNewRoatpAdminData()
+        {
+            // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
+            var (providername, ukprn) = _roatpAdminUkprnDataHelpers.GetNewRoatpAdminData(GetTag("rpad"));
 
             SetProviderName(providername);
             SetUkprn(ukprn);
