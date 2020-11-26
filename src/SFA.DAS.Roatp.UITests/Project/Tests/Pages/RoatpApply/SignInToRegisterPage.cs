@@ -36,7 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private void SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
-            formCompletionHelper.EnterText(EnterPassword, roatpConfig.ApplyPassword);
+            formCompletionHelper.EnterText(EnterPassword, objectContext.GetPassword());
             Continue();
         }
     }

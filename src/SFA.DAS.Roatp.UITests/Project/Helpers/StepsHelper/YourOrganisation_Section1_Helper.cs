@@ -235,9 +235,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .UploadLegallyBindingContractAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectYesForFundedbyOFSAndContinue()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()

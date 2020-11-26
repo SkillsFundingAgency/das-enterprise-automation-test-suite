@@ -1,6 +1,7 @@
-﻿Feature: AP_COP_03_EmployerDeletesTheCohort
+﻿@approvals
+Feature: AP_COP_03_EmployerDeletesTheCohort
 
-@changeOfProvider_WIP
+@changeOfProvider
 @liveapprentice
 Scenario: AP_COP_03_EmployerDeletesTheCohort
 	Given the employer has an apprentice with stopped status

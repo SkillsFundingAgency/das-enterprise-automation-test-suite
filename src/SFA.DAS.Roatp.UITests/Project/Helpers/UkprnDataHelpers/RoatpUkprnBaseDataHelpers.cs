@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
         protected const string ukprnkey = "ukprnkey";
         protected const string providernamekey = "providernamekey";
         protected const string emailkey = "emailkey";
+        protected const string passwordkey = "passwordkey";
         protected const string newukprnkey = "newukprnkey";
 
 

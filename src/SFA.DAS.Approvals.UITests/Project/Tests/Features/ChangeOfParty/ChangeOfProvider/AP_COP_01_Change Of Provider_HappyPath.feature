@@ -1,4 +1,5 @@
-﻿Feature: AP_COP_01_Change Of Provider_HappyPath
+﻿@approvals
+Feature: AP_COP_01_Change Of Provider_HappyPath
 
 @changeOfProvider
 @liveapprentice

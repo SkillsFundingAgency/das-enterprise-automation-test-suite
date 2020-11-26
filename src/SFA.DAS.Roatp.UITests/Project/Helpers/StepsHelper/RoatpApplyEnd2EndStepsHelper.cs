@@ -28,6 +28,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _finishSectionHelper = new Finish_Section9_Helper();
         }
 
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsMainRouteCompany(SelectRouteStepsHelper selectRouteStepsHelper)
+        {
+            var overviewPage = selectRouteStepsHelper.CompleteProviderMainRouteSection();
+            overviewPage = CompleteYourOrganisation_Section1(overviewPage);
+            overviewPage = CompleteFinancialEvidence_Section2(overviewPage);
+            overviewPage = CompletesCriminalAndCompliance_Section3(overviewPage);
+            overviewPage = CompletesProtectingYourApprentices_Section4(overviewPage);
+            overviewPage = CompletesReadinessToEngage_Section5(overviewPage);
+            overviewPage = CompletesPlanningApprenticeshipTraining_Section6(overviewPage);
+            overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(overviewPage);
+            overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(overviewPage);
+            return CompletesFinish_Section9(overviewPage);
+        }
+
         public ApplicationOverviewPage CompleteYourOrganisation_Section1_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1_SupportRoute(applicationOverviewPage);
