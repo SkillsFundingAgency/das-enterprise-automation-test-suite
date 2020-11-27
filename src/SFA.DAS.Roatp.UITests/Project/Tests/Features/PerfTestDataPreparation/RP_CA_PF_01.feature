@@ -10,5 +10,8 @@ Scenario Outline: RP_CA_PF_01_Create_Account_TestData
 	Then the user is able to create an account using the invitation
 		Examples: 
 		| GivenName        | FamilyName |
-		| sudhakar.chinoor | +rpadfha01 |
-		| sudhakar.chinoor | +rpadfha02 |
+		| sudhakar.chinoor | +rpadmod01 |
+		| sudhakar.chinoor | +rpadmod02 |
+		| sudhakar.chinoor | +rpadmod03 |
+		| sudhakar.chinoor | +rpadcla01 |
+		| sudhakar.chinoor | +rpadcla02 |

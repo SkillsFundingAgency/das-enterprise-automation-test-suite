@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02")]
-    public partial class RP_AD_MOD_02Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_03")]
+    public partial class RP_AD_MOD_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_AD_MOD_02.feature"
+#line 1 "RP_AD_MOD_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_MOD_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_MOD_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,25 +74,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02 Complete Moderation of a Soletrader Application via Supporting provi" +
+        [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_03 Complete Moderation of a Soletrader Application via Supporting provi" +
             "der route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpadmod02")]
+        [NUnit.Framework.CategoryAttribute("rpadmod03")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("roatpmoderator")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_MOD_02CompleteModerationOfASoletraderApplicationViaSupportingProviderRoute()
+        public virtual void RP_AD_MOD_03CompleteModerationOfASoletraderApplicationViaSupportingProviderRoute()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
-                    "rpadmod02",
+                    "rpadmod03",
                     "roatpadmin",
                     "roatpmoderator",
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_02 Complete Moderation of a Soletrader Application via Supporting provi" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_03 Complete Moderation of a Soletrader Application via Supporting provi" +
                     "der route", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);

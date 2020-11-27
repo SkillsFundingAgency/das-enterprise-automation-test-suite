@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02")]
-    public partial class RP_AD_MOD_02Feature
+    [NUnit.Framework.DescriptionAttribute("RP_TD_07")]
+    public partial class RP_TD_07Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_AD_MOD_02.feature"
+#line 1 "RP_TD_07.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_MOD_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_TD_07", "TestDataPreparation for RP_AD_AS_02", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,26 +74,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02 Complete Moderation of a Charity type Application via Employer provi" +
-            "der route")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpadmod02")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
-        [NUnit.Framework.CategoryAttribute("roatpmoderator")]
-        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_MOD_02CompleteModerationOfACharityTypeApplicationViaEmployerProviderRoute()
+        [NUnit.Framework.DescriptionAttribute("RP_TD_07_TestDataPreparation-For_RP_AD_AS_02")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminastestdataprep")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("rpadas02")]
+        public virtual void RP_TD_07_TestDataPreparation_For_RP_AD_AS_02()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatp",
-                    "rpadmod02",
-                    "roatpadmin",
-                    "roatpmoderator",
-                    "newroatpadmin",
-                    "regression"};
+                    "roatpadmintestdataprep",
+                    "roatpadminastestdataprep",
+                    "donottakescreenshot",
+                    "rpadas02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_02 Complete Moderation of a Charity type Application via Employer provi" +
-                    "der route", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_07_TestDataPreparation-For_RP_AD_AS_02", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,22 +109,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 10
- testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider completes the Apply Journey as Employer Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.When("selects the Employer Provider Route application from Moderation Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("the Moderator assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.Then("the Moderator FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 14
- testRunner.Then("the Moderator assesses the outcome as CLARIFICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.Then("the Clarification tab is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
