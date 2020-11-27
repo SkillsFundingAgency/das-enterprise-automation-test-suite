@@ -70,30 +70,35 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpadmod01",
            new List<KeyValuePair<string, string>>
            {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "EASY MANAGEMENT OF AGGRESSION LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10008214"),
            });//rpe2e01, rpadgw01, rpadas01
             _data.Add("rpadmod02",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
                     new KeyValuePair<string, string>(ukprnkey, "10038763"),
             });//rpe2e02, rpadgw02, rpadas02
             _data.Add("rpadmod03",
             new List<KeyValuePair<string, string>>
             {
+                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod03@digital.education.gov.uk"),
                    new KeyValuePair<string, string>(providernamekey, "LORNA BAIN"),
                    new KeyValuePair<string, string>(ukprnkey, "10041478"),
             });//rpe2e03, rpadgw03, rpadas03
             _data.Add("rpadcla01",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082168"),
             });
             _data.Add("rpadcla02",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
                     new KeyValuePair<string, string>(ukprnkey, "10063154"),
             });
