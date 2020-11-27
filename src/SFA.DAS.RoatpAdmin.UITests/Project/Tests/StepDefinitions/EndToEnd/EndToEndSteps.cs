@@ -45,6 +45,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
         public void TheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
         {
+            _applicationRoute = _objectContext.GetApplicationRoute();
+
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
 
             var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
@@ -62,8 +64,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReviewAsOutstanding();
         }
 
+        [Given(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
         [When(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
-        public void WhenTheAsssesssorAndAssessorAssessTheApplicationAndMarksTheApplicationAsReadyForModeration()
+        public void TheAsssesssorAndAssessorAssessTheApplicationAndMarksTheApplicationAsReadyForModeration()
         {
             RestartRoatpAssessor("Asssesssor1Admin");
 
@@ -120,8 +123,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            _applicationRoute = _objectContext.GetApplicationRoute();
-
             if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
@@ -133,7 +134,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
                     gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
             }
                 
-
             if (_applicationRoute == ApplicationRoute.SupportingProviderRoute) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
 
