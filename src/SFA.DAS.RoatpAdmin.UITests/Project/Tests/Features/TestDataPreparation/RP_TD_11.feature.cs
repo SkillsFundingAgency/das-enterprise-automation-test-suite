@@ -76,14 +76,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_TD_08_TestDataPreparation-For_RP_AD_MOD_03")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
-        [NUnit.Framework.CategoryAttribute("roatpadminastestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminmodtestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("rpadmod03")]
         public virtual void RP_TD_08_TestDataPreparation_For_RP_AD_MOD_03()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
-                    "roatpadminastestdataprep",
+                    "roatpadminmodtestdataprep",
                     "donottakescreenshot",
                     "rpadmod03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

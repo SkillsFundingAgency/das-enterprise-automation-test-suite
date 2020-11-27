@@ -3,7 +3,7 @@
 TestDataPreparation for RP_AD_MOD_02
 
 @roatpadmintestdataprep
-@roatpadminastestdataprep
+@roatpadminmodtestdataprep
 @donottakescreenshot
 @rpadmod02
 Scenario: RP_TD_07_TestDataPreparation-For_RP_AD_MOD_01
