@@ -149,9 +149,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
+            /*
             var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
                 .ClickViewChangesLink();
-            /*
+
                 //.ClickOnReviewNewDetailsLink()
                 //.SelectViewApprentice()
                 //.GetAllEditBoxes();
@@ -162,15 +163,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the training provider.";
+            string expectedText = "There are changes to this apprentice's details that you need to review.";
             string actualText = apprenticeDetailsPage.GetAlertBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
+            /*
             var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
                     .ClickViewChangesLink();
 
-            /*
                 .ClickOnReviewNewDetailsToUpdateLink()
                 .SelectEditApprentice()
                 .GetAllEditBoxes();
