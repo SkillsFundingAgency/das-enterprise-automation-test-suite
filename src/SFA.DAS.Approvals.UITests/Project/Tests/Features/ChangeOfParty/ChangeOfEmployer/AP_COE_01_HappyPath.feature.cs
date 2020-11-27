@@ -124,6 +124,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 13
+ testRunner.And("Validate that old Employer cannot request CoP after successful CoE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

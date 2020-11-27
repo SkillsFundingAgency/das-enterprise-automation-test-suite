@@ -165,11 +165,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Validate that old Employer cannot request CoP during in-flight CoE")]
         public void WhenValidateThatOldEmployerCannotRequestCoPDuringIn_FlightCoE()
         {
-            bool IsChangeOfProviderLinkDisplayed 
-                = _employerStepsHelper
-                .GoToManageYourApprenticesPage()
-                .SelectViewCurrentApprenticeDetails()
-                .IsChangeOfProviderLinkDisplayed();
+            bool IsChangeOfProviderLinkDisplayed
+               = _employerStepsHelper
+               .GoToManageYourApprenticesPage()
+               .SelectViewCurrentApprenticeDetails()
+               .IsChangeOfProviderLinkDisplayed();
+
+            Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
+        }
+
+        [Then(@"Validate that old Employer cannot request CoP after successful CoE")]
+        public void ThenValidateThatOldEmployerCannotRequestCoPAfterSuccessfulCoE()
+        {
+            _objectContext.UpdateOrganisationName(_oldEmployer);
+
+            bool IsChangeOfProviderLinkDisplayed
+              = _employerStepsHelper
+              .GoToManageYourApprenticesPage()
+              .SelectViewCurrentApprenticeDetails()
+              .IsChangeOfProviderLinkDisplayed();
 
             Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
         }
