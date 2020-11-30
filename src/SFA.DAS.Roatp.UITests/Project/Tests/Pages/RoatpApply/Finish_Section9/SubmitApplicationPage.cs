@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
 {
     public class SubmitApplicationPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Submit application on behalf of";
+        protected override string PageTitle => "TEST";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
