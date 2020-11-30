@@ -17,39 +17,45 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index));
 
         #region Section-1 Organisation Checks
-        public LegalNameCheckPage Access_Section1_LegalName()
+
+        public LegalNameCheckPage Access_Section1_2ApplicationsInTwelveMonths()
         {
             NavigateToTask(OrganisationChecks, OrganisationChecks_1);
             return new LegalNameCheckPage(_context);
         }
-        public TradingNameCheckPage Access_Section1_TradingName()
+        public LegalNameCheckPage Access_Section1_LegalName()
         {
             NavigateToTask(OrganisationChecks, OrganisationChecks_2);
+            return new LegalNameCheckPage(_context);
+        }
+        public TradingNameCheckPage Access_Section1_TradingName()
+        {
+            NavigateToTask(OrganisationChecks, OrganisationChecks_3);
             return new TradingNameCheckPage(_context);
         }
         public OrganisationStatusCheckPage Access_Section1_OrganisationStatus()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_3);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_4);
             return new OrganisationStatusCheckPage(_context);
         }
         public AddressCheckPage Access_Section1_Address()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_4);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_5);
             return new AddressCheckPage(_context);
         }
         public ICONumberCheckPage Access_Section1_IcoRegistrationNumber()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_5);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_6);
             return new ICONumberCheckPage(_context);
         }
         public WebsiteAddressCheckPage Access_Section1_WebsiteAddress()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_6);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_7);
             return new WebsiteAddressCheckPage(_context);
         }
         public OrganisationHighRiskCheckPage Access_Section1_OrganisationHighRisk()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_7);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_8);
             return new OrganisationHighRiskCheckPage(_context);
         }
         #endregion
