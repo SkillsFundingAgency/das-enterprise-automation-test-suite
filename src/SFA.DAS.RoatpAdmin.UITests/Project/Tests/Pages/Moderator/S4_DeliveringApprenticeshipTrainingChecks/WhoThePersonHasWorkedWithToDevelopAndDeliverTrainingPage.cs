@@ -14,5 +14,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
 			SelectPassAndContinueToSubSection();
 			return new HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage(_context);
 		}
+		public HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage SelectFailAndContinueInWhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage()
+		{
+			SelectFailAndContinueToSubSection();
+			return new HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage(_context);
+		}
 	}
 }

@@ -14,5 +14,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
             SelectPassAndContinueToSubSection();
             return new RecruitNewStaffToDeliverTrainingAgainstForecastPage(_context);
         }
+
+        public RecruitNewStaffToDeliverTrainingAgainstForecastPage SelectFailAndContinueInReadyToDeliverTrainingAgainstForecastPage()
+        {
+            SelectFailAndContinueToSubSection();
+            return new RecruitNewStaffToDeliverTrainingAgainstForecastPage(_context);
+        }
     }
 }

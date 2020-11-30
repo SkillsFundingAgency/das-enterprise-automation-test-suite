@@ -6,19 +6,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
     public class GatewayLandingPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "New";
-
+        protected override string PageTitle => "RoATP gateway applications";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public GatewayLandingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-        }
+        public GatewayLandingPage(ScenarioContext context) : base(context) => _context = context;
 
         public GWApplicationOverviewPage SelectApplication()
         {

@@ -48,51 +48,60 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "7TAO ENGINEERING UK LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082318"),
-            });
+            });//rpe2e01, rpadgw01
             _data.Add("rpadas02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "ARTHUR MUREVERWI"),
-                    new KeyValuePair<string, string>(ukprnkey, "10028295"),
-            });
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas02@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "SHOCKOUT ACADEMY"),
+                    new KeyValuePair<string, string>(ukprnkey, "10065987"),
+            });//rpe2e02, rpadgw02
             _data.Add("rpadas03",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "SHOCKOUT ACADEMY"),
-                    new KeyValuePair<string, string>(ukprnkey, "10065987"),
-            });
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas03@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "ARTHUR MUREVERWI"),
+                    new KeyValuePair<string, string>(ukprnkey, "10028295"),
+
+            });//rpe2e03, rpadgw03
             _data.Add("rpadmod01",
            new List<KeyValuePair<string, string>>
            {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "EASY MANAGEMENT OF AGGRESSION LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10008214"),
-           });
+           });//rpe2e01, rpadgw01, rpadas01
             _data.Add("rpadmod02",
             new List<KeyValuePair<string, string>>
             {
-                   new KeyValuePair<string, string>(providernamekey, "LORNA BAIN"),
-                   new KeyValuePair<string, string>(ukprnkey, "10041478"),
-            });
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod02@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
+                    new KeyValuePair<string, string>(ukprnkey, "10038763"),
+            });//rpe2e02, rpadgw02, rpadas02
             _data.Add("rpadmod03",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
-                    new KeyValuePair<string, string>(ukprnkey, "10038763"),
-            });
+                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod03@digital.education.gov.uk"),
+                   new KeyValuePair<string, string>(providernamekey, "LORNA BAIN"),
+                   new KeyValuePair<string, string>(ukprnkey, "10041478"),
+            });//rpe2e03, rpadgw03, rpadas03
             _data.Add("rpadcla01",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082168"),
-            });
+            });//rpe2e01, rpadgw01, rpadas01, moderation (fail every section and ask for clarification)
             _data.Add("rpadcla02",
             new List<KeyValuePair<string, string>>
             {
+                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
                     new KeyValuePair<string, string>(ukprnkey, "10063154"),
-            });
+            });//rpe2e02, rpadgw02, rpadas02, moderation (fail few section and ask for clarification)
         }
     }
 }

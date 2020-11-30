@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         }
 
-        public override ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public override ModerationApplicationAssessmentOverviewPage PassTrainingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -24,16 +24,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
             return base.PassSupportingApprentices(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
 
+        public override ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusClarification);
+            }
+
+            return base.PassSupportingApprentices(moderatorApplicationAssessmentOverviewPage, applicationroute);
+        }
+
         public override ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusClarification);
+            moderatorApplicationAssessmentOverviewPage.VerifySection3Link4Status(StatusHelper.StatusClarification);
 
             return base.PassForecastingStarts(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
 
         public override ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderatorApplicationAssessmentOverviewPage.VerifySection3Link4Status(StatusHelper.StatusClarification);
+            moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
 
             return base.PassOffTheJobTraining(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
@@ -42,7 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
-                moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusClarification);
             }
 
             return base.PassWhereWillYourApprenticesBeTrained(moderatorApplicationAssessmentOverviewPage, applicationroute);
@@ -52,7 +62,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
-                moderatorApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusClarification);
+                moderatorApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusClarification);
             }
             return base.PassWhereWillYourApprenticesBeTrained(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }

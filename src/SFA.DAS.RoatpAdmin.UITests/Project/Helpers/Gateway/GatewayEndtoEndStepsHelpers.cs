@@ -106,7 +106,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_MainRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
@@ -116,7 +116,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-
         internal GWApplicationOverviewPage CompleteAllSectionsWithPass_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);

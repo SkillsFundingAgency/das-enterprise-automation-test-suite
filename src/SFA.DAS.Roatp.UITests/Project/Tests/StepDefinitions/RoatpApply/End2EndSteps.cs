@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
@@ -8,6 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     [Binding]
     public class End2EndSteps
     {
+        private readonly ObjectContext _objectContext;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         
@@ -16,13 +18,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         public End2EndSteps(ScenarioContext context)
         {
+            _objectContext = context.Get<ObjectContext>();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
             _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
         [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
-        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute) => _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
+        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+
+            _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
+        }
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();

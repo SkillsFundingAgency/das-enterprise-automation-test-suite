@@ -2,7 +2,7 @@
 
 @resetFhaApplicationToNew
 @roatp
-@roatpadmin
+@newroatpadmin
 @rpadfha01
 @regression
 Scenario: RP_AD_FHA_01

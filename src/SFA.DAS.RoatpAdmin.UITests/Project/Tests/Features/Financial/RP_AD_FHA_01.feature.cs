@@ -77,7 +77,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         [NUnit.Framework.DescriptionAttribute("RP_AD_FHA_01")]
         [NUnit.Framework.CategoryAttribute("resetFhaApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("rpadfha01")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_FHA_01()
@@ -85,7 +85,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
             string[] tagsOfScenario = new string[] {
                     "resetFhaApplicationToNew",
                     "roatp",
-                    "roatpadmin",
+                    "newroatpadmin",
                     "rpadfha01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

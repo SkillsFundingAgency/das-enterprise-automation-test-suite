@@ -77,24 +77,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             NavigateToTask(Section3_Link1);
             return new TypeOfApprenticeshipTrainingPage(_context);
         }
-        public SupportingApprenticesPage Access_Section3_SupportingApprentices()
+        public TrainingApprenticesPage Access_Section3_TrainingApprentices()
         {
             NavigateToTask(Section3_Link2);
+            return new TrainingApprenticesPage(_context);
+        }
+        public SupportingApprenticesPage Access_Section3_SupportingApprentices()
+        {
+            NavigateToTask(Section3_Link3);
             return new SupportingApprenticesPage(_context);
         }
         public ForecastingStartsPage Access_Section3_ForecastingStarts()
         {
-            NavigateToTask(Section3_Link3);
+            NavigateToTask(Section3_Link4);
             return new ForecastingStartsPage(_context);
         }
         public OffTheJobTrainingPage Access_Section3_OffTheJobTraining()
         {
-            NavigateToTask(Section3_Link4);
+            NavigateToTask(Section3_Link5);
             return new OffTheJobTrainingPage(_context);
         }
         public WhereWillYourApprenticesBeTrainedPage Access_Section3_WhereWillYourApprenticesBeTrained()
         {
-            NavigateToTask(Section3_Link5);
+            NavigateToTask(Section3_Link6);
             return new WhereWillYourApprenticesBeTrainedPage(_context);
         }
         #endregion
