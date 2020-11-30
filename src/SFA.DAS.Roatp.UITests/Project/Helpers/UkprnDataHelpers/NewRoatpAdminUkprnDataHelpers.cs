@@ -94,14 +94,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla01@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082168"),
-            });
+            });//rpe2e01, rpadgw01, rpadas01, moderation (fail every section and ask for clarification)
             _data.Add("rpadcla02",
             new List<KeyValuePair<string, string>>
             {
                     new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
                     new KeyValuePair<string, string>(ukprnkey, "10063154"),
-            });
+            });//rpe2e02, rpadgw02, rpadas02, moderation (fail few section and ask for clarification)
         }
     }
 }

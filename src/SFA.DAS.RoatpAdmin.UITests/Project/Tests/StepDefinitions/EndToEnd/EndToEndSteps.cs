@@ -9,6 +9,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -88,15 +89,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         [Then(@"the Moderation user assess the application and marks outcomes as Pass")]
         public void ThenTheModerationUserAssessTheApplicationAndMarksOutcomesAsPass()
         {
-            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("ModerationAdmin");
-
-            var moderationApplicationAssessmentOverviewPage = staffDashboardPage.AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
 
             moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage, _applicationRoute);
 
-            var _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
+            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
 
-            _moderationApplicationsPage.VerifyOutcomeStatus("PASS");
+            moderationApplicationsPage.VerifyOutcomeStatus("PASS");
+        }
+
+        [Given(@"the Moderation user assess the application and marks every section as Fail and outcome As Clarification")]
+        public void GivenTheModerationUserAssessTheApplicationAndMarksEverySectionAsFailAndOutcomeAsClarification()
+        {
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
+
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithFail(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+
+            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
+
+            moderationApplicationsPage.VerifyClarificationStatus();
         }
 
         private StaffDashboardPage GoToRoatpAdminStaffDashBoardPage(string applicationName)
@@ -139,5 +150,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             return gwApplicationOverviewPage;
         }
+
+        private ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMe()
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("ModerationAdmin");
+
+            return staffDashboardPage.AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+        }
+
     }
 }

@@ -47,5 +47,39 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .VerifySection5Link3Status(StatusHelper.NotRequired);
             }
         }
+        public virtual ModerationApplicationAssessmentOverviewPage FailProcessForEvaluatingTheQualityOfTrainingDelivered(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section5_ProcessForEvaluatingTheQualityOfTrainingDelivered()
+                .SelectFailAndContinueInProcessForEvaluatingTheQualityOfTrainingDeliveredPage()
+                .SelectFailAndContinue()
+                .VerifySection5Link1Status(StatusHelper.StatusFail);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailProcessForEvaluatingTheQualityOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section5_ProcessOfEvaluatingTheQualityOfApprenticeshipTraining()
+                .SelectFailAndContinueInProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage()
+                .SelectFailAndContinue()
+                .VerifySection5Link2Status(StatusHelper.StatusFail);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailSystemsAndProcessesToCollectApprenticeshipData(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderationApplicationAssessmentOverviewPage
+                    .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()
+                    .SelectFailAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
+                    .SelectFailAndContinue()
+                    .VerifySection5Link3Status(StatusHelper.StatusFail);
+            }
+            else
+            {
+                return moderationApplicationAssessmentOverviewPage
+                    .VerifySection5Link3Status(StatusHelper.NotRequired);
+            }
+        }
     }
 }

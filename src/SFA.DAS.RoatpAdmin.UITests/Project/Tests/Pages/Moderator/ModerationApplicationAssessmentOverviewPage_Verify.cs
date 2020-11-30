@@ -25,6 +25,7 @@
         public ModerationApplicationAssessmentOverviewPage VerifySection3Link3Status(string status) => VerifyStatus(Section3_Link3, status);
         public ModerationApplicationAssessmentOverviewPage VerifySection3Link4Status(string status) => VerifyStatus(Section3_Link4, status);
         public ModerationApplicationAssessmentOverviewPage VerifySection3Link5Status(string status) => VerifyStatus(Section3_Link5, status);
+        public ModerationApplicationAssessmentOverviewPage VerifySection3Link6Status(string status) => VerifyStatus(Section3_Link6, status);
         #endregion
 
         #region Section4

@@ -36,12 +36,36 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
+        public virtual ModerationApplicationAssessmentOverviewPage FailContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderationApplicationAssessmentOverviewPage
+                    .Access_Section1_ContinuityPlanForApprenticeshipTraining()
+                    .SelectFailAndContinue()
+                    .VerifySection1Link1Status(StatusHelper.StatusFail);
+            }
+            else
+            {
+                return moderationApplicationAssessmentOverviewPage
+                    .VerifySection1Link1Status(StatusHelper.NotRequired);
+            }
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_EqualityAndDiversityPolicy()
                 .SelectPassAndContinue()
                 .VerifySection1Link2Status(StatusHelper.StatusPass);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailEqualityAndDiversityPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section1_EqualityAndDiversityPolicy()
+                .SelectFailAndContinue()
+                .VerifySection1Link2Status(StatusHelper.StatusFail);
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
@@ -72,12 +96,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .SelectPassAndContinue()
                 .VerifySection1Link4Status(StatusHelper.StatusPass);
         }
+        public virtual ModerationApplicationAssessmentOverviewPage FailHealthAndSafetyPolicy(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section1_HealthAndSafetyPolicy()
+                .SelectFailAndContinueInHealthAndSafetyPolicyPage()
+                .SelectFailAndContinue()
+                .VerifySection1Link4Status(StatusHelper.StatusPass);
+        }
 
         public virtual ModerationApplicationAssessmentOverviewPage PassActingAsASubcontractor(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_ActingAsASubcontractor()
                 .SelectPassAndContinue()
+                .VerifySection1Link5Status(StatusHelper.StatusPass);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailActingAsASubcontractor(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section1_ActingAsASubcontractor()
+                .SelectFailAndContinue()
                 .VerifySection1Link5Status(StatusHelper.StatusPass);
         }
 

@@ -29,10 +29,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         #region Section-3
         private string Section3_Link1 => "Type of apprenticeship training";
-        private string Section3_Link2 => "Supporting apprentices";
-        private string Section3_Link3 => "Forecasting starts";
-        private string Section3_Link4 => "Off the job training";
-        private string Section3_Link5 => "Where will your apprentices be trained";
+        private string Section3_Link2 => "Training apprentices";
+        private string Section3_Link3 => "Supporting apprentices";
+        private string Section3_Link4 => "Forecasting starts";
+        private string Section3_Link5 => "Off the job training";
+        private string Section3_Link6 => "Where will your apprentices be trained";
         #endregion
 
         #region Section-4

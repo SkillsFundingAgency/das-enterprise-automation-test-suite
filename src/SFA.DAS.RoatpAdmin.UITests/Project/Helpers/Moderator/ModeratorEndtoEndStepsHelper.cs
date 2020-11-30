@@ -64,6 +64,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
+
+        public ModerationApplicationAssessmentOverviewPage CompleteAllSectionsWithFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = FailModeratorSection1Checks(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = FailModeratorSection2Checks(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = FailModeratorSection3Checks(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = FailModeratorSection4Checks(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = FailModeratorSection5Checks(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection1Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             moderationApplicationAssessmentOverviewPage = _section1Helper.PassContinuityPlanForApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
@@ -73,6 +85,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = _section1Helper.PassActingAsASubcontractor(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
+
+        public ModerationApplicationAssessmentOverviewPage FailModeratorSection1Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section1Helper.FailContinuityPlanForApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section1Helper.FailEqualityAndDiversityPolicy(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section1Helper.FailSafeguardingAndPreventDutyPolicy(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section1Helper.FailHealthAndSafetyPolicy(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section1Helper.FailActingAsASubcontractor(moderationApplicationAssessmentOverviewPage);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
 
         public ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
@@ -90,13 +113,36 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
+        public ModerationApplicationAssessmentOverviewPage FailModeratorSection2Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailEngagingWithEmployers(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailComplaintsPolicy(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailContractForServicesTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailPriorLearningOfApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section2Helper.FailAllWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection3Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             moderationApplicationAssessmentOverviewPage = _section3Helper.PassTypeOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.PassTrainingApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = _section3Helper.PassSupportingApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = _section3Helper.PassForecastingStarts(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = _section3Helper.PassOffTheJobTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = _section3Helper.PassWhereWillYourApprenticesBeTrained(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public ModerationApplicationAssessmentOverviewPage FailModeratorSection3Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailAllTypeOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailTrainingApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailSupportingApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailForecastingStarts(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailOffTheJobTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section3Helper.FailWhereWillYourApprenticesBeTrained(moderationApplicationAssessmentOverviewPage, applicationroute);
             return moderationApplicationAssessmentOverviewPage;
         }
 
@@ -116,6 +162,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
+        public ModerationApplicationAssessmentOverviewPage FailModeratorSection4Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailOverallAccountabilityForApprenticeships(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailManagementHierarchyForApprenticeships(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailAllQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailDevelopingAndDeliveringTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section4Helper.FailAllPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
         public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return _section4Helper.FailYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
@@ -126,6 +183,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = _section5Helper.PassProcessForEvaluatingTheQualityOfTrainingDelivered(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = _section5Helper.PassProcessForEvaluatingTheQualityOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = _section5Helper.PassSystemsAndProcessesToCollectApprenticeshipData(moderationApplicationAssessmentOverviewPage, applicationroute);
+            return moderationApplicationAssessmentOverviewPage;
+        }
+
+        public ModerationApplicationAssessmentOverviewPage FailModeratorSection5Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            moderationApplicationAssessmentOverviewPage = _section5Helper.FailProcessForEvaluatingTheQualityOfTrainingDelivered(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section5Helper.FailProcessForEvaluatingTheQualityOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _section5Helper.FailSystemsAndProcessesToCollectApprenticeshipData(moderationApplicationAssessmentOverviewPage, applicationroute);
             return moderationApplicationAssessmentOverviewPage;
         }
 
