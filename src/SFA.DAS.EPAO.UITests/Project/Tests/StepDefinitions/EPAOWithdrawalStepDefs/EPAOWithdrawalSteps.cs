@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         [Then(@"application is submitted for review")]
         public void ThenApplicationIsSubmittedForReview()
         {
-            ScenarioContext.Current.Pending();
+            _ePAOWithdrawalHelper.VerifyStandardSubmitted();
         }
 
 

@@ -36,5 +36,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                       .VerifyAndReturnToApplicationOverviewPage()
                                       .AcceptAndSubmit();
         }
+
+        public void VerifyStandardSubmitted()
+        {
+            new AS_WithdrawalApplicationSubmittedPage(_context).StandardSubmissionVerification();
+        }
     }
 }

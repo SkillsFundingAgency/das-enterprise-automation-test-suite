@@ -115,6 +115,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("completes the standard withdrawal notification questions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 10
+ testRunner.Then("application is submitted for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
