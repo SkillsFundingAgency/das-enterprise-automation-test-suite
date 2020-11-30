@@ -102,7 +102,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .Access_Section1_HealthAndSafetyPolicy()
                 .SelectFailAndContinueInHealthAndSafetyPolicyPage()
                 .SelectFailAndContinue()
-                .VerifySection1Link4Status(StatusHelper.StatusPass);
+                .VerifySection1Link4Status(StatusHelper.StatusFail);
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage PassActingAsASubcontractor(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
@@ -118,7 +118,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section1_ActingAsASubcontractor()
                 .SelectFailAndContinue()
-                .VerifySection1Link5Status(StatusHelper.StatusPass);
+                .VerifySection1Link5Status(StatusHelper.StatusFail);
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)

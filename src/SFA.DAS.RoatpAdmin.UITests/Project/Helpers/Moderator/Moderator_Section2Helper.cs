@@ -52,7 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInManagingRelationshipWithEmployersPage()
                     .SelectFailAndContinueInOverallResponsibilityForManagingRelationshipsWithEmployersPage()
                     .SelectFailAndContinue()
-                    .VerifySection2Link1Status(StatusHelper.StatusPass);
+                    .VerifySection2Link1Status(StatusHelper.StatusFail);
             }
             else
             {
@@ -86,7 +86,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .Access_Section2_ComplaintsPolicy()
                     .SelectFailAndContinueInComplaintsPolicyPage()
                     .SelectFailAndContinue()
-                    .VerifySection2Link2Status(StatusHelper.StatusPass);
+                    .VerifySection2Link2Status(StatusHelper.StatusFail);
             }
             else
             {
@@ -118,7 +118,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section2_ContractForServicesTemplate()
                     .SelectFailAndContinue()
-                    .VerifySection2Link3Status(StatusHelper.StatusPass);
+                    .VerifySection2Link3Status(StatusHelper.StatusFail);
             }
             else
             {
@@ -168,7 +168,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .Access_Section2_PriorLearningOfApprentices()
                     .SelectFailAndContinueInPriorLearningOfApprenticesPage()
                     .SelectFailAndContinue()
-                    .VerifySection2Link5Status(StatusHelper.StatusPass);
+                    .VerifySection2Link5Status(StatusHelper.StatusFail);
             }
             else
             {

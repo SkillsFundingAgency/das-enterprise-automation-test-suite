@@ -108,7 +108,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInHowTheTeamWorkedWithPage()
                     .SelectFailAndContinue();
             }
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
