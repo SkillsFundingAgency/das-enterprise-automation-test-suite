@@ -23,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
         private By CompletionDate => By.Id("completionDate");
         private By changeTrainingProviderLink => By.Id("changeTrainingProviderLink");
+        private By AlertBox => By.CssSelector("div.panel-border-wide > p");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -65,11 +66,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
         public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
+        public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
+        
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
             formCompletionHelper.ClickElement(changeTrainingProviderLink);
             return new ChangingTrainingProviderPage(_context);
         }
 
+        public ChangingTrainingProviderPage ClickViewChangesLink()
+        {
+            formCompletionHelper.Click(ViewChangesLink);
+            return new ChangingTrainingProviderPage(_context);
+        }
     }
 }

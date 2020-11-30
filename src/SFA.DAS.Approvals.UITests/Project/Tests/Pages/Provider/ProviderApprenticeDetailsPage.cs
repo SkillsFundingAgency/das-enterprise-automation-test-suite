@@ -66,10 +66,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
 
         }
+
         public string GetCoPBanner()
         {
             return pageInteractionHelper.GetText(ChangeOfPartyBanner);
         }
+
         public ProviderViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChanges);
