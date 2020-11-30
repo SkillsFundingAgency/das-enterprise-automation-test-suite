@@ -3,9 +3,9 @@
 TestDataPreparation for RP_AD_CLA_01
 
 @roatpadmintestdataprep
-@roatpadminmodtestdataprep
+@roatpadminclatestdataprep
 @donottakescreenshot
-@rpadmod01
+@rpadcla01
 Scenario: RP_TD_12_TestDataPreparation-For_RP_AD_CLA_01
 	Given the provider completes the Apply Journey as Main Provider Route
 	And the GateWay user assess the application by confirming Gateway outcome as Pass
