@@ -18,10 +18,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         #region Section-1 Organisation Checks
 
-        public LegalNameCheckPage Access_Section1_2ApplicationsInTwelveMonths()
+        public TwoApplicationsIn12MonthsPage Access_Section1_2ApplicationsInTwelveMonths()
         {
             NavigateToTask(OrganisationChecks, OrganisationChecks_1);
-            return new LegalNameCheckPage(_context);
+            return new TwoApplicationsIn12MonthsPage(_context);
         }
         public LegalNameCheckPage Access_Section1_LegalName()
         {

@@ -59,15 +59,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_OfficeForStudent(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
@@ -111,7 +121,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
             CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
-            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(gwApplicationOverviewPage);
             CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
@@ -121,7 +131,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
             CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
-            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(gwApplicationOverviewPage);
             CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
@@ -131,7 +141,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
             CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
-            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofsted(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(gwApplicationOverviewPage);
             CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
