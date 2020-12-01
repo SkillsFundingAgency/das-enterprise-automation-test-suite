@@ -115,8 +115,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 10
+ testRunner.Then("a banner is displayed for employer with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 11
  testRunner.When("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.When("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

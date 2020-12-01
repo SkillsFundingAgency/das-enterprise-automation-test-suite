@@ -42,6 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _providerConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
             pageInteractionHelper.VerifyText(InvalidProivderErrorMessage, "Select another training provider - you cannot select the current training provider as the new training provider");
+
             return new EnterUkprnPage(_context);
         }
     }
