@@ -14,6 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         private By ClarificationResponseBox => By.Id("ClarificationResponse");
         private By InadequateCommentBox => By.Id("InadequateComments");
         private By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
+        private By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -64,7 +65,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
 
         private FinancialHealthAssessmentOverviewPage RemoveOneFile()
         {
-            formCompletionHelper.ClickLinkByText("Remove");
+            formCompletionHelper.ClickElement(RemoveClarificationFileButton);
             return this;
         }
     }

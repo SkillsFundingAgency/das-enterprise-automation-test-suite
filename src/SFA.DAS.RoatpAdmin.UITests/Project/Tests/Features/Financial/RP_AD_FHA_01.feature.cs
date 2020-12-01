@@ -77,7 +77,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         [NUnit.Framework.DescriptionAttribute("RP_AD_FHA_01")]
         [NUnit.Framework.CategoryAttribute("resetFhaApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("rpadfha01")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -86,13 +85,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
             string[] tagsOfScenario = new string[] {
                     "resetFhaApplicationToNew",
                     "roatp",
-                    "roatpadmin",
                     "newroatpadmin",
                     "rpadfha01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_FHA_01", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -112,17 +110,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.When("the admin access the Financial Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the Financial assessor completes assessment by confirming the Gateway outcome as " +
                         "Outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 12
  testRunner.And("the Financial Applications Outcome tab is updated with Outstanding outcome for th" +
                         "is Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

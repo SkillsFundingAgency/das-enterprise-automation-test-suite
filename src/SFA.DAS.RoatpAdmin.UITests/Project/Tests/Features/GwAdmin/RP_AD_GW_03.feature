@@ -7,7 +7,7 @@
 @rpgateway
 @rpadgw03
 @regression
-Scenario: RP_AD_GW_02_EmployerRoute_Charity
+Scenario: RP_AD_GW_03_SupportRoute
 	Given the admin lands on the Dashboard
 	When the admin access the application from GatewayApplications
 	And the gateway admin assess all sections as PASS for Supporting Route Application

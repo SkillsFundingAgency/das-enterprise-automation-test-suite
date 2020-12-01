@@ -77,14 +77,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.UpdateProvider
         [NUnit.Framework.DescriptionAttribute("RP_AD_UP_01_Verify Update Training Provider")]
         [NUnit.Framework.CategoryAttribute("rpadup01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("oldroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_UP_01_VerifyUpdateTrainingProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "rpadup01",
                     "roatp",
-                    "roatpadmin",
+                    "oldroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_UP_01_Verify Update Training Provider", null, tagsOfScenario, argumentsOfScenario);

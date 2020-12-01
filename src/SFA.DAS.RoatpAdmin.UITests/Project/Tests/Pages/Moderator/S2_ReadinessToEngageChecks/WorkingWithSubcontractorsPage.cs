@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessToEngageChecks
 {
@@ -9,15 +10,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
 
         public WorkingWithSubcontractorsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public DueDiligenceOnSubcontractorsPage SelectPassAndContinueInWorkingWithSubcontractorsPage()
-        {
-            SelectPassAndContinueToSubSection();
-            return new DueDiligenceOnSubcontractorsPage(_context);
-        }
+        public DueDiligenceOnSubcontractorsPage SelectPassAndContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => SelectPassAndContinueToSubSection());
 
-        public DueDiligenceOnSubcontractorsPage SelectContinueInWorkingWithSubcontractorsPage()
+        public DueDiligenceOnSubcontractorsPage SelectFailAndContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => SelectFailAndContinueToSubSection());
+
+        public DueDiligenceOnSubcontractorsPage SelectContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => Continue());
+        
+        private DueDiligenceOnSubcontractorsPage SelectActionAndContinue(Action action)
         {
-            Continue();
+            action.Invoke();
             return new DueDiligenceOnSubcontractorsPage(_context);
         }
     }

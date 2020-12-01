@@ -14,5 +14,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
 			SelectPassAndContinueToSubSection();
 			return new OverallManagerForTheTeamPage(_context);
 		}
+
+		public OverallManagerForTheTeamPage SelectFailAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
+		{
+			SelectFailAndContinueToSubSection();
+			return new OverallManagerForTheTeamPage(_context);
+		}
+
 	}
 }

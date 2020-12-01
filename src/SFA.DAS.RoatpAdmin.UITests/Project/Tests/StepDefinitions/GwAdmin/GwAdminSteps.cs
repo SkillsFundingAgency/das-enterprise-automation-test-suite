@@ -24,7 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [When(@"the gateway admin assess all sections as PASS for MainRoute Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForMainRouteApplication() =>
-            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((new GWApplicationOverviewPage(_context)));
+            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
 
         [When(@"the gateway admin assess all sections as PASS for Employer Route Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForEmployerRouteApplication() =>

@@ -20,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly RoatpApplyCreateUserDataHelpers _applydataHelpers;
         private readonly AssertHelper _assertHelper;
         private readonly ObjectContext _objectContext;
+        private readonly RoatpConfig _roatpConfig;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -28,7 +29,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelpers>();
             _assertHelper = context.Get<AssertHelper>();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.GetRoatpConfig<RoatpConfig>());
+            _roatpConfig = context.GetRoatpConfig<RoatpConfig>();
+            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(_roatpConfig);
         }
 
         [When(@"user submits the details to create an account")]

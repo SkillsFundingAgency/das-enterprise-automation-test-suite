@@ -2,7 +2,7 @@
 
 @rpadnp01
 @roatp
-@roatpadmin
+@oldroatpadmin
 @deletetrainingprovider
 @regression
 Scenario: RP_AD_NP_01_Add A New Training Provider as Main Provider

@@ -27,14 +27,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
             return CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
         }
 
-        public ModerationApplicationAssessmentOverviewPage CompleteSomeSectionsWithFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public new ModerationApplicationAssessmentOverviewPage CompleteSomeSectionsWithFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderationApplicationAssessmentOverviewPage = _section1Helper.FailSafeguardingAndPreventDutyPolicy(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = _section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = _section2Helper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = _section3Helper.FailWhereWillYourApprenticesBeTrained(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = _section4Helper.FailQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage); 
-            moderationApplicationAssessmentOverviewPage = _section4Helper.FailPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = section1Helper.FailSafeguardingAndPreventDutyPolicy(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section3Helper.FailWhereWillYourApprenticesBeTrained(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section4Helper.FailQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage); 
+            moderationApplicationAssessmentOverviewPage = section4Helper.FailPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
     }
