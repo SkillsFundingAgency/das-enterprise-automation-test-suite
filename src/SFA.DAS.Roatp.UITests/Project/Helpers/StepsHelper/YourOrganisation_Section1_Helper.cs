@@ -238,8 +238,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
-                .SelectYesForFundedbyOFSAndContinue()
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectNoForPGTAAndContinue()
                 .SelectYesForFullOfstedInspectionAndContinue()

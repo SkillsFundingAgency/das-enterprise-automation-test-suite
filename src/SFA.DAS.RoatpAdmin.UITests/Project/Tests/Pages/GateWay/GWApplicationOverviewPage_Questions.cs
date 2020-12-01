@@ -8,13 +8,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         #region Section-1
         private string OrganisationChecks => "1. Organisation checks";
-        private string OrganisationChecks_1 => "Legal name";
-        private string OrganisationChecks_2 => "Trading name";
-        private string OrganisationChecks_3 => "Organisation status";
-        private string OrganisationChecks_4 => "Address";
-        private string OrganisationChecks_5 => "ICO registration number";
-        private string OrganisationChecks_6 => "Website address";
-        private string OrganisationChecks_7 => "Organisation high risk";
+        private string OrganisationChecks_1 => "2 applications in 12 months";
+        private string OrganisationChecks_2 => "Legal name";
+        private string OrganisationChecks_3 => "Trading name";
+        private string OrganisationChecks_4 => "Organisation status";
+        private string OrganisationChecks_5 => "Address";
+        private string OrganisationChecks_6 => "ICO registration number";
+        private string OrganisationChecks_7 => "Website address";
+        private string OrganisationChecks_8 => "Organisation high risk";
         #endregion
 
         #region Section-2
