@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -15,14 +16,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ChangeOfPartyConfig _changeOfPartyConfig;
+        private readonly ProviderConfig _oldProviderLogin;
         private readonly ProviderLoginUser _newProviderLoginDetails;
+        private readonly ProviderLoginUser _oldProviderLoginDetails;
 
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
             _context = context;
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
+            _oldProviderLogin = context.GetProviderConfig<ProviderConfig>();
             _newProviderLoginDetails = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
+            _oldProviderLoginDetails = new ProviderLoginUser { Username = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
 
@@ -141,6 +146,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 ValidateBannerWithLinkToNonEditableCohort(employerApprenticeDetailsPage);
         }
+        public void ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP()
+        {                  
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
+              
+            bool CoELinkDisplayed = new ProviderManageYourApprenticesPage(_context, true)
+                                            .SelectViewCurrentApprenticeDetails()
+                                            .IsCoELinkDisplayed();
+
+            Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider after successful CoP");
+        }
 
         private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -149,16 +164,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
-            /*
+
             var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
-                .ClickViewChangesLink();
+                .ClickViewChangesLink()
+                .GetDetails();
+                
+                /*
+                .ClickOnReviewNewDetailsLink()
+                .SelectViewApprentice()
+                .GetAllEditBoxes();
+                */
 
-                //.ClickOnReviewNewDetailsLink()
-                //.SelectViewApprentice()
-                //.GetAllEditBoxes();
-
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
-            */
+            //Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
+            
         }
 
         private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
