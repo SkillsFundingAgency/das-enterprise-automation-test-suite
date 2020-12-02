@@ -39,6 +39,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
+        public ApplicationAssessmentOverviewPage PassTrainingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TrainingApprentices()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link2Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
+            }
+        }
+
         public ApplicationAssessmentOverviewPage PassSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute)
@@ -48,11 +63,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinueInSupportingApprenticesPage()
                     .SelectPassAndContinueInWaysOfSupportingApprenticesPage()
                     .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .VerifySection3Link3Status(StatusHelper.StatusPass);
             }
             else
             {
-                return applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
+                return applicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.NotRequired);
             }
         }
 
@@ -66,12 +81,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
                     .SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
                     .SelectPassAndContinue()
-                    .VerifySection3Link3Status(StatusHelper.StatusPass);
+                    .VerifySection3Link4Status(StatusHelper.StatusPass);
             }
             else
             {
                 return applicationAssessmentOverviewPage
-                    .VerifySection3Link3Status(StatusHelper.NotRequired);
+                    .VerifySection3Link4Status(StatusHelper.NotRequired);
             }
         }
 
@@ -83,12 +98,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .Access_Section3_OffTheJobTraining()
                     .SelectPassAndContinueInOffTheJobTrainingPage()
                     .SelectPassAndContinue()
-                    .VerifySection3Link4Status(StatusHelper.StatusPass);
+                    .VerifySection3Link5Status(StatusHelper.StatusPass);
             }
             else
             {
                 return applicationAssessmentOverviewPage.
-                    VerifySection3Link4Status(StatusHelper.NotRequired);
+                    VerifySection3Link5Status(StatusHelper.NotRequired);
             }
         }
 
@@ -99,12 +114,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 return applicationAssessmentOverviewPage
                 .Access_Section3_WhereWillYourApprenticesBeTrained()
                 .SelectPassAndContinue()
-                .VerifySection3Link5Status(StatusHelper.StatusPass);
+                .VerifySection3Link6Status(StatusHelper.StatusPass);
             }
             else
             {
                 return applicationAssessmentOverviewPage.
-                    VerifySection3Link5Status(StatusHelper.NotRequired);
+                    VerifySection3Link6Status(StatusHelper.NotRequired);
             }
         }
     }

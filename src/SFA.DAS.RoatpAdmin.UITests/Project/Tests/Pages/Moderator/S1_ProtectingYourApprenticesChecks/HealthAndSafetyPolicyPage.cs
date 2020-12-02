@@ -7,12 +7,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
         protected override string PageTitle => "Health and safety policy";
         private readonly ScenarioContext _context;
 
-        public HealthAndSafetyPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        public HealthAndSafetyPolicyPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            objectContext.SetIsUploadFile();
+        }
 
         public OverallResponsibilityForHealthAndSafetyPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
         {
-            objectContext.SetIsUploadFile();
             SelectPassAndContinueToSubSection();
+            return new OverallResponsibilityForHealthAndSafetyPage(_context);
+        }
+
+        public OverallResponsibilityForHealthAndSafetyPage SelectFailAndContinueInHealthAndSafetyPolicyPage()
+        {
+            SelectFailAndContinueToSubSection();
             return new OverallResponsibilityForHealthAndSafetyPage(_context);
         }
     }

@@ -2,7 +2,7 @@
 
 @rpadsp01
 @roatp
-@roatpadmin
+@oldroatpadmin
 @regression
 Scenario: RP_AD_SP_01_Verify Search For Training Provider
 When the admin searches for a provider by provider name

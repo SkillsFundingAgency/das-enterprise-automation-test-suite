@@ -2,13 +2,13 @@
 using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -41,16 +41,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
+        [Given(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Pass")]
-        public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
+        public void TheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsPass()
         {
             _applicationRoute = _objectContext.GetApplicationRoute();
 
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
 
-            staffDashboardPage.AccessGatewayApplications().SelectApplication();
+            var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            var gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((new GWApplicationOverviewPage(_context)));
+            gwApplicationOverviewPage = CompleteAllSectionsWithPass(gwApplicationOverviewPage);
 
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
         }
@@ -63,8 +64,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReviewAsOutstanding();
         }
 
+        [Given(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
         [When(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
-        public void WhenTheAsssesssorAndAssessorAssessTheApplicationAndMarksTheApplicationAsReadyForModeration()
+        public void TheAsssesssorAndAssessorAssessTheApplicationAndMarksTheApplicationAsReadyForModeration()
         {
             RestartRoatpAssessor("Asssesssor1Admin");
 
@@ -86,15 +88,48 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         [Then(@"the Moderation user assess the application and marks outcomes as Pass")]
         public void ThenTheModerationUserAssessTheApplicationAndMarksOutcomesAsPass()
         {
-            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("ModerationAdmin");
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
 
-            var moderationApplicationAssessmentOverviewPage = staffDashboardPage.AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+            moderationApplicationAssessmentOverviewPage = CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage);
 
-            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
 
-            var _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationsPage.VerifyOutcomeStatus("PASS");
+        }
 
-            _moderationApplicationsPage.VerifyOutcomeStatus("PASS");
+        [Given(@"the Moderation user assess the application and marks every section as Fail and outcome As Clarification")]
+        public void GivenTheModerationUserAssessTheApplicationAndMarksEverySectionAsFailAndOutcomeAsClarification()
+        {
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
+
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithFail(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+
+            CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Given(@"the Moderation user assess the application and marks few section as Fail and outcome As Clarification")]
+        public void GivenTheModerationUserAssessTheApplicationAndMarksFewSectionAsFailAndOutcomeAsClarification()
+        {
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
+
+            moderationApplicationAssessmentOverviewPage = CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage);
+
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteSomeSectionsWithFail(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+
+            CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
+
+        }
+
+        private ModerationApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+        }
+
+        private RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
+
+            return moderationApplicationsPage.VerifyClarificationStatus();
         }
 
         private StaffDashboardPage GoToRoatpAdminStaffDashBoardPage(string applicationName)
@@ -118,5 +153,32 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(applicationAssessmentOverviewPage);
         }
+
+        private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
+
+            if (_applicationRoute == ApplicationRoute.EmployerProviderRoute)
+            {
+                if (_objectContext.GetUkprn() == "10065987")
+                    gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
+                else
+                    gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
+            }
+                
+            if (_applicationRoute == ApplicationRoute.SupportingProviderRoute) 
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
+
+            return gwApplicationOverviewPage;
+        }
+
+        private ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMe()
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("ModerationAdmin");
+
+            return staffDashboardPage.AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+        }
+
     }
 }

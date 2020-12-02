@@ -77,7 +77,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
         [NUnit.Framework.DescriptionAttribute("RP_AD_NP_03_Add A New Training Provider as Supporting Provider")]
         [NUnit.Framework.CategoryAttribute("rpadnp03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("oldroatpadmin")]
         [NUnit.Framework.CategoryAttribute("deletetrainingprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_NP_03_AddANewTrainingProviderAsSupportingProvider()
@@ -85,7 +85,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
             string[] tagsOfScenario = new string[] {
                     "rpadnp03",
                     "roatp",
-                    "roatpadmin",
+                    "oldroatpadmin",
                     "deletetrainingprovider",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
