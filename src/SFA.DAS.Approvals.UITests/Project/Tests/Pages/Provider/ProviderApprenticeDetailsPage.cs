@@ -76,6 +76,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ViewChanges);
             return new ProviderViewChangesPage(_context);
-        } 
+        }
+
+        public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
     }
 }

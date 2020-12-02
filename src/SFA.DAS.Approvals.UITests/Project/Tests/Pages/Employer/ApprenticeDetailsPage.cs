@@ -74,10 +74,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChangingTrainingProviderPage(_context);
         }
 
-        public ChangingTrainingProviderPage ClickViewChangesLink()
+        public ViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChangesLink);
-            return new ChangingTrainingProviderPage(_context);
+            return new ViewChangesPage(_context);
         }
     }
 }
