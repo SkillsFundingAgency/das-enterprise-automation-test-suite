@@ -51,6 +51,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
+        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Fail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
 
         internal GWApplicationOverviewPage CompleteRegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
@@ -126,6 +132,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
+        internal GWApplicationOverviewPage Fail_PeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2_Fail(gwApplicationOverviewPage);
+            CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
         internal GWApplicationOverviewPage CompleteAllSectionsWithPass_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
@@ -152,6 +168,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
                  .YesSurePassThisApplicationAndGoToGovernance();
+        }
+        internal void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
+                 .FailThisApplicationAndContinue()
+                 .YesSureFailThisApplicationAndGoToGovernance();
         }
     }
 }

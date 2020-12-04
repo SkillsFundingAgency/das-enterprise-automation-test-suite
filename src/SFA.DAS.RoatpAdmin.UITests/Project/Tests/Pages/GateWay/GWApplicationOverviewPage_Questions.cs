@@ -39,7 +39,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-5
-        private string OrganisationsCriminalAndComplianceChecks => "5. Organisation’s criminal and compliance checks";
+        private string OrganisationsCriminalAndComplianceChecks => "5. Organisation's criminal and compliance checks";
         private string OrganisationsCriminalAndComplianceChecks_1 => "Composition with creditors";
         private string OrganisationsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
         private string OrganisationsCriminalAndComplianceChecks_3 => "Contract terminated early by a public body";
@@ -55,7 +55,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-6
-        private string PeopleInControlsCriminalAndComplianceChecks => "6. People in control’s criminal and compliance checks";
+        private string PeopleInControlsCriminalAndComplianceChecks => "6. People in control's criminal and compliance checks";
         private string PeopleInControlsCriminalAndComplianceChecks_1 => "Unspent criminal convictions";
         private string PeopleInControlsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
         private string PeopleInControlsCriminalAndComplianceChecks_3 => "Investigated for fraud or irregularities";
