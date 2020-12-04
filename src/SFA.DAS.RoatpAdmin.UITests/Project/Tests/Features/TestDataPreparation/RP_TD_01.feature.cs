@@ -78,14 +78,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpadgw04")]
+        [NUnit.Framework.CategoryAttribute("rpadgw01")]
         public virtual void RP_TD_01_TestDataPreparation_For_RP_AD_GW_01_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
                     "roatpadmingwtestdataprep",
                     "donottakescreenshot",
-                    "rpadgw04"};
+                    "rpadgw01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company", null, tagsOfScenario, argumentsOfScenario);
 #line 9
