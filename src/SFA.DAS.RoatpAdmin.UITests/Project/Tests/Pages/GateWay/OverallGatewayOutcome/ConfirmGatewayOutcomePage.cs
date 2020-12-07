@@ -20,11 +20,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
             VerifyPage();
         }
 
-        public FinalConfirmationPage PassThisApplicationAndContinue()
+        public FinalConfirmationPassPage PassThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Pass this application");
             Continue();
-            return new FinalConfirmationPage(_context);
+            return new FinalConfirmationPassPage(_context);
+        }
+        public FinalConfirmationFailPage FailThisApplicationAndContinue()
+        {
+            SelectRadioOptionByText("Fail this application");
+            Continue();
+            return new FinalConfirmationFailPage(_context);
         }
     }
 }
