@@ -11,10 +11,13 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         #region Locators
         private By LocationTextBox => By.Id("search-location");
         private By ViewOtherTrainingProvidersButton => By.Id("btn-view-providers");
-
+        private By BackToTrainingProviders => By.Id("providers-breadcrumb");
+        private By NoProviderAtLocationErrorText => By.Id("course_provider_not_available");
         #endregion
 
         public ProviderSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public bool VerifyNoTrainingProviderAtLocationErrorText() => pageInteractionHelper.IsElementDisplayed(NoProviderAtLocationErrorText);
 
         public ProviderSummaryPage EnterPostCodeAndSearch(string location)
         {
@@ -25,6 +28,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         public ProviderSearchResultsPage SelectViewOtherTrainingProviders()
         {
             formCompletionHelper.Click(ViewOtherTrainingProvidersButton);
+            return new ProviderSearchResultsPage(_context);
+        }
+        public ProviderSearchResultsPage NavigateBackFromProviderSummaryPage()
+        {
+            NavigateBackToTrainingProviders();
+            return new ProviderSearchResultsPage(_context);
+        }
+        public ProviderSearchResultsPage NavigateBackToTrainingProviders()
+        {
+            formCompletionHelper.Click(BackToTrainingProviders);
             return new ProviderSearchResultsPage(_context);
         }
     }
