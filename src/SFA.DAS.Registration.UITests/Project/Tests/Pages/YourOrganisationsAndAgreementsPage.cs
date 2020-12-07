@@ -10,9 +10,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private By TransferStatus => By.XPath("//p[3]");
-        private By AddNewOrganisationButton => By.LinkText("Add an organisation");
+        private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink => By.LinkText("View all agreements");
+        private By ViewAgreementLink => By.CssSelector("a[href*='/agreements']");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
-            formCompletionHelper.Click(AddNewOrganisationButton);
+            formCompletionHelper.ClickButtonByText(AddNewOrganisationButton, "Add an organisation");
             return new SearchForYourOrganisationPage(_context);
         }
 
@@ -36,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
-            formCompletionHelper.Click(ViewAgreementLink);
+            formCompletionHelper.ClickLinkByText(ViewAgreementLink, "View all agreements");
             return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
         }
 
