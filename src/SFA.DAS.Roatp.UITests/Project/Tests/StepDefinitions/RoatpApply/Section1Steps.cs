@@ -99,6 +99,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovement() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
+        [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement for Main Route")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovementForMainRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(_overviewPage);
 
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeOutstanding")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeOutstanding() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeOutstanding(_overviewPage);

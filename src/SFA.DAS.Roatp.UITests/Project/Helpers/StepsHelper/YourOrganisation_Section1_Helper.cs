@@ -247,6 +247,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectYesForFundedbyOFSAndContinue()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectYesForGradeInFullOfstedInspectionAndContinue()
+                .SelecRequiresImprovementAndContinue()
+                .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeOutstanding(ApplicationOverviewPage applicationOverviewPage)
         {

@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
-    public class FinalConfirmationPage : RoatpGateWayBasePage
+    public class FinalConfirmationPassPage : RoatpGateWayBasePage
     {
         protected override string PageTitle => "Are you sure you want to pass this application?";
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private readonly ScenarioContext _context;
         #endregion
 
-        public FinalConfirmationPage(ScenarioContext context) : base(context)
+        public FinalConfirmationPassPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeOfProvider
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_COP_01_ChangeOfProvider_HappyPathFeature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_GW_04")]
+    public partial class RP_AD_GW_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_COP_01_Change Of Provider_HappyPath.feature"
+#line 1 "RP_AD_GW_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_01_Change Of Provider_HappyPath", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_GW_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,19 +74,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_04_MainRoute_Company_Fail")]
+        [NUnit.Framework.CategoryAttribute("resetApplicationToNew")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
+        [NUnit.Framework.CategoryAttribute("rpgateway")]
+        [NUnit.Framework.CategoryAttribute("rpadgw04")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("changeOfProvider")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        public virtual void AP_COP_01_ChangeOfProvider_HappyPath()
+        public virtual void RP_AD_GW_04_MainRoute_Company_Fail()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "changeOfProvider",
-                    "liveapprentice"};
+                    "resetApplicationToNew",
+                    "roatp",
+                    "roatpadmin",
+                    "newroatpadmin",
+                    "rpgateway",
+                    "rpadgw04",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_01_Change Of Provider_HappyPath", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_04_MainRoute_Company_Fail", null, tagsOfScenario, argumentsOfScenario);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,34 +114,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the employer has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.Then("employer should not be able to see change link for another CoP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 11
- testRunner.And("previous Provider should not be able to start CoE on the old record when CoP is i" +
-                        "nflight", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.When("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the admin access the application from GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.And("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the gateway admin fails PeopleInControlChecks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.Then("a new live apprenticeship record is created with new Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.And("Employer can only edit start date, end date and Price on the new record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.And("previous Provider should not be able to start CoE on the old record after Success" +
-                        "ful CoP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

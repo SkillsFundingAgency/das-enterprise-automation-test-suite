@@ -88,5 +88,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyInsolvencyorwindingupproceedings_Section5(StatusHelper.StatusPass);
         }
+        internal GWApplicationOverviewPage FailOrganisationsCriminalAndComplianceChecks_InsolvencyOrWindingProceedings(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section5_InsolvencyOrWindingUpProceedings()
+            .SelectFailAndContinue()
+            .VerifyInsolvencyorwindingupproceedings_Section5(StatusHelper.StatusPass);
+        }
     }
 }
