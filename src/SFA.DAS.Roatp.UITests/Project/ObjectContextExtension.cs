@@ -25,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         public static void SetUkprn(this ObjectContext objectContext, string Ukprn) => objectContext.Replace(UkprnKey, Ukprn);
         public static void SetNewUkprn(this ObjectContext objectContext, string NewUkprn) => objectContext.Replace(NewUkprnKey, NewUkprn);
         internal static void SetApplicationReference(this ObjectContext objectContext, string applicationReference) => objectContext.Replace(ApplicationReference, applicationReference);
-        public static void SetApplicationRoute(this ObjectContext objectContext, ApplicationRoute applicationRoute) => objectContext.Set(ApplicationRoute, applicationRoute);
+        public static void SetApplicationRoute(this ObjectContext objectContext, ApplicationRoute applicationRoute) => objectContext.Replace(ApplicationRoute, applicationRoute);
 
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         internal static string GetOrganisationType(this ObjectContext objectContext) => objectContext.Get(OrganisationTypeKey);

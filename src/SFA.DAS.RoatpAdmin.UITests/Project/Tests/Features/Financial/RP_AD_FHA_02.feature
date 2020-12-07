@@ -2,7 +2,6 @@
 
 @resetFhaApplicationToNew
 @roatp
-@roatpadmin
 @newroatpadmin
 @rpadfha02
 @regression

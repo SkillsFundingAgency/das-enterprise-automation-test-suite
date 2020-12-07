@@ -24,7 +24,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [When(@"the gateway admin assess all sections as PASS for MainRoute Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForMainRouteApplication() =>
-            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((new GWApplicationOverviewPage(_context)));
+            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+        [When(@"the gateway admin fails PeopleInControlChecks")]
+        public void WhenTheGatewayAdminFailsPeopleInControlChecks() =>
+            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.Fail_PeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));     
 
         [When(@"the gateway admin assess all sections as PASS for Employer Route Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForEmployerRouteApplication() =>
@@ -36,5 +39,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as PASS")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsPASS() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(_gwApplicationOverviewPage);
+
+        [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as FAIL")]
+        public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsFAIL() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(_gwApplicationOverviewPage);
+       
     }
 }

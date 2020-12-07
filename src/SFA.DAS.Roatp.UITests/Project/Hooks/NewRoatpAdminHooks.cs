@@ -5,32 +5,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessoradmin")]
-    public class RoatpAdminHooks : RoatpBaseHooks
+    [Binding, Scope(Tag = "newroatpadmin")]
+    public class NewRoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
-        public RoatpAdminHooks(ScenarioContext context) : base(context)
+        public NewRoatpAdminHooks(ScenarioContext context) : base(context)
         {
             _context = context;
-            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(config);
             _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(config);
         }
 
-        [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => SetUpAdminDataHelpers();
 
         [BeforeScenario(Order = 33)]
-        public new void GetRoatpAdminData() => base.GetRoatpAdminData();
-
-        [BeforeScenario(Order = 34)]
-        public void ClearDownAdminData()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
-                _adminClearDownDataHelpers.DeleteTrainingProvider(GetUkprn());
-        }
+        public new void GetNewRoatpAdminData() => base.GetNewRoatpAdminData();
 
         [BeforeScenario(Order = 35)]
         public void ClearDownGateWayAdminData()

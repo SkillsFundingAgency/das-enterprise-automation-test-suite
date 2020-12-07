@@ -74,7 +74,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02 Complete Moderation of a Soletrader Application via Supporting provi" +
+        [NUnit.Framework.DescriptionAttribute("RP_AD_MOD_02 Complete Moderation of a Charity type Application via Employer provi" +
             "der route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadmod02")]
@@ -82,7 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
         [NUnit.Framework.CategoryAttribute("roatpmoderator")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_MOD_02CompleteModerationOfASoletraderApplicationViaSupportingProviderRoute()
+        public virtual void RP_AD_MOD_02CompleteModerationOfACharityTypeApplicationViaEmployerProviderRoute()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -92,7 +92,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_02 Complete Moderation of a Soletrader Application via Supporting provi" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_02 Complete Moderation of a Charity type Application via Employer provi" +
                     "der route", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.When("selects the Supporting Provider Route application from Moderation Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("selects the Employer Provider Route application from Moderation Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.Then("the Moderator assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -127,10 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Moderator FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.Then("the Moderator assesses the outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Moderator assesses the outcome as CLARIFICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.Then("the Outcome tab is updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Clarification tab is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

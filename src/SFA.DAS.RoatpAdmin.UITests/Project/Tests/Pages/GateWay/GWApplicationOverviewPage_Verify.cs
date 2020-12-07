@@ -7,13 +7,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         //Verify Sections
 
         #region Section1
-        public GWApplicationOverviewPage VerifyLegalName_Section1(string status) => Verify_Section1(OrganisationChecks_1, status);
-        public GWApplicationOverviewPage VerifyTradingName_Section1(string status) => Verify_Section1(OrganisationChecks_2, status);
-        public GWApplicationOverviewPage VerifyOrganisationStatus_Section1(string status) => Verify_Section1(OrganisationChecks_3, status);
-        public GWApplicationOverviewPage VerifyAddress_Section1(string status) => Verify_Section1(OrganisationChecks_4, status);
-        public GWApplicationOverviewPage VerifyICOregistrationnumber_Section1(string status) => Verify_Section1(OrganisationChecks_5, status);
-        public GWApplicationOverviewPage VerifyWebsiteaddress_Section1(string status) => Verify_Section1(OrganisationChecks_6, status);
-        public GWApplicationOverviewPage VerifyOrganisationhighrisk_Section1(string status) => Verify_Section1(OrganisationChecks_7, status);
+        public GWApplicationOverviewPage Verify2ApplicationIn12Months_Section1(string status) => Verify_Section1(OrganisationChecks_1, status);
+        public GWApplicationOverviewPage VerifyLegalName_Section1(string status) => Verify_Section1(OrganisationChecks_2, status);
+        public GWApplicationOverviewPage VerifyTradingName_Section1(string status) => Verify_Section1(OrganisationChecks_3, status);
+        public GWApplicationOverviewPage VerifyOrganisationStatus_Section1(string status) => Verify_Section1(OrganisationChecks_4, status);
+        public GWApplicationOverviewPage VerifyAddress_Section1(string status) => Verify_Section1(OrganisationChecks_5, status);
+        public GWApplicationOverviewPage VerifyICOregistrationnumber_Section1(string status) => Verify_Section1(OrganisationChecks_6, status);
+        public GWApplicationOverviewPage VerifyWebsiteaddress_Section1(string status) => Verify_Section1(OrganisationChecks_7, status);
+        public GWApplicationOverviewPage VerifyOrganisationhighrisk_Section1(string status) => Verify_Section1(OrganisationChecks_8, status);
         #endregion
 
         #region Section2

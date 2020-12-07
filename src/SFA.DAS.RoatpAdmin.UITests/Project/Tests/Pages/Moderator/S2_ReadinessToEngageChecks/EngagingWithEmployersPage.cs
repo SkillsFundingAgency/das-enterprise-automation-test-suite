@@ -14,5 +14,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
             SelectPassAndContinueToSubSection();
             return new ManagingRelationshipWithEmployersPage(_context);
         }
+
+        public ManagingRelationshipWithEmployersPage SelectFailAndContinueInEngagingWithEmployersPage()
+        {
+            SelectFailAndContinueToSubSection();
+            return new ManagingRelationshipWithEmployersPage(_context);
+        }
     }
 }

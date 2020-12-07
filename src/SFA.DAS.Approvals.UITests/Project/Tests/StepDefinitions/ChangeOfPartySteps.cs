@@ -188,6 +188,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
         }
 
+        [Then(@"previous Provider should not be able to start CoE on the old record when CoP is inflight")]
+        public void ThenPreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordWhenCoPIsInflight()
+        {
+            var CoELinkDisplayed = _providerStepsHelper
+                                        .GoToProviderHomePage()
+                                        .GoToProviderManageYourApprenticePage()
+                                        .SelectViewCurrentApprenticeDetails()
+                                        .IsCoELinkDisplayed();
+
+            Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider during inflight CoP");
+        }
+
+        [Then(@"previous Provider should not be able to start CoE on the old record after Successful CoP")]
+        public void ThenPreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP()
+        {
+            new ChangeOfProviderSteps(_context).ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP();
+        }
+
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)

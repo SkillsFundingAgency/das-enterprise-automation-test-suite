@@ -54,6 +54,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage CompleteAssessorSection3Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             applicationAssessmentOverviewPage = _assessor_Section3Helper.PassTypeOfApprenticeshipTraining(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassTrainingApprentices(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section3Helper.PassSupportingApprentices(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section3Helper.PassForecastingStarts(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section3Helper.PassOffTheJobTraining(applicationAssessmentOverviewPage, applicationroute);

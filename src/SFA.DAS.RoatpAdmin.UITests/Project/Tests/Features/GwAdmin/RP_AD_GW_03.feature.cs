@@ -74,7 +74,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_02_EmployerRoute_Charity")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_03_SupportRoute")]
         [NUnit.Framework.CategoryAttribute("resetApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
@@ -82,7 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         [NUnit.Framework.CategoryAttribute("rpgateway")]
         [NUnit.Framework.CategoryAttribute("rpadgw03")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_GW_02_EmployerRoute_Charity()
+        public virtual void RP_AD_GW_03_SupportRoute()
         {
             string[] tagsOfScenario = new string[] {
                     "resetApplicationToNew",
@@ -93,7 +93,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
                     "rpadgw03",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_02_EmployerRoute_Charity", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_03_SupportRoute", null, tagsOfScenario, argumentsOfScenario);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

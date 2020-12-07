@@ -29,6 +29,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage
            .VerifySubcontractordeclaration_Section4(StatusHelper.NotRequired);
         }
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .VerifyOfficeforStudent_OFS_Section4(StatusHelper.NotRequired);
+        }
+
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage

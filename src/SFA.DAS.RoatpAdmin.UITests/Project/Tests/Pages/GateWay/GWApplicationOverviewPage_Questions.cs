@@ -8,13 +8,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         #region Section-1
         private string OrganisationChecks => "1. Organisation checks";
-        private string OrganisationChecks_1 => "Legal name";
-        private string OrganisationChecks_2 => "Trading name";
-        private string OrganisationChecks_3 => "Organisation status";
-        private string OrganisationChecks_4 => "Address";
-        private string OrganisationChecks_5 => "ICO registration number";
-        private string OrganisationChecks_6 => "Website address";
-        private string OrganisationChecks_7 => "Organisation high risk";
+        private string OrganisationChecks_1 => "2 applications in 12 months";
+        private string OrganisationChecks_2 => "Legal name";
+        private string OrganisationChecks_3 => "Trading name";
+        private string OrganisationChecks_4 => "Organisation status";
+        private string OrganisationChecks_5 => "Address";
+        private string OrganisationChecks_6 => "ICO registration number";
+        private string OrganisationChecks_7 => "Website address";
+        private string OrganisationChecks_8 => "Organisation high risk";
         #endregion
 
         #region Section-2
@@ -38,7 +39,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-5
-        private string OrganisationsCriminalAndComplianceChecks => "5. Organisation’s criminal and compliance checks";
+        private string OrganisationsCriminalAndComplianceChecks => "5. Organisation's criminal and compliance checks";
         private string OrganisationsCriminalAndComplianceChecks_1 => "Composition with creditors";
         private string OrganisationsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
         private string OrganisationsCriminalAndComplianceChecks_3 => "Contract terminated early by a public body";
@@ -54,7 +55,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-6
-        private string PeopleInControlsCriminalAndComplianceChecks => "6. People in control’s criminal and compliance checks";
+        private string PeopleInControlsCriminalAndComplianceChecks => "6. People in control's criminal and compliance checks";
         private string PeopleInControlsCriminalAndComplianceChecks_1 => "Unspent criminal convictions";
         private string PeopleInControlsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
         private string PeopleInControlsCriminalAndComplianceChecks_3 => "Investigated for fraud or irregularities";

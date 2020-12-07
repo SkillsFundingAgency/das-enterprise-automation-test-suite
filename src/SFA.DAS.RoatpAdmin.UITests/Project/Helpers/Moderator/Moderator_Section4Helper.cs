@@ -31,12 +31,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link1Status(StatusHelper.StatusPass);
         }
 
+        public virtual ModerationApplicationAssessmentOverviewPage FailOverallAccountabilityForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_OverallAccountabilityForApprenticeships()
+                .SelectFailAndContinue()
+                .VerifySection4Link1Status(StatusHelper.StatusFail);
+        }
+
         public virtual ModerationApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
                 .SelectPassAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailManagementHierarchyForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectFailAndContinue()
+                .VerifySection4Link2Status(StatusHelper.StatusFail);
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
@@ -54,33 +70,64 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
-                return moderationApplicationAssessmentOverviewPage
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
                     .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
                     .SelectPassAndContinueInWhoTheTeamHaveWorkedWithPage()
                     .SelectPassAndContinueInHowTheTeamWorkedWithPage()
-                    .SelectPassAndContinue()
-                    .VerifySection4Link4Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
             }
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
-                return moderationApplicationAssessmentOverviewPage
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
                     .SelectPassAndContinueInSomeoneResponsibleForDevelopingAndDeliveringTrainingPage()
                     .SelectPassAndContinueInWhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage()
                     .SelectPassAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
-                    .SelectPassAndContinue()
-                    .VerifySection4Link4Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
             }
             else
             {
-                return moderationApplicationAssessmentOverviewPage
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
                     .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()
-                    .SelectPassAndContinue()
-                    .VerifySection4Link4Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
             }
+
+            return moderationApplicationAssessmentOverviewPage.VerifySection4Link4Status(StatusHelper.StatusPass);
         }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            {
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
+                    .SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_MP()
+                    .SelectFailAndContinueInWhoTheTeamHaveWorkedWithPage()
+                    .SelectFailAndContinueInHowTheTeamWorkedWithPage()
+                    .SelectFailAndContinue();
+            }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
+                    .SelectFailAndContinueInSomeoneResponsibleForDevelopingAndDeliveringTrainingPage()
+                    .SelectFailAndContinueInWhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage()
+                    .SelectFailAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
+                    .SelectFailAndContinue();
+            }
+            else
+            {
+                moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
+                    .SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_EP()
+                    .SelectFailAndContinue();
+            }
+
+            return moderationApplicationAssessmentOverviewPage.VerifySection4Link4Status(StatusHelper.StatusFail);
+        }
+
 
         public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
@@ -120,6 +167,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link6Status(StatusHelper.StatusPass);
         }
 
+        public virtual ModerationApplicationAssessmentOverviewPage FailAllQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_QualityAndHighStandardsInApprenticeshipTraining()
+                .SelectFailAndContinueInQualityAndHighStandardsInApprenticeshipTrainingPage()
+                .SelectFailAndContinueInHowExpectationsForQualityPage()
+                .SelectFailAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
+                .SelectFailAndContinue()
+                .VerifySection4Link3Status(StatusHelper.StatusFail);
+        }
+
+
         public virtual ModerationApplicationAssessmentOverviewPage FailQualityAndHighStandardsInApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
@@ -130,13 +189,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .SelectContinue()
                 .VerifySection4Link3Status(StatusHelper.StatusFail);
         }
-
         public virtual ModerationApplicationAssessmentOverviewPage FailPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()
                 .SelectFailAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
                 .SelectContinueInAnExampleOfHowThePolicyToImprovePage()
+                .SelectFailAndContinue()
+                .VerifySection4Link6Status(StatusHelper.StatusFail);
+        }
+
+        public virtual ModerationApplicationAssessmentOverviewPage FailAllPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()
+                .SelectFailAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
+                .SelectFailAndContinueInAnExampleOfHowThePolicyToImprovePage()
                 .SelectFailAndContinue()
                 .VerifySection4Link6Status(StatusHelper.StatusFail);
         }

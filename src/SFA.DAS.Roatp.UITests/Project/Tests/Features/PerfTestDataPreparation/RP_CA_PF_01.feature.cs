@@ -78,16 +78,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+perftest", null)]
+        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+test", null)]
         public virtual void RP_CA_PF_01_Create_Account_TestData(string givenName, string familyName, string[] exampleTags)
         {
             string[] @__tags = new string[] {

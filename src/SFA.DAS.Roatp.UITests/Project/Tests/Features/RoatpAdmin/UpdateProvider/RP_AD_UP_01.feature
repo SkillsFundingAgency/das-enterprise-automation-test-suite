@@ -2,7 +2,7 @@
 
 @rpadup01
 @roatp
-@roatpadmin
+@oldroatpadmin
 @regression
 Scenario: RP_AD_UP_01_Verify Update Training Provider
 When the admin searches for a provider by provider name

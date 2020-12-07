@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
@@ -27,6 +28,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Clarification
         public void WhenSelectsTheEmployerProviderRouteApplicationFromClarificationTab(ApplicationRoute applicationroute)
         {
             _objectContext.SetClarificationJourney();
+
+            _objectContext.SetApplicationRoute(applicationroute);
 
             _applicationRoute = applicationroute;
 

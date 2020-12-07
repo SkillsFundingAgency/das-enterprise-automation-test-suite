@@ -78,7 +78,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
             "s FAIL")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadcla02")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("roatpclarification")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -87,14 +86,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
             string[] tagsOfScenario = new string[] {
                     "roatp",
                     "rpadcla02",
-                    "roatpadmin",
                     "roatpclarification",
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_02 Complete Clarification Journey as Employer Provider Route and mark a" +
                     "s FAIL", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,22 +112,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("the admin lands on the Dashboard as Assessor1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.When("selects the Employer Provider Route application from Clarification Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the Clarification assessor FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("the Clarification assessor assesses the outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 13
  testRunner.Then("the Outcome tab is updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("verify subsections outcome failed by Clarification assessor are updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
