@@ -41,6 +41,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
+        public Policy RetryOnException(int maxRetries)
+        {
+            return Policy.Handle<Exception>().WaitAndRetry(maxRetries, times => TimeSpan.FromSeconds(1 * times));
+        }
+
         internal void RetryClickOnException(Func<IWebElement> element)
         {
             Policy

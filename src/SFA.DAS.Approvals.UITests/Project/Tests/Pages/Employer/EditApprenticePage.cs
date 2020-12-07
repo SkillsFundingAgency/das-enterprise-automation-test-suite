@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditEmployerReference => By.Id("Reference");
         private By EditSaveAndContinueButton => By.Id("continue-button");
         private By DeleteButton => By.LinkText("Delete");
-        private By InputBox => By.TagName("input");
+        private By InputBox(string className) => By.ClassName(className); 
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
@@ -62,9 +62,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AfterEditApproveApprenticeDetailsPage(_context);
         }
 
-        internal List<IWebElement> GetAllEditBoxes()
+        internal List<IWebElement> GetAllEditBoxes(string className= "govuk-input")
         {
-            return pageInteractionHelper.FindElements(InputBox);
+            return pageInteractionHelper.FindElements(InputBox(className));
         }
     }
 }
