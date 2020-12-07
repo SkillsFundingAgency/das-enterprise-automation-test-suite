@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProviderByLocation
+namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.Backlinks
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProvide
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FATV2_SearchAreaWhereCourseIsNotOffered_03")]
-    public partial class FATV2_SearchAreaWhereCourseIsNotOffered_03Feature
+    [NUnit.Framework.DescriptionAttribute("FATV2_CheckBreadCrumbsInE2EJourneyNoLocationSelected_01")]
+    public partial class FATV2_CheckBreadCrumbsInE2EJourneyNoLocationSelected_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "FATV2_SearchAreaWhereCourseIsNotOffered_03.feature"
+#line 1 "FATV2_CheckBreadCrumbsInE2EJourneyNoLocationSelected_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FATV2_SearchAreaWhereCourseIsNotOffered_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FATV2_CheckBreadCrumbsInE2EJourneyNoLocationSelected_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProvide
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FATV2_SAWCINO_03_Search Training Where Course Is Not Offered")]
+        [NUnit.Framework.DescriptionAttribute("FATV2_CBCIE2EJNLS_01_Navigate To HomePage In E2E Journey No Location Selected")]
         [NUnit.Framework.CategoryAttribute("fatv2")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FATV2_SAWCINO_03_SearchTrainingWhereCourseIsNotOffered()
+        public virtual void FATV2_CBCIE2EJNLS_01_NavigateToHomePageInE2EJourneyNoLocationSelected()
         {
             string[] tagsOfScenario = new string[] {
                     "fatv2",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_SAWCINO_03_Search Training Where Course Is Not Offered", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_CBCIE2EJNLS_01_Navigate To HomePage In E2E Journey No Location Selected", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,17 +105,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user navigates to provider details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the User selects 10004596 from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
- testRunner.And("enters the location Exeter, Devon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.Then("\'This training provider does not offer this course at the apprenticeship location" +
-                        "\' message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("user is able to navigate to homepage using the breadcrumbs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

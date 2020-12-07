@@ -11,6 +11,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         #region Locators
         private By LocationTextBox => By.Id("search-location");
         private By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
+        private By BackToCourseSearchPage => By.Id("courses-breadcrumb");
+
         #endregion
 
         public TrainingCourseSummaryPage(ScenarioContext context) : base(context) => _context = context;
@@ -31,6 +33,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
             return new ProviderSearchResultsPage(_context);
+        }
+        public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
+        {
+            NavigateBackToCourseSummary();
+            return new TrainingCourseSearchResultsPage(_context);
+        }
+        public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
+        {
+            formCompletionHelper.Click(BackToCourseSearchPage);
+            return new TrainingCourseSearchResultsPage(_context);
         }
 
     }

@@ -85,11 +85,20 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         [When(@"enters the location (.*)")]
         public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);
 
+        [Then(@"'(.*)' message is displayed")]
+        public void ThenMessageIsDisplayed(string errorMessage) => Assert.IsTrue(_providerSummaryPage.VerifyNoTrainingProviderAtLocationErrorText(), errorMessage);
 
-        [Then(@"the User is presented with option to view other training providers")]
-        public void ThenTheUserIsPresentedWithOptionToViewOtherTrainingProviders()
+        [Given(@"user navigates to provider details page")]
+        public void GivenUserNavigatesToProviderDetailsPage()
         {
-            _providerSearchResultsPage = _providerSummaryPage.SelectViewOtherTrainingProviders();
+            GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
+            ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining();
         }
+
+        [Then(@"user is able to navigate to homepage using the breadcrumbs")]
+        public void ThenUserIsAbleToNavigateToHomepageUsingTheBreadcrumbs() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
+            .NavigateBackFromTrainingProvidersPage()
+            .NavigateBackFromCourseSummaryPage()
+            .NavigateBackToHompage();
     }
 }

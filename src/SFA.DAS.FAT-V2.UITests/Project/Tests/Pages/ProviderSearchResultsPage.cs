@@ -14,6 +14,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         #region Locators
         private By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
+        private By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
+
         #endregion
 
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
@@ -24,6 +26,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             objectContext.SetProviderName(firstProviderLinkText);
             formCompletionHelper.ClickLinkByText(firstProviderLinkText);
             return new ProviderSummaryPage(_context);
+        }
+        public TrainingCourseSummaryPage NavigateBackFromTrainingProvidersPage()
+        {
+            NavigateBackToTrainingProviders();
+            return new TrainingCourseSummaryPage(_context);
+        }
+        public TrainingCourseSummaryPage NavigateBackToTrainingProviders()
+        {
+            formCompletionHelper.Click(BackToCourseSummaryPage);
+            return new TrainingCourseSummaryPage(_context);
         }
 
         public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
