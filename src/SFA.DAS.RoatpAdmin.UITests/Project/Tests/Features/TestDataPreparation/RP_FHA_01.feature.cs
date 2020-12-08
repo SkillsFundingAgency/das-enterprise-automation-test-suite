@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_TD_03")]
-    public partial class RP_TD_03Feature
+    [NUnit.Framework.DescriptionAttribute("RP_FHA_01")]
+    public partial class RP_FHA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_TD_03.feature"
+#line 1 "RP_FHA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_TD_03", "TestDataPreparation for RP_AD_GW_03_SupportRoute", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_FHA_01", "TestDataPreparation for RP_AD_FHA_01", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_TD_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute")]
+        [NUnit.Framework.DescriptionAttribute("RP_FHA_01_TestDataPreparation-For_RP_AD_FHA_01")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
-        [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminfhatestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpadgw03")]
-        public virtual void RP_TD_03_TestDataPreparation_For_RP_AD_GW_03_SupportRoute()
+        [NUnit.Framework.CategoryAttribute("rpadfha01")]
+        public virtual void RP_FHA_01_TestDataPreparation_For_RP_AD_FHA_01()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
-                    "roatpadmingwtestdataprep",
+                    "roatpadminfhatestdataprep",
                     "donottakescreenshot",
-                    "rpadgw03"};
+                    "rpadfha01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_FHA_01_TestDataPreparation-For_RP_AD_FHA_01", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -110,6 +110,9 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 10
  testRunner.Given("the provider completes the Apply Journey as Supporting Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 11
+ testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

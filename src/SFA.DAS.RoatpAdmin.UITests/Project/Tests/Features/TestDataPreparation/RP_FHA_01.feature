@@ -1,11 +1,11 @@
-﻿Feature: RP_TD_08
+﻿Feature: RP_FHA_01
 
-TestDataPreparation for RP_AD_AS_03
+TestDataPreparation for RP_AD_FHA_01
 
 @roatpadmintestdataprep
-@roatpadminastestdataprep
+@roatpadminfhatestdataprep
 @donottakescreenshot
-@rpadas03
-Scenario: RP_TD_08_TestDataPreparation-For_RP_AD_AS_03
+@rpadfha01
+Scenario: RP_FHA_01_TestDataPreparation-For_RP_AD_FHA_01
 	Given the provider completes the Apply Journey as Supporting Provider Route
 	And the GateWay user assess the application by confirming Gateway outcome as Pass
