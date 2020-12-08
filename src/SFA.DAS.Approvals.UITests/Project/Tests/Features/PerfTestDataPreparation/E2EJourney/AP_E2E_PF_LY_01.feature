@@ -3,8 +3,7 @@
 
 @addpayedetails
 @addlevyfunds
-@perfteste2e
-@perfteste2elevy
+@perftest
 @donottakescreenshot
 @liveapprentice
 Scenario Outline: AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves the cohort

@@ -2,8 +2,7 @@
 
 @addpayedetails
 @selectstandardcourse
-@perfteste2e
-@perfteste2enonlevy
+@perftest
 @donottakescreenshot
 @liveapprentice
 Scenario Outline: AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves the cohort

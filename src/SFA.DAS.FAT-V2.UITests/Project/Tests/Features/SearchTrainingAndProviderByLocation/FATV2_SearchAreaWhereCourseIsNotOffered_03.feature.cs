@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("enters the location Exeter, Devon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("\'This training provider does not offer this course at the apprenticeship location" +
                         "\' message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

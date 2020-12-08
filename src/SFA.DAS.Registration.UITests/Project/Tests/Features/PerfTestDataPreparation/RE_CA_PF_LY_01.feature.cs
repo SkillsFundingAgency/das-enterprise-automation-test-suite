@@ -76,10 +76,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "perftestlevy",
-                    "addpayedetails",
+                    "perftest",
                     "donottakescreenshot",
-                    "addlevyprefix"};
+                    "addlevyfunds"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -88,7 +87,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,16 +107,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("levy declarations are added for the past 15 months with levypermonth as 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("add accountid to the test data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("ApprenticeshipEmployerType in Account table is marked as 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -126,325 +125,300 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 1")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_1()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("1", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 2")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_2()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("2", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 3")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_3()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("3", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 4")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_4()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("4", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 5")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_5()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("5", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 6")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_6()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("6", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 7")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_7()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("7", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 8")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_8()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("8", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 9")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_9()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("9", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 10")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_10()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("10", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 11")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_11()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("11", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 12")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_12()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("12", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 13")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_13()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("13", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 14")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_14()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("14", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 15")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_15()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("15", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 16")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_16()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("16", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 17")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_17()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("17", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 18")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_18()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("18", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 19")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_19()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("19", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 20")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_20()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("20", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 21")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_21()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("21", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 22")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_22()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("22", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 23")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_23()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("23", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 24")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_24()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("24", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 25")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_25()
         {
-#line 7
+#line 6
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("25", ((string[])(null)));
 #line hidden
         }

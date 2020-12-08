@@ -78,15 +78,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
             "it")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addanotherlevypayedetails")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("addanotherlevyfunds")]
         public virtual void RE_MPS_02_CreateAnEmployerAccountAndAddAnotherLevyPAYESchemeAndRemoveIt()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
-                    "addanotherlevypayedetails"};
+                    "addlevyfunds",
+                    "addanotherlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_02_Create an Employer Account and Add Another Levy PAYE Scheme and Remove " +
                     "it", null, tagsOfScenario, argumentsOfScenario);

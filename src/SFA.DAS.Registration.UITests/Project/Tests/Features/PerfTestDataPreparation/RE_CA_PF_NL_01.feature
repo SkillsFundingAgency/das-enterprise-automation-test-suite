@@ -1,6 +1,6 @@
 ﻿Feature: RE_CA_PF_NL_01
 
-@perftestnonlevy
+@perftest
 @addpayedetails
 @donottakescreenshot
 Scenario Outline: RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement

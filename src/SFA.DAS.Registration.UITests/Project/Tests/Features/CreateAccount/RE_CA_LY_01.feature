@@ -1,7 +1,6 @@
 ﻿Feature: RE_CA_LY_01
 
-@levy
-@addpayedetails
+@addlevyfunds
 @donottakescreenshot
 Scenario: RE_CA_LY_01_Create a Levy Account and Not Sign the Agreement
 	Given levy declarations are added for the past 15 months with levypermonth as 10000

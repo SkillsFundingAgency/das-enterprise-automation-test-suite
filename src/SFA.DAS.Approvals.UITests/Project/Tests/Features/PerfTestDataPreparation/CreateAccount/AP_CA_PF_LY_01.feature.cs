@@ -76,8 +76,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "perftestlevy",
-                    "addpayedetails",
+                    "perftest",
+                    "addlevyfunds",
                     "donottakescreenshot"};
             if ((exampleTags != null))
             {
@@ -127,8 +127,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 1")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
         {
@@ -140,8 +140,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 2")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
         {
@@ -153,8 +153,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 3")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
         {
@@ -166,8 +166,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 4")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
         {
@@ -179,8 +179,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 5")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
         {
@@ -192,8 +192,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 6")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
         {
@@ -205,8 +205,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 7")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
         {
@@ -218,8 +218,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 8")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
         {
@@ -231,8 +231,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 9")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
         {
@@ -244,8 +244,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 10")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
         {
@@ -257,8 +257,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 11")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
         {
@@ -270,8 +270,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 12")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
         {
@@ -283,8 +283,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 13")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
         {
@@ -296,8 +296,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 14")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
         {
@@ -309,8 +309,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 15")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
         {
@@ -322,8 +322,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 16")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
         {
@@ -335,8 +335,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 17")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
         {
@@ -348,8 +348,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 18")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
         {
@@ -361,8 +361,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 19")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
         {
@@ -374,8 +374,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 20")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
         {
@@ -387,8 +387,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 21")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
         {
@@ -400,8 +400,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 22")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
         {
@@ -413,8 +413,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 23")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
         {
@@ -426,8 +426,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 24")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
         {
@@ -439,8 +439,8 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
             "to a provider: 25")]
-        [NUnit.Framework.CategoryAttribute("perftestlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
         {

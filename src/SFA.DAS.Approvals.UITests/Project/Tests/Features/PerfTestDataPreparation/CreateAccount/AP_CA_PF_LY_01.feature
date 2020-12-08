@@ -1,7 +1,7 @@
 ﻿Feature: AP_CA_PF_LY_01
 
-@perftestlevy
-@addpayedetails
+@perftest
+@addlevyfunds
 @donottakescreenshot
 Scenario Outline: AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission to a provider
 	Given levy declarations are added for the past 15 months with levypermonth as 10000
