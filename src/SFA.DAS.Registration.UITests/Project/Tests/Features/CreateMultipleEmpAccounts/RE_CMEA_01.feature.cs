@@ -77,14 +77,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateMultipleEmpA
         [NUnit.Framework.DescriptionAttribute("RE_CMEA_01_Create an Employer Account and Add another Account for the same login")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void RE_CMEA_01_CreateAnEmployerAccountAndAddAnotherAccountForTheSameLogin()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CMEA_01_Create an Employer Account and Add another Account for the same login", null, tagsOfScenario, argumentsOfScenario);

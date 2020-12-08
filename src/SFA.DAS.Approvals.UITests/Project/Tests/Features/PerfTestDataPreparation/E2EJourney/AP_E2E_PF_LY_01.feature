@@ -1,7 +1,6 @@
 ﻿Feature: AP_E2E_PF_LY_01
 
 
-@addpayedetails
 @addlevyfunds
 @perftest
 @donottakescreenshot

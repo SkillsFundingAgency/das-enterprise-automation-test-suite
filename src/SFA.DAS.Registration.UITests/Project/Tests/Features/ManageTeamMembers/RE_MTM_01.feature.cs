@@ -77,13 +77,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManageTeamMembers
         [NUnit.Framework.DescriptionAttribute("RE_MTM_01_Verify adding a Team member as viewer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_MTM_01_VerifyAddingATeamMemberAsViewer()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MTM_01_Verify adding a Team member as viewer", null, tagsOfScenario, argumentsOfScenario);
 #line 6

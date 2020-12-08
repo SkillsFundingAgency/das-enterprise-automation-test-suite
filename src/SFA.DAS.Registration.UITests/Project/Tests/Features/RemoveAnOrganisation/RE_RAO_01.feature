@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_RAO_01_Verify Employer is Not allowed to Remove an Org when there is only one in the Account and Allowed to Remove a second Org added
 	When an Employer Account with PublicSector Type Org is created and agreement is Signed
 	Then the Employer is Not allowed to Remove the first Org added

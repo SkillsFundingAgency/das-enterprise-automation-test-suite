@@ -76,13 +76,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ProviderRegistrati
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_PR_01 Provider Lead Registration")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
         public virtual void RE_PR_01ProviderLeadRegistration()
         {
             string[] tagsOfScenario = new string[] {
                     "registration",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "providerleadregistration"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_PR_01 Provider Lead Registration", null, tagsOfScenario, argumentsOfScenario);

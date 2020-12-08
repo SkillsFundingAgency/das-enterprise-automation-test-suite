@@ -1,7 +1,7 @@
 ﻿Feature: RE_CA_PF_NL_01
 
 @perftest
-@addpayedetails
+@addnonlevyfunds
 @donottakescreenshot
 Scenario Outline: RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement
 	When an Employer Account with Company Type Org is created and agreement is Signed

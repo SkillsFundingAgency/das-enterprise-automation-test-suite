@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "selectstandardcourse",
                     "perftest",
                     "donottakescreenshot",
@@ -127,7 +127,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 1")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -142,7 +142,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 2")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -157,7 +157,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 3")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -172,7 +172,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 4")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -187,7 +187,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 5")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -202,7 +202,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 6")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -217,7 +217,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 7")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -232,7 +232,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 8")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -247,7 +247,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 9")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -262,7 +262,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 10")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -277,7 +277,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 11")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -292,7 +292,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 12")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -307,7 +307,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 13")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -322,7 +322,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 14")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -337,7 +337,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 15")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -352,7 +352,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 16")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -367,7 +367,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 17")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -382,7 +382,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 18")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -397,7 +397,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 19")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -412,7 +412,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 20")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -427,7 +427,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 21")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -442,7 +442,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 22")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -457,7 +457,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 23")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -472,7 +472,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 24")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -487,7 +487,7 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 25")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]

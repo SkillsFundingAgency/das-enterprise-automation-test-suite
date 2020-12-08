@@ -76,13 +76,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateAccount
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_NL_01_Create a NonLevy Employer Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("nonlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_NL_01_CreateANonLevyEmployerAccountAndNotSignTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "nonlevy",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "donottakescreenshot"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_NL_01_Create a NonLevy Employer Account and Not Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);

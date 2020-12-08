@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_UnlockAcc_01_Verify Unlock Account scenario
 	When an Employer Account with Company Type Org is created and agreement is Signed
 	Then the Employer Account is locked with 3 incorrect password attempts

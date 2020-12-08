@@ -77,7 +77,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
         {
             string[] @__tags = new string[] {
                     "perftest",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "donottakescreenshot"};
             if ((exampleTags != null))
             {
@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 1")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_1()
         {
@@ -132,7 +132,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("1", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 2")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_2()
         {
@@ -144,7 +144,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("2", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 3")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_3()
         {
@@ -156,7 +156,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("3", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 4")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_4()
         {
@@ -168,7 +168,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("4", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 5")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_5()
         {
@@ -180,7 +180,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("5", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 6")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_6()
         {
@@ -192,7 +192,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("6", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 7")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_7()
         {
@@ -204,7 +204,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("7", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 8")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_8()
         {
@@ -216,7 +216,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("8", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 9")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_9()
         {
@@ -228,7 +228,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("9", ((stri
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 10")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_10()
         {
@@ -240,7 +240,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("10", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 11")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_11()
         {
@@ -252,7 +252,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("11", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 12")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_12()
         {
@@ -264,7 +264,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("12", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 13")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_13()
         {
@@ -276,7 +276,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("13", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 14")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_14()
         {
@@ -288,7 +288,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("14", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 15")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_15()
         {
@@ -300,7 +300,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("15", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 16")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_16()
         {
@@ -312,7 +312,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("16", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 17")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_17()
         {
@@ -324,7 +324,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("17", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 18")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_18()
         {
@@ -336,7 +336,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("18", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 19")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_19()
         {
@@ -348,7 +348,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("19", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 20")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_20()
         {
@@ -360,7 +360,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("20", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 21")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_21()
         {
@@ -372,7 +372,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("21", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 22")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_22()
         {
@@ -384,7 +384,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("22", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 23")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_23()
         {
@@ -396,7 +396,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("23", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 24")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_24()
         {
@@ -408,7 +408,7 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("24", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement: 25")]
         [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_25()
         {

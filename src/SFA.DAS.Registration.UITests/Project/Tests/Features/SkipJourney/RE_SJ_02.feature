@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_SJ_02_Verify AORN route skip journey
 	Given an Employer creates an Account by skipping to add PAYE details after choosing AORN route
 	When the Employer chooses to add PAYE from Account Home Page

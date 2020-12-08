@@ -1,6 +1,6 @@
 ﻿@regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Feature: RE_AORN_04
 
 Scenario: RE_AORN_04_Validate AORN route PAYE scheme details page error content

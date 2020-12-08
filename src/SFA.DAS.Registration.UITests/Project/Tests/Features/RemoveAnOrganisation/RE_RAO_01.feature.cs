@@ -78,13 +78,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.RemoveAnOrganisati
             "in the Account and Allowed to Remove a second Org added")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_RAO_01_VerifyEmployerIsNotAllowedToRemoveAnOrgWhenThereIsOnlyOneInTheAccountAndAllowedToRemoveASecondOrgAdded()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_RAO_01_Verify Employer is Not allowed to Remove an Org when there is only one " +
                     "in the Account and Allowed to Remove a second Org added", null, tagsOfScenario, argumentsOfScenario);

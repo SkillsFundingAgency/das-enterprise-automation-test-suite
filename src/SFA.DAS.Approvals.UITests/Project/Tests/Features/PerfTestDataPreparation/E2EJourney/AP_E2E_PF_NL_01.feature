@@ -1,6 +1,6 @@
 ﻿Feature: AP_E2E_PF_NL_01
 
-@addpayedetails
+@addnonlevyfunds
 @selectstandardcourse
 @perftest
 @donottakescreenshot
