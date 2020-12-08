@@ -1,6 +1,5 @@
 ﻿Feature: RE_CA_NL_01
 
-@nonlevy
 @addnonlevyfunds
 @donottakescreenshot
 Scenario: RE_CA_NL_01_Create a NonLevy Employer Account and Not Sign the Agreement

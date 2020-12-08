@@ -21,14 +21,12 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PC_01_AddLevyPaye")]
-    [NUnit.Framework.CategoryAttribute("payecreation")]
     public partial class PC_01_AddLevyPayeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "payecreation"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "PC_01_AddLevyPaye.feature"
 #line hidden
@@ -37,8 +35,7 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PC_01_AddLevyPaye", null, ProgrammingLanguage.CSharp, new string[] {
-                        "payecreation"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PC_01_AddLevyPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,11 +75,11 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PC_01_AddLevyPaye")]
-        [NUnit.Framework.CategoryAttribute("levypaye")]
+        [NUnit.Framework.CategoryAttribute("payecreation")]
         public virtual void PC_01_AddLevyPaye()
         {
             string[] tagsOfScenario = new string[] {
-                    "levypaye"};
+                    "payecreation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_01_AddLevyPaye", null, tagsOfScenario, argumentsOfScenario);
 #line 5
