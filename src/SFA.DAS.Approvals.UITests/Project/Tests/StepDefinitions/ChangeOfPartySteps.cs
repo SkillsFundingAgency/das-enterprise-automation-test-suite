@@ -77,8 +77,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ChooseTrainingProviderPage()
                                 .SelectYesAndContinue();
 
-            var _newcohortReference = _retryHelper.RetryOnException(5)
-                .Execute(() => _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First())));
+            string ULN = Convert.ToString(_dataHelper.Ulns.First());
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
 
             _employerStepsHelper.UpdateCohortReference(_newcohortReference.ToString());
         }
@@ -95,7 +95,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.StartChangeOfEmployerJourney();
 
-            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            string ULN = Convert.ToString(_dataHelper.Ulns.First());
+            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
 
             _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
