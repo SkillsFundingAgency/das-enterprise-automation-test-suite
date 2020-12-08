@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -36,8 +37,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink));
-            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
+            Action action = () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink));
+            
+            action.Invoke();
+            
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context, action);
         }
 
         public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()
