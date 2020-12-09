@@ -8,4 +8,11 @@ Scenario: EPAO_AS_SWD_01 - Standard Withdrawl
 	And   starts the journey to withdraw a standard
 	When  completes the standard withdrawal notification questions
 	Then  application is submitted for review
-	
+
+Scenario: EPAO_AS_SWD_01a - Your Withdrawl status notifications status check
+	Given the EPAO Withdrawal User is logged into Assessment Service Application
+	And   user verfies the different statuses of the standard withdrawl application
+
+Scenario: EPAO_AS_SWD_01b - Your Withdrawl status notification view links
+	Given the EPAO Withdrawal User is logged into Assessment Service Application
+	And   user verfifies view links navigates to the appropriate corresponding page
