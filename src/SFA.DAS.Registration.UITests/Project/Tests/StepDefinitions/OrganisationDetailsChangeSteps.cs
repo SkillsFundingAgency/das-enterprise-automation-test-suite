@@ -48,12 +48,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectGoToHomePageOptionAndContinueInDetailsUpdatedPage();
         }
 
-        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage()
-        {
-            new HomePage(_context, true).GoToYourOrganisationsAndAgreementsPage()
-                .ClickViewAgreementLink();
-            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
-        }
+        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage() 
+            => new HomePage(_context, true).GoToYourOrganisationsAndAgreementsPage().ClickViewAgreementLink();
 
         [Then(@"the 'Update these details' link is not displayed for PublicSector Type Org")]
         public void ThenTheUpdateTheseDetailsLinkIsNotDisplayedForPublicSectorTypeOrg() =>
