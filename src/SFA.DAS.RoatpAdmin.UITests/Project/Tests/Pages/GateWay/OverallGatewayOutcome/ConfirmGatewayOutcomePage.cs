@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
     public class ConfirmGatewayOutcomePage : RoatpGateWayBasePage
     {
         protected override string PageTitle => "Confirm gateway outcome";
+
+        private By FailComments => By.Id("OptionFailedText");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -29,6 +32,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
         public FinalConfirmationFailPage FailThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Fail this application");
+            formCompletionHelper.EnterText(FailComments, "Fail comments");
             Continue();
             return new FinalConfirmationFailPage(_context);
         }
