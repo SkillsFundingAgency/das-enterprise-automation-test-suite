@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -13,10 +14,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AgreementId => By.XPath("//dd[5]");
         #endregion
 
-        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context) : base(context)
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context)
         {
             _context = context;
-            VerifyPage();
+
+            VerifyPage(PageHeader, PageTitle, action);
         }
 
         public ReviewYourDetailsPage ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
