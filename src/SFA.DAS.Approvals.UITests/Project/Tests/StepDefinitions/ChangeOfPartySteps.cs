@@ -77,10 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ChooseTrainingProviderPage()
                                 .SelectYesAndContinue();
 
-            string ULN = Convert.ToString(_dataHelper.Ulns.First());
-            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
-
-            _employerStepsHelper.UpdateCohortReference(_newcohortReference.ToString());
+            _employerStepsHelper.UpdateCohortReference(GetNewCohortReference());
         }
 
         [Then(@"employer should not be able to see change link for another CoP")]
@@ -95,10 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.StartChangeOfEmployerJourney();
 
-            string ULN = Convert.ToString(_dataHelper.Ulns.First());
-            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
-
-            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
+            _employerStepsHelper.UpdateCohortReference(GetNewCohortReference());
         }
 
         [Then(@"new employer approves the cohort")]
@@ -241,6 +235,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                     .GetAllEditBoxes();
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
+        }
+
+        private string GetNewCohortReference()
+        {
+            string ULN = Convert.ToString(_dataHelper.Ulns.First());
+            return _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
         }
 
     }

@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, maxRetries, exception, scenarioInfo));
+            return Convert.ToString(TryGetDataAsObject(query, maxRetries, exception, scenarioInfo.Title));
         }
     }
 }

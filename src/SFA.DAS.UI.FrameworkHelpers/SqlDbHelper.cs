@@ -1,7 +1,6 @@
 ﻿using Polly;
 using System;
 using System.Collections.Generic;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -27,13 +26,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected object TryGetDataAsObject(string queryToExecute, int maxRetries, string exception, ScenarioInfo scenarioInfo)
+        protected object TryGetDataAsObject(string queryToExecute, int maxRetries, string exception, string ScenarioTitle)
         {
-            return RetryOnException(maxRetries, exception, scenarioInfo)
+            return RetryOnException(maxRetries, exception, ScenarioTitle)
                 .Execute(() => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
         } 
 
-        private Policy RetryOnException(int maxRetries, string exception, ScenarioInfo scenarioInfo)
+        private Policy RetryOnException(int maxRetries, string exception, string ScenarioTitle)
         {
             TimeSpan[] TimeOut = SetTimeOut();
 
@@ -41,7 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<Exception>((x) => x.Message.Contains(exception))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, scenarioInfo.Title);
+                     Logging.Report(retryCount, exception, ScenarioTitle);
                  });
         }
 
