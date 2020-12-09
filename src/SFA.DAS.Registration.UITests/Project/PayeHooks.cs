@@ -78,7 +78,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         private void AddFunds(MongoDbDataGenerator mongoDbDataGenerator, FundType fundType)
         {
-            if (fundType == FundType.NonLevyFund) { return; }
+            if (fundType == FundType.NonLevyFund || _context.ScenarioInfo.Tags.Contains("adddynamicfunds")) { return; }
 
             var (fraction, calculatedAt, levyDeclarations) = fundType == FundType.TransferFund ? LevyDeclarationDataHelper.TransferslevyFunds() : LevyDeclarationDataHelper.LevyFunds();
 

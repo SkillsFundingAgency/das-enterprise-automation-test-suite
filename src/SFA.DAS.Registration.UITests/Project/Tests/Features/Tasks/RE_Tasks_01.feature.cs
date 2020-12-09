@@ -79,16 +79,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         public virtual void RE_Tasks_01_CreateAnEmployerAccountWithPublicSectorTypeOrgAndVerifyTasksLink()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addlevyfunds"};
+                    "addlevyfunds",
+                    "adddynamicfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Tasks_01_Create an Employer Account with Public Sector Type Org and verify Tas" +
                     "ks link", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,14 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("levy declarations are added for the past 15 months with levypermonth as 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("\'Start adding apprentices now\' task link is displayed under Tasks pane", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -38,13 +38,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .SearchForAnOrganisation(orgType);
         }
 
-        public void AddLevyDeclarations()
-        {
-            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds("5", "10000");
-            _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
-            _loginCredentialsHelper.SetIsLevy();
-        } 
-
         public CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
