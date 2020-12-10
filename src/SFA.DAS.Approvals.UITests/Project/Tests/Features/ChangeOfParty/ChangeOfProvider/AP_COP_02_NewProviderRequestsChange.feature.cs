@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("a banner is displayed for employer with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.When("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("new Provider sends the cohort back to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

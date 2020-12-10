@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
+        private By ReviewCopChangesLink => By.Id("changeOfPartyViewChangesLink");
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
         private By EditStopDateLink => By.LinkText("Edit");
         private By EditEndDateLink => By.Id("editEndDateLink"); 
@@ -77,6 +78,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChangesLink);
+            return new ViewChangesPage(_context);
+        }
+
+        public ViewChangesPage ClickReviewChangesLink()
+        {
+            formCompletionHelper.Click(ReviewCopChangesLink);
             return new ViewChangesPage(_context);
         }
     }

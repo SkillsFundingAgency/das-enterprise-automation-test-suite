@@ -8,6 +8,9 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using NUnit.Framework;
 using System;
+using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -20,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
         internal EmployerStepsHelper(ScenarioContext context)
         {
@@ -29,6 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
             _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.GetApprovalsConfig<ApprovalsConfig>());
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -119,7 +124,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
-        internal void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
+        internal void UpdateNewCohortReference()
+        {
+            string ULN = Convert.ToString(_dataHelper.Ulns.First());
+
+            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, "Index was out of range", _context.ScenarioInfo.Title);
+
+            _objectContext.UpdateCohortReference(cohortRef);
+        }
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
         {

@@ -21,6 +21,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (string)text;
         }
 
+        public void SetTextUsingJavaScript(By locator, string text)
+        {
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].value='{text}'", _webDriver.FindElement(locator));
+        }
+
         public void SwitchFrameAndEnterText(By iFrameFieldLocator, By iFrameBodyLocator, string text)
         {
             _iframeHelper.SwitchToFrame(iFrameFieldLocator);
