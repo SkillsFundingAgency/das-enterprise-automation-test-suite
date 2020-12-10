@@ -14,5 +14,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 $"Exception : {exception.Message}{Environment.NewLine}" +
                 $"Retry Action : {retryAction == null}");
         }
+
+        internal static TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
     }
 }

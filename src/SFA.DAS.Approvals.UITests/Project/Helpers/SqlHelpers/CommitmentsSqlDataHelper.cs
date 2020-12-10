@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
@@ -21,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public int GetApprenticeshipId(string uln) => Convert.ToInt32(GetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
 
-        public string GetNewcohortReference(string ULN, string exception, ScenarioInfo scenarioInfo)
+        public string GetNewcohortReference(string ULN, string exception, string title)
         {
             string query = $@"SELECT Reference FROM Commitment cmt
                                 INNER JOIN Apprenticeship app
@@ -30,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, exception, scenarioInfo.Title));
+            return Convert.ToString(TryGetDataAsObject(query, exception, title));
         }
     }
 }

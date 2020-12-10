@@ -1,25 +1,23 @@
 ﻿using System;
 using Polly;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
-using StructureMap.Building;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly ScenarioInfo _scenarioInfo;
+        private readonly string _title;
         private readonly TimeSpan[] TimeOut;
 
         public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo)
         {
             _webDriver = webDriver;
-            _scenarioInfo = scenarioInfo;
-            TimeOut = SetTimeOut();
+            _title = scenarioInfo.Title;
+            TimeOut = Logging.SetTimeOut();
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
@@ -28,7 +26,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, _scenarioInfo.Title, retryAction);
+                     Logging.Report(retryCount, exception, _title, retryAction);
                      retryAction?.Invoke();
                  })
                  .Execute(() =>
@@ -47,7 +45,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<Exception>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Logging.Report(retryCount, exception, _scenarioInfo.Title);
+                    Logging.Report(retryCount, exception, _title);
                 })
                .Execute(() =>
                {
@@ -64,7 +62,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Logging.Report(retryCount, exception, _scenarioInfo.Title, retryAction);
+                    Logging.Report(retryCount, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                .Execute(() =>
@@ -82,7 +80,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Logging.Report(retryCount, exception, _scenarioInfo.Title, retryAction);
+                    Logging.Report(retryCount, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -101,7 +99,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Logging.Report(retryCount, exception, _scenarioInfo.Title, retryAction);
+                    Logging.Report(retryCount, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -123,7 +121,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, _scenarioInfo.Title, beforeAction);
+                     Logging.Report(retryCount, exception, _title, beforeAction);
 
                      switch (true)
                      {
@@ -155,8 +153,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private Action ClickEvent(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
 
         private Action Click(IWebElement element) => () => element.Click();
-
-        private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
