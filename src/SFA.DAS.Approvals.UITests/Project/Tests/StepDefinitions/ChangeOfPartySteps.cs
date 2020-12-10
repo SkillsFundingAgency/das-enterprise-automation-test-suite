@@ -27,7 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly RetryHelper _retryHelper;
 
         private readonly string _oldEmployer;
         private readonly string _newEmployer;
@@ -44,7 +43,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
             _oldEmployer = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
             _newEmployer = context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
-            _retryHelper = new RetryHelper(context.GetWebDriver(), _context.ScenarioInfo);
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
@@ -240,7 +238,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private string GetNewCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
-            return _commitmentsSqlDataHelper.GetNewcohortReference(ULN, 5, "Index was out of range", _context.ScenarioInfo);
+            return _commitmentsSqlDataHelper.GetNewcohortReference(ULN, "Index was out of range", _context.ScenarioInfo);
         }
 
     }

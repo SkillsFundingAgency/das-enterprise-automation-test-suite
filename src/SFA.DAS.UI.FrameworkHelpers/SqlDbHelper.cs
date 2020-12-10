@@ -26,13 +26,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected object TryGetDataAsObject(string queryToExecute, int maxRetries, string exception, string ScenarioTitle)
+        protected object TryGetDataAsObject(string queryToExecute,string exception, string ScenarioTitle)
         {
-            return RetryOnException(maxRetries, exception, ScenarioTitle)
+            return RetryOnException(exception, ScenarioTitle)
                 .Execute(() => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
         } 
 
-        private Policy RetryOnException(int maxRetries, string exception, string ScenarioTitle)
+        private Policy RetryOnException(string exception, string ScenarioTitle)
         {
             TimeSpan[] TimeOut = SetTimeOut();
 
