@@ -18,8 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
-                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                                .ClickStartSelectWithdrawalApplication()
+                               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                                .ClickAssessingASpecificStandard()
                                .ClickASpecificStandardToWithdraw();
         }
@@ -40,6 +39,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public void VerifyStandardSubmitted()
         {
             new AS_WithdrawalApplicationSubmittedPage(_context).StandardSubmissionVerification();
+        }
+
+        public void VerifyTheInProgressStatus()
+        {
+            new AS_LoggedInHomePage(_context)
+                .ClickWithdrawFromAStandardLink()
+                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                .ValidateStatus();
         }
     }
 }

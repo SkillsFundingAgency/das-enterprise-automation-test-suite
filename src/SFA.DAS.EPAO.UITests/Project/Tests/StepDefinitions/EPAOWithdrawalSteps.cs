@@ -36,6 +36,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
             _ePAOWithdrawalHelper.VerifyStandardSubmitted();
         }
 
+        [Given(@"user verifies the different statuses of the standard withdrawl application")]
+        public void GivenUserVerifiesTheDifferentStatusesOfTheStandardWithdrawlApplication()
+        {
+            _ePAOWithdrawalHelper.VerifyTheInProgressStatus();
+        }
+
+
+        [Given(@"user verfifies view links navigates to the appropriate corresponding page")]
+        public void GivenUserVerfifiesViewLinksNavigatesToTheAppropriateCorrespondingPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
 
     }
 }
