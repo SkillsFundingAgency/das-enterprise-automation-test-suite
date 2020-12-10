@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_TD_04")]
-    public partial class RP_TD_04Feature
+    [NUnit.Framework.DescriptionAttribute("RP_Assessor_03")]
+    public partial class RP_Assessor_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_TD_04.feature"
+#line 1 "RP_Assessor_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_TD_04", "TestDataPreparation for RP_AD_FHA_01", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Assessor_03", "TestDataPreparation for RP_AD_AS_03", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_TD_04_TestDataPreparation-For_RP_AD_FHA_01")]
+        [NUnit.Framework.DescriptionAttribute("RP_Assessor_03_TestDataPreparation-For_RP_AD_AS_03")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
-        [NUnit.Framework.CategoryAttribute("roatpadminfhatestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminastestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpadfha01")]
-        public virtual void RP_TD_04_TestDataPreparation_For_RP_AD_FHA_01()
+        [NUnit.Framework.CategoryAttribute("rpadas03")]
+        public virtual void RP_Assessor_03_TestDataPreparation_For_RP_AD_AS_03()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
-                    "roatpadminfhatestdataprep",
+                    "roatpadminastestdataprep",
                     "donottakescreenshot",
-                    "rpadfha01"};
+                    "rpadas03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_04_TestDataPreparation-For_RP_AD_FHA_01", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Assessor_03_TestDataPreparation-For_RP_AD_AS_03", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

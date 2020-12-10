@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_TD_10")]
-    public partial class RP_TD_10Feature
+    [NUnit.Framework.DescriptionAttribute("RP_FHA_02")]
+    public partial class RP_FHA_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_TD_10.feature"
+#line 1 "RP_FHA_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_TD_10", "TestDataPreparation for RP_AD_MOD_02", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_FHA_02", "TestDataPreparation for RP_AD_FHA_02", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_TD_07_TestDataPreparation-For_RP_AD_MOD_01")]
+        [NUnit.Framework.DescriptionAttribute("RP_FHA_02_TestDataPreparation-For_RP_AD_FHA_02")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
-        [NUnit.Framework.CategoryAttribute("roatpadminmodtestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminfhatestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("rpadmod02")]
-        public virtual void RP_TD_07_TestDataPreparation_For_RP_AD_MOD_01()
+        [NUnit.Framework.CategoryAttribute("rpadfha02")]
+        public virtual void RP_FHA_02_TestDataPreparation_For_RP_AD_FHA_02()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
-                    "roatpadminmodtestdataprep",
+                    "roatpadminfhatestdataprep",
                     "donottakescreenshot",
-                    "rpadmod02"};
+                    "rpadfha02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TD_07_TestDataPreparation-For_RP_AD_MOD_01", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_FHA_02_TestDataPreparation-For_RP_AD_FHA_02", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,10 +113,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
-                        "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

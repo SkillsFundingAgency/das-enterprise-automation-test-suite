@@ -1,4 +1,4 @@
-﻿Feature: RP_TD_02
+﻿Feature: RP_Gateway_02
 
 TestDataPreparation for  RP_AD_GW_02_EmployerRoute_Charity
 
@@ -6,5 +6,5 @@ TestDataPreparation for  RP_AD_GW_02_EmployerRoute_Charity
 @roatpadmingwtestdataprep
 @donottakescreenshot
 @rpadgw02
-Scenario: RP_TD_02_TestDataPreparation-For_RP_AD_GW_02_EmployerRoute_Charity
+Scenario: RP_Gateway_02_TestDataPreparation-For_RP_AD_GW_02_EmployerRoute_Charity
 	Given the provider completes the Apply Journey as Employer Provider Route
