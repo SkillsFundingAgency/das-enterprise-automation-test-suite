@@ -175,5 +175,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
                  .FailThisApplicationAndContinue()
                  .YesSureFailThisApplicationAndGoToGovernance();
         }
+
+        internal void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
+                 .RejectThisApplicationAndContinue()
+                 .YesSureRejectThisApplicationAndGoToGovernance();
+        }
     }
 }
