@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -14,45 +12,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Description => By.CssSelector("p.govuk-body");
-        private By CurrentDetailsCoumn => By.XPath("//th[contains(text(),' Current details')]");
-        private By RequestedChangesCoumn => By.XPath("//th[contains(text(),'Requested changes')]");
-
-        /*
-        private By CurrentTrainingProvider => By.CssSelector("p.govuk-body");
-        private By RequestedTrainingProvider => By.CssSelector("p.govuk-body");
-        private By CurrentTrainingStartDate => By.CssSelector("p.govuk-body");
-        private By RequestedTrainingStartDate => By.CssSelector("p.govuk-body");
-        private By CurrentTrainingEndDate => By.CssSelector("p.govuk-body");
-        private By RequestedTrainingEndDate => By.CssSelector("p.govuk-body");
-        private By CurrentPrice => By.CssSelector("p.govuk-body");
-        private By RequestedPrice => By.CssSelector("p.govuk-body");
-        */
-
+        private By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
+        private By ReviewRequestedChangesLink=> By.Id("review-requested-changes-link");
 
         public ViewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void GetDescription()
-        { 
-        
+        public ViewApprenticePage ClickProviderReviewingTheRequestLink()
+        {
+            formCompletionHelper.ClickElement(ProviderReviewingTheRequestLink);
+            return new ViewApprenticePage(_context);
         }
 
-        public Dictionary<string, string> GetDetails()
+        public ReviewYourCohortPage ClickReviewTheApprenticeDetailsToUpdateLink()
         {
-            var changeDetails = new Dictionary<string, string>();
-
-            changeDetails.Add("CurrentTrainingProvider", tableRowHelper.GetColumn("Training provider", CurrentDetailsCoumn).Text);
-            changeDetails.Add("CurrentTrainingStartDate", "");
-            changeDetails.Add("CurrentTrainingEndDate", "");
-            changeDetails.Add("CurrentPrice", "");
-
-            changeDetails.Add("RequestedTrainingProvider", tableRowHelper.GetColumn("Training provider", RequestedChangesCoumn).Text);
-            changeDetails.Add("RequestedTrainingStartDate", "");
-            changeDetails.Add("RequestedTrainingEndDate", "");
-            changeDetails.Add("RequestedPrice", "");
-
-
-            return changeDetails;
+            formCompletionHelper.ClickElement(ReviewRequestedChangesLink);
+            return new ReviewYourCohortPage(_context);
         }
 
     }

@@ -76,10 +76,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "addpayedetails",
                     "addlevyfunds",
-                    "perfteste2e",
-                    "perfteste2elevy",
+                    "perftest",
                     "donottakescreenshot",
                     "liveapprentice"};
             if ((exampleTags != null))
@@ -91,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
                     "e cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,13 +109,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 9
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 10
  testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 11
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -127,15 +125,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 1")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_1()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("1", ((string[])(null)));
 #line hidden
         }
@@ -143,15 +139,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 2")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_2()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("2", ((string[])(null)));
 #line hidden
         }
@@ -159,15 +153,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 3")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_3()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("3", ((string[])(null)));
 #line hidden
         }
@@ -175,15 +167,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 4")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_4()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("4", ((string[])(null)));
 #line hidden
         }
@@ -191,15 +181,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 5")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_5()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("5", ((string[])(null)));
 #line hidden
         }
@@ -207,15 +195,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 6")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_6()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("6", ((string[])(null)));
 #line hidden
         }
@@ -223,15 +209,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 7")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_7()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("7", ((string[])(null)));
 #line hidden
         }
@@ -239,15 +223,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 8")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_8()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("8", ((string[])(null)));
 #line hidden
         }
@@ -255,15 +237,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 9")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_9()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("9", ((string[])(null)));
 #line hidden
         }
@@ -271,15 +251,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 10")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_10()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("10", ((string[])(null)));
 #line hidden
         }
@@ -287,15 +265,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 11")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_11()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("11", ((string[])(null)));
 #line hidden
         }
@@ -303,15 +279,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 12")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_12()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("12", ((string[])(null)));
 #line hidden
         }
@@ -319,15 +293,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 13")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_13()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("13", ((string[])(null)));
 #line hidden
         }
@@ -335,15 +307,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 14")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_14()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("14", ((string[])(null)));
 #line hidden
         }
@@ -351,15 +321,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 15")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_15()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("15", ((string[])(null)));
 #line hidden
         }
@@ -367,15 +335,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 16")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_16()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("16", ((string[])(null)));
 #line hidden
         }
@@ -383,15 +349,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 17")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_17()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("17", ((string[])(null)));
 #line hidden
         }
@@ -399,15 +363,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 18")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_18()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("18", ((string[])(null)));
 #line hidden
         }
@@ -415,15 +377,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 19")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_19()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("19", ((string[])(null)));
 #line hidden
         }
@@ -431,15 +391,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 20")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_20()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("20", ((string[])(null)));
 #line hidden
         }
@@ -447,15 +405,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 21")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_21()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("21", ((string[])(null)));
 #line hidden
         }
@@ -463,15 +419,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 22")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_22()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("22", ((string[])(null)));
 #line hidden
         }
@@ -479,15 +433,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 23")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_23()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("23", ((string[])(null)));
 #line hidden
         }
@@ -495,15 +447,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 24")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_24()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("24", ((string[])(null)));
 #line hidden
         }
@@ -511,15 +461,13 @@ this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCoh
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
             "e cohort: 25")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("perfteste2e")]
-        [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_25()
         {
-#line 10
+#line 8
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("25", ((string[])(null)));
 #line hidden
         }

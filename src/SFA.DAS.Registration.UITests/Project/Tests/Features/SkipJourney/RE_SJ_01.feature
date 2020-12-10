@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_SJ_01_Verify GG route skip journey
 	When an Employer creates an Account by skipping the add PAYE part
 	Then ApprenticeshipEmployerType in Account table is marked as 2

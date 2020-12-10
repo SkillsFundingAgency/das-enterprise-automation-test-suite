@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_CEACHT_05_Create an Employer Account with Charity Type Org and verify Adding another Charity Type Org
 	Given an Employer Account with Charity Type Org is created and agreement is Signed
 	When the Employer initiates adding another Org of Charity2 Type

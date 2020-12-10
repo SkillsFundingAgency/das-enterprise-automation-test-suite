@@ -78,13 +78,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
             "nge scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_ODC_01_CreateAnEmployerAccountWithCompanyTypeOrgAndVerifyOrgNameChangeScenario()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName cha" +
                     "nge scenario", null, tagsOfScenario, argumentsOfScenario);

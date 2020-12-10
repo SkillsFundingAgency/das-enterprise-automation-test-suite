@@ -80,20 +80,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_01 Create Employer send an approved cohort then provider approves the " +
             "cohort")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         public virtual void AP_E2E_NUA_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "addpayedetails",
                     "addlevyfunds",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_01 Create Employer send an approved cohort then provider approves the " +
                     "cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -113,13 +111,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
  testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

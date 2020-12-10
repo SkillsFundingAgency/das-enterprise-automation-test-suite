@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 @addanothernonlevypayedetails
 Scenario: RE_CEACMPT_03_Validate changing Organisation and PAYE features from Check details page
 	When the User is on the 'Check your details' page after adding PAYE and Company Type Org details

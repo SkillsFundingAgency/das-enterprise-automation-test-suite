@@ -3,7 +3,6 @@ Feature: AP_TR_04_TransfersConnectionJourney
 
 @regression
 @transfersscenarios
-@addpayedetails
 @addtransferslevyfunds
 @addanothernonlevypayedetails
 Scenario: AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver

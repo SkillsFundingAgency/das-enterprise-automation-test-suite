@@ -1,6 +1,5 @@
 ﻿Feature: EI_TD2_CreateALevyAccountAndApply
 
-@addpayedetails
 @addlevyfunds
 @dfeuatachieveservice
 @eitd2

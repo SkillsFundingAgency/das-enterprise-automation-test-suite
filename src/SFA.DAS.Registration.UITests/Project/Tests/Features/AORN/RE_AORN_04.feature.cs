@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
     [NUnit.Framework.DescriptionAttribute("RE_AORN_04")]
     [NUnit.Framework.CategoryAttribute("regression")]
     [NUnit.Framework.CategoryAttribute("registration")]
-    [NUnit.Framework.CategoryAttribute("addpayedetails")]
+    [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
     public partial class RE_AORN_04Feature
     {
         
@@ -32,7 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
         private string[] _featureTags = new string[] {
                 "regression",
                 "registration",
-                "addpayedetails"};
+                "addnonlevyfunds"};
         
 #line 1 "RE_AORN_04.feature"
 #line hidden
@@ -44,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_AORN_04", null, ProgrammingLanguage.CSharp, new string[] {
                         "regression",
                         "registration",
-                        "addpayedetails"});
+                        "addnonlevyfunds"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -78,19 +78,17 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
             "ned the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EF_HPFLNU_03_ValidateHomePageFinanceSectionForALevyEmployerWhoHasSignedTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerfinance",
-                    "addpayedetails",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFLNU_03 - Validate Home Page Finance section for a Levy Employer who has Sig" +
                     "ned the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,19 +108,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.When("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("\'Your finances\' link is displayed in the Finances section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 9
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 11
  testRunner.And("Funds data information is diplayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
