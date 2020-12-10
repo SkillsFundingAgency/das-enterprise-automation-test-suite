@@ -42,6 +42,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as FAIL")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsFAIL() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsFail(_gwApplicationOverviewPage);
-       
+
+        [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as Reject")]
+        public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsReject() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(_gwApplicationOverviewPage);
+
     }
 }
