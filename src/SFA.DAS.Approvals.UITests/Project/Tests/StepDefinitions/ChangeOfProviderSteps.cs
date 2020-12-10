@@ -76,10 +76,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ValidateOnlyEditableApprenticeDetails();
         }
 
-        [When(@"new provider rejects the cohort")]
-        public void WhenNewProviderRejectsTheCohort()
+        [When(@"new Provider sends the cohort back to employer to review")]
+        public void WhenNewProviderSendsTheCohortBackToEmployerToReview()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
+
             new ProviderYourCohortsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
@@ -89,6 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SubmitSendToEmployerToReview()
                 .SendInstructionsToEmployerForCohortToReview();
         }
+
 
         [When(@"employer deletes the Cohort")]
         public void WhenEmployerDeletesTheCohort()
@@ -146,6 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 ValidateBannerWithLinkToNonEditableCohort(employerApprenticeDetailsPage);
         }
+
         public void ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP()
         {                  
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
@@ -166,17 +169,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
 
             var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
-                .ClickViewChangesLink()
-                .GetDetails();
-                
-                /*
-                .ClickOnReviewNewDetailsLink()
-                .SelectViewApprentice()
-                .GetAllEditBoxes();
-                */
+                                                    .ClickViewChangesLink()
+                                                    .ClickProviderReviewingTheRequestLink()
+                                                    .ClickViewApprenticeLink()
+                                                    .GetAllEditBoxes();
 
-            //Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
-            
+
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");            
         }
 
         private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
@@ -186,24 +185,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
-            /*
             var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
-                    .ClickViewChangesLink();
+                                                    .ClickReviewChangesLink()
+                                                    .ClickReviewTheApprenticeDetailsToUpdateLink()
+                                                    .SelectEditApprentice()
+                                                    .GetAllEditBoxes();
 
-                .ClickOnReviewNewDetailsToUpdateLink()
-                .SelectEditApprentice()
-                .GetAllEditBoxes();
-
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
-            */
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count == 6, "validate that cohort is editable on View apprentice details page");            
         }
 
         private void ValidateOnlyEditableApprenticeDetails()
         {
             EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
-            var EditApprenticeDetails = editApprenticePage.GetAllEditBoxes();
+            var EditApprenticeDetails = editApprenticePage.GetAllEditBoxes("form-control");
 
-            Assert.IsTrue(EditApprenticeDetails.Count > 3, "validate that cohort is editable on View apprentice details page");
+            Assert.IsTrue(EditApprenticeDetails.Count == 6, "validate that cohort is editable on View apprentice details page");
         }
     }
 }

@@ -8,7 +8,7 @@ Scenario: AP_COP_02_NewProviderRequestsChange
 	Given the employer has an apprentice with stopped status
 	When employer sends COP request to new provider
 	Then a banner is displayed for employer with a link to "non-editable" cohort
-	When new provider rejects the cohort
+	When new Provider sends the cohort back to employer to review
 	Then a banner is displayed for employer with a link to "editable" cohort
 	When employer approves the cohort
 	And new provider approves the changes
