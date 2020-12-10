@@ -2,7 +2,6 @@
 Feature: AP_E2E_NUA_04_NewUserAccount
 
 @regression
-@addpayedetails
 @addlevyfunds
 @e2escenarios
 Scenario: AP_E2E_NUA_04 Create Employer Provider sends cohort to employer for review then employer approves then provider approves

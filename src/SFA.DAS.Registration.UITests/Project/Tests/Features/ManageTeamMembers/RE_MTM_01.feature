@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_MTM_01_Verify adding a Team member as viewer
 	When an Employer Account with Company Type Org is created and agreement is Signed
 	Then Employer is able to invite a team member with Viewer access

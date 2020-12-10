@@ -1,6 +1,6 @@
 ﻿@regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Feature: RE_AORN_05
 
 Scenario: RE_AORN_05_Validate AORN route account lockup and using GG route to complete registration

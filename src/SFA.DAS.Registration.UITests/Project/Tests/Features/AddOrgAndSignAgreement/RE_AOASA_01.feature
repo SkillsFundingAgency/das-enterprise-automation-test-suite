@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_AOASA_01_Verify Employer Sign Agreement journey when One and Many Orgs Agreements are not signed
 	Given an Employer Account with PublicSector Type Org is created and agreement is Signed
 	When the Employer adds another Org to the Account

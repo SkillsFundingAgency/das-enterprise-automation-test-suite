@@ -79,19 +79,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_03 Create Employer Provider adds apprentices and approves then employe" +
             "r approves cohort")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         public virtual void AP_E2E_NUA_03CreateEmployerProviderAddsApprenticesAndApprovesThenEmployerApprovesCohort()
         {
             string[] tagsOfScenario = new string[] {
-                    "addpayedetails",
                     "addlevyfunds",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_03 Create Employer Provider adds apprentices and approves then employe" +
                     "r approves cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,16 +109,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

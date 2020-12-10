@@ -1,6 +1,6 @@
 ﻿@regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Feature: RE_AORN_03
 
 Scenario: RE_AORN_03_Validate AORN route check details page links

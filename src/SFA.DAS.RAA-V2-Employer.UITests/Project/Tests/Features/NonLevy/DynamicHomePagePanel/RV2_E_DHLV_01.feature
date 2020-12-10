@@ -4,7 +4,7 @@
 @raa-v2
 @raa-v2e
 @regression
-@addpayedetails
+@addnonlevyfunds
 Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
 	Given The User creates NonLevyEmployer account and sign an agreement
 	And the employer reserves funding from the dynamic home page

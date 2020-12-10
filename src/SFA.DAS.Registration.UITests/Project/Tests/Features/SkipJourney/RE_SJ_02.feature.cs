@@ -77,13 +77,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.SkipJourney
         [NUnit.Framework.DescriptionAttribute("RE_SJ_02_Verify AORN route skip journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_SJ_02_VerifyAORNRouteSkipJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_SJ_02_Verify AORN route skip journey", null, tagsOfScenario, argumentsOfScenario);
 #line 6

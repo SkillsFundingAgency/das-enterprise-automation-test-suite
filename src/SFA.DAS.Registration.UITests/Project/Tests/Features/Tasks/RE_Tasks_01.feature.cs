@@ -78,15 +78,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
             "ks link")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         public virtual void RE_Tasks_01_CreateAnEmployerAccountWithPublicSectorTypeOrgAndVerifyTasksLink()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
-                    "addlevyprefix"};
+                    "addlevyfunds",
+                    "adddynamicfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Tasks_01_Create an Employer Account with Public Sector Type Org and verify Tas" +
                     "ks link", null, tagsOfScenario, argumentsOfScenario);

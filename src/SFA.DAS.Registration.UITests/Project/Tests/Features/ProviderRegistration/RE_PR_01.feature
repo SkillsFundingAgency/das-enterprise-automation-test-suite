@@ -1,7 +1,7 @@
 ﻿Feature: RE_PR_01
 
 @registration
-@addpayedetails
+@addnonlevyfunds
 @providerleadregistration
 Scenario: RE_PR_01 Provider Lead Registration
 	Given the provider invite an employer

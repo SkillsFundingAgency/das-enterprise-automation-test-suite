@@ -1,6 +1,5 @@
 ﻿Feature: EI_TD1_CreateALevyAccountWithCommitments
 
-@addpayedetails
 @addlevyfunds
 @eitd1
 Scenario: EI_TD1_Create A LevyAccount and add some Commitments

@@ -80,7 +80,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.DescriptionAttribute("AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void AP_TR_04Transfers_CreatingTransferConnectionBetweenSenderAndReceiver()
@@ -88,12 +87,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfersscenarios",
-                    "addpayedetails",
                     "addtransferslevyfunds",
                     "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -113,14 +111,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

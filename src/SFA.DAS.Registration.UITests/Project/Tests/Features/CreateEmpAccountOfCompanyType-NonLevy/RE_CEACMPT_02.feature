@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_CEACMPT_02_Verify Invalid PAYE and Company number entry during Employer Account creation
 	When an User Account is created
 	And the User adds Invalid PAYE details

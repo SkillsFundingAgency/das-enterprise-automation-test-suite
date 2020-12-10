@@ -76,12 +76,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateLevyEmpAccou
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CLEA_03_Create a Levy Account for a specific period")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_CLEA_03_CreateALevyAccountForASpecificPeriod()
         {
             string[] tagsOfScenario = new string[] {
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CLEA_03_Create a Levy Account for a specific period", null, tagsOfScenario, argumentsOfScenario);
 #line 5
