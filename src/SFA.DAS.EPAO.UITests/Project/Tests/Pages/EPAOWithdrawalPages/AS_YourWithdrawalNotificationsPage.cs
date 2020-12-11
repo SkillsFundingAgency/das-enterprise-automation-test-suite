@@ -28,6 +28,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public void ValidateStatus(string status) => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Status(status)), $"Validate status:[{status}] exists on the page");
 
+        public AS_ApplicationOverviewPage ClickOnViewLinkForInProgressApplication()
+        {
+            tableRowHelper.SelectRowFromTable("View", "In progress");
+            return new AS_ApplicationOverviewPage(_context);
+        }
+
 
     }
 }

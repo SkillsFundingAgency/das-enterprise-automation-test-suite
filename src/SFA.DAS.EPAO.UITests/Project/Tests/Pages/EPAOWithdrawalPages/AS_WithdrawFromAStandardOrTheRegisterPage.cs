@@ -12,6 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
+        /*
         public AS_WhatAreYouWithdrawingFromPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
         {
             Continue();
@@ -21,6 +22,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
                 return new AS_SelectWithdrawalApplicationPage(_context).ClickStartSelectWithdrawalApplication();
             else
                 return new AS_YourWithdrawalNotificationsPage(_context).ClickStartNewWithdrawalNotification();
+        }
+        */
+
+        public AS_YourWithdrawalNotificationsPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+        {
+            Continue();
+            return new AS_YourWithdrawalNotificationsPage(_context);
         }
     }
 }

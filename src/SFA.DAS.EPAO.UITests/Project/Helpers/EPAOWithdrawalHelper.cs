@@ -19,6 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                               .ClickStartNewWithdrawalNotification()
                                .ClickAssessingASpecificStandard()
                                .ClickASpecificStandardToWithdraw();
         }
@@ -46,7 +47,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             new AS_LoggedInHomePage(_context)
                 .ClickWithdrawFromAStandardLink()
                 .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                .ValidateStatus();
+                .ValidateStatus("In progress");
+        }
+
+        public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
+        {
+            new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
         }
     }
 }

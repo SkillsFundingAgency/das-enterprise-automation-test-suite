@@ -43,12 +43,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         }
 
 
-        [Given(@"user verfifies view links navigates to the appropriate corresponding page")]
-        public void GivenUserVerfifiesViewLinksNavigatesToTheAppropriateCorrespondingPage()
+        [Given(@"user verifies view links navigate to the appropriate corresponding page")]
+        public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage()
         {
-            ScenarioContext.Current.Pending();
+            _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
         }
-
 
 
     }
