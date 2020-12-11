@@ -10,5 +10,5 @@
 Scenario: RP_AD_GW_05_EmployerRoute_Charity_Reject
 	Given the admin lands on the Dashboard
 	When the admin access the application from GatewayApplications
-	And the gateway admin fails PeopleInControlChecks
+	And the gateway admin fails RegisterChecks
 	Then the gateway admin completes assessment by confirming the Gateway outcome as Reject
