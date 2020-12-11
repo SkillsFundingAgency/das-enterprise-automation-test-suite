@@ -19,8 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         [When(@"starts the journey to withdraw a standard")]
         [Given(@"starts the journey to withdraw a standard")]
         public void GivenStartsTheJourneyToWithdrawAStandard()
-        {
-            //EPAOWithdrawalHelper _ePAOWithdrawalHelper = new EPAOWithdrawalHelper(_context);
+        {            
             _ePAOWithdrawalHelper.StartOfStandardWithdrawalJourney();
         }
 
