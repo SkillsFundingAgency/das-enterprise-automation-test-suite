@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addnonlevyfunds
+@addlevyfunds
 @adddynamicfunds
 Scenario: RE_CNLEA_02_Create an Employer Account with levy declarations as 0
 	Given levy declarations are added for the past 15 months with levypermonth as 0
