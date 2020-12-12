@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public int DateOfBirthYear { get; set; }
 
-        public string TrainingPrice { get; }
+        public string TrainingPrice { get; set; }
 
         public string EmployerReference { get; }
 
