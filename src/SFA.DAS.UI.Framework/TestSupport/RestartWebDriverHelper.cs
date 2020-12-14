@@ -44,6 +44,5 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             return webdriver;
         }
-
     }
 }
