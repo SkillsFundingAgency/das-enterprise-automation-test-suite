@@ -77,14 +77,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmpAc
         [NUnit.Framework.DescriptionAttribute("RE_CNLEA_02_Create an Employer Account with levy declarations as 0")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         public virtual void RE_CNLEA_02_CreateAnEmployerAccountWithLevyDeclarationsAs0()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addnonlevyfunds",
+                    "addlevyfunds",
                     "adddynamicfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_02_Create an Employer Account with levy declarations as 0", null, tagsOfScenario, argumentsOfScenario);
