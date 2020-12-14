@@ -76,7 +76,7 @@ steps:
     TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
     OverWrite: true
     
- - task: CopyFiles@2
+- task: CopyFiles@2
   displayName: 'Copy chromedriver to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
