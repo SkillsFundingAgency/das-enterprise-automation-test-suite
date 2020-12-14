@@ -78,19 +78,17 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
             " Signed the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EF_HPFLNU_04_ValidateHomePageFinanceSectionForALevyEmployerWhoHasNotSignedTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerfinance",
-                    "addpayedetails",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFLNU_04 - Validate Home Page Finance section for a Levy Employer who has Not" +
                     " Signed the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,20 +108,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.When("an Employer creates a Levy Account and not Signs the Agreement during registratio" +
                         "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("Signs the Agreement from Account HomePage Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("\'Your finances\' link is displayed in the Finances section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

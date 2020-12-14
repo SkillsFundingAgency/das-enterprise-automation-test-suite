@@ -75,12 +75,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_01_01 Create Levy Account For Approvals")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void AP_CA_01_01CreateLevyAccountForApprovals()
         {
             string[] tagsOfScenario = new string[] {
-                    "addpayedetails",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_01_01 Create Levy Account For Approvals", null, tagsOfScenario, argumentsOfScenario);
@@ -126,15 +124,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_CA_01_02 Create Agreement Not Signed Transfers Account For Approvals")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void AP_CA_01_02CreateAgreementNotSignedTransfersAccountForApprovals()
         {
             string[] tagsOfScenario = new string[] {
-                    "addtransferslevyfunds",
-                    "addpayedetails"};
+                    "addtransferslevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_01_02 Create Agreement Not Signed Transfers Account For Approvals", null, tagsOfScenario, argumentsOfScenario);
-#line 15
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -154,16 +150,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 15
  testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 16
  testRunner.When("the User adds PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 17
  testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 18
  testRunner.When("the Employer does not sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }

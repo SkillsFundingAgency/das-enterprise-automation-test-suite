@@ -78,14 +78,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
             "ve it")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void RE_MPS_01_CreateAnEmployerAccountAndAddAnotherNonLevyPAYESchemeAndRemoveIt()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_01_Create an Employer Account and Add Another NonLevy PAYE Scheme and Remo" +

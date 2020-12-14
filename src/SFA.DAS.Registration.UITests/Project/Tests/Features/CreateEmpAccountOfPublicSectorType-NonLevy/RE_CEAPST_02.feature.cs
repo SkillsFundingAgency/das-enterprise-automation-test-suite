@@ -78,14 +78,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOf
             "other Employer Account with the Same Org")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void RE_CEAPST_02_CreateAnEmployerAccountWithPublicSectorTypeOrgAndCreateAnotherEmployerAccountWithTheSameOrg()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAPST_02_Create an Employer Account with Public Sector Type Org and create an" +

@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
             "not Signed the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void EF_HPFLNU_02_ValidateHomePageFinanceSectionForANonLevyEmployerWhoHasNotSignedTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerfinance",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFLNU_02 - Validate Home Page Finance section for a NonLevy Employer who has " +
                     "not Signed the Agreement", null, tagsOfScenario, argumentsOfScenario);

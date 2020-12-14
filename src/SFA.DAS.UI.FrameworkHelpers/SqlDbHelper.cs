@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polly;
+using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -24,5 +25,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected object GetDataAsObject(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
 
         protected int ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
+
+        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title).Execute(() => GetDataAsObject(queryToExecute));
+
+        private Policy RetryOnException(string exception, string title)
+        {
+            return Policy
+                .Handle<Exception>((x) => x.Message.Contains(exception))
+                 .WaitAndRetry(Logging.SetTimeOut(), (exception, timeSpan, retryCount, context) =>
+                 {
+                     Logging.Report(retryCount, exception, title);
+                 });
+        }
     }
 }

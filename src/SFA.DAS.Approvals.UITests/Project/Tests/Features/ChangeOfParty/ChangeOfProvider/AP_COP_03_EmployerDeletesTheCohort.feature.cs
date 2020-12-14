@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("new provider rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("new Provider sends the cohort back to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.And("employer deletes the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

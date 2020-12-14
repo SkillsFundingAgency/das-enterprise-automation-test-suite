@@ -78,13 +78,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOf
             "ther Org of Charity Type")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_CEACHT_02_CreateAnEmployerAccountWithCompanyTypeOrganisationAndAddAnotherOrgOfCharityType()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACHT_02_Create an Employer Account with CompanyType Organisation and Add ano" +
                     "ther Org of Charity Type", null, tagsOfScenario, argumentsOfScenario);

@@ -30,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"levy declarations are added for the past (.*) months with levypermonth as (.*)")]
         public void GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs(string duration, string levyPerMonth)
         {
+            //If you are using this step please add @adddynamicfunds tag.
             var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(duration, levyPerMonth);
             _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
             _loginCredentialsHelper.SetIsLevy();

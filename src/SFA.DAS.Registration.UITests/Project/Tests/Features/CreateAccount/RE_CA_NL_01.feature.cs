@@ -75,18 +75,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateAccount
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_NL_01_Create a NonLevy Employer Account and Not Sign the Agreement")]
-        [NUnit.Framework.CategoryAttribute("nonlevy")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_NL_01_CreateANonLevyEmployerAccountAndNotSignTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
-                    "nonlevy",
-                    "addpayedetails",
+                    "addnonlevyfunds",
                     "donottakescreenshot"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_NL_01_Create a NonLevy Employer Account and Not Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,10 +104,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Not Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

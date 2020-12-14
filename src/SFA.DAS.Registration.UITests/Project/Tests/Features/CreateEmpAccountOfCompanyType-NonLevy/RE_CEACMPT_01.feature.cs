@@ -78,13 +78,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOf
             "other Org of PublicSector Type")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_CEACMPT_01_CreateAnEmployerAccountWithCompanyTypeOrganisationAndAddAnotherOrgOfPublicSectorType()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACMPT_01_Create an Employer Account with CompanyType Organisation and Add an" +
                     "other Org of PublicSector Type", null, tagsOfScenario, argumentsOfScenario);

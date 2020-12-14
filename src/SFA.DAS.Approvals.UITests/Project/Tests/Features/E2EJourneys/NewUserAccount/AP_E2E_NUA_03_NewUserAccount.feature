@@ -1,7 +1,6 @@
 ﻿@approvals
 Feature: AP_E2E_NUA_03_NewUserAccount
 
-@addpayedetails
 @addlevyfunds
 @e2escenarios
 Scenario: AP_E2E_NUA_03 Create Employer Provider adds apprentices and approves then employer approves cohort

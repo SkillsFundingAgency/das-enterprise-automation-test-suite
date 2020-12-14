@@ -77,13 +77,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.UnlockAccount
         [NUnit.Framework.DescriptionAttribute("RE_UnlockAcc_01_Verify Unlock Account scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_UnlockAcc_01_VerifyUnlockAccountScenario()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_UnlockAcc_01_Verify Unlock Account scenario", null, tagsOfScenario, argumentsOfScenario);
 #line 6

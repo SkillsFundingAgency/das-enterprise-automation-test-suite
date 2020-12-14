@@ -78,13 +78,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AddOrgAndSignAgree
             "nts are not signed")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_AOASA_01_VerifyEmployerSignAgreementJourneyWhenOneAndManyOrgsAgreementsAreNotSigned()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AOASA_01_Verify Employer Sign Agreement journey when One and Many Orgs Agreeme" +
                     "nts are not signed", null, tagsOfScenario, argumentsOfScenario);

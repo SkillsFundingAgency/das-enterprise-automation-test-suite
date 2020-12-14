@@ -1,7 +1,8 @@
 ﻿Feature: RE_CLEA_03
 
 @registration
-@addpayedetails
+@addlevyfunds
+@adddynamicfunds
 Scenario: RE_CLEA_03_Create a Levy Account for a specific period
 	Given the following levy declarations with english fraction of 1.00 calculated at 2019-01-15
 		| Year  | Month | LevyDueYTD | LevyAllowanceForFullYear | SubmissionDate |

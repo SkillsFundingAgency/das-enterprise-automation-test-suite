@@ -77,15 +77,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateLevyEmpAccou
         [NUnit.Framework.DescriptionAttribute("RE_CLEA_01_Create a Levy Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addlevyprefix")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         public virtual void RE_CLEA_01_CreateALevyAccountAndNotSignTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addpayedetails",
-                    "addlevyprefix"};
+                    "addlevyfunds",
+                    "adddynamicfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CLEA_01_Create a Levy Account and Not Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
 #line 7

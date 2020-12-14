@@ -2,7 +2,6 @@
 
 @regression
 @employerfinance
-@addpayedetails
 @addlevyfunds
 Scenario: EF_FPNU_01 - Verify Finance pages navigation for A New Levy Employer
 	When an Employer creates a Levy Account and Signs the Agreement

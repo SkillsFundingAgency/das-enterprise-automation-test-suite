@@ -160,12 +160,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
             if (_applicationRoute == ApplicationRoute.EmployerProviderRoute)
-            {
-                if (_objectContext.GetUkprn() == "10065987")
-                    gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
-                else
-                    gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
-            }
+                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
                 
             if (_applicationRoute == ApplicationRoute.SupportingProviderRoute) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));

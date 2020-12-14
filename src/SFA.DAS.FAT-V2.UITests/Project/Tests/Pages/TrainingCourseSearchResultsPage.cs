@@ -44,6 +44,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(firstLinkText);
             return new TrainingCourseSummaryPage(_context);
         }
+        public FATV2IndexPage NavigateBackToHompage()
+        {
+            NavigateToHomepage();
+            return new FATV2IndexPage(_context);
+        }
         public void SelectNameOrderSort() => SelectSortByValue("Name");
         public void SelectRelevanceOrderSort() => SelectSortByValue("Relevance");
 

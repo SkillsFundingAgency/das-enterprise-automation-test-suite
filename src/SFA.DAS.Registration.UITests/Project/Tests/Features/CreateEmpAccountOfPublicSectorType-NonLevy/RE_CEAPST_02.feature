@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 @addanothernonlevypayedetails
 Scenario: RE_CEAPST_02_Create an Employer Account with Public Sector Type Org and create another Employer Account with the Same Org
 	When an Employer Account with PublicSector Type Org is created and agreement is Signed

@@ -5,7 +5,7 @@ As a Non Levy Employer, I want to add a vacancy after reserves funding from dyna
 @raa-v2
 @raa-v2e
 @regression
-@addpayedetails
+@addnonlevyfunds
 Scenario: RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey
 	Given The User creates NonLevyEmployer account and sign an agreement
 	And the employer reserves funding from the dynamic home page

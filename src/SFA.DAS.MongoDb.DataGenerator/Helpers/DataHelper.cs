@@ -10,13 +10,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public DataHelper(string[] tags)
         {
-            LevyOrNonLevy = tags.Contains("addlevyprefix")
-         || tags.Contains("levypaye")
-         || tags.Contains("addlevyfunds")
-         || tags.Contains("addtransferslevyfunds")
-         || tags.Contains("levy")
-         || tags.Contains("perftestlevy")
-         || tags.Contains("addanotherlevypayedetails") ? "LE" : "NL";
+            LevyOrNonLevy = tags.Contains("addlevyfunds") || tags.Contains("addtransferslevyfunds") ? "LE" : "NL";
 
             UserNamePrefix = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "PerfTest" : "Test";
             _dateTime = DateTime.Now;

@@ -76,15 +76,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateLevyEmpAccou
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CLEA_03_Create a Levy Account for a specific period")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         public virtual void RE_CLEA_03_CreateALevyAccountForASpecificPeriod()
         {
             string[] tagsOfScenario = new string[] {
                     "registration",
-                    "addpayedetails"};
+                    "addlevyfunds",
+                    "adddynamicfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CLEA_03_Create a Levy Account for a specific period", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -128,11 +130,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "48000",
                             "60000",
                             "2019-05-15"});
-#line 6
+#line 7
  testRunner.Given("the following levy declarations with english fraction of 1.00 calculated at 2019-" +
                         "01-15", ((string)(null)), table1, "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("a Levy Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

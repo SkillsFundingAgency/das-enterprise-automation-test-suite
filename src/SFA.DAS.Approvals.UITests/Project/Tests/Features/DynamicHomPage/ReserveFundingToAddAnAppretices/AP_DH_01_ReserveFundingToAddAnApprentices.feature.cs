@@ -82,13 +82,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
             "age journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("dynamichomepage")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void AP_DH_01NonLevyEmployerReservesFundingToAddAnApprenticeFromDynamicHomepageJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "dynamichomepage",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DH_01 NonLevyEmployer reserves funding to add an apprentice from dynamic homep" +
                     "age journey", null, tagsOfScenario, argumentsOfScenario);

@@ -79,14 +79,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RV2_E_DHFD_01EmployerCreatesADraftVacancyFromDynamicHomepageJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
                     "regression",
-                    "addpayedetails"};
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey", null, tagsOfScenario, argumentsOfScenario);
 #line 9

@@ -3,13 +3,11 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Linq;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using NUnit.Framework;
@@ -25,7 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
 
         private readonly string _oldEmployer;
@@ -39,11 +36,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.GetApprovalsConfig<ApprovalsConfig>());
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
             _oldEmployer = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
             _newEmployer = context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
-
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
@@ -76,9 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ChooseTrainingProviderPage()
                                 .SelectYesAndContinue();
 
-
-            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
+            _employerStepsHelper.UpdateNewCohortReference();
         }
 
         [Then(@"employer should not be able to see change link for another CoP")]
@@ -93,9 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.StartChangeOfEmployerJourney();
 
-            var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-
-            _employerStepsHelper.UpdateCohortReference(_newcohortReference);
+            _employerStepsHelper.UpdateNewCohortReference();
         }
 
         [Then(@"new employer approves the cohort")]
@@ -239,6 +230,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
-
     }
 }

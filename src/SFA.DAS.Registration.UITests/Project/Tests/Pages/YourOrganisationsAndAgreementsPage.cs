@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -12,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TransferStatus => By.XPath("//p[3]");
         private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink => By.CssSelector("a[href*='/agreements']");
+        private By ViewAgreementLink => By.LinkText("View all agreements");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
@@ -36,8 +37,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
-            formCompletionHelper.ClickLinkByText(ViewAgreementLink, "View all agreements");
-            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
+            Action action = () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink));
+            
+            action.Invoke();
+            
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context, action);
         }
 
         public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()

@@ -40,11 +40,13 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var dataHelper = new DataHelper(_context.ScenarioInfo.Tags);
+            var tags = _context.ScenarioInfo.Tags;
+
+            var dataHelper = new DataHelper(tags);
 
             _objectContext.SetDataHelper(dataHelper);
 
-            var emaildomain = (_context.ScenarioInfo.Tags.Contains("perftestnonlevy") || _context.ScenarioInfo.Tags.Contains("perftestlevy")) ? "perftest.com" : "mailinator.com";
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "perftest.com" : "mailinator.com";
 
             var registrationDatahelpers = new RegistrationDataHelper($"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 
