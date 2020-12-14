@@ -22,7 +22,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
-        private By SearchSectionHeader => By.XPath("(//h1)[2]");
+        private By SearchSectionHeader => By.CssSelector(".searchfield h1");
         private By UlnRadioButton => By.CssSelector("label");
         private By CohortRefRadioButton => By.CssSelector("label");
         private By SearchTextBox => By.Id("search-main");
