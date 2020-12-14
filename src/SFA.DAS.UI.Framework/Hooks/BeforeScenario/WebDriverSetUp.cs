@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +15,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     public class WebDriverSetup
     {
         private readonly string DriverPath;
+
+        private readonly ScenarioContext _context;
 
         private readonly ObjectContext _objectContext;
 
@@ -30,6 +34,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         public WebDriverSetup(ScenarioContext context)
         {
+            _context = context;
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _objectContext = context.Get<ObjectContext>();
             _webDriverSetupHelper = new WebDriverSetupHelper(context);
@@ -52,12 +57,40 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             if (!browser.IsCloudExecution())
             {
-                var wb = webDriver as RemoteWebDriver;
-                var cap = wb.Capabilities;
+                var chromecap = AddCapabilities(webDriver);
 
-                _objectContext.SetBrowserName(cap["browserName"]);
-                _objectContext.SetBrowserVersion(cap["browserVersion"]);
+                if (_frameworkConfig.IsVstsExecution && IsUnsupportedChromeDriverVersion(chromecap))
+                {
+                    _objectContext.SetFireFoxDriverLocation(FindLocalDriverServiceLocation(FirefoxDriverServiceName));
+
+                    _objectContext.SetChromeDriverLocation(FindLocalDriverServiceLocation(ChromeDriverServiceName));
+
+                    _objectContext.SetIeDriverLocation(FindLocalDriverServiceLocation(InternetExplorerDriverServiceName));
+
+                    webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
+
+                    AddCapabilities(webDriver);
+                }
             }
+        }
+
+
+        private Dictionary<string, object> AddCapabilities(IWebDriver webDriver)
+        {
+            var wb = webDriver as RemoteWebDriver;
+            var cap = wb.Capabilities;
+
+            _objectContext.SetBrowserName(cap["browserName"]);
+            _objectContext.SetBrowserVersion(cap["browserVersion"]);
+
+            var chromecap = cap["chrome"] as Dictionary<string, object>;
+
+            foreach (var item in chromecap)
+            {
+                _objectContext.Replace(item.Key, item.Value);
+            }
+
+            return chromecap;
         }
 
         private string FindDriverServiceLocation(string executableName) => _frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
@@ -78,5 +111,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 _ => _driverLocationConfig.ChromeWebDriver,
             };
         }
+
+        private bool IsUnsupportedChromeDriverVersion(Dictionary<string, object> chromecap) => chromecap.GetValue<string>("chromedriverVersion").StartsWith("87.0.4280.20");
     }
 }
