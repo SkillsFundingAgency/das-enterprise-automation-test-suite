@@ -60,7 +60,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         protected string FindLocalDriverServiceLocation(string executableName)
         {
-            FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
+            FileInfo[] file = Directory.GetParent(Directory.GetParent(DriverPath).FullName).GetFiles(executableName, SearchOption.AllDirectories);
 
             return file.Length != 0 ? file.Last().DirectoryName : DriverPath;
         }
