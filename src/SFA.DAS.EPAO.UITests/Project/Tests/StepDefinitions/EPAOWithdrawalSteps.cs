@@ -19,8 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         [When(@"starts the journey to withdraw a standard")]
         [Given(@"starts the journey to withdraw a standard")]
         public void GivenStartsTheJourneyToWithdrawAStandard()
-        {
-            //EPAOWithdrawalHelper _ePAOWithdrawalHelper = new EPAOWithdrawalHelper(_context);
+        {            
             _ePAOWithdrawalHelper.StartOfStandardWithdrawalJourney();
         }
 
@@ -34,6 +33,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         public void ThenApplicationIsSubmittedForReview()
         {
             _ePAOWithdrawalHelper.VerifyStandardSubmitted();
+        }
+
+        [Given(@"user verifies the different statuses of the standard withdrawl application")]
+        public void GivenUserVerifiesTheDifferentStatusesOfTheStandardWithdrawlApplication()
+        {
+            _ePAOWithdrawalHelper.VerifyTheInProgressStatus();
+        }
+
+
+        [Given(@"user verifies view links navigate to the appropriate corresponding page")]
+        public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage()
+        {
+            _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
         }
 
 

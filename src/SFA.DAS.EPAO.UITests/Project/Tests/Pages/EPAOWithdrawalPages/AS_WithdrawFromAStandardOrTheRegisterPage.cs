@@ -12,10 +12,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
-        public AS_SelectWithdrawalApplicationPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+        public AS_YourWithdrawalNotificationsPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
         {
             Continue();
-            return new AS_SelectWithdrawalApplicationPage(_context);
+            return new AS_YourWithdrawalNotificationsPage(_context);
         }
     }
 }
