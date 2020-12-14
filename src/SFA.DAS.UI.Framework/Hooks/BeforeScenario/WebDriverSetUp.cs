@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
@@ -12,17 +11,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            _objectContext.SetFireFoxDriverLocation(FindDriverServiceLocation(FirefoxDriverServiceName));
+            objectContext.SetFireFoxDriverLocation(FindDriverServiceLocation(FirefoxDriverServiceName));
             
-            _objectContext.SetChromeDriverLocation(FindDriverServiceLocation(ChromeDriverServiceName));
+            objectContext.SetChromeDriverLocation(FindDriverServiceLocation(ChromeDriverServiceName));
             
-            _objectContext.SetIeDriverLocation(FindDriverServiceLocation(InternetExplorerDriverServiceName));
+            objectContext.SetIeDriverLocation(FindDriverServiceLocation(InternetExplorerDriverServiceName));
 
-            var browser = _objectContext.GetBrowser();
+            var webDriver = webDriverSetupHelper.SetupWebDriver();
 
-            var webDriver = _webDriverSetupHelper.SetupWebDriver();
-
-            if (!browser.IsCloudExecution())
+            if (!IsCloudExecution())
             {
                 AddCapabilities(webDriver);
             }
