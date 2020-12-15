@@ -53,7 +53,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy Check-TestResults.ps1 to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
      src/**/Check-TestResults.ps1
@@ -61,7 +61,7 @@ steps:
     OverWrite: true
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy UpdateNoofTestWorkers.ps1 to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
      src/**/UpdateNoofTestWorkers.ps1
@@ -69,11 +69,19 @@ steps:
     OverWrite: true
     
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy runsettings to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
       src/**/*.runsettings
     TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
+    OverWrite: true
+    
+- task: CopyFiles@2
+  displayName: 'Copy chromedriver to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+      src/**/chromedriver.exe
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
 - task: ArchiveFiles@2
