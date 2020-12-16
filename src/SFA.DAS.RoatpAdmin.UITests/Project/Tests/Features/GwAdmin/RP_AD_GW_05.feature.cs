@@ -127,6 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as Rejec" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 15
+ testRunner.And("the Gateway Applications Outcome tab is updated with REJECT outcome for this Appl" +
+                        "ication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
