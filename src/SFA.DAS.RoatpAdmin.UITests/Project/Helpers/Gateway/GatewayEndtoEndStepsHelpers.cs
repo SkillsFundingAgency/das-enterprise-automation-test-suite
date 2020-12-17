@@ -183,20 +183,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
-                 .YesSurePassThisApplicationAndGoToGovernance();
+                 .YesSurePassThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
         }
         internal void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .FailThisApplicationAndContinue()
-                 .YesSureFailThisApplicationAndGoToGovernance();
+                 .YesSureFailThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
         }
 
         internal void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .RejectThisApplicationAndContinue()
-                 .YesSureRejectThisApplicationAndGoToGovernance();
+                 .YesSureRejectThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
         }
     }
 }
