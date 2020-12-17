@@ -48,6 +48,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
             _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
         }
 
+        [Then(@"the admin user logs in to approve the standard withdrawal application")]
+        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication()
+        {
+            _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage());
+             
+        }
+
+
 
     }
 }
