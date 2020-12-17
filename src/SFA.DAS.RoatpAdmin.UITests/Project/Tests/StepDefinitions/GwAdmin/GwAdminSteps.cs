@@ -11,6 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         private readonly ScenarioContext _context;
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
+
         
 
         public GwAdminSteps(ScenarioContext context)
@@ -51,5 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as Reject")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsReject() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(_gwApplicationOverviewPage);
 
+        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT) outcome for this Application")]
+        public void ThenTheGatewayApplicationsOutcomeTabIsUpdatedWithPassOutcomeForThisApplication(string expectedStatus) => new GatewayLandingPage(_context).VerifyOutcomeStatus(expectedStatus);
     }
 }
