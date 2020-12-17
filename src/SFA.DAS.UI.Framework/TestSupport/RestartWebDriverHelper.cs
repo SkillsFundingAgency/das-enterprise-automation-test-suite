@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using OpenQA.Selenium;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -26,15 +27,22 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             _browserStackTearDownHelper.UpdateTestName(_objectContext.GetCurrentApplicationName());
 
-            _disposeWebDriverTeardownHelper.DisposeWebDriver();
-
-            var webDriver = _webDriverSetupHelper.SetupWebDriver();
+            var webDriver = RestartWebDriver();
 
             webDriver.Navigate().GoToUrl(url);
 
             _objectContext.SetCurrentApplicationName(applicationName);
+        }
+
+        public IWebDriver RestartWebDriver()
+        {
+            _disposeWebDriverTeardownHelper.DisposeWebDriver();
+
+            var webdriver = _webDriverSetupHelper.SetupWebDriver();
 
             _frameworkHelpersSetup.SetupFrameworkHelpers();
+
+            return webdriver;
         }
     }
 }
