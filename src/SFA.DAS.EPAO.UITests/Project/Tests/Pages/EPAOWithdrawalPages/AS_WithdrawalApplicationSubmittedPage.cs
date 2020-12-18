@@ -8,21 +8,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_WithdrawalApplicationSubmittedPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Stage 2 of your application has been submitted";
+        protected override string PageTitle => "Withdrawal notification submitted";
         private readonly ScenarioContext _context;
         
-        #region Locators
-        private By StandardNameSubmissionVerification => By.LinkText("Brewer");
-        #endregion
         public AS_WithdrawalApplicationSubmittedPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
-
         public void StandardSubmissionVerification()
         {
-            VerifyPage(StandardNameSubmissionVerification, "Brewer");
+            VerifyPage();
         }
     }
 }
