@@ -17,7 +17,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         }
         public void StandardSubmissionVerification()
         {
-            // Verify reference number?
             VerifyPage();
         }
     }

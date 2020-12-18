@@ -79,6 +79,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ReturnToOrganisationApplicationsPage()
                 .ReturnToDashboard();
         }
-
     }
 }
