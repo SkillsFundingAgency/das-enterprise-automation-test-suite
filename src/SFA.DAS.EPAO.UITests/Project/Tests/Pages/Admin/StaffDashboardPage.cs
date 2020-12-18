@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -18,6 +19,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By NewStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#new']");
         private By InProgressStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#in-progress']");
         private By ApprovedStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#approved']");
+
+        private By NewWithdrawalApplications => By.CssSelector("a.govuk-link[href='/WithdrawalApplication#new']");
 
         private By NewFinancialHeathAssesment => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
@@ -95,6 +98,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.ClickElement(InProgressStandardApplication);
             return new StandardApplicationsPage(_context);
+        }
+
+        public AD_WithdrawalApplicationsPage GoToNewWithdrawalApplications()
+        {
+            formCompletionHelper.ClickElement(NewWithdrawalApplications);
+            return new AD_WithdrawalApplicationsPage(_context);
         }
     }
 }

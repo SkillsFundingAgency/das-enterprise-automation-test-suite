@@ -1,6 +1,6 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -53,6 +53,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
         {
             new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
+        }
+
+        public AD_FeedbackSent ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
+        {
+            return staffDashboardPage
+                .GoToNewWithdrawalApplications()
+                .GoToStandardWithdrawlApplicationOverivewPage()
+                .GoToWithdrawalNotificationQuestionsPage()
+                .MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+                .ClickCompleteReview()
+                .ClickApproveApplication();
         }
     }
 }
