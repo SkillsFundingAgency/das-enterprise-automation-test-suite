@@ -4,10 +4,6 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <RootNamespace>SFA.DAS.ConfigurationBuilder</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="87.0.4280.8800" />
-  </ItemGroup>
   
   <ItemGroup>
       <ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />

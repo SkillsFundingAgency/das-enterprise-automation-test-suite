@@ -12,6 +12,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+	<PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
 	<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +21,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="87.0.4280.8800" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
-	<PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
   </ItemGroup>
 
   <ItemGroup>
