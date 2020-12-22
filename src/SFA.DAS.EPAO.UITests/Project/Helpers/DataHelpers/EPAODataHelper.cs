@@ -14,6 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             CurrentYear = DateTime.Now.Year;
             RandomEmail = GetDateTimeValue() + "@mailinator.com";
             RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
+            TodaysDate = DateTime.Now.ToString("dd MMMM yyyy");
         }
 
         public int CurrentDay { get; }
@@ -24,6 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string TownName => "Coventry";
         public string CountyName => "Warwick";
         public string PostCode => "CV1 2WT";
+        public string TodaysDate { get; }
 
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 

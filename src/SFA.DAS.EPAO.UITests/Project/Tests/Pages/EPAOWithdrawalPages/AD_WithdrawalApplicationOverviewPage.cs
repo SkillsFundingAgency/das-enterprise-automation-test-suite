@@ -1,17 +1,18 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
-    public class AD_StandardWithdrawalApplicationOverviewPage : EPAO_BasePage
+    public class AD_WithdrawalApplicationOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Application overview";
 
         private readonly ScenarioContext _context;
 
         private By CompleteReviewButton => By.CssSelector("button.govuk-button");
-
-        public AD_StandardWithdrawalApplicationOverviewPage(ScenarioContext context) : base(context)
+        private By Tag => By.CssSelector("div.govuk-tag");
+        public AD_WithdrawalApplicationOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -26,6 +27,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.ClickLinkByText("Return to withdrawal applications");
             return new AD_WithdrawalApplicationsPage(_context);
+        }
+
+        public AD_WithdrawalApplicationOverviewPage VerifyAnswerUpdatedTag()
+        {
+            Assert.AreEqual("ANSWER UPDATED", pageInteractionHelper.GetText(Tag));
+            return this;
         }
 
         public AD_CompleteReview ClickCompleteReview()

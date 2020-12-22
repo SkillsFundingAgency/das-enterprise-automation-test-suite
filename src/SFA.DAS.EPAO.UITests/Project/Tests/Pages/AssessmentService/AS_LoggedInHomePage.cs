@@ -73,5 +73,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.Click(WithdrawFromAStandardLink);
             return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
         }
+
+        public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromTheRegisterLink()
+        {
+            formCompletionHelper.Click(WithdrawFromTheRegisterLink);
+            return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
+        }
     }
 }

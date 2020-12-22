@@ -12,6 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         #region Locators
         private By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal notification')]");
         private By Status(string status) => By.XPath($"//td[contains(text(),'{status}')]");
+        private By ViewRegisterWithdrawalFeedbackLink => By.XPath("//tr/td[contains(text(),'Register')]/../td[contains(text(), 'Not applicable')]/../td[contains(text(),'Feedback added')]/../td/a");
         #endregion
 
         public AS_YourWithdrawalNotificationsPage(ScenarioContext context) : base(context)
@@ -34,6 +35,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return new AS_ApplicationOverviewPage(_context);
         }
 
+        public AS_FeedbackOnYourWithdrawalNotificationStartPage ClickViewOnRegisterWithdrawalWithFeedbackAdded()
+        {
+            formCompletionHelper.Click(ViewRegisterWithdrawalFeedbackLink);
+            return new AS_FeedbackOnYourWithdrawalNotificationStartPage(_context);
+        }
 
     }
 }
