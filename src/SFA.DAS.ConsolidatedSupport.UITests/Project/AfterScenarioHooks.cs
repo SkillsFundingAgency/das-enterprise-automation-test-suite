@@ -23,17 +23,21 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 
             _tryCatch.AfterScenarioException(() => 
             {
-                var userpage = NavigateToAdminPage().NavigateToUserPage();
+                var adminPage = NavigateToAdminPage();
 
-                userpage.DeleteEntity();
+                adminPage.NavigateToUserPage().DeleteEntity();
 
-                var orgCount = NavigateToAdminPage().NoOfOrganisation();
+                adminPage = NavigateToAdminPage();
+
+                var orgCount = adminPage.NoOfOrganisation();
 
                 for (int i = 0; i < orgCount; i++)
                 {
-                    var orgpage = NavigateToAdminPage().NavigateToOrgPage();
+                    var orgpage = adminPage.NavigateToOrgPage();
 
                     orgpage.DeleteEntity();
+
+                    adminPage = NavigateToAdminPage();
                 }
             });
         }
