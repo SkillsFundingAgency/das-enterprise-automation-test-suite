@@ -9,6 +9,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle => dataHelper.NewOrgName;
 
-        public OrgPage(ScenarioContext context) : base(context) => VerifyPage();
+        public OrgPage(ScenarioContext context) : base(context) => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
     }
 }
