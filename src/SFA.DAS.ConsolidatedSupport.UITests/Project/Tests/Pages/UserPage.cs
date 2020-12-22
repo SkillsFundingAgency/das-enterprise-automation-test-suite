@@ -1,21 +1,17 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class UserPage : ConsolidatedSupportBasePage
+    public class UserPage : UserOrgPage
     {
         protected override By PageHeader => By.CssSelector("[data-test-id='tabs-nav-item-users']");
 
         protected override string PageTitle => dataHelper.NewUserFullName;
-
-        private readonly ScenarioContext _context;
 
         private By AllRecordsFields => By.CssSelector(".property_box > .ember-view .property");
 
@@ -37,14 +33,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By OrganisationButtons => By.CssSelector(".modal-form-actions .btn");
 
-        private By OptionsButton => By.CssSelector(".ember-view .object_options > .object_options_btn");
-
-        private By ModelButtons => By.CssSelector(".modal-footer .btn");
-
         public UserPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             VerifyPage(() =>
             {
                 NavigateToUser();
@@ -52,20 +42,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 return pageInteractionHelper.FindElements(PageHeader);
 
             }, PageTitle);
-        }
-
-        public HomePage DeleteEntity(bool IsOrganisation = false)
-        {
-            return InvokeAction(() => 
-            {
-                var element = pageInteractionHelper.FindElements(OptionsButton).First(x => x.Displayed && x.Enabled);
-
-                formCompletionHelper.ClickElement(element);
-
-                formCompletionHelper.ClickLinkByText("Delete");
-
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(ModelButtons).Single(x => x.Text == "OK"));
-            }, IsOrganisation);
         }
 
         public void CreateOrganisation()
@@ -138,16 +114,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             }, IsOrganisation);
         }
 
-        public new HomePage CloseAllTickets()
-        {
-            base.CloseAllTickets();
-            return new HomePage(_context, true);
-        }
-
-        private void NavigateToUser() => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, $"agent/#/users/{objectContext.GetUserId()}/tickets");
-
-        private void NavigateToOrganisation() => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, $"agent/#/users/{objectContext.GetUserId()}/organization/tickets");
-
         private List<IWebElement> FindElements(string question)
         {
             VerifyPage(() => pageInteractionHelper.FindElements(CustomerRecordFields), question);
@@ -160,14 +126,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             var labelElements = element.FindElements(UserLabel).ToList();
 
             return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question));
-        }
-
-        private HomePage InvokeAction(Action action, bool IsOrganisation = false)
-        {
-            if (IsOrganisation) { NavigateToOrganisation(); }
-            else { NavigateToUser(); }
-            action.Invoke();
-            return CloseAllTickets();
         }
 
         private void CreateOrganisation(string property, string value)

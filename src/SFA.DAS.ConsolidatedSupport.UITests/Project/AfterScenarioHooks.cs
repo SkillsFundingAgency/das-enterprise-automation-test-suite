@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -20,15 +19,22 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         [AfterScenario(Order = 18)]
         public void DeleteEntities()
         {
+            AdminPage NavigateToAdminPage() => new HomePage(_context, true).NavigateToAdminPage();
+
             _tryCatch.AfterScenarioException(() => 
             {
-                var homePage = new HomePage(_context, true);
-
-                var userpage = homePage.NavigateToAdminPage().NavigateToUserPage();
-
-                userpage.DeleteEntity(true);
+                var userpage = NavigateToAdminPage().NavigateToUserPage();
 
                 userpage.DeleteEntity();
+
+                var orgCount = NavigateToAdminPage().NoOfOrganisation();
+
+                for (int i = 0; i < orgCount; i++)
+                {
+                    var orgpage = NavigateToAdminPage().NavigateToOrgPage();
+
+                    orgpage.DeleteEntity();
+                }
             });
         }
     }
