@@ -47,6 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalApplicationOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
+            // This is currently broken 
             formCompletionHelper.ClickElement(AmmendedRegisterWithdrawalLink);
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }

@@ -147,14 +147,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
                                .ClickContinueButton()
                                .ClickSupportingCurrentLearnersFeedback()
-                               .UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess();
+                               .UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
+                               .SubmitUpdatedAnswers();
         }
 
         public AD_YouveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
         {
             return staffDashboardPage
                 .GoToInProgressWithdrawalApplications()
-                //.StoreCurrentTabValues()
+                .StoreCurrentTabValues()
                 .GoToAmmendedWithdrawalApplicationOverviewPage()
                 .VerifyAnswerUpdatedTag()
                 .GoToWithdrawalNotificationQuestionsPage()

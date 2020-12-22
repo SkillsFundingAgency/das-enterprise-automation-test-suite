@@ -52,6 +52,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             Continue();
         }
 
+        public void SubmitUpdatedAnswers()
+        {
+            Continue();
+        }
+
         public void AcceptAndSubmitWithHowWillYouSuportQuestion()
         {
             VerifyPage(TotalQuestionsWithAdditionalHowWillYouSupportLearnersCompletedVerification, "5 of 5 questions completed");

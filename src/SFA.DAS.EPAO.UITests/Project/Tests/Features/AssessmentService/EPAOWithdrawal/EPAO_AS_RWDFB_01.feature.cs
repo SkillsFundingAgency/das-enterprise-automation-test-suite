@@ -123,19 +123,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.And("the admin user logs in and adds feedback to an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
- testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.And("verify application has moved from new to feedback tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 13
+ testRunner.And("the withdrawal user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
  testRunner.And("the withdrawal user reviews and ammends their application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
- testRunner.And("the admin users logs in and reviews the ammended withdrawal notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.Given("the admin user returns and reviews the ammended withdrawal notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 16
  testRunner.Then("verify withdrawal from register approved and return to withdrawal applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 18
+#line 17
  testRunner.Then("Verify the application is moved to Approved tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
