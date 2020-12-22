@@ -25,7 +25,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
             {
                 var adminPage = NavigateToAdminPage();
 
-                adminPage.NavigateToUserPage().DeleteEntity();
+                adminPage.NavigateToUserPage().DeleteUser();
 
                 adminPage = NavigateToAdminPage();
 
@@ -35,7 +35,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
                 {
                     var orgpage = adminPage.NavigateToOrgPage();
 
-                    orgpage.DeleteEntity();
+                    orgpage.DeleteOrg();
 
                     adminPage = NavigateToAdminPage();
                 }

@@ -19,19 +19,14 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             _context = context;
         }
 
-        public HomePage DeleteEntity()
+        public HomePage DeleteUser()
         {
-            return InvokeAction(() =>
-            {
-                var element = pageInteractionHelper.FindElements(OptionsButton).First(x => x.Displayed && x.Enabled);
+            NavigateToUser();
 
-                formCompletionHelper.ClickElement(element);
-
-                formCompletionHelper.ClickLinkByText("Delete");
-
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(ModelButtons).Single(x => x.Text == "OK"));
-            });
+            return DeleteEntity();
         }
+
+        public HomePage DeleteOrg() => DeleteEntity();
 
         protected HomePage InvokeAction(Action action, bool IsOrganisation = false)
         {
@@ -45,10 +40,23 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected void NavigateToOrganisation() => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, $"agent/#/users/{objectContext.GetUserId()}/organization/tickets");
 
-        public new HomePage CloseAllTickets()
+        private new HomePage CloseAllTickets()
         {
             base.CloseAllTickets();
             return new HomePage(_context, true);
+        }
+
+        private HomePage DeleteEntity()
+        {
+            var element = pageInteractionHelper.FindElements(OptionsButton).First(x => x.Displayed && x.Enabled);
+
+            formCompletionHelper.ClickElement(element);
+
+            formCompletionHelper.ClickLinkByText("Delete");
+
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(ModelButtons).Single(x => x.Text == "OK"));
+
+            return CloseAllTickets();
         }
     }
 }
