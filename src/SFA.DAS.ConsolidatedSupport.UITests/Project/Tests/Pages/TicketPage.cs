@@ -32,8 +32,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
 
-        private By TicketFormsLabel => By.CssSelector("[data-garden-id='forms.text_label']");
-
         private By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
 
         private By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
@@ -93,7 +91,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
             for (int i = 0; i < 20; i++)
             {
-                var element = pageInteractionHelper.FindElements(TicketFormsLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
+                var element = pageInteractionHelper.FindElements(TicketDropdownLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
 
                 element.Click();
 
