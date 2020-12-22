@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By NewRegisterWithdrawalApplication => By.XPath("//td[contains(text(),'Withdrawal from register')]/preceding-sibling::td[1]/a");
         private By ApprovedRegisterWithdrawalDetails => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[1]/a[contains(text(), 'Ingram Limited')]/../../td[contains(text(), 'Withdrawal from register')]");
 
-        private By AmmendedRegisterWithdrawalLink => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[contains(text(), 'Resubmitted')]/../td[contains(text(), 'Withdrawal from register')]/../td/a");
+        private By AmmendedRegisterWithdrawalLink => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[contains(text(), 'Feedback received')]/../td[contains(text(), 'Withdrawal from register')]/../td/a");
         private By NewTab => By.Id("tab_new");
         private By InProgressTab => By.Id("tab_in-progress");
         private By FeedbackTab => By.Id("tab_feedback");

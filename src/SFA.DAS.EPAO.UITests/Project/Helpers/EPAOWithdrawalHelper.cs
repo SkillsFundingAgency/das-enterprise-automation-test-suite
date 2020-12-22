@@ -134,7 +134,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void VerifyApplicationIsMovedToApprovedTab()
         {
-            new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationHasMovedFromNewTab()
+            new AD_WithdrawalApplicationsPage(_context)
                 .VerifyAnApplicationAddedToApprovedTab()
                 .VerifyApprovedTabContainsRegisterWithdrawal();
         }
@@ -154,7 +154,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public AD_YouveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
         {
             return staffDashboardPage
-                .GoToInProgressWithdrawalApplications()
+                .GoToFeedbackWithdrawalApplications()
                 .StoreCurrentTabValues()
                 .GoToAmmendedWithdrawalApplicationOverviewPage()
                 .VerifyAnswerUpdatedTag()
