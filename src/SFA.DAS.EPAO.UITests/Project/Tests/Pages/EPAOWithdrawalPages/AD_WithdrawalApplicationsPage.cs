@@ -10,11 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
 
-        private By NewWithdrawalApplication => By.XPath("//td[contains(text(),'Brewer (ST0580)')]/preceding-sibling::td[1]/a");
-        private By NewRegisterWithdrawalApplication => By.XPath("//td[contains(text(),'Withdrawal from register')]/preceding-sibling::td[1]/a");
         private By ApprovedRegisterWithdrawalDetails => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[1]/a[contains(text(), 'Ingram Limited')]/../../td[contains(text(), 'Withdrawal from register')]");
-
-        private By AmmendedRegisterWithdrawalLink => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[contains(text(), 'Feedback received')]/../td[contains(text(), 'Withdrawal from register')]/../td/a");
         private By NewTab => By.Id("tab_new");
         private By InProgressTab => By.Id("tab_in-progress");
         private By FeedbackTab => By.Id("tab_feedback");
@@ -22,10 +18,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
 
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => _context = context;
-    
+
         public AD_WithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
-            formCompletionHelper.ClickElement(NewWithdrawalApplication);
+            formCompletionHelper.ClickElement(NewTab);
+            tableRowHelper.SelectRowFromTable("Brewer (ST0580)", "Withdrawal from register");
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
@@ -41,13 +38,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalApplicationOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
         {
-            formCompletionHelper.ClickElement(NewRegisterWithdrawalApplication);
+            formCompletionHelper.ClickElement(NewTab);
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register");
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
         public AD_WithdrawalApplicationOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
-            formCompletionHelper.ClickElement(AmmendedRegisterWithdrawalLink);
+            formCompletionHelper.ClickElement(FeedbackTab);
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received");
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
@@ -71,6 +70,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public void VerifyApprovedTabContainsRegisterWithdrawal()
         {
+            formCompletionHelper.ClickElement(ApprovedTab);
             Assert.IsNotNull(pageInteractionHelper.FindElements(ApprovedRegisterWithdrawalDetails));
         }
     }

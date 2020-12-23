@@ -11,14 +11,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By DayText => By.XPath("//label[contains(text(), 'Day')]/following-sibling::input");
         private By MonthText => By.XPath("//label[contains(text(), 'Month')]/following-sibling::input");
         private By YearText => By.XPath("//label[contains(text(), 'Year')]/following-sibling::input");
+
+        private By PageTitleLocator => By.XPath($"//label[contains(text(), '{PageTitle}')]");
+
         #endregion
         public AS_WhenDoYouWantToWithdrawFromTheRegisterPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            //VerifyPage();
         }
         public AS_WithdrawalNotificationQuestionsPage EnterDateToWithdraw()
         {
+            VerifyPage(PageTitleLocator, PageTitle);
             formCompletionHelper.EnterText(DayText, "01");
             formCompletionHelper.EnterText(MonthText, "05");
             formCompletionHelper.EnterText(YearText, "2021");

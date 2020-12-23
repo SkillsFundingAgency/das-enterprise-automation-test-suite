@@ -12,7 +12,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
         #region Locators
-        //private By AssesmentPlanHasChangedTextArea => By.XPath("(//textarea[@class='govuk-textarea'])[0]");
         private By AssesmentPlanHasChangedTextArea => By.Id("WR-01.1");
         #endregion
         public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(ScenarioContext context) : base(context)
