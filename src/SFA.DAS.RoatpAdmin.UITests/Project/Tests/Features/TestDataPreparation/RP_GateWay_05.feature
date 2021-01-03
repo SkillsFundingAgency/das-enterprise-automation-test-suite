@@ -1,0 +1,10 @@
+﻿Feature: RP_Gateway_05
+
+TestDataPreparation for  RP_AD_GW_05_EmployerRoute_Charity_Reject
+
+@roatpadmintestdataprep
+@roatpadmingwtestdataprep
+@donottakescreenshot
+@rpadgw05
+Scenario: RP_Gateway_05_TestDataPreparation-For_RP_AD_GW_05_EmployerRoute_Charity_Reject
+	Given the provider completes the Apply Journey as Employer Provider Route

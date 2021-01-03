@@ -18,5 +18,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyRegisterofendpointassessmentorganisations_Section3(StatusHelper.StatusPass);
         }
+        internal GWApplicationOverviewPage FailRegisterChecks_RegisterOfEndPointAssessmentOrganisations(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section3_RegisterOfEPAO()
+            .SelectFailAndContinue()
+            .VerifyRegisterofendpointassessmentorganisations_Section3(StatusHelper.StatusFail);
+        }
+        internal GWApplicationOverviewPage FailRegisterChecks_ROATP(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section3_ROATP()
+            .SelectFailAndContinue()
+            .VerifyRoATP_Section3(StatusHelper.StatusFail);
+        }
     }
 }

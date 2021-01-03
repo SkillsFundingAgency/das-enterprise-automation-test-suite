@@ -64,6 +64,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
+        internal GWApplicationOverviewPage Fail_RegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_ROATP(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
 
         internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
@@ -132,7 +138,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage Fail_PeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2_Fail(gwApplicationOverviewPage);
@@ -147,6 +153,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
             CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailRegisterChecks_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
+            Fail_RegisterChecks_Section3(gwApplicationOverviewPage);
             CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(gwApplicationOverviewPage);
             CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
@@ -167,13 +183,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
-                 .YesSurePassThisApplicationAndGoToGovernance();
+                 .YesSurePassThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
         }
         internal void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .FailThisApplicationAndContinue()
-                 .YesSureFailThisApplicationAndGoToGovernance();
+                 .YesSureFailThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
+        }
+
+        internal void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
+                 .RejectThisApplicationAndContinue()
+                 .YesSureRejectThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
         }
     }
 }

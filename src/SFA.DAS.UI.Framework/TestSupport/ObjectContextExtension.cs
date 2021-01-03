@@ -11,14 +11,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
         private const string WebDriverUrl = "webdriverurl";
         private const string CurrentApplicationName = "currentapplicationname";
+        private const string ChromedriverVersion = "chromedriverVersion";
         #endregion
 
         public static void SetCurrentApplicationName(this ObjectContext objectContext, string value) => objectContext.Replace(CurrentApplicationName, value);
         public static string GetCurrentApplicationName(this ObjectContext objectContext) => objectContext.Get(CurrentApplicationName);
         public static string GetBrowser(this ObjectContext objectContext) => objectContext.Get(BrowserKey);
         public static void SetBrowser(this ObjectContext objectContext, string browser) => objectContext.Set(BrowserKey, browser);
-        public static void SetBrowserName(this ObjectContext objectContext, object value) => objectContext.Set(BrowserNameKey, value);
-        public static void SetBrowserVersion(this ObjectContext objectContext, object value) => objectContext.Set(BrowserVersionKey, value);
+        public static void SetBrowserName(this ObjectContext objectContext, object value) => objectContext.Replace(BrowserNameKey, value);
+        public static void SetBrowserVersion(this ObjectContext objectContext, object value) => objectContext.Replace(BrowserVersionKey, value);
+        internal static string GetChromedriverVersion(this ObjectContext objectContext) => objectContext.Get(ChromedriverVersion);
         internal static string GetUrl(this ObjectContext objectContext) => objectContext.Get(WebDriverUrl);
         internal static void SetUrl(this ObjectContext objectContext, string value) => objectContext.Set(WebDriverUrl, value);
         internal static void SetBrowserstackResponse(this ObjectContext objectContext) => objectContext.Set(BrowserstackFailedToUpdateTestResult, true);
