@@ -1,5 +1,7 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
@@ -29,6 +31,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly MultipleAccountUser _multipleAccountUser;
         private ViewApplicationsShutterPage _viewApplicationsShutterPage;
+        private string email;
 
         public EISteps(ScenarioContext context)
         {
@@ -75,13 +78,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
-            var email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _objectContext.Get("registeredemailaddress");
-
-            _qualificationQuestionPage
-                .SelectYesAndContinueForEligibleApprenticesScenario()
-                .SubmitApprentices()
-                .ConfirmApprentices()
-                .SubmitDeclaration()
+            SubmitEiApplicationWithOutBankDetails()
                 .ChooseYesAndContinue()
                 .ContinueToAddBankDetails()
                 .ContinueToOrgDetailsPage()
@@ -92,6 +89,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .SubmitSummaryPage()
                 .ReturnToEasPage()
                 .ReturnToAccountHomePage();
+        }
+
+        [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationWithOutBankDetails();
+
+        [Then(@"Earnings data is populated for the Employer")]
+        public void ThenEarningsDataIsPopulatedForTheEmployer()
+        {
+            var startMonth = _objectContext.GetEIStartMonth();
+            var startYear = _objectContext.GetEIStartYear();
+            var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2020();
+            _context.Get<EISqlHelper>().VerifyEarningData(email, startMonth, startYear, ageCategory);
         }
 
         [Then(@"the Employer is able to view EI applications")]
@@ -164,6 +173,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             _viewApplicationsShutterPage.ClickOnApplyForThePaymentLink();
             new HomePage(_context, true);
+        }
+
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationWithOutBankDetails()
+        {
+            email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _objectContext.Get("registeredemailaddress");
+
+            return _qualificationQuestionPage
+                .SelectYesAndContinueForEligibleApprenticesScenario()
+                .SubmitApprentices()
+                .ConfirmApprentices()
+                .SubmitDeclaration();
         }
     }
 }
