@@ -19,6 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+        private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         protected By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
@@ -40,7 +41,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             EnterFailInternalComments();
             Continue();
         }
-
+        public void ClickReturnToStaffDashBoard()
+        {
+            formCompletionHelper.ClickElement(ReturnToDashBoard);
+        }
         public void SelectClarificationAndContinueToSubSection()
         {
             SelectRadioOptionByText("Ask for clarification");
