@@ -1,21 +1,20 @@
 ﻿using System;
 using NUnit.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
     public class EISqlHelper : SqlDbHelper
     {
         int actualAmount, expectedAmount, actualPeriodNumber, expectedPeriodNumber, actualPaymentYear, expectedPaymentYear, startMonth, startYear;
-        string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType;
+        string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType, query;
 
         public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
 
         public void DeleteIncentiveApplication(string accountid)
         {
             var nullValue = "NULL";
-            var query =
+            query =
                 $"DELETE FROM[incentives].[Payment] WHERE AccountId = {accountid};" +
                 $"DELETE FROM[incentives].[PendingPaymentValidationResult] WHERE PendingPaymentId in (SELECT Id FROM[incentives].[PendingPayment] where AccountId = {accountid});" +
                 $"DELETE FROM [incentives].[PendingPayment] WHERE AccountId = {accountid};" +
@@ -29,38 +28,42 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)
         {
             this.startMonth = startMonth; this.startYear = startYear;
-            var accountId = ExecuteSqlCommand($"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'");
+            query = $"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
+            var accountId = FetchIntegerQueryData(0);
 
             expectedEarningType = "FirstPayment";
-            CalculateExpectedData(ageCategory, expectedEarningType);
-            FetchActualDataFromPaymentsTable(accountId, expectedEarningType);
-            AssertData();
+            FetchActualQueryDataFromPaymentsTable(accountId, expectedEarningType);
+            CalculateExpectedQueryData(ageCategory, expectedEarningType);
+            AssertQueryData();
 
             expectedEarningType = "SecondPayment";
-            CalculateExpectedData(ageCategory, expectedEarningType);
-            FetchActualDataFromPaymentsTable(accountId, expectedEarningType);
-            AssertData();
+            FetchActualQueryDataFromPaymentsTable(accountId, expectedEarningType);
+            CalculateExpectedQueryData(ageCategory, expectedEarningType);
+            AssertQueryData();
         }
 
-        private void FetchActualDataFromPaymentsTable(int accountId, string expectedEarningType)
+        private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";
-            List<object[]> pendingPaymentData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE AccountId = {accountId} order by CalculatedDate {searchOrder}", connectionString);
-            actualDueDate = pendingPaymentData[0][0].ToString();
-            actualAmount = Convert.ToInt32(pendingPaymentData[0][1]);
-            actualPeriodNumber = Convert.ToInt32(pendingPaymentData[0][2]);
-            actualPaymentYear = Convert.ToInt32(pendingPaymentData[0][3]);
-            actualEarningType = pendingPaymentData[0][4].ToString();
+            query = $"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE AccountId = {accountId} order by CalculatedDate {searchOrder}";
+            actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+            actualAmount = FetchIntegerQueryData(1);
+            actualPeriodNumber = FetchIntegerQueryData(2);
+            actualPaymentYear = FetchIntegerQueryData(3);
+            actualEarningType = FetchStringQueryData(4);
         }
 
-        private void CalculateExpectedData(string ageCategory, string expectedEarningType)
+        private void CalculateExpectedQueryData(string ageCategory, string expectedEarningType)
         {
             expectedDueDate = CalculatedDueDate(expectedEarningType);
             expectedAmount = ageCategory.Equals("Aged16to24") ? 1000 : 750;
-            var id = ExecuteSqlCommand($"SELECT TOP 1 Id FROM [incentives].[CollectionCalendar] WHERE CensusDate >= {actualDueDate} order by Id asc");
-            List<object[]> collectionCalendarData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($" SELECT PeriodNumber, AcademicYear FROM [incentives].[CollectionCalendar] where Id = {id}", connectionString);
-            expectedPeriodNumber = Convert.ToInt32(collectionCalendarData[0][0]);
-            expectedPaymentYear = Convert.ToInt32(collectionCalendarData[0][1]);
+
+            query = $"SELECT TOP 1 Id FROM [incentives].[CollectionCalendar] WHERE CensusDate >= '{actualDueDate}' order by Id asc";
+            var id = FetchIntegerQueryData(0);
+
+            query = $" SELECT PeriodNumber, AcademicYear FROM [incentives].[CollectionCalendar] where Id = {id}";
+            expectedPeriodNumber = FetchIntegerQueryData(0);
+            expectedPaymentYear = FetchIntegerQueryData(1);
         }
 
         private string CalculatedDueDate(string expectedEarningType)
@@ -69,10 +72,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             DateTime expectedDueDate;
             expectedDueDate = new DateTime(startYear, startMonth, monthDays);
             expectedDueDate = expectedEarningType.Equals("FirstPayment") ? expectedDueDate.AddDays(89) : expectedDueDate.AddDays(364);
-            return expectedDueDate.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+            return expectedDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
-        private void AssertData()
+        private void AssertQueryData()
         {
             Assert.AreEqual(expectedDueDate, actualDueDate, $"DueDate AssertionFailed. Expected: '{expectedDueDate}' Found: '{actualDueDate}'");
             Assert.AreEqual(expectedAmount, actualAmount, $"AmountDue AssertionFailed. Expected: '{expectedAmount}' Found: '{actualAmount}'");
@@ -80,5 +83,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             Assert.AreEqual(expectedPaymentYear, actualPaymentYear, $"PaymentYear AssertionFailed. Expected: '{expectedPaymentYear}' Found: '{actualPaymentYear}'");
             Assert.AreEqual(expectedEarningType, actualEarningType, $"EarningType AssertionFailed. Expected: '{expectedEarningType}' Found: '{actualEarningType}'");
         }
+
+        private int FetchIntegerQueryData(int columnIndex) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex]);
+
+        private string FetchStringQueryData(int columnIndex) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex].ToString();
     }
 }
