@@ -44,7 +44,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By TicketInternalNote => By.CssSelector(".track-id-privateComment");
 
-        public TicketPage(ScenarioContext context) : base(context)
+        public TicketPage(ScenarioContext context) : base(context, false)
         {
             VerifyPage();
             VerifyPage(TicketOrganisationName, dataHelper.OrganisationName);
