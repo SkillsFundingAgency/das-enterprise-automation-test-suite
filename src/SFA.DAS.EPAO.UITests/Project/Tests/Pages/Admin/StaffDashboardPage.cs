@@ -109,12 +109,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new AD_WithdrawalApplicationsPage(_context);
         }
 
-        //public AD_WithdrawalApplicationsPage GoToInProgressWithdrawalApplications()
-        //{
-        //    formCompletionHelper.ClickElement(InProgressWithdrawalApplications);
-        //    return new AD_WithdrawalApplicationsPage(_context);
-        //}
-
         public AD_WithdrawalApplicationsPage GoToFeedbackWithdrawalApplications()
         {
             formCompletionHelper.ClickElement(FeedbackWithdrawalApplications);
