@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
-    internal static class ObjectContextExtension
+    public static class ObjectContextExtension
     {
         #region Constants
         private const string NoOfApprentices = "noofapprentices";
@@ -53,11 +53,11 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
 
-        internal static string GetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2020);
+        public static string GetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2020);
 
-        internal static int GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get<int>(EIStartMonth);
+        public static int GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get<int>(EIStartMonth);
 
-        internal static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
+        public static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
 
         internal static bool IsEIJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EIJourney);
     }
