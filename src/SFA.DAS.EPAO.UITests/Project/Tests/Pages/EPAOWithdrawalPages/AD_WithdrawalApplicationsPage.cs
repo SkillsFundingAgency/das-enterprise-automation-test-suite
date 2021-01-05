@@ -10,7 +10,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
 
-        private string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
+        private readonly string NewTableSelector = "#new-organisation-applications > table:first-of-type";
+
+        private readonly string FeedbackTableSelector = "#feedback-organisation-applications > table:first-of-type";
+
+        private readonly string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
         private By NewTab => By.Id("tab_new");
         private By InProgressTab => By.Id("tab_in-progress");
         private By FeedbackTab => By.Id("tab_feedback");
@@ -21,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AD_WithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
-            tableRowHelper.SelectRowFromTable("Brewer (ST0580)", "Withdrawal from register");
+            tableRowHelper.SelectRowFromTable("Brewer (ST0580)", "Withdrawal from register", NewTableSelector);
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
@@ -38,14 +42,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AD_WithdrawalApplicationOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register");
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
         public AD_WithdrawalApplicationOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received");
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 
