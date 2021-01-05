@@ -78,7 +78,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
         }
 
-        public AD_YouveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
+        public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
         {
             return staffDashboardPage
                 .GoToNewWithdrawalApplications()
@@ -89,7 +89,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickApproveApplication();
         }
 
-        public AD_YouveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+        public AD_YouhaveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
         {
             return staffDashboardPage
                 .GoToNewWithdrawalApplications()
@@ -117,7 +117,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         }
         public void ReturnToWithdrawalApplicationsPage()
         {
-            new AD_YouveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
+            new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
         }
 
         public void VerifyApplicationMovedFromNewToFeedback()
@@ -151,7 +151,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                .SubmitUpdatedAnswers();
         }
 
-        public AD_YouveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+        public AD_YouhaveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
         {
             return staffDashboardPage
                 .GoToFeedbackWithdrawalApplications()
@@ -166,11 +166,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AD_WithdrawalApplicationsPage VerifyWithdrawalFromRegisterApproved()
         {
-            var approvedPage = new AD_YouveApprovedThisWithdrawalNotification(_context);
+            var approvedPage = new AD_YouhaveApprovedThisWithdrawalNotification(_context);
 
             return approvedPage.VerifyRegisterWithdrawalBodyText()
                 .ReturnToWithdrawalApplications();
         }
-
     }
 }

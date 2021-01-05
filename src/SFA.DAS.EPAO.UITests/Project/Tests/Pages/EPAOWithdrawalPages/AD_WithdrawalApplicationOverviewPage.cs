@@ -12,11 +12,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private By CompleteReviewButton => By.CssSelector("button.govuk-button");
         private By Tag => By.CssSelector("div.govuk-tag");
+
         public AD_WithdrawalApplicationOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
         public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
         {
             formCompletionHelper.ClickLinkByText("Withdrawal notification questions");

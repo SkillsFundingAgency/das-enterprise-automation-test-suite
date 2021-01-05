@@ -19,10 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
-        public AD_YouveApprovedThisWithdrawalNotification ClickApproveApplication()
+        public AD_YouhaveApprovedThisWithdrawalNotification ClickApproveApplication()
         {
             formCompletionHelper.Click(ApproveApplicationButton);
-            return new AD_YouveApprovedThisWithdrawalNotification(_context);
+            return new AD_YouhaveApprovedThisWithdrawalNotification(_context);
         }
 
         public AD_FeedbackSent ClickAddFeedback()

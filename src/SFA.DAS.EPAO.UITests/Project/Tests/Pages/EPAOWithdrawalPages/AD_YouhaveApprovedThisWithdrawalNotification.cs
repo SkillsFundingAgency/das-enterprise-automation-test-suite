@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
-    public class AD_YouveApprovedThisWithdrawalNotification : EPAO_BasePage
+    public class AD_YouhaveApprovedThisWithdrawalNotification : EPAO_BasePage
     {
         protected override string PageTitle => "You've approved this withdrawal notification";
        
@@ -17,13 +17,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private By WithdrawlFromRegisterApprovedMessage => By.XPath("//p[contains(text(), \"You've approved this organisation to withdraw from the register of end-point assessment organisations.\")]");
         
-        public AD_YouveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context)
+        public AD_YouhaveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public AD_YouveApprovedThisWithdrawalNotification VerifyRegisterWithdrawalBodyText()
+        public AD_YouhaveApprovedThisWithdrawalNotification VerifyRegisterWithdrawalBodyText()
         {
             Assert.IsNotNull(pageInteractionHelper.FindElement(WithdrawlFromRegisterApprovedMessage));
             return this;
