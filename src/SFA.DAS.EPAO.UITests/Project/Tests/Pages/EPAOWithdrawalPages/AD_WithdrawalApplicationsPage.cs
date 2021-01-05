@@ -10,12 +10,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
 
-        private By ApprovedRegisterWithdrawalDetails => By.XPath($"//td[contains(text(),'{ePAOAdminDataHelper.TodaysDate}')]/../td[1]/a[contains(text(), 'Ingram Limited')]/../../td[contains(text(), 'Withdrawal from register')]");
+        private string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
         private By NewTab => By.Id("tab_new");
         private By InProgressTab => By.Id("tab_in-progress");
         private By FeedbackTab => By.Id("tab_feedback");
         private By ApprovedTab => By.Id("tab_approved");
-
 
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -70,8 +69,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public void VerifyApprovedTabContainsRegisterWithdrawal()
         {
-            formCompletionHelper.ClickElement(ApprovedTab);
-            Assert.IsNotNull(pageInteractionHelper.FindElements(ApprovedRegisterWithdrawalDetails));
+            var approvedTableLinkElement = tableRowHelper.FindElementInTable("Ingram Limited", "Withdrawal from register", ApprovedTableSelector);
+            Assert.IsNotNull(approvedTableLinkElement);
         }
     }
 }
