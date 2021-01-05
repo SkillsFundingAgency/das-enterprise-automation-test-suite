@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Linq;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
@@ -68,10 +67,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string StreetAddress3 => "Warkwickshire";
 
         public DateTime FinancialAssesmentDueDate { get; }
-
-        public int ExtractNumberFromTab(string tabValue)
-        {
-            return int.Parse(string.Join("", tabValue.ToCharArray().Where(Char.IsDigit)));
-        }
     }
 }

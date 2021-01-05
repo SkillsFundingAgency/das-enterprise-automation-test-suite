@@ -28,10 +28,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalApplicationsPage StoreCurrentTabValues()
         {
-            _context["NewApplicationsCountBeforeApproval"] = ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(NewTab));
-            _context["InProgressApplicationsCountBeforeApproval"] = ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(InProgressTab));
-            _context["FeedbackApplicationsCountBeforeApproval"] = ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(FeedbackTab));
-            _context["ApprovedApplicationsCountBeforeApproval"] = ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(ApprovedTab));
+            _context["NewApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(NewTab);
+            _context["InProgressApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(InProgressTab);
+            _context["FeedbackApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab);
+            _context["ApprovedApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab);
 
             return this;
         }
@@ -52,19 +52,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()
         {
-            Assert.AreEqual(int.Parse(_context["NewApplicationsCountBeforeApproval"].ToString()) - 1, ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(NewTab)));
+            Assert.AreEqual(int.Parse(_context["NewApplicationsCountBeforeApproval"].ToString()) - 1, pageInteractionHelper.GetDataCountOfAnElement(NewTab));
             return this;
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToFeedbackTab()
         {
-            Assert.AreEqual(int.Parse(_context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(FeedbackTab)));
+            Assert.AreEqual(int.Parse(_context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab));
             return this;
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToApprovedTab()
         {
-            Assert.AreEqual(int.Parse(_context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, ePAOAdminDataHelper.ExtractNumberFromTab(pageInteractionHelper.GetText(ApprovedTab)));
+            Assert.AreEqual(int.Parse(_context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab));
             return this;
         }
 
