@@ -11,9 +11,9 @@ namespace SFA.DAS.API.Framework
 
         public FrameworkRestClient(string baseurl) => CreateRestClient(baseurl);
 
-        public void CreateGetRestRequest(string resource)
+        public void CreateRestRequest(Method method, string resource)
         {
-            _restRequest.Method = Method.GET;
+            _restRequest.Method = method;
             _restRequest.Resource = resource;
         }
 

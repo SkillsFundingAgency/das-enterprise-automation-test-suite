@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the fatv2 api client is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the user sends request to /epaoregister/epaos/EPA0241", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("the user sends {0} request to {1}", method, endpoint), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
  testRunner.Then("a valid response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -151,17 +151,6 @@ this.VerifyFatV2Api("GET", "/epaoregister/epaos/EPA0241/courses", "", ((string[]
         {
 #line 5
 this.VerifyFatV2Api("GET", "/epaoregister/epaos", "", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Variant 3")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyFatV2Api_Variant3()
-        {
-#line 5
-this.VerifyFatV2Api("POST", "/epaoregister/epaos", "consolidatedsupport.json", ((string[])(null)));
 #line hidden
         }
     }

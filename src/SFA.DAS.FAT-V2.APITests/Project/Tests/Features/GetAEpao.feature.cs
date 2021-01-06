@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the fatv2 api client is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the user sends request to /epaoregister/epaos/EPA0241", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the user sends GET request to /epaoregister/epaos/EPA0241", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
  testRunner.Then("a valid response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

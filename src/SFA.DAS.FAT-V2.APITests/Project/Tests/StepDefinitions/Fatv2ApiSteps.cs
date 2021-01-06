@@ -1,11 +1,24 @@
 ﻿using NUnit.Framework;
+using RestSharp;
 using SFA.DAS.API.Framework;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
 {
+    [Binding]
+    public class TransformationSteps
+    {
+        public TransformationSteps(ScenarioContext context) { }
+
+        [StepArgumentTransformation(@"(GET|POST)")]
+        public Method HttpMethodTransformation(string method) => Enum.Parse<Method>(method, true);
+
+    }
+    
+
     [Binding]
     public class Fatv2ApiSteps
     {
@@ -30,10 +43,10 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
                 });
         }
 
-        [When(@"the user sends request to (.*)")]
-        public void TheUserSendsRequestTo(string endppoint)
+        [When(@"the user sends (GET|POST) request to (.*)")]
+        public void TheUserSendsRequestTo(Method method, string endppoint)
         {
-            frameworkRestClient.CreateGetRestRequest(endppoint);
+            frameworkRestClient.CreateRestRequest(method, endppoint);
         }
 
         [Then(@"a valid response is received")]
