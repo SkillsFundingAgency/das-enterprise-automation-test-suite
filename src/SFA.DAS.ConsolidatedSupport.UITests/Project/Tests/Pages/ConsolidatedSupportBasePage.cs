@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -33,7 +34,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected void CloseAllTickets()
         {
-            pageInteractionHelper.InvokeAction(() =>
+            InvokeAction(() =>
             {
                 var elements = pageInteractionHelper.FindElements(CloseButton).ToList();
                 foreach (var element in elements)
@@ -42,5 +43,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 }
             });
         }
+
+        protected void InvokeAction(Action action) => pageInteractionHelper.InvokeAction(action);
+
+        protected T InvokeAction<T>(Func<T> func) => pageInteractionHelper.InvokeAction(func);  
     }
 }

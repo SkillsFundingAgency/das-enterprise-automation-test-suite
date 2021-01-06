@@ -16,7 +16,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context = context;
             _config = context.Get<FrameworkConfig>();
             _helpersSetup = new FrameworkHelpersSetup(context);
-
         }
 
         [BeforeScenario(Order = 4)]
