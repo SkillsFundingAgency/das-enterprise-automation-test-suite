@@ -11,10 +11,13 @@ namespace SFA.DAS.API.Framework
 
         public FrameworkRestClient(string baseurl) => CreateRestClient(baseurl);
 
-        public void CreateRestRequest(Method method, string resource)
+        public void CreateRestRequest(Method method, string resource, string payload)
         {
             _restRequest.Method = method;
+            
             _restRequest.Resource = resource;
+
+            if (!(string.IsNullOrEmpty(payload))) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
         }
 
         public void Addheaders(Dictionary<string, string> dictionary)

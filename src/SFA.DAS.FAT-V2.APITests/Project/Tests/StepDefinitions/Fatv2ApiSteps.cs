@@ -13,10 +13,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
         private readonly Fatv2ApiConfig fatv2ApiConfig;
         private FrameworkRestClient frameworkRestClient;
 
-        public Fatv2ApiSteps(ScenarioContext context)
-        {
-            fatv2ApiConfig = context.GetFatV2ApiConfig<Fatv2ApiConfig>();
-        }
+        public Fatv2ApiSteps(ScenarioContext context) => fatv2ApiConfig = context.GetFatV2ApiConfig<Fatv2ApiConfig>();
 
         [Given(@"the fatv2 api client is created")]
         public void TheFatvApiClientIsCreated()
@@ -31,14 +28,14 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
                 });
         }
 
-        [When(@"the user sends (GET|POST) request to (.*)")]
-        public void TheUserSendsRequestTo(Method method, string endppoint)
+        [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
+        public void TheUserSendsRequestTo(Method method, string endppoint, string payload)
         {
-            frameworkRestClient.CreateRestRequest(method, endppoint);
+            frameworkRestClient.CreateRestRequest(method, endppoint, payload);
         }
 
-        [Then(@"a valid response is received")]
-        public void ThenAValidResponseIsReceived()
+        [Then(@"a (OK) response is received")]
+        public void AResponseIsReceived(HttpStatusCode responsecode)
         {
             var response = frameworkRestClient.Execute();
 
@@ -46,7 +43,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
             {
                 Assert.IsTrue(response.IsSuccessful);
 
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, $"{response.StatusCode} - {response.Content}");
+                Assert.AreEqual(responsecode, response.StatusCode, $"{response.StatusCode} - {response.Content}");
             });
         }
     }

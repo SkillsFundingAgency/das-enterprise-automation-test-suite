@@ -73,7 +73,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyFatV2Api(string method, string endpoint, string body, string[] exampleTags)
+        public virtual void VerifyFatV2Api(string endpoint, string payload, string responseStatusCode, string method, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "fatv2api",
@@ -84,9 +84,10 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
-            argumentsOfScenario.Add("Body", body);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatusCode", responseStatusCode);
+            argumentsOfScenario.Add("Method", method);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -112,45 +113,45 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the fatv2 api client is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When(string.Format("the user sends {0} request to {1}", method, endpoint), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("a valid response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("a {0} response is received", responseStatusCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Variant 0")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: /epaoregister/epaos/EPA0241")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyFatV2Api_Variant0()
+        public virtual void VerifyFatV2Api_EpaoregisterEpaosEPA0241()
         {
 #line 5
-this.VerifyFatV2Api("GET", "/epaoregister/epaos/EPA0241", "", ((string[])(null)));
+this.VerifyFatV2Api("/epaoregister/epaos/EPA0241", "fatv2epaos.json", "OK", "GET", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Variant 1")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: /epaoregister/epaos/EPA0241/courses")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyFatV2Api_Variant1()
+        public virtual void VerifyFatV2Api_EpaoregisterEpaosEPA0241Courses()
         {
 #line 5
-this.VerifyFatV2Api("GET", "/epaoregister/epaos/EPA0241/courses", "", ((string[])(null)));
+this.VerifyFatV2Api("/epaoregister/epaos/EPA0241/courses", "", "OK", "GET", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Variant 2")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: /epaoregister/epaos")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyFatV2Api_Variant2()
+        public virtual void VerifyFatV2Api_EpaoregisterEpaos()
         {
 #line 5
-this.VerifyFatV2Api("GET", "/epaoregister/epaos", "", ((string[])(null)));
+this.VerifyFatV2Api("/epaoregister/epaos", "", "OK", "GET", ((string[])(null)));
 #line hidden
         }
     }

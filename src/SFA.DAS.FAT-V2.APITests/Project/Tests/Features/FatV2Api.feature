@@ -4,12 +4,11 @@
 @regression
 Scenario Outline: Verify FatV2Api
 	Given the fatv2 api client is created
-	When the user sends <Method> request to <Endpoint>
-	Then a valid response is received
+	When the user sends <Method> request to <Endpoint> with payload <Payload> 
+	Then a <ResponseStatusCode> response is received
 
 Examples: 
-| Method | Endpoint                            | Body                     |
-| GET    | /epaoregister/epaos/EPA0241         |                          |
-| GET    | /epaoregister/epaos/EPA0241/courses |                          |
-| GET    | /epaoregister/epaos                 |                          |
-#| POST   | /epaoregister/epaos                 | consolidatedsupport.json |
+| Endpoint                            | Payload         | ResponseStatusCode | Method |
+| /epaoregister/epaos/EPA0241         | fatv2epaos.json | OK                 | GET    |
+| /epaoregister/epaos/EPA0241/courses |                 | OK                 | GET    |
+| /epaoregister/epaos                 |                 | OK                 | GET    |
