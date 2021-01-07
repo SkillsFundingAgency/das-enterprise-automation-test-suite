@@ -12,16 +12,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
         private By ApproveApplicationButton => By.CssSelector("button.govuk-button");
-
+        private By AskForMoreInformationButton => By.CssSelector("button.govuk-button");
         public AD_CompleteReview(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public AD_FeedbackSent ClickApproveApplication()
+        public AD_YouhaveApprovedThisWithdrawalNotification ClickApproveApplication()
         {
             formCompletionHelper.Click(ApproveApplicationButton);
+            return new AD_YouhaveApprovedThisWithdrawalNotification(_context);
+        }
+
+        public AD_FeedbackSent ClickAddFeedback()
+        {
+            formCompletionHelper.Click(AskForMoreInformationButton);
             return new AD_FeedbackSent(_context);
         }
     }

@@ -15,7 +15,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_WhenDoYouWantToWithdrawFromTheStandardPage(ScenarioContext context) : base(context)
         {
             _context = context;
-           // VerifyPage();
         }
         public AS_WithdrawalNotificationQuestionsPage EnterDateToWithdraw()
         {

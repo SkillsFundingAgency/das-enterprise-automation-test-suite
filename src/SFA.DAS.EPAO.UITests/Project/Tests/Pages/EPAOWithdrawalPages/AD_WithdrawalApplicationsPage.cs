@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
@@ -9,13 +10,69 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         private readonly ScenarioContext _context;
 
-        private By NewWithdrawalApplication => By.XPath("//td[contains(text(),'Brewer (ST0580)')]/preceding-sibling::td[1]/a"); 
+        private readonly string NewTableSelector = "#new-organisation-applications > table:first-of-type";
+        private readonly string FeedbackTableSelector = "#feedback-organisation-applications > table:first-of-type";
+        private readonly string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
+        private By NewTab => By.Id("tab_new");
+        private By InProgressTab => By.Id("tab_in-progress");
+        private By FeedbackTab => By.Id("tab_feedback");
+        private By ApprovedTab => By.Id("tab_approved");
+
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => _context = context;
-    
-        public AD_StandardWithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
+
+        public AD_WithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
-            formCompletionHelper.ClickElement(NewWithdrawalApplication);
-            return new AD_StandardWithdrawalApplicationOverviewPage(_context);
+            formCompletionHelper.ClickElement(NewTab);
+            tableRowHelper.SelectRowFromTable("Brewer (ST0580)", "Withdrawal from register", NewTableSelector);
+            return new AD_WithdrawalApplicationOverviewPage(_context);
+        }
+
+        public AD_WithdrawalApplicationsPage StoreCurrentTabValues()
+        {
+            _context["NewApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(NewTab);
+            _context["InProgressApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(InProgressTab);
+            _context["FeedbackApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab);
+            _context["ApprovedApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab);
+
+            return this;
+        }
+
+        public AD_WithdrawalApplicationOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
+        {
+            formCompletionHelper.ClickElement(NewTab);
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
+            return new AD_WithdrawalApplicationOverviewPage(_context);
+        }
+
+        public AD_WithdrawalApplicationOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
+        {
+            formCompletionHelper.ClickElement(FeedbackTab);
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
+            return new AD_WithdrawalApplicationOverviewPage(_context);
+        }
+
+        public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()
+        {
+            Assert.AreEqual(int.Parse(_context["NewApplicationsCountBeforeApproval"].ToString()) - 1, pageInteractionHelper.GetDataCountOfAnElement(NewTab));
+            return this;
+        }
+
+        public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToFeedbackTab()
+        {
+            Assert.AreEqual(int.Parse(_context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab));
+            return this;
+        }
+
+        public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToApprovedTab()
+        {
+            Assert.AreEqual(int.Parse(_context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab));
+            return this;
+        }
+
+        public void VerifyApprovedTabContainsRegisterWithdrawal()
+        {
+            var approvedTableLinkElement = tableRowHelper.FindElementInTable("Ingram Limited", "Withdrawal from register", ApprovedTableSelector);
+            Assert.IsNotNull(approvedTableLinkElement);
         }
     }
 }

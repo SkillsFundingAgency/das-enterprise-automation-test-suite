@@ -24,5 +24,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             Continue();
             return new AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(_context);
         }
+
+        public AS_ApplicationOverviewPage ClickWithdrawFromRegister()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(TheRegisterOfEPAOrganisationsRaidoButton);
+            Continue();
+            return new AS_ApplicationOverviewPage(_context);
+        }
     }
 }
