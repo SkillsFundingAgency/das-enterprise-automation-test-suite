@@ -9,4 +9,4 @@ Scenario: EPAO_AS_SWD_01 - Standard Withdrawl
 	And   starts the journey to withdraw a standard
 	When  completes the standard withdrawal notification questions
 	Then  application is submitted for review
-	And  the admin user logs in to approve the standard withdrawal application
+	And   the admin user logs in to approve the standard withdrawal application

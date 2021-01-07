@@ -19,5 +19,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             Continue();
             return new AS_HowWillYouCommunicateMarketExitToCustomersPage(_context);
         }
+
+        public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage ClickNoAndContinue()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            Continue();
+            return new AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(_context);
+        }
     }
 }

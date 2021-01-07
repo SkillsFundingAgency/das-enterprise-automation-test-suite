@@ -13,5 +13,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static string Placeholder => "placeholder";
 
         public static string Value => "value";
+
+        public static string DataCount => "data-count";
     }
 }
