@@ -13,7 +13,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
         [StepArgumentTransformation(@"(GET|POST)")]
         public Method HttpMethodTransformation(string method) => Transform<Method>(method);
 
-        [StepArgumentTransformation(@"(OK)")]
+        [StepArgumentTransformation(@"(OK|BadRequest|Unauthorized|Forbidden|NotFound)")]
         public HttpStatusCode HttpStatusCodeTransformation(string statuscode) => Transform<HttpStatusCode>(statuscode);
 
         private TEnum Transform<TEnum>(string value) where TEnum : struct => Enum.Parse<TEnum>(value, true);

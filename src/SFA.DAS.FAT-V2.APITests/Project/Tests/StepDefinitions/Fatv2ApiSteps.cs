@@ -34,14 +34,20 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
             frameworkRestClient.CreateRestRequest(method, endppoint, payload);
         }
 
-        [Then(@"a (OK) response is received")]
+        [When(@"the user sends (GET) request to (.*) without payload")]
+        public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint)
+        {
+            frameworkRestClient.CreateRestRequest(method, endppoint, null);
+        }
+
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
             var response = frameworkRestClient.Execute();
 
             Assert.Multiple(() => 
             {
-                Assert.IsTrue(response.IsSuccessful);
+                if (responsecode == HttpStatusCode.OK) Assert.IsTrue(response.IsSuccessful);
 
                 Assert.AreEqual(responsecode, response.StatusCode, $"{response.StatusCode} - {response.Content}");
             });
