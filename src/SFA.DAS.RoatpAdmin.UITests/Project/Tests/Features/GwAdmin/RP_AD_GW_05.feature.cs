@@ -131,6 +131,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Gateway Applications Outcome tab is updated with REJECT outcome for this Appl" +
                         "ication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 16
+ testRunner.And("Verifiy the application is not transitioned to PMO and Assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("Verify the application is transition to Oversight for assessment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

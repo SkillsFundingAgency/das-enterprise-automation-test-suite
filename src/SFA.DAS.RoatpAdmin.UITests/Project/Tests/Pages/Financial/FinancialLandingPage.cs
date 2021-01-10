@@ -12,10 +12,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         private readonly ScenarioContext _context;
         #endregion
         protected By CurrentApplicationsTab => By.CssSelector("a[href='/Roatp/Financial/Current']");
-
         protected override By ClarificationTab => By.CssSelector("a[href='/Roatp/Financial/Clarification']");
-
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Financial/Outcome']");
+       
 
         public FinancialLandingPage(ScenarioContext context) : base(context)
         {
