@@ -5,6 +5,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using NUnit.Framework;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
+using System;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
@@ -70,7 +71,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
             financialLandingPage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessAssessorAndModerationApplications();
             RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context);
-            Assert.IsFalse(roatpAssessorApplicationsHomePage.VerifyApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
+            Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
+            roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessOversightApplications();
         }
 
