@@ -42,11 +42,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new ModerationApplicationAssessmentOverviewPage(_context);
         }
+        public IWebElement GetApplication() => GetApplication(Assessor1Link);
 
         private ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe(By columnIdentifier)
         {
-            formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(objectContext.GetUkprn(), columnIdentifier));
+            formCompletionHelper.ClickElement(() => GetApplication(columnIdentifier));
             return new ApplicationAssessmentOverviewPage(_context);
+        }
+
+        private  IWebElement GetApplication(By columnIdentifier)
+        {
+            return tableRowHelper.GetColumn(objectContext.GetUkprn(), columnIdentifier);
         }
 
         public new RoatpAssessorApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
