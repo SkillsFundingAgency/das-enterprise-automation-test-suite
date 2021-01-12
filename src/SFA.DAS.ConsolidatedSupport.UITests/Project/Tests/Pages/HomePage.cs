@@ -24,7 +24,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By AdminButton => By.CssSelector("#main_navigation [data-original-title='Admin']");
 
-        public HomePage(ScenarioContext context, bool navigateTo = false) : base(context)
+        public HomePage(ScenarioContext context, bool navigateTo) : base(context)
         {
             void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
 
@@ -37,13 +37,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 VerifyPage(BrandingHeader, action);
                 VerifyPage(Indicators, action);
                 VerifyPage(TicketTable, action);
-            }
-            else
-            {
-                VerifyPage(PageHeader);
-                VerifyPage(BrandingHeader);
-                VerifyPage(Indicators);
-                VerifyPage(TicketTable);
             }
         }
 

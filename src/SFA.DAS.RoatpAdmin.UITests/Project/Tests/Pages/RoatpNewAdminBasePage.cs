@@ -12,6 +12,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
 
+        private By providerLink => By.LinkText(objectContext.GetProviderName());
+
         protected By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
 
         private By FailInternalComments => By.CssSelector("textarea.govuk-textarea#OptionFailText");
@@ -19,6 +21,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+        private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         protected By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
@@ -39,6 +42,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             SelectRadioOptionByText("Fail");
             EnterFailInternalComments();
             Continue();
+        }
+        public void ClickReturnToStaffDashBoard()
+        {
+            formCompletionHelper.ClickElement(ReturnToDashBoard);
+        }
+
+        public bool VerifyApplication()
+        {
+            return pageInteractionHelper.IsElementDisplayed(providerLink);
         }
 
         public void SelectClarificationAndContinueToSubSection()

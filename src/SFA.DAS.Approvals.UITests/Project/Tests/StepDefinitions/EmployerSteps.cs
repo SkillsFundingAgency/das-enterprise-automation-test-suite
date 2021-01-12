@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
-        private ReviewYourCohortPage _reviewYourCohortPage;        
+        private ReviewYourCohortPage _reviewYourCohortPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
         private readonly PublishPaymentEvent _publishPaymentEvent;
 
@@ -131,7 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
 
-			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
+            _reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
@@ -164,7 +164,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(_reviewYourCohortPage);
-            
+
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
@@ -197,7 +197,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
-        public void TheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
+        public void EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
         {
             _objectContext.SetIsEIJourney();
             _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
@@ -205,6 +205,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetEIStartYear(eIStartyear);
             TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
         }
+
+        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
+            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
 
         [Then(@"the user can add an apprentices")]
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context, true).AddAnApprentice();

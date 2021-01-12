@@ -2,6 +2,10 @@
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using NUnit.Framework;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
+using System;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
@@ -54,5 +58,30 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
         [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT) outcome for this Application")]
         public void ThenTheGatewayApplicationsOutcomeTabIsUpdatedWithPassOutcomeForThisApplication(string expectedStatus) => new GatewayLandingPage(_context).VerifyOutcomeStatus(expectedStatus);
+
+        [Then(@"Verifiy the application is not transitioned to PMO and Assessor")]
+        public void ThenVerifiyTheApplicationIsNotTransitionedToPMOAndAssessor()
+        {
+            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
+            gatewayLandingPage.ClickReturnToStaffDashBoard();
+            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
+            staffDashboardPage.AccessFinancialApplications();
+            FinancialLandingPage financialLandingPage = new FinancialLandingPage(_context);
+            Assert.IsFalse(financialLandingPage.VerifyApplication(), "Gateway Fail outcome Application Transitioned to PMO");
+            financialLandingPage.ClickReturnToStaffDashBoard();
+            staffDashboardPage.AccessAssessorAndModerationApplications();
+            RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context);
+            Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
+            roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
+            staffDashboardPage.AccessOversightApplications();
+        }
+
+        [Then(@"Verify the application is transitioned to Oversight for assessment")]
+        public void ThenVerifyTheApplicationIsTransitionedToOversightForAssessment()
+        {
+            OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
+            Assert.IsTrue(oversightLandingPage.VerifyApplication(), "Gateway Fail ourtcome Application is NOT transitioned to Oversight");
+        }
+
     }
 }

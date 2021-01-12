@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.UI.Framework
+﻿using SFA.DAS.ConfigurationBuilder;
+
+namespace SFA.DAS.UI.Framework
 {
     public static class UrlConfig
     {
