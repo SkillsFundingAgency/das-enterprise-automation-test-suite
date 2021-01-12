@@ -69,6 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ClickOnContinueButton()
                                 .ChooseInvalidProvider()
                                 .ChooseTrainingProviderPage()
+                                .NewTrainingProviderWillAddThemLater()
                                 .SelectYesAndContinue();
 
             _employerStepsHelper.UpdateNewCohortReference();
@@ -230,5 +231,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
+
+        [When(@"employer starts COP process by entering valid details")]
+        public void WhenEmployerStartsCOPProcessByEnteringValidDetails()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"allow employer to change their answers before submitting CoP request")]
+        public void ThenAllowEmployerToChangeTheirAnswersBeforeSubmittingCoPRequest()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }
