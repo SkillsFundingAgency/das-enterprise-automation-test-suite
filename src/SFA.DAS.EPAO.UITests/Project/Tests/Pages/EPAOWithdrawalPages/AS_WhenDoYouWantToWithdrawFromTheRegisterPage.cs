@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             VerifyPage(PageTitleLocator, PageTitle);
             formCompletionHelper.EnterText(DayText, "01");
-            formCompletionHelper.EnterText(MonthText, "05");
+            formCompletionHelper.EnterText(MonthText, "12");
             formCompletionHelper.EnterText(YearText, "2021");
             Continue();
             return new AS_WithdrawalNotificationQuestionsPage(_context);
