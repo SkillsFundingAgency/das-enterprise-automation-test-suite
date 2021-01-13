@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public class TwoUnsuccessfulApplicationsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Have you had 2 unsuccessful applications in the last 12 months?";
+        protected override string PageTitle => "Have you submitted 2 applications to join the RoATP in the last 12 months?";
 
         private readonly ScenarioContext _context;
 

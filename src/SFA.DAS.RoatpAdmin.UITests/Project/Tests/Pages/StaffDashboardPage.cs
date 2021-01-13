@@ -2,6 +2,7 @@
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
@@ -28,10 +29,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(FinancialApplicationLink);
             return new FinancialLandingPage(_context);
         }
-        public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications()
+        public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications() 
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
             return new RoatpAssessorApplicationsHomePage(_context);
         }
+        public OversightLandingPage AccessOversightApplications() 
+        {
+            formCompletionHelper.ClickLinkByText("Go to RoATP application outcomes");
+            return new OversightLandingPage(_context);
+        }
+
     }
 }
