@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly EPAOConfig ePAOConfig;
         protected readonly ObjectContext objectContext;  
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading, .govuk-label govuk-label--xl");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading, .govuk-label--xl");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
