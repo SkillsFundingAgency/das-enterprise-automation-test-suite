@@ -8,11 +8,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class EPAOWithdrawalHelper
     {
         private readonly ScenarioContext _context;
-        public EPAOWithdrawalHelper(ScenarioContext context)
-        {
-            _context = context;
-            
-        }
+
+        public EPAOWithdrawalHelper(ScenarioContext context) => _context = context;
 
         public void StartOfStandardWithdrawalJourney()
         {

@@ -8,13 +8,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "How will you communicate your market exit to customers?";
         private readonly ScenarioContext _context;
+
         #region Locators
         private By SupportInfoTextArea => By.XPath("//div[@class='govuk-character-count']//textarea");
         #endregion
+        
         public AS_HowWillYouCommunicateMarketExitToCustomersPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            VerifyPage();
         }
+        
         public AS_WhenDoYouWantToWithdrawFromTheStandardPage EnterSupportingInformationForStandardWithdrawal()
         {
             formCompletionHelper.Click(SupportInfoTextArea);

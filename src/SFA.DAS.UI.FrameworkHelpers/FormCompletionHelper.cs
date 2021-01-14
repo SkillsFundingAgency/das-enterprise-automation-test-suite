@@ -30,11 +30,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
-        public void EnterTextByLabel(By externalQualityAssuranceProviderHasChangedTextArea, object generateRandomAlphanumericString)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Click(By locator) => ClickElement(locator);
 
         public void EnterText(IWebElement element, string text)

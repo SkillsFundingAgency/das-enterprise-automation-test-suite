@@ -7,6 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "When do you want to withdraw from the register?";
         private readonly ScenarioContext _context;
+        
         #region Locators
         private By DayText => By.XPath("//label[contains(text(), 'Day')]/following-sibling::input");
         private By MonthText => By.XPath("//label[contains(text(), 'Month')]/following-sibling::input");
@@ -15,10 +16,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By PageTitleLocator => By.XPath($"//label[contains(text(), '{PageTitle}')]");
 
         #endregion
+        
         public AS_WhenDoYouWantToWithdrawFromTheRegisterPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            VerifyPage();
         }
+
         public AS_WithdrawalNotificationQuestionsPage EnterDateToWithdraw()
         {
             VerifyPage(PageTitleLocator, PageTitle);
