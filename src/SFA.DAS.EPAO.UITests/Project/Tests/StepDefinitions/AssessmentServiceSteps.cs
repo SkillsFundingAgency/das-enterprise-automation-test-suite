@@ -17,8 +17,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         
         public AssessmentServiceSteps(ScenarioContext context) : base(context) => _context = context;
 
-        [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User) is logged into Assessment Service Application")]
-        [When(@"the (Assessor User|Standard Apply User|Manage User) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|EPAO Withdrawal User) is logged into Assessment Service Application")]
+        [When(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Standard Withdrawal User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             if (user.Equals("Assessor User"))
@@ -31,7 +31,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageUser>());
 
             else if (user.Equals("Standard Apply User"))
-                loggedInHomePage = ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOStandardApplyUser>(), ePAOApplyStandardData.ApplyStandardCode, ePAOApplyStandardData.StandardAssessorOrganisationEpaoId);            
+                loggedInHomePage = ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOStandardApplyUser>(), ePAOApplyStandardData.ApplyStandardCode, ePAOApplyStandardData.StandardAssessorOrganisationEpaoId);
+
+            else if (user.Equals("EPAO Withdrawal User"))
+                loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
