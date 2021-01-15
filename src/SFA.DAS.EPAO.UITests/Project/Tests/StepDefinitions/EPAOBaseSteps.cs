@@ -37,6 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected readonly EPAOHomePageHelper ePAOHomePageHelper;
         protected readonly ApplyStepsHelper applyStepsHelper;
         protected readonly AdminStepshelper adminStepshelper;
+        protected readonly EPAOWithdrawalHelper ePAOWithdrawalHelper;
 
         protected CertificateDetailsPage certificateDetailsPage;
         protected OrganisationDetailsPage organisationDetailsPage;
@@ -77,7 +78,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             ePAOHomePageHelper = new EPAOHomePageHelper(context);
             applyStepsHelper = new ApplyStepsHelper(context);
             assessmentServiceStepsHelper = new AssessmentServiceStepsHelper(context);
-
+            ePAOWithdrawalHelper = new EPAOWithdrawalHelper(context);
         }
     }
 }
