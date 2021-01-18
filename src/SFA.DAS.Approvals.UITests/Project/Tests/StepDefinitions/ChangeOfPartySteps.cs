@@ -235,13 +235,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"employer starts COP process by entering valid details")]
         public void WhenEmployerStartsCOPProcessByEnteringValidDetails()
         {
-            ScenarioContext.Current.Pending();
+            _employerStepsHelper.ViewCurrentApprenticeDetails(false)
+                               .ClickOnChangeOfProviderLink()
+                               .ClickOnContinueButton()
+                               .ChooseInvalidProvider()
+                               .ChooseTrainingProviderPage()
+                               .NewTrainingProviderWillAddThemLater();
+              
+                               // need to enter new pages as and when ready 
+                               // .SelectYesAndContinue();
+
+            //_employerStepsHelper.UpdateNewCohortReference();
         }
 
         [Then(@"allow employer to change their answers before submitting CoP request")]
         public void ThenAllowEmployerToChangeTheirAnswersBeforeSubmittingCoPRequest()
         {
-            ScenarioContext.Current.Pending();
+            // Yet To Be Implemented
         }
 
     }
