@@ -11,8 +11,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
     {
         protected override string PageTitle => "Confirm gateway outcome";
 
-        private By FailComments => By.Id("OptionFailedText");
-        private By RejectComments => By.Id("OptionRejectedText");
+        private By InternalComments => By.Id("OptionFailedText");
+        private By ExternalComments => By.Id("OptionFailedExternalText");
+        private By InternalRejectComments => By.Id("OptionRejectedText");
+        private By ExternalRejectComments => By.Id("OptionExternalRejectedText");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -33,14 +35,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
         public FinalConfirmationFailPage FailThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Fail this application");
-            formCompletionHelper.EnterText(FailComments, "Fail comments");
+            formCompletionHelper.EnterText(InternalComments, "Internal Fail comments");
+            formCompletionHelper.EnterText(ExternalComments, "External Fail comments");
             Continue();
             return new FinalConfirmationFailPage(_context);
         }
         public FinalConfirmationRejectPage RejectThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Reject this application");
-            formCompletionHelper.EnterText(RejectComments, "Reject Comments");
+            formCompletionHelper.EnterText(InternalRejectComments, "Internal Reject Comments");
+            formCompletionHelper.EnterText(ExternalRejectComments, "External Reject Comments");
             Continue();
             return new FinalConfirmationRejectPage(_context);
         }
