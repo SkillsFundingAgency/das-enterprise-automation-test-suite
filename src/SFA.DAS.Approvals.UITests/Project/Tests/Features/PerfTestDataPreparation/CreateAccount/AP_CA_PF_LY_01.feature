@@ -4,6 +4,7 @@
 @addlevyfunds
 @donottakescreenshot
 @adddynamicfunds
+@AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves
 Scenario Outline: AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission to a provider
 	Given levy declarations are added for the past 15 months with levypermonth as 10000
 	When an Employer Account with Company Type Org is created and agreement is Signed
