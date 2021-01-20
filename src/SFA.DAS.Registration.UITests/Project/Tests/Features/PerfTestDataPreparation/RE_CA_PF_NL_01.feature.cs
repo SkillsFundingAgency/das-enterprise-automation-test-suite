@@ -80,7 +80,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
                     "addnonlevyfunds",
                     "donottakescreenshot",
                     "S4_NonLevyEmployerNavigation",
-                    "AP03_NonLevyEmployerReservesFundsAndApprovesCohort"};
+                    "AP03_NonLevyEmployerReservesFundsAndApprovesCohort",
+                    "S1_EmployerReservesFundsAndDeletesTheReservation"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -89,7 +90,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("add accountid to the test data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -126,9 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_1()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("1", ((string[])(null)));
 #line hidden
         }
@@ -140,9 +142,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("1", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_2()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("2", ((string[])(null)));
 #line hidden
         }
@@ -154,9 +157,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("2", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_3()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("3", ((string[])(null)));
 #line hidden
         }
@@ -168,9 +172,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("3", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_4()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("4", ((string[])(null)));
 #line hidden
         }
@@ -182,9 +187,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("4", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_5()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("5", ((string[])(null)));
 #line hidden
         }
@@ -196,9 +202,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("5", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_6()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("6", ((string[])(null)));
 #line hidden
         }
@@ -210,9 +217,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("6", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_7()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("7", ((string[])(null)));
 #line hidden
         }
@@ -224,9 +232,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("7", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_8()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("8", ((string[])(null)));
 #line hidden
         }
@@ -238,9 +247,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("8", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_9()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("9", ((string[])(null)));
 #line hidden
         }
@@ -252,9 +262,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("9", ((stri
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_10()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("10", ((string[])(null)));
 #line hidden
         }
@@ -266,9 +277,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("10", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_11()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("11", ((string[])(null)));
 #line hidden
         }
@@ -280,9 +292,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("11", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_12()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("12", ((string[])(null)));
 #line hidden
         }
@@ -294,9 +307,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("12", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_13()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("13", ((string[])(null)));
 #line hidden
         }
@@ -308,9 +322,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("13", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_14()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("14", ((string[])(null)));
 #line hidden
         }
@@ -322,9 +337,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("14", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_15()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("15", ((string[])(null)));
 #line hidden
         }
@@ -336,9 +352,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("15", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_16()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("16", ((string[])(null)));
 #line hidden
         }
@@ -350,9 +367,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("16", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_17()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("17", ((string[])(null)));
 #line hidden
         }
@@ -364,9 +382,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("17", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_18()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("18", ((string[])(null)));
 #line hidden
         }
@@ -378,9 +397,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("18", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_19()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("19", ((string[])(null)));
 #line hidden
         }
@@ -392,9 +412,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("19", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_20()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("20", ((string[])(null)));
 #line hidden
         }
@@ -406,9 +427,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("20", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_21()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("21", ((string[])(null)));
 #line hidden
         }
@@ -420,9 +442,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("21", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_22()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("22", ((string[])(null)));
 #line hidden
         }
@@ -434,9 +457,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("22", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_23()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("23", ((string[])(null)));
 #line hidden
         }
@@ -448,9 +472,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("23", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_24()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("24", ((string[])(null)));
 #line hidden
         }
@@ -462,9 +487,10 @@ this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("24", ((str
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("S4_NonLevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP03_NonLevyEmployerReservesFundsAndApprovesCohort")]
+        [NUnit.Framework.CategoryAttribute("S1_EmployerReservesFundsAndDeletesTheReservation")]
         public virtual void RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement_25()
         {
-#line 8
+#line 9
 this.RE_CA_PF_NL_01_CreateANonLevyEmployerAccountAndSignTheAgreement("25", ((string[])(null)));
 #line hidden
         }
