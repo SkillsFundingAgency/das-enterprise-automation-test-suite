@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmRequestForChangeOfProviderPage NewTrainingProviderWillAddThemLater()
         {
-            formCompletionHelper.SelectRadioOptionByText("SOUTHAMPTON ENGINEERING TRAINING ASSOCIATION LIMITED (THE) will add them later");
+            formCompletionHelper.SelectRadioOptionByText("I'll add them now");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
             return new ConfirmRequestForChangeOfProviderPage(_context);
         }
