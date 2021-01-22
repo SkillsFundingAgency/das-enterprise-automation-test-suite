@@ -201,5 +201,31 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
                  .YesSureRejectThisApplicationAndGoToGovernance()
                  .GoToRoATPGatewayApplicationsPage();
         }
+        internal void ConfirmWithdrawGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectApplicationWithdrawl()
+                .YesSureWithdrawThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmWithdrawOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        {
+            readOnlyGatewayOutcomePage.SelectApplicationWithdrawl()
+                .YesSureWithdrawThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Clarification(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal void ConfirmClarification_GatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectClarificationForOverallApplication()
+                .YesClarificationRequired()
+                .GoToRoATPGatewayApplicationsPage()
+                .SelectInProgressTab()
+                .SelectApplication();
+        }
     }
 }

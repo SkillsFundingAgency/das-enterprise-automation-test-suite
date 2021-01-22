@@ -10,6 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         protected override string PageTitle => "RoATP gateway applications";
 
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Gateway/Closed']");
+        private By InProgressTab => By.CssSelector("a[href='/Roatp/Gateway/InProgress']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -22,11 +23,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);
         }
-
         public new GatewayLandingPage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
             return new GatewayLandingPage(_context);
+        }
+        public GatewayLandingPage SelectInProgressTab()
+        {
+            formCompletionHelper.ClickElement(InProgressTab);
+            return new GatewayLandingPage(_context);
+        }
+        public GatewayLandingPage SelectInOutcomeTab()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return new GatewayLandingPage(_context);
+        }
+        public ReadOnlyGatewayOutcomePage SelectApplicationFromOutcomeTab()
+        {
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ReadOnlyGatewayOutcomePage(_context);
         }
     }
 }
