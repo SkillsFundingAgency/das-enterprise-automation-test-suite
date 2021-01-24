@@ -89,6 +89,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.API.Framework", "SF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAT-V2.APITests", "SFA.DAS.FAT-V2.APITests\SFA.DAS.FAT-V2.APITests.csproj", "{D087DC50-A579-4EDA-B960-896B295664F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FindEPAO.UITests", "SFA.DAS.FindEPAO.UITests\SFA.DAS.FindEPAO.UITests.csproj", "{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -288,6 +290,12 @@ Global
 		{D087DC50-A579-4EDA-B960-896B295664F5}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{D087DC50-A579-4EDA-B960-896B295664F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D087DC50-A579-4EDA-B960-896B295664F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28B4FF6-323C-4B7C-8DAE-73C96B9ACCA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
