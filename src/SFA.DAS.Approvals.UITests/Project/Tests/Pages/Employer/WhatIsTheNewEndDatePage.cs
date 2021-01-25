@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By NewEndMonthInput => By.CssSelector(".govuk-input--width-2");
         private By NewEndYearInput => By.CssSelector(".govuk-input--width-4");
-        private By ContinueBtn => By.CssSelector(".govuk-button");
+        private By ContinueBtn => By.XPath("//button[@class='govuk-button']");
         public WhatIsTheNewEndDatePage(ScenarioContext context) : base(context) => _context = context;
 
         public WhatIsTheNewEndDatePage EnterInvalidEndDate()
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(NewEndMonthInput, DateTime.Now.Month.ToString());
             formCompletionHelper.EnterText(NewEndYearInput, DateTime.Now.AddYears(2).AddMonths(1).Year.ToString());
-            formCompletionHelper.Click(ContinueBtn);
+            formCompletionHelper.ClickElement(ContinueBtn);
 
             return new EmployerChangeOfProviderCheckYourAnswersPage(_context);
         }

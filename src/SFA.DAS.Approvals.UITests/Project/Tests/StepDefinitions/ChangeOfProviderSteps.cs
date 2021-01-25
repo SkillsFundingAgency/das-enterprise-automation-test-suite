@@ -31,39 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
-
-        //[When(@"employer starts COP process by entering valid details")]
-        //public void WhenEmployerStartsCOPProcessByEnteringValidDetails()
-        //{
-        //    _employerStepsHelper.ViewCurrentApprenticeDetails(false)
-        //                       .ClickOnChangeOfProviderLink()
-        //                       .ClickOnContinueButton()
-        //                       .ChooseInvalidProvider()
-        //                       .ChooseTrainingProviderPage()
-        //                       .SelectIWillAddThemNow()
-        //                       .EnterInvalidNewStartDate()
-        //                       .EnterNewStartDate()
-        //                       .EnterInvalidEndDate()
-        //                       .EnterNewEndDate()
-        //                       .EnterInvalidPrice()
-        //                       .EnterNewPrice();
-        //}
-
-        //[Then(@"allow employer to change their answers before submitting CoP request")]
-        //public void ThenAllowEmployerToChangeTheirAnswersBeforeSubmittingCoPRequest()
-        //{
-        //    new EmployerChangeOfProviderCheckYourAnswersPage(_context)
-        //        .ClickChangeStartDate()
-        //        .EnterUpdatedNewStartDate()
-        //        .ClickChangeEndDate()
-        //        .EnterUpdatedNewEndDate()
-        //        .ClickChangePrice()
-        //        .EnterUpdatedNewPrice()
-        //        .ClickConfirmAndSend()
-        //        .VerifyConfirmationMessage();
-
-        //    _employerStepsHelper.UpdateNewCohortReference();
-        //}
+ 
 
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
