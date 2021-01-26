@@ -22,5 +22,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
             return new ConfirmRequestForChangeOfProviderPage(_context);
         }
+
+        public WhatIsTheNewStartDatePage SelectIWillAddThemNow()
+        {
+            formCompletionHelper.SelectRadioOptionByText("I'll add them now");
+            formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
+            return new WhatIsTheNewStartDatePage(_context);
+        }
     }
 }

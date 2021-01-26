@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderConfig _oldProviderLogin;
         private readonly ProviderLoginUser _newProviderLoginDetails;
         private readonly ProviderLoginUser _oldProviderLoginDetails;
-
+        private readonly EmployerStepsHelper _employerStepsHelper;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
@@ -29,7 +29,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _newProviderLoginDetails = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             _oldProviderLoginDetails = new ProviderLoginUser { Username = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
+            _employerStepsHelper = new EmployerStepsHelper(context);
         }
+ 
 
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
@@ -47,6 +49,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectContinueToApproval()
                 .SubmitApproveAndSendToEmployerForApproval()
                 .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        [When(@"new provider approves the employer led change of provider cohort")]
+        public void WhenNewProviderApprovesTheEmployerLedChangeOfProviderCohort()
+        {
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
+
+            new ProviderYourCohortsPage(_context, true)
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectContinueToApproval()
+                .SubmitApprove();
         }
 
         [When(@"employer approves the cohort")]
