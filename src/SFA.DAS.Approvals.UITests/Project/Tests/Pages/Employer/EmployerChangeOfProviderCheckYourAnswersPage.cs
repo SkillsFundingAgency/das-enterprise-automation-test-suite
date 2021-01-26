@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerChangeOfProviderCheckYourAnswersPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Confirm details and send request to SOUTHAMPTON ENGINEERING TRAINING ASSOCIATION LIMITED (THE)";
+        protected override string PageTitle => $"Confirm details and send request to {changeOfPartyConfig.NewProviderName}";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

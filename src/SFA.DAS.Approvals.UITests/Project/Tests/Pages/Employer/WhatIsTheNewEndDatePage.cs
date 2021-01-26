@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class WhatIsTheNewEndDatePage : ApprovalsBasePage
     {
-        protected override string PageTitle => "What is the new planned training end date with SOUTHAMPTON ENGINEERING TRAINING ASSOCIATION LIMITED (THE)?";
+        protected override string PageTitle => $"What is the new planned training end date with {changeOfPartyConfig.NewProviderName}?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

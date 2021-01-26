@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class WhatIsTheNewPricePage : ApprovalsBasePage
     {
-        protected override string PageTitle => "What is the agreed price of completing the training with SOUTHAMPTON ENGINEERING TRAINING ASSOCIATION LIMITED (THE)?";
+        protected override string PageTitle => $"What is the agreed price of completing the training with {changeOfPartyConfig.NewProviderName}?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
