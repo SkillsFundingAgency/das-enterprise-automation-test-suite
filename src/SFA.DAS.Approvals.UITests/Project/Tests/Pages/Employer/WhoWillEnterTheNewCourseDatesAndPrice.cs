@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmRequestForChangeOfProviderPage NewTrainingProviderWillAddThemLater()
         {
-            formCompletionHelper.SelectRadioOptionByText("I'll add them now");
+            formCompletionHelper.SelectRadioOptionByText($"{changeOfPartyConfig.NewProviderName} will add them later");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
             return new ConfirmRequestForChangeOfProviderPage(_context);
         }
