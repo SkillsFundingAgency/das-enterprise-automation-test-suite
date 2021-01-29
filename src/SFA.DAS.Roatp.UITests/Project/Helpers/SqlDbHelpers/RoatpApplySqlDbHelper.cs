@@ -52,9 +52,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn} " +
             $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = @ApplicationID; " +
             $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId =  @ApplicationID; " +
-            $" Update dbo.Apply set  [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
-            $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', " +
             $" DELETE FROM dbo.OversightReview WHERE ApplicationId =  @ApplicationID; " +
+            $" Update dbo.Apply set  [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
+            $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', Applicationstatus = 'GatewayAssessed', " +
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null where ApplicationId = @ApplicationID";
 
             ExecuteSqlCommand(AssessorResetQuery);
@@ -68,8 +68,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" [UpdatedAt] = null, [UpdatedBy] = null, [ModeratorReviewComment] = null, [ClarificationUserId] = null,[ClarificationUserName] = null, " +
             $" [ClarificationStatus] = null, [ClarificationComment]= null, [ClarificationResponse]= null, [ClarificationFile]= null ," +
             $" [ClarificationUpdatedAt]= null WHERE ApplicationId =  @ApplicationID; " +
-            $" Update dbo.Apply set [ModerationStatus] = 'New', " +
             $" DELETE FROM dbo.OversightReview WHERE ApplicationId =  @ApplicationID; " +
+            $" Update dbo.Apply set [ModerationStatus] = 'New', Applicationstatus = 'GatewayAssessed', " +
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null where ApplicationId = @ApplicationID";
 
             ExecuteSqlCommand(ModeratorResetQuery);
@@ -81,7 +81,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
                 $" DELETE FROM dbo.OversightReview WHERE ApplicationId =  @ApplicationID; " +
                 $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent',[AssessorReviewStatus] = 'New',[ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
                 $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationUserName = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, ClarificationFile = NULL, " +
-                $"ClarificationResponse = NULL, ClarificationUpdatedAt = NULL WHERE ApplicationId = @ApplicationID ";
+                $"ClarificationResponse = NULL,  Applicationstatus = 'GatewayAssessed', ClarificationUpdatedAt = NULL WHERE ApplicationId = @ApplicationID ";
             
             ExecuteSqlCommand(ClarificationResetQuery);
         }
