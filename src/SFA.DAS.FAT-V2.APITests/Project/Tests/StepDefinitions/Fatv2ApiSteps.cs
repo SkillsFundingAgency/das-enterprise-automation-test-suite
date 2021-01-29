@@ -20,12 +20,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
         {
             frameworkRestClient = new FrameworkRestClient(UrlConfig.FATV2_BaseUrl);
 
-            frameworkRestClient.Addheaders(
-                new Dictionary<string, string>
-                {
-                    { "X-Version", "1" },
-                    { "Ocp-Apim-Subscription-Key", fatv2ApiConfig.ApiKey }
-                });
+            frameworkRestClient.AddAuthHeaders(fatv2ApiConfig.ApiKey);
         }
 
         [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
