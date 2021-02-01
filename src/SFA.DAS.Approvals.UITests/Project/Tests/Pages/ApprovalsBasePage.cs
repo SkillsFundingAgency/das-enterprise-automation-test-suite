@@ -23,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly ApprovalsConfig approvalsConfig;
         protected readonly TransfersConfig transfersConfig;
         protected readonly ProviderConfig providerConfig;
+        protected readonly ChangeOfPartyConfig changeOfPartyConfig;
         protected readonly PublicSectorReportingDataHelper publicSectorReportingDataHelper;
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
@@ -43,6 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             transfersConfig = context.GetTransfersConfig<TransfersConfig>();
+            changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             publicSectorReportingDataHelper = context.GetValue<PublicSectorReportingDataHelper>();
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();

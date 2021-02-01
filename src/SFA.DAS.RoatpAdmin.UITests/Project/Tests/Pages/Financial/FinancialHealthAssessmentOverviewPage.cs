@@ -13,6 +13,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         private By ClarificationCommentBox => By.Id("ClarificationComments");
         private By ClarificationResponseBox => By.Id("ClarificationResponse");
         private By InadequateCommentBox => By.Id("InadequateComments");
+
+        private By InadequateExternalCommentsBox = By.Id("InadequateExternalComments");
         private By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
         private By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
 
@@ -52,6 +54,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             formCompletionHelper.EnterText(ClarificationResponseBox, "Clarification Response Comments");
             SelectRadioOptionByForAttribute("inadequate");
             formCompletionHelper.EnterText(InadequateCommentBox, "PMO Clarification Internal Comments for Inadequate");
+            formCompletionHelper.EnterText(InadequateExternalCommentsBox, "PMO Clarification External Comments for Inadequate");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Save outcome");
             return new FinancialHealthAssesmentCompletedPage(_context);
         }

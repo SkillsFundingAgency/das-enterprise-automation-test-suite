@@ -32,5 +32,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectFailAndContinue()
             .VerifyPeopleincontrolhighrisk_Section2(StatusHelper.StatusFail);
         }
+        internal GWApplicationOverviewPage Clarification_PeopleInControlChecks_PeopleInControl(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section2_PeopleInControl()
+            .SelectClarificationAndContinue()
+            .VerifyPeopleincontrol_Section2(StatusHelper.StatusClarification);
+        }
+        internal GWApplicationOverviewPage Clarification_PeopleInControlChecks_PeopleInControlHighRisk(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section2_PeopleInControlHighRisk()
+            .SelectClarificationAndContinue()
+            .VerifyPeopleincontrolhighrisk_Section2(StatusHelper.StatusClarification);
+        }
     }
 }

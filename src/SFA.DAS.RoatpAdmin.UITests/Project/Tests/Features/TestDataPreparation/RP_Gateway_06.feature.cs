@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeOfProvider
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_COP_02_NewProviderRequestsChangeFeature
+    [NUnit.Framework.DescriptionAttribute("RP_Gateway_06")]
+    public partial class RP_Gateway_06Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_COP_02_NewProviderRequestsChange.feature"
+#line 1 "RP_Gateway_06.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_02_NewProviderRequestsChange", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Gateway_06", "TestDataPreparation for RP_AD_GW_06_SupportRoute", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,19 +74,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("changeOfProvider")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        public virtual void AP_COP_02_NewProviderRequestsChange()
+        [NUnit.Framework.DescriptionAttribute("RP_Gateway_06_TestDataPreparation-For_RP_AD_GW_06_SupportRoute")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("rpadgw06")]
+        public virtual void RP_Gateway_06_TestDataPreparation_For_RP_AD_GW_06_SupportRoute()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "changeOfProvider",
-                    "liveapprentice"};
+                    "roatpadmintestdataprep",
+                    "roatpadmingwtestdataprep",
+                    "donottakescreenshot",
+                    "rpadgw06"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_02_NewProviderRequestsChange", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Gateway_06_TestDataPreparation-For_RP_AD_GW_06_SupportRoute", null, tagsOfScenario, argumentsOfScenario);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,32 +108,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the employer has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 10
- testRunner.Then("a banner is displayed for employer with a link to \"non-editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
- testRunner.When("new Provider sends the cohort back to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("a banner is displayed for employer with a link to \"editable\" cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.When("employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 14
- testRunner.And("new provider approves the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.Then("a new live apprenticeship record is created with new Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 16
- testRunner.And("Prevent employer from requesting CoP on the original apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the provider completes the Apply Journey as Supporting Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

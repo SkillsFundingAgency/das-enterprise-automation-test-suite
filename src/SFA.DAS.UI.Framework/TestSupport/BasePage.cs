@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly string _directory;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-label govuk-label--xl");
+        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
         protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");

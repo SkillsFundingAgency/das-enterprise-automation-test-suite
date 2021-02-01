@@ -298,6 +298,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .ClickOnChangeOfProviderLink()
                   .ClickOnContinueButton()
                   .ChooseTrainingProviderPage()
+                  .NewTrainingProviderWillAddThemLater()
                   .SelectYesAndContinue();
         }
     }
