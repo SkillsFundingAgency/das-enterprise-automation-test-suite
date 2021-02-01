@@ -11,6 +11,7 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -69,6 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ClickOnContinueButton()
                                 .ChooseInvalidProvider()
                                 .ChooseTrainingProviderPage()
+                                .NewTrainingProviderWillAddThemLater()
                                 .SelectYesAndContinue();
 
             _employerStepsHelper.UpdateNewCohortReference();
@@ -197,6 +199,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ChangeOfProviderSteps(_context).ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP();
         }
 
+        [When(@"employer starts COP process by entering valid details")]
+        public void WhenEmployerStartsCOPProcessByEnteringValidDetails()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails(false)
+                               .ClickOnChangeOfProviderLink()
+                               .ClickOnContinueButton()
+                               .ChooseInvalidProvider()
+                               .ChooseTrainingProviderPage()
+                               .SelectIWillAddThemNow()
+                               .EnterInvalidNewStartDate()
+                               .EnterNewStartDate()
+                               .EnterInvalidEndDate()
+                               .EnterNewEndDate()
+                               .EnterInvalidPrice()
+                               .EnterNewPrice();
+        }
+
+        [Then(@"allow employer to change their answers before submitting CoP request")]
+        public void ThenAllowEmployerToChangeTheirAnswersBeforeSubmittingCoPRequest()
+        {
+            new EmployerChangeOfProviderCheckYourAnswersPage(_context)
+                .ClickChangeStartDate()
+                .EnterUpdatedNewStartDate()
+                .ClickChangeEndDate()
+                .EnterUpdatedNewEndDate()
+                .ClickChangePrice()
+                .EnterUpdatedNewPrice()
+                .ClickConfirmAndSend()
+                .VerifyConfirmationMessage();
+
+            _employerStepsHelper.UpdateNewCohortReference();
+        }
+
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
@@ -230,5 +265,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
+        
     }
 }

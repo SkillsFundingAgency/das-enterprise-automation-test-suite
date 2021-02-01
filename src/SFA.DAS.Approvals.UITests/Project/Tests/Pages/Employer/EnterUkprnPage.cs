@@ -33,11 +33,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _javaScriptHelper = _context.Get<JavaScriptHelper>();
         }
 
-        public ConfirmRequestForChangeOfProviderPage ChooseTrainingProviderPage()
+        public WhoWillEnterTheNewCourseDatesAndPrice ChooseTrainingProviderPage()
         {            
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _changeOfPartyConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
-            return new ConfirmRequestForChangeOfProviderPage(_context);
+            return new WhoWillEnterTheNewCourseDatesAndPrice(_context);
         }
 
         internal EnterUkprnPage ChooseInvalidProvider()
