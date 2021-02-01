@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
-    class ChangeOfPartyConfig : ProviderConfig
+    public class ChangeOfPartyConfig : ProviderConfig
     {
-
+        public string NewProviderName { get; set; }
     }
 }

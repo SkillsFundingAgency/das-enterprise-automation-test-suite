@@ -2,7 +2,7 @@
 Feature: AP_COP_02_NewProviderRequestsChange
 
 @regression
-@changeOfProvider_WIP
+@changeOfProvider
 @liveapprentice
 Scenario: AP_COP_02_NewProviderRequestsChange
 	Given the employer has an apprentice with stopped status
