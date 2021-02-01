@@ -28,6 +28,16 @@ namespace SFA.DAS.API.Framework
             }
         }
 
+        public void AddAuthHeaders(string subscriptionkey)
+        {
+            Addheaders(
+                new Dictionary<string, string>
+    {
+                    { "X-Version", "1" },
+                    { "Ocp-Apim-Subscription-Key", subscriptionkey}
+                });
+        }
+
         public IRestResponse Execute() => _restClient.Execute(_restRequest);
 
         private void CreateRestClient(string baseurl)
