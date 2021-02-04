@@ -18,8 +18,15 @@ namespace SFA.DAS.ConfigurationBuilder
             _configurationRoot = Configurator.GetConfig();
             _configSection = new ConfigSection(_configurationRoot);
         }
-        
+
         [BeforeScenario(Order = 1)]
-        public void SetUpConfiguration() => _context.Set(_configSection);
+        public void SetUpConfiguration()
+        {
+            _context.Set(_configSection);
+
+            var dbConfig = _configSection.GetConfigSection<DbConfig>();
+
+            _context.Set(dbConfig);
+        }
     }
 }

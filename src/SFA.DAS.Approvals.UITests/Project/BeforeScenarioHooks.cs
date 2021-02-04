@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private ApprenticeDataHelper _datahelper;
         private readonly ApprovalsConfig _approvalsConfig;
         private readonly RegistrationConfig _registrationConfig;
+        private readonly DbConfig _dbConfig;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
 
         public BeforeScenarioHooks(ScenarioContext context)
@@ -27,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _objectcontext = context.Get<ObjectContext>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
+            _dbConfig = context.Get<DbConfig>();
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
         }
 
@@ -66,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
 
-            _context.Set(new AgreementIdSqlHelper(_registrationConfig));
+            _context.Set(new AgreementIdSqlHelper(_dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper(random));
 

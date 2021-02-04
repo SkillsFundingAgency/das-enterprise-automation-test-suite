@@ -50,7 +50,8 @@ namespace SFA.DAS.ConfigurationBuilder
             .AddUserSecrets("BrowserStackSecrets")
             .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
-            .AddUserSecrets("DbSecrets")
+            .AddUserSecrets("MongoDbSecrets")
+            .AddUserSecrets($"Db_{EnvironmentName}_Secrets")
             .AddUserSecrets("TestExecutionSecrets")
             .Build();
         }

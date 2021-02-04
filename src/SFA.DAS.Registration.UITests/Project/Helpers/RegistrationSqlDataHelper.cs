@@ -1,10 +1,11 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationSqlDataHelper : SqlDbHelper
     {
-        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig) : base(registrationConfig.RE_AccountsDbConnectionString) { }
+        public RegistrationSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
         public string GetAccountApprenticeshipEmployerType(string email)
         {
