@@ -20,7 +20,7 @@ namespace SFA.DAS.API.Framework.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                if (responsecode == HttpStatusCode.OK) Assert.IsTrue(response.IsSuccessful);
+                if (responsecode == HttpStatusCode.OK) Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
 
                 Assert.AreEqual(responsecode, response.StatusCode, $"{response.StatusCode} - {response.Content}");
             });

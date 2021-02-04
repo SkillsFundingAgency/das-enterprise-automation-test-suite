@@ -25,7 +25,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             var (accountid, apprenticeshipid, orgname) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            var payload = JsonSerializer.Serialize(new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname });
+            JsonSerializerOptions jso = new JsonSerializerOptions
+            {
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
+
+            var payload = JsonSerializer.Serialize(new CreateApprenticeship { EmployerAccountId = long.Parse(accountid), ApprenticeshipId = long.Parse(apprenticeshipid), Organisation = orgname }, jso);
 
             _restClient.CreateRestRequest(Method.POST, "/apprenticeships", payload);
         }

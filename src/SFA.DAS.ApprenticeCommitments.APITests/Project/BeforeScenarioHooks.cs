@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             _context.Set(new ApprenticeCommitmentSqlHelper(_dbConfig));
 
-            var restClient = new ApprenticeCommitmentsRestClient(_context.Get<ApiFrameworkConfig>().Fatv2ApiKey);
+            var restClient = new ApprenticeCommitmentsRestClient(_context.Get<ApiFrameworkConfig>().ApprenticeCommitmentsApiKey);
 
             _context.SetRestClient<FrameworkRestClient>(restClient);
         }

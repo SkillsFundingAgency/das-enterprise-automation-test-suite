@@ -6,13 +6,15 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class ApprenticeCommitmentSqlHelper : SqlDbHelper
     {
-        public ApprenticeCommitmentSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        private readonly DbConfig _dbConfig;
+
+        public ApprenticeCommitmentSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public (string accountid, string apprenticeshipid, string orgname) GetEmployerData()
         {
             var query = "SELECT TOP 1 c.EmployerAccountId, a.id  from dbo.Apprenticeship a JOIN dbo.Commitment c ON a.CommitmentId = c.Id ORDER BY NEWID()";
 
-            List<object[]> employerData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+            List<object[]> employerData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.CommitmentsDbConnectionString);
 
             var accountid = employerData[0][0].ToString();
 

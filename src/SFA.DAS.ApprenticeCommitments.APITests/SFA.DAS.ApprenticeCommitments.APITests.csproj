@@ -32,9 +32,6 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="appsettings.Project.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="SFA.DAS.ApprenticeCommitments.APITests.runtimeconfig.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
