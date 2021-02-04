@@ -19,7 +19,12 @@ namespace SFA.DAS.API.Framework
 
             _restRequest.Resource = resource.Contains(ApiEndpoint) ? resource : $"{ApiEndpoint}{resource}";
 
-            if (!string.IsNullOrEmpty(payload)) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
+            if (!string.IsNullOrEmpty(payload)) 
+            {
+                if (payload.EndsWith(".json")) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
+
+                else { _restRequest.AddJsonBody(payload); }
+            }
         }
 
         public void Addheaders(Dictionary<string, string> dictionary)
@@ -28,16 +33,6 @@ namespace SFA.DAS.API.Framework
             {
                 _restRequest.AddHeader(item.Key, item.Value);
             }
-        }
-
-        public void AddAuthHeaders(string subscriptionkey)
-        {
-            Addheaders(
-                new Dictionary<string, string>
-    {
-                    { "X-Version", "1" },
-                    { "Ocp-Apim-Subscription-Key", subscriptionkey}
-                });
         }
 
         public IRestResponse Execute() => _restClient.Execute(_restRequest);
@@ -49,6 +44,16 @@ namespace SFA.DAS.API.Framework
             _restRequest = new RestRequest();
 
             AddAuthHeaders(subscriptionkey);
+        }
+
+        private void AddAuthHeaders(string subscriptionkey)
+        {
+            Addheaders(
+                new Dictionary<string, string>
+                {
+                    { "X-Version", "1" },
+                    { "Ocp-Apim-Subscription-Key", subscriptionkey}
+                });
         }
     }
 }

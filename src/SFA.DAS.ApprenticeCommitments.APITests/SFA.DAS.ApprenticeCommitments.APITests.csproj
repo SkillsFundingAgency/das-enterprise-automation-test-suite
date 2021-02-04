@@ -43,22 +43,4 @@
 	  </None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\ApprenticeCommitmentsApi.feature.cs">
-	    <DependentUpon>ApprenticeCommitmentsApi.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprenticeCommitmentsApi.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Project\Helpers\" />
-	</ItemGroup>
-
-
 </Project>

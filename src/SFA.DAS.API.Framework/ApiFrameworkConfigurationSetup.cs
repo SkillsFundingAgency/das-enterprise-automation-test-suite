@@ -16,6 +16,6 @@ namespace SFA.DAS.API.Framework
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpApiFrameworkConfiguration() => _context.SetApiFrameworkConfig(_configSection.GetConfigSection<ApiFrameworkConfig>());
+        public void SetUpApiFrameworkConfiguration() => _context.Set(_configSection.GetConfigSection<ApiFrameworkConfig>());
     }
 }
