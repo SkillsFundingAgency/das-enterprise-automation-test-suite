@@ -111,12 +111,9 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the fatv2 api client is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -130,7 +127,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void VerifyFatV2Api_Fatv2001()
         {
 #line 5
-this.VerifyFatV2Api("Fatv2001", "GET", "/epaoregister/epaos/EPA0241", "fatv2epaos.json", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -141,7 +138,7 @@ this.VerifyFatV2Api("Fatv2001", "GET", "/epaoregister/epaos/EPA0241", "fatv2epao
         public virtual void VerifyFatV2Api_Fatv2002()
         {
 #line 5
-this.VerifyFatV2Api("Fatv2002", "GET", "/epaoregister/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -152,7 +149,7 @@ this.VerifyFatV2Api("Fatv2002", "GET", "/epaoregister/epaos/EPA0241/courses", ""
         public virtual void VerifyFatV2Api_Fatv2003()
         {
 #line 5
-this.VerifyFatV2Api("Fatv2003", "GET", "/epaoregister/epaos", "", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -167,7 +164,7 @@ this.VerifyFatV2Api("Fatv2003", "GET", "/epaoregister/epaos", "", "OK", ((string
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api EPAO", null, tagsOfScenario, argumentsOfScenario);
-#line 19
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -187,13 +184,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 19
+ testRunner.When("the user sends GET request to /epaos without payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 20
- testRunner.Given("the fatv2 api client is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 21
- testRunner.When("the user sends GET request to /epaoregister/epaos without payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
  testRunner.Then("a OK response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

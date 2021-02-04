@@ -38,10 +38,11 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             return ConfigurationBuilder()
-            .AddJsonFile("appsettings.MongoDbConfig.json", true)
+            .AddJsonFile("appsettings.DbConfig.json", true)
             .AddJsonFile("appsettings.TimeOutConfig.json", true)
             .AddJsonFile("appsettings.NServiceBusConfig.json",true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
+            .AddJsonFile("appsettings.ApiFramework.json",true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
             .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
@@ -49,7 +50,7 @@ namespace SFA.DAS.ConfigurationBuilder
             .AddUserSecrets("BrowserStackSecrets")
             .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
-            .AddUserSecrets("MongoDbSecrets")
+            .AddUserSecrets("DbSecrets")
             .AddUserSecrets("TestExecutionSecrets")
             .Build();
         }

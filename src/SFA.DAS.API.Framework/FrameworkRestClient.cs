@@ -3,21 +3,23 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework
 {
-    public class FrameworkRestClient
+    public abstract class FrameworkRestClient
     {
         private RestClient _restClient;
 
         private RestRequest _restRequest;
 
-        public FrameworkRestClient(string baseurl) => CreateRestClient(baseurl);
+        protected abstract string ApiEndpoint { get; }
+
+        public FrameworkRestClient(string subscriptionkey) => CreateRestClient(subscriptionkey);
 
         public void CreateRestRequest(Method method, string resource, string payload)
         {
             _restRequest.Method = method;
-            
-            _restRequest.Resource = resource;
 
-            if (!(string.IsNullOrEmpty(payload))) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
+            _restRequest.Resource = resource.Contains(ApiEndpoint) ? resource : $"{ApiEndpoint}{resource}";
+
+            if (!string.IsNullOrEmpty(payload)) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
         }
 
         public void Addheaders(Dictionary<string, string> dictionary)
@@ -40,11 +42,13 @@ namespace SFA.DAS.API.Framework
 
         public IRestResponse Execute() => _restClient.Execute(_restRequest);
 
-        private void CreateRestClient(string baseurl)
+        private void CreateRestClient(string subscriptionkey)
         {
-            _restClient = new RestClient(baseurl);
+            _restClient = new RestClient(UrlConfig.ApiBaseUrl);
 
             _restRequest = new RestRequest();
+
+            AddAuthHeaders(subscriptionkey);
         }
     }
 }

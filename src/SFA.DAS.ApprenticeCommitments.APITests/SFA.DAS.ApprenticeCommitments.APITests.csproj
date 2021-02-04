@@ -2,9 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>SFA.DAS.FAT_V2.APITests</RootNamespace>
+	  <RootNamespace>SFA.DAS.ApprenticeCommitments.APITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FatV2Api.feature.cs" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
@@ -28,15 +32,33 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Project\Tests\Payload\fatv2epaos.json">
+	  <None Update="appsettings.Project.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.FAT_V2.APITests.runtimeconfig.json">
+	  <None Update="SFA.DAS.ApprenticeCommitments.APITests.runtimeconfig.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\ApprenticeCommitmentsApi.feature.cs">
+	    <DependentUpon>ApprenticeCommitmentsApi.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprenticeCommitmentsApi.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Project\Helpers\" />
+	</ItemGroup>
+
 
 </Project>

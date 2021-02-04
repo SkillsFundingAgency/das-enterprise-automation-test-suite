@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using RestSharp;
 using SFA.DAS.API.Framework;
-using System.Collections.Generic;
 using System.Net;
 using TechTalk.SpecFlow;
 
@@ -10,35 +9,20 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class Fatv2ApiSteps
     {
-        private readonly Fatv2ApiConfig fatv2ApiConfig;
-        private FrameworkRestClient frameworkRestClient;
+        private readonly FatV2RestClient _restClient;
 
-        public Fatv2ApiSteps(ScenarioContext context) => fatv2ApiConfig = context.GetFatV2ApiConfig<Fatv2ApiConfig>();
-
-        [Given(@"the fatv2 api client is created")]
-        public void TheFatvApiClientIsCreated()
-        {
-            frameworkRestClient = new FrameworkRestClient(UrlConfig.FATV2_BaseUrl);
-
-            frameworkRestClient.AddAuthHeaders(fatv2ApiConfig.ApiKey);
-        }
+        public Fatv2ApiSteps(ScenarioContext context) => _restClient = new FatV2RestClient(context.GetApiSubscriptionKeyConfig<ApiFrameworkConfig>().Fatv2ApiKey);
 
         [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
-        public void TheUserSendsRequestTo(Method method, string endppoint, string payload)
-        {
-            frameworkRestClient.CreateRestRequest(method, endppoint, payload);
-        }
+        public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);
 
         [When(@"the user sends (GET) request to (.*) without payload")]
-        public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint)
-        {
-            frameworkRestClient.CreateRestRequest(method, endppoint, null);
-        }
+        public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint) => CreateRestRequest(method, endppoint, null);
 
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
-            var response = frameworkRestClient.Execute();
+            var response = _restClient.Execute();
 
             Assert.Multiple(() => 
             {
@@ -47,5 +31,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
                 Assert.AreEqual(responsecode, response.StatusCode, $"{response.StatusCode} - {response.Content}");
             });
         }
+
+        private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }
 }

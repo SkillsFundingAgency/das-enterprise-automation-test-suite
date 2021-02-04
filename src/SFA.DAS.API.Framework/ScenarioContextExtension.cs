@@ -6,16 +6,19 @@ namespace SFA.DAS.API.Framework
     public static class ScenarioContextExtension
     {
         #region Constants
-        private const string Fatv2ApiProjectConfigKey = "fatv2apiprojectconfigkey";
+        private const string ApiFrameworkConfigkey = "apiframeworkconfigkey";
+        private const string ApprenticeCommitmentsApiProjectConfigKey = "apprenticecommitmentsapiprojectconfigkey";
         #endregion
 
         #region Setters
-        public static void SetFatV2ApiConfig<T>(this ScenarioContext context, T value) => Set(context, value, Fatv2ApiProjectConfigKey);
+        public static void SetApiFrameworkConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApiFrameworkConfigkey);
+        public static void SetApprenticeCommitmentsApiConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprenticeCommitmentsApiProjectConfigKey);
         private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
         #endregion
 
         #region Getters
-        public static T GetFatV2ApiConfig<T>(this ScenarioContext context) => Get<T>(context, Fatv2ApiProjectConfigKey);
+        public static T GetApiSubscriptionKeyConfig<T>(this ScenarioContext context) => Get<T>(context, ApiFrameworkConfigkey);
+        public static T GetApprenticeCommitmentsApiConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeCommitmentsApiProjectConfigKey);
         public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion
     }
