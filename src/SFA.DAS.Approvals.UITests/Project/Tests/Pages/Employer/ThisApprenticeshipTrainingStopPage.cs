@@ -12,9 +12,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By MonthField => By.Id("DateOfChange_Month");
-        private By YearField => By.Id("DateOfChange_Year");
-        protected override By ContinueButton => By.CssSelector("#submit-apply-change");
+        private By MonthField => By.Id("stop-month");
+        private By YearField => By.Id("stop-year");
+        protected override By ContinueButton => By.Id("continue-button");
         private By NewStopDate_Month => By.Id("NewStopDate_Month");
         private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
