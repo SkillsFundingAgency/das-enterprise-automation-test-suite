@@ -23,7 +23,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
         private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
-        protected By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
+        protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
