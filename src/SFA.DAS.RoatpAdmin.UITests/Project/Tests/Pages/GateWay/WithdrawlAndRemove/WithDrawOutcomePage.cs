@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove
 {
-    public class RemoveOutcomePage : RoatpGateWayBasePage
+    public class WithDrawOutcomePage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Application removed";
+        protected override string PageTitle => "Application withdrawn";
 
         private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private readonly ScenarioContext _context;
         #endregion
 
-        public RemoveOutcomePage(ScenarioContext context) : base(context)
+        public WithDrawOutcomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

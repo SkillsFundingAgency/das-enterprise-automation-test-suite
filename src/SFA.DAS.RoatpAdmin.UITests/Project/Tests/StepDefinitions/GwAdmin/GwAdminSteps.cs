@@ -55,7 +55,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as Reject")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsReject() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(_gwApplicationOverviewPage);
 
-        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT|WITHDRAWN|REJECT) outcome for this Application")]
+        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT|WITHDRAWN|REJECT|REMOVED) outcome for this Application")]
         public void ThenTheGatewayApplicationsOutcomeTabIsUpdatedWithPassOutcomeForThisApplication(string expectedStatus) => new GatewayLandingPage(_context).VerifyOutcomeStatus(expectedStatus);
 
         [Then(@"Verifiy the application is not transitioned to PMO and Assessor")]
@@ -92,9 +92,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the admin Withdraws the Application")]
         public void ThenTheAdminWithdrawsTheApplication() => _gatewayEndToEndStepsHelpers.ConfirmWithdrawGatewayApplication((new GWApplicationOverviewPage(_context)));
 
+        [Then(@"the admin Removes the Application")]
+        public void ThenTheAdminRemovesTheApplication() => _gatewayEndToEndStepsHelpers.ConfirmRemoveGatewayApplication((new GWApplicationOverviewPage(_context)));
+
         [Then(@"the admin Withdraws the Application where outcome has been made")]
         public void ThenTheAdminWithdrawsTheApplicationWhereOutcomeHasBeenMade() => _gatewayEndToEndStepsHelpers.ConfirmWithdrawOutcomeMadeGatewayApplication((new ReadOnlyGatewayOutcomePage(_context)));
-        
+
+        [Then(@"the admin Removes the Application where outcome has been made")]
+        public void ThenTheAdminRemovesTheApplicationWhereOutcomeHasBeenMade() => _gatewayEndToEndStepsHelpers.ConfirmRemoveOutcomeMadeGatewayApplication((new ReadOnlyGatewayOutcomePage(_context)));
 
         [When(@"the gateway admin assess first subsection as PASS")]
         public void WhenTheGatewayAdminAssessFirstSubsectionAsPASS() => _gatewayEndToEndStepsHelpers.CompleteOrganisationChecks_Section1((new GWApplicationOverviewPage(_context)));
