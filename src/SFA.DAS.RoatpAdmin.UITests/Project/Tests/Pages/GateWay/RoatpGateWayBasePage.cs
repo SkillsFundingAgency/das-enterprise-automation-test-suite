@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
@@ -60,7 +61,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public RemoveConfirmPage SelectRemoveApplication()
         {
-            formCompletionHelper.ClickLinkByText(ApplicationActions, "Applicant withdrawal of application");
+            formCompletionHelper.ClickLinkByText(ApplicationActions, "Internal removal of application");
             return new RemoveConfirmPage(_context);
         }
     }

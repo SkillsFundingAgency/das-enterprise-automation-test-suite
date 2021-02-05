@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove
 {
     public class WithdrawConfirmPage : RoatpGateWayBasePage
     {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove
 {
     public class RemoveConfirmPage : RoatpGateWayBasePage
     {
@@ -22,11 +22,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             _context = context;
             VerifyPage();
         }
-        public RemoveOutcomePage YesSureWithdrawThisApplication()
+        public RemoveOutcomePage YesSureRemoveThisApplication()
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(InternalComments, "Withdraw Application Internal Comments");
-            formCompletionHelper.EnterText(ExternalComments, "Remove Application External Comments");
+            formCompletionHelper.EnterText(ExternalComments, "Withdraw Application External Comments");
             Continue();
             return new RemoveOutcomePage(_context);
         }
