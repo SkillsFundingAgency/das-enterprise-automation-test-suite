@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         private By AccountNameText => By.CssSelector("p.heading-xlarge");
-        private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         protected By ApplyForEILink => By.LinkText("Apply for the hire a new apprentice payment");
@@ -60,12 +59,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
-
-        public YourSavedFavouritesPage GoToYourSavedFavourites()
-        {
-            formCompletionHelper.Click(YourSavedFavouritesLink);
-            return new YourSavedFavouritesPage(_context);
-        }
 
         public void VerifySetupAnApprenticeshipSection()
         {
