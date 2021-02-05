@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
-using System.Text.Json;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
@@ -9,15 +9,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps
     {
-
         private readonly FrameworkRestClient _restClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
+        private readonly ObjectContext _objectContext;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
             _restClient = context.GetRestClient<FrameworkRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
+
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [When(@"an apprenticeship is posted")]
@@ -25,12 +27,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             var (accountid, apprenticeshipid, orgname) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            JsonSerializerOptions jso = new JsonSerializerOptions
-            {
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            };
+            _objectContext.SetAccountId(accountid);
+            _objectContext.SetApprenticeshipId(apprenticeshipid);
+            _objectContext.SetOrganisationName(orgname);
 
-            var payload = JsonSerializer.Serialize(new CreateApprenticeship { EmployerAccountId = long.Parse(accountid), ApprenticeshipId = long.Parse(apprenticeshipid), Organisation = orgname }, jso);
+            var payload = JsonHelper.Serialize(new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname });
 
             _restClient.CreateRestRequest(Method.POST, "/apprenticeships", payload);
         }
