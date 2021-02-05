@@ -110,6 +110,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("a Accepted response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 9
+ testRunner.And("the apprentice details are updated in the login db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
