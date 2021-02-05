@@ -5,4 +5,4 @@
 @regression
 Scenario: Verify ApprenticeCommitmentsApi
 	When an apprenticeship is posted
-	Then a OK response is received
+	Then a Accepted response is received

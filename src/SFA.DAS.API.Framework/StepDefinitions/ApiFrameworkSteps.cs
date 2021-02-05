@@ -11,7 +11,7 @@ namespace SFA.DAS.API.Framework.StepDefinitions
 
         public ApiFrameworkSteps(ScenarioContext context) => _context = context;
 
-        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound) response is received")]
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
             var _restClient = _context.GetRestClient<FrameworkRestClient>();
