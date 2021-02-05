@@ -19,7 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr")
         {
-            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
+            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).FirstOrDefault(x => x.Enabled && x.Displayed);
             var tableRows = table.FindElements(By.CssSelector(tableRowSelector));
 
             foreach (var tablerow in tableRows)
