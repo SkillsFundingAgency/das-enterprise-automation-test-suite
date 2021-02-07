@@ -38,6 +38,8 @@ namespace SFA.DAS.EPAO.UITests.Project
             _context.SetUser(_configSection.GetConfigSection<EPAOWithdrawalUser>());
 
             _context.SetUser(_configSection.GetConfigSection<EPAOAdminUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>());
         }             
     }
 }
