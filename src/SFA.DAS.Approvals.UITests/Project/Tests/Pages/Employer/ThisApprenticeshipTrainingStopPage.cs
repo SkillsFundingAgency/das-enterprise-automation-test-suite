@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By MonthField => By.Id("stop-month");
         private By YearField => By.Id("stop-year");
         protected override By ContinueButton => By.Id("continue-button");
+        private By ContinueButton2 => By.Id("submit-apply-change");
         private By NewStopDate_Month => By.Id("NewStopDate_Month");
         private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
@@ -31,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(NewStopDate_Month, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(NewStopDate_Year, apprenticeCourseDataHelper.CourseStartDate.Year);
-            Continue();
+            formCompletionHelper.Click(ContinueButton2);
             return new NewStopDateApprenticeDetailsPage(_context);
         }
 
