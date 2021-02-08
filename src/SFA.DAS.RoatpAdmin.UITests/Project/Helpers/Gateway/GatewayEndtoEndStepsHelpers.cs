@@ -207,10 +207,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
                 .YesSureWithdrawThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
+        internal void ConfirmRemoveGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectRemoveApplication()
+                .YesSureRemoveThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
         internal void ConfirmWithdrawOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
         {
             readOnlyGatewayOutcomePage.SelectApplicationWithdrawl()
                 .YesSureWithdrawThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmRemoveOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        {
+            readOnlyGatewayOutcomePage.SelectRemoveApplication()
+                .YesSureRemoveThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
         internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Clarification(GWApplicationOverviewPage gwApplicationOverviewPage)
