@@ -5,12 +5,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.MailinatorPages
 {
     public class MailinatorInboxPage : RegistrationBasePage
     {
-        protected override string PageTitle => "public";
-        protected override By PageHeader => By.CssSelector("b.ng-binding");
+        protected override string PageTitle => "Public Messages";
+        protected override By PageHeader => By.CssSelector("#inbox_pane");
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By EmailSubjectField => By.CssSelector("a.ng-binding");
+        private By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
         #endregion
 
         public MailinatorInboxPage(ScenarioContext context) : base(context)
