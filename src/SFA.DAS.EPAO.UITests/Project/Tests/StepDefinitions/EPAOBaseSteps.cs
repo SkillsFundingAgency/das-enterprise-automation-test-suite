@@ -24,6 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         protected readonly EPAOE2EApplyUser ePAOE2EApplyUser;
         protected readonly EPAOApplyUser ePAOApplyUser;
+        protected readonly EPAOStageTwoStandardCancelUser ePAOStageTwoStandardCancelUser;
 
         protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
         protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
@@ -65,6 +66,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             ePAOE2EApplyUser = context.GetUser<EPAOE2EApplyUser>();
             ePAOApplyUser = context.GetUser<EPAOApplyUser>();
+            ePAOStageTwoStandardCancelUser = context.GetUser<EPAOStageTwoStandardCancelUser> ();
 
             ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
