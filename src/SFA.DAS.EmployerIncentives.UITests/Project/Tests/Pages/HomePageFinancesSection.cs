@@ -27,6 +27,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new EIStartPage(_context);
         }
 
+        public ChooseOrganisationPage NavigateToApplyChooseOrgPage()
+        {
+            formCompletionHelper.Click(ApplyForEILink);
+            return new ChooseOrganisationPage(_context);
+        }
+
         public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {
             formCompletionHelper.Click(ViewEIApplicationsLink);

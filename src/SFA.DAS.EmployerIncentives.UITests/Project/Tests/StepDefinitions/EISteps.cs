@@ -116,12 +116,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
+            var homePageFinancesSection = new HomePageFinancesSection(_context);
 
             if (entities == Entities.Single)
-                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIStartPage().ClickStartNowButtonInEIStartPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToApplyChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickStartNowButtonInEIStartPage();
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
