@@ -38,5 +38,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.Click(CreateAnAccountLink);
             return new AS_CreateAnAccountPage(_context);
         }
+
+        public AS_LoggedInHomePage WithdrawalAlreadyLoginClickStartNowButton()
+        {
+            formCompletionHelper.Click(StartNowButton);
+            return new AS_LoggedInHomePage(_context);
+        }
     }
 }

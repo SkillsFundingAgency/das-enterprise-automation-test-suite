@@ -19,7 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr")
         {
-            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
+            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).FirstOrDefault(x => x.Enabled && x.Displayed);
             var tableRows = table.FindElements(By.CssSelector(tableRowSelector));
 
             foreach (var tablerow in tableRows)
@@ -35,6 +35,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
+            var element = FindElementInTable(byLinkText, byKey, tableSelector);
+
+            _formCompletionHelper.ClickElement(element);
+        }
+
+        public IWebElement FindElementInTable(string byLinkText, string byKey, string tableSelector = "table")
+        {
             var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
             var tableRows = table.FindElements(By.CssSelector("tbody tr"));
             var links = _pageInteractionHelper.FindElements(By.PartialLinkText(byLinkText));
@@ -43,8 +50,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
-                    return;
+                    return links[i];
                 }
                 i++;
             }
@@ -90,6 +96,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
 
             SelectRowFromTable(byLinkText, byKey, tableSelector);
-        }    
+        }
     }
 }

@@ -45,6 +45,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "TRIRATNA SOUTHAMPTON"),
                     new KeyValuePair<string, string>(ukprnkey, "10002617"),
           });//rpe2e02
+            _data.Add("rpadgw06",
+          new List<KeyValuePair<string, string>>
+          {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw06@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "NIOMI SAMANTHA JOSEPH"),
+                    new KeyValuePair<string, string>(ukprnkey, "10066540"),
+         }); //rpe2e03
+            _data.Add("rpadgw07",
+           new List<KeyValuePair<string, string>>
+          {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw07@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "JO INGHAM"),
+                    new KeyValuePair<string, string>(ukprnkey, "10040377"),
+         }); //rpe2e03
             _data.Add("rpadfha01",
              new List<KeyValuePair<string, string>>
              {

@@ -2,6 +2,10 @@
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using NUnit.Framework;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
+using System;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
@@ -12,7 +16,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
 
-        
 
         public GwAdminSteps(ScenarioContext context)
         {
@@ -52,7 +55,66 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as Reject")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsReject() => _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(_gwApplicationOverviewPage);
 
-        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT) outcome for this Application")]
+        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT|WITHDRAWN|REJECT|REMOVED) outcome for this Application")]
         public void ThenTheGatewayApplicationsOutcomeTabIsUpdatedWithPassOutcomeForThisApplication(string expectedStatus) => new GatewayLandingPage(_context).VerifyOutcomeStatus(expectedStatus);
+
+        [Then(@"Verifiy the application is not transitioned to PMO and Assessor")]
+        public void ThenVerifiyTheApplicationIsNotTransitionedToPMOAndAssessor()
+        {
+            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
+            gatewayLandingPage.ClickReturnToStaffDashBoard();
+            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
+            staffDashboardPage.AccessFinancialApplications();
+            FinancialLandingPage financialLandingPage = new FinancialLandingPage(_context);
+            Assert.IsFalse(financialLandingPage.VerifyApplication(), "Gateway Fail outcome Application Transitioned to PMO");
+            financialLandingPage.ClickReturnToStaffDashBoard();
+            staffDashboardPage.AccessAssessorAndModerationApplications();
+            RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context);
+            Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
+            roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
+            staffDashboardPage.AccessOversightApplications();
+        }
+
+        [Then(@"Verify the application is transitioned to Oversight for assessment")]
+        public void ThenVerifyTheApplicationIsTransitionedToOversightForAssessment()
+        {
+            OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
+            Assert.IsTrue(oversightLandingPage.VerifyApplication(), "Gateway Fail ourtcome Application is NOT transitioned to Oversight");
+        }
+
+        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED) status")]
+        public void ThenVerifyTheApplicationIsTransitionedToOversightOutcomeTabWithREJECTEDStatus(string expectedStatus)
+        {
+            OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
+            oversightLandingPage.VerifyOutcomeStatus(expectedStatus);
+        }
+       
+        [Then(@"the admin Withdraws the Application")]
+        public void ThenTheAdminWithdrawsTheApplication() => _gatewayEndToEndStepsHelpers.ConfirmWithdrawGatewayApplication((new GWApplicationOverviewPage(_context)));
+
+        [Then(@"the admin Removes the Application")]
+        public void ThenTheAdminRemovesTheApplication() => _gatewayEndToEndStepsHelpers.ConfirmRemoveGatewayApplication((new GWApplicationOverviewPage(_context)));
+
+        [Then(@"the admin Withdraws the Application where outcome has been made")]
+        public void ThenTheAdminWithdrawsTheApplicationWhereOutcomeHasBeenMade() => _gatewayEndToEndStepsHelpers.ConfirmWithdrawOutcomeMadeGatewayApplication((new ReadOnlyGatewayOutcomePage(_context)));
+
+        [Then(@"the admin Removes the Application where outcome has been made")]
+        public void ThenTheAdminRemovesTheApplicationWhereOutcomeHasBeenMade() => _gatewayEndToEndStepsHelpers.ConfirmRemoveOutcomeMadeGatewayApplication((new ReadOnlyGatewayOutcomePage(_context)));
+
+        [When(@"the gateway admin assess first subsection as PASS")]
+        public void WhenTheGatewayAdminAssessFirstSubsectionAsPASS() => _gatewayEndToEndStepsHelpers.CompleteOrganisationChecks_Section1((new GWApplicationOverviewPage(_context)));
+
+        [When(@"the gateway admin assess People in control checks as Clarification")]
+        public void WhenTheGatewayAdminAssessPeopleInControlChecksAsClarification() => _gatewayEndToEndStepsHelpers.CompletePeopleInControlChecks_Section2_Clarification((new GWApplicationOverviewPage(_context)));
+
+        [Then(@"the gateway admin completes assessment by confirming Clarification is needed")]
+        public void ThenTheGatewayAdminCompletesAssessmentByConfirmingClarificationIsNeeded() => _gatewayEndToEndStepsHelpers.ConfirmClarification_GatewayApplication((new GWApplicationOverviewPage(_context)));
+
+        [Then(@"the admin access the application from Outcome tab")]
+        public void ThenTheAdminAccessTheApplicationFromOutcomeTab()
+        {
+            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
+            gatewayLandingPage.SelectApplicationFromOutcomeTab();
+        }
     }
 }

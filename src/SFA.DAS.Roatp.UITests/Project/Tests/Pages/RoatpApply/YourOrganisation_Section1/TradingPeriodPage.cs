@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class TradingPeriodPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How long has your organisation been trading for?";
+        protected override string PageTitle => "How long has your organisation been actively trading?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

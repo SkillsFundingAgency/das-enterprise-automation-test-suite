@@ -79,13 +79,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_COP_02_NewProviderRequestsChange")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("changeOfProvider_WIP")]
+        [NUnit.Framework.CategoryAttribute("changeOfProvider")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_COP_02_NewProviderRequestsChange()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "changeOfProvider_WIP",
+                    "changeOfProvider",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_02_NewProviderRequestsChange", null, tagsOfScenario, argumentsOfScenario);

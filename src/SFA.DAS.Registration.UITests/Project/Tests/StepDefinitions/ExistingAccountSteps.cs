@@ -47,9 +47,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToChangeYourEmailAddressPage().ClickBackLink()
                 .GoToNotificationSettingsPage().ClickBackLink();
 
-        [Then(@"Employer is able to navigate to Your saved favourites Page")]
-        public void ThenEmployerIsAbleToNavigateToYourSavedFavouritesPage() => _homePage = _homePage.GoToYourSavedFavourites().GoToHomePage();
-
         [Then(@"Employer is able to navigate to Help Page")]
         public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
 
