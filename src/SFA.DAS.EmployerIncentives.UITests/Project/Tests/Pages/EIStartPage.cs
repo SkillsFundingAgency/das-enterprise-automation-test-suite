@@ -14,16 +14,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public EIStartPage(ScenarioContext context) : base(context) => _context = context;
 
-        public QualificationQuestionPage ClickStartNowButtonInEIStartPageForSingleEntityJourney()
+        public QualificationQuestionPage ClickStartNowButtonInEIStartPage()
         {
             formCompletionHelper.Click(StartNowButton);
             return new QualificationQuestionPage(_context);
-        }
-
-        public ChooseOrganisationPage ClickStartNowButtonInEIStartPageForMultipleEntityJourney()
-        {
-            formCompletionHelper.Click(StartNowButton);
-            return new ChooseOrganisationPage(_context);
         }
     }
 }

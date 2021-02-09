@@ -20,7 +20,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EILevyUser _eILevyUser;
-        private EIStartPage _eIStartPage;
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
@@ -116,12 +115,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
+            var homePageFinancesSection = new HomePageFinancesSection(_context);
 
             if (entities == Entities.Single)
-                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIStartPage().ClickStartNowButtonInEIStartPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToApplyChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickStartNowButtonInEIStartPage();
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
@@ -156,6 +155,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Provider approves the apprenticeship request")]
         [When(@"the Provider approves the apprenticeship request")]
+        [Then(@"the Provider approves the apprenticeship request")]
         public void ProviderAddsUlnsAndApprovesTheCohorts()
         {
             _providerStepsHelper.Approve();
