@@ -14,6 +14,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         private EPAOOrganisationsPage _ePAOOrganisationsPage;
         private EPAOOrganisationDetailsPage _ePAOOrganisationDetailsPage;
         private ZeroAssessmentOrganisationsPage _zeroAssessmentOrganisationsPage;
+        private IntegratedAppreticeshipStandardPage _integratedAppreticeshipStandardPage;
 
         public FindEPAOSteps(ScenarioContext context)
         {
@@ -30,6 +31,9 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         [Given(@"the user searches a standard '(.*)' term with single EPAO")]
         public void GivenTheUserSearchesAStandardTermWithSingleEPAO(string searchTerm) => _ePAOOrganisationDetailsPage = _findEPAOStepsHelper.SearchForApprenticeshipStandardWithSingleEPAO(searchTerm);
 
+        [Given(@"the user searches an integrated standard '(.*)' term")]
+        public void GivenTheUserSearchesAnIntegratedStandardTerm(string searchTerm) => _integratedAppreticeshipStandardPage = _findEPAOStepsHelper.SearchForIntegratedApprenticeshipStandard(searchTerm);
+
         [Then(@"the user is able to click back to the search apprenticeship page")]
         public void WhenTheUserClicksBack() => _ePAOOrganisationDetailsPage.NavigateBackFromSingleEPAOOrganisationDetailsPage();
 
@@ -44,6 +48,9 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         {
             Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactESFAButtonDisplayed());
         }
+
+        [Then(@"the user is able to click back from integrated apprenticeship page")]
+        public void ThenTheUserIsAbleToClickBackFromIntegratedApprenticeshipPage() => _integratedAppreticeshipStandardPage.NavigateBackFromIntegratedApprenticeshipsPage();
 
     }
 }
