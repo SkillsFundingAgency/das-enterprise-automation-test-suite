@@ -41,11 +41,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_LandingPage(_context);
         }
 
-        internal AS_LoggedInHomePage GoToEpaoApplyForAStandardPage(object p)
-        {
-            throw new NotImplementedException();
-        }
-
       public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
       public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
