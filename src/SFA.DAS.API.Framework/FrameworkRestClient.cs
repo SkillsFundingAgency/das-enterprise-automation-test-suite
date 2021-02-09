@@ -11,7 +11,7 @@ namespace SFA.DAS.API.Framework
 
         protected abstract string ApiEndpoint { get; }
 
-        public FrameworkRestClient(string subscriptionkey) => CreateRestClient(subscriptionkey);
+        public FrameworkRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
 
         public void CreateRestRequest(Method method, string resource, string payload)
         {
@@ -37,9 +37,9 @@ namespace SFA.DAS.API.Framework
 
         public IRestResponse Execute() => _restClient.Execute(_restRequest);
 
-        private void CreateRestClient(string subscriptionkey)
+        private void CreateOuterApiRestClient(string subscriptionkey)
         {
-            _restClient = new RestClient(UrlConfig.ApiBaseUrl);
+            _restClient = new RestClient(UrlConfig.OuterApiBaseUrl);
 
             _restRequest = new RestRequest();
 
