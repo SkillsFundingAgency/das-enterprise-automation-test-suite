@@ -20,7 +20,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EILevyUser _eILevyUser;
-        private EIStartPage _eIStartPage;
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
@@ -156,6 +155,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Provider approves the apprenticeship request")]
         [When(@"the Provider approves the apprenticeship request")]
+        [Then(@"the Provider approves the apprenticeship request")]
         public void ProviderAddsUlnsAndApprovesTheCohorts()
         {
             _providerStepsHelper.Approve();
