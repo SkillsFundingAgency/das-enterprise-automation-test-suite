@@ -10,13 +10,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps
     {
-        private readonly FrameworkRestClient _restClient;
+        private readonly OuterApiRestClient _restClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
-            _restClient = context.GetRestClient<FrameworkRestClient>();
+            _restClient = context.GetRestClient<OuterApiRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 

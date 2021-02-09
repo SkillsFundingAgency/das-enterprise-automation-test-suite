@@ -19,7 +19,9 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
+            var restClient = new ManageIdentityRestClient(_context.Get<DasCoursesApiMiConfig>());
 
+            _context.SetRestClient(restClient);
         }
     }
 }

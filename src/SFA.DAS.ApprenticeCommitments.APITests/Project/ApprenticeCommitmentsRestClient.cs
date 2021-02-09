@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class ApprenticeCommitmentsRestClient : FrameworkRestClient
+    public class ApprenticeCommitmentsRestClient : OuterApiRestClient
     {
         public ApprenticeCommitmentsRestClient(string subscriptionkey) : base(subscriptionkey) { }
 

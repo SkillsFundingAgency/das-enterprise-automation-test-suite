@@ -15,7 +15,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project
         {
             var restClient = new FatV2RestClient(_context.Get<ApiFrameworkConfig>().Fatv2ApiKey);
 
-            _context.SetRestClient<FrameworkRestClient>(restClient);
+            _context.SetRestClient<OuterApiRestClient>(restClient);
         }
     }
 }

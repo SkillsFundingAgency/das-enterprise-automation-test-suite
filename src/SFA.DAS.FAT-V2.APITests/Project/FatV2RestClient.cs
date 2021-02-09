@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.FAT_V2.APITests.Project
 {
-    public class FatV2RestClient : FrameworkRestClient
+    public class FatV2RestClient : OuterApiRestClient
     {
         public FatV2RestClient(string subscriptionkey) : base(subscriptionkey) { }
 

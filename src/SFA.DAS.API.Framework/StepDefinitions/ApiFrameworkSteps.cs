@@ -14,7 +14,7 @@ namespace SFA.DAS.API.Framework.StepDefinitions
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
-            var _restClient = _context.GetRestClient<FrameworkRestClient>();
+            var _restClient = _context.GetRestClient<OuterApiRestClient>();
 
             var response = _restClient.Execute();
 

@@ -7,9 +7,9 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class Fatv2ApiSteps
     {
-        private readonly FrameworkRestClient _restClient;
+        private readonly OuterApiRestClient _restClient;
 
-        public Fatv2ApiSteps(ScenarioContext context) => _restClient = context.GetRestClient<FrameworkRestClient>();
+        public Fatv2ApiSteps(ScenarioContext context) => _restClient = context.GetRestClient<OuterApiRestClient>();
 
         [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);

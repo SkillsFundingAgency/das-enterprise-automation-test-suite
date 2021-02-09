@@ -24,7 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
             var restClient = new ApprenticeCommitmentsRestClient(_context.Get<ApiFrameworkConfig>().ApprenticeCommitmentsApiKey);
 
-            _context.SetRestClient<FrameworkRestClient>(restClient);
+            _context.SetRestClient<OuterApiRestClient>(restClient);
         }
     }
 }

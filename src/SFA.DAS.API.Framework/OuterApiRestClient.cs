@@ -1,9 +1,10 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework
 {
-    public abstract class FrameworkRestClient
+    public abstract class OuterApiRestClient
     {
         private RestClient _restClient;
 
@@ -11,7 +12,7 @@ namespace SFA.DAS.API.Framework
 
         protected abstract string ApiEndpoint { get; }
 
-        public FrameworkRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
+        public OuterApiRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
 
         public void CreateRestRequest(Method method, string resource, string payload)
         {
