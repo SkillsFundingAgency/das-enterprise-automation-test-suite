@@ -207,7 +207,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             _aP_ApplicationOverviewPage.ClickToCancelYourStandardApplication()
                 .SelectYesToCancelStandardApplication()
-                .ClickApplyForAlStandardLink();                
+                .ClickApplyForAStandardLink();                
         }
     }
 }
