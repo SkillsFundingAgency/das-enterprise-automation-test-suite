@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellatio
             VerifyPage();
         }
 
-        public AP_OSC02_YouHaveCancelledYourApplicationPage ClickApplyForAlStandardLink()
+        public AP_OSC02_YouHaveCancelledYourApplicationPage ClickApplyForAStandardLink()
         {
             formCompletionHelper.Click(ApplyForAlStandardLink);
             return this;

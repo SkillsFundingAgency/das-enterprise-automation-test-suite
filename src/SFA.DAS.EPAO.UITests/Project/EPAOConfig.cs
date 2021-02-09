@@ -19,7 +19,5 @@
         public string AlreadyAssessedApprenticeUln { get; set; }
         public string AssessorDbConnectionString { get; set; }
         public string EPAOStageTwoStandardCancelUser { get; set; }
-        public string UserName { get; internal set; }
-        public string Password { get; internal set; }
     }
 }
