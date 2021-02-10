@@ -21,7 +21,7 @@ namespace SFA.DAS.API.Framework
 
             if (!string.IsNullOrEmpty(payload)) 
             {
-                if (payload.EndsWith(".json")) { _restRequest.AddJsonBody(JsonFileHelper.ReadAllText(payload)); }
+                if (payload.EndsWith(".json")) { _restRequest.AddJsonBody(JsonHelper.ReadAllText(payload)); }
 
                 else { _restRequest.AddJsonBody(payload); }
             }
