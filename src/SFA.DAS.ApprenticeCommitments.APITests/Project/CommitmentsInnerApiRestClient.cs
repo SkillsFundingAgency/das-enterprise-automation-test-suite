@@ -12,9 +12,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        public void PerformHeathCheck()
+        public void PerformHeathCheck(string endpoint)
         {
-            CreateRestRequest(RestSharp.Method.GET, "/ping", string.Empty);
+            CreateRestRequest(RestSharp.Method.GET, endpoint, string.Empty);
         }
 
     }

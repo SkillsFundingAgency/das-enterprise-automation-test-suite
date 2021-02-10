@@ -27,12 +27,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [When(@"I access das commitments api")]
-        public void WhenIAccessDasCommitmentsApi()
+        [Then(@"das-commitments-api (/ping) endpoint can be accessed")]
+        public void ThenDasCommitmentsApiCanBeAccessed(string endpoint)
         {
             var restClient = new CommitmentsInnerApiRestClient(_manageIdentityRestClient);
 
-            restClient.PerformHeathCheck();
+            restClient.PerformHeathCheck(endpoint);
+
+            var response = restClient.Execute();
+
+            AssertHelper.AssertResponse(HttpStatusCode.OK, response);
         }
 
         [When(@"an apprenticeship is posted")]

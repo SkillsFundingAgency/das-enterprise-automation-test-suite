@@ -2,6 +2,7 @@
 using SFA.DAS.API.Framework.RestClients;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -17,10 +18,16 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.StepDefinitions
             _manageIdentityRestClient = context.GetRestClient<ManageIdentityApiRestClient>();
         }
 
-        [Then(@"I can access dataload endpoint")]
-        public void ThenICanAccessDataloadEndpoint()
+        [Then(@"das-courses-api (/ping) endpoint can be accessed")]
+        public void ThenDasCoursesApiCanBeAccessed(string endpoint)
         {
-            _manageIdentityRestClient.GetAuthToken();
+            var restClient = new CoursesInnerApiRestClient(_manageIdentityRestClient);
+
+            restClient.PerformHeathCheck(endpoint);
+
+            var response = restClient.Execute();
+
+            AssertHelper.AssertResponse(HttpStatusCode.OK, response);
         }
 
     }

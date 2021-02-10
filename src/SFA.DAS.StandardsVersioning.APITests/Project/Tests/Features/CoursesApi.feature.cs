@@ -74,12 +74,12 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Courses Api Heath Check")]
+        [NUnit.Framework.DescriptionAttribute("Inner das-courses-api heathcheck")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
-        public virtual void CoursesApiHeathCheck()
+        public virtual void InnerDas_Courses_ApiHeathcheck()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitmentsapi",
@@ -87,7 +87,7 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.Features
                     "api",
                     "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Courses Api Heath Check", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Inner das-courses-api heathcheck", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,7 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
-testRunner.Then("I can access dataload endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("das-courses-api /ping endpoint can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -5,5 +5,5 @@
 @regression
 @api
 @innerapi
-Scenario: Courses Api Heath Check access dataload
-Then I can access dataload endpoint
+Scenario: Inner das-courses-api heathcheck
+	Then das-courses-api /ping endpoint can be accessed

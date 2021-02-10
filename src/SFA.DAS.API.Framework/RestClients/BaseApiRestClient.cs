@@ -11,15 +11,17 @@ namespace SFA.DAS.API.Framework.RestClients
 
         public abstract void CreateRestRequest(Method method, string resource, string payload);
 
-        public void Addheaders(Dictionary<string, string> dictionary)
+        public IRestResponse Execute() => _restClient.Execute(_restRequest);
+
+        protected void Addheader(string key, string value) => _restRequest.AddHeader(key, value);
+
+        protected void Addheaders(Dictionary<string, string> dictionary)
         {
             foreach (var item in dictionary)
             {
-                _restRequest.AddHeader(item.Key, item.Value);
+                Addheader(item.Key, item.Value);
             }
         }
-
-        public IRestResponse Execute() => _restClient.Execute(_restRequest);
 
         protected void AddPayload(string payload)
         {

@@ -13,5 +13,4 @@ Scenario: New apprenticeship email sent
 @api
 @innerapi
 	Scenario: Inner das-commitments-api heathcheck
-	When I access das commitments api
-	Then a NotFound response is received
+	Then das-commitments-api /ping endpoint can be accessed

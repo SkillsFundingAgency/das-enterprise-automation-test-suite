@@ -1,5 +1,4 @@
 ﻿using RestSharp;
-using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
@@ -28,11 +27,7 @@ namespace SFA.DAS.API.Framework.RestClients
         {
             (string tokenType, string accessToken) = _manageIdentityApiRestClient.GetAuthToken();
 
-            Addheaders(
-                new Dictionary<string, string>
-                {
-                    { "Authorization", $"{tokenType} {accessToken}" }
-                });
+            Addheader("Authorization", $"{tokenType} {accessToken}");
         }
 
         private void CreateInnerApiRestClient()
