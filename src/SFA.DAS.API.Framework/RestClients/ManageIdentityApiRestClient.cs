@@ -5,7 +5,7 @@ using System.Net;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public class ManageIdentityRestClient
+    public class ManageIdentityApiRestClient
     {
         private RestClient _restClient;
 
@@ -13,9 +13,10 @@ namespace SFA.DAS.API.Framework.RestClients
 
         private readonly ManageIdentityOathTokenConfig _config;
 
-        public ManageIdentityRestClient(ManageIdentityOathTokenConfig config)
+        public ManageIdentityApiRestClient(ManageIdentityOathTokenConfig config)
         {
             _config = config;
+
             CreateManageIdentityApiRestClient();
         }
 
@@ -26,7 +27,7 @@ namespace SFA.DAS.API.Framework.RestClients
             _restRequest = new RestRequest();
         }
 
-        public (string, string) GetAuthToken()
+        public (string tokenType, string accessToken) GetAuthToken()
         {
             _restRequest.Method = Method.POST;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class CreateApprenticeship
     {

@@ -76,6 +76,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
         public virtual void VerifyFatV2Api(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "api",
                     "fatv2api",
                     "regression"};
             if ((exampleTags != null))
@@ -90,7 +91,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,10 +111,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 8
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -122,49 +123,54 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2001")]
+        [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void VerifyFatV2Api_Fatv2001()
         {
-#line 5
+#line 6
 this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2002")]
+        [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void VerifyFatV2Api_Fatv2002()
         {
-#line 5
+#line 6
 this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2003")]
+        [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void VerifyFatV2Api_Fatv2003()
         {
-#line 5
+#line 6
 this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api EPAO")]
+        [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatv2api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void VerifyFatV2ApiEPAO()
         {
             string[] tagsOfScenario = new string[] {
+                    "api",
                     "fatv2api",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api EPAO", null, tagsOfScenario, argumentsOfScenario);
-#line 18
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -184,10 +190,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 20
  testRunner.When("the user sends GET request to /epaos without payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 21
  testRunner.Then("a OK response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -3,39 +3,20 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public abstract class OuterApiRestClient
+    public abstract class OuterApiRestClient : BaseApiRestClient
     {
-        private RestClient _restClient;
-
-        private RestRequest _restRequest;
-
         protected abstract string ApiName { get; }
 
         public OuterApiRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
 
-        public void CreateRestRequest(Method method, string resource, string payload)
+        public override void CreateRestRequest(Method method, string resource, string payload)
         {
             _restRequest.Method = method;
 
             _restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
-            if (!string.IsNullOrEmpty(payload))
-            {
-                if (payload.EndsWith(".json")) { _restRequest.AddJsonBody(JsonHelper.ReadAllText(payload)); }
-
-                else { _restRequest.AddJsonBody(payload); }
-            }
+            AddPayload(payload);
         }
-
-        public void Addheaders(Dictionary<string, string> dictionary)
-        {
-            foreach (var item in dictionary)
-            {
-                _restRequest.AddHeader(item.Key, item.Value);
-            }
-        }
-
-        public IRestResponse Execute() => _restClient.Execute(_restRequest);
 
         private void CreateOuterApiRestClient(string subscriptionkey)
         {

@@ -10,11 +10,11 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class CoursesApiSteps
     {
-        private readonly ManageIdentityRestClient _manageIdentityRestClient;
+        private readonly ManageIdentityApiRestClient _manageIdentityRestClient;
 
         public CoursesApiSteps(ScenarioContext context)
         {
-            _manageIdentityRestClient = context.GetRestClient<ManageIdentityRestClient>();
+            _manageIdentityRestClient = context.GetRestClient<ManageIdentityApiRestClient>();
         }
 
         [Then(@"I can access dataload endpoint")]

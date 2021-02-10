@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
-using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
+using System.Net;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
@@ -11,28 +11,29 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps
     {
-        private readonly OuterApiRestClient _restClient;
-        private readonly ManageIdentityRestClient _manageIdentityRestClient;
+        private readonly ApprenticeCommitmentsRestClient _restClient;
+        private readonly ManageIdentityApiRestClient _manageIdentityRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
-            _restClient = context.GetRestClient<OuterApiRestClient>();
+            _restClient = context.GetRestClient<ApprenticeCommitmentsRestClient>();
 
-            _manageIdentityRestClient = context.GetRestClient<ManageIdentityRestClient>();
+            _manageIdentityRestClient = context.GetRestClient<ManageIdentityApiRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [Then(@"I can access das commitments api")]
-        public void ThenICanAccessDasCommitmentsApi()
+        [When(@"I access das commitments api")]
+        public void WhenIAccessDasCommitmentsApi()
         {
-            _manageIdentityRestClient.GetAuthToken();
-        }
+            var restClient = new CommitmentsInnerApiRestClient(_manageIdentityRestClient);
 
+            restClient.PerformHeathCheck();
+        }
 
         [When(@"an apprenticeship is posted")]
         public void WhenAnApprenticeshipIsPosted()
@@ -49,9 +50,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _objectContext.SetTrainingName(trainingname);
             _objectContext.SetEmail(createApprenticeship.Email);
 
-            var payload = JsonHelper.Serialize(createApprenticeship);
-
-            _restClient.CreateRestRequest(Method.POST, "/apprenticeships", payload);
+            _restClient.CreateApprenticeship(createApprenticeship);
         }
 
         [Then(@"the apprentice details are updated in the login db")]
@@ -65,6 +64,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 
                 Assert.AreEqual(_objectContext.GetLastName(), lastname, $"Apprentice last name did not match");
             });
+        }
+
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
+        public void AResponseIsReceived(HttpStatusCode responsecode)
+        {
+            var response = _restClient.Execute();
+
+            AssertHelper.AssertResponse(responsecode, response);
         }
     }
 }

@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify ApprenticeCommitmentsApi")]
+        [NUnit.Framework.DescriptionAttribute("New apprenticeship email sent")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyApprenticeCommitmentsApi()
+        public virtual void NewApprenticeshipEmailSent()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "outerapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify ApprenticeCommitmentsApi", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New apprenticeship email sent", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,16 +122,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Commitment Api heathcheck")]
+        [NUnit.Framework.DescriptionAttribute("Inner das-commitments-api heathcheck")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
-        public virtual void CommitmentApiHeathcheck()
+        public virtual void InnerDas_Commitments_ApiHeathcheck()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
                     "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Commitment Api heathcheck", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Inner das-commitments-api heathcheck", null, tagsOfScenario, argumentsOfScenario);
 #line 15
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -153,7 +153,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 16
- testRunner.Then("I can access das commitments api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I access das commitments api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 17
+ testRunner.Then("a NotFound response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

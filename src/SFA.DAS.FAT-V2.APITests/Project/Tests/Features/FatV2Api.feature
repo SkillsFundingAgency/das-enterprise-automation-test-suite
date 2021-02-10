@@ -1,5 +1,6 @@
 ﻿Feature: FatV2Api
 
+@api
 @fatv2api
 @regression
 Scenario Outline: Verify FatV2Api
@@ -12,7 +13,7 @@ Examples:
 | Fatv2002   | GET    | /epaos/EPA0241/courses |                 | OK             |
 | Fatv2003   | GET    | /epaos                 |                 | OK             |
 
-
+@api
 @fatv2api
 @regression
 Scenario: Verify FatV2Api EPAO
