@@ -42,6 +42,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             AssertQueryData();
         }
 
+        public bool VerifyLearningRecordsExist()
+        {
+            query = $"SELECT COUNT(1) FROM [incentives].[Learner]";
+            var count = FetchIntegerQueryData(0);
+
+            return count > 1;
+        }
+
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";

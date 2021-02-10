@@ -11,5 +11,7 @@
         public string EI_PaymentsAppBaseUrl { get; set; }
 
         public string EI_PaymentsAppCode { get; set; }
+        public string EI_ApiBaseUrl { get; set; }
+        public string EI_ApiIdentifier { get; set; }
     }
 }
