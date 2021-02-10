@@ -1,6 +1,4 @@
-﻿using SFA.DAS.API.Framework;
-
-namespace SFA.DAS.ApprenticeCommitments.APITests
+﻿namespace SFA.DAS.API.Framework.Configs
 {
     public class DasCommitmentsApiMIConfig : ManageIdentityOathTokenConfig
     {

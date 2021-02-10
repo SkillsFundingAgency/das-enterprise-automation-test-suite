@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.API.Framework.Configs;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.API.Framework
@@ -16,6 +17,13 @@ namespace SFA.DAS.API.Framework
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpApiFrameworkConfiguration() => _context.Set(_configSection.GetConfigSection<ApiFrameworkConfig>());
+        public void SetUpApiFrameworkConfiguration()
+        {
+            _context.Set(_configSection.GetConfigSection<ApiFrameworkConfig>());
+
+            _context.Set(_configSection.GetConfigSection<DasCommitmentsApiMIConfig>());
+
+            _context.Set(_configSection.GetConfigSection<DasCoursesApiMiConfig>());
+        }
     }
 }

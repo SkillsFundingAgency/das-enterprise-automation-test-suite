@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
+using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;

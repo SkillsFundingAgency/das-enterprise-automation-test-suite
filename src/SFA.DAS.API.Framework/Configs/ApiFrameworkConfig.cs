@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.API.Framework
+﻿namespace SFA.DAS.API.Framework.Configs
 {
     public class ApiFrameworkConfig
     {

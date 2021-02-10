@@ -77,14 +77,18 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("Courses Api Heath Check")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("innerapi")]
         public virtual void CoursesApiHeathCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitmentsapi",
-                    "regression"};
+                    "regression",
+                    "api",
+                    "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Courses Api Heath Check", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
 testRunner.Then("I can access dataload endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

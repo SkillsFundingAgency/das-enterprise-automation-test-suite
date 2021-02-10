@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.API.Framework.RestClients;
 using System.Net;
 using TechTalk.SpecFlow;
 

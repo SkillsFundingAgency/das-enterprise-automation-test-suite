@@ -1,7 +1,8 @@
 ﻿using RestSharp;
+using SFA.DAS.API.Framework.Configs;
 using System.Net;
 
-namespace SFA.DAS.API.Framework
+namespace SFA.DAS.API.Framework.RestClients
 {
     public class ManageIdentityRestClient
     {
@@ -31,7 +32,7 @@ namespace SFA.DAS.API.Framework
             _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 
             _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={_config.GrantType}&resource={_config.Resource}", ParameterType.RequestBody);
-            
+
             IRestResponse response = _restClient.Execute(_restRequest);
 
             if (response.StatusCode != HttpStatusCode.OK)

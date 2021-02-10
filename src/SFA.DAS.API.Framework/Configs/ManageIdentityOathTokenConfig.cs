@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.API.Framework
+namespace SFA.DAS.API.Framework.Configs
 {
     public abstract class ManageIdentityOathTokenConfig
     {

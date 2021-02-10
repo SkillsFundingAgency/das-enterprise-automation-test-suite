@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
+using SFA.DAS.API.Framework.RestClients;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.APITests.Project

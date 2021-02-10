@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.RestClients;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,6 +1,4 @@
-﻿using SFA.DAS.API.Framework;
-
-namespace SFA.DAS.StandardsVersioning.APITests
+﻿namespace SFA.DAS.API.Framework.Configs
 {
     public class DasCoursesApiMiConfig : ManageIdentityOathTokenConfig
     {

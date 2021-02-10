@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
 
-namespace SFA.DAS.API.Framework
+namespace SFA.DAS.API.Framework.RestClients
 {
     public abstract class OuterApiRestClient
     {
@@ -19,7 +19,7 @@ namespace SFA.DAS.API.Framework
 
             _restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
-            if (!string.IsNullOrEmpty(payload)) 
+            if (!string.IsNullOrEmpty(payload))
             {
                 if (payload.EndsWith(".json")) { _restRequest.AddJsonBody(JsonHelper.ReadAllText(payload)); }
 
