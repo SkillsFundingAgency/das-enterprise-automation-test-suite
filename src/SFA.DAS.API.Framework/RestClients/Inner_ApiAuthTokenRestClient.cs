@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using SFA.DAS.API.Framework.Configs;
+using System;
 using System.Net;
 
 namespace SFA.DAS.API.Framework.RestClients
@@ -32,7 +33,7 @@ namespace SFA.DAS.API.Framework.RestClients
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new System.Exception("Failed to get auth token.", response.ErrorException);
+                throw new System.Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
             }
 
             AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);

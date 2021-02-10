@@ -11,16 +11,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps
     {
-        private readonly ApprenticeCommitmentsRestClient _restClient;
-        private readonly Inner_ApiAuthTokenRestClient _manageIdentityRestClient;
+        private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
+        private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
-            _restClient = context.GetRestClient<ApprenticeCommitmentsRestClient>();
+            _outerApiRestClient = context.GetRestClient<Outer_ApprenticeCommitmentsApiRestClient>();
 
-            _manageIdentityRestClient = context.GetRestClient<Inner_ApiAuthTokenRestClient>();
+            _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 
@@ -30,11 +30,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Then(@"das-commitments-api (/ping) endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed(string endpoint)
         {
-            var restClient = new Inner_CommitmentsApiRestClient(_manageIdentityRestClient);
+            _innerApiRestClient.PerformHeathCheck(endpoint);
 
-            restClient.PerformHeathCheck(endpoint);
-
-            var response = restClient.Execute();
+            var response = _innerApiRestClient.Execute();
 
             AssertHelper.AssertResponse(HttpStatusCode.OK, response);
         }
@@ -54,7 +52,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _objectContext.SetTrainingName(trainingname);
             _objectContext.SetEmail(createApprenticeship.Email);
 
-            _restClient.CreateApprenticeship(createApprenticeship);
+            _outerApiRestClient.CreateApprenticeship(createApprenticeship);
         }
 
         [Then(@"the apprentice details are updated in the login db")]
@@ -73,7 +71,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
-            var response = _restClient.Execute();
+            var response = _outerApiRestClient.Execute();
 
             AssertHelper.AssertResponse(responsecode, response);
         }

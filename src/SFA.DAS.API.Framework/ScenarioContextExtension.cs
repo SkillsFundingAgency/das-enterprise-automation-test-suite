@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.API.Framework.Configs;
 
 namespace SFA.DAS.API.Framework
 {
@@ -15,6 +16,9 @@ namespace SFA.DAS.API.Framework
         #endregion
 
         #region Getters
+        public static Outer_ApiAuthTokenConfig GetOuter_ApiAuthTokenConfig(this ScenarioContext context) => context.Get<Outer_ApiAuthTokenConfig>();
+        public static Inner_CommitmentsApiAuthTokenConfig GetInner_CommitmentsApiAuthTokenConfig(this ScenarioContext context) => context.Get<Inner_CommitmentsApiAuthTokenConfig>();
+        public static Inner_CoursesApiAuthTokenConfig GetInner_CoursesApiAuthTokenConfig(this ScenarioContext context) => context.Get<Inner_CoursesApiAuthTokenConfig>();
         public static T GetRestClient<T>(this ScenarioContext context) => Get<T>(context, RestClientKey<T>());
         public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion

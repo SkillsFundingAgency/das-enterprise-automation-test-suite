@@ -1,6 +1,4 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.RestClients;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.StandardsVersioning.APITests.Project
@@ -13,11 +11,6 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project
         public BeforeScenarioHooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            var restClient = new Inner_ApiAuthTokenRestClient(_context.Get<Inner_CoursesApiAuthTokenConfig>());
-
-            _context.SetRestClient(restClient);
-        }
+        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.GetInner_CoursesApiAuthTokenConfig()));
     }
 }

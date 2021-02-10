@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
@@ -24,13 +23,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             _context.Set(new ApprenticeCommitmentSqlHelper(_dbConfig));
 
-            var restClient = new ApprenticeCommitmentsRestClient(_context.Get<Outer_ApiAuthTokenConfig>().ApprenticeCommitmentsApiSubscriptionKey);
+            _context.SetRestClient(new Outer_ApprenticeCommitmentsApiRestClient(_context.GetOuter_ApiAuthTokenConfig()));
 
-            _context.SetRestClient(restClient);
-
-            var mIrestClient = new Inner_ApiAuthTokenRestClient(_context.Get<Inner_CommitmentsApiAuthTokenConfig>());
-
-            _context.SetRestClient(mIrestClient);
+            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_context.GetInner_CommitmentsApiAuthTokenConfig()));
         }
     }
 }

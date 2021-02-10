@@ -1,14 +1,17 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class ApprenticeCommitmentsRestClient : Outer_BaseApiRestClient
+    public class Outer_ApprenticeCommitmentsApiRestClient : Outer_BaseApiRestClient
     {
-        public ApprenticeCommitmentsRestClient(string subscriptionkey) : base(subscriptionkey) { }
+        public Outer_ApprenticeCommitmentsApiRestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
         protected override string ApiName => "/apprenticecommitments";
+
+        protected override string ApiSubscriptionKey => config.ApprenticeCommitmentsApiSubscriptionKey;
 
         public void CreateApprenticeship(CreateApprenticeship createApprenticeship)
         {

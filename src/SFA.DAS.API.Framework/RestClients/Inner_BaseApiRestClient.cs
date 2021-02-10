@@ -1,16 +1,17 @@
 ﻿using RestSharp;
+using SFA.DAS.API.Framework.Configs;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
     public abstract class Inner_BaseApiRestClient : BaseApiRestClient
     {
-        private readonly Inner_ApiAuthTokenRestClient _manageIdentityApiRestClient;
+        private readonly Inner_ApiAuthTokenConfig _config;
 
         protected abstract string Inner_ApiBaseUrl { get; }
 
-        public Inner_BaseApiRestClient(Inner_ApiAuthTokenRestClient manageIdentityApiRestClient)
+        public Inner_BaseApiRestClient(Inner_ApiAuthTokenConfig config)
         {
-            _manageIdentityApiRestClient = manageIdentityApiRestClient;
+            _config = config;
 
             CreateInnerApiRestClient();
         }
@@ -24,7 +25,9 @@ namespace SFA.DAS.API.Framework.RestClients
 
         private void AddAuthHeaders()
         {
-            (string tokenType, string accessToken) = _manageIdentityApiRestClient.GetAuthToken();
+            var restClient = new Inner_ApiAuthTokenRestClient(_config);
+
+            (string tokenType, string accessToken) = restClient.GetAuthToken();
 
             Addheader("Authorization", $"{tokenType} {accessToken}");
         }
