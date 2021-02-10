@@ -1,7 +1,7 @@
 ﻿Feature: CoursesApi
 
 
-@apprenticecommitmentsapi
+@standardversioningapi
 @regression
 @api
 @innerapi

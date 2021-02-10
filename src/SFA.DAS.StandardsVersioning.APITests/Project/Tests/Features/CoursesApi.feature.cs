@@ -75,14 +75,14 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Inner das-courses-api heathcheck")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("standardversioningapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
         public virtual void InnerDas_Courses_ApiHeathcheck()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitmentsapi",
+                    "standardversioningapi",
                     "regression",
                     "api",
                     "innerapi"};
