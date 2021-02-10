@@ -74,16 +74,16 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify CoursesApi")]
+        [NUnit.Framework.DescriptionAttribute("Courses Api Heath Check")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyCoursesApi()
+        public virtual void CoursesApiHeathCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitmentsapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify CoursesApi", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Courses Api Heath Check", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

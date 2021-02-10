@@ -1,7 +1,9 @@
-﻿namespace SFA.DAS.API.Framework
+﻿using SFA.DAS.API.Framework;
+
+namespace SFA.DAS.ApprenticeCommitments.APITests
 {
     public class DasCommitmentsApiMIConfig : ManageIdentityOathTokenConfig
     {
-        protected override string ResourceEndpoint => "das-commitments-api";
+        protected override string ApiName => "das-commitments-api";
     }
 }

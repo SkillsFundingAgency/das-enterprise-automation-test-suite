@@ -6,6 +6,6 @@ namespace SFA.DAS.FAT_V2.APITests.Project
     {
         public FatV2RestClient(string subscriptionkey) : base(subscriptionkey) { }
 
-        protected override string ApiEndpoint => "/epaoregister";
+        protected override string ApiName => "/epaoregister";
     }
 }

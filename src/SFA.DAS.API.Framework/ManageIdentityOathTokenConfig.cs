@@ -12,8 +12,8 @@ namespace SFA.DAS.API.Framework
 
         public string GrantType => "client_credentials";
 
-        protected abstract string ResourceEndpoint { get; }
+        protected abstract string ApiName { get; }
 
-        public string Resource => UriHelper.GetAbsoluteUri($"https://{Tenant}", ResourceEndpoint);
+        public string Resource => UriHelper.GetAbsoluteUri($"https://{Tenant}", ApiName);
     }
 }

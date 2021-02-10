@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
+﻿using RestSharp;
 using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework
@@ -10,7 +9,7 @@ namespace SFA.DAS.API.Framework
 
         private RestRequest _restRequest;
 
-        protected abstract string ApiEndpoint { get; }
+        protected abstract string ApiName { get; }
 
         public OuterApiRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
 
@@ -18,7 +17,7 @@ namespace SFA.DAS.API.Framework
         {
             _restRequest.Method = method;
 
-            _restRequest.Resource = resource.Contains(ApiEndpoint) ? resource : $"{ApiEndpoint}{resource}";
+            _restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
             if (!string.IsNullOrEmpty(payload)) 
             {

@@ -6,6 +6,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         public ApprenticeCommitmentsRestClient(string subscriptionkey) : base(subscriptionkey) { }
 
-        protected override string ApiEndpoint => "/apprenticecommitments";
+        protected override string ApiName => "/apprenticecommitments";
     }
 }

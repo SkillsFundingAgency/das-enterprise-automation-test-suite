@@ -4,6 +4,6 @@ namespace SFA.DAS.StandardsVersioning.APITests
 {
     public class DasCoursesApiMiConfig : ManageIdentityOathTokenConfig
     {
-        protected override string ResourceEndpoint => "das-courses-api";
+        protected override string ApiName => "das-at-crsapi-as-ar";
     }
 }

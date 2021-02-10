@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     public class ApprenticeCommitmentsAPISteps
     {
         private readonly OuterApiRestClient _restClient;
+        private readonly ManageIdentityRestClient _manageIdentityRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
@@ -18,10 +19,19 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             _restClient = context.GetRestClient<OuterApiRestClient>();
 
+            _manageIdentityRestClient = context.GetRestClient<ManageIdentityRestClient>();
+
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 
             _objectContext = context.Get<ObjectContext>();
         }
+
+        [Then(@"I can access das commitments api")]
+        public void ThenICanAccessDasCommitmentsApi()
+        {
+            _manageIdentityRestClient.GetAuthToken();
+        }
+
 
         [When(@"an apprenticeship is posted")]
         public void WhenAnApprenticeshipIsPosted()

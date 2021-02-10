@@ -3,5 +3,5 @@
 
 @apprenticecommitmentsapi
 @regression
-Scenario: Verify CoursesApi
+Scenario: Courses Api Heath Check
 Then I can access dataload endpoint
