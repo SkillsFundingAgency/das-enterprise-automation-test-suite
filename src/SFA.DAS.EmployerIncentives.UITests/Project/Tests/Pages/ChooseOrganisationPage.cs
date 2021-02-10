@@ -14,11 +14,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ChooseOrganisationPage(ScenarioContext context) : base(context) => _context = context;
 
-        public QualificationQuestionPage SelectFirstEntityInChooseOrgPageAndContinue()
+        public EIStartPage SelectFirstEntityInChooseOrgPageAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FirstRadioButton));
             formCompletionHelper.Click(ContinueButton);
-            return new QualificationQuestionPage(_context);
+            return new EIStartPage(_context);
         }
     }
 }

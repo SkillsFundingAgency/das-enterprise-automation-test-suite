@@ -23,5 +23,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
             Continue();
             return new AS_StandardSearchResultsPage(_context);
         }
+
+        public AS_StandardSearchResultsPage EnterStandardToCancelName()
+        {
+            formCompletionHelper.EnterText(StandardName, "Brewer");
+            Continue();
+            return new AS_StandardSearchResultsPage(_context);
+        }
     }
 }

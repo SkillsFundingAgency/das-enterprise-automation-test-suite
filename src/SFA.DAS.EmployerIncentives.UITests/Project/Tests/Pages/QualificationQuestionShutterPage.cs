@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class QualificationQuestionShutterPage : EIBasePage
     {
-        protected override string PageTitle => "You can only apply for apprentices who started their contract of employment between 1 August 2020 and 31 January 2021";
+        protected override string PageTitle => "You do not have any eligible apprentices";
 
         #region Locators
         private readonly ScenarioContext _context;
