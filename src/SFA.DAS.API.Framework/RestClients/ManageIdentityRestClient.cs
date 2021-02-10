@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using SFA.DAS.API.Framework.Configs;
 using System.Net;
 
@@ -25,7 +26,7 @@ namespace SFA.DAS.API.Framework.RestClients
             _restRequest = new RestRequest();
         }
 
-        public string GetAuthToken()
+        public (string, string) GetAuthToken()
         {
             _restRequest.Method = Method.POST;
 
@@ -37,11 +38,12 @@ namespace SFA.DAS.API.Framework.RestClients
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return string.Empty;
+                return (string.Empty, string.Empty);
             }
 
-            return response.Content;
-        }
+            AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
 
+            return (authToken.Token_type, authToken.Access_token);
+        }
     }
 }
