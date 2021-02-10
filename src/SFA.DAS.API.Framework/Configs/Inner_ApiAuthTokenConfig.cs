@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.API.Framework.Configs
 {
-    public abstract class InnerApiAuthTokenConfig
+    public abstract class Inner_ApiAuthTokenConfig
     {
         public string ClientId { get; set; }
 

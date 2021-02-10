@@ -2,13 +2,13 @@
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public abstract class InnerApiRestClient : BaseApiRestClient
+    public abstract class Inner_BaseApiRestClient : BaseApiRestClient
     {
-        private readonly AuthTokenApiRestClient _manageIdentityApiRestClient;
+        private readonly Inner_ApiAuthTokenRestClient _manageIdentityApiRestClient;
 
         protected abstract string Inner_ApiBaseUrl { get; }
 
-        public InnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient)
+        public Inner_BaseApiRestClient(Inner_ApiAuthTokenRestClient manageIdentityApiRestClient)
         {
             _manageIdentityApiRestClient = manageIdentityApiRestClient;
 
@@ -21,7 +21,6 @@ namespace SFA.DAS.API.Framework.RestClients
 
             AddPayload(payload);
         }
-
 
         private void AddAuthHeaders()
         {

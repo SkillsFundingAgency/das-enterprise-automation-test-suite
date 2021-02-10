@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public abstract class OuterApiRestClient : BaseApiRestClient
+    public abstract class Outer_BaseApiRestClient : BaseApiRestClient
     {
         protected abstract string ApiName { get; }
 
-        public OuterApiRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
+        public Outer_BaseApiRestClient(string subscriptionkey) => CreateOuterApiRestClient(subscriptionkey);
 
         public override void CreateRestRequest(Method method, string resource, string payload)
         {
@@ -20,7 +20,7 @@ namespace SFA.DAS.API.Framework.RestClients
 
         private void CreateOuterApiRestClient(string subscriptionkey)
         {
-            _restClient = new RestClient(UrlConfig.OuterApiBaseUrl);
+            _restClient = new RestClient(UrlConfig.Outer_ApiBaseUrl);
 
             _restRequest = new RestRequest();
 

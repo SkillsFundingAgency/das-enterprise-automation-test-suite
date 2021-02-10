@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.API.Framework.Configs
 {
-    public class CoursesApiAuthTokenConfig : InnerApiAuthTokenConfig
+    public class Inner_CoursesApiAuthTokenConfig : Inner_ApiAuthTokenConfig
     {
         protected override string ApiName => $"das-{EnvironmentConfig.EnvironmentName}-crsapi-as-ar";
     }

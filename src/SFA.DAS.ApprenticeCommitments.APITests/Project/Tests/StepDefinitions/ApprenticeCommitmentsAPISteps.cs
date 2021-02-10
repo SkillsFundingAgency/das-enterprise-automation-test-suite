@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     public class ApprenticeCommitmentsAPISteps
     {
         private readonly ApprenticeCommitmentsRestClient _restClient;
-        private readonly AuthTokenApiRestClient _manageIdentityRestClient;
+        private readonly Inner_ApiAuthTokenRestClient _manageIdentityRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             _restClient = context.GetRestClient<ApprenticeCommitmentsRestClient>();
 
-            _manageIdentityRestClient = context.GetRestClient<AuthTokenApiRestClient>();
+            _manageIdentityRestClient = context.GetRestClient<Inner_ApiAuthTokenRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Then(@"das-commitments-api (/ping) endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed(string endpoint)
         {
-            var restClient = new CommitmentsInnerApiRestClient(_manageIdentityRestClient);
+            var restClient = new Inner_CommitmentsApiRestClient(_manageIdentityRestClient);
 
             restClient.PerformHeathCheck(endpoint);
 

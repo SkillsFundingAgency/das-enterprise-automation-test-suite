@@ -5,26 +5,19 @@ using System.Net;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public class AuthTokenApiRestClient
+    public class Inner_ApiAuthTokenRestClient
     {
         private RestClient _restClient;
 
         private RestRequest _restRequest;
 
-        private readonly InnerApiAuthTokenConfig _config;
+        private readonly Inner_ApiAuthTokenConfig _config;
 
-        public AuthTokenApiRestClient(InnerApiAuthTokenConfig config)
+        public Inner_ApiAuthTokenRestClient(Inner_ApiAuthTokenConfig config)
         {
             _config = config;
 
-            CreateManageIdentityApiRestClient();
-        }
-
-        private void CreateManageIdentityApiRestClient()
-        {
-            _restClient = new RestClient(UrlConfig.MangeIdentitybaseUrl(_config.Tenant));
-
-            _restRequest = new RestRequest();
+            CreateInnerApiAuthTokenRestClient();
         }
 
         public (string tokenType, string accessToken) GetAuthToken()
@@ -39,12 +32,19 @@ namespace SFA.DAS.API.Framework.RestClients
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return (string.Empty, string.Empty);
+                throw new System.Exception("Failed to get auth token.", response.ErrorException);
             }
 
             AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
 
             return (authToken.Token_type, authToken.Access_token);
+        }
+
+        private void CreateInnerApiAuthTokenRestClient()
+        {
+            _restClient = new RestClient(UrlConfig.MangeIdentitybaseUrl(_config.Tenant));
+
+            _restRequest = new RestRequest();
         }
     }
 }

@@ -4,7 +4,7 @@ using SFA.DAS.API.Framework.RestClients;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class ApprenticeCommitmentsRestClient : OuterApiRestClient
+    public class ApprenticeCommitmentsRestClient : Outer_BaseApiRestClient
     {
         public ApprenticeCommitmentsRestClient(string subscriptionkey) : base(subscriptionkey) { }
 

@@ -15,7 +15,7 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var restClient = new AuthTokenApiRestClient(_context.Get<CoursesApiAuthTokenConfig>());
+            var restClient = new Inner_ApiAuthTokenRestClient(_context.Get<Inner_CoursesApiAuthTokenConfig>());
 
             _context.SetRestClient(restClient);
         }

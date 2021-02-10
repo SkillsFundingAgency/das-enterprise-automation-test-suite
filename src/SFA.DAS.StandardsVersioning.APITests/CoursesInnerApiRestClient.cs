@@ -3,9 +3,9 @@ using SFA.DAS.API.Framework.RestClients;
 
 namespace SFA.DAS.StandardsVersioning.APITests
 {
-    public class CoursesInnerApiRestClient : InnerApiRestClient
+    public class CoursesInnerApiRestClient : Inner_BaseApiRestClient
     {
-        public CoursesInnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
+        public CoursesInnerApiRestClient(Inner_ApiAuthTokenRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
         {
 
         }

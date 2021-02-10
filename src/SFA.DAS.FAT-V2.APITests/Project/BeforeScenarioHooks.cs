@@ -14,7 +14,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var restClient = new FatV2RestClient(_context.Get<OuterApiAuthTokenConfig>().Fatv2ApiKey);
+            var restClient = new FatV2RestClient(_context.Get<Outer_ApiAuthTokenConfig>().Fatv2ApiSubscriptionKey);
 
             _context.SetRestClient(restClient);
         }

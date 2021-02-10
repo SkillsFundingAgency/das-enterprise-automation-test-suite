@@ -3,9 +3,9 @@ using SFA.DAS.API.Framework.RestClients;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class CommitmentsInnerApiRestClient : InnerApiRestClient
+    public class Inner_CommitmentsApiRestClient : Inner_BaseApiRestClient
     {
-        public CommitmentsInnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
+        public Inner_CommitmentsApiRestClient(Inner_ApiAuthTokenRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
         {
 
         }
@@ -17,5 +17,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             CreateRestRequest(RestSharp.Method.GET, endpoint, string.Empty);
         }
 
+        public void GetApprenticeship(long app)
+        {
+            CreateRestRequest(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty);
+        }
     }
 }

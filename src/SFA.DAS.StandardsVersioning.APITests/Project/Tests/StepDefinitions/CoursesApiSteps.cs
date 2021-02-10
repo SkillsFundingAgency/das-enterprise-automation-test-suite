@@ -11,11 +11,11 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class CoursesApiSteps
     {
-        private readonly AuthTokenApiRestClient _manageIdentityRestClient;
+        private readonly Inner_ApiAuthTokenRestClient _manageIdentityRestClient;
 
         public CoursesApiSteps(ScenarioContext context)
         {
-            _manageIdentityRestClient = context.GetRestClient<AuthTokenApiRestClient>();
+            _manageIdentityRestClient = context.GetRestClient<Inner_ApiAuthTokenRestClient>();
         }
 
         [Then(@"das-courses-api (/ping) endpoint can be accessed")]
