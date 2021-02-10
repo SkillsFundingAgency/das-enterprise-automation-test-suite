@@ -5,7 +5,7 @@ namespace SFA.DAS.StandardsVersioning.APITests
 {
     public class CoursesInnerApiRestClient : InnerApiRestClient
     {
-        public CoursesInnerApiRestClient(ManageIdentityApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
+        public CoursesInnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
         {
 
         }

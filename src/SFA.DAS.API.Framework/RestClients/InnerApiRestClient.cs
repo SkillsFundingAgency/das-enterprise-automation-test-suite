@@ -4,11 +4,11 @@ namespace SFA.DAS.API.Framework.RestClients
 {
     public abstract class InnerApiRestClient : BaseApiRestClient
     {
-        private readonly ManageIdentityApiRestClient _manageIdentityApiRestClient;
+        private readonly AuthTokenApiRestClient _manageIdentityApiRestClient;
 
         protected abstract string Inner_ApiBaseUrl { get; }
 
-        public InnerApiRestClient(ManageIdentityApiRestClient manageIdentityApiRestClient)
+        public InnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient)
         {
             _manageIdentityApiRestClient = manageIdentityApiRestClient;
 

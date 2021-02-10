@@ -5,15 +5,15 @@ using System.Net;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
-    public class ManageIdentityApiRestClient
+    public class AuthTokenApiRestClient
     {
         private RestClient _restClient;
 
         private RestRequest _restRequest;
 
-        private readonly ManageIdentityOathTokenConfig _config;
+        private readonly InnerApiAuthTokenConfig _config;
 
-        public ManageIdentityApiRestClient(ManageIdentityOathTokenConfig config)
+        public AuthTokenApiRestClient(InnerApiAuthTokenConfig config)
         {
             _config = config;
 

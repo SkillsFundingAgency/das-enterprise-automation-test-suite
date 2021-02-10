@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.API.Framework.Configs
 {
-    public class ApiFrameworkConfig
+    public class OuterApiAuthTokenConfig
     {
         public string Fatv2ApiKey { get; set; }
 

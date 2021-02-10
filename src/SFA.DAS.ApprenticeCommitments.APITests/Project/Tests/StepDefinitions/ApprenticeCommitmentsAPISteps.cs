@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     public class ApprenticeCommitmentsAPISteps
     {
         private readonly ApprenticeCommitmentsRestClient _restClient;
-        private readonly ManageIdentityApiRestClient _manageIdentityRestClient;
+        private readonly AuthTokenApiRestClient _manageIdentityRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ObjectContext _objectContext;
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             _restClient = context.GetRestClient<ApprenticeCommitmentsRestClient>();
 
-            _manageIdentityRestClient = context.GetRestClient<ManageIdentityApiRestClient>();
+            _manageIdentityRestClient = context.GetRestClient<AuthTokenApiRestClient>();
 
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
 

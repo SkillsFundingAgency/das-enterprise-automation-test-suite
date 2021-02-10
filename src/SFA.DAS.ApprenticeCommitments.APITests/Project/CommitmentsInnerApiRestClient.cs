@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class CommitmentsInnerApiRestClient : InnerApiRestClient
     {
-        public CommitmentsInnerApiRestClient(ManageIdentityApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
+        public CommitmentsInnerApiRestClient(AuthTokenApiRestClient manageIdentityApiRestClient) : base(manageIdentityApiRestClient)
         {
 
         }

@@ -19,11 +19,11 @@ namespace SFA.DAS.API.Framework
         [BeforeScenario(Order = 2)]
         public void SetUpApiFrameworkConfiguration()
         {
-            _context.Set(_configSection.GetConfigSection<ApiFrameworkConfig>());
+            _context.Set(_configSection.GetConfigSection<OuterApiAuthTokenConfig>());
 
-            _context.Set(_configSection.GetConfigSection<DasCommitmentsApiMIConfig>());
+            _context.Set(_configSection.GetConfigSection<CommitmentsApiAuthTokenConfig>());
 
-            _context.Set(_configSection.GetConfigSection<DasCoursesApiMiConfig>());
+            _context.Set(_configSection.GetConfigSection<CoursesApiAuthTokenConfig>());
         }
     }
 }

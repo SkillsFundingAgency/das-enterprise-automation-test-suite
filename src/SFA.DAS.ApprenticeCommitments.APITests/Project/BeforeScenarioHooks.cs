@@ -24,11 +24,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             _context.Set(new ApprenticeCommitmentSqlHelper(_dbConfig));
 
-            var restClient = new ApprenticeCommitmentsRestClient(_context.Get<ApiFrameworkConfig>().ApprenticeCommitmentsApiKey);
+            var restClient = new ApprenticeCommitmentsRestClient(_context.Get<OuterApiAuthTokenConfig>().ApprenticeCommitmentsApiKey);
 
             _context.SetRestClient(restClient);
 
-            var mIrestClient = new ManageIdentityApiRestClient(_context.Get<DasCommitmentsApiMIConfig>());
+            var mIrestClient = new AuthTokenApiRestClient(_context.Get<CommitmentsApiAuthTokenConfig>());
 
             _context.SetRestClient(mIrestClient);
         }
