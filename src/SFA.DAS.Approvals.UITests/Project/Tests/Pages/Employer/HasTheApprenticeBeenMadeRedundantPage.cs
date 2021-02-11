@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         #endregion
-        protected override By ContinueButton => By.CssSelector("#submit-redundancy-confirm");
+        protected override By ContinueButton => By.Id("submit");
 
         public HasTheApprenticeBeenMadeRedundantPage(ScenarioContext context) : base(context)
         {
