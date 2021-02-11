@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class AgreementIdSqlHelper : SqlDbHelper
     {
-        public AgreementIdSqlHelper(RegistrationConfig registrationConfig) : base(registrationConfig.RE_AccountsDbConnectionString) { }
+        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
     
         public string GetAgreementId(string email, string name)
         {
@@ -21,7 +21,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             else
                 return responseData[0][0].ToString();
         }
-
-
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Net;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.API.Framework.StepDefinitions
 {
     [Binding]
     public class TransformationSteps
