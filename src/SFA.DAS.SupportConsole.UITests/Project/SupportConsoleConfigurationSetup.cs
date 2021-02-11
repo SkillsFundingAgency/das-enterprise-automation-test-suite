@@ -26,6 +26,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project
             _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
 
             _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
+
+            _context.SetUser(_configSection.GetConfigSection<SupportToolsUser>());
+            
         }
     }
 }

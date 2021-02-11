@@ -4,18 +4,27 @@ using NUnit.Framework;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
     public class StepsHelper
     {
         private readonly ScenarioContext _context;
+        private readonly TabHelper _tabHelper;
 
-        public StepsHelper(ScenarioContext context) => _context = context;
+        public StepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _tabHelper = _context.Get<TabHelper>();
+        }
 
         public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
         
         public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
+
+        public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(_context.GetUser<SupportToolsUser>());
 
         public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
@@ -64,5 +73,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
             return new SignInPage(_context).SignInWithValidDetails(loginUser);
         }
+
+        private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
+            new IdamsPage(_context).LoginToAccess1Staff();
+
+            return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
+        }
+
+       
     }
 }
