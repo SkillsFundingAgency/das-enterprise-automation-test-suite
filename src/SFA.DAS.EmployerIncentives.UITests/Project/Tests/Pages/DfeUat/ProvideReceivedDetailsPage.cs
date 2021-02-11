@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
     public class ProvideReceivedDetailsPage : ProvideOrgInformationBasePage
     {
         protected override string PageTitle => "We have received your details";
-        protected override By PageHeader => By.CssSelector("h1");
+        protected override By PageHeader => By.XPath("//h1[text()='We have received your details']");
 
         #region Locators
         private readonly ScenarioContext _context;
@@ -18,17 +18,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         public ProvideReceivedDetailsPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
+            frameHelper.SwitchFrameAndAction(() => VerifyPage(PageHeader, PageTitle));
         }
 
         public ApplicationCompletePage ReturnToEasPage()
         {
-            frameHelper.SwitchFrameAndAction(() => 
+            frameHelper.SwitchFrameAndAction(() =>
             {
                 TestContext.Progress.WriteLine($"CaseId Summary: {pageInteractionHelper.GetText(CaseIdSummary)}");
                 formCompletionHelper.ClickElement(ReturnToEasLink);
             });
-            
+
             return new ApplicationCompletePage(_context);
         }
     }
