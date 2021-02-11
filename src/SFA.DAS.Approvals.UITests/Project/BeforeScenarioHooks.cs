@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
         private readonly ApprovalsConfig _approvalsConfig;
-        private readonly RegistrationConfig _registrationConfig;
+        private readonly DbConfig _dbConfig;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
 
         public BeforeScenarioHooks(ScenarioContext context)
@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
+            _dbConfig = context.Get<DbConfig>();
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
         }
 
@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_approvalsConfig);
+            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
             _context.Set(commitmentsdatahelper);
 
@@ -64,9 +64,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
+            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper));
 
-            _context.Set(new AgreementIdSqlHelper(_registrationConfig));
+            _context.Set(new AgreementIdSqlHelper(_dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper(random));
 

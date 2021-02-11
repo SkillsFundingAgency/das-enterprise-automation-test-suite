@@ -43,6 +43,8 @@
         public string FullName { get; set; }
     }
 
+    public class EPAOStageTwoStandardCancelUser : LoginUser { }
+
     public class EPAOE2EApplyUser : LoginUser { }
 
     public class EPAOAdminUser : LoginUser { }

@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
-using RestSharp;
+﻿using RestSharp;
 using SFA.DAS.API.Framework;
-using System.Collections.Generic;
+using SFA.DAS.API.Framework.RestClients;
 using System.Net;
 using TechTalk.SpecFlow;
 
@@ -10,42 +9,24 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class Fatv2ApiSteps
     {
-        private readonly Fatv2ApiConfig fatv2ApiConfig;
-        private FrameworkRestClient frameworkRestClient;
+        private readonly FatV2RestClient _restClient;
 
-        public Fatv2ApiSteps(ScenarioContext context) => fatv2ApiConfig = context.GetFatV2ApiConfig<Fatv2ApiConfig>();
-
-        [Given(@"the fatv2 api client is created")]
-        public void TheFatvApiClientIsCreated()
-        {
-            frameworkRestClient = new FrameworkRestClient(UrlConfig.FATV2_BaseUrl);
-
-            frameworkRestClient.AddAuthHeaders(fatv2ApiConfig.ApiKey);
-        }
+        public Fatv2ApiSteps(ScenarioContext context) => _restClient = context.GetRestClient<FatV2RestClient>();
 
         [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
-        public void TheUserSendsRequestTo(Method method, string endppoint, string payload)
-        {
-            frameworkRestClient.CreateRestRequest(method, endppoint, payload);
-        }
+        public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);
 
         [When(@"the user sends (GET) request to (.*) without payload")]
-        public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint)
-        {
-            frameworkRestClient.CreateRestRequest(method, endppoint, null);
-        }
+        public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint) => CreateRestRequest(method, endppoint, null);
 
-        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound) response is received")]
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
-            var response = frameworkRestClient.Execute();
+            var response = _restClient.Execute();
 
-            Assert.Multiple(() => 
-            {
-                if (responsecode == HttpStatusCode.OK) Assert.IsTrue(response.IsSuccessful);
-
-                Assert.AreEqual(responsecode, response.StatusCode, $"{response.StatusCode} - {response.Content}");
-            });
+            AssertHelper.AssertResponse(responsecode, response);
         }
+
+        private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }
 }
