@@ -18,7 +18,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         public ProvideReceivedDetailsPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage(PageHeader, PageTitle));
+            frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
         public ApplicationCompletePage ReturnToEasPage()
