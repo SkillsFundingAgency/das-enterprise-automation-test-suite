@@ -7,5 +7,7 @@
         public string CommitmentsDbConnectionString { get; set; }
 
         public string ApprenticeCommitmentLoginDbConnectionString { get; set; }
+
+        public string ApprenticeCommitmentDbConnectionString { get; set; }
     }
 }

@@ -1,7 +1,4 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using System;
-
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
+﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpApplyCreateUserDataHelpers
     {

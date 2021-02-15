@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         public long EmployerAccountId { get; set; }
         public long ApprenticeshipId { get; set; }
-        public string Email => $"CreateApprenticeship{DateTime.Now:ddMMMyyyy_HHmmss}@mailinator.com";
+        public string Email { get; set; }
         public string Organisation { get; set; }
     }
 }

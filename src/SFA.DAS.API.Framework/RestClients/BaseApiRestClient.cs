@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using SFA.DAS.API.Framework.Helpers;
 using System.Collections.Generic;
 
 namespace SFA.DAS.API.Framework.RestClients
