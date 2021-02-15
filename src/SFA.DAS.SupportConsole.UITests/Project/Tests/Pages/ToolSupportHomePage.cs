@@ -15,23 +15,21 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
-        /*protected override By PageHeader => By.CssSelector(".heading-large");
-        private By SearchOptionsLabels => By.CssSelector("label");
-        private By SearchButton => By.Id("searchButton");
-        private By SearchTextBox => By.Id("search-main");
-        private By NextPage => By.CssSelector(".page-navigation .next");
-        private By NoOfPages => By.CssSelector(".page-navigation .next .counter");*/
+        private By HomeHeading => By.LinkText("support");
+        protected By PauseApprenticeshipsLink => By.XPath("//body/div[1]/main[1]/div[1]/div[1]/dl[1]/div[1]/dd[2]/a[1]");
+        protected By ResumeApprenticeshipsLink => By.PartialLinkText("act=resume");
+        protected By StopApprenticeshipsLink => By.PartialLinkText("act=stop");
         #endregion
 
-        private string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
-        private string UserSearchHint => "Enter name or email address";
+        public ToolSupportHomePage(ScenarioContext context) : base(context) => _context = context;
 
-        public ToolSupportHomePage(ScenarioContext context) : base(context)
+        public void ClickPauseApprenticeshipsLink() => formCompletionHelper.Click(PauseApprenticeshipsLink);
+
+        public SearchHomePage GoToHomePage()
         {
-            _context = context;
-            VerifyPage();
+            formCompletionHelper.ClickElement(HomeHeading);
+            return new SearchHomePage(_context);
         }
-
 
     }
 }

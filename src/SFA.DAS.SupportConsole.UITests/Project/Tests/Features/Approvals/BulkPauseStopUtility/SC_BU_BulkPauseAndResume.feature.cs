@@ -77,12 +77,21 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         [NUnit.Framework.DescriptionAttribute("Bulk Pause and then Resume Apprentice Records")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        public virtual void BulkPauseAndThenResumeApprenticeRecords()
+        [NUnit.Framework.TestCaseAttribute("COMPLIANCE LIMITED", "SOUTHAMPTON ENGINEERING TRAINING ASSOCIATION LIMITED (THE)", "100", null)]
+        public virtual void BulkPauseAndThenResumeApprenticeRecords(string employerName, string providerName, string totalRecords, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "supportconsole",
                     "approvalssupportconsole"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("EmployerName", employerName);
+            argumentsOfScenario.Add("ProviderName", providerName);
+            argumentsOfScenario.Add("TotalRecords", totalRecords);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Pause and then Resume Apprentice Records", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -105,7 +114,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+ testRunner.And("Open Pause utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.When(string.Format("selects Search by {0} and {1}", employerName, providerName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then(string.Format("{0} are retreived", totalRecords), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
