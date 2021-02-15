@@ -1,11 +1,12 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CommitmentsSqlDataHelper : SqlDbHelper
     {
-        public CommitmentsSqlDataHelper(ApprovalsConfig approvalsConfig) : base(approvalsConfig.CommitmentsDbConnectionString) { }
+        public CommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
 
         public void SetHasHadDataLockSuccessTrue(string uln)
         {

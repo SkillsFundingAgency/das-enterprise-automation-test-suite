@@ -38,6 +38,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private ReadOnlyCollection<string> ExistingTabs() => _webDriver.WindowHandles;
 
-        private string GetUrl(string uriString, string relativeUri) => new Uri(new Uri(uriString), relativeUri).AbsoluteUri;
+        private string GetUrl(string uriString, string relativeUri) => UriHelper.GetAbsoluteUri(uriString, relativeUri);
     }
 }

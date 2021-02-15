@@ -28,9 +28,6 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="appsettings.Project.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="Project\Tests\Payload\fatv2epaos.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
