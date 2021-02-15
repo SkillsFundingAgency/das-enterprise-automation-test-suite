@@ -9,11 +9,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public new void CreateApprenticeship()
         {
-            base.CreateApprenticeship();
+            _assertHelper.RetryOnNUnitException(() => 
+            {
+                base.CreateApprenticeship();
 
-            AssertResponse(HttpStatusCode.Accepted);
-
-            AssertApprenticeLoginData();
+                AssertResponse(HttpStatusCode.Accepted);
+            });
         }
     }
 }

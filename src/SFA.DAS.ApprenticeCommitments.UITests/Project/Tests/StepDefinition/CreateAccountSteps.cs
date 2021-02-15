@@ -2,6 +2,7 @@
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -48,11 +49,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
             });
 
-            //new CreatePasswordPage(_context).CreatePassword(pasword);
-
-            //_objectContext.SetCreateAccountCreds(email, pasword);
+            new CreatePasswordPage(_context).CreatePassword(pasword);
         }
-
-
     }
 }

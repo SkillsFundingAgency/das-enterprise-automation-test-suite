@@ -29,7 +29,7 @@ namespace SFA.DAS.API.Framework
         [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
-            _context.Replace(new UI.FrameworkHelpers.AssertHelper());
+            _context.Replace(new UI.FrameworkHelpers.AssertHelper(_context.ScenarioInfo));
         }
     }
 }

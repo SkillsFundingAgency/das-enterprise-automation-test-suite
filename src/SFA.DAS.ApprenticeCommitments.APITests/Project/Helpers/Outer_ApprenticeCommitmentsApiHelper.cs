@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         private readonly ApprenticeCommitmentsDataHelper _dataHelper;
         private readonly ObjectContext _objectContext;
         private IRestResponse _restResponse;
-        private readonly UI.FrameworkHelpers.AssertHelper _assertHelper;
+        protected readonly UI.FrameworkHelpers.AssertHelper _assertHelper;
 
         internal Outer_ApprenticeCommitmentsApiHelper(ScenarioContext context)
         {

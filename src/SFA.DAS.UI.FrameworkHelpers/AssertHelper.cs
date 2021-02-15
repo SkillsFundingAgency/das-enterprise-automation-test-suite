@@ -1,18 +1,28 @@
 ﻿using System;
 using Polly;
 using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class AssertHelper
     {
-        public void RetryOnNUnitException(Action action)
+        private readonly string _title;
+        private readonly TimeSpan[] TimeOut;
+
+        public AssertHelper(ScenarioInfo scenarioInfo)
+        {
+            _title = scenarioInfo.Title;
+            TimeOut = Logging.SetTimeOut();
+        }
+        public void RetryOnNUnitException(Action action, Action retryAction = null)
         {
             Policy
                  .Handle<AssertionException>()
+                 .Or<MultipleAssertException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                     Logging.Report(retryCount, exception, _title, retryAction);
                  })
                  .Execute(() =>
                  {
@@ -22,11 +32,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      }
                  });
         }
-
-        private static TimeSpan[] TimeOut => new[]
-        {
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2)
-        };
     }
 }
