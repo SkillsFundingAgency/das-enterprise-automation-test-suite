@@ -6,6 +6,7 @@ using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -41,14 +42,26 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             passwordPage.CreatePassword();
         }
 
-        [Then(@"an error is shown for invalid password does not match")]
-        public void ThenAnErrorIsShownForInvalidPasswordDoesNotMatch()
+        [Then(@"an error is shown for invalid passwords")]
+        public void ThenAnErrorIsShownForInvalidPasswords()
         {
             var passwordPage = GetCreatePasswordPage();
 
-            passwordPage = passwordPage.InvalidPassword();
+            var invalidPasswords = new List<string []> 
+            {
+                new string [] { _config.AC_AccountPassword, $"{_config.AC_AccountPassword}1" },
+                new string [] { "invalidpassword", "invalidpassword" },
+                new string [] { "234547896", "234547896" },
+                new string [] { "ac1234", "ac1234" },
+                new string [] { "AccountsPassword123", "AccountsPassword123" }
+            };
 
-            passwordPage.VerifyErrorSummary();
+            foreach (var invalidPassword in invalidPasswords)
+            {
+                passwordPage = passwordPage.InvalidPassword(invalidPassword[0], invalidPassword[1]);
+
+                passwordPage.VerifyErrorSummary();
+            }
         }
 
         private CreatePasswordPage GetCreatePasswordPage()

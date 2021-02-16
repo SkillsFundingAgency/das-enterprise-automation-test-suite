@@ -74,19 +74,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CA_02_Invalid_Password_does_not_match")]
+        [NUnit.Framework.DescriptionAttribute("AC_CA_02_Invalid_Password")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentscreateaccount")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AC_CA_02_Invalid_Password_Does_Not_Match()
+        [NUnit.Framework.CategoryAttribute("deleteinvitation")]
+        public virtual void AC_CA_02_Invalid_Password()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitmentscreateaccount",
                     "apprenticecommitments",
-                    "regression"};
+                    "regression",
+                    "deleteinvitation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_02_Invalid_Password_does_not_match", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_02_Invalid_Password", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.When("employer or provider submits the details to create an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
- testRunner.Then("an error is shown for invalid password does not match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.Then("an error is shown for invalid passwords", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

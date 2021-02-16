@@ -45,9 +45,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new SigUpCompletePage(_context);
         }
 
-        public CreatePasswordPage InvalidPassword()
+        public CreatePasswordPage InvalidPassword(string password, string confirmpassword)
         {
-            SubmitPassword(_validPassword, "invalidpassword");
+            SubmitPassword(password, confirmpassword);
             return this;
         }
 
