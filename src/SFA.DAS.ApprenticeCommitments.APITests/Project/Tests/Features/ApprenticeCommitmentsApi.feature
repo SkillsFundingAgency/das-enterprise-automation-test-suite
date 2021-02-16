@@ -6,6 +6,7 @@
 @outerapi
 @regression
 @apprenticecommitmentscreateaccount
+@deleteinvitation
 Scenario: New apprenticeship email sent
 	When an apprenticeship is posted
 	Then a Accepted response is received

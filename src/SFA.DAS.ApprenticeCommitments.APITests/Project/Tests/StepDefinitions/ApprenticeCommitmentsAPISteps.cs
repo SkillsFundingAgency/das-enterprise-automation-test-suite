@@ -11,13 +11,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps
     {
-        private readonly Outer_ApprenticeCommitmentsApiHelper _appreticeCommitmentsApiHelper;
+        private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper;
         private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
-            _appreticeCommitmentsApiHelper = new Outer_ApprenticeCommitmentsApiHelper(context);
+            _apprenticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
 
             _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
 
@@ -37,12 +37,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an apprenticeship is posted")]
-        public void WhenAnApprenticeshipIsPosted() => _appreticeCommitmentsApiHelper.CreateApprenticeship();
+        public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeship();
 
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
-        public void AResponseIsReceived(HttpStatusCode responsecode) => _appreticeCommitmentsApiHelper.AssertResponse(responsecode);
+        public void AResponseIsReceived(HttpStatusCode responsecode) => _apprenticeCommitmentsApiHelper.AssertResponse(responsecode);
 
         [Then(@"the apprentice details are updated in the login db")]
-        public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _appreticeCommitmentsApiHelper.AssertApprenticeLoginData();
+        public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _apprenticeCommitmentsApiHelper.AssertApprenticeLoginData();
     }
 }

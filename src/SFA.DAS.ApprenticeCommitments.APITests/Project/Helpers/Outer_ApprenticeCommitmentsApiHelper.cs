@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         {
             var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            var createApprenticeship = new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname, Email = _dataHelper.Email };
+            var createApprenticeship = new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname, Email = _objectContext.GetApprenticeEmail() };
 
             _objectContext.SetAccountId(accountid);
             _objectContext.SetApprenticeshipId(apprenticeshipid);
