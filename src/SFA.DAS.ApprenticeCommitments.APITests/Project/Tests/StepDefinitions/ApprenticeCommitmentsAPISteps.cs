@@ -2,6 +2,7 @@
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
+using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using System.Net;
 using TechTalk.SpecFlow;
 
@@ -12,18 +13,23 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     {
         private readonly Outer_ApprenticeCommitmentsApiHelper _appreticeCommitmentsApiHelper;
         private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
+        private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
             _appreticeCommitmentsApiHelper = new Outer_ApprenticeCommitmentsApiHelper(context);
 
             _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
+
+            _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
         }
 
-        [Then(@"das-commitments-api (/ping) endpoint can be accessed")]
-        public void ThenDasCommitmentsApiCanBeAccessed(string endpoint)
+        [Then(@"das-commitments-api endpoint can be accessed")]
+        public void ThenDasCommitmentsApiCanBeAccessed()
         {
-            _innerApiRestClient.PerformHeathCheck(endpoint);
+            var (_, apprenticeshipid, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+
+            _innerApiRestClient.GetApprenticeship(apprenticeshipid);
 
             var response = _innerApiRestClient.Execute();
 

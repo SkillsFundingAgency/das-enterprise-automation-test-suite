@@ -14,4 +14,4 @@ Scenario: New apprenticeship email sent
 @api
 @innerapi
 	Scenario: Inner das-commitments-api heathcheck
-	Then das-commitments-api /ping endpoint can be accessed
+	Then das-commitments-api endpoint can be accessed

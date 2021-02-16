@@ -23,6 +23,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      Logging.Report(retryCount, exception, _title, retryAction);
+                     retryAction?.Invoke();
                  })
                  .Execute(() =>
                  {
