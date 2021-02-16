@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
-        private By AddApprenticesLink => By.LinkText("add them to your apprenticeship service account.");
+        private By AddApprenticesLink => By.LinkText("add them to their apprenticeship service account.");
         #endregion
 
         public SelectApprenticesShutterPage(ScenarioContext context) : base(context) => _context = context;
