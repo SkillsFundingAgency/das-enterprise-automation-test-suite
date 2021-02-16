@@ -323,6 +323,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterIcoRegistrationNumberAndContinue()
                 .EneterWebsiteAndContinue()
                 .SelectMinimumTradingPeriodAndContinue()
+                .SelectNoToFranchiseOperatorAndContinue()
                 .ReturnToApplicationOverview()
                 .VerifyOrganisationInformation(StatusHelper.StatusInProgress);
         }
@@ -351,7 +352,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
+            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectARailFranchiseOperatorAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
+                .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
+                .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.NotRequired)
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
                 .ReturnToApplicationOverview()
                 .Verify_Section4(StatusHelper.NotRequired)
@@ -422,7 +430,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
+            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectARailFranchiseOperatorAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
+                .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
+                .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.NotRequired)
+                .AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
                 .SelectYesForPGTAAndContinue()
                 .Verify_Section4(StatusHelper.NotRequired)

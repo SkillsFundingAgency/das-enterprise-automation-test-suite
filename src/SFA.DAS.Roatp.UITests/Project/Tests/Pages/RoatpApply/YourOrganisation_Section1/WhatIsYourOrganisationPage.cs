@@ -37,6 +37,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
+        public DescribeYourOrganisationPage SelectARailFranchiseOperatorAndContinue()
+        {
+            SelectRadioOptionByText("A rail franchise operator");
+            formCompletionHelper.ClickElement(SaveAndContinue);
+            return new DescribeYourOrganisationPage(_context);
+        }
         public DescribeYourOrganisationPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
