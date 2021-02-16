@@ -8,12 +8,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : BasePage
     {
-
         #region Helpers and Context
         protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         #endregion
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context) : base(context)
@@ -25,6 +25,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper = context.Get<FormCompletionHelper>();
 
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+
+            apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
         }
     }
 }

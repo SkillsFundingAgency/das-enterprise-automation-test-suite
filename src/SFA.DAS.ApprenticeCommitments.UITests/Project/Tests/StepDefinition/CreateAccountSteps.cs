@@ -36,11 +36,26 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to create an account using the invitation")]
         public void ThenTheApprenticeIsAbleToCreateAnAccountUsingTheInvitation()
         {
+            var passwordPage = GetCreatePasswordPage();
+
+            passwordPage.CreatePassword();
+        }
+
+        [Then(@"an error is shown for invalid password does not match")]
+        public void ThenAnErrorIsShownForInvalidPasswordDoesNotMatch()
+        {
+            var passwordPage = GetCreatePasswordPage();
+
+            passwordPage = passwordPage.InvalidPassword();
+
+            passwordPage.VerifyErrorSummary();
+        }
+
+        private CreatePasswordPage GetCreatePasswordPage()
+        {
             string invitationId = string.Empty;
 
             string email = _objectContext.GetApprenticeEmail();
-
-            string pasword = _config.AC_AccountPassword;
 
             _assertHelper.RetryOnNUnitException(() =>
             {
@@ -49,7 +64,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
             });
 
-            new CreatePasswordPage(_context).CreatePassword(pasword);
+            return new CreatePasswordPage(_context, invitationId);
         }
     }
 }
