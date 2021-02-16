@@ -24,6 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Full name", applydataHelpers.FullName);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", applydataHelpers.Email);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
+            SelectRadioOptionByText("No");
             Continue();
             return new ApplicationOverviewPage(_context);
         }
