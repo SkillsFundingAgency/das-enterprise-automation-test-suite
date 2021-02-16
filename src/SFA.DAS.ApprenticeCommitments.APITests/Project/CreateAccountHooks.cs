@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    [Binding, Scope(Tag = "apprenticecommitmentscreateaccount")]
+    [Binding, Scope(Tag = "deleteregistration")]
     public class CreateAccountHooks
     {
         private readonly ScenarioContext _context;

@@ -75,17 +75,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AC_CA_02_Invalid_Password")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentscreateaccount")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteinvitation")]
+        [NUnit.Framework.CategoryAttribute("deleteregistration")]
         public virtual void AC_CA_02_Invalid_Password()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitmentscreateaccount",
                     "apprenticecommitments",
                     "regression",
-                    "deleteinvitation"};
+                    "deleteinvitation",
+                    "deleteregistration"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_02_Invalid_Password", null, tagsOfScenario, argumentsOfScenario);
 #line 7

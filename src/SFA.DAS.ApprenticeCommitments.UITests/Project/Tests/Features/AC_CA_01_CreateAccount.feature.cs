@@ -75,15 +75,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AC_CA_01_Create_Account")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentscreateaccount")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("deleteregistration")]
         public virtual void AC_CA_01_Create_Account()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitmentscreateaccount",
                     "apprenticecommitments",
-                    "regression"};
+                    "regression",
+                    "deleteregistration"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_01_Create_Account", null, tagsOfScenario, argumentsOfScenario);
 #line 6
