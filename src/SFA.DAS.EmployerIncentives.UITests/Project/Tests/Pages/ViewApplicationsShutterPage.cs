@@ -10,14 +10,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
-        private By ApplyForThePaymentLink => By.LinkText("apply for the payment");
+        private By ApplyButton => By.LinkText("Apply");
         #endregion
 
         public ViewApplicationsShutterPage(ScenarioContext context) : base(context) => _context = context;
 
-        public EIStartPage ClickOnApplyForThePaymentLink()
+        public EIStartPage ClickOnApplyButton()
         {
-            formCompletionHelper.Click(ApplyForThePaymentLink);
+            formCompletionHelper.Click(ApplyButton);
             return new EIStartPage(_context);
         }
     }
