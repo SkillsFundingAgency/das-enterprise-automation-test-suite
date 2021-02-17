@@ -29,14 +29,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             {
                 invitationId = string.IsNullOrEmpty(invitationId) ? loginInvitationsSqlDbHelper.GetId(objectContext.GetApprenticeEmail()) : invitationId;
 
-                context.Get<TabHelper>().OpenInNewTab(UrlConfig.Apprentice_InvitationUrl, invitationId);
+                return pageInteractionHelper.InvokeAction(() => 
+                {
+                    context.Get<TabHelper>().OpenInNewTab(UrlConfig.Apprentice_InvitationUrl, invitationId);
 
-                return pageInteractionHelper.FindElements(PageHeader);
+                    return pageInteractionHelper.FindElements(PageHeader);
+                });
 
             }, PageTitle);
 
             _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
-
         }
 
         public SigUpCompletePage CreatePassword()
