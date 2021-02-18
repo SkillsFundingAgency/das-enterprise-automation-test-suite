@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -14,6 +15,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected readonly EIConfig eIConfig;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly ObjectContext objectContext;
         #endregion
 
         protected override By PageHeader => By.CssSelector("h1");
@@ -28,6 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             eIDataHelper = context.Get<EIDataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
+            objectContext = context.Get<ObjectContext>();
             if (verifypage) { VerifyPage(); }
         }
     }

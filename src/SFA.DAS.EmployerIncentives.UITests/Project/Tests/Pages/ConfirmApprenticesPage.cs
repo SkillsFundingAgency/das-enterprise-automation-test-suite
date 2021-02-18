@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class ConfirmYourApprenticesPage : EIBasePage
+    public class ConfirmApprenticesPage : EIBasePage
     {
-        protected override string PageTitle => "Confirm your apprentices";
+        protected override string PageTitle => "Confirm apprentices";
 
         #region Locators
         private readonly ScenarioContext _context;
@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         private By ConfirmButton => By.CssSelector(".govuk-button");
 
-        public ConfirmYourApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmApprenticesPage(ScenarioContext context) : base(context) => _context = context;
 
         public DeclarationPage ConfirmApprentices()
         {

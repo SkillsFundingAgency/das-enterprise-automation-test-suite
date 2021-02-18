@@ -87,7 +87,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .SubmitSubmitterDetails(email)
                 .SubmitSummaryPage()
                 .ReturnToEasPage()
-                .ReturnToAccountHomePage();
+                .VisitViewApplicationsPage();
+
+            _homePageStepsHelper.GotoEmployerHomePage();
         }
 
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
@@ -171,7 +173,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page")]
         public void ThenEIStartPageIsDisplayedOnClickingOnApplyForThePaymentLinkOnViewEIApplicationsShutterPage()
         {
-            _viewApplicationsShutterPage.ClickOnApplyForThePaymentLink();
+            _viewApplicationsShutterPage.ClickOnApplyButton();
             new HomePage(_context, true);
         }
 

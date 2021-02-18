@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ApplicationCompletePage ReturnToEasPage()
+        public ApplicationSavedPage ReturnToEasPage()
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
@@ -29,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
                 formCompletionHelper.ClickElement(ReturnToEasLink);
             });
 
-            return new ApplicationCompletePage(_context);
+            return new ApplicationSavedPage(_context);
         }
     }
 }
