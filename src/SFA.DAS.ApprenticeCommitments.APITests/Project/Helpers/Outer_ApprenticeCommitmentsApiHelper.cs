@@ -14,7 +14,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
         private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsDataHelper _dataHelper;
         private readonly ObjectContext _objectContext;
         private IRestResponse _restResponse;
         protected readonly UI.FrameworkHelpers.AssertHelper _assertHelper;
@@ -26,7 +25,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
         internal void CreateApprenticeship()

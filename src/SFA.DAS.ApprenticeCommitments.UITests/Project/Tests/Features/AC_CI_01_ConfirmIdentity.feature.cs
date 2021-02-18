@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CI_01_ConfirmIdentity", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CI_01_ConfirmIdentity", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,11 +75,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AC_CI_01_ConfirmIdentity")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void AC_CI_01_ConfirmIdentity()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "apprenticecommitments",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CI_01_ConfirmIdentity", null, tagsOfScenario, argumentsOfScenario);
 #line 6
