@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Helpers;
 using System.Net;
 using TechTalk.SpecFlow;
 

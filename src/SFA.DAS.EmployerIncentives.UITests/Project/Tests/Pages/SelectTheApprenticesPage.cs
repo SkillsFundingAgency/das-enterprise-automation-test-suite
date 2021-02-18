@@ -15,13 +15,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public SelectTheApprenticesPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ConfirmYourApprenticesPage SubmitApprentices()
+        public ConfirmApprenticesPage SubmitApprentices()
         {
             foreach (var apprentice in pageInteractionHelper.FindElements(Apprentices))
                 formCompletionHelper.ClickElement(apprentice);
 
             Continue();
-            return new ConfirmYourApprenticesPage(_context);
+            return new ConfirmApprenticesPage(_context);
         }
     }
 }

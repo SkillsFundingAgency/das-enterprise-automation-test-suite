@@ -2,7 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 
-namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
+namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeCommitmentSqlHelper : SqlDbHelper
     {
@@ -41,23 +41,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             else
             {
                 return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, apprenticeTrainingName, OrgNameData[0][0].ToString());
-            }
-        }
-
-        public (string firstname, string lastname) GetApprenticeLoginData(string email)
-        {
-            var query = $"select GivenName, FamilyName from LoginService.Invitations where email = '{email}'";
-
-            List<object[]> apprenticeData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.ApprenticeCommitmentLoginDbConnectionString);
-
-            if (apprenticeData.Count == 0) return (string.Empty, string.Empty);
-            else
-            {
-                var firstname = apprenticeData[0][0].ToString();
-
-                var lastname = apprenticeData[0][1].ToString();
-
-                return (firstname, lastname);
             }
         }
     }

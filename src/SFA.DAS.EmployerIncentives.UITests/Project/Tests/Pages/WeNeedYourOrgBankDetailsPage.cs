@@ -1,10 +1,11 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Registration.UITests.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class WeNeedYourOrgBankDetailsPage : EIBasePage
     {
-        protected override string PageTitle => "We need your organisation's bank details";
+        protected override string PageTitle => $"We need {ObjectContextExtension.GetOrganisationName(objectContext)}'s bank details";
 
         #region Locators
         private readonly ScenarioContext _context;
