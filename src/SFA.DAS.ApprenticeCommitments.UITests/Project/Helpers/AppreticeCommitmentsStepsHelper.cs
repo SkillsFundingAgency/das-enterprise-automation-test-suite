@@ -46,5 +46,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public SigUpCompletePage CreatePassword() => GetCreatePasswordPage().CreatePassword();
 
+        public ConfirmYourIdentityPage SignInToApprenticePortal(SigUpCompletePage sigUpCompletePage) => sigUpCompletePage.ClickSignInToApprenticePortal().SignInToApprenticePortal();
+
     }
 }

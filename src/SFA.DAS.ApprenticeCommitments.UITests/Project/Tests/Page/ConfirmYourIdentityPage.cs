@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -15,6 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By DateOfBirth_Month => By.CssSelector("input#DateOfBirth_Month");
         private By DateOfBirth_Year => By.CssSelector("input#DateOfBirth_Year");
         private By NationalInsuranceNumber => By.CssSelector("input#NationalInsuranceNumber");
+        private By ErrorSummary => By.CssSelector(".govuk-error-summary");
 
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
@@ -26,14 +28,43 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePage ConfirmIdentity()
         {
-            formCompletionHelper.EnterText(FirstName, apprenticeCommitmentsDataHelper.ApprenticeFirstname);
-            formCompletionHelper.EnterText(LastName, apprenticeCommitmentsDataHelper.ApprenticeLastname);
-            formCompletionHelper.EnterText(DateOfBirth_Day, apprenticeCommitmentsDataHelper.DateOfBirthDay);
-            formCompletionHelper.EnterText(DateOfBirth_Month, apprenticeCommitmentsDataHelper.DateOfBirthMonth);
-            formCompletionHelper.EnterText(DateOfBirth_Year, apprenticeCommitmentsDataHelper.DateOfBirthYear);
-            formCompletionHelper.EnterText(NationalInsuranceNumber, apprenticeCommitmentsDataHelper.NationalInsuranceNumber);
-            Continue();
+            EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname, 
+                apprenticeCommitmentsDataHelper.ApprenticeLastname, 
+                apprenticeCommitmentsDataHelper.DateOfBirthDay, 
+                apprenticeCommitmentsDataHelper.DateOfBirthMonth, 
+                apprenticeCommitmentsDataHelper.DateOfBirthYear, 
+                apprenticeCommitmentsDataHelper.NationalInsuranceNumber);
             return new ApprenticeHomePage(_context);
+        }
+
+        public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int day, int month, int year, string nino)
+        {
+            EnterApprenticeDetails(firstname, lastname, day, month, year, nino);
+            return this;
+        }
+
+        public void VerifyErrorSummary() => StringAssert.Contains("There is a problem", pageInteractionHelper.GetText(ErrorSummary), "Confirm Identity Page error message did not match");
+
+        private void EnterApprenticeDetails(string firstname, string lastname, int day, int month, int year, string nino)
+        {
+            formCompletionHelper.EnterText(FirstName, firstname);
+            formCompletionHelper.EnterText(LastName, lastname);
+
+            if (day != 0)
+            {
+                formCompletionHelper.EnterText(DateOfBirth_Day, day);
+            }
+            if (month != 0)
+            {
+                formCompletionHelper.EnterText(DateOfBirth_Month, month);
+            }
+            if (year != 0)
+            { 
+                formCompletionHelper.EnterText(DateOfBirth_Year, year);
+            }
+
+            formCompletionHelper.EnterText(NationalInsuranceNumber, nino);
+            Continue();
         }
     }
 }
