@@ -5,7 +5,6 @@
 @apprenticecommitmentsapi
 @outerapi
 @regression
-@deleteregistration
 @deleteinvitation
 Scenario: New apprenticeship email sent
 	When an apprenticeship is posted

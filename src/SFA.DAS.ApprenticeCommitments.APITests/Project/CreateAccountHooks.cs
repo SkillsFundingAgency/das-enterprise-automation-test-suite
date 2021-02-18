@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    [Binding, Scope(Tag = "deleteregistration")]
+    [Binding, Scope(Tag = "deleteinvitation")]
     public class CreateAccountHooks
     {
         private readonly ScenarioContext _context;
@@ -27,14 +27,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             var email = _objectContext.GetApprenticeEmail();
 
+            _apprenticeLoginSqlDbHelper.DeleteInvitation(email);
+
             _apprenticeCommitmentsRegistrationSqlDbHelper.DeleteRegistration(email);
 
-            _apprenticeLoginSqlDbHelper.DeleteUser(email);
-
-            if (_context.ScenarioInfo.Tags.Contains("deleteinvitation"))
+            if (_context.ScenarioInfo.Tags.Contains("deleteuser"))
             {
-                _apprenticeLoginSqlDbHelper.DeleteInvitation(email);
+                _apprenticeLoginSqlDbHelper.DeleteUser(email);
             }
+
+            _apprenticeLoginSqlDbHelper.DeleteUserLogs(email);
         }
     }
 }
