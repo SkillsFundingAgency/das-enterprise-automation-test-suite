@@ -11,6 +11,34 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
+
+    [Binding]
+    public class ConfirmIdentitySteps
+    {
+        public ConfirmIdentitySteps(ScenarioContext context)
+        {
+
+        }
+
+        [Given(@"an apprentice login in to the service")]
+        public void GivenAnApprenticeLoginInToTheService()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"the apprentice identity can be validated")]
+        public void ThenTheApprenticeIdentityCanBeValidated()
+        {
+            throw new PendingStepException();
+        }
+
+
+    }
+
+
+
+
+
     [Binding]
     public class CreateAccountSteps
     {
