@@ -23,9 +23,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice identity can be validated")]
         public void ThenTheApprenticeIdentityCanBeValidated()
         {
-            sigUpCompletePage.ClickSignInToApprenticePortal().SignInToApprenticePortal();
+            sigUpCompletePage
+                .ClickSignInToApprenticePortal()
+                .SignInToApprenticePortal()
+                .ConfirmIdentity();
         }
-
-
     }
 }

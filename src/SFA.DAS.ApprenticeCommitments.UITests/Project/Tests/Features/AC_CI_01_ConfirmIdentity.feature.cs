@@ -77,14 +77,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("AC_CI_01_ConfirmIdentity")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("deleteinvitation")]
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
         public virtual void AC_CI_01_ConfirmIdentity()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
-                    "regression"};
+                    "regression",
+                    "deleteinvitation",
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CI_01_ConfirmIdentity", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,10 +108,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("an apprentice login in to the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.Then("the apprentice identity can be validated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
