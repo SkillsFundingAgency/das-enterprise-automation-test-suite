@@ -10,11 +10,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        public void PerformHeathCheck(string endpoint)
-        {
-            CreateRestRequest(RestSharp.Method.GET, endpoint, string.Empty);
-        }
-
         public void GetApprenticeship(long app)
         {
             CreateRestRequest(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty);

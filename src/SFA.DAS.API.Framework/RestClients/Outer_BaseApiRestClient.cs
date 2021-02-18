@@ -19,25 +19,9 @@ namespace SFA.DAS.API.Framework.RestClients
             CreateOuterApiRestClient();
         }
 
-        public override void CreateRestRequest(Method method, string resource, string payload)
-        {
-            _restRequest.Method = method;
+        protected override void AddResource(string resource) => restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
-            _restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
-
-            AddPayload(payload);
-        }
-
-        private void CreateOuterApiRestClient()
-        {
-            _restClient = new RestClient(UrlConfig.Outer_ApiBaseUrl);
-
-            _restRequest = new RestRequest();
-
-            AddAuthHeaders();
-        }
-
-        private void AddAuthHeaders()
+        protected override void AddAuthHeaders()
         {
             Addheaders(
                 new Dictionary<string, string>
@@ -45,6 +29,15 @@ namespace SFA.DAS.API.Framework.RestClients
                     { "X-Version", "1" },
                     { "Ocp-Apim-Subscription-Key", ApiSubscriptionKey}
                 });
+        }
+
+        private void CreateOuterApiRestClient()
+        {
+            restClient = new RestClient(UrlConfig.Outer_ApiBaseUrl);
+
+            restRequest = new RestRequest();
+
+            AddAuthHeaders();
         }
     }
 }

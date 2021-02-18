@@ -30,5 +30,7 @@ namespace SFA.DAS.UI.Framework
             _ => "",
         };
         public static string RoatpApply_InvitationUrl => $"https://{EnvironmentConfig.EnvironmentName}-aslogin.apprenticeships.education.gov.uk/Invitations/CreatePassword/";
+
+        public static string Apprentice_InvitationUrl => $"https://login.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/Invitations/CreatePassword/";
     }
 }
