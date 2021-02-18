@@ -1,4 +1,4 @@
-﻿Feature: AC_CA_02
+﻿Feature: AC_CA_02_Invalid_Password
 
 @apprenticecommitments
 @regression
