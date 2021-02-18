@@ -27,5 +27,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new PostGraduateTeachingApprenticeshipPage(_context);
         }
+        public ApplicationOverviewPage ClickContinueForDescribeYourOrgDetailsSelected()
+        {
+            Continue();
+            return new ApplicationOverviewPage(_context);
+        }
     }
 }

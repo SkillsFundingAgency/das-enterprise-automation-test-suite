@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public ApplicationOverviewPage AcceptAndContinue()
+        public ApplicationOverviewPage AcceptTermAndConditionsAndContinue()
         {
             SelectRadioOptionByForAttribute("ConditionsAccepted-Yes");
             Continue();

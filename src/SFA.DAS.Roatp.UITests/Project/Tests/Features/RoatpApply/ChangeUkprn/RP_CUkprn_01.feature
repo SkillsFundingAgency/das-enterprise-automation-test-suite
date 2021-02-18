@@ -2,6 +2,7 @@
 
 @rpchangeukprn01
 @roatp
+@roatpapply
 @roatpapplychangeukprn
 @regression
 Scenario: RP_CUkprn_01
