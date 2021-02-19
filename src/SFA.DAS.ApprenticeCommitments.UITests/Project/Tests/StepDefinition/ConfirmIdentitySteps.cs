@@ -34,8 +34,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             var invalidDatas = new List<(string, string, int, int, int, string)>
             {
-                (string.Empty, string.Empty, 0,0,0, string.Empty),
-                ("First", "Last", 1,1,2022, "AB897654C")
+                (string.Empty, string.Empty, 0,0,0, string.Empty)
             };
 
             foreach (var d in invalidDatas)
