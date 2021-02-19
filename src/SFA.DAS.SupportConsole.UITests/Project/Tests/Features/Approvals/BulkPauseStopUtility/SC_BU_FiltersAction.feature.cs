@@ -20,22 +20,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_BU_BulkPauseAndResume")]
-    public partial class SC_BU_BulkPauseAndResumeFeature
+    [NUnit.Framework.DescriptionAttribute("SC_BU_FiltersAction")]
+    public partial class SC_BU_FiltersActionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "SC_BU_BulkPauseAndResume.feature"
+#line 1 "SC_BU_FiltersAction.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_BU_BulkPauseAndResume", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_BU_FiltersAction", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,17 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bulk Pause and then Resume Apprentice Records")]
+        [NUnit.Framework.DescriptionAttribute("Validate Combination of filters")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        public virtual void BulkPauseAndThenResumeApprenticeRecords()
+        public virtual void ValidateCombinationOfFilters()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
                     "approvalssupportconsole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Pause and then Resume Apprentice Records", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Combination of filters", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,13 +104,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.And("Opens the Pause Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.When("user opens Pause Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "EmployerName",
                             "ProviderName",
                             "Ukprn",
@@ -118,19 +118,48 @@ this.ScenarioInitialize(scenarioInfo);
                             "Uln",
                             "Status",
                             "TotalRecords"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
+                            "ESFA LTD",
+                            "EDUC8 TRAINING (ENGLAND) LIMITED",
+                            "",
+                            "",
+                            "",
+                            "Live",
+                            "3000"});
+                table2.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "8305402974",
+                            "Paused",
+                            "1"});
+                table2.AddRow(new string[] {
                             "ESFA LTD",
                             "",
                             "10005310",
                             "",
                             "",
+                            "Waiting to Start",
+                            "100"});
+                table2.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "17//02//2021",
+                            "",
                             "Live",
-                            "3000"});
-#line 9
- testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table1, "And ");
-#line hidden
-#line 13
- testRunner.When("User selects all records and click on Pause Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                            "300"});
+                table2.AddRow(new string[] {
+                            "COMPLIANCE LIMITED",
+                            "",
+                            "10005310",
+                            "",
+                            "8305402974",
+                            "Live",
+                            "0"});
+#line 8
+ testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

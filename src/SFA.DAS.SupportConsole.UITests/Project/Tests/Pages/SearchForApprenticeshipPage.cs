@@ -17,7 +17,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By Ukprn => By.Id("ukprn");
         private By CourseName => By.Id("courseName");
         private By ApprenticeNameOrUln => By.Id("apprenticeNameOrUln");
-        private By ApprenticeshipStatus => By.Id("searchButton");
+        private By EndDate => By.Id("endDate");        
+        private By ApprenticeshipStatus => By.Id("SelectedStatus");
+        private By DataTable => By.Id("apprenticeshipResultsTable");
         private By PaginationInfo => By.ClassName("pagination-info");
         private By SubmitButton => By.Id("submitSearchFormButton");
         private By PauseButton => By.XPath("//button[contains(text(),'Pause apprenticeship(s)')]");
@@ -50,9 +52,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             return this;
         }
 
+        public SearchForApprenticeshipPage EnterEndDate(string endDate)
+        {
+            formCompletionHelper.EnterText(EndDate, endDate);
+            return this;
+        }
+
         public SearchForApprenticeshipPage EnterULNorApprenticeName(string apprenticeNameOrUln)
         {
             formCompletionHelper.EnterText(ApprenticeNameOrUln, apprenticeNameOrUln);
+            return this;
+        }
+
+        public SearchForApprenticeshipPage SelectStatus(string status)
+        {
+            status = (status == "" ? "Any" : status);
+            formCompletionHelper.SelectFromDropDownByText(ApprenticeshipStatus, status);
             return this;
         }
 
@@ -64,9 +79,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public int GetNumberOfRecordsFound()
         {
+            pageInteractionHelper.WaitForElementToBeDisplayed(DataTable);
             var paginationInfo = pageInteractionHelper.GetText(PaginationInfo);
-            var x = paginationInfo.Split(" ");
-            return (Convert.ToInt32(x[5]));
+            var arrPaginationInfo = paginationInfo.Split(" ");
+            
+            if (arrPaginationInfo.Length < 5)
+                return 0;
+            else            
+                return (Convert.ToInt32(arrPaginationInfo[5]));
         }
 
     }

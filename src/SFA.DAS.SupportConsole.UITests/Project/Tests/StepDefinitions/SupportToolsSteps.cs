@@ -3,6 +3,7 @@ using SFA.DAS.SupportConsole.UITests.Project.Helpers;
 using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 {
@@ -24,28 +25,41 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             _stepsHelper.ValidUserLogsinToSupportTools();
 
         }
-
-        [Given(@"Open Pause utility")]
-        public void GivenOpenPauseUtility()
+       
+        [Given(@"Opens the Pause Utility")]
+        [When(@"user opens Pause Utility")]
+        public void WhenUserOpensPauseUtility()
         {
             new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
         }
 
-        [When(@"selects Search by (.*) and (.*)")]
-        public void WhenSelectsSearchByAnd(string employerName, string providerName)
+
+        [Given(@"Search for Apprentices using following criteria")]
+        [Then(@"following filters should return the expected number of TotalRecords")]
+        public void ThenFollowingFiltersShouldReturnTheExpectedNumberOfTotalRecords(Table table)
         {
-            new SearchForApprenticeshipPage(_context)
-                .EnterEmployerName(employerName)
-                .EnterProviderName(providerName)
-                .ClickSubmitButton();
+            var filters = table.CreateSet<filters>();
+            int row = 1;
+
+            foreach (var item in filters)
+            {
+                new SearchForApprenticeshipPage(_context)
+                       .EnterEmployerName(item.EmployerName)
+                       .EnterProviderName(item.ProviderName)
+                       .EnterUkprn(item.Ukprn)
+                       .EnterEndDate(item.EndDate)
+                       .EnterULNorApprenticeName(item.Uln)
+                       .SelectStatus(item.Status)
+                       .ClickSubmitButton();
+
+                var actualRecord = new SearchForApprenticeshipPage(_context).GetNumberOfRecordsFound();
+                Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected recordson row: {row}");
+                row++;
+            }       
         }
 
-        [Then(@"(.*) are retreived")]
-        public void ThenAreRetreived(int expectedRecords)
-        {
-            var actualRecord = new SearchForApprenticeshipPage(_context).GetNumberOfRecordsFound();
-            Assert.AreEqual(expectedRecords, actualRecord);
-        }
+
+
 
         [When(@"User selects all records and click on Pause Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnPauseApprenticeshipButton()
@@ -69,4 +83,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
 
     }
+
+    public class filters
+    {
+        public string EmployerName { get; set; }
+        public string ProviderName { get; set; }
+        public string Ukprn { get; set; }
+        public string EndDate { get; set; }
+        public string Uln { get; set; }
+        public string Status { get; set; }
+        public int? TotalRecords { get; set; }
+
+        	
+    }
+
 }
