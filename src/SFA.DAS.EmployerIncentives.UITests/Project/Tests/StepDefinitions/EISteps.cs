@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .SubmitSubmitterDetails(email)
                 .SubmitSummaryPage()
                 .ReturnToEasPage()
-                .VisitViewApplicationsPage();
+                .ReturnToAccountHomePage();
 
             _homePageStepsHelper.GotoEmployerHomePage();
         }
