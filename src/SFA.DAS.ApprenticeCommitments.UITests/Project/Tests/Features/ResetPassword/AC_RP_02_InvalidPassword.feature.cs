@@ -78,15 +78,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPass
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteinvitation")]
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
         public virtual void AC_RP_02_InvalidPassword()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "deleteinvitation"};
+                    "deleteinvitation",
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_RP_02_InvalidPassword", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,10 +108,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.When("employer or provider submits the details to create an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 8
+ testRunner.When("an apprentice submits to reset password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
  testRunner.Then("an error is shown for invalid reset passwords", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -5,5 +5,5 @@
 @deleteuser
 @deleteinvitation
 Scenario: AC_RP_01_ResetPassword
-	When employer or provider submits the details to create an account
-	Then the apprentice can reset password using the invitation
+	When an apprentice submits to reset password
+	Then an apprentice can reset password using the invitation

@@ -27,5 +27,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickButtonByText(ContinueButton, "Sign in");
             return new ConfirmYourIdentityPage(_context);
         }
+
+        public ForgottenPasswordPage Resetpassword()
+        {
+            formCompletionHelper.ClickLinkByText("I have forgotten my password");
+            return new ForgottenPasswordPage(_context);
+        }
     }
 }
