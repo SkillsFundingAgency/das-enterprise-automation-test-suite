@@ -26,5 +26,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new TradingPeriodPage(_context);
         }
+        public TradingPeriodPage ClickContinueForWebsiteEntered()
+        {
+            Continue();
+            return new TradingPeriodPage(_context);
+        }
     }
 }
