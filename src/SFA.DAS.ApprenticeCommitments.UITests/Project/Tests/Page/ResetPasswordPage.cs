@@ -24,7 +24,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             }, PageTitle);
 
-            _validPassword = $"{apprenticeCommitmentsConfig.AC_AccountPassword}!%&";
-        }    
+            new ResetPasswordPage(context);
+
+            _validPassword = $"{_validPassword}!%&";
+        }
+
+        private ResetPasswordPage(ScenarioContext context) : base(context) { }
     }
 }

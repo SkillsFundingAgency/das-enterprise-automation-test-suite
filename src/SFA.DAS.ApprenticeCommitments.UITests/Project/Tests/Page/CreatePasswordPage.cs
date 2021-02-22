@@ -13,10 +13,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyPage(() =>
             {
-                invitationId = string.IsNullOrEmpty(invitationId) ? loginInvitationsSqlDbHelper.GetId(objectContext.GetApprenticeEmail()) : invitationId;
-
                 return pageInteractionHelper.InvokeAction(() => 
                 {
+                    invitationId = string.IsNullOrEmpty(invitationId) ? loginInvitationsSqlDbHelper.GetId(objectContext.GetApprenticeEmail()) : invitationId;
+
                     context.Get<TabHelper>().OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(invitationId));
 
                     return pageInteractionHelper.FindElements(PageHeader);
@@ -24,7 +24,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             }, PageTitle);
 
-            _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
+            new CreatePasswordPage(context);
         }
+
+        private CreatePasswordPage(ScenarioContext context) : base(context) { }
     }
 }
