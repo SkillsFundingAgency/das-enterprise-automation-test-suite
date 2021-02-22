@@ -61,5 +61,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.ClickElement(SaveAndContinue);
             return new TypeOfBodyPage(_context);
         }
+        public DescribeYourOrganisationPage SelectEmployerTrainingInOtherOrganisations()
+        {
+            SelectRadioOptionByText("An employer training apprentices in other organisations");
+            formCompletionHelper.ClickElement(SaveAndContinue);
+            return new DescribeYourOrganisationPage(_context);
+        }
     }
 }

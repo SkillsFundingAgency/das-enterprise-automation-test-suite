@@ -50,6 +50,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
 
+        [When(@"the provider completes Your organisation section for supporting route org type company")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRouteOrgTypeCompany() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support_Company(_overviewPage);
+
         [When(@"the provider completes Your organisation section for company and charity")]
         public void WhenTheProviderCompletesYourOrganisationSectionForCompanyAndCharity() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1CharityAndCompany(_overviewPage);
 
@@ -63,7 +66,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesYourOrganisationSectionForFHAExemptions() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_FHAExempt(_overviewPage);
 
         [When(@"the provider completes Your organisation section for supporting route")]
-        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support(_overviewPage);
+        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support_Soletrader(_overviewPage);
 
         [When(@"the provider completes Financial evidence section")]
         public void WhenTheProviderCompletesFinancialEvidenceSection() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2(_overviewPage);

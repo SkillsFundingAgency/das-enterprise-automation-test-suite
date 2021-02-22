@@ -12,3 +12,4 @@ Scenario: RP_S1_05_Government Statute - Employer - ShortOfsteadInspection
     And the provider completes Tell us who's in control section for Government Statue
     And the provider completes Describe your organisation section 
     And the provider completes Experience and Accreditations section by selecting GradeOutstanding
+    And the provider verifies Financial Section Status as not required

@@ -51,6 +51,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterParentCompanyDetailsAndContinue());
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_ChangeRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessYourOrganisationSectionForOrgTypeCompany()
+                .ClickContinueParentCompanyOption()
+                .ClickContinueForParentCompanyDetails()
+                .ClickContinueForIcoRegistrationNumber()
+                .ClickContinueForWebsiteEntered()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted)
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -146,6 +159,76 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRoute_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectNoneOfTheAboveAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
+                .VerifyEngaging_Section5(StatusHelper.NotRequired)
+                .VerifyComplaints_Section5(StatusHelper.NotRequired)
+                .VerifyContract_Section5(StatusHelper.NotRequired);
+        }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRouteEmployerToSupporting_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEmployerTrainingInOtherOrganisations()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .AccessExperienceAndAccreditationsSectionForSupportingRoute()
+                .SelectNoForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
+                .VerifyContinuity_Section4(StatusHelper.NotRequired)
+                .VerifyIntroductionStatus_Section5(StatusHelper.NotRequired)
+                .VerifyEngaging_Section5(StatusHelper.NotRequired)
+                .VerifyComplaints_Section5(StatusHelper.NotRequired)
+                .VerifyContract_Section5(StatusHelper.NotRequired)
+                .VerifyCommitment_Section5(StatusHelper.NotRequired)
+                .VerifyPriorLearning_Section5(StatusHelper.NotRequired)
+                .VerifyWorkingWithSubcontractors_Section5(StatusHelper.NotRequired)
+                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired)
+                .VerifySupporting_Section6(StatusHelper.NotRequired)
+                .VerifyForecasting_Section6(StatusHelper.NotRequired)
+                .VerifyOffTheJobTrainning_Section6(StatusHelper.NotRequired)
+                .VerifyWhereWillYourApprenticesBeTrained_Section6(StatusHelper.NotRequired)
+                .VerifySystemsAndProcesses_Section8(StatusHelper.NotRequired);
+        }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5DifferentPath_ChangeRouteEmployerToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEmployerTrainingInOtherOrganisations()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress)
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectYesForFundedbyOFSAndContinue()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectYesForGradeInFullOfstedInspectionAndContinue()
+                .SelecRequiresImprovementAndContinue()
+                .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
+                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired)
+                .VerifySupporting_Section6(StatusHelper.NotRequired);
+        }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectNoForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectNoForMonitoringVisitAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
+                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired)
+                .VerifySupporting_Section6(StatusHelper.NotRequired);
+        }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeGTA(ApplicationOverviewPage applicationOverviewPage)
         {
@@ -185,6 +268,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectEducationalInstituteAndContinue()
                 .SelectAcademyAndContinue()
                 .SelectYesForOrgAlreadyRegisteredAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeRailFranchise(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectARailFranchiseOperatorAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
@@ -247,6 +339,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_InsufficientProgressInMonitoringVisits(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectYesForMonitoringVisitAndContinue()
+                .SelectYesForTwoConsecutiveMonitoringVisitAndContinue()
+                .SelectNoForMonitoringVisitInLast18MonthsAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
@@ -346,6 +451,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectNoForGradeInFullOfstedInspectionAndContinue()
                 .SelectForoverallEffectivenessGradeInadequateAndContinue()
                 .SelectYesForInadequateGradeWithinThreeYearsAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress)
+                .AccessExperienceAndAccreditationsSectionForMainRoute()
+                .SelectNoForFundedbyOFSAndContinue()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectYesForMonitoringVisitAndContinue()
+                .SelectYesForTwoConsecutiveMonitoringVisitAndContinue()
+                .SelectYesMonitoringVisitInLast18MonthsAndContinue()
                 .ReturnToApplicationOverview()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress);
         }
