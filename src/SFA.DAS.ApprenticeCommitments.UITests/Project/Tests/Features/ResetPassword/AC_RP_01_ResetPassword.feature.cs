@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("an apprentice submits to reset password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("an apprentice can reset password using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprentice can reset password using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
