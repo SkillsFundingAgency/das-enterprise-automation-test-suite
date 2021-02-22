@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,6 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
+        protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context) : base(context)
@@ -27,6 +29,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
 
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
+
+            apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
     }
 }

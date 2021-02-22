@@ -1,55 +1,30 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class CreateAccountSteps
+    public class CreateAccountSteps : BaseSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ApprenticeCommitmentsApiHelper _appreticeCommitmentsApiHelper;
-        private readonly AssertHelper _assertHelper;
-        private readonly ApprenticeCommitmentsConfig _config;
-        private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
+        protected readonly ApprenticeCommitmentsConfig config;
 
-        public CreateAccountSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _assertHelper = context.Get<AssertHelper>();
-            _appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
-            _config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-        }
+        public CreateAccountSteps(ScenarioContext context) : base(context) => config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
 
         [When(@"employer or provider submits the details to create an account")]
-        public void WhenEmployerOrProviderSubmitsTheDetailsToCreateAnAccount() => _appreticeCommitmentsApiHelper.CreateApprenticeship();
+        public void WhenEmployerOrProviderSubmitsTheDetailsToCreateAnAccount() => appreticeCommitmentsStepsHelper.CreateApprenticeship();
 
         [Then(@"the apprentice is able to create an account using the invitation")]
-        public void ThenTheApprenticeIsAbleToCreateAnAccountUsingTheInvitation()
-        {
-            var passwordPage = GetCreatePasswordPage();
-
-            passwordPage.CreatePassword();
-        }
+        public void ThenTheApprenticeIsAbleToCreateAnAccountUsingTheInvitation() => appreticeCommitmentsStepsHelper.CreatePassword();
 
         [Then(@"an error is shown for invalid passwords")]
         public void ThenAnErrorIsShownForInvalidPasswords()
         {
-            var passwordPage = GetCreatePasswordPage();
+            var passwordPage = appreticeCommitmentsStepsHelper.GetCreatePasswordPage();
 
             var invalidPasswords = new List<string []> 
             {
-                new string [] { _config.AC_AccountPassword, $"{_config.AC_AccountPassword}1" },
+                new string [] { config.AC_AccountPassword, $"{config.AC_AccountPassword}1" },
                 new string [] { "invalidpassword", "invalidpassword" },
                 new string [] { "234547896", "234547896" },
                 new string [] { "ac1234", "ac1234" },
@@ -62,22 +37,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
                 passwordPage.VerifyErrorSummary();
             }
-        }
-
-        private CreatePasswordPage GetCreatePasswordPage()
-        {
-            string invitationId = string.Empty;
-
-            string email = _objectContext.GetApprenticeEmail();
-
-            _assertHelper.RetryOnNUnitException(() =>
-            {
-                invitationId = _apprenticeLoginSqlDbHelper.GetId(email);
-
-                Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
-            });
-
-            return new CreatePasswordPage(_context, invitationId);
         }
     }
 }
