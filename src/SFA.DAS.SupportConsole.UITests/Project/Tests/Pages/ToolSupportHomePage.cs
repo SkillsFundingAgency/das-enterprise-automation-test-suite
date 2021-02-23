@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -16,14 +14,30 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Locators
         private By HomeHeading => By.LinkText("support");
-        protected By PauseApprenticeshipsLink => By.XPath("//body/div[1]/main[1]/div[1]/div[1]/dl[1]/div[1]/dd[2]/a[1]");
-        protected By ResumeApprenticeshipsLink => By.PartialLinkText("act=resume");
-        protected By StopApprenticeshipsLink => By.PartialLinkText("act=stop");
+        protected By PauseApprenticeshipsLink => By.Id("pauseApprenticeship");
+        protected By ResumeApprenticeshipsLink => By.Id("resumeApprenticeship");
+        protected By StopApprenticeshipsLink => By.Id("stopApprenticeship");
         #endregion
 
         public ToolSupportHomePage(ScenarioContext context) : base(context) => _context = context;
 
-        public void ClickPauseApprenticeshipsLink() => formCompletionHelper.Click(PauseApprenticeshipsLink);
+        public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
+        {
+            formCompletionHelper.Click(PauseApprenticeshipsLink);
+            return new SearchForApprenticeshipPage(_context);
+        }
+
+        public SearchForApprenticeshipPage ClickResumeApprenticeshipsLink()
+        {
+            formCompletionHelper.Click(ResumeApprenticeshipsLink);
+            return new SearchForApprenticeshipPage(_context);
+        }
+
+        public SearchForApprenticeshipPage ClickStopApprenticeshipsLink()
+        {
+            formCompletionHelper.Click(StopApprenticeshipsLink);
+            return new SearchForApprenticeshipPage(_context);
+        }
 
         public SearchHomePage GoToHomePage()
         {

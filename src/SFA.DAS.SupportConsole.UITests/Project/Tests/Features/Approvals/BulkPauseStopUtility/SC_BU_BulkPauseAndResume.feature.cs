@@ -74,16 +74,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bulk Pause and then Resume Apprentice Records")]
+        [NUnit.Framework.DescriptionAttribute("Bulk Pause Apprentice Records")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        public virtual void BulkPauseAndThenResumeApprenticeRecords()
+        [NUnit.Framework.CategoryAttribute("BulkUtility")]
+        public virtual void BulkPauseApprenticeRecords()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
-                    "approvalssupportconsole"};
+                    "approvalssupportconsole",
+                    "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Pause and then Resume Apprentice Records", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Pause Apprentice Records", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,18 +121,89 @@ this.ScenarioInitialize(scenarioInfo);
                             "Status",
                             "TotalRecords"});
                 table1.AddRow(new string[] {
-                            "ESFA LTD",
+                            "COMPLIANCE LIMITED",
                             "",
-                            "10005310",
+                            "10005760",
                             "",
                             "",
-                            "Live",
-                            "3000"});
+                            "",
+                            "100"});
 #line 9
  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table1, "And ");
 #line hidden
 #line 13
  testRunner.When("User selects all records and click on Pause Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("User should be able to pause all the live records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bulk Resume Apprentice Records")]
+        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
+        [NUnit.Framework.CategoryAttribute("BulkUtility")]
+        public virtual void BulkResumeApprenticeRecords()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "supportconsole",
+                    "approvalssupportconsole",
+                    "BulkUtility"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Resume Apprentice Records", null, tagsOfScenario, argumentsOfScenario);
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+ testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+ testRunner.And("Opens the Resume Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EmployerName",
+                            "ProviderName",
+                            "Ukprn",
+                            "EndDate",
+                            "Uln",
+                            "Status",
+                            "TotalRecords"});
+                table2.AddRow(new string[] {
+                            "COMPLIANCE LIMITED",
+                            "",
+                            "10005760",
+                            "",
+                            "",
+                            "",
+                            "100"});
+#line 23
+ testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table2, "And ");
+#line hidden
+#line 27
+ testRunner.When("User selects all records and click on Resume Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+ testRunner.Then("User should be able to resume all the paused records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

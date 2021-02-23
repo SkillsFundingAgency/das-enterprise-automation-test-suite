@@ -77,14 +77,16 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         [NUnit.Framework.DescriptionAttribute("Validate Combination of filters")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
+        [NUnit.Framework.CategoryAttribute("BulkUtility")]
         public virtual void ValidateCombinationOfFilters()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
-                    "approvalssupportconsole"};
+                    "approvalssupportconsole",
+                    "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Combination of filters", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("user opens Pause Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "EmployerName",
                             "ProviderName",
                             "Ukprn",
@@ -118,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Uln",
                             "Status",
                             "TotalRecords"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "ESFA LTD",
                             "EDUC8 TRAINING (ENGLAND) LIMITED",
                             "",
@@ -126,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "Live",
                             "3000"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -134,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "8305402974",
                             "Paused",
                             "1"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "ESFA LTD",
                             "",
                             "10005310",
@@ -142,15 +144,15 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "Waiting to Start",
                             "100"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "",
                             "",
                             "",
                             "17//02//2021",
                             "",
-                            "Live",
-                            "300"});
-                table2.AddRow(new string[] {
+                            "Any",
+                            "400"});
+                table3.AddRow(new string[] {
                             "COMPLIANCE LIMITED",
                             "",
                             "10005310",
@@ -158,8 +160,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "8305402974",
                             "Live",
                             "0"});
-#line 8
- testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table2, "Then ");
+#line 9
+ testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

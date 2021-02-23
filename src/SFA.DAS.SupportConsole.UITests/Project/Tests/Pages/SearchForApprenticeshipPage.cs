@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -21,12 +20,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By ApprenticeshipStatus => By.Id("SelectedStatus");
         private By DataTable => By.Id("apprenticeshipResultsTable");
         private By PaginationInfo => By.ClassName("pagination-info");
+        private By SelectAllChkbx => By.Name("btSelectAll");        
         private By SubmitButton => By.Id("submitSearchFormButton");
         private By PauseButton => By.XPath("//button[contains(text(),'Pause apprenticeship(s)')]");
-
+        private By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
+        private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(2)");
         #endregion
 
-        public SearchForApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) => _context = context;
 
         public SearchForApprenticeshipPage EnterEmployerName(string employerName)
         {
@@ -63,7 +64,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(ApprenticeNameOrUln, apprenticeNameOrUln);
             return this;
         }
-
         public SearchForApprenticeshipPage SelectStatus(string status)
         {
             status = (status == "" ? "Any" : status);
@@ -71,10 +71,28 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             return this;
         }
 
+        public SearchForApprenticeshipPage SelectAllRecords()
+        {
+            formCompletionHelper.Click(SelectAllChkbx);
+            return this; 
+        }
+
         public SearchForApprenticeshipPage ClickSubmitButton()
         {
             formCompletionHelper.Click(SubmitButton);
             return this;
+        }
+
+        public PauseApprenticeshipsPage ClickPauseButton()
+        {
+            formCompletionHelper.Click(PauseButton);
+            return new PauseApprenticeshipsPage(_context);
+        }
+
+        public ResumeApprenticeshipsPage ClickResumeButton()
+        {
+            formCompletionHelper.Click(ResumeButton);
+            return new ResumeApprenticeshipsPage(_context);
         }
 
         public int GetNumberOfRecordsFound()
@@ -88,6 +106,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             else            
                 return (Convert.ToInt32(arrPaginationInfo[5]));
         }
+
+        public List<IWebElement> GetULNsFromApprenticeshipTable() => pageInteractionHelper.FindElements(UlnColumn);
 
     }
 }
