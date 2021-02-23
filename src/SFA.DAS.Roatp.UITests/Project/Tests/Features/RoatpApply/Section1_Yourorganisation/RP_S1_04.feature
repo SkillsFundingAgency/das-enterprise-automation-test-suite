@@ -14,3 +14,4 @@ Scenario: RP_S1_04_CharityAndCompany - Main - Org AEI - HEI
 	And the provider completes Tell us who's in control section for charity and company
 	And the provider completes Describe your organisation section as OrgTypeAEI
 	And the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement for Main Route
+	And the provider verifies Financial Section Status as not required

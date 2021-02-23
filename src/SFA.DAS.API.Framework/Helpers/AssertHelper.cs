@@ -2,7 +2,7 @@
 using RestSharp;
 using System.Net;
 
-namespace SFA.DAS.API.Framework
+namespace SFA.DAS.API.Framework.Helpers
 {
     public static class AssertHelper
     {

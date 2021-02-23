@@ -77,6 +77,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.ChangeUkprn
         [NUnit.Framework.DescriptionAttribute("RP_CUkprn_01")]
         [NUnit.Framework.CategoryAttribute("rpchangeukprn01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatpapplychangeukprn")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_CUkprn_01()
@@ -84,11 +85,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.ChangeUkprn
             string[] tagsOfScenario = new string[] {
                     "rpchangeukprn01",
                     "roatp",
+                    "roatpapply",
                     "roatpapplychangeukprn",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CUkprn_01", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
     testRunner.Given("the provider initates an application as employer route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
     testRunner.When("the provider completes Your organisation section using an ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
     testRunner.Then("the provider should be able to change the ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -37,6 +37,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
+        public DescribeYourOrganisationPage SelectARailFranchiseOperatorAndContinue()
+        {
+            SelectRadioOptionByText("A rail franchise operator");
+            formCompletionHelper.ClickElement(SaveAndContinue);
+            return new DescribeYourOrganisationPage(_context);
+        }
         public DescribeYourOrganisationPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
@@ -54,6 +60,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectRadioOptionByText("A public body");
             formCompletionHelper.ClickElement(SaveAndContinue);
             return new TypeOfBodyPage(_context);
+        }
+        public DescribeYourOrganisationPage SelectEmployerTrainingInOtherOrganisations()
+        {
+            SelectRadioOptionByText("An employer training apprentices in other organisations");
+            formCompletionHelper.ClickElement(SaveAndContinue);
+            return new DescribeYourOrganisationPage(_context);
         }
     }
 }

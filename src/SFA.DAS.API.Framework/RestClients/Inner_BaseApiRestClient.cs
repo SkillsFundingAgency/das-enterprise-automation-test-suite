@@ -16,14 +16,9 @@ namespace SFA.DAS.API.Framework.RestClients
             CreateInnerApiRestClient();
         }
 
-        public override void CreateRestRequest(Method method, string resource, string payload)
-        {
-            AddAuthHeaders();
+        protected override void AddResource(string resource) => restRequest.Resource = resource;
 
-            AddPayload(payload);
-        }
-
-        private void AddAuthHeaders()
+        protected override void AddAuthHeaders()
         {
             var restClient = new Inner_ApiAuthTokenRestClient(_config);
 
@@ -34,9 +29,9 @@ namespace SFA.DAS.API.Framework.RestClients
 
         private void CreateInnerApiRestClient()
         {
-            _restClient = new RestClient(Inner_ApiBaseUrl);
+            restClient = new RestClient(Inner_ApiBaseUrl);
 
-            _restRequest = new RestRequest();
+            restRequest = new RestRequest();
         }
     }
 }

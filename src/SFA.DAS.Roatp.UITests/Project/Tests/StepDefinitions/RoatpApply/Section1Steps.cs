@@ -81,6 +81,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider completes Describe your organisation section")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSection() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAcadamy(_overviewPage);
+        [Then(@"the provider completes Describe your organisation section as OrgTYpe Rail franchise")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTYpeRailFranchise() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeRailFranchise(_overviewPage);
 
         [Then(@"the provider completes Describe your organisation section as OrgTypeATP")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeATP() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeATP(_overviewPage);
@@ -99,6 +101,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovement() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
+        [Then(@"the provider completes Experience and Accreditations section by selecting Yes had monitoring visit for apprenticeships")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingYesHadMonitoringVisitForApprenticeships() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_InsufficientProgressInMonitoringVisits(_overviewPage);
+
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement for Main Route")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovementForMainRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(_overviewPage);
 
