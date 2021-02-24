@@ -9,8 +9,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Reset password";
 
+        private readonly ScenarioContext _context;
+
         public ResetPasswordPage(ScenarioContext context, (string clientId, string requestId) id) : base(context)
         {
+            _context = context;
+
             VerifyPage(() =>
             {
                 id = (string.IsNullOrEmpty(id.clientId) || string.IsNullOrEmpty(id.requestId)) ? loginInvitationsSqlDbHelper.GetApprenticeResetLoginData(objectContext.GetApprenticeEmail()) : id;
@@ -30,5 +34,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         private ResetPasswordPage(ScenarioContext context) : base(context) { }
+
+
+        public PasswordResetSuccessfulPage CreatePassword()
+        {
+            SubmitPassword(_validPassword, _validPassword);
+            return new PasswordResetSuccessfulPage(_context);
+        }
     }
 }

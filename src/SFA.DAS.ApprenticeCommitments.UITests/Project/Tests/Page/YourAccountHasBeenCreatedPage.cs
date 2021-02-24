@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class SigUpCompletePage : ApprenticeCommitmentsBasePage
+    public class YourAccountHasBeenCreatedPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "Your account has been created";
 
@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        public SigUpCompletePage(ScenarioContext context) : base(context)
+        public YourAccountHasBeenCreatedPage(ScenarioContext context) : base(context)
         {
             _context = context;
 

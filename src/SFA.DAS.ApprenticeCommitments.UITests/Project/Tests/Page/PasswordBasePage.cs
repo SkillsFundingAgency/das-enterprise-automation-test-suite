@@ -25,12 +25,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
         }
 
-        public SigUpCompletePage CreatePassword()
-        {
-            SubmitPassword(_validPassword, _validPassword);
-            return new SigUpCompletePage(_context);
-        }
-
         public PasswordBasePage InvalidPassword(string password, string confirmpassword)
         {
             SubmitPassword(password, confirmpassword);

@@ -9,8 +9,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Create password";
 
+        private readonly ScenarioContext _context;
+
         public CreatePasswordPage(ScenarioContext context, string invitationId) : base(context)
         {
+            _context = context;
+
             VerifyPage(() =>
             {
                 return pageInteractionHelper.InvokeAction(() => 
@@ -28,5 +32,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         private CreatePasswordPage(ScenarioContext context) : base(context) { }
+
+        public YourAccountHasBeenCreatedPage CreatePassword()
+        {
+            SubmitPassword(_validPassword, _validPassword);
+            return new YourAccountHasBeenCreatedPage(_context);
+        }
     }
 }

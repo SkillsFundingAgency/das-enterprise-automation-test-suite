@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
 
-        private SigUpCompletePage sigUpCompletePage;
+        private YourAccountHasBeenCreatedPage sigUpCompletePage;
 
         public AppreticeCommitmentsStepsHelper(ScenarioContext context)
         {
@@ -66,7 +66,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new ResetPasswordPage(_context, id);
         }
 
-        public SigUpCompletePage CreateAccount(bool postApprenticeship = true)
+        public YourAccountHasBeenCreatedPage CreateAccount(bool postApprenticeship = true)
         {
             if (postApprenticeship)
             CreateApprenticeship();
@@ -76,7 +76,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ForgottenPasswordConfirmPage SubmitResetPassword() => SignInPage().Resetpassword().Submit();
 
-        public SigUpCompletePage ResetPassword() => sigUpCompletePage = GetResetPasswordPage().CreatePassword();
+        public PasswordResetSuccessfulPage ResetPassword() => GetResetPasswordPage().CreatePassword();
 
         public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInToApprenticePortal();
 
