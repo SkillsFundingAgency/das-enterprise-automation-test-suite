@@ -10,11 +10,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
     {
         protected override string PageTitle => "Application summary";
 
-        private By ApproveGatewayOutcome => By.Id("ApproveGateway");
+        private By ApproveGatewayOutcome => By.CssSelector("label[for='ApproveGateway']");
         private By OverturnGatewayOutcome => By.Id("ApproveGatewayOutcome");
-        private By ApproveModertionOutcome => By.Id("ApproveModeration");
+        private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
         private By OverturnModerationOutcome => By.Id("OptionApproveModerationNo");
-        private By OversightSuccessfull => By.Id("OversightStatus");
+        private By OversightSuccessfull => By.CssSelector("label[for='OversightStatus']");
         private By OversightSuccessfullAlreadyActive => By.Id("OptionSuccessfulAlreadyActive");
         private By OversightSuccessfullFitnessForFunding => By.Id("OptionSuccessfulFitnessForFunding");
         private By OversightUnSuccessfull => By.Id("OptionUnsuccessful");

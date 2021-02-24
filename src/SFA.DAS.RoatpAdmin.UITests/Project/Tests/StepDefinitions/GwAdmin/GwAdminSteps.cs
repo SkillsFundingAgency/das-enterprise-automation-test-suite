@@ -61,17 +61,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"Verifiy the application is not transitioned to PMO and Assessor")]
         public void ThenVerifiyTheApplicationIsNotTransitionedToPMOAndAssessor()
         {
-            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
-            gatewayLandingPage.ClickReturnToStaffDashBoard();
-            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
+            var staffDashboardPage = new GatewayLandingPage(_context).ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessFinancialApplications();
             FinancialLandingPage financialLandingPage = new FinancialLandingPage(_context);
             Assert.IsFalse(financialLandingPage.VerifyApplication(), "Gateway Fail outcome Application Transitioned to PMO");
-            financialLandingPage.ClickReturnToStaffDashBoard();
+            staffDashboardPage = financialLandingPage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessAssessorAndModerationApplications();
             RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context);
             Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
-            roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
+            staffDashboardPage = roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessOversightApplications();
         }
 

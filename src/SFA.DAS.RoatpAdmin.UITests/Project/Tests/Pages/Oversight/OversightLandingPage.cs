@@ -21,11 +21,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         public OversightLandingPage(ScenarioContext context) : base(context) => _context = context;
 
-         public new OversightLandingPage VerifyOutcomeStatus(string expectedStatus)
+        public new OversightLandingPage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
             return this;
         }
+
         public ApplicationSummaryPage SelectApplication()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
