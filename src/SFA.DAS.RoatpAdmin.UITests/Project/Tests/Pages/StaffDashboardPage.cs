@@ -48,5 +48,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
             return new RoatpAdminHomePage(_context);
         }
+
+        public StaffDashboardPage DownloadTrainingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
+            return new StaffDashboardPage(_context);
+        }
+
+        public RoatpApplicationReportPage DownloadApplicationData()
+        {
+            formCompletionHelper.ClickLinkByText("Download application data");
+            return new RoatpApplicationReportPage(_context);
+        }
     }
 }

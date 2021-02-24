@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
 
         [BeforeScenario(Order = 33)]
-        public new void GetNewRoatpAdminData() => base.GetNewRoatpAdminData();
+        public new void GetNewRoatpAdminData() { if (!_context.ScenarioInfo.Tags.Contains("newroatpadminreporting")) base.GetNewRoatpAdminData(); }
 
         [BeforeScenario(Order = 35)]
         public void ClearDownGateWayAdminData()
