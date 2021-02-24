@@ -26,7 +26,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception();
+                throw new Exception($"Unsuccessful request - {response.StatusCode}");
             }
 
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

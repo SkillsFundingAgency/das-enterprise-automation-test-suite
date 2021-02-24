@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public async Task StartPaymentProcessOrchestrator(short collectionPeriodYear, byte collectionPeriodNumber)
         {
-            await StartOrchestrator($"orchestrators/IncentivePaymentOrchestrator/{collectionPeriodYear}/{collectionPeriodNumber}");
+            await StartOrchestrator($"api/orchestrators/IncentivePaymentOrchestrator/{collectionPeriodYear}/{collectionPeriodNumber}");
         }
 
         public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout)
@@ -26,12 +26,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public async Task ApprovePayments()
         {
-            await CallHttpTrigger($"orchestrators/approvePayments/{OrchestratorStartResponse.Id}");
+            await CallHttpTrigger($"api/orchestrators/approvePayments/{OrchestratorStartResponse.Id}");
         }
 
         public async Task RejectPayments()
         {
-            await CallHttpTrigger($"orchestrators/rejectPayments/{OrchestratorStartResponse.Id}");
+            await CallHttpTrigger($"api/orchestrators/rejectPayments/{OrchestratorStartResponse.Id}");
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
+using Dapper.Contrib.Extensions;
 using NUnit.Framework;
+using SFA.DAS.EmployerIncentives.UITests.Messages;
+using SFA.DAS.EmployerIncentives.UITests.Models;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Helpers.Requests;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -15,6 +18,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     {
         private EIConfig _config;
         private Fixture _fixture;
+        private IncentiveApplication _incentiveApplication;
+        private IncentiveApplicationApprenticeship _apprenticeship;
 
         public LearnerMatchTestSteps(ScenarioContext context)
         {
@@ -25,33 +30,35 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"there are some apprenticeship incentives")]
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
-            var accountApiHelper = new EIAccountApiHelper(_config);
-
             // Proper tests may not want to use autofixture, they may use known data instead.
-            var accountId = _fixture.Create<long>();
-            var legalEntity = _fixture.Create<AccountLegalEntityCreateRequest>();
-            await accountApiHelper.UpsertLegalEntity(accountId, legalEntity);
+            _incentiveApplication = _fixture.Create<IncentiveApplication>();
+            _apprenticeship  = _fixture.Build<IncentiveApplicationApprenticeship>().With(a => a.IncentiveApplicationId, _incentiveApplication.Id).Create();
 
-            var application = new CreateIncentiveApplicationRequest();
-            application.AccountId = accountId;
-            application.AccountLegalEntityId = legalEntity.AccountLegalEntityId;
-            application.IncentiveApplicationId = Guid.NewGuid();
-            application.Apprenticeships = _fixture.CreateMany<IncentiveApplicationApprenticeshipDto>();
+            using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
+            await DapperExtensions.InsertAsync(dbConnection, _incentiveApplication);
+            await DapperExtensions.InsertAsync(dbConnection, _apprenticeship);
 
-            var applicationApiHelper = new EIApplicationsApiHelper(_config);
-            await applicationApiHelper.CreateApplication(application);
+            var serviceBusHelper = new EIServiceBusHelper(_config);
+            var command = new CreateIncentiveCommand(
+                _incentiveApplication.AccountId,
+                _incentiveApplication.AccountLegalEntityId,
+                _apprenticeship.Id,
+                _apprenticeship.ApprenticeshipId,
+                _apprenticeship.FirstName,
+                _apprenticeship.LastName,
+                _apprenticeship.DateOfBirth,
+                _apprenticeship.ULN,
+                _apprenticeship.PlannedStartDate,
+                _apprenticeship.ApprenticeshipEmployerTypeOnApproval,
+                _apprenticeship.UKPRN,
+                _incentiveApplication.DateSubmitted.Value,
+                _incentiveApplication.SubmittedByEmail,
+                _apprenticeship.CourseName
+            );
 
-            var submitRequest = new SubmitIncentiveApplicationRequest
-            {
-                AccountId = accountId,
-                DateSubmitted = DateTime.Now,
-                IncentiveApplicationId = application.IncentiveApplicationId,
-                SubmittedByEmail = _fixture.Create<string>(),
-                SubmittedByName = _fixture.Create<string>()
-            };
-            await applicationApiHelper.SubmitApplication(submitRequest);
+            await serviceBusHelper.Publish(command);
 
-            // May need to wait a short while to allow earnings to be created
+            // May need to wait a short while to allow earnings to be created. This can be improved to check the database
             Thread.Sleep(1);
 
             // Possibly need to mock the learner match API
@@ -71,6 +78,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var sqlHelper = new EISqlHelper(_config);
             var learnersExisting = sqlHelper.VerifyLearningRecordsExist();
             Assert.IsTrue(learnersExisting);
+        }
+
+        [AfterScenario(Order = 1)]
+        public async Task ClearUpData()
+        {
+            //using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
+            //await dbConnection.DeleteAsync(_apprenticeship);
+            //await dbConnection.DeleteAsync(_incentiveApplication);
         }
     }
 }
