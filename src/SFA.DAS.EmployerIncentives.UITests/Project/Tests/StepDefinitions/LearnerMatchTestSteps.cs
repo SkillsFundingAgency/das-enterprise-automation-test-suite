@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.UITests.Messages;
@@ -59,7 +60,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             await serviceBusHelper.Publish(command);
 
             // May need to wait a short while to allow earnings to be created. This can be improved to check the database
-            Thread.Sleep(1);
+            Thread.Sleep(10000);
 
             // Possibly need to mock the learner match API
         }
@@ -69,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             var learnerMatchService = new EILearnerMatchHelper(_config);
             await learnerMatchService.StartLearnerMatchOrchestrator();
-            await learnerMatchService.WaitUntilComplete(new TimeSpan(0, 5, 0));
+            await learnerMatchService.WaitUntilComplete(new TimeSpan(0, 1, 0));
         }
 
         [Then(@"we have some learner data")]
@@ -83,9 +84,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [AfterScenario(Order = 1)]
         public async Task ClearUpData()
         {
-            //using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
-            //await dbConnection.DeleteAsync(_apprenticeship);
-            //await dbConnection.DeleteAsync(_incentiveApplication);
+            using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
+            await dbConnection.DeleteAsync(_apprenticeship);
+            await dbConnection.DeleteAsync(_incentiveApplication);
         }
     }
 }
