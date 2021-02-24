@@ -77,7 +77,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public void ClarificationClearDownFromApply(string ukprn)
         {
-            var ClarificationResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE[UKPRN] = {ukprn};" +
+            var ClarificationResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};" +
                 $" DELETE FROM dbo.OversightReview WHERE ApplicationId =  @ApplicationID; " +
                 $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent', Applicationstatus = 'GatewayAssessed', [AssessorReviewStatus] = 'New',[ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
                 $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationUserName = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, ClarificationFile = NULL, " +
@@ -85,5 +85,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             
             ExecuteSqlCommand(ClarificationResetQuery);
         }
+
+        public void OutcomeClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)} DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;");
+
+        private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
@@ -12,10 +10,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
+        protected override By ContinueButton => By.CssSelector(".govuk-button");
+
         public AreYouSureSuccessfullPage(ScenarioContext context) : base(context) => _context = context;
+        
         public OversightAssessmentCompletePage SelectYesAskAndContinueOutcomePage()
         {
-            SelectRadioOptionByForAttribute("Yes"); 
+            SelectRadioOptionByForAttribute("Confirm");
+            Continue();
             return new OversightAssessmentCompletePage(_context);
         }
     }

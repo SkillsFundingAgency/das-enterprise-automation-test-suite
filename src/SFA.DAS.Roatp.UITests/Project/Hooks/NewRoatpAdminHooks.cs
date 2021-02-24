@@ -55,5 +55,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             if (_context.ScenarioInfo.Tags.Contains("roatpclarification"))
                 _roatpApplyClearDownDataHelpers.ClarificationClearDownFromApply(GetUkprn());
         }
+
+        [BeforeScenario(Order = 39)]
+        public void ClearDownOutcomeAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("roatpoutcome"))
+            {
+                _roatpApplyClearDownDataHelpers.OutcomeClearDownFromApply(GetUkprn());
+
+                DeleteTrainingProvider();
+            }
+        }
     }
 }

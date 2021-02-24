@@ -15,6 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly TabHelper _tabHelper;
         protected readonly ObjectContext _objectContext;
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
+        private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
         protected readonly RoatpConfig config;
 
         private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;
@@ -31,6 +32,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             _tabHelper = context.Get<TabHelper>();
             config = context.GetRoatpConfig<RoatpConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, config);
+            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(config);
             _roatpApplyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
             _roatpApplyTestDataPrepDataHelpers = new RoatpApplyTestDataPrepDataHelpers();
             _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();
@@ -52,6 +54,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
 
         protected void WhiteListProviders(string ukprn = null) => _roatpApplyAndQnASqlDbHelper.WhiteListProviders(ukprn);
+
+        protected void DeleteTrainingProvider() => _adminClearDownDataHelpers.DeleteTrainingProvider(GetUkprn());
 
         protected void GetRoatpAppplyData() => SetDetails(_roatpApplyUkprnDataHelpers.GetRoatpAppplyData(GetTag("rp")));
 

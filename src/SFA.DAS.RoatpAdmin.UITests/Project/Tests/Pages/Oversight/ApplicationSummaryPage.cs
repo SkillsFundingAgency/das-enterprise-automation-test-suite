@@ -27,6 +27,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By InProgressInternalText => By.Id("InProgressInternalText");
         private By InProgressExternalText => By.Id("InProgressExternalText");
 
+        protected override By ContinueButton => By.CssSelector(".govuk-button");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

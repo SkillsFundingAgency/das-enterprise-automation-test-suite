@@ -35,7 +35,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
         {
-            _staffDashboardPage.SearchForATrainingProvider().SearchTrainingProvider().VerifyStatus("On-boarding");
+            var resultPage = _staffDashboardPage.SearchForATrainingProvider()
+                .SearchTrainingProviderByUkprn();
+
+            resultPage.VerifyOneProviderUkprnResultFound();
+
+            resultPage.VerifyMainAndEmployerTypeStatus();
         }
     }
 }
