@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public NewRoatpAdminHooks(ScenarioContext context) : base(context)
         {
             _context = context;
-            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(config);
+            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
         }
 
 
