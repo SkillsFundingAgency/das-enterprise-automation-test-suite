@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         private readonly ScenarioContext _context;
         #endregion
 
-        private By SaveAndContinue => By.XPath("//button[text()='Save and continue']");
-
         public WhatIsYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,50 +20,52 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectAnApprenticeshipTrainingAgencyAndContinue()
         {
             SelectRadioOptionByText("An Apprenticeship Training Agency");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
         public TypeOfEducationalInstitutePage SelectEducationalInstituteAndContinue()
         { 
             SelectRadioOptionByText("An educational institute");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new TypeOfEducationalInstitutePage(_context);
         }
         public DescribeYourOrganisationPage SelectIndependentTrainingProviderAndContinue()
         {
             SelectRadioOptionByText("An Independent Training Provider");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
         public DescribeYourOrganisationPage SelectARailFranchiseOperatorAndContinue()
         {
             SelectRadioOptionByText("A rail franchise operator");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
         public DescribeYourOrganisationPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
         public DescribeYourOrganisationPage SelectGroupTrainingAssociationAndContinue()
         {
             SelectRadioOptionByText("A Group Training Association");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
         public TypeOfBodyPage SelectPublicBodyAndContinue()
         { 
             SelectRadioOptionByText("A public body");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new TypeOfBodyPage(_context);
         }
         public DescribeYourOrganisationPage SelectEmployerTrainingInOtherOrganisations()
         {
             SelectRadioOptionByText("An employer training apprentices in other organisations");
-            formCompletionHelper.ClickElement(SaveAndContinue);
+           SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
+
+        private void SaveAndContinue() => formCompletionHelper.ClickButtonByText(ContinueButton, "Save and continue");
     }
 }

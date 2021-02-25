@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using System;
+﻿using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -9,13 +8,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     public class OldRoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
  
-        public OldRoatpAdminHooks(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(config);
-        }
+        public OldRoatpAdminHooks(ScenarioContext context) : base(context) => _context = context;
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpAdminDataHelpers();
@@ -30,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public void ClearDownAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
-                _adminClearDownDataHelpers.DeleteTrainingProvider(GetUkprn());
+                DeleteTrainingProvider();
         }
     }
 }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.ChangeUkprn
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.ChangeUkprn
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_CUkprn_01")]
-    public partial class RP_CUkprn_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_Outcome_01")]
+    public partial class RP_Outcome_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_CUkprn_01.feature"
+#line 1 "RP_Outcome_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_CUkprn_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Outcome_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.ChangeUkprn
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_CUkprn_01")]
-        [NUnit.Framework.CategoryAttribute("rpchangeukprn01")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpapplychangeukprn")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_CUkprn_01()
+        [NUnit.Framework.DescriptionAttribute("RP_Outcome_01_TestDataPreparation-For_RP_AD_OUTCOME_01")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminoutcometestdataprep")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("rpadoutcome01")]
+        public virtual void RP_Outcome_01_TestDataPreparation_For_RP_AD_OUTCOME_01()
         {
             string[] tagsOfScenario = new string[] {
-                    "rpchangeukprn01",
-                    "roatp",
-                    "roatpapplychangeukprn",
-                    "regression"};
+                    "roatpadmintestdataprep",
+                    "roatpadminoutcometestdataprep",
+                    "donottakescreenshot",
+                    "rpadoutcome01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CUkprn_01", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Outcome_01_TestDataPreparation-For_RP_AD_OUTCOME_01", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,13 +109,21 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given("the provider initates an application as employer route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider completes the Apply Journey as Main Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-    testRunner.When("the provider completes Your organisation section using an ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
-    testRunner.Then("the provider should be able to change the ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Financial user assess the application by confirming Finance outcome as Outsta" +
+                        "nding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
+                        "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.Then("the Moderation user assess the application and marks outcomes as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

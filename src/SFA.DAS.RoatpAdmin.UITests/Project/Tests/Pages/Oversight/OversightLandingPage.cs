@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
     {
         protected override string PageTitle => "RoATP application outcomes";
         protected override By OutcomeTab => By.CssSelector("a[href='#outcomes']");
-
         protected override By OutcomeStatus => By.CssSelector("[data-label='Overall outcome']");
+
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -20,10 +21,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         public OversightLandingPage(ScenarioContext context) : base(context) => _context = context;
 
-         public new OversightLandingPage VerifyOutcomeStatus(string expectedStatus)
+        public new OversightLandingPage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
             return this;
+        }
+
+        public ApplicationSummaryPage SelectApplication()
+        {
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ApplicationSummaryPage(_context);
         }
     }
 }
