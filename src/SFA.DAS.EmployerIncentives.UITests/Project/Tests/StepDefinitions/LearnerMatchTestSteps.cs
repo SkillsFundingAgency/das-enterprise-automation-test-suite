@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using AutoFixture;
-using Dapper;
-using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.UITests.Messages;
 using SFA.DAS.EmployerIncentives.UITests.Models;
@@ -92,12 +89,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [AfterScenario(Order = 1)]
         public async Task ClearUpData()
         {
-            using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
-            await dbConnection.ExecuteAsync("DELETE FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
-            await dbConnection.ExecuteAsync("DELETE FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
-            await dbConnection.ExecuteAsync("DELETE FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
-            await dbConnection.DeleteAsync(_apprenticeship);
-            await dbConnection.DeleteAsync(_incentiveApplication);
+            var sqlHelper = new EISqlHelper(_config);
+            await sqlHelper.CleanUpApprenticeshipIncentive(_apprenticeshipIncentiveId);
+            await sqlHelper.CleanUpIncentiveApplication(_incentiveApplication);
         }
     }
 }

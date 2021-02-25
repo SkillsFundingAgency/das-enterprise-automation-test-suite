@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.UITests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -118,6 +119,24 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             }
 
             throw new Exception("Earnings not found!");
+        }
+
+        public async Task CleanUpApprenticeshipIncentive(Guid apprenticeshipIncentiveId)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+        }
+
+        public async Task CleanUpIncentiveApplication(IncentiveApplication incentiveApplication)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            {
+                await dbConnection.DeleteAsync(apprenticeship);
+            }
+            await dbConnection.DeleteAsync(incentiveApplication);
         }
 
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
