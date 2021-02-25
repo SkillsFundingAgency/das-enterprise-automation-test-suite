@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
 using Dapper;
@@ -21,6 +20,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private Fixture _fixture;
         private IncentiveApplication _incentiveApplication;
         private IncentiveApplicationApprenticeship _apprenticeship;
+        private Guid _apprenticeshipIncentiveId;
 
         public LearnerMatchTestSteps(ScenarioContext context)
         {
@@ -31,13 +31,21 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"there are some apprenticeship incentives")]
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
+            var sqlHelper = new EISqlHelper(_config);
+            await sqlHelper.SetActiveCollectionPeriod(6, 2021);
+
             // Proper tests may not want to use autofixture, they may use known data instead.
             _incentiveApplication = _fixture.Create<IncentiveApplication>();
-            _apprenticeship  = _fixture.Build<IncentiveApplicationApprenticeship>().With(a => a.IncentiveApplicationId, _incentiveApplication.Id).Create();
-
-            using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
-            await DapperExtensions.InsertAsync(dbConnection, _incentiveApplication);
-            await DapperExtensions.InsertAsync(dbConnection, _apprenticeship);
+            _apprenticeship = _fixture.Build<IncentiveApplicationApprenticeship>()
+                .With(a => a.IncentiveApplicationId, _incentiveApplication.Id)
+                .With(x => x.PlannedStartDate, new DateTime(2021, 1, 1))
+                .With(x => x.WithdrawnByCompliance, false)
+                .With(x => x.WithdrawnByEmployer, false)
+                .Create();
+            _incentiveApplication.Apprenticeships.Clear();
+            _incentiveApplication.Apprenticeships.Add(_apprenticeship);
+            
+            await sqlHelper.CreateIncentiveApplication(_incentiveApplication);
 
             var serviceBusHelper = new EIServiceBusHelper(_config);
             var command = new CreateIncentiveCommand(
@@ -59,8 +67,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
             await serviceBusHelper.Publish(command);
 
-            // May need to wait a short while to allow earnings to be created. This can be improved to check the database
-            Thread.Sleep(10000);
+            _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 1, 0));
+            await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 1, 0));
 
             // Possibly need to mock the learner match API
         }
@@ -74,10 +82,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"we have some learner data")]
-        public void ThenWeHaveSomeLearnerData()
+        public async Task ThenWeHaveSomeLearnerData()
         {
             var sqlHelper = new EISqlHelper(_config);
-            var learnersExisting = sqlHelper.VerifyLearningRecordsExist();
+            var learnersExisting = await sqlHelper.VerifyLearningRecordsExist(_apprenticeshipIncentiveId);
             Assert.IsTrue(learnersExisting);
         }
 
@@ -85,6 +93,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public async Task ClearUpData()
         {
             using var dbConnection = new SqlConnection(_config.EI_IncentivesDbConnectionString);
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId = _apprenticeshipIncentiveId });
             await dbConnection.DeleteAsync(_apprenticeship);
             await dbConnection.DeleteAsync(_incentiveApplication);
         }

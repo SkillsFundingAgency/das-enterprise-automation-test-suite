@@ -79,6 +79,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
                 await Task.Delay(TimeSpan.FromMilliseconds(100));
             }
+
+            throw new Exception("Orchestrator didn't complete successfully");
         }
     }
 }
