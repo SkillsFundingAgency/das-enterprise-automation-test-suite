@@ -88,7 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login contributor,super contributor and super user", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,17 +108,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given(string.Format("the provider logins as \'{0}\'", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.Then("the user can create reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
- testRunner.And("the user can delete reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.And("the user can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -129,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("mytag")]
         public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_Contributor()
         {
-#line 6
+#line 5
 this.VerfiyLoginContributorSuperContributorAndSuperUser("Contributor", ((string[])(null)));
 #line hidden
         }
@@ -139,7 +130,7 @@ this.VerfiyLoginContributorSuperContributorAndSuperUser("Contributor", ((string[
         [NUnit.Framework.CategoryAttribute("mytag")]
         public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_SuperContributor()
         {
-#line 6
+#line 5
 this.VerfiyLoginContributorSuperContributorAndSuperUser("Super Contributor", ((string[])(null)));
 #line hidden
         }
@@ -149,7 +140,7 @@ this.VerfiyLoginContributorSuperContributorAndSuperUser("Super Contributor", ((s
         [NUnit.Framework.CategoryAttribute("mytag")]
         public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_AccountOwner()
         {
-#line 6
+#line 5
 this.VerfiyLoginContributorSuperContributorAndSuperUser("Account Owner", ((string[])(null)));
 #line hidden
         }

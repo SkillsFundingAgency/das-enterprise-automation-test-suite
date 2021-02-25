@@ -7,6 +7,8 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -14,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly TabHelper _tabHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
 
@@ -23,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+            _tabHelper = _context.Get<TabHelper>();
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
@@ -39,6 +43,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _providerHomePageStepsHelper.GoToProviderHomePage(login);
             return new ApprovalsProviderHomePage(_context);
         }
+
+        public void GoToProviderSpecificUrl(string Url) => _tabHelper.OpenInNewTab(Url);
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
         {
@@ -272,5 +278,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyAndSubmitChangeOfEmployerRequest()
                 .VerifyChangeOfEmployerHasBeenRequested();
         }
+
     }
 }

@@ -15,54 +15,46 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderRolesSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ProviderSiginPage _loginSteps;
-        private readonly TabHelper _tabHelper;
-        private readonly string _providerUrl;
+        private readonly ProviderStepsHelper _providerStepsHelper;
 
         public ProviderRolesSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _loginSteps = new ProviderSiginPage(_context);
-            _tabHelper = _context.Get<TabHelper>();
-            _providerUrl = UrlConfig.SecureFunding_Provider_BaseUrl;
+            _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
-        [Given(@"the provider logins as '(.*)'")]
-        public void GivenTheProviderLoginsAs(string User)
+        [Given(@"the provider Navigates to ""(.*)""")]
+        public void GivenTheProviderNavigatesTo(string url)
         {
-            _tabHelper.OpenInNewTab(_providerUrl);
+            _providerStepsHelper.GoToProviderSpecificUrl(url);
+        }
 
-            ProviderSiginPage siginPage = new ProviderSiginPage(_context);
+
+        public void GivenLogsInAsUser()
+        {
+            ProviderLoginUser login = new ProviderLoginUser();
 
             if (User.Equals("Contributor"))
-                _loginSteps.SubmitValidLoginDetails(_context.GetUser<ProviderContributorUser>(), siginPage);
-
+            {
+                login.Username = _context.GetUser<ProviderContributorUser>().Username;
+                login.Password = _context.GetUser<ProviderContributorUser>().Password;
+            }
             else if (User.Equals("Super Contributor"))
-                _loginSteps.SubmitValidLoginDetails(_context.GetUser<ProviderSuperContributorUser>(), siginPage);
-
+            {
+                login.Username = _context.GetUser<ProviderSuperContributorUser>().Username;
+                login.Password = _context.GetUser<ProviderSuperContributorUser>().Password;
+            }
             else if (User.Equals("Account Owner"))
-                _loginSteps.SubmitValidLoginDetails(_context.GetUser<ProviderAccountOwnerUser>(), siginPage);
+            {
+                login.Username = _context.GetUser<ProviderAccountOwnerUser>().Username;
+                login.Password = _context.GetUser<ProviderAccountOwnerUser>().Password;
+            }
+
+            new ProviderSiginPage(_context).SubmitValidLoginDetails(login);
         }
 
-        [Then(@"the user can create reservation")]
-        public void ThenTheUserCanCreateReservation()
-        {
-             
-        }
 
-        [Then(@"the user can delete reservation")]
-        public void ThenTheUserCanDeleteReservation()
-        {
-           
-        }
-
-        [Then(@"the user can add an apprentice")]
-        public void ThenTheUserCanAddAnApprentice()
-        {
-             
-        }
+       
 
     }
 }

@@ -23,16 +23,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         public ProviderHomePage SubmitValidLoginDetails(ProviderLoginUser login)
         {
             EnterEmailAddress(login.Username)
-            .EnterPassword(login.Password)
-            .SignIn();
-            return new ProviderHomePage(_context);
-        }
-
-        public ProviderHomePage SubmitValidLoginDetails(LoginUser login, ProviderSiginPage siginPage)
-        {
-            EnterEmailAddress(login.Username)
-            .EnterPassword(login.Password);
-            siginPage.SignIn();
+                    .EnterPassword(login.Password)
+                    .SignIn();
             return new ProviderHomePage(_context);
         }
 
