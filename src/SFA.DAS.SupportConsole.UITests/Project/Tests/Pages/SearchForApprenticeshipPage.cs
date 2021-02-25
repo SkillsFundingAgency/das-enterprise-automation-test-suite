@@ -7,8 +7,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class SearchForApprenticeshipPage : ToolSupportBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Search for an apprenticeship.";
+        private readonly ScenarioContext _context;
 
         #region Locators
         private By EmployerName => By.Id("employerName");
@@ -20,10 +20,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By ApprenticeshipStatus => By.Id("SelectedStatus");
         private By DataTable => By.Id("apprenticeshipResultsTable");
         private By PaginationInfo => By.ClassName("pagination-info");
-        private By SelectAllChkbx => By.Name("btSelectAll");        
+        private By TableHeader => By.ClassName("govuk-table__head");
+        private By SelectAllChkbx => By.XPath("//*[@id='apprenticeshipResultsTable']/thead/tr/th[1]/div[1]/label/input");
         private By SubmitButton => By.Id("submitSearchFormButton");
         private By PauseButton => By.XPath("//button[contains(text(),'Pause apprenticeship(s)')]");
         private By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
+        private By StopButton => By.XPath("//button[contains(text(),'Stop apprenticeship(s)')]");
         private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(2)");
         #endregion
 
@@ -73,14 +75,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SearchForApprenticeshipPage SelectAllRecords()
         {
-            formCompletionHelper.Click(SelectAllChkbx);
+            pageInteractionHelper.WaitForElementToBeDisplayed(TableHeader);
+            formCompletionHelper.ClickElement(SelectAllChkbx);
             return this; 
         }
 
         public SearchForApprenticeshipPage ClickSubmitButton()
         {
             formCompletionHelper.Click(SubmitButton);
-            return this;
+            return new SearchForApprenticeshipPage(_context);
         }
 
         public PauseApprenticeshipsPage ClickPauseButton()
@@ -93,6 +96,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(ResumeButton);
             return new ResumeApprenticeshipsPage(_context);
+        }
+
+        public StopApprenticeshipsPage ClickStopButton()
+        {
+            formCompletionHelper.Click(StopButton);
+            return new StopApprenticeshipsPage(_context);
         }
 
         public int GetNumberOfRecordsFound()

@@ -18,14 +18,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly StepsHelper _stepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        SearchForApprenticeshipPage _searchForApprenticeshipPage;
+        //SearchForApprenticeshipPage _searchForApprenticeshipPage;
 
         public SupportToolsSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new StepsHelper(_context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
-            _searchForApprenticeshipPage = new SearchForApprenticeshipPage(_context, false);
+            //_searchForApprenticeshipPage = new SearchForApprenticeshipPage(_context, false);
         }
 
         [Given(@"the User is logged into Support Tools")]
@@ -48,6 +48,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             new ToolSupportHomePage(_context).ClickResumeApprenticeshipsLink();
         }
 
+        [Given(@"Opens the Stop Utility")]
+        public void GivenOpensTheStopUtility()
+        {
+            new ToolSupportHomePage(_context).ClickStopApprenticeshipsLink();
+        }
 
 
         [Given(@"Search for Apprentices using following criteria")]
@@ -59,7 +64,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
             foreach (var item in filters)
             {
-                _searchForApprenticeshipPage
+                new SearchForApprenticeshipPage(_context, false)
                        .EnterEmployerName(item.EmployerName)
                        .EnterProviderName(item.ProviderName)
                        .EnterUkprn(item.Ukprn)
@@ -68,7 +73,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                        .SelectStatus(item.Status)
                        .ClickSubmitButton();
 
-                var actualRecord = _searchForApprenticeshipPage.GetNumberOfRecordsFound();
+                var actualRecord = new SearchForApprenticeshipPage(_context, false).GetNumberOfRecordsFound();
                 Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected recordson row: {row}");
                 row++;
             }       
@@ -78,7 +83,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"User selects all records and click on Pause Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnPauseApprenticeshipButton()
         {
-            UpdateStatusInDb(_searchForApprenticeshipPage.GetULNsFromApprenticeshipTable())
+            UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
                     .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickPauseButton();  
@@ -87,11 +92,35 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"User selects all records and click on Resume Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnResumeApprenticeshipButton()
         {
-           UpdateStatusInDb(_searchForApprenticeshipPage.GetULNsFromApprenticeshipTable())
+           UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
                     .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickResumeButton();  
         }
+
+        [When(@"User selects all records and click on Stop Apprenticeship button")]
+        public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton()
+        {
+            UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
+                    //.ClickSubmitButton()
+                    .SelectAllRecords()
+                    .ClickStopButton();
+        }
+
+        [Then(@"User should be able to stop all the records")]
+        public void ThenUserShouldBeAbleToStopAllTheRecords()
+        {
+            var ststusList = new StopApprenticeshipsPage(_context)
+                                    .ClickStopBtn()
+                                    .ValidateErrorMessage()
+                                    .EnterStopDate()
+                                    .ClickSetButton()
+                                    .ClickStopBtn()
+                                    .GetStatusColumn();
+
+            ValidateStopSuccessful(ststusList);
+        }
+
 
         [Then(@"User should be able to pause all the live records")]
         public void ThenUserShouldBeAbleToPauseAllTheLiveRecords()
@@ -120,7 +149,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             {
                 if (i >= 0 && i < 4)
                     _commitmentsSqlDataHelper.UpdateApprenticeshipStatus(uln.Text, 1);
-                else if (i == 4 || i == 6)
+                else if (i == 4 || i == 5 || i == 6)
                     _commitmentsSqlDataHelper.UpdateApprenticeshipStatus(uln.Text, 2);
                 else if (i == 7 || i == 8)
                     _commitmentsSqlDataHelper.UpdateApprenticeshipStatus(uln.Text, 3);
@@ -130,7 +159,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                 i++;
             }
 
-            return _searchForApprenticeshipPage;
+            return new SearchForApprenticeshipPage(_context, false);
         }
 
         private void ValidatePausedSuccessful(List<IWebElement> StatusList)
@@ -169,6 +198,23 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                     Assert.IsTrue(status.Text == "Stopped - Only paused record can be activated", "Resuming a Stopped Record");
                 else
                     Assert.IsTrue(status.Text == "Completed - Only paused record can be activated", "Resuming a Stopped Record");
+
+                i++;
+            }
+
+        }
+
+        private void ValidateStopSuccessful(List<IWebElement> StatusList)
+        {
+            Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
+
+            int i = 0;
+            foreach (var status in StatusList)
+            {
+                if (i >= 0 && i < 7)
+                    Assert.IsTrue(status.Text == "Submitted successfully");
+                else
+                    Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship");
 
                 i++;
             }

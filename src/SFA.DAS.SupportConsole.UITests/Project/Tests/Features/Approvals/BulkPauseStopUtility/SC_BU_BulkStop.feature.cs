@@ -109,6 +109,34 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EmployerName",
+                            "ProviderName",
+                            "Ukprn",
+                            "EndDate",
+                            "Uln",
+                            "Status",
+                            "TotalRecords"});
+                table3.AddRow(new string[] {
+                            "COMPLIANCE LIMITED",
+                            "",
+                            "10005310",
+                            "",
+                            "",
+                            "",
+                            "25"});
+#line 9
+ testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table3, "And ");
+#line hidden
+#line 13
+ testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

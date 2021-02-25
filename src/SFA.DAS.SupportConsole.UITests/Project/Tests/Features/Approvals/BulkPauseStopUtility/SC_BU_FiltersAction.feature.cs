@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("user opens Pause Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "EmployerName",
                             "ProviderName",
                             "Ukprn",
@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Uln",
                             "Status",
                             "TotalRecords"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "ESFA LTD",
                             "EDUC8 TRAINING (ENGLAND) LIMITED",
                             "",
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "Live",
                             "3000"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -136,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "8305402974",
                             "Paused",
                             "1"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "ESFA LTD",
                             "",
                             "10005310",
@@ -144,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "Waiting to Start",
                             "100"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -152,7 +152,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "Any",
                             "400"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "COMPLIANCE LIMITED",
                             "",
                             "10005310",
@@ -161,7 +161,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Live",
                             "0"});
 #line 9
- testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table3, "Then ");
+ testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
