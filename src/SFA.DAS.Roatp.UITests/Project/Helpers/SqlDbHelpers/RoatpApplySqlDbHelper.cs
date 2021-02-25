@@ -79,7 +79,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand(ClarificationResetQuery);
         }
 
-        public void OutcomeClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)} DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;");
+        public void OversightReviewClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)} DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;");
 
         private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
     }
