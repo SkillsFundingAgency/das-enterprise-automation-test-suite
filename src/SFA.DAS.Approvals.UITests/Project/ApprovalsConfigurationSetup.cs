@@ -44,6 +44,14 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var changeOfPartyConfig = _configSection.GetConfigSection<ChangeOfPartyConfig>();
             _context.SetChangeOfPartyConfig(changeOfPartyConfig);
+
+            _context.SetUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<ProviderContributorUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<ProviderSuperContributorUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }
     }
 }

@@ -63,4 +63,12 @@
     {
         public string SecondOrganisationName { get; set; }
     }
+
+    public class ProviderViewOnlyUser : LoginUser { }
+
+    public class ProviderContributorUser : LoginUser { }
+
+    public class ProviderSuperContributorUser : LoginUser { }
+
+    public class ProviderAccountOwnerUser : LoginUser { }
 }

@@ -31,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ManageFunding\ProviderRoles\MF_PR_02_OtherRoles.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Project\Helpers\SqlScripts\GetAgreementId.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -64,6 +70,17 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\ProviderRoles\MF_PR_01_ViewOnly.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MF_PR_01_ViewOnly.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\ProviderRoles\MF_PR_02_OtherRoles.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MF_PR_02_OtherRoles.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
