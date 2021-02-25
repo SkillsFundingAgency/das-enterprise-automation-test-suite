@@ -59,17 +59,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing multiple account user")]
         public void GivenTheEmployerLoginsUsingExistingMultipleAccountUser() => _multipleAccountsLoginHelper.Login(_multipleAccountUser, true);
 
-        [Then(@"Access to EI Application is denied to the Employer")]
-        public void ThenAccessToEIApplicationIsDeniedToTheEmployer()
-        {
-            new HomePageFinancesSection(_context).AccessEIRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage();
-        }
-
-        [Then(@"to the view EI applications")]
-        public void ThenToTheViewEIApplications()
-        {
-            new HomePageFinancesSection(_context).AccessViewEIApplicationsRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage();
-        }
+        [Then(@"Access to EI Hub is denied to the Employer")]
+        public void ThenAccessToEIHubIsDeniedToTheEmployer() =>
+            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage();
 
         [Then(@"the Employer is able to navigate to EI application Select apprentices page")]
         public void TheEmployeIsAbleToNavigateToEIApplicationSelectApprenticesPage() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();
@@ -108,7 +100,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToViwEIApplications()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
-            new HomePageFinancesSection(_context).NavigateToEIViewApplicationsPage();
+            new HomePageFinancesSection(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsPage();
         }
 
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
@@ -120,9 +112,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var homePageFinancesSection = new HomePageFinancesSection(_context);
 
             if (entities == Entities.Single)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIStartPage().ClickStartNowButtonInEIStartPage();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToApplyChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickStartNowButtonInEIStartPage();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickStartNowButtonInEIApplyPage();
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
@@ -167,7 +159,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications")]
         public void ThenViewEIApplicationsShutterPageIsDiplayedToTheEmployerWhenNavigatingToViewEIApplicationsPageWithNoApplications()
         {
-            _viewApplicationsShutterPage = new HomePageFinancesSection(_context).NavigateToEIViewApplicationsShutterPage();
+            _viewApplicationsShutterPage = new HomePageFinancesSection(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
         }
 
         [Then(@"EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page")]
