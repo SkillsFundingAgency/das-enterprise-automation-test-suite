@@ -11,6 +11,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "LearnerMatchTest")]
     public class LearnerMatchTestSteps
     {
         private EIConfig _config;
