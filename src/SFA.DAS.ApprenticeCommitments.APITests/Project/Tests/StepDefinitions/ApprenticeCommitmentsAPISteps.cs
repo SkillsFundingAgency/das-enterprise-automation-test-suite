@@ -24,6 +24,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
         }
 
+        [Given(@"an apprentice has created an account")]
+        public void GivenAnApprenticeHasCreatedAnAccount()
+        {
+            _apprenticeCommitmentsApiHelper.CreateApprenticeship();
+
+            _apprenticeCommitmentsApiHelper.VerifyRegistration();
+        }
+
+        [Then(@"the apprentice can change their email address")]
+        public void ThenTheApprenticeCanChangeTheirEmailAddress()
+        {
+            
+        }
+
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {

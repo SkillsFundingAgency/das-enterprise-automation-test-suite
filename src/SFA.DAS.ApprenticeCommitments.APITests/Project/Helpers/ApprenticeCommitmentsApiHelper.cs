@@ -16,5 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 AssertResponse(HttpStatusCode.Accepted);
             });
         }
+
+        public new void VerifyRegistration()
+        {
+            base.VerifyRegistration();
+
+            AssertResponse(HttpStatusCode.OK);
+        }
     }
 }

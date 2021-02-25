@@ -1,4 +1,4 @@
-﻿Feature: ApprenticeCommitmentsApi
+﻿Feature: CreateApprenticeInvitation
 
 
 @api

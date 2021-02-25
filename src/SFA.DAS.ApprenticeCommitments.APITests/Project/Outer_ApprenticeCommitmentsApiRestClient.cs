@@ -19,5 +19,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
             CreateRestRequest(Method.POST, "/apprenticeships", payload);
         }
+
+        public void VerifyRegistration(VerifyIdentityRegistrationCommand verifyIdentityRegistrationCommand)
+        {
+            var payload = JsonHelper.Serialize(verifyIdentityRegistrationCommand);
+
+            CreateRestRequest(Method.POST, "/registrations", payload);
+        }
     }
 }

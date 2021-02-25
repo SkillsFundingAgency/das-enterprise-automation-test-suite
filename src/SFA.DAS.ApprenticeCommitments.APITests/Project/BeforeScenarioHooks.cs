@@ -2,6 +2,7 @@
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
@@ -25,11 +26,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             _objectContext.SetApprenticeEmail(new ApprenticeCommitmentsApiDataHelper().Email);
 
+            var random = _context.Get<RandomDataGenerator>();
+
+            var _datahelper = new ApprenticeCommitmentsDataHelper(random);
+
+            _context.Set(_datahelper);
+
             _context.Set(new ApprenticeCommitmentSqlHelper(_dbConfig));
 
             _context.Set(new ApprenticeLoginSqlDbHelper(_dbConfig));
 
-            _context.Set(new ApprenticeCommitmentsRegistrationSqlDbHelper(_dbConfig));
+            _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
 
             _context.SetRestClient(new Inner_CommitmentsApiRestClient(_context.GetInner_CommitmentsApiAuthTokenConfig()));
         }

@@ -1,7 +1,6 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
+namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class ApprenticeCommitmentsDataHelper : ApprenticeCommitmentsApiDataHelper
     {
@@ -17,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public string ApprenticeFirstname { get; }
 
-        public string ApprenticeLastname { get;  }
+        public string ApprenticeLastname { get; }
 
         public int DateOfBirthDay { get; }
 
