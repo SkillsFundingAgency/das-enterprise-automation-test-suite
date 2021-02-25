@@ -9,6 +9,3 @@ Scenario: EI_E2E_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank det
 	And the Provider approves the apprenticeship request
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application without VRF
-	When the Employer Initiates EI Application journey for Single entity account again
-	Then Select apprentices shutter page is displayed for selecting Yes option in Qualification page
-	And the Employer is able to view EI applications

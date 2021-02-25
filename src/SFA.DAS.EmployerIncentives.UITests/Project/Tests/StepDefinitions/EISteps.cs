@@ -84,6 +84,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
         }
 
+        [Then(@"the Employer is able to submit the EI Application without VRF")]
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF()
+        {
+            SubmitEiApplicationWithOutBankDetails()
+                .ChooseNoAndContinue()
+                .NavigateToViewApplicationsPage();
+        }
+
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationWithOutBankDetails();
 
