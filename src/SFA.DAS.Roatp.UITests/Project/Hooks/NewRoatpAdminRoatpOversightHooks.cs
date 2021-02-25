@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 33)]
         public void OversightReviewClearDownFromApply() => _roatpApplyClearDownDataHelpers.OversightReviewClearDownFromApply(GetUkprn());
 
-        [BeforeScenario(Order = 33)]
+        [BeforeScenario(Order = 34)]
         public void ClearDownTrainingProvider()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpoutcome01"))
