@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.ApprenticeCommitments.APITests.Project
+﻿namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class CreateApprenticeship
     {

@@ -21,5 +21,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new LegallyBindingContractPage(_context);
         }
+        public ApplicationOverviewPage SelectNoForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
+        {
+            SelectNoAndContinue();
+            return new ApplicationOverviewPage(_context);
+        }
     }
 }

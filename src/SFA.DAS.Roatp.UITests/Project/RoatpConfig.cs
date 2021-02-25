@@ -9,9 +9,5 @@
         public string Assessor1Password { get; set; }
         public string Assessor2UserName { get; set; }
         public string Assessor2Password { get; set; }
-        public string RoatpDatabaseConnectionString { get; set; }
-        public string ApplyDatabaseConnectionString { get; set; }
-        public string QnaDatabaseConnectionString { get; set; }
-        public string LoginDatabaseConnectionString { get; set; }
     }
 }

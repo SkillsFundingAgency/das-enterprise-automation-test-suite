@@ -14,6 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private AlreadyOnRoatpPage _alreadyOnRoatpPage;
         private ApplicationOverviewPage _applicationOverviewPage;
         private readonly YourOrganisation_Section1_Helper _section1_Helper;
+        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
 
         public SelectRouteSteps(ScenarioContext context)
         {
@@ -21,6 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _objectContext = context.Get<ObjectContext>();
             _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
             _section1_Helper = new YourOrganisation_Section1_Helper();
+            _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
         }
 
         [Then(@"the provider should be able to change the ukprn")]
@@ -41,10 +43,53 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _selectRouteStepsHelper.AcceptAndContinue(page);
         }
 
+        [Then(@"the  provider should be able to change route to Employer")]
+        public void ThenTheProviderShouldBeAbleToChangeRouteToEmployer()
+        {
+            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            .Access_ChangeRoute()
+            .SelectYesToChangeRouteAndContinue()
+            .SelectApplicationRouteAsEmployer()
+            .SelectYesForLevyPayingEmployerAndContinue()
+            .AcceptTermAndConditionsAndContinue();
+        }
+
+        [Then(@"the provider should be able to change route to Supporting")]
+        public void ThenTheProviderShouldBeAbleToChangeRouteToSupporting()
+        {
+            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            .Access_ChangeRoute()
+            .SelectYesToChangeRouteAndContinue()
+            .SelectApplicationRouteAsSupporting()
+            .AcceptTermAndConditionsAndContinue();
+        }
+
+        [Then(@"the provider should be able to change route to Main")]
+        public void ThenTheProviderShouldBeAbleToChangeRouteToMain()
+        {
+            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+           .Access_ChangeRoute()
+           .SelectYesToChangeRouteAndContinue()
+           .SelectApplicationRouteAsMain()
+           .AcceptTermAndConditionsAndContinue();
+        }
+
+        [Then(@"the provider should be able to verify the Employer route flow")]
+        public void ThenTheProviderShouldBeAbleToVerifyTheEmployerRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteMainToEmployer(_applicationOverviewPage);
+
+        [Then(@"the provider should be able to verify the Supporting route flow")]
+        public void ThenTheProviderShouldBeAbleToVerifyTheSupportingRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToSupporting(_applicationOverviewPage);
+
+        [Then(@"the provider should be able to verify the Main route flow")]
+        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteSupportingToMain(_applicationOverviewPage);
+
+        [Then(@"the provider should be able to verify the Main route flow for route changed Employer To Main")]
+        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlowForRouteChangedEmployerToMain() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToMain(_applicationOverviewPage);
+
         [Given(@"the provider initates an application as employer who is already on Roatp as employer")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerWhoIsAlreadyOnRoatpAsEmployer() => _alreadyOnRoatpPage = _selectRouteStepsHelper.CompleteProviderCharityRouteWhoisAlreayOnRoatp();
 
         [Then(@"the provider can change the route as main provider")]
-        public void ThenTheProviderCanChangeTheRouteAsMainProvider() => _alreadyOnRoatpPage.SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsMain().AcceptAndContinue();
+        public void ThenTheProviderCanChangeTheRouteAsMainProvider() => _alreadyOnRoatpPage.SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsMain().AcceptTermAndConditionsAndContinue();
     }
 }

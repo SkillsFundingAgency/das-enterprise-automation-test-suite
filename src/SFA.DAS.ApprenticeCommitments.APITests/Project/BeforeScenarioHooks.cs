@@ -23,11 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var datahelper = new ApprenticeCommitmentsDataHelper();
-
-            _context.Set(datahelper);
-
-            _objectContext.SetApprenticeEmail(datahelper.Email);
+            _objectContext.SetApprenticeEmail(new ApprenticeCommitmentsApiDataHelper().Email);
 
             _context.Set(new ApprenticeCommitmentSqlHelper(_dbConfig));
 
