@@ -28,6 +28,13 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
             return new ProviderHomePage(_context);
         }
 
+        public void SubmitProviderLoginDetails(ProviderLoginUser login)
+        {
+            EnterEmailAddress(login.Username)
+                    .EnterPassword(login.Password)
+                    .SignIn();
+        }
+
         private ProviderSiginPage EnterEmailAddress(string username)
         {
             formCompletionHelper.EnterText(UsernameField, username);

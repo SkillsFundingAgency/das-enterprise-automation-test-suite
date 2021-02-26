@@ -23,14 +23,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
-        [Given(@"the provider Navigates to ""(.*)""")]
-        public void GivenTheProviderNavigatesTo(string url)
+        [Given(@"the provider Navigates to '(.*)'")]
+        public void GivenTheProviderNavigatesTo(string Url)
         {
-            _providerStepsHelper.GoToProviderSpecificUrl(url);
+            _providerStepsHelper.GoToProviderSpecificUrl(Url);
         }
 
-
-        public void GivenLogsInAsUser()
+        [Given(@"logs in as (.*)")]
+        public void GivenLogsInAs(string User)
         {
             ProviderLoginUser login = new ProviderLoginUser();
 
@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 login.Password = _context.GetUser<ProviderAccountOwnerUser>().Password;
             }
 
-            new ProviderSiginPage(_context).SubmitValidLoginDetails(login);
+            new ProviderSiginPage(_context).SubmitProviderLoginDetails(login);
         }
 
 
