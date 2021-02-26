@@ -8,9 +8,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
     {
         public EILearnerMatchHelper(EIConfig config) : base(config)
         {
-            BaseUrl = config.EI_PaymentsAppBaseUrl;
-            AuthenticationCode = config.EI_PaymentsAppCode;
-            HttpClient = new HttpClient();
         }
 
         public async Task StartLearnerMatchOrchestrator()

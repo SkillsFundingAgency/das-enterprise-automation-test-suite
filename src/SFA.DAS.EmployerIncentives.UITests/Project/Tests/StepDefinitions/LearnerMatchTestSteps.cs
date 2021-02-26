@@ -69,6 +69,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 1, 0));
 
             // Possibly need to mock the learner match API
+            var learnerMatchApi = new LearnerMatchApiHelper(_config);
+            var learnerMatchResponse = _fixture.Create<LearnerSubmissionDto>();
+            await learnerMatchApi.SetupResponse(_apprenticeship.ULN, _apprenticeship.UKPRN.Value, learnerMatchResponse);
         }
 
         [When(@"the learner match service is completed")]

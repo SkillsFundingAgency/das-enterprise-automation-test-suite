@@ -12,5 +12,6 @@
 
         public string EI_PaymentsAppCode { get; set; }
         public string EI_ServiceBusConnectionString { get; set; }
+        public string EI_ApiStubBaseUrl { get; set; }
     }
 }
