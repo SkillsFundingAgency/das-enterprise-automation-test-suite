@@ -27,6 +27,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
 
             _apprenticeLoginSqlDbHelper.DeleteUser(email);
 
+            _apprenticeLoginSqlDbHelper.DeleteUserRequests(email);
+
             _apprenticeCommitmentsRegistrationSqlDbHelper.DeleteApprentice(email);
         }
     }

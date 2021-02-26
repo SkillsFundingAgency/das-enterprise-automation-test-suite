@@ -8,6 +8,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public abstract class RoatpNewAdminBasePage : RoatpBasePage
     {
+        private readonly ScenarioContext _context;
+
         protected virtual By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
 
         protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
@@ -21,13 +23,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+        
         private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
-        public RoatpNewAdminBasePage(ScenarioContext context) : base(context) => VerifyPage();
+        public RoatpNewAdminBasePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+
+            VerifyPage();
+        }
 
         public void SelectPassAndContinueToSubSection()
         {
@@ -43,15 +51,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             EnterFailInternalComments();
             Continue();
         }
-        public void ClickReturnToStaffDashBoard()
+
+        public StaffDashboardPage ClickReturnToStaffDashBoard()
         {
             formCompletionHelper.ClickElement(ReturnToDashBoard);
+            return new StaffDashboardPage(_context);
         }
 
-        public bool VerifyApplication()
-        {
-            return pageInteractionHelper.IsElementDisplayed(providerLink);
-        }
+        public bool VerifyApplication() => pageInteractionHelper.IsElementDisplayed(providerLink);
 
         public void SelectClarificationAndContinueToSubSection()
         {

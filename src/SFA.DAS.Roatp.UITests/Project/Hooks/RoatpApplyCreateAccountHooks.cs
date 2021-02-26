@@ -16,8 +16,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public RoatpApplyCreateAccountHooks(ScenarioContext context) : base(context)
         {
             _context = context;
-            _roatpApplyContactSqlDbHelper = new RoatpApplyContactSqlDbHelper(config);
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(config);
+            _roatpApplyContactSqlDbHelper = new RoatpApplyContactSqlDbHelper(_dbConfig);
+            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(_dbConfig);
         }
 
         [BeforeScenario(Order = 32)]

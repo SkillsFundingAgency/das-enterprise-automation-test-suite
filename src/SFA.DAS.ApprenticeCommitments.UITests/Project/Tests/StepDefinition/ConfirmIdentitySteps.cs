@@ -7,30 +7,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class ConfirmIdentitySteps : BaseSteps
     {
-        private readonly ScenarioContext _context;
-        private SigUpCompletePage sigUpCompletePage;
-
-        public ConfirmIdentitySteps(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmIdentitySteps(ScenarioContext context) : base(context) { }
 
         [Given(@"an apprentice login in to the service")]
-        public void GivenAnApprenticeLoginInToTheService()
-        {
-            appreticeCommitmentsStepsHelper.CreateApprenticeship();
-
-            sigUpCompletePage = appreticeCommitmentsStepsHelper.CreatePassword();
-
-        }
+        public void GivenAnApprenticeLoginInToTheService() => appreticeCommitmentsStepsHelper.CreateAccount();
 
         [Then(@"the apprentice identity can be validated")]
-        public void ThenTheApprenticeIdentityCanBeValidated()
-        {
-            appreticeCommitmentsStepsHelper.SignInToApprenticePortal(sigUpCompletePage).ConfirmIdentity();
-        }
+        public void ThenTheApprenticeIdentityCanBeValidated() => SignInToApprenticePortal().ConfirmIdentity();
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
         {
-            var confirmidentitypage =  appreticeCommitmentsStepsHelper.SignInToApprenticePortal(sigUpCompletePage);
+            var confirmidentitypage = SignInToApprenticePortal();
 
             var invalidDatas = new List<(string, string, int, int, int, string)>
             {
@@ -45,5 +33,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             }
         }
 
+        private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
 }

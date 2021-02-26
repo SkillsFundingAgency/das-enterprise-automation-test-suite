@@ -9,40 +9,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection(ScenarioContext context) : base(context) => _context = context;
 
-        public EIAccessDeniedPage AccessEIRedirectsToAccessDeniedPage()
+        public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
         {
-            formCompletionHelper.Click(ApplyForEILink);
+            formCompletionHelper.Click(EIHubLink);
             return new EIAccessDeniedPage(_context);
         }
 
-        public EIAccessDeniedPage AccessViewEIApplicationsRedirectsToAccessDeniedPage()
+        public EIHubPage NavigateToEIHubPage()
         {
-            formCompletionHelper.Click(ViewEIApplicationsLink);
-            return new EIAccessDeniedPage(_context);
+            formCompletionHelper.Click(EIHubLink);
+            return new EIHubPage(_context);
         }
 
-        public EIStartPage NavigateToEIStartPage()
+        public ChooseOrganisationPage NavigateToChooseOrgPage()
         {
-            formCompletionHelper.Click(ApplyForEILink);
-            return new EIStartPage(_context);
-        }
-
-        public ChooseOrganisationPage NavigateToApplyChooseOrgPage()
-        {
-            formCompletionHelper.Click(ApplyForEILink);
+            formCompletionHelper.Click(EIHubLink);
             return new ChooseOrganisationPage(_context);
-        }
-
-        public ViewApplicationsPage NavigateToEIViewApplicationsPage()
-        {
-            formCompletionHelper.Click(ViewEIApplicationsLink);
-            return new ViewApplicationsPage(_context);
-        }
-
-        public ViewApplicationsShutterPage NavigateToEIViewApplicationsShutterPage()
-        {
-            formCompletionHelper.Click(ViewEIApplicationsLink);
-            return new ViewApplicationsShutterPage(_context);
         }
     }
 }

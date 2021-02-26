@@ -1,9 +1,8 @@
-﻿Feature: EI_E2E_ELevyAc_01
+﻿Feature: EI_E2E_ExistingLevyAc
 
-@regression
-@employerincentives
-@dfeuatachieveservice
+@addlevyfunds
 @eie2ejourney
+@dfeuatachieveservice
 Scenario: EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account with one legal entity
 	When the Employer logins using existing EI Levy Account
 	Then View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications
