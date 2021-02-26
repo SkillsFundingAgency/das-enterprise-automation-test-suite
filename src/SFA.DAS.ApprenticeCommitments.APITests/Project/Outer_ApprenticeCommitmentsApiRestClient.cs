@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.Helpers;
 using SFA.DAS.API.Framework.RestClients;
+using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
@@ -13,18 +13,19 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiSubscriptionKey => config.ApprenticeCommitmentsApiSubscriptionKey;
 
-        public void CreateApprenticeship(CreateApprenticeship createApprenticeship)
+        public IRestResponse CreateApprenticeship(CreateApprenticeship payload, HttpStatusCode expectedResponse)
         {
-            var payload = JsonHelper.Serialize(createApprenticeship);
-
-            CreateRestRequest(Method.POST, "/apprenticeships", payload);
+            return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
         }
 
-        public void VerifyRegistration(VerifyIdentityRegistrationCommand verifyIdentityRegistrationCommand)
+        public IRestResponse VerifyRegistration(VerifyIdentityRegistrationCommand payload, HttpStatusCode expectedResponse)
         {
-            var payload = JsonHelper.Serialize(verifyIdentityRegistrationCommand);
+            return Execute(Method.POST, $"/registrations", payload, expectedResponse);
+        }
 
-            CreateRestRequest(Method.POST, "/registrations", payload);
+        public IRestResponse ChangeApprenticeEmailAddress(long apprenticeId, ApprenticeEmailAddressRequest payload, HttpStatusCode expectedResponse)
+        {
+            return Execute(Method.POST, $"/apprentices/{apprenticeId}/email", payload, expectedResponse);
         }
     }
 }

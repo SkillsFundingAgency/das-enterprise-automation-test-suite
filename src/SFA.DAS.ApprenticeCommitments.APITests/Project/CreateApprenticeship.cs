@@ -20,4 +20,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public DateTime DateOfBirth { get; set; }
         public string NationalInsuranceNumber { get; set; }
     }
+
+    public class ApprenticeEmailAddressRequest
+    {
+        public string Email { get; set; }
+    }
 }
