@@ -18,14 +18,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly StepsHelper _stepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        //SearchForApprenticeshipPage _searchForApprenticeshipPage;
 
         public SupportToolsSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new StepsHelper(_context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
-            //_searchForApprenticeshipPage = new SearchForApprenticeshipPage(_context, false);
         }
 
         [Given(@"the User is logged into Support Tools")]
@@ -102,7 +100,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton()
         {
             UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
-                    //.ClickSubmitButton()
+                    .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickStopButton();
         }

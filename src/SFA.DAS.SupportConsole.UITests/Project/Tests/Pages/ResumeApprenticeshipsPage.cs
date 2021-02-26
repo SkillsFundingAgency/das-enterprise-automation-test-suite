@@ -13,7 +13,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Locators
         private By ResumeApprenticeshipsbtn => By.Id("okButton");
-        private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(10)");
+        private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(11)");
         #endregion
 
         public ResumeApprenticeshipsPage(ScenarioContext context) : base(context) => _context = context;

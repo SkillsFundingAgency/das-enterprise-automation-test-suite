@@ -15,7 +15,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By StopApprenticeshipsbtn => By.Id("okButton");
         private By StopDate => By.Id("bulkDate");
         private By SetBtn => By.Id("btnSetBulkDate");
-        private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(10)");
+        private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(12)");
         private By ErrorMessage => By.XPath("//li[contains(text(),'Not all Apprenticeship rows have been supplied wit')]");
         #endregion
 

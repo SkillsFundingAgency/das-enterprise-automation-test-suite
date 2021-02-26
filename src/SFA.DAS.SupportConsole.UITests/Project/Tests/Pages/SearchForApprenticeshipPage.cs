@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -9,6 +12,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search for an apprenticeship.";
         private readonly ScenarioContext _context;
+        private readonly JavaScriptHelper _javaScriptHelper;
 
         #region Locators
         private By EmployerName => By.Id("employerName");
@@ -21,15 +25,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By DataTable => By.Id("apprenticeshipResultsTable");
         private By PaginationInfo => By.ClassName("pagination-info");
         private By TableHeader => By.ClassName("govuk-table__head");
-        private By SelectAllChkbx => By.XPath("//*[@id='apprenticeshipResultsTable']/thead/tr/th[1]/div[1]/label/input");
+        private By SelectAllChkBox => By.Name("btSelectAll");
         private By SubmitButton => By.Id("submitSearchFormButton");
-        private By PauseButton => By.XPath("//button[contains(text(),'Pause apprenticeship(s)')]");
+        private By PauseButton => By.CssSelector("#searchResultsForm .govuk-button");  
         private By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
         private By StopButton => By.XPath("//button[contains(text(),'Stop apprenticeship(s)')]");
-        private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(2)");
+        private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(3)");
         #endregion
 
-        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) => _context = context;
+        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
+        {
+            _context = context;
+            _javaScriptHelper = _context.Get<JavaScriptHelper>();
+        } 
 
         public SearchForApprenticeshipPage EnterEmployerName(string employerName)
         {
@@ -75,8 +83,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SearchForApprenticeshipPage SelectAllRecords()
         {
-            pageInteractionHelper.WaitForElementToBeDisplayed(TableHeader);
-            formCompletionHelper.ClickElement(SelectAllChkbx);
+            //pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
+            Thread.Sleep(2000);
+            formCompletionHelper.ClickElement(SelectAllChkBox);
+            //((IJavaScriptExecutor)_context.GetWebDriver()).ExecuteScript("$(':checkbox').each(function() {this.checked = true;});");
             return this; 
         }
 
@@ -88,7 +98,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public PauseApprenticeshipsPage ClickPauseButton()
         {
+            pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
+            _javaScriptHelper.ScrollToTheBottom();            
             formCompletionHelper.Click(PauseButton);
+            //_javaScriptHelper.ClickElement(PauseButton);
             return new PauseApprenticeshipsPage(_context);
         }
 
