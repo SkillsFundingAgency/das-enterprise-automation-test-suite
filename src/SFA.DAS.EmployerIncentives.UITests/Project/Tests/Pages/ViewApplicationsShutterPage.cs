@@ -15,10 +15,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ViewApplicationsShutterPage(ScenarioContext context) : base(context) => _context = context;
 
-        public EIStartPage ClickOnApplyButton()
+        public EIApplyPage ClickOnApplyButton()
         {
             formCompletionHelper.Click(ApplyButton);
-            return new EIStartPage(_context);
+            return new EIApplyPage(_context);
         }
     }
 }
