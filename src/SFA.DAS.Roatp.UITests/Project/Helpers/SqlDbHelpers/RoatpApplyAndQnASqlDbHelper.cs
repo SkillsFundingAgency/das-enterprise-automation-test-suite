@@ -12,10 +12,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         private string Emptyguid => Guid.Empty.ToString();
 
-        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString)
+        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(dbConfig.ApplyDatabaseConnectionString)
         {
             _objectContext = objectContext;
-            _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
+            _qnaDatabaseConnectionString = dbConfig.QnaDatabaseConnectionString;
         }
 
         public string ClearDownDataUkprnFromApply(string ukprn)
