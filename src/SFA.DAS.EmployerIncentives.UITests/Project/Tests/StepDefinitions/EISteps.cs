@@ -122,7 +122,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             if (entities == Entities.Single)
                 _qualificationQuestionPage = homePageFinancesSection.NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
