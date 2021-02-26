@@ -21,8 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AccountNameText => By.CssSelector("p.heading-xlarge");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        protected By ApplyForEILink => By.LinkText("Apply for the hire a new apprentice payment");
-        protected By ViewEIApplicationsLink => By.LinkText("Your hire a new apprentice payment applications");
+        protected By EIHubLink => By.LinkText("Your hire a new apprentice payments");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)

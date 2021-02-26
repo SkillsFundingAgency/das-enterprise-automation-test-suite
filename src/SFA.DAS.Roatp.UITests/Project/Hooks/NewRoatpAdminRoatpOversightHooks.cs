@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 34)]
         public void ClearDownTrainingProvider()
         {
-            if (_context.ScenarioInfo.Tags.Contains("roatpoutcome01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadoutcome01"))
             {
                 DeleteTrainingProvider();
             }
