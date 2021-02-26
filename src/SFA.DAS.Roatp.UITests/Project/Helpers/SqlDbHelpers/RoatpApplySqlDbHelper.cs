@@ -79,7 +79,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand(ClarificationResetQuery);
         }
 
-        public void OversightReviewClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)} DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;");
+        public void OversightReviewClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)}" +
+             $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
+             $"UPDATE Apply set Applicationstatus = 'GatewayAssessed' WHERE ApplicationId = @ApplicationID");
 
         private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
     }
