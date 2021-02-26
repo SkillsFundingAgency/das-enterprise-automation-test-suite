@@ -88,9 +88,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void InvalidPassword(PasswordBasePage passwordPage)
         {
-            passwordPage = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
+            var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
 
-            passwordPage.VerifyErrorSummary();
+            StringAssert.Contains("There is a problem", error, "Password error message did not match");
         }
 
         public SignIntoApprenticeshipPortalPage SignInPage() => sigUpCompletePage.ClickSignInToApprenticePortal();
