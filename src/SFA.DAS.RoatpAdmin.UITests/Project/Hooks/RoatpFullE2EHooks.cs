@@ -19,7 +19,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project
         public new void GetRoatpFullData() => base.GetRoatpFullData();
 
         [BeforeScenario(Order = 34)]
-        public new void ClearDownApplyData() => base.ClearDownApplyData();
+        public new void ClearDownApplyData()
+        {
+            base.ClearDownApplyData();
+
+            DeleteTrainingProvider();
+        }
 
         [BeforeScenario(Order = 35)]
         public void WhiteListProviders() => base.WhiteListProviders();
