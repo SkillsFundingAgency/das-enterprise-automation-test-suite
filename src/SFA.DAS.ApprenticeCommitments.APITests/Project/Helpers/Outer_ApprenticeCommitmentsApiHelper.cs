@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
-        private readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsRegistrationSqlDbHelper;
+        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsDataHelper _dataHelper;
         private readonly ObjectContext _objectContext;
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-            _apprenticeCommitmentsRegistrationSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
@@ -50,7 +50,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public IRestResponse VerifyRegistration()
         {
-            (string registrationId, string userIdentityid)  = _apprenticeCommitmentsRegistrationSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
+            (string registrationId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
 
             var verifyRegistration = new VerifyIdentityRegistrationCommand
             {
@@ -68,12 +68,26 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public IRestResponse ChangeApprenticeEmailAddress()
         {
+            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
+
+            _objectContext.SetApprenticeId(apprenticeId);
+
             var changeEmailRequest = new ApprenticeEmailAddressRequest
             {
                 Email = _dataHelper.NewEmail
             };
 
-            return _outerApiRestClient.ChangeApprenticeEmailAddress(_objectContext.GetApprenticeshipId(), changeEmailRequest, HttpStatusCode.OK);
+            return _outerApiRestClient.ChangeApprenticeEmailAddress(apprenticeId, changeEmailRequest, HttpStatusCode.OK);
+        }
+
+        internal void AssertApprenticeEmailUpdated()
+        {
+            _assertHelper.RetryOnNUnitException(() =>
+            {
+                var email = _aComtSqlDbHelper.GetApprenticeEmail(_objectContext.GetApprenticeId());
+
+                Assert.AreEqual(_dataHelper.NewEmail, email, $"Apprentice new email did not match");
+            });
         }
 
         internal void AssertApprenticeLoginData()

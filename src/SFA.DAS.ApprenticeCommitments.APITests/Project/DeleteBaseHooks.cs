@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
+using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
@@ -7,25 +8,27 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     public abstract class DeleteBaseHooks
     {
         protected readonly ObjectContext _objectContext;
-        protected readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsRegistrationSqlDbHelper;
-        protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
+        protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
+        protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
+        protected readonly ApprenticeCommitmentsDataHelper _apprenticeCommitmentsDataHelper;
 
         public DeleteBaseHooks(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
-            _apprenticeCommitmentsRegistrationSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+            _apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
         public void ClearDownInvitation()
         {
             var email = _objectContext.GetApprenticeEmail();
 
-            _apprenticeLoginSqlDbHelper.DeleteInvitation(email);
+            _aLoginSqlDbHelper.DeleteInvitation(email);
 
-            _apprenticeCommitmentsRegistrationSqlDbHelper.DeleteRegistration(email);
+            _aComtSqlDbHelper.DeleteRegistration(email);
 
-            _apprenticeLoginSqlDbHelper.DeleteUserLogs(email);
+            _aLoginSqlDbHelper.DeleteUserLogs(email);
         }
 
         public void ClearDownUser()
@@ -34,11 +37,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
             var email = _objectContext.GetApprenticeEmail();
 
-            _apprenticeLoginSqlDbHelper.DeleteUser(email);
+            _aLoginSqlDbHelper.DeleteUser(email);
 
-            _apprenticeLoginSqlDbHelper.DeleteUserRequests(email);
+            _aLoginSqlDbHelper.DeleteUserRequests(email);
 
-            _apprenticeCommitmentsRegistrationSqlDbHelper.DeleteApprentice(email);
+            _aComtSqlDbHelper.DeleteApprentice(email);
+
+            _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
         }
     }
 }

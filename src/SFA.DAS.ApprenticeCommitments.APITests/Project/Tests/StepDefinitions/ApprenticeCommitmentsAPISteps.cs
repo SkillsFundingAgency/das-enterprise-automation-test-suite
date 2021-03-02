@@ -36,6 +36,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         public void ThenTheApprenticeCanChangeTheirEmailAddress()
         {
             _apprenticeCommitmentsApiHelper.ChangeApprenticeEmailAddress();
+
+            _apprenticeCommitmentsApiHelper.AssertApprenticeEmailUpdated();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
