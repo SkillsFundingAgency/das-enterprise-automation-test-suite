@@ -11,4 +11,20 @@
         public string QnaDatabaseConnectionString { get; set; }
         public string LoginDatabaseConnectionString { get; set; }
     }
+
+    public class DbDevConfig
+    {
+        public string Server { get; set; }
+        public string ConnectionDetails { get; set; }
+        public string UserID { get; set; }
+        public string Password { get; set; }
+        public string AccountsDbName { get; set; }
+        public string CommitmentsDbName { get; set; }
+        public string ApprenticeCommitmentLoginDbName { get; set; }
+        public string ApprenticeCommitmentDbName { get; set; }
+        public string RoatpDatabaseName { get; set; }
+        public string ApplyDatabaseName { get; set; }
+        public string QnaDatabaseName { get; set; }
+        public string LoginDatabaseName { get; set; }
+    }
 }
