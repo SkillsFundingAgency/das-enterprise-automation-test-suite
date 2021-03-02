@@ -15,9 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By MonthField => By.Id("stop-month");
         private By YearField => By.Id("stop-year");
         protected override By ContinueButton => By.Id("continue-button");
-        private By ContinueButton2 => By.Id("continue-button");
-        private By NewStopDate_Month => By.Id("stop-month");
-        private By NewStopDate_Year => By.Id("stop-year");
+        private By ContinueButton2 => By.Id("submit-apply-change");
+        private By NewStopDate_Month => By.Id("NewStopDate_Month");
+        private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
         public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context) => _context = context;
 
