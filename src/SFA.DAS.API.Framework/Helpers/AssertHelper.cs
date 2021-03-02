@@ -33,7 +33,7 @@ namespace SFA.DAS.API.Framework.Helpers
                 list.Add(item.Value);
             }
 
-            return JToken.Parse(list.ToString()).ToString(Formatting.Indented);
+            return list.Count == 0 ? string.Empty : JToken.Parse(list.ToString()).ToString(Formatting.Indented);
         }
     }
 }
