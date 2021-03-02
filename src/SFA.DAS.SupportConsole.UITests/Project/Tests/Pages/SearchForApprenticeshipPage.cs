@@ -24,8 +24,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By ApprenticeshipStatus => By.Id("SelectedStatus");
         private By DataTable => By.Id("apprenticeshipResultsTable");
         private By PaginationInfo => By.ClassName("pagination-info");
-        private By TableHeader => By.ClassName("govuk-table__head");
-        private By SelectAllChkBox => By.Name("btSelectAll");
+        private By PageSelector => By.ClassName("page-link");
+        private By SelectAllChkBox => By.CssSelector("div.th-inner");//By.Name("btSelectAll");
         private By SubmitButton => By.Id("submitSearchFormButton");
         private By PauseButton => By.CssSelector("#searchResultsForm .govuk-button");  
         private By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
@@ -83,12 +83,16 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SearchForApprenticeshipPage SelectAllRecords()
         {
-            //pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
-            Thread.Sleep(2000);
             formCompletionHelper.ClickElement(SelectAllChkBox);
-            //((IJavaScriptExecutor)_context.GetWebDriver()).ExecuteScript("$(':checkbox').each(function() {this.checked = true;});");
+            
+            var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetAttribute("checked");
+            
+            if (isChecked == "false" || isChecked == null)
+                formCompletionHelper.ClickElement(SelectAllChkBox);
+
             return this; 
         }
+
 
         public SearchForApprenticeshipPage ClickSubmitButton()
         {
@@ -101,7 +105,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
             _javaScriptHelper.ScrollToTheBottom();            
             formCompletionHelper.Click(PauseButton);
-            //_javaScriptHelper.ClickElement(PauseButton);
             return new PauseApprenticeshipsPage(_context);
         }
 

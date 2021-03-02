@@ -204,7 +204,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
         private void ValidateStopSuccessful(List<IWebElement> StatusList)
         {
-            Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
+            Assert.IsTrue(StatusList.Count == 10, $"Validate total number of records. Expected: 10 | Actual {StatusList.Count}");
 
             int i = 0;
             foreach (var status in StatusList)
