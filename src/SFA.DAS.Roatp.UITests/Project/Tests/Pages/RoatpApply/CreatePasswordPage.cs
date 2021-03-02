@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -24,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             _context = context;
 
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(roatpConfig);
+            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.Get<DbConfig>());
 
             VerifyPage(() =>
             {

@@ -37,7 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeHomePage(_context);
         }
 
-        public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int day, int month, int year, string nino)
+        public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int? day, int? month, int? year, string nino)
         {
             EnterApprenticeDetails(firstname, lastname, day, month, year, nino);
             return this;
@@ -45,22 +45,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyErrorSummary() => StringAssert.Contains("There is a problem", pageInteractionHelper.GetText(ErrorSummary), "Confirm Identity Page error message did not match");
 
-        private void EnterApprenticeDetails(string firstname, string lastname, int day, int month, int year, string nino)
+        private void EnterApprenticeDetails(string firstname, string lastname, int? day, int? month, int? year, string nino)
         {
             formCompletionHelper.EnterText(FirstName, firstname);
             formCompletionHelper.EnterText(LastName, lastname);
 
-            if (day != 0)
+            if (day != null)
             {
-                formCompletionHelper.EnterText(DateOfBirth_Day, day);
+                formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 0);
             }
-            if (month != 0)
+            if (month != null)
             {
-                formCompletionHelper.EnterText(DateOfBirth_Month, month);
+                formCompletionHelper.EnterText(DateOfBirth_Month, month ?? 0);
             }
-            if (year != 0)
+            if (year != null)
             { 
-                formCompletionHelper.EnterText(DateOfBirth_Year, year);
+                formCompletionHelper.EnterText(DateOfBirth_Year, year ?? 0);
             }
 
             formCompletionHelper.EnterText(NationalInsuranceNumber, nino);

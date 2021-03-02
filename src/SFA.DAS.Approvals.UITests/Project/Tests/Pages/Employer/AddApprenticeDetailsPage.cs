@@ -81,10 +81,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
                 apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomName();
-                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomName();
-                apprenticeDataHelper.ApprenticeLastname += apprenticeDataHelper.DateOfBirthYear == 2004 ? "_Un25" : "_Ov25";
-                apprenticeDataHelper.ApprenticeLastname += "StartsM" + objectContext.GetEIStartMonth() + "Y" + objectContext.GetEIStartYear();
+                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomLastName();
                 apprenticeDataHelper.TrainingPrice = "7500";
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
