@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout)
         {
-            await WaitUntilCustomStatus("Completed", timeout);
+            await WaitUntilCustomStatus("WaitingForPaymentApproval", timeout);
         }
 
         public async Task WaitUntilComplete(TimeSpan? timeout)
