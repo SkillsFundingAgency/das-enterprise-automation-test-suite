@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StoppedApprenticeDetailsPage : ConfirmApprenticeStatus
     {
         protected override string PageTitle => "Apprenticeship stopped";        
-        protected override By PageHeader => By.CssSelector("h1.heading-large");
+        protected override By PageHeader => By.CssSelector("h3.das-notification__heading");
         private By EditLink => By.PartialLinkText("Edit");
         private By StopDateTextBox => By.Id("stopDate");
         private By MadeRedundantTextBox => By.Id("madeRedundant");

@@ -15,16 +15,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
-        private By ReviewCopChangesLink => By.Id("changeOfPartyViewChangesLink");
+        private By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
         private By EditStopDateLink => By.LinkText("Edit");
         private By EditEndDateLink => By.Id("editEndDateLink"); 
-        private By EditApprenticeDetailsLink => By.CssSelector("a.float-right");
+        private By EditApprenticeDetailsLink => By.CssSelector("#edit-apprentice-link");
         private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
         private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
         private By CompletionDate => By.Id("completionDate");
-        private By changeTrainingProviderLink => By.Id("changeTrainingProviderLink");
-        private By AlertBox => By.CssSelector("div.panel-border-wide > p");
+        private By changeTrainingProviderLink => By.Id("change-training-provider-link");
+        private By AlertBox => By.CssSelector("p.govuk-body-s");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
