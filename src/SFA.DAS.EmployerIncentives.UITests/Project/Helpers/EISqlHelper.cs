@@ -1,12 +1,12 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.UITests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -16,6 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType, query;
 
         public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
+        public string ConnectionString => connectionString; // todo: undo : )
 
         public void DeleteIncentiveApplication(string accountid)
         {
@@ -124,7 +125,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             while (!cts.Token.IsCancellationRequested)
             {
                 var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
-                if(count == 2)
+                if (count == 2)
                 {
                     return;
                 }
@@ -208,5 +209,21 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         private int FetchIntegerQueryData(int columnIndex) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex]);
 
         private string FetchStringQueryData(int columnIndex) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex].ToString();
+
+
+        public async Task InsertAsync<T>(T entity) where T : class
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.InsertAsync(entity);
+        }
+
+        public async Task InsertAsync<T>(params T[] entities) where T : class
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            foreach (var entity in entities)
+            {
+                await dbConnection.InsertAsync(entity);
+            }
+        }
     }
 }
