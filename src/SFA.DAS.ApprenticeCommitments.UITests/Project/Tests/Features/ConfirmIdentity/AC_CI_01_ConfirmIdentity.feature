@@ -3,7 +3,6 @@
 
 @apprenticecommitments
 @regression
-@deleteinvitation
 @deleteuser
 Scenario: AC_CI_01_ConfirmIdentity
 	Given an apprentice login in to the service
