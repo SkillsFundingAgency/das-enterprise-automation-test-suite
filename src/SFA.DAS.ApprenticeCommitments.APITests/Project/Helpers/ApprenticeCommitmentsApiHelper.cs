@@ -1,5 +1,4 @@
-﻿using System.Net;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
@@ -12,8 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _assertHelper.RetryOnNUnitException(() => 
             {
                 base.CreateApprenticeship();
-
-                AssertResponse(HttpStatusCode.Accepted);
             });
         }
     }

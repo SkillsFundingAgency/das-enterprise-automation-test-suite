@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Helpers;
 using System.Collections.Generic;
+using System.Net;
 
 namespace SFA.DAS.API.Framework.RestClients
 {
@@ -32,7 +33,14 @@ namespace SFA.DAS.API.Framework.RestClients
             }
         }
 
-        public IRestResponse Execute() => restClient.Execute(restRequest);
+        public IRestResponse Execute(HttpStatusCode expectedResponse)
+        {
+            var _restResponse = restClient.Execute(restRequest);
+
+            AssertHelper.AssertResponse(expectedResponse, _restResponse);
+
+            return _restResponse;
+        }
 
         protected void Addheader(string key, string value) => restRequest.AddHeader(key, value);
 
@@ -42,6 +50,13 @@ namespace SFA.DAS.API.Framework.RestClients
             {
                 Addheader(item.Key, item.Value);
             }
+        }
+
+        protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
+        {
+            CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
+
+            return Execute(expectedResponse);
         }
     }
 }
