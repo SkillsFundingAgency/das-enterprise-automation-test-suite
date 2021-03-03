@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public VRFIntroductionTab1Page ContinueToAddBankDetails()
+        public VRFIntroductionTab1Page ContinueToVRFIntroductionTab1Page()
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
             return new VRFIntroductionTab1Page(_context);

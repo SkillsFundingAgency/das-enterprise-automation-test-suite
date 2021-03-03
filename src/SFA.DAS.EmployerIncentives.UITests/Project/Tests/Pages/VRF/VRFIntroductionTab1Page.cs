@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public VRFOrgDetailsTab2Page ContinueToOrgDetailsPage()
+        public VRFOrgDetailsTab2Page ContinueToVRFOrgDetailsTab2Page()
         {
             if (pageInteractionHelper.IsElementPresent(VRFCookieCloseButton))
                 formCompletionHelper.Click(VRFCookieCloseButton);

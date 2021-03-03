@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ApplicationCompletePage ReturnToEasPage()
+        public ApplicationCompletePage ReturnToEasApplicationCompletePage()
         {
             frameHelper.SwitchFrameAndAction(() =>
             {

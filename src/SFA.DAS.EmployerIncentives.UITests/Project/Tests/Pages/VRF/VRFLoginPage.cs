@@ -21,12 +21,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         public VRFLoginPage(ScenarioContext context) : base(context) => _context = context;
 
-        public DfeUatHomePage SignIntoDfeUat()
+        public VRFHomePage SignIntoVRF()
         {
             formCompletionHelper.EnterText(Username, eIConfig.EI_DfeUatUsername);
             formCompletionHelper.EnterText(Password, eIConfig.EI_DfeUatPassword);
             formCompletionHelper.Click(SignInButton);
-            return new DfeUatHomePage(_context);
+            return new VRFHomePage(_context);
         }
     }
 }

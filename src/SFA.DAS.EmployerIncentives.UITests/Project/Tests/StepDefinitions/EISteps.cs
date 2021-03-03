@@ -70,15 +70,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
             SubmitEiApplicationWithOutBankDetails()
-                .ChooseYesAndContinue()
-                .ContinueToAddBankDetails()
-                .ContinueToOrgDetailsPage()
-                .ContinueToAddressDetailsPage()
+                .ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage()
+                .ContinueToVRFIntroductionTab1Page()
+                .ContinueToVRFOrgDetailsTab2Page()
+                .SubmitOrgDetails()
                 .SubmitAddressDetails(email)
                 .SubmitBankDetails()
                 .SubmitSubmitterDetails(email)
-                .SubmitSummaryPage()
-                .ReturnToEasPage()
+                .AcknowledgeSummaryDetails()
+                .ReturnToEasApplicationCompletePage()
                 .ReturnToAccountHomePage();
 
             _homePageStepsHelper.GotoEmployerHomePage();
@@ -88,7 +88,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF()
         {
             SubmitEiApplicationWithOutBankDetails()
-                .ChooseNoAndContinue()
+                .ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage()
                 .NavigateToViewApplicationsPage();
         }
 

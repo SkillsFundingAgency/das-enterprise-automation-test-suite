@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public VRFNonBankingInfoTab3Page ContinueToAddressDetailsPage()
+        public VRFNonBankingInfoTab3Page SubmitOrgDetails()
         {
             frameHelper.SwitchFrameAndAction(() => 
             {

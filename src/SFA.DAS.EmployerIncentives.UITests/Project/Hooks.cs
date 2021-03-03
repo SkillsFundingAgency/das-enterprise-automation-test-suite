@@ -38,7 +38,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
 
-                new VRFLoginPage(_context).SignIntoDfeUat();
+                new VRFLoginPage(_context).SignIntoVRF();
 
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
