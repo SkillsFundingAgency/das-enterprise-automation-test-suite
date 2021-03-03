@@ -19,7 +19,7 @@ namespace SFA.DAS.API.Framework.Helpers
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             };
 
-            return JsonSerializer.Serialize(data, jso);
+            return string.IsNullOrEmpty(data?.ToString()) ? string.Empty : JsonSerializer.Serialize(data, jso);
         }
     }
 }

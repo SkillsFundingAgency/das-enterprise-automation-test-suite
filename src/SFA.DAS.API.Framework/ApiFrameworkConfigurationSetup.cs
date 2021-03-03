@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.API.Framework
@@ -29,7 +30,9 @@ namespace SFA.DAS.API.Framework
         [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
-            _context.Replace(new UI.FrameworkHelpers.AssertHelper(_context.ScenarioInfo));
+            _context.Replace(new AssertHelper(_context.ScenarioInfo));
+
+            _context.Replace(new RandomDataGenerator());
         }
     }
 }

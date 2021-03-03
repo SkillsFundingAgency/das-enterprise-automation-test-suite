@@ -1,4 +1,4 @@
-﻿Feature: ApprenticeCommitmentsApi
+﻿Feature: CreateApprenticeInvitation
 
 
 @api
@@ -8,8 +8,7 @@
 @deleteinvitation
 Scenario: New apprenticeship email sent
 	When an apprenticeship is posted
-	Then a Accepted response is received
-	And the apprentice details are updated in the login db
+	Then the apprentice details are updated in the login db
 
 @api
 @innerapi

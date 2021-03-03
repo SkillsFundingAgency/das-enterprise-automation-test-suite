@@ -21,12 +21,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
         public void WhenTheUserSendsGETRequestToEpaoregisterEpaosWithoutPayload(Method method, string endppoint) => CreateRestRequest(method, endppoint, null);
 
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
-        public void AResponseIsReceived(HttpStatusCode responsecode)
-        {
-            var response = _restClient.Execute();
-
-            AssertHelper.AssertResponse(responsecode, response);
-        }
+        public void AResponseIsReceived(HttpStatusCode responsecode) => _restClient.Execute(responsecode);
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }
