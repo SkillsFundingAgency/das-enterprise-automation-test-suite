@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class ProvideOrgInformationOrgDetailsPage : ProvideOrgInformationBasePage
+    public class VRFOrgDetailsTab2Page : VRFBasePage
     {
         protected override string PageTitle => "Provide organisation details";
 
@@ -14,13 +14,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         private By OrganisationName => By.CssSelector("#supplier_name");
         private By TelephoneNumber => By.CssSelector("#supplier_tel");
 
-        public ProvideOrgInformationOrgDetailsPage(ScenarioContext context) : base(context, false)
+        public VRFOrgDetailsTab2Page(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ProvideOrgAddressDetailsPage ContinueToAddressDetailsPage()
+        public VRFNonBankingInfoTab3Page ContinueToAddressDetailsPage()
         {
             frameHelper.SwitchFrameAndAction(() => 
             {
@@ -33,7 +33,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
                 Continue();
             });
 
-            return new ProvideOrgAddressDetailsPage(_context);
+            return new VRFNonBankingInfoTab3Page(_context);
         }
     }
 }

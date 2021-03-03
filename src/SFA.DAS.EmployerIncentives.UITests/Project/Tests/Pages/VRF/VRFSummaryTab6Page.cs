@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class ProvideSummaryDetailsPage : ProvideOrgInformationBasePage
+    public class VRFSummaryTab6Page : VRFBasePage
     {
         protected override string PageTitle => "Organisation details";
 
@@ -15,13 +15,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         protected override By Options => By.CssSelector(".checkbox-label");
 
-        public ProvideSummaryDetailsPage(ScenarioContext context) : base(context, false)
+        public VRFSummaryTab6Page(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ProvideReceivedDetailsPage SubmitSummaryPage()
+        public VRFReceivedDetailsConfirmPage SubmitSummaryPage()
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
                 SelectOptionByText("declaration", "I understand that information submitted to intentionally deceive, mislead and/or commit acts of fraud can have legal and/or criminal ramifications, to which the DfE reserves the right to present evidence in a Court of Law.");
                 Continue();
             });
-            return new ProvideReceivedDetailsPage(_context);
+            return new VRFReceivedDetailsConfirmPage(_context);
         }
 
     }

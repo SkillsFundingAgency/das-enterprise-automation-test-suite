@@ -187,5 +187,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ConfirmApprentices()
                 .SubmitDeclaration();
         }
+
+        [When(@"the Application Case details are changed to completed status")]
+        public void WhenTheApplicationCaseDetailsAreChangedToCompletedStatus()
+        {
+
+        }
+
+        [Then(@"the Employer is able to Amend bank details")]
+        public void ThenTheEmployerIsAbleToAmendBankDetails()
+        {
+
+        }
+
     }
 }

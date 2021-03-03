@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class DfeUatLoginPage : EIBasePage
+    public class VRFLoginPage : EIBasePage
     {
         protected override string PageTitle => "Log In";
 
@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         private By SignInButton => By.CssSelector("button.primary[type='submit']");
 
-        public DfeUatLoginPage(ScenarioContext context) : base(context) => _context = context;
+        public VRFLoginPage(ScenarioContext context) : base(context) => _context = context;
 
         public DfeUatHomePage SignIntoDfeUat()
         {

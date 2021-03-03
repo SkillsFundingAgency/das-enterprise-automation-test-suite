@@ -1,4 +1,4 @@
-﻿using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
+﻿using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 
@@ -14,10 +14,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProvideOrgInformationIntroductionPage ContinueToAddBankDetails()
+        public VRFIntroductionTab1Page ContinueToAddBankDetails()
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
-            return new ProvideOrgInformationIntroductionPage(_context);
+            return new VRFIntroductionTab1Page(_context);
         }
     }
 }

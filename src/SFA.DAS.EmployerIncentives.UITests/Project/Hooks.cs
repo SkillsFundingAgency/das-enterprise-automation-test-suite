@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -38,7 +38,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
 
-                new DfeUatLoginPage(_context).SignIntoDfeUat();
+                new VRFLoginPage(_context).SignIntoDfeUat();
 
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
