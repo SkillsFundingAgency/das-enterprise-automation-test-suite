@@ -3,9 +3,8 @@
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     [Binding, Scope(Tag = "deleteinvitation")]
-    public class DeleteInvitationHooks : DeleteBaseHooks
+    public class DeleteInvitationHooks : DataClearDownHooks
     {
-        
         public DeleteInvitationHooks(ScenarioContext context) : base(context) { }
 
         [AfterScenario(Order = 32)]
