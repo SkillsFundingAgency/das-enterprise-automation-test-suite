@@ -225,5 +225,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
                 await dbConnection.InsertAsync(entity);
             }
         }
+
+        public async Task CleanUpIncentives()
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("DELETE incentives.ClawbackPayment");
+            await dbConnection.ExecuteAsync("DELETE incentives.Payment");
+            await dbConnection.ExecuteAsync("DELETE incentives.PendingPaymentValidationResult");
+            await dbConnection.ExecuteAsync("DELETE incentives.PendingPayment");
+            await dbConnection.ExecuteAsync("DELETE incentives.LearningPeriod");
+            await dbConnection.ExecuteAsync("DELETE incentives.ApprenticeshipDaysInLearning");
+            await dbConnection.ExecuteAsync("DELETE incentives.Learner");
+            await dbConnection.ExecuteAsync("DELETE incentives.ApprenticeshipIncentive");
+        }
     }
 }

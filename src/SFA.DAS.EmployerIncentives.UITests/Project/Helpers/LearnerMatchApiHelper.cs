@@ -29,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         public async Task SetupResponse(long uln, long ukprn, string expectedResponse)
         {
             var url = $"/learner-match/api/v1/{ukprn}/{uln}?";
-            var response = await HttpClient.PostAsync($"{BaseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", new StringContent(expectedResponse, Encoding.UTF8));
+            var response = await HttpClient.PostAsync($"{BaseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", new StringContent(expectedResponse, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
     }
