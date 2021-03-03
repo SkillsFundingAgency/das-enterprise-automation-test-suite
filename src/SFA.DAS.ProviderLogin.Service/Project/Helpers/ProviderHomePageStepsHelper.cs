@@ -54,8 +54,31 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             {
                 return _loginHelper.Login(login);
             }
-            return new ProviderHomePage   (_context);
+            return new ProviderHomePage(_context);
         }
+
+        public ProviderHomePage GoToProviderHomePage1(ProviderLoginUser login, bool newTab)
+        {
+            if (newTab)
+            {
+                _tabHelper.OpenInNewTab(_providerUrl);
+            }
+            else
+            {
+                _tabHelper.GoToUrl(_providerUrl);
+            }
+
+            if (_loginHelper.IsSignInPageDisplayed())
+            {
+                return _loginHelper.ReLogin(login);
+            }
+            else if (_loginHelper.IsIndexPageDisplayed())
+            {
+                return _loginHelper.Login(login);
+            }
+            return new ProviderHomePage(_context);
+        }
+
 
         public ProviderHomePage LogInToProviderHomePage(ProviderLoginUser login)
         {

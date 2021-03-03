@@ -16,7 +16,6 @@ namespace SFA.DAS.UI.Framework
         public static string Mailinator_BaseUrl => "https://www.mailinator.com/";
         public static string Manage_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
         public static string Provider_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
-        public static string SecureFunding_Provider_BaseUrl => $"https://securefunding.test2-pas.apprenticeships.education.gov.uk/10022856/reservations/manage";
         public static string RAAV2QA_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
         public static string Recruit_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
         public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";

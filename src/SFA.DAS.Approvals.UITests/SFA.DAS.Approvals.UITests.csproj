@@ -31,6 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ManageFunding\ProviderRoles\MF_PR_01_ViewOnly.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Update="Project\Tests\Features\ManageFunding\ProviderRoles\MF_PR_02_OtherRoles.feature.cs">
       <DesignTime>True</DesignTime>
     </Compile>

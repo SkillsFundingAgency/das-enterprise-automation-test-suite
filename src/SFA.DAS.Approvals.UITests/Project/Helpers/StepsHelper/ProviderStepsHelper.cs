@@ -7,8 +7,9 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -43,9 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _providerHomePageStepsHelper.GoToProviderHomePage(login);
             return new ApprovalsProviderHomePage(_context);
         }
-
-        public void GoToProviderSpecificUrl(string Url) => _tabHelper.OpenInNewTab(Url);
-
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
         {
             return GoToProviderHomePage(login)
@@ -57,6 +55,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                    .ConfirmReserveFunding()
                    .VerifySucessMessage()
                    .GoToAddApprenticeDetailsPage();
+        }
+
+        public void MakeReservation()
+        {
+            ApprovalsProviderHomePage approvalsProviderHomePage = new ApprovalsProviderHomePage(_context);
+            approvalsProviderHomePage.GoToProviderGetFunding().StartReservedFunding()
+                   .ChooseAnEmployerNonLevy()
+                   .ConfirmNonLevyEmployer()
+                   .AddTrainingCourseAndDate()
+                   .ConfirmReserveFunding()
+                   .VerifySucessMessage()
+                   .GoToHomePage();            
         }
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
@@ -279,5 +289,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyChangeOfEmployerHasBeenRequested();
         }
 
+        public void AccessDeniedForBothAddApprenticesAndDeleteReservation()
+        {
+            ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy = new ProviderFundingForNonLevyEmployersPage(_context);
+            NavigateToProviderHomePage()
+              .GoToManageYourFunding();
+            providerFundingForNonLevy.ClickToDeleteReservation();
+
+            NavigateToProviderHomePage()
+                .GoToManageYourFunding();
+            providerFundingForNonLevy.ClickToAddAnApprenticeForaReservation();
+        }
     }
 }
