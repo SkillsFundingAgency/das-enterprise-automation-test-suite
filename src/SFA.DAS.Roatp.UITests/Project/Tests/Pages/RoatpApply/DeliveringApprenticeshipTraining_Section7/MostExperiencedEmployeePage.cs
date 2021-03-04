@@ -25,7 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Full name", applydataHelpers.FullName);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Job role", applydataHelpers.JobRole);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Time in role", $"{applydataHelpers.GenerateRandomWholeNumber(1)} years, {applydataHelpers.GenerateRandomWholeNumber(1)} months");
-            Continue();
+            SelectRadioOptionByText("Yes");
+            EnterLongTextAreaAndContinue(applydataHelpers.NamesOfAllOrganisations);
             return new ExperienceInTheSectorPage(_context);
         }
     }
