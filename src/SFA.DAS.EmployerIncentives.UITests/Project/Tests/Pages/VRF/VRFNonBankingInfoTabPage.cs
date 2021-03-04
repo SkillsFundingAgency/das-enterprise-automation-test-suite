@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class VRFNonBankingInfoTab3Page : VRFBasePage
+    public class VRFNonBankingInfoTabPage : VRFBasePage
     {
         protected override string PageTitle => "Address details";
 
@@ -23,15 +23,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         private By Fc_email => By.CssSelector("#fc_email");
 
-        public VRFNonBankingInfoTab3Page(ScenarioContext context) : base(context, false)
+        public VRFNonBankingInfoTabPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public VRFBankDetailsTab4Page SubmitAddressDetails(string email)
+        public VRFBankDetailsTabPage SubmitAddressDetails(string email)
         {
-            frameHelper.SwitchFrameAndAction(() => 
+            frameHelper.SwitchFrameAndAction(() =>
             {
                 SelectOptionByText("uk_address", "Yes");
                 formCompletionHelper.EnterText(AddressLine1, eIDataHelper.AddressLine1);
@@ -39,11 +39,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.EnterText(Postcode, eIDataHelper.Poscode);
                 formCompletionHelper.EnterText(ContactEmail, email);
                 formCompletionHelper.EnterText(FullName, registrationConfig.RE_OrganisationName);
-                formCompletionHelper.EnterText(Fc_email, email); 
+                formCompletionHelper.EnterText(Fc_email, email);
                 Continue();
             });
 
-            return new VRFBankDetailsTab4Page(_context);
+            return new VRFBankDetailsTabPage(_context);
+        }
+
+        public VRFSubmitterDetailsTabPage SubmitNewRemittanceEmail(string email)
+        {
+            frameHelper.SwitchToFrame();
+            formCompletionHelper.EnterText(ContactEmail, email);
+            Continue();
+            return new VRFSubmitterDetailsTabPage(_context);
         }
     }
 }

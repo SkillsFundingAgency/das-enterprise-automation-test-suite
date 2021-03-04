@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class VRFBankDetailsTab4Page : VRFBasePage
+    public class VRFBankDetailsTabPage : VRFBasePage
     {
         protected override string PageTitle => "Bank details";
 
@@ -23,13 +23,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         private By BankDetailsAccepted => By.CssSelector(".fieldContent strong");
 
-        public VRFBankDetailsTab4Page(ScenarioContext context) : base(context, false)
+        public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false)
         { 
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public VRFSubmitterDetailsTab5Page SubmitBankDetails()
+        public VRFSubmitterDetailsTabPage SubmitBankDetails()
         {
             frameHelper.SwitchFrameAndAction(() => 
             {
@@ -43,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFSubmitterDetailsTab5Page(_context);
+            return new VRFSubmitterDetailsTabPage(_context);
         }
     }
 }

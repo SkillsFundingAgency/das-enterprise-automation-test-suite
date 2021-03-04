@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class VRFSubmitterDetailsTab5Page : VRFBasePage
+    public class VRFSubmitterDetailsTabPage : VRFBasePage
     {
         protected override string PageTitle => "Form submitter details";
 
@@ -19,13 +19,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         private By Telephone => By.CssSelector("#user_telephone");
 
-        public VRFSubmitterDetailsTab5Page(ScenarioContext context) : base(context, false)
+        public VRFSubmitterDetailsTabPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public VRFSummaryTab6Page SubmitSubmitterDetails(string email)
+        public VRFSummaryTabPage SubmitSubmitterDetails(string email)
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
@@ -37,7 +37,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFSummaryTab6Page(_context);
+            return new VRFSummaryTabPage(_context);
         }
     }
 }

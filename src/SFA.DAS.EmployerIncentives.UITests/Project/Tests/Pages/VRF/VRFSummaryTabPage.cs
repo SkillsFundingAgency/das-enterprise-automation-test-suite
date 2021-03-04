@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class VRFSummaryTab6Page : VRFBasePage
+    public class VRFSummaryTabPage : VRFBasePage
     {
         protected override string PageTitle => "Organisation details";
 
@@ -15,7 +15,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         protected override By Options => By.CssSelector(".checkbox-label");
 
-        public VRFSummaryTab6Page(ScenarioContext context) : base(context, false)
+        public VRFSummaryTabPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());

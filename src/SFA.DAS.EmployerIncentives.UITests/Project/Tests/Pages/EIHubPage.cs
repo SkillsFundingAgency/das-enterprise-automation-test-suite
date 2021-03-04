@@ -11,6 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private By ApplyLink => By.PartialLinkText("Apply");
         private By ViewApplicationsLink => By.LinkText("View applications");
+        private By ChangeBankDetailsLink => By.LinkText("Change bank details");
         #endregion
 
         public EIHubPage(ScenarioContext context) : base(context) => _context = context;
@@ -31,6 +32,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(ViewApplicationsLink);
             return new ViewApplicationsShutterPage(_context);
+        }
+
+        public ChangeBankDetailsPage NavigateToChangeBankDetailsPage()
+        {
+            formCompletionHelper.Click(ChangeBankDetailsLink);
+            return new ChangeBankDetailsPage(_context);
         }
     }
 }

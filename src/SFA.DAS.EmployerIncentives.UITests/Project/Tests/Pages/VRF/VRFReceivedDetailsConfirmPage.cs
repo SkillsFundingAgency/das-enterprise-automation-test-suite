@@ -23,13 +23,23 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         public ApplicationCompletePage ReturnToEasApplicationCompletePage()
         {
+            ReturnToEAS();
+            return new ApplicationCompletePage(_context);
+        }
+
+        public EIHubPage ReturnToEIHubPage()
+        {
+            ReturnToEAS();
+            return new EIHubPage(_context);
+        }
+
+        private void ReturnToEAS()
+        {
             frameHelper.SwitchFrameAndAction(() =>
             {
                 TestContext.Progress.WriteLine($"CaseId Summary: {pageInteractionHelper.GetText(CaseIdSummary)}");
                 formCompletionHelper.ClickElement(ReturnToEasLink);
             });
-
-            return new ApplicationCompletePage(_context);
         }
     }
 }

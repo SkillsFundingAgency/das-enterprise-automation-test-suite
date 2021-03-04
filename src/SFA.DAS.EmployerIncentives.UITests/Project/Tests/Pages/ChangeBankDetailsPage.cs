@@ -4,15 +4,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class AddYourOrgBankDetailsPage : EIBasePage
+    public class ChangeBankDetailsPage : EIBasePage
     {
-        protected override string PageTitle => $"Add {ObjectContextExtension.GetOrganisationName(objectContext)}'s bank account details";
+        protected override string PageTitle => $"Change {ObjectContextExtension.GetOrganisationName(objectContext)}'s bank details";
 
         #region Locators
         private readonly ScenarioContext _context;
         #endregion
 
-        public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public VRFIntroductionTabPage ContinueToVRFIntroductionTab1Page()
         {

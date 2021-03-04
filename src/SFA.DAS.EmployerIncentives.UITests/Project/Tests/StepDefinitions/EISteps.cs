@@ -30,6 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly MultipleAccountUser _multipleAccountUser;
         private ViewApplicationsShutterPage _viewApplicationsShutterPage;
+        private readonly EISqlHelper _eISqlHelper;
         private string email;
 
         public EISteps(ScenarioContext context)
@@ -42,6 +43,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
+            _eISqlHelper = _context.Get<EISqlHelper>();
         }
 
         [When(@"the Employer switches to an account without apprentices")]
@@ -69,7 +71,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
-            SubmitEiApplicationWithOutBankDetails()
+            SubmitEiApplicationPastDeclarationPage()
                 .ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage()
                 .ContinueToVRFIntroductionTab1Page()
                 .ContinueToVRFOrgDetailsTab2Page()
@@ -87,13 +89,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application without VRF")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF()
         {
-            SubmitEiApplicationWithOutBankDetails()
+            SubmitEiApplicationPastDeclarationPage()
                 .ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage()
                 .NavigateToViewApplicationsPage();
         }
 
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
-        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationWithOutBankDetails();
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
 
         [Then(@"Earnings data is populated for the Employer")]
         public void ThenEarningsDataIsPopulatedForTheEmployer()
@@ -101,7 +103,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var startMonth = _objectContext.GetEIStartMonth();
             var startYear = _objectContext.GetEIStartYear();
             var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2020();
-            _context.Get<EISqlHelper>().VerifyEarningData(email, startMonth, startYear, ageCategory);
+            _eISqlHelper.VerifyEarningData(email, startMonth, startYear, ageCategory);
         }
 
         [Then(@"the Employer is able to view EI applications")]
@@ -117,12 +119,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            var homePageFinancesSection = new HomePageFinancesSection(_context);
-
             if (entities == Entities.Single)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = new HomePageFinancesSection(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
@@ -174,10 +174,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenEIStartPageIsDisplayedOnClickingOnApplyForThePaymentLinkOnViewEIApplicationsShutterPage()
         {
             _viewApplicationsShutterPage.ClickOnApplyButton();
-            new HomePage(_context, true);
+            _homePageStepsHelper.GotoEmployerHomePage();
         }
 
-        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationWithOutBankDetails()
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
         {
             email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _objectContext.Get("registeredemailaddress");
 
@@ -189,16 +189,24 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Application Case details are changed to completed status")]
-        public void WhenTheApplicationCaseDetailsAreChangedToCompletedStatus()
-        {
-
-        }
+        public void WhenTheApplicationCaseDetailsAreChangedToCompletedStatus() => _eISqlHelper.SetCaseDetailsToCompleted(email);
 
         [Then(@"the Employer is able to Amend bank details")]
         public void ThenTheEmployerIsAbleToAmendBankDetails()
         {
-
+            _homePageStepsHelper.GotoEmployerHomePage();
+            NavigateToEIHubPage()
+                .NavigateToChangeBankDetailsPage()
+                .ContinueToVRFIntroductionTab1Page()
+                .ContinueToVRFOrgDetailsTab2Page()
+                .SubmitOrgDetailsForAmendJourney(email)
+                .SelectChangeNonBankingInfoOptionAndContinue()
+                .SubmitNewRemittanceEmail(email)
+                .SubmitSubmitterDetails(email)
+                .AcknowledgeSummaryDetails()
+                .ReturnToEIHubPage();
         }
 
+        private EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection(_context).NavigateToEIHubPage();
     }
 }
