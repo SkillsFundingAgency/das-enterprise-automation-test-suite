@@ -5,7 +5,6 @@ using SFA.DAS.EmployerIncentives.UITests.Data;
 using SFA.DAS.EmployerIncentives.UITests.Messages;
 using SFA.DAS.EmployerIncentives.UITests.Models;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -17,49 +16,46 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class StartDateChangeOfCircumstanceSteps
+    public class StartDateChangeOfCircumstanceSteps : StepsBase
     {
         // from JSON
-        // ReSharper disable InconsistentNaming
         private const long ULN = 7229721937;
         private const long UKPRN = 10005310;
+        private const long AccountId = 14326;
         private const long ApprenticeshipId = 133218;
-        private readonly (byte Number, short Year, DateTime PayDay) _paymentPeriod = (7, 2021, new DateTime(2021, 2, 6));
-        // ReSharper disable InconsistentNaming
+        private readonly (byte Number, short Year) _paymentPeriod = (6, 2021);
 
-        private readonly EIConfig _config;
-        private readonly Fixture _fixture;
         private IncentiveApplication _incentiveApplication;
         private IncentiveApplicationApprenticeship _apprenticeship;
         private Guid _apprenticeshipIncentiveId;
         private DateTime _plannedStartDate;
         private DateTime _dateOfBirth;
         private PendingPayment _pendingPayment;
-        private PendingPaymentValidationResult _pendingPaymentValidationResult;
-        private EISqlHelper _sqlHelper;
         private Payment _payment;
         private List<PendingPayment> _newPendingPayments;
-        private LearnerMatchApiHelper _learnerMatchApi;
 
-        public StartDateChangeOfCircumstanceSteps(ScenarioContext context)
+        public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
-            _fixture = new Fixture();
-            _config = context.GetEIConfig<EIConfig>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on 6-Aug-2020")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
-            _sqlHelper = new EISqlHelper(_config);
-            await _sqlHelper.CleanUpIncentives();
-            await _sqlHelper.SetActiveCollectionPeriod(_paymentPeriod.Number, _paymentPeriod.Year);
+            await sqlHelper.CleanUpIncentives();
+            await SetActiveCollectionPeriod(_paymentPeriod.Number, _paymentPeriod.Year);
 
-            _plannedStartDate = new DateTime(2020, 11, 30);
+            var accountLegalEntityId = fixture.Create<long>();
+            await sqlHelper.CreateAccount(AccountId, accountLegalEntityId);
+
+            _plannedStartDate = new DateTime(2020, 8, 6);
             _dateOfBirth = _plannedStartDate.AddYears(-24).AddMonths(-10); // under 25 at the start of learning 
 
-            _incentiveApplication = _fixture.Build<IncentiveApplication>()
-                    .Without(x => x.Apprenticeships).Create();
-            _apprenticeship = _fixture.Build<IncentiveApplicationApprenticeship>()
+            _incentiveApplication = fixture.Build<IncentiveApplication>()
+                    .Without(x => x.Apprenticeships)
+                    .With(x => x.AccountId, AccountId)
+                    .With(x => x.AccountLegalEntityId, accountLegalEntityId)
+                    .Create();
+            _apprenticeship = fixture.Build<IncentiveApplicationApprenticeship>()
                 .With(a => a.ULN, ULN)
                 .With(a => a.UKPRN, UKPRN)
                 .With(a => a.ApprenticeshipId, ApprenticeshipId)
@@ -72,9 +68,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .Create();
             _incentiveApplication.Apprenticeships.Add(_apprenticeship);
 
-            await _sqlHelper.CreateIncentiveApplication(_incentiveApplication);
+            await sqlHelper.CreateIncentiveApplication(_incentiveApplication);
 
-            var serviceBusHelper = new EIServiceBusHelper(_config);
+            var serviceBusHelper = new EIServiceBusHelper(config);
             Debug.Assert(_incentiveApplication.DateSubmitted != null, "_incentiveApplication.DateSubmitted != null");
             var command = new CreateIncentiveCommand(
                 _incentiveApplication.AccountId,
@@ -95,79 +91,67 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
             await serviceBusHelper.Publish(command);
 
-            _apprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 1, 0));
-            await _sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 1, 0));
+            _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 1, 0));
+            await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 1, 0));
 
-            _learnerMatchApi = new LearnerMatchApiHelper(_config);
-            Debug.Assert(_apprenticeship.UKPRN != null, "_apprenticeship.UKPRN != null");
-            await _learnerMatchApi.SetupResponse(_apprenticeship.ULN, _apprenticeship.UKPRN.Value, LearnerMatchApiResponses.Clawbacks1_R07_json);
+            await learnerMatchApi.SetupResponse(ULN, UKPRN, LearnerMatchApiResponses.Clawbacks1_R07_json);
+            await RunLearnerMatchOrchestrator();
         }
 
         [Given(@"a payment of £1000 sent in Period R07 2021")]
         public async Task GivenAPaymentOf1000SentInPeriodR()
         {
-            await using var dbConnection = new SqlConnection(_sqlHelper.ConnectionString);
+            await businessCentralApiHelper.SetupAcceptAllRequests();
+
+            var paymentService = new EIPaymentsProcessHelper(config);
+            await paymentService.StartPaymentProcessOrchestrator(_paymentPeriod.Year, _paymentPeriod.Number);
+            await paymentService.WaitUntilWaitingForPaymentApproval();
+
+            await paymentService.ApprovePayments();
+            await paymentService.WaitUntilComplete();
+
+            await using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
             _pendingPayment = dbConnection.GetAll<PendingPayment>().Single(p => p.ApprenticeshipIncentiveId ==
                 _apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
-            _pendingPayment.PaymentMadeDate = _paymentPeriod.PayDay;
-            await dbConnection.UpdateAsync(_pendingPayment);
-            _pendingPaymentValidationResult = _fixture.Build<PendingPaymentValidationResult>()
-                .With(p => p.PendingPaymentId, _pendingPayment.Id)
-                .With(p => p.PeriodNumber, _pendingPayment.PeriodNumber)
-                .With(p => p.PaymentYear, _pendingPayment.PaymentYear)
-                .With(p => p.Step, "HasBankDetails")
-                .With(p => p.Result, true)
-                .With(p => p.CreatedDateUtc, _pendingPayment.CalculatedDate.AddHours(1))
-                .Create();
-            await _sqlHelper.InsertAsync(_pendingPaymentValidationResult);
+            _pendingPayment.PaymentMadeDate.Should().NotBeNull();
 
-            _payment = _fixture.Build<Payment>()
-                .With(p => p.AccountId, _incentiveApplication.AccountId)
-                .With(p => p.AccountLegalEntityId, _incentiveApplication.AccountLegalEntityId)
-                .With(p => p.ApprenticeshipIncentiveId, _apprenticeshipIncentiveId)
-                .With(p => p.PaidDate, _paymentPeriod.PayDay)
-                .With(p => p.PendingPaymentId, _pendingPayment.Id)
-                .With(p => p.Amount, _pendingPayment.Amount)
-                .With(p => p.PaymentYear, _pendingPayment.PaymentYear)
-                .With(p => p.PaymentPeriod, _pendingPayment.PeriodNumber)
-                .With(p => p.CalculatedDate, _pendingPayment.CalculatedDate.AddHours(1))
-                .Create();
-            await _sqlHelper.InsertAsync(_payment);
+            _payment = dbConnection.GetAll<Payment>().Single(p => p.ApprenticeshipIncentiveId ==
+                _apprenticeshipIncentiveId && p.PendingPaymentId == _pendingPayment.Id);
+            _payment.Should().NotBeNull();
         }
 
         [Given(@"a start date change of circumstance occurs in Period R08")]
         public async Task GivenAStartDateChangeOfCircumstanceOccursInPeriodR08()
         {
-            await _sqlHelper.SetActiveCollectionPeriod(8, 2021);
+            await SetActiveCollectionPeriod(9, _paymentPeriod.Year);
         }
 
         [Given(@"learner data is updated with a new learning start date 1-Feb-2021 making the learner over twenty five at the start of learning")]
         public async Task GivenLearnerDataIsUpdatedWithANewValidStartDateMakingTheLearnerOverTwentyFiveAtTheStartOfLearning()
         {
-            await _learnerMatchApi.SetupResponse(ULN, UKPRN, LearnerMatchApiResponses.Clawbacks1_R08_json);
+            await learnerMatchApi.SetupResponse(ULN, UKPRN, LearnerMatchApiResponses.Clawbacks1_R08_json);
         }
 
         [When(@"the incentive learner data is refreshed")]
         public async Task WhenTheIncentiveLearnerDataIsRefreshed()
         {
-            var learnerMatchService = new EILearnerMatchHelper(_config);
-            await learnerMatchService.StartLearnerMatchOrchestrator();
-            await learnerMatchService.WaitUntilComplete(new TimeSpan(0, 1, 0));
+            await RunLearnerMatchOrchestrator();
         }
 
         [When(@"the earnings are recalculated")]
         public void WhenTheEarningsAreRecalculated()
         {
-            using var dbConnection = new SqlConnection(_sqlHelper.ConnectionString);
+            using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
             _newPendingPayments = dbConnection.GetAll<PendingPayment>().ToList();
         }
 
         [Then(@"the paid earning of £1000 is marked as requiring a clawback in the currently active Period R08")]
         public void ThenThePaidEarningOfIsMarkedAsRequiringAClawbackInTheCurrentlyActivePeriodR()
         {
-            using var dbConnection = new SqlConnection(_sqlHelper.ConnectionString);
+            using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
 
             var pendingPayment = dbConnection.GetAll<PendingPayment>().Single(p => p.Id == _pendingPayment.Id);
+            pendingPayment.PaymentMadeDate.Should().NotBeNull();
             pendingPayment.ClawedBack.Should().BeTrue();
 
             var clawback = dbConnection.GetAll<ClawbackPayment>().Single(p => p.PendingPaymentId == _pendingPayment.Id);

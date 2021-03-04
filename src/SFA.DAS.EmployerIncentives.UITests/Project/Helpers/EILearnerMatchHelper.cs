@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
@@ -15,9 +14,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             await StartOrchestrator("api/orchestrators/LearnerMatchingOrchestrator");
         }
 
-        public async Task WaitUntilComplete(TimeSpan? timeout)
+        public async Task WaitUntilComplete(TimeSpan? timeout = null)
         {
-            await WaitUntilStatus("Completed", timeout);
+            await WaitUntilStatus("Completed", timeout ?? TimeSpan.FromMinutes(1));
         }
     }
 }

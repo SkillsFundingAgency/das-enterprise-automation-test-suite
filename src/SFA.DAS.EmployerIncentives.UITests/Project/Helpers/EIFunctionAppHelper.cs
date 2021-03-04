@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -72,6 +72,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
                 var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var orchestratorStatusResponse = JsonConvert.DeserializeObject<OrchestratorStatusResponse>(json);
+                if (orchestratorStatusResponse.RuntimeStatus == "Failed")
+                {
+                    throw new Exception(orchestratorStatusResponse.Output);
+                }
                 if (comparison(orchestratorStatusResponse))
                 {
                     return;

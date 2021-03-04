@@ -14,14 +14,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             await StartOrchestrator($"api/orchestrators/IncentivePaymentOrchestrator/{collectionPeriodYear}/{collectionPeriodNumber}");
         }
 
-        public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout)
+        public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout = null)
         {
-            await WaitUntilCustomStatus("WaitingForPaymentApproval", timeout);
+            await WaitUntilCustomStatus("WaitingForPaymentApproval", timeout ?? TimeSpan.FromMinutes(1));
         }
 
-        public async Task WaitUntilComplete(TimeSpan? timeout)
+        public async Task WaitUntilComplete(TimeSpan? timeout = null)
         {
-            await WaitUntilStatus("Completed", timeout);
+            await WaitUntilStatus("Completed", timeout ?? TimeSpan.FromMinutes(1));
         }
 
         public async Task ApprovePayments()
