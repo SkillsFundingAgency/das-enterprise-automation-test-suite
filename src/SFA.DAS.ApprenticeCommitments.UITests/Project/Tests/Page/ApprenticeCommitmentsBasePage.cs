@@ -1,5 +1,5 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
+using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
+using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
@@ -10,9 +11,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        public void GetApprenticeship(long app)
+        public void GetApprenticeship(long app, HttpStatusCode expectedResponse)
         {
-            CreateRestRequest(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty);
+            Execute(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
         }
     }
 }
