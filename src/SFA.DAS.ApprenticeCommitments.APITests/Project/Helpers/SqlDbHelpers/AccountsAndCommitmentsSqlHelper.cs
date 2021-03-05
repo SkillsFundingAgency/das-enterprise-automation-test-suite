@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class ApprenticeCommitmentSqlHelper : SqlDbHelper
+    public class AccountsAndCommitmentsSqlHelper : SqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
-        public ApprenticeCommitmentSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        public AccountsAndCommitmentsSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public (long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string orgname) GetEmployerData()
         {

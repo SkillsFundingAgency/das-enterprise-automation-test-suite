@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
+using System.Net;
 
 namespace SFA.DAS.StandardsVersioning.APITests.Project
 {
@@ -10,9 +11,9 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project
 
         protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CoursesApiBaseUrl;
 
-        public void PerformHeathCheck(string endpoint)
+        public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
         {
-            CreateRestRequest(RestSharp.Method.GET, endpoint, string.Empty);
+            Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
         }
     }
 }

@@ -16,13 +16,6 @@ namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"das-courses-api (/ping) endpoint can be accessed")]
-        public void ThenDasCoursesApiCanBeAccessed(string endpoint)
-        {
-            _innerApiRestClient.PerformHeathCheck(endpoint);
-
-            var response = _innerApiRestClient.Execute();
-
-            AssertHelper.AssertResponse(HttpStatusCode.OK, response);
-        }
+        public void ThenDasCoursesApiCanBeAccessed(string endpoint) => _innerApiRestClient.PerformHeathCheck(endpoint, HttpStatusCode.OK);
     }
 }
