@@ -52,8 +52,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.MakeReservation();                  
         }
 
-        [Then(@"the user can delete reservation")]
-        public void ThenTheUserCanDeleteReservation()
+        [Given(@"the user can delete reservation")]
+        public void GivenTheUserCanDeleteReservation()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToManageYourFunding()
@@ -70,9 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenTheProviderLogsinAsAViewer()
         {
             ProviderLoginUser login = new ProviderLoginUser();
-            login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
-            login.Password = _context.GetUser<ProviderViewOnlyUser>().Password;
-            _providerHomePageStepsHelper.GoToProviderHomePage1(login, false);
+            _providerHomePageStepsHelper.LoginAsViewer(login);
         }
 
         [Then(@"the user can not reserve the funding")]
@@ -83,11 +81,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoBackToTheServiceHomePage();
         }
 
-        [Then(@"the user can not delete the reservation and add apprentices")]
-        public void ThenTheUserCanNotDeleteTheReservationAndAddApprentices()
+ 
+        [Then(@"the user can not delete the reservation")]
+        public void ThenTheUserCanNotDeleteTheReservation()
         {
-           _providerStepsHelper.AccessDeniedForBothAddApprenticesAndDeleteReservation();            
-            
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .ClickToDeleteReservation()
+                .GoBackToTheServiceHomePage();
         }
+
+        [Then(@"the user can not add an apprentice")]
+        public void ThenTheUserCanNotAddAnApprentice()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .ClickToAddAnApprenticeForaReservation()
+                .GoBackToTheServiceHomePage();
+        }
+
     }
 }

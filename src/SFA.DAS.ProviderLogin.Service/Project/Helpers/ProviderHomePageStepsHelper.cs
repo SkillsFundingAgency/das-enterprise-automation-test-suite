@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
@@ -84,6 +85,13 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         {
             _objectContext.SetUkprn(login.Ukprn);
             return _loginHelper.Login(login);
+        }
+
+        public void LoginAsViewer(ProviderLoginUser login)
+        {
+            login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
+            login.Password = _context.GetUser<ProviderViewOnlyUser>().Password;
+            GoToProviderHomePage1(login, false);
         }
     }
 }

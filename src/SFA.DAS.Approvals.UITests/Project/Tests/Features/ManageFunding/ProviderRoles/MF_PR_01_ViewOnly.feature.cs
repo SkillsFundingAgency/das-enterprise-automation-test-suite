@@ -112,7 +112,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the user can not reserve the funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("the user can not delete the reservation and add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the user can not delete the reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.And("the user can not add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

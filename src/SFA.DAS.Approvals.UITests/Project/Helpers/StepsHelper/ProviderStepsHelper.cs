@@ -288,17 +288,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyAndSubmitChangeOfEmployerRequest()
                 .VerifyChangeOfEmployerHasBeenRequested();
         }
-
-        public void AccessDeniedForBothAddApprenticesAndDeleteReservation()
-        {
-            
-            NavigateToProviderHomePage()
-              .GoToManageYourFunding();
-            ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy = new ProviderFundingForNonLevyEmployersPage(_context);
-            providerFundingForNonLevy.ClickToDeleteReservation()
-                .GoBackToTheServiceHomePage();
-
-            
-        }
     }
 }
