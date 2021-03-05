@@ -39,7 +39,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public StopApprenticeshipsPage EnterStopDateAndClickSetbutton()
         {
-            string stopDate = $"01//{DateTime.Now.Month}//{DateTime.Now.Year}";
+            string stopDate = "01/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year.ToString("0000");
             pageInteractionHelper.WaitForElementToBeClickable(StopDate);
             formCompletionHelper.EnterText(StopDate, stopDate);
             formCompletionHelper.Click(SetBtn);
