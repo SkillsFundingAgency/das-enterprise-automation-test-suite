@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public AccessDeniedPage ClickToDeleteReservation()
         {
-            formCompletionHelper.ClickElement(AddApprenticeLink);
+            formCompletionHelper.ClickElement(DeleteFundingLink);
             return new AccessDeniedPage(_context);
         }
 

@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         //   protected virtual string GoBackToHomePage => "Go back to home page"; 
 
-        private By X = By.XPath("//*[@id='main - content']/div/div/p[2]/a");
+        private By SecureFundingGoBackToHomePage = By.LinkText("Go back to home page");
 
         public AccessDeniedPage(ScenarioContext context) : base(context)
         {
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         public ApprovalsProviderHomePage GoBackToTheServiceHomePage()
         {
-            formCompletionHelper.ClickElement(X);
+            formCompletionHelper.ClickElement(SecureFundingGoBackToHomePage);
             return new ApprovalsProviderHomePage(_context);
         }
     }

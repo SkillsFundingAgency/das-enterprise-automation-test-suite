@@ -291,14 +291,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AccessDeniedForBothAddApprenticesAndDeleteReservation()
         {
-            ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy = new ProviderFundingForNonLevyEmployersPage(_context);
+            
             NavigateToProviderHomePage()
               .GoToManageYourFunding();
-            providerFundingForNonLevy.ClickToDeleteReservation();
+            ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy = new ProviderFundingForNonLevyEmployersPage(_context);
+            providerFundingForNonLevy.ClickToDeleteReservation()
+                .GoBackToTheServiceHomePage();
 
-            NavigateToProviderHomePage()
-                .GoToManageYourFunding();
-            providerFundingForNonLevy.ClickToAddAnApprenticeForaReservation();
+            
         }
     }
 }

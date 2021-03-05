@@ -79,13 +79,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanNotReserveTheFunding()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .ClickToReserveFunding();
+                .ClickToReserveFunding()
+                .GoBackToTheServiceHomePage();
         }
 
         [Then(@"the user can not delete the reservation and add apprentices")]
         public void ThenTheUserCanNotDeleteTheReservationAndAddApprentices()
         {
-           _providerStepsHelper.AccessDeniedForBothAddApprenticesAndDeleteReservation();
+           _providerStepsHelper.AccessDeniedForBothAddApprenticesAndDeleteReservation();            
+            
         }
     }
 }
