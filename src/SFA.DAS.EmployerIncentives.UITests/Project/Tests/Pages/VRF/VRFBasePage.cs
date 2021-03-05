@@ -8,13 +8,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
     public abstract class VRFBasePage : EIBasePage
     {
+        #region Locators
         protected override By PageHeader => By.CssSelector("h2");
-
-        protected virtual By Options => By.CssSelector(".radio-label");
-
-        protected override By ContinueButton => By.CssSelector(".nextbutton");
-
+        protected virtual By RadioOptions => By.CssSelector(".radio-label");
+        protected override By ContinueButton => By.CssSelector(".nextbutton, .nextText");
+        protected virtual By CheckboxOptions => By.CssSelector(".checkbox-label");
+        protected virtual By ContactEmail => By.CssSelector("#contact_remittance_email");
         protected RegistrationConfig registrationConfig;
+        #endregion
 
         public VRFBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
@@ -25,7 +26,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         protected void SelectOptionByText(string forvalue, string text)
         {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(Options).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(RadioOptions).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
+        }
+
+        protected void SelectCheckBoxByText(string forvalue, string text)
+        {
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(CheckboxOptions).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
         }
     }
 }

@@ -7,17 +7,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
     {
         protected override string PageTitle => "Log In";
 
-        protected override By PageHeader => By.CssSelector("h1");
-
         #region Locators
         private readonly ScenarioContext _context;
-        #endregion
-
+        protected override By PageHeader => By.CssSelector("h1");
         private By Username => By.CssSelector("input[name='username']");
-
         private By Password => By.CssSelector("input[name='password']");
-
         private By SignInButton => By.CssSelector("button.primary[type='submit']");
+        #endregion
 
         public VRFLoginPage(ScenarioContext context) : base(context) => _context = context;
 

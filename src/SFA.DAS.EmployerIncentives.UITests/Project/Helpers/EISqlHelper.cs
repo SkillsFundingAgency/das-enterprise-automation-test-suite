@@ -45,7 +45,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         {
             var accountId = FetchAccountId(email);
             var dateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = P{accountId}, VrfCaseId = AF{accountId}, VrfCaseStatus = Case Request completed, VrfCaseStatusLastUpdatedDateTime = {dateTime} WHERE Id = {accountId}");
+            ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = 'P{accountId}', VrfCaseId = 'AF{accountId}', VrfCaseStatus = 'Case Request completed', VrfCaseStatusLastUpdatedDateTime = '{dateTime}' WHERE Id = {accountId}");
         }
 
         public int FetchAccountId(string email)

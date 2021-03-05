@@ -9,19 +9,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         #region Locators
         private readonly ScenarioContext _context;
-        #endregion
-
         private By NameOfTheBank => By.CssSelector("#Name_of_bank");
-
         private By AccountName => By.CssSelector("#Bank_account_name");
-
         private By AccountNumber => By.CssSelector("#Account_number");
-
         private By SortCode => By.CssSelector("#sort_code");
-
         private By AddBankDetails => By.CssSelector("#exp_validate");
-
         private By BankDetailsAccepted => By.CssSelector(".fieldContent strong");
+        #endregion
 
         public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false)
         { 

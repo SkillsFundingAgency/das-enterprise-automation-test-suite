@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
     public class VRFOrgDetailsTabPage : VRFBasePage
     {
         protected override string PageTitle => "Provide organisation details";
-        private EISqlHelper _eISqlHelper;
+        private readonly EISqlHelper _eISqlHelper;
 
         #region Locators
         private readonly ScenarioContext _context;

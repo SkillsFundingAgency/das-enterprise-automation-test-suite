@@ -9,19 +9,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         #region Locators
         private readonly ScenarioContext _context;
-        #endregion
-
         private By AddressLine1 => By.CssSelector("#address1_vr");
-
         private By Town => By.CssSelector("#town_vr");
-
         private By Postcode => By.CssSelector("#postcode_vr");
-
-        private By ContactEmail => By.CssSelector("#contact_remittance_email");
-
         private By FullName => By.CssSelector("#fcname");
-
         private By Fc_email => By.CssSelector("#fc_email");
+        #endregion
 
         public VRFNonBankingInfoTabPage(ScenarioContext context) : base(context, false)
         {
@@ -44,14 +37,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             });
 
             return new VRFBankDetailsTabPage(_context);
-        }
-
-        public VRFSubmitterDetailsTabPage SubmitNewRemittanceEmail(string email)
-        {
-            frameHelper.SwitchToFrame();
-            formCompletionHelper.EnterText(ContactEmail, email);
-            Continue();
-            return new VRFSubmitterDetailsTabPage(_context);
         }
     }
 }
