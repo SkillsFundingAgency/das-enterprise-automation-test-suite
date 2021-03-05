@@ -20,5 +20,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm");
             return new DeclarationPage(_context);
         }
+
+        public NewLegalAgreementRequiredPage ConfirmApprenticesForVersion4LegalAgreement()
+        {
+            formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm");
+            return new NewLegalAgreementRequiredPage(_context);
+        }
     }
 }
