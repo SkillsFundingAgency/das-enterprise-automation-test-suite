@@ -1,15 +1,9 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ProviderLogin.Service.Pages;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -27,8 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
         }
 
-        [Given(@"the provider logins as '(.*)'")]
-        public void GivenTheProviderLoginsAs(string User)
+        [Given(@"the provider logs in as '(.*)'")]
+        public void GivenTheProviderLogsInAs(string User)
         {
 
             ProviderLoginUser login = new ProviderLoginUser();
@@ -72,8 +66,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
         }
 
-        [Given(@"the provider logins as a viewer")]
-        public void GivenTheProviderLoginsAsAViewer()
+        [Given(@"the provider logs in as a viewer")]
+        public void GivenTheProviderLogsinAsAViewer()
         {
             ProviderLoginUser login = new ProviderLoginUser();
             login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
@@ -85,13 +79,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanNotReserveTheFunding()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .ClickToReserveFunding();
+                .ClickToReserveFunding()
+                .GoBackToTheServiceHomePage();
         }
 
         [Then(@"the user can not delete the reservation and add apprentices")]
         public void ThenTheUserCanNotDeleteTheReservationAndAddApprentices()
         {
-           _providerStepsHelper.AccessDeniedForBothAddApprenticesAndDeleteReservation();
+           _providerStepsHelper.AccessDeniedForBothAddApprenticesAndDeleteReservation();            
+            
         }
     }
 }
