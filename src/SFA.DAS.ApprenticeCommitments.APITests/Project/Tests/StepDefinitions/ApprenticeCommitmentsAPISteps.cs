@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     {
         private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper;
         private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
-        private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
@@ -21,7 +21,23 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 
             _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
 
-            _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
+            _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+        }
+
+        [Given(@"an apprentice has created an account")]
+        public void GivenAnApprenticeHasCreatedAnAccount()
+        {
+            _apprenticeCommitmentsApiHelper.CreateApprenticeship();
+
+            _apprenticeCommitmentsApiHelper.VerifyRegistration();
+        }
+
+        [Then(@"the apprentice can change their email address")]
+        public void ThenTheApprenticeCanChangeTheirEmailAddress()
+        {
+            _apprenticeCommitmentsApiHelper.ChangeApprenticeEmailAddress();
+
+            _apprenticeCommitmentsApiHelper.AssertApprenticeEmailUpdated();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
@@ -29,18 +45,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         {
             var (_, apprenticeshipid, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            _innerApiRestClient.GetApprenticeship(apprenticeshipid);
-
-            var response = _innerApiRestClient.Execute();
-
-            AssertHelper.AssertResponse(HttpStatusCode.OK, response);
+            _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }
 
         [When(@"an apprenticeship is posted")]
         public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeship();
-
-        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
-        public void AResponseIsReceived(HttpStatusCode responsecode) => _apprenticeCommitmentsApiHelper.AssertResponse(responsecode);
 
         [Then(@"the apprentice details are updated in the login db")]
         public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _apprenticeCommitmentsApiHelper.AssertApprenticeLoginData();

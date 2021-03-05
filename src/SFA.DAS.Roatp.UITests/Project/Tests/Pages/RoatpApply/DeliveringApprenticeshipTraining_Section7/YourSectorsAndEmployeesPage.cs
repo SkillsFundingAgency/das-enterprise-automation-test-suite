@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 {
     public class YourSectorsAndEmployeesPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Your sectors and employees";
+        protected override string PageTitle => "Sectors and employee experience";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,14 +18,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public ChooseYourOrganisationSectorsPage NavigateToChooseYourOrganisationSectors()
         {
-            formCompletionHelper.ClickLinkByText("Choose your organisation's sectors");
+            formCompletionHelper.ClickLinkByText("Choose sectors");
             return new ChooseYourOrganisationSectorsPage(_context);
         }
 
-        public MostExperiencedEmployeePage NavigateToMostExperiencedEmployeePage(string sector)
+        public HowManyStartsDoesYourOrgForecastPage NavigateToMostExperiencedEmployeePage(string sector)
         {
             formCompletionHelper.ClickLinkByText(sector);
-            return new MostExperiencedEmployeePage(_context);
+            return new HowManyStartsDoesYourOrgForecastPage(_context);
         }
 
         public ApplicationOverviewPage ContinueToApplicationOverviewPage()
