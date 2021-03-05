@@ -210,9 +210,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             foreach (var status in StatusList)
             {
                 if (i >= 0 && i < 7)
-                    Assert.IsTrue(status.Text == "Submitted successfully");
+                    Assert.IsTrue(status.Text == "Submitted successfully", $"validation failed at index [{i}]. Expected was [Submitted successfully]  but actual value displayed is [{status.Text}]");
                 else
-                    Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship");
+                    Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship", $"validation failed at index [{i}]. Expected was [Apprenticeship must be Active or Paused. Unable to stop apprenticeship]  but actual value displayed is [{status.Text}]");
 
                 i++;
             }
