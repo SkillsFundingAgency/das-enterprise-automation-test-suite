@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("a payment of £1000 sent in Period R07 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.And("a start date change of circumstance occurs in Period R08", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a start date change of circumstance occurs in Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("learner data is updated with a new learning start date 1-Feb-2021 making the lear" +
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 12
  testRunner.Then("the paid earning of £1000 is marked as requiring a clawback in the currently acti" +
-                        "ve Period R08", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "ve Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.And("a new first pending payment of £750 is created for Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
