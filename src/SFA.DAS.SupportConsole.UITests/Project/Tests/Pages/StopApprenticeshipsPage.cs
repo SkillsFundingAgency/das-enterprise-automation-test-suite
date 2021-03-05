@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #region Locators
         private By StopApprenticeshipsbtn => By.Id("okButton");
         private By StopDate => By.Id("bulkDate");
+        private By DateInputBox => By.Id("date_0");
         private By SetBtn => By.Id("btnSetBulkDate");
         private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(12)");
         private By ErrorMessage => By.XPath("//li[contains(text(),'Not all Apprenticeship rows have been supplied wit')]");
@@ -35,19 +37,21 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public List<IWebElement> GetStatusColumn() => pageInteractionHelper.FindElements(StatusColumn);
 
-        public StopApprenticeshipsPage EnterStopDate()
+        public StopApprenticeshipsPage EnterStopDateAndClickSetbutton()
         {
             string stopDate = $"01//{DateTime.Now.Month}//{DateTime.Now.Year}";
+            pageInteractionHelper.WaitForElementToBeClickable(StopDate);
             formCompletionHelper.EnterText(StopDate, stopDate);
-            return this;
-        }
-
-        public StopApprenticeshipsPage ClickSetButton()
-        {
             formCompletionHelper.Click(SetBtn);
             return this;
         }
 
-
+        public StopApprenticeshipsPage ValidateStopDateApplied()
+        {
+            var actualDate = pageInteractionHelper.FindElement(DateInputBox).GetAttribute("value");
+            string expectedDate = DateTime.Now.Year + "-" + DateTime.Now.Month.ToString("00") + "-01";
+            Assert.AreEqual(expectedDate, actualDate, "Validate correct stop date has been set in the table");
+            return this;
+        }
     }
 }

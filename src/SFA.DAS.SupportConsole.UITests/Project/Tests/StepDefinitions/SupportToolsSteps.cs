@@ -111,8 +111,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             var ststusList = new StopApprenticeshipsPage(_context)
                                     .ClickStopBtn()
                                     .ValidateErrorMessage()
-                                    .EnterStopDate()
-                                    .ClickSetButton()
+                                    .EnterStopDateAndClickSetbutton()
+                                    .ValidateStopDateApplied()
                                     .ClickStopBtn()
                                     .GetStatusColumn();
 
