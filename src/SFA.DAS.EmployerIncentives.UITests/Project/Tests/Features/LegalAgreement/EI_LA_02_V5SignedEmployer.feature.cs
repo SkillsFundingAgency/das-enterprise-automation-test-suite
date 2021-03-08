@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("LegalAgreementUpToDate")]
-    public partial class LegalAgreementUpToDateFeature
+    [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer")]
+    public partial class EI_LA_02_V5SignedEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "LegalAgreementUpToDate.feature"
+#line 1 "EI_LA_02_V5SignedEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LegalAgreementUpToDate", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_LA_02_V5SignedEmployer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer has signed latest legal agreement")]
+        [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
+            "arting FEB2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EmployerHasSignedLatestLegalAgreement()
+        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingFEB2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer has signed latest legal agreement", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
+                    "arting FEB2021 or over", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
