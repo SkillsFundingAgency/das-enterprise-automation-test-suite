@@ -29,18 +29,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (User.Equals("Contributor"))
             {
-                login.Username = _context.GetUser<ProviderContributorUser>().Username;
-                login.Password = _context.GetUser<ProviderContributorUser>().Password;
+                _providerHomePageStepsHelper.LoginAsContributor(login);
             }
             else if (User.Equals("Super Contributor"))
             {
-                login.Username = _context.GetUser<ProviderSuperContributorUser>().Username;
-                login.Password = _context.GetUser<ProviderSuperContributorUser>().Password;
+                _providerHomePageStepsHelper.LoginAsSuperContributor(login);
             }
             else if (User.Equals("Account Owner"))
             {
-                login.Username = _context.GetUser<ProviderAccountOwnerUser>().Username;
-                login.Password = _context.GetUser<ProviderAccountOwnerUser>().Password;
+                _providerHomePageStepsHelper.LoginAsAccountOwner(login);
             }
 
             _providerHomePageStepsHelper.GoToProviderHomePage1(login,false);
