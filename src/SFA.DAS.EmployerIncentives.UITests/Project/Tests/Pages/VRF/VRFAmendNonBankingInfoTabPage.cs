@@ -19,9 +19,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         public VRFSubmitterDetailsTabPage SubmitNewRemittanceEmail(string email)
         {
-            frameHelper.SwitchToFrame();
-            formCompletionHelper.EnterText(ContactEmail, email);
-            Continue();
+            frameHelper.SwitchFrameAndAction(() =>
+            {
+                formCompletionHelper.EnterText(ContactEmail, email);
+                Continue();
+            });
             return new VRFSubmitterDetailsTabPage(_context);
         }
     }

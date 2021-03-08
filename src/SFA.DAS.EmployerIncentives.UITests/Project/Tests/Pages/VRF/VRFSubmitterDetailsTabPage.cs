@@ -18,9 +18,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         public VRFSubmitterDetailsTabPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            frameHelper.SwitchToFrame(By.CssSelector("iframe.achieveforms-iframe"));
-            VerifyPage();
-            //frameHelper.SwitchFrameAndAction(() => VerifyPage());
+            frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
         public VRFSummaryTabPage SubmitSubmitterDetails(string email)

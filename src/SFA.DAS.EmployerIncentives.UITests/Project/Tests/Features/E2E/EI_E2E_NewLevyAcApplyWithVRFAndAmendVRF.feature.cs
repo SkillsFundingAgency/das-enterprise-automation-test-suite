@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithVRF")]
-    public partial class EI_E2E_NewLevyAcApplyWithVRFFeature
+    [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF")]
+    public partial class EI_E2E_NewLevyAcApplyWithVRFAndAmendVRFFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_E2E_NewLevyAcApplyWithVRF.feature"
+#line 1 "EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_NewLevyAcApplyWithVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,13 +74,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithVRF_Apply for Incentive and submit bank details for a Ne" +
-            "w Levy Account with one legal entity")]
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend ban" +
+            "k details for a New Levy Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
-        public virtual void EI_E2E_NewLevyAcApplyWithVRF_ApplyForIncentiveAndSubmitBankDetailsForANewLevyAccountWithOneLegalEntity()
+        public virtual void EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF_ApplyForIncentiveSubmitAndAmendBankDetailsForANewLevyAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -88,8 +88,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
                     "employerincentives",
                     "dfeuatachieveservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NewLevyAcApplyWithVRF_Apply for Incentive and submit bank details for a Ne" +
-                    "w Levy Account with one legal entity", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend ban" +
+                    "k details for a New Levy Account", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -135,6 +135,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 15
  testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.When("the Application Case details are changed to completed status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 17
+ testRunner.Then("the Employer is able to Amend bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
