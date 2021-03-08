@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class NewLegalAgreementRequiredPage : EIBasePage
+    public class NewLegalAgreementRequiredShutterPage : EIBasePage
     {
         protected override string PageTitle => $"{ObjectContextExtension.GetOrganisationName(objectContext)} needs to accept a new employer agreement";
 
@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public NewLegalAgreementRequiredPage(ScenarioContext context) : base(context) => _context = context;
+        public NewLegalAgreementRequiredShutterPage(ScenarioContext context) : base(context) => _context = context;
 
         public By ViewAgreement => By.ClassName("govuk-button");
 
