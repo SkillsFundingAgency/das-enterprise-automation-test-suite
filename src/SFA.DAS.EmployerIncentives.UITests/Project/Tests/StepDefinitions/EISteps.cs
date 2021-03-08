@@ -29,6 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly MultipleAccountUser _multipleAccountUser;
         private ViewApplicationsShutterPage _viewApplicationsShutterPage;
+        private EINavigationHelper _eINavigationHelper;
         private string email;
 
         public EISteps(ScenarioContext context)
@@ -40,6 +41,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
+            _eINavigationHelper = new EINavigationHelper(_context);
         }
 
         [When(@"the Employer switches to an account without apprentices")]
@@ -118,7 +120,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var homePageFinancesSection = new HomePageFinancesSection(_context);
 
             if (entities == Entities.Single)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
                 _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
