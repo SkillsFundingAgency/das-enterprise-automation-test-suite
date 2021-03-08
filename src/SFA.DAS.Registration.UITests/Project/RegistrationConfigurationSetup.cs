@@ -38,9 +38,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.SetUser(_configSection.GetConfigSection<ViewOnlyUser>());
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
-
-            _context.SetUser(_configSection.GetConfigSection<Version4AgreementUser>());
-            _context.SetUser(_configSection.GetConfigSection<Version5AgreementUser>());
         }
     }
 }
