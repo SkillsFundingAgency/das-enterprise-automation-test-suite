@@ -39,25 +39,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing view user account")]
         [When(@"the Employer logins using existing view user account")]
         public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
-
-
-        [Given(@"the Employer logins using existing Version4AgreementUser Account")]
-        [When(@"the Employer logins using existing Version4AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount()
-        {
-            var user = _context.GetUser<Version4AgreementUser>();
-            _context.Get<ObjectContext>().UpdateOrganisationName(user.OrganisationName);
-            _homePage = _loginFromCreateAcccountPageHelper.Login(user, true);
-        }
-
-        [Given(@"the Employer logins using existing Version5AgreementUser Account")]
-        [When(@"the Employer logins using existing Version5AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount()
-        {
-            var user = _context.GetUser<Version5AgreementUser>();
-            _context.Get<ObjectContext>().UpdateOrganisationName(user.OrganisationName);
-            _homePage = _loginFromCreateAcccountPageHelper.Login(user, true);
-        }
         
         [Then(@"Employer is able to navigate to all the link under Settings")]
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
