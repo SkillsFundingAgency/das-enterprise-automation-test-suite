@@ -33,15 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\LegalAgreement\LegalAgreementNeedsToBeSigned.feature.cs">
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Project\Tests\Features\LegalAgreement\LegalAgreementUpToDate.feature.cs">
-      <DesignTime>True</DesignTime>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -57,17 +48,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\LegalAgreement\LegalAgreementNeedsToBeSigned.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LegalAgreementNeedsToBeSigned.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\LegalAgreement\LegalAgreementUpToDate.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LegalAgreementUpToDate.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
