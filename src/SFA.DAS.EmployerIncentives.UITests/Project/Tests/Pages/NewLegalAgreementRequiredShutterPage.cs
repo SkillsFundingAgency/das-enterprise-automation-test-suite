@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -16,10 +17,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public By ViewAgreement => By.ClassName("govuk-button");
 
-        public LegalAgreementsPage ViewLegalAgreement()
+        public YourOrganisationsAndAgreementsPage ViewLegalAgreement()
         {
             formCompletionHelper.ClickButtonByText(ViewAgreement, "View agreement");
-            return new LegalAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(_context);
         }
     }
 }
