@@ -8,7 +8,7 @@ Scenario: Bulk Pause Apprentice Records
 	And Opens the Pause Utility
 	And Search for Apprentices using following criteria
 		| EmployerName			| ProviderName | Ukprn		| EndDate	| Uln | Status	| TotalRecords	|
-		| COMPLIANCE LIMITED    |              | 10005760   |			|     |			|   100			| 
+		| COMPLIANCE LIMITED    |              | 10005310   |			|     |			|   100			| 
 	
 	When User selects all records and click on Pause Apprenticeship button
 	Then User should be able to pause all the live records
@@ -22,7 +22,7 @@ Scenario: Bulk Resume Apprentice Records
 	And Opens the Resume Utility
 	And Search for Apprentices using following criteria
 		| EmployerName			| ProviderName | Ukprn		| EndDate	| Uln | Status	| TotalRecords	|
-		| COMPLIANCE LIMITED    |              | 10005760   |			|     |			|   100			| 
+		| COMPLIANCE LIMITED    |              | 10005310   |			|     |			|   100			| 
 	
 	When User selects all records and click on Resume Apprenticeship button
 	Then User should be able to resume all the paused records
