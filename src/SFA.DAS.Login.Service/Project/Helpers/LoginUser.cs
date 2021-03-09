@@ -53,6 +53,8 @@
 
     public class SupportConsoleTier2User : LoginUser { }
 
+    public class SupportToolsUser : LoginUser { }
+
     public class EILevyUser : LoginUser { }
 
     public class TransactorUser : LoginUser { }

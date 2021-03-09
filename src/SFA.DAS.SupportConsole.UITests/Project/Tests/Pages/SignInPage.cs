@@ -18,5 +18,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
             return new SearchHomePage(_context);
         }
+
+        public ToolSupportHomePage SignIntoToolSupportWithValidDetails(LoginUser usercreds)
+        {
+            SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
+
+            return new ToolSupportHomePage(_context);
+        }
     }
 }
