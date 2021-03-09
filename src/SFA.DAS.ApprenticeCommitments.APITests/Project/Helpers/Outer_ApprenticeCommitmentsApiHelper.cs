@@ -38,7 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             var createApprenticeship = new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname, Email = GetApprenticeEmail() };
 
             _objectContext.SetAccountId(accountid);
-            _objectContext.SetApprenticeshipId(apprenticeshipid);
+            _objectContext.SetCommitmentsApprenticeshipId(apprenticeshipid);
             _objectContext.SetOrganisationName(orgname);
             _objectContext.SetFirstName(firstname);
             _objectContext.SetLastName(lastname);
@@ -78,6 +78,26 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             };
 
             return _outerApiRestClient.ChangeApprenticeEmailAddress(apprenticeId, changeEmailRequest, HttpStatusCode.OK);
+        }
+
+        public IRestResponse GetApprenticeships()
+        {
+            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
+
+            _objectContext.SetApprenticeId(apprenticeId);
+
+            return _outerApiRestClient.GetApprenticeships(apprenticeId, HttpStatusCode.OK);
+        }
+
+        public IRestResponse GetApprenticeship()
+        {
+            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
+
+            var commitmentsApprenticeshipId = _objectContext.GetCommitmentsApprenticeshipId();
+
+            _objectContext.SetApprenticeId(apprenticeId);
+
+            return _outerApiRestClient.GetApprenticeship(apprenticeId, commitmentsApprenticeshipId, HttpStatusCode.OK);
         }
 
         internal void AssertApprenticeEmailUpdated()
