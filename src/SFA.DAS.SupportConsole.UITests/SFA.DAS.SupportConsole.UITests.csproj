@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Project\SqlScripts\**" />
-    <EmbeddedResource Remove="Project\SqlScripts\**" />
-    <None Remove="Project\SqlScripts\**" />
-    <SpecFlowFeatureFiles Remove="Project\SqlScripts\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\SqlScripts\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>

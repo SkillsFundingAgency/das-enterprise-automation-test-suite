@@ -76,7 +76,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
         {
-            //_tabHelper.OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
             _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
             new IdamsPage(_context).LoginToAccess1Staff();
 
