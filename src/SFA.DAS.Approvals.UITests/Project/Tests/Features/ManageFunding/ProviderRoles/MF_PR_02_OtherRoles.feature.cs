@@ -21,14 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MF_PR_02_OtherRoles")]
-    [NUnit.Framework.CategoryAttribute("ab")]
+    [NUnit.Framework.CategoryAttribute("ignore")]
     public partial class MF_PR_02_OtherRolesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "ab"};
+                "ignore"};
         
 #line 1 "MF_PR_02_OtherRoles.feature"
 #line hidden
@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "MF_PR_02_OtherRoles", null, ProgrammingLanguage.CSharp, new string[] {
-                        "ab"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,10 +76,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerfiyLoginContributorSuperContributorAndSuperUser(string user, string[] exampleTags)
+        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner(string user, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "Securefundingproviderrole"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login contributor,super contributor and super user", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login contributor,contributor with approval and account owner", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -125,32 +125,35 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,super contributor and super user: Contributor")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_Contributor()
+        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Contributor" +
+            "")]
+        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_Contributor()
         {
 #line 5
-this.VerfiyLoginContributorSuperContributorAndSuperUser("Contributor", ((string[])(null)));
+this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Contributor", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,super contributor and super user: Super Contributor")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_SuperContributor()
+        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Contributor" +
+            " with approval")]
+        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_ContributorWithApproval()
         {
 #line 5
-this.VerfiyLoginContributorSuperContributorAndSuperUser("Super Contributor", ((string[])(null)));
+this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Contributor with approval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,super contributor and super user: Account Owner")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void VerfiyLoginContributorSuperContributorAndSuperUser_AccountOwner()
+        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Account Own" +
+            "er")]
+        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_AccountOwner()
         {
 #line 5
-this.VerfiyLoginContributorSuperContributorAndSuperUser("Account Owner", ((string[])(null)));
+this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Account Owner", ((string[])(null)));
 #line hidden
         }
     }

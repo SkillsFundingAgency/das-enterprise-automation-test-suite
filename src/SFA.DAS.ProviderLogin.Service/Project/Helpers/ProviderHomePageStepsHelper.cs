@@ -68,7 +68,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         {
             login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
             login.Password = _context.GetUser<ProviderViewOnlyUser>().Password;
-            GoToProviderHomePage(login, false);
         }
 
         public void LoginAsContributor(ProviderLoginUser login)
@@ -77,10 +76,10 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             login.Password = _context.GetUser<ProviderContributorUser>().Password;
         }
 
-        public void LoginAsSuperContributor(ProviderLoginUser login)
+        public void LoginAsContributorWithApproval(ProviderLoginUser login)
         {
-            login.Username = _context.GetUser<ProviderSuperContributorUser>().Username;
-            login.Password = _context.GetUser<ProviderSuperContributorUser>().Password;
+            login.Username = _context.GetUser<ProviderContributorWithApprovalUser>().Username;
+            login.Password = _context.GetUser<ProviderContributorWithApprovalUser>().Password;
         }
 
         public void LoginAsAccountOwner(ProviderLoginUser login)

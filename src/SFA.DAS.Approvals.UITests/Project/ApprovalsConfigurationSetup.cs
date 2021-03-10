@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.SetUser(_configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderSuperContributorUser>());
+            _context.SetUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
 
             _context.SetUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }

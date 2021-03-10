@@ -70,7 +70,7 @@
 
     public class ProviderContributorUser : LoginUser { }
 
-    public class ProviderSuperContributorUser : LoginUser { }
+    public class ProviderContributorWithApprovalUser : LoginUser { }
 
     public class ProviderAccountOwnerUser : LoginUser { }
 

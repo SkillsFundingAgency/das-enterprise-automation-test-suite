@@ -21,14 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MF_PR_01_ViewOnly")]
-    [NUnit.Framework.CategoryAttribute("ab")]
+    [NUnit.Framework.CategoryAttribute("ignore")]
     public partial class MF_PR_01_ViewOnlyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "ab"};
+                "ignore"};
         
 #line 1 "MF_PR_01_ViewOnly.feature"
 #line hidden
@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "MF_PR_01_ViewOnly", null, ProgrammingLanguage.CSharp, new string[] {
-                        "ab"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,11 +78,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for view only user")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
         public virtual void VerifyLoginForViewOnlyUser()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "Securefundingproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for view only user", null, tagsOfScenario, argumentsOfScenario);
 #line 6

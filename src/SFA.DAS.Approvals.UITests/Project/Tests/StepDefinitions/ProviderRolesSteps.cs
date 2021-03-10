@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
             else if (User.Equals("Super Contributor"))
             {
-                _providerHomePageStepsHelper.LoginAsSuperContributor(login);
+                _providerHomePageStepsHelper.LoginAsContributorWithApproval(login);
             }
             else if (User.Equals("Account Owner"))
             {
@@ -63,13 +63,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can add an apprentice")]
         public void ThenTheUserCanAddAnApprentice()
         {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .AddApprenticeWithReservedFunding();
         }
 
         [Given(@"the provider logs in as a viewer")]
         public void GivenTheProviderLogsinAsAViewer()
         {
             ProviderLoginUser login = new ProviderLoginUser();
+            login.Ukprn = _objectContext.Get("Ukprn");
             _providerHomePageStepsHelper.LoginAsViewer(login);
+            _providerHomePageStepsHelper.GoToProviderHomePage(login, false);
         }
 
         [Then(@"the user can not reserve the funding")]
