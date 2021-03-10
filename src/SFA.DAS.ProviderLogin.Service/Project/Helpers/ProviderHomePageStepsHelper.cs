@@ -58,29 +58,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             return new ProviderHomePage(_context);
         }
 
-        public ProviderHomePage GoToProviderHomePage1(ProviderLoginUser login, bool newTab)
-        {
-            if (newTab)
-            {
-                _tabHelper.OpenInNewTab(_providerUrl);
-            }
-            else
-            {
-                _tabHelper.GoToUrl(_providerUrl);
-            }
-
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
-                return _loginHelper.ReLogin(login);
-            }
-            else if (_loginHelper.IsIndexPageDisplayed())
-            {
-                return _loginHelper.Login(login);
-            }
-            return new ProviderHomePage(_context);
-        }
-
-
         public ProviderHomePage LogInToProviderHomePage(ProviderLoginUser login)
         {
             _objectContext.SetUkprn(login.Ukprn);
@@ -91,7 +68,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         {
             login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
             login.Password = _context.GetUser<ProviderViewOnlyUser>().Password;
-            GoToProviderHomePage1(login, false);
+            GoToProviderHomePage(login, false);
         }
 
         public void LoginAsContributor(ProviderLoginUser login)

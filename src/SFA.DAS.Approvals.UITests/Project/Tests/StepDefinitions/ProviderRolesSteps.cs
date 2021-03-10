@@ -3,7 +3,7 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
-
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -11,6 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderRolesSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
 
@@ -18,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
         }
 
@@ -39,8 +41,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 _providerHomePageStepsHelper.LoginAsAccountOwner(login);
             }
-
-            _providerHomePageStepsHelper.GoToProviderHomePage1(login,false);
+            login.Ukprn = _objectContext.Get("Ukprn");
+            _providerHomePageStepsHelper.GoToProviderHomePage(login,false);
         }
 
         [Then(@"the user can create reservation")]
