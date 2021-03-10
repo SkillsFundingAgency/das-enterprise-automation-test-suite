@@ -66,13 +66,12 @@
         public string SecondOrganisationName { get; set; }
     }
 
-    public class Version4AgreementUser : LoginUser
+    public class LoginUserWithSpecificOrg : LoginUser
     {
         public string OrganisationName { get; set; }
     }
 
-    public class Version5AgreementUser : LoginUser
-    {
-        public string OrganisationName { get; set; }
-    }
+    public class Version4AgreementUser : LoginUserWithSpecificOrg { }
+
+    public class Version5AgreementUser : LoginUserWithSpecificOrg { }
 }

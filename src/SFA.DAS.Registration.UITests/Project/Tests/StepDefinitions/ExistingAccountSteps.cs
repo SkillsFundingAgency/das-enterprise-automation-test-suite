@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -25,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
-    [Given(@"the Employer logins using existing Levy Account")]
+        [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
         public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
@@ -39,7 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing view user account")]
         [When(@"the Employer logins using existing view user account")]
         public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
-        
+
         [Then(@"Employer is able to navigate to all the link under Settings")]
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
                 .GoToYourAccountsPage().OpenAccount().GoToHomePage()
@@ -72,7 +71,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickToRemoveAnOrg()
                 .GoBackToTheServiceHomePage();
         }
-
 
         [Then(@"the user can not add Payee Scheme")]
         public void ThenTheUserCanNotAddPayeeScheme()
