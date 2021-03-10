@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using RestSharp;
 using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using System;
