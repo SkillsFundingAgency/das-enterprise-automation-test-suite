@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
 {
     public class WithdrawConfirmPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Are you sure the applicant wants to withdraw their application?";
+        protected override string PageTitle => "Are you sure you want to withdraw this application?";
 
         private By InternalComments => By.Id("OptionYesText");
 
