@@ -47,5 +47,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             return _incentiveApplication;
         }
+
+        public IncentiveApplicationBuilder WithAccountLegalEntityId(long accountLegalEntityId)
+        {
+            _incentiveApplication.AccountLegalEntityId = accountLegalEntityId;
+            return this;
+        }
     }
 }

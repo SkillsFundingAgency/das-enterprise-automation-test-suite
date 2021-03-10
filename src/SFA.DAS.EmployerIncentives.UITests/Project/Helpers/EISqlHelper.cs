@@ -51,8 +51,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public async Task CreateAccount(long accountId, long accountLegalEntityId)
         {
-            using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync("INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, HasSignedIncentivesTerms, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, 'Test', 1, 5, 'ABC123')", new { accountId, accountLegalEntityId });
+            await using var dbConnection = new SqlConnection(connectionString);
+            // await dbConnection.ExecuteAsync("INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, HasSignedIncentivesTerms, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, 'Test', 1, 5, 'ABC123')", new { accountId, accountLegalEntityId });
+            await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId });
         }
 
         public async Task SetActiveCollectionPeriod(byte periodNumber, short academicYear)
@@ -226,17 +227,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             }
         }
 
-        public async Task CleanUpIncentives()
+        public async Task DeleteIncentiveData(Guid apprenticeshipIncentiveId)
         {
             await using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync("DELETE incentives.ClawbackPayment");
-            await dbConnection.ExecuteAsync("DELETE incentives.Payment");
-            await dbConnection.ExecuteAsync("DELETE incentives.PendingPaymentValidationResult");
-            await dbConnection.ExecuteAsync("DELETE incentives.PendingPayment");
-            await dbConnection.ExecuteAsync("DELETE incentives.LearningPeriod");
-            await dbConnection.ExecuteAsync("DELETE incentives.ApprenticeshipDaysInLearning");
-            await dbConnection.ExecuteAsync("DELETE incentives.Learner");
-            await dbConnection.ExecuteAsync("DELETE incentives.ApprenticeshipIncentive");
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, apprenticeshipIncentiveId.ToString());
+        }
+
+        public async Task DeleteApplicationData(Guid incentiveApplicationId)
+        {
+
         }
     }
 }

@@ -15,7 +15,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         // from JSON
         private const long ULN = 7229721937;
         private const long UKPRN = 10005310;
-        private const long AccountId = 14326;
+        private const long AccountId = -123;
+        private const long AccountLegalEntityId = -321;
         private const long ApprenticeshipId = 133218;
         private readonly DateTime _plannedStartDate = new DateTime(2020, 8, 6);
 
@@ -25,23 +26,24 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private PendingPayment _initialEarning;
         private Payment _payment;
         private List<PendingPayment> _newPendingPayments;
+        private IncentiveApplication _incentiveApplication;
 
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context) { }
 
         [Given(@"an existing apprenticeship incentive with learning starting on 6-Aug-2020")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
-            await CleanUpIncentives();
             await SetActiveCollectionPeriod(_paymentPeriod.Number, _paymentPeriod.Year);
 
             var dateOfBirth = _plannedStartDate.AddYears(-24).AddMonths(-10); // under 25 at the start of learning 
 
-            var incentiveApplication = incentiveApplicationBuilder.Build()
+            _incentiveApplication = incentiveApplicationBuilder.Build()
                 .WithAccountId(AccountId)
+                .WithAccountLegalEntityId(AccountLegalEntityId)
                 .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, _plannedStartDate, dateOfBirth)
                 .Create();
 
-            _apprenticeshipIncentiveId = await Submit(incentiveApplication);
+            _apprenticeshipIncentiveId = await SubmitIncentiveApplication(_incentiveApplication);
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, LearnerMatchApiResponses.Clawbacks1_R07_json);
             await RunLearnerMatchOrchestrator();
@@ -121,7 +123,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"a new second pending payment of £750 is created for Period R06 2122")]
-        public void ThenANewSecondPendingPaymentOfIsCreated()
+        public async Task ThenANewSecondPendingPaymentOfIsCreated()
         {
             var pp = _newPendingPayments.Single(x =>
                  x.ApprenticeshipIncentiveId == _apprenticeshipIncentiveId
@@ -132,6 +134,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             pp.PaymentMadeDate.Should().BeNull();
             pp.PeriodNumber.Should().Be(6);
             pp.PaymentYear.Should().Be(2122);
+
+            await DeleteIncentive(_apprenticeshipIncentiveId);
+            await DeleteApplicationData(_incentiveApplication.Id);
         }
+
     }
 }
