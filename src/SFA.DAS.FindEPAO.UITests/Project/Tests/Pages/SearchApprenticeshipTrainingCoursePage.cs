@@ -10,6 +10,10 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) => _context = context;
 
+        #region Locators
+        private By BackButton => By.ClassName("govuk-back-link");
+        #endregion
+
         public EPAOOrganisationsPage SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
@@ -28,10 +32,21 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
             return new EPAOOrganisationDetailsPage(_context);
         }
 
-        public IntegratedAppreticeshipStandardPage SearchForAnIntegratedApprenticeshipStandard(string searchTerm)
+        public EPAOOrganisationsPage SearchForAnIntegratedApprenticeshipStandard(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
-            return new IntegratedAppreticeshipStandardPage(_context);
+            return new EPAOOrganisationsPage(_context);
+        }
+
+        public FindEPAOIndexPage NavigateBackFromSearchApprenticeshipPageToHomePage()
+        {
+            NavigateBackToHomePage();
+            return new FindEPAOIndexPage(_context);
+        }
+        public FindEPAOIndexPage NavigateBackToHomePage()
+        {
+            formCompletionHelper.Click(BackButton);
+            return new FindEPAOIndexPage(_context);
         }
     }
 }

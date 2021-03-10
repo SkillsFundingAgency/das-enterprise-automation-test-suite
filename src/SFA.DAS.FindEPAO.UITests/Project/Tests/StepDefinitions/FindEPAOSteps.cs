@@ -14,7 +14,6 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         private EPAOOrganisationsPage _ePAOOrganisationsPage;
         private EPAOOrganisationDetailsPage _ePAOOrganisationDetailsPage;
         private ZeroAssessmentOrganisationsPage _zeroAssessmentOrganisationsPage;
-        private IntegratedAppreticeshipStandardPage _integratedAppreticeshipStandardPage;
 
         public FindEPAOSteps(ScenarioContext context)
         {
@@ -32,11 +31,15 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserSearchesAStandardTermWithSingleEPAO(string searchTerm) => _ePAOOrganisationDetailsPage = _findEPAOStepsHelper.SearchForApprenticeshipStandardWithSingleEPAO(searchTerm);
 
         [Given(@"the user searches an integrated standard '(.*)' term")]
-        public void GivenTheUserSearchesAnIntegratedStandardTerm(string searchTerm) => _integratedAppreticeshipStandardPage = _findEPAOStepsHelper.SearchForIntegratedApprenticeshipStandard(searchTerm);
+        public void GivenTheUserSearchesAnIntegratedStandardTerm(string searchTerm) => _ePAOOrganisationsPage = _findEPAOStepsHelper.SearchForIntegratedApprenticeshipStandard(searchTerm);
+
+        [When(@"the user clicks on view other end point organisations")]
+        public void WhenTheUserClicksOnViewOtherEndPointOrganisations() => _ePAOOrganisationsPage = _ePAOOrganisationDetailsPage.SelectViewOtherEndPointOrganisations();
 
         [Then(@"the user is able to click back to the search apprenticeship page")]
         public void WhenTheUserClicksBack() => _ePAOOrganisationDetailsPage.NavigateBackFromSingleEPAOOrganisationDetailsPage();
 
+        [When(@"the user selects an EPAO from the list")]
         [Then(@"the user selects an EPAO from the list")]
         public void WhenTheUserSelectsAnEPAOFromTheList()
         {
@@ -49,8 +52,10 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactESFAButtonDisplayed());
         }
 
-        [Then(@"the user is able to click back from integrated apprenticeship page")]
-        public void ThenTheUserIsAbleToClickBackFromIntegratedApprenticeshipPage() => _integratedAppreticeshipStandardPage.NavigateBackFromIntegratedApprenticeshipsPage();
-
+        [Then(@"the user is able to click back to homepage")]
+        public void ThenTheUserIsAbleToClickBackToHomepage() => _ePAOOrganisationsPage.NavigateBackFromEPAOOrgansationPageToDetailsPage()
+            .NavigateBackFromEPAOOrgansationDetailsPageToOrganisationPage()
+            .NavigateBackFromEPAOOrganisationsPageToSearchApprenticeshipTrainingPage()
+            .NavigateBackToHomePage();
     }
 }

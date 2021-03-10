@@ -11,7 +11,9 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         #region Locators
-        private By BackToSearchApprenticeshipTraining => By.ClassName("govuk-back-link");
+        private By BackButton => By.ClassName("govuk-back-link");
+        private By ViewOtherEndPointOrganisations => By.LinkText("View the other end-point assessment organisations");
+
         #endregion
 
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromSingleEPAOOrganisationDetailsPage()
@@ -21,8 +23,24 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         }
         public SearchApprenticeshipTrainingCoursePage NavigateBackToSearchApprenticeshipTraining()
         {
-            formCompletionHelper.Click(BackToSearchApprenticeshipTraining);
+            formCompletionHelper.Click(BackButton);
             return new SearchApprenticeshipTrainingCoursePage(_context);
+        }
+        public EPAOOrganisationsPage SelectViewOtherEndPointOrganisations()
+        {
+            formCompletionHelper.Click(ViewOtherEndPointOrganisations);
+            return new EPAOOrganisationsPage(_context);
+        }
+
+        public EPAOOrganisationsPage NavigateBackFromEPAOOrgansationDetailsPageToOrganisationPage()
+        {
+            NavigateBackToEPAOOrgansationPage();
+            return new EPAOOrganisationsPage(_context);
+        }
+        public EPAOOrganisationsPage NavigateBackToEPAOOrgansationPage()
+        {
+            formCompletionHelper.Click(BackButton);
+            return new EPAOOrganisationsPage(_context);
         }
     }
 }
