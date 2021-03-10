@@ -61,16 +61,34 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = &apos;@ApprenticeshipIncentiveId&apos;;
-        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = &apos;@ApprenticeshipIncentiveId&apos;;
+        ///   Looks up a localized string similar to delete x from IncentiveApplicationStatusAudit x 
+        ///    inner join IncentiveApplicationApprenticeship a on x.IncentiveApplicationApprenticeshipId=a.Id
+        ///where IncentiveApplicationId=@incentiveApplicationId;
+        ///
+        ///delete x from ApprenticeshipIncentive x 
+        ///    inner join IncentiveApplicationApprenticeship a on x.IncentiveApplicationApprenticeshipId=a.Id
+        ///where IncentiveApplicationId=@incentiveApplicationId;
+        ///    
+        ///delete from IncentiveApplicationApprenticeship where IncentiveApplicationId=@incentiveApplicationId;
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DeleteApplicationData {
+            get {
+                return ResourceManager.GetString("DeleteApplicationData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         /// 
         /// DELETE x FROM incentives.PendingPaymentValidationResult x
         ///	INNER JOIN incentives.PendingPayment pp ON pp.Id = PendingPaymentId
-        ///	WHERE ApprenticeshipIncentiveId = &apos;@ApprenticeshipIncentiveId&apos;;
+        ///	WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         ///
-        /// DELETE incentives.PendingPayment WHERE ApprenticeshipIncentiveId = &apos;@ApprenticeshipIncentiveId&apos;;
+        /// DELETE incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         ///
-        /// DELETE x FROM inc [rest of string was truncated]&quot;;.
+        /// DELETE x FROM incentives. [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DeleteIncentiveData {
             get {

@@ -52,7 +52,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         public async Task CreateAccount(long accountId, long accountLegalEntityId)
         {
             await using var dbConnection = new SqlConnection(connectionString);
-            // await dbConnection.ExecuteAsync("INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, HasSignedIncentivesTerms, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, 'Test', 1, 5, 'ABC123')", new { accountId, accountLegalEntityId });
             await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId });
         }
 
@@ -230,12 +229,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         public async Task DeleteIncentiveData(Guid apprenticeshipIncentiveId)
         {
             await using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, apprenticeshipIncentiveId.ToString());
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, new { apprenticeshipIncentiveId });
         }
 
         public async Task DeleteApplicationData(Guid incentiveApplicationId)
         {
-
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteApplicationData, new { incentiveApplicationId });
         }
     }
 }

@@ -15,18 +15,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         // from JSON
         private const long ULN = 7229721937;
         private const long UKPRN = 10005310;
-        private const long AccountId = -123;
-        private const long AccountLegalEntityId = -321;
+        private const long AccountId = 14326;
+        private const long AccountLegalEntityId = 123456;
         private const long ApprenticeshipId = 133218;
         private readonly DateTime _plannedStartDate = new DateTime(2020, 8, 6);
 
         private readonly (byte Number, short Year) _paymentPeriod = (6, 2021);
 
-        private Guid _apprenticeshipIncentiveId;
+
         private PendingPayment _initialEarning;
         private Payment _payment;
         private List<PendingPayment> _newPendingPayments;
-        private IncentiveApplication _incentiveApplication;
 
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context) { }
 
@@ -37,13 +36,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
             var dateOfBirth = _plannedStartDate.AddYears(-24).AddMonths(-10); // under 25 at the start of learning 
 
-            _incentiveApplication = incentiveApplicationBuilder.Build()
+            incentiveApplication = incentiveApplicationBuilder.Build()
                 .WithAccountId(AccountId)
-                .WithAccountLegalEntityId(AccountLegalEntityId)
                 .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, _plannedStartDate, dateOfBirth)
                 .Create();
 
-            _apprenticeshipIncentiveId = await SubmitIncentiveApplication(_incentiveApplication);
+            apprenticeshipIncentiveId = await SubmitIncentiveApplication(incentiveApplication);
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, LearnerMatchApiResponses.Clawbacks1_R07_json);
             await RunLearnerMatchOrchestrator();
@@ -57,11 +55,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             await RunApprovePaymentsOrchestrator();
 
             _initialEarning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId ==
-                _apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
+                apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
 
             _payment = GetFromDatabase<Payment>(p => p.ApprenticeshipIncentiveId ==
-                _apprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
+                apprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
             _payment.Should().NotBeNull();
             _payment.PaidDate.Should().NotBeNull();
         }
@@ -112,7 +110,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenANewFirstPendingPaymentOfIsCreated()
         {
             var pp = _newPendingPayments.Single(x =>
-                x.ApprenticeshipIncentiveId == _apprenticeshipIncentiveId
+                x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                 && x.EarningType == EarningType.FirstPayment
                 && !x.ClawedBack);
 
@@ -126,7 +124,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public async Task ThenANewSecondPendingPaymentOfIsCreated()
         {
             var pp = _newPendingPayments.Single(x =>
-                 x.ApprenticeshipIncentiveId == _apprenticeshipIncentiveId
+                 x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                 && x.EarningType == EarningType.SecondPayment
                 && !x.ClawedBack);
 
@@ -134,9 +132,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             pp.PaymentMadeDate.Should().BeNull();
             pp.PeriodNumber.Should().Be(6);
             pp.PaymentYear.Should().Be(2122);
-
-            await DeleteIncentive(_apprenticeshipIncentiveId);
-            await DeleteApplicationData(_incentiveApplication.Id);
         }
 
     }

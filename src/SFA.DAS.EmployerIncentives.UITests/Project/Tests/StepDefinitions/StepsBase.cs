@@ -27,6 +27,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
         private readonly Stopwatch _stopwatch;
+        protected Guid apprenticeshipIncentiveId;
+        protected IncentiveApplication incentiveApplication;
 
         protected StepsBase(ScenarioContext context)
         {
@@ -100,7 +102,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(5));
+                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
@@ -161,6 +163,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             StartStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
             await businessCentralApiHelper.SetupAcceptAllRequests();
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
+        }
+
+        [AfterScenario()]
+        protected async Task CleanUpIncentives()
+        {
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive(apprenticeshipIncentiveId);
+            if (incentiveApplication != null) await DeleteApplicationData(incentiveApplication.Id);
         }
     }
 }
