@@ -53,6 +53,8 @@
 
     public class SupportConsoleTier2User : LoginUser { }
 
+    public class SupportToolsUser : LoginUser { }
+
     public class EILevyUser : LoginUser { }
 
     public class TransactorUser : LoginUser { }
@@ -63,4 +65,13 @@
     {
         public string SecondOrganisationName { get; set; }
     }
+
+    public class LoginUserWithSpecificOrg : LoginUser
+    {
+        public string OrganisationName { get; set; }
+    }
+
+    public class Version4AgreementUser : LoginUserWithSpecificOrg { }
+
+    public class Version5AgreementUser : LoginUserWithSpecificOrg { }
 }

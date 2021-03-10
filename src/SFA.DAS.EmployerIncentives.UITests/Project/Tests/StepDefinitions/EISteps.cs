@@ -20,17 +20,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EILevyUser _eILevyUser;
+        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly EINavigationHelper _eINavigationHelper;
+        private readonly MultipleAccountUser _multipleAccountUser;
+        private ViewApplicationsShutterPage _viewApplicationsShutterPage;
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly MultipleAccountUser _multipleAccountUser;
-        private ViewApplicationsShutterPage _viewApplicationsShutterPage;
-        private string email;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
+        private readonly EISqlHelper _eISqlHelper;
+        private string _email;
 
         public EISteps(ScenarioContext context)
         {
@@ -38,21 +41,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _multipleAccountUser = _context.GetUser<MultipleAccountUser>();
             _eILevyUser = _context.GetUser<EILevyUser>();
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
+            _eINavigationHelper = new EINavigationHelper(_context);
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            _eISqlHelper = _context.Get<EISqlHelper>();
         }
 
         [When(@"the Employer switches to an account without apprentices")]
         public void WhenTheEmployerSwitchesToAnAccountWithoutApprentices()
         {
             var secondOrganisationName = _multipleAccountUser.SecondOrganisationName;
-
             var yourAccountPage = new HomePage(_context, true).GoToYourAccountsPage();
 
             _objectContext.UpdateOrganisationName(secondOrganisationName);
-
             yourAccountPage.GoToHomePage(secondOrganisationName);
         }
 
@@ -74,9 +78,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ContinueToAddBankDetails()
                 .ContinueToOrgDetailsPage()
                 .ContinueToAddressDetailsPage()
-                .SubmitAddressDetails(email)
+                .SubmitAddressDetails(_email)
                 .SubmitBankDetails()
-                .SubmitSubmitterDetails(email)
+                .SubmitSubmitterDetails(_email)
                 .SubmitSummaryPage()
                 .ReturnToEasPage()
                 .ReturnToAccountHomePage();
@@ -101,7 +105,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var startMonth = _objectContext.GetEIStartMonth();
             var startYear = _objectContext.GetEIStartYear();
             var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2020();
-            _context.Get<EISqlHelper>().VerifyEarningData(email, startMonth, startYear, ageCategory);
+            _eISqlHelper.VerifyEarningData(_email, startMonth, startYear, ageCategory);
         }
 
         [Then(@"the Employer is able to view EI applications")]
@@ -120,14 +124,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var homePageFinancesSection = new HomePageFinancesSection(_context);
 
             if (entities == Entities.Single)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
                 _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
-
-        [Given(@"the Employer logins using existing EI Levy Account")]
-        [When(@"the Employer logins using existing EI Levy Account")]
-        public void GivenTheEmployerLoginsUsingExistingEILevyAccount() => _employerPortalLoginHelper.Login(_eILevyUser, true);
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
         public void ThenSelectApprenticesShutterPageIsDisplayedForSelectingYesOptionInQualificationPage() =>
@@ -174,12 +174,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenEIStartPageIsDisplayedOnClickingOnApplyForThePaymentLinkOnViewEIApplicationsShutterPage()
         {
             _viewApplicationsShutterPage.ClickOnApplyButton();
-            new HomePage(_context, true);
+            _homePageStepsHelper.GotoEmployerHomePage();
         }
 
         private WeNeedYourOrgBankDetailsPage SubmitEiApplicationWithOutBankDetails()
         {
-            email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _objectContext.Get("registeredemailaddress");
+            _email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _loginCredentialsHelper.GetLoginCredentials().Username;
+            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountId(_email));
 
             return _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
