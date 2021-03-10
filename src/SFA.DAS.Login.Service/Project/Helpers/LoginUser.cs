@@ -66,7 +66,6 @@
         public string SecondOrganisationName { get; set; }
     }
 
-    public class LoginUserWithSpecificOrg : LoginUser { }
     public class ProviderViewOnlyUser : LoginUser { }
 
     public class ProviderContributorUser : LoginUser { }
@@ -75,7 +74,7 @@
 
     public class ProviderAccountOwnerUser : LoginUser { }
 
-    public class Version4AgreementUser : LoginUser
+    public class LoginUserWithSpecificOrg : LoginUser
     {
         public string OrganisationName { get; set; }
     }
