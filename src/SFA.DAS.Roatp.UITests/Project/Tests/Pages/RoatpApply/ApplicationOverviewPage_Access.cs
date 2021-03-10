@@ -193,10 +193,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_4);
             return new UploadContractForServiceTemplatePage(_context);
         }
-        public UploadCommitmentStatementTemplatePage Access_Section5_CommitmentStatementTemplate()
+        public CommitmentStatementTemplatePage Access_Section5_CommitmentStatementTemplate()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_5);
-            return new UploadCommitmentStatementTemplatePage(_context);
+            return new CommitmentStatementTemplatePage(_context);
         }
         public OrganisationsProcessForInitialAssessementsPage Access_Section5_PriorLearningOfApprentices()
         {

@@ -21,10 +21,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public TwoUnsuccessfulApplicationsPage SubmitValidUserDetailsEnterUkprnPage()
+        public UnsuccessfulApplicationsPage SubmitValidUserDetailsEnterUkprnPage()
         {
             SubmitValidUserDetails();
-            return new TwoUnsuccessfulApplicationsPage(_context);
+            return new UnsuccessfulApplicationsPage(_context);
         }
 
         public ApplicationOverviewPage SubmitValidUserDetailsApplicationOverviewPage()
