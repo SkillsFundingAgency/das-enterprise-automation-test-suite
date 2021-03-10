@@ -21,6 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             FundingRemovedFromEducationBodies = randomDataGenerator.GenerateRandomAlphabeticString(20);
             RemovedFromProfessionalOrTradeRegisters = randomDataGenerator.GenerateRandomAlphabeticString(20);
             InvoluntaryWithdrawlFromITTAccreditation = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            NamesOfAllOrganisations = randomDataGenerator.GenerateRandomAlphabeticString(20);
             RemovedFromCharityRegister = randomDataGenerator.GenerateRandomAlphabeticString(20);
             InvestigatedDueToSafeGuardingIssues = randomDataGenerator.GenerateRandomAlphabeticString(20);
             InvestigatedDueToWhistleBlowingIssues = randomDataGenerator.GenerateRandomAlphabeticString(20);
@@ -107,6 +108,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string ExampleToImproveEmployees { get; }
         public string ExampleToMaintainEmployees { get; }
         public string HowHasTheTeamOrPersonWorked { get; }
+        public string NamesOfAllOrganisations { get; }
         public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }

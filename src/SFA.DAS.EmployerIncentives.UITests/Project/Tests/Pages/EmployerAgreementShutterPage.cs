@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -6,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class EmployerAgreementShutterPage : EIBasePage
     {
-        protected override string PageTitle => "You need to accept the employer agreement";
+        protected override string PageTitle => $"{ObjectContextExtension.GetOrganisationName(objectContext)} needs to accept the employer agreement";
 
         #region Locators
         private readonly ScenarioContext _context;

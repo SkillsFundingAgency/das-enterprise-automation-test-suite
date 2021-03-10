@@ -130,6 +130,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider completes Experience and Accreditations section by selecting GradeTy" +
                         "peRequiresImprovement for Main Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 17
+ testRunner.And("the provider verifies Financial Section Status as not required", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

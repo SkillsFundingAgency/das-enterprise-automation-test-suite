@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteProviderSupportRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsSupporting());
 
-        internal ApplicationOverviewPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue().VerifyIntroductionStatus(StatusHelper.StatusNext);
+        internal ApplicationOverviewPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptTermAndConditionsAndContinue().VerifyIntroductionStatus(StatusHelper.StatusNext);
         
         private ChooseProviderRoutePage ConfirmUkprn() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinue();
 

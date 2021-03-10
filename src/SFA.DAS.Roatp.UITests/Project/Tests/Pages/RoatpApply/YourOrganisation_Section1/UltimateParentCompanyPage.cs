@@ -22,5 +22,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new ParentCompanyDetailsPage(_context);
         }
+        public ParentCompanyDetailsPage ClickContinueParentCompanyOption()
+        {
+            Continue();
+            return new ParentCompanyDetailsPage(_context);
+        }
+
     }
 }

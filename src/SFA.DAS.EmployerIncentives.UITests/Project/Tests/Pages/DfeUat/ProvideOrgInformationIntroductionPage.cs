@@ -11,6 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         #region Locators
         private readonly ScenarioContext _context;
+        private By VRFCookieCloseButton => By.Id("close-cookie-message");
         #endregion
 
         public ProvideOrgInformationIntroductionPage(ScenarioContext context) : base(context, false)
@@ -22,6 +23,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         public ProvideOrgInformationOrgDetailsPage ContinueToOrgDetailsPage()
         {
+            if (pageInteractionHelper.IsElementPresent(VRFCookieCloseButton))
+                formCompletionHelper.Click(VRFCookieCloseButton);
+
             frameHelper.SwitchFrameAndAction(() => Continue());
             return new ProvideOrgInformationOrgDetailsPage(_context);
         }

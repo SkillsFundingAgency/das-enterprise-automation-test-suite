@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class SelectTheApprenticesPage : EIBasePage
     {
-        protected override string PageTitle => "Select the apprentices you want to apply for";
+        protected override string PageTitle => "Which apprentices do you want to apply for?";
 
         #region Locators
         private readonly ScenarioContext _context;
@@ -15,13 +15,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public SelectTheApprenticesPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ConfirmYourApprenticesPage SubmitApprentices()
+        public ConfirmApprenticesPage SubmitApprentices()
         {
             foreach (var apprentice in pageInteractionHelper.FindElements(Apprentices))
                 formCompletionHelper.ClickElement(apprentice);
 
             Continue();
-            return new ConfirmYourApprenticesPage(_context);
+            return new ConfirmApprenticesPage(_context);
         }
     }
 }

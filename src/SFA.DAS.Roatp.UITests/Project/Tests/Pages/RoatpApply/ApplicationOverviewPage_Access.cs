@@ -25,6 +25,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.ClickElement(ChangeUkprn);
             return new ChangeUkprnPage(_context);
         }
+        public ChangeRoutePage Access_ChangeRoute()
+        {
+            formCompletionHelper.ClickElement(ChangeRoute);
+            return new ChangeRoutePage(_context);
+        }
 
         public PermissionsFromEveryoneNamedPage Access_Section9_ApplicationPermissionChecks()
         {

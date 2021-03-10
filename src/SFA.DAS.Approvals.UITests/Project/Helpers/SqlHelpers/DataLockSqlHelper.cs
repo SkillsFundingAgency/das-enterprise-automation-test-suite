@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private int _apprenticeshipId;
 
-        public DataLockSqlHelper(ApprovalsConfig approvalsConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(approvalsConfig.CommitmentsDbConnectionString)
+        public DataLockSqlHelper(DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(dBConfig.CommitmentsDbConnectionString)
         {
             _dataHelper = dataHelper;
             _coursedataHelper = coursedataHelper;

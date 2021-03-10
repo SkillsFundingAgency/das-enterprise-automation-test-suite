@@ -52,6 +52,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "NIOMI SAMANTHA JOSEPH"),
                     new KeyValuePair<string, string>(ukprnkey, "10066540"),
          }); //rpe2e03
+            _data.Add("rpadgw07",
+           new List<KeyValuePair<string, string>>
+          {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw07@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "JO INGHAM"),
+                    new KeyValuePair<string, string>(ukprnkey, "10040377"),
+         }); //rpe2e03
             _data.Add("rpadfha01",
              new List<KeyValuePair<string, string>>
              {
@@ -123,6 +130,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
                     new KeyValuePair<string, string>(ukprnkey, "10063154"),
             });//rpe2e02, rpadgw02, rpadas02, moderation (fail few section and ask for clarification)
+            _data.Add("rpadoutcome01",
+            new List<KeyValuePair<string, string>>
+            {
+                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadoutcome01@digital.education.gov.uk"),
+                   new KeyValuePair<string, string>(providernamekey, "FYLO LTD."),
+                   new KeyValuePair<string, string>(ukprnkey, "10067908"),
+            });//rpe2e01, rpadgw01, rpadas01, rpadmod01
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Registration.UITests.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class QualificationQuestionPage : EIBasePage
     {
-        protected override string PageTitle => "Have you taken on new apprentices who started their contract of employment between 1 August 2020 and 31 January 2021?";
+        protected override string PageTitle => $"Does {ObjectContextExtension.GetOrganisationName(objectContext)} have apprentices who are eligible for the payment?";
 
         #region Locators
         private readonly ScenarioContext _context;

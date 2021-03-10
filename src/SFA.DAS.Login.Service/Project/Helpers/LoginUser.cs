@@ -43,6 +43,8 @@
         public string FullName { get; set; }
     }
 
+    public class EPAOStageTwoStandardCancelUser : LoginUser { }
+
     public class EPAOE2EApplyUser : LoginUser { }
 
     public class EPAOAdminUser : LoginUser { }
@@ -50,6 +52,8 @@
     public class SupportConsoleTier1User : LoginUser { }
 
     public class SupportConsoleTier2User : LoginUser { }
+
+    public class SupportToolsUser : LoginUser { }
 
     public class EILevyUser : LoginUser { }
 
@@ -61,4 +65,13 @@
     {
         public string SecondOrganisationName { get; set; }
     }
+
+    public class LoginUserWithSpecificOrg : LoginUser
+    {
+        public string OrganisationName { get; set; }
+    }
+
+    public class Version4AgreementUser : LoginUserWithSpecificOrg { }
+
+    public class Version5AgreementUser : LoginUserWithSpecificOrg { }
 }

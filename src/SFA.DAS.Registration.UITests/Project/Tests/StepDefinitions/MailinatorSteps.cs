@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
             new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_objectContext.GetRegisteredEmail())
                 .ClickOnEmail()
-                .VerifyAccessCode("ABC123");
+                .VerifyAccessCode();
         }
     }
 }

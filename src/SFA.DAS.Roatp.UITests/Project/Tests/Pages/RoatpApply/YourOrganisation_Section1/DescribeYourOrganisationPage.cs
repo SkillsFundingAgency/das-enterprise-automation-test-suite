@@ -6,8 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class DescribeYourOrganisationPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "How would you describe your organisation?";
-        protected override By PageHeader => By.CssSelector("h2.govuk-label-wrapper");
-
+         
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -25,6 +24,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PublicServiceMutualRadio));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ShelteredWorkshopRadio));
+            Continue();
+            return new ApplicationOverviewPage(_context);
+        }
+        public ApplicationOverviewPage ClickContinueForDescribeYourOrgDetailsSelected()
+        {
             Continue();
             return new ApplicationOverviewPage(_context);
         }

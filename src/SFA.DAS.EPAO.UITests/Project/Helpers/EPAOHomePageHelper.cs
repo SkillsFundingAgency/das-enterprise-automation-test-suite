@@ -7,6 +7,7 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -40,9 +41,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_LandingPage(_context);
         }
 
-        public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
+      public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
-        public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
+      public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
         {
             OpenAdminBaseUrl(true).ClickStartNowButton();
 
@@ -71,5 +72,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
         }
+
+        public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInWithValidDetails(loginUser);
     }
 }

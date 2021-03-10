@@ -24,21 +24,41 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Go to RoATP gateway applications");
             return new GatewayLandingPage(_context);
         }
+
         public FinancialLandingPage AccessFinancialApplications()
         {
             formCompletionHelper.ClickElement(FinancialApplicationLink);
             return new FinancialLandingPage(_context);
         }
+
         public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications() 
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
             return new RoatpAssessorApplicationsHomePage(_context);
         }
+
         public OversightLandingPage AccessOversightApplications() 
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP application outcomes");
             return new OversightLandingPage(_context);
         }
 
+        public RoatpAdminHomePage SearchForATrainingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
+            return new RoatpAdminHomePage(_context);
+        }
+
+        public StaffDashboardPage DownloadTrainingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
+            return new StaffDashboardPage(_context);
+        }
+
+        public RoatpApplicationReportPage DownloadApplicationData()
+        {
+            formCompletionHelper.ClickLinkByText("Download application data");
+            return new RoatpApplicationReportPage(_context);
+        }
     }
 }
