@@ -66,7 +66,7 @@
         public string SecondOrganisationName { get; set; }
     }
 
-    public class LoginUserWithSpecificOrg : LoginUser
+    public class LoginUserWithSpecificOrg : LoginUser { }
     public class ProviderViewOnlyUser : LoginUser { }
 
     public class ProviderContributorUser : LoginUser { }
