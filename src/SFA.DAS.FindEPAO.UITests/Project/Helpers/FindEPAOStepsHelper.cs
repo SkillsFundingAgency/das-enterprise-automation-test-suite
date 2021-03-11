@@ -29,10 +29,10 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Helpers
             return new EPAOOrganisationDetailsPage(_context);
         }
 
-        public IntegratedAppreticeshipStandardPage SearchForIntegratedApprenticeshipStandard(string standard = "")
+        public EPAOOrganisationsPage SearchForIntegratedApprenticeshipStandard(string standard = "")
         {
             new FindEPAOIndexPage(_context).ClickStartButton().SearchForAnIntegratedApprenticeshipStandard(standard);
-            return new IntegratedAppreticeshipStandardPage(_context);
+            return new EPAOOrganisationsPage(_context);
         }
     }
 }
