@@ -108,13 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the user searches an integrated standard \'Dental nurse\' term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the user selects an EPAO from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
- testRunner.And("the user clicks on view other end point organisations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.Then("the user is able to click back to homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user is able to click back from integrated apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
