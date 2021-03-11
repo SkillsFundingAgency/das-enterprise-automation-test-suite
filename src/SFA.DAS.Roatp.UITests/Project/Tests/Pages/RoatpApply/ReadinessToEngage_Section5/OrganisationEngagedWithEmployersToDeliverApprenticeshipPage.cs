@@ -19,6 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         public ManageRelationshipWithEmployerPage ClickYesToEngagedWithEmployersToDeliverApprenticeshipAndContinue()
         {
             SelectRadioOptionByText("Yes");
+            EnterLongTextAreaAndContinue(applydataHelpers.NamesOfAllOrganisations);
             Continue();
             return new ManageRelationshipWithEmployerPage(_context);
         }

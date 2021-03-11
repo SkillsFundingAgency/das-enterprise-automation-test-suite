@@ -23,9 +23,19 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             return Execute(Method.POST, $"/registrations", payload, expectedResponse);
         }
 
-        public IRestResponse ChangeApprenticeEmailAddress(long apprenticeId, ApprenticeEmailAddressRequest payload, HttpStatusCode expectedResponse)
+        public IRestResponse ChangeApprenticeEmailAddress(string apprenticeId, ApprenticeEmailAddressRequest payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/apprentices/{apprenticeId}/email", payload, expectedResponse);
+        }
+
+        public IRestResponse GetApprenticeships(string apprenticeId, HttpStatusCode expectedResponse)
+        {
+            return Execute($"/apprentices/{apprenticeId}/apprenticeships", expectedResponse);
+        }
+
+        public IRestResponse GetApprenticeship(string apprenticeId, long commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
+        {
+            return Execute($"/apprentices/{apprenticeId}/apprenticeships/{commitmentsApprenticeshipId}", expectedResponse);
         }
     }
 }

@@ -42,6 +42,15 @@ namespace SFA.DAS.API.Framework.RestClients
             return _restResponse;
         }
 
+        protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
+        {
+            CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
+
+            return Execute(expectedResponse);
+        }
+
+        protected IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => Execute(Method.GET, resource, string.Empty, expectedResponse);
+
         protected void Addheader(string key, string value) => restRequest.AddHeader(key, value);
 
         protected void Addheaders(Dictionary<string, string> dictionary)
@@ -50,13 +59,6 @@ namespace SFA.DAS.API.Framework.RestClients
             {
                 Addheader(item.Key, item.Value);
             }
-        }
-
-        protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
-        {
-            CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
-
-            return Execute(expectedResponse);
         }
     }
 }
