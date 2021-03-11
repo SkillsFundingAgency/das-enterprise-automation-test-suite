@@ -5,7 +5,6 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
@@ -58,34 +57,9 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             return new ProviderHomePage(_context);
         }
 
-        public ProviderHomePage LogInToProviderHomePage(ProviderLoginUser login)
+        public ProviderLoginUser GetProviderLogin(ProviderConfig login)
         {
-            _objectContext.SetUkprn(login.Ukprn);
-            return _loginHelper.Login(login);
-        }
-
-        public void LoginAsViewer(ProviderLoginUser login)
-        {
-            login.Username = _context.GetUser<ProviderViewOnlyUser>().Username;
-            login.Password = _context.GetUser<ProviderViewOnlyUser>().Password;
-        }
-
-        public void LoginAsContributor(ProviderLoginUser login)
-        {
-            login.Username = _context.GetUser<ProviderContributorUser>().Username;
-            login.Password = _context.GetUser<ProviderContributorUser>().Password;
-        }
-
-        public void LoginAsContributorWithApproval(ProviderLoginUser login)
-        {
-            login.Username = _context.GetUser<ProviderContributorWithApprovalUser>().Username;
-            login.Password = _context.GetUser<ProviderContributorWithApprovalUser>().Password;
-        }
-
-        public void LoginAsAccountOwner(ProviderLoginUser login)
-        {
-            login.Username = _context.GetUser<ProviderAccountOwnerUser>().Username;
-            login.Password = _context.GetUser<ProviderAccountOwnerUser>().Password;
+            return new ProviderLoginUser { Username = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
         }
     }
 }
