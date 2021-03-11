@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
 {
     public class WithDrawOutcomePage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Application withdrawn";
+        protected override string PageTitle => "Gateway Outcome";
 
         private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
 
