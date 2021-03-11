@@ -36,16 +36,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new DeleteReservationPage(_context);
         }
 
-        public AccessDeniedPage ClickToDeleteReservation()
+        public ProviderAccessDeniedPage ClickToDeleteReservation()
         {
             formCompletionHelper.ClickElement(DeleteFundingLink);
-            return new AccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(_context);
         }
 
-        public AccessDeniedPage ClickToAddAnApprenticeForaReservation()
+        public ProviderAccessDeniedPage ClickToAddAnApprenticeForaReservation()
         {
             formCompletionHelper.ClickElement(AddApprenticeLink);
-            return new AccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(_context);
         }
     }
 }
