@@ -2,20 +2,19 @@
 using SFA.DAS.EmployerIncentives.UITests.Models;
 using System;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Builders
 {
     public class IncentiveApplicationBuilder
     {
         private readonly Fixture _fixture = new Fixture();
-        private IncentiveApplication _incentiveApplication;
+        private readonly IncentiveApplication _incentiveApplication;
 
-        public IncentiveApplicationBuilder Build()
+        public IncentiveApplicationBuilder()
         {
             _incentiveApplication = _fixture.Build<IncentiveApplication>()
                 .Without(x => x.Apprenticeships)
                 .Create();
 
-            return this;
         }
 
         public IncentiveApplicationBuilder WithAccountId(long accountId)
@@ -46,12 +45,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public IncentiveApplication Create()
         {
             return _incentiveApplication;
-        }
-
-        public IncentiveApplicationBuilder WithAccountLegalEntityId(long accountLegalEntityId)
-        {
-            _incentiveApplication.AccountLegalEntityId = accountLegalEntityId;
-            return this;
         }
     }
 }

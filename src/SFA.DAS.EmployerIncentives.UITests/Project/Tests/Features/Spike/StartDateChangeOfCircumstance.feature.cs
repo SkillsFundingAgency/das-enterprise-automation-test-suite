@@ -104,17 +104,17 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("an existing apprenticeship incentive with learning starting on 6-Aug-2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an existing apprenticeship incentive with learning starting on 12-Nov-2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.And("a payment of £1000 sent in Period R07 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.And("a start date change of circumstance occurs in Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a start date change of circumstance occurs in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("learner data is updated with a new learning start date 1-Feb-2021 making the lear" +
-                        "ner over twenty five at the start of learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("learner data is updated with a new learning start date 13-Dec-2020 making the lea" +
+                        "rner over twenty five at the start of learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.When("the incentive learner data is refreshed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -124,13 +124,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 12
  testRunner.Then("the paid earning of £1000 is marked as requiring a clawback in the currently acti" +
-                        "ve Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "ve Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.And("a new first pending payment of £750 is created for Period R09 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a new first pending payment of £750 is created for Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("a new second pending payment of £750 is created for Period R06 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a new second pending payment of £750 is created for Period R05 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

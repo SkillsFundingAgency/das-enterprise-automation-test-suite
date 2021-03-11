@@ -23,12 +23,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
         protected BusinessCentralApiHelper businessCentralApiHelper;
-        protected IncentiveApplicationBuilder incentiveApplicationBuilder;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
-        private readonly Stopwatch _stopwatch;
         protected Guid apprenticeshipIncentiveId = Guid.Empty;
         protected IncentiveApplication incentiveApplication;
+        protected (byte Number, short Year) activePaymentPeriod;
+        private readonly Stopwatch _stopwatch;
 
         protected StepsBase(ScenarioContext context)
         {
@@ -45,7 +45,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             businessCentralApiHelper = new BusinessCentralApiHelper(config);
             paymentService = new EIPaymentsProcessHelper(config);
 
-            incentiveApplicationBuilder = new IncentiveApplicationBuilder();
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
         }
 
@@ -70,12 +69,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         protected async Task SetActiveCollectionPeriod(byte periodNumber, short academicYear)
         {
+            activePaymentPeriod.Number = periodNumber;
+            activePaymentPeriod.Year = academicYear;
+
             StartStopWatch("SetActiveCollectionPeriod");
             await sqlHelper.SetActiveCollectionPeriod(periodNumber, academicYear);
             StopStopWatch("SetActiveCollectionPeriod");
         }
 
-        protected async Task<Guid> SubmitIncentiveApplication(IncentiveApplication application)
+        protected async Task SubmitIncentiveApplication(IncentiveApplication application)
         {
             StartStopWatch("SubmitIncentiveApplication");
             await sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
@@ -105,7 +107,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
-            return apprenticeshipIncentiveId;
         }
 
         protected async Task DeleteApplicationData()
@@ -148,10 +149,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             return dbConnection.GetAll<T>().Single(predicate);
         }
 
-        protected async Task RunPaymentsOrchestrator(short paymentPeriodYear, byte paymentPeriodNumber)
+        protected async Task RunPaymentsOrchestrator()
         {
             StartStopWatch("RunPaymentsOrchestrator");
-            await paymentService.StartPaymentProcessOrchestrator(paymentPeriodYear, paymentPeriodNumber);
+            await paymentService.StartPaymentProcessOrchestrator(activePaymentPeriod.Year, activePaymentPeriod.Number);
             await paymentService.WaitUntilWaitingForPaymentApproval();
             StopStopWatch("RunPaymentsOrchestrator");
         }
