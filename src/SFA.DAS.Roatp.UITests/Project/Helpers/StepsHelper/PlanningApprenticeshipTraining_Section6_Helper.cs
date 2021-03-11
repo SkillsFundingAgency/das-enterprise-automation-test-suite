@@ -54,6 +54,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextForOtherWaysToSupportApprenticesAndContinue()
                 .VerifySupporting_Section6(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.Access_Section6_SupportingApprentices()
+                .EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue_MainRoute()
+                .VerifySupporting_Section6(StatusHelper.StatusCompleted);
+        }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_ForeCastingStarts()

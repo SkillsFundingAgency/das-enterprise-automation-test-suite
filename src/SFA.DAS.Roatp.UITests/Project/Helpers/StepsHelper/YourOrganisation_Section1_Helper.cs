@@ -213,8 +213,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelecRequiresImprovementAndContinue()
                 .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
-                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired)
-                .VerifySupporting_Section6(StatusHelper.NotRequired);
+                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired);
         }
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
@@ -226,8 +225,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectNoForFullOfstedInspectionAndContinue()
                 .SelectNoForMonitoringVisitAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
-                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired)
-                .VerifySupporting_Section6(StatusHelper.NotRequired);
+                .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired);
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeGTA(ApplicationOverviewPage applicationOverviewPage)
