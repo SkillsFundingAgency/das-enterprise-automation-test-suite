@@ -4,10 +4,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
     public class OrganisationChecks_Section1Helpers
     {
-        internal GWApplicationOverviewPage PassOrganisationChecks_TwoIn12Months(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_OneIn12Months(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
-            .Access_Section1_2ApplicationsInTwelveMonths()
+            .Access_Section1_1ApplicationInTwelveMonths()
             .SelectPassAndContinue()
             .Verify2ApplicationIn12Months_Section1(StatusHelper.StatusPass);
         }

@@ -5,13 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
-    public class TwoUnsuccessfulApplicationsPage : RoatpApplyBasePage
+    public class UnsuccessfulApplicationsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Have you submitted 2 applications to join the RoATP in the last 12 months?";
+        protected override string PageTitle => "Have you submitted an application to join the RoATP in the last 12 months?";
 
         private readonly ScenarioContext _context;
 
-        public TwoUnsuccessfulApplicationsPage (ScenarioContext context) : base(context)
+        public UnsuccessfulApplicationsPage (ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();   
