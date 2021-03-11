@@ -24,19 +24,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginsUsingExistingEILevyAccount() => _employerPortalLoginHelper.Login(_context.GetUser<EILevyUser>(), true);
 
         [Given(@"the Employer logins using existing Version4AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount()
-        {
-            var v4User = _context.GetUser<Version4AgreementUser>();
-            _context.Get<ObjectContext>().UpdateOrganisationName(v4User.OrganisationName);
-            _employerPortalLoginHelper.Login(v4User, true);
-        }
+        public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version4AgreementUser>());
 
         [Given(@"the Employer logins using existing Version5AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount()
+        public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version5AgreementUser>());
+
+        private void SetOrgAndLogin(LoginUserWithSpecificOrg loginUser)
         {
-            var v5User = _context.GetUser<Version5AgreementUser>();
-            _context.Get<ObjectContext>().UpdateOrganisationName(v5User.OrganisationName);
-            _employerPortalLoginHelper.Login(v5User, true);
+            _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
+            _employerPortalLoginHelper.Login(loginUser, true);
         }
     }
 }

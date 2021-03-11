@@ -11,24 +11,23 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
 
-        public void DeleteIncentiveApplication(string accountid)
+        public void DeleteIncentiveApplication(string accountId)
         {
-            var nullValue = "NULL";
             query =
-                $"DELETE FROM[incentives].[Payment] WHERE AccountId = {accountid};" +
-                $"DELETE FROM[incentives].[PendingPaymentValidationResult] WHERE PendingPaymentId in (SELECT Id FROM[incentives].[PendingPayment] where AccountId = {accountid});" +
-                $"DELETE FROM [incentives].[PendingPayment] WHERE AccountId = {accountid};" +
-                $"DELETE FROM [incentives].[ApprenticeshipIncentive] WHERE AccountId = {accountid};" +
-                $"DELETE FROM [dbo].[IncentiveApplicationApprenticeship] WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE AccountId = {accountid});" +
-                $"DELETE FROM [dbo].[IncentiveApplication] WHERE AccountId = {accountid};" +
-                $"UPDATE [dbo].[Accounts] SET VrfVendorId = {nullValue}, VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountid}";
+                $"DELETE FROM[incentives].[Payment] WHERE accountId = {accountId};" +
+                $"DELETE FROM[incentives].[PendingPaymentValidationResult] WHERE PendingPaymentId in (SELECT Id FROM[incentives].[PendingPayment] where accountId = {accountId});" +
+                $"DELETE FROM [incentives].[PendingPayment] WHERE accountId = {accountId};" +
+                $"DELETE FROM [incentives].[ApprenticeshipIncentive] WHERE accountId = {accountId};" +
+                $"DELETE FROM [dbo].[IncentiveApplicationApprenticeship] WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE accountId = {accountId});" +
+                $"DELETE FROM [dbo].[IncentiveApplication] WHERE accountId = {accountId}";
             ExecuteSqlCommand(query);
+            SetCaseDetailsToNull(accountId);
         }
 
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)
         {
             this.startMonth = startMonth; this.startYear = startYear;
-            query = $"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
+            query = $"SELECT accountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
             var accountId = FetchIntegerQueryData(0);
 
             expectedEarningType = "FirstPayment";
@@ -42,10 +41,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             AssertQueryData();
         }
 
+        public void SetCaseDetailsToNull(string accountId)
+        {
+            var nullValue = "NULL";
+            ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = {nullValue}, VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountId}");
+        }
+
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";
-            query = $"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE AccountId = {accountId} order by CalculatedDate {searchOrder}";
+            query = $"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE accountId = {accountId} order by CalculatedDate {searchOrder}";
             actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd HH:mm:ss.fff");
             actualAmount = FetchIntegerQueryData(1);
             actualPeriodNumber = FetchIntegerQueryData(2);
