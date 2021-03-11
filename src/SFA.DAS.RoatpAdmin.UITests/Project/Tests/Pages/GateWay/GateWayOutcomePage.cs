@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
     public class GateWayOutcomePage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Gateway outcome saved";
+        protected override string PageTitle => "Gateway outcome";
 
         private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
 
