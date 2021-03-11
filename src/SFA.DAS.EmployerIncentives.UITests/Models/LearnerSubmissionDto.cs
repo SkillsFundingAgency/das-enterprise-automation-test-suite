@@ -13,6 +13,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Models
         public long Uln { get; set; }
         public string RawJson { get; set; }
 
-        public ICollection<TrainingDto> Training { get; set; }
+        public IList<TrainingDto> Training { get; set; }
     }
 }

@@ -6,6 +6,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Models
     {
         public string Reference { get; set; }
 
-        public ICollection<PriceEpisodeDto> PriceEpisodes { get; set; }
+        public IList<PriceEpisodeDto> PriceEpisodes { get; set; }
     }
 }

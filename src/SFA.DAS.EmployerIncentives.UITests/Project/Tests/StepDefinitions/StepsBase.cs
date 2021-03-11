@@ -27,7 +27,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
         private readonly Stopwatch _stopwatch;
-        protected Guid apprenticeshipIncentiveId;
+        protected Guid apprenticeshipIncentiveId = Guid.Empty;
         protected IncentiveApplication incentiveApplication;
 
         protected StepsBase(ScenarioContext context)
@@ -80,7 +80,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             StartStopWatch("SubmitIncentiveApplication");
             await sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
             await sqlHelper.CreateIncentiveApplication(application);
-            var apprenticeshipIncentiveId = Guid.Empty;
 
             foreach (var apprenticeship in application.Apprenticeships)
             {
@@ -109,14 +108,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             return apprenticeshipIncentiveId;
         }
 
-        protected async Task DeleteApplicationData(Guid incentiveApplicationId)
+        protected async Task DeleteApplicationData()
         {
             StartStopWatch("DeleteApplicationData");
-            await sqlHelper.DeleteApplicationData(incentiveApplicationId);
+            await sqlHelper.DeleteApplicationData(incentiveApplication.Id);
             StopStopWatch("DeleteApplicationData");
         }
 
-        protected async Task DeleteIncentive(Guid apprenticeshipIncentiveId)
+        protected async Task DeleteIncentive()
         {
             StartStopWatch("DeleteIncentiveData");
             await sqlHelper.DeleteIncentiveData(apprenticeshipIncentiveId);
@@ -127,6 +126,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             StartStopWatch("SetupLearnerMatchApiResponse");
             await learnerMatchApi.SetupResponse(uln, ukprn, json);
+            StopStopWatch("SetupLearnerMatchApiResponse");
+        }
+
+        protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, LearnerSubmissionDto data)
+        {
+            StartStopWatch("SetupLearnerMatchApiResponse");
+            await learnerMatchApi.SetupResponse(uln, ukprn, data);
             StopStopWatch("SetupLearnerMatchApiResponse");
         }
 
@@ -168,8 +174,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [AfterScenario()]
         protected async Task CleanUpIncentives()
         {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive(apprenticeshipIncentiveId);
-            if (incentiveApplication != null) await DeleteApplicationData(incentiveApplication.Id);
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
+            if (incentiveApplication != null) await DeleteApplicationData();
         }
     }
 }
