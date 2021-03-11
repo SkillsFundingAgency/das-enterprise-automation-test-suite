@@ -1,6 +1,4 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
+﻿using SFA.DAS.API.Framework;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using System.Net;
@@ -23,6 +21,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
+
+        [Then(@"the apprenticeship records can be fetched")]
+        public void ThenTheApprenticeshipRecordsCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeships();
+
+        [Then(@"the apprenticeship record can be fetched")]
+        public void ThenTheApprenticeshipRecordCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeship();
 
         [Given(@"an apprentice has created an account")]
         public void GivenAnApprenticeHasCreatedAnAccount()
