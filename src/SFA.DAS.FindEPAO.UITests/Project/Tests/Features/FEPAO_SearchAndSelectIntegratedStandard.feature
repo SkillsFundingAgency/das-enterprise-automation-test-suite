@@ -1,6 +1,6 @@
 ﻿Feature: FEPAO_SearchAndSelectIntegratedStandard
 
-@fepao
+@findepao
 @regression
 Scenario: FEPAO_SASIS_01_Search For An Integrated Standard
 	Given the user searches an integrated standard 'Dental nurse' term

@@ -75,12 +75,12 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FEPAO_SASSWSE_01_Search for Standard With Single EPAO")]
-        [NUnit.Framework.CategoryAttribute("fepao")]
+        [NUnit.Framework.CategoryAttribute("findepao")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FEPAO_SASSWSE_01_SearchForStandardWithSingleEPAO()
         {
             string[] tagsOfScenario = new string[] {
-                    "fepao",
+                    "findepao",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FEPAO_SASSWSE_01_Search for Standard With Single EPAO", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

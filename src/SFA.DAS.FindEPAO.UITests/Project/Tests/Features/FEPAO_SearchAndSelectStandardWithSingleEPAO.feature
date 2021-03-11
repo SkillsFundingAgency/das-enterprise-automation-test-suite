@@ -1,6 +1,6 @@
 ﻿Feature: FEPAO_SearchAndSelectStandardWithSingleEPAO
 
-@fepao
+@findepao
 @regression
 Scenario: FEPAO_SASSWSE_01_Search for Standard With Single EPAO
 	Given the user searches a standard 'Aerospace engineer (degree)' term with single EPAO

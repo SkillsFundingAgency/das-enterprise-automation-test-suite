@@ -1,6 +1,6 @@
 ﻿Feature: FEPAO_SearchAndSelectStandardWithEPAO
 
-@fepao
+@findepao
 @regression
 Scenario: FEPAO_SASSWE_01_Search for Standard With EPAO
 	Given the user searches a standard with 'software tester' term
