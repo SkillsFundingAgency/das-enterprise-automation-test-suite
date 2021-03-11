@@ -17,8 +17,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public (string registrationId, string userIdentityid) GetRegistrationId(string email)
             => ProjectSqlDbHelper.ReadDataFromDatabase($"select id, UserIdentityId from Registration where Email = '{email}'", connectionString);
 
-        public long GetApprenticeId(string email) => long.Parse(GetData($"select Id from Apprentice where Email ='{email}'"));
+        public string GetApprenticeId(string email) => GetData($"select Id from Apprentice where Email ='{email}'");
 
-        public string GetApprenticeEmail(long id) => GetData($"select Email from Apprentice where Id = {id}");
+        public string GetApprenticeEmail(string id) => GetData($"select Email from Apprentice where Id = '{id}'");
     }
 }
