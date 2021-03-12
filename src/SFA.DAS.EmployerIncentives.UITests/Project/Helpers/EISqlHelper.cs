@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using NUnit.Framework;
+using SFA.DAS.EmployerIncentives.UITests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -10,6 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType, query;
 
         public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
+        public string ConnectionString => connectionString; // todo: undo : )
 
         public void DeleteIncentiveApplication(string accountId)
         {
@@ -45,6 +52,115 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         {
             var nullValue = "NULL";
             ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = {nullValue}, VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountId}");
+        }
+
+        public async Task SetActiveCollectionPeriod(byte periodNumber, short academicYear)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("UPDATE incentives.CollectionCalendar SET Active = 0");
+            await dbConnection.ExecuteAsync("UPDATE incentives.CollectionCalendar SET Active = 1 WHERE AcademicYear = @academicYear AND PeriodNumber = @periodNumber", new { academicYear, periodNumber });
+        }
+
+        public async Task CreateIncentiveApplication(IncentiveApplication incentiveApplication)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.InsertAsync(incentiveApplication);
+            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            {
+                await dbConnection.InsertAsync(apprenticeship);
+            }
+        }
+
+        public async Task<bool> VerifyLearningRecordsExist(Guid apprenticeshipIncentiveId)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+
+            return count >= 1;
+        }
+
+        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+
+            return count >= 1;
+        }
+
+        public async Task<Guid> GetApprenticeshipIncentiveIdWhenExists(Guid apprenticeshipId, TimeSpan? timeout)
+        {
+            using var cts = new CancellationTokenSource();
+            if (timeout != null)
+            {
+                cts.CancelAfter(timeout.Value);
+            }
+
+            using var dbConnection = new SqlConnection(connectionString);
+
+            while (!cts.Token.IsCancellationRequested)
+            {
+                var apprenticeshipIncentiveId = await dbConnection.ExecuteScalarAsync<Guid>("SELECT Id FROM incentives.ApprenticeshipIncentive WHERE IncentiveApplicationApprenticeshipId = @apprenticeshipId", new { apprenticeshipId });
+                if (apprenticeshipIncentiveId != Guid.Empty)
+                {
+                    return apprenticeshipIncentiveId;
+                }
+
+                await Task.Delay(TimeSpan.FromMilliseconds(100));
+            }
+
+            throw new Exception("Apprenticeship Incentive not found!");
+        }
+
+        public async Task WaitUntilEarningsExist(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            using var cts = new CancellationTokenSource();
+            if (timeout != null)
+            {
+                cts.CancelAfter(timeout.Value);
+            }
+
+            using var dbConnection = new SqlConnection(connectionString);
+
+            while (!cts.Token.IsCancellationRequested)
+            {
+                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+                if (count == 2)
+                {
+                    return;
+                }
+
+                await Task.Delay(TimeSpan.FromMilliseconds(100));
+            }
+
+            throw new Exception("Earnings not found!");
+        }
+
+        public async Task CleanUpAccount(long accountId)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("DELETE FROM Accounts WHERE Id = @accountId", new { accountId });
+        }
+
+        public async Task CleanUpApprenticeshipIncentive(Guid apprenticeshipIncentiveId)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.PendingPaymentValidationResult WHERE PendingPaymentId IN (SELECT Id FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId)", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.ApprenticeshipDaysInLearning WHERE LearnerId IN (SELECT Id FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId)", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.LearningPeriod WHERE LearnerId IN (SELECT Id FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId)", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync("DELETE FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+        }
+
+        public async Task CleanUpIncentiveApplication(IncentiveApplication incentiveApplication)
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            {
+                await dbConnection.DeleteAsync(apprenticeship);
+            }
+            await dbConnection.DeleteAsync(incentiveApplication);
         }
 
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
@@ -92,5 +208,39 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         private int FetchIntegerQueryData(int columnIndex) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex]);
 
         private string FetchStringQueryData(int columnIndex) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString)[0][columnIndex].ToString();
+
+
+        public async Task InsertAsync<T>(T entity) where T : class
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.InsertAsync(entity);
+        }
+
+        public async Task InsertAsync<T>(params T[] entities) where T : class
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            foreach (var entity in entities)
+            {
+                await dbConnection.InsertAsync(entity);
+            }
+        }
+
+        public async Task CreateAccount(long accountId, long accountLegalEntityId)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId });
+        }
+
+        public async Task DeleteIncentiveData(Guid apprenticeshipIncentiveId)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, new { apprenticeshipIncentiveId });
+        }
+
+        public async Task DeleteApplicationData(Guid incentiveApplicationId)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteApplicationData, new { incentiveApplicationId });
+        }
     }
 }
