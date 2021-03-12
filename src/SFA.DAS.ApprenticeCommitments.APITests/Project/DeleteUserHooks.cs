@@ -3,7 +3,7 @@
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     [Binding, Scope(Tag = "deleteuser")]
-    public class DeleteUserHooks : DeleteBaseHooks
+    public class DeleteUserHooks : DataClearDownHooks
     {
         public DeleteUserHooks(ScenarioContext context) : base(context) { }
 

@@ -5,14 +5,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public abstract class DeleteBaseHooks
+    public abstract class DataClearDownHooks
     {
         protected readonly ObjectContext _objectContext;
         protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
         protected readonly ApprenticeCommitmentsDataHelper _apprenticeCommitmentsDataHelper;
 
-        public DeleteBaseHooks(ScenarioContext context)
+        public DataClearDownHooks(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
