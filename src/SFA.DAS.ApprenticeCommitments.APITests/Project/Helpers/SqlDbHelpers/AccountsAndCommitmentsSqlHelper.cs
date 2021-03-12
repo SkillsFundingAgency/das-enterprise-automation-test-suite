@@ -10,9 +10,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public AccountsAndCommitmentsSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
-        public (long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string orgname) GetEmployerData()
+        public (long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId ) GetEmployerData()
         {
-            var query = "SELECT TOP 1 Commitment.EmployerAccountId, Apprenticeship.id, FirstName, LastName, TrainingName " +
+            var query = "SELECT TOP 1 Commitment.EmployerAccountId, Apprenticeship.id, FirstName, LastName, TrainingName, Commitment.AccountLegalEntityId " +
                 "FROM[dbo].[Apprenticeship] as Apprenticeship " +
                 "INNER JOIN Commitment on Apprenticeship.CommitmentId = Commitment.Id " +
                 "INNER JOIN Accounts on Accounts.Id = Commitment.EmployerAccountId " +
@@ -32,15 +32,15 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
             var apprenticeTrainingName = apprenticeData[0][4].ToString();
 
-            query = $"SELECT [NAME] from employer_account.Account WHERE id = {accountid}";
+            var apprenticelegalEntityId = apprenticeData[0][5].ToString();
 
-            List<object[]> OrgNameData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+            List<object[]> empNameData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountid}", connectionString);
 
-            if (OrgNameData.Count == 0)
-                return (0, 0, string.Empty, string.Empty, string.Empty, string.Empty);
+            if (empNameData.Count == 0)
+                return (0, 0, string.Empty, string.Empty, string.Empty, string.Empty, 0);
             else
             {
-                return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, apprenticeTrainingName, OrgNameData[0][0].ToString());
+                return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId));
             }
         }
     }

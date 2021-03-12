@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string FirstNameKey = "firstname";
         private const string LastNameKey = "lastname";
         private const string TrainingNameKey = "trainingname";
+        private const string EmployerAccountLegalEntityIdKey = "employeraccountlegalentityid";
         private const string EmailKey = "emailkey";
         #endregion
 
@@ -22,6 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetFirstName(this ObjectContext objectContext, string value) => objectContext.Replace(FirstNameKey, value);
         internal static void SetLastName(this ObjectContext objectContext, string value) => objectContext.Replace(LastNameKey, value);
         internal static void SetTrainingName(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingNameKey, value);
+        internal static void SetEmployerAccountLegalEntityId(this ObjectContext objectContext, long value) => objectContext.Replace(EmployerAccountLegalEntityIdKey, value);
         internal static void SetApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Set(EmailKey, value);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
         internal static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);

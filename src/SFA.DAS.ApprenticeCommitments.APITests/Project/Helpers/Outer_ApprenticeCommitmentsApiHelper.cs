@@ -32,9 +32,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeship()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            var createApprenticeship = new CreateApprenticeship { EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, Organisation = orgname, Email = GetApprenticeEmail() };
+            var createApprenticeship = new CreateApprenticeship 
+            { 
+                EmployerAccountId = accountid, ApprenticeshipId = apprenticeshipid, EmployerName = orgname, Email = GetApprenticeEmail(), EmployerAccountLegalEntityId = legalEntityId
+            };
 
             _objectContext.SetAccountId(accountid);
             _objectContext.SetCommitmentsApprenticeshipId(apprenticeshipid);
@@ -42,7 +45,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetFirstName(firstname);
             _objectContext.SetLastName(lastname);
             _objectContext.SetTrainingName(trainingname);
-            
+            _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
+
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
 
