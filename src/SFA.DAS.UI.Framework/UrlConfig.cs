@@ -38,5 +38,8 @@ namespace SFA.DAS.UI.Framework
 
         public static string Apprentice_ResetPasswordUrl(string clientId, string requestId) => $"https://login.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/NewPassword/{clientId}/{requestId}";
 
+        public static string EI_PaymentsAppBaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-empinc-pay-fa.azurewebsites.net";
+
+        public static string EI_ApiStubBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-stub.apprenticeships.education.gov.uk/";
     }
 }

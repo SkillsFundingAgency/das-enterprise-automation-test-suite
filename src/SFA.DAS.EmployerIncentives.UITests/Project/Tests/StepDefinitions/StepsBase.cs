@@ -39,10 +39,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             sqlHelper = new EISqlHelper(config);
             serviceBusHelper = new EIServiceBusHelper(config);
 
-            learnerMatchApi = new LearnerMatchApiHelper(config);
+            learnerMatchApi = new LearnerMatchApiHelper();
             learnerMatchService = new EILearnerMatchHelper(config);
 
-            businessCentralApiHelper = new BusinessCentralApiHelper(config);
+            businessCentralApiHelper = new BusinessCentralApiHelper();
             paymentService = new EIPaymentsProcessHelper(config);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");

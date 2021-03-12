@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.UITests.Models;
+using SFA.DAS.UI.Framework;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -9,28 +10,28 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
     public class LearnerMatchApiHelper
     {
-        protected HttpClient HttpClient;
-        protected string BaseUrl;
+        protected HttpClient httpClient;
+        protected string baseUrl;
 
-        public LearnerMatchApiHelper(EIConfig config)
+        public LearnerMatchApiHelper()
         {
-            BaseUrl = config.EI_ApiStubBaseUrl;
-            HttpClient = new HttpClient();
+            baseUrl = UrlConfig.EI_ApiStubBaseUrl;
+            httpClient = new HttpClient();
         }
 
         public async Task SetupResponse(long uln, long ukprn, LearnerSubmissionDto expectedResponse)
         {
             var stringContent = new StringContent(JsonConvert.SerializeObject(expectedResponse), Encoding.UTF8, "application/json");
             var url = $"/learner-match/api/v1/{ukprn}/{uln}?";
-            var response = await HttpClient.PostAsync($"{BaseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", stringContent);
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", stringContent);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task SetupResponse(long uln, long ukprn, string expectedResponse)
         {
             var url = $"/learner-match/api/v1/{ukprn}/{uln}?";
-            var response = await HttpClient.PostAsync($"{BaseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", new StringContent(expectedResponse, Encoding.UTF8, "application/json"));
-                response.EnsureSuccessStatusCode();
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", new StringContent(expectedResponse, Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
         }
     }
 }
