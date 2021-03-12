@@ -17,7 +17,7 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
         }
 
-        [Given(@"the provider logs in as (Contributor|Super Contributor|Account Owner|Viewer")]
+        [Given(@"the provider logs in as a (Contributor|Contributor with approval|Account Owner|Viewer)")]
         public void GivenTheProviderLogsInAs(string User)
         {
             ProviderLoginUser login = new ProviderLoginUser();
@@ -26,7 +26,7 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
             {
                 login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorUser>());
             }
-            else if (User.Equals("Super Contributor"))
+            else if (User.Equals("Contributor with approval"))
             {
                 login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorWithApprovalUser>());
             }
