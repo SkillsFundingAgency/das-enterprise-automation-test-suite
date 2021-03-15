@@ -3,15 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmYourEmployerPage : ApprenticeCommitmentsBasePage
+    public abstract class ConfirmYourDetailsPage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
 
-        protected override string PageTitle => "Confirm your employer";
-
-        protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
-
-        public ConfirmYourEmployerPage(ScenarioContext context) : base(context)
+        public ConfirmYourDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
 
@@ -31,5 +27,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
             return new YouCantConfirmYourApprenticeship(_context);
         }
+    }
+
+    public class ConfirmYourEmployerPage : ConfirmYourDetailsPage
+    {
+        protected override string PageTitle => "Confirm your employer";
+
+        protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
+
+        public ConfirmYourEmployerPage(ScenarioContext context) : base(context) { }
+    }
+
+    public class ConfirmYourTrainingProviderPage : ConfirmYourDetailsPage
+    {
+        protected override string PageTitle => "Confirm your training provider";
+
+        protected override By ContinueButton => By.CssSelector("#training-provider-confirm");
+
+        public ConfirmYourTrainingProviderPage(ScenarioContext context) : base(context) { }
     }
 }
