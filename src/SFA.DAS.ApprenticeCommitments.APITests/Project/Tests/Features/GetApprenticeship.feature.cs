@@ -80,7 +80,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        [NUnit.Framework.CategoryAttribute("ignore")]
         public virtual void GetApprenticeshipRecord()
         {
             string[] tagsOfScenario = new string[] {
@@ -88,11 +87,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "apprenticecommitmentsapi",
                     "outerapi",
                     "regression",
-                    "deleteuser",
-                    "ignore"};
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get apprenticeship record", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -112,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 10
  testRunner.Given("an apprentice has created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the apprenticeship record can be fetched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

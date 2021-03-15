@@ -19,6 +19,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public string GetApprenticeId(string email) => GetData($"select Id from Apprentice where Email ='{email}'");
 
+        public string GetApprenticeshipId(string apprenticeId) => GetData($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
+
         public string GetApprenticeEmail(string id) => GetData($"select Email from Apprentice where Id = '{id}'");
     }
 }
