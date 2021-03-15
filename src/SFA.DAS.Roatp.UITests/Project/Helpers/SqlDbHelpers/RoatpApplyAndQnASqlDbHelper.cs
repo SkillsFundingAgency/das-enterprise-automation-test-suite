@@ -70,6 +70,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
             var query = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; " +
                 $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = '{email}';" +
+                $"DELETE FROM dbo.SubmittedApplicationAnswers WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.ExtractedApplications WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.FinancialData WHERE ApplicationId = '{applicationId}'; " +
