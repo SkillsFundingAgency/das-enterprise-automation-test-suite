@@ -24,7 +24,8 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="89.0.4389.2300" />
     <PackageReference Include="SFA.DAS.Api.Common" Version="1.0.8" />
     <PackageReference Include="SFA.DAS.Common.Domain" Version="1.4.283" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
+	  <PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.21" />
+	  <PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
   </ItemGroup>
   <ItemGroup>
