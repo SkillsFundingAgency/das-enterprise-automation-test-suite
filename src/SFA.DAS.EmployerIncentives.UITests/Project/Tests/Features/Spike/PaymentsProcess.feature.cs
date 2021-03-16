@@ -75,11 +75,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Spike
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Payments are generated")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesSpike")]
         public virtual void PaymentsAreGenerated()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "employerincentivesSpike"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Payments are generated", null, tagsOfScenario, argumentsOfScenario);
 #line 5
