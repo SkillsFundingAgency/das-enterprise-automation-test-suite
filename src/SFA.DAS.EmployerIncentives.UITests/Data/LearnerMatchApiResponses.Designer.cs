@@ -62,10 +62,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Data {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///   &quot;StartDate&quot;:&quot;2020-08-06T00:00:00\u002B00:00&quot;,
+        ///   &quot;StartDate&quot;:&quot;2020-11-12T00:00:00\u002B00:00&quot;,
         ///   &quot;EventTime&quot;:&quot;0001-01-01T00:00:00\u002B00:00&quot;,
-        ///   &quot;IlrSubmissionDate&quot;:&quot;2020-12-10T09:11:46.82\u002B00:00&quot;,
-        ///   &quot;IlrSubmissionWindowPeriod&quot;:4,
+        ///   &quot;IlrSubmissionDate&quot;:&quot;2020-11-12T09:11:46.82\u002B00:00&quot;,
+        ///   &quot;IlrSubmissionWindowPeriod&quot;:7,
         ///   &quot;AcademicYear&quot;:2021,
         ///   &quot;Ukprn&quot;:10005310,
         ///   &quot;Uln&quot;:7229721937,
@@ -77,7 +77,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Data {
         ///         &quot;FrameworkCode&quot;:0,
         ///         &quot;PathwayCode&quot;:0,
         ///         &quot;FundingLineType&quot;:null,
-        ///         &quot;StartDate&quot;:&quot;2020-08-06T00 [rest of string was truncated]&quot;;.
+        ///         &quot;StartDate&quot;:&quot;2020-11-12T00 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Clawbacks1_R07_json {
             get {
@@ -86,11 +86,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///   &quot;StartDate&quot;:&quot;2021-02-01T00:00:00\u002B00:00&quot;,
+        ///   Looks up a localized string similar to     {
+        ///   &quot;StartDate&quot;:&quot;2020-12-13T00:00:00\u002B00:00&quot;,
         ///   &quot;EventTime&quot;:&quot;0001-01-01T00:00:00\u002B00:00&quot;,
-        ///   &quot;IlrSubmissionDate&quot;:&quot;2020-12-10T09:11:46.82\u002B00:00&quot;,
-        ///   &quot;IlrSubmissionWindowPeriod&quot;:4,
+        ///   &quot;IlrSubmissionDate&quot;:&quot;2021-01-10T09:11:46.82\u002B00:00&quot;,
+        ///   &quot;IlrSubmissionWindowPeriod&quot;:8,
         ///   &quot;AcademicYear&quot;:2021,
         ///   &quot;Ukprn&quot;:10005310,
         ///   &quot;Uln&quot;:7229721937,
@@ -102,7 +102,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Data {
         ///         &quot;FrameworkCode&quot;:0,
         ///         &quot;PathwayCode&quot;:0,
         ///         &quot;FundingLineType&quot;:null,
-        ///         &quot;StartDate&quot;:&quot;2020-08-06T00 [rest of string was truncated]&quot;;.
+        ///         &quot;StartDate&quot;:&quot;2020-12-1 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Clawbacks1_R08_json {
             get {
