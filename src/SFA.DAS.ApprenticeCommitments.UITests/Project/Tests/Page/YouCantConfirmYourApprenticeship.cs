@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
 
-        protected override string PageTitle => ""; //"You can’t confirm your apprenticeship";
+        protected override string PageTitle => "You can’t confirm your apprenticeship";
 
         public YouCantConfirmYourApprenticeship(ScenarioContext context) : base(context)
         {
