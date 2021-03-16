@@ -96,7 +96,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         {
             var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
 
-            var commitmentsApprenticeshipId = _objectContext.GetCommitmentsApprenticeshipId();
+            var commitmentsApprenticeshipId = _aComtSqlDbHelper.GetApprenticeshipId(apprenticeId);
 
             _objectContext.SetApprenticeId(apprenticeId);
 

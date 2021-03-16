@@ -15,10 +15,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage();
         }
 
-        public ConfirmYourEmployerPage ConfirmYourEmployerPage()
+        public ConfirmYourEmployerPage ConfirmYourEmployer()
         {
             formCompletionHelper.ClickLinkByText("Confirm your employer");
             return new ConfirmYourEmployerPage(_context);
+        }
+
+        public ConfirmYourTrainingProviderPage ConfirmYourTrainingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Confirm your training provider");
+            return new ConfirmYourTrainingProviderPage(_context);
         }
     }
 }
