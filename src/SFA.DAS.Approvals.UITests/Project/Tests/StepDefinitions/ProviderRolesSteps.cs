@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using TechTalk.SpecFlow;
 
@@ -10,6 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
+        
+        private ProviderNotificationSettingsPage _providerNotification;
 
         public ProviderRolesSteps(ScenarioContext context)
         {
@@ -70,10 +74,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not add an apprentice")]
         public void ThenTheUserCanNotAddAnApprentice()
         {
-            //_providerStepsHelper.NavigateToProviderHomePage()
-            //    .GoToManageYourFunding()
-            //    .AddApprenticeWithReservedFundingGoesToAccessDenied()
-            //    .GoBackToTheServiceHomePage();
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .AddApprenticeWithReservedFundingGoesToAccessDenied()
+                .GoBackToTheServiceHomePage();
         }
+
+        [When(@"the user navigates to notification settings page")]
+        public void ProviderNavigatesToNotificationSettingsPage()
+        {
+            _providerNotification = _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderNotificationSettingsPage();
+        }
+
+        [Then(@"the user is able to choose to receive notification emails")]
+        public void ProviderIsAbleToChooseToReceiveNotificationEmails()
+        {
+            _providerNotification = _providerNotification.ChooseToReceiveEmails();
+            Assert.IsTrue(_providerNotification.IsSettingsUpdated(), $"Choose to receive notification emails success message is not displayed");
+        }
+
+        [Then(@"the user is able to choose No notification emails")]
+        public void ProviderIsAbleToChooseNoNotificationEmails()
+        {
+            _providerNotification = _providerNotification.ChooseNotToReceiveEmails();
+            Assert.IsTrue(_providerNotification.IsSettingsUpdated(), $"Choose not to receive notification emails success message is not displayed");
+        }
+
+        [Then(@"the user can view organisations and agreements")]
+        public void ThenTheUserCanViewOrganisationsAndAgreements()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToOrganisationsAndAgreementsPage();
+        }
+
     }
 }

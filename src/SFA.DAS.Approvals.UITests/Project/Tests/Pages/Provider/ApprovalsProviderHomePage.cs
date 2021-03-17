@@ -33,6 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNotificationSettingsPage(_context);
         }
 
+        public ProviderOrganisationsAndAgreementsPage GoToOrganisationsAndAgreementsPage()
+        {
+            _formCompletionHelper.ClickElement(OrganisationsAndAgreementsLink);
+            return new ProviderOrganisationsAndAgreementsPage(_context);
+        }
+
         public ProviderChooseAnEmployerNonLevyPage GotoChooseAnEmployerNonLevyPage()
         {
             _formCompletionHelper.ClickElement(CreateACohortLink);
