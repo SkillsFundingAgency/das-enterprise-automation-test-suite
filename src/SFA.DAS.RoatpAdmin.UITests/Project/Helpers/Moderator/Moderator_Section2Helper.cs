@@ -186,7 +186,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueForEnglishAndMathsAssessment()
                     .SelectFailAndContinueForWhereWillYouDeliverEnglishAndMathsAssessments()
                     .SelectFailAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()
-                    .VerifySection2Link6Status(StatusHelper.StatusPass);
+                    .VerifySection2Link6Status(StatusHelper.StatusFail);
             }
             else
             {
