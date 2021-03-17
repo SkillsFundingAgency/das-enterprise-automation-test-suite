@@ -64,9 +64,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             NavigateToTask(Section2_Link5);
             return new PriorLearningOfApprenticesPage(_context);
         }
-        public WorkingWithSubcontractorsPage Access_Section2_WorkingWithSubcontractors()
+        public EnglishAndMathsAssessmentsPage Access_Section2_EnglishAndMathsAssessments()
         {
             NavigateToTask(Section2_Link6);
+            return new EnglishAndMathsAssessmentsPage(_context);
+        }
+        public WorkingWithSubcontractorsPage Access_Section2_WorkingWithSubcontractors()
+        {
+            NavigateToTask(Section2_Link7);
             return new WorkingWithSubcontractorsPage(_context);
         }
         #endregion

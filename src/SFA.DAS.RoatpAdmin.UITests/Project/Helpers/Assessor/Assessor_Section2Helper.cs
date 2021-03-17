@@ -89,6 +89,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .VerifySection2Link5Status(StatusHelper.NotRequired);
             }
         }
+        public ApplicationAssessmentOverviewPage PassEnglishAndMathsAssessment(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section2_EnglishAndMathsAssessments()
+                    .SelectPassAndContinueForEnglishAndMathsAssessment()
+                    .SelectPassAndContinueForWhereWillYouDeliverEnglishAndMathsAssessments()
+                    .SelectPassAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()
+                    .VerifySection2Link6Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return applicationAssessmentOverviewPage
+                    .VerifySection2Link6Status(StatusHelper.NotRequired);
+            }
+        }
 
         public ApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
@@ -98,12 +115,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .Access_Section2_WorkingWithSubcontractors()
                     .SelectPassAndContinueInWorkingWithSubcontractorsPage()
                     .SelectPassAndContinue()
-                    .VerifySection2Link6Status(StatusHelper.StatusPass);
+                    .VerifySection2Link7Status(StatusHelper.StatusPass);
             }
             else
             {
                 return applicationAssessmentOverviewPage
-                    .VerifySection2Link6Status(StatusHelper.NotRequired);
+                    .VerifySection2Link7Status(StatusHelper.NotRequired);
             }
         }
     }
