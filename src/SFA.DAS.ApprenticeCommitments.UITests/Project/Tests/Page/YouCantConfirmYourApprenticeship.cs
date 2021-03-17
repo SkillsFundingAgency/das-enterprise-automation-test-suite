@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -8,11 +9,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override string PageTitle => "You can’t confirm your apprenticeship yet";
 
+        private By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
+
         public YouCantConfirmYourApprenticeship(ScenarioContext context) : base(context)
         {
             _context = context;
 
             VerifyPage();
+        }
+
+        public ApprenticeHomePage ReturnToApprenticeHomePage()
+        {
+            formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, "Return to My Apprenticeship");
+            return new ApprenticeHomePage(_context);
         }
     }
 }
