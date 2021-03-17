@@ -7,6 +7,8 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.ProviderLogin.Service.Pages;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -27,43 +29,59 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _tabHelper = _context.Get<TabHelper>();
         }
 
-        internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
+        internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
-
+            _providerHomePageStepsHelper.GoToProviderHomePage(login, newTab);
             return new ApprovalsProviderHomePage(_context);
         }
 
         public ApprovalsProviderHomePage NavigateToProviderHomePage() => new ApprovalsProviderHomePage(_context, true);
 
-        public ApprovalsProviderHomePage GoToProviderHomePage(bool login = true)
+        public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true)
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage(login);
+            _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
             return new ApprovalsProviderHomePage(_context);
         }
-        public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
+
+        public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
-            return GoToProviderHomePage(login)
+            var homePage = login != null
+                ? GoToProviderHomePage(login, newTab)
+                : NavigateToProviderHomePage();
+
+            return homePage
                    .GoToProviderGetFunding()
                    .StartReservedFunding()
                    .ChooseAnEmployerNonLevy()
                    .ConfirmNonLevyEmployer()
                    .AddTrainingCourseAndDate()
                    .ConfirmReserveFunding()
-                   .VerifySucessMessage()
-                   .GoToAddApprenticeDetailsPage();
+                   .VerifySucessMessage();
         }
 
-        public void MakeReservation()
+        public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
         {
-            ApprovalsProviderHomePage approvalsProviderHomePage = new ApprovalsProviderHomePage(_context);
-            approvalsProviderHomePage.GoToProviderGetFunding().StartReservedFunding()
-                   .ChooseAnEmployerNonLevy()
-                   .ConfirmNonLevyEmployer()
-                   .AddTrainingCourseAndDate()
-                   .ConfirmReserveFunding()
-                   .VerifySucessMessage()
-                   .GoToHomePage();            
+            return ProviderMakeReservation(login, false)
+                .GoToAddApprenticeDetailsPage();
+        }
+
+        public ApprovalsProviderHomePage ProviderMakeReservationThenGotoHomePage(ProviderLoginUser login = null)
+        {
+            return ProviderMakeReservation(login, false)
+                .GoToHomePage();
+        }
+
+        public ApprovalsProviderHomePage ProviderDeleteReservationThenGotoHomePage(ProviderLoginUser login = null)
+        {
+            var homePage = login != null
+                   ? GoToProviderHomePage(login)
+                   : NavigateToProviderHomePage();
+
+            return homePage
+                .GoToManageYourFunding()
+                .DeleteTheReservedFunding()
+                .YesDeleteThisReservation()
+                .GoToHomePage();
         }
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)

@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("MF_PR_02_OtherRoles")]
+    [NUnit.Framework.DescriptionAttribute("MF_PR_02_NonViewerRoles")]
     [NUnit.Framework.CategoryAttribute("ignore")]
-    public partial class MF_PR_02_OtherRolesFeature
+    public partial class MF_PR_02_NonViewerRolesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         private string[] _featureTags = new string[] {
                 "ignore"};
         
-#line 1 "MF_PR_02_OtherRoles.feature"
+#line 1 "MF_PR_02_NonViewerRoles.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "MF_PR_02_OtherRoles", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "MF_PR_02_NonViewerRoles", null, ProgrammingLanguage.CSharp, new string[] {
                         "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner(string user, string[] exampleTags)
+        public virtual void VerfiyLoginForNonViewerUser(string user, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Securefundingproviderrole"};
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login contributor,contributor with approval and account owner", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login for non Viewer user", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,48 +112,45 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("the user can delete reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 8
  testRunner.Then("the user can create reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the user can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.And("the user can delete reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Contributor" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_Contributor()
+        public virtual void VerfiyLoginForNonViewerUser_Contributor()
         {
 #line 5
-this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Contributor", ((string[])(null)));
+this.VerfiyLoginForNonViewerUser("Contributor", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Contributor" +
-            " with approval")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor with approval")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_ContributorWithApproval()
+        public virtual void VerfiyLoginForNonViewerUser_ContributorWithApproval()
         {
 #line 5
-this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Contributor with approval", ((string[])(null)));
+this.VerfiyLoginForNonViewerUser("Contributor with approval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login contributor,contributor with approval and account owner: Account Own" +
-            "er")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Account Owner")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginContributorContributorWithApprovalAndAccountOwner_AccountOwner()
+        public virtual void VerfiyLoginForNonViewerUser_AccountOwner()
         {
 #line 5
-this.VerfiyLoginContributorContributorWithApprovalAndAccountOwner("Account Owner", ((string[])(null)));
+this.VerfiyLoginForNonViewerUser("Account Owner", ((string[])(null)));
 #line hidden
         }
     }

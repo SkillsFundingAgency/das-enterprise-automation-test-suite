@@ -45,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReserveFundingForNonLevyEmployersPage(_context);
         }
 
-        public ProviderAccessDeniedPage ClickToReserveFunding()
+        public ProviderAccessDeniedPage GoToProviderGetFundingGoesToAccessDenied()
         {
             _formCompletionHelper.ClickElement(GetFundingLink);
             return new ProviderAccessDeniedPage(_context);

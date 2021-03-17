@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.ProviderLogin.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -6,23 +7,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ProviderRolesSteps
     {
+        private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        
-        public ProviderRolesSteps(ScenarioContext context) => _providerStepsHelper = new ProviderStepsHelper(context);
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
+
+        public ProviderRolesSteps(ScenarioContext context)
+        {
+            _context = context;
+            _providerStepsHelper = new ProviderStepsHelper(_context);
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
+        }
+
+        [Given(@"a reservation exists")]
+        public void GivenAReservationExists()
+        {
+            _providerStepsHelper
+                .NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .VerifyReservationExists();
+        }
 
         [Then(@"the user can create reservation")]
         public void ThenTheUserCanCreateReservation()
         {
-            _providerStepsHelper.MakeReservation();                  
+            _providerStepsHelper
+                .ProviderMakeReservationThenGotoHomePage();
         }
 
-        [Given(@"the user can delete reservation")]
-        public void GivenTheUserCanDeleteReservation()
+        [Then(@"the user can delete reservation")]
+        public void ThenTheUserCanDeleteReservation()
         {
-            _providerStepsHelper.NavigateToProviderHomePage()
-                .GoToManageYourFunding()
-                .DeleteTheReservedFunding()
-                .YesDeleteThisReservation();
+            _providerStepsHelper
+                .ProviderDeleteReservationThenGotoHomePage();
         }
 
         [Then(@"the user can add an apprentice")]
@@ -34,30 +50,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can not reserve the funding")]
-        public void ThenTheUserCanNotReserveTheFunding()
+        public void ThenTheUserCannotReserveTheFunding()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .ClickToReserveFunding()
+                .GoToProviderGetFundingGoesToAccessDenied()
                 .GoBackToTheServiceHomePage();
         }
 
- 
         [Then(@"the user can not delete the reservation")]
         public void ThenTheUserCanNotDeleteTheReservation()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToManageYourFunding()
-                .ClickToDeleteReservation()
+                .DeleteTheReservedFundingGoesToAccessDenied()
+
                 .GoBackToTheServiceHomePage();
         }
 
         [Then(@"the user can not add an apprentice")]
         public void ThenTheUserCanNotAddAnApprentice()
         {
-            _providerStepsHelper.NavigateToProviderHomePage()
-                .GoToManageYourFunding()
-                .ClickToAddAnApprenticeForaReservation()
-                .GoBackToTheServiceHomePage();
+            //_providerStepsHelper.NavigateToProviderHomePage()
+            //    .GoToManageYourFunding()
+            //    .AddApprenticeWithReservedFundingGoesToAccessDenied()
+            //    .GoBackToTheServiceHomePage();
         }
     }
 }
