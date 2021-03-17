@@ -33,9 +33,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             return Execute($"/apprentices/{apprenticeId}/apprenticeships", expectedResponse);
         }
 
-        public IRestResponse GetApprenticeship(string apprenticeId, long commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
+        public IRestResponse GetApprenticeship(string apprenticeId, string commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
         {
-            return Execute($"/apprentices/{apprenticeId}/apprenticeships/{commitmentsApprenticeshipId}", expectedResponse);
+            return Execute($"/apprentices/{apprenticeId}/apprenticeships/{long.Parse(commitmentsApprenticeshipId)}", expectedResponse);
         }
     }
 }

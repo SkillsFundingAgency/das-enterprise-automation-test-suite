@@ -5,8 +5,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class NewStopDateApprenticeDetailsPage : ApprenticeDetailsPage
     {
-        protected override string PageTitle => "New stop date confirmed";
-        protected override By PageHeader => By.CssSelector("h1.heading-large");
+        protected override string PageTitle => "Apprenticeship stopped";    //"New stop date confirmed";
+        protected override By PageHeader => By.CssSelector("h3.das-notification__heading");
 
         public NewStopDateApprenticeDetailsPage(ScenarioContext context) : base(context) { }
     }

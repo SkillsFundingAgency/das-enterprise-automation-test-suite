@@ -6,6 +6,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
     {
         protected override string PageTitle => "Commitment statement template";
 
-        public CommitmentStatementTemplatePage(ScenarioContext context) : base(context) { objectContext.SetIsUploadFile(); }
+        public CommitmentStatementTemplatePage(ScenarioContext context) : base(context) { } 
     }
 }
