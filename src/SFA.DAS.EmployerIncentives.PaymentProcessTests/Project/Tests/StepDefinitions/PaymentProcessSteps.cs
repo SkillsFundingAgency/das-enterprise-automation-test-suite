@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -48,7 +48,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
             _incentiveApplication.Apprenticeships.Clear();
             _incentiveApplication.Apprenticeships.Add(_apprenticeship);
-            
+
             await sqlHelper.CreateIncentiveApplication(_incentiveApplication);
 
             var serviceBusHelper = new EIServiceBusHelper(_config);
@@ -71,8 +71,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await serviceBusHelper.Publish(command);
 
-            _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 1, 0));
-            await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 1, 0));
+            _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 5, 0));
+            await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 5, 0));
 
             var learnerMatchApi = new LearnerMatchApiHelper();
             var learnerMatchResponse = ValidLearnerSubmission();
@@ -118,7 +118,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 IlrSubmissionWindowPeriod = 6,
                 Ukprn = 123456,
                 Uln = _apprenticeship.ULN,
-                Training = new List<TrainingDto>(new[] { 
+                Training = new List<TrainingDto>(new[] {
                     new TrainingDto
                     {
                         Reference = "ZPROG001",
