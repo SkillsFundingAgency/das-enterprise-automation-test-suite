@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     public class Outer_ApprenticeCommitmentsApiHelper
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
+        private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
@@ -24,15 +25,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
+            _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
-        public IRestResponse Ping() => _outerApiRestClient.Ping(HttpStatusCode.OK);
+        public IRestResponse Ping() => _outerHealthApiRestClient.Ping(HttpStatusCode.OK);
 
-        public IRestResponse CheckHealth() => _outerApiRestClient.CheckHealth(HttpStatusCode.OK);
+        public IRestResponse CheckHealth() => _outerHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
 
         protected IRestResponse CreateApprenticeship()
         {

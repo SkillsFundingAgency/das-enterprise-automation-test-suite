@@ -13,10 +13,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiSubscriptionKey => config.ApprenticeCommitmentsApiSubscriptionKey;
 
-        public IRestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
-
-        public IRestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
-
         public IRestResponse CreateApprenticeship(CreateApprenticeship payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
