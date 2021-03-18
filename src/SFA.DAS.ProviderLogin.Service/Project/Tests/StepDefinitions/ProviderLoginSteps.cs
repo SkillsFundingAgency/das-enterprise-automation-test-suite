@@ -21,22 +21,23 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
         public void GivenTheProviderLogsInAs(string User)
         {
             ProviderLoginUser login = new ProviderLoginUser();
-
-            if (User.Equals("Contributor"))
+            
+            switch(User)
             {
-                login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorUser>());
-            }
-            else if (User.Equals("Contributor with approval"))
-            {
-                login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorWithApprovalUser>());
-            }
-            else if (User.Equals("Account Owner"))
-            {
-                login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderAccountOwnerUser>());
-            }
-            else if (User.Equals("Viewer"))
-            {
-                login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderViewOnlyUser>());
+                case "Contributor":
+                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorUser>());
+                    break;
+                case "Contributor with approval":
+                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorWithApprovalUser>());
+                    break;
+                case "Account Owner":
+                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderAccountOwnerUser>());
+                    break;
+                case "Viewer":
+                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderViewOnlyUser>());
+                    break;
+                default:
+                    break;
             }
 
             _providerHomePageStepsHelper.GoToProviderHomePage(login, false);
