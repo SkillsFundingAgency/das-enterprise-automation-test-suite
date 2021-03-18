@@ -1,8 +1,8 @@
 ﻿using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
 using System;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
 {
@@ -35,13 +35,5 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
                 _ => null,
             };
         }
-    }
-
-    public enum ProviderUserRoles
-    {
-        Contributor,
-        ContributorWithApproval,
-        AccountOwner,
-        Viewer
     }
 }
