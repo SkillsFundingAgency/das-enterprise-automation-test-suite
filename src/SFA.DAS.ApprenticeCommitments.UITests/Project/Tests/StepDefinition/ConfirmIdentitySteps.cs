@@ -18,10 +18,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIdentityCanBeValidated() => _apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
 
         [Then(@"the apprentice can confirm the employer")]
-        public void ThenTheApprenticeCanConfirmTheEmployer() => _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
+        public void ThenTheApprenticeCanConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
+
+        [Then(@"the apprentice can not confirm the employer")]
+        public void ThenTheApprenticeCanNotConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
 
         [Then(@"the apprentice can confirm the training provider")]
-        public void ThenTheApprenticeCanConfirmTheTrainingProvider() => _apprenticeHomePage.ConfirmYourTrainingProvider().SelectYes();
+        public void ThenTheApprenticeCanConfirmTheTrainingProvider() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectYes();
+
+        [Then(@"the apprentice can not confirm the training provider")]
+        public void ThenTheApprenticeCanNotConfirmTheTrainingProvider() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectNo().ReturnToApprenticeHomePage();
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
