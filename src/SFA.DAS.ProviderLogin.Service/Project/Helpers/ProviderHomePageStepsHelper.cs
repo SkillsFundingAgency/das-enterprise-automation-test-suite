@@ -54,13 +54,12 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             {
                 return _loginHelper.Login(login);
             }
-            return new ProviderHomePage   (_context);
+            return new ProviderHomePage(_context);
         }
 
-        public ProviderHomePage LogInToProviderHomePage(ProviderLoginUser login)
+        public ProviderLoginUser GetProviderLogin(ProviderConfig login)
         {
-            _objectContext.SetUkprn(login.Ukprn);
-            return _loginHelper.Login(login);
+            return new ProviderLoginUser { Username = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
         }
     }
 }
