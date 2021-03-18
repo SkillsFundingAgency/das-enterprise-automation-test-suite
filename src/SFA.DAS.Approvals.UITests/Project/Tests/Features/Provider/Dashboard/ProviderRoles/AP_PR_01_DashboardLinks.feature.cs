@@ -85,7 +85,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider.Dashboard.Pr
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for user can access and update notification settings", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -105,16 +105,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 5
  testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 6
  testRunner.When("the user navigates to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the user is able to choose to receive notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the user is able to choose No notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_Viewer()
         {
-#line 5
+#line 4
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Viewer", ((string[])(null)));
 #line hidden
         }
@@ -136,7 +136,7 @@ this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Viewer", ((string
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_Contributor()
         {
-#line 5
+#line 4
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor", ((string[])(null)));
 #line hidden
         }
@@ -147,7 +147,7 @@ this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor", ((s
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_ContributorWithApproval()
         {
-#line 5
+#line 4
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor with approval", ((string[])(null)));
 #line hidden
         }
@@ -157,7 +157,7 @@ this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor with 
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_AccountOwner()
         {
-#line 5
+#line 4
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Account Owner", ((string[])(null)));
 #line hidden
         }
@@ -174,7 +174,7 @@ this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Account Owner", (
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for user can access organisations and agreements", null, tagsOfScenario, argumentsOfScenario);
-#line 19
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -194,10 +194,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 19
  testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 21
+#line 20
  testRunner.Then("the user can view organisations and agreements", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -209,7 +209,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_Viewer()
         {
-#line 19
+#line 18
 this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Viewer", ((string[])(null)));
 #line hidden
         }
@@ -219,7 +219,7 @@ this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Viewer", ((string[])
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_Contributor()
         {
-#line 19
+#line 18
 this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor", ((string[])(null)));
 #line hidden
         }
@@ -230,7 +230,7 @@ this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor", ((stri
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_ContributorWithApproval()
         {
-#line 19
+#line 18
 this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor with approval", ((string[])(null)));
 #line hidden
         }
@@ -240,7 +240,7 @@ this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor with app
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_AccountOwner()
         {
-#line 19
+#line 18
 this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Account Owner", ((string[])(null)));
 #line hidden
         }
