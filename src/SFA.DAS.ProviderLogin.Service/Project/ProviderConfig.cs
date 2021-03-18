@@ -8,4 +8,13 @@
 
         public string Ukprn { get; set; }
     }
+
+    public class ProviderViewOnlyUser : ProviderConfig { }
+
+    public class ProviderContributorUser : ProviderConfig { }
+
+    public class ProviderContributorWithApprovalUser : ProviderConfig { }
+
+    public class ProviderAccountOwnerUser : ProviderConfig { }
+
 }
