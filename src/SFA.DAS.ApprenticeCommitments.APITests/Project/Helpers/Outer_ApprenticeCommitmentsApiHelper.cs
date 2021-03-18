@@ -30,6 +30,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
+        public IRestResponse Ping() => _outerApiRestClient.Ping(HttpStatusCode.OK);
+
+        public IRestResponse CheckHealth() => _outerApiRestClient.CheckHealth(HttpStatusCode.OK);
+
         protected IRestResponse CreateApprenticeship()
         {
             var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId) = _apprenticeCommitmentSqlHelper.GetEmployerData();
