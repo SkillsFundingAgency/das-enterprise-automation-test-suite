@@ -1,7 +1,8 @@
 ﻿using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
+using System;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
 {
@@ -18,29 +19,21 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
         }
 
         [Given(@"the provider logs in as a (Contributor|Contributor with approval|Account Owner|Viewer)")]
-        public void GivenTheProviderLogsInAs(string User)
-        {
-            ProviderLoginUser login = new ProviderLoginUser();
-            
-            switch(User)
-            {
-                case "Contributor":
-                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorUser>());
-                    break;
-                case "Contributor with approval":
-                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderContributorWithApprovalUser>());
-                    break;
-                case "Account Owner":
-                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderAccountOwnerUser>());
-                    break;
-                case "Viewer":
-                    login = _providerHomePageStepsHelper.GetProviderLogin(_context.GetUser<ProviderViewOnlyUser>());
-                    break;
-                default:
-                    break;
-            }
+        public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, false);
 
-            _providerHomePageStepsHelper.GoToProviderHomePage(login, false);
+        [StepArgumentTransformation(@"(Contributor|Contributor with approval|Account Owner|Viewer)")]
+        public ProviderConfig GetProviderUserRole(string providerUserRoles)
+        {
+         var userRole = Enum.Parse<ProviderUserRoles>(providerUserRoles, true);
+
+            return true switch
+            {
+                bool _ when (userRole == ProviderUserRoles.Contributor) => _context.GetUser<ProviderContributorUser>(),
+                bool _ when (userRole == ProviderUserRoles.ContributorWithApproval) => _context.GetUser<ProviderContributorWithApprovalUser>(),
+                bool _ when (userRole == ProviderUserRoles.AccountOwner) => _context.GetUser<ProviderAccountOwnerUser>(),
+                bool _ when (userRole == ProviderUserRoles.Viewer) => _context.GetUser<ProviderViewOnlyUser>(),
+                _ => null,
+            };
         }
     }
 }
