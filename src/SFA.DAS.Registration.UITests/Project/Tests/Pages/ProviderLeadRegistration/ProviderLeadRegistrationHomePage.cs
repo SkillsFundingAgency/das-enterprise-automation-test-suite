@@ -1,6 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.ProviderLogin.Service.Pages;
+using OpenQA.Selenium;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
@@ -10,18 +11,36 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         private readonly ScenarioContext _context;
         #endregion
 
-        public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) { _context = context; }
+        public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) { _context = context; }        
 
         public IdamsPage SetupEmployerAccount()
         {
             formCompletionHelper.ClickElement(SetupEmployer);
             return new IdamsPage(_context);
-        }
+        }       
 
         public InvitedEmployersPage ViewInvitedEmployers()
         {
             formCompletionHelper.ClickElement(InvitedEmployers);
             return new InvitedEmployersPage(_context);
+        }
+
+        public IdamsPage ViewInvitedEmployersForProviderRoles()
+        {
+            formCompletionHelper.ClickElement(InvitedEmployers);
+            return new IdamsPage(_context);
+        }
+
+        public StartSettingUpEmployerPage SetupEmployerAccountForProviderRoles()
+        {
+            formCompletionHelper.ClickElement(SetupEmployer);
+            return new StartSettingUpEmployerPage(_context);            
+        }
+
+        public ProviderAccessDeniedPage GoToProviderToSetUpEmployerAccountGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(SetupEmployer);
+            return new ProviderAccessDeniedPage(_context);
         }
     }
 }
