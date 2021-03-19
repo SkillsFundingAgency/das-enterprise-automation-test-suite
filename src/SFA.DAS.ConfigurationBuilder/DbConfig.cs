@@ -10,6 +10,7 @@
         public string ApplyDatabaseConnectionString { get; set; }
         public string QnaDatabaseConnectionString { get; set; }
         public string LoginDatabaseConnectionString { get; set; }
+        public string ProviderFeedbackDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
