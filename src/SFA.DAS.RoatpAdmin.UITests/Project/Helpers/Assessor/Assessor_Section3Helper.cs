@@ -87,6 +87,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinueInForecastingStartsPage()
                     .SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
                     .SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
+                    .SelectPassAndContinueInTypicalRatioOfStaffDeliveringTraining()
                     .SelectPassAndContinue()
                     .VerifySection3Link4Status(StatusHelper.StatusPass);
             }
