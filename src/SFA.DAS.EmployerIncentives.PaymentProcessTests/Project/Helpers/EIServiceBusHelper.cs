@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
+using SFA.DAS.UI.FrameworkHelpers;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
@@ -10,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
     {
         private IEndpointInstance _endpoint;
 
-        public EIServiceBusHelper(EIConfig config)
+        public EIServiceBusHelper(NServiceBusConfig config)
         {
             var endpointConfiguration = new EndpointConfiguration("SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers")
                 .UseMessageConventions()
@@ -19,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var ruleNameShortener = new RuleNameShortener();
 
-            transport.ConnectionString(config.EI_ServiceBusConnectionString);
+            transport.ConnectionString(config.ServiceBusConnectionString);
             transport.Routing().AddRouting();
             transport.RuleNameShortener(ruleNameShortener.Shorten);
             transport.Transactions(TransportTransactionMode.ReceiveOnly);

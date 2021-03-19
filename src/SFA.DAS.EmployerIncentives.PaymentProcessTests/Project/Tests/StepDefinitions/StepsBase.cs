@@ -3,6 +3,7 @@ using Dapper.Contrib.Extensions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class StepsBase
     {
         protected Fixture fixture;
-        protected EIConfig config;
+        protected EIConfig eiConfig;
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
@@ -35,15 +36,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             fixture = new Fixture();
-            config = context.GetEIConfig<EIConfig>();
-            sqlHelper = new EISqlHelper(config);
-            serviceBusHelper = new EIServiceBusHelper(config);
+            eiConfig = context.GetEIConfig<EIConfig>();
+            sqlHelper = new EISqlHelper(eiConfig);
+
+            var config = context.Get<FrameworkConfig>();
+            serviceBusHelper = new EIServiceBusHelper(config.NServiceBusConfig);
 
             learnerMatchApi = new LearnerMatchApiHelper();
-            learnerMatchService = new EILearnerMatchHelper(config);
+            learnerMatchService = new EILearnerMatchHelper(eiConfig);
 
             businessCentralApiHelper = new BusinessCentralApiHelper();
-            paymentService = new EIPaymentsProcessHelper(config);
+            paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
         }

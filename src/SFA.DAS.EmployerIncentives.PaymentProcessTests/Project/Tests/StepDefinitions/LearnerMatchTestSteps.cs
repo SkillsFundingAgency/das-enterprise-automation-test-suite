@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Threading.Tasks;
@@ -19,11 +20,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private IncentiveApplication _incentiveApplication;
         private IncentiveApplicationApprenticeship _apprenticeship;
         private Guid _apprenticeshipIncentiveId;
+        private EIServiceBusHelper _serviceBusHelper;
 
         public LearnerMatchTestSteps(ScenarioContext context)
         {
             _fixture = new Fixture();
             _config = context.GetEIConfig<EIConfig>();
+            var config = context.Get<FrameworkConfig>();
+            _serviceBusHelper = new EIServiceBusHelper(config.NServiceBusConfig);
         }
 
         [Given(@"there are some apprenticeship incentives")]
@@ -45,7 +49,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await sqlHelper.CreateIncentiveApplication(_incentiveApplication);
 
-            var serviceBusHelper = new EIServiceBusHelper(_config);
             var command = new CreateIncentiveCommand(
                 _incentiveApplication.AccountId,
                 _incentiveApplication.AccountLegalEntityId,
@@ -63,7 +66,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 _apprenticeship.CourseName
             );
 
-            await serviceBusHelper.Publish(command);
+            await _serviceBusHelper.Publish(command);
 
             _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 10, 0));
             await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 10, 0));
