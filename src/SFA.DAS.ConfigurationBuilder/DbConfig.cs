@@ -11,6 +11,7 @@
         public string QnaDatabaseConnectionString { get; set; }
         public string LoginDatabaseConnectionString { get; set; }
         public string ProviderFeedbackDbConnectionString { get; set; }
+        public string AssessorDbConnectionString { get; set; }
     }
 
     public class DbDevConfig

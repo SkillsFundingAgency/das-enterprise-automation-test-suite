@@ -51,7 +51,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
                 QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
                 RoatpDatabaseConnectionString = GetConnectionString(_dbDevConfig.RoatpDatabaseName),
-                ProviderFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.ProviderFeedbackDbName)
+                ProviderFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.ProviderFeedbackDbName),
+                AssessorDbConnectionString = GetConnectionString(_dbDevConfig.AssessorDbName)
             };
         }
 
