@@ -13,6 +13,7 @@
         public string ProviderFeedbackDbConnectionString { get; set; }
         public string AssessorDbConnectionString { get; set; }
         public string IncentivesDbConnectionString { get; set; }
+        public string PermissionsDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
