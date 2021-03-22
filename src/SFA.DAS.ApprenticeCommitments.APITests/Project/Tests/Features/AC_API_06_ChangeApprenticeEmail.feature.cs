@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "ChangeApprenticeEmail.feature"
+#line 1 "AC_API_06_ChangeApprenticeEmail.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -74,13 +74,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("An apprentice can change their email address")]
+        [NUnit.Framework.DescriptionAttribute("AC_API_06_An apprentice can change their email address")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AnApprenticeCanChangeTheirEmailAddress()
+        public virtual void AC_API_06_AnApprenticeCanChangeTheirEmailAddress()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -89,8 +89,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An apprentice can change their email address", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_06_An apprentice can change their email address", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("an apprentice has created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the apprentice can change their email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
