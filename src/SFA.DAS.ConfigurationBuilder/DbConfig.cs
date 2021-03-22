@@ -12,6 +12,7 @@
         public string LoginDatabaseConnectionString { get; set; }
         public string ProviderFeedbackDbConnectionString { get; set; }
         public string AssessorDbConnectionString { get; set; }
+        public string IncentivesDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
