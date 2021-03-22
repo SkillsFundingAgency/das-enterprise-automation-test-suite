@@ -1,4 +1,5 @@
-﻿Feature: RE_PAS_PR_01	
+﻿@ignore
+Feature: RE_PAS_PR_01
 
 @Providerregistrationproviderrole
 Scenario: Verify viewer login 

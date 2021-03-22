@@ -1,4 +1,5 @@
-﻿Feature: RE_PAS_PR_02	
+﻿@ignore
+Feature: RE_PAS_PR_02
 
 @Providerregistrationproviderrole
 Scenario Outline: Provider Roles 
