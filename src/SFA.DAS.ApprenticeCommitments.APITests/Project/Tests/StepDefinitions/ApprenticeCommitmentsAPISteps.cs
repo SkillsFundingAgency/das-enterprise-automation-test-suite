@@ -22,11 +22,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
 
-        [Then(@"the apprentice commitments api dependent api's can be reached")]
-        public void ThenTheApprenticeCommitmentsApiDependentApisCanBeReached() => _apprenticeCommitmentsApiHelper.CheckHealth();
+        [Then(@"the apprentice commitments api dependent api's are reachable")]
+        public void ThenTheApprenticeCommitmentsApiDependentApisAreReachable() => _apprenticeCommitmentsApiHelper.CheckHealth();
 
-        [Then(@"the apprentice commitments api can be reached")]
-        public void ThenTheApprenticeCommitmentsApiCanBeReached() => _apprenticeCommitmentsApiHelper.Ping();
+        [Then(@"the apprentice commitments api is reachable")]
+        public void ThenTheApprenticeCommitmentsApiIsReachable() => _apprenticeCommitmentsApiHelper.Ping();
 
         [Then(@"the apprenticeship records can be fetched")]
         public void ThenTheApprenticeshipRecordsCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeships();
