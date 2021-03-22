@@ -15,6 +15,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         private TrainingCourseSummaryPage _trainingCourseSummaryPage;
         private ProviderSearchResultsPage _providerSearchResultsPage;
         private ProviderSummaryPage _providerSummaryPage;
+        private ProviderShortlistPage _providerShortlistPage;
 
         public FATV2Steps(ScenarioContext context)
         {
@@ -31,9 +32,9 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
 
         [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
         public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
+        
         [Given(@"the User searches with (.*) term")]
         [When(@"the User searches with (.*) term")]
-
         public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(training);
 
         [When(@"the User chooses to diplay results in '(Name|Relevance)' order")]
@@ -58,6 +59,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         [Then(@"User is able to return to homepage")]
         public void ThenUserIsAbleToReturnToHomepage() => _trainingCourseSummaryPage.NavigateBackToHompage();
 
+        [Given(@"the User is able to find the Provider by location (.*) for the chosen training")]
         [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
         public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode)
         {
@@ -100,5 +102,39 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             .NavigateBackFromTrainingProvidersPage()
             .NavigateBackFromCourseSummaryPage()
             .NavigateBackToHompage();
+
+        [When(@"user shortlists without a location")]
+        public void WhenUserShortlistsWithoutALocation()
+        {
+            _providerSearchResultsPage.RemoveLocationOnProviderListPage();
+            _providerSearchResultsPage.ShortlistAProviderFromProviderList();
+        }
+
+        [When(@"user shortlists with a location")]
+        public void WhenUserShortlistsWithALocation()
+        {
+            _providerSearchResultsPage.ShortlistAProviderFromProviderList();
+        }
+        [Given(@"the user has shortlisted a provider")]
+        public void GivenTheUserHasShortlistedAProvider()
+        {
+            WhenTheUserSearchesWithATerm("Adult care worker");
+            WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
+            ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("Coventry");
+            WhenUserShortlistsWithALocation();
+        }
+
+        [When(@"the the user navigates to shortlist page")]
+        public void WhenTheTheUserNavigatesToShortlistPage()
+        {
+            _providerShortlistPage = _providerSearchResultsPage.NavigateToProviderShortlistPage();
+        }
+
+
+        [Then(@"the user is able remove the shortlisted provider")]
+        public void ThenTheUserIsAbleRemoveTheShortlistedProvider()
+        {
+            _providerShortlistPage.RemoveShortlistedProvider();
+        }
     }
 }
