@@ -24,10 +24,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the user cannot invite an employer to setup an account")]
         public void GivenTheUserCannotInviteAnEmployerToSetupAnAccount()
-        {
-            new ProviderLeadRegistrationHomePage(_context).GoToProviderToSetUpEmployerAccountGoesToAccessDenied();
-            //TO DO :bring back to home page bl clicking back link
-            //.GoBackToTheProviderHomePage();
+        {            
+            new ProviderLeadRegistrationHomePage(_context).GoToProviderToSetUpEmployerAccountGoesToAccessDenied().GoBackToTheProviderHomePage();
         }
 
         [Given(@"the user can invite an employer to setup an account")]

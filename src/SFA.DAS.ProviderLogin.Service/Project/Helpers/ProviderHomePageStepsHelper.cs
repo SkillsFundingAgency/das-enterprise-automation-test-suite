@@ -15,7 +15,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         private readonly ProviderConfig _config;
         private readonly ObjectContext _objectContext;
         private readonly ProviderPortalLoginHelper _loginHelper;
-        private readonly ProviderLoginUser _login;
         private readonly string _providerUrl;
 
         public ProviderHomePageStepsHelper(ScenarioContext context)
@@ -26,12 +25,11 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _config = context.GetProviderConfig<ProviderConfig>();
             _providerUrl = UrlConfig.Provider_BaseUrl;
             _loginHelper = new ProviderPortalLoginHelper(_context);
-            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
-        public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);
+        public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_objectContext.GetProviderLogin(), newTab);
 
-        public ProviderHomePage GoToProviderHomePageInNewTab() => GoToProviderHomePage(_login, true);
+        public ProviderHomePage GoToProviderHomePageInNewTab() => GoToProviderHomePage(_objectContext.GetProviderLogin(), true);
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
@@ -42,6 +40,11 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             else
             {
                 _tabHelper.GoToUrl(_providerUrl);
+            }
+
+            if (login == null)
+            {
+                login = SetProviderLogin(_config);
             }
 
             _objectContext.SetUkprn(login.Ukprn);
@@ -57,11 +60,11 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             return new ProviderHomePage(_context);
         }
 
-        public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
+        public ProviderLoginUser SetProviderLogin(ProviderConfig config)
         {
-            var loginUser = new ProviderLoginUser { Username = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
-
-            return GoToProviderHomePage(loginUser, newTab);
+            var login = new ProviderLoginUser { Username = config.UserId, Password = config.Password, Ukprn = config.Ukprn };
+            _objectContext.SetProviderLogin(login);
+            return login;
         }
     }
 }

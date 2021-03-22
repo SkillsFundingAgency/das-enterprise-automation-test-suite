@@ -19,7 +19,11 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
         }
 
         [Given(@"the provider logs in as a (Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
-        public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, false);       
+        public void GivenTheProviderLogsInAs(ProviderConfig config)
+        {
+            _providerHomePageStepsHelper.SetProviderLogin(config);
+            _providerHomePageStepsHelper.GoToProviderHomePage(false);
+        }
 
         [StepArgumentTransformation(@"(Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
         public ProviderConfig GetProviderUserRole(string providerUserRoles)
