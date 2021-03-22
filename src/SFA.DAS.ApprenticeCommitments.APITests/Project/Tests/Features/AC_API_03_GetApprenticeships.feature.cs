@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "GetApprenticeships.feature"
+#line 1 "AC_API_03_GetApprenticeships.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -74,13 +74,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get apprenticeship records")]
+        [NUnit.Framework.DescriptionAttribute("AC_API_03_Get apprenticeship records")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void GetApprenticeshipRecords()
+        public virtual void AC_API_03_GetApprenticeshipRecords()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -89,8 +89,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get apprenticeship records", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_03_Get apprenticeship records", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("an apprentice has created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the apprenticeship records can be fetched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

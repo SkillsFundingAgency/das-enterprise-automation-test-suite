@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "OuterApiHealthCheck.feature"
+#line 1 "AC_API_01_OuterApiHealthCheck.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("OuterApiHealthCheck")]
+        [NUnit.Framework.DescriptionAttribute("AC_API_01_OuterApiHealthCheck")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void OuterApiHealthCheck()
+        public virtual void AC_API_01_OuterApiHealthCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,8 +87,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "outerapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("OuterApiHealthCheck", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_01_OuterApiHealthCheck", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
  testRunner.Then("the apprentice commitments api can be reached", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

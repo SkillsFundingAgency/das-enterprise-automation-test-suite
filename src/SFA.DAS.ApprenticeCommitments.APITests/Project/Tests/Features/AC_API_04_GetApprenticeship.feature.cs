@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("OuterApiDependentApiHealthCheck")]
-    public partial class OuterApiDependentApiHealthCheckFeature
+    [NUnit.Framework.DescriptionAttribute("GetApprenticeshipRecord")]
+    public partial class GetApprenticeshipRecordFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "OuterApiDependentApiHealthCheck.feature"
+#line 1 "AC_API_04_GetApprenticeship.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "OuterApiDependentApiHealthCheck", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "GetApprenticeshipRecord", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,22 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("OuterApiDependentApiHealthCheck")]
+        [NUnit.Framework.DescriptionAttribute("AC_API_04_Get apprenticeship record")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void OuterApiDependentApiHealthCheck()
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        public virtual void AC_API_04_GetApprenticeshipRecord()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
                     "apprenticecommitmentsapi",
                     "outerapi",
-                    "regression"};
+                    "regression",
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("OuterApiDependentApiHealthCheck", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_04_Get apprenticeship record", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,7 +111,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Then("the apprentice commitments api dependent api\'s can be reached", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("an apprentice has created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.Then("the apprenticeship record can be fetched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
