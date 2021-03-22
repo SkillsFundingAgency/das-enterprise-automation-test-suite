@@ -55,7 +55,9 @@ namespace SFA.DAS.ConfigurationBuilder
                 AssessorDbConnectionString = GetConnectionString(_dbDevConfig.AssessorDbName),
                 IncentivesDbConnectionString = GetConnectionString(_dbDevConfig.EmployerIncentivesDbName),
                 PermissionsDbConnectionString = GetConnectionString(_dbDevConfig.PermissionsDbName),
-                PublicSectorReportingConnectionString = GetConnectionString(_dbDevConfig.PublicSectorReportingDbName)
+                PublicSectorReportingConnectionString = GetConnectionString(_dbDevConfig.PublicSectorReportingDbName),
+                PregDbConnectionString = GetConnectionString(_dbDevConfig.PregDbName),
+                TPRDbConnectionString = GetConnectionString(_dbDevConfig.TPRDbName)
             };
         }
 
