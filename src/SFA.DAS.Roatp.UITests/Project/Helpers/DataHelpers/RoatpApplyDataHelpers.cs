@@ -54,6 +54,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             ExampleToImproveEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
             ExampleToMaintainEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
             HowHasTheTeamOrPersonWorked = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhatLevelOfSupportProvided = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            SignificantEventText = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         public DateTime Dob(int x) => DateTime.Now.AddYears(-40 + x);
@@ -109,6 +111,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string ExampleToMaintainEmployees { get; }
         public string HowHasTheTeamOrPersonWorked { get; }
         public string NamesOfAllOrganisations { get; }
+        public string WhatLevelOfSupportProvided { get; }
+        public string SignificantEventText { get; }
         public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }

@@ -47,6 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             applicationAssessmentOverviewPage = _assessor_Section2Helper.PassContractForServicesTemplate(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section2Helper.PassCommitmentStatementTemplate(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section2Helper.PassPriorLearningOfApprentices(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassEnglishAndMathsAssessment(applicationAssessmentOverviewPage, applicationroute); 
             applicationAssessmentOverviewPage = _assessor_Section2Helper.PassWorkingWithSubcontractors(applicationAssessmentOverviewPage, applicationroute);
             return applicationAssessmentOverviewPage;
         }
