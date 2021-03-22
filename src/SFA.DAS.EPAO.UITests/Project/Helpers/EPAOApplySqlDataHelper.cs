@@ -1,10 +1,11 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAOApplySqlDataHelper : SqlDbHelper
     {
-        public EPAOApplySqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.AssessorDbConnectionString) { }
+        public EPAOApplySqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
 
         public void DeleteCertificate(string uln)
         {

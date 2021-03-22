@@ -22,13 +22,11 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly ProviderFeedbackConfig providerFeedbackConfig;
         protected readonly ProviderFeedbackDataHelper providerFeedbackDatahelper;
         #endregion
 
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            providerFeedbackConfig = context.GetProviderFeedbackConfig<ProviderFeedbackConfig>();
             regexHelper = context.Get<RegexHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             tabHelper = context.Get<TabHelper>();

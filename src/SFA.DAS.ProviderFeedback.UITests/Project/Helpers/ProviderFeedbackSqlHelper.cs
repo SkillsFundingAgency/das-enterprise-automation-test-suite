@@ -1,11 +1,12 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
 {
     public class ProviderFeedbackSqlHelper : SqlDbHelper
     {
-        public ProviderFeedbackSqlHelper(ProviderFeedbackConfig config) : base(config.ProviderFeedbackDbConnectionString) { }
+        public ProviderFeedbackSqlHelper(DbConfig config) : base(config.ProviderFeedbackDbConnectionString) { }
 
         public string GetUniqueSurveyCode() => FetchProviderFeedbackDataHelper.UniqueSurveyCode(connectionString);
 

@@ -17,7 +17,6 @@
         public string PrivatelyFundedUkprn { get; set; }
         public string AlreadyAssessedApprenticeName { get; set; }
         public string AlreadyAssessedApprenticeUln { get; set; }
-        public string AssessorDbConnectionString { get; set; }
         public string EPAOStageTwoStandardCancelUser { get; set; }
     }
 }
