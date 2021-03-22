@@ -17,14 +17,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
-        private readonly ApprovalsConfig _approvalsConfig;
         private readonly DbConfig _dbConfig;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
-            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             _dbConfig = context.Get<DbConfig>();
         }
 
@@ -68,7 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new PublicSectorReportingDataHelper(random));
 
-            _context.Set(new PublicSectorReportingSqlDataHelper(_approvalsConfig));
+            _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
             var nServiceBusHelper = _context.Get<NServiceBusHelper>();
 

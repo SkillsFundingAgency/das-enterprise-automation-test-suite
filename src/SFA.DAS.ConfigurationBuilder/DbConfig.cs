@@ -14,6 +14,7 @@
         public string AssessorDbConnectionString { get; set; }
         public string IncentivesDbConnectionString { get; set; }
         public string PermissionsDbConnectionString { get; set; }
+        public string PublicSectorReportingConnectionString { get; set; }
     }
 
     public class DbDevConfig
@@ -34,5 +35,6 @@
         public string AssessorDbName { get; set; }
         public string EmployerIncentivesDbName { get; set; }
         public string PublicSectorReportingDbName { get; set; }
+        public string PermissionsDbName { get; set; }
     }
 }
