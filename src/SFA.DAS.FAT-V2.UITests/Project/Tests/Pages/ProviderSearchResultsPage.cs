@@ -15,7 +15,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         #region Locators
         private By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
         private By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
-
+        private By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
+        private By RemoveLocation => By.LinkText("Clear");
         #endregion
 
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
@@ -37,8 +38,21 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(BackToCourseSummaryPage);
             return new TrainingCourseSummaryPage(_context);
         }
-
+        public ProviderSearchResultsPage ShortlistAProviderFromProviderList()
+        {
+            formCompletionHelper.Click(AddToShortlist);
+            return new ProviderSearchResultsPage(_context);
+        }
+        public ProviderSearchResultsPage RemoveLocationOnProviderListPage()
+        {
+            formCompletionHelper.Click(RemoveLocation);
+            return new ProviderSearchResultsPage(_context);
+        }
+        public ProviderShortlistPage NavigateToProviderShortlistPage()
+        {
+            NavigateToShortlistPage();
+            return new ProviderShortlistPage(_context);
+        }
         public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
-
     }
 }
