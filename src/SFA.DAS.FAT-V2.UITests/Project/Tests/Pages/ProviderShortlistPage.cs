@@ -12,6 +12,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         #region
         private By RemoveShortlist => By.CssSelector("button[id^='remove-shortlistitem-']");
+        private By ReturnToTrainingCoursePage => By.LinkText("View apprenticeship training courses");
         #endregion
 
         public ProviderShortlistPage(ScenarioContext context) : base(context) => _context = context;
@@ -22,5 +23,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             return new ProviderShortlistPage(_context);
         }
 
+        public TrainingCourseSearchResultsPage ReturnToTrainingCourseSearchResultsPage()
+        {
+            formCompletionHelper.Click(ReturnToTrainingCoursePage);
+            return new TrainingCourseSearchResultsPage(_context);
+        }
     }
 }

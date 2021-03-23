@@ -26,38 +26,17 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         [Given(@"the User navigates to the Search Results page")]
         [When(@"the User navigates to the Search Results page")]
         public void WhenTheUserNavigatesToTheSearchResultsPage() => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse();
-
-        [When(@"the User selects level (2|3|4|5|6|7) to filter results")]
-        public void WhenTheUserSelectsLevelToFilterResults(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.SelectLevelAndFilterResults(level);
-
-        [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
-        public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
         
         [Given(@"the User searches with (.*) term")]
         [When(@"the User searches with (.*) term")]
         public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(training);
 
-        [When(@"the User chooses to diplay results in '(Name|Relevance)' order")]
-        public void WhenTheUserChoosesToDiplayResultsInOrder(string order)
-        {
-            if (order.Contains("Name"))
-                _trainingCourseSearchResultsPage.SelectNameOrderSort();
-            else
-                _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
-        }
-
-        [When(@"the User chooses the first course from the Search Results page")]
         [Given(@"the User chooses the first course from the Search Results page")]
+        [When(@"the User chooses the first course from the Search Results page")]
         public void WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage()
         {
             _trainingCourseSummaryPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult();
         }
-
-        [Then(@"the '(Name |Relevance)' link is displayed")]
-        public void ThenTheLinkIsDisplayed(string relevance) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifySortByInfoFromSearchResults(relevance);
-
-        [Then(@"User is able to return to homepage")]
-        public void ThenUserIsAbleToReturnToHomepage() => _trainingCourseSummaryPage.NavigateBackToHompage();
 
         [Given(@"the User is able to find the Provider by location (.*) for the chosen training")]
         [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
@@ -66,10 +45,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
         }
 
-        [Then(@"the User is able to select the Provider for the chosen training")]
-        public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining()
+        [Given(@"user navigates to provider details page")]
+        public void GivenUserNavigatesToProviderDetailsPage()
         {
-            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
+            GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
+            ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining();
         }
 
         [Given(@"the User searches a course then navigates to the provider list")]
@@ -81,27 +61,32 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             _providerSearchResultsPage = _trainingCourseSummaryPage.ClickViewProvidersForThisCourse();
         }
 
+        [Given(@"the user has shortlisted a provider")]
+        public void GivenTheUserHasShortlistedAProvider()
+        {
+            WhenTheUserSearchesWithATerm("Adult care worker");
+            WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
+            ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("Coventry");
+            WhenUserShortlistsWithALocation();
+        }
+
+        [When(@"the User selects level (2|3|4|5|6|7) to filter results")]
+        public void WhenTheUserSelectsLevelToFilterResults(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.SelectLevelAndFilterResults(level);
+
+        [When(@"the User chooses to diplay results in '(Name|Relevance)' order")]
+        public void WhenTheUserChoosesToDiplayResultsInOrder(string order)
+        {
+            if (order.Contains("Name"))
+                _trainingCourseSearchResultsPage.SelectNameOrderSort();
+            else
+                _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
+        }
+
         [When(@"the User selects (.*) from the list")]
         public void WhenTheUserSelectsAProviderFromTheList(string provider) => _providerSummaryPage = _fATV2StepsHelper.SelectASpecificProvider(provider);
 
         [When(@"enters the location (.*)")]
         public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);
-
-        [Then(@"'(.*)' message is displayed")]
-        public void ThenMessageIsDisplayed(string errorMessage) => Assert.IsTrue(_providerSummaryPage.VerifyNoTrainingProviderAtLocationErrorText(), errorMessage);
-
-        [Given(@"user navigates to provider details page")]
-        public void GivenUserNavigatesToProviderDetailsPage()
-        {
-            GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
-            ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining();
-        }
-
-        [Then(@"user is able to navigate to homepage using the breadcrumbs")]
-        public void ThenUserIsAbleToNavigateToHomepageUsingTheBreadcrumbs() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
-            .NavigateBackFromTrainingProvidersPage()
-            .NavigateBackFromCourseSummaryPage()
-            .NavigateBackToHompage();
 
         [When(@"user shortlists without a location")]
         public void WhenUserShortlistsWithoutALocation()
@@ -115,14 +100,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         {
             _providerSearchResultsPage.ShortlistAProviderFromProviderList();
         }
-        [Given(@"the user has shortlisted a provider")]
-        public void GivenTheUserHasShortlistedAProvider()
-        {
-            WhenTheUserSearchesWithATerm("Adult care worker");
-            WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
-            ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("Coventry");
-            WhenUserShortlistsWithALocation();
-        }
 
         [When(@"the the user navigates to shortlist page")]
         public void WhenTheTheUserNavigatesToShortlistPage()
@@ -130,11 +107,40 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             _providerShortlistPage = _providerSearchResultsPage.NavigateToProviderShortlistPage();
         }
 
+        [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
+        public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
+
+        [Then(@"the '(Name |Relevance)' link is displayed")]
+        public void ThenTheLinkIsDisplayed(string relevance) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifySortByInfoFromSearchResults(relevance);
+
+        [Then(@"User is able to return to homepage")]
+        public void ThenUserIsAbleToReturnToHomepage() => _trainingCourseSummaryPage.NavigateBackToHompage();
+
+        [Then(@"the User is able to select the Provider for the chosen training")]
+        public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining()
+        {
+            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
+        }
+
+        [Then(@"'(.*)' message is displayed")]
+        public void ThenMessageIsDisplayed(string errorMessage) => Assert.IsTrue(_providerSummaryPage.VerifyNoTrainingProviderAtLocationErrorText(), errorMessage);
+
+        [Then(@"user is able to navigate to homepage using the breadcrumbs")]
+        public void ThenUserIsAbleToNavigateToHomepageUsingTheBreadcrumbs() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
+            .NavigateBackFromTrainingProvidersPage()
+            .NavigateBackFromCourseSummaryPage()
+            .NavigateBackToHompage();
 
         [Then(@"the user is able remove the shortlisted provider")]
         public void ThenTheUserIsAbleRemoveTheShortlistedProvider()
         {
             _providerShortlistPage.RemoveShortlistedProvider();
+        }
+
+        [Then(@"the user is able to return to course search page")]
+        public void ThenTheUserIsAbleToReturnToCourseSearchPage()
+        {
+            _providerShortlistPage.ReturnToTrainingCourseSearchResultsPage();
         }
     }
 }
