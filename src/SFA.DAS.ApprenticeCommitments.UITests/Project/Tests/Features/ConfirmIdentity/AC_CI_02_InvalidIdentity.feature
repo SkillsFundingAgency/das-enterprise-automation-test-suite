@@ -1,6 +1,5 @@
 ﻿Feature: AC_CI_02_InvalidIdentity
 
-
 @apprenticecommitments
 @regression
 @deleteuser

@@ -1,6 +1,5 @@
 ﻿Feature: AC_CE_03_ConfirmYourTrainingProvider
 
-
 @apprenticecommitments
 @regression
 @deleteuser

@@ -1,6 +1,5 @@
 ﻿Feature: AC_CE_04_CanNotConfirmYourTrainingProvider
 
-
 @apprenticecommitments
 @regression
 @deleteuser
