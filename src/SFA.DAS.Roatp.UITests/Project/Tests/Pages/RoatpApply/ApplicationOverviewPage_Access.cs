@@ -203,9 +203,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_6);
             return new OrganisationsProcessForInitialAssessementsPage(_context);
         }
-        public OrganisationExpectToUseSubcontractorsPage Access_Section5_WorkingWithSubContractors()
+        public HowWillYouDeliverEnglishAndMathsAssessmentsPage Access_Section5_EnglishAndMathsAssessments()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_7);
+            return new HowWillYouDeliverEnglishAndMathsAssessmentsPage(_context);
+        }
+        public OrganisationExpectToUseSubcontractorsPage Access_Section5_WorkingWithSubContractors()
+        {
+            NavigateToTask(ReadinessToEngage, ReadinessToEngage_8);
             return new OrganisationExpectToUseSubcontractorsPage(_context);
         }
         #endregion

@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateApprenticeInvitation")]
-    public partial class CreateApprenticeInvitationFeature
+    [NUnit.Framework.DescriptionAttribute("GetApprenticeshipRecords")]
+    public partial class GetApprenticeshipRecordsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CreateApprenticeInvitation.feature"
+#line 1 "AC_API_03_GetApprenticeships.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CreateApprenticeInvitation", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "GetApprenticeshipRecords", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +74,23 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("New apprenticeship email sent")]
+        [NUnit.Framework.DescriptionAttribute("AC_API_03_Get apprenticeship records")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteinvitation")]
-        public virtual void NewApprenticeshipEmailSent()
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        public virtual void AC_API_03_GetApprenticeshipRecords()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
                     "apprenticecommitmentsapi",
                     "outerapi",
                     "regression",
-                    "deleteinvitation"};
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New apprenticeship email sent", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_03_Get apprenticeship records", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,49 +110,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 9
+ testRunner.Given("an apprentice has created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 10
- testRunner.When("an apprenticeship is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("the apprentice details are updated in the login db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Inner das-commitments-api heathcheck")]
-        [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("innerapi")]
-        public virtual void InnerDas_Commitments_ApiHeathcheck()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "api",
-                    "innerapi"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Inner das-commitments-api heathcheck", null, tagsOfScenario, argumentsOfScenario);
-#line 15
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 16
- testRunner.Then("das-commitments-api endpoint can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprenticeship records can be fetched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -19,7 +19,7 @@ namespace SFA.DAS.API.Framework.Helpers
 
                 Assert.AreEqual(expectedResponse, response.StatusCode,
                     $"{response.Request.Method}{Environment.NewLine}" +
-                    $"{response.Request.Resource}{Environment.NewLine}" +
+                    $"{response.ResponseUri.AbsoluteUri}{Environment.NewLine}" +
                     $"{GetRequestBody(response)}");
             });
         }

@@ -48,7 +48,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ApplicationOverviewPage VerifyContract_Section5(string status) => Verify_Section5(ReadinessToEngage_4, status);
         public ApplicationOverviewPage VerifyCommitment_Section5(string status) => Verify_Section5(ReadinessToEngage_5, status);
         public ApplicationOverviewPage VerifyPriorLearning_Section5(string status) => Verify_Section5(ReadinessToEngage_6, status);
-        public ApplicationOverviewPage VerifyWorkingWithSubcontractors_Section5(string status) => Verify_Section5(ReadinessToEngage_7, status);
+        public ApplicationOverviewPage VerifyEnglishAndMaths_Section5(string status) => Verify_Section5(ReadinessToEngage_7, status);
+        public ApplicationOverviewPage VerifyWorkingWithSubcontractors_Section5(string status) => Verify_Section5(ReadinessToEngage_8, status);
         #endregion
 
         #region Section4
