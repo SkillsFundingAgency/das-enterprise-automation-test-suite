@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        public VacancyPreviewPart2WithErrorsPage(ScenarioContext context) : base(context)
+        public VacancyPreviewPart2WithErrorsPage(ScenarioContext context, string pageTitle = null) : base(context, pageTitle)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }

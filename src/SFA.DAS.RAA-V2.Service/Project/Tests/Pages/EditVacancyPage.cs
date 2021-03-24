@@ -27,10 +27,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _context = context;
         }
 
-        public EditVacancyDatesPage EditVacancyCloseDate()
+        public RAAV2CSSBasePage EditVacancyCloseDate(bool permissionDenied = false)
         {
             formCompletionHelper.Click(EditClosingDate);
-            return new EditVacancyDatesPage(_context);
+
+            return permissionDenied
+                ? new DoNotHavePermissionBasePage(_context)
+                : new EditVacancyDatesPage(_context) as RAAV2CSSBasePage;
         }
 
         public EditVacancyDatesPage EditVacancyStartDate()

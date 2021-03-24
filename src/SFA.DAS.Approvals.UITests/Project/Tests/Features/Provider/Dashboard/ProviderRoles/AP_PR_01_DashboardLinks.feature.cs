@@ -142,23 +142,23 @@ this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor", ((s
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Contributor wi" +
-            "th approval")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: ContributorWit" +
+            "hApproval")]
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_ContributorWithApproval()
         {
 #line 4
-this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor with approval", ((string[])(null)));
+this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("ContributorWithApproval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Account Owner")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: AccountOwner")]
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_AccountOwner()
         {
 #line 4
-this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Account Owner", ((string[])(null)));
+this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("AccountOwner", ((string[])(null)));
 #line hidden
         }
         
@@ -225,23 +225,23 @@ this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor", ((stri
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Contributor with a" +
-            "pproval")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: ContributorWithApp" +
+            "roval")]
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_ContributorWithApproval()
         {
 #line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor with approval", ((string[])(null)));
+this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("ContributorWithApproval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Account Owner")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: AccountOwner")]
         [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
         public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements_AccountOwner()
         {
 #line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Account Owner", ((string[])(null)));
+this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("AccountOwner", ((string[])(null)));
 #line hidden
         }
     }

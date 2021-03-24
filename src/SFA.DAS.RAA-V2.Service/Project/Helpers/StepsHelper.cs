@@ -13,10 +13,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             => manageVacancyPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
         public void ApplicantSucessful(ManageRecruitPage manageVacancyPage)
-            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        {
+            var confirmApplicantSucessfulPage = manageVacancyPage.NavigateToManageApplicant().MakeApplicantSuccessful() as ConfirmApplicantSucessfulPage;
+            confirmApplicantSucessfulPage.NotifyApplicant();
+        }
 
         public void ApplicantUnsucessful(ManageRecruitPage manageVacancyPage)
-            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        {
+            var confirmApplicantUnsucessfulPage = manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsuccessful() as ConfirmApplicantUnsucessfulPage;
+            confirmApplicantUnsucessfulPage.NotifyApplicant();
+        }
 
         public VacancyPreviewPart2Page PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
@@ -81,7 +87,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             SubmitVacancy(previewPage);
         }
 
-        public void SubmitVacancy(VacancyPreviewPart2Page previewPage) => previewPage.SubmitVacancy().SetVacancyReference();
+        public void SubmitVacancy(VacancyPreviewPart2Page previewPage)
+        {
+            var vacancyReferencePage = previewPage.SubmitVacancy() as VacancyReferencePage;
+            vacancyReferencePage.SetVacancyReference();
+        }
 
         private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA)
         {

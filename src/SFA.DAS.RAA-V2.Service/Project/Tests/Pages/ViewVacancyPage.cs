@@ -8,7 +8,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector("#vacancy-header");
 
-        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
+        protected override string PageTitle => _pageTitle ?? vacancyTitleDataHelper.VacancyTitle;
+        private string _pageTitle;
 
         protected override By EmployerName => By.CssSelector(".govuk-caption-xl");
 
@@ -18,8 +19,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
-        public ViewVacancyPage(ScenarioContext context) : base(context) { }
-        
+        public ViewVacancyPage(ScenarioContext context, string pageTitle = null, bool verifypage = true) : base(context, false)
+        {
+            _pageTitle = pageTitle;
+
+            if (verifypage) { VerifyPage(); }
+        }
+
         public void VerifyWageType(string wageType)
         {
             string wageAmount;

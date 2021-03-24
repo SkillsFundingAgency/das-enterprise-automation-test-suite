@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public ReservationSuccessfullyDeletedPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ApprovalsProviderHomePage GoToHomePage()
+        public ApprovalsProviderHomePage GoToHomePage()
         {
             SelectRadioOptionByText("Go to homepage");
             Continue();

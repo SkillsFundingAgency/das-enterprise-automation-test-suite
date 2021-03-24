@@ -13,12 +13,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By Applicant => By.CssSelector(".responsive a");
 
+        private By ActionLink => By.CssSelector("table tbody tr .govuk-link");
+
         public ManageRecruitPage(ScenarioContext context) : base(context) => _context = context;
 
-        public CloneVacancyDatesPage CloneAdvert()
+        public RAAV2CSSBasePage CloneAdvert(bool permissionDenied = false)
         {
-            formCompletionHelper.ClickLinkByText("Clone advert");
-            return new CloneVacancyDatesPage(_context);
+            string linkClone = isRaaV2Employer ? "Clone advert" : "Clone vacancy";
+            formCompletionHelper.ClickLinkByText(linkClone);
+            
+            return permissionDenied
+                ? new DoNotHavePermissionBasePage(_context)
+                : new CloneVacancyDatesPage(_context) as RAAV2CSSBasePage;
         }
 
         public EditVacancyPage EditAdvert()
@@ -27,18 +33,30 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new EditVacancyPage(_context);
         }
 
-        public CloseVacancyPage CloseAdvert()
+        public RAAV2CSSBasePage CloseAdvert(bool permissionDenied = false)
         {
-            formCompletionHelper.ClickLinkByText("Close advert");
-            return new CloseVacancyPage(_context);
+            string linkClose = isRaaV2Employer ? "Close advert" : "Close vacancy";
+            formCompletionHelper.ClickLinkByText(linkClose);
+
+            return permissionDenied
+                ? new DoNotHavePermissionBasePage(_context)
+                : new CloseVacancyPage(_context) as RAAV2CSSBasePage;
         }
 
-        public ViewVacancyPage NavigateToViewAdvertPage()
+        public ViewVacancyPage NavigateToViewAdvertPage(string vacancyTitle = null)
         {
-            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
-            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
+            string linkView = isRaaV2Employer ? "View advert" : "View vacancy";
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkView));
 
-            return new ViewVacancyPage(_context);
+            return new ViewVacancyPage(_context, vacancyTitle);
+        }
+
+        public EditVacancyPage NavigateToEditAdvertPage()
+        {
+            string linkEdit = isRaaV2Employer ? "Edit advert" : "Edit vacancy";
+            formCompletionHelper.ClickLinkByText(linkEdit);
+
+            return new EditVacancyPage(_context);
         }
 
         public ManageApplicantPage NavigateToManageApplicant()

@@ -26,7 +26,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
-        internal YourAdvertsPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        internal YourAdvertsPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage)
+        {
+            var deleteVacancyQuestionPage = previewPage.DeleteVacancy() as DeleteVacancyQuestionPage;
+            return deleteVacancyQuestionPage.YesDeleteVacancy();
+        }
 
         internal YourAdvertsPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
@@ -39,11 +43,23 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal void CloneAVacancy()
+        {
+            var cloneVacancyDatesPage = GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert() as CloneVacancyDatesPage;
+            _stepsHelper.SubmitVacancy(cloneVacancyDatesPage.SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        }
 
-        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
+        internal void EditVacancyDates()
+        {
+            var editVacancyDatesPage = SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate() as EditVacancyDatesPage;
+            editVacancyDatesPage.EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
+        }
 
-        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseAdvert().YesCloseThisVacancy();
+        internal void CloseVacancy()
+        {
+            var closeVacancyPage = SearchVacancyByVacancyReferenceInNewTab().CloseAdvert() as CloseVacancyPage;
+            closeVacancyPage.YesCloseThisVacancy();
+        }
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 

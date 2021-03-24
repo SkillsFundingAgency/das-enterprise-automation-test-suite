@@ -2,6 +2,7 @@
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
@@ -52,6 +53,78 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
         }
 
+        internal void CreateANewVacancyGoesToPermissionDenied(bool permissionDenied)
+        {
+            GoToRecruitmentHomePage(false).CreateVacancy(permissionDenied);
+        }
+
+        internal void ViewVacancies() => GoToRecruitmentHomePage(false);
+
+        internal void ViewVacancyViaEditAndSubmitLink(string vacancyState, bool previewReady, bool permissionDenied)
+        {
+            GoToRecruitmentHomePage(false).ViewVacancyViaEditAndSubmitLink(vacancyState, previewReady, permissionDenied);
+        }
+        
+        internal void ViewVacancyViaManageLink(string vacancyState) => GoToRecruitmentHomePage(false).ViewVacancyViaManageLink(vacancyState);
+
+        internal void ViewApplicationsViaManageLink(string vancancyState) => GoToRecruitmentHomePage(false).ViewApplicationsViaManageLink(vancancyState);
+
+        internal void CreateAReport() => GoToRecruitmentHomePage(false).CreateAReport();
+
+        internal void ManageRecruitmentEmails() => GoToRecruitmentHomePage(false).ManageRecruitmentEmails();
+
+        internal void EditVacancyViaEditAndSubmitLink(string vacancyState, bool permissionDenied)
+        {
+            var vacancyPreviewPart2Page = GoToRecruitmentHomePage(false)
+                .EditVacancyViaEditAndSubmitLink(vacancyState, out _);
+
+            vacancyPreviewPart2Page
+                .ChangeClosingDate(permissionDenied);
+        }   
+
+        internal void SubmitOrResubmitViaEditAndSubmitLink(string vacancyState, bool permissionDenied)
+        {
+            var vacancyPreviewPart2Page = GoToRecruitmentHomePage(false)
+                .EditVacancyViaEditAndSubmitLink(vacancyState, out _);
+
+            vacancyPreviewPart2Page.SubmitVacancy(permissionDenied);
+        }
+
+        internal void DeleteVacancy(string vacancyState, bool permissionDenied)
+        {
+            var vacancyPreviewPart2Page = GoToRecruitmentHomePage(false)
+                .EditVacancyViaEditAndSubmitLink(vacancyState, out string vacancyTitle);
+
+            vacancyPreviewPart2Page.DeleteVacancy(vacancyTitle, permissionDenied);
+        }
+
+        internal void CloneVacancy(string vacancyState, bool permissionDenied) => GoToRecruitmentHomePage(false).CloneVacancyViaManageLink(vacancyState, permissionDenied);
+
+        internal void EditVacancyViaManageLink(string vacancyState, bool permissionDenied)
+        {
+            var editVacancyPage = GoToRecruitmentHomePage(false)
+                .EditVacancyViaManageLink(vacancyState);
+
+            editVacancyPage.EditVacancyCloseDate(permissionDenied);
+        }
+
+        internal void CloseVacancy(string vacancyState, bool permissionDenied) => GoToRecruitmentHomePage(false).CloseVacancyViaManageLink(vacancyState, permissionDenied);
+
+        internal void UpdateApplicationStatusViaManageLink(string vacancyState, bool successfull, bool permissionDenied)
+        {
+            var manageApplicationPage = GoToRecruitmentHomePage(false)
+                .ViewApplicationsViaManageLink(vacancyState);
+
+            if (successfull)
+            {
+                manageApplicationPage.MakeApplicantSuccessful(permissionDenied);
+            }
+            else
+            {
+                manageApplicationPage.MakeApplicantUnsuccessful(permissionDenied);
+            }
+        }
+
         private void PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
         {
             var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
@@ -59,7 +132,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper.SubmitVacancy(previewVacancy, isApplicationMethodFAA, optionalFields);
         }
 
-        private SelectEmployersPage CreateVacancy() => GoToRecruitmentHomePage(false).CreateVacancy();
+        private SelectEmployersPage CreateVacancy() => GoToRecruitmentHomePage(false).CreateVacancy() as SelectEmployersPage;
 
         private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
 
@@ -82,7 +155,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         private RecruitmentHomePage GoToRecruitmentHomePage(bool newTab)
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
-
             return new RecruitmentHomePage(_context, true);
         }
     }

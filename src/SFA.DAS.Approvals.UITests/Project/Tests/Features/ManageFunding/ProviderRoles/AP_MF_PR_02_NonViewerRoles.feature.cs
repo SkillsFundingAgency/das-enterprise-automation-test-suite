@@ -135,22 +135,22 @@ this.VerfiyLoginForNonViewerUser("Contributor", ((string[])(null)));
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor with approval")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: ContributorWithApproval")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
         public virtual void VerfiyLoginForNonViewerUser_ContributorWithApproval()
         {
 #line 5
-this.VerfiyLoginForNonViewerUser("Contributor with approval", ((string[])(null)));
+this.VerfiyLoginForNonViewerUser("ContributorWithApproval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Account Owner")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: AccountOwner")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
         public virtual void VerfiyLoginForNonViewerUser_AccountOwner()
         {
 #line 5
-this.VerfiyLoginForNonViewerUser("Account Owner", ((string[])(null)));
+this.VerfiyLoginForNonViewerUser("AccountOwner", ((string[])(null)));
 #line hidden
         }
     }
