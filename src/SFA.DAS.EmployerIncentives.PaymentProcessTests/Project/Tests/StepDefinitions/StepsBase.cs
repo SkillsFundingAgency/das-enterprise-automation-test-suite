@@ -106,8 +106,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(5));
-                await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(5));
+                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
         }
@@ -176,7 +176,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [AfterScenario()]
-        protected async Task CleanUpIncentives()
+        public async Task CleanUpIncentives()
         {
             if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
             if (incentiveApplication != null) await DeleteApplicationData();

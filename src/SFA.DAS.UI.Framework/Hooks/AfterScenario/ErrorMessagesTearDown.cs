@@ -29,6 +29,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
             {
                 var messages = new List<string>();
 
+                if (_objectContext.GetAfterScenarioExceptions() == null) return;
                 messages.AddRange(_objectContext.GetAfterScenarioExceptions().Select(x => x?.Message));
 
                 var url = _objectContext.GetUrl();

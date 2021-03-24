@@ -33,12 +33,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SqlScripts.resx</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\LearnerMatchTest.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Project\Tests\Features\PaymentsProcess.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
+    <Compile Update="Project\Tests\Features\ResumeChangeOfCircumstance.feature.cs">
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature.cs">
@@ -74,17 +69,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\LearnerMatchTest.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ResumeChangeOfCircumstance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LearnerMatchTest.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\PaymentsProcess.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PaymentsProcess.feature.cs</LastGenOutput>
+      <LastGenOutput>ResumeChangeOfCircumstance.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
