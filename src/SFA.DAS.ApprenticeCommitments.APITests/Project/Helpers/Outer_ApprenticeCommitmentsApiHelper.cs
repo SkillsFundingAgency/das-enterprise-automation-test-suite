@@ -50,7 +50,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 Email = GetApprenticeEmail(), 
                 EmployerAccountLegalEntityId = legalEntityId,
                 TrainingProviderId = providerId,
-                TrainingProviderName = string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName
+                TrainingProviderName = GetProviderName(tradingName, legalName)
             };
 
             _objectContext.SetAccountId(accountid);
@@ -60,6 +60,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetLastName(lastname);
             _objectContext.SetTrainingName(trainingname);
             _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
+            _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
 
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
@@ -142,5 +143,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         }
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
+
+        private string GetProviderName(string tradingName, string legalName) => string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName;
     }
 }
