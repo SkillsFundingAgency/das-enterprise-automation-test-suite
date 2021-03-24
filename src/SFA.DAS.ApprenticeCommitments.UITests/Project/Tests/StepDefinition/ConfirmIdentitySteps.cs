@@ -17,8 +17,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice identity can be validated")]
         public void ThenTheApprenticeIdentityCanBeValidated() => _apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
 
-        [Then(@"the apprentice can confirm the employer")]
-        public void ThenTheApprenticeCanConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
+        [Then(@"the apprentice is able to confirm the employer")]
+        public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
 
         [Then(@"the apprentice can not confirm the employer")]
         public void ThenTheApprenticeCanNotConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
@@ -57,6 +57,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
         public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeHomePage = _apprenticeHomePage.ConfirmAlreadyConfirmedTrainingProvider().ContinueToHomePage();
+
+        [Then(@"confirmed employer already page is displayed for trying to confirm again")]
+        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
+             _apprenticeHomePage = _apprenticeHomePage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }

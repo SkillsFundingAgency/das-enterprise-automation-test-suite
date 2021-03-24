@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourTrainingProviderPage(ScenarioContext context) : base(context) 
         {
-            VerifyPage(ProviderNamePageHeader, context.Get<ObjectContext>().GetProviderName());
+            VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetProviderName());
         }
     }
 }

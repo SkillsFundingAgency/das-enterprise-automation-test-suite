@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
 
-        protected By ProviderNamePageHeader => By.CssSelector(".govuk-heading-l");
+        protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context) : base(context)
         {

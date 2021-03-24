@@ -31,5 +31,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickLinkByText("Confirm your training provider");
             return new AlreadyConfirmedTrainingProviderPage(_context);
         }
+
+        public AlreadyConfirmedEmployerPage ConfirmAlreadyConfirmedEmployer()
+        {
+            formCompletionHelper.ClickLinkByText("Confirm your employer");
+            return new AlreadyConfirmedEmployerPage(_context);
+        }
     }
 }

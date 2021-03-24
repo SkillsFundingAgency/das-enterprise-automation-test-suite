@@ -5,15 +5,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class AlreadyConfirmedTrainingProviderPage : ApprenticeCommitmentsBasePage
+    public class AlreadyConfirmedEmployerPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "You have confirmed your training provider";
+        protected override string PageTitle => "You have confirmed your employer";
         private By NotificationBar => By.CssSelector(".app-notification-banner");
 
-        public AlreadyConfirmedTrainingProviderPage(ScenarioContext context) : base(context)
+        public AlreadyConfirmedEmployerPage(ScenarioContext context) : base(context)
         {
             pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
-            VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetProviderName());
+            VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetEmployerName().Replace("  "," "));
         }
     }
 }
