@@ -32,7 +32,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
         {
-            var confirmidentitypage = SignInToApprenticePortal();
+            var confirmYourIdentityPage = SignInToApprenticePortal();
 
             var invalidDatas = new List<(string, string, int, int, int, string)>
             {
@@ -41,9 +41,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             foreach (var d in invalidDatas)
             {
-                confirmidentitypage = confirmidentitypage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5, d.Item6);
-
-                confirmidentitypage.VerifyErrorSummary();
+                confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5, d.Item6);
+                confirmYourIdentityPage.VerifyErrorSummary();
             }
         }
 
