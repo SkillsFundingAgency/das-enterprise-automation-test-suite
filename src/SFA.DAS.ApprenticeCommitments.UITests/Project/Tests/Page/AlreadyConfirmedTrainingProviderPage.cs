@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "You have confirmed your training provider";
         private By NotificationBar => By.CssSelector(".app-notification-banner");
 
-        public AlreadyConfirmedTrainingProviderPage(ScenarioContext context) : base(context)
+        public AlreadyConfirmedTrainingProviderPage(ScenarioContext context) : base(context, false)
         {
             pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
             VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetProviderName());

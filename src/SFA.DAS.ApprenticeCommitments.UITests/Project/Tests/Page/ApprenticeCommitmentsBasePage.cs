@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             _context = context;
             objectContext = context.Get<ObjectContext>();
@@ -31,6 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
+            if (verifypage) VerifyPage();
         }
 
         public ApprenticeHomePage ContinueToHomePage()

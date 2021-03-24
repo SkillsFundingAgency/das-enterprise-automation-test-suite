@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "You have confirmed your employer";
         private By NotificationBar => By.CssSelector(".app-notification-banner");
 
-        public AlreadyConfirmedEmployerPage(ScenarioContext context) : base(context)
+        public AlreadyConfirmedEmployerPage(ScenarioContext context) : base(context, false)
         {
             pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
             VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetEmployerName().Replace("  "," "));

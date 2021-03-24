@@ -8,11 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override string PageTitle => "My apprenticeship(s)";
 
-        public ApprenticeHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ApprenticeHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public ConfirmYourEmployerPage ConfirmYourEmployer()
         {

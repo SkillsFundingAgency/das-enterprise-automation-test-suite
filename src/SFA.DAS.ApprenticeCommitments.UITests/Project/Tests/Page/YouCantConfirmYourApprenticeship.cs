@@ -11,12 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
 
-        public YouCantConfirmYourApprenticeship(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-        }
+        public YouCantConfirmYourApprenticeship(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeHomePage ReturnToApprenticeHomePage()
         {

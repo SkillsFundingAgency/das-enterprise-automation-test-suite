@@ -20,19 +20,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
-        public ConfirmYourIdentityPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeHomePage ConfirmIdentity()
         {
-            EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname, 
-                apprenticeCommitmentsDataHelper.ApprenticeLastname, 
-                apprenticeCommitmentsDataHelper.DateOfBirthDay, 
-                apprenticeCommitmentsDataHelper.DateOfBirthMonth, 
-                apprenticeCommitmentsDataHelper.DateOfBirthYear, 
+            EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname,
+                apprenticeCommitmentsDataHelper.ApprenticeLastname,
+                apprenticeCommitmentsDataHelper.DateOfBirthDay,
+                apprenticeCommitmentsDataHelper.DateOfBirthMonth,
+                apprenticeCommitmentsDataHelper.DateOfBirthYear,
                 apprenticeCommitmentsDataHelper.NationalInsuranceNumber);
             return new ApprenticeHomePage(_context);
         }
@@ -59,7 +55,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 formCompletionHelper.EnterText(DateOfBirth_Month, month ?? 0);
             }
             if (year != null)
-            { 
+            {
                 formCompletionHelper.EnterText(DateOfBirth_Year, year ?? 0);
             }
 
