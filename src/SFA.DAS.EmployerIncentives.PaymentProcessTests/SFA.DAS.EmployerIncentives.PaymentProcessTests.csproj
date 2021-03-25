@@ -33,18 +33,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SqlScripts.resx</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\LearnerMatchTest.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Project\Tests\Features\PaymentsProcess.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature.cs">
-      <DependentUpon>StartDateChangeOfCircumstance.feature</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Project\Helpers\SqlScripts.resx">
@@ -72,25 +60,5 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\LearnerMatchTest.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LearnerMatchTest.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\PaymentsProcess.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PaymentsProcess.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>StartDateChangeOfCircumstance.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>
