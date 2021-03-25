@@ -46,8 +46,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             }
         }
 
-        [Given(@"an apprentice has created an validated the account")]
-        public void GivenAnApprenticeHasCreatedAnValidatedTheAccount()
+        [Given(@"an apprentice has created and validated the account")]
+        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
         {
             GivenAnApprenticeLoginInToTheService();
             ThenTheApprenticeIdentityCanBeValidated();
