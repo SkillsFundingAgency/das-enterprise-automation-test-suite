@@ -194,7 +194,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToAmendBankDetails()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
-            NavigateToEIHubPage()
+            _eINavigationHelper.NavigateToEIHubPage()
                 .NavigateToChangeBankDetailsPage()
                 .ContinueToVRFIntroductionTab1Page()
                 .ContinueToVRFOrgDetailsTab2Page()
@@ -205,7 +205,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .AcknowledgeSummaryDetails()
                 .ReturnToEIHubPage();
         }
-
-        private EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection(_context).NavigateToEIHubPage();
     }
 }

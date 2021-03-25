@@ -5,7 +5,6 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -31,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 41)]
-        public void LoginToDfeVRFService()
+        public void LoginToVRFService()
         {
             _context.Set(new EIDataHelper(_context.Get<RandomDataGenerator>()));
 

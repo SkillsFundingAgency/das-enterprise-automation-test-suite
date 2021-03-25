@@ -11,5 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         internal QualificationQuestionPage NavigateToEISelectApprenticesPage() => 
             new HomePageFinancesSection(_context).NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+
+        internal EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection(_context).NavigateToEIHubPage();
     }
 }

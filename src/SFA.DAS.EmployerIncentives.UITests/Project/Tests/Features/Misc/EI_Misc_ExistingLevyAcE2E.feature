@@ -1,13 +1,11 @@
-﻿Feature: EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF
+﻿Feature: EI_Misc_ExistingLevyAcE2E
 
-@regression
-@addlevyfunds
-@employerincentives
+@eie2ejourney
 @vrfservice
-Scenario: EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend bank details for a New Levy Account
-	Given an Employer creates a Levy Account and Signs the Agreement
-	And the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Month 9 and Year 2020
-	And the Provider approves the apprenticeship request
+Scenario: EI_Misc_ExistingLevyAcE2E_Apply for Incentive for an Existing Levy Account with one legal entity
+	When the Employer logins using existing EI Levy Account
+	Then View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications
+	And EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application
 	When the Employer Initiates EI Application journey for Single entity account again
