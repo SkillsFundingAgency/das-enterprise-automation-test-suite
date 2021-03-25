@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
-
             VerifyPage();
         }
 
@@ -25,6 +24,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.ClickLinkByText("Confirm your training provider");
             return new ConfirmYourTrainingProviderPage(_context);
+        }
+
+        public AlreadyConfirmedTrainingProviderPage ConfirmAlreadyConfirmedTrainingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Confirm your training provider");
+            return new AlreadyConfirmedTrainingProviderPage(_context);
         }
     }
 }
