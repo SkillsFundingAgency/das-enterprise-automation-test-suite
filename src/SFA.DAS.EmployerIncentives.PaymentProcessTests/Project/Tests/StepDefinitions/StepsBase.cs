@@ -11,8 +11,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
-// ReSharper disable PossibleInvalidOperationException
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
@@ -49,6 +49,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
+        }
+
+        [AfterScenario()]
+        protected async Task CleanUpIncentives()
+        {
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
+            if (incentiveApplication != null) await DeleteApplicationData();
         }
 
         protected async Task RunLearnerMatchOrchestrator()
@@ -175,11 +182,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
         }
 
-        [AfterScenario()]
-        protected async Task CleanUpIncentives()
+        protected async Task VerifyLearningRecordsExist()
         {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
-            if (incentiveApplication != null) await DeleteApplicationData();
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            Assert.IsTrue(exist);
+        }
+
+        protected async Task VerifyPaymentRecordsExist()
+        {
+            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            Assert.IsTrue(exist);
         }
     }
 }
