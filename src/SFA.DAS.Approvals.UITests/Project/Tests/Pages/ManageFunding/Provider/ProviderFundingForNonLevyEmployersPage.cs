@@ -30,11 +30,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
+        public ProviderAccessDeniedPage AddApprenticeWithReservedFundingGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(AddApprenticeLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
         internal DeleteReservationPage DeleteTheReservedFunding()
         {
             formCompletionHelper.ClickElement(DeleteFundingLink);
             return new DeleteReservationPage(_context);
         }
 
+        public ProviderAccessDeniedPage DeleteTheReservedFundingGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(DeleteFundingLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        public ProviderFundingForNonLevyEmployersPage VerifyReservationExists()
+        {
+            VerifyElement(() => pageInteractionHelper.FindElement(DeleteFundingLink), "Delete", null);
+            return this;
+        }
     }
 }

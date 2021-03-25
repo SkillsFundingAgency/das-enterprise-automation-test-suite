@@ -23,7 +23,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         private string Section2_Link3 => "Contract for services template";
         private string Section2_Link4 => "Commitment statement template";
         private string Section2_Link5 => "Prior learning of apprentices";
-        private string Section2_Link6 => "Working with subcontractors";
+        private string Section2_Link6 => "English and maths assessments";
+        private string Section2_Link7 => "Working with subcontractors";
         #endregion
 
         #region Section-3
@@ -40,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         private string Section4_Link2 => "Management hierarchy for apprenticeships";
         private string Section4_Link3 => "Quality and high standards in apprenticeship training";
         private string Section4_Link4 => "Developing and delivering training";
-        private string Section4_Link5 => "Your sectors and employees";
+        private string Section4_Link5 => "Sectors and employee experience";
         private string Section4_Link6 => "Policy for professional development of employees";
         #endregion
 

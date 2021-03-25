@@ -22,6 +22,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected virtual By FirstResultLink => By.ClassName("das-no-wrap");
         protected virtual By FirstProviderResultLink => By.ClassName("das-search-results__link");
         protected virtual By HomePageLink => By.LinkText("Home");
+        protected virtual By ViewShortlistLink => By.Id("header-view-shortlist");
         #endregion
 
         protected FATV2BasePage(ScenarioContext context) : base(context)
@@ -38,6 +39,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(SearchButton);
         }
         protected void NavigateToHomepage() => formCompletionHelper.Click(HomePageLink);
-
+        protected void NavigateToShortlistPage() => formCompletionHelper.Click(ViewShortlistLink);
     }
 }

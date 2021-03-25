@@ -249,8 +249,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_3(applicationOverviewPage);
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_4(applicationOverviewPage);
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_5(applicationOverviewPage);
-            applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_6(applicationOverviewPage);
+            applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_6(applicationOverviewPage); 
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_7(applicationOverviewPage);
+            applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_8(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -260,6 +261,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_5(applicationOverviewPage);
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_6(applicationOverviewPage);
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_7(applicationOverviewPage);
+            applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_8(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -267,6 +269,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_1(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_2(applicationOverviewPage);
+            applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_4_MainRoute(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_5(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_6(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_7(applicationOverviewPage);

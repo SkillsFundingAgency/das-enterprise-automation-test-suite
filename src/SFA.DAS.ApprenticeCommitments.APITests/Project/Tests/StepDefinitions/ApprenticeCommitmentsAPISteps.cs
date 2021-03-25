@@ -1,6 +1,4 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
+﻿using SFA.DAS.API.Framework;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using System.Net;
@@ -13,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     {
         private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper;
         private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
-        private readonly ApprenticeCommitmentSqlHelper _apprenticeCommitmentSqlHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
 
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
@@ -21,26 +19,47 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 
             _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
 
-            _apprenticeCommitmentSqlHelper = context.Get<ApprenticeCommitmentSqlHelper>();
+            _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+        }
+
+        [Then(@"the apprentice commitments api dependent api's are reachable")]
+        public void ThenTheApprenticeCommitmentsApiDependentApisAreReachable() => _apprenticeCommitmentsApiHelper.CheckHealth();
+
+        [Then(@"the apprentice commitments api is reachable")]
+        public void ThenTheApprenticeCommitmentsApiIsReachable() => _apprenticeCommitmentsApiHelper.Ping();
+
+        [Then(@"the apprenticeship records can be fetched")]
+        public void ThenTheApprenticeshipRecordsCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeships();
+
+        [Then(@"the apprenticeship record can be fetched")]
+        public void ThenTheApprenticeshipRecordCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeship();
+
+        [Given(@"an apprentice has created an account")]
+        public void GivenAnApprenticeHasCreatedAnAccount()
+        {
+            _apprenticeCommitmentsApiHelper.CreateApprenticeship();
+
+            _apprenticeCommitmentsApiHelper.VerifyRegistration();
+        }
+
+        [Then(@"the apprentice can change their email address")]
+        public void ThenTheApprenticeCanChangeTheirEmailAddress()
+        {
+            _apprenticeCommitmentsApiHelper.ChangeApprenticeEmailAddress();
+
+            _apprenticeCommitmentsApiHelper.AssertApprenticeEmailUpdated();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {
-            var (_, apprenticeshipid, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (_, apprenticeshipid, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
-            _innerApiRestClient.GetApprenticeship(apprenticeshipid);
-
-            var response = _innerApiRestClient.Execute();
-
-            AssertHelper.AssertResponse(HttpStatusCode.OK, response);
+            _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }
 
         [When(@"an apprenticeship is posted")]
         public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeship();
-
-        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
-        public void AResponseIsReceived(HttpStatusCode responsecode) => _apprenticeCommitmentsApiHelper.AssertResponse(responsecode);
 
         [Then(@"the apprentice details are updated in the login db")]
         public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _apprenticeCommitmentsApiHelper.AssertApprenticeLoginData();

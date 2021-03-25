@@ -2,7 +2,6 @@
 
 @apprenticecommitments
 @regression
-@deleteinvitation
 @deleteuser
 Scenario: AC_RP_02_InvalidPassword
 	When an apprentice submits to reset password

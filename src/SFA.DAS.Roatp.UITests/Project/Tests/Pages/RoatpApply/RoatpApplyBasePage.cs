@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         protected By Year => By.CssSelector("input[id*='Year']");
 
-        protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
+        protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea, .govuk-textarea");
 
         public RoatpApplyBasePage(ScenarioContext context) : base(context)
         {

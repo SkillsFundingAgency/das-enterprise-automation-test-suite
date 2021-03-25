@@ -1,5 +1,6 @@
-﻿using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -15,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly EIConfig _eIConfig;
+        private readonly DbConfig _dbConfig;
         private readonly TabHelper _tabHelper;
         private readonly EILevyUser _eILevyUser;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
@@ -23,7 +24,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _eIConfig = context.GetEIConfig<EIConfig>();
+            _dbConfig = context.Get<DbConfig>();
             _tabHelper = context.Get<TabHelper>();
             _eILevyUser = context.GetUser<EILevyUser>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
@@ -38,14 +39,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
 
-                new VRFLoginPage(_context).SignIntoVRF();
+                new DfeUatLoginPage(_context).SignIntoDfeUat();
 
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => _context.Set(new EISqlHelper(_eIConfig));
+        public void SetUpHelpers() => _context.Set(new EISqlHelper(_dbConfig));
 
         [BeforeScenario(Order = 43)]
         public void RemoveExistingApplications()

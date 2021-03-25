@@ -1,16 +1,11 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class PasswordBasePage : ApprenticeCommitmentsBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
         protected string _validPassword;
-        #endregion
-
         protected override string PageTitle { get; }
 
         private By Password => By.CssSelector("#Password");
@@ -18,20 +13,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         private By ErrorSummary => By.CssSelector(".govuk-error-summary");
 
-        public PasswordBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
+        public PasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
 
-            _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
-        }
-
-        public PasswordBasePage InvalidPassword(string password, string confirmpassword)
+        public string InvalidPassword(string password, string confirmpassword)
         {
             SubmitPassword(password, confirmpassword);
-            return this;
+            return pageInteractionHelper.GetText(ErrorSummary);
         }
-
-        public void VerifyErrorSummary() => StringAssert.Contains("There is a problem", pageInteractionHelper.GetText(ErrorSummary), "Password error message did not match");
 
         protected void SubmitPassword(string password, string confirmpassword)
         {

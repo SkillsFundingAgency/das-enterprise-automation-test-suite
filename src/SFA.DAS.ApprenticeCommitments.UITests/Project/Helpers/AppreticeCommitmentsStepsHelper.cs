@@ -4,9 +4,10 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -36,34 +37,38 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreatePasswordPage GetCreatePasswordPage()
         {
-            string invitationId = string.Empty;
-
-            string email = _objectContext.GetApprenticeEmail();
-
-            _assertHelper.RetryOnNUnitException(() =>
+            RetryOnNUnitException(() =>
             {
-                invitationId = _apprenticeLoginSqlDbHelper.GetId(email);
+                string email = _objectContext.GetApprenticeEmail();
+
+                var invitationId = _apprenticeLoginSqlDbHelper.GetId(email);
 
                 Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
+
+                OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(invitationId));
             });
 
-            return new CreatePasswordPage(_context, invitationId);
+            return new CreatePasswordPage(_context);
         }
 
         public ResetPasswordPage GetResetPasswordPage()
         {
-            (string clientId, string requestId) id = (string.Empty, string.Empty);
-
-            string email = _objectContext.GetApprenticeEmail();
-
-            _assertHelper.RetryOnNUnitException(() =>
+            RetryOnNUnitException(() =>
             {
+                (string clientId, string requestId) id = (string.Empty, string.Empty);
+
+                string email = _objectContext.GetApprenticeEmail();
+
                 id = _apprenticeLoginSqlDbHelper.GetApprenticeResetLoginData(email);
 
-                Assert.IsNotEmpty(id.requestId, $"Client id not found in the Login db for email '{email}'");
+                Assert.IsNotEmpty(id.clientId, $"Client id not found in the Login db for email '{email}'");
+
+                Assert.IsNotEmpty(id.requestId, $"Request id not found in the Login db for email '{email}'");
+
+                OpenInNewTab(UrlConfig.Apprentice_ResetPasswordUrl(id.clientId, id.requestId));
             });
 
-            return new ResetPasswordPage(_context, id);
+            return new ResetPasswordPage(_context);
         }
 
         public YourAccountHasBeenCreatedPage CreateAccount(bool postApprenticeship = true)
@@ -82,23 +87,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void InvalidPassword(PasswordBasePage passwordPage)
         {
-            var invalidPasswords = new List<string[]>
-            {
-                new string [] { config.AC_AccountPassword, $"{config.AC_AccountPassword}1" },
-                new string [] { "invalidpassword", "invalidpassword" },
-                new string [] { "234547896", "234547896" },
-                new string [] { "ac1234", "ac1234" },
-                new string [] { "AccountsPassword123", "AccountsPassword123" }
-            };
+            var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
 
-            foreach (var invalidPassword in invalidPasswords)
-            {
-                passwordPage = passwordPage.InvalidPassword(invalidPassword[0], invalidPassword[1]);
-
-                passwordPage.VerifyErrorSummary();
-            }
+            StringAssert.Contains("There is a problem", error, "Password error message did not match");
         }
 
         public SignIntoApprenticeshipPortalPage SignInPage() => sigUpCompletePage.ClickSignInToApprenticePortal();
+
+        private void OpenInNewTab(string url) => _context.Get<TabHelper>().OpenInNewTab(url);
+
+        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
     }
 }

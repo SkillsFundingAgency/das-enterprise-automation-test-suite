@@ -1,7 +1,4 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -11,27 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        public CreatePasswordPage(ScenarioContext context, string invitationId) : base(context)
-        {
-            _context = context;
-
-            VerifyPage(() =>
-            {
-                return pageInteractionHelper.InvokeAction(() => 
-                {
-                    invitationId = string.IsNullOrEmpty(invitationId) ? loginInvitationsSqlDbHelper.GetId(objectContext.GetApprenticeEmail()) : invitationId;
-
-                    context.Get<TabHelper>().OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(invitationId));
-
-                    return pageInteractionHelper.FindElements(PageHeader);
-                });
-
-            }, PageTitle);
-
-            new CreatePasswordPage(context);
-        }
-
-        private CreatePasswordPage(ScenarioContext context) : base(context) { }
+        public CreatePasswordPage(ScenarioContext context) : base(context) => _context = context;
 
         public YourAccountHasBeenCreatedPage CreatePassword()
         {

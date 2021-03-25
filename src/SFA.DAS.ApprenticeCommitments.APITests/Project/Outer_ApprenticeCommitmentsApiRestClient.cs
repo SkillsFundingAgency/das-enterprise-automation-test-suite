@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.Helpers;
 using SFA.DAS.API.Framework.RestClients;
+using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
@@ -13,11 +13,29 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiSubscriptionKey => config.ApprenticeCommitmentsApiSubscriptionKey;
 
-        public void CreateApprenticeship(CreateApprenticeship createApprenticeship)
+        public IRestResponse CreateApprenticeship(CreateApprenticeship payload, HttpStatusCode expectedResponse)
         {
-            var payload = JsonHelper.Serialize(createApprenticeship);
+            return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
+        }
 
-            CreateRestRequest(Method.POST, "/apprenticeships", payload);
+        public IRestResponse VerifyRegistration(VerifyIdentityRegistrationCommand payload, HttpStatusCode expectedResponse)
+        {
+            return Execute(Method.POST, $"/registrations", payload, expectedResponse);
+        }
+
+        public IRestResponse ChangeApprenticeEmailAddress(string apprenticeId, ApprenticeEmailAddressRequest payload, HttpStatusCode expectedResponse)
+        {
+            return Execute(Method.POST, $"/apprentices/{apprenticeId}/email", payload, expectedResponse);
+        }
+
+        public IRestResponse GetApprenticeships(string apprenticeId, HttpStatusCode expectedResponse)
+        {
+            return Execute($"/apprentices/{apprenticeId}/apprenticeships", expectedResponse);
+        }
+
+        public IRestResponse GetApprenticeship(string apprenticeId, string commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
+        {
+            return Execute($"/apprentices/{apprenticeId}/apprenticeships/{long.Parse(commitmentsApprenticeshipId)}", expectedResponse);
         }
     }
 }

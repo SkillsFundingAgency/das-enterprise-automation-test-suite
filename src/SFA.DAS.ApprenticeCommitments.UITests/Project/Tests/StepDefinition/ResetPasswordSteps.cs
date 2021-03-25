@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void WhenAnApprenticeSubmitsToResetPassword()
         {
             appreticeCommitmentsStepsHelper.CreateAccount();
-
             appreticeCommitmentsStepsHelper.SubmitResetPassword();
         }
 
@@ -21,9 +20,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for invalid reset passwords")]
         public void ThenAnErrorIsShownForInvalidResetPasswords()
         {
-            var passwordPage = appreticeCommitmentsStepsHelper.GetResetPasswordPage();
-
-            appreticeCommitmentsStepsHelper.InvalidPassword(passwordPage);
+            var resetPasswordPage = appreticeCommitmentsStepsHelper.GetResetPasswordPage();
+            appreticeCommitmentsStepsHelper.InvalidPassword(resetPasswordPage);
         }
     }
 }
