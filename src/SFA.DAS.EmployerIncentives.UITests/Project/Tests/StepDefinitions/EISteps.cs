@@ -122,7 +122,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
             if (entities == Entities.Single)
-                _qualificationQuestionPage = NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
                 _qualificationQuestionPage = new HomePageFinancesSection(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
