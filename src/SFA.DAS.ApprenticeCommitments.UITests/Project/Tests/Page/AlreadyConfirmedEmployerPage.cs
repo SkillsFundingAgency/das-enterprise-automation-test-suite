@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public AlreadyConfirmedEmployerPage(ScenarioContext context) : base(context, false)
         {
             pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
-            VerifyPage(ConfirmingEntityNamePageHeader, context.Get<ObjectContext>().GetEmployerName().Replace("  "," "));
+            VerifyPage(PageHeader, context.Get<ObjectContext>().GetEmployerName().Replace("  "," "));
         }
     }
 }
