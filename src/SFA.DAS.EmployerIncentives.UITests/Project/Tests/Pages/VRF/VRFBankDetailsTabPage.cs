@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private By AccountNumber => By.CssSelector("#Account_number");
         private By SortCode => By.CssSelector("#sort_code");
         private By AddBankDetails => By.CssSelector("#exp_validate");
-        private By BankDetailsAccepted => By.CssSelector(".fieldContent strong");
+        private By BankDetailsAcceptedMessage => By.CssSelector(".fieldContent strong");
         #endregion
 
         public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false)
@@ -33,7 +33,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.EnterText(AccountNumber, eIDataHelper.AccountNumber);
                 formCompletionHelper.EnterText(SortCode, eIDataHelper.Sortcode);
                 formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
-                VerifyPage(BankDetailsAccepted);
+                VerifyPage(BankDetailsAcceptedMessage);
                 Continue();
             });
 
