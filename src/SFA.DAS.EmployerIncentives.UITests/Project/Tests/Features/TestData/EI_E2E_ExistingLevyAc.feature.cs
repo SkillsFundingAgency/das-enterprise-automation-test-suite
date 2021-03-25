@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
             " entity")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
-        [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
+        [NUnit.Framework.CategoryAttribute("vrfservice")]
         public virtual void EI_E2E_ELevyAc_01_ApplyForIncentiveForAnExistingLevyAccountWithOneLegalEntity()
         {
             string[] tagsOfScenario = new string[] {
                     "addlevyfunds",
                     "eie2ejourney",
-                    "dfeuatachieveservice"};
+                    "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account with one legal" +
                     " entity", null, tagsOfScenario, argumentsOfScenario);

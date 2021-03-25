@@ -3,7 +3,7 @@
 @regression
 @addlevyfunds
 @employerincentives
-@dfeuatachieveservice
+@vrfservice
 Scenario: EI_E2E_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend bank details for a New Levy Account
 	Given an Employer creates a Levy Account and Signs the Agreement
 	And the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Month 9 and Year 2020

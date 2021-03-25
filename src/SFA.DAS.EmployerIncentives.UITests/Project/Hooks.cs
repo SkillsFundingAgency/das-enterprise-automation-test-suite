@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -31,16 +31,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 41)]
-        public void LoginToDfeUatService()
+        public void LoginToDfeVRFService()
         {
             _context.Set(new EIDataHelper(_context.Get<RandomDataGenerator>()));
 
-            if (_context.ScenarioInfo.Tags.Contains("dfeuatachieveservice"))
+            if (_context.ScenarioInfo.Tags.Contains("vrfservice"))
             {
-                _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
-
-                new DfeUatLoginPage(_context).SignIntoDfeUat();
-
+                _tabHelper.GoToUrl(UrlConfig.EI_VRFUrl);
+                new VRFLoginPage(_context).SignIntoVRF();
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
         }
