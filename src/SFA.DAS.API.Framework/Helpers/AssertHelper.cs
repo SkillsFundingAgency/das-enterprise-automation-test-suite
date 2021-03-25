@@ -19,9 +19,9 @@ namespace SFA.DAS.API.Framework.Helpers
                     Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
 
                 Assert.AreEqual(expectedResponse, response.StatusCode, GetResponseData(response));
-
-                TestContext.Progress.WriteLine(GetResponseData(response));
             });
+
+            TestContext.Progress.WriteLine(GetResponseData(response));
         }
 
         private static string GetRequestBody(IRestResponse response)
