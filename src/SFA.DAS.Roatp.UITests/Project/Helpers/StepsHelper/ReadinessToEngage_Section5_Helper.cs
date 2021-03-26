@@ -39,7 +39,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         internal ApplicationOverviewPage CompleteReadinessToEngage_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_CommitmentStatementTemplate()
-                .OrganisationsCommitmentStatementTemplateFileUploadAndContinue()
+                .YesForOrganisationsCommitmentStatementTemplateAndContinue()
                 .VerifyCommitment_Section5(StatusHelper.StatusCompleted);
         }
 
@@ -50,8 +50,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextRegardingProcessToAssessEnglishAndMathsAndContinue()
                 .VerifyPriorLearning_Section5(StatusHelper.StatusCompleted);
         }
-
         internal ApplicationOverviewPage CompleteReadinessToEngage_7(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.Access_Section5_EnglishAndMathsAssessments()
+                .SelectDigitallyAndContinue()
+                .SelectDigitalWorkplacAssessmentAndContinue()
+                .EnterTextForSignificantEventAndContinue()
+                .VerifyEnglishAndMaths_Section5(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteReadinessToEngage_8(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_WorkingWithSubContractors()
                 .YesToUsingSubcontractorsAndContinue()

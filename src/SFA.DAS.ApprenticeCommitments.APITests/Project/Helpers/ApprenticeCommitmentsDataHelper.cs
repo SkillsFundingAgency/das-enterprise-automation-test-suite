@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         public ApprenticeCommitmentsDataHelper(RandomDataGenerator randomDataGenerator)
         {
-            Email = $"ApprenticeAccount{DateTime.Now:ddMMMyy_HHmmss_fffff}@test.com";
+            Email = $"ApprenticeAccount{DateTime.Now:ddMMMyy_HHmmss_fffff}@mailinator.com";
             NewEmail = $"New{Email}";
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";

@@ -11,6 +11,10 @@
     </Content>
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />

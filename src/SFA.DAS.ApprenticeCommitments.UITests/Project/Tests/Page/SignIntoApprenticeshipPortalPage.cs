@@ -14,11 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private By Password => By.CssSelector("#Password");
 
-        public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context) => _context = context;
 
         public ConfirmYourIdentityPage SignInToApprenticePortal()
         {

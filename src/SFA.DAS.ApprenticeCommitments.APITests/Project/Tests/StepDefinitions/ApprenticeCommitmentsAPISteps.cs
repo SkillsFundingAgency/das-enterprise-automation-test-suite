@@ -22,6 +22,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
 
+        [Then(@"the apprentice commitments api dependent api's are reachable")]
+        public void ThenTheApprenticeCommitmentsApiDependentApisAreReachable() => _apprenticeCommitmentsApiHelper.CheckHealth();
+
+        [Then(@"the apprentice commitments api is reachable")]
+        public void ThenTheApprenticeCommitmentsApiIsReachable() => _apprenticeCommitmentsApiHelper.Ping();
+
         [Then(@"the apprenticeship records can be fetched")]
         public void ThenTheApprenticeshipRecordsCanBeFetched() => _apprenticeCommitmentsApiHelper.GetApprenticeships();
 
@@ -47,7 +53,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {
-            var (_, apprenticeshipid, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (_, apprenticeshipid, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
 
             _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }

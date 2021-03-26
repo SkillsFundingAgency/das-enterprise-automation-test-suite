@@ -1,15 +1,11 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class PasswordBasePage : ApprenticeCommitmentsBasePage
     {
-        #region Helpers and Context
         protected string _validPassword;
-        #endregion
-
         protected override string PageTitle { get; }
 
         private By Password => By.CssSelector("#Password");
@@ -22,7 +18,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public string InvalidPassword(string password, string confirmpassword)
         {
             SubmitPassword(password, confirmpassword);
-
             return pageInteractionHelper.GetText(ErrorSummary);
         }
 

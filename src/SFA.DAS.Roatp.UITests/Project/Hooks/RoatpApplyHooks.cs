@@ -14,7 +14,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public new void GetRoatpAppplyData() => base.GetRoatpAppplyData();
         
         [BeforeScenario(Order = 34)]
-        public new void ClearDownApplyData() => base.ClearDownApplyData();
+        public void ClearDownDataUkprnFromApply()
+        {
+            ClearDownApplyData();
+            ClearDownDataUkprnFromApply(_objectContext.GetUkprn());
+        }
 
         [BeforeScenario(Order = 35)]
         public void WhiteListProviders() => base.WhiteListProviders();

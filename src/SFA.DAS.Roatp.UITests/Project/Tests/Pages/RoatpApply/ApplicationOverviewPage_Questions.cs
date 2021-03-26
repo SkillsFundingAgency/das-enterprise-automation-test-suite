@@ -41,7 +41,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private string ReadinessToEngage_4 => "Contract for services template";
         private string ReadinessToEngage_5 => "Commitment statement template";
         private string ReadinessToEngage_6 => "Prior learning of apprentices";
-        private string ReadinessToEngage_7 => "Working with subcontractors";
+        private string ReadinessToEngage_7 => "English and maths assessments";
+        private string ReadinessToEngage_8 => "Working with subcontractors";
 
         private string PlanningApprenticeshipTraining => "6. Planning apprenticeship training";
         private string PlanningApprenticeshipTraining_1 => "Introduction and what you'll need";

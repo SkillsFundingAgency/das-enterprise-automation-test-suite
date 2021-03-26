@@ -47,7 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
-                moderatorApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusClarification);
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link7Status(StatusHelper.StatusClarification);
             }
             return base.PassWorkingWithSubcontractors(moderatorApplicationAssessmentOverviewPage, applicationroute);
         }
@@ -66,7 +66,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
-                moderatorApplicationAssessmentOverviewPage.VerifySection2Link6Status(StatusHelper.StatusClarification);
+                moderatorApplicationAssessmentOverviewPage.VerifySection2Link7Status(StatusHelper.StatusClarification);
             }
 
             return base.FailWorkingWithSubcontractors(moderatorApplicationAssessmentOverviewPage, applicationroute);

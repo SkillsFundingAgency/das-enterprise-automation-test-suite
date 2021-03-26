@@ -11,9 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ResetPasswordPage(ScenarioContext context) : base(context)
         {
             _context = context;
-
-            VerifyPage();
-
             _validPassword = $"{_validPassword}!%&";
         }
 
