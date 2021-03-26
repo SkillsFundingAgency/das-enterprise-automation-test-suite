@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using SFA.DAS.UI.Framework;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -14,9 +13,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         protected string BaseUrl;
         protected string AuthenticationCode;
 
-        protected EIFunctionAppHelper(EIConfig config)
+        protected EIFunctionAppHelper(EIPaymentProcessConfig config)
         {
-            BaseUrl = UrlConfig.EI_PaymentsAppBaseUrl;
+            BaseUrl = EIPaymentProcessUrlConfig.EI_PaymentsAppBaseUrl;
             AuthenticationCode = config.EI_PaymentsAppCode;
             HttpClient = new HttpClient();
         }

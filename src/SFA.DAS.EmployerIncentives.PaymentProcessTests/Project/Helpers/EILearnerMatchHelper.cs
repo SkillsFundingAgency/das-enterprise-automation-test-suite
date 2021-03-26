@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
     public class EILearnerMatchHelper : EIFunctionAppHelper
     {
-        public EILearnerMatchHelper(EIConfig config) : base(config)
+        public EILearnerMatchHelper(EIPaymentProcessConfig config) : base(config)
         {
         }
 

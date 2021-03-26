@@ -1,5 +1,4 @@
-﻿using SFA.DAS.UI.Framework;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public BusinessCentralApiHelper()
         {
-            baseUrl = UrlConfig.EI_ApiStubBaseUrl;
+            baseUrl = EIPaymentProcessUrlConfig.EI_ApiStubBaseUrl;
             httpClient = new HttpClient();
         }
 

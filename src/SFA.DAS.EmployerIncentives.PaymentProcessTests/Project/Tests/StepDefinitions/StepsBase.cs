@@ -3,8 +3,6 @@ using Dapper.Contrib.Extensions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,13 +11,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
     public class StepsBase
     {
         protected Fixture fixture;
-        protected EIConfig eiConfig;
+        protected readonly DbConfig dbConfig;
+        protected EIPaymentProcessConfig eiConfig;
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
@@ -36,11 +36,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             fixture = new Fixture();
-            eiConfig = context.GetEIConfig<EIConfig>();
-            sqlHelper = new EISqlHelper(eiConfig);
+            eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
+            dbConfig = context.Get<DbConfig>();
+            sqlHelper = new EISqlHelper(dbConfig);
 
-            var config = context.Get<FrameworkConfig>();
-            serviceBusHelper = new EIServiceBusHelper(config.NServiceBusConfig);
+            serviceBusHelper = new EIServiceBusHelper(eiConfig.EI_ServiceBusConnectionString);
 
             learnerMatchApi = new LearnerMatchApiHelper();
             learnerMatchService = new EILearnerMatchHelper(eiConfig);

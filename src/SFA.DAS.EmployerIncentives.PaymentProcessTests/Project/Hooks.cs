@@ -1,6 +1,5 @@
-﻿using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -10,20 +9,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly EIConfig _eIConfig;
-        private readonly FrameworkConfig _config;
+        private readonly DbConfig _dbConfig;
+        private readonly EIPaymentProcessConfig _eIPaymentProcessConfig;
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _eIConfig = context.GetEIConfig<EIConfig>();
-            _config = context.Get<FrameworkConfig>();
+            _dbConfig = context.Get<DbConfig>();
+            _eIPaymentProcessConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
         }
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers()
         {
-            _context.Set(new EISqlHelper(_eIConfig));
-            _context.Set(new NServiceBusHelper(_config.NServiceBusConfig.ServiceBusConnectionString));
+            _context.Set(new EISqlHelper(_dbConfig));
+            _context.Set(new NServiceBusHelper(_eIPaymentProcessConfig.EI_ServiceBusConnectionString));
         }
     }
 }

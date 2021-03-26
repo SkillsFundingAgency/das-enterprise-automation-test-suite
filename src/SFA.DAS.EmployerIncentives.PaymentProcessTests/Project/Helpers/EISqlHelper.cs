@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -15,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         int actualAmount, expectedAmount, actualPeriodNumber, expectedPeriodNumber, actualPaymentYear, expectedPaymentYear, startMonth, startYear;
         string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType, query;
 
-        public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
+        public EISqlHelper(DbConfig eIConfig) : base(eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString; // todo: undo : )
 
         public void DeleteIncentiveApplication(string accountId)
