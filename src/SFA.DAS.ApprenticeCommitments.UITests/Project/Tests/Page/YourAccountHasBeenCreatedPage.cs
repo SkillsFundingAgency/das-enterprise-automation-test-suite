@@ -11,17 +11,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        public YourAccountHasBeenCreatedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-        }
+        public YourAccountHasBeenCreatedPage(ScenarioContext context) : base(context) => _context = context;
 
         public SignIntoApprenticeshipPortalPage ClickSignInToApprenticePortal()
         {
             formCompletionHelper.ClickLinkByText("sign in to Apprenticeship portal");
-
             return new SignIntoApprenticeshipPortalPage(_context);
         }
     }

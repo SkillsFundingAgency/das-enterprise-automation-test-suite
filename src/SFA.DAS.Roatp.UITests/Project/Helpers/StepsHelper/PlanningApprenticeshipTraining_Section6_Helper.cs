@@ -67,6 +67,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectWithinTheFirstThreeMonthAndContinue()
                 .SelectYesRecruitNewStaffAndContinue()
                 .SelectOneTrainerBetween10OrLessApprenticesAndContinue()
+                .EnterTextRegardingHowDoYouAgreeForSupportProvidedAndContinue()
                 .VerifyForecasting_Section6(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)

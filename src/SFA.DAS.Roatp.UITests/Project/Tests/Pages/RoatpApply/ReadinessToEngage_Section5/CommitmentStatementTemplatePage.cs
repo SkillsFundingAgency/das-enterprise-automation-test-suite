@@ -18,11 +18,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
             VerifyPage();
         }
 
-        public ApplicationOverviewPage OrganisationsCommitmentStatementTemplateFileUploadAndContinue()
+        public ApplicationOverviewPage YesForOrganisationsCommitmentStatementTemplateAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
             return new ApplicationOverviewPage(_context);
+        }
+        public CommitmentStatementTemplateShutterPage NoForOrganisationsCommitmentStatementTemplateAndContinue()
+        {
+            SelectRadioOptionByText("No");
+            Continue();
+            return new CommitmentStatementTemplateShutterPage(_context);
         }
     }
 }

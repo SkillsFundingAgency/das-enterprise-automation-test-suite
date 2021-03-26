@@ -10,6 +10,13 @@
         public string ApplyDatabaseConnectionString { get; set; }
         public string QnaDatabaseConnectionString { get; set; }
         public string LoginDatabaseConnectionString { get; set; }
+        public string ProviderFeedbackDbConnectionString { get; set; }
+        public string AssessorDbConnectionString { get; set; }
+        public string IncentivesDbConnectionString { get; set; }
+        public string PermissionsDbConnectionString { get; set; }
+        public string PublicSectorReportingConnectionString { get; set; }
+        public string PregDbConnectionString { get; set; }
+        public string TPRDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
@@ -30,5 +37,8 @@
         public string AssessorDbName { get; set; }
         public string EmployerIncentivesDbName { get; set; }
         public string PublicSectorReportingDbName { get; set; }
+        public string PermissionsDbName { get; set; }
+        public string PregDbName { get; set; }
+        public string TPRDbName { get; set; }
     }
 }

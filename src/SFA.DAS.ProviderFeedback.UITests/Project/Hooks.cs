@@ -10,7 +10,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
     [Binding]
     public class Hooks
     {
-        private readonly ProviderFeedbackConfig _providerFeedbackConfig;
+        private readonly DbConfig _dbConfig;
         private ProviderFeedbackSqlHelper _providerFeedbackSqlHelper;
         private readonly ScenarioContext _context;
         private TabHelper _tabHelper;
@@ -23,13 +23,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
-            _providerFeedbackConfig = context.GetProviderFeedbackConfig<ProviderFeedbackConfig>();
+            _dbConfig = context.Get<DbConfig>();
         }
 
         [BeforeScenario(Order = 21)]
         public void SetUpHelpers()
         {
-            _providerFeedbackSqlHelper = new ProviderFeedbackSqlHelper(_providerFeedbackConfig);
+            _providerFeedbackSqlHelper = new ProviderFeedbackSqlHelper(_dbConfig);
 
             _context.Set(_providerFeedbackSqlHelper);
 

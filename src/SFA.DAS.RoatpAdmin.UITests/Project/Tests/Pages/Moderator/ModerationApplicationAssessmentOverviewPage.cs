@@ -24,7 +24,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         private string Section2_Link3 => "Contract for services template";
         private string Section2_Link4 => "Commitment statement template";
         private string Section2_Link5 => "Prior learning of apprentices";
-        private string Section2_Link6 => "Working with subcontractors";
+        private string Section2_Link6 => "English and maths assessments";
+        private string Section2_Link7 => "Working with subcontractors";
         #endregion
 
         #region Section-3

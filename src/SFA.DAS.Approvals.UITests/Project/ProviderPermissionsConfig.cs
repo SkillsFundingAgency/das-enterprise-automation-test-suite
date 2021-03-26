@@ -4,8 +4,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 {
     public class ProviderPermissionsConfig : ProviderConfig
     {
-        public string PermissionsDbConnectionString { get; set; }
-
         public string PermissionsCosmosUrl { get; set; }
 
         public string PermissionsCosmosDBKey { get; set; }

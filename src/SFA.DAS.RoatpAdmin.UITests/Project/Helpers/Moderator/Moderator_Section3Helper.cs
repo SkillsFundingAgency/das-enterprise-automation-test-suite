@@ -205,6 +205,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInForecastingStartsPage()
                     .SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
                     .SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
+                    .SelectPassAndContinueInTypicalRatioOfStaffDeliveringTraining()
                     .SelectPassAndContinue()
                     .VerifySection3Link4Status(StatusHelper.StatusPass);
             }
@@ -224,6 +225,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInForecastingStartsPage()
                     .SelectFailAndContinueInReadyToDeliverTrainingAgainstForecastPage()
                     .SelectFailAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
+                    .SelectFailAndContinueInTypicalRatioOfStaffDeliveringTraining()
                     .SelectFailAndContinue()
                     .VerifySection3Link4Status(StatusHelper.StatusFail);
             }

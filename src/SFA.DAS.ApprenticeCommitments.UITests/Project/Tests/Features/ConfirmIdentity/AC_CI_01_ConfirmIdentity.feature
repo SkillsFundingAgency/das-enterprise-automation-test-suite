@@ -1,6 +1,5 @@
 ﻿Feature: AC_CI_01_ConfirmIdentity
 
-
 @apprenticecommitments
 @regression
 @deleteuser
