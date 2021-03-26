@@ -23,9 +23,8 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         [AfterScenario(Order = 101)]
         public void ReportErrorMessages()
         {
-            if (_objectContext.GetAfterScenarioExceptions() == null) return;
-           
             var exception = _context.TestError;
+
             if (exception != null)
             {
                 var messages = new List<string>();
