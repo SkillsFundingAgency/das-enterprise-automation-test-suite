@@ -6,7 +6,6 @@
     "feature": "en-GB"
   },
   "stepAssemblies": [
-    { "assembly": "SFA.DAS.UI.Framework" },
     { "assembly": "SFA.DAS.ConfigurationBuilder" }
   ],
   "generator": {
