@@ -15,13 +15,13 @@ namespace SFA.DAS.API.Framework.Helpers
         {
             Assert.Multiple(() =>
             {
-                if (expectedResponse == HttpStatusCode.OK) Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
+                if (expectedResponse == HttpStatusCode.OK) 
+                    Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
 
-                Assert.AreEqual(expectedResponse, response.StatusCode,
-                    $"{response.Request.Method}{Environment.NewLine}" +
-                    $"{response.Request.Resource}{Environment.NewLine}" +
-                    $"{GetRequestBody(response)}");
+                Assert.AreEqual(expectedResponse, response.StatusCode, GetResponseData(response));
             });
+
+            TestContext.Progress.WriteLine(GetResponseData(response));
         }
 
         private static string GetRequestBody(IRestResponse response)
@@ -34,6 +34,14 @@ namespace SFA.DAS.API.Framework.Helpers
             }
 
             return list.Count == 0 ? string.Empty : JToken.Parse(list.ToString()).ToString(Formatting.Indented);
+        }
+
+        private static string GetResponseData(IRestResponse response)
+        {
+            return $"REQUEST DETAILS: {Environment.NewLine}" +
+                   $"Method: {response.Request.Method}{Environment.NewLine}" +
+                   $"URI: {response.ResponseUri.AbsoluteUri}{Environment.NewLine}" +
+                   $"Body: {Environment.NewLine} {GetRequestBody(response)}";
         }
     }
 }

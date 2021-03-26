@@ -8,12 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        public CreatePasswordPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-        }
+        public CreatePasswordPage(ScenarioContext context) : base(context) => _context = context;
 
         public YourAccountHasBeenCreatedPage CreatePassword()
         {

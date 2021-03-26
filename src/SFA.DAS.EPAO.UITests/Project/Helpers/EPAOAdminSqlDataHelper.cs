@@ -1,10 +1,11 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAOAdminSqlDataHelper : SqlDbHelper
     {
-        public EPAOAdminSqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.AssessorDbConnectionString) { }
+        public EPAOAdminSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
 
         public string GetEPAOId(string email) => GetData($"SELECT EndPointAssessorOrganisationId from Organisations where id = (select OrganisationId from Contacts where Email = '{email}')");
 

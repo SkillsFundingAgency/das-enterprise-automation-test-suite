@@ -17,8 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
         private readonly DbConfig _dbConfig;
-        private readonly TprConfig _tprconfig;
-        private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
@@ -30,8 +28,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             _dbConfig = context.Get<DbConfig>();
-            _tprconfig = context.GetTprConfig<TprConfig>();
-            _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
@@ -60,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new RegistrationSqlDataHelper(_dbConfig));
 
-            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, registrationDatahelpers));
+            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, registrationDatahelpers));
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
@@ -69,7 +65,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "providerleadregistration")]
         public void SetUpProviderLeadRegistrationDataHelpers()
         {
-            _pregSqlDataHelper = new PregSqlDataHelper(_providerLeadRegistrationConfig);
+            _pregSqlDataHelper = new PregSqlDataHelper(_dbConfig);
 
             _context.Set(_pregSqlDataHelper);
         }

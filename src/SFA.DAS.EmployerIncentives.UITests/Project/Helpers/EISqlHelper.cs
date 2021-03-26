@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
@@ -9,7 +10,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         int actualAmount, expectedAmount, actualPeriodNumber, expectedPeriodNumber, actualPaymentYear, expectedPaymentYear, startMonth, startYear;
         string actualDueDate, expectedDueDate, actualEarningType, expectedEarningType, query;
 
-        public EISqlHelper(EIConfig eIConfig) : base(eIConfig.EI_IncentivesDbConnectionString) { }
+        public EISqlHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
 
         public void DeleteIncentiveApplication(string accountId)
         {

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
@@ -12,7 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly EPAOConfig _config;
+        private readonly DbConfig _config;
         private readonly TryCatchExceptionHelper _tryCatch;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
@@ -22,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             _context = context;
             _tryCatch = context.Get<TryCatchExceptionHelper>();
-            _config = context.GetEPAOConfig<EPAOConfig>();
+            _config = context.Get<DbConfig>();
         }
 
         [BeforeScenario(Order = 32)]

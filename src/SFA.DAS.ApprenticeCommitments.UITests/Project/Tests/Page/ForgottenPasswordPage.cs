@@ -10,21 +10,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        private By Email => By.CssSelector("input#Email"); 
+        private By Email => By.CssSelector("input#Email");
 
-        public ForgottenPasswordPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-        }
+        public ForgottenPasswordPage(ScenarioContext context) : base(context) => _context = context;
 
         public ForgottenPasswordConfirmPage Submit()
         {
             formCompletionHelper.EnterText(Email, objectContext.GetApprenticeEmail());
-
             formCompletionHelper.ClickButtonByText(ContinueButton, "Submit");
-
             return new ForgottenPasswordConfirmPage(_context);
         }
     }
