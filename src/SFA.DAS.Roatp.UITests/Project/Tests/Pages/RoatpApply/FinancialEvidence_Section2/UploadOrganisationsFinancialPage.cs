@@ -21,8 +21,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public UploadOrganisationsManagementAccountsPage UploadFinancialFileAndContinue()
         {
-            UploadFile();
+            UploadMultipleFiles(3);
             return new UploadOrganisationsManagementAccountsPage(_context);
+        }
+        public UploadOrganisationsManagementCoveringRemainingPeriodAccountsPage UploadFinancialFileForRemainingPeriodAndContinue()
+        {
+            UploadMultipleFiles(3);
+            return new UploadOrganisationsManagementCoveringRemainingPeriodAccountsPage(_context);
         }
     }
 }

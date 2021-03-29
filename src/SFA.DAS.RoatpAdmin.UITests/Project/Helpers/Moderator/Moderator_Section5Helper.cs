@@ -38,6 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()
                     .SelectPassAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
+                    .SelectPassAndContinueForILRDataPage()
                     .SelectPassAndContinue()
                     .VerifySection5Link3Status(StatusHelper.StatusPass);
             }

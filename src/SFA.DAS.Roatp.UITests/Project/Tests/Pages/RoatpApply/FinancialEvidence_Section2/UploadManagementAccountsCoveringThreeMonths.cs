@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public UploadFinancialProjectionsPage UploadManagementAccountsAndContinue()
         {
-            UploadMultipleFiles(1);
+            UploadMultipleFiles(4);
             return new UploadFinancialProjectionsPage(_context);
         }
     }
