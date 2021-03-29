@@ -19,15 +19,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public UploadFinancialProjectionsPage UploadManagementAccountsAndContinue()
         {
-            UploadFile();
-            formCompletionHelper.ClickButtonByText(ContinueButton, "Save and continue");
+            UploadMultipleFiles(1);
             return new UploadFinancialProjectionsPage(_context);
-        }
-
-        protected new void UploadFile()
-        {
-            ChooseFile();
-            formCompletionHelper.ClickButtonByText(ContinueButton, "Upload file");
         }
     }
 }
