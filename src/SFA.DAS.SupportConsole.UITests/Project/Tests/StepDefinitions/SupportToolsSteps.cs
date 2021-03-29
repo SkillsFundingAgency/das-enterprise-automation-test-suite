@@ -163,18 +163,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private void ValidatePausedSuccessful(List<IWebElement> StatusList)
         {
             Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
-
+            string todaysDate = DateTime.Now.ToString("dd/MM/yyyy");
             int i = 0;
+
             foreach (var status in StatusList)
             {
                 if (i >= 0 && i < 4)
-                    Assert.IsTrue(status.Text == "Submitted successfully");
-                else if (i == 4|| i == 5 || i == 6)
-                    Assert.IsTrue(status.Text == "Paused - Only Active record can be paused");
+                    Assert.That(status.Text == $"Submitted successfully {todaysDate}", $"failed at index [{i}]");
+                else if (i == 4 || i == 5 || i == 6)
+                    Assert.That(status.Text == $"Paused {todaysDate} - Only Active record can be paused", $"failed at index [{i}]");
                 else if (i == 7 || i == 8)
-                    Assert.IsTrue(status.Text == "Stopped - Only Active record can be paused");
+                    Assert.That(status.Text == $"Stopped {todaysDate} - Only Active record can be paused", $"failed at index [{i}]");
                 else
-                    Assert.IsTrue(status.Text == "Completed - Only Active record can be paused");
+                    Assert.That(status.Text == $"Completed - Only Active record can be paused", $"failed at index [{i}]");
 
                 i++;
             }
@@ -184,18 +185,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private void ValidateResumeSuccessful(List<IWebElement> StatusList)
         {
             Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
-
+            string todaysDate = DateTime.Now.ToString("dd/MM/yyyy");
             int i = 0;
+
             foreach (var status in StatusList)
             {
                 if (i >= 0 && i < 4)
-                    Assert.IsTrue(status.Text == "Live - Only paused record can be activated" || status.Text == "WaitingToStart - Only paused record can be activated", "Resuming a Live Record");
+                    Assert.That(status.Text == "Live - Only paused record can be activated" || status.Text == "WaitingToStart - Only paused record can be activated", "Resuming a Live Record", $"failed at index [{i}]");
                 else if (i == 4 || i == 5 || i == 6)
-                    Assert.IsTrue(status.Text == "Submitted successfully", "Resuming a Paused Record");
+                    Assert.That(status.Text == $"Submitted successfully {todaysDate}", "Resuming a Paused Record", $"failed at index [{i}]");
                 else if (i == 7 || i == 8)
-                    Assert.IsTrue(status.Text == "Stopped - Only paused record can be activated", "Resuming a Stopped Record");
+                    Assert.That(status.Text == $"Stopped {todaysDate} - Only paused record can be activated", "Resuming a Stopped Record", $"failed at index [{i}]");
                 else
-                    Assert.IsTrue(status.Text == "Completed - Only paused record can be activated", "Resuming a Stopped Record");
+                    Assert.That(status.Text == "Completed - Only paused record can be activated", "Resuming a Stopped Record", $"failed at index [{i}]");
 
                 i++;
             }
@@ -205,18 +207,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private void ValidateStopSuccessful(List<IWebElement> StatusList)
         {
             Assert.IsTrue(StatusList.Count == 10, $"Validate total number of records. Expected: 10 | Actual {StatusList.Count}");
-
+            string todaysDate = "01/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year.ToString("0000");
+            string todaysDate2 = DateTime.Now.Month.ToString("00") + "/01/" + DateTime.Now.Year.ToString("0000");
             int i = 0;
+
             foreach (var status in StatusList)
             {
                 if (i >= 0 && i < 7)
-                    Assert.IsTrue(status.Text == "Submitted successfully", $"validation failed at index [{i}]. Expected was [Submitted successfully]  but actual value displayed is [{status.Text}]");
+                    Assert.IsTrue(status.Text == $"Submitted successfully {todaysDate}" || status.Text == $"Submitted successfully {todaysDate2}", $"validation failed at index [{i}]. Expected was [Submitted successfully {todaysDate}]  but actual value displayed is [{status.Text}]");
                 else
                     Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship", $"validation failed at index [{i}]. Expected was [Apprenticeship must be Active or Paused. Unable to stop apprenticeship]  but actual value displayed is [{status.Text}]");
 
                 i++;
             }
-
         }
 
     }
