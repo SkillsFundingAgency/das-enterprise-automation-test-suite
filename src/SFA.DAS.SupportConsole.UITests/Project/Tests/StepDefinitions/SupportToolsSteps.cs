@@ -220,7 +220,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
                 i++;
             }
-
         }
 
     }
