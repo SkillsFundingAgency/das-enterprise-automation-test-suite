@@ -208,12 +208,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         {
             Assert.IsTrue(StatusList.Count == 10, $"Validate total number of records. Expected: 10 | Actual {StatusList.Count}");
             string todaysDate = "01/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year.ToString("0000");
+            string todaysDate2 = DateTime.Now.Month.ToString("00") + "/01/" + DateTime.Now.Year.ToString("0000");
             int i = 0;
 
             foreach (var status in StatusList)
             {
                 if (i >= 0 && i < 7)
-                    Assert.IsTrue(status.Text == $"Submitted successfully {todaysDate}", $"validation failed at index [{i}]. Expected was [Submitted successfully]  but actual value displayed is [{status.Text}]");
+                    Assert.IsTrue(status.Text == $"Submitted successfully {todaysDate}" || status.Text == $"Submitted successfully {todaysDate}", $"validation failed at index [{i}]. Expected was [Submitted successfully {todaysDate}]  but actual value displayed is [{status.Text}]");
                 else
                     Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship", $"validation failed at index [{i}]. Expected was [Apprenticeship must be Active or Paused. Unable to stop apprenticeship]  but actual value displayed is [{status.Text}]");
 
