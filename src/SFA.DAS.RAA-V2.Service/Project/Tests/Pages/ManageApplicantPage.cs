@@ -23,19 +23,25 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _context = context;
         }
 
-        public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
+        public RAAV2CSSBasePage MakeApplicantSuccessful(bool permissionDenied = false)
         {
             SelectRadioOptionByForAttribute("outcome-successful");
             formCompletionHelper.Click(SaveStatus);
-            return new ConfirmApplicantSucessfulPage(_context);
+
+            return permissionDenied
+                ? new DoNotHavePermissionBasePage(_context)
+                : new ConfirmApplicantSucessfulPage(_context) as RAAV2CSSBasePage;
         }
 
-        public ConfirmApplicantUnsucessfulPage MakeApplicantUnsucessful()
+        public RAAV2CSSBasePage MakeApplicantUnsuccessful(bool permissionDenied = false)
         {
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
             formCompletionHelper.EnterText(CandidateFeedback, rAAV2DataHelper.OptionalMessage);
             formCompletionHelper.Click(SaveStatus);
-            return new ConfirmApplicantUnsucessfulPage(_context);
+
+            return permissionDenied
+                ? new DoNotHavePermissionBasePage(_context)
+                : new ConfirmApplicantUnsucessfulPage(_context) as RAAV2CSSBasePage;
         }
     }
 }

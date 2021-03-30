@@ -6,7 +6,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class CloneVacancyDatesPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Does the new advert have the same closing date and start date?";
+        protected override string PageTitle => _pageTitle;
+        private string _pageTitle;
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -14,9 +15,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public CloneVacancyDatesPage(ScenarioContext context) : base(context)
+        public CloneVacancyDatesPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
+            _pageTitle = $"Does the new {(isRaaV2Employer ? "advert" : "vacancy")} have the same closing date and start date?";
+            VerifyPage();
         }
 
         public ConfimCloneVacancyDatePage SelectYes()

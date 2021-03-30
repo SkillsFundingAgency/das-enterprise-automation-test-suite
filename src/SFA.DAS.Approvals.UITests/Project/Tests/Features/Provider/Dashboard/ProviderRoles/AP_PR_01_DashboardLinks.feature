@@ -11,8 +11,8 @@ Examples:
 	| User						|
 	| Viewer					|
 	| Contributor				|
-	| Contributor with approval	|
-	| Account Owner				|
+	| ContributorWithApproval	|
+	| AccountOwner				|
 
 @Pasproviderrole
 Scenario Outline: Verify login for user can access organisations and agreements
@@ -23,5 +23,5 @@ Examples:
 	| User						|
 	| Viewer					|
 	| Contributor				|
-	| Contributor with approval	|
-	| Account Owner				|
+	| ContributorWithApproval	|
+	| AccountOwner				|

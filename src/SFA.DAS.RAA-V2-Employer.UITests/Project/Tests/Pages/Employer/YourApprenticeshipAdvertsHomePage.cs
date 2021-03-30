@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
+        private readonly SearchVacancyEmployerPageHelper _searchVacancyPageHelper;  
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
+            _searchVacancyPageHelper = new SearchVacancyEmployerPageHelper(context);
         }
 
         public CreateAnAdvertPage CreateAnAdvert()

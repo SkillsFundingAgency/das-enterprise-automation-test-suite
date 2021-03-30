@@ -67,7 +67,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToManageYourFunding()
                 .DeleteTheReservedFundingGoesToAccessDenied()
-
                 .GoBackToTheServiceHomePage();
         }
 

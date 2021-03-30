@@ -48,7 +48,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => _vacanciesPage = _employerStepsHelper.CancelVacancy();
 
         [Then(@"the Employer can cancel deleting the draft vacancy")]
-        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _vacancyPreviewPart2Page = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy().NoDeleteVacancy();
+        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy()
+        {
+            var deleteVacancyQuestionPage = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy() as DeleteVacancyQuestionPage;
+            _vacancyPreviewPart2Page = deleteVacancyQuestionPage.NoDeleteVacancy();
+        }
 
         [Given(@"the Employer creates an offline vacancy with disability confidence")]
         public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);

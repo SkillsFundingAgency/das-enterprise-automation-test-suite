@@ -6,7 +6,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class DeleteVacancyQuestionPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
+        protected override string PageTitle => _pageTitle ?? rAAV2DataHelper.VacancyTitle;
+        private string _pageTitle;
 
         private string SubTitle => isRaaV2Employer ? "Are you sure you want to delete this advert?" : "Are you sure you want to delete the vacancy?";
 
@@ -18,10 +19,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public DeleteVacancyQuestionPage(ScenarioContext context) : base(context)
+        public DeleteVacancyQuestionPage(ScenarioContext context, string pageTitle = null, bool verifypage = true) : base(context, false)
         {
             _context = context;
-            VerifyPage(SubHeader, SubTitle);
+            _pageTitle = pageTitle;
+            if (verifypage)
+            {
+                VerifyPage();
+                VerifyPage(SubHeader, SubTitle);
+            }
         }
 
         public YourAdvertsPage YesDeleteVacancy()

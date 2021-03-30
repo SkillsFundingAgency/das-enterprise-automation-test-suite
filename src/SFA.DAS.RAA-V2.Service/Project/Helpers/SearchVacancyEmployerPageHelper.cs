@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
-    public class SearchVacancyPageHelper
+    public class SearchVacancyEmployerPageHelper
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         private By Manage => By.CssSelector("table tbody tr .govuk-link");
 
-        public SearchVacancyPageHelper(ScenarioContext context)
+        public SearchVacancyEmployerPageHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
