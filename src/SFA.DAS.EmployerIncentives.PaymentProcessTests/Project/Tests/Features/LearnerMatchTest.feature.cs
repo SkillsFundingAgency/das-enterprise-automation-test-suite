@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPauseStopUtility
+namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_BU_FiltersAction")]
-    public partial class SC_BU_FiltersActionFeature
+    [NUnit.Framework.DescriptionAttribute("LearnerMatchTest")]
+    public partial class LearnerMatchTestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "SC_BU_FiltersAction.feature"
+#line 1 "LearnerMatchTest.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_BU_FiltersAction", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchTest", "\tTest feature to verify learner match helper is working", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate Combination of filters")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
-        [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        [NUnit.Framework.CategoryAttribute("BulkUtility")]
-        public virtual void ValidateCombinationOfFilters()
+        [NUnit.Framework.DescriptionAttribute("Learner match runs")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+        public virtual void LearnerMatchRuns()
         {
             string[] tagsOfScenario = new string[] {
-                    "supportconsole",
-                    "approvalssupportconsole",
-                    "BulkUtility"};
+                    "employerincentivesPaymentsProcess"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Combination of filters", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner match runs", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,62 +102,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("there are some apprenticeship incentives", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
- testRunner.Given("the User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the learner match service is completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.When("user opens Pause Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "EmployerName",
-                            "ProviderName",
-                            "Ukprn",
-                            "EndDate",
-                            "Uln",
-                            "Status",
-                            "TotalRecords"});
-                table4.AddRow(new string[] {
-                            "ESFA LTD",
-                            "EDUC8 TRAINING (ENGLAND) LIMITED",
-                            "",
-                            "",
-                            "",
-                            "Live",
-                            "3000"});
-                table4.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "1405403089",
-                            "Paused",
-                            "1"});
-                table4.AddRow(new string[] {
-                            "ESFA LTD",
-                            "",
-                            "10005310",
-                            "",
-                            "",
-                            "Waiting to Start",
-                            "100"});
-                table4.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "17//02//2021",
-                            "",
-                            "Any",
-                            "400"});
-                table4.AddRow(new string[] {
-                            "COMPLIANCE LIMITED",
-                            "",
-                            "10005310",
-                            "",
-                            "8305402974",
-                            "Live",
-                            "0"});
-#line 9
- testRunner.Then("following filters should return the expected number of TotalRecords", ((string)(null)), table4, "Then ");
+ testRunner.Then("we have some learner data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
