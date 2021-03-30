@@ -1,7 +1,7 @@
 ﻿Feature: EI_TD2_CreateALevyAccountAndApply
 
 @addlevyfunds
-@dfeuatachieveservice
+@vrfservice
 @eitd2
 Scenario: EI_TD2_Create A LevyAccount with Commitments and apply for EI
 	Given an Employer creates a Levy Account and Signs the Agreement

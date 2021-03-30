@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithNoVRF")]
-    public partial class EI_E2E_NewLevyAcApplyWithNoVRFFeature
+    [NUnit.Framework.DescriptionAttribute("EI_E2E_01_NewLevyAcApplyWithNoVRF")]
+    public partial class EI_E2E_01_NewLevyAcApplyWithNoVRFFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_E2E_NewLevyAcApplyWithNoVRF.feature"
+#line 1 "EI_E2E_01_NewLevyAcApplyWithNoVRF.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_NewLevyAcApplyWithNoVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_01_NewLevyAcApplyWithNoVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank details for a " +
-            "New Levy Account with one legal entity")]
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_01_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank details for" +
+            " a New Levy Account with one legal entity")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_E2E_NewLevyAcApplyWithNoVRF_ApplyForIncentiveAndSubmitBankDetailsForANewLevyAccountWithOneLegalEntity()
+        public virtual void EI_E2E_01_NewLevyAcApplyWithNoVRF_ApplyForIncentiveAndSubmitBankDetailsForANewLevyAccountWithOneLegalEntity()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank details for a " +
-                    "New Levy Account with one legal entity", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_01_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank details for" +
+                    " a New Levy Account with one legal entity", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

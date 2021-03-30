@@ -1,35 +1,29 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class ProvideOrgBankDetailsPage : ProvideOrgInformationBasePage
+    public class VRFBankDetailsTabPage : VRFBasePage
     {
         protected override string PageTitle => "Bank details";
 
         #region Locators
         private readonly ScenarioContext _context;
+        private By NameOfTheBank => By.CssSelector("#Name_of_bank");
+        private By AccountName => By.CssSelector("#Bank_account_name");
+        private By AccountNumber => By.CssSelector("#Account_number");
+        private By SortCode => By.CssSelector("#sort_code");
+        private By AddBankDetails => By.CssSelector("#exp_validate");
+        private By BankDetailsAcceptedMessage => By.CssSelector(".fieldContent strong");
         #endregion
 
-        private By NameOfTheBank => By.CssSelector("#Name_of_bank");
-
-        private By AccountName => By.CssSelector("#Bank_account_name");
-
-        private By AccountNumber => By.CssSelector("#Account_number");
-
-        private By SortCode => By.CssSelector("#sort_code");
-
-        private By AddBankDetails => By.CssSelector("#exp_validate");
-
-        private By BankDetailsAccepted => By.CssSelector(".fieldContent strong");
-
-        public ProvideOrgBankDetailsPage(ScenarioContext context) : base(context, false)
+        public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false)
         { 
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ProvideSubmitterDetailsPage SubmitBankDetails()
+        public VRFSubmitterDetailsTabPage SubmitBankDetails()
         {
             frameHelper.SwitchFrameAndAction(() => 
             {
@@ -39,11 +33,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
                 formCompletionHelper.EnterText(AccountNumber, eIDataHelper.AccountNumber);
                 formCompletionHelper.EnterText(SortCode, eIDataHelper.Sortcode);
                 formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
-                VerifyPage(BankDetailsAccepted);
+                VerifyPage(BankDetailsAcceptedMessage);
                 Continue();
             });
 
-            return new ProvideSubmitterDetailsPage(_context);
+            return new VRFSubmitterDetailsTabPage(_context);
         }
     }
 }
