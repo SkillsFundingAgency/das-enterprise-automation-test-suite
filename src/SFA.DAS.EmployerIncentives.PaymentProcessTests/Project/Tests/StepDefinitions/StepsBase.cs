@@ -30,6 +30,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected IncentiveApplication incentiveApplication;
         protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
+        protected long accountId;
+        protected long apprenticeshipId;
 
         protected StepsBase(ScenarioContext context)
         {
@@ -119,11 +121,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("DeleteApplicationData");
         }
 
-        protected async Task DeleteIncentive()
+        protected async Task DeleteIncentives()
         {
             StartStopWatch("DeleteIncentiveData");
-            await sqlHelper.DeleteIncentiveData(apprenticeshipIncentiveId);
+            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            {
+                await DeleteIncentive(incentiveApplication.AccountId, apprenticeship.ApprenticeshipId);
+            }
             StopStopWatch("DeleteIncentiveData");
+        }
+
+        private async Task DeleteIncentive(long accountId, long apprenticeshipId)
+        {
+            await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
         }
 
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
@@ -178,8 +188,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [AfterScenario()]
         public async Task CleanUpIncentives()
         {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
+        }
+
+        [BeforeScenario()]
+        public async Task InitialCleanup()
+        {
+            await DeleteIncentive(accountId, apprenticeshipId);
         }
     }
 }

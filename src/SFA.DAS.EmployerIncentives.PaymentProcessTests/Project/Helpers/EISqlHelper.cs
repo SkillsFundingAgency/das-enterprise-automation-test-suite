@@ -231,10 +231,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId });
         }
 
-        public async Task DeleteIncentiveData(Guid apprenticeshipIncentiveId)
+        public async Task DeleteIncentiveData(long accountId, long apprenticeshipId)
         {
             await using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, new { apprenticeshipIncentiveId });
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteIncentiveData, new { accountId, apprenticeshipId });
         }
 
         public async Task DeleteApplicationData(Guid incentiveApplicationId)
