@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class EndPointAssesmentOrganisationsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How will your organisation engage with end-point assessment organisations (EPAO's)?";
+        protected override string PageTitle => "How will your organisation engage with end-point assessment organisations (EPAOs)?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
