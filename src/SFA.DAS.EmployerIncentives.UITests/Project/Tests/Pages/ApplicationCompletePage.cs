@@ -13,10 +13,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ApplicationCompletePage(ScenarioContext context) : base(context) => _context = context;
 
-        public HomePage ReturnToAccountHomePage()
+        public ViewApplicationsPage NavigateToViewApplicationsPage()
         {
-            formCompletionHelper.ClickLinkByText("Return to account home");
-            return new HomePage(_context);
+            formCompletionHelper.ClickLinkByText("View applications");
+            return new ViewApplicationsPage(_context);
         }
     }
 }

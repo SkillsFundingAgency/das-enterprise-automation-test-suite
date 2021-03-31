@@ -32,6 +32,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return applicationOverviewPage.Access_Section8_SystemsAndProcessesToCollectApprenticeshipDataForMainAndEmpoyerRoute()
                 .SelectYesAndContinueOnCollectingDataPage()
                 .SelectYesAndContinueonILRpage()
+                .EnterDetailsForIndividualAccountable()
                 .VerifySystemsAndProcesses_Section8(StatusHelper.StatusCompleted);
         }
     }

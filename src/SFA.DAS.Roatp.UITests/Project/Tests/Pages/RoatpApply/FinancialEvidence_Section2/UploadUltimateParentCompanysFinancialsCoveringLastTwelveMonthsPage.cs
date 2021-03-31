@@ -7,8 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Upload your UK ultimate parent company's full financial statements covering the last 12 months";
 
-        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -21,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public ApplicationOverviewPage UploadFullFinancialStatementsForTwelveMonthsAndContinue()
         {
-            UploadFile();
+            UploadMultipleFiles(1);
             return new ApplicationOverviewPage(_context);
         }
     }

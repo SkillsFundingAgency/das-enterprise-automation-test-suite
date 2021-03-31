@@ -2,9 +2,9 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class ProvideReceivedDetailsPage : ProvideOrgInformationBasePage
+    public class VRFReceivedDetailsConfirmPage : VRFBasePage
     {
         protected override string PageTitle => "We have received your details";
         protected override By PageHeader => By.XPath("//h1[text()='We have received your details']");
@@ -15,21 +15,31 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         private By ReturnToEasLink => By.CssSelector(".submission-message a");
         #endregion
 
-        public ProvideReceivedDetailsPage(ScenarioContext context) : base(context, false)
+        public VRFReceivedDetailsConfirmPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public ApplicationCompletePage ReturnToEasPage()
+        public ApplicationCompletePage ReturnToEasApplicationCompletePage()
+        {
+            ReturnToEAS();
+            return new ApplicationCompletePage(_context);
+        }
+
+        public EIHubPage ReturnToEIHubPage()
+        {
+            ReturnToEAS();
+            return new EIHubPage(_context);
+        }
+
+        private void ReturnToEAS()
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
                 TestContext.Progress.WriteLine($"CaseId Summary: {pageInteractionHelper.GetText(CaseIdSummary)}");
                 formCompletionHelper.ClickElement(ReturnToEasLink);
             });
-
-            return new ApplicationCompletePage(_context);
         }
     }
 }

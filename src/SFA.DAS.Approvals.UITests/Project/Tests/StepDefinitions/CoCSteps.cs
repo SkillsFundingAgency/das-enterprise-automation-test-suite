@@ -41,6 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
+        [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
         public void GivenTheEmployerHasApprovedApprentice()
         {

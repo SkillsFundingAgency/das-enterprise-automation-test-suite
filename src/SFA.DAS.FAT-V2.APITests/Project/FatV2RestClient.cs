@@ -8,7 +8,5 @@ namespace SFA.DAS.FAT_V2.APITests.Project
         public FatV2RestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
         protected override string ApiName => "/epaoregister";
-
-        protected override string ApiSubscriptionKey => config.Fatv2ApiSubscriptionKey;
     }
 }
