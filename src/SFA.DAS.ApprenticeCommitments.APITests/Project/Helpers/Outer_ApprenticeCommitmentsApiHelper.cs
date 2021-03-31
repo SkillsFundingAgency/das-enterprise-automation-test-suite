@@ -61,6 +61,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetTrainingName(trainingname);
             _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
             _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
+            _objectContext.SetEmployerName(orgname);
 
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }

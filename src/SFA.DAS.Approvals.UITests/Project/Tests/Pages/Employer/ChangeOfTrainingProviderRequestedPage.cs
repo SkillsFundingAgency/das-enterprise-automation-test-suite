@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -17,8 +16,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public void VerifyConfirmationMessage()
         {
             var bodyTextElements = pageInteractionHelper.FindElements(By.CssSelector(".govuk-body"));
+            pageInteractionHelper.VerifyText(bodyTextElements.First().Text, EmployerLedExpectedBodyText);
+        }
 
-            Assert.AreEqual(EmployerLedExpectedBodyText, bodyTextElements.First().Text);
+        public void VerifyAdditionalMessageOnConfirmationPage(string expectedText)
+        {
+            var bodyTextElements = pageInteractionHelper.FindElements(By.CssSelector(".govuk-body"));
+            pageInteractionHelper.VerifyText(bodyTextElements.First().Text, expectedText);
         }
     }
 }

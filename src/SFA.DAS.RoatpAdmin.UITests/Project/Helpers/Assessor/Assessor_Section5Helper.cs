@@ -34,6 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 return applicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()
                     .SelectPassAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
+                    .SelectPassAndContinueForILRDataPage()
                     .SelectPassAndContinue()
                     .VerifySection5Link3Status(StatusHelper.StatusPass);
             }

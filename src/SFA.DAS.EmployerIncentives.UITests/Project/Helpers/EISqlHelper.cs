@@ -48,6 +48,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = {nullValue}, VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountId}");
         }
 
+        public void SetCaseDetailsToCompleted(string email)
+        {
+            var accountId = FetchAccountId(email);
+            var dateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = 'P{accountId}', VrfCaseId = 'AF{accountId}', VrfCaseStatus = 'Case Request completed', VrfCaseStatusLastUpdatedDateTime = '{dateTime}' WHERE Id = {accountId}");
+        }
+
+        public int FetchAccountId(string email)
+        {
+            query = $"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
+            return FetchIntegerQueryData(0);
+        }
+
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";

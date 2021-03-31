@@ -16,9 +16,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for invalid passwords")]
         public void ThenAnErrorIsShownForInvalidPasswords()
         {
-            var passwordPage = appreticeCommitmentsStepsHelper.GetCreatePasswordPage();
+            var createPasswordPage = appreticeCommitmentsStepsHelper.GetCreatePasswordPage();
 
-            appreticeCommitmentsStepsHelper.InvalidPassword(passwordPage);
+            appreticeCommitmentsStepsHelper.InvalidPassword(createPasswordPage);
         }
     }
 }

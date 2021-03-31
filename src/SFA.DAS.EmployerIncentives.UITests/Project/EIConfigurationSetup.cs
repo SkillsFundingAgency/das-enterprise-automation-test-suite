@@ -22,6 +22,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public void SetUpEIConfigConfiguration()
         {
             var config = _configSection.GetConfigSection<EIConfig>();
+
             _context.SetEIConfig(config);
 
             _context.SetUser(_configSection.GetConfigSection<EILevyUser>());

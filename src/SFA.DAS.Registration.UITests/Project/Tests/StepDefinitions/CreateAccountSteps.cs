@@ -431,7 +431,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Unlock the Account")]
         public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
             .EnterDetailsAndClickUnlockButton(_loginEmail)
-            .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
             .Login(_objectContext.GetLoginCredentials());
 
         [When(@"the User is on the 'Set up as a user' page")]

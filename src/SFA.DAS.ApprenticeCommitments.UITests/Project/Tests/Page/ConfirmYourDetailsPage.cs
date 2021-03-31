@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -7,11 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
 
-        public ConfirmYourDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => _context = context;
 
         public ApprenticeHomePage SelectYes()
         {
