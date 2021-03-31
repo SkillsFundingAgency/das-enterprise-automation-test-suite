@@ -232,6 +232,37 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.UpdateNewCohortReference();
         }
 
+        [Then(@"employer can start CoP Process")]
+        public void ThenEmployerCanStartCoPProcess()
+        {
+            Assert.IsTrue(_employerStepsHelper.ViewCurrentApprenticeDetails().GetApprenticeshipStatus() == "Live");
+            Assert.IsTrue(new ApprenticeDetailsPage(_context).IsChangeOfProviderLinkDisplayed());
+        }
+
+        [Then(@"stop apprentice record during CoP journey")]
+        public void ThenStopApprenticeRecordDuringCoPJourney()
+        {
+            string firstWarning = "You need to stop the apprenticeship record with the current training provider before you can change training providers.";
+            string secondWarning = "This apprenticeship record cannot be restarted once stopped.";
+            string finalMessage = $"We've stopped {_dataHelper.ApprenticeFullName}'s apprenticeship record with their current training provider.";
+            
+            new ApprenticeDetailsPage(_context)
+                              .ClickOnChangeOfProviderLink()
+                              .ValidateWarningAndClickOnContinueButton(firstWarning)
+                              .EditStopDateToThisMonthAndSubmit()
+                              .ClickARadioButtonAndContinue()
+                              .ValidateWarningSelectYesAndConfirm(secondWarning)
+                              .ClickOnContinueButton()
+                              .ChooseTrainingProviderPage()
+                              .SelectIWillAddThemNow()
+                              .EnterNewStartDate()
+                              .EnterNewEndDate()
+                              .EnterNewPrice()
+                              .ClickConfirmAndSend()
+                              .VerifyAdditionalMessageOnConfirmationPage(finalMessage);
+        }
+
+
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
