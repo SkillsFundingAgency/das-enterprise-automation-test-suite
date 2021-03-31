@@ -22,8 +22,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectNoForLatestFullFinancialForTwelveMonthsAndContinue()
                 .ClickYesForFinancialStatementsCoveringAnyPeriodAndContinue()
                 .ContinueOnWhatYouNeedToUploadForFinancialStatementsAndManagementAccounts()
-                .UploadFinancialFileAndContinue()
-                .UploadManagementAccountsFileAndContinue()
+                .UploadFinancialFileForRemainingPeriodAndContinue()
+                .UploadRemainingPeriodManagementAccountsFileAndContinue()
                 .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }

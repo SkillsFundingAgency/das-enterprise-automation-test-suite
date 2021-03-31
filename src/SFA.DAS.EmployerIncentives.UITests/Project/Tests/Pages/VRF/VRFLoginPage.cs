@@ -1,32 +1,28 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class DfeUatLoginPage : EIBasePage
+    public class VRFLoginPage : EIBasePage
     {
         protected override string PageTitle => "Log In";
 
-        protected override By PageHeader => By.CssSelector("h1");
-
         #region Locators
         private readonly ScenarioContext _context;
+        protected override By PageHeader => By.CssSelector("h1");
+        private By Username => By.CssSelector("input[name='username']");
+        private By Password => By.CssSelector("input[name='password']");
+        private By SignInButton => By.CssSelector("button.primary[type='submit']");
         #endregion
 
-        private By Username => By.CssSelector("input[name='username']");
+        public VRFLoginPage(ScenarioContext context) : base(context) => _context = context;
 
-        private By Password => By.CssSelector("input[name='password']");
-
-        private By SignInButton => By.CssSelector("button.primary[type='submit']");
-
-        public DfeUatLoginPage(ScenarioContext context) : base(context) => _context = context;
-
-        public DfeUatHomePage SignIntoDfeUat()
+        public VRFHomePage SignIntoVRF()
         {
             formCompletionHelper.EnterText(Username, eIConfig.EI_DfeUatUsername);
             formCompletionHelper.EnterText(Password, eIConfig.EI_DfeUatPassword);
             formCompletionHelper.Click(SignInButton);
-            return new DfeUatHomePage(_context);
+            return new VRFHomePage(_context);
         }
     }
 }

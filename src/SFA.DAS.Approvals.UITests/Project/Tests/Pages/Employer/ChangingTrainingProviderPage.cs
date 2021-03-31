@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
+        private By WarningText = By.TagName("strong");
 
         public ChangingTrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -20,6 +21,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             Continue();
             return new EnterUkprnPage(_context);
-        } 
+        }
+
+        public ThisApprenticeshipTrainingStopPage ValidateWarningAndClickOnContinueButton(string expectedText)
+        {
+            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(WarningText), expectedText);
+            Continue();
+            return new ThisApprenticeshipTrainingStopPage(_context);
+        }
     }
 }

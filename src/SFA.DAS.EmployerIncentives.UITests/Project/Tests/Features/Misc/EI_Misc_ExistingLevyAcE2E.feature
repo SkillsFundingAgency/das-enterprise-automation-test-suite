@@ -1,9 +1,8 @@
-﻿Feature: EI_E2E_ExistingLevyAc
+﻿Feature: EI_Misc_ExistingLevyAcE2E
 
-@addlevyfunds
 @eie2ejourney
-@dfeuatachieveservice
-Scenario: EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account with one legal entity
+@vrfservice
+Scenario: EI_Misc_ExistingLevyAcE2E_Apply for Incentive for an Existing Levy Account with one legal entity
 	When the Employer logins using existing EI Levy Account
 	Then View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications
 	And EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page
@@ -12,3 +11,5 @@ Scenario: EI_E2E_ELevyAc_01_Apply for Incentive for an Existing Levy Account wit
 	When the Employer Initiates EI Application journey for Single entity account again
 	Then Select apprentices shutter page is displayed for selecting Yes option in Qualification page
 	And the Employer is able to view EI applications
+	When the Application Case details are changed to completed status
+	Then the Employer is able to Amend bank details
