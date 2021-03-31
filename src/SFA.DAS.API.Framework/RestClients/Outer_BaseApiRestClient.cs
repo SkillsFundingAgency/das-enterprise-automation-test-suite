@@ -10,7 +10,7 @@ namespace SFA.DAS.API.Framework.RestClients
 
         protected abstract string ApiName { get; }
 
-        protected abstract string ApiSubscriptionKey { get; }
+        protected virtual string ApiSubscriptionKey => config.Apim_SubscriptionKey;
 
         public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config)
         {
