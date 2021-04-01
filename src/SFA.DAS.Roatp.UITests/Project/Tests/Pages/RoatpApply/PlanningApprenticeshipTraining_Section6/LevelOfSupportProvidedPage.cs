@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class LevleOfSupportProvidedPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How do you agree with the apprentice what level of support is provided?";
+        protected override string PageTitle => "How does your proposed staff to learner ratio offer quality support to your apprentices?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
