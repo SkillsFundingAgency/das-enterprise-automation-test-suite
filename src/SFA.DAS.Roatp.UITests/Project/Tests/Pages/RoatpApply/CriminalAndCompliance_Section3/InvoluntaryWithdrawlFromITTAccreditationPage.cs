@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
 {
     public class InvoluntaryWithdrawlFromITTAccreditationPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Has your organisation had involuntary withdrawal from Initial Teacher Training accreditation in the last 3 years?";
+        protected override string PageTitle => "Has your organisation been involuntarily withdrawn from Initial Teacher Training accreditation in the last 3 years?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
