@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
-        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsDataHelper _dataHelper;
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
-            _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
@@ -38,19 +38,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeship()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
 
-            var (legalName, tradingName) = _apprenticeCommitmentSqlHelper.GetProviderData(providerId);
+            var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
-            var createApprenticeship = new CreateApprenticeship 
-            { 
-                EmployerAccountId = accountid, 
-                ApprenticeshipId = apprenticeshipid, 
-                EmployerName = orgname, 
-                Email = GetApprenticeEmail(), 
+            var createApprenticeship = new CreateApprenticeship
+            {
+                EmployerAccountId = accountid,
+                ApprenticeshipId = apprenticeshipid,
+                EmployerName = orgname,
+                Email = GetApprenticeEmail(),
                 EmployerAccountLegalEntityId = legalEntityId,
                 TrainingProviderId = providerId,
-                TrainingProviderName = GetProviderName(tradingName, legalName)
+                TrainingProviderName = GetProviderName(tradingName, legalName),
+                Course = trainingname
             };
 
             _objectContext.SetAccountId(accountid);

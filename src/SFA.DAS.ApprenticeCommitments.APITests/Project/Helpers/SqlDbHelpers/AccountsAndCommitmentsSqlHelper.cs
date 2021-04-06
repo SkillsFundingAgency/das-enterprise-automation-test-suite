@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "INNER JOIN Commitment on Apprenticeship.CommitmentId = Commitment.Id " +
                 "INNER JOIN Accounts on Accounts.Id = Commitment.EmployerAccountId " +
                 "INNER JOIN AccountLegalEntities on Commitment.AccountLegalEntityId = AccountLegalEntities.Id " +
-                "WHERE IsApproved in (0, 1) and IsDeleted = 0 and AccountLegalEntityId is not null and AccountLegalEntities.Deleted is null " +
+                "WHERE IsApproved in (0, 1) and IsDeleted = 0 and AccountLegalEntityId is not null and AccountLegalEntities.Deleted is null and TrainingCode NOT like '%-%'" +
                 "ORDER BY NEWID()";
 
             List<object[]> apprenticeData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.CommitmentsDbConnectionString);
