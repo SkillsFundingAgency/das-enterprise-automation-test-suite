@@ -11,8 +11,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Staff dashboard";
 
-        private By FinancialApplicationLink => By.XPath("//a[@href='/Roatp/Financial/Current']");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -27,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public FinancialLandingPage AccessFinancialApplications()
         {
-            formCompletionHelper.ClickElement(FinancialApplicationLink);
+            formCompletionHelper.ClickLinkByText("Go to RoATP financial applications");
             return new FinancialLandingPage(_context);
         }
 

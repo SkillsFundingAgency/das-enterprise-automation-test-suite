@@ -77,10 +77,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         public void ThenVerifyTheApplicationIsTransitionedToOversightForAssessment()
         {
             OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
-            Assert.IsTrue(oversightLandingPage.VerifyApplication(), "Gateway Fail ourtcome Application is NOT transitioned to Oversight");
+            Assert.IsTrue(oversightLandingPage.VerifyApplication(), "Gateway Fail outcome Application is NOT transitioned to Oversight");
         }
 
-        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED) status")]
+        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL) status")]
         public void ThenVerifyTheApplicationIsTransitionedToOversightOutcomeTabWithREJECTEDStatus(string expectedStatus)
         {
             OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);

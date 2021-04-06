@@ -15,6 +15,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         public void ThenTheAdminCanDownloadListOfApprenticeshipTrainingProviders() => _staffDashboardPage = new StaffDashboardPage(_context).DownloadTrainingProvider();
 
         [Then(@"the admin can download the application data")]
-        public void ThenTheAdminCanDownloadTheApplicationData() => _staffDashboardPage.DownloadApplicationData().DownloadReport();
+        public void ThenTheAdminCanDownloadTheApplicationData() => _staffDashboardPage = _staffDashboardPage.DownloadApplicationData().DownloadReport().ClickReturnToStaffDashBoard();
+
+        [Then(@"the admin can download all current finance applications")]
+        public void ThenTheAdminCanDownloadAllCurrentFinanceApplications() => _staffDashboardPage = _staffDashboardPage.AccessFinancialApplications().DownloadAllCurrentApplications().ClickReturnToStaffDashBoard();
     }
 }
