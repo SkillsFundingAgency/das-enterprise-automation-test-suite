@@ -17,13 +17,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice identity can be validated")]
         public void ThenTheApprenticeIdentityCanBeValidated() => _apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
 
-        [Then(@"the apprentice is able to confirm the employer")]
+        [Then(@"the apprentice is able to confirm the Employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
 
         [Then(@"the apprentice confirms the Employer details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
 
-        [Then(@"the apprentice is able to confirm the training provider")]
+        [Then(@"the apprentice is able to confirm the Training Provider")]
         public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectYes();
 
         [Then(@"the apprentice confirms the Provider details displayed as Incorrect")]
@@ -60,6 +60,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
         public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
              _apprenticeHomePage = _apprenticeHomePage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
+
+        [Then(@"the apprentice is able to confirm the Apprenticeship details")]
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails()
+        {
+            _apprenticeHomePage = _apprenticeHomePage.ConfirmYourApprenticeship().SelectYes();
+        }
+
+        [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
+        public void ThenConfirmedApprenticeshipAlreadyPageIsDisplayedForTryingToConfirmAgain()
+        {
+            _apprenticeHomePage = _apprenticeHomePage.ConfirmAlreadyConfirmedApprenticeship().ContinueToHomePage();
+        }
+
+        [Then(@"the apprentice confirms the Apprenticeship details displayed as Incorrect")]
+        public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
+        {
+            _apprenticeHomePage = _apprenticeHomePage.ConfirmYourApprenticeship().SelectNo().ReturnToApprenticeHomePage();
+        }
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
