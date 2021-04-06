@@ -8,6 +8,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class ConfirmIdentitySteps : BaseSteps
     {
         private ApprenticeHomePage _apprenticeHomePage;
+        private ConfirmYourApprenticeshipDetailsPage _confirmYourApprenticeshipDetailsPage;
+        private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
 
         public ConfirmIdentitySteps(ScenarioContext context) : base(context) { }
 
@@ -64,21 +66,31 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
         public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails()
         {
-            _apprenticeHomePage = _apprenticeHomePage.ConfirmYourApprenticeship().SelectYes();
+            NavigateAndVerifyApprenticeshipDetails();
+            _apprenticeHomePage = _confirmYourApprenticeshipDetailsPage.SelectYes();
         }
 
         [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
         public void ThenConfirmedApprenticeshipAlreadyPageIsDisplayedForTryingToConfirmAgain()
         {
-            _apprenticeHomePage = _apprenticeHomePage.ConfirmAlreadyConfirmedApprenticeship().ContinueToHomePage();
+            _alreadyConfirmedApprenticeshipDetailsPage = _apprenticeHomePage.ConfirmAlreadyConfirmedApprenticeship();
+            appreticeCommitmentsStepsHelper.VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(_alreadyConfirmedApprenticeshipDetailsPage);
+            _apprenticeHomePage = _alreadyConfirmedApprenticeshipDetailsPage.ContinueToHomePage();
         }
 
         [Then(@"the apprentice confirms the Apprenticeship details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
-            _apprenticeHomePage = _apprenticeHomePage.ConfirmYourApprenticeship().SelectNo().ReturnToApprenticeHomePage();
+            NavigateAndVerifyApprenticeshipDetails();
+            _apprenticeHomePage = _confirmYourApprenticeshipDetailsPage.SelectNo().ReturnToApprenticeHomePage();
         }
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
+
+        private void NavigateAndVerifyApprenticeshipDetails()
+        {
+            _confirmYourApprenticeshipDetailsPage = _apprenticeHomePage.ConfirmYourApprenticeship();
+            appreticeCommitmentsStepsHelper.VerifyApprenticeshipDataDisplayed(_confirmYourApprenticeshipDetailsPage);
+        }
     }
 }
