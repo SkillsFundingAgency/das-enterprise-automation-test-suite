@@ -20,14 +20,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to confirm the employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectYes();
 
-        [Then(@"the apprentice can not confirm the employer")]
-        public void ThenTheApprenticeCanNotConfirmTheEmployer() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
+        [Then(@"the apprentice confirms the Employer details displayed as Incorrect")]
+        public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
 
         [Then(@"the apprentice is able to confirm the training provider")]
         public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectYes();
 
-        [Then(@"the apprentice can not confirm the training provider")]
-        public void ThenTheApprenticeCanNotConfirmTheTrainingProvider() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectNo().ReturnToApprenticeHomePage();
+        [Then(@"the apprentice confirms the Provider details displayed as Incorrect")]
+        public void ThenTheApprenticeConfirmsTheProviderDetailsDisplayedAsIncorrect() => _apprenticeHomePage = _apprenticeHomePage.ConfirmYourTrainingProvider().SelectNo().ReturnToApprenticeHomePage();
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
