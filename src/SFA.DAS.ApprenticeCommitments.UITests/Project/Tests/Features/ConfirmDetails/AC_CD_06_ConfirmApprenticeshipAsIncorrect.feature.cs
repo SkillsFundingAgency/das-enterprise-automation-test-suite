@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CP_02_ConfirmProviderDetailsAsIncorrect")]
-    public partial class AC_CP_02_ConfirmProviderDetailsAsIncorrectFeature
+    [NUnit.Framework.DescriptionAttribute("AC_CD_06_ConfirmApprenticeshipAsIncorrect")]
+    public partial class AC_CD_06_ConfirmApprenticeshipAsIncorrectFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_CP_02_ConfirmProviderDetailsAsIncorrect.feature"
+#line 1 "AC_CD_06_ConfirmApprenticeshipAsIncorrect.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CP_02_ConfirmProviderDetailsAsIncorrect", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CD_06_ConfirmApprenticeshipAsIncorrect", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CP_02_ConfirmProviderDetailsAsIncorrect")]
+        [NUnit.Framework.DescriptionAttribute("AC_CD_06_ConfirmApprenticeshipAsIncorrect")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_CP_02_ConfirmProviderDetailsAsIncorrect()
+        public virtual void AC_CD_06_ConfirmApprenticeshipAsIncorrect()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CP_02_ConfirmProviderDetailsAsIncorrect", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CD_06_ConfirmApprenticeshipAsIncorrect", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the apprentice confirms the Provider details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprentice confirms the Apprenticeship details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
