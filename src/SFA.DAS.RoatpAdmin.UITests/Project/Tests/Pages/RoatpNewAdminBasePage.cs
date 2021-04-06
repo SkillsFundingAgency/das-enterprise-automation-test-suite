@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
 
-        private By providerLink => By.LinkText(objectContext.GetProviderName());
+        private By ProviderLink => By.LinkText(objectContext.GetProviderName());
 
         protected By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
 
@@ -30,11 +30,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
-        public RoatpNewAdminBasePage(ScenarioContext context) : base(context)
+        public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
             _context = context;
 
-            VerifyPage();
+            if (verifyPage) VerifyPage();
         }
 
         public void SelectPassAndContinueToSubSection()
@@ -54,11 +54,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public StaffDashboardPage ClickReturnToStaffDashBoard()
         {
-            formCompletionHelper.ClickElement(ReturnToDashBoard);
+            if (pageInteractionHelper.IsElementDisplayed(ReturnToDashBoard))
+                formCompletionHelper.ClickElement(ReturnToDashBoard);
+            
             return new StaffDashboardPage(_context);
         }
 
-        public bool VerifyApplication() => pageInteractionHelper.IsElementDisplayed(providerLink);
+        public bool VerifyApplication() => pageInteractionHelper.IsElementDisplayed(ProviderLink);
 
         public void SelectClarificationAndContinueToSubSection()
         {
@@ -70,9 +72,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
                     VerifyElement(() => pageInteractionHelper.FindElement(StatusTextLocator(linkText)), expectedStatus, null);
 
-        protected void VerifyOutcomeStatus(string expectedStatus)
+        protected void VerifyOutcomeStatus(string expectedStatus) => VerifyOutcomeStatus(OutcomeTab, OutcomeStatus, expectedStatus);
+
+        protected void VerifyOutcomeStatus(By outcomeTab, By outcomeStatus, string expectedStatus)
         {
-            VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));
+            VerifyApplicationStatus(outcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(outcomeTab)));
         }
 
         protected void VerifyClarificationStatus(By statusSelector, string expectedStatus)

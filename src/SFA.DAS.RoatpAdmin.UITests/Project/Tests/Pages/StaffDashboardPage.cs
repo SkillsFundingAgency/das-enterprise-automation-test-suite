@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
@@ -7,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-    public class StaffDashboardPage : RoatpAdminBasePage
+    public class StaffDashboardPage : RoatpNewAdminBasePage
     {
         protected override string PageTitle => "Staff dashboard";
 
@@ -15,7 +14,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public StaffDashboardPage(ScenarioContext context) : base(context) => _context = context;
+        public StaffDashboardPage(ScenarioContext context, bool navigate = false) : base(context, !navigate)
+        {
+            _context = context; 
+
+            if (navigate) { ClickReturnToStaffDashBoard(); VerifyPage(); }
+        }
 
         public GatewayLandingPage AccessGatewayApplications()
         {

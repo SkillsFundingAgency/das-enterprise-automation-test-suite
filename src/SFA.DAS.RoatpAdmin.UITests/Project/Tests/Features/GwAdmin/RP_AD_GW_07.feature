@@ -12,6 +12,7 @@ Scenario: RP_AD_GW_07A_SupportRoute_Removed_NEW_Application
 	When the admin access the application from GatewayApplications
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
+	And verify that the admin can send the application outcome as REMOVED to the applicant
 
 	
 @resetApplicationToNew

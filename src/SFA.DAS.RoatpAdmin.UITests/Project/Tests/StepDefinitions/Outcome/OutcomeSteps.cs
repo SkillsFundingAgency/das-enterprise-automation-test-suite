@@ -10,37 +10,54 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
         private ApplicationSummaryPage _applicationSummaryPage;
-
+        
         public OutcomeSteps(ScenarioContext context) => _context = context;
 
-        [Given(@"the application is ready to be assessed")]
-        public void GivenApplicationIsReadyToBeAssessed()
-        {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+        [Given(@"the application with (PASS) outcome is ready to be assessed")]
+        public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
-            _applicationSummaryPage = _staffDashboardPage.AccessOversightApplications().SelectApplication();
+        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL) status")]
+        public void VerifyTheApplicationOversightStatus(string expectedStatus) => VerifyOverallOutcomeStatus(expectedStatus);
+
+        [Then(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
+        public void ThenVerifyThatTheAdminCanSendTheOutcome(string expectedStatus)
+        {
+            SelectApplication(expectedStatus == "UNSUCCESSFUL" ? "FAIL" : expectedStatus);
+
+            _applicationSummaryPage.SendOutcomeToTheApplicant(expectedStatus).GoToRoATPAssessorApplicationsPage();
+
+            VerifyOverallOutcomeStatus(expectedStatus);
         }
 
         [When(@"the oversight user approves gateway and moderation outcome")]
         public void WhenTheOversightUserApprovesGatewayAndModerationOutcome()
         {
-            _staffDashboardPage = _applicationSummaryPage
+            _applicationSummaryPage
                 .ApproveOverallOutcome()
                 .SelectYesAskAndContinueOutcomePage()
-                .GoToRoATPAssessorApplicationsPage()
-                .VerifyOutcomeStatus("SUCCESSFUL")
-                .ClickReturnToStaffDashBoard();
+                .GoToRoATPAssessorApplicationsPage();
         }
 
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
         {
-            var resultPage = _staffDashboardPage.SearchForATrainingProvider()
+            var resultPage = new StaffDashboardPage(_context, true)
+                .SearchForATrainingProvider()
                 .SearchTrainingProviderByUkprn();
 
             resultPage.VerifyOneProviderUkprnResultFound();
 
             resultPage.VerifyMainAndEmployerTypeStatus();
         }
+
+        private void SelectApplication(string expectedStatus)
+        {
+            _staffDashboardPage = new StaffDashboardPage(_context, true);
+
+            _applicationSummaryPage = _staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus);
+        }
+
+        private void VerifyOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
+
     }
 }

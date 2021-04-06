@@ -8,6 +8,7 @@
 @regression
 Scenario: RP_AD_OUTCOME_01 Complete Outcome of a Company type Application via Main provider route
 	Given the admin lands on the Dashboard
-	Given the application is ready to be assessed
+	And the application with PASS outcome is ready to be assessed
 	When the oversight user approves gateway and moderation outcome
+	Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status
 	Then verify the provider is added to the register with status of Onboarding

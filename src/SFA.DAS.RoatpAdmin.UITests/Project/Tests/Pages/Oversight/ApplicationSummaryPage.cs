@@ -45,5 +45,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             return new AreYouSureSuccessfullPage(_context);
         }
 
+        public OversightAssessmentCompletePage SendOutcomeToTheApplicant(string expectedStatus)
+        {
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Send outcome");
+            return new OversightAssessmentCompletePage(_context, expectedStatus);
+        }
+
     }
 }

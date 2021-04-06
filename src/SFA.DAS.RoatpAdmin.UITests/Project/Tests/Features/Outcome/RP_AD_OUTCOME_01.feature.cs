@@ -118,12 +118,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.Given("the application is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.When("the oversight user approves gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
+ testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+                        "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
  testRunner.Then("verify the provider is added to the register with status of Onboarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
