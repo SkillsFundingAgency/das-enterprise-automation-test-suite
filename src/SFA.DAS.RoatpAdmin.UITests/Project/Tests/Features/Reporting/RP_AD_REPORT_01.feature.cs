@@ -117,6 +117,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("the admin can download the application data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.And("the admin can download all current finance applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

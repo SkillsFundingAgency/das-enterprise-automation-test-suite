@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
 {
     public class HowSupportIsAgreedBetweenEmployerApprenticePage : ModeratorBasePage
     {
-        protected override string PageTitle => "How support is agreed between employer and apprentice";
+        protected override string PageTitle => "Proposed staff to learner support";
 
         public HowSupportIsAgreedBetweenEmployerApprenticePage(ScenarioContext context) : base(context) { }
     }

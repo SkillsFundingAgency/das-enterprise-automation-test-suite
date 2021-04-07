@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class AwardingBodiesPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How does your organisation plan to engage and work with awarding bodies?";
+        protected override string PageTitle => "How will your organisation plan to engage and work with awarding bodies?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 

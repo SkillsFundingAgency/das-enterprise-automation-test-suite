@@ -8,3 +8,4 @@ Scenario: RP_AD_REPORT_01_Download List of Training Providers and Application da
 	Given the admin lands on the Dashboard
 	Then the admin can download list of apprenticeship training providers
 	And the admin can download the application data
+	And the admin can download all current finance applications
