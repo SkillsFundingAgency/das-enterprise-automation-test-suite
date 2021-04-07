@@ -38,6 +38,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
                 .GoToRoATPAssessorApplicationsPage();
         }
 
+        [When(@"the oversight user overturns gateway and moderation outcome")]
+        public void WhenTheOversightUserOverturnsGatewayAndModerationOutcome()
+        {
+            _applicationSummaryPage =  _applicationSummaryPage.OverTurnThisApplication(); 
+        }
+
+        [When(@"the oversight user selects the overall application outcome as Unsuccessful")]
+        public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsUnsuccessful()
+        {
+            _applicationSummaryPage.MakeApplicationUnSuccessfull().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+        }
+
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
         {
@@ -48,6 +60,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
             resultPage.VerifyOneProviderUkprnResultFound();
 
             resultPage.VerifyMainAndEmployerTypeStatus();
+        }
+
+        [Then(@"verify the provider is not added to the register")]
+        public void ThenVerifyTheProviderIsNotAddedToTheRegister()
+        {
+            new StaffDashboardPage(_context, true).SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyNoProviderUkprnResultFound();
         }
 
         private void SelectApplication(string expectedStatus)

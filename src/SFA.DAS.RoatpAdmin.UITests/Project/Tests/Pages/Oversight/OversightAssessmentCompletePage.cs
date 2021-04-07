@@ -17,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         {
             _context = context;
 
-            pageInteractionHelper.InvokeAction(() => pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(ConfirmationMessage).ToUpper(), outcome));
+            pageInteractionHelper.InvokeAction(() => pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(ConfirmationMessage).ToUpper(), outcome.ToUpper()));
         }
 
         public OversightLandingPage GoToRoATPAssessorApplicationsPage()

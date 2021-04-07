@@ -11,14 +11,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         protected override string PageTitle => "Application summary";
 
         private By ApproveGatewayOutcome => By.CssSelector("label[for='ApproveGateway']");
-        private By OverturnGatewayOutcome => By.Id("ApproveGatewayOutcome");
+        private By OverturnGatewayOutcome => By.CssSelector("label[for='OptionApproveGatewayNo']");
         private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
-        private By OverturnModerationOutcome => By.Id("OptionApproveModerationNo");
+        private By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
         private By OversightSuccessfull => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfullAlreadyActive => By.Id("OptionSuccessfulAlreadyActive");
-        private By OversightSuccessfullFitnessForFunding => By.Id("OptionSuccessfulFitnessForFunding");
-        private By OversightUnSuccessfull => By.Id("OptionUnsuccessful");
-        private By OversightInProgress => By.Id("OptionInProgress");
+        private By OversightSuccessfullAlreadyActive => By.CssSelector("label[for='OptionSuccessfulAlreadyActive']");
+        private By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
+        private By OversightUnSuccessfull => By.CssSelector("label[for='OptionUnsuccessful']");
+        private By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");
         private By SuccessfullText => By.Id("SuccessfulText");
         private By SuccessfullAlreadyActiveText => By.Id("SuccessfulAlreadyActiveText");
         private By SuccessfullFitnessForFundingText => By.Id("SuccessfulFitnessForFundingText");
@@ -50,6 +50,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickButtonByText(ContinueButton, "Send outcome");
             return new OversightAssessmentCompletePage(_context, expectedStatus);
         }
+
+        public ApplicationSummaryPage OverTurnThisApplication()
+        {
+            formCompletionHelper.ClickElement(OverturnGatewayOutcome);
+            formCompletionHelper.ClickElement(OverturnModerationOutcome);
+            return new ApplicationSummaryPage(_context);
+        }
+
+        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessfull()
+        {
+            formCompletionHelper.ClickElement(OversightUnSuccessfull);
+            formCompletionHelper.EnterText(UnSuccessfullInternalText, "UnSuccessfull Internal comments ");
+            formCompletionHelper.EnterText(UnSuccessfullExternalText, "UnSuccessfull External comments ");
+            Continue();
+            return new AreYouSureUnSuccessfullPage(_context);
+        }
+
 
     }
 }

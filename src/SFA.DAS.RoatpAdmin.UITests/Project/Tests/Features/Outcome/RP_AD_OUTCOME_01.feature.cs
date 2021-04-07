@@ -133,6 +133,70 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+            "r route unsuccessful Journey")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("rpadoutcome01")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("roatpoutcome")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RP_AD_OUTCOME_01ACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteUnsuccessfulJourney()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "roatp",
+                    "rpadoutcome01",
+                    "roatpadmin",
+                    "roatpoutcome",
+                    "newroatpadmin",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+                    "r route unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 25
+testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 29
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+                        " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 30
+testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
