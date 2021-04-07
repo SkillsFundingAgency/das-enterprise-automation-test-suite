@@ -20,8 +20,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
-
         private YourAccountHasBeenCreatedPage sigUpCompletePage;
+        private string expectedApprenticeshipName, expectedApprenticeshipLevel, expectedApprenticeshipDuration;
+        private DateTime expectedApprenticeshipStartDate, expectedApprenticeshipEndDate;
+        private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualApprenticeshipEndDate, actualApprenticeshipDuration;
 
         public AppreticeCommitmentsStepsHelper(ScenarioContext context)
         {
@@ -90,47 +92,48 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyApprenticeshipDataDisplayed(ConfirmYourApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
         {
-            var (expectedApprenticeshipName, expectedLevelValue) = SplitTrainingName();
-            Assert.AreEqual(expectedApprenticeshipName, confirmYourApprenticeshipDetailsPage.GetApprenticeshipInfo());
-            Assert.AreEqual(expectedLevelValue, confirmYourApprenticeshipDetailsPage.GetApprenticeshipLevelInfo());
-            
-            var (expectedStartDate, expectedEndDate, expectedDuration) = GetExpectedTrainingDates();
-            var actualStartDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
-            var actualEndDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
+            PopulateExpectedApprenticeshipDetails();
+            actualApprenticeshipName = confirmYourApprenticeshipDetailsPage.GetApprenticeshipInfo();
+            actualApprenticeshipLevel = confirmYourApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
+            actualApprenticeshipStartDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
+            actualApprenticeshipEndDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
+            actualApprenticeshipDuration = confirmYourApprenticeshipDetailsPage.GetApprenticeshipDurationInfo();
 
-            Assert.AreEqual(actualStartDate, expectedStartDate.ToString("MMMM yyyy"));
-            Assert.AreEqual(actualEndDate, expectedEndDate.ToString("MMMM yyyy"));
-            Assert.AreEqual(expectedDuration + " months", confirmYourApprenticeshipDetailsPage.GetApprenticeshipDurationInfo());
+            AssertApprenticeshipDetails();
         }
 
         public void VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(AlreadyConfirmedApprenticeshipDetailsPage alreadyConfirmedApprenticeshipDetailsPage)
         {
-            var (expectedApprenticeshipName, expectedLevelValue) = SplitTrainingName();
-            Assert.AreEqual(expectedApprenticeshipName, alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipInfo());
-            Assert.AreEqual(expectedLevelValue, alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipLevelInfo());
+            PopulateExpectedApprenticeshipDetails();
+            actualApprenticeshipName = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipInfo();
+            actualApprenticeshipLevel = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
+            actualApprenticeshipStartDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
+            actualApprenticeshipEndDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
+            actualApprenticeshipDuration = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipDurationInfo();
 
-            var (expectedStartDate, expectedEndDate, expectedDuration) = GetExpectedTrainingDates();
-            var actualStartDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
-            var actualEndDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
-
-            Assert.AreEqual(actualStartDate, expectedStartDate.ToString("MMMM yyyy"));
-            Assert.AreEqual(actualEndDate, expectedEndDate.ToString("MMMM yyyy"));
-            Assert.AreEqual(expectedDuration + " months", alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipDurationInfo());
+            AssertApprenticeshipDetails();
         }
 
-        private (string, string) SplitTrainingName()
+        private void PopulateExpectedApprenticeshipDetails()
         {
-            var trainingInfo = _objectContext.GetTrainingName();
-            return (trainingInfo.Split(',')[0], trainingInfo.Split(':')[1].Trim()[0].ToString());
+            expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
+            expectedApprenticeshipLevel = _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
+            expectedApprenticeshipStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
+            expectedApprenticeshipEndDate = DateTime.Parse(_objectContext.GetTrainingEndDate());
+            expectedApprenticeshipDuration = CalculateMonthsBetweenDates(expectedApprenticeshipStartDate, expectedApprenticeshipEndDate);
         }
 
-        private (DateTime, DateTime, int) GetExpectedTrainingDates()
+        private void AssertApprenticeshipDetails()
         {
-            var expectedStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
-            var expectedEndDate = DateTime.Parse(_objectContext.GetTrainingEndDate());
-            var expectedDuration = Math.Abs(12 * (expectedStartDate.Year - expectedEndDate.Year) + expectedStartDate.Month - expectedEndDate.Month) + 1;
-            return (expectedStartDate, expectedEndDate, expectedDuration);
+            Assert.AreEqual(expectedApprenticeshipName, actualApprenticeshipName);
+            Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
+            Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
+            Assert.AreEqual(actualApprenticeshipEndDate, expectedApprenticeshipEndDate.ToString("MMMM yyyy"));
+            Assert.AreEqual($"{expectedApprenticeshipDuration} months", actualApprenticeshipDuration);
         }
+
+        private string CalculateMonthsBetweenDates(DateTime startDate, DateTime endDate) =>
+            (Math.Abs(12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month) + 1).ToString();
 
         private void OpenInNewTab(string url) => _context.Get<TabHelper>().OpenInNewTab(url);
 
