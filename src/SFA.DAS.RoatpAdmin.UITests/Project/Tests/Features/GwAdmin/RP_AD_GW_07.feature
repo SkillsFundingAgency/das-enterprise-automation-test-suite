@@ -12,6 +12,7 @@ Scenario: RP_AD_GW_07A_SupportRoute_Removed_NEW_Application
 	When the admin access the application from GatewayApplications
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
+	And verify that the admin can send the application outcome as REMOVED to the applicant
 
 	
 @resetApplicationToNew
@@ -27,6 +28,7 @@ Scenario: RP_AD_GW_07B_SupportRoute_Removed_InProgress_Application
 	And the gateway admin assess first subsection as PASS 
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
+	And verify that the admin can send the application outcome as REMOVED to the applicant
 
 
 @resetApplicationToNew
@@ -44,6 +46,7 @@ Scenario: RP_AD_GW_07C_SupportRoute_Removed_Clarification_Application
 	Then the gateway admin completes assessment by confirming Clarification is needed
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
+	And verify that the admin can send the application outcome as REMOVED to the applicant
  
 
 @resetApplicationToNew
@@ -62,4 +65,5 @@ Scenario: RP_AD_GW_07D_SupportRoute_Removed_OutcomeMade_Application
 	And the admin access the application from Outcome tab
 	Then the admin Removes the Application where outcome has been made
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
+	And verify that the admin can send the application outcome as REMOVED to the applicant
  

@@ -16,7 +16,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
 
-
         public GwAdminSteps(ScenarioContext context)
         {
             _context = context;
@@ -71,20 +70,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
             Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
             staffDashboardPage = roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessOversightApplications();
-        }
-
-        [Then(@"Verify the application is transitioned to Oversight for assessment")]
-        public void ThenVerifyTheApplicationIsTransitionedToOversightForAssessment()
-        {
-            OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
-            Assert.IsTrue(oversightLandingPage.VerifyApplication(), "Gateway Fail ourtcome Application is NOT transitioned to Oversight");
-        }
-
-        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED) status")]
-        public void ThenVerifyTheApplicationIsTransitionedToOversightOutcomeTabWithREJECTEDStatus(string expectedStatus)
-        {
-            OversightLandingPage oversightLandingPage = new OversightLandingPage(_context);
-            oversightLandingPage.VerifyOutcomeStatus(expectedStatus);
         }
        
         [Then(@"the admin Withdraws the Application")]

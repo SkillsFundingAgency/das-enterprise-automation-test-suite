@@ -22,6 +22,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             VerifyPage();
         }
 
+        public FinancialLandingPage DownloadAllCurrentApplications()
+        {
+            formCompletionHelper.ClickLinkByText("Download all current applications");
+            return new FinancialLandingPage(_context);
+        }
+
         public FinancialHealthAssessmentOverviewPage SelectNewApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(CurrentApplicationsTab));

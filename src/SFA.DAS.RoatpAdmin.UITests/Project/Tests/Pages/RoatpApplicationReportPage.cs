@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-    public class RoatpApplicationReportPage : RoatpAdminBasePage
+    public class RoatpApplicationReportPage : RoatpNewAdminBasePage
     {
         protected override string PageTitle => "Download the RoATP application report";
 
