@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
@@ -10,13 +12,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
         private ApplicationSummaryPage _applicationSummaryPage;
-        
-        public OutcomeSteps(ScenarioContext context) => _context = context;
+        private readonly TabHelper _tabhelper;
 
-        [Given(@"the application with (PASS) outcome is ready to be assessed")]
+        public OutcomeSteps(ScenarioContext context)
+        { 
+            _context = context;
+            _tabhelper = _context.Get<TabHelper>();
+        }
+
+        [Given(@"the admin navigates to the Dashboard")]
+        public void TheAdminNavigatesToTheDashboard() => _tabhelper.GoToUrl(UrlConfig.Admin_BaseUrl, "dashboard");
+
+        [Given(@"the application with (PASS|IN PROGRESS) outcome is ready to be assessed")]
         public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
-        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL) status")]
+        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL|IN PROGRESS) status")]
         public void VerifyTheApplicationOversightStatus(string expectedStatus) => VerifyOverallOutcomeStatus(expectedStatus);
 
         [Then(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
@@ -49,6 +59,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         {
             _applicationSummaryPage.MakeApplicationUnSuccessfull().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
+
+        [When(@"the oversight user selects the overall application outcome as In Progress")]
+        public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsInProgress()
+        {
+            _applicationSummaryPage.MakeApplicationInProgress().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+        }
+
 
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()

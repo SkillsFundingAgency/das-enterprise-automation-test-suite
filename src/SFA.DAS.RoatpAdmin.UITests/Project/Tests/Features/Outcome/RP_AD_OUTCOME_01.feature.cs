@@ -74,15 +74,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01 Complete Outcome of a Company type Application via Main provider" +
-            " route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+            "r route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadoutcome01")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("roatpoutcome")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01CompleteOutcomeOfACompanyTypeApplicationViaMainProviderRoute()
+        public virtual void RP_AD_OUTCOME_01ACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRoute()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -92,8 +92,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01 Complete Outcome of a Company type Application via Main provider" +
-                    " route", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+                    "r route", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -135,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01B Complete Outcome of a Company type Application via Main provide" +
             "r route unsuccessful Journey")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadoutcome01")]
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("roatpoutcome")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01ACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteUnsuccessfulJourney()
+        public virtual void RP_AD_OUTCOME_01BCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteUnsuccessfulJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -153,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01B Complete Outcome of a Company type Application via Main provide" +
                     "r route unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
@@ -193,6 +193,83 @@ testRunner.Then("Verify the application is transitioned to Oversight Outcome tab
 #line hidden
 #line 30
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_OUTCOME_01C Complete Outcome of a Company type Application via Main provide" +
+            "r route In Progress Journey")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("rpadoutcome01")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("roatpoutcome")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RP_AD_OUTCOME_01CCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteInProgressJourney()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "roatp",
+                    "rpadoutcome01",
+                    "roatpadmin",
+                    "roatpoutcome",
+                    "newroatpadmin",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01C Complete Outcome of a Company type Application via Main provide" +
+                    "r route In Progress Journey", null, tagsOfScenario, argumentsOfScenario);
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 40
+testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 41
+testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+testRunner.When("the oversight user selects the overall application outcome as In Progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with IN PROGRESS " +
+                        "status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 44
+testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 45
+testRunner.Given("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 46
+testRunner.And("the application with IN PROGRESS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 47
+testRunner.When("the oversight user approves gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 48
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+                        "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 49
+testRunner.Then("verify the provider is added to the register with status of Onboarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

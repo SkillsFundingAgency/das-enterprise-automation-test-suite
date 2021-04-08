@@ -67,6 +67,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             return new AreYouSureUnSuccessfullPage(_context);
         }
 
-
+        public AreYouSureInProgressPage MakeApplicationInProgress()
+        {
+            formCompletionHelper.ClickElement(OversightInProgress);
+            formCompletionHelper.EnterText(InProgressInternalText, "In Progress Internal comments ");
+            formCompletionHelper.EnterText(InProgressExternalText, "In Progress External comments ");
+            Continue();
+            return new AreYouSureInProgressPage(_context);
+        }
     }
 }
