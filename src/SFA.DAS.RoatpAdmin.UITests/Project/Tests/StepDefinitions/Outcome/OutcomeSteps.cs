@@ -39,13 +39,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
             VerifyOverallOutcomeStatus(expectedStatus);
         }
 
-        [When(@"the oversight user approves gateway and moderation outcome")]
-        public void WhenTheOversightUserApprovesGatewayAndModerationOutcome()
+        [When(@"the oversight user selects the overall application outcome as Successful")]
+        public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsSuccessful()
         {
-            _applicationSummaryPage
-                .ApproveOverallOutcome()
-                .SelectYesAskAndContinueOutcomePage()
-                .GoToRoATPAssessorApplicationsPage();
+            ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessful());
         }
 
         [When(@"the oversight user overturns gateway and moderation outcome")]
@@ -57,15 +54,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [When(@"the oversight user selects the overall application outcome as Unsuccessful")]
         public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsUnsuccessful()
         {
-            _applicationSummaryPage.MakeApplicationUnSuccessfull().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+            ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationUnSuccessful());
         }
 
         [When(@"the oversight user selects the overall application outcome as In Progress")]
         public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsInProgress()
         {
-            _applicationSummaryPage.MakeApplicationInProgress().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+            ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationInProgress());
         }
 
+        [When(@"the oversight user selects the overall application outcome as Successful already active")]
+        public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsSuccessfulAlreadyActive()
+        {
+            ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessfulAlreadyActive());
+        }
+
+        [When(@"the oversight user selects the overall application outcome as Successful fitness for funding")]
+        public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsSuccessfulFitnessForFunding()
+        {
+            ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessfulFitnessForFunding());
+        }
 
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
@@ -76,7 +84,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
 
             resultPage.VerifyOneProviderUkprnResultFound();
 
-            resultPage.VerifyMainAndEmployerTypeStatus();
+            resultPage.VerifyProviderStatusAsOnBoarding();
         }
 
         [Then(@"verify the provider is not added to the register")]
@@ -94,5 +102,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
 
         private void VerifyOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
 
+        private void ConfirmApplicationOutcome(AreYouSureAboutApplicationOutcomePage areYouSureSuccessfullPage)
+        {
+            areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+        }
     }
 }

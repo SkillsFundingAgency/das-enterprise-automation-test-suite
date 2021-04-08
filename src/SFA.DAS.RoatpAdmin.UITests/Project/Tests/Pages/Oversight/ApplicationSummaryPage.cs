@@ -14,16 +14,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By OverturnGatewayOutcome => By.CssSelector("label[for='OptionApproveGatewayNo']");
         private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
         private By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
-        private By OversightSuccessfull => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfullAlreadyActive => By.CssSelector("label[for='OptionSuccessfulAlreadyActive']");
+        private By OversightSuccessful => By.CssSelector("label[for='OversightStatus']");
+        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OptionSuccessfulAlreadyActive']");
         private By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
-        private By OversightUnSuccessfull => By.CssSelector("label[for='OptionUnsuccessful']");
+        private By OversightUnSuccessful => By.CssSelector("label[for='OptionUnsuccessful']");
         private By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");
-        private By SuccessfullText => By.Id("SuccessfulText");
-        private By SuccessfullAlreadyActiveText => By.Id("SuccessfulAlreadyActiveText");
+        private By SuccessfulText => By.Id("SuccessfulText");
+        private By SuccessfulAlreadyActiveText => By.Id("SuccessfulAlreadyActiveText");
         private By SuccessfullFitnessForFundingText => By.Id("SuccessfulFitnessForFundingText");
-        private By UnSuccessfullInternalText => By.Id("UnsuccessfulText");
-        private By UnSuccessfullExternalText => By.Id("UnsuccessfulExternalText");
+        private By UnSuccessfulInternalText => By.Id("UnsuccessfulText");
+        private By UnSuccessfulExternalText => By.Id("UnsuccessfulExternalText");
         private By InProgressInternalText => By.Id("InProgressInternalText");
         private By InProgressExternalText => By.Id("InProgressExternalText");
 
@@ -35,12 +35,32 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         public ApplicationSummaryPage(ScenarioContext context) : base(context) => _context = context;
 
-        public AreYouSureSuccessfullPage ApproveOverallOutcome()
+        public AreYouSureSuccessfullPage MakeApplicationSuccessful()
         {
             formCompletionHelper.ClickElement(ApproveGatewayOutcome);
             formCompletionHelper.ClickElement(ApproveModertionOutcome);
-            formCompletionHelper.ClickElement(OversightSuccessfull);
-            formCompletionHelper.EnterText(SuccessfullText, "Optional Successfull Internal comments ");
+            formCompletionHelper.ClickElement(OversightSuccessful);
+            formCompletionHelper.EnterText(SuccessfulText, "Optional Successful Internal comments ");
+            Continue();
+            return new AreYouSureSuccessfullPage(_context);
+        }
+
+        public AreYouSureSuccessfullPage MakeApplicationSuccessfulAlreadyActive()
+        {
+            formCompletionHelper.ClickElement(ApproveGatewayOutcome);
+            formCompletionHelper.ClickElement(ApproveModertionOutcome);
+            formCompletionHelper.ClickElement(OversightSuccessfulAlreadyActive);
+            formCompletionHelper.EnterText(SuccessfulAlreadyActiveText, "Optional Successful Already Active Internal comments ");
+            Continue();
+            return new AreYouSureSuccessfullPage(_context);
+        }
+
+        public AreYouSureSuccessfullPage MakeApplicationSuccessfulFitnessForFunding()
+        {
+            formCompletionHelper.ClickElement(ApproveGatewayOutcome);
+            formCompletionHelper.ClickElement(ApproveModertionOutcome);
+            formCompletionHelper.ClickElement(OversightSuccessfullFitnessForFunding);
+            formCompletionHelper.EnterText(SuccessfullFitnessForFundingText, "Optional Successful Fitness For Funding Internal comments ");
             Continue();
             return new AreYouSureSuccessfullPage(_context);
         }
@@ -58,11 +78,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             return new ApplicationSummaryPage(_context);
         }
 
-        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessfull()
+        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful()
         {
-            formCompletionHelper.ClickElement(OversightUnSuccessfull);
-            formCompletionHelper.EnterText(UnSuccessfullInternalText, "UnSuccessfull Internal comments ");
-            formCompletionHelper.EnterText(UnSuccessfullExternalText, "UnSuccessfull External comments ");
+            formCompletionHelper.ClickElement(OversightUnSuccessful);
+            formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments ");
+            formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments ");
             Continue();
             return new AreYouSureUnSuccessfullPage(_context);
         }

@@ -7,9 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     [Binding, Scope(Tag = "oldroatpadmin")]
     public class OldRoatpAdminHooks : RoatpBaseHooks
     {
-        private readonly ScenarioContext _context;
- 
-        public OldRoatpAdminHooks(ScenarioContext context) : base(context) => _context = context;
+        private readonly string[] _tags;
+
+        public OldRoatpAdminHooks(ScenarioContext context) : base(context) { _tags = context.ScenarioInfo.Tags; }
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpAdminDataHelpers();
@@ -17,14 +17,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 33)]
         public new void GetOldRoatpAdminData()
         {
-            if (!_context.ScenarioInfo.Tags.Contains("oldroatpadmindownloadprovider")) base.GetOldRoatpAdminData();
+            if (!_tags.Any( x => x == "oldroatpadmindownloadprovider" || x == "rpadoutcome01")) base.GetOldRoatpAdminData();
         }
 
         [BeforeScenario(Order = 34)]
         public void ClearDownAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
-                DeleteTrainingProvider();
+            if (!_tags.Any(x => x == "deletetrainingprovider" || x == "rpadoutcome01")) DeleteTrainingProvider();
         }
     }
 }
