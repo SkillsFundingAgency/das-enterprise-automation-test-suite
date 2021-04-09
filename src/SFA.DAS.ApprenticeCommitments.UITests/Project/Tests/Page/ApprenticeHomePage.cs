@@ -1,17 +1,24 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
+        private By HeaderText => By.CssSelector(".app-user-header__name");
 
         protected override string PageTitle => "My apprenticeship";
         private string ConfirmYourEmployerLinkText => "Your employer";
         private string ConfirmYourProviderLinkText => "Your training provider";
         private string ConfirmApprenticeshipLinkText => "Your Apprenticeship Details";
 
-        public ApprenticeHomePage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeHomePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage(HeaderText, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        }
 
         public ConfirmYourEmployerPage ConfirmYourEmployer()
         {

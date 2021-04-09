@@ -34,8 +34,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetTrainingStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingStartDateKey, value);
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
-        internal static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
-        internal static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);
+        public static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
+        public static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);
         internal static long GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get<long>(CommitmentsApprenticeshipIdKey);
         internal static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
