@@ -15,7 +15,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
         {
             SubmitValidLoginDetails();
 
-            return new StaffDashboardPage(_context, true).SearchForATrainingProvider();
+            return SearchForATrainingProvider();
         }
+
+        public RoatpAdminHomePage SearchForATrainingProvider() => new StaffDashboardPage(_context, true).SearchForATrainingProvider();
     }
 }

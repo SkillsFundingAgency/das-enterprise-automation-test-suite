@@ -26,7 +26,7 @@ Given the admin lands on the Dashboard
 And the application with PASS outcome is ready to be assessed	
 When the oversight user overturns gateway and moderation outcome
 And the oversight user selects the overall application outcome as Unsuccessful
-Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status	
+Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
 And verify the provider is not added to the register
 
 
@@ -59,7 +59,7 @@ Then verify the provider is added to the register with status of Onboarding
 Scenario: RP_AD_OUTCOME_01D Complete Outcome of a Company type Application via Main provider route Successful already active Journey	
 Given the Main provider is already on the RoATP register as Active
 And the admin navigates to the Dashboard
-And the application with PASS outcome is ready to be assessed	
+And the application with PASS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as Successful already active
 Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status	
 Then verify the provider is added to the register with Application determined date updated
@@ -77,5 +77,5 @@ Given the Main provider is already on the RoATP register as Active But No Appren
 And the admin navigates to the Dashboard
 And the application with PASS outcome is ready to be assessed	
 When the oversight user selects the overall application outcome as Successful fitness for funding
-Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status	
+Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status
 Then verify the provider is added to the register with Application determined date updated
