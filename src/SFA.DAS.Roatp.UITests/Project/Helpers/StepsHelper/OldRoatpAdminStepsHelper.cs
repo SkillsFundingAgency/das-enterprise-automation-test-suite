@@ -9,6 +9,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         public OldRoatpAdminStepsHelper(ScenarioContext context) : base(context) => _context = context;
 
-        public override RoatpAdminHomePage GoToRoatpAdminHomePage() => new RoatpAdminHomePage(_context);
+        public override RoatpAdminHomePage GoToRoatpAdminHomePage()
+        {
+            SubmitValidLoginDetails();
+
+            return new RoatpAdminHomePage(_context);
+        }
     }
 }
