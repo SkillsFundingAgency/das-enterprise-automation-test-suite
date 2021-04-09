@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
@@ -23,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 34)]
         public void ClearDownAdminData()
         {
-            if (!_tags.Any(x => x == "deletetrainingprovider" || x == "rpadoutcome01")) DeleteTrainingProvider();
+            if (_tags.Any(x => x == "deletetrainingprovider")) DeleteTrainingProvider();
         }
     }
 }
