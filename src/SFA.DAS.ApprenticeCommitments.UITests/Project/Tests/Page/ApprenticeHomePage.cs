@@ -6,9 +6,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
 
-        protected override string PageTitle => "My apprenticeship(s)";
-        private string ConfirmYourEmployerLinkText => "Confirm your employer";
-        private string ConfirmYourProviderLinkText => "Confirm your training provider";
+        protected override string PageTitle => "My apprenticeship";
+        private string ConfirmYourEmployerLinkText => "Your employer";
+        private string ConfirmYourProviderLinkText => "Your training provider";
         private string ConfirmApprenticeshipLinkText => "Your Apprenticeship Details";
 
         public ApprenticeHomePage(ScenarioContext context) : base(context) => _context = context;
