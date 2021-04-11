@@ -45,7 +45,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedTrainingProviderPage(_context);
         }
 
-        public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeship()
+        public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeshipDetails()
         {
             formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new ConfirmYourApprenticeshipDetailsPage(_context);

@@ -9,7 +9,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         protected readonly AppreticeCommitmentsStepsHelper appreticeCommitmentsStepsHelper;
         protected readonly ApprenticeCommitmentsConfig config;
-        protected ApprenticeHomePage apprenticeHomePage;
 
         public BaseSteps(ScenarioContext context)
         {

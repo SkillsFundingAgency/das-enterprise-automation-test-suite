@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeLoginInToTheService() => appreticeCommitmentsStepsHelper.CreateAccount();
 
         [Then(@"the apprentice identity can be validated")]
-        public void ThenTheApprenticeIdentityCanBeValidated() => apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
+        public void ThenTheApprenticeIdentityCanBeValidated() => SignInToApprenticePortal().ConfirmIdentity();
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
