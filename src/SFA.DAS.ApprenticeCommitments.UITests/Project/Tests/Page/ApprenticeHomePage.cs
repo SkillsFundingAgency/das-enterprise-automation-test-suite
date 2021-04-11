@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
-        private By YourEmployerSectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -57,10 +57,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
 
-        public ApprenticeHomePage VerifyTheSectionStatus(string sectionName, string expectedStatus)
-        {
-            VerifyPage(YourEmployerSectionStatus(sectionName), expectedStatus);
-            return new ApprenticeHomePage(_context);
-        }
+        public string GetTheSectionStatus(string sectionName) => 
+            pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r", "").Replace("\n", " ");
     }
 }
