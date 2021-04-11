@@ -10,9 +10,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By HeaderText => By.CssSelector(".app-user-header__name");
 
         protected override string PageTitle => "My apprenticeship";
-        private string ConfirmYourEmployerLinkText => "Your employer";
-        private string ConfirmYourProviderLinkText => "Your training provider";
-        private string ConfirmApprenticeshipLinkText => "Your Apprenticeship Details";
+        private string YourEmployerLinkText => "Your employer";
+        private string YourProviderLinkText => "Your training provider";
+        private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
+        private By YourEmployerSectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -22,38 +23,44 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourEmployerPage ConfirmYourEmployer()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourEmployerLinkText);
+            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
             return new ConfirmYourEmployerPage(_context);
         }
 
         public AlreadyConfirmedEmployerPage ConfirmAlreadyConfirmedEmployer()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourEmployerLinkText);
+            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
             return new AlreadyConfirmedEmployerPage(_context);
         }
 
         public ConfirmYourTrainingProviderPage ConfirmYourTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourProviderLinkText);
+            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
             return new ConfirmYourTrainingProviderPage(_context);
         }
 
         public AlreadyConfirmedTrainingProviderPage ConfirmAlreadyConfirmedTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourProviderLinkText);
+            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
             return new AlreadyConfirmedTrainingProviderPage(_context);
         }
 
         public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeship()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmApprenticeshipLinkText);
+            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new ConfirmYourApprenticeshipDetailsPage(_context);
         }
 
         public AlreadyConfirmedApprenticeshipDetailsPage ConfirmAlreadyConfirmedApprenticeship()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmApprenticeshipLinkText);
+            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
+        }
+
+        public ApprenticeHomePage VerifyTheSectionStatus(string sectionName, string expectedStatus)
+        {
+            VerifyPage(YourEmployerSectionStatus(sectionName), expectedStatus);
+            return new ApprenticeHomePage(_context);
         }
     }
 }
