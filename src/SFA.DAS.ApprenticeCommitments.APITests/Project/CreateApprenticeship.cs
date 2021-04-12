@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public long EmployerAccountLegalEntityId { get; set; }
         public long TrainingProviderId { get; set; }
         public string TrainingProviderName { get; set; }
+        public string Course { get; set; }
     }
 
     public class VerifyIdentityRegistrationCommand
