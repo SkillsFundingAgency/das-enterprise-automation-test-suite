@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -11,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public AlreadyConfirmedTrainingProviderPage(ScenarioContext context) : base(context)
         {
             pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
-            VerifyPage(PageHeader, context.Get<ObjectContext>().GetProviderName());
+            VerifyPage(PageHeader, objectContext.GetProviderName());
         }
     }
 }

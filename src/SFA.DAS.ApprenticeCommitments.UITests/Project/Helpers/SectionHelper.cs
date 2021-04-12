@@ -1,0 +1,11 @@
+﻿namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
+{
+    internal static class SectionHelper
+    {
+        internal static string Section1 => "Your employer";
+
+        internal static string Section2 => "Your training provider";
+
+        internal static string Section3 => "Your Apprenticeship Details";
+    }
+}
