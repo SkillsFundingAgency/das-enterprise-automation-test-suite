@@ -1,52 +1,62 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
+        private By HeaderText => By.CssSelector(".app-user-header__name");
 
-        protected override string PageTitle => "My apprenticeship(s)";
-        private string ConfirmYourEmployerLinkText => "Confirm your employer";
-        private string ConfirmYourProviderLinkText => "Confirm your training provider";
-        private string ConfirmApprenticeshipLinkText => "Your Apprenticeship Details";
+        protected override string PageTitle => "My apprenticeship";
+        private string YourEmployerLinkText => "Your employer";
+        private string YourProviderLinkText => "Your training provider";
+        private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
+        private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
 
-        public ApprenticeHomePage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeHomePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage(HeaderText, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        }
 
         public ConfirmYourEmployerPage ConfirmYourEmployer()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourEmployerLinkText);
+            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
             return new ConfirmYourEmployerPage(_context);
         }
 
         public AlreadyConfirmedEmployerPage ConfirmAlreadyConfirmedEmployer()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourEmployerLinkText);
+            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
             return new AlreadyConfirmedEmployerPage(_context);
         }
 
         public ConfirmYourTrainingProviderPage ConfirmYourTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourProviderLinkText);
+            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
             return new ConfirmYourTrainingProviderPage(_context);
         }
 
         public AlreadyConfirmedTrainingProviderPage ConfirmAlreadyConfirmedTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmYourProviderLinkText);
+            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
             return new AlreadyConfirmedTrainingProviderPage(_context);
         }
 
-        public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeship()
+        public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeshipDetails()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmApprenticeshipLinkText);
+            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new ConfirmYourApprenticeshipDetailsPage(_context);
         }
 
         public AlreadyConfirmedApprenticeshipDetailsPage ConfirmAlreadyConfirmedApprenticeship()
         {
-            formCompletionHelper.ClickLinkByText(ConfirmApprenticeshipLinkText);
+            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
+
+        public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
     }
 }
