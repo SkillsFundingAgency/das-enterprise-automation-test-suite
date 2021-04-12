@@ -10,25 +10,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
         private ResultsFoundPage _resultsFoundPage;
-        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
+        private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
         public RoatpAdminSteps(ScenarioContext context)
         {
             _context = context;
-            _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
+            _roatpAdminStepsHelper = new OldRoatpAdminStepsHelper(_context);
         }
 
+
         [When(@"the admin searches for a provider by partial provider name")]
-        public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProvider("PEOPLE");
+        public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProvider("PEOPLE");
 
         [Then(@"the admin should be taken to multiple results found page")]
         public void ThenTheAdminShouldBeTakenToMultipleResultsFoundPage() => _resultsFoundPage.VerifyMultipleMatchingResults();
 
         [When(@"the admin searches for a provider by provider name")]
-        public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = GoToRoatpAdminHomePage().SearchTrainingProviderByName();
+        public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().SearchTrainingProviderByName();
 
         [When(@"the admin searches for a provider by ukprn")]
-        public void WhenTheAdminSearchesForAProviderByUkprn() => _resultsFoundPage = GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProviderByUkprn();
+        public void WhenTheAdminSearchesForAProviderByUkprn() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProviderByUkprn();
 
         [Then(@"the admin should be taken to one provider name result found page")]
         public void ThenTheAdminShouldBeTakenToOneProviderNameResultFoundPage() => _resultsFoundPage.VerifyOneProviderNameResultFound();
@@ -60,10 +61,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         }
 
         [Then(@"the admin can download list of training providers")]
-        public void ThenTheAdminCanDownloadListOfTrainingProviders() => GoToRoatpAdminHomePage().DownloadRegister();
+        public void ThenTheAdminCanDownloadListOfTrainingProviders() => _roatpAdminStepsHelper.GoToRoatpAdminHomePage().DownloadRegister();
 
         [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
-        public void GivenTheAdminInitatesAnApplication(string providerType) => _roatpAdminHomePage = InitatesAnApplication(providerType);
+        public void GivenTheAdminInitatesAnApplication(string providerType) => _roatpAdminHomePage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
         [When(@"the admin update the provider details")]
         public void WhenTheAdminUpdateTheProviderDetails()
@@ -89,31 +90,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage.VerifyNewProviderHasBeenAdded();
 
         [Then(@"the provider status should be set to On-Boarding")]
-        public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifyMainAndEmployerTypeStatus();
+        public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
 
         [Then(@"the provider status should be set to Active")]
-        public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifySupportingProviderTypeStatus();
-
-        private RoatpAdminHomePage InitatesAnApplication(string providerType)
-        {
-            return GoToRoatpAdminHomePage()
-                .AddANewTrainingProvider()
-                .EnterUkprn()
-                .ConfirmOrganisationsDetails()
-                .SubmitProviderType(providerType)
-                .SubmitOrganisationType()
-                .EnterDob()
-                .ConfirmOrganisationsDetails();
-        }
-
-        private RoatpAdminHomePage GoToRoatpAdminHomePage()
-        {
-            _loginStepsHelper.SubmitValidLoginDetails();
-
-            return new RoatpAdminHomePage(_context);
-        }
-
-        private RoatpAdminHomePage GoToRoatpAdminHomePage(ResultsFoundPage resultsFoundPage) => resultsFoundPage.GetRoatpAdminHomePage();
-
+        public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifyProviderStatusAsActive();
     }
 }

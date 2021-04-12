@@ -32,8 +32,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         public ApplicationSummaryPage SelectApplication(string expectedStatus)
         {
-            VerifyApplicationsOutcomeStatus(expectedStatus);
+            if (expectedStatus == "IN PROGRESS") VerifyOverallOutcomeStatus(expectedStatus);
+            else VerifyApplicationsOutcomeStatus(expectedStatus);
+
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+
             return new ApplicationSummaryPage(_context);
         }
     }
