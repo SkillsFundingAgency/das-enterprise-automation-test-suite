@@ -57,7 +57,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
 
-        public string GetTheSectionStatus(string sectionName) => 
-            pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r", "").Replace("\n", " ");
+        public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
     }
 }
