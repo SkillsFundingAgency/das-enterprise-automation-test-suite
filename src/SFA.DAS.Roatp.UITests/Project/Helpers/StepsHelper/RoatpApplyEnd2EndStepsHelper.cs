@@ -365,10 +365,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         public ApplicationOverviewPage CompleteSecion1_UnHappyPath(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
-            applicationOverviewPage = _yourOrganisationSectionHelper.UnhappyPathJourney_YourOrganisationSection_2(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3(applicationOverviewPage);
-            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_UnhappyPaths(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.UnhappyPathJourney_YourOrganisationSection_5(applicationOverviewPage);
             return applicationOverviewPage;
         }

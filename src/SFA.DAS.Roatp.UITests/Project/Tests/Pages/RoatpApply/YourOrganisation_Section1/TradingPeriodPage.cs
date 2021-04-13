@@ -27,11 +27,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             return new ApplicationOverviewPage(_context);
         }
 
-        public RailFranchiseOperatorPage SelectMinimumTradingPeriodAndContinue()
+        public NotEligiblePage SelectMinimumTradingPeriodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
             Continue();
-            return new RailFranchiseOperatorPage(_context);
+            return new NotEligiblePage(_context);
+        }
+        public ApplicationOverviewPage SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
+            Continue();
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

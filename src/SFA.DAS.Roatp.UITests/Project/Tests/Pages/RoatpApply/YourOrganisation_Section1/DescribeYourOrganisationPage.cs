@@ -20,17 +20,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+        public TradingPeriodPage SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PublicServiceMutualRadio));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ShelteredWorkshopRadio));
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new TradingPeriodPage(_context);
         }
-        public ApplicationOverviewPage ClickContinueForDescribeYourOrgDetailsSelected()
+        public TradingPeriodPage ClickContinueForDescribeYourOrgDetailsSelected()
         {
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new TradingPeriodPage(_context);
         }
     }
 }

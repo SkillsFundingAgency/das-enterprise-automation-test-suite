@@ -25,6 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .UploadFinancialFileForRemainingPeriodAndContinue()
                 .UploadRemainingPeriodManagementAccountsFileAndContinue()
                 .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
+                .EnterAccountingReferenceDateAndContinue()
+                .EnterMonthsForAccountingPeriodAndContinue()
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
@@ -42,6 +44,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .UploadManagementAccountsAndContinue()
                 .UploadFinancialProjectionsAndContinue()
                 .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
+                .EnterAccountingReferenceDateAndContinue()
+                .EnterMonthsForAccountingPeriodAndContinue()
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
@@ -57,6 +61,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .ContinueOnWhatYouNeedToUploadForManagementAccounts()
                 .UploadManagementAccountsFileAndContinue()
                 .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
+                .EnterAccountingReferenceDateAndContinue()
+                .EnterMonthsForAccountingPeriodAndContinue()
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 

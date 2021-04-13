@@ -25,5 +25,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }
+        public DescribeYourOrganisationPage SelectNoForOrgAlreadyRegisteredAndContinue()
+        {
+            SelectNoAndContinue();
+            return new DescribeYourOrganisationPage(_context);
+        }
     }
 }
