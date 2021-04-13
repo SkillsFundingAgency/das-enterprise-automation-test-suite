@@ -275,6 +275,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectGroupTrainingAssociationAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
@@ -516,7 +520,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
-                .ReturnToApplicationOverview()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
@@ -594,7 +599,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
-                .ReturnToApplicationOverview()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
