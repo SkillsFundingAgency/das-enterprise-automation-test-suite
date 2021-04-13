@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -13,9 +14,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By PlannedEndDateInfo => By.XPath("//th[text()='Planned end date']/following-sibling::td");
         protected By NotificationBar => By.CssSelector(".app-notification-banner");
 
-        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => _context = context;
+        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false)
+        {
+            _context = context;
+            VerifyPage(HeaderText, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        }
 
-        public ApprenticeHomePage SelectYes()
+            public ApprenticeHomePage SelectYes()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             Continue();

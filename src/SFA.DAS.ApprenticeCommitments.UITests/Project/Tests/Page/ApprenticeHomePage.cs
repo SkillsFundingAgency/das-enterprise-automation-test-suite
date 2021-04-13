@@ -7,8 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-        private By HeaderText => By.CssSelector(".app-user-header__name");
-
         protected override string PageTitle => "My apprenticeship";
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
