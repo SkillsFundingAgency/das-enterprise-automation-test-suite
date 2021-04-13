@@ -20,22 +20,22 @@ namespace SFA.DAS.Courses.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CoursesApi")]
-    public partial class CoursesApiFeature
+    [NUnit.Framework.DescriptionAttribute("PingCoursesApi")]
+    public partial class PingCoursesApiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CoursesApi.feature"
+#line 1 "PingCoursesApi.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CoursesApi", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PingCoursesApi", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,14 +75,14 @@ namespace SFA.DAS.Courses.APITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Inner das-courses-api heathcheck")]
-        [NUnit.Framework.CategoryAttribute("standardversioningapi")]
+        [NUnit.Framework.CategoryAttribute("coursesapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
         public virtual void InnerDas_Courses_ApiHeathcheck()
         {
             string[] tagsOfScenario = new string[] {
-                    "standardversioningapi",
+                    "coursesapi",
                     "regression",
                     "api",
                     "innerapi"};

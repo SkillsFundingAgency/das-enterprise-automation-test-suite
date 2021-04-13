@@ -1,7 +1,7 @@
-﻿Feature: CoursesApi
+﻿Feature: PingCoursesApi
 
 
-@standardversioningapi
+@coursesapi
 @regression
 @api
 @innerapi
