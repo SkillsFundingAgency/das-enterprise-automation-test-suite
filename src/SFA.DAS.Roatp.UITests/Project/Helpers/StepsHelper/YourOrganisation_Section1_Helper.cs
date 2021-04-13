@@ -59,7 +59,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .ClickContinueForParentCompanyDetails()
                 .ClickContinueForIcoRegistrationNumber()
                 .ClickContinueForWebsiteEntered()
-                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted)
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
@@ -137,6 +136,59 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectIndependentTrainingProviderAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
+            internal ApplicationOverviewPage CompleteYourOrganisationSection_4_UnhappyPaths(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectIndependentTrainingProviderAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectAnApprenticeshipTrainingAgencyAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectHigherEducationInstituteAndContinue()
+                .SelectNoForOrgSupportedandMonitoredByOFSAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectAcademyAndContinue()
+                .SelectNoForOrgAlreadyRegisteredAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectSixthFormCollegeAndContinue()
+                .SelectNoForOrgAlreadyRegisteredAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEmployerTrainingInOtherOrganisations()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusInProgress)
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEmployerTrainingInOtherOrganisations()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -148,6 +200,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectSixthFormCollegeAndContinue()
                 .SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -157,6 +210,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectNoneOfTheAboveAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRoute_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
@@ -165,6 +219,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectNoneOfTheAboveAndContinue()
                 .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
                 .VerifyEngaging_Section5(StatusHelper.NotRequired)
@@ -177,6 +232,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEmployerTrainingInOtherOrganisations()
                 .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .AccessExperienceAndAccreditationsSectionForSupportingRoute()
                 .SelectNoForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
@@ -202,6 +258,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEmployerTrainingInOtherOrganisations()
                 .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress)
                 .AccessExperienceAndAccreditationsSectionForMainRoute()
@@ -218,6 +275,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectGroupTrainingAssociationAndContinue()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
@@ -234,6 +295,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectGroupTrainingAssociationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -245,6 +307,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectHigherEducationInstituteAndContinue()
                 .SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -256,6 +319,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectHigherEducationInstituteAndContinue()
                 .SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -267,6 +331,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectAcademyAndContinue()
                 .SelectYesForOrgAlreadyRegisteredAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -276,6 +341,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -285,6 +351,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectAnApprenticeshipTrainingAgencyAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -294,6 +361,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .SelectPublicBodyAndContinue()
                     .SelectGovernmentDepartmentAndContinue()
                     .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                    .SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
                     .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
@@ -406,7 +474,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return icoRegistrationNumberPage
                 .EnterIcoRegistrationNumberAndContinue()
                 .EneterWebsiteAndContinue()
-                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
 
@@ -414,21 +481,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return icoRegistrationNumberPage
                 .EnterIcoRegistrationNumber_WebsiteAndContinue()
-                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
-        }
-
-        internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
-        {
-            return applicationOverviewPage.AccessYourOrganisationSectionForOrgTypeCompany()
-                .SelectYesForUltimateParentCompanyAndContinue()
-                .EnterParentCompanyDetailsAndContinue()
-                .EnterIcoRegistrationNumberAndContinue()
-                .EneterWebsiteAndContinue()
-                .SelectMinimumTradingPeriodAndContinue()
-                .SelectNoToFranchiseOperatorAndContinue()
-                .ReturnToApplicationOverview()
-                .VerifyOrganisationInformation(StatusHelper.StatusInProgress);
         }
 
         internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
@@ -467,7 +520,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
-                .ReturnToApplicationOverview()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
@@ -545,7 +599,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
-                .ReturnToApplicationOverview()
+                .ClickContinueForDescribeYourOrgDetailsSelected()
+                .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted)
                 .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)

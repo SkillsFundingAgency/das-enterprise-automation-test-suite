@@ -28,11 +28,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             return new WebsitePage(_context);
         }
 
-        public TradingPeriodPage EnterIcoRegistrationNumber_WebsiteAndContinue()
+        public ApplicationOverviewPage EnterIcoRegistrationNumber_WebsiteAndContinue()
         {
             formCompletionHelper.EnterText(IcoNumberField, applydataHelpers.IocNumber);
             Continue();
-            return new TradingPeriodPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
         public WebsitePage ClickContinueForIcoRegistrationNumber()
         {
