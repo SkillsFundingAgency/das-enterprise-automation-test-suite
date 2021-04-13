@@ -91,7 +91,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAT-V2.APITests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeCommitments.APITests", "SFA.DAS.ApprenticeCommitments.APITests\SFA.DAS.ApprenticeCommitments.APITests.csproj", "{2D6A9A1A-1C9E-42E5-84ED-433B42482D66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.StandardsVersioning.APITests", "SFA.DAS.StandardsVersioning.APITests\SFA.DAS.StandardsVersioning.APITests.csproj", "{1C68FA3C-4D7E-43B3-80FB-4745D77CF86D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Courses.APITests", "SFA.DAS.Courses.APITests\SFA.DAS.Courses.APITests.csproj", "{1C68FA3C-4D7E-43B3-80FB-4745D77CF86D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeCommitments.UITests", "SFA.DAS.ApprenticeCommitments.UITests\SFA.DAS.ApprenticeCommitments.UITests.csproj", "{D049367B-9EAB-44AC-B122-8E26FE361E1F}"
 EndProject

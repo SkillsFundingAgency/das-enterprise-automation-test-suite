@@ -28,7 +28,7 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.StandardsVersioning.APITests.runtimeconfig.json">
+	  <None Update="SFA.DAS.Courses.APITests.runtimeconfig.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="specflow.json">

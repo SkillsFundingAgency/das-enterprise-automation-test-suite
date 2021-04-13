@@ -3,7 +3,7 @@ using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
 using System.Net;
 
-namespace SFA.DAS.StandardsVersioning.APITests.Project
+namespace SFA.DAS.Courses.APITests.Project
 {
     public class Inner_CoursesApiRestClient : Inner_BaseApiRestClient
     {
