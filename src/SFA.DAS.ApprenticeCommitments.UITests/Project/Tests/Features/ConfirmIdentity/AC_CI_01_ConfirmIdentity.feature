@@ -5,4 +5,5 @@
 @deleteuser
 Scenario: AC_CI_01_ConfirmIdentity
 	Given an apprentice login in to the service
-	Then the apprentice identity can be validated
+	Then the apprentice is able to confirm the identitification details
+	And the apprentice is able to logout from the service

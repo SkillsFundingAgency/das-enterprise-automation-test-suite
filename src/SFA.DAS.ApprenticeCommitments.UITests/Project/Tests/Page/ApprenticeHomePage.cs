@@ -14,6 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private string SignOutLinkText => "Sign out";
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -58,5 +59,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
+
+        public SignedOutPage SingOutFromTheService()
+        {
+            formCompletionHelper.ClickLinkByText(SignOutLinkText);
+            return new SignedOutPage(_context);
+        }
     }
 }
