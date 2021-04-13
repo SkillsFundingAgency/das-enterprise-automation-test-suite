@@ -69,14 +69,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
 
-        public IRestResponse VerifyRegistration()
+        public IRestResponse VerifyIdentity()
         {
-            (string registrationId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
+            (string apprenticeId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
 
-            var verifyRegistration = new VerifyIdentityRegistrationCommand
+            var verifyIdentity = new VerifyIdentityRegistrationCommand
             {
-                RegistrationId = registrationId,
-                UserIdentityId = registrationId,
+                ApprenticeId = apprenticeId,
+                UserIdentityId = apprenticeId,
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
                 Email = GetApprenticeEmail(),
@@ -84,7 +84,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 NationalInsuranceNumber = _dataHelper.NationalInsuranceNumber
             };
 
-            return _outerApiRestClient.VerifyRegistration(verifyRegistration, HttpStatusCode.OK);
+            return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
         }
 
         public IRestResponse ChangeApprenticeEmailAddress()

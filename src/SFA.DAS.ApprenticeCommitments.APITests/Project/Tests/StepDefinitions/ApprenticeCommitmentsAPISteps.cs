@@ -16,9 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         public ApprenticeCommitmentsAPISteps(ScenarioContext context)
         {
             _apprenticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
-
             _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
-
             _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
 
@@ -38,23 +36,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         public void GivenAnApprenticeHasCreatedAnAccount()
         {
             _apprenticeCommitmentsApiHelper.CreateApprenticeship();
-
-            _apprenticeCommitmentsApiHelper.VerifyRegistration();
+            _apprenticeCommitmentsApiHelper.VerifyIdentity();
         }
 
         [Then(@"the apprentice can change their email address")]
         public void ThenTheApprenticeCanChangeTheirEmailAddress()
         {
             _apprenticeCommitmentsApiHelper.ChangeApprenticeEmailAddress();
-
             _apprenticeCommitmentsApiHelper.AssertApprenticeEmailUpdated();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {
-            var (_, apprenticeshipid, _, _, _, _, _, _,_,_) = _apprenticeCommitmentSqlHelper.GetEmployerData();
-
+            var (_, apprenticeshipid, _, _, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
             _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }
 
