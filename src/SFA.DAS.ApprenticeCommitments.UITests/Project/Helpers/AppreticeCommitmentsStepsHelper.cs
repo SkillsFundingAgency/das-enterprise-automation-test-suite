@@ -114,6 +114,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertApprenticeshipDetails();
         }
 
+        public ConfirmRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesPage(ConfirmRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
+        {
+            return confirmRolesAndResponsibilitiesPage.VerifyRolesYouTab()
+                .VerifyRolesYourEmployerTab()
+                .VerifyRolesYourTrainingProviderTab();
+        }
+
+        public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
+        {
+            return confirmRolesAndResponsibilitiesPage.VerifyRolesYouTab()
+                .VerifyRolesYourEmployerTab()
+                .VerifyRolesYourTrainingProviderTab();
+        }
+
         private void PopulateExpectedApprenticeshipDetails()
         {
             expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];

@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
+        private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
         private string SignOutLinkText => "Sign out";
 
@@ -54,6 +55,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
+        }
+
+        public ConfirmRolesAndResponsibilitiesPage ConfirmRolesAndResponsibilities()
+        {
+            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            return new ConfirmRolesAndResponsibilitiesPage(_context);
+        }
+
+        public AlreadyConfirmedRolesAndResponsibilitiesPage ConfirmAlreadyConfirmedRolesAndResponsibilities()
+        {
+            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            return new AlreadyConfirmedRolesAndResponsibilitiesPage(_context);
         }
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
