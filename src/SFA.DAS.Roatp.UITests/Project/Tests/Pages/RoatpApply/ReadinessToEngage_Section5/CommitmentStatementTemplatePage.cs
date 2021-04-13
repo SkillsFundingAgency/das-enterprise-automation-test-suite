@@ -5,8 +5,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 {
     public class CommitmentStatementTemplatePage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Do you agree to use ESFA's commitment statement template?";
+        protected override string PageTitle => "Upload your organisation's commitment statement template";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -20,15 +21,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         public ApplicationOverviewPage YesForOrganisationsCommitmentStatementTemplateAndContinue()
         {
-            SelectRadioOptionByText("Yes");
-            Continue();
+            UploadFile();
             return new ApplicationOverviewPage(_context);
-        }
-        public CommitmentStatementTemplateShutterPage NoForOrganisationsCommitmentStatementTemplateAndContinue()
-        {
-            SelectRadioOptionByText("No");
-            Continue();
-            return new CommitmentStatementTemplateShutterPage(_context);
         }
     }
 }

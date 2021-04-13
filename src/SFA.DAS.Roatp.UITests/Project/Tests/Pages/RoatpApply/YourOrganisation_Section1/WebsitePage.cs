@@ -19,17 +19,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             VerifyPage();
         }
 
-        public TradingPeriodPage EneterWebsiteAndContinue()
+        public ApplicationOverviewPage EneterWebsiteAndContinue()
         {
             SelectRadioOptionByForAttribute("YO-40");
             formCompletionHelper.EnterText(MainWebsiteField, applydataHelpers.Website);
             Continue();
-            return new TradingPeriodPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
-        public TradingPeriodPage ClickContinueForWebsiteEntered()
+        public ApplicationOverviewPage ClickContinueForWebsiteEntered()
         {
             Continue();
-            return new TradingPeriodPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

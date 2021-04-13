@@ -55,10 +55,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             ExampleToMaintainEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
             HowHasTheTeamOrPersonWorked = randomDataGenerator.GenerateRandomAlphabeticString(20);
             WhatLevelOfSupportProvided = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            NumberBetween1And23 = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 23);
             SignificantEventText = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
-        public DateTime Dob(int x) => DateTime.Now.AddYears(-40 + x);
+        public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
         public string FullName => "George Smith";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
@@ -114,5 +115,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string WhatLevelOfSupportProvided { get; }
         public string SignificantEventText { get; }
         public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
+        public int NumberBetween1And23 { get; }
     }
 }
