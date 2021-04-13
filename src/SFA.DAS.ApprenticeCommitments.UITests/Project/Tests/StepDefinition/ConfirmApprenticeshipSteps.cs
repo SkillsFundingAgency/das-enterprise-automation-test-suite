@@ -34,7 +34,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
-        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => 
+        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeHomePage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
 
         [Then(@"the apprentice is able to confirm the Training Provider")]
@@ -54,7 +54,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
-        public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() => 
+        public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeHomePage.ConfirmAlreadyConfirmedTrainingProvider().ContinueToHomePage();
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
