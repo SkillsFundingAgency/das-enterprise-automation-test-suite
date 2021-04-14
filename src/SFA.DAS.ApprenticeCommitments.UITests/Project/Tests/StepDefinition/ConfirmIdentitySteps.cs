@@ -7,13 +7,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class ConfirmIdentitySteps : BaseSteps
     {
+        private ApprenticeHomePage _ApprenticeHomePage;
+
         public ConfirmIdentitySteps(ScenarioContext context) : base(context) { }
 
         [Given(@"an apprentice login in to the service")]
         public void GivenAnApprenticeLoginInToTheService() => appreticeCommitmentsStepsHelper.CreateAccount();
 
-        [Then(@"the apprentice identity can be validated")]
-        public void ThenTheApprenticeIdentityCanBeValidated() => SignInToApprenticePortal().ConfirmIdentity();
+        [Then(@"the apprentice is able to confirm the identitification details")]
+        public void ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails() =>
+            _ApprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
@@ -36,8 +39,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
         {
             GivenAnApprenticeLoginInToTheService();
-            ThenTheApprenticeIdentityCanBeValidated();
+            ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails();
         }
+
+        [Then(@"the apprentice is able to logout from the service")]
+        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _ApprenticeHomePage.SingOutFromTheService();
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
