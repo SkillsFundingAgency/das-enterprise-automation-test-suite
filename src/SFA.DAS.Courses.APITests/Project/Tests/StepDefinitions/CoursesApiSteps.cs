@@ -1,9 +1,8 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
 using System.Net;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.StandardsVersioning.APITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.Courses.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class CoursesApiSteps

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <RootNamespace>SFA.DAS.StandardsVersioning.APITests</RootNamespace>
+	  <RootNamespace>SFA.DAS.Courses.APITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -28,7 +28,7 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.StandardsVersioning.APITests.runtimeconfig.json">
+	  <None Update="SFA.DAS.Courses.APITests.runtimeconfig.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="specflow.json">
