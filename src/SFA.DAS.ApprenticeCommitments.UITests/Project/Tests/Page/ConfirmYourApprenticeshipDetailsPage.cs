@@ -8,6 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Your Apprenticeship Details";
         protected override By ContinueButton => By.CssSelector("#apprenticeship-details-confirm");
 
-        public ConfirmYourApprenticeshipDetailsPage(ScenarioContext context) : base(context) { }
+        public ConfirmYourApprenticeshipDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }
