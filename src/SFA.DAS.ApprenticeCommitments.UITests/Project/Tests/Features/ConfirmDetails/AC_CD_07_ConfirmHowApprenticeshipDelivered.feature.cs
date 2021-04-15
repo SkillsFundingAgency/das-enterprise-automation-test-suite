@@ -110,10 +110,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the apprentice is able to confirm the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprentice is able to confirm \'How the apprenticeship will be delivered\' sect" +
+                        "ion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("confirmed employer already page is displayed for trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("confirmed \'How the apprenticeship will be delivered\' section page is displayed fo" +
+                        "r trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
