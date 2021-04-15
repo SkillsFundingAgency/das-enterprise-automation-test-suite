@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
     public class VerifyIdentityRegistrationCommand
     {
-        public string RegistrationId { get; set; }
+        public string ApprenticeId { get; set; }
         public string UserIdentityId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

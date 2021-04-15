@@ -8,10 +8,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     class ConfirmApprenticeshipSteps : BaseSteps
     {
+        private readonly ScenarioContext _context;
+        private ApprenticeHomePage _apprenticeHomePage;
         private ConfirmYourApprenticeshipDetailsPage _confirmYourApprenticeshipDetailsPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
-        private ApprenticeHomePage _apprenticeHomePage;
-        private readonly ScenarioContext _context;
+        private ConfirmRolesAndResponsibilitiesPage _confirmRolesAndResponsibilitiesPage;
+        private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
 
         public ConfirmApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
 
@@ -32,7 +34,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
-        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => 
+        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeHomePage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
 
         [Then(@"the apprentice is able to confirm the Training Provider")]
@@ -52,7 +54,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
-        public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() => 
+        public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeHomePage.ConfirmAlreadyConfirmedTrainingProvider().ContinueToHomePage();
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
@@ -79,11 +81,41 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _alreadyConfirmedApprenticeshipDetailsPage.ContinueToHomePage();
         }
 
+        [Then(@"the apprentice is able to confirm Roles and responsibilities")]
+        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities()
+        {
+            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InComplete);
+            _apprenticeHomePage = NavigateAndVerifyRolesAndResponsibilities().SelectYes();
+            AssertSectionStatus(SectionHelper.Section5, StatusHelper.Complete);
+        }
+
+        [Then(@"confirmed Roles already page is displayed for trying to confirm again")]
+        public void ThenConfirmedRolesAlreadyPageIsDisplayedForTryingToConfirmAgain()
+        {
+            _alreadyConfirmedRolesAndResponsibilitiesPage = _apprenticeHomePage.ConfirmAlreadyConfirmedRolesAndResponsibilities();
+            appreticeCommitmentsStepsHelper.VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(_alreadyConfirmedRolesAndResponsibilitiesPage);
+            _alreadyConfirmedRolesAndResponsibilitiesPage.ContinueToHomePage();
+        }
+
+        [Then(@"the apprentice confirms the Roles and responsibilities displayed as Incorrect")]
+        public void ThenTheApprenticeConfirmsTheRolesAndResponsibilitiesDisplayedAsIncorrect()
+        {
+            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InComplete);
+            NavigateAndVerifyRolesAndResponsibilities().SelectNo().ReturnToApprenticeHomePage();
+            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InCorrect);
+        }
+
         private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
             _confirmYourApprenticeshipDetailsPage = new ApprenticeHomePage(_context).ConfirmYourApprenticeshipDetails();
             appreticeCommitmentsStepsHelper.VerifyApprenticeshipDataDisplayed(_confirmYourApprenticeshipDetailsPage);
             return _confirmYourApprenticeshipDetailsPage;
+        }
+
+        private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
+        {
+            _confirmRolesAndResponsibilitiesPage = new ApprenticeHomePage(_context).ConfirmRolesAndResponsibilities();
+            return appreticeCommitmentsStepsHelper.VerifyRolesAndResponsibilitiesPage(_confirmRolesAndResponsibilitiesPage);
         }
 
         private void AssertSectionStatus(string sectionName, string expectedStatus) =>

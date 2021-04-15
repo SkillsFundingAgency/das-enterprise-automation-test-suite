@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.StandardsVersioning.APITests.Project
+namespace SFA.DAS.Courses.APITests.Project
 {
     [Binding]
     public class BeforeScenarioHooks
