@@ -14,6 +14,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string HowYourApprenticeshipWillBeDeliveredLinkText => "How your apprenticeship will be delivered";
         private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
+        private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private string SignOutLinkText => "Sign out";
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
@@ -88,6 +90,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(_context);
+        }
+
+        public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
+        {
+            VerifyPage(AppreticeshipConfirmBannerHeader);
+            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
+            Continue();
+            return new TransactionCompletePage(_context);
         }
     }
 }

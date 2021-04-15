@@ -126,6 +126,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             AssertSectionStatus(SectionHelper.Section5, StatusHelper.InCorrect);
         }
 
+        [When(@"the apprentice confirms all the Apprenticeship sections")]
+        public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections()
+        {
+            ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities();
+            ThenTheApprenticeIsAbleToConfirmTheEmployer();
+            ThenTheApprenticeIsAbleToConfirmTheTrainingProvider();
+            ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails();
+            ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection();
+        }
+
+        [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]
+        public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus() =>
+            _apprenticeHomePage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateBackToOverviewPage();
+
         private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
             _confirmYourApprenticeshipDetailsPage = new ApprenticeHomePage(_context).ConfirmYourApprenticeshipDetails();
