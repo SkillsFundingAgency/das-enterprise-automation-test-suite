@@ -63,7 +63,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterDetailsOfTheManagerPerson()
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
-
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6_NotRequired(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.VerifyYourSectorsAndEmployees_Section7(StatusHelper.NotRequired);
+        }
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_YourSectorsAndEmployees()
