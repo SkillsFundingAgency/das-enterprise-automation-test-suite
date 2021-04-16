@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
@@ -94,6 +91,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.EnterText(InProgressExternalText, "In Progress External comments ");
             Continue();
             return new AreYouSureInProgressPage(_context);
+        }
+
+        public AppealThisMessagePage ClickAppealThisApplication()
+        {
+            formCompletionHelper.ClickLinkByText("Appeal this application");
+            return new AppealThisMessagePage(_context);
         }
     }
 }
