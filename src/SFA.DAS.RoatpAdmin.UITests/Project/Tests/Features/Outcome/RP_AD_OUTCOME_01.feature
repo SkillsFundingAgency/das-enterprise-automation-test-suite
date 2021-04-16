@@ -29,6 +29,21 @@ And the oversight user selects the overall application outcome as Unsuccessful
 Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
 And verify the provider is not added to the register
 
+@roatp
+@rpadoutcome01
+@roatpadmin
+@roatpoutcome
+@newroatpadmin
+@regression
+Scenario: RP_AD_OUTCOME_01BA Complete Outcome of a Company type Application via Main provider route Appeal Journey	
+Given the Main provider is already on the RoATP register as Active
+And the admin navigates to the Dashboard
+And the application with PASS outcome is ready to be assessed
+When the oversight user overturns gateway and moderation outcome
+And the oversight user selects the overall application outcome as Unsuccessful
+Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
+And verify the provider is not added to the register
+Then Oversight user is able to send the application to Appeal Status
 
 @roatp
 @rpadoutcome01

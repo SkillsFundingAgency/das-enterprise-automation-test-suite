@@ -20,6 +20,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
             _tabhelper = _context.Get<TabHelper>();
         }
 
+        [Then(@"Oversight user is able to send the application to Appeal Status")]
+        public void ThenOversightUserIsAbleToSendTheApplicationToAppealStatus()
+        {
+            
+        }
+
         [Given(@"the admin navigates to the Dashboard")]
         public void TheAdminNavigatesToTheDashboard() => _tabhelper.GoToUrl(UrlConfig.Admin_BaseUrl, "dashboard");
 
