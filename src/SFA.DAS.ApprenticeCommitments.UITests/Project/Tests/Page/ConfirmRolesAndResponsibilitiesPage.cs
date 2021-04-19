@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Roles and responsibilities";
         protected override By ContinueButton => By.CssSelector("#roles-responsibilities-confirm");
 
-        public ConfirmRolesAndResponsibilitiesPage(ScenarioContext context) : base(context) { }
+        public ConfirmRolesAndResponsibilitiesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public new ConfirmRolesAndResponsibilitiesPage VerifyRolesYouTab()
         {

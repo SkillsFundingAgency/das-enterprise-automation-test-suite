@@ -80,8 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
                 Email = GetApprenticeEmail(),
-                DateOfBirth = new DateTime(_dataHelper.DateOfBirthYear, _dataHelper.DateOfBirthMonth, _dataHelper.DateOfBirthDay),
-                NationalInsuranceNumber = _dataHelper.NationalInsuranceNumber
+                DateOfBirth = new DateTime(_dataHelper.DateOfBirthYear, _dataHelper.DateOfBirthMonth, _dataHelper.DateOfBirthDay)
             };
 
             return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
