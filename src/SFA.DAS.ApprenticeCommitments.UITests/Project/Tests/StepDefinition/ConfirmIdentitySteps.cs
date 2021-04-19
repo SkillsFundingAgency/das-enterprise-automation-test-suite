@@ -23,14 +23,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             var confirmYourIdentityPage = SignInToApprenticePortal();
 
-            var invalidDatas = new List<(string, string, int, int, int, string)>
+            var invalidDatas = new List<(string, string, int, int, int)>
             {
-                (string.Empty, string.Empty, 0,0,0, string.Empty)
+                (string.Empty, string.Empty, 0,0,0)
             };
 
             foreach (var d in invalidDatas)
             {
-                confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5, d.Item6);
+                confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
                 confirmYourIdentityPage.VerifyErrorSummary();
             }
         }
