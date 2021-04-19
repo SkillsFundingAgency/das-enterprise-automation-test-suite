@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public class TermsConditionsMakingApplicationPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Do you accept the conditions of acceptance for the RoATP?";
+        protected override string PageTitle => "Do you accept the conditions of acceptance to join the Register?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

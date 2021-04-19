@@ -64,18 +64,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            var yourSectorsAndEmployeesPage = applicationAssessmentOverviewPage
+              if (applicationroute == ApplicationRoute.EmployerProviderRoute || applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .VerifySection4Link5Status(StatusHelper.NotRequired);
+            }
+              else
+            {
+                var yourSectorsAndEmployeesPage = applicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
+                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
 
-            return yourSectorsAndEmployeesPage
-                .NavigateToAssessmentOverviewPage()
-                .VerifySection4Link5Status(StatusHelper.StatusPass);
+                return yourSectorsAndEmployeesPage
+                    .NavigateToAssessmentOverviewPage()
+                    .VerifySection4Link5Status(StatusHelper.StatusPass);
+            }      
         }
 
         public ApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)

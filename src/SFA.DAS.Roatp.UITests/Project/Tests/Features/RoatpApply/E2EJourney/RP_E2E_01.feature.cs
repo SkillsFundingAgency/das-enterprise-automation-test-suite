@@ -116,21 +116,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.When("the provider completes Your organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
- testRunner.And("the provider completes Financial evidence section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("the provider completes Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.And("the provider completes Planning apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 16
  testRunner.And("the provider completes Delivering apprenticeship training section for main route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
