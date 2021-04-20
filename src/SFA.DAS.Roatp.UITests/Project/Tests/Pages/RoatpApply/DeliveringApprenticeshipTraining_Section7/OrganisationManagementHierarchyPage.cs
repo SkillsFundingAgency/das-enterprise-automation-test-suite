@@ -11,10 +11,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         private readonly ScenarioContext _context;
         #endregion
 
-        private By FullName => By.CssSelector("#FullName");
+        private By FirstName => By.CssSelector("#FirstName");
+        private By LastName => By.CssSelector("#LastName");
         private By JobRole => By.CssSelector("#JobRole");
         private By TimeInRoleYears => By.CssSelector("#TimeInRoleYears");
         private By TimeInRoleMonths => By.CssSelector("#TimeInRoleMonths");
+        private By DateOfBirthMonth => By.CssSelector("#DobMonth");
+        private By DateOfBirthYear => By.CssSelector("#DobYear");
+        private By Email => By.CssSelector("#Email");
+        public By ContactNumber => By.CssSelector("#ContactNumber");
 
         public OrganisationManagementHierarchyPage(ScenarioContext context) : base(context)
         {
@@ -24,10 +29,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public ConfirmOrganisationManagementHierarchy EnterDetails()
         {
-            formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
+            formCompletionHelper.EnterText(FirstName, applydataHelpers.FirstName);
+            formCompletionHelper.EnterText(LastName, applydataHelpers.LastName);
             formCompletionHelper.EnterText(JobRole, applydataHelpers.JobRole);
             formCompletionHelper.EnterText(TimeInRoleYears, applydataHelpers.GenerateRandomWholeNumber(1));
             formCompletionHelper.EnterText(TimeInRoleMonths, applydataHelpers.GenerateRandomWholeNumber(1));
+            formCompletionHelper.EnterText(DateOfBirthMonth, applydataHelpers.RandomMonth);
+            formCompletionHelper.EnterText(DateOfBirthYear, applydataHelpers.RandomYear);
+            formCompletionHelper.EnterText(Email, applydataHelpers.Email);
+            formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             SelectNoAndContinue();
             return new ConfirmOrganisationManagementHierarchy(_context);
         }

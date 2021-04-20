@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .NavigateToChooseYourOrganisationSectors()
                 .SelectSectors("Digital")
                 .NavigateToMostExperiencedEmployeePage("Digital")
+                .EnterTextForWhatStandardsToDeliver()
                 .EnterNumberOfStartsAndContinue()
                 .EnterNumberOfEmployeesAndContinue()
                 .EnterDetails()
