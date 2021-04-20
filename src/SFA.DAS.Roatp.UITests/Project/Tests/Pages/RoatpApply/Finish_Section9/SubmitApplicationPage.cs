@@ -11,7 +11,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication");
+        private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
+        private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication");
         private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
         private By ConfirmFurtherCommunicationSubmitApplication = By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
@@ -24,6 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         public ApplicationSubmittedPage ConfirmAllAnswersAndSubmitApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmSubmitApplication));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmChangeOfOwnership));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherInfoSubmitApplication));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherCommunicationSubmitApplication));
             Continue();

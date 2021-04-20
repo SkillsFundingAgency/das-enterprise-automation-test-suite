@@ -14,7 +14,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
-            NationalInsuranceNumber = $"AB3{randomDataGenerator.GenerateRandomWholeNumber(4)}5C";
         }
 
         public string Email { get; }
@@ -30,7 +29,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         public int DateOfBirthMonth { get; }
 
         public int DateOfBirthYear { get; }
-
-        public string NationalInsuranceNumber { get; }
     }
 }

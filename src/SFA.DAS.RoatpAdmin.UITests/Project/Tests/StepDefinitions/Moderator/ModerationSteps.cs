@@ -45,7 +45,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         {
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(_moderationApplicationAssessmentOverviewPage);
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(_moderationApplicationAssessmentOverviewPage, _applicationRoute);
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator assesses the outcome as FAIL")]
