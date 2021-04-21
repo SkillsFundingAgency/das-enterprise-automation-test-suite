@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
-        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsDataHelper _dataHelper;
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
-            _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
@@ -38,19 +38,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeship()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
 
-            var (legalName, tradingName) = _apprenticeCommitmentSqlHelper.GetProviderData(providerId);
+            var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
-            var createApprenticeship = new CreateApprenticeship 
-            { 
-                EmployerAccountId = accountid, 
-                ApprenticeshipId = apprenticeshipid, 
-                EmployerName = orgname, 
-                Email = GetApprenticeEmail(), 
+            var createApprenticeship = new CreateApprenticeship
+            {
+                EmployerAccountId = accountid,
+                ApprenticeshipId = apprenticeshipid,
+                EmployerName = orgname,
+                Email = GetApprenticeEmail(),
                 EmployerAccountLegalEntityId = legalEntityId,
                 TrainingProviderId = providerId,
-                TrainingProviderName = GetProviderName(tradingName, legalName)
+                TrainingProviderName = GetProviderName(tradingName, legalName),
+                Course = trainingname
             };
 
             _objectContext.SetAccountId(accountid);
@@ -62,26 +63,27 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
             _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
             _objectContext.SetEmployerName(orgname);
+            _objectContext.SetTrainingStartDate(startDate);
+            _objectContext.SetTrainingEndDate(endDate);
 
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
 
-        public IRestResponse VerifyRegistration()
+        public IRestResponse VerifyIdentity()
         {
-            (string registrationId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
+            (string apprenticeId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
 
-            var verifyRegistration = new VerifyIdentityRegistrationCommand
+            var verifyIdentity = new VerifyIdentityRegistrationCommand
             {
-                RegistrationId = registrationId,
-                UserIdentityId = registrationId,
+                ApprenticeId = apprenticeId,
+                UserIdentityId = apprenticeId,
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
                 Email = GetApprenticeEmail(),
-                DateOfBirth = new DateTime(_dataHelper.DateOfBirthYear, _dataHelper.DateOfBirthMonth, _dataHelper.DateOfBirthDay),
-                NationalInsuranceNumber = _dataHelper.NationalInsuranceNumber
+                DateOfBirth = new DateTime(_dataHelper.DateOfBirthYear, _dataHelper.DateOfBirthMonth, _dataHelper.DateOfBirthDay)
             };
 
-            return _outerApiRestClient.VerifyRegistration(verifyRegistration, HttpStatusCode.OK);
+            return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
         }
 
         public IRestResponse ChangeApprenticeEmailAddress()

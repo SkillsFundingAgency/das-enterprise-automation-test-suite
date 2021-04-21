@@ -23,7 +23,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 
         internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OneIn12Months(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_TradingName(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
@@ -35,7 +34,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         }
         internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1_TradingNameNotRequired(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OneIn12Months(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.NotRequiredOrganisationChecks_TradingName(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);

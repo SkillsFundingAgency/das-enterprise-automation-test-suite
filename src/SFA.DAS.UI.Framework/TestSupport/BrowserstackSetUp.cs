@@ -37,6 +37,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
             AddAdditionalCapability(chromeOption, "browserstack.timezone", options.TimeZone);
             AddAdditionalCapability(chromeOption, "browserstack.console", "info");
+            AddAdditionalCapability(chromeOption, "browserstack.idleTimeout", "300");
+            AddAdditionalCapability(chromeOption, "browserstack.autoWait", "35");
+            AddAdditionalCapability(chromeOption, "browserstack.maskCommands", "setValues, getValues, setCookies, getCookies");
 
             var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
 

@@ -55,11 +55,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             ExampleToMaintainEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
             HowHasTheTeamOrPersonWorked = randomDataGenerator.GenerateRandomAlphabeticString(20);
             WhatLevelOfSupportProvided = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            NumberBetween1And23 = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 23);
             SignificantEventText = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            StandardIntendToDeliver = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            RandomMonth = randomDataGenerator.GenerateRandomMonth();
+            RandomYear = randomDataGenerator.GenerateRandomDobYear();
         }
 
-        public DateTime Dob(int x) => DateTime.Now.AddYears(-40 + x);
+        public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
         public string FullName => "George Smith";
+        public string LastName => "George";
+        public string FirstName => "Smith";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
         public string ContactNumber => "1234567890";
@@ -96,6 +102,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string ProcessToAssessEnglishAndMaths { get; }
         public string ReadytoDeliverTraining { get; }
         public string EngageWithEPAO { get; }
+        public string StandardIntendToDeliver { get; }
         public string EngageWithAwardingBodies { get; }
         public string OffTheJobTraining { get; }
         public string EvaluatingQualityOfTrainingDelivered { get; }
@@ -114,5 +121,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string WhatLevelOfSupportProvided { get; }
         public string SignificantEventText { get; }
         public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
+        public int NumberBetween1And23 { get; }
+        public int RandomMonth { get; }
+        public int RandomYear { get; }
     }
 }
