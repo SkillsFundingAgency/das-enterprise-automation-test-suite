@@ -18,6 +18,8 @@
 
     public class ProviderPermissionLevyUser : LoginUser { }
 
+    public class ProviderViewOnlyUser : LoginUser { }
+
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
     public class TransfersUser : LoginUser { }

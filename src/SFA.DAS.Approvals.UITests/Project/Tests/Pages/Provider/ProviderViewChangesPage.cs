@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "View changes";
         private By ReviewNewDetails => By.LinkText("reviewing the new details");
         private By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
+        protected override By ContinueButton => By.Id("submit-undo-changes");        
 
         private readonly ScenarioContext _context;
 
@@ -23,6 +24,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ReviewNewDetailsToUpdate);
             return new ProviderReviewYourCohortPage(_context);
+        }
+
+        public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
+        {
+            Continue();
+            return new ProviderAccessDeniedPage(_context);
         }
     }
 }

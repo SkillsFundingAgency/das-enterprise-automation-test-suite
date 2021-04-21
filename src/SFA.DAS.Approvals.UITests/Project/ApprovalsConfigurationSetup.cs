@@ -39,6 +39,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             var providerPermissionLevyUser = _configSection.GetConfigSection<ProviderPermissionLevyUser>();
             _context.SetUser(providerPermissionLevyUser);
 
+            var providerViewOnlyUser = _configSection.GetConfigSection<ProviderViewOnlyUser>();
+            _context.SetUser(providerViewOnlyUser);
+
             var transfersConfig = _configSection.GetConfigSection<TransfersConfig>();
             _context.SetTransfersConfig(transfersConfig);
 

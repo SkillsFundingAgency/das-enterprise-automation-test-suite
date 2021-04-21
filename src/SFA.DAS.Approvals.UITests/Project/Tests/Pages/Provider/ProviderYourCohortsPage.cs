@@ -19,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
         private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-card-figure");
+        private By NumberOfDraftCohorts => By.CssSelector("#Draft span.das-card-figure");
+        private By NumberOfCohortsWithTransferSendingEmployers => By.CssSelector("#WithTransferSender span.das-card-figure");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -46,6 +48,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
                 return new ProviderCohortsWithEmployersPage(_context);
+            }
+
+            throw new Exception("No cohorts available with employers");
+        }
+
+        internal ProviderCohortsDraftsPage GoToDraftCohorts()
+        {
+            var providerWithDraftCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfDraftCohorts));
+            if (providerWithDraftCohorts > 0)
+            {
+                formCompletionHelper.ClickElement(NumberOfDraftCohorts);
+                return new ProviderCohortsDraftsPage(_context);
+            }
+
+            throw new Exception("No cohorts available with employers");
+        }
+
+        internal ProviderCohortsWithTransferSendingEmployers GoToCohortsWithTransferSendingEmployers()
+        {
+            var providerWithTransferSendingEmployerCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfCohortsWithTransferSendingEmployers));
+            if (providerWithTransferSendingEmployerCohorts > 0)
+            {
+                formCompletionHelper.ClickElement(NumberOfCohortsWithTransferSendingEmployers);
+                return new ProviderCohortsWithTransferSendingEmployers(_context);
             }
 
             throw new Exception("No cohorts available with employers");
