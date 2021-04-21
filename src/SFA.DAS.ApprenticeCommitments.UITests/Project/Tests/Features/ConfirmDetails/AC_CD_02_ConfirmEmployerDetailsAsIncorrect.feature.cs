@@ -112,6 +112,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("the apprentice confirms the Employer details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 9
+ testRunner.And("the apprentice is able to confirm the Employer details again as correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

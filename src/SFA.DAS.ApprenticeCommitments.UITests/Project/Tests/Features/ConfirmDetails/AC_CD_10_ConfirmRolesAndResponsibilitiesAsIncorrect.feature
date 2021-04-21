@@ -6,3 +6,4 @@
 Scenario: AC_CD_10_ConfirmRolesAndResponsibilitiesAsIncorrect
 	Given an apprentice has created and validated the account
 	Then the apprentice confirms the Roles and responsibilities displayed as Incorrect
+	And the apprentice is able to confirm Roles and responsibilities again as correct

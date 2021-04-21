@@ -113,6 +113,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the apprentice confirms \'How the apprenticeship will be delivered\' section as NOT" +
                         " understood", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 9
+ testRunner.And("the apprentice is able to confirm \'How the apprenticeship will be delivered\' sect" +
+                        "ion again as understood", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
