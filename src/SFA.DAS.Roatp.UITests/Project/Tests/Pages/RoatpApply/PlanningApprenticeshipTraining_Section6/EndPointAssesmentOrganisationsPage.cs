@@ -19,7 +19,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             VerifyPage();
         }
 
-        public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue()
+        public TransitionFromFrameworksToStandardPage EnterTextRegardingEngageWithEPAOandContinue()
+        {
+            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
+            return new TransitionFromFrameworksToStandardPage(_context);
+        }
+        public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
             return new AwardingBodiesPage(_context);
