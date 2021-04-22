@@ -112,6 +112,43 @@ testRunner.When("the user clicks on apprentice request link from homepage or app
 #line 7
 testRunner.Then("the user can view apprentice requests page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 8
+testRunner.And("the user can view apprentice details ready for review page when user clicks on wi" +
+                        "th employer box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+testRunner.And("the user can view apprentice details ready for review page when user clicks on dr" +
+                        "afts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+testRunner.And("the user can view apprentice details ready for review page when user clicks on wi" +
+                        "th transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
+                        " page selecting the employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
+                        " page selecting with transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
+                        "pprentice details ready for review page selecting with employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
+                        "pprentice details ready for review page selecting drafts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+testRunner.And("the user cannot bulk upload apprentices via csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+testRunner.And("the user cannot send a cohort to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+testRunner.And("the user cannot delete a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 18
 testRunner.And("the user cannot edit an apprentice in a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
