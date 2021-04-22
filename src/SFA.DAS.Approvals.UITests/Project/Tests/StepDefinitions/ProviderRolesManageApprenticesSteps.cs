@@ -235,7 +235,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot create a cohort")]
         public void ThenTheUserCannotCreateACohort()
         {
-            _providerStepsHelper.NavigateToProviderHomePage().CreateCohortGoesToAccessDenied().GoBackToTheServiceHomePage();
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .CreateCohortGoesToAccessDenied()
+                .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"the user can create a cohort")]
+        public void ThenTheUserCanCreateACohort()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+            .GotoChooseAnEmployerNonLevyPage();
         }
     }
 }

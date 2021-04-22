@@ -109,8 +109,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot bulk upload apprentices via csv file")]
         public void ThenTheUserCannotBulkUploadApprenticesViaCsvFile()
         {
-            _providerStepsHelper.NavigateToProviderHomePage().GoToYourCohorts();
-
             new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectBulkUploadApprenticesGoesToAccessDenied()
@@ -130,13 +128,70 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot delete a cohort")]
         public void ThenTheUserCannotDeleteACohort()
         {
-
-            _providerStepsHelper.NavigateToProviderHomePage().GoToYourCohorts();
-
             new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectDeleteCohortGoesToAccessDenied()
                                                         .GoBackToTheServiceHomePage();
         }
+
+        [Then(@"the user can add apprentice to a cohort")]
+        public void ThenTheUserCanAddApprenticeToACohort()
+        {          
+            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                     .SelectViewCurrentCohortDetails()
+                                                     .SelectAddAnApprentice();                                                   
+        }
+
+        [Then(@"the user can bulk upload apprentices")]
+        public void ThenTheUserCanBulkUploadApprentices()
+        {
+            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .SelectBulkUploadApprentices();
+        }
+
+        [Then(@"the user can edit an existing apprenticeship record by selecting edit apprentice link selecting with employers or drafts boxes")]
+        public void ThenTheUserCanEditAnExistingApprenticeshipRecordBySelectingEditApprenticeLinkSelectingWithEmployersOrDraftsBoxes()
+        {
+
+            var editLinkPresent = new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .IsEditApprenticeLinkDisplayed();
+
+            if (editLinkPresent)
+            {
+                new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .SelectEditApprentice();
+
+            }
+        }
+
+        [Then(@"the user can delete a cohort")]
+        public void ThenTheUserCanDeleteACohort()
+        {
+            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .SelectDeleteCohort();
+        }
+
+        [Then(@"the user can delete an apprentice in a cohort")]
+        public void ThenTheUserCanDeleteAnApprenticeInACohort()
+        {
+            var editLinkPresent = new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .IsEditApprenticeLinkDisplayed();
+
+            if (editLinkPresent)
+            {
+                new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .SelectEditApprentice()
+                                                        .DeleteApprentice();
+
+            }
+        }
+
+
     }
 }
