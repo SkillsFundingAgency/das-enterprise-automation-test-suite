@@ -35,12 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_PR_ApprenticeRequests_Viewer.feature.cs">
-      <DependentUpon>AP_PAS_PR_ApprenticeRequests_Viewer.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Project\Helpers\SqlScripts\GetAgreementId.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
