@@ -1,4 +1,5 @@
-﻿Feature: AP_PAS_PR_ManageYourApprentices_Viewer
+﻿@ignore
+Feature: AP_PAS_PR_ManageYourApprentices_Viewer
 
 @Approvalproviderrole
 Scenario Outline: Provider Roles Viewer  Manage your Apprentices

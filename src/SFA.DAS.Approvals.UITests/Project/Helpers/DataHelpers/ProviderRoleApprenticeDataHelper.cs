@@ -45,8 +45,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _data.Add("ILRDataMismatchScenario2Apprentice",
             new List<KeyValuePair<string, string>>
             {
-                        new KeyValuePair<string, string>(firstname, "F_mLqMFkjnAa"),
-                        new KeyValuePair<string, string>(lastname, "L_tjAnClmvEd"),
+                    new KeyValuePair<string, string>(firstname, "F_mLqMFkjnAa"),
+                    new KeyValuePair<string, string>(lastname, "L_tjAnClmvEd"),
             });
         }
 

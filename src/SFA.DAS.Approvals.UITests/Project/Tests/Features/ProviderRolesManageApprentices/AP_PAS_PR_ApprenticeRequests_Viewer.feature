@@ -1,4 +1,5 @@
-﻿Feature: AP_PAS_PR_ApprenticeRequests_Viewer
+﻿@ignore
+Feature: AP_PAS_PR_ApprenticeRequests_Viewer
 
 @Approvalproviderrole
 Scenario Outline: Provider Roles Viewer Apprentice Requests
