@@ -22,10 +22,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             return new ChooseYourOrganisationSectorsPage(_context);
         }
 
-        public HowManyStartsDoesYourOrgForecastPage NavigateToMostExperiencedEmployeePage(string sector)
+        public StandardsIntendToDeliverPage NavigateToMostExperiencedEmployeePage(string sector)
         {
             formCompletionHelper.ClickLinkByText(sector);
-            return new HowManyStartsDoesYourOrgForecastPage(_context);
+            return new StandardsIntendToDeliverPage(_context);
         }
 
         public ApplicationOverviewPage ContinueToApplicationOverviewPage()

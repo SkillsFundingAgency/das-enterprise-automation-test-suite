@@ -129,18 +129,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         }
 
 
-        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage,ApplicationRoute applicationroute)
         {
-            var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
-                .Access_Section4_YourSectorsAndEmployees()
-                .NavigateToDeliveringTrainingInDigitalSectorPage()
-                .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute || applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return moderationApplicationAssessmentOverviewPage
+                    .VerifySection4Link5Status(StatusHelper.NotRequired);
+            }
+            else
+            {
+                var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
+                    .Access_Section4_YourSectorsAndEmployees()
+                    .NavigateToDeliveringTrainingInDigitalSectorPage()
+                    .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
+                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
 
-            return yourSectorsAndEmployeesPage
-                .NavigateToAssessmentOverviewPage()
-                .VerifySection4Link5Status(StatusHelper.StatusPass);
+                return yourSectorsAndEmployeesPage
+                    .NavigateToAssessmentOverviewPage()
+                    .VerifySection4Link5Status(StatusHelper.StatusPass);
+            }
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)

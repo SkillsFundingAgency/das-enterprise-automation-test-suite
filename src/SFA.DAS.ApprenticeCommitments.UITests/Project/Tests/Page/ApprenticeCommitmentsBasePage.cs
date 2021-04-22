@@ -21,6 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         #endregion
 
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
+        protected By HeaderText => By.CssSelector(".app-user-header__name");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {

@@ -7,13 +7,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-        private By HeaderText => By.CssSelector(".app-user-header__name");
-
         protected override string PageTitle => "My apprenticeship";
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
+        private string HowYourApprenticeshipWillBeDeliveredLinkText => "How your apprenticeship will be delivered";
+        private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
+        private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
+        private string SignOutLinkText => "Sign out";
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -57,6 +60,44 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
 
+        public ConfirmRolesAndResponsibilitiesPage ConfirmRolesAndResponsibilities()
+        {
+            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            return new ConfirmRolesAndResponsibilitiesPage(_context);
+        }
+
+        public AlreadyConfirmedRolesAndResponsibilitiesPage ConfirmAlreadyConfirmedRolesAndResponsibilities()
+        {
+            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            return new AlreadyConfirmedRolesAndResponsibilitiesPage(_context);
+        }
+
+        public ConfirmHowYourApprenticeshipWillBeDeliveredPage ConfirmHowYourApprenticeshipWillBeDelivered()
+        {
+            formCompletionHelper.ClickLinkByText(HowYourApprenticeshipWillBeDeliveredLinkText);
+            return new ConfirmHowYourApprenticeshipWillBeDeliveredPage(_context);
+        }
+
+        public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage ConfirmAlreadyConfirmedHowYourApprenticeshipWillBeDelivered()
+        {
+            formCompletionHelper.ClickLinkByText(HowYourApprenticeshipWillBeDeliveredLinkText);
+            return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(_context);
+        }
+
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
+
+        public SignedOutPage SingOutFromTheService()
+        {
+            formCompletionHelper.ClickLinkByText(SignOutLinkText);
+            return new SignedOutPage(_context);
+        }
+
+        public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
+        {
+            VerifyPage(AppreticeshipConfirmBannerHeader);
+            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
+            Continue();
+            return new TransactionCompletePage(_context);
+        }
     }
 }

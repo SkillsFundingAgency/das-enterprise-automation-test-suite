@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public HowManyEmployeesWillDeliverTrainingPage EnterNumberOfStartsAndContinue()
         {
-            formCompletionHelper.EnterText(NumberOfStart, "12");
+            formCompletionHelper.EnterText(NumberOfStart, "1234");
             Continue();
             return new HowManyEmployeesWillDeliverTrainingPage(_context);
         }

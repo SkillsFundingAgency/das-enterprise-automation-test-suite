@@ -20,10 +20,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
             _tabhelper = _context.Get<TabHelper>();
         }
 
+        [Then(@"Oversight user is able to send the application to Appeal Status")]
+        public void ThenOversightUserIsAbleToSendTheApplicationToAppealStatus() => _applicationSummaryPage.ClickAppealThisApplication().AppealThisApplication();
+
         [Given(@"the admin navigates to the Dashboard")]
         public void TheAdminNavigatesToTheDashboard() => _tabhelper.GoToUrl(UrlConfig.Admin_BaseUrl, "dashboard");
 
-        [Given(@"the application with (PASS|IN PROGRESS) outcome is ready to be assessed")]
+        [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
         public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
         [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL|IN PROGRESS) status")]
@@ -102,9 +105,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
 
         private void VerifyOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
 
-        private void ConfirmApplicationOutcome(AreYouSureAboutApplicationOutcomePage areYouSureSuccessfullPage)
+        private OversightLandingPage ConfirmApplicationOutcome(AreYouSureAboutApplicationOutcomePage areYouSureSuccessfullPage)
         {
-            areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+            return areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
     }
 }

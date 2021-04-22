@@ -37,7 +37,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         }
         public DescribeYourOrganisationPage SelectARailFranchiseOperatorAndContinue()
         {
-            SelectRadioOptionByText("A rail franchise operator");
+            SelectRadioOptionByText("A rail franchise operator, licensed and acting on behalf of the Department for Transport");
            SaveAndContinue();
             return new DescribeYourOrganisationPage(_context);
         }

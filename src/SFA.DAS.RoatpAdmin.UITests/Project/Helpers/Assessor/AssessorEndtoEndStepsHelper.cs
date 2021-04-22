@@ -69,7 +69,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             applicationAssessmentOverviewPage = _assessor_Section4Helper.PassManagementHierarchyForApprenticeships(applicationAssessmentOverviewPage);
             applicationAssessmentOverviewPage = _assessor_Section4Helper.PassQualityAndHighStandardsInApprenticeshipTraining(applicationAssessmentOverviewPage);
             applicationAssessmentOverviewPage = _assessor_Section4Helper.PassDevelopingAndDeliveringTraining(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassYourSectorsAndEmployees(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassYourSectorsAndEmployees(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = _assessor_Section4Helper.PassPolicyForProfessionalDevelopmentOfEmployees(applicationAssessmentOverviewPage);
             return applicationAssessmentOverviewPage;
         }

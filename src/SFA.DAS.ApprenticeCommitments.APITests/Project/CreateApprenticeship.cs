@@ -16,13 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
     public class VerifyIdentityRegistrationCommand
     {
-        public string RegistrationId { get; set; }
+        public string ApprenticeId { get; set; }
         public string UserIdentityId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string NationalInsuranceNumber { get; set; }
     }
 
     public class ApprenticeEmailAddressRequest

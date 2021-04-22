@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public MostExperiencedEmployeePage EnterNumberOfEmployeesAndContinue()
         {
-            formCompletionHelper.EnterText(NumberOfEmployees, "12");
+            formCompletionHelper.EnterText(NumberOfEmployees, "1234");
             Continue();
             return new MostExperiencedEmployeePage(_context);
         }

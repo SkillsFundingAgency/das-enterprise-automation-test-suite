@@ -34,11 +34,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
             return base.PassDevelopingAndDeliveringTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
         }
 
-        public override ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public override ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             moderationApplicationAssessmentOverviewPage.VerifySection4Link5Status(StatusHelper.StatusClarification);
 
-            return base.PassYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
+            return base.PassYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage, applicationroute);
         }
 
 

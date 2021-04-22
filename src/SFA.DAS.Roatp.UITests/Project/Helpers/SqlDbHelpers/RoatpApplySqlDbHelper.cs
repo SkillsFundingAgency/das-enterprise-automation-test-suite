@@ -78,6 +78,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
         }
 
         public void OversightReviewClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)}" +
+            $"DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
+            $"DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
              $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
              $"UPDATE Apply set Applicationstatus = 'GatewayAssessed' WHERE ApplicationId = @ApplicationID");
 
