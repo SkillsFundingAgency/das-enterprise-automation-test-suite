@@ -99,16 +99,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 return this;
         }
 
-        public ProviderAccessDeniedPage SelectEditApprenticeGoesToAccessDenied(int apprenticeNumber = 0)
+        public bool IsEditApprenticeLinkDisplayed()
         {
-            var IsEditLink = pageInteractionHelper.IsElementDisplayed(EditApprenticeLink); 
-            if (IsEditLink)
-            {
-                formCompletionHelper.ClickElement(EditApprenticeLink);
-                return new ProviderAccessDeniedPage(_context);
-            }
+            if (pageInteractionHelper.IsElementDisplayed(EditApprenticeLink))          
+                return true;          
+            else
+                return false;
+        }
 
-            return null;
+        public ProviderAccessDeniedPage SelectEditApprenticeGoesToAccessDenied()
+        {       
+            formCompletionHelper.ClickElement(EditApprenticeLink);
+            return new ProviderAccessDeniedPage(_context);
         }
 
         internal ProviderAccessDeniedPage SelectAddAnApprenticeGoesToAccessDenied()

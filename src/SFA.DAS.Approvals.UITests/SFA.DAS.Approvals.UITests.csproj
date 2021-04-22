@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ProviderManageApprentices\AP_PAS_MA_Approvals_Viewer - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_MA_Approvals_Viewer - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,8 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\ProviderManageApprentices\AP_PAS_MA_Approvals_ApprenticeRequests_Viewer.feature.cs">
-      <DependentUpon>AP_PAS_MA_Approvals_ApprenticeRequests_Viewer.feature</DependentUpon>
+    <Compile Update="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_PR_ApprenticeRequests_Viewer.feature.cs">
+      <DependentUpon>AP_PAS_PR_ApprenticeRequests_Viewer.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -77,7 +77,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderManageApprentices\AP_PAS_MA_Approvals_ApprenticeRequests_Viewer.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_PR_ApprenticeRequests_Viewer.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

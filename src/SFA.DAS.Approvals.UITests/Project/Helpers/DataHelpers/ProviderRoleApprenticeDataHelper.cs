@@ -37,11 +37,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
                     new KeyValuePair<string, string>(lastname, "Clarke"),
            });
             _data.Add("StoppedApprentice",
-          new List<KeyValuePair<string, string>>
-          {
+            new List<KeyValuePair<string, string>>
+            {
                     new KeyValuePair<string, string>(firstname, "F_GEWeMBRBGL"),
                     new KeyValuePair<string, string>(lastname, "L_GLwVYpKCmU"),
-          });
+            });
+            _data.Add("ILRDataMismatchScenario2Apprentice",
+            new List<KeyValuePair<string, string>>
+            {
+                        new KeyValuePair<string, string>(firstname, "F_mLqMFkjnAa"),
+                        new KeyValuePair<string, string>(lastname, "L_tjAnClmvEd"),
+            });
         }
 
     }

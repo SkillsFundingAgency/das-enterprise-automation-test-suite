@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCohortsWithTransferSendingEmployers : ApprovalsBasePage
+    public class ProviderCohortsWithTransferSendingEmployersPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Apprentice details with transfer sending employers";
 
@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        public ProviderCohortsWithTransferSendingEmployers(ScenarioContext context) : base(context) => _context = context;
+        public ProviderCohortsWithTransferSendingEmployersPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderViewYourCohortPage SelectViewCurrentCohortDetails()
         {

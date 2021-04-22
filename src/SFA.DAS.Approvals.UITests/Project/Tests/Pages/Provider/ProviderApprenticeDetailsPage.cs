@@ -21,8 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DateOfBirth => By.Id("apprentice-dob");
         private By Reference => By.Id("apprentice-reference");
         private By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private By ViewChanges => By.Id("change-employer-link");
-        //private By ViewChangesVas => By.Id("das-pendingUpdate-div-undo-link");
+        private By ViewChanges => By.Id("change-employer-link");        
         private By ViewChangesLink => By.LinkText("View changes");
         private By ViewDetailsLink => By.LinkText("View details");
         
@@ -92,13 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ViewChanges);
             return new ProviderViewChangesPage(_context);
-        }
-
-        //public ProviderViewChangesPage ClickViewChangesVasLink()
-        //{
-        //    formCompletionHelper.Click(ViewChangesVas);
-        //    return new ProviderViewChangesPage(_context);
-        //}
+        }        
 
         public ProviderViewChangesPage ClickViewChanges()
         {

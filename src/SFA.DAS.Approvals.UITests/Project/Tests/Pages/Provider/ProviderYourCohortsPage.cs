@@ -65,13 +65,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             throw new Exception("No cohorts available with employers");
         }
 
-        internal ProviderCohortsWithTransferSendingEmployers GoToCohortsWithTransferSendingEmployers()
+        internal ProviderCohortsWithTransferSendingEmployersPage GoToCohortsWithTransferSendingEmployers()
         {
             var providerWithTransferSendingEmployerCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfCohortsWithTransferSendingEmployers));
             if (providerWithTransferSendingEmployerCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithTransferSendingEmployers);
-                return new ProviderCohortsWithTransferSendingEmployers(_context);
+                return new ProviderCohortsWithTransferSendingEmployersPage(_context);
             }
 
             throw new Exception("No cohorts available with employers");
