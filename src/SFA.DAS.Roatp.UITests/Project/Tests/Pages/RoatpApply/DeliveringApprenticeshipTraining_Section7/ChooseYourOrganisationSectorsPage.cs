@@ -7,7 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "What sectors will your organisation deliver apprenticeship training in?";
 
-        protected override By PageHeader => By.CssSelector(".govuk-label");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
