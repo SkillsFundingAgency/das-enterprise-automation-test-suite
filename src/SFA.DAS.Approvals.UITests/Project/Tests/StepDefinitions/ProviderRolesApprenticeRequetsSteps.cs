@@ -162,7 +162,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SelectEditApprentice();
+                                                        .SelectEditApprentice()
+                                                        .EnterUlnAndSave();
 
             }
         }
@@ -170,9 +171,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can delete a cohort")]
         public void ThenTheUserCanDeleteACohort()
         {
-            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
+           
+            new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SelectDeleteCohort();
+                                                        .SelectDeleteCohort()
+                                                        .ConfirmDeleteAndSubmit();            
         }
 
         [Then(@"the user can delete an apprentice in a cohort")]
@@ -183,12 +186,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                         .IsEditApprenticeLinkDisplayed();
 
             if (editLinkPresent)
-            {
-                new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
-                                                        .SelectViewCurrentCohortDetails()
-                                                        .SelectEditApprentice()
-                                                        .DeleteApprentice();
-
+            {              
+                new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
+                                                       .SelectViewCurrentCohortDetails()
+                                                       .SelectEditApprentice()
+                                                       .DeleteApprentice();
             }
         }
 

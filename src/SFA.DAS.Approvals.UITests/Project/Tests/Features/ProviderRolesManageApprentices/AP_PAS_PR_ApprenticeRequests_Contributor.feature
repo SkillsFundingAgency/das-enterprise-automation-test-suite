@@ -17,5 +17,5 @@ And the user can create a cohort
 And the user can add apprentice to a cohort
 And the user can bulk upload apprentices
 And the user can edit an existing apprenticeship record by selecting edit apprentice link selecting with employers or drafts boxes
-And the user can delete a cohort
 And the user can delete an apprentice in a cohort
+And the user can delete a cohort

@@ -244,7 +244,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanCreateACohort()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-            .GotoChooseAnEmployerNonLevyPage();
+            .GotoChooseAnEmployerNonLevyPage()
+            .ChooseAnEmployerNonLevy()
+            .ConfirmEmployer()
+            .SelectAddAnApprentice()
+            .SubmitValidApprenticeDetails();
+
         }
     }
 }
