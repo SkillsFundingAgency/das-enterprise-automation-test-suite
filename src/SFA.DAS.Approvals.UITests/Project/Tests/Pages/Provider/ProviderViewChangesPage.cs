@@ -39,5 +39,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderApprenticeDetailsPage(_context);
         }
+
+        internal ProviderViewChangesPage SelectViewChangesOptions()
+        {
+            Continue();
+            return this;
+        }
     }
 }

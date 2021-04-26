@@ -37,5 +37,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderApprenticeDetailsPage(_context);
         }
+
+        public ProviderDetailsOfILRDataMismatchPage SelectILRDataMismatchOptions()
+        {
+            Continue();
+            return this;
+        }
+
     }
 }

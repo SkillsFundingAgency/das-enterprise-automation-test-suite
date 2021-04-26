@@ -29,12 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                .GoToYourCohorts();
         }
 
-        [Then(@"the user can view apprentice requests page")]
-        public void ThenTheUserCanViewApprenticeRequestsPage()
-        {
-            
-        }       
-
         [Then(@"the user can view apprentice details ready for review page when user clicks on with employer box")]
         public void ThenTheUserCanViewApprenticeDetailsReadyForReviewPageWhenUserClicksOnWithEmployerBox()
         {
@@ -200,8 +194,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectSaveAndContinue()
-                                                        .SubmitSaveButDontSendToEmployer();
-                                                        
+                                                        .SubmitSaveButDontSendToEmployer();                                                        
         }
     }
 }

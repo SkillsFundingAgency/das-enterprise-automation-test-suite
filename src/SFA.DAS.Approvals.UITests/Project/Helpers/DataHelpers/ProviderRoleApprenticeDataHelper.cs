@@ -15,38 +15,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _data.Add("ChangesForReviewApprentice", 
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(firstname, "User45"),
-                    new KeyValuePair<string, string>(lastname, "Test"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "ChangesForReviewApprentice"),
             });
             _data.Add("ChangesPendingApprentice",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(firstname, "User27"),
-                    new KeyValuePair<string, string>(lastname, "Test"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "ChangesPendingApprentice"),
             });
-            _data.Add("ILRDataMismatchApprentice",
+            _data.Add("ILRDataMisMatchRequestDetails",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(firstname, "F_HJNgDpRVwT"),
-                    new KeyValuePair<string, string>(lastname, "L_vicyMjKphr"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "ILRDataMisMatchRequestDetails"),
             });
             _data.Add("LiveApprentice",
            new List<KeyValuePair<string, string>>
            {
-                    new KeyValuePair<string, string>(firstname, "David"),
-                    new KeyValuePair<string, string>(lastname, "Clarke"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "LiveApprentice"),
            });
             _data.Add("StoppedApprentice",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(firstname, "F_GEWeMBRBGL"),
-                    new KeyValuePair<string, string>(lastname, "L_GLwVYpKCmU"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "StoppedApprentice"),
             });
-            _data.Add("ILRDataMismatchScenario2Apprentice",
+            _data.Add("ILRDataMisMatchAskEmployerToFix",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(firstname, "F_mLqMFkjnAa"),
-                    new KeyValuePair<string, string>(lastname, "L_tjAnClmvEd"),
+                    new KeyValuePair<string, string>(firstname, "DoNotUse_TestData"),
+                    new KeyValuePair<string, string>(lastname, "ILRDataMisMatchAskEmployerToFix"),
             });
         }
 

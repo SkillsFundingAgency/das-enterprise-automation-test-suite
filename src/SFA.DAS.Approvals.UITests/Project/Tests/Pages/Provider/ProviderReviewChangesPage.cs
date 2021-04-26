@@ -40,5 +40,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderAccessDeniedPage(_context);
         }
+
+        public ProviderReviewChangesPage SelectReviewChangesOptions()
+        {
+            Continue();
+            return this;
+        }
     }
 }
