@@ -194,6 +194,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-
+        [Then(@"the user can send a cohort to employer")]
+        public void ThenTheUserCanSendACohortToEmployer()
+        {
+            new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
+                                                        .SelectViewCurrentCohortDetails()
+                                                        .SelectSaveAndContinue()
+                                                        .SubmitSaveButDontSendToEmployer();
+                                                        
+        }
     }
 }

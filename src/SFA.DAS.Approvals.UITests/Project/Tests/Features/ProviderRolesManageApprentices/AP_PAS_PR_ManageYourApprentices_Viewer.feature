@@ -5,7 +5,7 @@ Feature: AP_PAS_PR_ManageYourApprentices_Viewer
 Scenario Outline: Provider Roles Viewer  Manage your Apprentices
 Given the provider logs in as a Viewer
 When the user clicks on manage apprentice link from homepage or manage apprentices link
-Then the user can view manage your apprecitces page
+Then the user can view manage your apprentices page
 And the user can download csv file
 And the user can view details of the apprenticeship on apprenticeship details page
 And the user can view changes via view changes link in the banner

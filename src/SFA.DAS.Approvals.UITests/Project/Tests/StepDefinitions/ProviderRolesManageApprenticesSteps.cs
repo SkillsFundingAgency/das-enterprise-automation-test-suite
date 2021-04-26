@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                             .GoToProviderManageYourApprenticePage();
         }      
 
-        [Then(@"the user can view manage your apprecitces page")]
+        [Then(@"the user can view manage your apprentices page")]
         public void ThenTheUserCanViewManageYourApprecitcesPage()
         {
             
@@ -251,5 +251,73 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             .SubmitValidApprenticeDetails();
 
         }
+
+        [Then(@"the user can trigger change of employer journey using change link against the employer field")]
+        public void ThenTheUserCanTriggerChangeOfEmployerJourneyUsingChangeLinkAgainstTheEmployerField()
+        {
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("StoppedApprentice");
+            _dataHelper.ApprenticeFirstname = apprentice.firstname;
+            _dataHelper.ApprenticeLastname = apprentice.lastname;
+
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = _providerStepsHelper.NavigateToProviderHomePage()
+                                                                         .GoToProviderManageYourApprenticePage()
+                                                                         .SelectViewCurrentApprenticeDetails();
+
+            providerApprenticeDetailsPage.ClickChangeEmployerLink()
+                                         .SelectChangeTheEmployer();   
+                                         
+        }
+
+        [Then(@"the user can edit an existing apprenticeship record by selecting edit apprentice link under manage apprentices")]
+        public void ThenTheUserCanEditAnExistingApprenticeshipRecordBySelectingEditApprenticeLinkUnderManageApprentices()
+        {
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("LiveApprentice");
+            _dataHelper.ApprenticeFirstname = apprentice.firstname;
+            _dataHelper.ApprenticeLastname = apprentice.lastname;
+
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = _providerStepsHelper.NavigateToProviderHomePage()
+                                                                         .GoToProviderManageYourApprenticePage()
+                                                                         .SelectViewCurrentApprenticeDetails();
+
+            providerApprenticeDetailsPage.ClickEditApprenticeDetailsLink();                                                  
+        }
+
+        [Then(@"the user can take action on details of ILR mismatch page by selecting any radio buttons on the page")]
+        public void ThenTheUserCanTakeActionOnDetailsOfILRMismatchPageBySelectingAnyRadioButtonsOnThePage()
+        {
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ILRDataMismatchApprentice");
+            _dataHelper.ApprenticeFirstname = apprentice.firstname;
+            _dataHelper.ApprenticeLastname = apprentice.lastname;
+
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = _providerStepsHelper.NavigateToProviderHomePage()
+                                                                          .GoToProviderManageYourApprenticePage()
+                                                                          .SelectViewCurrentApprenticeDetails();
+            providerApprenticeDetailsPage.ClickViewIlrMismatchDetails()
+                                         .ClickLeaveForNow();
+
+        }
+
+        [Then(@"the user can take action on review changes page")]
+        public void ThenTheUserCanTakeActionOnReviewChangesPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the user can take action on View changes on nonCoE page")]
+        public void ThenTheUserCanTakeActionOnViewChangesOnNonCoEPage()
+        {
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ChangesForReviewApprentice");
+            _dataHelper.ApprenticeFirstname = apprentice.firstname;
+            _dataHelper.ApprenticeLastname = apprentice.lastname; 
+
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = _providerStepsHelper.NavigateToProviderHomePage()
+                                                                         .GoToProviderManageYourApprenticePage()
+                                                                         .SelectViewCurrentApprenticeDetails();
+
+            providerApprenticeDetailsPage.ClickViewChanges()
+                                         .ClickLeaveTheseChanges();
+                                                                         
+        }
+
     }
 }

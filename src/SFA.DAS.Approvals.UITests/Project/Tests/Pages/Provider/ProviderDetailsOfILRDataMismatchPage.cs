@@ -30,5 +30,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();            
             return new ProviderAccessDeniedPage(_context);
         }
+
+        internal ProviderApprenticeDetailsPage ClickLeaveForNow()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-None");
+            Continue();
+            return new ProviderApprenticeDetailsPage(_context);
+        }
     }
 }
