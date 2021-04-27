@@ -78,7 +78,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
                 $"DELETE FROM dbo.Audit WHERE UpdatedState like '%{applicationId}%'; " +
                 $"DELETE FROM dbo.GatewayAnswer WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM dbo.OversightReview WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM [dbo].[AppealUpload] where ApplicationId ='{applicationId}'; " +
+                $"DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId ='{applicationId}')" +
+                $"DELETE FROM [dbo].[OversightReview] where ApplicationId = '{applicationId}'; " +
                 $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID;";
 
