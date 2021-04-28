@@ -163,7 +163,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
+            //checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();

@@ -1,5 +1,4 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {

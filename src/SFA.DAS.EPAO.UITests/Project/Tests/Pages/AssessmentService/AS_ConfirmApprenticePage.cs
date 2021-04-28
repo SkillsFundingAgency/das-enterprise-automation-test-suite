@@ -13,7 +13,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_DeclarationPage ClickConfirmInConfirmApprenticePage(string enrolledStandard)
+        public AS_WhichVersionPage GoToWhichVersionPage(string enrolledStandard)
+        {
+            SelectStandard(enrolledStandard);
+
+            return new AS_WhichVersionPage(_context);
+        }
+
+
+        public AS_DeclarationPage GoToDeclaraionPage(string enrolledStandard)
+        {
+            SelectStandard(enrolledStandard);
+
+            return new AS_DeclarationPage(_context);
+        }
+
+        private void SelectStandard(string enrolledStandard)
         {
             switch (enrolledStandard)
             {
@@ -26,9 +41,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             }
 
             Continue();
-
-            return new AS_DeclarationPage(_context);
         }
+
 
         private void SelectStandardWithAdditionalLearningOption()
         {
