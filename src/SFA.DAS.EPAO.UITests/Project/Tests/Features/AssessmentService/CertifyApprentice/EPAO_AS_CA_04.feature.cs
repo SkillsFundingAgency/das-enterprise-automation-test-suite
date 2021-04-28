@@ -121,18 +121,20 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04B - Attempt to certify a privately funded Apprentice with Invalid da" +
+            "te")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_CA_04B_AttemptToCertifyAPrivatelyFundedApprenticeWithInvalidDate()
+        public virtual void EPAO_AS_CA_04B_AttemptToCertifyAPrivatelyFundedApprenticeWithInvalidDate()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_04B - Attempt to certify a privately funded Apprentice with Invalid da" +
+                    "te", null, tagsOfScenario, argumentsOfScenario);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
