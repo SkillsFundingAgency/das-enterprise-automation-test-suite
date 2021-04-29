@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -7,16 +7,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Choose organisation";
 
-        #region Locators
         private readonly ScenarioContext _context;
-        private By FirstRadioButton => By.XPath("//input[@name='Selected']");
-        #endregion
-
+        
         public ChooseOrganisationPage(ScenarioContext context) : base(context) => _context = context;
 
         public EIHubPage SelectFirstEntityInChooseOrgPageAndContinue()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FirstRadioButton));
+            formCompletionHelper.SelectRadioOptionByText(objectContext.GetOrganisationName());
             formCompletionHelper.Click(ContinueButton);
             return new EIHubPage(_context);
         }
