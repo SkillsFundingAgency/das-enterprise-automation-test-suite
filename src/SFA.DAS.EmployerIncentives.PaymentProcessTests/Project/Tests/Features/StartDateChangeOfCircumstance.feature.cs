@@ -106,7 +106,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("an existing apprenticeship incentive with learning starting on 12-Nov-2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an existing apprenticeship incentive (ULN 7229721930) with learning starting on 1" +
+                        "2-Nov-2020 and ending on 15-Oct-2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.And("a payment of £1000 sent in Period R07 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

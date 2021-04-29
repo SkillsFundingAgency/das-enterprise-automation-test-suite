@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Binding]
     public class ResumeLearningChangeOfCircumstanceSteps : StepsBase
     {
-        private const long Uln = 7229721931;
+        private long _uln;
         private const long Ukprn = 10005312;
         private Payment _payment;
         private PendingPayment _initialEarning;
@@ -25,15 +25,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133218;
         }
 
-        [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
-        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
+        [Given(@"an existing apprenticeship incentive \(ULN (.*)\) with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(long uln, DateTime startDate, DateTime endDate)
         {
+            _uln = uln;
             _initialStartDate = startDate;
             _initialEndDate = endDate;
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, Uln, Ukprn, startDate, startDate.AddYears(-20))
+                .WithApprenticeship(apprenticeshipId, _uln, Ukprn, startDate, startDate.AddYears(-20))
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -52,7 +53,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var submissionDto = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(year)
                 .WithIlrSubmissionDate("2021-02-11")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -60,7 +61,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, submissionDto);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, submissionDto);
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
@@ -90,7 +91,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate(_initialStartDate.AddDays(1))
                 .WithIlrSubmissionWindowPeriod(period)
@@ -98,7 +99,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
         }
 
         [When(@"the Learner Match is run in Period R(.*) (.*)")]
@@ -132,7 +133,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate("2021-02-11T14:06:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
@@ -141,7 +142,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode2)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
         }
 
         [When(@"Learner data is updated with Price Episode End Date which is on the due date of the paid earning in Period R(.*) (.*)")]
@@ -156,7 +157,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
@@ -164,7 +165,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
         }
 
         [When(@"the paid earnings of £(.*) is still available in the currently active Period")]
@@ -230,12 +231,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a new second pending payment of £(.*) is created for Period R(.*) (.*)")]
         public void ThenANewSecondPendingPaymentOfIsCreatedForPeriodR(int amount, byte period, short year)
         {
-            //var pendingPayment = GetFromDatabase<PendingPayment>(p =>
-            //    p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
-            //    && p.PeriodNumber == period && p.PaymentYear == year && p.EarningType == EarningType.SecondPayment);
             var pendingPayment = GetFromDatabase<PendingPayment>(p =>
                 p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                 & p.EarningType == EarningType.SecondPayment);
+
+            pendingPayment.PeriodNumber.Should().Be(period);
+            pendingPayment.PaymentYear.Should().Be(year);
             pendingPayment.Amount.Should().Be(amount);
             pendingPayment.PaymentMadeDate.Should().BeNull();
             pendingPayment.ClawedBack.Should().BeFalse();

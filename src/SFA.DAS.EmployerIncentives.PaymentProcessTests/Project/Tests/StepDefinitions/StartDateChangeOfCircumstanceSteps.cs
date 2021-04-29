@@ -14,9 +14,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "StartDateChangeOfCircumstance")]
     public class StartDateChangeOfCircumstanceSteps : StepsBase
     {
-        private const long Uln = 7229721930;
         private const long Ukprn = 10005311;
-        private DateTime _plannedStartDate;
+        private long _uln;
+        private DateTime _initialStartDate;
+        private DateTime _initialEndDate;
         private Payment _payment;
         private PendingPayment _initialEarning;
         private List<PendingPayment> _newEarnings;
@@ -27,17 +28,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133217;
         }
 
-        [Given(@"an existing apprenticeship incentive with learning starting on (.*)")]
-        public async Task GivenAnExistingApprenticeshipIncentive(DateTime startDate)
+        [Given(@"an existing apprenticeship incentive \(ULN (.*)\) with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(long uln, DateTime startDate, DateTime endDate)
         {
-            _plannedStartDate = startDate;
+            _uln = uln;
+            _initialStartDate = startDate;
+            _initialEndDate = endDate;
             await SetActiveCollectionPeriod(6, 2021);
 
-            var dateOfBirth = _plannedStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
+            var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, Uln, Ukprn, _plannedStartDate, dateOfBirth)
+                .WithApprenticeship(apprenticeshipId, _uln, Ukprn, _initialStartDate, dateOfBirth)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -49,22 +52,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await SetActiveCollectionPeriod(period, year);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
-                .WithStartDate(_plannedStartDate)
-                .WithEndDate("2022 -10-15T00:00:00")
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_initialEndDate)
                 .WithPeriod(apprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionDataR7 = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
-                .WithStartDate(_plannedStartDate)
+                .WithStartDate(_initialStartDate)
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionDataR7);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionDataR7);
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
@@ -97,7 +100,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var learnerSubmissionDataR8 = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUln(_uln)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate(DateTime.Parse("2021-01-10T09:11:46.82"))
                 .WithIlrSubmissionWindowPeriod(4)
@@ -105,7 +108,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionDataR8);
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionDataR8);
             await RunLearnerMatchOrchestrator();
         }
 
