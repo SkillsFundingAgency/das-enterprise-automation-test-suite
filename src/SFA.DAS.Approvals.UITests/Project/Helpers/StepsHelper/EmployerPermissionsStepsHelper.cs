@@ -18,9 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .ConfirmTrainingProvider()
                  .SelectContinueInEmployerTrainingProviderAddedPage()
                  .SelectSetPermissions()
-                 .ClickYesToAddApprenticeRecords()
-                 .ClickYesToAddRecruitApprentice()
-                 .ConfirmTrainingProviderPermissions()
+                 .ClickAllowToAddApprenticeRecords()
+                 .ClickAllowToRecruitApprentice()
+                 //     .ClickYesToAddApprenticeRecords()
+                 //   .ClickYesToAddRecruitApprentice()
+                      .ConfirmTrainingProviderPermissions()
                  .GoToHomePage();
         }
 
@@ -28,9 +30,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return OpenProviderPermissions()
                    .SelectChangePermissions()
-                   .ClickNoToAddApprenticeRecords()
-                   .ClickNoToAddRecruitApprentice()
-                   .ConfirmTrainingProviderPermissions();
+                   .ClickDoNotAllowToAddApprenticeRecords()
+                 .ClickDoNotAllowToRecruitApprentice()
+                   //.ClickNoToAddApprenticeRecords()
+                   //.ClickNoToAddRecruitApprentice()
+                   .ConfirmYesTrainingProviderPermissions();
         }
 
         private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();

@@ -27,10 +27,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YouHaveAcceptedTheEmployerAgreementPage(_context);
         }
 
+        /*
         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage ProviderLeadRegistrationSignAgreement()
         {
             Sign();
             return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
+        } */
+
+        public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
+        {
+            Sign();
+            return new SetPermissionsForTrainingProviderPage(_context);
         }
 
         public HomePage DoNotSignAgreement()
