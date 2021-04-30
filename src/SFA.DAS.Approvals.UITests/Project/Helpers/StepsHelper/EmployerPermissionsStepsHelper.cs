@@ -20,9 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .SelectSetPermissions()
                  .ClickAllowToAddApprenticeRecords()
                  .ClickAllowToRecruitApprentice()
-                 //     .ClickYesToAddApprenticeRecords()
-                 //   .ClickYesToAddRecruitApprentice()
-                      .ConfirmTrainingProviderPermissions()
+                 .ConfirmTrainingProviderPermissions()
                  .GoToHomePage();
         }
 
@@ -31,9 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return OpenProviderPermissions()
                    .SelectChangePermissions()
                    .ClickDoNotAllowToAddApprenticeRecords()
-                 .ClickDoNotAllowToRecruitApprentice()
-                   //.ClickNoToAddApprenticeRecords()
-                   //.ClickNoToAddRecruitApprentice()
+                   .ClickDoNotAllowToRecruitApprentice()
                    .ConfirmYesTrainingProviderPermissions();
         }
 

@@ -49,15 +49,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new ConfirmTrainingProviderPermissionsPage(_context);
         }
-
-        //  public SetPermissionsForTrainingProviderPage ClickNoToAddApprenticeRecords() => SelectOption("Do not allow");
-        /*
-        private SetPermissionsForTrainingProviderPage SelectOption(string option)
-        {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, option);
-            Continue();
-            return new SetPermissionsForTrainingProviderPage(_context);
-        }
-        */
     }
 }

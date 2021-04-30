@@ -29,13 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(SetPermissionsLink);
             return new SetPermissionsForTrainingProviderPage(_context);
         }
-        /*
-         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
-         {
-             formCompletionHelper.ClickElement(ChangePermissionsLink);
-             return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
-         } */
-
+        
         public SetPermissionsForTrainingProviderPage SelectChangePermissions()
         {
             formCompletionHelper.ClickElement(ChangePermissionsLink);

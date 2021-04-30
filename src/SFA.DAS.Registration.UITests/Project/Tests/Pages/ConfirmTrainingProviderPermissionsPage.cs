@@ -18,12 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        /*  public PermissionsUpdatedPage ConfirmTrainingProviderPermissions()
-          {
-              Continue();
-              return new PermissionsUpdatedPage(_context);
-          }
-        */
         public PermissionsUpdatedPage ConfirmTrainingProviderPermissions()
         {
             Continue();
@@ -44,4 +38,3 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
     }
 }
-
