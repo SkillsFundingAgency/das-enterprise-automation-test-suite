@@ -65,7 +65,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Access to EI Hub is denied to the Employer")]
         public void ThenAccessToEIHubIsDeniedToTheEmployer() =>
-            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage();
+            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage(_objectContext.GetOrganisationName());
 
         [Then(@"the Employer is able to navigate to EI application Select apprentices page")]
         public void TheEmployeIsAbleToNavigateToEIApplicationSelectApprenticesPage() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();

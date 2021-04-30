@@ -16,9 +16,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage GoBackToTheServiceHomePage()
+        public HomePage GoBackToTheServiceHomePage() => GoBackToTheServiceHomePage(config.RE_OrganisationName);
+
+        public HomePage GoBackToTheServiceHomePage(string orgName)
         {
-            objectContext.UpdateOrganisationName(config.RE_OrganisationName);
+            objectContext.UpdateOrganisationName(orgName);
             formCompletionHelper.ClickLinkByText(HomePageLinkText);
             return new HomePage(_context);
         }
