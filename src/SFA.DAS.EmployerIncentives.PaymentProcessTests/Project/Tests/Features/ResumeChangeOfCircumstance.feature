@@ -1,7 +1,7 @@
-﻿Feature: ResumeLearningChangeOfCircumstance
+﻿@employerincentivesPaymentsProcess
+Feature: ResumeLearningChangeOfCircumstance
     Learnering resumes after a pause
 
-@employerincentivesPaymentsProcess
 Scenario: Resume 1 - Learner Stopped COC triggered and then Resumed in later period 
     Given an existing apprenticeship incentive (ULN 7229721931) with learning starting on 15-Oct-2020 and ending on 31-Jul-2021
     And a payment of £1000 sent in Period R06 2021
