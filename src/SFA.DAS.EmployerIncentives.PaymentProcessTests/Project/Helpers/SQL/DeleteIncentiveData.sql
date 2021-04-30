@@ -24,4 +24,9 @@ DELETE x FROM archive.PendingPaymentValidationResult x
 
  DELETE incentives.Learner WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
 
+ DELETE incentives.ChangeOfCircumstance WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+
+ 
+ /* DELETE from the Main incentive table */
  DELETE incentives.ApprenticeshipIncentive WHERE Id = @ApprenticeshipIncentiveId;
+

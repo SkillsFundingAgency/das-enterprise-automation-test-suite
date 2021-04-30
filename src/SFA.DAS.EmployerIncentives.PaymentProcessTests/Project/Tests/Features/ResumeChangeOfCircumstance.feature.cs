@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Then("a new first pending payment of £1000 is created for Period R07 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
-    testRunner.Then("a new second pending payment of £1000 is created for Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("a new second pending payment of £1000 is created for Period R04 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -215,7 +215,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
-    testRunner.Then("a new second pending payment of £1000 is created for Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("a new second pending payment of £1000 is created for Period R05 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
