@@ -24,27 +24,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         
         protected By EnployerGuide => By.CssSelector("a[href='/employers/employer-guides']");
 
-        protected By SearchForAnApprenticeship => By.Id("fiu-panel-link-fat");
+        protected By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected By RealStories => By.CssSelector("#fiu-emp-hub-card-1");
+        protected By RealStories => By.CssSelector("a[href='/employers/real-stories']");
 
-        protected By EmployerBenefits => By.CssSelector("#fiu-emp-hub-card-2");
+        protected By EmployerBenefits => By.CssSelector("a[href='/employers/benefits-of-hiring-apprentice']");
 
-        protected By HiringAnApprentice => By.CssSelector("#fiu-emp-hub-card-3");
+        protected By HiringAnApprentice => By.CssSelector("a[href='/employers/hiring-an-apprentice']");
 
-        protected By UpskillingYourCurrentStaff => By.CssSelector("#fiu-emp-hub-card-4");
+        protected By UpskillingYourCurrentStaff => By.CssSelector("a[href='/employers/upskilling-your-workforce']");
 
-        protected By FundingAnApprenticeship => By.CssSelector("#fiu-emp-hub-card-5");
+        protected By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
 
-        protected By TrainingYourApprenticeship => By.CssSelector("#fiu-emp-hub-card-6");
+        protected By TrainingYourApprenticeship => By.CssSelector("a[href='/employers/training-your-apprentice']");
 
-        protected By EndPointAssessments => By.CssSelector("#fiu-emp-hub-card-7");
+        protected By EndPointAssessments => By.CssSelector("a[href='/employers/end-point-assessments']");
 
-        protected By ChooseTheRightApprenticeship => By.CssSelector("#fiu-emp-hub-card-8");
+        protected By ChooseTheRightApprenticeship => By.CssSelector("a[href='/employers/choose-apprenticeship-training']");
 
-        protected By ChooseATrainingProvider => By.CssSelector("#fiu-emp-hub-card-9");
+        protected By ChooseATrainingProvider => By.CssSelector("a[href='/employers/choose-training-provider']");
 
-        protected By SetUpServiceAccountr => By.CssSelector("#fiu-emp-hub-card-10");
+        protected By SetUpServiceAccountr => By.CssSelector("a[href='/employers/real-stories']");
 
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
