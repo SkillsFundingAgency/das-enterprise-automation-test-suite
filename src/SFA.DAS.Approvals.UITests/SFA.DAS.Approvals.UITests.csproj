@@ -71,7 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_PR_ApprenticeRequests_Viewer.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderRolesManageApprentices\AP_PAS_PR_03_ApprenticeRequests_Viewer.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

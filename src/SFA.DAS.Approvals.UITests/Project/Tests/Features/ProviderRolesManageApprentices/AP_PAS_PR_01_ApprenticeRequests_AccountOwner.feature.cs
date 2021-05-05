@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_ApprenticeRequests_Contributor")]
-    public partial class AP_PAS_PR_ApprenticeRequests_ContributorFeature
+    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_01_ApprenticeRequests_AccountOwner")]
+    public partial class AP_PAS_PR_01_ApprenticeRequests_AccountOwnerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_PAS_PR_ApprenticeRequests_Contributor.feature"
+#line 1 "AP_PAS_PR_01_ApprenticeRequests_AccountOwner.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_ApprenticeRequests_Contributor", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_01_ApprenticeRequests_AccountOwner", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider Roles Contributor Apprentice Requests")]
+        [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_01_Provider Roles Account Owner Apprentice Requests")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("Approvalproviderrole")]
-        public virtual void ProviderRolesContributorApprenticeRequests()
+        public virtual void AP_PAS_PR_01_ProviderRolesAccountOwnerApprenticeRequests()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
                     "Approvalproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Roles Contributor Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PAS_PR_01_Provider Roles Account Owner Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-testRunner.Given("the provider logs in as a Contributor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the provider logs in as a AccountOwner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
 testRunner.When("the user clicks on apprentice request link from homepage or apprentice request li" +
@@ -159,6 +159,9 @@ testRunner.And("the user can delete an apprentice in a cohort", ((string)(null))
 #line hidden
 #line 21
 testRunner.And("the user can delete a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 22
+testRunner.And("the user can send a cohort to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

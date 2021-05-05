@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_ApprenticeRequets_ContributorWithApproval")]
-    public partial class AP_PAS_PR_ApprenticeRequets_ContributorWithApprovalFeature
+    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_04_ApprenticeRequets_ContributorWithApproval")]
+    public partial class AP_PAS_PR_04_ApprenticeRequets_ContributorWithApprovalFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_PAS_PR_ApprenticeRequets_ContributorWithApproval.feature"
+#line 1 "AP_PAS_PR_04_ApprenticeRequets_ContributorWithApproval.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_ApprenticeRequets_ContributorWithApproval", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_04_ApprenticeRequets_ContributorWithApproval", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider Roles Contributor with approval Apprentice Requests")]
+        [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_04_Provider Roles Contributor with approval Apprentice Requests")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("Approvalproviderrole")]
-        public virtual void ProviderRolesContributorWithApprovalApprenticeRequests()
+        public virtual void AP_PAS_PR_04_ProviderRolesContributorWithApprovalApprenticeRequests()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
                     "Approvalproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Roles Contributor with approval Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PAS_PR_04_Provider Roles Contributor with approval Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
