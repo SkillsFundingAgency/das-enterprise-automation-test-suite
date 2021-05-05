@@ -1,6 +1,6 @@
-﻿@ignore
-Feature: AP_PAS_PR_ManageYourApprentices_ContributorWithApproval
+﻿Feature: AP_PAS_PR_ManageYourApprentices_ContributorWithApproval
 
+@approvals
 @regression
 @Approvalproviderrole
 Scenario: Provider Roles Contributor with approval Manage your Apprentices

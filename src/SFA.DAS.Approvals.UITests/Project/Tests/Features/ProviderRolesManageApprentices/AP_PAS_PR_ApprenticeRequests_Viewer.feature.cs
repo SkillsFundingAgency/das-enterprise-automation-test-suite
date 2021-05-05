@@ -75,14 +75,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Provider Roles Viewer Apprentice Requests")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("Approvalproviderrole")]
         public virtual void ProviderRolesViewerApprenticeRequests()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
+                    "regression",
                     "Approvalproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Roles Viewer Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
-#line 4
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,54 +106,51 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 7
 testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 6
+#line 8
 testRunner.When("the user clicks on apprentice request link from homepage or apprentice request li" +
                         "nk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
-testRunner.Then("the user can view apprentice requests page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 8
-testRunner.And("the user can view apprentice details ready for review page when user clicks on wi" +
-                        "th employer box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 9
+testRunner.Then("the user can view apprentice details ready for review page when user clicks on wi" +
+                        "th employer box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
 testRunner.And("the user can view apprentice details ready for review page when user clicks on dr" +
                         "afts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
 testRunner.And("the user can view apprentice details ready for review page when user clicks on wi" +
                         "th transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
 testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
                         " page selecting the employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
 testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
                         " page selecting with transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
 testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
                         "pprentice details ready for review page selecting with employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
 testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
                         "pprentice details ready for review page selecting drafts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
 testRunner.And("the user cannot bulk upload apprentices via csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
 testRunner.And("the user cannot send a cohort to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 18
 testRunner.And("the user cannot delete a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
 testRunner.And("the user cannot edit an apprentice in a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

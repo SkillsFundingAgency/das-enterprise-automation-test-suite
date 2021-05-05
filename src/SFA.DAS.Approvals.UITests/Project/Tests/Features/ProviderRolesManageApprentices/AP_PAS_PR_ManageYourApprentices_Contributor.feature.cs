@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_ManageYourApprentices_Viewer")]
-    public partial class AP_PAS_PR_ManageYourApprentices_ViewerFeature
+    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_ManageYourApprentices_Contributor")]
+    public partial class AP_PAS_PR_ManageYourApprentices_ContributorFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_PAS_PR_ManageYourApprentices_Viewer.feature"
+#line 1 "AP_PAS_PR_ManageYourApprentices_Contributor.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_ManageYourApprentices_Viewer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_ManageYourApprentices_Contributor", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageAp
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider Roles Viewer  Manage your Apprentices")]
+        [NUnit.Framework.DescriptionAttribute("Provider Roles Contributor Manage your Apprentices")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("Approvalproviderrole")]
-        public virtual void ProviderRolesViewerManageYourApprentices()
+        public virtual void ProviderRolesContributorManageYourApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
                     "Approvalproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Roles Viewer  Manage your Apprentices", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Roles Contributor Manage your Apprentices", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the provider logs in as a Contributor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
 testRunner.When("the user clicks on manage apprentice link from homepage or manage apprentices lin" +
@@ -137,33 +137,26 @@ testRunner.And("the user can view review changes via review details link in the 
 testRunner.And("the user can view view changes nonCoE page via view changes link in the banner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
-testRunner.And("the user can can access  apprentice request page via apprentice requests link on " +
-                        "homepage or from apprentice requests menu bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
-testRunner.And("the user cannot trigger change of employer journey using change link against the " +
-                        "employer field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
-testRunner.And("the user cannot edit an existing apprenticeship record by selecting edit apprenti" +
-                        "ce link under manage appreciates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
 testRunner.And("the user cannot take action on details of ILR mismatch page by selecting any radi" +
                         "o buttons on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 17
 testRunner.And("the user cannot take action on details of ILR mismatch request restart via view d" +
                         "etails link in the ILR data mismatch banner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 18
 testRunner.And("the user cannot take action on review changes page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 19
 testRunner.And("the user cannot take action on View changes on nonCoE page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
-testRunner.And("the user cannot create a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+testRunner.And("the user cannot trigger change of employer journey using change link against the " +
+                        "employer field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 21
+testRunner.And("the user cannot edit an existing apprenticeship record by selecting edit apprenti" +
+                        "ce link under manage appreciates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

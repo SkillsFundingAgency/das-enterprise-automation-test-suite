@@ -1,6 +1,6 @@
-﻿@ignore
-Feature: AP_PAS_PR_ManageYourApprentices_AccountOwner	
+﻿Feature: AP_PAS_PR_ManageYourApprentices_AccountOwner	
 
+@approvals
 @regression
 @Approvalproviderrole
 Scenario: Provider Roles Account Owner Manage your apprentices 

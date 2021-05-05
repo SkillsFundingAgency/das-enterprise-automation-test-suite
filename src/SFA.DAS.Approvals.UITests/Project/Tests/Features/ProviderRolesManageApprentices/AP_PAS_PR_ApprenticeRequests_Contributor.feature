@@ -1,6 +1,6 @@
-﻿@ignore
-Feature: AP_PAS_PR_ApprenticeRequests_Contributor	
+﻿Feature: AP_PAS_PR_ApprenticeRequests_Contributor	
 
+@approvals
 @regression
 @Approvalproviderrole
 Scenario: Provider Roles Contributor Apprentice Requests
