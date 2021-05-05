@@ -1,9 +1,9 @@
-﻿Feature: AP_PAS_PR_ManageYourApprentices_Viewer
+﻿Feature: AP_PAS_PR_08_ManageYourApprentices_Viewer
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario Outline: Provider Roles Viewer  Manage your Apprentices
+Scenario Outline: AP_PAS_PR_08_Provider Roles Viewer  Manage your Apprentices
 Given the provider logs in as a Viewer
 When the user clicks on manage apprentice link from homepage or manage apprentices link
 Then the user can download csv file

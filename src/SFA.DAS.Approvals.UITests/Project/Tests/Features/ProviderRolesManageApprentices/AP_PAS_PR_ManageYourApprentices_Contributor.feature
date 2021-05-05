@@ -1,9 +1,9 @@
-﻿Feature: AP_PAS_PR_ManageYourApprentices_Contributor	
+﻿Feature: AP_PAS_PR_06_ManageYourApprentices_Contributor	
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario: Provider Roles Contributor Manage your Apprentices
+Scenario: AP_PAS_PR_06_Provider Roles Contributor Manage your Apprentices
 Given the provider logs in as a Contributor
 When the user clicks on manage apprentice link from homepage or manage apprentices link
 Then the user can download csv file

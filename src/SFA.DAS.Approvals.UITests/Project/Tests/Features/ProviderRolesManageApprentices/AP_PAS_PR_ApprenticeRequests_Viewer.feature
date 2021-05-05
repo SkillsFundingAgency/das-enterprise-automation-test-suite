@@ -1,9 +1,9 @@
-﻿Feature: AP_PAS_PR_ApprenticeRequests_Viewer
+﻿Feature: AP_PAS_PR_03_ApprenticeRequests_Viewer
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario Outline: Provider Roles Viewer Apprentice Requests
+Scenario Outline: AP_PAS_PR_03_Provider Roles Viewer Apprentice Requests
 Given the provider logs in as a Viewer
 When the user clicks on apprentice request link from homepage or apprentice request link
 Then the user can view apprentice details ready for review page when user clicks on with employer box

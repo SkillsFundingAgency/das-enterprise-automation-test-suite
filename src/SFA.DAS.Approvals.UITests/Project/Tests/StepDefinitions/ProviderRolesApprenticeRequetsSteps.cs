@@ -181,7 +181,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (editLinkPresent)
             {              
-                new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
+                new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
                                                        .SelectViewCurrentCohortDetails()
                                                        .SelectEditApprentice()
                                                        .DeleteApprentice();

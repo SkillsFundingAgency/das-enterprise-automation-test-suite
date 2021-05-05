@@ -1,9 +1,9 @@
-﻿Feature: AP_PAS_PR_ManageYourApprentices_ContributorWithApproval
+﻿Feature: AP_PAS_PR_07_ManageYourApprentices_ContributorWithApproval
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario: Provider Roles Contributor with approval Manage your Apprentices
+Scenario: AP_PAS_PR_07_Provider Roles Contributor with approval Manage your Apprentices
 Given the provider logs in as a ContributorWithApproval
 When the user clicks on manage apprentice link from homepage or manage apprentices link
 Then the user can download csv file

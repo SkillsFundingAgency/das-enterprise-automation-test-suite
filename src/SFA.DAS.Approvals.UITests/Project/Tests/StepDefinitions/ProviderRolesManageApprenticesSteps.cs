@@ -192,7 +192,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot take action on review changes page")]
         public void ThenTheUserCannotTakeActionOnReviewChangesPage()
         {
-            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ChangesPendingApprentice");
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ChangesForReviewApprentice");
             _dataHelper.ApprenticeFirstname = apprentice.firstname;
             _dataHelper.ApprenticeLastname = apprentice.lastname;
 
@@ -209,7 +209,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot take action on View changes on nonCoE page")]
         public void ThenTheUserCannotTakeActionOnViewChangesOnNonCoEPage()
         {
-            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ChangesForReviewApprentice");
+            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData("ChangesPendingApprentice");
             _dataHelper.ApprenticeFirstname = apprentice.firstname;
             _dataHelper.ApprenticeLastname = apprentice.lastname;
 
@@ -236,10 +236,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.NavigateToProviderHomePage()
             .GotoChooseAnEmployerNonLevyPage()
             .ChooseAnEmployerNonLevy()
-            .ConfirmEmployer()
-            .SelectAddAnApprentice()
-            .SubmitValidApprenticeDetails();
-
+            .ConfirmEmployer();
         }
 
         [Then(@"the user can trigger change of employer journey using change link against the employer field")]
