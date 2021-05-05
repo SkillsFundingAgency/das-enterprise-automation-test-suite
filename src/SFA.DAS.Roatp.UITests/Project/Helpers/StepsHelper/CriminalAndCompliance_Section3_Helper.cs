@@ -37,9 +37,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatusControl_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
                 .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
                 .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
                 .SelectYesEnterInformationForFraudOrIrregularities()
@@ -49,7 +51,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
                 .SelectNo()
                 .SelectYesEnterInformationForBankruptAndContinue()
+                .SelectYesEnterInformationForProhibitionOrderFromTeachingRegulationAgencyAndContinue()
                 .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
+            }
+            else
+            {
+                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
+                .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
+                .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
+                .SelectYesEnterInformationForFraudOrIrregularities()
+                .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
+                .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
+                .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
+                .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+                .SelectNo()
+                .SelectYesEnterInformationForBankruptAndContinue_Soletrader()
+                .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
+            }
         }
     }
 }

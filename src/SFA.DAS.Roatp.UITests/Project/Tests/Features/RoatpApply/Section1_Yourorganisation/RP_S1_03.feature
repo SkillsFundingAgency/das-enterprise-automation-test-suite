@@ -6,7 +6,7 @@
 @roatps1
 @regression
 Scenario: RP_S1_03_SoleTraderAndPartnership - Supporting - Org- A Group Training Association
-	Given the provider initates an application as supporting route
+	Given the provider initates an application as Supporting Provider Route
 	Then the provider completes Introduction and what you'll need content for supporting route
 	And the provider completes Organisation Information section for charity
     And the provider completes Tell us who's in control section for sole trader and partnership

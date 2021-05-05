@@ -12,7 +12,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly ObjectContext _objectContext;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
-        
+        private ApplicationRoute _applicationRoute;
+
         private ApplicationOverviewPage _overviewPage;
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
 
@@ -44,8 +45,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider initates an application as employer route")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
 
-        [Given(@"the provider initates an application as supporting route")]
-        public void GivenTheProviderInitatesAnApplicationAsSupportingRoute() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
+        [Given(@"the provider initates an application as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
+        public void GivenTheProviderInitatesAnApplicationAsSupportingRoute(ApplicationRoute applicationroute)
+        {
+            _applicationRoute = applicationroute;
+            _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
+        }
 
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
@@ -81,7 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesFinancialEvidenceSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
 
         [When(@"the provider completes Criminal and Compliance section")]
-        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage);
+        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage, _applicationRoute);
 
         [When(@"the provider completes Protecting your apprentices section")]
         public void WhenTheProviderCompletesProtectingYourApprenticesSection() => _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4(_overviewPage);
