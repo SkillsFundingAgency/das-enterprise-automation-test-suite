@@ -25,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesEnterInformationForWithdrawlfromITTAccreditationAndContinue()
                 .SelectYesAndEnterInformationForRemovedFromCharityRegister()
                 .SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
-                .SelectYesEnterInformationForInvestigatedDueToWhistleBlowingAndContinue()
+                .SelectYesEnterInformationForInvestigatedbyESFAorPublicbodyAndContinue()
                 .SelectYesEnterInformationForSubjectToInsolvencyOrWindingUpProceedingsAndContinue()
                 .VerifyChecksOnYourOrganisations_Section3(StatusHelper.StatusCompleted);
         }
