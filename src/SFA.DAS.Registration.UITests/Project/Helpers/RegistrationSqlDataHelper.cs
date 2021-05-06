@@ -21,11 +21,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
 
-        public string GetAccountId(string email)
+        public (string accountId, string hashedAccountId) GetAccountIds(string email)
         {
-            var userId = GetData($"SELECT Id from [employer_account].[User] where Email = '{email}'");
-            var id = GetData($"SELECT AccountId FROM[employer_account].[Membership] where UserId = {userId}");
-            return id;
+            var id = GetData($"select id,HashedId from employer_account.Account where id = " +
+                $"(SELECT AccountId FROM[employer_account].[Membership] where UserId = " +
+                $"(SELECT Id from [employer_account].[User] where Email = '{email}'))", 2);
+
+            return (id[0], id[1]);
         }
     }
 }

@@ -142,7 +142,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetAccountId(new HomePage(_context).AccountId());
+        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetHashedAccountId(new HomePage(_context).AccountId());
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]

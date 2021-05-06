@@ -36,9 +36,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            objectContext.SetAccountId(homePage.AccountId());
+            (string accountId, string hashedAccountId) = _registrationSqlDataHelper.GetAccountIds(loginUser.Username);
 
-            objectContext.SetDBAccountId(_registrationSqlDataHelper.GetAccountId(loginUser.Username));
+            objectContext.SetHashedAccountId(hashedAccountId);
+
+            objectContext.SetDBAccountId(accountId);
 
             return homePage;
         }
