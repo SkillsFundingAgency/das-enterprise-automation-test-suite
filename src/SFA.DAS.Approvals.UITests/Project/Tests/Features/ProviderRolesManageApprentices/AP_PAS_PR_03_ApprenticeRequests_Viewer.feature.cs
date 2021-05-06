@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.NewLevyAccount.QualAndApprenticesWrongCommitments
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderRolesManageApprentices
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_02")]
-    public partial class EI_QSApS_NewLevyAc_WC_02Feature
+    [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_03_ApprenticeRequests_Viewer")]
+    public partial class AP_PAS_PR_03_ApprenticeRequests_ViewerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_QSApS_NewLevyAc_WC_02.feature"
+#line 1 "AP_PAS_PR_03_ApprenticeRequests_Viewer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_QSApS_NewLevyAc_WC_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PAS_PR_03_ApprenticeRequests_Viewer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_02_Validate Shutter pages for New Levy Account with One leg" +
-            "al entity having Commitments with start date After May 2021")]
+        [NUnit.Framework.DescriptionAttribute("AP_PAS_PR_03_Provider Roles Viewer Apprentice Requests")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_QSApS_NewLevyAc_WC_02_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDateAfterMay2021()
+        [NUnit.Framework.CategoryAttribute("Approvalproviderrole")]
+        public virtual void AP_PAS_PR_03_ProviderRolesViewerApprenticeRequests()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
                     "regression",
-                    "addlevyfunds",
-                    "employerincentives"};
+                    "Approvalproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_02_Validate Shutter pages for New Levy Account with One leg" +
-                    "al entity having Commitments with start date After May 2021", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PAS_PR_03_Provider Roles Viewer Apprentice Requests", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,36 +107,51 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the Employer adds 1 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
-                        "nth 6 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("the user clicks on apprentice request link from homepage or apprentice request li" +
+                        "nk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the user can view apprentice details ready for review page when user clicks on wi" +
+                        "th employer box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("the user can view apprentice details ready for review page when user clicks on dr" +
+                        "afts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
-                        "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("the user can view apprentice details ready for review page when user clicks on wi" +
+                        "th transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
-                        "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
+                        " page selecting the employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("the user can view view your cohort page by clicking view link on view your cohort" +
+                        " page selecting with transfer sending employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
-                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
+                        "pprentice details ready for review page selecting with employers box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
-                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the user can view review your cohort page when user clicks on details link from a" +
+                        "pprentice details ready for review page selecting drafts box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+testRunner.And("the user cannot bulk upload apprentices via csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+testRunner.And("the user cannot send a cohort to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+testRunner.And("the user cannot delete a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+testRunner.And("the user cannot edit an apprentice in a cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

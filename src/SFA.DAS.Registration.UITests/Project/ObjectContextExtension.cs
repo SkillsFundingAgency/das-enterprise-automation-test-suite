@@ -20,10 +20,11 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string AdditionalOrganisationAddedNameKey = "additionalorganisationaddednamekey";
         #endregion
 
-        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
+        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, string organisationName)
         {
             objectContext.SetRegisteredEmail(loginusername);
-            objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword });
+            objectContext.UpdateOrganisationName(organisationName);
+            objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
         internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
