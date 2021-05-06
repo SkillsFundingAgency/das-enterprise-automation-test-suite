@@ -14,13 +14,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal void SetLoginCredentials(LoginUser loginUser, bool isLevy)
         {
-            SetLoginCredentials(loginUser.Username, loginUser.Password);
+            SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName);
             IsLevy = isLevy;
         }
 
-        internal void SetLoginCredentials(string username, string password)
+        internal void SetLoginCredentials(string username, string password, string organisationName)
         {
-            _objectContext.SetLoginCredentials(username, password);
+            _objectContext.SetLoginCredentials(username, password, organisationName);
             Reportusername(username);
         }
 

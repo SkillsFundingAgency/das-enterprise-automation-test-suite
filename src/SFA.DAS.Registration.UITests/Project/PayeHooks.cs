@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _loginCredentialsHelper = _context.Get<LoginCredentialsHelper>();
 
-            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
+            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
 
             _objectContext.SetUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg, 0);
 
