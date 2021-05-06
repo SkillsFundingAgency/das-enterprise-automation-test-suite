@@ -9,6 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project
         #region Constants
         private static string UserCredsKey(int index) => $"usercreds_{index}";
         private const string AccountIdKey = "accountid";
+        private const string DbAccountIdKey = "dbaccountid";
         private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
@@ -28,6 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
+        internal static void SetDBAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(DbAccountIdKey, accountid);
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);

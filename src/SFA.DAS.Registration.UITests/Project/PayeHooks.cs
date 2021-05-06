@@ -18,6 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly TryCatchExceptionHelper _tryCatch;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private bool _isAddPayeDetails;
+        private RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         public PayeHooks(ScenarioContext context)
         {
@@ -85,6 +86,16 @@ namespace SFA.DAS.Registration.UITests.Project
             mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
 
             _loginCredentialsHelper.SetIsLevy();
+        }
+
+        [AfterScenario(Order = 20)]
+        public void SetDbAccountId()
+        {
+            if (!_isAddPayeDetails) { return; }
+
+            _registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
+
+            _tryCatch.AfterScenarioException(() => _objectContext.SetDBAccountId(_registrationSqlDataHelper.GetAccountId(_objectContext.GetRegisteredEmail())));
         }
 
         [AfterScenario(Order = 21)]
