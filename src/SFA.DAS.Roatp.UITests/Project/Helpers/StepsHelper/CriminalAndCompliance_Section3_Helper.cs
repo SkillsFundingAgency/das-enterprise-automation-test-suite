@@ -39,22 +39,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
-            {
-                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
-                .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
-                .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
-                .SelectYesEnterInformationForFraudOrIrregularities()
-                .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
-                .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
-                .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
-                .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
-                .SelectNo()
-                .SelectYesEnterInformationForBankruptAndContinue()
-                .SelectYesEnterInformationForProhibitionOrderFromTeachingRegulationAgencyAndContinue()
-                .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
-            }
-            else
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
                 .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
@@ -67,6 +52,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectNo()
                 .SelectYesEnterInformationForBankruptAndContinue_Soletrader()
                 .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
+            }
+            else
+            {
+                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
+               .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
+               .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
+               .SelectYesEnterInformationForFraudOrIrregularities()
+               .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
+               .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
+               .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
+               .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+               .SelectNo()
+               .SelectYesEnterInformationForBankruptAndContinue()
+               .SelectYesEnterInformationForProhibitionOrderFromTeachingRegulationAgencyAndContinue()
+               .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);             
             }
         }
     }
