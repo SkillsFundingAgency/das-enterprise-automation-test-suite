@@ -195,14 +195,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
         }
 
-        [Then(@"add accountid to the test data")]
-        public void ThenAddAccountidToTheTestData()
-        {
-            var acountid = _registrationSqlDataHelper.GetAccountId(_registrationDataHelper.RandomEmail);
-
-            _objectContext.UdpateUserCreds(acountid, 0);
-        }
-
         [When(@"Signs the Agreement from Account HomePage Panel")]
         public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
