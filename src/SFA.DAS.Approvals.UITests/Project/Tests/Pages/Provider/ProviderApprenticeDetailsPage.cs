@@ -21,7 +21,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DateOfBirth => By.Id("apprentice-dob");
         private By Reference => By.Id("apprentice-reference");
         private By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private By ViewChanges => By.Id("change-employer-link");
+        private By ViewChanges => By.Id("change-employer-link");        
+        private By ViewChangesLink => By.LinkText("View changes");
+        private By ViewDetailsLink => By.LinkText("View details");
+        
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -37,6 +40,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticePage(_context);
         }
 
+        public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
         public ProviderDetailsOfILRDataMismatchPage ClickViewIlrMismatchDetails()
         {
             formCompletionHelper.ClickElement(ViewIlrMismatchDetailsLink);
@@ -47,6 +56,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ChangeEmployerLink);
             return new ProviderInformPage(_context);
+        }
+
+        public ProviderAccessDeniedPage ClickChangeEmployerLinkGoesToAccessDenied()
+        {
+            formCompletionHelper.Click(ChangeEmployerLink);
+            return new ProviderAccessDeniedPage(_context);
         }
 
         public void ConfirmChangeRequestPendingMessage()
@@ -76,7 +91,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ViewChanges);
             return new ProviderViewChangesPage(_context);
+        }        
+
+        public ProviderViewChangesPage ClickViewChanges()
+        {
+            formCompletionHelper.ClickElement(ViewChangesLink);
+            return new ProviderViewChangesPage(_context);
         }
+
+        public ProviderDetailsOfILRDataMismatchPage ClickViewDetails()
+        {
+            formCompletionHelper.ClickElement(ViewDetailsLink);
+            return new ProviderDetailsOfILRDataMismatchPage(_context);
+        }      
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
     }
