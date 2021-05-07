@@ -21,11 +21,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         }
 
 
-        public AS_DeclarationPage GoToDeclaraionPage(string enrolledStandard)
+        public AS_WhichVersionPage GoToDeclaraionPage(string enrolledStandard)
         {
             SelectStandard(enrolledStandard);
 
-            return new AS_DeclarationPage(_context);
+            return new AS_WhichVersionPage(_context);
         }
 
         private void SelectStandard(string enrolledStandard)
@@ -38,6 +38,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                 case "more than one":
                     SelectFirstStandardFromMultipleOptions();
                     break;
+                default:
+                    break;
+                        
             }
 
             Continue();

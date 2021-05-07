@@ -54,12 +54,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_ConfirmApprenticePage(_context);
         }
 
-        public AS_DeclarationPage SearchPrivatelyFundedApprentice()
+        public AS_ConfirmApprenticePage SearchPrivatelyFundedApprentice()
         {
             _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.PrivatelyFundedApprenticeUln);
-            SelectPrivatelyFundedCheckBox();
             EnterApprentcieDetailsAndContinue(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln);
-            return new AS_DeclarationPage(_context);
+            return new AS_ConfirmApprenticePage(_context);
         }
 
         public void EnterApprentcieDetailsAndContinue(string familyName, string uLN)
@@ -79,6 +78,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-        private void SelectPrivatelyFundedCheckBox() => formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
     }
 }

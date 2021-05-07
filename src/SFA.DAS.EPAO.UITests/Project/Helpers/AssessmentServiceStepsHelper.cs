@@ -47,18 +47,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return SelectGrade(grade);
         }
 
-        public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario = false)
+        public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario)
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
                 .SearchPrivatelyFundedApprentice()
+                
+                .GoToDeclaraionPage(string.Empty)
+                .ClickConfirmInConfirmVersionPage()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-                .EnterGivenNameAndContinue()
-                .SelectStandardAndContinue()
-                .SelectGradeForPrivatelyFundedAprrenticeAndContinue()
-                .EnterApprenticshipStartDateAndContinue()
-                .EnterUkprnAndContinue();
+                .SelectGradeForPrivatelyFundedAprrenticeAndContinue();
 
-            if (!invalidDateScenario)
+                
+
+            if (invalidDateScenario == false)
             {
                 new AS_AchievementDatePage(_context).EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
@@ -135,7 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickReturnToDashboard();
         }
 
-        private void ConfirmDeclaration(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToDeclaraionPage(enrolledStandard).ClickConfirmInDeclarationPage();
+        private void ConfirmDeclaration(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToDeclaraionPage(enrolledStandard).ClickConfirmInConfirmVersionPage();
 
         private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade().SearchApprentice(enrolledStandard);
 

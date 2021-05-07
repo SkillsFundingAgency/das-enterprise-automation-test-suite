@@ -42,11 +42,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                     break;
             }
         }
-        public AS_ApprenticeshipStartDate SelectGradeForPrivatelyFundedAprrenticeAndContinue()
+        public AS_AchievementDatePage SelectGradeForPrivatelyFundedAprrenticeAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
             Continue();
-            return new AS_ApprenticeshipStartDate(_context);
+            return new AS_AchievementDatePage(_context);
         }
     }
 }

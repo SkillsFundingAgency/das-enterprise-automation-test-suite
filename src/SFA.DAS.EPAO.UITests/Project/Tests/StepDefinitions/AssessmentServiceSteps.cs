@@ -70,7 +70,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
         
         [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice();
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice(false);
 
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
         public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice() => new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
