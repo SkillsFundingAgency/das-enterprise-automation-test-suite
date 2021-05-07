@@ -23,5 +23,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderChangeApprenticeDetailsPage(_context);
         }
+
+        internal ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-Confirm");
+            Continue();            
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        internal ProviderApprenticeDetailsPage ClickLeaveForNow()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-None");
+            Continue();
+            return new ProviderApprenticeDetailsPage(_context);
+        }
+
+        public ProviderDetailsOfILRDataMismatchPage SelectILRDataMismatchOptions()
+        {
+            Continue();
+            return this;
+        }
+
     }
 }

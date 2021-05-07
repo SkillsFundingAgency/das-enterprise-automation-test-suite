@@ -67,5 +67,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(YourCohortsLink);
             return new ProviderYourCohortsPage(_context);
         }
+
+        public ProviderAccessDeniedPage CreateCohortGoesToAccessDenied()
+        {
+            _formCompletionHelper.ClickElement(CreateACohortLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
     }
 }
