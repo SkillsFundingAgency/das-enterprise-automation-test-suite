@@ -23,11 +23,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBankruptInLastThreeYears);
             return new ProhibitionOrderFromTeachingRegulationAgencyPage(_context);
         }
-        public ApplicationOverviewPage SelectYesEnterInformationForBankruptAndContinue_Soletrader()
-        {
-            SelectRadioOptionByText("Yes");
-            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBankruptInLastThreeYears);
-            return new ApplicationOverviewPage(_context);
-        }
     }
 }

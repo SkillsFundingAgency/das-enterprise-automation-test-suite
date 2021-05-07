@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesEnterInformationForContractWithdrawnWithPublicBody()
                 .SelectNoForWithdrawnFromAContractWithRoTo()
                 .SelectYesEnterInformationForFundingRemovedFromEducationBodiesAndContinue()
-                .SelectYesEnterInformationForFundingRemovedFromEducationBodies()
+                .SelectYesEnterInformationForRemovedFromProfessionalOrTradeRegisters()
                 .SelectYesEnterInformationForWithdrawlfromITTAccreditationAndContinue()
                 .SelectYesAndEnterInformationForRemovedFromCharityRegister()
                 .SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
@@ -37,24 +37,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatusControl_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
+        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage )
         {
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
-            {
-                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
-                .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
-                .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
-                .SelectYesEnterInformationForFraudOrIrregularities()
-                .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
-                .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
-                .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
-                .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
-                .SelectNo()
-                .SelectYesEnterInformationForBankruptAndContinue_Soletrader()
-                .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
-            }
-            else
-            {
                 return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
                .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
                .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
@@ -66,8 +50,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                .SelectNo()
                .SelectYesEnterInformationForBankruptAndContinue()
                .SelectYesEnterInformationForProhibitionOrderFromTeachingRegulationAgencyAndContinue()
+               .SelecNoForBanFromManagementOrGovernanceOfSchoolsAndContinue()
                .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);             
-            }
         }
     }
 }

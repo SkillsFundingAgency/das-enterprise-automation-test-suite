@@ -86,7 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesFinancialEvidenceSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
 
         [When(@"the provider completes Criminal and Compliance section")]
-        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage, _applicationRoute);
+        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage);
 
         [When(@"the provider completes Protecting your apprentices section")]
         public void WhenTheProviderCompletesProtectingYourApprenticesSection() => _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4(_overviewPage);
