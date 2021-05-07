@@ -67,5 +67,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyBeenmadebankrupt_Section6(StatusHelper.StatusPass);
         }
+        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section6_ProhibitionOrder()
+            .SelectPassAndContinue()
+            .VerifyProhibitionOrder_Section6(StatusHelper.StatusPass);
+        }
+        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section6_BeenMadeBankrupt()
+            .SelectPassAndContinue()
+            .VerifyBanFromManagement_Section6(StatusHelper.StatusPass);
+        }
     }
 }
