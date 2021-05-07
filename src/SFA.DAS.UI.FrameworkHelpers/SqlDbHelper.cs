@@ -27,6 +27,33 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
+        protected List<string[]> GetMultipleData(string query, int noOfvalues)
+        {
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+
+            var returnItems = new List<string[]>();
+
+            if (data.Count == 0) returnItems.Add(new string[noOfvalues]);
+
+            var length = data.Count;
+
+            for (int i = 0; i < length; i++)
+            {
+                var items = new string[noOfvalues];
+
+                for (int j = 0; j < noOfvalues; j++)
+                {
+                    var item = data[i][j].ToString();
+
+                    items[j] = item;
+                }
+
+                returnItems.Add(items);
+            }
+
+            return returnItems;
+        }
+
         protected string GetNullableData(string queryToExecute)
         {
             var data = GetData(queryToExecute, 1);
