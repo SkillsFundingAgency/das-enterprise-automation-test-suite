@@ -77,7 +77,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
-            .Access_Section6_BeenMadeBankrupt()
+            .Access_Section6_BanFromManagementOrGovernance()
             .SelectPassAndContinue()
             .VerifyBanFromManagement_Section6(StatusHelper.StatusPass);
         }
