@@ -28,11 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
         public FinalConfirmationPassPage PassThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Pass this application");
-            if (objectContext.GetApplicationRoute() == ApplicationRoute.SupportingProviderRoute)
-            {
-                SelectRadioOptionByText("100k");
-            }
-
+            if (objectContext.GetApplicationRoute() == ApplicationRoute.SupportingProviderRoute) SelectRadioOptionByText("100k");
             Continue();
             return new FinalConfirmationPassPage(_context);
         }
