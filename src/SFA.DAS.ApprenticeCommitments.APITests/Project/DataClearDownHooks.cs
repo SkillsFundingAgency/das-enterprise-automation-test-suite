@@ -33,8 +33,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         public void ClearDownUser()
         {
-            ClearDownInvitation();
-
             var email = _objectContext.GetApprenticeEmail();
 
             _aLoginSqlDbHelper.DeleteUser(email);
@@ -44,6 +42,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             _aComtSqlDbHelper.DeleteApprentice(email);
 
             _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
+
+            ClearDownInvitation();
         }
     }
 }
