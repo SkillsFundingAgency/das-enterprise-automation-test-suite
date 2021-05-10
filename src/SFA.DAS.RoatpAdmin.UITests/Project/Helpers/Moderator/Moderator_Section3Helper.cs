@@ -80,7 +80,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
-                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
                     .SelectFailAndContinue();
             }
 

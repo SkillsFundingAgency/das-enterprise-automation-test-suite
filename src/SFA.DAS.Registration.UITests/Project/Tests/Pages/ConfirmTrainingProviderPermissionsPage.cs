@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
+        protected By SelectYesConfirmChange => By.Id("confirmation-yes");
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -24,6 +24,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new PermissionsUpdatedPage(_context);
         }
 
+        public PermissionsUpdatedPage ConfirmYesTrainingProviderPermissions()
+        {
+            javaScriptHelper.ClickElement(SelectYesConfirmChange);
+            Continue();
+            return new PermissionsUpdatedPage(_context);
+        }
+
         public HomePage ConfirmProviderLeadRegistrationPermissions()
         {
             Continue();
@@ -31,4 +38,3 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
     }
 }
-
