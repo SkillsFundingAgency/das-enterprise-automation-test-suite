@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private By TransferStatus => By.XPath("//p[3]");
-        private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
+        private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View all agreements");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
-            formCompletionHelper.ClickButtonByText(AddNewOrganisationButton, "Add an organisation");
+            formCompletionHelper.ClickElement(AddNewOrganisationButton);
             return new SearchForYourOrganisationPage(_context);
         }
 
