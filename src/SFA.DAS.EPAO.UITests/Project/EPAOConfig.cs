@@ -18,5 +18,7 @@
         public string AlreadyAssessedApprenticeName { get; set; }
         public string AlreadyAssessedApprenticeUln { get; set; }
         public string EPAOStageTwoStandardCancelUser { get; set; }
+        public string ApprenticeNameWithAStandardHavingVersionsAndLearningOptions { get; set; }
+        public string ApprenticeUlnWithAStandardHavingVersionsAndLearningOptions { get; set; }
     }
 }

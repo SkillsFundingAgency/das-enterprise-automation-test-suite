@@ -19,10 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard)
         {
-            SearchApprentice(enrolledStandard).GoToWhichVersionPage(enrolledStandard).ClickConfirmInConfirmVersionPage().ClickConfirmInDeclarationPage();
+            SearchApprentice(enrolledStandard).GoToWhichVersionPage(enrolledStandard).ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue().ClickConfirmInDeclarationPage();
 
-            //if (enrolledStandard == "additional learning option")
-            //    new AS_WhichLearningOptionPage(_context).SelectLearningOptionAndContinue();
+            if (enrolledStandard == "additional learning option")
+                new AS_WhichLearningOptionPage(_context).SelectLearningOptionAndContinue();
 
             return SelectGrade(grade);
         }
@@ -51,13 +51,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
                 .SearchPrivatelyFundedApprentice()
-                
-                .GoToDeclaraionPage(string.Empty)
-                .ClickConfirmInConfirmVersionPage()
-                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-                .SelectGradeForPrivatelyFundedAprrenticeAndContinue();
 
-                
+                .GoToDeclaraionPage(string.Empty)
+                .ClickConfirmInConfirmVersionPageNoOption()
+                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
+                .SelectGradeForPrivatelyFundedAprrenticeAndContinue();               
 
             if (invalidDateScenario == false)
             {
@@ -136,7 +134,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickReturnToDashboard();
         }
 
-        private void ConfirmDeclaration(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToDeclaraionPage(enrolledStandard).ClickConfirmInConfirmVersionPage();
+        private void ConfirmDeclaration(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToDeclaraionPage1(enrolledStandard).SelectWhichLearningOptionAndContinue().ClickConfirmInDeclarationPage();
 
         private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade().SearchApprentice(enrolledStandard);
 

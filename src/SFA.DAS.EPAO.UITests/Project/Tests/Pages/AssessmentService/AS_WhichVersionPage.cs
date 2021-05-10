@@ -14,7 +14,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         }
 
 
-        public AS_DeclarationPage ClickConfirmInConfirmVersionPage()
+        public AS_WhichLearningOptionPage ClickConfirmInConfirmVersionPage()
+        {
+            SelectRadioOptionByText("Version 1.0");
+            Continue();
+            return new AS_WhichLearningOptionPage(_context);
+        }
+
+        public AS_DeclarationPage ClickConfirmInConfirmVersionPageNoOption()
         {
             SelectRadioOptionByText("Version 1.0");
             Continue();

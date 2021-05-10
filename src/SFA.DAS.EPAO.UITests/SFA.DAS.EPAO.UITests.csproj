@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AssessmentService\CertifyApprentice\EPAO_AS_CA_03 - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -44,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\AssessmentService\CertifyApprentice\EPAO_AS_CA_07.feature.cs">
+      <DependentUpon>EPAO_AS_CA_07.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -56,6 +66,13 @@
     <None Update="SFA.DAS.EPAO.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AssessmentService\CertifyApprentice\EPAO_AS_CA_07.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
   
 </Project>

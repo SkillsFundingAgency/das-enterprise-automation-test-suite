@@ -26,7 +26,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             SelectStandard(enrolledStandard);
 
             return new AS_WhichVersionPage(_context);
+            
         }
+
+        public AS_WhichLearningOptionPage GoToDeclaraionPage1(string enrolledStandard)
+        {
+            SelectStandard(enrolledStandard);
+
+            return new AS_WhichLearningOptionPage(_context);
+
+        }
+
 
         private void SelectStandard(string enrolledStandard)
         {
@@ -54,7 +64,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private void SelectFirstStandardFromMultipleOptions()
         {
-            SelectRadioOptionByForAttribute("standard_122");
+            SelectRadioOptionByForAttribute("standard_239");
         }
     }
 }
