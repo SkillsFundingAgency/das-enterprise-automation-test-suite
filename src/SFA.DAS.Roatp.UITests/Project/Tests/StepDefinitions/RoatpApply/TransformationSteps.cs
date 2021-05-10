@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
@@ -15,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [StepArgumentTransformation(@"(main|supporting|employer)")]
         public ApplicationRoute Applicationroute(string applicationroute)
         {
-            var route = Enum.Parse<ApplicationRoute>(applicationroute, true);
+            var route = ApplicationRouteHelper.GetApplicationRoute(applicationroute);
 
             _objectContext.SetApplicationRoute(route);
 
