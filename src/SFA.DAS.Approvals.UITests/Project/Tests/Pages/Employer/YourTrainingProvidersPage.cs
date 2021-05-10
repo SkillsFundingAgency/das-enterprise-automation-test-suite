@@ -24,15 +24,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(_context);
         }
 
-        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectSetPermissions()
+        public SetPermissionsForTrainingProviderPage SelectSetPermissions()
         {
             formCompletionHelper.ClickElement(SetPermissionsLink);
-            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
+            return new SetPermissionsForTrainingProviderPage(_context);
         }
-        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
+        
+        public SetPermissionsForTrainingProviderPage SelectChangePermissions()
         {
             formCompletionHelper.ClickElement(ChangePermissionsLink);
-            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
-        }        
+            return new SetPermissionsForTrainingProviderPage(_context);
+        }
     }
 }

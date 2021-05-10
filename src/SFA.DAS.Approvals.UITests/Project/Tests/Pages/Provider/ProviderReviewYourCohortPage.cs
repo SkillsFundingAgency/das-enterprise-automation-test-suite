@@ -98,5 +98,37 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             else
                 return this;
         }
+
+        public bool IsEditApprenticeLinkDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(EditApprenticeLink))          
+                return true;          
+            else
+                return false;
+        }
+
+        public ProviderAccessDeniedPage SelectEditApprenticeGoesToAccessDenied()
+        {       
+            formCompletionHelper.ClickElement(EditApprenticeLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        internal ProviderAccessDeniedPage SelectAddAnApprenticeGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(DeleteCohortbutton);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        public ProviderAccessDeniedPage SelectBulkUploadApprenticesGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(BulkUploadButton);
+            return new ProviderAccessDeniedPage(_context);
+        }
     }
 }
