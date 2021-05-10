@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayOutcome
@@ -29,6 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
         public FinalConfirmationPassPage PassThisApplicationAndContinue()
         {
             SelectRadioOptionByText("Pass this application");
+            if (objectContext.GetApplicationRoute() == ApplicationRoute.SupportingProviderRoute) SelectRadioOptionByText("100k");
             Continue();
             return new FinalConfirmationPassPage(_context);
         }

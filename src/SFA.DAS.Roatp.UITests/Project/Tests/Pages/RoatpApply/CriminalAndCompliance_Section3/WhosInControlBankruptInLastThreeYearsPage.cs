@@ -17,11 +17,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectYesEnterInformationForBankruptAndContinue()
+        public ProhibitionOrderFromTeachingRegulationAgencyPage SelectYesEnterInformationForBankruptAndContinue()
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBankruptInLastThreeYears);
-            return new ApplicationOverviewPage(_context);
+            return new ProhibitionOrderFromTeachingRegulationAgencyPage(_context);
         }
     }
 }

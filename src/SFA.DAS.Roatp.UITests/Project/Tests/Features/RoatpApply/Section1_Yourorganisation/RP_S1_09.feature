@@ -7,7 +7,7 @@
 @regression
 # Organisation Type is An Educational Institute And Type of Educational institue is  Academy
 Scenario: RP_S1_09_CharityAndCompany - Supporting - Org Multiacademy
-	Given the provider initates an application as supporting route
+	Given the provider initates an application as Supporting Provider Route
 	Then the provider completes Introduction and what you'll need content for supporting route
 	And the provider completes Organisation Information section for company
 	And the provider completes Tell us who's in control section for charity and company

@@ -123,6 +123,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
