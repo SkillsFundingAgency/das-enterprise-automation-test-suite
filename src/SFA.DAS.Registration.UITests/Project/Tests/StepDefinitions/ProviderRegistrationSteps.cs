@@ -79,8 +79,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickAcceptYourAgreementLinkInHomePagePanel()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .ProviderLeadRegistrationSignAgreement()
-                .ClickNoToAddApprenticeRecords()
-                .ClickNoToAddRecruitApprentice()
+                .ClickDoNotAllowToAddApprenticeRecords()
+                .ClickDoNotAllowToRecruitApprentice()
                 .ConfirmProviderLeadRegistrationPermissions();
         }
 

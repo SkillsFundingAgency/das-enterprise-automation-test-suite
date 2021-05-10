@@ -18,10 +18,10 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
         }
 
-        [Given(@"the provider logs in as a (Contributor|Contributor with approval|Account Owner|Viewer)")]
+        [Given(@"the provider logs in as a (Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
         public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, false);
 
-        [StepArgumentTransformation(@"(Contributor|Contributor with approval|Account Owner|Viewer)")]
+        [StepArgumentTransformation(@"(Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
         public ProviderConfig GetProviderUserRole(string providerUserRoles)
         {
          var userRole = Enum.Parse<ProviderUserRoles>(providerUserRoles, true);
