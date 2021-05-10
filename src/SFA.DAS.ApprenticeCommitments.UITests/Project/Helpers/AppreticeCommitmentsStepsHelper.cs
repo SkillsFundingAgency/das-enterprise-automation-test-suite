@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
-        private YourAccountHasBeenCreatedPage sigUpCompletePage;
+        private SignUpCompletePage signUpCompletePage;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel, expectedApprenticeshipDuration;
         private DateTime expectedApprenticeshipStartDate, expectedApprenticeshipEndDate;
         private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualApprenticeshipEndDate, actualApprenticeshipDuration;
@@ -68,27 +68,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new ResetPasswordPage(_context);
         }
 
-        public YourAccountHasBeenCreatedPage CreateAccount(bool postApprenticeship = true)
+        public SignUpCompletePage CreateAccount(bool postApprenticeship = true)
         {
             if (postApprenticeship)
                 CreateApprenticeship();
 
-            return sigUpCompletePage = GetCreatePasswordPage().CreatePassword();
+            return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
         }
 
         public ForgottenPasswordConfirmPage SubmitResetPassword() => SignInPage().Resetpassword().Submit();
 
-        public PasswordResetSuccessfulPage ResetPassword() => GetResetPasswordPage().CreatePassword();
+        public SignIntoApprenticeshipPortalPage ResetPassword() => GetResetPasswordPage().CreatePassword().ReturnToApprenticeshipPortal();
 
-        public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInToApprenticePortal();
+        public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInAfterSignUp().SignBackInFromSignOutPage().SignInToApprenticePortal();
 
         public void InvalidPassword(PasswordBasePage passwordPage)
         {
             var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
             StringAssert.Contains("There is a problem", error, "Password error message did not match");
         }
-
-        public SignIntoApprenticeshipPortalPage SignInPage() => sigUpCompletePage.ClickSignInToApprenticePortal();
 
         public void VerifyApprenticeshipDataDisplayed(ConfirmYourApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
         {
@@ -127,6 +125,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .VerifyRolesYourEmployerTab()
                 .VerifyRolesYourTrainingProviderTab();
         }
+
+        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal();
 
         private void PopulateExpectedApprenticeshipDetails()
         {
