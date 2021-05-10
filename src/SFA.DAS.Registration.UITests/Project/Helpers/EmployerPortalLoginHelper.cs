@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
 
-        public HomePage ReLogin() => new SignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials());
+        public HomePage ReLogin() => new SignInPage(_context).Login(GetLoginCredentials());
 
         protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
@@ -40,5 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
+
+        public LoginUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }

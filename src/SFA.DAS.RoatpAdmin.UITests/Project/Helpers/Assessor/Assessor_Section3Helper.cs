@@ -12,8 +12,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+                    .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
@@ -33,7 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
-                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
