@@ -160,10 +160,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_10);
             return new InvestigatedDuetoSafeguardingIssuesCheckPage(_context);
         }
-        public InvestigatedDuetoWhistleBlowingIssuesCheckPage Access_Section5_InvestigatedDueToWhistleblowig()
+        public InvestigatedByESFAorOtherPublicBodyPage Access_Section5_InvestigatedDueToWhistleblowig()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_11);
-            return new InvestigatedDuetoWhistleBlowingIssuesCheckPage(_context);
+            return new InvestigatedByESFAorOtherPublicBodyPage(_context);
         }
         public SubjectToInsolvencyCheckPage Access_Section5_InsolvencyOrWindingUpProceedings()
         {
@@ -217,6 +217,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         {
             NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_9);
             return new BeenMadeBankruptCheckPage(_context);
+        }
+        public TeachingRegulationAgencyPage Access_Section6_ProhibitionOrder()
+        {
+            NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_10);
+            return new TeachingRegulationAgencyPage(_context);
+        }
+        public SubjectToBanFromManagementOrGovernanceOfSchoolsPage Access_Section6_BanFromManagementOrGovernance()
+        {
+            NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_11);
+            return new SubjectToBanFromManagementOrGovernanceOfSchoolsPage(_context);
         }
         #endregion
 
