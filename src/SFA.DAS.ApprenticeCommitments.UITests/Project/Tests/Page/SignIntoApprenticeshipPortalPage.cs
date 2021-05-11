@@ -18,16 +18,27 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourIdentityPage SignInToApprenticePortal()
         {
-            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
-            formCompletionHelper.EnterText(Password, apprenticeCommitmentsConfig.AC_AccountPassword);
-            formCompletionHelper.ClickButtonByText(ContinueButton, "Sign in");
+            SignIn();
             return new ConfirmYourIdentityPage(_context);
+        }
+
+        public SignedOutPage SignInAfterSignUp()
+        {
+            SignIn();
+            return new SignedOutPage(_context);
         }
 
         public ForgottenPasswordPage Resetpassword()
         {
             formCompletionHelper.ClickLinkByText("I have forgotten my password");
             return new ForgottenPasswordPage(_context);
+        }
+
+        private void SignIn()
+        {
+            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
+            formCompletionHelper.EnterText(Password, apprenticeCommitmentsConfig.AC_AccountPassword);
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Sign in");
         }
     }
 }
