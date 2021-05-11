@@ -1,11 +1,15 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_WhichLearningOptionPage : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Choose the option for";
+
         private readonly ScenarioContext _context;
+
+        protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='options']");
 
         public AS_WhichLearningOptionPage(ScenarioContext context) : base(context)
         {
@@ -15,21 +19,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_DeclarationPage SelectLearningOptionAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Specific Architectural Joiner");
+            SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
             Continue();
             return new AS_DeclarationPage(_context);
-        }
-        public AS_DeclarationPage SelectWhichLearningOptionAndContinue()
-        {
-            SelectRadioOptionByText("Managing Assets & Responding to Major Incidents in the Water Environment"); 
-            Continue();
-            return new AS_DeclarationPage(_context);
-        }
-
-        public AS_WhatGradePage ClickConfirmInDeclarationPage()
-        {
-            Continue();
-            return new AS_WhatGradePage(_context);
         }
     }
 }

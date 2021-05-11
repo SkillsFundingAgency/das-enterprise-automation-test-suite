@@ -44,20 +44,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
-
-        [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard version and option")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForMultipleStandardsVersionsOptions(string grade, string enrolledStandard)
-        {
-            var page = assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard);
-
-            page.ClickContinueInCheckAndSubmitAssessmentPage();
-        }
-
         
-    [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
+        [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
         {
-            var page = assessmentServiceStepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
+            var page = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
 
             page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
@@ -73,7 +64,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
         public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard)
         {
-            var page = assessmentServiceStepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
+            var page = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
 
             page.ClickContinueInCheckAndSubmitAssessmentPage();
         }

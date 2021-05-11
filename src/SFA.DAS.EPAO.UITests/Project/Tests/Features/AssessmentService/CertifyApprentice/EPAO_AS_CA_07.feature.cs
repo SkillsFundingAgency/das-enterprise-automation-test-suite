@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.When("the User goes through certifying an Apprentice as \'Passed\' who has enrolled for \'" +
-                        "more than one\' standard version and option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "more than one\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +

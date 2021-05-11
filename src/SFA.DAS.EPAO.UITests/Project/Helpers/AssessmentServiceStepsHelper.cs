@@ -19,40 +19,26 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard)
         {
-            SearchApprentice(enrolledStandard).GoToWhichVersionPage(enrolledStandard).ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue().ClickConfirmInDeclarationPage();
+            var whichVersionPage = SearchApprentice(enrolledStandard).GoToWhichVersionPage(enrolledStandard);
+            
+            AS_DeclarationPage decPage;
 
-            if (enrolledStandard == "additional learning option")
-                new AS_WhichLearningOptionPage(_context).SelectLearningOptionAndContinue();
+            if (enrolledStandard == "additional learning option" || enrolledStandard == "more than one")
+                decPage = whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+            else
+                decPage = whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
 
-            return SelectGrade(grade);
+            return SelectGrade(decPage, grade);
         }
 
-        public AS_CheckAndSubmitAssessmentPage DeleteApprenticeCertificateRecord(string grade, string enrolledStandard)
-        {
-            ConfirmDeclaration(enrolledStandard);
-
-            //if (enrolledStandard == "deleting")
-            //    new AS_WhichLearningOptionPage(_context).SelectWhichLearningOptionAndContinue();
-
-            return SelectGrade(grade);
-        }
-
-        public AS_CheckAndSubmitAssessmentPage ReRequestApprenticeCertificateRecord(string grade, string enrolledStandard)
-        {
-            ConfirmDeclaration(enrolledStandard);
-
-            //if (enrolledStandard == "ReRequesting")
-            //    new AS_WhichLearningOptionPage(_context).SelectWhichLearningOptionAndContinue();
-
-            return SelectGrade(grade);
-        }
+        public AS_CheckAndSubmitAssessmentPage ApprenticeCertificateRecord(string grade, string enrolledStandard) => SelectGrade(GoToDeclarationPage(enrolledStandard), grade);
 
         public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario)
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
                 .SearchPrivatelyFundedApprentice()
 
-                .GoToDeclaraionPage(string.Empty)
+                .GoToWhichVersionPage(string.Empty)
                 .ClickConfirmInConfirmVersionPageNoOption()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
                 .SelectGradeForPrivatelyFundedAprrenticeAndContinue();               
@@ -134,12 +120,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickReturnToDashboard();
         }
 
-        private void ConfirmDeclaration(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToDeclaraionPage1(enrolledStandard).SelectWhichLearningOptionAndContinue().ClickConfirmInDeclarationPage();
+        private AS_DeclarationPage GoToDeclarationPage(string enrolledStandard) => SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage(enrolledStandard).SelectLearningOptionAndContinue();
 
         private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade().SearchApprentice(enrolledStandard);
 
-        private AS_CheckAndSubmitAssessmentPage SelectGrade(string grade)
+        private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade)
         {
+            decpage.ClickConfirmInDeclarationPage();
+
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
             if (grade == "Passed")
