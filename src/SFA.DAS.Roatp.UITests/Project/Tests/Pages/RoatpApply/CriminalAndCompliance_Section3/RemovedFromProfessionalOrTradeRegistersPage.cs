@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
             VerifyPage();
         }
 
-        public InvoluntaryWithdrawlFromITTAccreditationPage SelectYesEnterInformationForFundingRemovedFromEducationBodies()
+        public InvoluntaryWithdrawlFromITTAccreditationPage SelectYesEnterInformationForRemovedFromProfessionalOrTradeRegisters()
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.RemovedFromProfessionalOrTradeRegisters);

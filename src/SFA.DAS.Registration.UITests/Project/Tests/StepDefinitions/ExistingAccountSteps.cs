@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -56,45 +57,37 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not add an organisation")]
         public void ThenTheUserCanNotAddAnOrganisation()
         {
-            _homePage = _homePage.GoToYourOrganisationsAndAgreementsPage()
+            _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage()
                 .ClickAddNewOrganisationButton()
                 .SearchForAnOrganisation(OrgType.Company2)
                 .SelectYourOrganisation(OrgType.Company2)
-                .ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
-                .GoBackToTheServiceHomePage();
+                .ClickYesContinueButtonAndRedirectedToAccessDeniedPage());
         }
 
         [Then(@"the user can not remove the organisation")]
         public void ThenTheUserCanNotRemoveTheOrganisation()
         {
-            _homePage = _homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickToRemoveAnOrg()
-                .GoBackToTheServiceHomePage();
+            _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage().ClickToRemoveAnOrg());
         }
 
         [Then(@"the user can not add Payee Scheme")]
         public void ThenTheUserCanNotAddPayeeScheme()
         {
-            _homePage = _homePage.GotoPAYESchemesPage()
-                .ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
-                .GoBackToTheServiceHomePage();
+            _homePage = GoBackToTheServiceHomePage(_homePage.GotoPAYESchemesPage().ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage());
         }
 
         [Then(@"the user can not invite a team members")]
         public void ThenTheUserCanNotInviteATeamMembers()
         {
-            _homePage = _homePage.GotoYourTeamPage()
-                .ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage()
-                .GoBackToTheServiceHomePage();
+            _homePage = GoBackToTheServiceHomePage(_homePage.GotoYourTeamPage().ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage());
         }
 
         [Then(@"the user can not accept agreement")]
         public void ThenTheUserCanNotAcceptAgreement()
         {
-            _homePage = _homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
+            _homePage = GoBackToTheServiceHomePage(_homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
                 .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
-                .ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
-                .GoBackToTheServiceHomePage();
+                .ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage());
         }
 
         [Then(@"the user can not add an apprentices")]
@@ -104,5 +97,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
             _homePage = new HomePage(_context, true);
         }
+
+        private HomePage GoBackToTheServiceHomePage(AccessDeniedPage accessDeniedPage) => accessDeniedPage.GoBackToTheServiceHomePage(_employerPortalLoginHelper.GetLoginCredentials().OrganisationName);
+
     }
 }

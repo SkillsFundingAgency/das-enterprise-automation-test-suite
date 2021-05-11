@@ -59,6 +59,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GWApplicationOverviewPage VerifyBreachedtaxpaymentsorsocialsecuritycontributions_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_7, status);
         public GWApplicationOverviewPage VerifyRegisterofRemovedTrustees_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_8, status);
         public GWApplicationOverviewPage VerifyBeenmadebankrupt_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_9, status);
+        public GWApplicationOverviewPage VerifyProhibitionOrder_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_10, status);
+        public GWApplicationOverviewPage VerifyBanFromManagement_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_11, status);
         #endregion
 
         #region Section7

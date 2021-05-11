@@ -17,5 +17,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
             return new ProviderViewYourCohortPage(_context);
         }
-}
+    }
 }

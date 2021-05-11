@@ -5,6 +5,8 @@
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public string OrganisationName { get; set; }
     }
 
     public class CampaingnsEmployerUser : LoginUser { }
@@ -66,12 +68,7 @@
         public string SecondOrganisationName { get; set; }
     }
 
-    public class LoginUserWithSpecificOrg : LoginUser
-    {
-        public string OrganisationName { get; set; }
-    }
+    public class Version4AgreementUser : LoginUser { }
 
-    public class Version4AgreementUser : LoginUserWithSpecificOrg { }
-
-    public class Version5AgreementUser : LoginUserWithSpecificOrg { }
+    public class Version5AgreementUser : LoginUser { }
 }
