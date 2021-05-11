@@ -49,7 +49,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public void RemoveExistingApplications()
         {
             if (_context.ScenarioInfo.Tags.Contains("eie2ejourney"))
-                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountIds(_eILevyUser.Username).accountId);
         }
     }
 }
