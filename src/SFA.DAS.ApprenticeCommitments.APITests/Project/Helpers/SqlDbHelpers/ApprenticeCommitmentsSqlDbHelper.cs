@@ -16,7 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             $"DELETE FROM ApprenticeEmailAddressHistory where EmailAddress = '{email}'");
 
         public (string apprenticeId, string userIdentityid) GetRegistrationId(string email)
-            => ProjectSqlDbHelper.ReadDataFromDatabase($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'", connectionString);
+        {
+            var data = GetData($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'", 2);
+
+            return (data[0], data[1]);
+        }
+            
 
         public string GetApprenticeId(string email) => GetData($"select Id from Apprentice where Email ='{email}'");
 
