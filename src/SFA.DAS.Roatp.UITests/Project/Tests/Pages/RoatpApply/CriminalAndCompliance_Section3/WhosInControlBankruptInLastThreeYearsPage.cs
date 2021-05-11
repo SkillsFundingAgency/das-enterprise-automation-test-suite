@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
 {
     public class WhosInControlBankruptInLastThreeYearsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "partner organisations been made bankrupt in the last 3 years?";
+        protected override string PageTitle => "been made bankrupt in the last 3 years?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
