@@ -10,10 +10,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreatePasswordPage(ScenarioContext context) : base(context) => _context = context;
 
-        public YourAccountHasBeenCreatedPage CreatePassword()
+        public SignUpCompletePage CreatePassword()
         {
             SubmitPassword(_validPassword, _validPassword);
-            return new YourAccountHasBeenCreatedPage(_context);
+            return new SignUpCompletePage(_context);
         }
     }
 }

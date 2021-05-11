@@ -10,14 +10,58 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
+        protected List<string> GetData(string query, int noOfvalues) => GetData(query, connectionString, noOfvalues);
+
+        protected List<string> GetData(string query, string connectionstring, int noOfvalues)
+        {
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring);
+
+            var returnItems = new List<string>();
+
+            for (int i = 0; i < noOfvalues; i++)
+            {
+                if (data.Count == 0) returnItems.Add(string.Empty);
+                else returnItems.Add(data[0][i].ToString());
+            }
+
+            return returnItems;
+        }
+
+        protected List<string[]> GetMultipleData(string query, int noOfvalues)
+        {
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+
+            var returnItems = new List<string[]>();
+
+            if (data.Count == 0) returnItems.Add(new string[noOfvalues]);
+
+            var length = data.Count;
+
+            for (int i = 0; i < length; i++)
+            {
+                var items = new string[noOfvalues];
+
+                for (int j = 0; j < noOfvalues; j++)
+                {
+                    var item = data[i][j].ToString();
+
+                    items[j] = item;
+                }
+
+                returnItems.Add(items);
+            }
+
+            return returnItems;
+        }
+
         protected string GetNullableData(string queryToExecute)
         {
-            List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+            var data = GetData(queryToExecute, 1);
 
-            if (responseData.Count == 0)
+            if (data.Count == 0)
                 return string.Empty;
             else
-                return Convert.ToString(responseData[0][0]);
+                return data[0];
         }
 
         protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));

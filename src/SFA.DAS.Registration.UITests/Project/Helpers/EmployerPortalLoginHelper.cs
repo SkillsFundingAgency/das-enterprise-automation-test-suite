@@ -8,12 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         protected readonly ObjectContext objectContext;
         protected readonly LoginCredentialsHelper loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             objectContext = context.Get<ObjectContext>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
@@ -34,7 +36,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            objectContext.SetAccountId(homePage.AccountId());
+            (string accountId, string hashedAccountId) = _registrationSqlDataHelper.GetAccountIds(loginUser.Username);
+
+            objectContext.SetHashedAccountId(hashedAccountId);
+
+            objectContext.SetDBAccountId(accountId);
 
             return homePage;
         }

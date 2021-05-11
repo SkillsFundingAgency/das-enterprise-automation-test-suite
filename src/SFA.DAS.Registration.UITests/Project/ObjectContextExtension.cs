@@ -8,7 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project
     {
         #region Constants
         private static string UserCredsKey(int index) => $"usercreds_{index}";
-        private const string AccountIdKey = "accountid";
+        private const string HashedAccountIdKey = "hashedaccountid";
+        private const string DbAccountIdKey = "dbaccountid";
         private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
@@ -27,7 +28,8 @@ namespace SFA.DAS.Registration.UITests.Project
             objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
-        internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
+        internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);
+        internal static void SetDBAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(DbAccountIdKey, accountid);
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);
@@ -39,7 +41,13 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
         internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
             objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
-        internal static void UdpateUserCreds(this ObjectContext objectContext, string accountid, int index) => objectContext.Get<UserCreds>(UserCredsKey(index)).Accountid = accountid;
+
+        internal static void UpdateUserCreds(this ObjectContext objectContext, string accountid, string hashedaccountid, int index)
+        {
+            var usercreds = objectContext.Get<UserCreds>(UserCredsKey(index));
+            usercreds.Accountid = accountid;
+            usercreds.HashedAccountid = hashedaccountid;
+        }
 
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
@@ -48,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetAdditionalOrganisationAddedName(this ObjectContext objectContext) => objectContext.Get(AdditionalOrganisationAddedNameKey);
         public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
-        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
+        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
         internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserObject);
         internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);
     }

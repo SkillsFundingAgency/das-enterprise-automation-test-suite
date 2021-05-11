@@ -12,16 +12,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public (string legalName, string tradingName) GetProviderData(long providerId)
         {
-            var query = $"select LegalName, TradingName from Organisations where UKPRN = {providerId}";
-            List<object[]> providerData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.RoatpDatabaseConnectionString);
+            var providerData = GetData($"select LegalName, TradingName from Organisations where UKPRN = {providerId}", _dbConfig.RoatpDatabaseConnectionString, 2);
 
-            var legalName = providerData[0][0].ToString();
-            var tradingName = providerData[0][1].ToString();
-
-            if (providerData.Count == 0)
-                return (string.Empty, string.Empty);
-            else
-                return (legalName, tradingName);
+            return (providerData[0], providerData[1]);
         }
 
         public (long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate) GetEmployerData()
@@ -34,17 +27,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "WHERE IsApproved in (0, 1) and IsDeleted = 0 and AccountLegalEntityId is not null and AccountLegalEntities.Deleted is null and TrainingCode NOT like '%-%'" +
                 "ORDER BY NEWID()";
 
-            List<object[]> apprenticeData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.CommitmentsDbConnectionString);
+            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 9);
 
-            var accountid = apprenticeData[0][0].ToString();
-            var apprenticeshipid = apprenticeData[0][1].ToString();
-            var apprenticeFirstName = apprenticeData[0][2].ToString();
-            var apprenticeLastName = apprenticeData[0][3].ToString();
-            var apprenticeTrainingName = apprenticeData[0][4].ToString();
-            var apprenticelegalEntityId = apprenticeData[0][5].ToString();
-            var apprenticeProviderId = apprenticeData[0][6].ToString();
-            var startDate = apprenticeData[0][7].ToString();
-            var endDate = apprenticeData[0][8].ToString();
+            var accountid = apprenticeData[0];
+            var apprenticeshipid = apprenticeData[1];
+            var apprenticeFirstName = apprenticeData[2];
+            var apprenticeLastName = apprenticeData[3];
+            var apprenticeTrainingName = apprenticeData[4];
+            var apprenticelegalEntityId = apprenticeData[5];
+            var apprenticeProviderId = apprenticeData[6];
+            var startDate = apprenticeData[7];
+            var endDate = apprenticeData[8];
 
             List<object[]> empNameData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountid}", connectionString);
 

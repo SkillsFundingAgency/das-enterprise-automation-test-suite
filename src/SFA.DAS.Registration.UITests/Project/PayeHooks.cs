@@ -87,6 +87,22 @@ namespace SFA.DAS.Registration.UITests.Project
             _loginCredentialsHelper.SetIsLevy();
         }
 
+        [AfterScenario(Order = 20)]
+        public void SetAccountId()
+        {
+            if (!_isAddPayeDetails) { return; }
+
+            _tryCatch.AfterScenarioException(() =>
+            {
+                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
+
+                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
+
+                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
+            });
+
+        }
+
         [AfterScenario(Order = 21)]
         public void DeletePayeDetails()
         {

@@ -50,7 +50,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private string OrganisationsCriminalAndComplianceChecks_8 => "Initial Teacher Training accreditation";
         private string OrganisationsCriminalAndComplianceChecks_9 => "Removed from any charity register";
         private string OrganisationsCriminalAndComplianceChecks_10 => "Investigated due to safeguarding issues";
-        private string OrganisationsCriminalAndComplianceChecks_11 => "Investigated due to whistleblowing issues";
+        private string OrganisationsCriminalAndComplianceChecks_11 => "Investigated by the ESFA or other public body or regulator";
         private string OrganisationsCriminalAndComplianceChecks_12 => "Insolvency or winding up proceedings";
         #endregion
 
@@ -65,6 +65,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private string PeopleInControlsCriminalAndComplianceChecks_7 => "Breached tax payments or social security contributions";
         private string PeopleInControlsCriminalAndComplianceChecks_8 => "Register of Removed Trustees";
         private string PeopleInControlsCriminalAndComplianceChecks_9 => "Been made bankrupt";
+        private string PeopleInControlsCriminalAndComplianceChecks_10 => "Prohibition order from Teaching Regulation Agency";
+        private string PeopleInControlsCriminalAndComplianceChecks_11 => "Ban from management or governance of schools";
         #endregion
 
         #region Section-7

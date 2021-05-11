@@ -179,7 +179,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
         {
             _email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _loginCredentialsHelper.GetLoginCredentials().Username;
-            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountId(_email));
+            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
 
             return _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()

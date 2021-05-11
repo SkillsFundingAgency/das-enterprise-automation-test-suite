@@ -6,15 +6,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCriminalAndComplianceChecks
 {
-    public class InvestigatedDuetoWhistleBlowingIssuesCheckPage : RoatpGateWayBasePage
+    public class InvestigatedByESFAorOtherPublicBodyPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Investigated due to whistleblowing issues in the last 3 months check";
+        protected override string PageTitle => "Investigated by the ESFA or other public body or regulator check";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public InvestigatedDuetoWhistleBlowingIssuesCheckPage(ScenarioContext context) : base(context)
+        public InvestigatedByESFAorOtherPublicBodyPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"the apprentice can reset password using the invitation")]
-        public void ThenTheApprenticeCanResetPasswordUsingTheInvitation() => appreticeCommitmentsStepsHelper.ResetPassword();
+        public void ThenTheApprenticeCanResetPasswordUsingTheInvitation() => appreticeCommitmentsStepsHelper.ResetPassword().SignInToApprenticePortal();
 
         [Then(@"an error is shown for invalid reset passwords")]
         public void ThenAnErrorIsShownForInvalidResetPasswords()

@@ -32,7 +32,7 @@ Scenario: RP_ChangeRoute01B_Company MainToSupporting and SupportingToEmployer
 @roatpapplychangeroute
 @regression
 Scenario: RP_ChangeRoute01C_Company SupportingToMain 
-    Given the provider initates an application as supporting route
+    Given the provider initates an application as Supporting Provider Route
 	When the provider completes Your organisation section for supporting route org type company
 	Then the provider should be able to change route to Main 
 	And the provider should be able to verify the Main route flow
