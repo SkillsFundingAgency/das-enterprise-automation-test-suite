@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class WhichEmployerAreYouConnectingWithPage : ApprovalsBasePage
+    public class WhichEmployerAreYouConnectingWithPage : TransfersBasePage
     {
         protected override string PageTitle => "Which employer are you connecting with?";
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public WhichEmployerAreYouConnectingWithPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ConfirmConnectionDetailsPage ConnectWithReceivingEmployer(string receiverAccountId)
+        public ConfirmConnectionDetailsPage ConnectWithReceivingEmployer(string receiverAccountId)
         {
             formCompletionHelper.EnterText(ReceivingEmployer, receiverAccountId);
             Continue();

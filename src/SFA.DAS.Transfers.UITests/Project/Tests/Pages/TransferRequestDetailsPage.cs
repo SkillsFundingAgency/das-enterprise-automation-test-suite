@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferRequestDetailsPage : ApprovalsBasePage
+    public class TransferRequestDetailsPage : TransfersBasePage
     {
         protected override string PageTitle => "Transfer request details";
 

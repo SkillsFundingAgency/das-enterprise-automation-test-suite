@@ -2,7 +2,7 @@
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
     public class FinancePage : InterimFinanceHomePage
     {
@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
-        internal TransfersPage OpenTransfers()
+        public TransfersPage OpenTransfers()
         {
             formCompletionHelper.ClickElement(TransferLink);
             return new TransfersPage(_context);

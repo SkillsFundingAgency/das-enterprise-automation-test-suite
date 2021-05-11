@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_TR_01_TransfersApprovalJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_TR_01_TransfersApprovalJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("TR_01_TransfersApprovalJourney")]
+    [NUnit.Framework.CategoryAttribute("transfers")]
+    public partial class TR_01_TransfersApprovalJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "approvals"};
+                "transfers"};
         
-#line 1 "AP_TR_01_TransfersApprovalJourney.feature"
+#line 1 "TR_01_TransfersApprovalJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
+                        "transfers"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,13 +77,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_TR_01 Transfers - Creating a Cohort and Approve by all 3 parties")]
+        [NUnit.Framework.DescriptionAttribute("TR_01 Transfers - Creating a Cohort and Approve by all 3 parties")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("transfersfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
-        public virtual void AP_TR_01Transfers_CreatingACohortAndApproveByAll3Parties()
+        public virtual void TR_01Transfers_CreatingACohortAndApproveByAll3Parties()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -92,7 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
                     "transfersfunds",
                     "selectstandardcourse"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_01 Transfers - Creating a Cohort and Approve by all 3 parties", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_01 Transfers - Creating a Cohort and Approve by all 3 parties", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -1,0 +1,92 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>SFA.DAS.Transfers.UITests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="89.0.4389.2300" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
+		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="SFA.DAS.Transfers.UITests.runtimeconfig.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.Environment.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.Project.BrowserStack.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.Project.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="specflow.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\TR_01_TransfersApprovalJourney.feature.cs">
+	    <DependentUpon>TR_01_TransfersApprovalJourney.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TR_02_TransfersApprovalJourney.feature.cs">
+	    <DependentUpon>TR_02_TransfersApprovalJourney.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TR_03_TransfersApprovalJourney.feature.cs">
+	    <DependentUpon>TR_03_TransfersApprovalJourney.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TR_04_TransfersConnectionJourney.feature.cs">
+	    <DependentUpon>TR_04_TransfersConnectionJourney.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TR_05_TransfersStatusJourney.feature.cs">
+	    <DependentUpon>TR_05_TransfersStatusJourney.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_01_TransfersApprovalJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_02_TransfersApprovalJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_03_TransfersApprovalJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_TransfersConnectionJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_05_TransfersStatusJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	</ItemGroup>
+
+</Project>

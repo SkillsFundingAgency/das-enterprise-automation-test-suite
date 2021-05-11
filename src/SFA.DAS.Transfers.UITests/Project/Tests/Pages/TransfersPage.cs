@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransfersPage : ApprovalsBasePage
+    public class TransfersPage : TransfersBasePage
     {
         protected override string PageTitle => "Transfers";
 
@@ -18,12 +19,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By YourTransferConnectionsRows => By.CssSelector("tbody tr");
         private By DetailsLink => By.LinkText("Details");
 
-        public TransfersPage(ScenarioContext context): base(context) => _context = context;
+        public TransfersPage(ScenarioContext context) : base(context) => _context = context;
 
         public ConnectWithReceivingEmployerPage ConnectWithReceivingEmployer()
         {
             formCompletionHelper.ClickElement(ConnectToReceivingEmployer);
-                return new ConnectWithReceivingEmployerPage(_context);
+            return new ConnectWithReceivingEmployerPage(_context);
         }
 
         public TransferConnectionRequestDetailsPage ViewTransferConnectionRequestDetails(string sender)
@@ -34,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
-                if ((transferRequestRow.Text.Contains($"{sender.ToUpper()} Pending")))
+                if (transferRequestRow.Text.Contains($"{sender.ToUpper()} Pending"))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
                     return new TransferConnectionRequestDetailsPage(_context);
@@ -44,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             throw new Exception("Could not find pending transfer request from " + sender);
         }
 
-        public bool CheckTransferConnectionStatus(String Employer)
+        public bool CheckTransferConnectionStatus(string Employer)
         {
             if (pageInteractionHelper.IsElementDisplayed(YourTransferConnectionsRows))
             {
@@ -52,8 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
                 foreach (IWebElement transferRequestRow in transferRequestRows)
                 {
-                    if ((transferRequestRow.Text.ToUpper().Contains(Employer.ToUpper()))
-                        && (transferRequestRow.Text.Contains("Approved")))
+                    if (transferRequestRow.Text.ToUpper().Contains(Employer.ToUpper())
+                        && transferRequestRow.Text.Contains("Approved"))
                     {
                         return true;
                     }
@@ -62,11 +63,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return false;
         }
 
-        internal TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
+        public TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
         {
             var receivingEmployer = transfersConfig.ReceiverOrganisationName;
             var cohortTotalCost = objectContext.GetApprenticeTotalCost();
-            
+
             var transferRequestRows = pageInteractionHelper.FindElements(YourTransferConnectionsRows).Reverse<IWebElement>();
             var transferRequestDetailsLinks = pageInteractionHelper.FindElements(By.PartialLinkText("Details"));
 
@@ -74,9 +75,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
-                if ((transferRequestRow.Text.ToUpper().Contains(receivingEmployer.ToUpper()))
-                    && ((transferRequestRow.Text.Contains("Pending"))
-                    && (transferRequestRow.Text.Contains(cohortTotalCost))))
+                if (transferRequestRow.Text.ToUpper().Contains(receivingEmployer.ToUpper())
+                    && transferRequestRow.Text.Contains("Pending")
+                    && transferRequestRow.Text.Contains(cohortTotalCost))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
                     return new TransferRequestDetailsPage(_context);

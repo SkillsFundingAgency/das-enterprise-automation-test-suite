@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
+        public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
             formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, "Yes, I will use transfer funds from ESFA LTD");
             Continue();

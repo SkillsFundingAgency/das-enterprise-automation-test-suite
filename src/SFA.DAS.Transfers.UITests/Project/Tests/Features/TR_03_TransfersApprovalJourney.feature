@@ -1,5 +1,5 @@
-﻿@approvals
-Feature: AP_TR_03_TransfersApprovalJourney
+﻿@transfers
+Feature: TR_03_TransfersApprovalJourney
 
 @CV-487
 @inprogress
@@ -7,7 +7,7 @@ Feature: AP_TR_03_TransfersApprovalJourney
 @liveapprentice
 @transfersfunds
 @selectstandardcourse
-Scenario: AP_TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
+Scenario: TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
 	Given Receiver sends an approved cohort to the provider
 	When Provider approves the cohort
 	And Sender rejects the cohort

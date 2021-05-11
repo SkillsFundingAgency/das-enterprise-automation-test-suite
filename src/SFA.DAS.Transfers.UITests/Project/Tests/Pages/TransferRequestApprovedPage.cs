@@ -1,10 +1,10 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
     public class TransferRequestApprovedPage : TransferRequest
     {
-        public TransferRequestApprovedPage(ScenarioContext context): base(context) { }
+        public TransferRequestApprovedPage(ScenarioContext context) : base(context) { }
 
         protected override string PageTitle => "Transfer request approved";
     }

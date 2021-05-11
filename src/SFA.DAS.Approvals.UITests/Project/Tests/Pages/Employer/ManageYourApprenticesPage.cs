@@ -62,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ManageYourApprenticesPage(_context);
         }
 
-        internal void VerifyApprenticeExists()
+        public void VerifyApprenticeExists()
         {
             pageInteractionHelper.Verify(() =>
             {

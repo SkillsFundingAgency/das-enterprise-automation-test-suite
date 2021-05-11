@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferConnectionRequestDetailsPage : ApprovalsBasePage
+    public class TransferConnectionRequestDetailsPage : TransfersBasePage
     {
         protected override string PageTitle => "Connection request details";
-        
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -16,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public TransferConnectionRequestDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ConnectionConfirmedPage AcceptTransferConnectionRequest()
+        public ConnectionConfirmedPage AcceptTransferConnectionRequest()
         {
             formCompletionHelper.SelectRadioOptionByText(DoYouWishToConnectToThisEmpoyerOptions, "Yes, I want to approve the connection request");
             Continue();

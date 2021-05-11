@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_TR_05_TransfersStatusJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_TR_05_TransfersStatusJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("TR_02_TransfersApprovalJourney")]
+    [NUnit.Framework.CategoryAttribute("transfers")]
+    public partial class TR_02_TransfersApprovalJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "approvals"};
+                "transfers"};
         
-#line 1 "AP_TR_05_TransfersStatusJourney.feature"
+#line 1 "TR_02_TransfersApprovalJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_TR_05_TransfersStatusJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_02_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
+                        "transfers"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,17 +77,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_TR_05_01 Transfers - Verify transfer status when agreement is not signed")]
+        [NUnit.Framework.DescriptionAttribute("TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approva" +
+            "l by provider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        public virtual void AP_TR_05_01Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        [NUnit.Framework.CategoryAttribute("transfersfunds")]
+        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
+        public virtual void TR_02Transfers_CreatingCohortAndApproveByAll3PartiesAndSecondApprovalByProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfersscenarios"};
+                    "transfersscenarios",
+                    "liveapprentice",
+                    "transfersfunds",
+                    "selectstandardcourse"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_05_01 Transfers - Verify transfer status when agreement is not signed", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approva" +
+                    "l by provider", null, tagsOfScenario, argumentsOfScenario);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -107,52 +115,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("We have a Sender with sufficient levy funds without signing an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+ testRunner.Given("Receiver sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.Then("the sender transfer status is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_TR_05_02 Transfers - Verify transfer status when agreement is signed")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        public virtual void AP_TR_05_02Transfers_VerifyTransferStatusWhenAgreementIsSigned()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "transfersscenarios"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_05_02 Transfers - Verify transfer status when agreement is signed", null, tagsOfScenario, argumentsOfScenario);
 #line 12
-this.ScenarioInitialize(scenarioInfo);
+ testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
 #line 13
- testRunner.Given("We have a Sender with sufficient levy funds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 14
- testRunner.Then("the sender transfer status is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

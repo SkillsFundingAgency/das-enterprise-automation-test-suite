@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class ConfirmConnectionDetailsPage : ApprovalsBasePage
+    public class ConfirmConnectionDetailsPage : TransfersBasePage
     {
         protected override string PageTitle => "Confirm details";
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.CssSelector(".button");
 
         private By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".selection-button-radio");
-        
+
         public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public RequestSentConfirmPage SendTransferConnectionRequest()
