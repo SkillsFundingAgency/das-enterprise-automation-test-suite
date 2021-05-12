@@ -47,45 +47,4 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\TR_01_TransfersApprovalJourney.feature.cs">
-	    <DependentUpon>TR_01_TransfersApprovalJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_02_TransfersApprovalJourney.feature.cs">
-	    <DependentUpon>TR_02_TransfersApprovalJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_03_TransfersApprovalJourney.feature.cs">
-	    <DependentUpon>TR_03_TransfersApprovalJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_04_TransfersConnectionJourney.feature.cs">
-	    <DependentUpon>TR_04_TransfersConnectionJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_05_TransfersStatusJourney.feature.cs">
-	    <DependentUpon>TR_05_TransfersStatusJourney.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_01_TransfersApprovalJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_02_TransfersApprovalJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_03_TransfersApprovalJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_TransfersConnectionJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_05_TransfersStatusJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	</ItemGroup>
-
 </Project>
