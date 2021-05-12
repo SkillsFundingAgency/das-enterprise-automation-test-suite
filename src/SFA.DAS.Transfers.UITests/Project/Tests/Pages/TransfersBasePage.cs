@@ -1,9 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
