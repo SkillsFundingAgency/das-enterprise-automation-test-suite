@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ReviewChangesPage : ApprovalsBasePage
+    public class ApprenticeshipUpdateReviewChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Review changes";
         
@@ -11,14 +11,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public ReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeshipUpdateReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
-        private By ConfirmChangesOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector("#submit-rev-change, #submit-req-changes");
+        private By ConfirmChangesOptions => By.CssSelector(".govuk-radios__input");
+        protected override By ContinueButton => By.CssSelector("#continue-button");
 
         public EditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmChangesOptions, "changes-approve-true");
+            formCompletionHelper.SelectRadioOptionByLocator(By.CssSelector("#ApproveChanges"));
             Continue();
             return new EditedApprenticeDetailsPage(_context);
         }

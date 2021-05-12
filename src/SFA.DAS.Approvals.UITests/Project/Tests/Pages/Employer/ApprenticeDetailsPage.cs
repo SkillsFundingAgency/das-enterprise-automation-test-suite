@@ -40,6 +40,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ReviewChangesPage(_context);
         }
 
+        public ApprenticeshipUpdateReviewChangesPage ClickApprenticeshipUpdateReviewChanges()
+        {
+            formCompletionHelper.ClickElement(ReviewChangesLink);
+            return new ApprenticeshipUpdateReviewChangesPage(_context);
+        }
+
         public ChangeApprenticeStatusPage ClickEditStatusLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeStatusLink);

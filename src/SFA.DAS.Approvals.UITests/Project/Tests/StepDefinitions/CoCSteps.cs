@@ -123,7 +123,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
         {
             var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
+            _employerStepsHelper.ApproveApprenticeshipUpdateChangesAndSubmit(apprenticeDetails);
         }
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
@@ -207,7 +207,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper
                 .GoToManageYourApprenticesPage()
                     .SelectViewCurrentApprenticeDetails()
-                    .ClickReviewChanges()
+                    .ClickApprenticeshipUpdateReviewChanges()
                     .SelectApproveChangesAndSubmit();
 
             _dataHelper.UpdateCurrentApprenticeName(_editedApprenticeDataHelper.ApprenticeEditedFirstname, _editedApprenticeDataHelper.ApprenticeEditedLastname);
