@@ -8,7 +8,19 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public MultipleAccountsLoginHelper(ScenarioContext context) : base(context) => _context = context;
+        public string OrganisationName { get; set; }
+
+        public MultipleAccountsLoginHelper(ScenarioContext context, MultipleAccountUser multipleAccountUser) : base(context)
+        {
+            _context = context;
+
+            OrganisationName = multipleAccountUser.OrganisationName;
+        }
+
+        protected override void SetLoginCredentials(LoginUser loginUser, bool isLevy)
+        {
+            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, OrganisationName, isLevy); 
+        }
 
         protected override HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
     }

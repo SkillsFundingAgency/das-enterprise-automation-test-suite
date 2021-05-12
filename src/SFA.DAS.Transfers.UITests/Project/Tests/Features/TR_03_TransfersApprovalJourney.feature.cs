@@ -79,25 +79,17 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 p" +
             "arties")]
-        [NUnit.Framework.CategoryAttribute("CV-487")]
-        [NUnit.Framework.CategoryAttribute("inprogress")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        [NUnit.Framework.CategoryAttribute("transfersfunds")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void TR_03Transfers_CreatingCohortRejectedBySenderAndThenApprovedByAll3Parties()
         {
             string[] tagsOfScenario = new string[] {
-                    "CV-487",
-                    "inprogress",
-                    "transfersscenarios",
                     "liveapprentice",
-                    "transfersfunds",
                     "selectstandardcourse"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 p" +
                     "arties", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -117,37 +109,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 7
  testRunner.Given("Receiver sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 8
  testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 9
  testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 10
  testRunner.And("Receiver edits and sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 11
  testRunner.And("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 12
  testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 13
  testRunner.When("Receiver sends a cohort to the provider for review and approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 14
  testRunner.And("Provider approves the cohort and sends to recevier for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 15
  testRunner.And("Receiver approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 16
  testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 17
  testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

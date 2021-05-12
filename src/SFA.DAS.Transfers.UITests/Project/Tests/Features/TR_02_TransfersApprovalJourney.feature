@@ -2,9 +2,7 @@
 Feature: TR_02_TransfersApprovalJourney
 
 @regression
-@transfersscenarios
 @liveapprentice
-@transfersfunds
 @selectstandardcourse
 Scenario: TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approval by provider
 	Given Receiver sends an approved cohort to the provider

@@ -2,7 +2,6 @@
 Feature: TR_04_TransfersConnectionJourney
 
 @regression
-@transfersscenarios
 @addtransferslevyfunds
 @addanothernonlevypayedetails
 Scenario: TR_04 Transfers - Creating Transfer Connection between Sender and Receiver

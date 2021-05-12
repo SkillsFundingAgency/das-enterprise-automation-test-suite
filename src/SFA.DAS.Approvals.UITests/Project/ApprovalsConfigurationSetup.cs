@@ -30,17 +30,11 @@ namespace SFA.DAS.Approvals.UITests.Project
             var pppfconfig = _configSection.GetConfigSection<PerfTestProviderPermissionsConfig>();
             _context.SetPerfTestProviderPermissionsConfig(pppfconfig);
 
-            var transferUser = _configSection.GetConfigSection<TransfersUser>();
-            _context.SetUser(transferUser);
-
             var agreementNotSignedTransfersUser = _configSection.GetConfigSection<AgreementNotSignedTransfersUser>();
             _context.SetUser(agreementNotSignedTransfersUser);
 
             var providerPermissionLevyUser = _configSection.GetConfigSection<ProviderPermissionLevyUser>();
             _context.SetUser(providerPermissionLevyUser);
-
-            var transfersConfig = _configSection.GetConfigSection<TransfersConfig>();
-            _context.SetTransfersConfig(transfersConfig);
 
             var changeOfPartyConfig = _configSection.GetConfigSection<ChangeOfPartyConfig>();
             _context.SetChangeOfPartyConfig(changeOfPartyConfig);

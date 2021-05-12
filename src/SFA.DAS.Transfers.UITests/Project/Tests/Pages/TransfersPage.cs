@@ -65,7 +65,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         public TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
         {
-            var receivingEmployer = transfersConfig.ReceiverOrganisationName;
+            var receivingEmployer = transfersUser.SecondOrganisationName;
             var cohortTotalCost = objectContext.GetApprenticeTotalCost();
 
             var transferRequestRows = pageInteractionHelper.FindElements(YourTransferConnectionsRows).Reverse<IWebElement>();

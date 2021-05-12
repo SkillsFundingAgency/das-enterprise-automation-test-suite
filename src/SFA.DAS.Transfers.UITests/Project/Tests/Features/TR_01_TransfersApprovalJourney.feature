@@ -2,9 +2,7 @@
 Feature: TR_01_TransfersApprovalJourney
 
 @regression
-@transfersscenarios
 @liveapprentice
-@transfersfunds
 @selectstandardcourse
 Scenario: TR_01 Transfers - Creating a Cohort and Approve by all 3 parties
 	Given Receiver sends a cohort to the provider for review and approval

@@ -1,10 +1,7 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using NUnit.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
@@ -21,28 +18,25 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ObjectContext _objectContext;
-        private readonly ApprovalsStepsHelper _approvalsStepsHelper;
         private readonly TransfersEmployerStepsHelper _employerStepsHelper;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
+        private readonly TransfersUser _transfersUser;
         private HomePage _homePage;
-        private string _senderAccountId;
-        private string _recieverAccountId;
+
         private readonly string _sender;
         private readonly string _receiver;
 
         public TransfersSteps(ScenarioContext context)
         {
             _context = context;
-            _sender = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
-            _receiver = context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
+            _transfersUser = context.GetUser<TransfersUser>();
+            _sender = _transfersUser.OrganisationName;
+            _receiver = _transfersUser.SecondOrganisationName;
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _transfersUser);
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new TransfersEmployerStepsHelper(context);
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
-            _approvalsStepsHelper = new ApprovalsStepsHelper(context);
-            _senderAccountId = null;
-            _recieverAccountId = null;
         }
 
         [Given(@"We have a Sender with sufficient levy funds")]
@@ -51,51 +45,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Given(@"We have a Sender with sufficient levy funds without signing an agreement")]
         public void GivenWeHaveASenderWithSufficientLevyFundsWithoutSigningAnAgreement()
         {
-            _objectContext.UpdateOrganisationName(_sender);
-
             _homePage = _employerPortalLoginHelper.Login(_context.GetUser<AgreementNotSignedTransfersUser>(), true);
-        }
-
-        [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
-        public void GivenWeHaveANewSenderWithSufficientLevyFundsAndANewReceiverAccountsSetup()
-        {
-            _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
-
-            _senderAccountId = _objectContext.GetAccountId();
-
-            _objectContext.UpdateOrganisationName(_receiver);
-
-            _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
-
-            _recieverAccountId = _objectContext.GetReceiverAccountId();
-        }
-
-        [When(@"Sender connects to Receiver")]
-        public void WhenSenderConnectsToReceiver()
-        {
-            //Sender connects to receiver 
-            _objectContext.UpdateOrganisationName(_sender);
-            _homePage.GoToYourAccountsPage()
-              .GoToHomePage(_sender);
-
-            _homePage = new FinancePage(_context, true)
-                .OpenTransfers()
-                .ConnectWithReceivingEmployer()
-                .ContinueToConnectWithReceiver()
-                .ConnectWithReceivingEmployer(_objectContext.GetPublicReceiverAccountId())
-                .SendTransferConnectionRequest()
-                .GoToHomePage();
-
-            //Receiver accepts the conneciton
-            _objectContext.UpdateOrganisationName(_receiver);
-            _homePage.GoToYourAccountsPage()
-                 .GoToHomePage(_receiver);
-
-            _homePage = new FinancePage(_context, true)
-                .OpenTransfers()
-                .ViewTransferConnectionRequestDetails(_sender)
-                .AcceptTransferConnectionRequest()
-                .GoToHomePage();
         }
 
         [Then(@"the sender transfer status is (disabled|enabled)")]
@@ -104,30 +54,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             var actualtransferStatus = _homePage.GoToYourOrganisationsAndAgreementsPage().GetTransfersStatus();
 
             Assert.IsTrue(actualtransferStatus.ContainsCompareCaseInsensitive(expectedtransferStatus), $"Expected {expectedtransferStatus}, Actual {actualtransferStatus}");
-        }
-
-        [Then(@"A transfer connection is established successfully")]
-        public void ThenATransferConnectionIsEstablishedSuccessfully()
-        {
-            _objectContext.UpdateOrganisationName(_sender);
-            _homePage.GoToYourAccountsPage()
-                .GoToHomePage(_sender);
-
-            bool senderAssertion = new FinancePage(_context, true)
-               .OpenTransfers()
-               .CheckTransferConnectionStatus(_receiver);
-
-            _objectContext.UpdateOrganisationName(_receiver);
-            _homePage.GoToYourAccountsPage()
-                .GoToHomePage(_receiver);
-
-            bool receiverAssertion = new FinancePage(_context, true)
-               .OpenTransfers()
-               .CheckTransferConnectionStatus(_sender);
-
-            if (!senderAssertion)
-                if (!receiverAssertion)
-                    throw new Exception($"We don't have an approved transfers connection between {_sender}({_senderAccountId}) and {_receiver}({_recieverAccountId})");
         }
 
         [Given(@"Receiver sends a cohort to the provider for review and approval")]
@@ -152,16 +78,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
 
         [When(@"Provider approves the cohort and sends to recevier for approval")]
-        public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval()
-        {
-            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
-        }
+        public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval() => _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
 
         [When(@"Provider adds an apprentices approves the cohort")]
-        public void WhenProviderAddsAnApprenticesApprovesTheCohort()
-        {
-            _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
-        }
+        public void WhenProviderAddsAnApprenticesApprovesTheCohort() => _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
 
         [When(@"Receiver edits and sends an approved cohort to the provider")]
         public void WhenReceiverEditsAndSendsAnApprovedCohortToTheProvider()
@@ -217,18 +137,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             manageYourApprenticePage.VerifyApprenticeExists();
         }
 
-        private void LoginAsReceiver()
-        {
-            _objectContext.UpdateOrganisationName(_receiver);
-            Login();
-        }
+        private void LoginAsReceiver() => Login(_receiver);
 
-        private void LoginAsSender()
-        {
-            _objectContext.UpdateOrganisationName(_sender);
-            Login();
-        }
+        private void LoginAsSender() => Login(_sender);
 
-        private void Login() => _homePage = _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
+        private void Login(string organisationName)
+        {
+            _multipleAccountsLoginHelper.OrganisationName = organisationName;
+
+            _homePage = _multipleAccountsLoginHelper.Login(_transfersUser, true);
+        }
     }
 }

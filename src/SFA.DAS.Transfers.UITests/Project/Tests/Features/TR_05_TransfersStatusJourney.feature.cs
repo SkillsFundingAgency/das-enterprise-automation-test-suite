@@ -21,14 +21,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_05_TransfersStatusJourney")]
-    [NUnit.Framework.CategoryAttribute("transfers")]
     public partial class TR_05_TransfersStatusJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "transfers"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "TR_05_TransfersStatusJourney.feature"
 #line hidden
@@ -37,8 +35,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_05_TransfersStatusJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "transfers"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_05_TransfersStatusJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,13 +75,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_01 Transfers - Verify transfer status when agreement is not signed")]
+        [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         public virtual void TR_05_01Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "transfersscenarios"};
+                    "transfers",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_01 Transfers - Verify transfer status when agreement is not signed", null, tagsOfScenario, argumentsOfScenario);
 #line 6
@@ -119,13 +116,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_02 Transfers - Verify transfer status when agreement is signed")]
+        [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         public virtual void TR_05_02Transfers_VerifyTransferStatusWhenAgreementIsSigned()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "transfersscenarios"};
+                    "transfers",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_02 Transfers - Verify transfer status when agreement is signed", null, tagsOfScenario, argumentsOfScenario);
 #line 12

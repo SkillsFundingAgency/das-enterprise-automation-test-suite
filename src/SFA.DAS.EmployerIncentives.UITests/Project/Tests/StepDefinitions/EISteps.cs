@@ -43,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _eILevyUser = _context.GetUser<EILevyUser>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _multipleAccountUser);
             _eINavigationHelper = new EINavigationHelper(_context);
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
@@ -54,9 +54,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerSwitchesToAnAccountWithoutApprentices()
         {
             var secondOrganisationName = _multipleAccountUser.SecondOrganisationName;
+
             var yourAccountPage = new HomePage(_context, true).GoToYourAccountsPage();
 
             _objectContext.UpdateOrganisationName(secondOrganisationName);
+
             yourAccountPage.GoToHomePage(secondOrganisationName);
         }
 
