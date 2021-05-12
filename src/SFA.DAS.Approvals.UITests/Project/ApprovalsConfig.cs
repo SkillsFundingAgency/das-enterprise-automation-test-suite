@@ -5,6 +5,5 @@
         public string ServiceBusConnectionString { get; set; }
         public string PublicSectorReportingConnectionString { get; set; }
         public string BulkUploadFileLocation { get; set; }
-        public string AnotherOrganisationName {get;set;}
     }
 }

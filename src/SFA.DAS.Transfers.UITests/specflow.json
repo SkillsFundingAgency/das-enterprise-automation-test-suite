@@ -10,7 +10,8 @@
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Approvals.UITests" },
-    { "assembly": "SFA.DAS.Registration.UITests" }
+    { "assembly": "SFA.DAS.Registration.UITests" },
+    { "assembly": "SFA.DAS.ProviderLogin.Service" }
   ],
   "generator": {
     "allowRowTests" : false
