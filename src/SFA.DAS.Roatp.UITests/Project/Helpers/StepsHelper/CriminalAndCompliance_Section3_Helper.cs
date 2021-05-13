@@ -21,11 +21,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectYesEnterInformationForContractWithdrawnWithPublicBody()
                 .SelectNoForWithdrawnFromAContractWithRoTo()
                 .SelectYesEnterInformationForFundingRemovedFromEducationBodiesAndContinue()
-                .SelectYesEnterInformationForFundingRemovedFromEducationBodies()
+                .SelectYesEnterInformationForRemovedFromProfessionalOrTradeRegisters()
                 .SelectYesEnterInformationForWithdrawlfromITTAccreditationAndContinue()
                 .SelectYesAndEnterInformationForRemovedFromCharityRegister()
                 .SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
-                .SelectYesEnterInformationForInvestigatedDueToWhistleBlowingAndContinue()
+                .SelectYesEnterInformationForInvestigatedbyESFAorPublicbodyAndContinue()
                 .SelectYesEnterInformationForSubjectToInsolvencyOrWindingUpProceedingsAndContinue()
                 .VerifyChecksOnYourOrganisations_Section3(StatusHelper.StatusCompleted);
         }
@@ -37,19 +37,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatusControl_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage )
         {
-            return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
-                .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
-                .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
-                .SelectYesEnterInformationForFraudOrIrregularities()
-                .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
-                .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
-                .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
-                .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
-                .SelectNo()
-                .SelectYesEnterInformationForBankruptAndContinue()
-                .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
+                return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
+               .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()
+               .SelectYesEnterInformationForFailedToPayBackFundAndContinue()
+               .SelectYesEnterInformationForFraudOrIrregularities()
+               .SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
+               .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
+               .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
+               .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+               .SelectNo()
+               .SelectYesEnterInformationForBankruptAndContinue()
+               .SelectYesEnterInformationForProhibitionOrderFromTeachingRegulationAgencyAndContinue()
+               .SelecNoForBanFromManagementOrGovernanceOfSchoolsAndContinue()
+               .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);             
         }
     }
 }

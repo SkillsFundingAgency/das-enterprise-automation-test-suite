@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             if (_context.ScenarioInfo.Tags.Contains("changeOfEmployer"))
             {
                 _objectContext.UpdateOrganisationName(_oldEmployer);
-                Login();
+                _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
             }
             else
             {
@@ -261,9 +261,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                               .ClickConfirmAndSend()
                               .VerifyAdditionalMessageOnConfirmationPage(finalMessage);
         }
-
-
-        private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {

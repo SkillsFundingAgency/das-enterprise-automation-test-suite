@@ -9,8 +9,7 @@
 Scenario Outline: RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement
 	Given levy declarations are added for the past 15 months with levypermonth as 10000
 	When an Employer Account with Company Type Org is created and agreement is Signed
-	Then add accountid to the test data
-	And ApprenticeshipEmployerType in Account table is marked as 1
+	Then ApprenticeshipEmployerType in Account table is marked as 1
 	
 
 	Examples: 

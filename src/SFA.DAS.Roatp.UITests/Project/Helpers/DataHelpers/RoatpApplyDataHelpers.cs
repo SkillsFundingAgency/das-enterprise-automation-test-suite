@@ -58,6 +58,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             NumberBetween1And23 = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 23);
             SignificantEventText = randomDataGenerator.GenerateRandomAlphabeticString(20);
             StandardIntendToDeliver = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ProhibitionOrderFromTeachingRegulationAgency = randomDataGenerator.GenerateRandomAlphabeticString(100);
             RandomMonth = randomDataGenerator.GenerateRandomMonth();
             RandomYear = randomDataGenerator.GenerateRandomDobYear();
         }
@@ -96,6 +97,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string WhosInControlContractWithdrawnWithPublicBody { get; }
         public string WhosInControlBreachTaxSocialSecurity { get; }
         public string WhosInControlBankruptInLastThreeYears { get; }
+        public string ProhibitionOrderFromTeachingRegulationAgency { get; }
         public string ManagingRelationshipWithEmployers { get; }
         public string OrganisationPromoteApprenticeships { get; }
         public string OrganisationProcessForInitialTraning { get; }
