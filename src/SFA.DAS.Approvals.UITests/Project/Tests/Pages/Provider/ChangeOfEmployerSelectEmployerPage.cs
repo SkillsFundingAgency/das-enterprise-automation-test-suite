@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -10,31 +9,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Choose a new employer";
 
-        private readonly AgreementIdSqlHelper _agreementIdSqlHelper;
-
         private readonly ScenarioContext _context;
 
-        private readonly string _newEmployerEmail;
-
-        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _agreementIdSqlHelper = context.Get<AgreementIdSqlHelper>();
-            _newEmployerEmail = context.GetUser<TransfersUser>().Username;
-        }
+        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context) => _context = context;
 
         public ChangeOfEmployerConfirmNewEmployerPage SelectNewEmployer()
         {
-            string _newEmployerName = _context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
+            var newEmployerUser = _context.GetUser<ChangeOfEmployerLevyUser>();
 
-            _newEmployerName = _newEmployerName.Substring(0, 10) + "%";
+            var newEmployerName = newEmployerUser.SecondOrganisationName.Substring(0, 10) + "%";
             
-            string agreementId = _agreementIdSqlHelper.GetAgreementId(_newEmployerEmail, _newEmployerName);
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
 
             tableRowHelper.SelectRowFromTable("Select", agreementId);
             
             return new ChangeOfEmployerConfirmNewEmployerPage(_context);
         }
-
     }
 }

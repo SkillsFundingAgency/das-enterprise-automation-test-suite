@@ -25,9 +25,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly ChangeOfEmployerLevyUser _changeOfEmployerLevyUser;
 
-        private readonly string _oldEmployer;
-        private readonly string _newEmployer;
+        private readonly string _oldEmployerName;
+        private readonly string _newEmployerName;
 
         public ChangeOfPartySteps(ScenarioContext context)
         {
@@ -37,9 +38,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
-            _oldEmployer = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
-            _newEmployer = context.GetTransfersConfig<TransfersConfig>().ReceiverOrganisationName;
+            _changeOfEmployerLevyUser = context.GetUser<ChangeOfEmployerLevyUser>();
+            _oldEmployerName = _changeOfEmployerLevyUser.OrganisationName;
+            _newEmployerName = _changeOfEmployerLevyUser.SecondOrganisationName;
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
+            
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
@@ -48,8 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             if (_context.ScenarioInfo.Tags.Contains("changeOfEmployer"))
             {
-                _objectContext.UpdateOrganisationName(_oldEmployer);
-                _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
+                _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
             }
             else
             {
@@ -95,7 +97,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new employer approves the cohort")]
         public void ThenNewEmployerApprovesTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_newEmployer);
+            _objectContext.UpdateOrganisationName(_newEmployerName);
             _employerStepsHelper.Approve();
         }
 
@@ -110,7 +112,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_newEmployer);
+            _objectContext.UpdateOrganisationName(_newEmployerName);
             _employerStepsHelper.Reject();
         }
 
@@ -170,7 +172,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Validate that old Employer cannot request CoP after successful CoE")]
         public void ThenValidateThatOldEmployerCannotRequestCoPAfterSuccessfulCoE()
         {
-            _objectContext.UpdateOrganisationName(_oldEmployer);
+            _objectContext.UpdateOrganisationName(_oldEmployerName);
 
             bool IsChangeOfProviderLinkDisplayed
               = _employerStepsHelper

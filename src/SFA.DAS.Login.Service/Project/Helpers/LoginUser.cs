@@ -22,7 +22,9 @@
 
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
-    public class TransfersUser : LoginUser { }
+    public class TransfersUser : MultipleAccountUser { }
+
+    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
     public class LevyUser : LoginUser { }
 
