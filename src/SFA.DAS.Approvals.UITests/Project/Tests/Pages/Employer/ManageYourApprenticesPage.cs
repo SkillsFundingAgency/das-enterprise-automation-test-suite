@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -16,14 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ApprenticeSearchField => By.Id("searchTerm");
         private By SearchButton => By.ClassName("das-search-form__button");
-        private By ApprenticesTable => By.CssSelector("table.govuk-table.das-table--responsive");
         private By SelectFilterDropdown => By.Id("selectedStatus");
         private By ApplyFilter => By.CssSelector("#main-content .govuk-button");
         private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
         private By NextPageLink => By.PartialLinkText("Next");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
-        private By ViewApprenticeFullName => By.PartialLinkText(apprenticeDataHelper.ApprenticeFullName);
-        private By Status => By.CssSelector("#main-content tbody tr td:nth-child(6)");
+        private By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
+        private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
         public ManageYourApprenticesPage(ScenarioContext context): base(context) => _context = context;
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
@@ -31,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
 
             var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
-            var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName);
+            var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName(apprenticeDataHelper.ApprenticeFullName));
 
             int i = 0;
             foreach (IWebElement apprenticeRow in apprenticeRows)
@@ -57,8 +55,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
-            formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
-            formCompletionHelper.ClickElement(SearchButton);
+            if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
+            {
+                formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
+                formCompletionHelper.ClickElement(SearchButton);
+            }
+
             return new ManageYourApprenticesPage(_context);
         }
 
@@ -66,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             pageInteractionHelper.Verify(() =>
             {
-                return pageInteractionHelper.FindElements(ApprenticesTable).Any();
+                return pageInteractionHelper.FindElements(ViewApprenticeFullName(editedApprenticeDataHelper.ApprenticeEditedFullName)).Any();
             }, () => SearchForApprentice(editedApprenticeDataHelper.ApprenticeEditedFullName));
         }
 
@@ -86,7 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
-        public string GetStatus() => pageInteractionHelper.GetText(Status);    
+        public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
     }
 }
 
