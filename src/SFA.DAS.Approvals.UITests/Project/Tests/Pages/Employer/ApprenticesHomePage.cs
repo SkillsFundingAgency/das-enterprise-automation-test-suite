@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ManageYourApprenticesPage(_context);
         }
 
-        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(_context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {
