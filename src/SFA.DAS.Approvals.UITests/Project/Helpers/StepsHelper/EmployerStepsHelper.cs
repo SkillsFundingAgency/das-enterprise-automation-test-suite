@@ -89,23 +89,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return employerReviewYourCohortPage;
         }
 
-        public void EmployerCreateCohortAndSendsToProvider(bool isTransfersFunds)
+        public void EmployerCreateCohortAndSendsToProvider()
         {
-            var cohortSentYourTrainingProviderPage = EmployerCreateCohort(isTransfersFunds);
+            var cohortSentYourTrainingProviderPage = EmployerCreateCohort();
             var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
             SetCohortReference(cohortReference);
         }
 
-        internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices, bool isTransfersFunds)
+        internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices)
         {
-            var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
+            var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices().SubmitValidApprenticeDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
-        public string EmployerApproveAndSendToProvider(int numberOfApprentices, bool isTransfersFunds = false)
+        public string EmployerApproveAndSendToProvider(int numberOfApprentices)
         {
-            var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices, isTransfersFunds);
+            var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices);
 
             return EmployerApproveAndSendToProvider(ReviewYourCohortPage);
         }
@@ -136,7 +136,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .NonLevyEmployerAddsApprentices();
         }
 
-        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
@@ -159,7 +159,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
             for (int i = 1; i <= numberOfApprentices; i++)
             {
-                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage, i, shouldConfirmOnlyStandardCoursesSelectable);
+                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, i, shouldConfirmOnlyStandardCoursesSelectable);
                 if (i < numberOfApprentices)
                 {
                     reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
@@ -238,27 +238,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .NewTrainingProviderWillAddThemLater()
                   .SelectYesAndContinue();
         }
-        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
+
+        protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
-            var addTrainingProviderDetailsPage = apprenticesHomePage
-                .AddAnApprentice()
-                .StartNowToAddTrainingProvider();
-            return ConfirmProviderDetailsAreCorrect(addTrainingProviderDetailsPage);
+            return addAnApprenitcePage.StartNowToAddTrainingProvider();
         }
 
-        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage, bool isTransfersFunds)
+        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
-            return isTransfersFunds == false ? ConfirmProviderDetailsAreCorrect(apprenticesHomePage) : ConfirmProviderDetailsAreCorrect(apprenticesHomePage
-                   .AddAnApprentice()
-                   .StartNowToCreateApprenticeViaTransfersFunds()
-                   .SelectYesIWantToUseTransferFunds());
-        }
+            var addAnApprenticePage = new ApprenticesHomePage(_context, true).AddAnApprentice();
 
-        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(AddTrainingProviderDetailsPage addTrainingProviderDetailsPage)
-        {
-            return addTrainingProviderDetailsPage
-                    .SubmitValidUkprn()
-                    .ConfirmProviderDetailsAreCorrect();
+            var addTrainingProviderDetailsPage = AddTrainingProviderDetails(addAnApprenticePage);
+
+            return addTrainingProviderDetailsPage.SubmitValidUkprn().ConfirmProviderDetailsAreCorrect();
         }
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
@@ -274,9 +266,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return employerReviewYourCohortPage;
         }
 
-        private CohortSentYourTrainingProviderPage EmployerCreateCohort(bool isTransfersFunds)
+        private CohortSentYourTrainingProviderPage EmployerCreateCohort()
         {
-            return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
+            return ConfirmProviderDetailsAreCorrect()
                .EmployerSendsToProviderToAddApprentices()
                .SendInstructionsToProviderForEmptyCohort();
         }

@@ -61,7 +61,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
         [Given(@"Receiver sends an approved cohort to the provider")]
@@ -69,7 +69,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1, true);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
