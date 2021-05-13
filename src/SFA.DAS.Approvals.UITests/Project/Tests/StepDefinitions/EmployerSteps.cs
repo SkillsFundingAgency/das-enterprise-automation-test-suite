@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Employer adds (\d) apprentices to current cohort")]
         public void EmployerAddsApprenticesToCurrentCohort(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
             var x = _reviewYourCohortPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(x);
@@ -138,14 +138,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void TheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
             var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 

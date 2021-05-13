@@ -30,9 +30,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
+        protected virtual void SetLoginCredentials(LoginUser loginUser, bool isLevy) 
+            => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName, isLevy);
+
         public HomePage Login(LoginUser loginUser, bool isLevy)
         {
-            loginCredentialsHelper.SetLoginCredentials(loginUser, isLevy);
+            SetLoginCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);
 

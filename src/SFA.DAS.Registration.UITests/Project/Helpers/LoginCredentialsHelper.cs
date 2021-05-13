@@ -12,15 +12,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public bool IsLevy { get; private set; }
 
-        internal void SetLoginCredentials(LoginUser loginUser, bool isLevy)
-        {
-            SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName);
-            IsLevy = isLevy;
-        }
-
-        internal void SetLoginCredentials(string username, string password, string organisationName)
+        internal void SetLoginCredentials(string username, string password, string organisationName, bool isLevy = false)
         {
             _objectContext.SetLoginCredentials(username, password, organisationName);
+
+            IsLevy = isLevy;
+            
             Reportusername(username);
         }
 

@@ -9,6 +9,22 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
     [TestFixture]
     public class LevyDeclarationsUnitTests
     {
+        [TestCase(2020, 04, 24, "19-20", "2020")]
+        [TestCase(2021, 04, 24, "20-21", "2021")]
+        [TestCase(2022, 04, 05, "20-21", "2021")]
+        [TestCase(2022, 04, 06, "21-22", "2022")]
+        [TestCase(2022, 04, 24, "21-22", "2022")]
+        public void GetPreviousTaxYearEnd(int year, int month, int date, string expectedduraration, string expectedyear)
+        {
+            (string actualduration, string actualyear) = LevyDeclarationDataHelper.GetPreviousTaxYearEnd(new DateTime(year, month, date));
+
+            Assert.Multiple(() => 
+            {
+                StringAssert.AreEqualIgnoringCase(expectedduraration, actualduration);
+                StringAssert.AreEqualIgnoringCase(expectedyear, actualyear);
+            });
+        }
+
         [TestCase(2018, 12, 24, "18-19")]
         [TestCase(2019, 03, 24, "18-19")]
         [TestCase(2019, 04, 24, "19-20")]
