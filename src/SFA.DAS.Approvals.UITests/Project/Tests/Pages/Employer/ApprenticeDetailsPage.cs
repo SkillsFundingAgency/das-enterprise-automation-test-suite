@@ -25,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By CompletionDate => By.Id("completionDate");
         private By changeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s");
+        private By ActionRequiredBox => By.CssSelector("p.govuk-notification-banner__heading");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -74,6 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
         public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
+        public string GetActionRequiredBanner() => pageInteractionHelper.GetText(ActionRequiredBox);
         
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {

@@ -264,7 +264,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the new employer.";
+            string expectedText = "You have made a change of provider request. It’s now with the new training provider for review.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
