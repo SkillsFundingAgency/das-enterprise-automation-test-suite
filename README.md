@@ -204,6 +204,7 @@ Please follow existing folder structure, folder name and file name so that it wo
 so you need to create a folder as ```"Registration_PP_Secrets"``` (without the quotes) under ```"%APPDATA%/Microsoft/UserSecrets"``` folder 
 	
 3. Create a file named ```"secrets.json"``` and replace only those values you want to keep it as secrets (you can copy the structure from ```"appsettings.Project.json"``` file under your respective project(s)).
+4. Project secrets and framework secrets can be found in the Automation Test Data (https://skillsfundingagency.atlassian.net/wiki/spaces/DAS/pages/1875574959/Automation+Test+Data) confluence page
 
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files under ```/Project/Tests/Features/``` folder using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
