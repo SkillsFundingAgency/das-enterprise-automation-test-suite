@@ -11,11 +11,33 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) TransferslevyFunds()
         {
+            (string duration, string year) = GetPreviousTaxYearEnd(DateTime.Now.Date);
+
             var table = GetTableHeader();
-            table.AddRow("19-20", "10", "72000", "99000", "2020-01-15");
-            table.AddRow("19-20", "11", "82000", "99000", "2020-02-15");
-            table.AddRow("19-20", "12", "92000", "99000", "2020-03-15");
+            table.AddRow(duration, "10", "72000", "99000", $"{year}-01-15");
+            table.AddRow(duration, "11", "82000", "99000", $"{year}-02-15");
+            table.AddRow(duration, "12", "92000", "99000", $"{year}-03-15");
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
+        }
+
+        public static (string, string) GetPreviousTaxYearEnd(DateTime dateTime)
+        {
+            int currentYear = dateTime.Year;
+            int previous2Year = currentYear - 2;
+            int previousYear = currentYear - 1;
+            int nextYear = currentYear + 1;
+
+
+            if ((dateTime >= new DateTime(currentYear, 4, 6).Date) && (dateTime <= new DateTime(nextYear, 4, 5).Date))
+            {
+                string duration = $"{TrimYear(previousYear)}-{TrimYear(currentYear)}";
+                return (duration, currentYear.ToString());
+            }
+            else
+            {
+                string duration = $"{TrimYear(previous2Year)}-{TrimYear(previousYear)}";
+                return (duration, previousYear.ToString());
+            }
         }
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds() => LevyFunds("15", "9999");
