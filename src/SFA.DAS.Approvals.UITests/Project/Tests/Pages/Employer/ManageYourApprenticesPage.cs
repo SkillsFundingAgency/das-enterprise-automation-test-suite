@@ -55,6 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
+            // Search bar will not be displayed if there are less than 10 apprentice in the table
             if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
             {
                 formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
