@@ -1,12 +1,10 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
