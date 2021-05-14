@@ -37,6 +37,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
         }
 
+
+        [When(@"the User goes through certifying an Apprentice as '([^']*)' who has enrolled for '(\d)' standard with '(\d)' version and '(\d)' options")]
+        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandardWithVersionAndOptions(string grade, int enrolledStandard, int version, int option)
+        {
+            
+        }
+
+
+
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
