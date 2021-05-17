@@ -58,7 +58,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can update organisation standards status to be live")]
         public void ThenTheAdminCanUpdateOrganisationStandardsStatusToBeLive()
         {
-            ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(ePAOAdminDataHelper.OrganisationEpaoId, ePAOAdminDataHelper.Standards);
+            ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(ePAOAdminDataHelper.OrganisationEpaoId, ePAOAdminDataHelper.StandardCode);
             
             organisationDetailsPage = organisationDetailsPage
                 .SelectStandards()

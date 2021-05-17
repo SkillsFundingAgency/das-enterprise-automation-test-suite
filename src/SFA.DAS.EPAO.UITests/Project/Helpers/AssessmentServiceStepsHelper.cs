@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             
             AS_DeclarationPage decPage;
 
-            if (enrolledStandard == "additional learning option" || enrolledStandard == "more than one")
+            if (enrolledStandard == "additional learning option" || enrolledStandard == "more than one" || enrolledStandard == "multiple")
                 decPage = whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
             else
                 decPage = whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
@@ -40,9 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             
         public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario)
         {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchPrivatelyFundedApprentice()
-
+            SearchApprentice("PrivatelyFundedApprentice")
                 .GoToWhichVersionPage(string.Empty)
                 .ClickConfirmInConfirmVersionPageNoOption()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
@@ -133,7 +131,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
-            if (grade == "Passed")
+            if (grade == "Passed" || grade == "pass")
             {
                 return new AS_SearchEmployerAddressPage(_context)
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()

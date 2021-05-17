@@ -10,11 +10,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
-        protected List<string> GetData(string query, int noOfvalues) => GetData(query, connectionString, noOfvalues);
+        protected List<string> GetData(string query, int noOfvalues, Dictionary<string, string> parameters = null) => GetData(query, connectionString, noOfvalues, parameters);
 
-        protected List<string> GetData(string query, string connectionstring, int noOfvalues)
+        protected List<string> GetData(string query, string connectionstring, int noOfvalues, Dictionary<string, string> parameters = null)
         {
-            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring);
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters);
 
             var returnItems = new List<string>();
 

@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private bool _permissionsSelected;
         private string _newUserEmailId;
-        
+
         public AssessmentServiceSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|EPAO Withdrawal User) is logged into Assessment Service Application")]
@@ -38,21 +38,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
 
-        [When(@"the User goes through certifying an Apprentice as '([^']*)' who has enrolled for '(\d)' standard with '(\d)' version and '(\d)' options")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandardWithVersionAndOptions(string grade, int enrolledStandard, int version, int option)
+        [When(@"the User goes through certifying an Apprentice as '(pass|fail)' who has enrolled for '(1|multiple)' standard with '(\d)' version and '(\d)' options")]
+        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandardWithVersionAndOptions(string grade, string enrolledStandard, int version, int option)
         {
+            var data = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress);
+
+            if (string.IsNullOrEmpty(data[0])) Assert.Fail("No test data found in the db");
+
+            ePAOAdminDataHelper.LearnerUln = data[0];
+            ePAOAdminDataHelper.StandardCode = data[1];
+            ePAOAdminDataHelper.FirstName = data[2];
+            ePAOAdminDataHelper.LastName = data[3];
             
+            objectContext.SetLearnerDetails(data[0], data[1], data[2], data[3]);
+
+            RecordAGrade(grade, enrolledStandard);
         }
-
-
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
-        {
-           var page = assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard);
-
-            page.ClickContinueInCheckAndSubmitAssessmentPage();
-        }
+        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard) => RecordAGrade(grade, enrolledStandard);
         
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
@@ -268,5 +272,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
+
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard).ClickContinueInCheckAndSubmitAssessmentPage();
+
     }
 }

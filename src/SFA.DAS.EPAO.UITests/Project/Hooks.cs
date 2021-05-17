@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -13,15 +13,18 @@ namespace SFA.DAS.EPAO.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly DbConfig _config;
         private readonly TryCatchExceptionHelper _tryCatch;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
+        private EPAOAdminCASqlDataHelper _ePAOAdminCASqlDataHelper;
         private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
         
         public Hooks(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             _config = context.Get<DbConfig>();
         }
@@ -37,6 +40,8 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _context.Set(_ePAOAdminSqlDataHelper);
 
+
+
             var r = _context.Get<RandomDataGenerator>();
 
             _context.Set(new EPAOAssesmentServiceDataHelper(r));
@@ -48,11 +53,15 @@ namespace SFA.DAS.EPAO.UITests.Project
             _ePAOAdminDataHelper = new EPAOAdminDataHelper(r);
 
             _context.Set(_ePAOAdminDataHelper);
+
+            _ePAOAdminCASqlDataHelper = new EPAOAdminCASqlDataHelper(_config, _context.ScenarioInfo.Tags);
+
+            _context.Set(_ePAOAdminCASqlDataHelper);
         }
 
         [BeforeScenario(Order = 33)]
         [Scope(Tag = "deleteorganisationstandards")]
-        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.StandardCode, _ePAOAdminDataHelper.OrganisationEpaoId);
 
         [BeforeScenario(Order = 34)]
         [Scope(Tag = "resetapplyuserorganisationid")]
@@ -70,5 +79,8 @@ namespace SFA.DAS.EPAO.UITests.Project
         [Scope(Tag = "makeorganisationlive")]
         public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
 
-   }
+        [AfterScenario(Order = 35)]
+        [Scope(Tag = "recordagrade")]
+        public void Recordagrade() => _tryCatch.AfterScenarioException(() => _ePAOAdminCASqlDataHelper.DeleteCertificate(_objectContext.GetLearnerULN(), _objectContext.GetLearnerStandardCode()));
+    }
 }

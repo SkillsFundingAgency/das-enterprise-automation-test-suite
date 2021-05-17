@@ -77,16 +77,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
         [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Opti" +
             "ons")]
         [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epao1standard1versionnooption")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version0option")]
         public virtual void EPAO_RG_CA_01A_CertifyAnApprenticeAsPass_1Standard_1Version_NoOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
-                    "assessmentservice",
+                    "recordagrade",
                     "regression",
-                    "epao1standard1versionnooption"};
+                    "epaoca1standard1version0option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Opti" +
                     "ons", null, tagsOfScenario, argumentsOfScenario);
@@ -114,8 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("the User goes through certifying an Apprentice as \'Passed\' who has enrolled for \'" +
-                        "1\' standard with \'1\' version and \'0\' options", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User goes through certifying an Apprentice as \'pass\' who has enrolled for \'1\'" +
+                        " standard with \'1\' version and \'0\' options", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +

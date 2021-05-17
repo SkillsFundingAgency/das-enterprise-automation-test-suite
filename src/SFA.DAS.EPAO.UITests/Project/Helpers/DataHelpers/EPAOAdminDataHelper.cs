@@ -16,9 +16,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             CompanyNumber = $"76{GetRandomNumber(6)}";
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
             FinancialAssesmentDueDate = DateTime.Today.AddDays(100);
+            LearnerUln = "7278214419";
+            StandardCode = "100";
         }
 
-        public string Standards => "100";
+        public string LoginEmailAddress { get; set; }
+
+        public string StandardCode { get; set; }
 
         public string StandardsName => "Transport planning technician";
 
@@ -32,13 +36,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string BatchSearch => "298";
 
-        public string LearnerUln => "7278214419";
+        public string LearnerUln { get; set; }
 
         public string DeleteIncorrectRecordUln => "1164786210";
 
-        public string FirstName { get; }
+        public string FirstName { get; set; }
 
-        public string LastName { get; }
+        public string LastName { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 
