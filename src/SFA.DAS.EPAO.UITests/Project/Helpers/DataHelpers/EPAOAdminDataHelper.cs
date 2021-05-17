@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
@@ -26,11 +27,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string OrganisationEpaoId => "EPA0008";
 
-        public string MakeLiveOrganisationEpaoId => "EPA0001";
+        public string MakeLiveOrganisationEpaoId => EnvironmentConfig.IsPPEnvironment ? "EPA0337" : "EPA0001";
 
         public string OrganisationUkprn => "10009931";
 
-        public string BatchSearch => "142";
+        public string BatchSearch => EnvironmentConfig.IsPPEnvironment ? "298" : "142";
 
         public string LearnerUln => "7278214419";
 
