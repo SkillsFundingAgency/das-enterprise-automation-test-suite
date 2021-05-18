@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
@@ -40,22 +41,30 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User certifies an Apprentice as '(pass|fail)' who has enrolled for '(1|multiple)' standard")]
         public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
-            var data = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress);
+            var leanerCriteria = _context.Get<LeanerCriteria>();
 
-            if (string.IsNullOrEmpty(data[0])) Assert.Fail("No test data found in the db");
+            var leanerDetails = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, leanerCriteria);
 
-            ePAOAdminDataHelper.LearnerUln = data[0];
-            ePAOAdminDataHelper.StandardCode = data[1];
-            ePAOAdminDataHelper.FirstName = data[2];
-            ePAOAdminDataHelper.LastName = data[3];
+            if (string.IsNullOrEmpty(leanerDetails[0])) Assert.Fail("No test data found in the db");
 
-            objectContext.SetLearnerDetails(data[0], data[1], data[2], data[3]);
+            ePAOAdminDataHelper.LearnerUln = leanerDetails[0];
+            ePAOAdminDataHelper.StandardCode = leanerDetails[1];
+            ePAOAdminDataHelper.StandardsName = leanerDetails[2];
+            ePAOAdminDataHelper.FirstName = leanerDetails[3];
+            ePAOAdminDataHelper.LastName = leanerDetails[4];
 
-            RecordAGrade(grade, enrolledStandard);
+            objectContext.SetLearnerDetails(leanerDetails[0], leanerDetails[1], leanerDetails[2], leanerDetails[3], leanerDetails[4]);
+
+            RecordAGrade(grade, enrolledStandard, leanerCriteria);
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard) => RecordAGrade(grade, enrolledStandard);
+        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
+        {
+            var leanerDetails = _context.Get<LeanerCriteria>();
+
+            RecordAGrade(grade, enrolledStandard, leanerDetails);
+        }
         
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
@@ -167,7 +176,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
         {
             GivenTheUserIsLoggedIntoAssessmentServiceApplication(user);
-            assessmentServiceStepsHelper.CertifyApprentice("Passed", "additional learning option");
+            assessmentServiceStepsHelper.CertifyApprentice("pass", "1",true, true, false);
         }
 
         [Then(@"the Change links navigate to the respective pages")]
@@ -272,7 +281,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards).ClickContinueInCheckAndSubmitAssessmentPage();
 
     }
 }

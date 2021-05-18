@@ -2,7 +2,9 @@
 
 @epao
 @assessmentservice
+@recordagrade
 @regression
+@epaoca2standard1version0option
 Scenario: EPAO_AS_CA_02A - Certify an Apprentice who has enrolled for a Standard with Additional Learning option
 	Given the Assessor User is logged into Assessment Service Application
 	When the User goes through certifying an Apprentice as 'Passed' who has enrolled for 'additional learning option' standard

@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             EPAOCAInUseUlns.RemoveInUseUln(uln);
         }
 
-        public List<string> GetCATestData(string email)
+        public List<string> GetCATestData(string email, LeanerCriteria leanerDetails)
         {
             List<string> data = new List<string>();
 
@@ -30,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             while (i <= 2)
             {
-                data = GetTestData(email);
+                data = GetTestData(email, leanerDetails);
 
                 var uln = data[0];
 
@@ -44,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return data;
         }
 
-        private List<string> GetTestData(string email)
+        private List<string> GetTestData(string email, LeanerCriteria leanerDetails)
         {
             string query = FileHelper.GetSql("GetLearnersData");
 
@@ -53,19 +54,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
                 { "@endPointAssessorEmail", email }
             };
 
-            switch (true)
-            {
-                case bool _ when _tags.Contains("epaoca1standard1version0option") : query = GetTestData(query, true, false, false, false); break;
-                case bool _ when _tags.Contains("epaoca1standard1version1option") : query = GetTestData(query, true, false, true, false); break;
-                case bool _ when _tags.Contains("epaoca1standard2version0option") : query = GetTestData(query, true, true, false, false); break;
-                case bool _ when _tags.Contains("epaoca1standard2version1option") : query = GetTestData(query, true, true, true, false); break;
-                case bool _ when _tags.Contains("epaoca2standard1version0option") : query = GetTestData(query, true, false, false, true); break;
-                case bool _ when _tags.Contains("epaoca2standard1version1option") : query = GetTestData(query, true, false, true, true); break;
-                case bool _ when _tags.Contains("epaoca2standard2version0option") : query = GetTestData(query, true, true, false, true); break;
-                case bool _ when _tags.Contains("epaoca2standard2version1option") : query = GetTestData(query, true, true, true, true); break;
-            };
+            query = GetTestData(query, leanerDetails.IsActiveStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards);
 
-            return GetData(query, 4, sqlParameters);
+            return GetData(query, 5, sqlParameters);
         }
 
         private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)

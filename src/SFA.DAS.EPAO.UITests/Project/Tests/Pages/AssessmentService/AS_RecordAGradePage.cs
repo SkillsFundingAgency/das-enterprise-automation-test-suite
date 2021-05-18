@@ -51,7 +51,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                 case "ReRequesting":
                     return SearchReRequestingApprentice();
 
-                case "more than one":
+                case "multiple":
                     leanerUln = ePAOConfig.ApprenticeUlnWithMultipleStandards;
                     apprenticeFamilyName = ePAOConfig.ApprenticeNameWithMultipleStandards;
                     break;

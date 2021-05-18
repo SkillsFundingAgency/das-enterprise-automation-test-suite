@@ -17,23 +17,28 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard)
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
         {
-            var whichVersionPage = SearchApprentice(enrolledStandard).GoToWhichVersionPage(enrolledStandard);
-            
-            AS_DeclarationPage decPage;
+            var whichVersionPage = SearchApprentice(enrolledStandard).GoToWhichVersionPage(hasMultiStandards);
 
-            if (enrolledStandard == "additional learning option" || enrolledStandard == "more than one" || enrolledStandard == "multiple")
-                decPage = whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
-            else
-                decPage = whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            AS_DeclarationPage decPage = CertifyApprentice(whichVersionPage, hasMultipleVersions, withOptions);
 
             return SelectGrade(decPage, grade);
         }
 
+        private AS_DeclarationPage CertifyApprentice(AS_WhichVersionPage whichVersionPage, bool hasMultipleVersions, bool withOptions)
+        {
+            if (!(hasMultipleVersions)) return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            else
+            {
+                if (withOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            }
+        }
+
         public AS_CheckAndSubmitAssessmentPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
         {
-            var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage(enrolledStandard).SelectLearningOptionAndContinue();
+            var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage().SelectLearningOptionAndContinue();
 
             return SelectGrade(decPage, grade);
         }
@@ -41,7 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario)
         {
             SearchApprentice("PrivatelyFundedApprentice")
-                .GoToWhichVersionPage(string.Empty)
+                .GoToWhichVersionPage(false)
                 .ClickConfirmInConfirmVersionPageNoOption()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
                 .SelectGradeForPrivatelyFundedAprrenticeAndContinue();               

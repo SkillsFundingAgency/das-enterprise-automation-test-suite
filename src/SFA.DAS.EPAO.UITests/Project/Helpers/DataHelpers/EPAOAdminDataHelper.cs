@@ -18,13 +18,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             FinancialAssesmentDueDate = DateTime.Today.AddDays(100);
             LearnerUln = "7278214419";
             StandardCode = "100";
+            StandardsName = "Transport planning technician";
         }
 
         public string LoginEmailAddress { get; set; }
 
         public string StandardCode { get; set; }
 
-        public string StandardsName => "Transport planning technician";
+        public string StandardsName { get; set; }
 
         public string OrganisationName => "City and Guilds";
 
