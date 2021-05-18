@@ -74,22 +74,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_05 - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Optio" +
-            "ns")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_05 - Certify an Apprentice as Pass - Multiple Standard - 1 Version - N" +
+            "o Options")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca1standard1version0option")]
-        public virtual void EPAO_RG_CA_05_CertifyAnApprenticeAsPass_1Standard_1Version_NoOptions()
+        [NUnit.Framework.CategoryAttribute("epaoca2standard1version0option")]
+        public virtual void EPAO_RG_CA_05_CertifyAnApprenticeAsPass_MultipleStandard_1Version_NoOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "recordagrade",
                     "regression",
-                    "epaoca1standard1version0option"};
+                    "epaoca2standard1version0option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_05 - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Optio" +
-                    "ns", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_05 - Certify an Apprentice as Pass - Multiple Standard - 1 Version - N" +
+                    "o Options", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,8 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("the User goes through certifying an Apprentice as \'pass\' who has enrolled for \'1\'" +
-                        " standard with \'1\' version and \'0\' options", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies an Apprentice as \'pass\' who has enrolled for \'multiple\' standa" +
+                        "rd", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +

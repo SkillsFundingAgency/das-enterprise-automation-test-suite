@@ -46,7 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
         private List<string> GetTestData(string email)
         {
-            string sqlQueryFromFile = FileHelper.GetSql("GetLearnersData");
+            string query = FileHelper.GetSql("GetLearnersData");
 
             Dictionary<string, string> sqlParameters = new Dictionary<string, string>
             {
@@ -55,10 +55,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             switch (true)
             {
-                case bool _ when _tags.Contains("epaoca1standard1version0option") : sqlQueryFromFile = GetTestData(sqlQueryFromFile, true, false, false, false); break;
+                case bool _ when _tags.Contains("epaoca1standard1version0option") : query = GetTestData(query, true, false, false, false); break;
+                case bool _ when _tags.Contains("epaoca1standard1version1option") : query = GetTestData(query, true, false, true, false); break;
+                case bool _ when _tags.Contains("epaoca1standard2version0option") : query = GetTestData(query, true, true, false, false); break;
+                case bool _ when _tags.Contains("epaoca1standard2version1option") : query = GetTestData(query, true, true, true, false); break;
+                case bool _ when _tags.Contains("epaoca2standard1version0option") : query = GetTestData(query, true, false, false, true); break;
+                case bool _ when _tags.Contains("epaoca2standard1version1option") : query = GetTestData(query, true, false, true, true); break;
+                case bool _ when _tags.Contains("epaoca2standard2version0option") : query = GetTestData(query, true, true, false, true); break;
+                case bool _ when _tags.Contains("epaoca2standard2version1option") : query = GetTestData(query, true, true, true, true); break;
             };
 
-            return GetData(sqlQueryFromFile, 4, sqlParameters);
+            return GetData(query, 4, sqlParameters);
         }
 
         private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)

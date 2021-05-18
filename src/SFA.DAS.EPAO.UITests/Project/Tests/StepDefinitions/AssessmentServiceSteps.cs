@@ -37,9 +37,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
         }
 
-
-        [When(@"the User goes through certifying an Apprentice as '(pass|fail)' who has enrolled for '(1|multiple)' standard with '(\d)' version and '(\d)' options")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandardWithVersionAndOptions(string grade, string enrolledStandard, int version, int option)
+        [When(@"the User certifies an Apprentice as '(pass|fail)' who has enrolled for '(1|multiple)' standard")]
+        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
             var data = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress);
 
@@ -49,7 +48,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             ePAOAdminDataHelper.StandardCode = data[1];
             ePAOAdminDataHelper.FirstName = data[2];
             ePAOAdminDataHelper.LastName = data[3];
-            
+
             objectContext.SetLearnerDetails(data[0], data[1], data[2], data[3]);
 
             RecordAGrade(grade, enrolledStandard);

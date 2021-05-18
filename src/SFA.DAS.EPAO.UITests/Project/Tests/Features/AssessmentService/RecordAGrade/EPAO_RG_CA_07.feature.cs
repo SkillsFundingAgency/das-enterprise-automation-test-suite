@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_01")]
-    public partial class EPAO_RG_CA_01Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_07")]
+    public partial class EPAO_RG_CA_07Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EPAO_RG_CA_01.feature"
+#line 1 "EPAO_RG_CA_07.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_RG_CA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_RG_CA_07", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,22 +74,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_01 - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Optio" +
-            "ns")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_07 - Certify an Apprentice as Pass - multiple Standard - multiple Vers" +
+            "ion - No Options")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca1standard1version0option")]
-        public virtual void EPAO_RG_CA_01_CertifyAnApprenticeAsPass_1Standard_1Version_NoOptions()
+        [NUnit.Framework.CategoryAttribute("epaoca2standard2version0option")]
+        public virtual void EPAO_RG_CA_07_CertifyAnApprenticeAsPass_MultipleStandard_MultipleVersion_NoOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "recordagrade",
                     "regression",
-                    "epaoca1standard1version0option"};
+                    "epaoca2standard2version0option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_01 - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Optio" +
-                    "ns", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_07 - Certify an Apprentice as Pass - multiple Standard - multiple Vers" +
+                    "ion - No Options", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,7 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("the User certifies an Apprentice as \'pass\' who has enrolled for \'1\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies an Apprentice as \'pass\' who has enrolled for \'multiple\' standa" +
+                        "rd", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
