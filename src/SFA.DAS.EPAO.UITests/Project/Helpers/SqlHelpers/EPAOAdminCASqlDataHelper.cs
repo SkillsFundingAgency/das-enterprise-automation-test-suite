@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             EPAOCAInUseUlns.RemoveInUseUln(uln);
         }
 
-        public List<string> GetCATestData(string email, LeanerCriteria leanerDetails)
+        public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria)
         {
             List<string> data = new List<string>();
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             while (i <= 2)
             {
-                data = GetTestData(email, leanerDetails);
+                data = GetTestData(email, leanerCriteria);
 
                 var uln = data[0];
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return data;
         }
 
-        private List<string> GetTestData(string email, LeanerCriteria leanerDetails)
+        private List<string> GetTestData(string email, LeanerCriteria leanerCriteria)
         {
             string query = FileHelper.GetSql("GetLearnersData");
 
@@ -54,7 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
                 { "@endPointAssessorEmail", email }
             };
 
-            query = GetTestData(query, leanerDetails.IsActiveStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards);
+            query = GetTestData(query, leanerCriteria.IsActiveStandard, leanerCriteria.HasMultipleVersions, leanerCriteria.WithOptions, leanerCriteria.HasMultiStandards);
 
             return GetData(query, 5, sqlParameters);
         }
