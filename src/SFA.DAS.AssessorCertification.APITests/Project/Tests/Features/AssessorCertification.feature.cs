@@ -132,30 +132,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.VerifyCreateEPARecord("CreateEPARecord001", "POST", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
 #line hidden
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord002")]
-        [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("AssessorCertification")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyCreateEPARecord_CreateEPARecord002()
-        {
-#line 6
-this.VerifyCreateEPARecord("CreateEPARecord002", "PUT", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord003")]
-        [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("AssessorCertification")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyCreateEPARecord_CreateEPARecord003()
-        {
-#line 6
-this.VerifyCreateEPARecord("CreateEPARecord003", "GET", "/ap1/v1/learner/1000813800/Name1000813800/1381", "", "OK", ((string[])(null)));
-#line hidden
-        }
     }
 }
 #pragma warning restore

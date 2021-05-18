@@ -10,5 +10,5 @@ Scenario Outline: Verify Create EPA Record
 Examples: 
 | TestCaseId         | Method | Endpoint                                       | Payload              | ResponseStatus |
 | CreateEPARecord001 | POST   | /api/v1/epa                                    | CreateEPARecord.json | OK             |
-| CreateEPARecord002 | PUT    | /api/v1/epa                                    | CreateEPARecord.json | OK             |
-| CreateEPARecord003 | GET    | /ap1/v1/learner/1000813800/Name1000813800/1381 |                      | OK             |
+##| CreateEPARecord002 | PUT    | /api/v1/epa                                    | CreateEPARecord.json | OK             |
+##| CreateEPARecord003 | GET    | /ap1/v1/learner/1000813800/Name1000813800/1381 |                      | NotFound       |
