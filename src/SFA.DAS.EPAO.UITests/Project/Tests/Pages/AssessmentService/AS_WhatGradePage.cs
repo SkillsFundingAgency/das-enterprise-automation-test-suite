@@ -25,28 +25,32 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             switch (grade)
             {
+                case "pass":
                 case "Passed":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
-                    Continue();
+                    SelectGrade(PassRadioButton);
                     new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
                 case "PassWithExcellence":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassWithExcellenceRadioButton));
-                    Continue();
+                    SelectGrade(PassWithExcellenceRadioButton);
                     new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
                 case "Failed":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FailRadioButton));
-                    Continue();
+                    SelectGrade(FailRadioButton);
                     new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
             }
         }
+
         public AS_AchievementDatePage SelectGradeForPrivatelyFundedAprrenticeAndContinue()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
-            Continue();
+            SelectGrade(PassRadioButton);
             return new AS_AchievementDatePage(_context);
+        }
+
+        private void SelectGrade(By by)
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
+            Continue();
         }
     }
 }

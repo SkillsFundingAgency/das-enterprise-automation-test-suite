@@ -19,25 +19,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_WhichVersionPage GoToWhichVersionPage(bool hasMultiStandards)
         {
-            if (hasMultiStandards) SelectStandard();
+            SelectStandard(hasMultiStandards);
 
             return new AS_WhichVersionPage(_context);
         }
 
         public AS_WhichLearningOptionPage GoToWhichLearningOptionPage()
         {
-            SelectStandard();
+            SelectStandard(false);
 
             return new AS_WhichLearningOptionPage(_context);
         }
 
-        private void SelectStandard()
+        private void SelectStandard(bool hasMultiStandards)
         {
-            var standardName = objectContext.GetLearnerStandardName();
+            if (hasMultiStandards)
+            {
+                var standardName = objectContext.GetLearnerStandardName();
 
-            if (string.IsNullOrEmpty(standardName)) SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
+                if (string.IsNullOrEmpty(standardName)) SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
 
-            else SelectRadioOptionByText(standardName);
+                else SelectRadioOptionByText(standardName);
+
+            }
+
+            Continue();
         }
     }
 }

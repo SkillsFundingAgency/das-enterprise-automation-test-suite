@@ -14,7 +14,7 @@ FROM (
 FROM [dbo].[OrganisationStandardVersion] osv
 JOIN [dbo].[OrganisationStandard] os on osv.OrganisationStandardId = os.Id
 JOIN [dbo].[Organisations] o on os.EndPointAssessorOrganisationId = o.EndPointAssessorOrganisationId 
-								AND o.EndPointAssessorOrganisationId = (select EndPointAssessorOrganisationId from Contacts where email = @endPointAssessorEmail)
+AND o.EndPointAssessorOrganisationId = (select EndPointAssessorOrganisationId from Contacts where email = @endPointAssessorEmail)
 JOIN [dbo].[Standards] s on osv.StandardUId = s.StandardUId
 LEFT JOIN ( SELECT COUNT(*) options, [StandardUId] from [Standardoptions] GROUP BY [StandardUId] ) so1 on so1.[StandardUId] = osv.[StandardUId]
 ) _ GROUP BY LarsCode
@@ -35,4 +35,3 @@ AND Has_options = __HasOptions__       -- set to 1 for standards with options, 0
 AND multi in (__multistandards__)                  -- set to > 1 for learners with more than one standard, =1 for learners with just one standard
 AND ce1.id IS NULL           -- to "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate 
 and learner.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
-  
