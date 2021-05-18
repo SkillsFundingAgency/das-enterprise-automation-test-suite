@@ -4,15 +4,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {
     internal static class EPAOCAInUseUlns
     {
-        static readonly object _object = new object();
-
         private static readonly List<string> _ulns = new List<string>();
 
         internal static void RemoveInUseUln(string uln) => _ulns.Remove(uln);
 
         internal static bool IsNotInUseUln(string uln)
         {
-            lock (_object)
+            lock (_ulns)
             {
                 if (!(_ulns.Contains(uln)))
                 {

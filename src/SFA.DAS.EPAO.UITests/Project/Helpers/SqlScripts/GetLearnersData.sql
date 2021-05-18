@@ -34,4 +34,4 @@ AND Has_versions = __HasVersions__      -- set to 1 for standards with versions,
 AND Has_options = __HasOptions__       -- set to 1 for standards with options, 0 for standards without options
 AND multi in (__multistandards__)                  -- set to > 1 for learners with more than one standard, =1 for learners with just one standard
 AND ce1.id IS NULL           -- to "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate 
-and il1.uln is not null and GivenNames is not null and FamilyName is not null order by Newid()
+and il1.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
