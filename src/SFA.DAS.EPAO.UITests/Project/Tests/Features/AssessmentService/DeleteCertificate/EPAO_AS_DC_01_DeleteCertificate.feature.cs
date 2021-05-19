@@ -110,12 +110,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("the User requests wrong certificate certifying an Apprentice as \'Passed\' which ne" +
-                        "eds \'deleting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User requests wrong certificate certifying an Apprentice as \'pass\' which need" +
+                        "s \'deleting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
-                        "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
  testRunner.And("the Admin user can delete a certificate that has been incorrectly submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

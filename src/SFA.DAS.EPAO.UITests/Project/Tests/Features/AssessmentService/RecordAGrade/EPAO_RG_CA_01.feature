@@ -4,8 +4,31 @@
 @recordagrade
 @regression
 @epaoca1standard1version0option
-Scenario: EPAO_RG_CA_01 - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Options
+Scenario: EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Options
 	Given the Assessor User is logged into Assessment Service Application
 	When the User certifies an Apprentice as 'pass'
-	Then the Assessment is recorded and the User is able to navigate back to certifying another Apprentice
+	Then the User can navigates to record another grade
+	And the Assessment is recorded as 'pass'
 
+
+@epao
+@recordagrade
+@regression
+@epaoca1standard1version0option
+Scenario: EPAO_RG_CA_01B - Certify an Apprentice as Fail - 1 Standard - 1 Version - No Options
+	Given the Assessor User is logged into Assessment Service Application
+	When the User certifies an Apprentice as 'fail'
+	Then the User can navigates to record another grade
+	And the Assessment is recorded as 'fail'
+
+
+@epao
+@recordagrade
+@regression
+@epaoca1standard1version0option
+Scenario: EPAO_RG_CA_01C - Certify an Apprentice as Fail to Pass - 1 Standard - 1 Version - No Options
+	Given the Assessor User is logged into Assessment Service Application
+	When the User certifies an Apprentice as 'fail'
+	Then the User can navigates to record another grade
+	When the User certifies same Apprentice as pass
+	Then the Assessment is recorded as 'pass'

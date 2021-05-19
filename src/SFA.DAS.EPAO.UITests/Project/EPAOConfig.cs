@@ -9,7 +9,5 @@
         public string PrivatelyFundedApprenticeUln { get; set; }
         public string PrivatelyFundedApprenticeGivenName { get; set; }
         public string PrivatelyFundedUkprn { get; set; }
-        public string AlreadyAssessedApprenticeName { get; set; }
-        public string AlreadyAssessedApprenticeUln { get; set; }
     }
 }

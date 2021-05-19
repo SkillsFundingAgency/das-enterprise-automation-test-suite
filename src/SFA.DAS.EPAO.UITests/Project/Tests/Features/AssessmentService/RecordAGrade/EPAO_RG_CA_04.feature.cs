@@ -74,13 +74,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_04 - Certify an Apprentice as Pass - 1 Standard - Multiple Version - W" +
-            "ith Options")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_04A - Certify an Apprentice as Pass - 1 Standard - Multiple Version - " +
+            "With Options")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("epaoca1standard2version1option")]
-        public virtual void EPAO_RG_CA_04_CertifyAnApprenticeAsPass_1Standard_MultipleVersion_WithOptions()
+        public virtual void EPAO_RG_CA_04A_CertifyAnApprenticeAsPass_1Standard_MultipleVersion_WithOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
@@ -88,8 +88,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAG
                     "regression",
                     "epaoca1standard2version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_04 - Certify an Apprentice as Pass - 1 Standard - Multiple Version - W" +
-                    "ith Options", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_04A - Certify an Apprentice as Pass - 1 Standard - Multiple Version - " +
+                    "With Options", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -117,8 +117,116 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User certifies an Apprentice as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
-                        "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_04B - Certify an Apprentice as Fail - 1 Standard - Multiple Version - " +
+            "With Options")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("recordagrade")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard2version1option")]
+        public virtual void EPAO_RG_CA_04B_CertifyAnApprenticeAsFail_1Standard_MultipleVersion_WithOptions()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "epao",
+                    "recordagrade",
+                    "regression",
+                    "epaoca1standard2version1option"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_04B - Certify an Apprentice as Fail - 1 Standard - Multiple Version - " +
+                    "With Options", null, tagsOfScenario, argumentsOfScenario);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 18
+ testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 19
+ testRunner.When("the User certifies an Apprentice as \'fail\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+ testRunner.And("the Assessment is recorded as \'fail\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_04C - Certify an Apprentice as Fail to Pass - 1 Standard - Multiple Ve" +
+            "rsion - With Options")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("recordagrade")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard2version1option")]
+        public virtual void EPAO_RG_CA_04C_CertifyAnApprenticeAsFailToPass_1Standard_MultipleVersion_WithOptions()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "epao",
+                    "recordagrade",
+                    "regression",
+                    "epaoca1standard2version1option"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_04C - Certify an Apprentice as Fail to Pass - 1 Standard - Multiple Ve" +
+                    "rsion - With Options", null, tagsOfScenario, argumentsOfScenario);
+#line 28
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 29
+ testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 30
+ testRunner.When("the User certifies an Apprentice as \'fail\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+ testRunner.When("the User certifies same Apprentice as pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ testRunner.Then("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

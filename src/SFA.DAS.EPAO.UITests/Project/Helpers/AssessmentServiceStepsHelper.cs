@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
@@ -14,12 +15,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
+
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerCriteria)
+        public void VerifyApprenticeGrade(string grade)
         {
-            var confirmApprenticePage = SearchApprentice(enrolledStandard);
+            bool gradeValidation;
+
+            if (grade == "pass") gradeValidation = GoToRecordAGradePage().GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
+
+            else gradeValidation = GoToRecordAGradePage().GoToConfirmApprenticePage().VerifyGrade(grade);
+
+            Assert.AreEqual(true, gradeValidation, $"Apprentice grade is not recorded as {grade}");
+        }
+
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria)
+        {
+            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice();
 
             AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
 
@@ -118,7 +131,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickReturnToDashboard();
         }
 
-        private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade().SearchApprentice(enrolledStandard);
+        private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => GoToRecordAGradePage().SearchApprentice(enrolledStandard);
+
+        private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
 
         private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade)
         {
@@ -126,7 +141,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
-            if (grade == "Passed" || grade == "pass")
+            if (grade == "pass")
             {
                 return new AS_SearchEmployerAddressPage(_context)
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()

@@ -6,7 +6,7 @@
 Scenario: EPAO_AS_CA_04A - Certify a privately funded Apprentice
 	Given the Assessor User is logged into Assessment Service Application
 	When the User goes through certifying a Privately funded Apprentice
-	Then the Assessment is recorded and the User is able to navigate back to certifying another Apprentice
+	Then the User can navigates to record another grade
 
 @epao
 @assessmentservice

@@ -32,36 +32,40 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_ConfirmApprenticePage(_context);
         }
 
+        public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
+        {
+            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+            return new AS_AssesmentAlreadyRecorded(_context);
+        }
+
+        public AS_ConfirmApprenticePage GoToConfirmApprenticePage()
+        {
+            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+            return new AS_ConfirmApprenticePage(_context);
+        }
+
+        public AS_ConfirmApprenticePage SearchApprentice() => SearchApprentice(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+
         public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
         {
-            string leanerUln, apprenticeFamilyName;
-
-            switch (enrolledStandard)
+            return enrolledStandard switch
             {
-                case "deleting":
-                    leanerUln = ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption;
-                    apprenticeFamilyName = ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption;
-                    break;
+                "deleting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption),
+                "ReRequesting" => SearchReRequestingApprentice(),
+                "PrivatelyFundedApprentice" => SearchApprentice(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln),
+                _ => new AS_ConfirmApprenticePage(_context)
+            };
+        }
 
-                case "ReRequesting":
-                    return SearchReRequestingApprentice();
-
-                case "PrivatelyFundedApprentice":
-                    leanerUln = ePAOConfig.PrivatelyFundedApprenticeUln;
-                    apprenticeFamilyName = ePAOConfig.PrivatelyFundedApprenticeLastName;
-                    break;
-
-                default:
-                    leanerUln = ePAOAdminDataHelper.LearnerUln;
-                    apprenticeFamilyName = ePAOAdminDataHelper.LastName;
-                    break;
-            }
-
+        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln)
+        {
             _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
+
             EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
 
             return new AS_ConfirmApprenticePage(_context);
         }
+
 
         public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
         {

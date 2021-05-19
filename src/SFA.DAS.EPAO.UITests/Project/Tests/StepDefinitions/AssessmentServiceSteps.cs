@@ -16,6 +16,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private bool _permissionsSelected;
         private string _newUserEmailId;
 
+        private AS_AssessmentRecordedPage assessmentRecordedPage;
+
         public AssessmentServiceSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|EPAO Withdrawal User) is logged into Assessment Service Application")]
@@ -39,7 +41,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User certifies an Apprentice as '(pass|fail)'")]
-        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => RecordAGrade(grade, SetLearnerDetails());
+        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => assessmentRecordedPage = RecordAGrade(grade, SetLearnerDetails());
+
+        [When(@"the User certifies same Apprentice as pass")]
+        public void WhenTheUserCertifiesSameApprenticeAsPass() => assessmentRecordedPage = RecordAGrade("pass", GetLearnerCriteria());
 
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
@@ -48,6 +53,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
+
+        [Then(@"the Assessment is recorded as '(pass|fail)'")]
+        public void ThenTheAssessmentIsRecordedAs(string grade) => assessmentServiceStepsHelper.VerifyApprenticeGrade(grade);
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
@@ -68,14 +76,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User goes through certifying a Privately funded Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice(false);
 
-        [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
-        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice() => new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
-
-        [When(@"the User goes through certifying an already assessed Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAnAlreadyAssessedApprentice()
-        {
-            loggedInHomePage.ClickOnRecordAGrade().EnterApprenticeDetailsAndContinue(ePAOConfig.AlreadyAssessedApprenticeName, ePAOConfig.AlreadyAssessedApprenticeUln);
-        }
+        [Then(@"the User can navigates to record another grade")]
+        public void ThenTheUserCanNavigatesToRecordAnotherGrade() => assessmentRecordedPage.ClickRecordAnotherGradeLink();
 
         [Then(@"'(.*)' message is displayed")]
         public void ThenErrorMessageIsDisplayed(string errorMessage) => Assert.AreEqual(recordAGradePage.GetPageTitle(), errorMessage);
@@ -134,7 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             SetLearnerDetails();
 
-            recordAGradePage = loggedInHomePage.ClickOnRecordAGrade();
+            recordAGradePage = loggedInHomePage.GoToRecordAGradePage();
         }
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
@@ -155,7 +157,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [When(@"the User certifies an Apprentice as '(pass|fail)' and lands on Confirm Assessment Page")]
         public void WhenTheUserCertifiesAnApprenticeAsAndLandsOnConfirmAssessmentPage(string grade) 
-            => checkAndSubmitAssessmentPage = CertifyApprentice(grade, string.Empty, SetLearnerDetails());
+            => checkAndSubmitAssessmentPage = CertifyApprentice(grade, SetLearnerDetails());
 
         [Then(@"the Change links navigate to the respective pages")]
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
@@ -259,13 +261,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria) => CertifyApprentice(grade, string.Empty, leanerCriteria).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria) => CertifyApprentice(grade, leanerCriteria).ClickContinueInCheckAndSubmitAssessmentPage();
 
-        private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerCriteria) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerCriteria);
+        private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria) => assessmentServiceStepsHelper.CertifyApprentice(grade, leanerCriteria);
 
         private LeanerCriteria SetLearnerDetails()
         {
-            var leanerCriteria = _context.Get<LeanerCriteria>();
+            var leanerCriteria = GetLearnerCriteria();
 
             var leanerDetails = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, leanerCriteria);
 
@@ -281,5 +283,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             return leanerCriteria;
         }
+
+        private LeanerCriteria GetLearnerCriteria() => _context.Get<LeanerCriteria>();
     }
 }

@@ -26,7 +26,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             switch (grade)
             {
                 case "pass":
-                case "Passed":
                     SelectGrade(PassRadioButton);
                     new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
@@ -34,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                     SelectGrade(PassWithExcellenceRadioButton);
                     new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
-                case "Failed":
+                case "fail":
                     SelectGrade(FailRadioButton);
                     new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
                     break;
