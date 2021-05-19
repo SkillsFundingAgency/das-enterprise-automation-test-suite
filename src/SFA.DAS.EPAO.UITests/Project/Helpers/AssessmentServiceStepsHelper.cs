@@ -28,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_CheckAndSubmitAssessmentPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
         {
-            var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage().SelectLearningOptionAndContinue();
+            var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage(false).SelectLearningOptionAndContinue();
 
             return SelectGrade(decPage, grade);
         }
@@ -146,14 +146,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
         {
-            if (!(leanerCriteria.HasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
-            else
+            if (leanerCriteria.HasMultipleVersions)
             {
                 var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
 
                 if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
 
                 else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            }
+            else
+            {
+                if (leanerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(leanerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
+
+                else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
             }
         }
     }

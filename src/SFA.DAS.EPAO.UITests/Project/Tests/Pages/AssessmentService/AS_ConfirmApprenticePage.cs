@@ -24,9 +24,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_WhichVersionPage(_context);
         }
 
-        public AS_WhichLearningOptionPage GoToWhichLearningOptionPage()
+        public AS_WhichLearningOptionPage GoToWhichLearningOptionPage(bool hasMultiStandards)
         {
-            SelectStandard(false);
+            SelectStandard(hasMultiStandards);
 
             return new AS_WhichLearningOptionPage(_context);
         }
