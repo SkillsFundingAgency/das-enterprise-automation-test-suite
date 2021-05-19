@@ -259,9 +259,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerDetails) => CertifyApprentice(grade, string.Empty, leanerDetails).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria) => CertifyApprentice(grade, string.Empty, leanerCriteria).ClickContinueInCheckAndSubmitAssessmentPage();
 
-        private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards);
+        private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerCriteria) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerCriteria);
 
         private LeanerCriteria SetLearnerDetails()
         {

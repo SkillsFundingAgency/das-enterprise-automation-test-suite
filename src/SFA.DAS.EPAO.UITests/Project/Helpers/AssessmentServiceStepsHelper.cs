@@ -17,26 +17,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerCriteria)
         {
             var confirmApprenticePage = SearchApprentice(enrolledStandard);
 
-            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, hasMultipleVersions, withOptions, hasMultiStandards);
+            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
 
             return SelectGrade(decPage, grade);
-        }
-
-        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
-        {
-            if (!(hasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage();
-            else
-            {
-                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(hasMultiStandards);
-
-                if (withOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
-
-                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
-            }
         }
 
         public AS_CheckAndSubmitAssessmentPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
@@ -155,6 +142,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
+        }
+
+        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
+        {
+            if (!(leanerCriteria.HasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage();
+            else
+            {
+                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+
+                if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
+                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            }
         }
     }
 }
