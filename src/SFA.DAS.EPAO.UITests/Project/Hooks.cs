@@ -49,7 +49,7 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _context.Set(_ePAOAdminDataHelper);
 
-            _context.Set(new EPAOAdminCASqlDataHelper(_config, _context.ScenarioInfo.Tags));
+            _context.Set(new EPAOAdminCASqlDataHelper(_config));
         }
 
         [BeforeScenario(Order = 33)]

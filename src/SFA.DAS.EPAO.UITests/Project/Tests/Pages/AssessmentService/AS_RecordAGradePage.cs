@@ -28,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_ConfirmApprenticePage SearchReRequestingApprentice()
         {
-            EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
+            EnterApprenticeDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
             return new AS_ConfirmApprenticePage(_context);
         }
 
@@ -38,11 +38,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
             switch (enrolledStandard)
             {
-                case "single":
-                    leanerUln = ePAOConfig.ApprenticeUlnWithSingleStandard;
-                    apprenticeFamilyName = ePAOConfig.ApprenticeNameWithSingleStandard;
-                    break;
-
                 case "deleting":
                     leanerUln = ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption;
                     apprenticeFamilyName = ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption;
@@ -51,20 +46,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                 case "ReRequesting":
                     return SearchReRequestingApprentice();
 
-                case "multiple":
-                    leanerUln = ePAOConfig.ApprenticeUlnWithMultipleStandards;
-                    apprenticeFamilyName = ePAOConfig.ApprenticeNameWithMultipleStandards;
-                    break;
-
-                case "additional learning option":
-                    leanerUln = ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption;
-                    apprenticeFamilyName = ePAOConfig.ApprenticeNameWithAStandardHavingLearningOption;
-                    break;
-
                 case "PrivatelyFundedApprentice":
                     leanerUln = ePAOConfig.PrivatelyFundedApprenticeUln;
                     apprenticeFamilyName = ePAOConfig.PrivatelyFundedApprenticeLastName;
                     break;
+
                 default:
                     leanerUln = ePAOAdminDataHelper.LearnerUln;
                     apprenticeFamilyName = ePAOAdminDataHelper.LastName;
@@ -72,12 +58,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             }
 
             _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
-            EnterApprentcieDetailsAndContinue(apprenticeFamilyName, leanerUln);
+            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
 
             return new AS_ConfirmApprenticePage(_context);
         }
 
-        public void EnterApprentcieDetailsAndContinue(string familyName, string uLN)
+        public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
         {
             formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
             formCompletionHelper.EnterText(ULNTextBox, uLN);

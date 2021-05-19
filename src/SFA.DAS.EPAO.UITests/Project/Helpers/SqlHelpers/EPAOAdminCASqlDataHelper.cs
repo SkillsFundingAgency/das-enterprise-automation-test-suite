@@ -2,16 +2,13 @@
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {
     public class EPAOAdminCASqlDataHelper : SqlDbHelper
     {
-        private readonly string[] _tags;
-
-        public EPAOAdminCASqlDataHelper(DbConfig dbConfig, string[] tags) : base(dbConfig.AssessorDbConnectionString) => _tags = tags;
+        public EPAOAdminCASqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
 
         public void DeleteCertificate(string uln, string standardcode)
         {

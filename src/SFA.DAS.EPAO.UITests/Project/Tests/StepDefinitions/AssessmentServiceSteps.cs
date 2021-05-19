@@ -38,25 +38,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
         }
 
-        [When(@"the User certifies an Apprentice as '(pass|fail)' who has enrolled for '(1|multiple)' standard")]
-        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
+        [When(@"the User certifies an Apprentice as '(pass|fail)'")]
+        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade)
         {
-            var leanerCriteria = _context.Get<LeanerCriteria>();
+            var leanerCriteria = SetLearnerDetails();
 
-            var leanerDetails = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, leanerCriteria);
-
-            if (string.IsNullOrEmpty(leanerDetails[0])) Assert.Fail("No test data found in the db");
-
-            ePAOAdminDataHelper.LearnerUln = leanerDetails[0];
-            ePAOAdminDataHelper.StandardCode = leanerDetails[1];
-            ePAOAdminDataHelper.StandardsName = leanerDetails[2];
-            ePAOAdminDataHelper.FirstName = leanerDetails[3];
-            ePAOAdminDataHelper.LastName = leanerDetails[4];
-
-            objectContext.SetLearnerDetails(leanerDetails[0], leanerDetails[1], leanerDetails[2], leanerDetails[3], leanerDetails[4]);
-
-            RecordAGrade(grade, enrolledStandard, leanerCriteria);
+            RecordAGrade(grade, string.Empty, leanerCriteria);
         }
+
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
@@ -99,9 +88,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User goes through certifying an already assessed Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAnAlreadyAssessedApprentice()
         {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
-            recordAGradePage = new AS_RecordAGradePage(_context);
-            recordAGradePage.EnterApprentcieDetailsAndContinue(ePAOConfig.AlreadyAssessedApprenticeName, ePAOConfig.AlreadyAssessedApprenticeUln);
+            loggedInHomePage.ClickOnRecordAGrade().EnterApprenticeDetailsAndContinue(ePAOConfig.AlreadyAssessedApprenticeName, ePAOConfig.AlreadyAssessedApprenticeUln);
         }
 
         [Then(@"'(.*)' message is displayed")]
@@ -131,30 +118,38 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User clicks on the continue button '(.*)'")]
         public void WhenTheUserClicksOnTheContinueButton(string scenario)
         {
-            recordAGradePage = new AS_RecordAGradePage(_context);
+            string familyName = ePAOAdminDataHelper.LastName, uln = ePAOAdminDataHelper.LearnerUln;
 
             switch (scenario)
             {
                 case "with out entering Any details":
-                    recordAGradePage.EnterApprentcieDetailsAndContinue("", "");
+                    familyName = string.Empty; uln = string.Empty; 
                     break;
                 case "by entering valid Family name and blank ULN":
-                    recordAGradePage.EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, "");
+                    uln = string.Empty;
                     break;
                 case "by entering blank Family name and Valid ULN":
-                    recordAGradePage.EnterApprentcieDetailsAndContinue("", ePAOConfig.ApprenticeUlnWithSingleStandard);
+                    familyName = string.Empty;
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    recordAGradePage.EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, ePAOAssesmentServiceDataHelper.GetRandomNumber(9));
+                    uln = ePAOAssesmentServiceDataHelper.GetRandomNumber(9);
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    recordAGradePage.EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, ePAOAssesmentServiceDataHelper.GetRandomNumber(11));
+                    uln = ePAOAssesmentServiceDataHelper.GetRandomNumber(11);
                     break;
             }
+
+            recordAGradePage.EnterApprenticeDetailsAndContinue(familyName, uln);
+
         }
 
         [Given(@"navigates to Assessment page")]
-        public void GivenNavigatesToAssessmentPage() => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
+        public void GivenNavigatesToAssessmentPage()
+        {
+            SetLearnerDetails();
+
+            recordAGradePage = loggedInHomePage.ClickOnRecordAGrade();
+        }
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
         public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice(true);
@@ -172,18 +167,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(achievementDatePage.GetDateErrorText(), errorText);
 
-        [When(@"the (.*) is on the Confirm Assessment Page")]
-        public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
+        [When(@"the User certifies an Apprentice as '(pass|fail)' and lands on Confirm Assessment Page")]
+        public void WhenTheUserCertifiesAnApprenticeAsAndLandsOnConfirmAssessmentPage(string grade)
         {
-            GivenTheUserIsLoggedIntoAssessmentServiceApplication(user);
-            assessmentServiceStepsHelper.CertifyApprentice("pass", "1",true, true, false);
+            var leanerCriteria = SetLearnerDetails();
+
+            checkAndSubmitAssessmentPage = CertifyApprentice(grade, string.Empty, leanerCriteria);
         }
 
         [Then(@"the Change links navigate to the respective pages")]
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
-            checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
+            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();
@@ -281,7 +277,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => CertifyApprentice(grade, enrolledStandard, leanerDetails).ClickContinueInCheckAndSubmitAssessmentPage();
 
+        private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards);
+
+        private LeanerCriteria SetLearnerDetails()
+        {
+            var leanerCriteria = _context.Get<LeanerCriteria>();
+
+            var leanerDetails = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, leanerCriteria);
+
+            if (string.IsNullOrEmpty(leanerDetails[0])) Assert.Fail("No test data found in the db");
+
+            ePAOAdminDataHelper.LearnerUln = leanerDetails[0];
+            ePAOAdminDataHelper.StandardCode = leanerDetails[1];
+            ePAOAdminDataHelper.StandardsName = leanerDetails[2];
+            ePAOAdminDataHelper.FirstName = leanerDetails[3];
+            ePAOAdminDataHelper.LastName = leanerDetails[4];
+
+            objectContext.SetLearnerDetails(leanerDetails[0], leanerDetails[1], leanerDetails[2], leanerDetails[3], leanerDetails[4]);
+
+            return leanerCriteria;
+        }
     }
 }

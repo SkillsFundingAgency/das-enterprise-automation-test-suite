@@ -19,19 +19,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
         {
-            var whichVersionPage = SearchApprentice(enrolledStandard).GoToWhichVersionPage(hasMultiStandards);
+            var confirmApprenticePage = SearchApprentice(enrolledStandard);
 
-            AS_DeclarationPage decPage = CertifyApprentice(whichVersionPage, hasMultipleVersions, withOptions);
+            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, hasMultipleVersions, withOptions, hasMultiStandards);
 
             return SelectGrade(decPage, grade);
         }
 
-        private AS_DeclarationPage CertifyApprentice(AS_WhichVersionPage whichVersionPage, bool hasMultipleVersions, bool withOptions)
+        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
         {
-            if (!(hasMultipleVersions)) return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            if (!(hasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage();
             else
             {
+                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(hasMultiStandards);
+
                 if (withOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
                 else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
             }
         }

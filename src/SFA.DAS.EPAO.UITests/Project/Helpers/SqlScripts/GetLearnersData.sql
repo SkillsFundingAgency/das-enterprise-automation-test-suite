@@ -22,16 +22,22 @@ LEFT JOIN ( SELECT COUNT(*) options, [StandardUId] from [Standardoptions] GROUP 
 learner
 AS
 (
-select count (StdCode) OVER (PARTITION BY uln ORDER BY FamilyName) multi, uln, stdcode, familyname, GivenNames from ilrs 
+select count (StdCode) OVER (PARTITION BY uln ORDER BY FamilyName) multi, uln, stdcode, familyname, GivenNames from ilrs
 )
-SELECT TOP 1  
+SELECT TOP 1
 learner.uln, learner.stdcode, StandardName, GivenNames, familyname FROM StandardsList
 JOIN  learner on learner.stdcode = StandardsList.stdcode
 LEFT JOIN [dbo].[certificates] ce1 on ce1.uln=learner.uln and ce1.StandardCode = learner.stdcode
 WHERE 1=1
-AND standard_Active = __Isactivestandard__  -- set to 1 for active standards, 0 for inactive standards
-AND Has_versions = __HasVersions__      -- set to 1 for standards with versions, 0 for standards with just one version, "1.0"
-AND Has_options = __HasOptions__       -- set to 1 for standards with options, 0 for standards without options
-AND multi in (__multistandards__)                  -- set to > 1 for learners with more than one standard, =1 for learners with just one standard
-AND ce1.id IS NULL           -- to "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate 
+AND standard_Active = __Isactivestandard__
+AND Has_versions = __HasVersions__
+AND Has_options = __HasOptions__     
+AND multi in (__multistandards__)                  
+AND ce1.id IS NULL
 and learner.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
+
+-- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards
+-- set __HasVersions__ to 1 for standards with versions, 0 for standards with just one version, "1.0"
+-- set __HasOptions__ to 1 for standards with options, 0 for standards without options
+-- set __multistandards__ to > 1  for learners with more than one standard, =1 for learners with just one standard
+-- set to ce1.id "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate
