@@ -22,7 +22,7 @@ LEFT JOIN ( SELECT COUNT(*) options, [StandardUId] from [Standardoptions] GROUP 
 learner
 AS
 (
-select count (StdCode) OVER (PARTITION BY uln ORDER BY FamilyName) multi, uln, stdcode, familyname, GivenNames from ilrs
+select count (StdCode) OVER (PARTITION BY uln, GivenNames, FamilyName) multi, uln, stdcode, familyname, GivenNames from ilrs
 )
 SELECT TOP 1
 learner.uln, learner.stdcode, StandardName, GivenNames, familyname FROM StandardsList
