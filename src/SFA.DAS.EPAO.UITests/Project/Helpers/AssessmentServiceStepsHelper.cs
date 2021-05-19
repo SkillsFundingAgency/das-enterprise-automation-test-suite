@@ -19,20 +19,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public void VerifyApprenticeGrade(string grade)
+        public void VerifyApprenticeGrade(string grade, LeanerCriteria leanerCriteria)
         {
             bool gradeValidation;
 
-            if (grade == "pass") gradeValidation = GoToRecordAGradePage().GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
+            var recordAGradePage = GoToRecordAGradePage();
 
-            else gradeValidation = GoToRecordAGradePage().GoToConfirmApprenticePage().VerifyGrade(grade);
+            if (leanerCriteria.HasMultiStandards)
+            {
+                var confirmApprenticePage = recordAGradePage.SearchApprentice(false).ViewCertificateHistory();
+
+                gradeValidation = confirmApprenticePage.VerifyGrade(grade);
+
+                if (grade == "fail") confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
+            }
+            else
+            {
+                if (grade == "pass") gradeValidation = recordAGradePage.GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
+
+                else gradeValidation = recordAGradePage.SearchApprentice(false).VerifyGrade(grade);
+            }
 
             Assert.AreEqual(true, gradeValidation, $"Apprentice grade is not recorded as {grade}");
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria)
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate)
         {
-            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice();
+            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
 
             AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
 

@@ -11,10 +11,26 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='standard']");
 
+        private By ViewCertificateHistorySelector => By.CssSelector(".govuk-details__summary-text");
+
         public AS_ConfirmApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
+        }
+
+        public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
+        {
+            SelectStandard(true);
+
+            return new AS_AssesmentAlreadyRecorded(_context);
+        }
+
+        public AS_ConfirmApprenticePage ViewCertificateHistory() 
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewCertificateHistorySelector));
+
+            return new AS_ConfirmApprenticePage(_context);
         }
 
         public AS_WhichVersionPage GoToWhichVersionPage(bool hasMultiStandards)

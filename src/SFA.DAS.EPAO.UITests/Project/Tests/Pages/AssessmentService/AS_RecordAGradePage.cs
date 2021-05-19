@@ -26,46 +26,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_ConfirmApprenticePage SearchReRequestingApprentice()
-        {
-            EnterApprenticeDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
-            return new AS_ConfirmApprenticePage(_context);
-        }
-
         public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {
             EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
             return new AS_AssesmentAlreadyRecorded(_context);
         }
 
-        public AS_ConfirmApprenticePage GoToConfirmApprenticePage()
-        {
-            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
-            return new AS_ConfirmApprenticePage(_context);
-        }
-
-        public AS_ConfirmApprenticePage SearchApprentice() => SearchApprentice(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+        public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate) => SearchApprentice(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln, deleteCertificate);
 
         public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
         {
             return enrolledStandard switch
             {
-                "deleting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption),
-                "ReRequesting" => SearchReRequestingApprentice(),
-                "PrivatelyFundedApprentice" => SearchApprentice(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln),
+                "deleting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption, true),
+                "ReRequesting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption, false),
+                "PrivatelyFundedApprentice" => SearchApprentice(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln, true),
                 _ => new AS_ConfirmApprenticePage(_context)
             };
         }
-
-        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln)
-        {
-            _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
-
-            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
-
-            return new AS_ConfirmApprenticePage(_context);
-        }
-
 
         public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
         {
@@ -83,5 +61,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public bool VerifyInvalidUlnErrorText() => pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
 
         public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
+
+        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln, bool deleteCertificate)
+        {
+            if (deleteCertificate) _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
+
+            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
+
+            return new AS_ConfirmApprenticePage(_context);
+        }
+
     }
 }

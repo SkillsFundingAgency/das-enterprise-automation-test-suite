@@ -47,6 +47,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             objectContext = context.Get<ObjectContext>();
         }
 
+        public virtual bool VerifyGrade(string grade) => pageInteractionHelper.FindElements(SummaryRows).ToList().Any(x => x.Text.Contains("Grade") && x.Text.ContainsCompareCaseInsensitive(grade));
+
         protected void UploadFile()
         {
             string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
@@ -55,8 +57,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         }
                
         protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
-
-        public bool VerifyGrade(string grade) => pageInteractionHelper.FindElements(SummaryRows).ToList().Any(x => x.Text.Contains("Grade") && x.Text.ContainsCompareCaseInsensitive(grade));
-
     }
 }
