@@ -146,7 +146,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
         {
-            if (!(leanerCriteria.HasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage();
+            if (!(leanerCriteria.HasMultipleVersions)) return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
             else
             {
                 var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
