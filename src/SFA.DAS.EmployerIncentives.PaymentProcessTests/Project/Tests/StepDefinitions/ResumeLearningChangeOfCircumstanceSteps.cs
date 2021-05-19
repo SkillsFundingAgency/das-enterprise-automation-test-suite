@@ -168,6 +168,30 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
         }
 
+        [When(@"Learner data is updated with Price Episode End Date which is one day after the due date of the paid earning in Period R(.*)")]
+        public async Task WhenLearnerDataIsUpdatedWithPriceEpisodeEndDateWhichIsOneDayAfterTheDueDateOfThePaidEarningInPeriodR(string p0)
+        {
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate("2020-11-01T00:00:00")
+                .WithEndDate(_initialEarning.DueDate.AddDays(1)) // "2021-01-29T00:00:00"
+                .WithPeriod(apprenticeshipId, 4)
+                .WithPeriod(apprenticeshipId, 5)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(Ukprn)
+                .WithUln(_uln)
+                .WithAcademicYear(_initialEarning.PaymentYear.Value)
+                .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
+                .WithIlrSubmissionWindowPeriod(8)
+                .WithStartDate(_initialStartDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
+        }
+
+
         [When(@"the paid earnings of £(.*) is still available in the currently active Period")]
         public void WhenThePaidEarningsOfIsStillAvailableInTheCurrentlyActivePeriodR(int amount)
         {
@@ -227,6 +251,21 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             pendingPayment.PaymentMadeDate.Should().BeNull();
             pendingPayment.ClawedBack.Should().BeFalse();
         }
+
+        [Then(@"the existing first pending payment of £(.*) paid in Period R(.*) (.*) is unchanged")]
+        public void ThenTheExistingFirstPendingPaymentOfPaidInPeriodRIsUnchanged(int amount, byte period, short year)
+        {
+            var pendingPayment = GetFromDatabase<PendingPayment>(p =>
+                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+                && p.EarningType == EarningType.FirstPayment);
+
+            pendingPayment.PeriodNumber.Should().Be(period);
+            pendingPayment.PaymentYear.Should().Be(year);
+            pendingPayment.Amount.Should().Be(amount);
+            pendingPayment.PaymentMadeDate.Should().BeNull();
+            pendingPayment.ClawedBack.Should().BeFalse();
+        }
+
 
         [Then(@"a new second pending payment of £(.*) is created for Period R(.*) (.*)")]
         public void ThenANewSecondPendingPaymentOfIsCreatedForPeriodR(int amount, byte period, short year)
