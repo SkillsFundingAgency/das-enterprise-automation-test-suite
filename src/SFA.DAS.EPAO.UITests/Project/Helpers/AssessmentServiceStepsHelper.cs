@@ -26,13 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             var recordAGradePage = GoToRecordAGradePage();
 
             if (leanerCriteria.HasMultiStandards)
-            {
-                var confirmApprenticePage = recordAGradePage.SearchApprentice(false).ViewCertificateHistory();
-
-                gradeValidation = confirmApprenticePage.VerifyGrade(grade);
-
-                if (grade == "fail") confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
-            }
+                gradeValidation = recordAGradePage.SearchApprentice(false).ViewCertificateHistory().VerifyGrade(grade);
             else
             {
                 if (grade == "pass") gradeValidation = recordAGradePage.GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
