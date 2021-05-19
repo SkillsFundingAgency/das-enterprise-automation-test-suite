@@ -79,7 +79,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca2standard1version1option")]
+        [NUnit.Framework.CategoryAttribute("epaoca2standard2version1option")]
         public virtual void EPAO_AS_CA_02B_VerifyChangeLinksOnTheConfirmAssessmentPage()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,7 +87,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca2standard1version1option"};
+                    "epaoca2standard2version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page", null, tagsOfScenario, argumentsOfScenario);
 #line 8

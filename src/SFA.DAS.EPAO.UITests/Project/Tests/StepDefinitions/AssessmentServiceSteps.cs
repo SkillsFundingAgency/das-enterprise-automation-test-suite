@@ -39,22 +39,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User certifies an Apprentice as '(pass|fail)'")]
-        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade)
-        {
-            var leanerCriteria = SetLearnerDetails();
+        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => RecordAGrade(grade, SetLearnerDetails());
 
-            RecordAGrade(grade, string.Empty, leanerCriteria);
-        }
-
-
-        [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
-        {
-            var leanerDetails = _context.Get<LeanerCriteria>();
-
-            RecordAGrade(grade, enrolledStandard, leanerDetails);
-        }
-        
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
         {
@@ -168,12 +154,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(achievementDatePage.GetDateErrorText(), errorText);
 
         [When(@"the User certifies an Apprentice as '(pass|fail)' and lands on Confirm Assessment Page")]
-        public void WhenTheUserCertifiesAnApprenticeAsAndLandsOnConfirmAssessmentPage(string grade)
-        {
-            var leanerCriteria = SetLearnerDetails();
-
-            checkAndSubmitAssessmentPage = CertifyApprentice(grade, string.Empty, leanerCriteria);
-        }
+        public void WhenTheUserCertifiesAnApprenticeAsAndLandsOnConfirmAssessmentPage(string grade) 
+            => checkAndSubmitAssessmentPage = CertifyApprentice(grade, string.Empty, SetLearnerDetails());
 
         [Then(@"the Change links navigate to the respective pages")]
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
@@ -277,7 +259,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => CertifyApprentice(grade, enrolledStandard, leanerDetails).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerDetails) => CertifyApprentice(grade, string.Empty, leanerDetails).ClickContinueInCheckAndSubmitAssessmentPage();
 
         private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard, LeanerCriteria leanerDetails) => assessmentServiceStepsHelper.CertifyApprentice(grade, enrolledStandard, leanerDetails.HasMultipleVersions, leanerDetails.WithOptions, leanerDetails.HasMultiStandards);
 
