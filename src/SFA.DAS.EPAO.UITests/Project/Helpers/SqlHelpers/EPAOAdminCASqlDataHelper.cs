@@ -44,26 +44,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
         private List<string> GetTestData(string email, LeanerCriteria leanerCriteria)
         {
-            string query = FileHelper.GetSql("GetLearnersData");
+            string query = FileHelper.GetSql(GetLearnersDataSqlFileName(leanerCriteria));
 
             Dictionary<string, string> sqlParameters = new Dictionary<string, string>
             {
                 { "@endPointAssessorEmail", email }
             };
 
-            query = GetTestData(query, leanerCriteria.IsActiveStandard, leanerCriteria.HasMultipleVersions, leanerCriteria.WithOptions, leanerCriteria.HasMultiStandards);
+            query = GetTestData(query, leanerCriteria.IsActiveStandard, leanerCriteria.HasMultipleVersions, leanerCriteria.WithOptions);
 
             return GetData(query, 5, sqlParameters);
         }
 
-        private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
+        private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions)
         {
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Isactivestandard__", isActiveStandard ? $"{1}" : $"{0}");
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasVersions__", hasMultipleVersions ? $"{1}" : $"{0}");
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasOptions__", withOptions ? $"{1}" : $"{0}");
-            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__multistandards__", hasMultiStandards ? $"{2},{3},{4}" : $"{1}");
 
             return sqlQueryFromFile;
         }
+
+        private string GetLearnersDataSqlFileName(LeanerCriteria leanerCriteria) => leanerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
     }
 }

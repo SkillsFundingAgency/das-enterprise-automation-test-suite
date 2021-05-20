@@ -32,12 +32,11 @@ WHERE 1=1
 AND standard_Active = __Isactivestandard__
 AND Has_versions = __HasVersions__
 AND Has_options = __HasOptions__     
-AND multi in (__multistandards__)                  
+AND multi = 1           
 AND ce1.id IS NULL
 and learner.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
 
 -- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards
 -- set __HasVersions__ to 1 for standards with versions, 0 for standards with just one version, "1.0"
 -- set __HasOptions__ to 1 for standards with options, 0 for standards without options
--- set __multistandards__ to > 1  for learners with more than one standard, =1 for learners with just one standard
 -- set to ce1.id "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate
