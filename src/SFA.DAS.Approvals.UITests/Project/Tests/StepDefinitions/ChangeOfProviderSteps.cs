@@ -174,7 +174,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the training provider.";
+            string expectedText = "You have made a change of provider request. It’s now with the new training provider for review.";
             string actualText = apprenticeDetailsPage.GetAlertBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
@@ -192,7 +192,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that you need to review.";
+            string expectedText = "The new training provider has reviewed the change of provider request. You need to review the new details. View changes";
             string actualText = apprenticeDetailsPage.GetAlertBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
