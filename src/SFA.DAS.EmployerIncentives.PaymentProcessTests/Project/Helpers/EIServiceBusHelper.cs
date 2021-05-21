@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
@@ -17,13 +18,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 .UseMessageConventions()
                 .UseNewtonsoftJsonSerializer();
 
-            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            var ruleNameShortener = new RuleNameShortener();
+            if (config.ServiceBusConnectionString.Equals("UseLearningEndpoint=true", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                transport.StorageDirectory(config.LearningTransportStorageDirectory);
+                transport.Routing().AddRouting();
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
+            }
+            else
+            {
+                var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                var ruleNameShortener = new RuleNameShortener();
 
-            transport.ConnectionString(config.ServiceBusConnectionString);
-            transport.Routing().AddRouting();
-            transport.RuleNameShortener(ruleNameShortener.Shorten);
-            transport.Transactions(TransportTransactionMode.ReceiveOnly);
+                transport.ConnectionString(config.ServiceBusConnectionString);
+                transport.Routing().AddRouting();
+                transport.RuleNameShortener(ruleNameShortener.Shorten);
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
+            }
 
             _endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
         }
