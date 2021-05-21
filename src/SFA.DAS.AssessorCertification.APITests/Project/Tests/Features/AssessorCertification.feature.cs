@@ -20,8 +20,8 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AssessorCertification")]
-    public partial class AssessorCertificationFeature
+    [NUnit.Framework.DescriptionAttribute("EPA API Certification")]
+    public partial class EPAAPICertificationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AssessorCertification", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EPA API Certification", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,6 +78,9 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             string[] @__tags = new string[] {
                     "api",
                     "AssessorCertification",
+                    "EPA",
+                    "API",
+                    "Certification",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -91,7 +94,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Create EPA Record", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,25 +114,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
+ testRunner.Given("the user prepares payload with uln 1000813800", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 10
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("the EPARefNumber in the response is same as in the Certificates table in the data" +
+                        "base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord001")]
+        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord001POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("AssessorCertification")]
+        [NUnit.Framework.CategoryAttribute("EPA")]
+        [NUnit.Framework.CategoryAttribute("API")]
+        [NUnit.Framework.CategoryAttribute("Certification")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyCreateEPARecord_CreateEPARecord001()
+        public virtual void VerifyCreateEPARecord_CreateEPARecord001POST()
         {
-#line 6
-this.VerifyCreateEPARecord("CreateEPARecord001", "POST", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
+#line 7
+this.VerifyCreateEPARecord("CreateEPARecord001POST", "POST", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
 #line hidden
         }
     }
