@@ -27,12 +27,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new HasTheApprenticeBeenMadeRedundantPage(_context);
         }
 
-        public NewStopDateApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit()
+        public ApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit()
         {
             formCompletionHelper.EnterText(NewStopDate_Month, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(NewStopDate_Year, apprenticeCourseDataHelper.CourseStartDate.Year);
             formCompletionHelper.Click(ContinueButton);
-            return new NewStopDateApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(_context);
         }
 
         private void EnterTheStopDate()
