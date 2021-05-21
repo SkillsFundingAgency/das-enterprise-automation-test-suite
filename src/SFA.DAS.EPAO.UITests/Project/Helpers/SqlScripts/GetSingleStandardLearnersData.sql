@@ -34,6 +34,7 @@ AND Has_versions = __HasVersions__
 AND Has_options = __HasOptions__     
 AND multi = 1           
 AND ce1.id IS NULL
+AND learner.ULN not in (__InUseUln__)
 and learner.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
 
 -- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards

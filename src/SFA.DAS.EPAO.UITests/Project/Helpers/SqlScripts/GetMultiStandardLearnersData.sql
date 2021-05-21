@@ -32,7 +32,8 @@ WHERE 1=1
 AND standard_Active = __Isactivestandard__ 
 AND Has_versions = __HasVersions__    
 AND Has_options = __HasOptions__     
-AND ce1.id IS NULL      
+AND ce1.id IS NULL
+AND il1.ULN not in (__InUseUln__)
 GROUP BY il1.ULN, il1.GivenNames, il1.familyname
 HAVING COUNT(*) > 1     
 ) ab1 order by NEWID() desc
