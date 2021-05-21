@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
@@ -52,6 +53,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             };
 
             query = GetTestData(query, leanerCriteria.IsActiveStandard, leanerCriteria.HasMultipleVersions, leanerCriteria.WithOptions);
+
+            TestContext.Progress.WriteLine(query);
 
             return GetData(query, 5, sqlParameters);
         }
