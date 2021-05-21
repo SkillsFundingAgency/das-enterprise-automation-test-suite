@@ -47,9 +47,9 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         [Then(@"the EPARefNumber in the response is same as in the Certificates table in the database")]
         public void ThenTheEPARefNumberInTheResponseIsSameAsInTheCertificatesTableInTheDatabase()
         {
-            var actualRef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(contextUln);
+            var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(contextUln);
 
-            Assert.True(restResponse.Content.ToString().Contains(actualRef), "Value is not contained in response");
+            Assert.True(restResponse.Content.ToString().Contains(actualEPARef), "Value is not contained in response");
             
         }
 
