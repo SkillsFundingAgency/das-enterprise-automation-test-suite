@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
                 var uln = data[0];
 
-                if (EPAOCAInUseUlns.IsNotInUseUln(uln))
+                if (!string.IsNullOrEmpty(uln) && EPAOCAInUseUlns.IsNotInUseUln(uln))
                 {
                     return data;
                 }
