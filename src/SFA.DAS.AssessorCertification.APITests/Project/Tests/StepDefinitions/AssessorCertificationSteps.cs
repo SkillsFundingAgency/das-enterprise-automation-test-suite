@@ -33,6 +33,13 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             contextUln = uln;
         }
 
+        [Given(@"the user prepares payload with updated epa outcome for uln (.*)")]
+        public void GivenTheUserPreparesPayloadWithUpdatedEpaOutcomeForUln(string uln)
+        {
+            contextUln = uln;
+        }
+
+
         [When(@"the user sends (GET|POST|PUT) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);
 

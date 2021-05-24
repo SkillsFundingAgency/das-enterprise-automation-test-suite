@@ -29,7 +29,7 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Project\Tests\Payload\CreateEPARecord.json">
+	  <None Update="Project\Tests\Payload\UpdateEPARecord.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="SFA.DAS.AssessorCertification.APITests.runtimeconfig.json">

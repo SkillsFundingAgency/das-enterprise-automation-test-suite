@@ -132,17 +132,73 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord001POST")]
+        [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("AssessorCertification")]
         [NUnit.Framework.CategoryAttribute("EPA")]
         [NUnit.Framework.CategoryAttribute("API")]
         [NUnit.Framework.CategoryAttribute("Certification")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void VerifyCreateEPARecord_CreateEPARecord001POST()
+        public virtual void VerifyCreateEPARecord_CreateEPARecord001()
         {
 #line 7
-this.VerifyCreateEPARecord("CreateEPARecord001POST", "POST", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
+this.VerifyCreateEPARecord("CreateEPARecord001", "POST", "/api/v1/epa", "CreateEPARecord.json", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyUpdateEPARecord(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Update EPA Record", null, tagsOfScenario, argumentsOfScenario);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 18
+ testRunner.Given("the user prepares payload with updated epa outcome for uln 1000809178", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 19
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+ testRunner.And("the EPARefNumber in the response is same as in the Certificates table in the data" +
+                        "base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Update EPA Record: UpdateEPARecord001")]
+        public virtual void VerifyUpdateEPARecord_UpdateEPARecord001()
+        {
+#line 17
+this.VerifyUpdateEPARecord("UpdateEPARecord001", "PUT", "/api/v1/epa", "UpdateEPARecord.json", "OK", ((string[])(null)));
 #line hidden
         }
     }
