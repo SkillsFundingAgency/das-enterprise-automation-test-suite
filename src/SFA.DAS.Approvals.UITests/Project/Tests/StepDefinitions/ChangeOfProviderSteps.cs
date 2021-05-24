@@ -201,7 +201,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                     .ClickReviewChangesLink()
                                                     .ClickReviewTheApprenticeDetailsToUpdateLink()
                                                     .SelectEditApprentice()
-                                                    .GetAllEditBoxes();
+                                                    .GetAllEditableBoxes();
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count == 6, "validate that cohort is editable on View apprentice details page");            
         }
@@ -209,7 +209,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void ValidateOnlyEditableApprenticeDetails()
         {
             EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
-            var EditApprenticeDetails = editApprenticePage.GetAllEditBoxes("form-control");
+            var EditApprenticeDetails = editApprenticePage.GetAllEditableBoxes();
 
             Assert.IsTrue(EditApprenticeDetails.Count == 6, "validate that cohort is editable on View apprentice details page");
         }
