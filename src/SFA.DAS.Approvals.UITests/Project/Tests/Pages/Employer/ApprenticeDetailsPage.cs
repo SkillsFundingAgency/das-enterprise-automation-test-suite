@@ -7,6 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticeDetailsPage : ApprovalsBasePage
     {
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
 
         #region Helpers and Context
@@ -24,7 +25,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
         private By CompletionDate => By.Id("completionDate");
         private By changeTrainingProviderLink => By.Id("change-training-provider-link");
-        private By AlertBox => By.CssSelector("p.govuk-body-s");
+        private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
+        private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -68,7 +70,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
         public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
-        
+        public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
+
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
             formCompletionHelper.ClickElement(changeTrainingProviderLink);
@@ -85,6 +88,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.Click(ReviewCopChangesLink);
             return new ViewChangesPage(_context);
+        }
+
+        public ApprenticeDetailsPage ValidateFlashMessage(string expectedMsg)
+        {
+            pageInteractionHelper.VerifyText(GetFlashMsg(), expectedMsg);
+            return this;
         }
     }
 }
