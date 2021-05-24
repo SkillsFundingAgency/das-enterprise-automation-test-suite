@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.UI.Framework;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -13,9 +12,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         protected HttpClient httpClient;
         protected string baseUrl;
 
-        public LearnerMatchApiHelper()
+        public LearnerMatchApiHelper(EIConfig config)
         {
-            baseUrl = UrlConfig.EI_ApiStubBaseUrl;
+            baseUrl = config.EI_ApiStubBaseUrl;
             httpClient = new HttpClient();
         }
 

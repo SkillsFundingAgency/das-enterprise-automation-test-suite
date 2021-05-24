@@ -44,10 +44,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var config = context.Get<FrameworkConfig>();
             serviceBusHelper = new EIServiceBusHelper(config.NServiceBusConfig);
 
-            learnerMatchApi = new LearnerMatchApiHelper();
+            learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
 
-            businessCentralApiHelper = new BusinessCentralApiHelper();
+            businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");

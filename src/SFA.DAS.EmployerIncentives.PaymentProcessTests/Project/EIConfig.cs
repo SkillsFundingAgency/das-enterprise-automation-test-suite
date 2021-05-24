@@ -9,5 +9,11 @@
         public string EI_DfeUatPassword { get; set; }
 
         public string EI_PaymentsAppCode { get; set; }
+
+        public string EI_PaymentsAppBaseUrl { get; set; }
+
+        public string EI_ApiStubBaseUrl { get; set; }
+
+
     }
 }

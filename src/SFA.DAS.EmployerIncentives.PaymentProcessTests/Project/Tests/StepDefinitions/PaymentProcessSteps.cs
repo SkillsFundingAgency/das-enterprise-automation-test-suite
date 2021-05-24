@@ -78,7 +78,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(_apprenticeship.Id, new TimeSpan(0, 0, 5, 0));
             await sqlHelper.WaitUntilEarningsExist(_apprenticeshipIncentiveId, new TimeSpan(0, 0, 5, 0));
 
-            var learnerMatchApi = new LearnerMatchApiHelper();
+            var learnerMatchApi = new LearnerMatchApiHelper(_config);
             var learnerMatchResponse = ValidLearnerSubmission();
             await learnerMatchApi.SetupResponse(_apprenticeship.ULN, _apprenticeship.UKPRN.Value, learnerMatchResponse);
 
