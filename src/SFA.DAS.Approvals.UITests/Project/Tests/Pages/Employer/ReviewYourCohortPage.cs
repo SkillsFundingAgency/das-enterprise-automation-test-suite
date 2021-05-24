@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ReviewYourCohortPage : ReviewYourCohort
     {
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context

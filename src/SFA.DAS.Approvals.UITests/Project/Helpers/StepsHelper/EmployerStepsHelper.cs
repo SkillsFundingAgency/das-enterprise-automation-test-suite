@@ -214,7 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 new ManageYourApprenticesPage(_context)
                 .SelectViewCurrentApprenticeDetails();
 
-            Assert.AreEqual("Completed", apprenticeDetailsPage.GetApprenticeshipStatus(), "Validate Status of the apprenticeship");
+            Assert.AreEqual("COMPLETED", apprenticeDetailsPage.GetApprenticeshipStatus(), "Validate Status of the apprenticeship");
             Assert.AreEqual("Completion payment month", apprenticeDetailsPage.GetStatusDateTitle(), "Validate Completion Date Title");
             Assert.AreEqual(expectedCompletionDate, apprenticeDetailsPage.GetCompletionDate(), "Validate Completion Date");
         }
