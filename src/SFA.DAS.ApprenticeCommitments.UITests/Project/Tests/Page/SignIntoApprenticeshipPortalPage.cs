@@ -9,9 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Sign in to Apprenticeship portal";
 
         private readonly ScenarioContext _context;
-
         private By Username => By.CssSelector("#Username");
-
         private By Password => By.CssSelector("#Password");
 
         public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context) => _context = context;
