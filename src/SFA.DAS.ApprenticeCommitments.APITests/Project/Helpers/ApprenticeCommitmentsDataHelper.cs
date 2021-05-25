@@ -7,9 +7,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         public ApprenticeCommitmentsDataHelper(RandomDataGenerator randomDataGenerator, bool isPerfTest)
         {
-            var emailprefix = isPerfTest ? "_PerfTest_" : string.Empty;
+            var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
             var emaildomain = isPerfTest ? "email.com" : "mailinator.com";
-            Email = $"ApprenticeAccount{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
+            Email = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
             NewEmail = $"New{Email}";
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
