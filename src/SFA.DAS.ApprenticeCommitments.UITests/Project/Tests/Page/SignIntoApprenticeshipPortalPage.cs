@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         private By Username => By.CssSelector("#Username");
         private By Password => By.CssSelector("#Password");
+        private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
         public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -36,7 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
             formCompletionHelper.EnterText(Password, apprenticeCommitmentsConfig.AC_AccountPassword);
-            formCompletionHelper.ClickButtonByText(ContinueButton, "Sign in");
+            formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
         }
     }
 }

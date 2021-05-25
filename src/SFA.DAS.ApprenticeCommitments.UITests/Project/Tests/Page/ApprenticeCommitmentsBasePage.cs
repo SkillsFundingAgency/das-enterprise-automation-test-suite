@@ -24,6 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By HeaderText => By.CssSelector(".app-user-header__name");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By BetaBanner => By.CssSelector(".govuk-phase-banner");
+        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
