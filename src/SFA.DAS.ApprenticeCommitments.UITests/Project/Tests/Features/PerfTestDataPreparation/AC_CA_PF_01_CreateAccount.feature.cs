@@ -73,20 +73,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.PerfTestD
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CA_01_Create_Account")]
-        [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_CA_01_Create_Account()
+        public virtual void AC_CA_PF_01_Create_Account(string test, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "perftest",
-                    "donottakescreenshot",
-                    "deleteuser"};
+                    "donottakescreenshot"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_01_Create_Account", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            argumentsOfScenario.Add("Test", test);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_PF_01_Create_Account", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,14 +106,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.When("employer or provider submits the details to create an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the apprentice is able to create an account using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AC_CA_PF_01_Create_Account: 1")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        public virtual void AC_CA_PF_01_Create_Account_1()
+        {
+#line 5
+this.AC_CA_PF_01_Create_Account("1", ((string[])(null)));
+#line hidden
         }
     }
 }
