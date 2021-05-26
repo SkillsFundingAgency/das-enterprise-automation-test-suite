@@ -74,19 +74,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.DeleteCe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_DC_01A - Delete a Certficate")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_DC_01A - Delete a Certficate and Recreate the Deleted Certficate")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AS_DC_01A_DeleteACertficate()
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
+        public virtual void EPAO_AS_DC_01A_DeleteACertficateAndRecreateTheDeletedCertficate()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
-                    "regression"};
+                    "recordagrade",
+                    "regression",
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_DC_01A - Delete a Certficate", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_DC_01A - Delete a Certficate and Recreate the Deleted Certficate", null, tagsOfScenario, argumentsOfScenario);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,14 +110,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.When("the User requests wrong certificate certifying an Apprentice as \'pass\' which need" +
                         "s \'deleting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 11
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.Then("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
  testRunner.Then("the Admin user can delete a certificate that has been incorrectly submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -124,16 +134,20 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_DC_01B - Recreate the Deleted Certficate")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
         public virtual void EPAO_AS_DC_01B_RecreateTheDeletedCertficate()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
-                    "regression"};
+                    "recordagrade",
+                    "regression",
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_DC_01B - Recreate the Deleted Certficate", null, tagsOfScenario, argumentsOfScenario);
-#line 14
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -153,12 +167,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 21
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 22
  testRunner.Then("the User is able to rerequest the certificate certifying an Apprentice as \'PassWi" +
                         "thExcellence\' which was\'ReRequesting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 23
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 24
+ testRunner.Then("the Assessment is recorded as \'pass with excellence\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -2,10 +2,14 @@
 
 @epao
 @assessmentservice
+@recordagrade
 @regression
+@epaoca1standard2version0option
 Scenario: EPAO_AS_CA_04A - Certify a privately funded Apprentice
 	Given the Assessor User is logged into Assessment Service Application
 	When the User goes through certifying a Privately funded Apprentice
+	Then the User can navigates to record another grade
+	Then the Assessment is recorded as 'pass'
 
 @epao
 @assessmentservice

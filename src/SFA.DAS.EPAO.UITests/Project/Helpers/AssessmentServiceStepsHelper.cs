@@ -3,6 +3,7 @@ using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -29,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 gradeValidation = recordAGradePage.SearchApprentice(false).ViewCertificateHistory().VerifyGrade(grade);
             else
             {
-                if (grade == "pass") gradeValidation = recordAGradePage.GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
+                if (grade.ContainsCompareCaseInsensitive("pass")) gradeValidation = recordAGradePage.GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
 
                 else gradeValidation = recordAGradePage.SearchApprentice(false).VerifyGrade(grade);
             }
@@ -46,30 +47,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return SelectGrade(decPage, grade);
         }
 
-        public AS_CheckAndSubmitAssessmentPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
+        public AS_AssessmentRecordedPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
         {
             var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage(false).SelectLearningOptionAndContinue();
 
-            return SelectGrade(decPage, grade);
+            return SelectGrade(decPage, grade).ClickContinueInCheckAndSubmitAssessmentPage();
         }
             
-        public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario)
+        public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
         {
-            SearchApprentice("PrivatelyFundedApprentice")
-                .GoToWhichVersionPage(false)
-                .ClickConfirmInConfirmVersionPageNoOption()
-                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-                .SelectGradeForPrivatelyFundedAprrenticeAndContinue();               
-
-            if (invalidDateScenario == false)
-            {
-                new AS_AchievementDatePage(_context).EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+            return CertifyPrivatelyFundedApprentice()
+                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()
                 .EnterRecipientDetailsAndContinue()
-                .ClickContinueInCheckAndSubmitAssessmentPage();
-            }
+                .ClickContinueInCheckAndSubmitAssessmentPage();   
+        }
+
+        public AS_AchievementDatePage CertifyPrivatelyFundedApprentice()
+        {
+            return SearchApprentice("PrivatelyFundedApprentice")
+                .GoToWhichVersionPage(false)
+                .ClickConfirmInConfirmVersionPageNoOption()
+                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
+                .SelectGradeAsPass();
         }
 
         public void RemoveChangeOrgDetailsPermissionForTheUser(AS_LoggedInHomePage loggedInHomePage)

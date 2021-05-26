@@ -43,11 +43,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
       public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
       public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
-        {
+      {
             OpenAdminBaseUrl(true).ClickStartNowButton();
 
             return new StaffDashboardPage(_context);
-        }
+      }
 
         public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInAsApplyUser(loginUser);
 

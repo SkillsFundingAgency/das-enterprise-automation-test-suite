@@ -21,28 +21,29 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public void SelectGradeAndEnterDate(string grade)
+        public void SelectGradeAndEnterDate(string grade) => SelectGrade(grade).EnterAchievementGradeDateAndContinue();
+
+        public AS_AchievementDatePage SelectGradeAsPass() => SelectGradeAsPass(PassRadioButton);
+
+        private AS_GradeDateBasePage SelectGrade(string grade)
         {
-            switch (grade)
+            return grade switch
             {
-                case "pass":
-                    SelectGrade(PassRadioButton);
-                    new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-                case "PassWithExcellence":
-                    SelectGrade(PassWithExcellenceRadioButton);
-                    new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-                case "fail":
-                    SelectGrade(FailRadioButton);
-                    new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-            }
+                "PassWithExcellence" => SelectGradeAsPass(PassWithExcellenceRadioButton),
+                "fail" => SelectGradeAsFail(),
+                _ => SelectGradeAsPass(),
+            };
         }
 
-        public AS_AchievementDatePage SelectGradeForPrivatelyFundedAprrenticeAndContinue()
+        private AS_ApprenticeFailedDatePage SelectGradeAsFail()
         {
-            SelectGrade(PassRadioButton);
+            SelectGrade(FailRadioButton);
+            return new AS_ApprenticeFailedDatePage(_context);
+        }
+
+        private AS_AchievementDatePage SelectGradeAsPass(By by)
+        {
+            SelectGrade(by);
             return new AS_AchievementDatePage(_context);
         }
 

@@ -32,7 +32,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_AssesmentAlreadyRecorded(_context);
         }
 
-        public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate) => SearchApprentice(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln, deleteCertificate);
+        public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate)
+        {
+            string apprenticeFamilyName = ePAOAdminDataHelper.LastName;
+            string leanerUln = ePAOAdminDataHelper.LearnerUln;
+
+            if (deleteCertificate) _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
+
+            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
+
+            return new AS_ConfirmApprenticePage(_context);
+        }
 
         public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
         {
@@ -64,12 +74,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln, bool deleteCertificate)
         {
-            if (deleteCertificate) _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
+            ePAOAdminDataHelper.LastName = apprenticeFamilyName;
+            ePAOAdminDataHelper.LearnerUln = leanerUln;
 
-            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
-
-            return new AS_ConfirmApprenticePage(_context);
+            return SearchApprentice(deleteCertificate);
         }
-
     }
 }

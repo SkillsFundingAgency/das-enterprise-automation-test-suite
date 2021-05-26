@@ -47,16 +47,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserCertifiesSameApprenticeAsPass() => assessmentRecordedPage = RecordAGrade("pass", GetLearnerCriteria(), false);
 
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
-        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
-        {
-            var page = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
-
-            page.ClickContinueInCheckAndSubmitAssessmentPage();
-        }
-
-        [Then(@"the Assessment is recorded as '(pass|fail)'")]
+        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard) => ApprenticeCertificateRecord(grade, enrolledStandard);
+        
+        [Then(@"the Assessment is recorded as '(pass|fail|pass with excellence)'")]
         public void ThenTheAssessmentIsRecordedAs(string grade) => assessmentServiceStepsHelper.VerifyApprenticeGrade(grade, GetLearnerCriteria());
-
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
@@ -67,15 +61,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
-        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard)
-        {
-            var page = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
+        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard) => ApprenticeCertificateRecord(grade, enrolledStandard);
 
-            page.ClickContinueInCheckAndSubmitAssessmentPage();
-        }
-        
         [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice(false);
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentRecordedPage = assessmentServiceStepsHelper.CertifyPrivatelyFundedApprenticeValidDateScenario();
 
         [Then(@"the User can navigates to record another grade")]
         public void ThenTheUserCanNavigatesToRecordAnotherGrade() => assessmentRecordedPage.ClickRecordAnotherGradeLink();
@@ -141,7 +130,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
-        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice(true);
+        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice();
 
         [When(@"the User enters the date before the Year 2017")]
         public void WhenTheUserEntersTheDateBeforeTheYear2017()
@@ -261,6 +250,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
+        
+        private void ApprenticeCertificateRecord(string grade, string enrolledStandard) => assessmentRecordedPage = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
 
         private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate) => CertifyApprentice(grade, leanerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
 
