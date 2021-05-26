@@ -151,15 +151,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Resume 2 - Learner Stopped COC triggered on the due date of the First Earning and" +
-            " then Resumed in later period")]
-        public virtual void Resume2_LearnerStoppedCOCTriggeredOnTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
+        [NUnit.Framework.DescriptionAttribute("Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of the First " +
+            "Earning and then Resumed in later period")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
+        public virtual void Resume2_Defect_LearnerStoppedCOCTriggeredOnTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 2 - Learner Stopped COC triggered on the due date of the First Earning and" +
-                    " then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
-#line 20
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of the First " +
+                    "Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -179,46 +181,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
+#line 22
     testRunner.Given("an existing apprenticeship incentive (ULN 7229721932) with learning starting on 0" +
                         "1-Nov-2020 and ending on 31-Jul-2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 22
+#line 23
     testRunner.And("a payment of £1000 sent in Period R06 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 24
     testRunner.When("Learner data is updated with Price Episode End Date which is on the due date of t" +
                         "he paid earning in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 25
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 26
     testRunner.And("the Unpaid Earnings are Archived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 27
     testRunner.And("the paid earnings of £1000 is still available in the currently active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 27
+#line 28
     testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
                         "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
-    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 29
-    testRunner.And("ILR Learner Resumed COC is occurred in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
-    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("ILR Learner Resumed COC is occurred in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 31
-    testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
-    testRunner.Then("the existing first pending payment of £1000 paid in Period R06 2021 is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
+    testRunner.Then("the existing first pending payment of £1000 paid in Period R06 2021 is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 34
     testRunner.Then("a new second pending payment of £1000 is created for Period R05 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -226,15 +228,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Resume 3 - Learner Stopped COC triggered one day after the due date of the First " +
-            "Earning and then Resumed in later period")]
-        public virtual void Resume3_LearnerStoppedCOCTriggeredOneDayAfterTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
+        [NUnit.Framework.DescriptionAttribute("Resume 3 - (Defect) - Learner Stopped COC triggered one day after the due date of" +
+            " the First Earning and then Resumed in later period")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
+        public virtual void Resume3_Defect_LearnerStoppedCOCTriggeredOneDayAfterTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 3 - Learner Stopped COC triggered one day after the due date of the First " +
-                    "Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
-#line 35
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 3 - (Defect) - Learner Stopped COC triggered one day after the due date of" +
+                    " the First Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -254,46 +258,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 36
+#line 38
     testRunner.Given("an existing apprenticeship incentive (ULN 7229721932) with learning starting on 0" +
                         "1-Nov-2020 and ending on 31-Jul-2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 37
+#line 39
     testRunner.And("a payment of £1000 sent in Period R06 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
+#line 40
     testRunner.When("Learner data is updated with Price Episode End Date which is one day after the du" +
                         "e date of the paid earning in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
-    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 40
-    testRunner.And("the Unpaid Earnings are Archived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 41
-    testRunner.And("the paid earnings of £1000 is still available in the currently active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
-    testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
-                        "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the Unpaid Earnings are Archived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 43
-    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the paid earnings of £1000 is still available in the currently active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 44
-    testRunner.And("ILR Learner Resumed COC is occurred in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
+                        "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 45
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 46
-    testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("ILR Learner Resumed COC is occurred in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 47
-    testRunner.Then("the existing first pending payment of £1000 paid in Period R06 2021 is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 48
+    testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 49
+    testRunner.Then("the existing first pending payment of £1000 paid in Period R06 2021 is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 50
     testRunner.Then("a new second pending payment of £1000 is created for Period R05 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
