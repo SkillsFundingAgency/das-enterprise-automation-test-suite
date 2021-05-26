@@ -1,23 +1,25 @@
-[{
-        "requestId": "SM001",
-        "standard": {
-            "standardCode": 138,
-            "standardReference": ""
-        },
-        "learner": {
-            "uln": 1000813800,
-            "familyName": "Name1000813800"
-        },
-        "learningDetails": {
-            "version": "1.0",
-            "courseOption": ""
-        },
-        "epaDetails": {
-            "epas": [{
-                    "epaDate": "2021-02-02T00:00:00Z",
-                    "epaOutcome": "fail"
-                }
-            ]
+[
+  {
+    "requestId": "CB001",
+    "standard": {
+      "standardCode": 60,
+      "standardReference": ""
+    },
+    "learner": {
+      "uln": 1000806000,
+      "familyName": "Name1000806000"
+    },
+    "learningDetails": {
+      "version": "1.0",
+      "courseOption": ""
+    },
+    "epaDetails": {
+      "epas": [
+        {
+          "epaDate": "2021-02-02T00:00:00Z",
+          "epaOutcome": "fail"
         }
+      ]
     }
+  }
 ]
