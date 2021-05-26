@@ -90,7 +90,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
 
-        public SignedOutPage SingOutFromTheService()
+        public SignedOutPage SignOutFromTheService()
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(_context);

@@ -80,7 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public SignIntoApprenticeshipPortalPage ResetPassword() => GetResetPasswordPage().CreatePassword().ReturnToApprenticeshipPortal();
 
-        public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInAfterSignUp().SignBackInFromSignOutPage().SignInToApprenticePortal();
+        public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInToApprenticePortal();
 
         public void InvalidPassword(PasswordBasePage passwordPage)
         {
