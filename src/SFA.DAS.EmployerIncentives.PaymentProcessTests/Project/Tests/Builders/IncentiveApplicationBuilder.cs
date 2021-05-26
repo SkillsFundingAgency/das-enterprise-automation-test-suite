@@ -36,6 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
                 .With(x => x.WithdrawnByEmployer, false)
                 .With(x => x.PlannedStartDate, plannedStartDate)
                 .With(x => x.DateOfBirth, dateOfBirth)
+                .With(x => x.Phase, Phase.Phase1)
                 .Create();
             _incentiveApplication.Apprenticeships.Add(apprenticeship);
 
