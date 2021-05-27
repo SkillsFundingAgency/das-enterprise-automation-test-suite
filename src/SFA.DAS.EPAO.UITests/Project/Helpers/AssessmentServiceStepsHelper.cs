@@ -60,7 +60,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_AchievementDatePage CertifyPrivatelyFundedApprentice()
         {
-            return SearchApprentice(true)
+            return GoToRecordAGradePage().SearchApprentice(true)
                 .GoToWhichVersionPage(false)
                 .ClickConfirmInConfirmVersionPageNoOption()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
@@ -124,7 +124,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             staffDashboardPage
                 .Search()
-                .SearchFor(_ePAOAdminDataHelper.DeleteIncorrectRecordUln)
+                .SearchFor(_ePAOAdminDataHelper.LearnerUln)
                 .SelectACertificate()
                 .ClickDeleteCertificateLink()
                 .ClickYesAndContinue()
@@ -132,8 +132,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickDeleteCertificateButton()
                 .ClickReturnToDashboard();
         }
-
-        private AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate) => GoToRecordAGradePage().SearchApprentice(deleteCertificate);
 
         private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
 
