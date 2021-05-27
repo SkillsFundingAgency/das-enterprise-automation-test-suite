@@ -46,14 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             return SelectGrade(decPage, grade);
         }
-
-        public AS_AssessmentRecordedPage ApprenticeCertificateRecord(string grade, string enrolledStandard)
-        {
-            var decPage = SearchApprentice(enrolledStandard).GoToWhichLearningOptionPage(false).SelectLearningOptionAndContinue();
-
-            return SelectGrade(decPage, grade).ClickContinueInCheckAndSubmitAssessmentPage();
-        }
-            
+   
         public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
         {
             return CertifyPrivatelyFundedApprentice()
@@ -67,7 +60,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_AchievementDatePage CertifyPrivatelyFundedApprentice()
         {
-            return SearchApprentice("PrivatelyFundedApprentice")
+            return SearchApprentice(true)
                 .GoToWhichVersionPage(false)
                 .ClickConfirmInConfirmVersionPageNoOption()
                 .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
@@ -140,7 +133,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickReturnToDashboard();
         }
 
-        private AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard) => GoToRecordAGradePage().SearchApprentice(enrolledStandard);
+        private AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate) => GoToRecordAGradePage().SearchApprentice(deleteCertificate);
 
         private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
 

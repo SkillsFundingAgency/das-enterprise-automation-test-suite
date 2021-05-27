@@ -40,7 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_LandingPage(_context);
         }
 
-      public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
+        public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginGoToApplyForAStandardPage();
 
       public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
       {
@@ -49,9 +49,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new StaffDashboardPage(_context);
       }
 
-        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInAsApplyUser(loginUser);
+        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
 
-        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInWithValidDetails(loginUser);
+        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
 
         public AS_LoggedInHomePage LoginInAsStandardApplyUser(LoginUser loginUser, string standardcode, string organisationId)
         {
@@ -72,6 +72,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
         }
 
-        public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInWithValidDetails(loginUser);
+        public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
     }
 }

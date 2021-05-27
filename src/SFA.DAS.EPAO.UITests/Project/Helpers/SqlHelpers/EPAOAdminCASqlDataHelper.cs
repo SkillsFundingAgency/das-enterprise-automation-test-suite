@@ -21,6 +21,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             EPAOCAInUseUlns.RemoveInUseUln(uln);
         }
 
+        public List<string> GetStaticTestData(string uln, string familyName)
+        {
+            var query = $"select top 1 uln, StdCode, title, GivenNames, FamilyName from [Ilrs] join standards on larscode = stdcode and uln = {uln} and FamilyName = '{familyName}'";
+
+            return GetData(query, 5);
+        }
+
         public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria)
         {
             List<string> data = new List<string>();

@@ -5,6 +5,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -41,30 +42,30 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User certifies an Apprentice as '(pass|fail)'")]
-        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => assessmentRecordedPage = RecordAGrade(grade, SetLearnerDetails(), true);
+        public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => RecordAGrade(grade, SetLearnerDetails(), true);
 
         [When(@"the User certifies same Apprentice as pass")]
-        public void WhenTheUserCertifiesSameApprenticeAsPass() => assessmentRecordedPage = RecordAGrade("pass", GetLearnerCriteria(), false);
+        public void WhenTheUserCertifiesSameApprenticeAsPass() => RecordAGrade("pass", GetLearnerCriteria(), false);
 
-        [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
-        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard) => ApprenticeCertificateRecord(grade, enrolledStandard);
+        [When(@"the User requests wrong certificate certifying an Apprentice as '(pass)' which needs deleting")]
+        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade) => RecordAGrade(grade, SetLearnerDetails("deleting"), true);
         
         [Then(@"the Assessment is recorded as '(pass|fail|pass with excellence)'")]
         public void ThenTheAssessmentIsRecordedAs(string grade) => assessmentServiceStepsHelper.VerifyApprenticeGrade(grade, GetLearnerCriteria());
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
-        public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
-        {
-            var staffdashboard = ePAOHomePageHelper.LoginToEpaoAdminHomePage(true);
+        public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted() => assessmentServiceStepsHelper.DeleteCertificate(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
-            assessmentServiceStepsHelper.DeleteCertificate(staffdashboard);
-        }
-
-        [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
-        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard) => ApprenticeCertificateRecord(grade, enrolledStandard);
+        [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(PassWithExcellence)' which was ReRequesting")]
+        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade) => RecordAGrade(grade, SetLearnerDetails("deleting"), false);
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => assessmentRecordedPage = assessmentServiceStepsHelper.CertifyPrivatelyFundedApprenticeValidDateScenario();
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
+        {
+            SetLearnerDetails("PrivatelyFundedApprentice");
+
+            assessmentRecordedPage = assessmentServiceStepsHelper.CertifyPrivatelyFundedApprenticeValidDateScenario();
+        }
 
         [Then(@"the User can navigates to record another grade")]
         public void ThenTheUserCanNavigatesToRecordAnotherGrade() => assessmentRecordedPage.ClickRecordAnotherGradeLink();
@@ -251,9 +252,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard() => applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
         
-        private void ApprenticeCertificateRecord(string grade, string enrolledStandard) => assessmentRecordedPage = assessmentServiceStepsHelper.ApprenticeCertificateRecord(grade, enrolledStandard);
-
-        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate) => CertifyApprentice(grade, leanerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
+        private AS_AssessmentRecordedPage RecordAGrade(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate) => assessmentRecordedPage = CertifyApprentice(grade, leanerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
 
         private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate) => assessmentServiceStepsHelper.CertifyApprentice(grade, leanerCriteria, deleteCertificate);
 
@@ -265,6 +264,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             if (string.IsNullOrEmpty(leanerDetails[0])) Assert.Fail("No test data found in the db");
 
+            return SetLearnerDetails(leanerDetails);
+        }
+
+        private LeanerCriteria SetLearnerDetails(string enrolledStandard)
+        {
+            var (lastName, uln) = GetStaticTestData(enrolledStandard);
+
+            var leanerDetails = ePAOAdminCASqlDataHelper.GetStaticTestData(uln, lastName);
+
+            return SetLearnerDetails(leanerDetails);
+        }
+
+        private LeanerCriteria SetLearnerDetails(List<string> leanerDetails)
+        {
             ePAOAdminDataHelper.LearnerUln = leanerDetails[0];
             ePAOAdminDataHelper.StandardCode = leanerDetails[1];
             ePAOAdminDataHelper.StandardsName = leanerDetails[2];
@@ -273,7 +286,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             objectContext.SetLearnerDetails(leanerDetails[0], leanerDetails[1], leanerDetails[2], leanerDetails[3], leanerDetails[4]);
 
-            return leanerCriteria;
+            return GetLearnerCriteria();
+        }
+
+        public (string lastName, string uln) GetStaticTestData(string enrolledStandard)
+        {
+            return true switch
+            {
+                bool _ when (enrolledStandard == "deleting" || enrolledStandard == "ReRequesting") => (ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption),
+                bool _ when (enrolledStandard == "PrivatelyFundedApprentice") => (ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln),
+                _ => (string.Empty, string.Empty)
+            };
         }
 
         private LeanerCriteria GetLearnerCriteria() => _context.Get<LeanerCriteria>();

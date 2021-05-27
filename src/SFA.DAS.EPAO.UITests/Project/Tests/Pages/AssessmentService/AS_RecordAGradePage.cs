@@ -44,17 +44,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_ConfirmApprenticePage(_context);
         }
 
-        public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
-        {
-            return enrolledStandard switch
-            {
-                "deleting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption, true),
-                "ReRequesting" => SearchApprentice(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption, false),
-                "PrivatelyFundedApprentice" => SearchApprentice(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln, true),
-                _ => new AS_ConfirmApprenticePage(_context)
-            };
-        }
-
         public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
         {
             formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
