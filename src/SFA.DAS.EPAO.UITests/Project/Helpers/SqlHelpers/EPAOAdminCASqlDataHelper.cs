@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -21,14 +22,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             EPAOCAInUseUlns.RemoveInUseUln(uln);
         }
 
-        public List<string> GetStaticTestData(string uln, string familyName)
+        public List<string> GetStaticTestData((string familyName, string uln) data)
         {
-            var query = $"select top 1 uln, StdCode, title, GivenNames, FamilyName from [Ilrs] join standards on larscode = stdcode and uln = {uln} and FamilyName = '{familyName}'";
+            var query = $"select top 1 uln, StdCode, title, GivenNames, FamilyName from [Ilrs] join standards on larscode = stdcode and uln = {data.uln} and FamilyName = '{data.familyName}'";
 
-            return GetData(query, 5);
+            return GetTestData(() => GetData(query, 5));
         }
 
-        public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria)
+        public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria) => GetTestData(() => GetTestData(email, leanerCriteria));
+
+        private List<string> GetTestData(Func<List<string>> func)
         {
             List<string> data = new List<string>();
 
@@ -36,7 +39,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             while (i <= 2)
             {
-                data = GetTestData(email, leanerCriteria);
+                data = func();
 
                 var uln = data[0];
 

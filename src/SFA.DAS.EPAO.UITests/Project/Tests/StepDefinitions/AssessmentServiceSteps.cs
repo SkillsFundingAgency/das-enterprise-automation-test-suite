@@ -5,6 +5,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -62,7 +63,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User goes through certifying a Privately funded Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
         {
-            SetLearnerDetails("PrivatelyFundedApprentice");
+            SetPrivatelyFundedApprenticeLearnerDetails();
 
             assessmentRecordedPage = assessmentServiceStepsHelper.CertifyPrivatelyFundedApprenticeValidDateScenario();
         }
@@ -131,12 +132,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
-        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice();
+        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage()
+        {
+            SetPrivatelyFundedApprenticeLearnerDetails(); 
+            
+            assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice();
+        }
 
         [When(@"the User enters the date before the Year 2017")]
         public void WhenTheUserEntersTheDateBeforeTheYear2017()
         {
             achievementDatePage = new AS_AchievementDatePage(_context);
+
             achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(2016);
         }
 
@@ -256,28 +263,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate) => assessmentServiceStepsHelper.CertifyApprentice(grade, leanerCriteria, deleteCertificate);
 
-        private LeanerCriteria SetLearnerDetails()
-        {
-            var leanerCriteria = GetLearnerCriteria();
+        private LeanerCriteria SetPrivatelyFundedApprenticeLearnerDetails() => SetLearnerDetails("PrivatelyFundedApprentice");
 
-            var leanerDetails = ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, leanerCriteria);
+        private LeanerCriteria SetLearnerDetails() => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, GetLearnerCriteria()));
+
+        private LeanerCriteria SetLearnerDetails(string enrolledStandard) => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetStaticTestData(GetStaticTestData(enrolledStandard)));
+
+        private LeanerCriteria SetLearnerDetails(Func<List<string>> func)
+        {
+            var leanerDetails = func();
 
             if (string.IsNullOrEmpty(leanerDetails[0])) Assert.Fail("No test data found in the db");
 
-            return SetLearnerDetails(leanerDetails);
-        }
-
-        private LeanerCriteria SetLearnerDetails(string enrolledStandard)
-        {
-            var (lastName, uln) = GetStaticTestData(enrolledStandard);
-
-            var leanerDetails = ePAOAdminCASqlDataHelper.GetStaticTestData(uln, lastName);
-
-            return SetLearnerDetails(leanerDetails);
-        }
-
-        private LeanerCriteria SetLearnerDetails(List<string> leanerDetails)
-        {
             ePAOAdminDataHelper.LearnerUln = leanerDetails[0];
             ePAOAdminDataHelper.StandardCode = leanerDetails[1];
             ePAOAdminDataHelper.StandardsName = leanerDetails[2];
