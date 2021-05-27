@@ -180,6 +180,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus() =>
             _apprenticeHomePage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateBackToOverviewPage();
 
+        [Then(@"the apprentice is able to navigate to the Help and Support")]
+        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupport()
+        {
+            _apprenticeHomePage.NavigateToHelpAndSupportPage()
+                .NavigateToOverviewPageWithBackToDashBoardButton()
+                .NavigateToHelpAndSupportPage()
+                .NavigateToOverviewPageWithBackLink();
+        }
+
         private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
             _confirmYourApprenticeshipDetailsPage = new ApprenticeHomePage(_context).ConfirmYourApprenticeshipDetails();
