@@ -80,13 +80,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 
-        [Then(@"the admin can search using uln")]
-        public void ThenTheAdminCanSearchUsingUln() => certificateDetailsPage = GoToEpaoAdminHomePage().Search().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
-
-        [Then(@"the admin can access learners audit history")]
-        public void ThenTheAdminCanAccessLearnersAuditHistory() => certificateDetailsPage.ShowAllHistory();
-
         private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
-
     }
 }
