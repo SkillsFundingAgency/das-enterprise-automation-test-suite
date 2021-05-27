@@ -45,20 +45,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User certifies an Apprentice as '(pass|fail)'")]
         public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => RecordAGrade(grade, SetLearnerDetails(), true);
 
-        [When(@"the User certifies same Apprentice as pass")]
-        public void WhenTheUserCertifiesSameApprenticeAsPass() => RecordAGrade("pass", GetLearnerCriteria(), false);
+        [When(@"the User certifies same Apprentice as (pass|PassWithExcellence)")]
+        public void WhenTheUserCertifiesSameApprenticeAsPass(string grade) => RecordAGrade(grade, GetLearnerCriteria(), false);
 
-        [When(@"the User requests wrong certificate certifying an Apprentice as '(pass)' which needs deleting")]
-        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade) => RecordAGrade(grade, SetLearnerDetails("deleting"), true);
-        
         [Then(@"the Assessment is recorded as '(pass|fail|pass with excellence)'")]
         public void ThenTheAssessmentIsRecordedAs(string grade) => assessmentServiceStepsHelper.VerifyApprenticeGrade(grade, GetLearnerCriteria());
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted() => assessmentServiceStepsHelper.DeleteCertificate(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
-
-        [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(PassWithExcellence)' which was ReRequesting")]
-        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade) => RecordAGrade(grade, SetLearnerDetails("deleting"), false);
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
@@ -290,7 +284,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             return true switch
             {
-                bool _ when (enrolledStandard == "deleting" || enrolledStandard == "ReRequesting") => (ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption),
                 bool _ when (enrolledStandard == "PrivatelyFundedApprentice") => (ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln),
                 _ => (string.Empty, string.Empty)
             };
