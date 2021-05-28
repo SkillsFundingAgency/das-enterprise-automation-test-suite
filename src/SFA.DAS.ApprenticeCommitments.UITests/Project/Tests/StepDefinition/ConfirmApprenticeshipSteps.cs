@@ -186,7 +186,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeHomePage.NavigateToHelpAndSupportPage()
                 .NavigateToOverviewPageWithBackToDashBoardButton()
                 .NavigateToHelpAndSupportPage()
-                .NavigateToOverviewPageWithBackLink();
+                .NavigateToOverviewPageWithBackLink()
+                .SignOutFromTheService()
+                .SignBackInFromSignOutPage();
         }
 
         private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
