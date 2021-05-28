@@ -5,9 +5,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class EditApprentice : EditApprenticePreApproval
     {
-        private By TrainingCost => By.Id("Cost");
+        private By TrainingCost => By.CssSelector("#Cost, #cost");
 
-        private By TrainingCourseContainer => By.CssSelector(".select2-container");
+        private By TrainingCourseContainer => By.CssSelector(".select2-container, .govuk-select");
 
         protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 

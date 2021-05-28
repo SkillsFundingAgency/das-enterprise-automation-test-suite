@@ -115,6 +115,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the apprentice is able to confirm the Overall Apprenticeship status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 10
+ testRunner.And("the apprentice is able to navigate to the Help and Support", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

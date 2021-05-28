@@ -43,7 +43,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _ApprenticeHomePage.SingOutFromTheService();
+        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _ApprenticeHomePage.SignOutFromTheService();
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
