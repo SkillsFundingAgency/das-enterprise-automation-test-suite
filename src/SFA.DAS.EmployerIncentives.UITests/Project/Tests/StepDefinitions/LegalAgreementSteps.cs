@@ -18,19 +18,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer Initiates EI Application journey for version 4 legal agreement account")]
+        [When(@"the Employer Initiates EI Application journey for version 5 legal agreement account")]
 
-        public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount() => 
+        public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount() =>
             _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
 
         [Then(@"the Employer is shown the legal agreement shutter page")]
         public void ThenTheEmployerIsShownTheLegalAgreementShutterPage()
         {
             _qualificationQuestionPage
-                .SelectYesAndContinueForEligibleApprenticesScenario()
-                .SubmitApprentices()
-                .EnterDOBAndContinue()
-                .ConfirmApprenticesForVersion4LegalAgreement()
-                .ViewLegalAgreement();
+                .SelectYesAndContinueForUnSignedAgreementScenario()
+                .ClickOnViewAgreementButton();
         }
     }
 }
