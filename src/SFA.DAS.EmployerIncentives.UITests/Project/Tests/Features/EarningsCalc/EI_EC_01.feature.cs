@@ -20,8 +20,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.EarningsCalc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_EC_01")]
-    public partial class EI_EC_01Feature
+    [NUnit.Framework.DescriptionAttribute("EI_EC_01_VerifyEarnings")]
+    public partial class EI_EC_01_VerifyEarningsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.EarningsCalc
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_EC_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_EC_01_VerifyEarnings", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.EarningsCalc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_EC_Apply for Incentive for a New Account and verify Earnings")]
+        [NUnit.Framework.DescriptionAttribute("EI_EC_01_Apply for Incentive for a New Account and verify Earnings")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        public virtual void EI_EC_ApplyForIncentiveForANewAccountAndVerifyEarnings()
+        public virtual void EI_EC_01_ApplyForIncentiveForANewAccountAndVerifyEarnings()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_EC_Apply for Incentive for a New Account and verify Earnings", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_EC_01_Apply for Incentive for a New Account and verify Earnings", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

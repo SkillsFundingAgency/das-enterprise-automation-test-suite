@@ -75,17 +75,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
-            "arting FEB2021 or over")]
+            "arting APR2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingFEB2021OrOver()
+        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
-                    "arting FEB2021 or over", null, tagsOfScenario, argumentsOfScenario);
+                    "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 2 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "th 4 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
