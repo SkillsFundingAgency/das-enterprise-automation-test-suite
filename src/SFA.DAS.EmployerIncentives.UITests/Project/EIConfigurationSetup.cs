@@ -32,6 +32,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             _context.SetUser(_configSection.GetConfigSection<Version4AgreementUser>());
 
             _context.SetUser(_configSection.GetConfigSection<Version5AgreementUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<Version6AgreementUser>());
         }
     }
 }

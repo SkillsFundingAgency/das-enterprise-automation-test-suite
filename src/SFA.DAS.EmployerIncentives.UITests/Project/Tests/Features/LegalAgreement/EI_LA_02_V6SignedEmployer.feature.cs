@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer")]
-    public partial class EI_LA_02_V5SignedEmployerFeature
+    [NUnit.Framework.DescriptionAttribute("EI_LA_02_V6SignedEmployer")]
+    public partial class EI_LA_02_V6SignedEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_LA_02_V5SignedEmployer.feature"
+#line 1 "EI_LA_02_V6SignedEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_LA_02_V5SignedEmployer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_LA_02_V6SignedEmployer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
+        [NUnit.Framework.DescriptionAttribute("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
             "arting APR2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
+        public virtual void EI_LA_02_V6SignedEmployer_V6SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
                     "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the Employer logins using existing Version5AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing Version6AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
