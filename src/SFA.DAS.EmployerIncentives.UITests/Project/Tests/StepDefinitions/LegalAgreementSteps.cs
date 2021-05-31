@@ -28,6 +28,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
                 .SubmitApprentices()
+                .EnterDOBAndContinue()
                 .ConfirmApprenticesForVersion4LegalAgreement()
                 .ViewLegalAgreement();
         }

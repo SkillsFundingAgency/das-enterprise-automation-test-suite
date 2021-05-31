@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private By DayInputField => By.Name("EmploymentStartDateDays");
         private By MonthInputField => By.Name("EmploymentStartDateMonths");
-        private By YearInputField => By.Name("PersonInControlDobYear");
+        private By YearInputField => By.Name("EmploymentStartDateYears");
         #endregion
 
         public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false) => _context = context;

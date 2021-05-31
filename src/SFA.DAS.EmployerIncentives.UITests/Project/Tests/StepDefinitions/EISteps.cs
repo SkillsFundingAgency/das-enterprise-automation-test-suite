@@ -186,6 +186,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             return _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
                 .SubmitApprentices()
+                .EnterDOBAndContinue()
                 .ConfirmApprentices()
                 .SubmitDeclaration();
         }
