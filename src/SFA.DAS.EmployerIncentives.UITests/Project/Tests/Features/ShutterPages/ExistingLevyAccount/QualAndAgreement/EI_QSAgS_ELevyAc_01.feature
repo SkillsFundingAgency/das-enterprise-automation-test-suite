@@ -2,8 +2,8 @@
 
 @regression
 @employerincentives
-Scenario: EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with unsigned V4 Agreement
-	Given the Employer logins using existing Levy Account
+Scenario: EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with V4 Agreement Signed user
+	Given the Employer logins using existing Version4AgreementUser Account
 	When the Employer Initiates EI Application journey for Single entity account
 	Then Qualification question shutter page is displayed for selecting No option in Qualification page
 	And Employer Home page is displayed on clicking on Return to Account Home button on Qualification shutter page
