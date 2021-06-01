@@ -70,7 +70,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 _apprenticeship.UKPRN,
                 _incentiveApplication.DateSubmitted.Value,
                 _incentiveApplication.SubmittedByEmail,
-                _apprenticeship.CourseName
+                _apprenticeship.CourseName,
+                _apprenticeship.EmploymentStartDate.Value
             );
 
             await _serviceBusHelper.Publish(command);
