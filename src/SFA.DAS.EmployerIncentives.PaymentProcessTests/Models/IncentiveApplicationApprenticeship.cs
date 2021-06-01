@@ -27,5 +27,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public bool WithdrawnByEmployer { get; set; }
         public bool WithdrawnByCompliance { get; set; }
         public string CourseName { get; set; }
+        public DateTime? EmploymentStartDate { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        public Phase Phase { get; set; }
+        public bool HasEligibleEmploymentStartDate { get; set; }
     }
 }
