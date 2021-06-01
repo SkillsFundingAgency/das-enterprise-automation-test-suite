@@ -1,3 +1,3 @@
 IF NOT EXISTS (SELECT 1 FROM Accounts WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId)
-INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, HasSignedIncentivesTerms, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, 'Test', 1, 5, 'ABC123')
-ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName='TestLegalEntity', HasSignedIncentivesTerms=1, SignedAgreementVersion=5, VrfVendorId='ABC123' WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId
+INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, 'Test', 1, 5, 'ABC123')
+ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName='TestLegalEntity', SignedAgreementVersion=5, VrfVendorId='ABC123' WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId
