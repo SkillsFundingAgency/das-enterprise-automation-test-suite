@@ -6,10 +6,6 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
@@ -33,6 +29,9 @@
   </ItemGroup>
   
 	<ItemGroup>
+    <Compile Update="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Project\Helpers\SqlScripts.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
