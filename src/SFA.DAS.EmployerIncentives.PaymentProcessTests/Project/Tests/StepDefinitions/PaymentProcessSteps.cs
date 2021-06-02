@@ -49,6 +49,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .With(x => x.PlannedStartDate, new DateTime(2020, 8, 1))
                 .With(x => x.WithdrawnByCompliance, false)
                 .With(x => x.WithdrawnByEmployer, false)
+                .With(x => x.Phase, Phase.Phase1)
                 .Create();
             _incentiveApplication.Apprenticeships.Clear();
             _incentiveApplication.Apprenticeships.Add(_apprenticeship);
@@ -71,7 +72,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 _incentiveApplication.DateSubmitted.Value,
                 _incentiveApplication.SubmittedByEmail,
                 _apprenticeship.CourseName,
-                _apprenticeship.EmploymentStartDate.Value
+                _apprenticeship.EmploymentStartDate.Value,
+                _apprenticeship.Phase
             );
 
             await _serviceBusHelper.Publish(command);

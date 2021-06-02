@@ -105,7 +105,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     application.DateSubmitted.Value,
                     application.SubmittedByEmail,
                     apprenticeship.CourseName,
-                    apprenticeship.EmploymentStartDate.Value
+                    apprenticeship.EmploymentStartDate.Value,
+                    apprenticeship.Phase
                 );
 
                 await serviceBusHelper.Publish(command);
