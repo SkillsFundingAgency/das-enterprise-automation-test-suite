@@ -3,14 +3,14 @@ using Dapper.Contrib.Extensions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 // ReSharper disable PossibleInvalidOperationException
 
@@ -19,7 +19,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class StepsBase
     {
         protected Fixture fixture;
-        protected EIConfig eiConfig;
+        protected readonly DbConfig dbConfig;
+        protected readonly EIPaymentProcessConfig eiConfig;
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
@@ -38,11 +39,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             fixture = new Fixture();
-            eiConfig = context.GetEIConfig<EIConfig>();
-            sqlHelper = new EISqlHelper(eiConfig);
+            eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
+            dbConfig = context.Get<DbConfig>();
+            sqlHelper = new EISqlHelper(dbConfig);
 
-            var config = context.Get<FrameworkConfig>();
-            serviceBusHelper = new EIServiceBusHelper(config.NServiceBusConfig);
+            serviceBusHelper = new EIServiceBusHelper(eiConfig);
 
             learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
@@ -185,6 +186,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StartStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
             await businessCentralApiHelper.SetupAcceptAllRequests();
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
+        }
+        protected async Task VerifyLearningRecordsExist()
+        {
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            Assert.IsTrue(exist);
+        }
+
+        protected async Task VerifyPaymentRecordsExist()
+        {
+            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            Assert.IsTrue(exist);
         }
 
         [AfterScenario()]

@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         protected HttpClient httpClient;
         protected string baseUrl;
 
-        public BusinessCentralApiHelper(EIConfig config)
+        public BusinessCentralApiHelper(EIPaymentProcessConfig config)
         {
             baseUrl = config.EI_ApiStubBaseUrl;
             httpClient = new HttpClient();
