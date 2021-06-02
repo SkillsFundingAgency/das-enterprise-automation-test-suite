@@ -46,12 +46,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             {
                 EmployerAccountId = accountid,
                 CommitmentsApprenticeshipId = apprenticeshipid,
+                CommitmentsApprovedOn = DateTime.Parse(startDate).ToString("yyyy-MM-dd"),
+                Email = GetApprenticeEmail(),
                 EmployerName = orgname,
                 EmployerAccountLegalEntityId = legalEntityId,
-                TrainingProviderId = providerId,
-                TrainingProviderName = GetProviderName(tradingName, legalName),
-                Email = GetApprenticeEmail(),
-                CommitmentsApprovedOn = DateTime.Parse(startDate).ToString("yyyy-MM-dd"),
+                TrainingProviderId = providerId
             };
 
             _objectContext.SetAccountId(accountid);
