@@ -34,7 +34,7 @@
 
 ### SFA.DAS.EmployerIncentives.Api/SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers/SFA.DAS.EmployerIncentives.Functions.PaymentsProcess
 
-1. Ensure the local.appsettings.json file in each project contains the following:
+1. Ensure the local.appsettings.json file in the SFA.DAS.EmployerIncentives.Api, SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers and SFA.DAS.EmployerIncentives.Functions.PaymentsProcess projects contains the following:
 
 ```json
   "ApplicationSettings": {
@@ -57,7 +57,7 @@
 
 The value for UseLearningEndpointStorageDirectory must match the value used in SFA.DAS.EmployerIncentives.PaymentProcessTests
 
-2. Set all 3 projects as start up projects
+2. Set the SFA.DAS.EmployerIncentives.Api, SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers and SFA.DAS.EmployerIncentives.Functions.PaymentsProcess projects projects as start up projects
 
 ### Running the tests
 
