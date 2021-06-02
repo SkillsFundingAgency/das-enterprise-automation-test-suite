@@ -11,7 +11,7 @@
 ​
 ```json
 {
-  "EIPaymentProcessConfig":{
+  "EIPaymentProcessConfig": {
     "EI_PaymentsAppCode": "",
 	"EI_PaymentsAppBaseUrl": "http://localhost:7071",
 	"EI_ApiStubBaseUrl": "https://at-stub.apprenticeships.education.gov.uk",
@@ -34,11 +34,11 @@
 
 ### SFA.DAS.EmployerIncentives
 
-1. Ensure the local.appsettings.json file in the SFA.DAS.EmployerIncentives.Api, SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers and SFA.DAS.EmployerIncentives.Functions.PaymentsProcess projects contains the following:
+1. Ensure the `local.appsettings.json file` in the `FA.DAS.EmployerIncentives.Api`, `SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers` and `SFA.DAS.EmployerIncentives.Functions.PaymentsProcess` projects contains the following:
 
 ```json
   "ApplicationSettings": {
-    "DbConnectionString": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=SFA.DAS.EmployerIncentives.Database;Integrated Security=True;Pooling=False;Connect Timeout=30;MultipleActiveResultSets=True",
+    "DbConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SFA.DAS.EmployerIncentives.Database;Integrated Security=True;Pooling=False;Connect Timeout=30;MultipleActiveResultSets=True",
     "NServiceBusConnectionString": "UseLearningEndpoint=true",
     "UseLearningEndpointStorageDirectory": "c:\\temp\\learningtransport"
   },
@@ -55,11 +55,11 @@
   }
 ```
 
-The value for UseLearningEndpointStorageDirectory must match the value used in SFA.DAS.EmployerIncentives.PaymentProcessTests
+The value for `UseLearningEndpointStorageDirectory` must match the value used in `SFA.DAS.EmployerIncentives.PaymentProcessTests`
 
-2. Set the SFA.DAS.EmployerIncentives.Api, SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers and SFA.DAS.EmployerIncentives.Functions.PaymentsProcess projects projects as start up projects
+2. Set the `SFA.DAS.EmployerIncentives.Api`, `SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers` and `SFA.DAS.EmployerIncentives.Functions.PaymentsProcess` projects projects as start up projects
 
 ### Running the tests
 
-1. Run the 3 projects from the SFA.DAS.EmployerIncentives solution
+1. Run the 3 projects from the `SFA.DAS.EmployerIncentives` solution
 2. Run the tests
