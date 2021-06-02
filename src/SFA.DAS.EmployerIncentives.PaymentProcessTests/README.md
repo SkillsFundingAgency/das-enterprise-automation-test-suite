@@ -58,6 +58,7 @@
 The value for `UseLearningEndpointStorageDirectory` must match the value used in `SFA.DAS.EmployerIncentives.PaymentProcessTests`
 
 2. Set the `SFA.DAS.EmployerIncentives.Api`, `SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers` and `SFA.DAS.EmployerIncentives.Functions.PaymentsProcess` projects projects as start up projects
+3. Ensure `SFA.DAS.EmployerIncentives.Database` has been published from the branch you're working on.
 
 ### Running the tests
 
