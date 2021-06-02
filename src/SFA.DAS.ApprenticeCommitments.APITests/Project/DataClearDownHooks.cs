@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             _aComtSqlDbHelper.DeleteApprentice(email);
             _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
 
-            _aLoginSqlDbHelper.DeleteAspNetUsersTable(email);
+            _aLoginSqlDbHelper.DeleteUser(email);
             _aLoginSqlDbHelper.DeleteResetPasswordRequests(email);
 
             ClearDownInvitationRecords();
