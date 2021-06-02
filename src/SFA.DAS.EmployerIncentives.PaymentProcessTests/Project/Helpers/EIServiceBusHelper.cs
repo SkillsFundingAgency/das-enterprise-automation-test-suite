@@ -3,16 +3,15 @@ using NServiceBus;
 using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
     public class EIServiceBusHelper
     {
-        private IEndpointInstance _endpoint;
+        private readonly IEndpointInstance _endpoint;
 
-        public EIServiceBusHelper(NServiceBusConfig config)
+        public EIServiceBusHelper(string serviceBusConnectionString)
         {
             var endpointConfiguration = new EndpointConfiguration("SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers")
                 .UseMessageConventions()

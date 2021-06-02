@@ -142,7 +142,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetAccountId(new HomePage(_context).AccountId());
+        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetHashedAccountId(new HomePage(_context).AccountId());
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -193,14 +193,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
 
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
-        }
-
-        [Then(@"add accountid to the test data")]
-        public void ThenAddAccountidToTheTestData()
-        {
-            var acountid = _registrationSqlDataHelper.GetAccountId(_registrationDataHelper.RandomEmail);
-
-            _objectContext.UdpateUserCreds(acountid, 0);
         }
 
         [When(@"Signs the Agreement from Account HomePage Panel")]
@@ -431,7 +423,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Unlock the Account")]
         public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
             .EnterDetailsAndClickUnlockButton(_loginEmail)
-            .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
             .Login(_objectContext.GetLoginCredentials());
 
         [When(@"the User is on the 'Set up as a user' page")]

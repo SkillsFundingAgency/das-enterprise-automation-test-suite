@@ -8,7 +8,6 @@
 @S1_EmployerReservesFundsAndDeletesTheReservation
 Scenario Outline: RE_CA_PF_NL_01_Create a NonLevy Employer Account and Sign the Agreement
 	When an Employer Account with Company Type Org is created and agreement is Signed
-	Then add accountid to the test data
 
 	Examples: 
 	| testdata |

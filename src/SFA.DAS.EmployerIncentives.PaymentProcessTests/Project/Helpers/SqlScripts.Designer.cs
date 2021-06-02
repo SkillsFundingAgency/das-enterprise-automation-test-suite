@@ -80,15 +80,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         
         /// <summary>
         ///   Looks up a localized string similar to  DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+        /// DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         /// 
-        /// DELETE x FROM incentives.PendingPaymentValidationResult x
-        ///	INNER JOIN incentives.PendingPayment pp ON pp.Id = PendingPaymentId
+        ///DELETE x FROM archive.PendingPaymentValidationResult x
+        ///	INNER JOIN archive.PendingPayment pp ON pp.PendingPaymentId = x.PendingPaymentId
         ///	WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
         ///
-        /// DELETE incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
-        ///
-        /// DELETE x FROM incentives. [rest of string was truncated]&quot;;.
+        /// DELETE x FROM incentives.Pen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DeleteIncentiveData {
             get {

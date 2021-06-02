@@ -27,8 +27,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             {
                 moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+                    .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
                     .SelectPassAndContinue();
 
             }
@@ -45,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
-                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
                     .SelectPassAndContinue();
             }
 
@@ -61,8 +62,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+                    .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
                     .SelectPassAndContinue();
             }
             else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
@@ -78,7 +80,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
-                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
                     .SelectFailAndContinue();
             }
 
@@ -93,8 +95,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+                    .SelectFailAndContinueInDeliveringTraining()
                     .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_DeliveryIncludesFrameworks()
                     .SelectFailAndContinue();
             }
             else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
@@ -110,7 +113,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
-                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameworksOnly()
                     .SelectFailAndContinue();
             }
 

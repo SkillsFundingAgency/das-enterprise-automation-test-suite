@@ -170,7 +170,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = section4Helper.PassManagementHierarchyForApprenticeships(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section4Helper.PassQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section4Helper.PassDevelopingAndDeliveringTraining(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section4Helper.PassYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = section4Helper.PassYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section4Helper.PassPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }

@@ -17,11 +17,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
             VerifyPage();
         }
 
-        public InvestigatedDueToWhistleBlowingIssuesPage SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
+        public SubjectToInvestigationByESFAorPublicBodyPage SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.InvestigatedDueToSafeGuardingIssues);
-            return new InvestigatedDueToWhistleBlowingIssuesPage(_context);
+            return new SubjectToInvestigationByESFAorPublicBodyPage(_context);
         }
     }
 }

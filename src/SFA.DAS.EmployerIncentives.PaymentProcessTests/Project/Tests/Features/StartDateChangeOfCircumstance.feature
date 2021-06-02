@@ -1,4 +1,6 @@
-﻿Feature: StartDateChangeOfCircumstance
+﻿@ignore
+
+Feature: StartDateChangeOfCircumstance
 	When the refreshed learner data contains an updated start date
 	Then the apprenticeship incentive is updated
 

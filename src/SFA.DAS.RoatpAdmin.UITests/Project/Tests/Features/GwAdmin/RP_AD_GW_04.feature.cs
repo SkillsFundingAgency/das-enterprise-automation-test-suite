@@ -134,7 +134,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Verifiy the application is not transitioned to PMO and Assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("Verify the application is transitioned to Oversight for assessment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
+                        "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

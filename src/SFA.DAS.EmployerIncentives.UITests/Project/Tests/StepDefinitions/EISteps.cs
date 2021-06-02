@@ -43,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _eILevyUser = _context.GetUser<EILevyUser>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _multipleAccountUser);
             _eINavigationHelper = new EINavigationHelper(_context);
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
@@ -54,9 +54,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerSwitchesToAnAccountWithoutApprentices()
         {
             var secondOrganisationName = _multipleAccountUser.SecondOrganisationName;
+
             var yourAccountPage = new HomePage(_context, true).GoToYourAccountsPage();
 
             _objectContext.UpdateOrganisationName(secondOrganisationName);
+
             yourAccountPage.GoToHomePage(secondOrganisationName);
         }
 
@@ -65,7 +67,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Access to EI Hub is denied to the Employer")]
         public void ThenAccessToEIHubIsDeniedToTheEmployer() =>
-            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage();
+            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage(_objectContext.GetOrganisationName());
 
         [Then(@"the Employer is able to navigate to EI application Select apprentices page")]
         public void TheEmployeIsAbleToNavigateToEIApplicationSelectApprenticesPage() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();
@@ -73,17 +75,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
-            SubmitEiApplicationWithOutBankDetails()
-                .ChooseYesAndContinue()
-                .ContinueToAddBankDetails()
-                .ContinueToOrgDetailsPage()
-                .ContinueToAddressDetailsPage()
+            SubmitEiApplicationPastDeclarationPage()
+                .ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage()
+                .ContinueToVRFIntroductionTab1Page()
+                .ContinueToVRFOrgDetailsTab2Page()
+                .SubmitOrgDetails()
                 .SubmitAddressDetails(_email)
                 .SubmitBankDetails()
                 .SubmitSubmitterDetails(_email)
-                .SubmitSummaryPage()
-                .ReturnToEasPage()
-                .ReturnToAccountHomePage();
+                .AcknowledgeSummaryDetails()
+                .ReturnToEasApplicationCompletePage()
+                .NavigateToViewApplicationsPage()
+                .NavigateToEIHubPage();
 
             _homePageStepsHelper.GotoEmployerHomePage();
         }
@@ -91,13 +94,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application without VRF")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF()
         {
-            SubmitEiApplicationWithOutBankDetails()
-                .ChooseNoAndContinue()
+            SubmitEiApplicationPastDeclarationPage()
+                .ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage()
                 .NavigateToViewApplicationsPage();
         }
 
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
-        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationWithOutBankDetails();
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
 
         [Then(@"Earnings data is populated for the Employer")]
         public void ThenEarningsDataIsPopulatedForTheEmployer()
@@ -121,12 +124,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            var homePageFinancesSection = new HomePageFinancesSection(_context);
-
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = homePageFinancesSection.NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = new HomePageFinancesSection(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
@@ -177,16 +178,36 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
         }
 
-        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationWithOutBankDetails()
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
         {
             _email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _loginCredentialsHelper.GetLoginCredentials().Username;
-            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountId(_email));
+            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
 
             return _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
                 .SubmitApprentices()
+                .EnterDOBAndContinue()
                 .ConfirmApprentices()
                 .SubmitDeclaration();
+        }
+
+        [When(@"the Application Case details are changed to completed status")]
+        public void WhenTheApplicationCaseDetailsAreChangedToCompletedStatus() => _eISqlHelper.SetCaseDetailsToCompleted(_email);
+
+        [Then(@"the Employer is able to Amend bank details")]
+        public void ThenTheEmployerIsAbleToAmendBankDetails()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+            _eINavigationHelper.NavigateToEIHubPage()
+                .NavigateToChangeBankDetailsPage()
+                .ContinueToVRFIntroductionTab1Page()
+                .ContinueToVRFOrgDetailsTab2Page()
+                .SubmitOrgDetailsForAmendJourney(_email)
+                .SelectChangeNonBankingInfoOptionAndContinue()
+                .SubmitNewRemittanceEmail(_email)
+                .SubmitSubmitterDetails(_email)
+                .AcknowledgeSummaryDetails()
+                .ReturnToEIHubPage();
         }
     }
 }

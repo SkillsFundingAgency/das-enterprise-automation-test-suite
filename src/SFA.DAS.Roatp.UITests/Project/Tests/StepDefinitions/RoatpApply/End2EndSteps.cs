@@ -44,7 +44,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider initates an application as employer route")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
 
-        [Given(@"the provider initates an application as supporting route")]
+        [Given(@"the provider initates an application as Supporting Provider Route")]
         public void GivenTheProviderInitatesAnApplicationAsSupportingRoute() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
 
         [When(@"the provider completes Your organisation section")]

@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _loginCredentialsHelper = _context.Get<LoginCredentialsHelper>();
 
-            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
+            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
 
             _objectContext.SetUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg, 0);
 
@@ -85,6 +85,22 @@ namespace SFA.DAS.Registration.UITests.Project
             mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
 
             _loginCredentialsHelper.SetIsLevy();
+        }
+
+        [AfterScenario(Order = 20)]
+        public void SetAccountId()
+        {
+            if (!_isAddPayeDetails) { return; }
+
+            _tryCatch.AfterScenarioException(() =>
+            {
+                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
+
+                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
+
+                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
+            });
+
         }
 
         [AfterScenario(Order = 21)]

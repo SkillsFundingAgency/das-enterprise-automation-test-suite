@@ -1,11 +1,10 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -31,16 +30,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 41)]
-        public void LoginToDfeUatService()
+        public void LoginToVRFService()
         {
             _context.Set(new EIDataHelper(_context.Get<RandomDataGenerator>()));
 
-            if (_context.ScenarioInfo.Tags.Contains("dfeuatachieveservice"))
+            if (_context.ScenarioInfo.Tags.Contains("vrfservice"))
             {
-                _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
-
-                new DfeUatLoginPage(_context).SignIntoDfeUat();
-
+                _tabHelper.GoToUrl(UrlConfig.EI_VRFUrl);
+                new VRFLoginPage(_context).SignIntoVRF();
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
         }
@@ -52,7 +49,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public void RemoveExistingApplications()
         {
             if (_context.ScenarioInfo.Tags.Contains("eie2ejourney"))
-                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountIds(_eILevyUser.Username).accountId);
         }
     }
 }

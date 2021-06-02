@@ -29,7 +29,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing Version5AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version5AgreementUser>());
 
-        private void SetOrgAndLogin(LoginUserWithSpecificOrg loginUser)
+        [Given(@"the Employer logins using existing Version6AgreementUser Account")]
+        public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version6AgreementUser>());
+
+        private void SetOrgAndLogin(LoginUser loginUser)
         {
             _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
             _employerPortalLoginHelper.Login(loginUser, true);

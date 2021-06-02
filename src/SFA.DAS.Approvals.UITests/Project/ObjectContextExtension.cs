@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.Set(ProviderMakesReservationForNonLevyEmployers, true);
 
-        internal static void SetNoOfApprentices(this ObjectContext objectContext, int value) => objectContext.Replace(NoOfApprentices, value);
+        public static void SetNoOfApprentices(this ObjectContext objectContext, int value) => objectContext.Replace(NoOfApprentices, value);
 
-        internal static void SetApprenticeTotalCost(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeTotalCost, value);
+        public static void SetApprenticeTotalCost(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeTotalCost, value);
 
-        internal static void SetCohortReference(this ObjectContext objectContext, string value) => objectContext.Set(CohortReference, value);
+        public static void SetCohortReference(this ObjectContext objectContext, string value) => objectContext.Set(CohortReference, value);
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
         
-        internal static string GetApprenticeTotalCost(this ObjectContext objectContext) => objectContext.Get(ApprenticeTotalCost);
+        public static string GetApprenticeTotalCost(this ObjectContext objectContext) => objectContext.Get(ApprenticeTotalCost);
 
         internal static int GetNoOfApprentices(this ObjectContext objectContext) => objectContext.Get<int>(NoOfApprentices);
 

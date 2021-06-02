@@ -9,12 +9,12 @@ This is a SpecFlow-Selenium functional testing framework created using Selenium 
 2. Download appropriate 'Dot Net Core 3.1' version matching Visual Studio version. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
 3. Browsers (Chrome, Firefox, IE)
 
-## Set Up:
+## Set Up (UI):
 All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
 
-Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
+Note: This UI framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
-## Steps to add a new test project:
+## Steps to add a new UI test project:
 
 1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
 	- please use naming format (SFA.DAS.YourProjectName.UITests)
@@ -95,6 +95,102 @@ Note: This framework is built with all standard libraries and ready to write new
 ```
 Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
 
+## Set Up (API):
+All other dependencies (ex: RestSharp, NUnit3TestAdapter etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
+
+Note: This API framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
+
+## Steps to add a new API test project:
+
+1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
+	- please use naming format (SFA.DAS.YourProjectName.APITests)
+	- you can remove the UnitTest1.cs file added by default
+	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
+	```text
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>SFA.DAS.YourProjectName.APITests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	```
+2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
+	- Microsoft.NET.Test.Sdk
+	- NUnit3TestAdapter
+	- SpecFlow.Tools.MsBuild.Generation
+	- SpecFlow.NUnit
+	
+3. Copy the below code to .csproj file to add link to nunitconfiguration.cs file
+```text
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Compile>
+	</ItemGroup>
+```
+4. Add ```specflow.json```
+```json
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.API.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" }
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
+}
+```
+
+5. Add ```SFA.DAS.YourProjectName.APITests.json```
+
+``` json
+{
+  "runtimeOptions": {
+    "tfm": "netcoreapp3.1",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "3.1.5"
+    }
+  }
+}
+```
+6. Add ```appsettings.Environment.json```
+```json
+{
+  "local_EnvironmentName": "PP",
+  "ProjectName": "YourProjectName"
+}
+```
+7. Add ```appsettings.Project.BrowserStack.json```
+```json
+{
+  "BrowserStackSetting": {
+    "build": "SFA.DAS.YourProjectName.APITests"
+  }
+}
+```
+8. Add ```appsettings.Project.json``` (the project specific config)
+```json
+{
+  "YourProjectNameConfig": {
+    "ABC": "__ABC__"
+  }
+}
+```
+9. Add the following mandatory references to the .csproj file 
+```text
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.API.Framework\SFA.DAS.API.Framework.csproj" />
+	</ItemGroup>
+```
+Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
+
 ## How to use User secrets:
 1. Navigate to ```"%APPDATA%/Microsoft"``` then Create Directory ```"UserSecrets"``` if you don't find it.
 2. Create a ```<YourProjectName>_<EnvironmentName>_Secrets``` folder under ```"%APPDATA%/Microsoft/UserSecrets"```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
@@ -108,6 +204,7 @@ Please follow existing folder structure, folder name and file name so that it wo
 so you need to create a folder as ```"Registration_PP_Secrets"``` (without the quotes) under ```"%APPDATA%/Microsoft/UserSecrets"``` folder 
 	
 3. Create a file named ```"secrets.json"``` and replace only those values you want to keep it as secrets (you can copy the structure from ```"appsettings.Project.json"``` file under your respective project(s)).
+4. Project secrets and framework secrets can be found in the Automation Test Data (https://skillsfundingagency.atlassian.net/wiki/spaces/DAS/pages/1875574959/Automation+Test+Data) confluence page
 
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files under ```/Project/Tests/Features/``` folder using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.

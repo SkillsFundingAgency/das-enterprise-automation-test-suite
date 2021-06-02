@@ -48,6 +48,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = {nullValue}, VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountId}");
         }
 
+        public void SetCaseDetailsToCompleted(string email)
+        {
+            var accountId = FetchAccountId(email);
+            var dateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            ExecuteSqlCommand($"UPDATE [dbo].[Accounts] SET VrfVendorId = 'P{accountId}', VrfCaseId = 'AF{accountId}', VrfCaseStatus = 'Case Request completed', VrfCaseStatusLastUpdatedDateTime = '{dateTime}' WHERE Id = {accountId}");
+        }
+
+        public int FetchAccountId(string email)
+        {
+            query = $"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
+            return FetchIntegerQueryData(0);
+        }
+
         private void FetchActualQueryDataFromPaymentsTable(int accountId, string expectedEarningType)
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";
@@ -62,7 +75,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         private void CalculateExpectedQueryData(string ageCategory, string expectedEarningType)
         {
             expectedDueDate = CalculatedDueDate(expectedEarningType);
-            expectedAmount = ageCategory.Equals("Aged16to24") ? 1000 : 750;
+            //expectedAmount = ageCategory.Equals("Aged16to24") ? 1000 : 750; --> This calc was for Phase 1 (£2000 for 24OrLess £1500 for 25OrOver)
+            expectedAmount = 1500; //For Phase2 both age categories will be paid £3000, so first and second payment value to be £1500 (per EI-1057)
 
             query = $"SELECT TOP 1 Id FROM [incentives].[CollectionCalendar] WHERE CensusDate >= '{actualDueDate}' order by Id asc";
             var id = FetchIntegerQueryData(0);

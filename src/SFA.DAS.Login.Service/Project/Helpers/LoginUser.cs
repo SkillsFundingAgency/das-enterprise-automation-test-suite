@@ -5,6 +5,8 @@
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public string OrganisationName { get; set; }
     }
 
     public class CampaingnsEmployerUser : LoginUser { }
@@ -20,7 +22,9 @@
 
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
-    public class TransfersUser : LoginUser { }
+    public class TransfersUser : MultipleAccountUser { }
+
+    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
     public class LevyUser : LoginUser { }
 
@@ -66,12 +70,9 @@
         public string SecondOrganisationName { get; set; }
     }
 
-    public class LoginUserWithSpecificOrg : LoginUser
-    {
-        public string OrganisationName { get; set; }
-    }
+    public class Version4AgreementUser : LoginUser { }
 
-    public class Version4AgreementUser : LoginUserWithSpecificOrg { }
+    public class Version5AgreementUser : LoginUser { }
 
-    public class Version5AgreementUser : LoginUserWithSpecificOrg { }
+    public class Version6AgreementUser : LoginUser { }
 }

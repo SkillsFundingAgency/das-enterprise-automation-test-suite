@@ -6,9 +6,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 {
     public class UploadOrganisationsManagementAccountsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Upload your organisation's management accounts covering the remaining period to date";
+        protected override string PageTitle => "Upload your organisation's full management accounts for the last 12 months";
 
-        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -22,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public WhoPreparedAnswersAndUploadPage UploadManagementAccountsFileAndContinue()
         {
-            UploadFile();
+            UploadMultipleFiles(2);
             return new WhoPreparedAnswersAndUploadPage(_context);
         }
     }

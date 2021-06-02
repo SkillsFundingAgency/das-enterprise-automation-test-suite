@@ -22,6 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectStandardsFrameworksAndContinue()
                 .EnterTextRegardingReadyToDeliverTrainingAndContinue()
                 .EnterTextRegardingEngageWithEPAOandContinue()
+                .EnterTextForTransitionFromFramewordsToStandardsAndContinueIncludesFrameworks()
                 .EnterTextForEngageAndWorkWithAwardingBodies()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
@@ -32,7 +33,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectFrameworksOnlyAndContinue()
                 .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
                 .EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
-                .EnterTextRegardingEngageWithEPAOandContinue()
+                .EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
                 .EnterTextForEngageAndWorkWithAwardingBodies()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }

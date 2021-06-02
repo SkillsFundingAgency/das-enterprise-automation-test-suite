@@ -5,16 +5,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class ApprenticeCommitmentsDataHelper
     {
-        public ApprenticeCommitmentsDataHelper(RandomDataGenerator randomDataGenerator)
+        public ApprenticeCommitmentsDataHelper(RandomDataGenerator randomDataGenerator, bool isPerfTest)
         {
-            Email = $"ApprenticeAccount{DateTime.Now:ddMMMyy_HHmmss_fffff}@mailinator.com";
+            var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
+            var emaildomain = isPerfTest ? "email.com" : "mailinator.com";
+            Email = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
             NewEmail = $"New{Email}";
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
-            NationalInsuranceNumber = $"AB3{randomDataGenerator.GenerateRandomWholeNumber(4)}5C";
         }
 
         public string Email { get; }
@@ -30,7 +31,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         public int DateOfBirthMonth { get; }
 
         public int DateOfBirthYear { get; }
-
-        public string NationalInsuranceNumber { get; }
     }
 }

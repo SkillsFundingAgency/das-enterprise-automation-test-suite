@@ -1,0 +1,28 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
+{
+    public class VRFLoginPage : EIBasePage
+    {
+        protected override string PageTitle => "Log In";
+
+        #region Locators
+        private readonly ScenarioContext _context;
+        protected override By PageHeader => By.CssSelector("h1");
+        private By Username => By.CssSelector("input[name='username']");
+        private By Password => By.CssSelector("input[name='password']");
+        private By SignInButton => By.CssSelector("button.primary[type='submit']");
+        #endregion
+
+        public VRFLoginPage(ScenarioContext context) : base(context) => _context = context;
+
+        public VRFHomePage SignIntoVRF()
+        {
+            formCompletionHelper.EnterText(Username, eIConfig.EI_DfeUatUsername);
+            formCompletionHelper.EnterText(Password, eIConfig.EI_DfeUatPassword);
+            formCompletionHelper.Click(SignInButton);
+            return new VRFHomePage(_context);
+        }
+    }
+}

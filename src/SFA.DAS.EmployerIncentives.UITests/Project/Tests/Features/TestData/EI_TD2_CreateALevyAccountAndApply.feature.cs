@@ -76,13 +76,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_TD2_Create A LevyAccount with Commitments and apply for EI")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
+        [NUnit.Framework.CategoryAttribute("vrfservice")]
         [NUnit.Framework.CategoryAttribute("eitd2")]
         public virtual void EI_TD2_CreateALevyAccountWithCommitmentsAndApplyForEI()
         {
             string[] tagsOfScenario = new string[] {
                     "addlevyfunds",
-                    "dfeuatachieveservice",
+                    "vrfservice",
                     "eitd2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD2_Create A LevyAccount with Commitments and apply for EI", null, tagsOfScenario, argumentsOfScenario);
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.When("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 2 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "th 6 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

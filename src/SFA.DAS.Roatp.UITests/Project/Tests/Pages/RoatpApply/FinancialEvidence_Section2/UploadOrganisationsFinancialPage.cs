@@ -7,8 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     public class UploadOrganisationsFinancialPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Upload your organisation's financial statements covering any period within the last 12 months";
-
-        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+      
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -22,8 +21,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public UploadOrganisationsManagementAccountsPage UploadFinancialFileAndContinue()
         {
-            UploadFile();
+            UploadMultipleFiles(3);
             return new UploadOrganisationsManagementAccountsPage(_context);
+        }
+        public UploadOrganisationsManagementCoveringRemainingPeriodAccountsPage UploadFinancialFileForRemainingPeriodAndContinue()
+        {
+            UploadMultipleFiles(3);
+            return new UploadOrganisationsManagementCoveringRemainingPeriodAccountsPage(_context);
         }
     }
 }

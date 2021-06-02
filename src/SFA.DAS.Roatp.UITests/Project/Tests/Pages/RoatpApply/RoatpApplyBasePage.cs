@@ -28,7 +28,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
             applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
         }
-        
+
+        protected void UploadMultipleFiles(int noOfFiles)
+        {
+            for (int i = 0; i < noOfFiles; i++)
+            {
+                ChooseFile();
+                formCompletionHelper.ClickButtonByText(ContinueButton, "Upload file");
+            }
+
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Save and continue");
+        }
+
         protected void UploadFile()
         {
             ChooseFile();

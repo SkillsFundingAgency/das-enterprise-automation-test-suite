@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class ReadyToDeliverTrainingPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How is your organisation ensuring it's ready to deliver training in apprenticeship standards?";
+        protected override string PageTitle => "Tell us how your organisation is ready to deliver training in apprenticeship standards";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 

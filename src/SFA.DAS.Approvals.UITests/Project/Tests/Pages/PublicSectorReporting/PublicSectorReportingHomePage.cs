@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
@@ -30,7 +29,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
             Continue();
             return new SubmittedReportspage(_context);
         }
-
-        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
     }
 }

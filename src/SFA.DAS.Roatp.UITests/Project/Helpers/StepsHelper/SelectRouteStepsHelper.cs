@@ -29,7 +29,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             return _roatpApplyLoginHelpers.SignInToRegisterPage()
                 .SubmitValidUserDetailsEnterUkprnPage()
-                .SelectNoFor2ApplicaitonsAndContinue()
                 .EnterOrgTypeCompanyProvidersUkprn();
         }
     }

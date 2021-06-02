@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class EndPointAssesmentOrganisationsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How will your organisation engage with end-point assessment organisations (EPAO's)?";
+        protected override string PageTitle => "How will your organisation engage with end-point assessment organisations (EPAOs)?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
@@ -19,7 +19,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             VerifyPage();
         }
 
-        public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue()
+        public TransitionFromFrameworksToStandardPage EnterTextRegardingEngageWithEPAOandContinue()
+        {
+            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
+            return new TransitionFromFrameworksToStandardPage(_context);
+        }
+        public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
             return new AwardingBodiesPage(_context);

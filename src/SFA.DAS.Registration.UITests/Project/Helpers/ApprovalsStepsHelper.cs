@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
 
             var accountid = homePage.AccountId();
-            _objectContext.SetAccountId(accountid);
+            _objectContext.SetHashedAccountId(accountid);
 
             return homePage;
         }

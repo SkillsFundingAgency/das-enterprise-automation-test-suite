@@ -7,7 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Upload your organisation's financial projections covering the remaining period";
 
-        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -21,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public WhoPreparedAnswersAndUploadPage UploadFinancialProjectionsAndContinue()
         {
-            UploadFile();
+            UploadMultipleFiles(3);
             return new WhoPreparedAnswersAndUploadPage(_context);
         }
     }
