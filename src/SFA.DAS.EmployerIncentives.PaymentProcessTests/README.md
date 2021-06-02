@@ -34,7 +34,7 @@
 
 ### SFA.DAS.EmployerIncentives
 
-1. Ensure the `local.appsettings.json file` in the `FA.DAS.EmployerIncentives.Api`, `SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers` and `SFA.DAS.EmployerIncentives.Functions.PaymentsProcess` projects contains the following:
+1. Ensure the `local.appsettings.json` or `appsettings.development.json` file in the `FA.DAS.EmployerIncentives.Api`, `SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers` and `SFA.DAS.EmployerIncentives.Functions.PaymentsProcess` projects contains the following:
 
 ```json
   "ApplicationSettings": {
