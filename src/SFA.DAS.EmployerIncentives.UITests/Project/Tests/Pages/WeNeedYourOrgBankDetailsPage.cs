@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class WeNeedYourOrgBankDetailsPage : EIBasePage
     {
-        protected override string PageTitle => $"We need {ObjectContextExtension.GetOrganisationName(objectContext)}'s bank details";
+        protected override string PageTitle => $"Can you add {ObjectContextExtension.GetOrganisationName(objectContext)}'s organisation and finance details now?";
 
         #region Locators
         private readonly ScenarioContext _context;
