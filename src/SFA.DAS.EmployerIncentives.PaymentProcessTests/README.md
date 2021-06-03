@@ -7,7 +7,7 @@
   "ProjectName": "EmployerIncentives"
 }
 ```
-2. add the following minimum configuration to `%APPDATA%/Microsoft/UserSecrets/EmployerIncentives_DEV_Secrets` folder:
+2. add the following minimum configuration to `%APPDATA%/Microsoft/UserSecrets/EmployerIncentives_DEV_Secrets` folder (note: this is for the profile which VS runs under):
 ​
 ```json
 {
