@@ -8,6 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public DeleteInvitationHooks(ScenarioContext context) : base(context) { }
 
         [AfterScenario(Order = 32)]
-        public void ClearDownData() => ClearDownInvitation();
+        public void ClearDownData() => ClearDownInvitationRecords();
     }
 }
