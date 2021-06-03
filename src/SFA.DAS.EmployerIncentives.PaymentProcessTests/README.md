@@ -22,12 +22,6 @@
     "Server": "(localdb)\\MSSQLLocalDB",
     "ConnectionDetails": "Integrated Security=True;Trusted_Connection=False;Pooling=False;Connect Timeout=30;MultipleActiveResultSets=True",
     "EmployerIncentivesDbName":"SFA.DAS.EmployerIncentives.Database"
-  },
-  "TestExecutionConfig": {
-    "Browser": "headless"
-  },
-  "NServiceBusConfig": {
-    "ServiceBusConnectionString": "UseLearningEndpoint=true",
   }
 }
 ```
