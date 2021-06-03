@@ -12,6 +12,7 @@
 ```json
 {
   "EIPaymentProcessConfig": {
+    "EI_IncentivesDbConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SFA.DAS.EmployerIncentives.Database;Integrated Security=True;Pooling=False;Connect Timeout=30;MultipleActiveResultSets=True"
     "EI_PaymentsAppCode": "",
     "EI_PaymentsAppBaseUrl": "http://localhost:7071",
     "EI_ApiStubBaseUrl": "https://at-stub.apprenticeships.education.gov.uk",
