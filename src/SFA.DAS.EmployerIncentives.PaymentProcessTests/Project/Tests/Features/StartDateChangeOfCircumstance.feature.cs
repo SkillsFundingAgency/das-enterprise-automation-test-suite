@@ -21,14 +21,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("StartDateChangeOfCircumstance")]
-    [NUnit.Framework.CategoryAttribute("ignore")]
     public partial class StartDateChangeOfCircumstanceFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "ignore"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "StartDateChangeOfCircumstance.feature"
 #line hidden
@@ -38,8 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "StartDateChangeOfCircumstance", "\tWhen the refreshed learner data contains an updated start date\r\n\tThen the appren" +
-                    "ticeship incentive is updated", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+                    "ticeship incentive is updated", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -88,7 +85,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clawbacks 1 - Start Date Change Of Circumstance with eligible start date changing" +
                     " learner\'s age from under to over 25 - paid earning", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,34 +105,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
  testRunner.Given("an existing apprenticeship incentive (ULN 7229721930) with learning starting on 1" +
                         "2-Nov-2020 and ending on 15-Oct-2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 8
  testRunner.And("a payment of £1000 sent in Period R07 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 9
  testRunner.And("a start date change of circumstance occurs in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 10
  testRunner.And("learner data is updated with a new learning start date 13-Dec-2020 making the lea" +
                         "rner over twenty five at the start of learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 11
  testRunner.When("the incentive learner data is refreshed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 12
  testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 13
  testRunner.Then("the paid earning of £1000 is marked as requiring a clawback in the currently acti" +
                         "ve Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 14
  testRunner.And("a new first pending payment of £750 is created for Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 15
  testRunner.And("a new second pending payment of £750 is created for Period R05 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
