@@ -33,11 +33,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             return new ApplicationOverviewPage(_context);
         }
 
-        private void SubmitValidUserDetails()
+        public void  SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
             formCompletionHelper.EnterText(EnterPassword, objectContext.GetPassword());
             Continue();
+        }
+        public ApplicationOutcomePage SubmitValidUserDetails_ExistingProviders()
+        {
+            formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
+            formCompletionHelper.EnterText(EnterPassword, objectContext.GetPassword());
+            Continue();
+            return new ApplicationOutcomePage(_context);
         }
     }
 }

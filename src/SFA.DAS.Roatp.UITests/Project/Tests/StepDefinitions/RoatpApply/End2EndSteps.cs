@@ -2,6 +2,9 @@
 using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
@@ -12,16 +15,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly ObjectContext _objectContext;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
-        
         private ApplicationOverviewPage _overviewPage;
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
+        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
+        private readonly TabHelper _tabHelper;
 
         public End2EndSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
+            _tabHelper = context.Get<TabHelper>();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
             _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
+            _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
         }
 
         [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
@@ -30,6 +36,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _objectContext.SetApplicationRoute(applicationRoute);
 
             _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
+        }
+
+        [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
+        public void ThenVerifyTheApplicationPageIsDisplayedForTheApplicant(string expectedPage, string externalComments)
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+            _roatpApplyLoginHelpers.SignInToRegisterPage()
+                .SubmitValidUserDetails_ExistingProviders()
+                .VerifyApplicationOutcomePage(expectedPage, externalComments);
+        }
+        [Then(@"verify the (Application withdrawn) page is displayed")]
+        public void ThenVerifyTheApplicationWithdrawnPageIsDisplayed(string expectedPage)
+        {
+            ThenVerifyTheApplicationPageIsDisplayedForTheApplicant(expectedPage, string.Empty);
         }
 
         [Then(@"the provider do not accept the Terms and conditions")]
