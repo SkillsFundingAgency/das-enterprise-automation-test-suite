@@ -10,8 +10,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "PaymentsProcess")]
     public class PaymentsProcessSteps : StepsBase
     {
-        private const long Uln = 7229720;
-        private const long Ukprn = 10004;
         private const long AccountId = 14326;
         private const long ApprenticeshipId = 133217891;
 
@@ -25,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-6-12");
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, Uln, Ukprn, startDate, startDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -37,8 +35,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -46,13 +44,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
             await RunLearnerMatchOrchestrator();
         }
 
         [When(@"the payment process is completed")]
         public async Task WhenThePaymentProcessIsCompleted()
         {
+            await SetupBusinessCentralApiToAcceptAllPayments();
             await RunPaymentsOrchestrator();
             await RunApprovePaymentsOrchestrator();
         }

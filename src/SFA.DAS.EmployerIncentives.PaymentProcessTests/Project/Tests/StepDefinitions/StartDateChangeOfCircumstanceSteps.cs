@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +13,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "StartDateChangeOfCircumstance")]
     public class StartDateChangeOfCircumstanceSteps : StepsBase
     {
-        private const long Ukprn = 10005311;
-        private long _uln;
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
         private Payment _payment;
@@ -28,10 +25,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133217;
         }
 
-        [Given(@"an existing apprenticeship incentive \(ULN (.*)\) with learning starting on (.*) and ending on (.*)")]
-        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(long uln, DateTime startDate, DateTime endDate)
+        [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
-            _uln = uln;
             _initialStartDate = startDate;
             _initialEndDate = endDate;
             await SetActiveCollectionPeriod(6, 2021);
@@ -40,7 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, _uln, Ukprn, _initialStartDate, dateOfBirth)
+                .WithApprenticeship(apprenticeshipId, ULN, UKPRN, _initialStartDate, dateOfBirth)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -58,8 +54,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionDataR7 = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -67,7 +63,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionDataR7);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR7);
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
@@ -99,8 +95,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionDataR8 = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate(DateTime.Parse("2021-01-10T09:11:46.82"))
                 .WithIlrSubmissionWindowPeriod(4)
@@ -108,7 +104,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionDataR8);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR8);
             await RunLearnerMatchOrchestrator();
         }
 

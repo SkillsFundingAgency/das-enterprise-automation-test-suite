@@ -21,15 +21,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public async Task SetupResponse(long uln, long ukprn, LearnerSubmissionDto expectedResponse)
         {
             var stringContent = new StringContent(JsonConvert.SerializeObject(expectedResponse), Encoding.UTF8, "application/json");
-            var url = $"/learner-match/api/v1/{ukprn}/{uln}?";
-            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", stringContent);
+            var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={url}", stringContent);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task SetupResponse(long uln, long ukprn, string expectedResponse)
         {
-            var url = $"/learner-match/api/v1/{ukprn}/{uln}?";
-            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={WebUtility.UrlEncode(url)}", new StringContent(expectedResponse, Encoding.UTF8, "application/json"));
+            var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={url}", new StringContent(expectedResponse, Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task DeleteMapping(long uln, long ukprn)
+        {
+            var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
+            var response = await httpClient.DeleteAsync($"{baseUrl}/api-stub/delete?httpMethod=Get&url={url}");
             response.EnsureSuccessStatusCode();
         }
     }

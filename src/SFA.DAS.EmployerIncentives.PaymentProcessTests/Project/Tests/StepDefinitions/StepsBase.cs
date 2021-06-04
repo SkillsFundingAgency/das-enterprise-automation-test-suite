@@ -13,6 +13,7 @@ using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 // ReSharper disable PossibleInvalidOperationException
+// ReSharper disable InconsistentNaming
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
@@ -33,12 +34,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private readonly Stopwatch _stopwatch;
         protected long accountId;
         protected long apprenticeshipId;
+        protected long UKPRN;
+        protected long ULN;
 
         protected StepsBase(ScenarioContext context)
         {
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             fixture = new Fixture();
+            UKPRN = fixture.Create<long>();
+            ULN = fixture.Create<long>();
+
             eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
             dbConfig = context.Get<DbConfig>();
             sqlHelper = new EISqlHelper(dbConfig);
@@ -204,6 +210,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
+            await learnerMatchApi.DeleteMapping(ULN, UKPRN);
         }
 
         [BeforeScenario()]

@@ -9,10 +9,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "ResumeLearningChangeOfCircumstance")]
     public class ResumeLearningChangeOfCircumstanceSteps : StepsBase
     {
-        private long _uln;
-        private const long Ukprn = 10005312;
         private Payment _payment;
         private PendingPayment _initialEarning;
         private DateTime _initialStartDate;
@@ -25,16 +24,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133218;
         }
 
-        [Given(@"an existing apprenticeship incentive \(ULN (.*)\) with learning starting on (.*) and ending on (.*)")]
-        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(long uln, DateTime startDate, DateTime endDate)
+        [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
-            _uln = uln;
             _initialStartDate = startDate;
             _initialEndDate = endDate;
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, _uln, Ukprn, startDate, startDate.AddYears(-20))
+                .WithApprenticeship(apprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-20))
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -52,8 +50,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var submissionDto = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(year)
                 .WithIlrSubmissionDate("2021-02-11")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -61,7 +59,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, submissionDto);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, submissionDto);
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
@@ -80,7 +78,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"Learner data is updated with PE End Date which is before the due date of the paid earning in Period R(.*) (.*)")]
-        public async Task WhenLearnerDataIsUpdatedWithPEEndDateWhichIsBeforeTheDueDateOfThePaidEarning(byte period, short year)
+        public async Task WhenLearnerDataIsUpdatedWithPeEndDateWhichIsBeforeTheDueDateOfThePaidEarning(byte period, short year)
         {
             _lastPriceEpisodeEndDate = _initialEarning.DueDate.AddDays(-6);
             var priceEpisode = new PriceEpisodeDtoBuilder()
@@ -90,8 +88,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate(_initialStartDate.AddDays(1))
                 .WithIlrSubmissionWindowPeriod(period)
@@ -99,7 +97,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
         }
 
         [When(@"the Learner Match is run in Period R(.*) (.*)")]
@@ -110,7 +108,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"ILR Learner Stopped COC is occurred in Period R(.*) (.*)")]
-        public async Task WhenILRLearnerStoppedCOCIsOccurredInPeriodR(byte period, short year)
+        public async Task WhenIlrLearnerStoppedCocIsOccurredInPeriodR(byte period, short year)
         {
             await WhenTheLearnerMatchIsRunInPeriodR(period, year);
         }
@@ -132,8 +130,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate("2021-02-11T14:06:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
@@ -142,7 +140,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode2)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
         }
 
         [When(@"Learner data is updated with Price Episode End Date which is on the due date of the paid earning in Period R(.*) (.*)")]
@@ -156,8 +154,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
@@ -165,7 +163,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
         }
 
         [When(@"Learner data is updated with Price Episode End Date which is one day after the due date of the paid earning in Period R(.*)")]
@@ -179,8 +177,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(_uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(_initialEarning.PaymentYear.Value)
                 .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
@@ -188,7 +186,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(_uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
         }
 
 
@@ -202,7 +200,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"ILR Learner Resumed COC is occurred in Period R(.*) (.*)")]
-        public void WhenILRLearnerResumedCOCIsOccurredInPeriodR(byte period, short year)
+        public void WhenIlrLearnerResumedCocIsOccurredInPeriodR(byte period, short year)
         {
         }
 
