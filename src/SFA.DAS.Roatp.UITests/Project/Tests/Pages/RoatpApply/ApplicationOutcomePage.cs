@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     public class ApplicationOutcomePage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Application ";
-        protected By InternalComments => By.CssSelector(".govuk-body.das-multiline-text");
+        protected By InternalComments => By.CssSelector(".govuk-body.das-multiline-text, p:nth-child(4)");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
