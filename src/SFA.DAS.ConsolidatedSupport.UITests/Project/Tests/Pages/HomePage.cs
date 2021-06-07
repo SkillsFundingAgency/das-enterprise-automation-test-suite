@@ -32,7 +32,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
             if (navigateTo) 
             {
-                VerifyPage(HomeButton);
                 action();
                 VerifyPage(PageHeader, action);
                 VerifyPage(BrandingHeader, action);
