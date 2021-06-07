@@ -42,12 +42,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
+            var email = GetApprenticeEmail();
+
             var createApprenticeship = new CreateApprenticeship
             {
                 EmployerAccountId = accountid,
                 CommitmentsApprenticeshipId = apprenticeshipid,
                 CommitmentsApprovedOn = DateTime.Parse(startDate).ToString("yyyy-MM-dd"),
-                Email = GetApprenticeEmail(),
+                Email = email,
                 EmployerName = orgname,
                 EmployerAccountLegalEntityId = legalEntityId,
                 TrainingProviderId = providerId
@@ -64,6 +66,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetEmployerName(orgname);
             _objectContext.SetTrainingStartDate(startDate);
             _objectContext.SetTrainingEndDate(endDate);
+
+            _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
 
             return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
