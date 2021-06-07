@@ -13,6 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     public class End2EndSteps
     {
         private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private ApplicationOverviewPage _overviewPage;
@@ -22,6 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         public End2EndSteps(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
@@ -43,8 +45,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
             _roatpApplyLoginHelpers.SignInToRegisterPage()
-                .SubmitValidUserDetails_ExistingProviders()
-                .VerifyApplicationOutcomePage(expectedPage, externalComments);
+                .SubmitValidUserDetails();
+            ApplicationOutcomePage _applicationOutcomePage = new ApplicationOutcomePage(_context);
+            _applicationOutcomePage.VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
         [Then(@"verify the (Application withdrawn) page is displayed")]
         public void ThenVerifyTheApplicationWithdrawnPageIsDisplayed(string expectedPage)
