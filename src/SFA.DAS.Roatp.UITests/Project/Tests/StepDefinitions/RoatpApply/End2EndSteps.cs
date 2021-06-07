@@ -3,7 +3,6 @@ using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -41,19 +40,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
-        public void ThenVerifyTheApplicationPageIsDisplayedForTheApplicant(string expectedPage, string externalComments)
+        public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {
             _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
-            _roatpApplyLoginHelpers.SignInToRegisterPage()
-                .SubmitValidUserDetails();
-            ApplicationOutcomePage _applicationOutcomePage = new ApplicationOutcomePage(_context);
-            _applicationOutcomePage.VerifyApplicationOutcomePage(expectedPage, externalComments);
+
+            _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
+
+            new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
         [Then(@"verify the (Application withdrawn) page is displayed")]
-        public void ThenVerifyTheApplicationWithdrawnPageIsDisplayed(string expectedPage)
-        {
-            ThenVerifyTheApplicationPageIsDisplayedForTheApplicant(expectedPage, string.Empty);
-        }
+        public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
