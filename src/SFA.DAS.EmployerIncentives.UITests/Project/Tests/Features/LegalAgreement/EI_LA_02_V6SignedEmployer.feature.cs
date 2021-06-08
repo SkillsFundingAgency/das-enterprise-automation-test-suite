@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Misc
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreement
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Misc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_Misc_ExistingLevyAcE2E")]
-    public partial class EI_Misc_ExistingLevyAcE2EFeature
+    [NUnit.Framework.DescriptionAttribute("EI_LA_02_V6SignedEmployer")]
+    public partial class EI_LA_02_V6SignedEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_Misc_ExistingLevyAcE2E.feature"
+#line 1 "EI_LA_02_V6SignedEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_Misc_ExistingLevyAcE2E", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_LA_02_V6SignedEmployer", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Misc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_Misc_ExistingLevyAcE2E_Apply for Incentive for an Existing Levy Account with o" +
-            "ne legal entity")]
-        [NUnit.Framework.CategoryAttribute("eie2ejourney")]
-        [NUnit.Framework.CategoryAttribute("vrfservice")]
-        public virtual void EI_Misc_ExistingLevyAcE2E_ApplyForIncentiveForAnExistingLevyAccountWithOneLegalEntity()
+        [NUnit.Framework.DescriptionAttribute("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
+            "arting APR2021 or over")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        public virtual void EI_LA_02_V6SignedEmployer_V6SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
-                    "eie2ejourney",
-                    "vrfservice"};
+                    "regression",
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_Misc_ExistingLevyAcE2E_Apply for Incentive for an Existing Levy Account with o" +
-                    "ne legal entity", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
+                    "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,37 +107,21 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.When("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer logins using existing Version6AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("View EI applications shutter page is diplayed to the Employer when navigating to " +
-                        "View EI applications page with no applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
+                        "th 4 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.And("EI Start page is displayed on clicking on Apply for the payment link on View EI a" +
-                        "pplications shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the Employer is able to submit the EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
- testRunner.When("the Employer Initiates EI Application journey for Single entity account again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
-                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.When("the Application Case details are changed to completed status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
- testRunner.Then("the Employer is able to Amend bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is able to submit the EI Application without submitting bank details" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

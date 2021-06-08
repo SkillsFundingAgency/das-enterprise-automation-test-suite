@@ -75,18 +75,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
-            "arting FEB2021 or over")]
+            "arting APR2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingFEB2021OrOver()
+        public virtual void EI_LA_02_V5SignedEmployer_V5SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V5SignedEmployer_V5 Signed Employer attempts to apply for Commitments st" +
-                    "arting FEB2021 or over", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+                    "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,22 +106,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the Employer logins using existing Version5AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 7
+ testRunner.When("the Employer Initiates EI Application journey for version 5 legal agreement accou" +
+                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 8
- testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 2 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("the Employer is able to submit the EI Application without submitting bank details" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is shown the legal agreement shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

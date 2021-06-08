@@ -104,8 +104,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
- testRunner.Then("the Employer adds 3 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
-                        "nth 2 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer adds 1 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
+                        "nth 6 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 6
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

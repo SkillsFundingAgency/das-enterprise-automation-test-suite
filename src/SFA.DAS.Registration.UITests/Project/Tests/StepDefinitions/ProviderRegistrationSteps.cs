@@ -81,7 +81,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ProviderLeadRegistrationSignAgreement()
                 .ClickDoNotAllowToAddApprenticeRecords()
                 .ClickDoNotAllowToRecruitApprentice()
-                .ConfirmProviderLeadRegistrationPermissions();
+                .ConfirmYesTrainingProviderPermissions();
         }
 
         [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement accepted)""")]

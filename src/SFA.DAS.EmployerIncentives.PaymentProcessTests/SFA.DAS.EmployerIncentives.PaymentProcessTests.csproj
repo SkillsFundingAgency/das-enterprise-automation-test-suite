@@ -6,10 +6,6 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
@@ -21,7 +17,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="91.0.4472.1900" />
     <PackageReference Include="SFA.DAS.Api.Common" Version="1.0.8" />
     <PackageReference Include="SFA.DAS.Common.Domain" Version="1.4.283" />
     <PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.21" />
@@ -34,6 +29,9 @@
   </ItemGroup>
   
 	<ItemGroup>
+    <Compile Update="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Project\Helpers\SqlScripts.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
