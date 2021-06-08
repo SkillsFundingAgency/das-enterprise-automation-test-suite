@@ -13,8 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
-        private By RadioButtonYes => By.CssSelector("#ApproveChanges, #changes-approve-true");
-        private By RadioButtonNo => By.CssSelector("#ApproveChanges-no, #changes-approve-false");
+        private By RadioButtonYes => By.Id("AcceptChanges");
+        private By RadioButtonNo => By.CssSelector("AcceptChanges-no");
         protected override By ContinueButton => By.CssSelector("#continue-button, #submit-req-changes");
 
         public EditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
