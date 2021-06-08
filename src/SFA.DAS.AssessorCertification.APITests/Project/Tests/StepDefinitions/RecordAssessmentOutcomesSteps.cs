@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
 {
     [Binding]
-    public class AssessorCertificationSteps
+    public class RecordAssessmentOutcomesSteps
     {
         private readonly Outer_AssessorCertificationApiRestClient _restClient;
         private readonly AssessorCertificationSqlDbHelper _assessorCertificationSqlDbHelper;
@@ -19,7 +19,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
    
 
 
-        public AssessorCertificationSteps(ScenarioContext context)
+        public RecordAssessmentOutcomesSteps(ScenarioContext context)
         {
             _restClient = context.GetRestClient<Outer_AssessorCertificationApiRestClient>();
             _assessorCertificationSqlDbHelper = context.Get<AssessorCertificationSqlDbHelper>();
@@ -33,19 +33,26 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             contextUln = uln;
         }
 
-        [Given(@"the user prepares payload with updated epa outcome for uln (.*)")]
-        public void GivenTheUserPreparesPayloadWithUpdatedEpaOutcomeForUln(string uln)
+        //[Given(@"the user prepares request with for uln (.*)")]
+        //public void GivenTheUserPreparesPayloadWithUpdatedEpaOutcomeForUln(string uln)
+        //{
+        //    contextUln = uln;
+        //}
+
+        [Given(@"the user prepares request with for uln (.*)")]
+        public void GivenTheUserPreparesRequestWithForUln(string uln)
         {
             contextUln = uln;
         }
 
 
-        [When(@"the user sends (GET|POST|PUT) request to (.*) with payload (.*)")]
+
+        [When(@"the user sends (GET|POST|PUT|DELETE) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);
 
         IRestResponse restResponse = null;
 
-        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted|NoContent) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode)
         {
             restResponse = _restClient.Execute(responsecode);
@@ -59,6 +66,32 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             Assert.True(restResponse.Content.ToString().Contains(actualEPARef), "Value is not contained in response");
             
         }
+
+        [Then(@"the CertificateReference in the response is same as in the Certificates table in the database")]
+        public void ThenTheCertificateReferenceInTheResponseIsSameAsInTheCertificatesTableInTheDatabase()
+        {
+            var actualCertRef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(contextUln);
+
+            Assert.True(restResponse.Content.ToString().Contains(actualCertRef), "Value is not contained in response");
+        }
+
+        [Then(@"the status in the Certificates Table in database is (.*)")]
+        public void ThenTheStatusInTheCertificatesTableInDatabaseIsDeleted(string status)
+        {
+            var certStatus = _assessorCertificationSqlDbHelper.GetCertificateStatus(contextUln);
+
+            Assert.True(status.Equals(certStatus), "Certificated Status is not the expected value");
+        }
+
+        [Then(@"Action in the Certificatelog is (.*)")]
+        public void ThenActionInTheCertificatelogIsAmend(string Action)
+        {
+            var certLogAction = _assessorCertificationSqlDbHelper.GetCertificateLogAction(contextUln);
+
+            Assert.True(Action.Equals(certLogAction), "Certificated Status is not the expected value");
+        }
+
+
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }

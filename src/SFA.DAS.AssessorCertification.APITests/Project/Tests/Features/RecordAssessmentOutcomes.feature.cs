@@ -20,22 +20,22 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPA API Certification")]
-    public partial class EPAAPICertificationFeature
+    [NUnit.Framework.DescriptionAttribute("RecordAssessmentOutcomes")]
+    public partial class RecordAssessmentOutcomesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AssessorCertification.feature"
+#line 1 "RecordAssessmentOutcomes.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EPA API Certification", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RecordAssessmentOutcomes", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("the user prepares payload with uln 1000806000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the user prepares payload with uln 1000809100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -177,7 +177,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 18
- testRunner.Given("the user prepares payload with updated epa outcome for uln 1000809178", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the user prepares request with for uln 1000809178", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -199,6 +199,61 @@ this.ScenarioInitialize(scenarioInfo);
         {
 #line 17
 this.VerifyUpdateEPARecord("UpdateEPARecord001", "PUT", "/api/v1/epa", "UpdateEPARecord.json", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyDeleteEPARecord(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Delete EPA Record", null, tagsOfScenario, argumentsOfScenario);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 28
+ testRunner.Given("the user prepares request with for uln 1000800105", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 29
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+ testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 31
+ testRunner.And("the status in the Certificates Table in database is Deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Delete EPA Record: DeleteEPARecord001")]
+        public virtual void VerifyDeleteEPARecord_DeleteEPARecord001()
+        {
+#line 27
+this.VerifyDeleteEPARecord("DeleteEPARecord001", "DELETE", "/api/v1/epa/1000800105/Name1000800105/1/00012005", "DeleteEPARecord.json", "NoContent", ((string[])(null)));
 #line hidden
         }
     }

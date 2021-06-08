@@ -1,12 +1,12 @@
 [{
     "requestId": "CB002",
     "standard": {
-      "standardCode": 91,
+      "standardCode": 1,
       "standardReference": ""
     },
     "learner": {
-      "uln": 1000809100,
-      "familyName": "Name1000809100"
+      "uln": 1000800105,
+      "familyName": "Name1000800105"
     },
     "learningDetails": {
       "version": "1.0",
