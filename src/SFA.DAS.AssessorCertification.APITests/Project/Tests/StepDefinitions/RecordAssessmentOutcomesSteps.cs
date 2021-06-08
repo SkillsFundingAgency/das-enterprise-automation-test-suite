@@ -33,12 +33,6 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             contextUln = uln;
         }
 
-        //[Given(@"the user prepares request with for uln (.*)")]
-        //public void GivenTheUserPreparesPayloadWithUpdatedEpaOutcomeForUln(string uln)
-        //{
-        //    contextUln = uln;
-        //}
-
         [Given(@"the user prepares request with for uln (.*)")]
         public void GivenTheUserPreparesRequestWithForUln(string uln)
         {
@@ -91,7 +85,13 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             Assert.True(Action.Equals(certLogAction), "Certificated Status is not the expected value");
         }
 
+        [Then(@"the Learner ULn in the response is same as Uln in the Ilrs table in the database")]
+        public void ThenTheLearnerULnInTheResponseIsSameAsUlnInTheIlrsTableInTheDatabase()
+        {
+            var learnerUln = _assessorCertificationSqlDbHelper.GetLearnerUln(contextUln);
 
+            Assert.True(restResponse.Content.ToString().Contains(learnerUln), "Learner Uln is not the expected value");
+        }
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }

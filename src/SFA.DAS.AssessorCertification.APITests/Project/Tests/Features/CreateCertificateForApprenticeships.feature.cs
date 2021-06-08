@@ -367,6 +367,55 @@ this.ScenarioInitialize(scenarioInfo);
 this.VerifyDeleteCertificate("DeleteCertificate001", "DELETE", "/api/v1/certificate/1000809104/Name1000809104/91/00012026", "", "NoContent", ((string[])(null)));
 #line hidden
         }
+        
+        public virtual void VerifyGetGrades(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Get grades", null, tagsOfScenario, argumentsOfScenario);
+#line 60
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 61
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 62
+ testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Get grades: GetGrades001")]
+        public virtual void VerifyGetGrades_GetGrades001()
+        {
+#line 60
+this.VerifyGetGrades("GetGrades001", "GET", "/api/v1/certificate/grades", "", "OK", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore

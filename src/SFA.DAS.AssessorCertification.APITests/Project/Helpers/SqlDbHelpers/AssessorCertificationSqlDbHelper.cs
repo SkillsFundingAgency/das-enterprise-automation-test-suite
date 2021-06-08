@@ -22,9 +22,10 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 
         public string GetCertificateStatus(string uln) => GetData($"SELECT Status FROM [Certificates] WHERE Uln = {uln}");
 
-        public string GetCertificateLogAction(string uln) => GetData($"select Action from CertificateLogs c1 where CertificateId IN (SELECT Id FROM [Certificates] WHERE uln = {uln}) and EventTime = (select max(EventTime) from CertificateLogs c2 where c1.CertificateId = c2.CertificateId)");
+        public string GetCertificateLogAction(string uln) => GetData($"SELECT Action from CertificateLogs c1 WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE uln = {uln}) and EventTime = (select max(EventTime) from CertificateLogs c2 where c1.CertificateId = c2.CertificateId)");
 
 
-
+        public string GetLearnerUln(string uln) => GetData($"SELECT Uln FROM [Ilrs] WHERE Uln = {uln}");
     }
 }
+
