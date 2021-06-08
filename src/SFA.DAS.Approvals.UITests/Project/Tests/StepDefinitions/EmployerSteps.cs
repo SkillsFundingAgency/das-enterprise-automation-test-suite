@@ -42,8 +42,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ViewCurrentApprenticeDetails()
                 .ClickEditStatusLink()
                 .SelectPauseAndContinue()
-                .SelectYesAndConfirm();
-
+                .SelectYesAndConfirm()
+                .ValidateFlashMessage("Apprenticeship paused");
         }
 
         [Then(@"Employer is able to Resume the apprentice")]
@@ -52,14 +52,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = _apprenticeDetailsPage
                 .ClickEditStatusLink()
                 .SelectResumeAndContinue()
-                .SelectYesAndConfirm();
+                .SelectYesAndConfirm()
+                 .ValidateFlashMessage("Apprenticeship resumed");
         }
 
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
-            .StopApprenticeThisMonth(_apprenticeDetailsPage);
+            .StopApprenticeThisMonth(_apprenticeDetailsPage)
+             .ValidateFlashMessage("Apprenticeship stopped");
         }
 
         [Then(@"Employer can edit stop date to learner start date")]
@@ -67,7 +69,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage
                 .ClickEditStopDateLink()
-                .EditStopDateToCourseStartDateAndSubmit();
+                .EditStopDateToCourseStartDateAndSubmit()
+                .ValidateFlashMessage("New stop date confirmed");
         }
 
         [Given(@"Employer adds (\d) apprentices to current cohort")]

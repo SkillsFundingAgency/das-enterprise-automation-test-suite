@@ -74,18 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with unsig" +
-            "ned V4 Agreement")]
+        [NUnit.Framework.DescriptionAttribute("EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with V4 Ag" +
+            "reement Signed user")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_QSAgS_ELevyAc_01_ValidateShutterPageForAnExistingLevyAccountWithUnsignedV4Agreement()
+        public virtual void EI_QSAgS_ELevyAc_01_ValidateShutterPageForAnExistingLevyAccountWithV4AgreementSignedUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with unsig" +
-                    "ned V4 Agreement", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with V4 Ag" +
+                    "reement Signed user", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing Version4AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -73,4 +73,6 @@
     public class Version4AgreementUser : LoginUser { }
 
     public class Version5AgreementUser : LoginUser { }
+
+    public class Version6AgreementUser : LoginUser { }
 }

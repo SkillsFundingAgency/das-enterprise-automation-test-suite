@@ -138,6 +138,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Verify the application is transitioned to Oversight Outcome tab with REJECTED sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 18
+ testRunner.And("verify the Application rejected page is displayed with External Reject Comments f" +
+                        "or the applicant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
