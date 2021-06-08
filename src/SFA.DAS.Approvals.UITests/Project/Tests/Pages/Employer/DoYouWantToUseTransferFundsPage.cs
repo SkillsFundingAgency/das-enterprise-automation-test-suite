@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class DoYouWantToUseTransferFundsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Do you want to use transfer funds to pay for this training?";
-        private By CohortFundingOptions => By.CssSelector(".selection-button-radio");
+        private By CohortFundingOptions => By.CssSelector(".govuk-radios__item");
         protected override By ContinueButton => By.Id("submit-transfer-connection");
 
         #region Helpers and Context

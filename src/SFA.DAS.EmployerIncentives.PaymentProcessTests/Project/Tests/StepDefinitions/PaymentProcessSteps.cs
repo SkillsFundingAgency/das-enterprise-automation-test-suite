@@ -19,9 +19,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"there is a valid learner")]
         public async Task GivenThereIsAValidLearner()
         {
-            await SetActiveCollectionPeriod(7, 2021);
+            await SetActiveCollectionPeriod(2, 2122);
 
-            var startDate = DateTime.Parse("2020-11-12");
+            var startDate = DateTime.Parse("2021-6-12");
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(AccountId)
                 .WithApprenticeship(ApprenticeshipId, Uln, Ukprn, startDate, startDate.AddYears(-24))

@@ -13,8 +13,9 @@ Scenario: RP_AD_GW_07A_SupportRoute_Removed_NEW_Application
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
 	And verify that the admin can send the application outcome as REMOVED to the applicant
-
+	And verify the Application withdrawn page is displayed with Withdraw Application External Comments for the applicant
 	
+
 @resetApplicationToNew
 @roatp
 @roatpadmin
@@ -29,6 +30,7 @@ Scenario: RP_AD_GW_07B_SupportRoute_Removed_InProgress_Application
 	Then the admin Removes the Application
 	And the Gateway Applications Outcome tab is updated with REMOVED outcome for this Application
 	And verify that the admin can send the application outcome as REMOVED to the applicant
+	And verify the Application withdrawn page is displayed with Withdraw Application External Comments for the applicant
 
 
 @resetApplicationToNew

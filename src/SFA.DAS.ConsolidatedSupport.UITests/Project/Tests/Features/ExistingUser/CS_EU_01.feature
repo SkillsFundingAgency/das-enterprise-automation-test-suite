@@ -3,7 +3,8 @@
 @regression
 @consolidatedsupport
 Scenario: CS_EU_01_Existing User Ticket is resolved
-	Given an existing user emails the helpdesk
+	Given an existing user logs into the helpdesk
+	And the user emails the helpdesk
 	Then a New status ticket is displayed
 	When the ticket is submit as New
 	Then a New status ticket is displayed
