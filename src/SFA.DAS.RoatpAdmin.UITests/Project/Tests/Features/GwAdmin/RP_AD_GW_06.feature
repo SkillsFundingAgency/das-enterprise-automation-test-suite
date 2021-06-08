@@ -12,8 +12,9 @@ Scenario: RP_AD_GW_06A_SupportRoute_Withdraw_NEW_Application
 	When the admin access the application from GatewayApplications
 	Then the admin Withdraws the Application
 	And the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this Application
+	And verify the Application withdrawn page is displayed 
 
-	
+
 @resetApplicationToNew
 @roatp
 @roatpadmin
@@ -44,6 +45,7 @@ Scenario: RP_AD_GW_06C_SupportRoute_Withdraw_Clarification_Application
 	Then the gateway admin completes assessment by confirming Clarification is needed
 	Then the admin Withdraws the Application
 	And the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this Application
+	And verify the Application withdrawn page is displayed 
  
 
 @resetApplicationToNew
