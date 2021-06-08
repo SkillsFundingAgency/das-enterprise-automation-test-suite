@@ -46,5 +46,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             else
                 return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate);
         }
+
+        public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
     }
 }
