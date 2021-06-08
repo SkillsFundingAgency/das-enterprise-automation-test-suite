@@ -13,20 +13,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
-        private By RadioButtonYes => By.Id("AcceptChanges");
-        private By RadioButtonNo => By.CssSelector("AcceptChanges-no");
-        protected override By ContinueButton => By.CssSelector("#continue-button, #submit-req-changes");
+        protected override By ContinueButton => By.Id("continue-button");
 
         public EditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
-            formCompletionHelper.SelectRadioOptionByLocator(RadioButtonYes);
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             Continue();
             return new EditedApprenticeDetailsPage(_context);
         }
 
         public ApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
-            formCompletionHelper.SelectRadioOptionByLocator(RadioButtonNo);
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "No");
             Continue();
             return new ApprenticeDetailsPage(_context);
         }
