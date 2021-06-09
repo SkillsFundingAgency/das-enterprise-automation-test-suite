@@ -33,7 +33,7 @@ Scenario Outline: Verify Create Certificate
 
 Examples: 
 | TestCaseId           | Method | Endpoint            | Payload                | ResponseStatus |
-| CreateCertificate001 | POST   | /api/v1/certificate | CreateCertificate.json | OK             |
+| CreateCertificate | POST   | /api/v1/certificate | CreateCertificate.json | OK             |
 
 Scenario Outline: Verify Update Certificate
 	Given the user prepares request with for uln 1000809103
@@ -44,7 +44,7 @@ Scenario Outline: Verify Update Certificate
 
 Examples: 
 | TestCaseId           | Method | Endpoint            | Payload                | ResponseStatus |
-| UpdateCertificate001 | PUT    | /api/v1/certificate | UpdateCertificate.json | OK             |
+| UpdateCertificate | PUT    | /api/v1/certificate | UpdateCertificate.json | OK             |
 
 Scenario Outline: Verify Delete Certificate
 	Given the user prepares request with for uln 1000809104
@@ -55,7 +55,7 @@ Scenario Outline: Verify Delete Certificate
 
 Examples: 
 | TestCaseId           | Method | Endpoint                                                  | Payload | ResponseStatus |
-| DeleteCertificate001 | DELETE | /api/v1/certificate/1000809104/Name1000809104/91/00012026 |         | NoContent      |
+| DeleteCertificate | DELETE | /api/v1/certificate/1000809104/Name1000809104/91/00012026 |         | NoContent      |
 
 Scenario Outline: Verify Get grades
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -63,4 +63,14 @@ Scenario Outline: Verify Get grades
 	
 Examples: 
 | TestCaseId   | Method | Endpoint                   | Payload | ResponseStatus |
-| GetGrades001 | GET    | /api/v1/certificate/grades |         | OK             |
+| GetGrades | GET    | /api/v1/certificate/grades |         | OK             |
+
+Scenario Outline: Verify Get Options
+	When the user sends <Method> request to <Endpoint> with payload <Payload> 
+	Then a <ResponseStatus> response is received
+	
+Examples: 
+| TestCaseId                 | Method | Endpoint                          | Payload | ResponseStatus |
+| GetOptions                 | GET    | /api/v1/standards/options         |         | OK             |
+| GetOptionsStandards        | GET    | /api/v1/standards/options/619     |         | OK             |
+| GetOptionsStandardsVersion | GET    | /api/v1/standards/options/619/1.0 |         | OK             |

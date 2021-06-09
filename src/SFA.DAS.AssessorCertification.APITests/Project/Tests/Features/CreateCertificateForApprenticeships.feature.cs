@@ -243,11 +243,11 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Create Certificate: CreateCertificate001")]
-        public virtual void VerifyCreateCertificate_CreateCertificate001()
+        [NUnit.Framework.DescriptionAttribute("Verify Create Certificate: CreateCertificate")]
+        public virtual void VerifyCreateCertificate_CreateCertificate()
         {
 #line 28
-this.VerifyCreateCertificate("CreateCertificate001", "POST", "/api/v1/certificate", "CreateCertificate.json", "OK", ((string[])(null)));
+this.VerifyCreateCertificate("CreateCertificate", "POST", "/api/v1/certificate", "CreateCertificate.json", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -302,11 +302,11 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Update Certificate: UpdateCertificate001")]
-        public virtual void VerifyUpdateCertificate_UpdateCertificate001()
+        [NUnit.Framework.DescriptionAttribute("Verify Update Certificate: UpdateCertificate")]
+        public virtual void VerifyUpdateCertificate_UpdateCertificate()
         {
 #line 38
-this.VerifyUpdateCertificate("UpdateCertificate001", "PUT", "/api/v1/certificate", "UpdateCertificate.json", "OK", ((string[])(null)));
+this.VerifyUpdateCertificate("UpdateCertificate", "PUT", "/api/v1/certificate", "UpdateCertificate.json", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -360,11 +360,11 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Delete Certificate: DeleteCertificate001")]
-        public virtual void VerifyDeleteCertificate_DeleteCertificate001()
+        [NUnit.Framework.DescriptionAttribute("Verify Delete Certificate: DeleteCertificate")]
+        public virtual void VerifyDeleteCertificate_DeleteCertificate()
         {
 #line 49
-this.VerifyDeleteCertificate("DeleteCertificate001", "DELETE", "/api/v1/certificate/1000809104/Name1000809104/91/00012026", "", "NoContent", ((string[])(null)));
+this.VerifyDeleteCertificate("DeleteCertificate", "DELETE", "/api/v1/certificate/1000809104/Name1000809104/91/00012026", "", "NoContent", ((string[])(null)));
 #line hidden
         }
         
@@ -409,11 +409,78 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Get grades: GetGrades001")]
-        public virtual void VerifyGetGrades_GetGrades001()
+        [NUnit.Framework.DescriptionAttribute("Verify Get grades: GetGrades")]
+        public virtual void VerifyGetGrades_GetGrades()
         {
 #line 60
-this.VerifyGetGrades("GetGrades001", "GET", "/api/v1/certificate/grades", "", "OK", ((string[])(null)));
+this.VerifyGetGrades("GetGrades", "GET", "/api/v1/certificate/grades", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyGetOptions(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Get Options", null, tagsOfScenario, argumentsOfScenario);
+#line 68
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 69
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 70
+ testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptions")]
+        public virtual void VerifyGetOptions_GetOptions()
+        {
+#line 68
+this.VerifyGetOptions("GetOptions", "GET", "/api/v1/standards/options", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandards")]
+        public virtual void VerifyGetOptions_GetOptionsStandards()
+        {
+#line 68
+this.VerifyGetOptions("GetOptionsStandards", "GET", "/api/v1/standards/options/619", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandardsVersion")]
+        public virtual void VerifyGetOptions_GetOptionsStandardsVersion()
+        {
+#line 68
+this.VerifyGetOptions("GetOptionsStandardsVersion", "GET", "/api/v1/standards/options/619/1.0", "", "OK", ((string[])(null)));
 #line hidden
         }
     }
