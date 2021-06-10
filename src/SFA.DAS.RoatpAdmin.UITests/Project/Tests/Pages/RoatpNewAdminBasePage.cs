@@ -101,12 +101,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         { 
             if (objectContext.IsClarificationJourney())
             {
-                formCompletionHelper.EnterText(ClarificationResponse, "Clarification Response");
-
                 if (objectContext.IsUploadFile())
                 {
                     ChooseFile();
                     objectContext.ResetIsUploadFile();
+                }
+                else
+                {
+                    formCompletionHelper.EnterText(ClarificationResponse, "Clarification Response");
                 }
             }
         }
