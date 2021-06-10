@@ -75,11 +75,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-            "al entity having Commitments with start date prior to AUG 2020")]
+            "al entity having Commitments with start date prior to APR 2021")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAUG2020()
+        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2021()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-                    "al entity having Commitments with start date prior to AUG 2020", null, tagsOfScenario, argumentsOfScenario);
+                    "al entity having Commitments with start date prior to APR 2021", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,8 +112,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 7 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds 1 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
+                        "th 3 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

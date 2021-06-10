@@ -19,9 +19,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"there are some apprenticeship incentives")]
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
-            await SetActiveCollectionPeriod(6, 2021);
+            await SetActiveCollectionPeriod(10, 2021);
             
-            var startDate = DateTime.Parse("2020-11-12");
+            var startDate = DateTime.Parse("2021-06-12");
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(AccountId)
                 .WithApprenticeship(ApprenticeshipId, Uln, Ukprn, startDate, startDate.AddYears(-24))

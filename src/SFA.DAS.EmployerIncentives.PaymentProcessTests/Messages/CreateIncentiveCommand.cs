@@ -19,13 +19,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages
         public DateTime SubmittedDate { get; }
         public string SubmittedByEmail { get; }
         public string CourseName { get; }
+        public DateTime EmploymentStartDate { get; }
 
         public CreateIncentiveCommand(
             long accountId,
             long accountLegalEntityId, Guid incentiveApplicationApprenticeshipId, long apprenticeshipId,
             string firstName, string lastName, DateTime dateOfBirth, long uln, DateTime plannedStartDate,
             ApprenticeshipEmployerType apprenticeshipEmployerTypeOnApproval, long? ukprn, DateTime submittedDate,
-            string submittedByEmail, string courseName)
+            string submittedByEmail, string courseName, DateTime employmentStartDate)
         {
             AccountId = accountId;
             AccountLegalEntityId = accountLegalEntityId;
@@ -41,6 +42,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages
             SubmittedDate = submittedDate;
             SubmittedByEmail = submittedByEmail;
             CourseName = courseName;
+            EmploymentStartDate = employmentStartDate;
         }
     }
 }

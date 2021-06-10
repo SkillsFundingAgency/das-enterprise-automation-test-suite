@@ -1,4 +1,4 @@
-﻿Feature: EI_URV_02
+﻿Feature: EI_URV_02_ViewOnlyUser
 
 @regression
 @employerincentives
