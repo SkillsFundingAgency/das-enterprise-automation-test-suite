@@ -12,21 +12,21 @@ Scenario Outline: Verify Certificate can be created for Apprenticeships
 	
 Examples: 
 | TestCaseId          | Method | Endpoint                                         | Payload | ResponseStatus |
-| CheckCertificate001 | GET    | /api/v1/certificate/1000809178/Name1000809178/91 |         | NoContent      |
+| CheckCertificate001 | GET    | /api/v1/certificate/1000809111/Name1000809111/91 |         | NoContent      |
 
 
 Scenario Outline: Verify Check Certificate for Apprenticeships
-	Given the user prepares request with uln 1000809103
+	Given the user prepares request with uln 1000809113
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
 	
 Examples: 
 | TestCaseId          | Method | Endpoint                                         | Payload | ResponseStatus |
-| CheckCertificate002 | GET    | /api/v1/certificate/1000809103/Name1000809103/91 |         | OK             |
+| CheckCertificate002 | GET    | /api/v1/certificate/1000809113/Name1000809113/91 |         | OK             |
 
 Scenario Outline: Verify Create Certificate
-	Given the user prepares payload with uln 1000809100
+	Given the user prepares payload with uln 1000809110
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
@@ -36,7 +36,7 @@ Examples:
 | CreateCertificate | POST   | /api/v1/certificate | CreateCertificate.json | OK             |
 
 Scenario Outline: Verify Update Certificate
-	Given the user prepares request with uln 1000809103
+	Given the user prepares certificate update request with uln 1000809114
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
@@ -47,7 +47,7 @@ Examples:
 | UpdateCertificate | PUT    | /api/v1/certificate | UpdateCertificate.json | OK             |
 
 Scenario Outline: Verify Submit Certificate
-	Given the user prepares request for submission with uln 1000813998 
+	Given the user prepares request for submission with uln 1000809116 
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And Action in the Certificatelog is Submit
@@ -59,7 +59,7 @@ Examples:
 | SubmitCertificate | POST   | /api/v1/certificate/submit | SubmitCertificate.json | OK             |
 
 Scenario Outline: Verify Delete Certificate
-	Given the user prepares request with uln 1000809104
+	Given the user prepares certificate delete request with uln 1000809115
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And Action in the Certificatelog is Delete
@@ -67,7 +67,7 @@ Scenario Outline: Verify Delete Certificate
 
 Examples: 
 | TestCaseId        | Method | Endpoint                                                  | Payload | ResponseStatus |
-| DeleteCertificate | DELETE | /api/v1/certificate/1000809104/Name1000809104/91/00012026 |         | NoContent      |
+| DeleteCertificate | DELETE | /api/v1/certificate/1000809115/Name1000809115/91/00012128 |         | NoContent      |
 
 Scenario Outline: Verify Get grades
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 

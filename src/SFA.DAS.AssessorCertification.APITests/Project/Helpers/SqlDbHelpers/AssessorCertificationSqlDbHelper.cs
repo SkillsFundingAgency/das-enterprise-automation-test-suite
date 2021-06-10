@@ -18,9 +18,29 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE Uln = {uln}");
         }
 
-        public void UpdateCertificateStatusToDraft(string uln)
+        public void UpdateCertificateForSubmission(string uln)
         {
-            ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft' WHERE Uln = {uln}");
+            ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft', CertificateReference = '00012129' WHERE Uln = {uln}");
+        }
+
+        public void UpdateCertificateReferenceEPA(string uln)
+        {
+            ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012123' WHERE Uln = {uln}");
+        }
+
+        public void UpdateCertificateReferenceCert(string uln)
+        {
+            ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012127' WHERE Uln = {uln}");
+        }
+
+        public void UpdateCertificateReferenceDelete(string uln)
+        {
+            ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012125' WHERE Uln = {uln}");
+        }
+
+        public void UpdateCertificateReferenceDeleteCert(string uln)
+        {
+            ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012128' WHERE Uln = {uln}");
         }
 
         public string GetEPAreferenceAfterAPI(string uln) => GetData($"SELECT CertificateReference FROM [Certificates] WHERE Uln = {uln}");

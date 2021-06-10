@@ -39,10 +39,42 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             contextUln = uln;
         }
 
+        [Given(@"the user prepares update request with uln (.*)")]
+        public void GivenTheUserPreparesUpdateRequestWithUln(string uln)
+        {
+            _assessorCertificationSqlDbHelper.UpdateCertificateReferenceEPA(uln);
+            contextUln = uln;
+        }
+
+        [Given(@"the user prepares certificate update request with uln (.*)")]
+        public void GivenTheUserPreparesCertificateUpdateRequestWithUln(string uln)
+        {
+            _assessorCertificationSqlDbHelper.UpdateCertificateReferenceCert(uln);
+            contextUln = uln;
+        }
+
+
+        [Given(@"the user prepares delete request with uln (.*)")]
+        public void GivenTheUserPreparesDeleteRequestWithUln(string uln)
+        {
+            _assessorCertificationSqlDbHelper.UpdateCertificateReferenceDelete(uln);
+            contextUln = uln;
+        }
+
+        [Given(@"the user prepares certificate delete request with uln (.*)")]
+        public void GivenTheUserPreparesCertificateDeleteRequestWithUln(string uln)
+        {
+            _assessorCertificationSqlDbHelper.UpdateCertificateReferenceDeleteCert(uln);
+            contextUln = uln;
+        }
+
+
+
+
         [Given(@"the user prepares request for submission with uln (.*)")]
         public void GivenTheUserPreparesRequestForSubmissionWithUln(string uln)
         {
-            _assessorCertificationSqlDbHelper.UpdateCertificateStatusToDraft(uln);
+            _assessorCertificationSqlDbHelper.UpdateCertificateForSubmission(uln);
             contextUln = uln;
         }
 
