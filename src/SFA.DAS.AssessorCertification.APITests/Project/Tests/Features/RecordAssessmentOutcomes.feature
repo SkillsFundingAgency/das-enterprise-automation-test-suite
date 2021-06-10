@@ -15,7 +15,7 @@ Examples:
 | CreateEPARecord001 | POST   | /api/v1/epa | CreateEPARecord.json | OK             |
 
 Scenario Outline: Verify Update EPA Record
-	Given the user prepares request with for uln 1000809178
+	Given the user prepares request with uln 1000809178
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the EPARefNumber in the response is same as in the Certificates table in the database
@@ -25,7 +25,7 @@ Examples:
 | UpdateEPARecord001 | PUT    | /api/v1/epa | UpdateEPARecord.json | OK             |
 
 Scenario Outline: Verify Delete EPA Record
-	Given the user prepares request with for uln 1000800105
+	Given the user prepares request with uln 1000800105
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the status in the Certificates Table in database is Deleted

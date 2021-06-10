@@ -18,6 +18,11 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE Uln = {uln}");
         }
 
+        public void UpdateCertificateStatusToDraft(string uln)
+        {
+            ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft' WHERE Uln = {uln}");
+        }
+
         public string GetEPAreferenceAfterAPI(string uln) => GetData($"SELECT CertificateReference FROM [Certificates] WHERE Uln = {uln}");
 
         public string GetCertificateStatus(string uln) => GetData($"SELECT Status FROM [Certificates] WHERE Uln = {uln}");

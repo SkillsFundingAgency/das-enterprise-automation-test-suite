@@ -33,11 +33,19 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
             contextUln = uln;
         }
 
-        [Given(@"the user prepares request with for uln (.*)")]
+        [Given(@"the user prepares request with uln (.*)")]
         public void GivenTheUserPreparesRequestWithForUln(string uln)
         {
             contextUln = uln;
         }
+
+        [Given(@"the user prepares request for submission with uln (.*)")]
+        public void GivenTheUserPreparesRequestForSubmissionWithUln(string uln)
+        {
+            _assessorCertificationSqlDbHelper.UpdateCertificateStatusToDraft(uln);
+            contextUln = uln;
+        }
+
 
 
 
@@ -92,6 +100,13 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
 
             Assert.True(restResponse.Content.ToString().Contains(learnerUln), "Learner Uln is not the expected value");
         }
+
+        [Then(@"the currentStatus in the response message is (.*)")]
+        public void ThenTheCurrentStatusInTheResponseMessageIsSubmitted(string currentStatus)
+        {
+           Assert.True(restResponse.Content.ToString().Contains(currentStatus), "Current Status is not the expected value");
+        }
+
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }
