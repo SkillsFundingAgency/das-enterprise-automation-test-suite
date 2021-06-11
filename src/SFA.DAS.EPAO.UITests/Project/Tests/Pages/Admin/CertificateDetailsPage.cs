@@ -24,13 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
-        public CertificateDetailsPage ShowAllHistory()
-        {
-            formCompletionHelper.ClickElement(SearchButton);
-            VerifyPage(History);
-            VerifyPage(SearchButton, "Show summary");
-            return new CertificateDetailsPage(_context);
-        }
+
         public AreYouSureYouWantToDeletePage ClickDeleteCertificateLink()
         {
             formCompletionHelper.ClickElement(DeleteCertificateLink);
