@@ -93,6 +93,10 @@ Examples:
 | TestCaseId | Method | Endpoint                   | Payload | ResponseStatus |
 | GetGrades  | GET    | /api/v1/certificate/grades |         | OK             |
 
+
+@api
+@regression
+@assessorcertificationapi
 Scenario Outline: Verify Get Options
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received

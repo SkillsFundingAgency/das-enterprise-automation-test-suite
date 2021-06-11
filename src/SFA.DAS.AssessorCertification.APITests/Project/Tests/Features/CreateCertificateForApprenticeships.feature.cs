@@ -540,7 +540,15 @@ this.VerifyGetGrades("GetGrades", "GET", "/api/v1/certificate/grades", "", "OK",
         
         public virtual void VerifyGetOptions(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "assessorcertificationapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -548,7 +556,7 @@ this.VerifyGetGrades("GetGrades", "GET", "/api/v1/certificate/grades", "", "OK",
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Get Options", null, tagsOfScenario, argumentsOfScenario);
-#line 96
+#line 100
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -568,10 +576,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 97
+#line 101
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 98
+#line 102
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -580,27 +588,36 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptions")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyGetOptions_GetOptions()
         {
-#line 96
+#line 100
 this.VerifyGetOptions("GetOptions", "GET", "/api/v1/standards/options", "", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandards")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyGetOptions_GetOptionsStandards()
         {
-#line 96
+#line 100
 this.VerifyGetOptions("GetOptionsStandards", "GET", "/api/v1/standards/options/619", "", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandardsVersion")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyGetOptions_GetOptionsStandardsVersion()
         {
-#line 96
+#line 100
 this.VerifyGetOptions("GetOptionsStandardsVersion", "GET", "/api/v1/standards/options/619/1.0", "", "OK", ((string[])(null)));
 #line hidden
         }
