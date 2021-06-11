@@ -2,7 +2,7 @@
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Certificate can be created for Apprenticeships
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
@@ -14,7 +14,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Check Certificate for Apprenticeships
 	Given the user prepares request with uln 1000809113
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -27,7 +27,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Create Certificate
 	Given the user prepares payload with uln 1000809117
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -41,7 +41,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Update Certificate
 	Given the user prepares certificate update request with uln 1000809114
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -55,7 +55,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Submit Certificate
 	Given the user prepares request for submission with uln 1000809116 
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -70,7 +70,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Delete Certificate
 	Given the user prepares certificate delete request with uln 1000809115
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -84,7 +84,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Get grades
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received

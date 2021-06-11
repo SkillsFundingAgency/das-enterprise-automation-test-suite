@@ -78,7 +78,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Create EPA Record: CreateEPARecord001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyCreateEPARecord_CreateEPARecord001()
         {
 #line 6
@@ -145,7 +145,7 @@ this.VerifyCreateEPARecord("CreateEPARecord001", "POST", "/api/v1/epa", "CreateE
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -199,7 +199,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Update EPA Record: UpdateEPARecord001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyUpdateEPARecord_UpdateEPARecord001()
         {
 #line 19
@@ -212,7 +212,7 @@ this.VerifyUpdateEPARecord("UpdateEPARecord001", "PUT", "/api/v1/epa", "UpdateEP
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -265,7 +265,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Delete EPA Record: DeleteEPARecord001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyDeleteEPARecord_DeleteEPARecord001()
         {
 #line 32

@@ -78,7 +78,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -131,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Learner Details held by the Assessor Service: LearnerDetails001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyLearnerDetailsHeldByTheAssessorService_LearnerDetails001()
         {
 #line 6

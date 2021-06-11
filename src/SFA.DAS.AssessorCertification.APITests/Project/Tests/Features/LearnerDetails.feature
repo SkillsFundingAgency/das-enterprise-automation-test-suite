@@ -2,7 +2,7 @@
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Learner Details held by the Assessor Service
 	Given the user prepares request with uln 1000809104
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 

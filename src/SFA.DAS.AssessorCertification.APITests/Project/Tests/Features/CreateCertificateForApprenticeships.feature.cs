@@ -78,7 +78,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -125,7 +125,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Certificate can be created for Apprenticeships: CheckCertificate001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyCertificateCanBeCreatedForApprenticeships_CheckCertificate001()
         {
 #line 6
@@ -138,7 +138,7 @@ this.VerifyCertificateCanBeCreatedForApprenticeships("CheckCertificate001", "GET
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -192,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Check Certificate for Apprenticeships: CheckCertificate002")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyCheckCertificateForApprenticeships_CheckCertificate002()
         {
 #line 18
@@ -205,7 +205,7 @@ this.VerifyCheckCertificateForApprenticeships("CheckCertificate002", "GET", "/ap
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -259,7 +259,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Create Certificate: CreateCertificate")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyCreateCertificate_CreateCertificate()
         {
 #line 31
@@ -272,7 +272,7 @@ this.VerifyCreateCertificate("CreateCertificate", "POST", "/api/v1/certificate",
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -329,7 +329,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Update Certificate: UpdateCertificate")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyUpdateCertificate_UpdateCertificate()
         {
 #line 45
@@ -342,7 +342,7 @@ this.VerifyUpdateCertificate("UpdateCertificate", "PUT", "/api/v1/certificate", 
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -401,7 +401,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Submit Certificate: SubmitCertificate")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifySubmitCertificate_SubmitCertificate()
         {
 #line 59
@@ -414,7 +414,7 @@ this.VerifySubmitCertificate("SubmitCertificate", "POST", "/api/v1/certificate/s
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -470,7 +470,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Delete Certificate: DeleteCertificate")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyDeleteCertificate_DeleteCertificate()
         {
 #line 74
@@ -483,7 +483,7 @@ this.VerifyDeleteCertificate("DeleteCertificate", "DELETE", "/api/v1/certificate
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "apprenticecommitmentsapi"};
+                    "assessorcertificationapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -530,7 +530,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Get grades: GetGrades")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
+        [NUnit.Framework.CategoryAttribute("assessorcertificationapi")]
         public virtual void VerifyGetGrades_GetGrades()
         {
 #line 88

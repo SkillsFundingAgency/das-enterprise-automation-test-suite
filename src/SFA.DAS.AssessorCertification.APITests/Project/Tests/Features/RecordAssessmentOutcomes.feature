@@ -2,7 +2,7 @@
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Create EPA Record
 	Given the user prepares payload with uln 1000809110
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -15,7 +15,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Update EPA Record
 	Given the user prepares update request with uln 1000809111
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -28,7 +28,7 @@ Examples:
 
 @api
 @regression
-@apprenticecommitmentsapi
+@assessorcertificationapi
 Scenario Outline: Verify Delete EPA Record
 	Given the user prepares delete request with uln 1000809112
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
