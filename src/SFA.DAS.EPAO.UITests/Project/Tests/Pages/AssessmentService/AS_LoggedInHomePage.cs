@@ -32,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_ApplyToAssessStandardPage(_context);
         }
 
-        public AS_RecordAGradePage ClickOnRecordAGrade()
+        public AS_RecordAGradePage GoToRecordAGradePage()
         {
             formCompletionHelper.Click(RecordAGradeLink);
             return new AS_RecordAGradePage(_context);

@@ -2,7 +2,9 @@
 
 @epao
 @assessmentservice
+@recordagrade
 @regression
+@epaoca1standard1version0option
 Scenario: EPAO_CA_06 - Attempt to certify an Apprentice with Invalid details
 	Given the Assessor User is logged into Assessment Service Application
 	And navigates to Assessment page
