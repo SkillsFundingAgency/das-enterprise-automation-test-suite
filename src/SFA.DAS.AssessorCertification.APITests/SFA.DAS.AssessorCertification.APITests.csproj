@@ -29,6 +29,18 @@
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Project\Tests\Payload\CreateCertificate.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Tests\Payload\CreateEPARecord.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Tests\Payload\SubmitCertificate.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Tests\Payload\UpdateCertificate.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Project\Tests\Payload\UpdateEPARecord.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
