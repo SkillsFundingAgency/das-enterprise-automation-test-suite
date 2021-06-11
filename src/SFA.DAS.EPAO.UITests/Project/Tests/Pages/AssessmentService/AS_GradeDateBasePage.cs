@@ -27,10 +27,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             EnterDateFieldsAndContinue();
         }
 
-        public AS_UkprnPage EnterApprenticshipStartDateAndContinue()
+        public AS_SearchEmployerAddressPage EnterApprenticshipStartDateAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_UkprnPage(_context);
+            return new AS_SearchEmployerAddressPage(_context);
         }
 
         public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()

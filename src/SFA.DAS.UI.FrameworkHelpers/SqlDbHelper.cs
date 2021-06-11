@@ -10,11 +10,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
-        protected List<string> GetData(string query, int noOfvalues) => GetData(query, connectionString, noOfvalues);
+        protected List<string> GetData(string query, int noOfvalues, Dictionary<string, string> parameters = null) => GetData(query, connectionString, noOfvalues, parameters);
 
-        protected List<string> GetData(string query, string connectionstring, int noOfvalues)
+        protected List<string> GetData(string query, string connectionstring, int noOfvalues, Dictionary<string, string> parameters = null)
         {
-            List<object[]> data = ReadDataFromDataBase(query, connectionstring);
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters);
 
             var returnItems = new List<string>();
 
@@ -74,9 +74,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title).Execute(() => GetDataAsObject(queryToExecute));
 
-        private List<object[]> ReadDataFromDataBase(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString);
-
-        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+        private List<object[]> ReadDataFromDataBase(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
         private Policy RetryOnException(string exception, string title)
         {
