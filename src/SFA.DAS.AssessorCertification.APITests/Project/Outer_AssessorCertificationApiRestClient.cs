@@ -12,7 +12,9 @@ namespace SFA.DAS.AssessorCertification.APITests.Project
     {
         public Outer_AssessorCertificationApiRestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
-        protected override string ApiName => $"/assessor-service-api-{EnvironmentConfig.EnvironmentName}";
+        string environment = EnvironmentConfig.IsPPEnvironment ? "preprod" : EnvironmentConfig.EnvironmentName;
+        protected override string ApiName => $"/assessor-service-api-{environment}";
+
         protected override string ApiBaseUrl => UrlConfig.Outer_AssessorCertificationApiBaseUrl;
 
     }

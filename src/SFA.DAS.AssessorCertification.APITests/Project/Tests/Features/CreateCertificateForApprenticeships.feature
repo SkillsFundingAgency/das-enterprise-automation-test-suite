@@ -26,7 +26,7 @@ Examples:
 | CheckCertificate002 | GET    | /api/v1/certificate/1000809113/Name1000809113/91 |         | OK             |
 
 Scenario Outline: Verify Create Certificate
-	Given the user prepares payload with uln 1000809110
+	Given the user prepares payload with uln 1000809117
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
