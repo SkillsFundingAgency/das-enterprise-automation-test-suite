@@ -77,11 +77,8 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
         {
             string[] @__tags = new string[] {
                     "api",
-                    "AssessorCertification",
-                    "EPA",
-                    "API",
-                    "Certification",
-                    "regression"};
+                    "regression",
+                    "apprenticecommitmentsapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -94,7 +91,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Learner Details held by the Assessor Service", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,16 +111,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
  testRunner.Given("the user prepares request with uln 1000809104", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 8
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 9
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 10
  testRunner.And("the Learner ULn in the response is same as Uln in the Ilrs table in the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -133,14 +130,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Learner Details held by the Assessor Service: LearnerDetails001")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("AssessorCertification")]
-        [NUnit.Framework.CategoryAttribute("EPA")]
-        [NUnit.Framework.CategoryAttribute("API")]
-        [NUnit.Framework.CategoryAttribute("Certification")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyLearnerDetailsHeldByTheAssessorService_LearnerDetails001()
         {
-#line 8
+#line 6
 this.VerifyLearnerDetailsHeldByTheAssessorService("LearnerDetails001", "GET", "/api/v1/learner/1000809104/Name1000809104/91", "", "OK", ((string[])(null)));
 #line hidden
         }

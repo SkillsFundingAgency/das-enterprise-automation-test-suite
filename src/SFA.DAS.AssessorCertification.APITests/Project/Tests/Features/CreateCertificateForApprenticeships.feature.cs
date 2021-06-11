@@ -77,11 +77,8 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
         {
             string[] @__tags = new string[] {
                     "api",
-                    "AssessorCertification",
-                    "EPA",
-                    "API",
-                    "Certification",
-                    "regression"};
+                    "regression",
+                    "apprenticecommitmentsapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -94,7 +91,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Certificate can be created for Apprenticeships", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,10 +111,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 8
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -127,21 +124,26 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Certificate can be created for Apprenticeships: CheckCertificate001")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("AssessorCertification")]
-        [NUnit.Framework.CategoryAttribute("EPA")]
-        [NUnit.Framework.CategoryAttribute("API")]
-        [NUnit.Framework.CategoryAttribute("Certification")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyCertificateCanBeCreatedForApprenticeships_CheckCertificate001()
         {
-#line 8
+#line 6
 this.VerifyCertificateCanBeCreatedForApprenticeships("CheckCertificate001", "GET", "/api/v1/certificate/1000809111/Name1000809111/91", "", "NoContent", ((string[])(null)));
 #line hidden
         }
         
         public virtual void VerifyCheckCertificateForApprenticeships(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -188,6 +190,9 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Check Certificate for Apprenticeships: CheckCertificate002")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyCheckCertificateForApprenticeships_CheckCertificate002()
         {
 #line 18
@@ -197,7 +202,15 @@ this.VerifyCheckCertificateForApprenticeships("CheckCertificate002", "GET", "/ap
         
         public virtual void VerifyCreateCertificate(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -205,7 +218,7 @@ this.VerifyCheckCertificateForApprenticeships("CheckCertificate002", "GET", "/ap
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Create Certificate", null, tagsOfScenario, argumentsOfScenario);
-#line 28
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -225,16 +238,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 32
  testRunner.Given("the user prepares payload with uln 1000809117", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 33
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 34
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 32
+#line 35
  testRunner.And("the CertificateReference in the response is same as in the Certificates table in " +
                         "the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -244,16 +257,27 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Create Certificate: CreateCertificate")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyCreateCertificate_CreateCertificate()
         {
-#line 28
+#line 31
 this.VerifyCreateCertificate("CreateCertificate", "POST", "/api/v1/certificate", "CreateCertificate.json", "OK", ((string[])(null)));
 #line hidden
         }
         
         public virtual void VerifyUpdateCertificate(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -261,7 +285,7 @@ this.VerifyCreateCertificate("CreateCertificate", "POST", "/api/v1/certificate",
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Update Certificate", null, tagsOfScenario, argumentsOfScenario);
-#line 38
+#line 45
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -281,20 +305,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
+#line 46
  testRunner.Given("the user prepares certificate update request with uln 1000809114", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 40
+#line 47
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 41
+#line 48
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 42
+#line 49
  testRunner.And("the CertificateReference in the response is same as in the Certificates table in " +
                         "the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 43
+#line 50
  testRunner.And("Action in the Certificatelog is Amend", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -303,16 +327,27 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Update Certificate: UpdateCertificate")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyUpdateCertificate_UpdateCertificate()
         {
-#line 38
+#line 45
 this.VerifyUpdateCertificate("UpdateCertificate", "PUT", "/api/v1/certificate", "UpdateCertificate.json", "OK", ((string[])(null)));
 #line hidden
         }
         
         public virtual void VerifySubmitCertificate(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -320,7 +355,7 @@ this.VerifyUpdateCertificate("UpdateCertificate", "PUT", "/api/v1/certificate", 
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Submit Certificate", null, tagsOfScenario, argumentsOfScenario);
-#line 49
+#line 59
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -340,22 +375,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 50
+#line 60
  testRunner.Given("the user prepares request for submission with uln 1000809116", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 51
+#line 61
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 52
+#line 62
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 53
+#line 63
  testRunner.And("Action in the Certificatelog is Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 54
+#line 64
  testRunner.And("the status in the Certificates Table in database is Submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 55
+#line 65
  testRunner.And("the currentStatus in the response message is Submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -364,16 +399,27 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Submit Certificate: SubmitCertificate")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifySubmitCertificate_SubmitCertificate()
         {
-#line 49
+#line 59
 this.VerifySubmitCertificate("SubmitCertificate", "POST", "/api/v1/certificate/submit", "SubmitCertificate.json", "OK", ((string[])(null)));
 #line hidden
         }
         
         public virtual void VerifyDeleteCertificate(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -381,7 +427,7 @@ this.VerifySubmitCertificate("SubmitCertificate", "POST", "/api/v1/certificate/s
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Delete Certificate", null, tagsOfScenario, argumentsOfScenario);
-#line 61
+#line 74
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -401,19 +447,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 62
+#line 75
  testRunner.Given("the user prepares certificate delete request with uln 1000809115", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 63
+#line 76
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 64
+#line 77
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 65
+#line 78
  testRunner.And("Action in the Certificatelog is Delete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 66
+#line 79
  testRunner.And("the status in the Certificates Table in database is Deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -422,16 +468,27 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Delete Certificate: DeleteCertificate")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyDeleteCertificate_DeleteCertificate()
         {
-#line 61
+#line 74
 this.VerifyDeleteCertificate("DeleteCertificate", "DELETE", "/api/v1/certificate/1000809115/Name1000809115/91/00012128", "", "NoContent", ((string[])(null)));
 #line hidden
         }
         
         public virtual void VerifyGetGrades(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "apprenticecommitmentsapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
@@ -439,7 +496,7 @@ this.VerifyDeleteCertificate("DeleteCertificate", "DELETE", "/api/v1/certificate
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Get grades", null, tagsOfScenario, argumentsOfScenario);
-#line 72
+#line 88
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -459,10 +516,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 73
+#line 89
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 74
+#line 90
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -471,9 +528,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Get grades: GetGrades")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         public virtual void VerifyGetGrades_GetGrades()
         {
-#line 72
+#line 88
 this.VerifyGetGrades("GetGrades", "GET", "/api/v1/certificate/grades", "", "OK", ((string[])(null)));
 #line hidden
         }
@@ -488,7 +548,7 @@ this.VerifyGetGrades("GetGrades", "GET", "/api/v1/certificate/grades", "", "OK",
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Get Options", null, tagsOfScenario, argumentsOfScenario);
-#line 80
+#line 96
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -508,10 +568,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 81
+#line 97
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 82
+#line 98
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -522,7 +582,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptions")]
         public virtual void VerifyGetOptions_GetOptions()
         {
-#line 80
+#line 96
 this.VerifyGetOptions("GetOptions", "GET", "/api/v1/standards/options", "", "OK", ((string[])(null)));
 #line hidden
         }
@@ -531,7 +591,7 @@ this.VerifyGetOptions("GetOptions", "GET", "/api/v1/standards/options", "", "OK"
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandards")]
         public virtual void VerifyGetOptions_GetOptionsStandards()
         {
-#line 80
+#line 96
 this.VerifyGetOptions("GetOptionsStandards", "GET", "/api/v1/standards/options/619", "", "OK", ((string[])(null)));
 #line hidden
         }
@@ -540,7 +600,7 @@ this.VerifyGetOptions("GetOptionsStandards", "GET", "/api/v1/standards/options/6
         [NUnit.Framework.DescriptionAttribute("Verify Get Options: GetOptionsStandardsVersion")]
         public virtual void VerifyGetOptions_GetOptionsStandardsVersion()
         {
-#line 80
+#line 96
 this.VerifyGetOptions("GetOptionsStandardsVersion", "GET", "/api/v1/standards/options/619/1.0", "", "OK", ((string[])(null)));
 #line hidden
         }

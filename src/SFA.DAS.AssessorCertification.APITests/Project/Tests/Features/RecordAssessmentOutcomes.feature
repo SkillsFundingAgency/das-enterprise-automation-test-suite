@@ -1,9 +1,8 @@
 ﻿Feature: RecordAssessmentOutcomes
 
 @api
-@AssessorCertification
-@EPA API Certification
 @regression
+@apprenticecommitmentsapi
 Scenario Outline: Verify Create EPA Record
 	Given the user prepares payload with uln 1000809110
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -14,6 +13,9 @@ Examples:
 | TestCaseId         | Method | Endpoint    | Payload              | ResponseStatus |
 | CreateEPARecord001 | POST   | /api/v1/epa | CreateEPARecord.json | OK             |
 
+@api
+@regression
+@apprenticecommitmentsapi
 Scenario Outline: Verify Update EPA Record
 	Given the user prepares update request with uln 1000809111
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -24,6 +26,9 @@ Examples:
 | TestCaseId         | Method | Endpoint    | Payload              | ResponseStatus |
 | UpdateEPARecord001 | PUT    | /api/v1/epa | UpdateEPARecord.json | OK             |
 
+@api
+@regression
+@apprenticecommitmentsapi
 Scenario Outline: Verify Delete EPA Record
 	Given the user prepares delete request with uln 1000809112
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
