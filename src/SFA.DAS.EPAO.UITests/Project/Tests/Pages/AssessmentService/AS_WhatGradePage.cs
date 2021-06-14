@@ -21,32 +21,36 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public void SelectGradeAndEnterDate(string grade)
+        public void SelectGradeAndEnterDate(string grade) => SelectGrade(grade).EnterAchievementGradeDateAndContinue();
+
+        public AS_AchievementDatePage SelectGradeAsPass() => SelectGradeAsPass(PassRadioButton);
+
+        private AS_GradeDateBasePage SelectGrade(string grade)
         {
-            switch (grade)
+            return grade switch
             {
-                case "Passed":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
-                    Continue();
-                    new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-                case "PassWithExcellence":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassWithExcellenceRadioButton));
-                    Continue();
-                    new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-                case "Failed":
-                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FailRadioButton));
-                    Continue();
-                    new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
-                    break;
-            }
+                "PassWithExcellence" => SelectGradeAsPass(PassWithExcellenceRadioButton),
+                "fail" => SelectGradeAsFail(),
+                _ => SelectGradeAsPass(),
+            };
         }
-        public AS_ApprenticeshipStartDate SelectGradeForPrivatelyFundedAprrenticeAndContinue()
+
+        private AS_ApprenticeFailedDatePage SelectGradeAsFail()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
+            SelectGrade(FailRadioButton);
+            return new AS_ApprenticeFailedDatePage(_context);
+        }
+
+        private AS_AchievementDatePage SelectGradeAsPass(By by)
+        {
+            SelectGrade(by);
+            return new AS_AchievementDatePage(_context);
+        }
+
+        private void SelectGrade(By by)
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
             Continue();
-            return new AS_ApprenticeshipStartDate(_context);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => "My apprenticeship";
+        private string PageTitleAfterConfirmation => "My apprenticeship details";
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
@@ -108,6 +109,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.Click(HelpAndSupportLink);
             return new HelpAndSupportPage(_context);
+        }
+
+        public void VerifyPageAfterApprenticeshipConfirm()
+        {
+            VerifyPage(PageHeader, PageTitleAfterConfirmation);
+            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship has been agreed and you're ready to start");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
@@ -16,29 +17,32 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             CompanyNumber = $"76{GetRandomNumber(6)}";
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
             FinancialAssesmentDueDate = DateTime.Today.AddDays(100);
+            LearnerUln = "7278214419";
+            StandardCode = "100";
+            StandardsName = "Transport planning technician";
         }
 
-        public string Standards => "100";
+        public string LoginEmailAddress { get; set; }
 
-        public string StandardsName => "Transport planning technician";
+        public string StandardCode { get; set; }
+
+        public string StandardsName { get; set; }
 
         public string OrganisationName => "City and Guilds";
 
         public string OrganisationEpaoId => "EPA0008";
 
-        public string MakeLiveOrganisationEpaoId => "EPA0337";
+        public string MakeLiveOrganisationEpaoId => EnvironmentConfig.IsPPEnvironment ? "EPA0337" : "EPA0001";
 
         public string OrganisationUkprn => "10009931";
 
-        public string BatchSearch => "298";
+        public string BatchSearch => EnvironmentConfig.IsPPEnvironment ? "298" : "142";
 
-        public string LearnerUln => "7278214419";
+        public string LearnerUln { get; set; }
 
-        public string DeleteIncorrectRecordUln => "1164786210";
+        public string FirstName { get; set; }
 
-        public string FirstName { get; }
-
-        public string LastName { get; }
+        public string LastName { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 
