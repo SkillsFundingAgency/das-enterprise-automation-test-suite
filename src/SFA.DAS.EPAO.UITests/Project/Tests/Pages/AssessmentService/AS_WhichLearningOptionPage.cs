@@ -1,12 +1,15 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_WhichLearningOptionPage : EPAOAssesment_BasePage
     {
-        protected override string PageTitle => "Which learning option did the apprentice take?";
+        protected override string PageTitle => "Choose the option for";
+
         private readonly ScenarioContext _context;
+
+        protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='options']");
 
         public AS_WhichLearningOptionPage(ScenarioContext context) : base(context)
         {
@@ -14,17 +17,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_WhatGradePage SelectLearningOptionAndContinue()
+        public AS_DeclarationPage SelectLearningOptionAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Overhead Lines");
+            SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
             Continue();
-            return new AS_WhatGradePage(_context);
-        }
-        public AS_WhatGradePage SelectWhichLearningOptionAndContinue()
-        {
-            SelectRadioOptionByText("Managing Assets & Responding to Major Incidents in the Water Environment"); 
-            Continue();
-            return new AS_WhatGradePage(_context);
+            return new AS_DeclarationPage(_context);
         }
     }
 }

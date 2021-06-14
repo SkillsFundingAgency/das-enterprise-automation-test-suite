@@ -5,6 +5,7 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
@@ -30,6 +31,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
 
+        private By SummaryRows => By.CssSelector(".govuk-summary-list__row");
+
         public EPAO_BasePage(ScenarioContext context) : base(context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -43,6 +46,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             objectContext = context.Get<ObjectContext>();
         }
+
+        public virtual bool VerifyGrade(string grade) => pageInteractionHelper.FindElements(SummaryRows).ToList().Any(x => x.Text.Contains("Grade") && x.Text.ContainsCompareCaseInsensitive(grade));
 
         protected void UploadFile()
         {

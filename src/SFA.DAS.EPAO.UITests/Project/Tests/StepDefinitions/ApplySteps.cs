@@ -37,7 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplyUserIsAbleToSignoutFromTheApplication() => new AS_LoggedInHomePage(_context).ClickSignOutLink().ClickSignBackInLink();
 
         [When(@"the Apply User initiates Create Account journey")]
-        public void WhenTheApplyUserInitiatesCreateAccountJourney() => createAnAccountPage = ePAOHomePageHelper.GoToEpaoAssessmentLandingPage().ClickCreateAnAccountLink();
+        public void WhenTheApplyUserInitiatesCreateAccountJourney() => createAnAccountPage = ePAOHomePageHelper.GoToEpaoAssessmentLandingPage().GoToCreateAccountPage();
 
         [Then(@"the Apply User is able to Create an Account")]
         public void ThenTheApplyUserIsAbleToCreateAnAccount() => createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();

@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {
     public class EPAOAdminSqlDataHelper : SqlDbHelper
     {
