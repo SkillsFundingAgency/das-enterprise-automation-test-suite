@@ -4,11 +4,22 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>SFA.DAS.Transfers.UITests</RootNamespace>
 		<IsPackable>false</IsPackable>
-	</PropertyGroup>
+	  <UserSecretsId>0e9ae45c-62f0-4a42-85fe-aec847c68562</UserSecretsId>
+  </PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
-	</ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+
+  </ItemGroup>
+  
+    <ItemGroup>
+      <Content Include="..\specflow.json" Link="specflow.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
