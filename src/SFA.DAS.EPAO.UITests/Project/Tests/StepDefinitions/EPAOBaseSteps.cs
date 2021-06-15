@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
@@ -32,6 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected readonly EPAOApplyStandardDataHelper ePAOApplyStandardData;
 
         protected readonly EPAOAdminSqlDataHelper ePAOAdminSqlDataHelper;
+        protected readonly EPAOAdminCASqlDataHelper ePAOAdminCASqlDataHelper;
         protected readonly EPAOApplySqlDataHelper ePAOApplySqlDataHelper;
 
         protected readonly AssessmentServiceStepsHelper assessmentServiceStepsHelper;
@@ -74,6 +76,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
 
             ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
+            ePAOAdminCASqlDataHelper = context.Get<EPAOAdminCASqlDataHelper>();
             ePAOApplySqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
 
             adminStepshelper = new AdminStepshelper();

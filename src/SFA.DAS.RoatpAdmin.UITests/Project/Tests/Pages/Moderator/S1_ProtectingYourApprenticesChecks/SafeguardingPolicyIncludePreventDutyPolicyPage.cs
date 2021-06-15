@@ -6,6 +6,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
     {
         protected override string PageTitle => "Safeguarding policy include Prevent duty policy";
 
-        public SafeguardingPolicyIncludePreventDutyPolicyPage(ScenarioContext context) : base(context) { }
+        public SafeguardingPolicyIncludePreventDutyPolicyPage(ScenarioContext context) : base(context) { objectContext.SetIsUploadFile(); }
     }
 }
