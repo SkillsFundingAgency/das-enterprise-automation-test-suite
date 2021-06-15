@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
+using SFA.DAS.FAT_V2.UITests.Project.Tests;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions

@@ -1,17 +1,8 @@
-﻿using System;
-using OpenQA.Selenium;
-using System.Linq;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.ProviderLogin.Service;
+
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 {
@@ -19,7 +10,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -31,6 +21,27 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(login, newTab);
             return new AedProviderHomePage(_context);
+        }
+
+        public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage()
+        {
+            new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
+            return new WhichEmployersAreYouInterestedInPage(_context);
+        }
+        public EditProvidersContactDetailsPage GoToEditProvidersContactDetailsPage()
+        {
+            new WhichEmployersAreYouInterestedInPage(_context).CheckAndContinueWithfirstEmployerCheckbox();
+            return new EditProvidersContactDetailsPage(_context);
+        }
+        public WeveSharedYourContactDetailsWithEmployersPage ConfirmAndShareProvidersDetailsWithEmployersContactDetails(string emailAddress, string telephoneNumber, string website)
+        {
+            new EditProvidersContactDetailsPage(_context).EnterProviderEmailAddressDetails(emailAddress)
+                .EnterProviderTelephoneNumberDetails(telephoneNumber)
+                .EnterProviderWebsiteDetails(website)
+                .ContinueToConfirmProviderContactDetailsPage()
+                .ContinueToProviderCheckYourAnswersPage()
+                .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
+            return new WeveSharedYourContactDetailsWithEmployersPage(_context);
         }
     }
 }

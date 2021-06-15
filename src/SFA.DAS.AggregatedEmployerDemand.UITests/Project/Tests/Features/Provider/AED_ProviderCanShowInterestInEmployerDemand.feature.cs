@@ -74,16 +74,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.DescriptionAttribute("AED_PCSIIED_ProviderCanRegistertheirInterest")]
         [NUnit.Framework.CategoryAttribute("aed")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AddTwoNumbers()
+        public virtual void AED_PCSIIED_ProviderCanRegistertheirInterest()
         {
             string[] tagsOfScenario = new string[] {
                     "aed",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCSIIED_ProviderCanRegistertheirInterest", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,7 +111,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the provider shows the which employers they are interested in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("they are able to register their interest with the employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the provider is able to enter their details \'mailman@mailinator.com\', \'0190211122" +
+                        "2\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

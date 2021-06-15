@@ -1,19 +1,8 @@
-﻿using System;
-using OpenQA.Selenium;
-using System.Linq;
-using NUnit.Framework;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
-
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -44,12 +33,14 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         [When(@"the provider shows the which employers they are interested in")]
         public void WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn()
         {
+            _providerStepsHelper.GoToWhichEmployersAreYouInterestedInPage()
+                .CheckAndContinueWithfirstEmployerCheckbox();
         }
 
-        [Then(@"they are able to register their interest with the employer")]
-        public void ThenTheyAreAbleToRegisterTheirInterestWithTheEmployer()
+        [When(@"the provider is able to enter their details '(.*)', '(.*)' and '(.*)'")]
+        public void WhenTheProviderIsAbleToEnterTheirDetailsAnd(string emailAddress, string telephoneNumber, string website)
         {
+            _providerStepsHelper.ConfirmAndShareProvidersDetailsWithEmployersContactDetails(emailAddress, telephoneNumber, website);
         }
-
     }
 }

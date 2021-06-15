@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service.Pages;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
 {
@@ -11,10 +10,18 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
 
         private By FindEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
+        private By SelectFirstViewEmployerLink => By.Id("view-274");
+
         public FindEmployersThatNeedATrainingProviderPage ViewFindEmployersThatNeedATrainingProvider()
         {
             formCompletionHelper.ClickElement(FindEmployersThatNeedATrainingProviderLink);
             return new FindEmployersThatNeedATrainingProviderPage(_context);
+        }
+
+        public WhichEmployersAreYouInterestedInPage ViewWhichEmployerNeedsATrainingProvider()
+        {
+            formCompletionHelper.ClickElement(SelectFirstViewEmployerLink);
+            return new WhichEmployersAreYouInterestedInPage(_context);
         }
     }
 }

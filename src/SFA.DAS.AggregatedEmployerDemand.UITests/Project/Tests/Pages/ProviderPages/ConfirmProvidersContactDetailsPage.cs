@@ -3,12 +3,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
 {
-    class ConfirmProvidersContactDetailsPage : AEDBasePage
+    public class ConfirmProvidersContactDetailsPage : AEDBasePage
     {
-        protected override string PageTitle => "Confirm provider contact details";
-        protected override By PageHeader => By.ClassName("govuk-caption-xl");
+        protected override string PageTitle => "";
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
         private readonly ScenarioContext _context;
         public ConfirmProvidersContactDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public CheckYourAnswersPage ContinueToProviderCheckYourAnswersPage()
+        {
+            ContinueToNextPage();
+            return new CheckYourAnswersPage(_context);
+        }
     }
 }

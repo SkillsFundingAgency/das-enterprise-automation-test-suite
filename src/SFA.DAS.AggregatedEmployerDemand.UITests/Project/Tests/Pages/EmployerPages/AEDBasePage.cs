@@ -12,20 +12,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        //private readonly ScenarioContext _context;
+        private readonly ScenarioContext _context;
         #endregion
 
-        //private By ContinueButton => By.Id("continue");
+        private new By Continue => By.Id("continue");
+        protected virtual By FirstCheckbox => By.ClassName("govuk-checkboxes__input");
+
 
         protected AEDBasePage(ScenarioContext context) : base(context)
         {
-            //_context = context;
+            _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
-        protected void ContinueToNextPage() => formCompletionHelper.Click(ContinueButton);
+        protected void ContinueToNextPage() => formCompletionHelper.Click(Continue);
     }
 }
