@@ -1,10 +1,7 @@
 ﻿using NUnit.Framework;
 using RestSharp;
 using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
-using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers;
-using System;
 using System.Net;
 using TechTalk.SpecFlow;
 
@@ -15,42 +12,37 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
     {
         private readonly Outer_AssessorCertificationApiRestClient _restClient;
         private readonly AssessorCertificationSqlDbHelper _assessorCertificationSqlDbHelper;
-
-   
-
+        private string _contextUln;
+        private IRestResponse _restResponse = null;
 
         public RecordAssessmentOutcomesSteps(ScenarioContext context)
         {
             _restClient = context.GetRestClient<Outer_AssessorCertificationApiRestClient>();
             _assessorCertificationSqlDbHelper = context.Get<AssessorCertificationSqlDbHelper>();
-           
         }
-        string contextUln;
+        
         [Given(@"the user prepares payload with uln (.*)")]
         public void GivenTheUserPreparesPayloadWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.DeleteCertificate(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
 
         [Given(@"the user prepares request with uln (.*)")]
-        public void GivenTheUserPreparesRequestWithForUln(string uln)
-        {
-            contextUln = uln;
-        }
+        public void GivenTheUserPreparesRequestWithForUln(string uln) => _contextUln = uln;
 
         [Given(@"the user prepares update request with uln (.*)")]
         public void GivenTheUserPreparesUpdateRequestWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.UpdateCertificateReferenceEPA(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
 
         [Given(@"the user prepares certificate update request with uln (.*)")]
         public void GivenTheUserPreparesCertificateUpdateRequestWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.UpdateCertificateReferenceCert(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
 
 
@@ -58,61 +50,49 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         public void GivenTheUserPreparesDeleteRequestWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.UpdateCertificateReferenceDelete(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
 
         [Given(@"the user prepares certificate delete request with uln (.*)")]
         public void GivenTheUserPreparesCertificateDeleteRequestWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.UpdateCertificateReferenceDeleteCert(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
-
-
-
 
         [Given(@"the user prepares request for submission with uln (.*)")]
         public void GivenTheUserPreparesRequestForSubmissionWithUln(string uln)
         {
             _assessorCertificationSqlDbHelper.UpdateCertificateForSubmission(uln);
-            contextUln = uln;
+            _contextUln = uln;
         }
-
-
-
 
         [When(@"the user sends (GET|POST|PUT|DELETE) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);
 
-        IRestResponse restResponse = null;
-
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted|NoContent) response is received")]
-        public void AResponseIsReceived(HttpStatusCode responsecode)
-        {
-            restResponse = _restClient.Execute(responsecode);
-        }
+        public void AResponseIsReceived(HttpStatusCode responsecode) => _restResponse = _restClient.Execute(responsecode);
 
         [Then(@"the EPARefNumber in the response is same as in the Certificates table in the database")]
         public void ThenTheEPARefNumberInTheResponseIsSameAsInTheCertificatesTableInTheDatabase()
         {
-            var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(contextUln);
+            var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            Assert.True(restResponse.Content.ToString().Contains(actualEPARef), "Value is not contained in response");
-            
+            Assert.True(_restResponse.Content.ToString().Contains(actualEPARef), "Value is not contained in response");   
         }
 
         [Then(@"the CertificateReference in the response is same as in the Certificates table in the database")]
         public void ThenTheCertificateReferenceInTheResponseIsSameAsInTheCertificatesTableInTheDatabase()
         {
-            var actualCertRef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(contextUln);
+            var actualCertRef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            Assert.True(restResponse.Content.ToString().Contains(actualCertRef), "Value is not contained in response");
+            Assert.True(_restResponse.Content.ToString().Contains(actualCertRef), "Value is not contained in response");
         }
 
         [Then(@"the status in the Certificates Table in database is (.*)")]
         public void ThenTheStatusInTheCertificatesTableInDatabaseIsDeleted(string status)
         {
-            var certStatus = _assessorCertificationSqlDbHelper.GetCertificateStatus(contextUln);
+            var certStatus = _assessorCertificationSqlDbHelper.GetCertificateStatus(_contextUln);
 
             Assert.True(status.Equals(certStatus), "Certificated Status is not the expected value");
         }
@@ -120,7 +100,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         [Then(@"Action in the Certificatelog is (.*)")]
         public void ThenActionInTheCertificatelogIsAmend(string Action)
         {
-            var certLogAction = _assessorCertificationSqlDbHelper.GetCertificateLogAction(contextUln);
+            var certLogAction = _assessorCertificationSqlDbHelper.GetCertificateLogAction(_contextUln);
 
             Assert.True(Action.Equals(certLogAction), "Certificated Status is not the expected value");
         }
@@ -128,17 +108,16 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         [Then(@"the Learner ULn in the response is same as Uln in the Ilrs table in the database")]
         public void ThenTheLearnerULnInTheResponseIsSameAsUlnInTheIlrsTableInTheDatabase()
         {
-            var learnerUln = _assessorCertificationSqlDbHelper.GetLearnerUln(contextUln);
+            var learnerUln = _assessorCertificationSqlDbHelper.GetLearnerUln(_contextUln);
 
-            Assert.True(restResponse.Content.ToString().Contains(learnerUln), "Learner Uln is not the expected value");
+            Assert.True(_restResponse.Content.ToString().Contains(learnerUln), "Learner Uln is not the expected value");
         }
 
         [Then(@"the currentStatus in the response message is (.*)")]
         public void ThenTheCurrentStatusInTheResponseMessageIsSubmitted(string currentStatus)
         {
-           Assert.True(restResponse.Content.ToString().Contains(currentStatus), "Current Status is not the expected value");
+           Assert.True(_restResponse.Content.ToString().Contains(currentStatus), "Current Status is not the expected value");
         }
-
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }

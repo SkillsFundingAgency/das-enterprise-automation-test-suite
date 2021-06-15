@@ -1,10 +1,7 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework;
+﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.Helpers;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ConfigurationBuilder;
-using System.Net;
 
 namespace SFA.DAS.AssessorCertification.APITests.Project
 {
@@ -12,11 +9,11 @@ namespace SFA.DAS.AssessorCertification.APITests.Project
     {
         public Outer_AssessorCertificationApiRestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
-        string environment = EnvironmentConfig.IsPPEnvironment ? "preprod" : EnvironmentConfig.EnvironmentName;
+        readonly string environment = EnvironmentConfig.IsPPEnvironment ? "preprod" : EnvironmentConfig.EnvironmentName;
+        
         protected override string ApiName => $"/assessor-service-api-{environment}";
 
         protected override string ApiBaseUrl => UrlConfig.Outer_AssessorCertificationApiBaseUrl;
-
     }
 }
 
