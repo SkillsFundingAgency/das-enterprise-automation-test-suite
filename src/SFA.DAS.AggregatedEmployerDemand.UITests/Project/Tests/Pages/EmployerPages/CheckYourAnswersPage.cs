@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
@@ -11,11 +12,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 
         private By Confirm => By.Id("submit-demand");
 
-
-        public WeSharedThisInterestWithTrainingProvidersPage ConfirmYourAnswers()
+        public EmailVerificationPage ConfirmYourAnswers()
         {
             formCompletionHelper.Click(Confirm);
-            return new WeSharedThisInterestWithTrainingProvidersPage(_context);
+            return new EmailVerificationPage(_context);
         }
     }
 }

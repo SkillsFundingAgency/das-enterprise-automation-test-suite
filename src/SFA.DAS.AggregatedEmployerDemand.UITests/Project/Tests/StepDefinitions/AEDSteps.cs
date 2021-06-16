@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
-using SFA.DAS.FAT_V2.UITests.Project.Tests;
+using SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions;
+using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -14,12 +16,21 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
         private CheckYourAnswersPage _checkYourAnswersPage;
         private WeSharedThisInterestWithTrainingProvidersPage _weSharedThisInterestWithTrainingProvidersPage;
+        private ShareYourInterestWithTrainingProvidersPage _shareYourInterestWithTrainingProvidersPage;
+        private EmailVerificationPage _emailVerificationPage;
 
         public AEDSteps(ScenarioContext context)
         {
             _context = context;
             _aEDStepsHelper = new AEDStepsHelper(_context);
         }
+
+        [Given(@"the User searches a course then navigates to the provider list")]
+        public void GivenTheUserSearchesACourseThenNavigatesToTheProviderList()
+        {
+            _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPage();
+        }
+
 
         [Given(@"the user selects get help with finding a training provider")]
         public void GivenTheUserSelectsGetHelpWithFindingATrainingProvider()
@@ -61,7 +72,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToSubmitTheFormToRegisterInterest()
         {
             _checkYourAnswersPage = _getHelpWithFindingATrainingProviderPage.ContinueToCheckYourAnswersPage();
-            _weSharedThisInterestWithTrainingProvidersPage = _checkYourAnswersPage.ConfirmYourAnswers();
+            _emailVerificationPage = _checkYourAnswersPage.ConfirmYourAnswers();
         }
     }
 }

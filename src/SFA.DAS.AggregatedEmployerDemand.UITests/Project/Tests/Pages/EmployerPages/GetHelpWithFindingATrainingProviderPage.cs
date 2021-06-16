@@ -6,6 +6,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     public class GetHelpWithFindingATrainingProviderPage : AEDBasePage
     {
         protected override string PageTitle => "Get help with finding a training provider";
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
         private readonly ScenarioContext _context;
 
         #region Locators

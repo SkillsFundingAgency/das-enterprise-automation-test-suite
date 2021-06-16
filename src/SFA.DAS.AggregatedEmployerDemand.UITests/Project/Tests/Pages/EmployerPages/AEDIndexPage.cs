@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
@@ -15,10 +16,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Get help with finding a training provider");
         #endregion
 
-        public GetHelpWithFindingATrainingProviderPage ClickGetHelpWithFindingATrainingProviderLink()
+        public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink()
         {
             formCompletionHelper.Click(GetHelpWithFindingATrainingProviderLink);
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new ShareYourInterestWithTrainingProvidersPage(_context);
         }
+        
     }
 }
