@@ -65,8 +65,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RoatpAdmin.UITests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProviderFeedback.UITests", "SFA.DAS.ProviderFeedback.UITests\SFA.DAS.ProviderFeedback.UITests.csproj", "{561FE0AE-E0FD-4140-8E92-1345B6322DFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeRedundancy.UITests", "SFA.DAS.ApprenticeRedundancy.UITests\SFA.DAS.ApprenticeRedundancy.UITests.csproj", "{118FEC73-770A-4705-B2CF-7A4C33F59481}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E0426D3-BE06-45D9-AE74-262AE19F53A0}"
 	ProjectSection(SolutionItems) = preProject
 		Parellel.runsettings = Parellel.runsettings
@@ -266,12 +264,6 @@ Global
 		{561FE0AE-E0FD-4140-8E92-1345B6322DFB}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{561FE0AE-E0FD-4140-8E92-1345B6322DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{561FE0AE-E0FD-4140-8E92-1345B6322DFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Development|Any CPU.ActiveCfg = Debug|Any CPU
