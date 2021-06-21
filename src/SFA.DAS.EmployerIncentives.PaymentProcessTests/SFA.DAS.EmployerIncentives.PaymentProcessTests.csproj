@@ -31,13 +31,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SqlScripts.resx</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\ResumeChangeOfCircumstance.feature.cs">
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature.cs">
-      <DependentUpon>StartDateChangeOfCircumstance.feature</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Project\Helpers\SqlScripts.resx">
@@ -74,17 +67,5 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ResumeChangeOfCircumstance.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ResumeChangeOfCircumstance.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\StartDateChangeOfCircumstance.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>StartDateChangeOfCircumstance.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>
