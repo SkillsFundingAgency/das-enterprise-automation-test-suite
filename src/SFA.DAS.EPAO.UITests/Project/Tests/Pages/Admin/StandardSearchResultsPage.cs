@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By AddToOrganisationLink => By.CssSelector($".govuk-link[href*='/standard/{ePAOAdminDataHelper.Standards}']");
+        private By AddToOrganisationLink => By.CssSelector($".govuk-link[href*='/standard/{ePAOAdminDataHelper.StandardCode}']");
 
         public StandardSearchResultsPage(ScenarioContext context) : base(context)
         {

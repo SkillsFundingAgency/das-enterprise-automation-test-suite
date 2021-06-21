@@ -83,15 +83,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _homePage = userpage.VerifyUserDetails("Account Manager Status", _dataHelper.AccountManagerStatus, true);
         }
 
-        [Given(@"an existing user emails the helpdesk")]
-        public async void GivenAnExistingUserEmailsTheHelpdesk()
+        [Given(@"an existing user logs into the helpdesk")]
+        public void GivenAnExistingUserLogsIntoTheHelpdesk()
         {
             _dataHelper.OrganisationName = _config.OrganisationName;
 
             _dataHelper.OrganisationUserName = _config.OrganisationUserName;
 
             _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+        }
 
+        [Given(@"the user emails the helpdesk")]
+        public async void GivenTheUserEmailsTheHelpdesk()
+        {
             var ticket = await _restApiHelper.CreateTicket();
 
             _objectContext.SetTicketId($"{ticket.Id}");

@@ -203,7 +203,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SearchForApprentice(_dataHelper.ApprenticeFirstname)
                 .GetStatus(_dataHelper.ApprenticeFirstname);
 
-            Assert.AreEqual(actualStatus, expectedStatus, "Validate status on Manage Your Apprentices page");
+            Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
         }
 
         internal void ValidateCompletionStatus()

@@ -58,7 +58,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can update organisation standards status to be live")]
         public void ThenTheAdminCanUpdateOrganisationStandardsStatusToBeLive()
         {
-            ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(ePAOAdminDataHelper.OrganisationEpaoId, ePAOAdminDataHelper.Standards);
+            ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(ePAOAdminDataHelper.OrganisationEpaoId, ePAOAdminDataHelper.StandardCode);
             
             organisationDetailsPage = organisationDetailsPage
                 .SelectStandards()
@@ -80,13 +80,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 
-        [Then(@"the admin can search using uln")]
-        public void ThenTheAdminCanSearchUsingUln() => certificateDetailsPage = GoToEpaoAdminHomePage().Search().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
-
-        [Then(@"the admin can access learners audit history")]
-        public void ThenTheAdminCanAccessLearnersAuditHistory() => certificateDetailsPage.ShowAllHistory();
-
         private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
-
     }
 }

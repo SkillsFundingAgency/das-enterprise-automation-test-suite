@@ -137,6 +137,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 18
+ testRunner.And("verify the Application unsuccessful page is displayed with External Fail comments" +
+                        " for the applicant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

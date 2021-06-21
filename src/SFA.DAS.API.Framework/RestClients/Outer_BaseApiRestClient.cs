@@ -12,6 +12,8 @@ namespace SFA.DAS.API.Framework.RestClients
 
         protected virtual string ApiSubscriptionKey => config.Apim_SubscriptionKey;
 
+        protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+
         public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config)
         {
             this.config = config;
@@ -33,7 +35,7 @@ namespace SFA.DAS.API.Framework.RestClients
 
         private void CreateOuterApiRestClient()
         {
-            restClient = new RestClient(UrlConfig.Outer_ApiBaseUrl);
+            restClient = new RestClient(ApiBaseUrl);
 
             restRequest = new RestRequest();
 

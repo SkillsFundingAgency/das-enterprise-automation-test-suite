@@ -82,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
         {
             new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
-                .SelectApprentices("Live")
+                .SelectApprentices("LIVE")
                 .ClickEditApprenticeDetailsLink();
 
             ValidateOnlyEditableApprenticeDetails();
@@ -142,7 +142,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             bool IsChangeOfProviderLinkDisplayed 
                 = new EmployerStepsHelper(_context)
                 .GoToManageYourApprenticesPage()
-                .SelectApprentices("Stopped")
+                .SelectApprentices("STOPPED")
                 .IsChangeOfProviderLinkDisplayed();
 
             Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link on the original apprentice record has been removed");
