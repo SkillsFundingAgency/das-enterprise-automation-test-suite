@@ -174,7 +174,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected async Task RunPaymentsOrchestrator()
         {
             StartStopWatch("RunPaymentsOrchestrator");
-            await paymentService.StartPaymentProcessOrchestrator(activePaymentPeriod.Year, activePaymentPeriod.Number);
+            await paymentService.StartPaymentProcessOrchestrator();
             await paymentService.WaitUntilWaitingForPaymentApproval();
             StopStopWatch("RunPaymentsOrchestrator");
         }
