@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class SignIntoApprenticeshipPortalPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "Sign in to Apprenticeship portal";
+        protected override string PageTitle => "Sign in to my apprenticeship";
 
         private readonly ScenarioContext _context;
         private By Username => By.CssSelector("#Username");
