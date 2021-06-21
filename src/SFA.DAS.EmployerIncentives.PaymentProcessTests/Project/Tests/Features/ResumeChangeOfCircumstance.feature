@@ -14,10 +14,9 @@ Scenario: Resume 1 - Learner Stopped COC triggered and then Resumed in later per
     And ILR Learner Resumed COC is occurred in Period R08 2021
     And the Learner Match is run in Period R08 2021
     And the earnings are recalculated
-    Then a new first pending payment of £1000 is created for Period R07 2021
-    Then a new second pending payment of £1000 is created for Period R04 2122
+    Then a new first pending payment of £1000 is created for Period R08 2021
+    Then a new second pending payment of £1000 is created for Period R05 2122
 
-@ignore
 Scenario: Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of the First Earning and then Resumed in later period
     Given an existing apprenticeship incentive with learning starting on 01-Nov-2020 and ending on 31-Jul-2021
     And a payment of £1000 sent in Period R06 2021
@@ -33,7 +32,6 @@ Scenario: Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of
     Then the existing first pending payment of £1000 paid in Period R06 2021 is unchanged
     Then a new second pending payment of £1000 is created for Period R05 2122
 
-@ignore
 Scenario: Resume 3 - (Defect) - Learner Stopped COC triggered one day after the due date of the First Earning and then Resumed in later period
     Given an existing apprenticeship incentive with learning starting on 01-Nov-2020 and ending on 31-Jul-2021
     And a payment of £1000 sent in Period R06 2021

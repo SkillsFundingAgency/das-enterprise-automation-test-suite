@@ -260,7 +260,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             pendingPayment.PeriodNumber.Should().Be(period);
             pendingPayment.PaymentYear.Should().Be(year);
             pendingPayment.Amount.Should().Be(amount);
-            pendingPayment.PaymentMadeDate.Should().BeNull();
+            pendingPayment.PaymentMadeDate.Should().NotBeNull();
             pendingPayment.ClawedBack.Should().BeFalse();
         }
 
