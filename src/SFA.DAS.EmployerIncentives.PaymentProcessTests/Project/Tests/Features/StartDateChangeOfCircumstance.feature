@@ -13,3 +13,10 @@ Scenario: Clawbacks 1 - Start Date Change Of Circumstance with eligible start da
 	Then the paid earning of £1000 is marked as requiring a clawback in the currently active Period R08 2021
 	And a new first pending payment of £750 is created for Period R08 2021
 	And a new second pending payment of £750 is created for Period R05 2122
+
+Scenario: Phase2 1 - Learner Applied for Phase2 Incentives Payments- Age changes with the Start date COC( DOB 15-04-1996 -   Initial start date 01-04-2021 - COC - 31-May-2021 )
+    Given an existing phase 2 apprenticeship incentive for a learner under 25 years old
+    When the start date is changed making the learner 25 on the start date
+	And the earnings are recalculated
+    Then the first earning of £1500 is created 
+    And the second earning of £1500 is created 
