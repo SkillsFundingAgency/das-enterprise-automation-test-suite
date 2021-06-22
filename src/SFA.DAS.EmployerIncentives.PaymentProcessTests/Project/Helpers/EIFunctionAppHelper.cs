@@ -15,7 +15,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         protected EIFunctionAppHelper(EIPaymentProcessConfig config)
         {
-            BaseUrl = EIPaymentProcessUrlConfig.EI_PaymentsAppBaseUrl;
+            BaseUrl = config.EI_PaymentsAppBaseUrl;
             AuthenticationCode = config.EI_PaymentsAppCode;
             HttpClient = new HttpClient();
         }

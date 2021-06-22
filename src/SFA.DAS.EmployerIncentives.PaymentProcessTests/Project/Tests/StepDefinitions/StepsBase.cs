@@ -10,8 +10,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using TechTalk.SpecFlow;
+// ReSharper disable PossibleInvalidOperationException
+// ReSharper disable InconsistentNaming
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
@@ -19,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         protected Fixture fixture;
         protected readonly DbConfig dbConfig;
-        protected EIPaymentProcessConfig eiConfig;
+        protected readonly EIPaymentProcessConfig eiConfig;
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
@@ -30,32 +32,32 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected IncentiveApplication incentiveApplication;
         protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
+        protected long accountId;
+        protected long apprenticeshipId;
+        protected long UKPRN;
+        protected long ULN;
 
         protected StepsBase(ScenarioContext context)
         {
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             fixture = new Fixture();
+            UKPRN = fixture.Create<long>();
+            ULN = fixture.Create<long>();
+
             eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
             dbConfig = context.Get<DbConfig>();
             sqlHelper = new EISqlHelper(dbConfig);
 
-            serviceBusHelper = new EIServiceBusHelper(eiConfig.EI_ServiceBusConnectionString);
+            serviceBusHelper = new EIServiceBusHelper(eiConfig);
 
-            learnerMatchApi = new LearnerMatchApiHelper();
+            learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
 
-            businessCentralApiHelper = new BusinessCentralApiHelper();
+            businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
-        }
-
-        [AfterScenario()]
-        protected async Task CleanUpIncentives()
-        {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentive();
-            if (incentiveApplication != null) await DeleteApplicationData();
         }
 
         protected async Task RunLearnerMatchOrchestrator()
@@ -110,12 +112,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     application.DateSubmitted.Value,
                     application.SubmittedByEmail,
                     apprenticeship.CourseName,
-                    apprenticeship.EmploymentStartDate.Value
+                    apprenticeship.EmploymentStartDate.Value,
+                    apprenticeship.Phase
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(5));
-                await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(5));
+                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
         }
@@ -127,11 +130,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("DeleteApplicationData");
         }
 
-        protected async Task DeleteIncentive()
+        protected async Task DeleteIncentives()
         {
             StartStopWatch("DeleteIncentiveData");
-            await sqlHelper.DeleteIncentiveData(apprenticeshipIncentiveId);
+            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            {
+                await DeleteIncentive(incentiveApplication.AccountId, apprenticeship.ApprenticeshipId);
+            }
             StopStopWatch("DeleteIncentiveData");
+        }
+
+        private async Task DeleteIncentive(long accountId, long apprenticeshipId)
+        {
+            await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
         }
 
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
@@ -163,7 +174,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected async Task RunPaymentsOrchestrator()
         {
             StartStopWatch("RunPaymentsOrchestrator");
-            await paymentService.StartPaymentProcessOrchestrator(activePaymentPeriod.Year, activePaymentPeriod.Number);
+            await paymentService.StartPaymentProcessOrchestrator();
             await paymentService.WaitUntilWaitingForPaymentApproval();
             StopStopWatch("RunPaymentsOrchestrator");
         }
@@ -182,7 +193,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await businessCentralApiHelper.SetupAcceptAllRequests();
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
         }
-
         protected async Task VerifyLearningRecordsExist()
         {
             var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
@@ -193,6 +203,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
             Assert.IsTrue(exist);
+        }
+
+        [AfterScenario()]
+        public async Task CleanUpIncentives()
+        {
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
+            if (incentiveApplication != null) await DeleteApplicationData();
+            await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+        }
+
+        [BeforeScenario()]
+        public async Task InitialCleanup()
+        {
+            await DeleteIncentive(accountId, apprenticeshipId);
         }
     }
 }
