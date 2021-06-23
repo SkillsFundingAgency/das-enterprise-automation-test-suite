@@ -59,7 +59,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"payments exist")]
         public async Task ThenPaymentsExist()
         {
-            await VerifyPaymentRecordsExist();
+            await VerifyPaymentRecordsExist(paymentsSent: true);
         }
     }
 }
