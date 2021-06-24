@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => "My apprenticeship";
+        private string PageTitleAfterConfirmation => "My apprenticeship details";
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
         private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
@@ -16,12 +17,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
+        private By ConfirmYourApprenticeshipButton => By.XPath("//button[text()='Confirm your apprenticeship']");
+        private By HelpAndSupportSection => By.XPath("//h2[text()='Help and Support']");
+        private By HelpAndSupportLink => By.LinkText("help and support section");
         private string SignOutLinkText => "Sign out";
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage(HeaderText, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+            VerifyPage(HelpAndSupportSection);
         }
 
         public ConfirmYourEmployerPage ConfirmYourEmployer()
@@ -86,7 +91,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
 
-        public SignedOutPage SingOutFromTheService()
+        public SignedOutPage SignOutFromTheService()
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(_context);
@@ -96,8 +101,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyPage(AppreticeshipConfirmBannerHeader);
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
-            Continue();
+            formCompletionHelper.Click(ConfirmYourApprenticeshipButton);
             return new TransactionCompletePage(_context);
+        }
+
+        public HelpAndSupportPage NavigateToHelpAndSupportPage()
+        {
+            formCompletionHelper.Click(HelpAndSupportLink);
+            return new HelpAndSupportPage(_context);
+        }
+
+        public void VerifyPageAfterApprenticeshipConfirm()
+        {
+            VerifyPage(PageHeader, PageTitleAfterConfirmation);
+            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship has been agreed and you're ready to start");
         }
     }
 }

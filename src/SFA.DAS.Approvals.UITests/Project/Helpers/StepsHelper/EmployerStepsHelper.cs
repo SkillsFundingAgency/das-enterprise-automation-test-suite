@@ -203,7 +203,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SearchForApprentice(_dataHelper.ApprenticeFirstname)
                 .GetStatus(_dataHelper.ApprenticeFirstname);
 
-            Assert.AreEqual(actualStatus, expectedStatus, "Validate status on Manage Your Apprentices page");
+            Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
         }
 
         internal void ValidateCompletionStatus()
@@ -214,7 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 new ManageYourApprenticesPage(_context)
                 .SelectViewCurrentApprenticeDetails();
 
-            Assert.AreEqual("Completed", apprenticeDetailsPage.GetApprenticeshipStatus(), "Validate Status of the apprenticeship");
+            Assert.AreEqual("COMPLETED", apprenticeDetailsPage.GetApprenticeshipStatus(), "Validate Status of the apprenticeship");
             Assert.AreEqual("Completion payment month", apprenticeDetailsPage.GetStatusDateTitle(), "Validate Completion Date Title");
             Assert.AreEqual(expectedCompletionDate, apprenticeDetailsPage.GetCompletionDate(), "Validate Completion Date");
         }

@@ -10,11 +10,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
-        protected List<string> GetData(string query, int noOfvalues) => GetData(query, connectionString, noOfvalues);
+        protected List<string> GetData(string query, int noOfvalues, Dictionary<string, string> parameters = null) => GetData(query, connectionString, noOfvalues, parameters);
 
-        protected List<string> GetData(string query, string connectionstring, int noOfvalues)
+        protected List<string> GetData(string query, string connectionstring, int noOfvalues, Dictionary<string, string> parameters = null)
         {
-            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring);
+            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters);
 
             var returnItems = new List<string>();
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected List<string[]> GetMultipleData(string query, int noOfvalues)
         {
-            List<object[]> data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+            List<object[]> data = ReadDataFromDataBase(query);
 
             var returnItems = new List<string[]>();
 
@@ -66,11 +66,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
-        protected object GetDataAsObject(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
+        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute)[0][0];
 
-        protected int ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
+        protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
+
+        protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title).Execute(() => GetDataAsObject(queryToExecute));
+
+        private List<object[]> ReadDataFromDataBase(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
         private Policy RetryOnException(string exception, string title)
         {

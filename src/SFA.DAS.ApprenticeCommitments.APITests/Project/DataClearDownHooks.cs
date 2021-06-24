@@ -20,14 +20,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             _apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
-        public void ClearDownInvitation()
+        public void ClearDownInvitationRecords()
         {
             var email = _objectContext.GetApprenticeEmail();
 
             _aLoginSqlDbHelper.DeleteInvitation(email);
-
-            _aComtSqlDbHelper.DeleteRegistration(email);
-
             _aLoginSqlDbHelper.DeleteUserLogs(email);
         }
 
@@ -35,15 +32,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             var email = _objectContext.GetApprenticeEmail();
 
-            _aLoginSqlDbHelper.DeleteUser(email);
-
-            _aLoginSqlDbHelper.DeleteUserRequests(email);
-
             _aComtSqlDbHelper.DeleteApprentice(email);
-
             _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
 
-            ClearDownInvitation();
+            _aLoginSqlDbHelper.DeleteUser(email);
+            _aLoginSqlDbHelper.DeleteResetPasswordRequests(email);
+
+            ClearDownInvitationRecords();
         }
     }
 }

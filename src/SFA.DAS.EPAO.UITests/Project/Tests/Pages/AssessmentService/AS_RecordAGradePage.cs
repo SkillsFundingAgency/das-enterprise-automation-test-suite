@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -26,43 +26,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
+        public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {
-            switch (enrolledStandard)
-            {
-                case "single":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithSingleStandard);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, ePAOConfig.ApprenticeUlnWithSingleStandard);
-                    break;
-                case "deleting":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
-                    break;
-                case "ReRequesting":
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
-                    break;
-                case "more than one":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithMultipleStandards);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithMultipleStandards, ePAOConfig.ApprenticeUlnWithMultipleStandards);
-                    break;
-                case "additional learning option":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
-                    break;
-            }
+            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+            return new AS_AssesmentAlreadyRecorded(_context);
+        }
+
+        public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate)
+        {
+            string apprenticeFamilyName = ePAOAdminDataHelper.LastName;
+            string leanerUln = ePAOAdminDataHelper.LearnerUln;
+
+            if (deleteCertificate) _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
+
+            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
 
             return new AS_ConfirmApprenticePage(_context);
         }
 
-        public AS_DeclarationPage SearchPrivatelyFundedApprentice()
-        {
-            _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.PrivatelyFundedApprenticeUln);
-            SelectPrivatelyFundedCheckBox();
-            EnterApprentcieDetailsAndContinue(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln);
-            return new AS_DeclarationPage(_context);
-        }
-
-        public void EnterApprentcieDetailsAndContinue(string familyName, string uLN)
+        public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
         {
             formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
             formCompletionHelper.EnterText(ULNTextBox, uLN);
@@ -79,6 +61,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-        private void SelectPrivatelyFundedCheckBox() => formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
+        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln, bool deleteCertificate)
+        {
+            ePAOAdminDataHelper.LastName = apprenticeFamilyName;
+            ePAOAdminDataHelper.LearnerUln = leanerUln;
+
+            return SearchApprentice(deleteCertificate);
+        }
     }
 }

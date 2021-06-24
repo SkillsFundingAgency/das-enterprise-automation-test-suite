@@ -15,3 +15,4 @@ Scenario: RP_AD_GW_04_MainRoute_Company_Fail
 	And the Gateway Applications Outcome tab is updated with FAIL outcome for this Application
 	And Verifiy the application is not transitioned to PMO and Assessor
 	And verify that the admin can send the application outcome as UNSUCCESSFUL to the applicant
+	And verify the Application unsuccessful page is displayed with External Fail comments for the applicant

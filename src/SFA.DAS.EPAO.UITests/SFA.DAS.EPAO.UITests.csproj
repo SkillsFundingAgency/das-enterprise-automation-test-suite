@@ -30,7 +30,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="89.0.4389.2300" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="91.0.4472.1900" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
   </ItemGroup>
@@ -53,9 +53,15 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Project\Helpers\SqlScripts\GetMultiStandardLearnersData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SqlScripts\GetSingleStandardLearnersData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SFA.DAS.EPAO.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
+
 </Project>

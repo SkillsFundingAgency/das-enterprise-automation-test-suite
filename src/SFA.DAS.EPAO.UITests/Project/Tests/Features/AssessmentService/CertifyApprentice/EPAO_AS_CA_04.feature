@@ -2,16 +2,21 @@
 
 @epao
 @assessmentservice
+@recordagrade
 @regression
+@epaoca1standard2version0option
 Scenario: EPAO_AS_CA_04A - Certify a privately funded Apprentice
 	Given the Assessor User is logged into Assessment Service Application
 	When the User goes through certifying a Privately funded Apprentice
-	Then the Assessment is recorded and the User is able to navigate back to certifying another Apprentice
+	Then the User can navigates to record another grade
+	Then the Assessment is recorded as 'pass'
 
 @epao
 @assessmentservice
+@recordagrade
 @regression
-Scenario: EPAO_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date
+@epaoca1standard2version0option
+Scenario: EPAO_AS_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date
 	Given the Assessor User is logged into Assessment Service Application
 	And the User is on the Apprenticeship achievement date page
 	When the User enters the date before the Year 2017

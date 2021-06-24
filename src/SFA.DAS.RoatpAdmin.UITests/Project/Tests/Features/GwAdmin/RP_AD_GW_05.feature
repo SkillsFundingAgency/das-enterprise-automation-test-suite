@@ -15,3 +15,4 @@ Scenario: RP_AD_GW_05_EmployerRoute_Charity_Reject
 	And the Gateway Applications Outcome tab is updated with REJECT outcome for this Application
 	And Verifiy the application is not transitioned to PMO and Assessor
 	And Verify the application is transitioned to Oversight Outcome tab with REJECTED status
+	And verify the Application rejected page is displayed with External Reject Comments for the applicant
