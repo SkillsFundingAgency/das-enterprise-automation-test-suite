@@ -4,12 +4,11 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>SFA.DAS.Transfers.UITests</RootNamespace>
 		<IsPackable>false</IsPackable>
-	  <UserSecretsId>0e9ae45c-62f0-4a42-85fe-aec847c68562</UserSecretsId>
   </PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
 
   </ItemGroup>
