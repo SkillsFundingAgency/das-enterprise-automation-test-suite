@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public SignIntoApprenticeshipPortalPage ClickSignInToApprenticePortal()
         {
-            formCompletionHelper.ClickLinkByText("sign in to Apprenticeship portal");
+            formCompletionHelper.ClickLinkByText("sign in to my apprenticeship");
             return new SignIntoApprenticeshipPortalPage(_context);
         }
     }

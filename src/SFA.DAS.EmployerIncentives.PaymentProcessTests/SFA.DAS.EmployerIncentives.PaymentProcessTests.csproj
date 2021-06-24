@@ -4,8 +4,7 @@
     <RootNamespace>SFA.DAS.EmployerIncentives.PaymentProcessTests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-	<ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
@@ -23,31 +22,24 @@
     <PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
   </ItemGroup>
-	
   <ItemGroup>
-	  <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
   </ItemGroup>
-  
-	<ItemGroup>
-    <Compile Update="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+  <ItemGroup>
     <Compile Update="Project\Helpers\SqlScripts.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SqlScripts.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  
-	<ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Project\Helpers\SqlScripts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SqlScripts.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  
-	<ItemGroup>
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -55,6 +47,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="appsettings.Project.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SQL\DeleteApplicationData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SQL\DeleteIncentiveData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SQL\UpsertAccount.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SFA.DAS.EmployerIncentives.PaymentProcessTests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SFA.DAS.EmployerIncentives.PaymentProcessTests.runtimeconfig.json">
