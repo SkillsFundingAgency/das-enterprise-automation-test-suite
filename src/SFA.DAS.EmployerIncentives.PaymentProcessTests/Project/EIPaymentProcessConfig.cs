@@ -10,5 +10,7 @@
 
         public string EI_ApiStubBaseUrl { get; set; }
         public string LearningTransportStorageDirectory { get; set; }
+
+        public string EI_FunctionsBaseUrl { get; set; }
     }
 }

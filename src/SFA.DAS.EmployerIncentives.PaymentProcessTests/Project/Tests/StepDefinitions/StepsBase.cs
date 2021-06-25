@@ -25,6 +25,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
+        protected EIFunctionsHelper functionsService;
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
@@ -53,8 +54,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
+            functionsService = new EIFunctionsHelper(eiConfig);
 
-            businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
+           businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
@@ -169,6 +171,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
             return dbConnection.GetAll<T>().Single(predicate);
+        }
+
+        protected T GetSingleOrDefaultFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
+            return dbConnection.GetAll<T>().SingleOrDefault(predicate);
         }
 
         protected async Task RunPaymentsOrchestrator()

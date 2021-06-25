@@ -16,12 +16,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout = null)
         {
-            await WaitUntilCustomStatus("WaitingForPaymentApproval", timeout ?? TimeSpan.FromMinutes(1));
+            await WaitUntilCustomStatus("WaitingForPaymentApproval", timeout ?? TimeSpan.FromMinutes(5));
         }
 
         public async Task WaitUntilComplete(TimeSpan? timeout = null)
         {
-            await WaitUntilStatus("Completed", timeout ?? TimeSpan.FromMinutes(1));
+            await WaitUntilStatus("Completed", timeout ?? TimeSpan.FromMinutes(5));
         }
 
         public async Task ApprovePayments()
