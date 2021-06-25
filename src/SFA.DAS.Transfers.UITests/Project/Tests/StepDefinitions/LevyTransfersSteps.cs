@@ -9,6 +9,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Transfers.UITests.Project.Helpers;
+using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
@@ -26,6 +27,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly TransfersUser _transfersUser;
         private readonly LevyUser _levyUser;
         private HomePage _homePage;
+        
 
         private readonly string _sender;
         private readonly string _receiver;
@@ -53,7 +55,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Given(@"I am on the Manage Apprenticeships Page")]
         public void GivenIAmOnTheManageApprenticeshipsPage()
         {
-            Console.WriteLine("Test OK");
+            ManageApprenticeshipsPage manageApprenticeshipsPage = new ManageApprenticeshipsPage(_context);
+        
+            bool Test1 =  manageApprenticeshipsPage.CheckPageTitle();
+            //Console.WriteLine(">>>" + Test1);
         }
 
         [When(@"I click on view my transfers")]
@@ -62,11 +67,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             Console.WriteLine("Test OK");
         }
 
-        [Then(@"I am taken to the View Transfers Page")]
-        public void ThenIAmTakenToTheViewTransfersPage()
+        [Then(@"I am on the View Transfers Page")]
+        public void ThenIAmOnTheViewTransfersPage()
         {
             Console.WriteLine("Test OK");
         }
+
     }
 }
 

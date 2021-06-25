@@ -7,4 +7,4 @@ Scenario: View Levy Transfers
 	Given I am logged in as a Levy Payer
 	And I am on the Manage Apprenticeships Page
 	When I click on view my transfers
-	Then I am taken to the View Transfers Page
+	Then I am on the View Transfers Page
