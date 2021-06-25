@@ -9,3 +9,4 @@ Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_As
 	And the Financial user assess the application by confirming Finance outcome as Outstanding
 	And the Asssesssors assess the application and marks the application as Ready for Moderation
 	Then the Moderation user assess the application and marks outcomes as Pass
+	And the Oversight user assess the PASS application as Successful and verifies the provider added to the register 

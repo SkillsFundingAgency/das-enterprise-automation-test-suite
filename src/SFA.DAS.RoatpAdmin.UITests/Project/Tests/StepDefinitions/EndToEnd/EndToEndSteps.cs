@@ -9,6 +9,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -96,6 +97,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
+
+        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL) application as Successful and verifies the provider added to the register")]
+        public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus)
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
+
+            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationSuccessful().SelectYesAskAndContinueOutcomePage();
+
+            new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
+
+            var resultPage = new StaffDashboardPage(_context, true)
+                .SearchForATrainingProvider()
+                .SearchTrainingProviderByUkprn();
+
+            resultPage.VerifyOneProviderUkprnResultFound();
+
+            resultPage.VerifyProviderStatusAsOnBoarding();
+
+        }
+
 
         [Given(@"the Moderation user assess the application and marks every section as Fail and outcome As Clarification")]
         public void GivenTheModerationUserAssessTheApplicationAndMarksEverySectionAsFailAndOutcomeAsClarification()
