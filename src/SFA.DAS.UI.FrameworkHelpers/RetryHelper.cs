@@ -1,6 +1,5 @@
 ﻿using System;
 using Polly;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
@@ -11,16 +10,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly string _scenarioTitle;
-        private readonly ScenarioInfo _scenarioInfo;
+        private readonly string _title;
         private readonly TimeSpan[] TimeOut;
 
         public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo)
         {
             _webDriver = webDriver;
-            _scenarioInfo = scenarioInfo;
-            _scenarioTitle = scenarioInfo.Title;
-            TimeOut = SetTimeOut();
+            _title = scenarioInfo.Title;
+            TimeOut = Logging.SetTimeOut();
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
@@ -29,7 +26,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Report(retryCount, exception);
+                     Logging.Report(retryCount, exception, _title, retryAction);
                      retryAction?.Invoke();
                  })
                  .Execute(() =>
@@ -48,7 +45,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<Exception>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Logging.Report(retryCount, exception, _title);
                 })
                .Execute(() =>
                {
@@ -65,7 +62,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Logging.Report(retryCount, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                .Execute(() =>
@@ -77,14 +74,32 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
-        internal T RetryOnWebDriverException<T>(Func<T> func, Action retryAction = null)
+        internal void RetryOnWebDriverException(Action action, Action retryAction = null)
         {
-            T result = default(T);
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Logging.Report(retryCount, exception, _title, retryAction);
+                    retryAction?.Invoke();
+                })
+                .Execute(() =>
+                {
+                    using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                    {
+                        action.Invoke();
+                    } 
+                });
+        }
+
+        internal T RetryOnWebDriverException<T>(Func<T> func, Action retryAction = null)
+        {
+            T result = default;
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    Logging.Report(retryCount, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -98,7 +113,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return result;
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)
+        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction = true)
         {
             Action beforeAction = null, afterAction = null;
             Policy
@@ -106,7 +121,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Report(retryCount, exception);
+                     Logging.Report(retryCount, exception, _title, beforeAction);
 
                      switch (true)
                      {
@@ -139,19 +154,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action Click(IWebElement element) => () => element.Click();
 
-        //private TimeSpan[] SetTimeOut()
-        //{
-        //    switch (true)
-        //    {
-        //        case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(15) };
-        //        default:
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-        //    }
-        //}
-
-        private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
             void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
@@ -165,7 +167,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (beforeAction, null);
         }
 
-        private void Report(int retryCount, Exception exception) =>
-            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
     }
 }

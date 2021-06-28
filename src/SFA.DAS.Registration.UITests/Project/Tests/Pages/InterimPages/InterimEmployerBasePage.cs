@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         #endregion
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
-
+        
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {
             _context = context;
@@ -47,7 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             VerifyPage();
         }
 
-        private static string GoToUrl(bool gotourl) => gotourl ? UrlConfig.EmployerApprenticeshipServiceBaseURL : string.Empty;
+        private static string GoToUrl(bool gotourl) => gotourl ? UrlConfig.EmployerApprenticeshipService_BaseUrl : string.Empty;
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 

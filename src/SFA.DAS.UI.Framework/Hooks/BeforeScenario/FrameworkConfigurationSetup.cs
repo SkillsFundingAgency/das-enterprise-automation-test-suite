@@ -24,14 +24,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 2)]
         public void SetUpFrameworkConfiguration()
         {
-            var configuration = new FrameworkConfig
+            var frameworkConfig = new FrameworkConfig
             {
+                NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = Configurator.IsVstsExecution
             };
 
-            _context.Set(configuration);
+            _context.Set(frameworkConfig);
 
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 

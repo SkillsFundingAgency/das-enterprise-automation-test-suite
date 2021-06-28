@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -14,6 +15,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By RecordAGradeLink => By.Id("Record a grade");
         private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
         private By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
+        private By WithdrawFromAStandardLink => By.LinkText("Withdraw from a standard");
+        private By WithdrawFromTheRegisterLink => By.LinkText("Withdraw from the register");
         private By ManageUsersLink => By.LinkText("Manage users");
         private By HomeTopMenuLink => By.Id("Home");
         private By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
@@ -29,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_ApplyToAssessStandardPage(_context);
         }
 
-        public AS_RecordAGradePage ClickOnRecordAGrade()
+        public AS_RecordAGradePage GoToRecordAGradePage()
         {
             formCompletionHelper.Click(RecordAGradeLink);
             return new AS_RecordAGradePage(_context);
@@ -64,6 +67,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.Click(SignOutLink);
             return new AS_SignedOutPage(_context);
+        }
+        public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromAStandardLink()
+        {
+            formCompletionHelper.Click(WithdrawFromAStandardLink);
+            return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
+        }
+
+        public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromTheRegisterLink()
+        {
+            formCompletionHelper.Click(WithdrawFromTheRegisterLink);
+            return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
         }
     }
 }

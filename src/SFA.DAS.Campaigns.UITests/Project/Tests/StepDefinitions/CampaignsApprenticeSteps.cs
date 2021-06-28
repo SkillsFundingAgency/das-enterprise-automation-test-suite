@@ -1,9 +1,5 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
@@ -13,11 +9,30 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private FindAnApprenticeshipPage _findAnApprenticeshipPage;
+        private ApprenticeAreTheyRightForYouPage _apprenticeAreTheyRightForYouPage;
+        private ApprenticeHubPage _apprenticeHubPage;
 
         public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
-        [Given(@"the user navigates to the calling page")]
-        public void GivenTheUserNavigatesToTheCallingPage() => GoToFireItUpHomePage().NavigateToTheCallingPage();
+        [Then(@"the apprentice sub headings are displayed")]
+        public void ThenTheApprenticeSubHeadingsAreDisplayed() => _apprenticeHubPage.VerifySubHeadings();
+
+        [Given(@"the user navigates to Become An Apprentice page")]
+        public void GivenTheUserNavigatesToBecomeAnApprenticePage() => _apprenticeHubPage = GoToApprenticeshipHubPage();
+
+        [Given(@"the user navigates to apprentice How do they work Page")]
+        public void GivenTheUserNavigatesToApprenticeHowDoTheyWorkPage() => GoToApprenticeshipHubPage().NavigateToHowDoTheyWorkPage().VerifyHowDoTheyWorkPageSubHeadings();
+
+        [Given(@"the user navigates to Getting started Page")]
+        public void GivenTheUserNavigatesToGettingStartedPage() => GoToApprenticeshipHubPage().NavigateToGettingStarted();
+
+        [Given(@"the user navigates to Are ApprenticeShip Right For You Page")]
+        public void GivenTheUserNavigatesToAreApprenticeShipRightForYouPage() => _apprenticeAreTheyRightForYouPage = GoToApprenticeshipHubPage()
+            .NavigateToAreApprenticeShipRightForMe()
+            .VerifyApprenticeAreTheyRightForYouPageSubHeadings();
+
+        [Then(@"check that RealStories Page loads")]
+        public void ThenCheckThatRealStoriesPageLoads() => _apprenticeAreTheyRightForYouPage.NavigateToRealStoriesPage();
 
         [Given(@"the user navigates to the find an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFindAnApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToFindAnApprenticeshipPage();
@@ -46,8 +61,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can search for an apprenticeship")]
         public void ThenTheUserCanSearchForAnApprenticeship() => _findAnApprenticeshipPage.SearchForAnApprenticeship().VerifySearchResults().SelectFirstSearchResult().VerifyVacancyTitle();
 
-        private ApprenticeHubPage GoToApprenticeshipHubPage() => GoToFireItUpHomePage().NavigateToApprenticeshipHubPage();
+        [Given(@"the user navigates to the Advice for Parent  page")]
+        public void GivenTheUserNavigatesToTheAdviceForParentPage() => GoToApprenticeshipHubPage().NavigateToAdviceForParentPage();
 
-        private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
+        [Given(@"the user navigates to the Browse By Interest Page page")]
+        public void GivenTheUserNavigatesToTheBrowseByInterestPagePage() => GoToApprenticeshipHubPage().NavigateToBrowseInterestPage();
+
+        [Given(@"the user navigates to the Set Up Service Account page")]
+        public void GivenTheUserNavigatesToTheSetUpServiceAccountPage() => GoToApprenticeshipHubPage().NavigateToSetUpServiceAccountPage();
+
+        [Given(@"the user navigates to the Site Map page")]
+        public void GivenTheUserNavigatesToTheSiteMapPage() => GoToApprenticeshipHubPage().NavigateToSiteMapPage();
+        
+        private ApprenticeHubPage GoToApprenticeshipHubPage() => _stepsHelper.GoToApprenticeshipHubPage();
     }
 }

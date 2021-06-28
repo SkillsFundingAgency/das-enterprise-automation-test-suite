@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ConfimCloneVacancyDatePage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Vacancy succesfully cloned";
+        protected override string PageTitle => "Advert succesfully cloned";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -20,10 +20,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             VerifyPage(() => pageInteractionHelper.FindElements(Info));
         }
 
-        public VacancyTitlePage UpdateTitle()
+        public WhatDoYouWantToCallThisAdvertPage UpdateTitle()
         {
             formCompletionHelper.Click(ChangeTitle);
-            return new VacancyTitlePage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(_context);
         }
     }
 }

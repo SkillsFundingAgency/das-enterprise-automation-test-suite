@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
@@ -12,39 +9,57 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage
             .Access_Section4_OFS()
             .SelectPassAndContinue()
-            .VerifyOfficeforStudent_OFS_Section4(StatusHelper_AdminPage.StatusPass);
+            .VerifyOfficeforStudent_OFS_Section4(StatusHelper.StatusPass);
         }
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_InitialTeacherTraining(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section4_ITT()
             .SelectPassAndContinue()
-            .VerifyInitialteachertraining_ITT_Section4(StatusHelper_AdminPage.StatusPass);
+            .VerifyInitialteachertraining_ITT_Section4(StatusHelper.StatusPass);
         }
         internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_OFS_ITT(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
-           .VerifyOfficeforStudent_OFS_Section4(StatusHelper_AdminPage.NotRequired)
-           .VerifyInitialteachertraining_ITT_Section4(StatusHelper_AdminPage.NotRequired);
+           .VerifyOfficeforStudent_OFS_Section4(StatusHelper.NotRequired)
+           .VerifyInitialteachertraining_ITT_Section4(StatusHelper.NotRequired);
         }
         internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
-           .VerifySubcontractordeclaration_Section4(StatusHelper_AdminPage.NotRequired);
+           .VerifySubcontractordeclaration_Section4(StatusHelper.NotRequired);
+        }
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .VerifyOfficeforStudent_OFS_Section4(StatusHelper.NotRequired);
+        }
+
+        internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section4_SubcontractorDeclaration()
+            .SelectPassAndContinue()
+           .VerifySubcontractordeclaration_Section4(StatusHelper.StatusPass);
         }
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section4_Ofstead()
             .SelectPassAndContinue()
-            .VerifyOfsted_Section4(StatusHelper_AdminPage.StatusPass);
+            .VerifyOfsted_Section4(StatusHelper.StatusPass);
+        }
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .VerifyOfsted_Section4(StatusHelper.NotRequired);
         }
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_SubcontractorDeclaration(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section4_SubcontractorDeclaration()
             .SelectPassAndContinue()
-            .VerifySubcontractordeclaration_Section4(StatusHelper_AdminPage.StatusPass);
+            .VerifySubcontractordeclaration_Section4(StatusHelper.StatusPass);
         }
     }
 }

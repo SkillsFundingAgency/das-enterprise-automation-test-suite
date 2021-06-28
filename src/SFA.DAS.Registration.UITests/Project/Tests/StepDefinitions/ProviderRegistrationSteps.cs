@@ -3,6 +3,7 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -50,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            var uri = new Uri(new Uri($"https://accounts.{new Uri(_config.EmployerApprenticeshipServiceBaseURL).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            var uri = new Uri(new Uri($"https://accounts.{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
 
             _tabHelper.OpenInNewTab(uri);
 
@@ -78,9 +79,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickAcceptYourAgreementLinkInHomePagePanel()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .ProviderLeadRegistrationSignAgreement()
-                .ClickNoToAddApprenticeRecords()
-                .ClickNoToAddRecruitApprentice()
-                .ConfirmProviderLeadRegistrationPermissions();
+                .ClickDoNotAllowToAddApprenticeRecords()
+                .ClickDoNotAllowToRecruitApprentice()
+                .ConfirmYesTrainingProviderPermissions();
         }
 
         [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement accepted)""")]

@@ -11,28 +11,28 @@ namespace SFA.DAS.RAA.DataGenerator
         public RAAV2DataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = $"{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
-            EmployerDescription = $"{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
-            EmployerReason = this.randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerTradingName = $"{randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
+            EmployerDescription = $"{randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
+            EmployerReason = randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
-            ContactName = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
+            ContactName = randomDataGenerator.GenerateRandomAlphabeticString(5);
             Email = $"{ContactName}@lorem.com";
-            VacancyShortDescription = this.randomDataGenerator.GenerateRandomAlphabeticString(15);
-            VacancyOutcome = this.randomDataGenerator.GenerateRandomAlphabeticString(22);
-            VacancyBriefOverview = this.randomDataGenerator.GenerateRandomAlphabeticString(50);
-            TrainingDetails = this.randomDataGenerator.GenerateRandomAlphabeticString(28);
-            WorkkingWeek = this.randomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyShortDescription = randomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyOutcome = randomDataGenerator.GenerateRandomAlphabeticString(22);
+            VacancyBriefOverview = randomDataGenerator.GenerateRandomAlphabeticString(50);
+            TrainingDetails = randomDataGenerator.GenerateRandomAlphabeticString(28);
+            WorkkingWeek = randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             EditedVacancyClosing = VacancyStart.AddDays(14);
             EditedVacancyStart = EditedVacancyClosing.AddDays(14);
-            DesiredQualificationsSubject = this.randomDataGenerator.GenerateRandomAlphabeticString(8);
-            OptionalMessage = this.randomDataGenerator.GenerateRandomAlphabeticString(30);
+            DesiredQualificationsSubject = randomDataGenerator.GenerateRandomAlphabeticString(8);
+            OptionalMessage = randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
 
-        public string TrainingTitle => AvailableTraining.RandomOrDefault();
+        public string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
 
         public string EmployerAddress => AvailableAddress.RandomOrDefault();
 
@@ -43,9 +43,9 @@ namespace SFA.DAS.RAA.DataGenerator
         public string EmployerDescription { get; }
 
         public string EmployerReason { get; }
-        
+
         public string EmployerWebsiteUrl { get; }
-        
+
         public string ContactName { get; }
 
         public string ContactNumber => "07777777777";
@@ -66,9 +66,9 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string FixedWageYearlyAmount => "10000";
 
-        public string NationalMinimumWage => "£9,464 - £18,137.60";
+        public string NationalMinimumWage => "£9,609.60 to £18,532.80";
 
-        public string NationalMinimumWageForApprentices => "£8,632";
+        public string NationalMinimumWageForApprentices => "£8,944";
 
         public string FixedWageForApprentices => "£10,000";
 
@@ -86,7 +86,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string DesiredQualificationsGrade => "A Level";
 
-        public string NumberOfVacancy => "2" ;
+        public string NumberOfVacancy => "2";
 
         public string OptionalMessage { get; }
 
@@ -94,12 +94,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
-        private List<string> AvailableTraining => new List<string>
-        {
-            "Software Tester, Level 4 (Higher national certificate)",
-        };
-
-        private List<string> AvailableAddress => new List<string>
-        {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        private List<string> AvailableAddress => new List<string> {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
     }
 }

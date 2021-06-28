@@ -8,12 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         protected readonly ObjectContext objectContext;
         protected readonly LoginCredentialsHelper loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             objectContext = context.Get<ObjectContext>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
@@ -24,21 +26,30 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
 
-        public HomePage ReLogin() => new SignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials());
+        public HomePage ReLogin() => new SignInPage(_context).Login(GetLoginCredentials());
 
         protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
+        protected virtual void SetLoginCredentials(LoginUser loginUser, bool isLevy) 
+            => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName, isLevy);
+
         public HomePage Login(LoginUser loginUser, bool isLevy)
         {
-            loginCredentialsHelper.SetLoginCredentials(loginUser, isLevy);
+            SetLoginCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);
 
-            objectContext.SetAccountId(homePage.AccountId());
+            (string accountId, string hashedAccountId) = _registrationSqlDataHelper.GetAccountIds(loginUser.Username);
+
+            objectContext.SetHashedAccountId(hashedAccountId);
+
+            objectContext.SetDBAccountId(accountId);
 
             return homePage;
         }
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
+
+        public LoginUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }

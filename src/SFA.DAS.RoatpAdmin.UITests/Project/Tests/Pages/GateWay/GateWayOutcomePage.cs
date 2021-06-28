@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
     public class GateWayOutcomePage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Gateway outcome saved";
+        protected override string PageTitle => "Gateway outcome";
+
+        private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,6 +21,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         {
             _context = context;
             VerifyPage();
+        }
+        public GatewayLandingPage GoToRoATPGatewayApplicationsPage()
+        {
+            formCompletionHelper.Click(GoToRoATPGatewayApplicationsLink);
+            return new GatewayLandingPage(_context);
         }
     }
 }

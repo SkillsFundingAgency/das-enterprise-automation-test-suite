@@ -2,22 +2,19 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class PublicSectorReportingDataHelper
+    public class PublicSectorReportingDataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public PublicSectorReportingDataHelper(RandomDataGenerator randomDataGenerator)
+        public PublicSectorReportingDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
-            NoofEmployees2019 = _randomDataGenerator.GenerateRandomWholeNumber(2);
-            NoofEmployees2020 = _randomDataGenerator.GenerateRandomWholeNumber(3);
+            NoofEmployees2019 = randomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofEmployees2020 = randomDataGenerator.GenerateRandomWholeNumber(3);
             NoofNewEmployees = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
 
-            NoofApprentices2019 = _randomDataGenerator.GenerateRandomWholeNumber(1);
-            NoofApprentices2020 = _randomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofApprentices2019 = randomDataGenerator.GenerateRandomWholeNumber(1);
+            NoofApprentices2020 = randomDataGenerator.GenerateRandomWholeNumber(2);
             NoofNewApprentices = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
 
-            NoofFullTimeEmployees = _randomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofFullTimeEmployees = randomDataGenerator.GenerateRandomWholeNumber(2);
 
             EmployerActions = randomDataGenerator.GenerateRandomAlphabeticString(20);
             EmployerChallenges = randomDataGenerator.GenerateRandomAlphabeticString(20);

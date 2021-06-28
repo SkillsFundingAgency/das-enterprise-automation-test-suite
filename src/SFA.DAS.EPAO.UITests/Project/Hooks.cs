@@ -1,9 +1,10 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project
@@ -12,22 +13,25 @@ namespace SFA.DAS.EPAO.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly EPAOConfig _config;
-        private readonly IWebDriver _webDriver;
+        private readonly DbConfig _config;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
-
+        private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.GetWebDriver();
-            _config = context.GetEPAOConfig<EPAOConfig>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
+            _config = context.Get<DbConfig>();
         }
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.Set(new EPAOSqlDataHelper(_config));
+            _ePAOApplySqlDataHelper = new EPAOApplySqlDataHelper(_config);
+
+            _context.Set(_ePAOApplySqlDataHelper);
 
             _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(_config);
 
@@ -35,35 +39,37 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             var r = _context.Get<RandomDataGenerator>();
 
-            _context.Set(new EPAODataHelper(r));
+            _context.Set(new EPAOAssesmentServiceDataHelper(r));
+
+            _context.Set(new EPAOApplyDataHelper(r));
 
             _context.Set(new EPAOApplyStandardDataHelper(r));
 
             _ePAOAdminDataHelper = new EPAOAdminDataHelper(r);
 
             _context.Set(_ePAOAdminDataHelper);
+
+            _context.Set(new EPAOAdminCASqlDataHelper(_config));
         }
 
         [BeforeScenario(Order = 33)]
         [Scope(Tag = "deleteorganisationstandards")]
-        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.StandardCode, _ePAOAdminDataHelper.OrganisationEpaoId);
 
         [BeforeScenario(Order = 34)]
-        public void Navigate()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl); }
-        }
+        [Scope(Tag = "resetapplyuserorganisationid")]
+        public void ResetApplyUserOrganisationId() => _ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(_context.GetUser<EPAOApplyUser>().Username);
 
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]
-        public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
+        public void ClearContact() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email));
 
         [AfterScenario(Order = 33)]
         [Scope(Tag = "deleteorganisation")]
-        public void ClearOrganisation() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn);
+        public void ClearOrganisation() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn));
 
         [AfterScenario(Order = 34)]
         [Scope(Tag = "makeorganisationlive")]
-        public void MakeOrganisationLive() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+        public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
     }
 }

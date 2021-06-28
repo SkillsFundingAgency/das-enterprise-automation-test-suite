@@ -1,28 +1,25 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EndPointAssessmentPage : EmployerBasePage
     {
-        protected override string PageTitle => "END-POINT ASSESSMENTS";
+        protected override string PageTitle => "End-point assessment";
 
-        #region Page Object Elements
-        private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Assessing your apprentice')]");
-        private readonly By _subHeading2 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'The end-point assessment')]");
-        private readonly By _subHeading3 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Finding an end-point assessment organisation')]");
-        private readonly By _subHeading4 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'The cost of an end-point assessment')]");
-        private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Certification')]");
-        #endregion
+        private new By FiuCardHeading => By.CssSelector(".fiu-article h2");
+        
+        public EndPointAssessmentPage(ScenarioContext context) : base(context) { }
 
-        public EndPointAssessmentPage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public void VerifyEndPointAssessmentPageSubHeadings()
         {
-            pageInteractionHelper.VerifyText(_subHeading1, "ASSESSING YOUR APPRENTICE");
-            pageInteractionHelper.VerifyText(_subHeading3, "FINDING AN END-POINT ASSESSMENT ORGANISATION");
-            pageInteractionHelper.VerifyText(_subHeading4, "THE COST OF AN END-POINT ASSESSMENT");
-            pageInteractionHelper.VerifyText(_subHeading5, "CERTIFICATION");
+            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
+
+            VerifyPage(func, "Finding an end-point assessment organisation");
+            VerifyPage(func, "What does assessment involve?");
+            VerifyPage(func, "Certification");
         }
     }
 }

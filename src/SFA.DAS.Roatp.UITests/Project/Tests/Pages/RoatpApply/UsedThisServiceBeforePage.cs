@@ -22,5 +22,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             Continue();
             return new SignInToRegisterPage(_context);
         }
+
+        public CreateAnAccountPage SelectNoCreateAccountAndContinue()
+        {
+            SelectRadioOptionByForAttribute("FirstTimeSignin-Yes");
+            Continue();
+            return new CreateAnAccountPage(_context);
+        }
     }
 }

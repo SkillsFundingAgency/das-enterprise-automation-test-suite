@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 {
     public class OtherSubsidiaryCompaniesPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Does your UK ultimate parent company have other subsidiary companies?";
+        protected override string PageTitle => "Does your UK ultimate parent company have other active subsidiary companies?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

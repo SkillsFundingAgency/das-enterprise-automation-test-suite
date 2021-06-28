@@ -1,10 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TechTalk.SpecFlow;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
@@ -13,13 +7,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         //Verify Sections
 
         #region Section1
-        public GWApplicationOverviewPage VerifyLegalName_Section1(string status) => Verify_Section1(OrganisationChecks_1, status);
-        public GWApplicationOverviewPage VerifyTradingName_Section1(string status) => Verify_Section1(OrganisationChecks_2, status);
-        public GWApplicationOverviewPage VerifyOrganisationStatus_Section1(string status) => Verify_Section1(OrganisationChecks_3, status);
-        public GWApplicationOverviewPage VerifyAddress_Section1(string status) => Verify_Section1(OrganisationChecks_4, status);
-        public GWApplicationOverviewPage VerifyICOregistrationnumber_Section1(string status) => Verify_Section1(OrganisationChecks_5, status);
-        public GWApplicationOverviewPage VerifyWebsiteaddress_Section1(string status) => Verify_Section1(OrganisationChecks_6, status);
-        public GWApplicationOverviewPage VerifyOrganisationhighrisk_Section1(string status) => Verify_Section1(OrganisationChecks_7, status);
+        public GWApplicationOverviewPage Verify2ApplicationIn12Months_Section1(string status) => Verify_Section1(OrganisationChecks_1, status);
+        public GWApplicationOverviewPage VerifyLegalName_Section1(string status) => Verify_Section1(OrganisationChecks_2, status);
+        public GWApplicationOverviewPage VerifyTradingName_Section1(string status) => Verify_Section1(OrganisationChecks_3, status);
+        public GWApplicationOverviewPage VerifyOrganisationStatus_Section1(string status) => Verify_Section1(OrganisationChecks_4, status);
+        public GWApplicationOverviewPage VerifyAddress_Section1(string status) => Verify_Section1(OrganisationChecks_5, status);
+        public GWApplicationOverviewPage VerifyICOregistrationnumber_Section1(string status) => Verify_Section1(OrganisationChecks_6, status);
+        public GWApplicationOverviewPage VerifyWebsiteaddress_Section1(string status) => Verify_Section1(OrganisationChecks_7, status);
+        public GWApplicationOverviewPage VerifyOrganisationhighrisk_Section1(string status) => Verify_Section1(OrganisationChecks_8, status);
         #endregion
 
         #region Section2
@@ -64,6 +59,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GWApplicationOverviewPage VerifyBreachedtaxpaymentsorsocialsecuritycontributions_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_7, status);
         public GWApplicationOverviewPage VerifyRegisterofRemovedTrustees_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_8, status);
         public GWApplicationOverviewPage VerifyBeenmadebankrupt_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_9, status);
+        public GWApplicationOverviewPage VerifyProhibitionOrder_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_10, status);
+        public GWApplicationOverviewPage VerifyBanFromManagement_Section6(string status) => Verify_Section6(PeopleInControlsCriminalAndComplianceChecks_11, status);
         #endregion
 
         #region Section7

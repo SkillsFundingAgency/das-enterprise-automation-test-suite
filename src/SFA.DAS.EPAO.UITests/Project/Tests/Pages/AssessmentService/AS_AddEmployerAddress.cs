@@ -5,7 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_AddEmployerAddress : EPAO_BasePage
     {
-        protected override string PageTitle => "Add the employer's address";
+        protected override string PageTitle => "Add the address that you’d like us to send the certificate to";
+
         private readonly ScenarioContext _context;
 
         #region Locators

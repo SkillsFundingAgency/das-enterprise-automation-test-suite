@@ -2,7 +2,7 @@
 
 @regression
 @employerfinance
-@addpayedetails
+@addnonlevyfunds
 Scenario: EF_HPFLNU_02 - Validate Home Page Finance section for a NonLevy Employer who has not Signed the Agreement
 	When an Employer creates a Non Levy Account and not Signs the Agreement during registration
 	And Signs the Agreement from Account HomePage Panel

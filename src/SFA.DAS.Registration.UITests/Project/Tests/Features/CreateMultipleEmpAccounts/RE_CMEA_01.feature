@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 @addanothernonlevypayedetails
 Scenario: RE_CMEA_01_Create an Employer Account and Add another Account for the same login
 	When an Employer Account with PublicSector Type Org is created and agreement is Signed

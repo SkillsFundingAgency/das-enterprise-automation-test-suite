@@ -13,6 +13,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ResubmittedVacancyReferencePage(ScenarioContext context) : base(context) { }
     
-        public void ConfirmVacancyResubmission() => pageInteractionHelper.VerifyText(VacancyResubmissionText, "Vacancy resubmitted for approval");
+        public void ConfirmVacancyResubmission() => pageInteractionHelper.VerifyText(VacancyResubmissionText, "Advert resubmitted for approval");
     }
 }

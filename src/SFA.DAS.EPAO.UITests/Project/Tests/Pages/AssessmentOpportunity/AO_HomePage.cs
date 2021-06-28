@@ -14,8 +14,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         private By ProposedTab => By.Id("tab_proposed");
         private By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
         private By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
-        private By BookbinderInDevelopmentStandardLink => By.LinkText("Bookbinder");
-        private By EquestrianAthleteProposedStandard => By.LinkText("Equestrian athlete");
+        private By JourneymanBookbinderInDevelopmentStandardLink => By.LinkText("Journeyman bookbinder");
+        private By SurfaceFinisher => By.LinkText("Surface finisher");
         #endregion
 
         public AO_HomePage(ScenarioContext context) : base(context)
@@ -27,8 +27,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public void VerifyApprovedTab()
         {
-            pageInteractionHelper.VerifyPage(ApprovedTab);
-            pageInteractionHelper.VerifyPage(TabHeader, "Approved Standards");
+            VerifyPage(ApprovedTab);
+            VerifyPage(TabHeader, "Approved Standards");
         }
 
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()
@@ -45,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
         {
-            formCompletionHelper.Click(BookbinderInDevelopmentStandardLink);
+            formCompletionHelper.Click(JourneymanBookbinderInDevelopmentStandardLink);
             return new AO_InDevelopmentStandardDetailsPage(_context);
         }
 
@@ -57,7 +57,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
         {
-            formCompletionHelper.Click(EquestrianAthleteProposedStandard);
+            formCompletionHelper.Click(SurfaceFinisher);
             return new AO_ProposedStandardDetailsPage(_context);
         }
     }

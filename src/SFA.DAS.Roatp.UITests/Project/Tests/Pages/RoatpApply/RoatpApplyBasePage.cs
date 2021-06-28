@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
-using SFA.DAS.UI.Framework;
-using System;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -11,12 +10,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FrameworkConfig _frameworkConfig;
         protected readonly RoatpApplyDataHelpers applydataHelpers;
-        protected readonly RoatpApplyUkprnDataHelpers roatpUkprnDataHelpers;
+        protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
         #endregion
-
-        private By ChooseFile => By.ClassName("govuk-file-upload");
 
         private By Dob => By.CssSelector("#dob");
 
@@ -24,20 +20,29 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         protected By Year => By.CssSelector("input[id*='Year']");
 
-        protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
+        protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea, .govuk-textarea");
 
         public RoatpApplyBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _frameworkConfig = context.Get<FrameworkConfig>();
-            applydataHelpers = context.Get<RoatpApplyDataHelpers>();
-            roatpUkprnDataHelpers = context.Get<RoatpApplyUkprnDataHelpers>();
+            applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
+            applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
         }
-        
+
+        protected void UploadMultipleFiles(int noOfFiles)
+        {
+            for (int i = 0; i < noOfFiles; i++)
+            {
+                ChooseFile();
+                formCompletionHelper.ClickButtonByText(ContinueButton, "Upload file");
+            }
+
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Save and continue");
+        }
+
         protected void UploadFile()
         {
-            string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
-            formCompletionHelper.EnterText(ChooseFile, File);
+            ChooseFile();
             Continue();
         }
 

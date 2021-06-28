@@ -6,13 +6,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderReviewChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Review changes";
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
         private By ConfirmChangesOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.Id("submit-review-changes");        
 
         public ProviderReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -33,6 +32,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ProviderReviewChangesPage SelectConfirmChangesOptions(string option)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmChangesOptions, option);
+            return this;
+        }
+
+        public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
+        {
+            Continue();
+            return new ProviderAccessDeniedPage(_context);
+        }
+
+        public ProviderReviewChangesPage SelectReviewChangesOptions()
+        {
+            Continue();
             return this;
         }
     }

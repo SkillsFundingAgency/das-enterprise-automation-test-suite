@@ -5,7 +5,7 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -18,7 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
@@ -49,7 +48,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
@@ -144,10 +142,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetAccountId(new HomePage(_context).AccountId());
+        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetHashedAccountId(new HomePage(_context).AccountId());
 
+        [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
+        public void EmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
         [When(@"an Employer creates a Non Levy Account and not Signs the Agreement during registration")]
@@ -172,19 +171,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             DoNotSignTheAgreement();
         }
 
+        [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
-        {
-            _accountCreationStepsHelper.AddLevyDeclarations();
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
-        }
 
         [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
-        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration()
-        {
-            _accountCreationStepsHelper.AddLevyDeclarations();
+        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
-        }
 
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
@@ -197,6 +191,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
         {
             var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
+
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
         }
 
@@ -428,7 +423,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Unlock the Account")]
         public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
             .EnterDetailsAndClickUnlockButton(_loginEmail)
-            .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
             .Login(_objectContext.GetLoginCredentials());
 
         [When(@"the User is on the 'Set up as a user' page")]
@@ -500,7 +494,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
 
-        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
         private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
             addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()

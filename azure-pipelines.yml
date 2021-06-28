@@ -14,6 +14,7 @@ variables:
 
 pool:
   name: 'DAS - Continuous Integration'
+  demands: Agent.OS -equals Linux
 
 steps:
 - task: gittools.gitversion-preview.gitversion-task.GitVersion@5
@@ -52,10 +53,34 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy Check-TestResults.ps1 to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
-     src/**/*.ps1
+     src/**/Check-TestResults.ps1
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    OverWrite: true
+
+- task: CopyFiles@2
+  displayName: 'Copy UpdateNoofTestWorkers.ps1 to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+     src/**/UpdateNoofTestWorkers.ps1
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    OverWrite: true
+    
+- task: CopyFiles@2
+  displayName: 'Copy runsettings to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+      src/**/*.runsettings
+    TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
+    OverWrite: true
+    
+- task: CopyFiles@2
+  displayName: 'Copy chromedriver to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+      src/**/chromedriver.exe
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 

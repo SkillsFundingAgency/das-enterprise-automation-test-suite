@@ -26,8 +26,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveButton => By.CssSelector(".govuk-button");
+        private By SaveButton => By.CssSelector("#addApprenticeship > button");
         private By DeleteButton => By.LinkText("Delete");
+        private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -69,6 +70,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReviewYourCohortPage(_context);
         }
 
+        public ProviderReviewYourCohortPage EditCopApprenticeDetails()
+        {
+            formCompletionHelper.ClickElement(StartDateMonth);
+            DateTime now = DateTime.Now;
+            formCompletionHelper.EnterText(StartDateMonth, now.Month);
+            formCompletionHelper.EnterText(StartDateYear, now.Year);
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
+
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ProviderReviewYourCohortPage(_context);
+        }
+
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
         {
             formCompletionHelper.ClickElement(DeleteButton);
@@ -80,6 +96,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
             Assert.True(options.All(x => x.Contains("(Standard)")));
             return this;
+        }
+
+        public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
+        {
+            var x = GetAllEditBoxes();
+            int numberOfTextBoxesDisplayed = GetAllEditBoxes().Count;
+
+            if (numberOfTextBoxesDisplayed != numberOfExpectedTextBoxes)
+                throw new Exception($"expected editable boxes were: [{numberOfExpectedTextBoxes}] actual editable boxes displayed are: [{numberOfTextBoxesDisplayed}]");
+            else
+                return this;
+        }
+        internal List<IWebElement> GetAllEditBoxes()
+        {
+            return pageInteractionHelper.FindElements(InputBox);
         }
     }
 }

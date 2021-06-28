@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By MessageBox => By.Id("Message");
-        private By SendButton => By.CssSelector(".button");
+        private By SendButton => By.Id("submit-employer-message");
 
         public ProviderMessageForEmployerPage(ScenarioContext context) : base(context) => _context = context;
 

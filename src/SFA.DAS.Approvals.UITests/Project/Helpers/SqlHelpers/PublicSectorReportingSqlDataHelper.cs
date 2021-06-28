@@ -1,9 +1,10 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class PublicSectorReportingSqlDataHelper : SqlDbHelper
     {
-        public PublicSectorReportingSqlDataHelper(ApprovalsConfig approvalsConfig) : base(approvalsConfig.PublicSectorReportingConnectionString) { }
+        public PublicSectorReportingSqlDataHelper(DbConfig dbConfig) : base(dbConfig?.PublicSectorReportingConnectionString) { }
 
         public void RemovePublicSectorReporting(string accountid) => ExecuteSqlCommand($"DELETE FROM Report WHERE EmployerId = '{accountid}'");
     }

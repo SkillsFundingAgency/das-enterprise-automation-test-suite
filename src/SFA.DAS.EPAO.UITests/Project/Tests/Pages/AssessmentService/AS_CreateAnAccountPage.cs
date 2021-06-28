@@ -22,9 +22,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_ConfirmYourIdentityPage EnterAccountDetailsAndClickCreateAccount()
         {
-            formCompletionHelper.EnterText(GivenNameTextbox, dataHelper.GetRandomAlphabeticString(5));
-            formCompletionHelper.EnterText(FamilyNameTextbox, dataHelper.GetRandomAlphabeticString(10));
-            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.RandomEmail);
+            formCompletionHelper.EnterText(GivenNameTextbox, ePAOAssesmentServiceDataHelper.GetRandomAlphabeticString(5));
+            formCompletionHelper.EnterText(FamilyNameTextbox, ePAOAssesmentServiceDataHelper.GetRandomAlphabeticString(10));
+            formCompletionHelper.EnterText(EmailAddressTextbox, ePAOAssesmentServiceDataHelper.RandomEmail);
             Continue();
             return new AS_ConfirmYourIdentityPage(_context);
         }

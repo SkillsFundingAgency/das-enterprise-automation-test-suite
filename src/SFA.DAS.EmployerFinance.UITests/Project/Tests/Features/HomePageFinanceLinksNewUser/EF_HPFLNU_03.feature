@@ -2,7 +2,7 @@
 
 @regression
 @employerfinance
-@addpayedetails
+@addlevyfunds
 Scenario: EF_HPFLNU_03 - Validate Home Page Finance section for a Levy Employer who has Signed the Agreement
 	When an Employer creates a Levy Account and Signs the Agreement
 	Then 'Your finances' link is displayed in the Finances section

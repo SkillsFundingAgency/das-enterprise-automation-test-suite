@@ -2,41 +2,231 @@
 
 # DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
-This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# in SpecFlow BDD methodology and Page Object Pattern.
+This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
 1. Visual Studio (2017 with V15.9 or higher). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 2.2' version matching Visual Studio version. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+2. Download appropriate 'Dot Net Core 3.1' version matching Visual Studio version. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
 3. Browsers (Chrome, Firefox, IE)
 
-## Set Up:
+## Set Up (UI):
 All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
 
-Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
+Note: This UI framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
-## How to use User secrets
-1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
-2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP_Secrets" (without the quotes)
+## Steps to add a new UI test project:
+
+1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
+	- please use naming format (SFA.DAS.YourProjectName.UITests)
+	- you can remove the UnitTest1.cs file added by default
+	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
+	```text
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	```
+2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
+	- Microsoft.NET.Test.Sdk
+	- NUnit3TestAdapter
+	- Selenium.WebDriver.ChromeDriver
+	- SpecFlow.Tools.MsBuild.Generation
+	- SpecFlow.NUnit
+	
+3. Copy the below code to .csproj file to add link to nunitconfiguration.cs and specflow.json files
+```text
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\specflow.json" Link="specflow.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+```
+
+4. Add ```SFA.DAS.YourProjectName.UITests.json```
+
+``` json
+{
+  "runtimeOptions": {
+    "tfm": "netcoreapp3.1",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "3.1.5"
+    }
+  }
+}
+```
+5. Add ```appsettings.Environment.json```
+```json
+{
+  "local_EnvironmentName": "PP",
+  "ProjectName": "YourProjectName"
+}
+```
+6. Add ```appsettings.Project.BrowserStack.json```
+```json
+{
+  "BrowserStackSetting": {
+    "build": "SFA.DAS.YourProjectName.UITests"
+  }
+}
+```
+7. Add ```appsettings.Project.json``` (the project specific config)
+```json
+{
+  "YourProjectNameConfig": {
+    "ABC": "__ABC__"
+  }
+}
+```
+8. Add the following mandatory references to the .csproj file 
+```text
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+	</ItemGroup>
+```
+Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
+
+## Set Up (API):
+All other dependencies (ex: RestSharp, NUnit3TestAdapter etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
+
+Note: This API framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
+
+## Steps to add a new API test project:
+
+1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
+	- please use naming format (SFA.DAS.YourProjectName.APITests)
+	- you can remove the UnitTest1.cs file added by default
+	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
+	```text
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>SFA.DAS.YourProjectName.APITests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	```
+2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
+	- Microsoft.NET.Test.Sdk
+	- NUnit3TestAdapter
+	- SpecFlow.Tools.MsBuild.Generation
+	- SpecFlow.NUnit
+	
+3. Copy the below code to .csproj file to add link to nunitconfiguration.cs file
+```text
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Compile>
+	</ItemGroup>
+```
+4. Add ```specflow.json```
+```json
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.API.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" }
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
+}
+```
+
+5. Add ```SFA.DAS.YourProjectName.APITests.json```
+
+``` json
+{
+  "runtimeOptions": {
+    "tfm": "netcoreapp3.1",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "3.1.5"
+    }
+  }
+}
+```
+6. Add ```appsettings.Environment.json```
+```json
+{
+  "local_EnvironmentName": "PP",
+  "ProjectName": "YourProjectName"
+}
+```
+7. Add ```appsettings.Project.BrowserStack.json```
+```json
+{
+  "BrowserStackSetting": {
+    "build": "SFA.DAS.YourProjectName.APITests"
+  }
+}
+```
+8. Add ```appsettings.Project.json``` (the project specific config)
+```json
+{
+  "YourProjectNameConfig": {
+    "ABC": "__ABC__"
+  }
+}
+```
+9. Add the following mandatory references to the .csproj file 
+```text
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.API.Framework\SFA.DAS.API.Framework.csproj" />
+	</ItemGroup>
+```
+Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
+
+## How to use User secrets:
+1. Navigate to ```"%APPDATA%/Microsoft"``` then Create Directory ```"UserSecrets"``` if you don't find it.
+2. Create a ```<YourProjectName>_<EnvironmentName>_Secrets``` folder under ```"%APPDATA%/Microsoft/UserSecrets"```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
+	For Registration project, the ```"appsettings.Environment.json"``` file will look like 
 ```json
 {
   "local_EnvironmentName": "PP",
   "ProjectName": "Registration"
 }
 ```
-3. Create a file named "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from "appsettings.Project.json" file under your respective project(s)).
+so you need to create a folder as ```"Registration_PP_Secrets"``` (without the quotes) under ```"%APPDATA%/Microsoft/UserSecrets"``` folder 
+	
+3. Create a file named ```"secrets.json"``` and replace only those values you want to keep it as secrets (you can copy the structure from ```"appsettings.Project.json"``` file under your respective project(s)).
+4. Project secrets and framework secrets can be found in the Automation Test Data (https://skillsfundingagency.atlassian.net/wiki/spaces/DAS/pages/1875574959/Automation+Test+Data) confluence page
 
 ## Automated SpecFlow Tests:
-Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
+Acceptance Tests must be written in Feature files under ```/Project/Tests/Features/``` folder using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
-A tag must be provided (ex: @Regression, @Smoke) for each test scenario which groups the tests, this provides the option to select which group of tests to execute.  @Regression and @<projectname> tags are manadatory.
+## Specflow scenario tagging 
 
-## Running Tests:
-Once the solution is imported and built, open Test Explorer window (Test->Windows->Test Explorer) which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
-1. All Tests
-2. Failed/Passed/NotRun Tests
-3. Select a particular scenario to Run/Debug
+1. Mandatory tags (these mandatory tags are used for test execution)
+	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
+	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
+2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
+	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot``` (in registration)
+	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse``` (in approvals)
+	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
+3. Optional tags / requirement specific tags
+	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
+	- naming convention - all tags should be specified in lower cases and should start with your project name for ex: ```@<yourprojectnamee2e>```
+4. Non specflow tests
+	- its not mandatory to tag non specflow tests for ex: Unit tests.
 
-## To Execute tests in Local :
+## To Execute tests from your desktop :
+
+### To Execute tests in your desktop :
 1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer" in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already).
 2. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
 ```json
@@ -45,7 +235,7 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
   }
 ```
 
-## To Execute tests in Browserstack / Cloud :
+### To Execute tests from your desktop but in Browserstack / Cloud :
 To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already)
 ```json
 "TestExecutionConfig": {
@@ -60,7 +250,14 @@ To mention BrowserStack login details, create a folder by name "BrowserStackSecr
 }
 ```
 
-## Running Tests from Command Prompt:
+### To Execute tests from your desktop via Test Explorer:
+Once the solution is imported and built, open Test Explorer window ```(Test->Windows->Test Explorer)``` which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
+1. All Tests
+2. Failed/Passed/NotRun Tests
+3. Select a particular scenario to Run/Debug
+
+
+### To Execute tests from your desktop via Command Prompt:
 
 ```
 c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
@@ -68,9 +265,39 @@ c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.S
 c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
 
+## Build and Release process:
+
+### Build 
+Every commit made (merge to master or a push to remote branch) will trigger a build process under `das-enterprise-automation-test-suite` pipeline using `azure-pipelines.yml` in Azure Devops which can then be deployed to a Release pipeline (where you can select a pipeline and specify the Browser and Test category value).
+
+### Release 
+Every release pipeline would be picking up the build artifact from `das-enterprise-automation-test-suite` build
+
+Every weekday (morning between 12 to 5) most of the release pipeline is scheduled to execute against latest master which will give us an idea of the state of the appication.
+
+### Variables
+We use variable groups (library) to define and declare the variables, and the values will be shared among the piepline to avoid duplication. They are
+```
+ 1. TEST Automation Suite Variables - will hold variables for TEST environment
+ 2. TEST2 Automation Suite Variables - will hold variables for TEST2 environment
+ 3. PreProd Automation Suite Variables - will hold variables for PP environment
+ 4. Release Automation Suite Variables - will hold variables at Release Level
+ 5. Release Automation Suite Variables (Db) - will hold DB variables at Release environment
+```
+Any pipeline specfic variables like ```SQLServerAccountPassword, CosmosDBKey, ServiceBusAccessKey, Browser and TestCategory``` would be define and declare under pipeline private variables
+
+### Variable scope
+If the variables are defined in more than one place then vsts will prioritize in following order
+
+	1. Environment specfic pipeline private variable  
+	2. Release specific pipeline private variable
+	3. Environment specfic variable group
+	4. Release specific variable group
+
 ## Framework:
 
-### Supported Browsers: The framework can currently work on the following browsers
+### Supported Browsers: 
+The framework can currently work on the following browsers
 1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
 2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
 3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
@@ -88,7 +315,8 @@ Note: Tests can be executed on different browsers versions using BrowserStack.
 4. Where possible create the users/data on runtime and clear the users/data at the end of the tests
 5. Every Page class must extend BasePage (Project/Tests/TestSupport/BasePage) and implement the methods from it, which initiate the elements and waits for the page to load and verifies the current page
 
-### Helpers: The framework has the following helper classes to assist the testing (Project/Framework/Helpers/)
+### Helpers: 
+The framework has the following helper classes under ```SFA.DAS.UI.FrameworkHelpers``` project to assist the testing, key helpers are
 1. FormCompletionHelper - Which helps most of the user actions on a page
 2. PageInteractionHelper - Helps verifying data and elements on the page
 3. RandomDataGenerator - Helps creating random data to use
@@ -113,9 +341,34 @@ Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https:/
 
 ## Parallel Test Execution in Azure DevOps:
 
-By default up to all available cores on the machine may be used, we can use /Parallel argument to restrict the no of tests to be executed in parellel 
+we use the below run settings file to implement parellel execution in Azure Devops
+```
+<RunSettings>
+	<RunConfiguration>
+		<!-- 0 = As many processes as possible, limited by number of cores on machine, 1 = Sequential (1 process), 2-> Given number of processes up to limit by number of cores on machine-->
+		<MaxCpuCount>1</MaxCpuCount>
+		<!-- Disables in-assembly parallel execution, applies to both MSTest and NUnit -->
+		<DisableParallelization>false</DisableParallelization>
+	</RunConfiguration>
 
-## No of Threads in parallel test execution
+	<!-- Adapter Specific sections -->
+
+	<!-- NUnit3 adapter, uncomment sections to set as appropriate, numeric, booleans, enums have their default values below, except RandomSeed -->
+	<!-- For documentation, see https://github.com/nunit/docs/wiki/Tips-And-Tricks -->
+	<NUnit>
+		<NumberOfTestWorkers>__NumberOfTestWorkers__</NumberOfTestWorkers>
+	</NUnit>
+</RunSettings>
+```
+where ```__NumberOfTestWorkers__``` can be transformed using the piepline private variables.
+
+By default up to all available cores on the machine may be used, we can use ```/Parallel``` argument or ```MaxCpuCount``` node to restrict the no of tests to be executed in parellel. 
+
+By default we run 5 tests in parallel per docker instance, we can change it using ```__NumberOfTestWorkers__```
+
+## Parallel Test Execution in your desktop:
 If LevelOfParallelism is not specified, workers defaults to the number of processors on the machine, or 2, whichever is greater.
 1. You can specify no of threads to use in the parameter : ``[assembly: LevelOfParallelism(2)]``
 2. You can specify 0 to exeute tests in sequential order : ``[assembly: LevelOfParallelism(0)]``
+
+By default we run 5 tests in parallel, you can change it under ```NUnitConfigurator.cs```

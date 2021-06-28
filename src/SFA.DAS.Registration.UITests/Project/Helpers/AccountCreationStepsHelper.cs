@@ -3,6 +3,7 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -16,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private readonly MongoDbDataGenerator _mongoDbDataGenerator;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly ObjectContext _objectContext;
 
         public AccountCreationStepsHelper(ScenarioContext context)
@@ -26,7 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = _context.Get<ObjectContext>();
         }
 
@@ -38,13 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .ClickAddNewOrganisationButton()
                 .SearchForAnOrganisation(orgType);
         }
-
-        public void AddLevyDeclarations()
-        {
-            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds("5", "10000");
-            _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
-            _loginCredentialsHelper.SetIsLevy();
-        } 
 
         public CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
@@ -86,6 +78,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _objectContext.SetSecondAccountOrganisationName(GetOrgName(orgType));
 
             return homePage.GoToYourAccountsPage().AddNewAccount()
+                 .AddPaye()
                  .ContinueToGGSignIn()
                  .SignInTo(index)
                  .SearchForAnOrganisation(orgType)
@@ -102,7 +95,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
             _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));
 
-        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_registrationConfig.EmployerApprenticeshipServiceBaseURL, "EAS");
+        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(UrlConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
 
         private string GetOrgName(OrgType orgType)
         {

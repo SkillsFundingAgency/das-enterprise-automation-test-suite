@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         public ProviderChooseAReservationPage(ScenarioContext context) : base(context) => _context = context;
 
         private By CreateANewReservationButton => By.CssSelector(".govuk-label--s");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         public ProviderApprenticeshipTrainingPage CreateANewReservation()
         {

@@ -58,9 +58,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static async Task ExecuteHttpDeleteRequest(string requestUri, string deleteData, string accessToken = "")
         {
             HttpRequestMessage requestMessage;
+
             if (string.IsNullOrEmpty(deleteData))
             {
-                requestMessage = new HttpRequestMessage(HttpMethod.Delete, requestUri);
+                new HttpRequestMessage(HttpMethod.Delete, requestUri);
             }
             else
             {

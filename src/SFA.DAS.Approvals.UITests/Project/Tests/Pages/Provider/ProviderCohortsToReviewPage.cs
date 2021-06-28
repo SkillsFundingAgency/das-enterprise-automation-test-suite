@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -8,13 +9,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly JavaScriptHelper _javaScriptHelper;
         #endregion
 
-        public ProviderCohortsToReviewPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderCohortsToReviewPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _javaScriptHelper = _context.Get<JavaScriptHelper>();
+        }
+
 
         public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
+            _javaScriptHelper.ScrollToTheBottom();
+            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
             return new ProviderReviewYourCohortPage(_context);
         }        
     }

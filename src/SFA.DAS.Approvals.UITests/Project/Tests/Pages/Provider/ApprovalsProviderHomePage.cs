@@ -33,6 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNotificationSettingsPage(_context);
         }
 
+        public ProviderOrganisationsAndAgreementsPage GoToOrganisationsAndAgreementsPage()
+        {
+            _formCompletionHelper.ClickElement(OrganisationsAndAgreementsLink);
+            return new ProviderOrganisationsAndAgreementsPage(_context);
+        }
+
         public ProviderChooseAnEmployerNonLevyPage GotoChooseAnEmployerNonLevyPage()
         {
             _formCompletionHelper.ClickElement(CreateACohortLink);
@@ -45,6 +51,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReserveFundingForNonLevyEmployersPage(_context);
         }
 
+        public ProviderAccessDeniedPage GoToProviderGetFundingGoesToAccessDenied()
+        {
+            _formCompletionHelper.ClickElement(GetFundingLink);
+            return new ProviderAccessDeniedPage(_context);
+        }
+
         public ProviderFundingForNonLevyEmployersPage GoToManageYourFunding()
         {
             _formCompletionHelper.ClickElement(ManageYourFundingLink);
@@ -54,6 +66,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _formCompletionHelper.ClickElement(YourCohortsLink);
             return new ProviderYourCohortsPage(_context);
+        }
+
+        public ProviderAccessDeniedPage CreateCohortGoesToAccessDenied()
+        {
+            _formCompletionHelper.ClickElement(CreateACohortLink);
+            return new ProviderAccessDeniedPage(_context);
         }
     }
 }

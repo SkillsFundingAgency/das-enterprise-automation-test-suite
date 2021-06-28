@@ -6,37 +6,40 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerFavouritesPage : EmployerBasePage
     {
-        protected override string PageTitle => "YOUR FAVOURITE APPRENTICESHIPS AND TRAINING PROVIDERS";
+        protected override string PageTitle => "Favourites";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CreateAnAccountButton => By.CssSelector(".button.hero__panel-button");
+        private By GetStarted => By.CssSelector("a[href*='employers/create-apprenticeship-service-account']");
         
-        private By AddProviderLink => By.CssSelector($".das-basket__provider-add[href*='{objectContext.GetCourseId()}']");
+        private By AddProviderLink => By.CssSelector($".fiu-panel__button[href*='{objectContext.GetCourseId()}']");
 
-        private By BasketEmpty => By.CssSelector(".das-basket__empty");
-        
-        private By Delete(string value) => By.CssSelector($".das-basket__item-delete[value='{value}']");
+        private By NoFavourites => By.CssSelector("section .govuk-heading-m");
 
-        public EmployerFavouritesPage(ScenarioContext context) : base(context) => _context = context;
+        private By Delete(string value) => By.CssSelector($".fiu-favourite-bar__link[value='{value}']");
+
+        public EmployerFavouritesPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+        }
 
         public CreateAnAccountPage CreateAnAccount()
         {
-            formCompletionHelper.ClickElement(CreateAnAccountButton);
+            formCompletionHelper.ClickElement(GetStarted);
             return new CreateAnAccountPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage AddProvider()
+        public FindTrainingProviderForThisApprenticeshipPage AddProvider()
         {
             formCompletionHelper.ClickElement(AddProviderLink);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
 
         public EmployerFavouritesPage VerifyEmptyBasket()
         {
-            VerifyPage(BasketEmpty, "YOU HAVEN'T ADDED ANY FAVOURITES YET");
+            VerifyPage(NoFavourites, "You haven't added any favourites yet");
             return new EmployerFavouritesPage(_context);
         }
 

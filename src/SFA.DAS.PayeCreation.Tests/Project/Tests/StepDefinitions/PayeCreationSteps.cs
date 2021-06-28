@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
 using System.Linq;
+using SFA.DAS.PayeCreation.Tests.Project;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
@@ -33,6 +34,8 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 
             noofpaye = noofpaye < 100 ? noofpaye : 100;
 
+            _objectContext.SetNoOfPayeRequested(noofpaye);
+
             for (int i = 0; i < noofpaye; i++)
             {
                 var mongodbGenerator = AddGatewayUsers(i);
@@ -52,7 +55,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             return mongodbGenerator;
         }
 
-        private void SetUpDataHelpers() => _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags.Contains("levypaye") ? "LE" : "NL"));
+        private void SetUpDataHelpers() => _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
         private void AddLevy(MongoDbDataGenerator mongoDbDataGenerator)
         {

@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By FirstOption => By.CssSelector("#SelectedProgrammeId__option--0");
 
-        private By CancelLink => By.CssSelector(".das-button-link");
+        private By CancelLink => By.LinkText("Cancel");
 
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
@@ -28,19 +28,21 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
             formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
+
             formCompletionHelper.ClickElement(() =>
             {
-                pageInteractionHelper.WaitUntilAnyElements(FirstOption);
+                pageInteractionHelper.WaitForElementToBeClickable(FirstOption);
                 return pageInteractionHelper.FindElement(FirstOption);
             });
+
             Continue();
             return new ConfirmApprenticeshipTrainingPage(_context);
         }
 
-        public VacanciesPage CancelVacancy()
+        public YourAdvertsPage CancelVacancy()
         {
             formCompletionHelper.Click(CancelLink);
-            return new VacanciesPage(_context);
+            return new YourAdvertsPage(_context);
         }
     }
 }

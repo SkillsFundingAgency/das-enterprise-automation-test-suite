@@ -1,7 +1,8 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -10,69 +11,65 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
-        private AS_LoggedInHomePage _loggedInHomePage;
-        private readonly TabHelper _tabHelper;
-        private EPAOConfig _ePAOConfig;
+        private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+
+            _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public AS_LandingPage LaunchAssessmentServiceApplication()
+        public void VerifyApprenticeGrade(string grade, LeanerCriteria leanerCriteria)
         {
-            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl);
-            return new AS_LandingPage(_context);
-        }
+            bool gradeValidation;
 
-        public AS_LoggedInHomePage LoginToAssessmentServiceApplication(LoginUser user) => _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);   
+            var recordAGradePage = GoToRecordAGradePage();
 
-        public void CertifyApprentice(string grade, string enrolledStandard)
-        {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchApprentice(enrolledStandard)
-                .ClickConfirmInConfirmApprenticePage(enrolledStandard)
-                .ClickConfirmInDeclarationPage();
-
-            if (enrolledStandard == "additional learning option")
-                new AS_WhichLearningOptionPage(_context).SelectLearningOptionAndContinue();
-
-            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
-
-            if (grade == "Passed")
-                new AS_SearchEmployerAddressPage(_context).ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                    .EnterEmployerAddressAndContinue()
-                    .ClickContinueInConfirmEmployerAddressPage()
-                    .EnterRecipientDetailsAndContinue();
-        }
-
-        public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario = false)
-        {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchPrivatelyFundedApprentice()
-                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-                .EnterGivenNameAndContinue()
-                .SelectStandardAndContinue()
-                .SelectGradeForPrivatelyFundedAprrenticeAndContinue()
-                .EnterApprenticshipStartDateAndContinue()
-                .EnterUkprnAndContinue();
-
-            if (!invalidDateScenario)
+            if (leanerCriteria.HasMultiStandards)
+                gradeValidation = recordAGradePage.SearchApprentice(false).ViewCertificateHistory().VerifyGrade(grade);
+            else
             {
-                new AS_AchievementDatePage(_context).EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+                if (grade.ContainsCompareCaseInsensitive("pass")) gradeValidation = recordAGradePage.GoToAssesmentAlreadyRecordedPage().VerifyGrade(grade);
+
+                else gradeValidation = recordAGradePage.SearchApprentice(false).VerifyGrade(grade);
+            }
+
+            Assert.AreEqual(true, gradeValidation, $"Apprentice grade is not recorded as {grade}");
+        }
+
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate)
+        {
+            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
+
+            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
+
+            return SelectGrade(decPage, grade);
+        }
+   
+        public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
+        {
+            return CertifyPrivatelyFundedApprentice()
+                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()
                 .EnterRecipientDetailsAndContinue()
-                .ClickContinueInCheckAndSubmitAssessmentPage();
-            }
+                .ClickContinueInCheckAndSubmitAssessmentPage();   
         }
 
-        public void RemoveChangeOrgDetailsPermissionForTheUser()
+        public AS_AchievementDatePage CertifyPrivatelyFundedApprentice()
         {
-            _loggedInHomePage.ClickManageUsersLink()
+            return GoToRecordAGradePage().SearchApprentice(true)
+                .GoToWhichVersionPage(false)
+                .ClickConfirmInConfirmVersionPageNoOption()
+                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
+                .SelectGradeAsPass();
+        }
+
+        public void RemoveChangeOrgDetailsPermissionForTheUser(AS_LoggedInHomePage loggedInHomePage)
+        {
+            loggedInHomePage.ClickManageUsersLink()
                 .ClickManageUserNameLink()
                 .ClickEditUserPermissionLink()
                 .UnSelectChangeOrganisationDetailsCheckBox()
@@ -121,11 +118,63 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickViewOrganisationDetailsLink();
         }
 
-        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage, EPAODataHelper dataHelper)
+        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage) => _loggedInHomePage.ClickManageUsersLink().ClickInviteNewUserButton().EnterUserDetailsAndSendInvite(); 
+
+        public void DeleteCertificate(StaffDashboardPage staffDashboardPage)
         {
-            return _loggedInHomePage.ClickManageUsersLink()
-                .ClickInviteNewUserButton()
-                .EnterUserDetailsAndSendInvite(dataHelper);      
+            staffDashboardPage
+                .Search()
+                .SearchFor(_ePAOAdminDataHelper.LearnerUln)
+                .SelectACertificate()
+                .ClickDeleteCertificateLink()
+                .ClickYesAndContinue()
+                .EnterAuditDetails()
+                .ClickDeleteCertificateButton()
+                .ClickReturnToDashboard();
+        }
+
+        private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
+
+        private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade)
+        {
+            decpage.ClickConfirmInDeclarationPage();
+
+            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
+
+            if (grade == "pass")
+            {
+                return new AS_SearchEmployerAddressPage(_context)
+                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                .EnterEmployerAddressAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage()
+                .EnterRecipientDetailsAndContinue();
+            }
+            else if (grade == "PassWithExcellence")
+            {
+                return new AS_ConfirmAddressPage(_context)
+                    .ClickContinueInConfirmEmployerAddressPage()
+                    .EnterRecipientDetailsAndContinue();
+            }
+
+            return new AS_CheckAndSubmitAssessmentPage(_context);
+        }
+
+        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
+        {
+            if (leanerCriteria.HasMultipleVersions)
+            {
+                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+
+                if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
+                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+            }
+            else
+            {
+                if (leanerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(leanerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
+
+                else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
+            }
         }
     }
 }

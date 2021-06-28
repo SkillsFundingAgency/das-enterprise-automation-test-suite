@@ -1,9 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
@@ -26,6 +21,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             _peopleInControlCriminalAndComplianceChecksSectionHelpers = new PeopleInControlCriminalAndComplianceChecks_Section6Helpers();
         }
 
+        internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_TradingName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
         internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1_TradingNameNotRequired(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
@@ -37,11 +43,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-
         internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Fail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
@@ -51,12 +62,36 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage Fail_RegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_ROATP(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_OfficeForStudent(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
@@ -88,15 +123,57 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
             CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
-            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2_Fail(gwApplicationOverviewPage);
+            CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
+            CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailRegisterChecks_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
+            Fail_RegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(gwApplicationOverviewPage);
+            CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
+            CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_SupportingRouteSoleTrader(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
+            CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
+            CompleteRegisterChecks_Section3(gwApplicationOverviewPage);
+            CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(gwApplicationOverviewPage);
             CompleteOrganisationsCriminalAndComplianceChecks_Section5(gwApplicationOverviewPage);
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
@@ -106,7 +183,61 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
-                 .YesSurePassThisApplicationAndGoToGovernance();
+                 .YesSurePassThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
+                 .FailThisApplicationAndContinue()
+                 .YesSureFailThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
+        }
+
+        internal void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
+                 .RejectThisApplicationAndContinue()
+                 .YesSureRejectThisApplicationAndGoToGovernance()
+                 .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmWithdrawGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectApplicationWithdrawl()
+                .YesSureWithdrawThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmRemoveGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectRemoveApplication()
+                .YesSureRemoveThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmWithdrawOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        {
+            readOnlyGatewayOutcomePage.SelectApplicationWithdrawl()
+                .YesSureWithdrawThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal void ConfirmRemoveOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        {
+            readOnlyGatewayOutcomePage.SelectRemoveApplication()
+                .YesSureRemoveThisApplication()
+                .GoToRoATPGatewayApplicationsPage();
+        }
+        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Clarification(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+        internal void ConfirmClarification_GatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage.SelectClarificationForOverallApplication()
+                .YesClarificationRequired()
+                .GoToRoATPGatewayApplicationsPage()
+                .SelectInProgressTab()
+                .SelectApplication();
         }
     }
 }

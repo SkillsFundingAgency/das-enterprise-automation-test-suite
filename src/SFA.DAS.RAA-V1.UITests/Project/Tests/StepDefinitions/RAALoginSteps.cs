@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -56,7 +57,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             StringAssert.Contains("We have sent you an email for verification.", text);
         }
 
-        private void GoToRecruitBaseUrl() => _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        private void GoToRecruitBaseUrl() => _tabHelper.GoToUrl(UrlConfig.Recruit_BaseUrl);
 
         private SignInPage GotoSignInPage()
         {

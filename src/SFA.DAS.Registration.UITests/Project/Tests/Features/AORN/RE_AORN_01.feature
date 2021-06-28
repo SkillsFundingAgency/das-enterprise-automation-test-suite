@@ -1,6 +1,6 @@
 ﻿@regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Feature: RE_AORN_01
 
 Scenario: RE_AORN_01_Create an Employer Account through AORN route with paye details attached to a Single Organisation

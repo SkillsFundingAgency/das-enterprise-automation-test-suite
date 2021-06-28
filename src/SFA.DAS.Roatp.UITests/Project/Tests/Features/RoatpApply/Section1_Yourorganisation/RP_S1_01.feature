@@ -11,4 +11,4 @@ Scenario: RP_S1_01_Charity - Employer - Org-None of the above
     And the provider completes Organisation Information section for charity
     And the provider completes Tell us who's in control section for charity
     And the provider completes Describe your organisation section as OrgTypeNoneOfTheAbove
-    And the provider completes Experience and Accreditations section by selecting No to all
+    And the provider completes Experience and Accreditations section by selecting No to all Employer Route

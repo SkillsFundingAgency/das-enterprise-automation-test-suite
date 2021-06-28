@@ -10,14 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        private By ReturnToTrainingProviders => By.CssSelector(".govuk-button");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public TrainingProviderAddedPage(ScenarioContext context) : base(context) => _context = context;
 
         public YourTrainingProvidersPage SelectContinueInEmployerTrainingProviderAddedPage()
-        {
-            formCompletionHelper.ClickElement(ReturnToTrainingProviders);
+        { 
+            Continue();
             return new YourTrainingProvidersPage(_context);
         }
     }

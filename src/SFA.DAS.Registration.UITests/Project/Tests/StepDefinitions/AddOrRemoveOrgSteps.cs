@@ -76,6 +76,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheSignAgreementJourneyFromTheAccountHomePageShowsAcceptedAgreementPageWithLinkToReviewOtherPendingAgreements() =>
             SignAgreementFromHomePage().ClickOnReviewAndAcceptYourOtherAgreementsLink();
 
+        [Given(@"the Employer adds another legal entity")]
+        public void GivenTheEmployerAddsAnotherLegalEntity()
+        {
+            WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType.PublicSector);
+            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+            new HomePage(_context, true);
+        }
+
         private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
         {
             Assert.AreEqual(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());

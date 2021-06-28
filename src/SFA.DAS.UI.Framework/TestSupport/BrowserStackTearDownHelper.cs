@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Remote;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport

@@ -5,6 +5,8 @@
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public string OrganisationName { get; set; }
     }
 
     public class CampaingnsEmployerUser : LoginUser { }
@@ -20,7 +22,9 @@
 
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
-    public class TransfersUser : LoginUser { }
+    public class TransfersUser : MultipleAccountUser { }
+
+    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
     public class LevyUser : LoginUser { }
 
@@ -32,6 +36,10 @@
 
     public class EPAOAssessorUser : LoginUser { }
 
+    public class EPAODeleteAssessorUser : LoginUser { }
+
+    public class EPAOWithdrawalUser : LoggedInUser { }
+
     public class EPAOManageUser : LoginUser { }
 
     public class EPAOApplyUser : LoginUser
@@ -39,9 +47,32 @@
         public string FullName { get; set; }
     }
 
+    public class EPAOStageTwoStandardCancelUser : LoginUser { }
+
+    public class EPAOE2EApplyUser : LoginUser { }
+
     public class EPAOAdminUser : LoginUser { }
 
     public class SupportConsoleTier1User : LoginUser { }
 
     public class SupportConsoleTier2User : LoginUser { }
+
+    public class SupportToolsUser : LoginUser { }
+
+    public class EILevyUser : LoginUser { }
+
+    public class TransactorUser : LoginUser { }
+
+    public class ViewOnlyUser : LoginUser { }
+
+    public class MultipleAccountUser : LoginUser
+    {
+        public string SecondOrganisationName { get; set; }
+    }
+
+    public class Version4AgreementUser : LoginUser { }
+
+    public class Version5AgreementUser : LoginUser { }
+
+    public class Version6AgreementUser : LoginUser { }
 }

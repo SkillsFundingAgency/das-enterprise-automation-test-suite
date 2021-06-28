@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
@@ -17,7 +18,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
 
-        private By OrganisationType = By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+        private By OrganisationType => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+
+        private By ApplicationDeterminedDate => By.XPath("(//dd[@class='govuk-summary-list__value'])[11]");
 
         private By RefineSearch => By.LinkText("Refine search");
 
@@ -30,6 +33,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
 
         public void VerifyOrganisationType() => pageInteractionHelper.VerifyText(OrganisationType, objectContext.GetOrganisationType());
+
+        public void VerifyApplicationDeterminedDate() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
 
         public RoatpAdminHomePage GetRoatpAdminHomePage()
         {
@@ -97,8 +102,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public void VerifyOneProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetUkprn()}'");
 
-        public bool VerifyMainAndEmployerTypeStatus() => pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
+        public void VerifyNoProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"No results found for '{objectContext.GetUkprn()}'");
 
-        public bool VerifySupportingProviderTypeStatus() => pageInteractionHelper.VerifyText(ActiveStatus, SupportingStatus);
+        public ResultsFoundPage VerifyProviderStatusAsOnBoarding()
+        {
+            pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
+
+            return this;
+        }
+
+        public ResultsFoundPage VerifyProviderStatusAsActive()
+        {
+            pageInteractionHelper.VerifyText(ActiveStatus, SupportingStatus);
+
+            return this;
+        }
     }
 }

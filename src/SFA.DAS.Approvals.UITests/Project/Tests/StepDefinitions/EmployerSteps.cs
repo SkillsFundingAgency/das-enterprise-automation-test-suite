@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
@@ -8,16 +10,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerSteps
     {
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private YourCohortRequestsPage _yourCohortRequestsPage;
-        private ReviewYourCohortPage _reviewYourCohortPage;
+        #region context&Helpers
+        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
+        #endregion
+
+        private ApprenticeRequestsPage _apprenticeRequestsPage;
+        private ReviewYourCohortPage _reviewYourCohortPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private readonly PublishPaymentEvent _publishPaymentEvent;
 
         public EmployerSteps(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _dataHelper = context.Get<ApprenticeDataHelper>();
+            _publishPaymentEvent = context.Get<PublishPaymentEvent>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -31,7 +42,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ViewCurrentApprenticeDetails()
                 .ClickEditStatusLink()
                 .SelectPauseAndContinue()
-                .SelectYesAndConfirm();
+                .SelectYesAndConfirm()
+                .ValidateFlashMessage("Apprenticeship paused");
         }
 
         [Then(@"Employer is able to Resume the apprentice")]
@@ -40,14 +52,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = _apprenticeDetailsPage
                 .ClickEditStatusLink()
                 .SelectResumeAndContinue()
-                .SelectYesAndConfirm();
+                .SelectYesAndConfirm()
+                 .ValidateFlashMessage("Apprenticeship resumed");
         }
 
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
-            .StopApprenticeThisMonth(_apprenticeDetailsPage);
+            .StopApprenticeThisMonth(_apprenticeDetailsPage)
+             .ValidateFlashMessage("Apprenticeship stopped");
         }
 
         [Then(@"Employer can edit stop date to learner start date")]
@@ -55,24 +69,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage
                 .ClickEditStopDateLink()
-                .EditStopDateToCourseStartDateAndSubmit();
+                .EditStopDateToCourseStartDateAndSubmit()
+                .ValidateFlashMessage("New stop date confirmed");
         }
 
         [Given(@"Employer adds (\d) apprentices to current cohort")]
         public void EmployerAddsApprenticesToCurrentCohort(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
             var x = _reviewYourCohortPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(x);
 
-            _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndExit();
+            _apprenticeRequestsPage = _reviewYourCohortPage.SaveAndExit();
         }
 
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft()
         {
-            _yourCohortRequestsPage.GoToDraftCohorts()
+            _apprenticeRequestsPage.GoToDrafts()
                 .SelectViewCurrentCohortDetails();
         }
 
@@ -119,20 +134,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
 
-			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
+            _reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
-
+        [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
+
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
             var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
@@ -151,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(_reviewYourCohortPage);
-            
+
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
@@ -165,5 +181,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
+
+        [When(@"PaymentsCompletion event is received")]
+        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
+
+        [Given(@"a new live apprentice record is created")]
+        [Then(@"a new live apprentice record is created")]
+        public void ANewLiveApprenticeRecordIsCreated()
+        {
+            _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
+        }
+
+        [Then(@"the apprenticeship status changes to completed")]
+        public void ThenTheApprenticeshipStatusChangesToCompleted() => _employerStepsHelper.ValidateCompletionStatus();
+
+        [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
+        public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
+
+        [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        public void EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
+        {
+            _objectContext.SetIsEIJourney();
+            _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
+            _objectContext.SetEIStartMonth(eIStartmonth);
+            _objectContext.SetEIStartYear(eIStartyear);
+            TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
+        }
+
+        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
+            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
+
+        [Then(@"the user can add an apprentices")]
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context, true).AddAnApprentice();
     }
 }

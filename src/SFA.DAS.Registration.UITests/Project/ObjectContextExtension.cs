@@ -1,31 +1,35 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
     public static class ObjectContextExtension
     {
         #region Constants
-        private const string AccountIdKey = "accountid";
+        private static string UserCredsKey(int index) => $"usercreds_{index}";
+        private const string HashedAccountIdKey = "hashedaccountid";
+        private const string DbAccountIdKey = "dbaccountid";
         private const string AgreementIdKey = "agreementid";
-        private const string LoggedInUserKey = "loggedinuserkey";
+        private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
         private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
-        private const string RegisteredEmailKey = "registeredemailkey";
+        private const string RegisteredEmailAddress = "registeredemailaddress";
         private const string FirstAccountOrganisationNameKey = "firstaccountorganisationkamekey";
         private const string SecondAccountOrganisationNameKey = "secondaccountorganisationkamekey";
         private const string AdditionalOrganisationAddedNameKey = "additionalorganisationaddednamekey";
         #endregion
 
-        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
+        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, string organisationName)
         {
-            objectContext.Set("LoggedInUser", loginusername);
             objectContext.SetRegisteredEmail(loginusername);
-            objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword });
+            objectContext.UpdateOrganisationName(organisationName);
+            objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
-        internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
+        internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);
+        internal static void SetDBAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(DbAccountIdKey, accountid);
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);
@@ -34,7 +38,17 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void SetSecondAccountOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName) => objectContext.Set(SecondAccountOrganisationNameKey, secondAccountOrganisationName);
         internal static void SetReceiverAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverAccountIdkey, value);
         internal static void SetReceiverPublicAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverPublicAccountIdkey, value);
-        internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailKey, value);
+        internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
+        internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
+            objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
+
+        internal static void UpdateUserCreds(this ObjectContext objectContext, string accountid, string hashedaccountid, int index)
+        {
+            var usercreds = objectContext.Get<UserCreds>(UserCredsKey(index));
+            usercreds.Accountid = accountid;
+            usercreds.HashedAccountid = hashedaccountid;
+        }
+
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
@@ -42,8 +56,8 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetAdditionalOrganisationAddedName(this ObjectContext objectContext) => objectContext.Get(AdditionalOrganisationAddedNameKey);
         public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
-        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
-        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserKey);
-        internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailKey);
+        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
+        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserObject);
+        internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);
     }
 }

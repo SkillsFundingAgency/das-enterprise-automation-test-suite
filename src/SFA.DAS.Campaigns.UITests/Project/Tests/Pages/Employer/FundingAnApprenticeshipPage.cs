@@ -5,40 +5,39 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class FundingAnApprenticeshipPage : EmployerBasePage
     {
-        protected override string PageTitle => "FUNDING AN APPRENTICESHIP";
+        protected override string PageTitle => "Funding an apprenticeship";
 
-        #region Page Object Elements
-        private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'The key facts')]");
-        private readonly By _subHeading2 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeship funding from the government')]");
-        private readonly By _subHeading3 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeship costs paid by you')]");
-        private readonly By _subHeading4 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Paying for apprenticeships using a transfer of apprenticeship funds')]");
-        private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeships in Scotland, Northern Ireland and Wales')]");
-        private readonly By _nonLevyText = By.XPath("//div[@class='page']/p");
+        #region Page Object Element
 
-        private readonly By _continueButton = By.XPath("//button[@type= 'submit']");
-
+        private readonly By __levyPayingEmployer= By.Id("levyPayerYes");
+        private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
+        private readonly By _notSure = By.Id("levyPayerDontKnow");
+        private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
         private readonly ScenarioContext _context;
-
         #endregion
 
-        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
-
-            pageInteractionHelper.VerifyText(_subHeading1, "THE KEY FACTS");
-            pageInteractionHelper.VerifyText(_subHeading2, "APPRENTICESHIP FUNDING FROM THE GOVERNMENT");
-            pageInteractionHelper.VerifyText(_subHeading3, "APPRENTICESHIP COSTS PAID BY YOU");
-            pageInteractionHelper.VerifyText(_subHeading4, "PAYING FOR APPRENTICESHIPS USING A TRANSFER OF APPRENTICESHIP FUNDS");
-            pageInteractionHelper.VerifyText(_subHeading5, "APPRENTICESHIPS IN SCOTLAND, NORTHERN IRELAND AND WALES");
-
+            _context = context;
         }
 
-        public void CheckForNonLevyContent()
+        public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
         {
-            pageInteractionHelper.VerifyText(_nonLevyText, "As an employer with a pay bill of less than £3 million per year");
-            
+            formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
+            formCompletionHelper.ClickElement(_continueButton);
+            return new NonLevyPayingEmployerPage(_context);
         }
-
+        public LevyingPayingEmployerPage NavigateToLevyEmployerPage()
+        {
+            formCompletionHelper.SelectCheckbox(__levyPayingEmployer);
+            formCompletionHelper.ClickElement(_continueButton);
+            return new LevyingPayingEmployerPage(_context);
+        }
+        public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
+        {
+            formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
+            formCompletionHelper.ClickElement(_continueButton);
+            return new NotSureLevyPayingEmployerPage(_context);
+        }
     }
 }

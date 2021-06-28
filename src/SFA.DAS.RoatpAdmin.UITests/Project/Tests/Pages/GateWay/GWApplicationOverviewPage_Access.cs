@@ -17,39 +17,45 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index));
 
         #region Section-1 Organisation Checks
-        public LegalNameCheckPage Access_Section1_LegalName()
+
+        public OneApplicationsIn12MonthsPage Access_Section1_1ApplicationInTwelveMonths()
         {
             NavigateToTask(OrganisationChecks, OrganisationChecks_1);
+            return new OneApplicationsIn12MonthsPage(_context);
+        }
+        public LegalNameCheckPage Access_Section1_LegalName()
+        {
+            NavigateToTask(OrganisationChecks, OrganisationChecks_2);
             return new LegalNameCheckPage(_context);
         }
         public TradingNameCheckPage Access_Section1_TradingName()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_2);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_3);
             return new TradingNameCheckPage(_context);
         }
         public OrganisationStatusCheckPage Access_Section1_OrganisationStatus()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_3);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_4);
             return new OrganisationStatusCheckPage(_context);
         }
         public AddressCheckPage Access_Section1_Address()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_4);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_5);
             return new AddressCheckPage(_context);
         }
         public ICONumberCheckPage Access_Section1_IcoRegistrationNumber()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_5);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_6);
             return new ICONumberCheckPage(_context);
         }
         public WebsiteAddressCheckPage Access_Section1_WebsiteAddress()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_6);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_7);
             return new WebsiteAddressCheckPage(_context);
         }
         public OrganisationHighRiskCheckPage Access_Section1_OrganisationHighRisk()
         {
-            NavigateToTask(OrganisationChecks, OrganisationChecks_7);
+            NavigateToTask(OrganisationChecks, OrganisationChecks_8);
             return new OrganisationHighRiskCheckPage(_context);
         }
         #endregion
@@ -154,10 +160,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_10);
             return new InvestigatedDuetoSafeguardingIssuesCheckPage(_context);
         }
-        public InvestigatedDuetoWhistleBlowingIssuesCheckPage Access_Section5_InvestigatedDueToWhistleblowig()
+        public InvestigatedByESFAorOtherPublicBodyPage Access_Section5_InvestigatedDueToWhistleblowig()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_11);
-            return new InvestigatedDuetoWhistleBlowingIssuesCheckPage(_context);
+            return new InvestigatedByESFAorOtherPublicBodyPage(_context);
         }
         public SubjectToInsolvencyCheckPage Access_Section5_InsolvencyOrWindingUpProceedings()
         {
@@ -211,6 +217,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         {
             NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_9);
             return new BeenMadeBankruptCheckPage(_context);
+        }
+        public TeachingRegulationAgencyPage Access_Section6_ProhibitionOrder()
+        {
+            NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_10);
+            return new TeachingRegulationAgencyPage(_context);
+        }
+        public SubjectToBanFromManagementOrGovernanceOfSchoolsPage Access_Section6_BanFromManagementOrGovernance()
+        {
+            NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_11);
+            return new SubjectToBanFromManagementOrGovernanceOfSchoolsPage(_context);
         }
         #endregion
 

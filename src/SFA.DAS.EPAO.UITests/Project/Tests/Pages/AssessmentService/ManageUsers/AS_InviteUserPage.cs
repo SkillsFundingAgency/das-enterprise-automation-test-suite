@@ -25,9 +25,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             VerifyPage();
         }
 
-        public string EnterUserDetailsAndSendInvite(EPAODataHelper dataHelper)
+        public string EnterUserDetailsAndSendInvite()
         {
-            var newUserEmailId = dataHelper.RandomEmail;
+            var newUserEmailId = ePAOAssesmentServiceDataHelper.RandomEmail;
             formCompletionHelper.EnterText(GivenNameTextBox, "Test Given Name");
             formCompletionHelper.EnterText(FamilyNameTextBox, "Test Family Name");
             formCompletionHelper.EnterText(EmailTextBox, newUserEmailId);

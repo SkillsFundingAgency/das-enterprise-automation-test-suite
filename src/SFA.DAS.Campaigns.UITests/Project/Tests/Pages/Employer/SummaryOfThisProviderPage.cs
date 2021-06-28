@@ -5,9 +5,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SummaryOfThisProviderPage : EmployerBasePage
     {
-        protected override string PageTitle => "TRAINING INFORMATION";
+        protected override string PageTitle => "Contact details";
 
-        protected override By PageHeader => By.CssSelector(".main-content .page .page .heading-l");
+        protected override By PageHeader => By.CssSelector(".fiu-panel .govuk-heading-m");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

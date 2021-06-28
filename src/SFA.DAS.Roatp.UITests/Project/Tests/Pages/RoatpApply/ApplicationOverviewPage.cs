@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -15,6 +14,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private readonly ScenarioContext _context;
         #endregion
 
+        private By ApplicationDetailsSelector => By.CssSelector(".govuk-summary-list__row");
+
         private By TaskLists => By.CssSelector(".app-task-list > li");
 
         private By TaskSection => By.CssSelector(".app-task-list__section");
@@ -23,12 +24,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By TaskName => By.CssSelector(".app-task-list__task-name > .govuk-link");
 
-        private By TaskStatus => By.CssSelector(".govuk-tag");
+        private By TaskStatus => By.CssSelector(".app-task-list__task-completed, .app-task-list__task-notrequired, .app-task-list__task-next, .app-task-list__task-inprogress");
 
         public ApplicationOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
+        }
+
+        public void VerifyApplicationDetails()
+        {
+            VerifyPage(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetProviderName());
+            VerifyPage(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetUkprn());
         }
 
         private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);

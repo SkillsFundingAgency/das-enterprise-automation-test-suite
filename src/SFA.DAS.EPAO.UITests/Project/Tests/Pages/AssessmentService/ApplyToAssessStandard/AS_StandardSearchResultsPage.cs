@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_ConfirmAndApplyPage Apply()
         {
-            tableRowHelper.SelectRowFromTable("Apply for standard", standardDataHelper.ApplyforStandard);
+            tableRowHelper.SelectRowFromTable("Apply for standard", objectContext.GetApplyStandardName());
             return new AS_ConfirmAndApplyPage(_context);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +19,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
+
+        public T InvokeAction<T>(Func<T> func, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(func, retryAction);
+
         public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
         public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
@@ -37,24 +40,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
-
-        //public bool WaitforURLToChange(string expected)
-        //{
-        //    bool func()
-        //    {
-        //        var actual = _webDriver.Url;
-        //        if (actual.Contains(expected))
-        //        {
-        //            return true;
-        //        }
-
-        //        throw new Exception("Url verification failed:"
-        //        + "\n Expected: " + expected + " page"
-        //        + "\n Found: " + actual + " page");
-        //    }
-
-        //    return VerifyPage(func);
-        //}
 
         public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
 
@@ -91,12 +76,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual + " page");
             }
 
-            return VerifyPage(func);
+            return VerifyPage(func, retryAction);
         }
 
-        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
+        public bool VerifyPage(By locator, Action retryAction = null) => VerifyPage(Func(locator), retryAction);
 
-        public bool VerifyPage(By locator, string expected) => VerifyPage(() => FindElement(locator), expected);
+        public bool VerifyPage(By locator, string expected, Action retryAction = null) => VerifyPage(() => FindElement(locator), expected, retryAction);
 
         public bool VerifyPageAfterRefresh(By locator)
         {
@@ -109,11 +94,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
-        private bool VerifyPage(Func<bool> func)
+        private bool VerifyPage(Func<bool> func, Action retryAction = null)
         {
             void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
 
-            return _retryHelper.RetryOnException(func, beforeAction);
+            return _retryHelper.RetryOnException(func, beforeAction, retryAction);
         }
 
         public bool VerifyText(string actual, string expected1, string expected2)
@@ -208,19 +193,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
-        public void SwitchFrame(By iFrameFieldLocator, By iFrameBodyLocator, string text)
-        {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].innerHTML = '{text}'", _webDriver.FindElement(iFrameBodyLocator));
-            _webDriver.SwitchTo().DefaultContent();
-        }
-
-        public void SwitchToFrame(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(15));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
-        }
-
         public string GetText(By locator) => GetText(() => FindElement(locator));
 
         public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
@@ -228,6 +200,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
         public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
+        
+        public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
         public string GetText(IWebElement webElement) => webElement.Text;
 

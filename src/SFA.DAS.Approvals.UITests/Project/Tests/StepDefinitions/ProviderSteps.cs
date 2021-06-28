@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
-		public ProviderSteps(ScenarioContext context)
+        public ProviderSteps(ScenarioContext context)
         {
             _context = context;
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -40,7 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
         }
-
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
@@ -108,6 +107,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval()
         {
             _providerStepsHelper.DeleteCohort(_providerReviewYourCohortPage);
+        }
+
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices)
+        {
+            _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
         }
     }
 }

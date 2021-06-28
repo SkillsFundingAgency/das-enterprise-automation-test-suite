@@ -9,8 +9,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By OrgLink => By.XPath("//button[text()='BRUNEL UNIVERSITY LONDON']");
         private By InvalidSearchResultText => By.CssSelector("#main-content .govuk-heading-m");
+
         private By SearchTextBox => By.Id("SearchString");
         #endregion
 
@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         public AP_PR3_SelectOrganisationTypePage ClickOrgLinkFromSearchResultsForPage()
         {
-            formCompletionHelper.Click(OrgLink);
+            formCompletionHelper.ClickButtonByText(ContinueButton, objectContext.GetApplyOrganisationName());
             return new AP_PR3_SelectOrganisationTypePage(_context);
         }
 

@@ -50,7 +50,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-			_providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservation(_login);
+			_providerAddApprenticeDetailsPage = _providerStepsHelper
+                .ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
 
 			_providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices);
 
@@ -62,7 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation()
         {
-			_providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservation(_login);
+			_providerAddApprenticeDetailsPage = _providerStepsHelper
+                .ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
         }
 
         [Then(@"Provider can add an apprentice")]

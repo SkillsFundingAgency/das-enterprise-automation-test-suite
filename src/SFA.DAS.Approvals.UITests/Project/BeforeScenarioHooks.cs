@@ -1,12 +1,11 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -16,17 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
-        private readonly ApprovalsConfig _approvalsConfig;
-        private readonly RegistrationConfig _registrationConfig;
-        private readonly ProviderPermissionsConfig _providerPermissionsConfig;
+        private readonly DbConfig _dbConfig;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
-            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
-            _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
+            _dbConfig = context.Get<DbConfig>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -35,14 +30,15 @@ namespace SFA.DAS.Approvals.UITests.Project
             var random = _context.Get<RandomDataGenerator>();
 
             var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
+                                   _context.ScenarioInfo.Tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_approvalsConfig);
+            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
             _context.Set(commitmentsdatahelper);
 
-            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_providerPermissionsConfig);
+            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_dbConfig);
 
             _context.Set(providerPermissionsdatahelper);
 
@@ -62,13 +58,17 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
+            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper));
 
-            _context.Set(new AgreementIdSqlHelper(_registrationConfig));
+            _context.Set(new AgreementIdSqlHelper(_dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper(random));
 
-            _context.Set(new PublicSectorReportingSqlDataHelper(_approvalsConfig));
+            _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
+
+            var nServiceBusHelper = _context.Get<NServiceBusHelper>();
+
+            _context.Set(new PublishPaymentEvent(nServiceBusHelper));
         }
     }
 }

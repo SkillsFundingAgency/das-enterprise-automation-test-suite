@@ -49,16 +49,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new VacancyPreviewPart2Page(_context);
         }
 
-        public RecruitmentHomePage GoToVacancyDashboard()
+        public YourApprenticeshipAdvertsHomePage GoToVacancyDashboard()
         {
             formCompletionHelper.ClickLinkByText("Go to your vacancy dashboard");
-            return new RecruitmentHomePage(_context);
+            return new YourApprenticeshipAdvertsHomePage(_context);
         }
 
-        public ManageVacancyPage GoToManageVacancyPage()
+        public ManageRecruitPage GoToManageVacancyPage()
         {
             formCompletionHelper.ClickLinkByText("application");
-            return new ManageVacancyPage(_context);
+            return new ManageRecruitPage(_context);
         }
         public RecruitmentDynamicHomePage ConfirmVacancyDetails(string status, DateTime dateTime)
         {

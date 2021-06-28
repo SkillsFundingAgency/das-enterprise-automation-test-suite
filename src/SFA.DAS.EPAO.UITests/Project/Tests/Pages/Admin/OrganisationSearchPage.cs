@@ -19,9 +19,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
-        public OrganisationSearchResultsPage SearchForAnOrganisation(string keyword)
+        public OrganisationSearchResultsPage SearchForAnOrganisation()
         {
-            formCompletionHelper.EnterText(OrganisationSearchField, keyword);
+            formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
             Continue();
             return new OrganisationSearchResultsPage(_context);
         }

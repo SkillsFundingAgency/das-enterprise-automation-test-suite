@@ -16,11 +16,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectYesAndContinueonILRpage()
+        public IndividualAccountableForILRPage SelectYesAndContinueonILRpage()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new IndividualAccountableForILRPage(_context);
         }
     }
 }

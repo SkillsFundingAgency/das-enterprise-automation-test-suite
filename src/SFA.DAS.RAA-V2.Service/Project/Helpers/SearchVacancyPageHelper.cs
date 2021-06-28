@@ -32,18 +32,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _dataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        public ManageVacancyPage SelectLiveVacancy()
+        public ManageRecruitPage SelectLiveVacancy()
         {
-            _formCompletionHelper.ClickLinkByText("Live vacancies");
+            _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
-            _formCompletionHelper.ClickInterceptedElement(_dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new ManageVacancyPage(_context);
+            _formCompletionHelper.ClickElement(_dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
+            return new ManageRecruitPage(_context);
         }
 
-        public ManageVacancyPage SearchVacancyByVacancyReference()
+        public ManageRecruitPage SearchVacancyByVacancyReference()
         {
             SearchVacancy();
-            return new ManageVacancyPage(_context);
+            return new ManageRecruitPage(_context);
         }
 
         public ReferVacancyPage SearchReferVacancy()
@@ -58,7 +58,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);            
             _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
-            _formCompletionHelper.ClickInterceptedElement(_pageInteractionHelper.FindElement(Manage));                        
+            _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));                        
         }
     }
 }

@@ -4,6 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -24,10 +25,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
-        public HomePage GotoEmployerHomePage()
+        public HomePage GotoEmployerHomePage(bool openInNewTab = true)
         {
-            OpenInNewTab();
+            if (openInNewTab)
+            {
+                OpenInNewTab();
+            }                
 
+            if (_loginHelper.IsIndexPageDisplayed())
+            {
+                new IndexPage(_context).ClickSignInLinkOnIndexPage();
+            }
+            
             if (_loginHelper.IsSignInPageDisplayed())
             {
                 return _loginHelper.ReLogin();
@@ -39,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                     .GoToHomePage(_objectContext.GetOrganisationName());
             }
 
-            return new HomePage(_context);
+            return new HomePage(_context, !openInNewTab);
         }
 
         public MyAccountWithOutPayePage GotoEmployerHomePage(MyAccountWithOutPayeLoginHelper loginHelper)
@@ -54,6 +63,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        private void OpenInNewTab() => _tabHelper.OpenInNewTab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+        private void OpenInNewTab() => _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
     }
 }

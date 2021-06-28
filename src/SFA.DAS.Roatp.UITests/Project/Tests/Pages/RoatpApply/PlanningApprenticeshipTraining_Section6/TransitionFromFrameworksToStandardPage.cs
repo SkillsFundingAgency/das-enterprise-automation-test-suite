@@ -30,5 +30,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             EnterLongTextAreaAndContinue(applydataHelpers.TransitionFromFrameWorksToStandards);
             return new ApplicationOverviewPage(_context);
         }
+        public AwardingBodiesPage EnterTextForTransitionFromFramewordsToStandardsAndContinueIncludesFrameworks()
+        {
+            EnterLongTextAreaAndContinue(applydataHelpers.TransitionFromFrameWorksToStandards);
+            return new AwardingBodiesPage(_context);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -33,25 +34,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
         {
+            var courseStartDate = SetEIJourneyTestData();
+
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
-            if(isMF==false)
+            if (isMF == false)
             {
-                formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
-                formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
+                formCompletionHelper.EnterText(StartDateMonth, courseStartDate.Month);
+                formCompletionHelper.EnterText(StartDateYear, courseStartDate.Year);
             }
+
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
+
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
         }
+
         public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
@@ -65,6 +72,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
             Assert.True(options.All(x => x.Contains("(Standard)")));
             return this;
+        }
+
+        private DateTime SetEIJourneyTestData()
+        {
+            if (objectContext.IsEIJourney())
+            {
+                apprenticeDataHelper.DateOfBirthDay = 1;
+                apprenticeDataHelper.DateOfBirthMonth = 8;
+                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
+                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomLastName();
+                apprenticeDataHelper.TrainingPrice = "7500";
+
+                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
+            }
+            return apprenticeCourseDataHelper.CourseStartDate;
         }
     }
 }

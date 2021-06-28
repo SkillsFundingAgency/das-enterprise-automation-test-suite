@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
+using System.Linq;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -19,11 +20,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly string _directory;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title");
+        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
+        protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
+
         protected abstract string PageTitle { get; }
 
         protected virtual By AcceptCookieButton { get; }
@@ -37,14 +40,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
-            
-            if (_frameworkConfig.IsVstsExecution)
+
+            if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
-        protected bool VerifyPage(Func<List<IWebElement>> func) => _pageInteractionHelper.VerifyPage(func, PageTitle);
+        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
 
         protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => _pageInteractionHelper.VerifyPage(func, expected);
 
@@ -52,11 +55,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(By locator) => _pageInteractionHelper.VerifyPage(locator);
 
+        protected bool VerifyPage(By locator, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, retryAction);
+
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 
         protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
 
-        protected void Continue() => _formCompletionHelper.Click(ContinueButton);
+        protected bool VerifyPage(By locator, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, text, retryAction);
+
+        protected virtual void Continue() => _formCompletionHelper.Click(ContinueButton);
 
         protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
 

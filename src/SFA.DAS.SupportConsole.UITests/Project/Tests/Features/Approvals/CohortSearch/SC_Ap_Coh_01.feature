@@ -1,6 +1,6 @@
 ﻿Feature: SC_Ap_Coh_01
 
-@regression
+@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_Coh_01 - View Cohort details

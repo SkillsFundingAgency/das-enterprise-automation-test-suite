@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public StandardSearchResultsPage SearchStandards()
         {
-            formCompletionHelper.EnterText(StandardSearchString, ePAOAdminDataHelper.Standards);
+            formCompletionHelper.EnterText(StandardSearchString, ePAOAdminDataHelper.StandardCode);
             Continue();
             return new StandardSearchResultsPage(_context);
         }

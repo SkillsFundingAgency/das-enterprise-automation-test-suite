@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Qualifications";
 
-        private By Preview => By.LinkText("Preview");
+        private By Preview => By.PartialLinkText("Preview");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

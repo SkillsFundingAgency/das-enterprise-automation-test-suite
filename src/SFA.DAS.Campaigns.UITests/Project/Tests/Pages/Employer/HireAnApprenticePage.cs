@@ -5,25 +5,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class HireAnApprenticePage : EmployerBasePage
     {
-        protected override string PageTitle => "HIRING AN APPRENTICE";
+        protected override string PageTitle => "Hiring an apprentice";
 
-        #region Page Object Elements
-        private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Who can be an apprentice?')]");
-        private readonly By _subHeading2 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Preparing to find an apprentice')]");
-        private readonly By _subHeading3 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Advertising apprenticeships')]");
-        private readonly By _subHeading4 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Choosing the right apprentice')]");
-        private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Interview questions to ask apprentices')]");
-        #endregion
-        public HireAnApprenticePage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
-        {
-            pageInteractionHelper.VerifyText(_subHeading1, "WHO CAN BE AN APPRENTICE?");
-            pageInteractionHelper.VerifyText(_subHeading2, "PREPARING TO FIND AN APPRENTICE");
-            pageInteractionHelper.VerifyText(_subHeading3, "ADVERTISING APPRENTICESHIPS");
-            pageInteractionHelper.VerifyText(_subHeading4, "CHOOSING THE RIGHT APPRENTICE");
-            pageInteractionHelper.VerifyText(_subHeading5, "INTERVIEW QUESTIONS TO ASK APPRENTICES");
-        }
+        public HireAnApprenticePage(ScenarioContext context) : base(context) { }
     }
 }
 

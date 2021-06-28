@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SFA.DAS.ProviderLogin.Service</RootNamespace>
   </PropertyGroup>
 
@@ -10,6 +10,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />

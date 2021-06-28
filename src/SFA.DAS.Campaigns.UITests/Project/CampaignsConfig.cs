@@ -1,10 +1,7 @@
-﻿using SFA.DAS.UI.Framework;
-
-namespace SFA.DAS.Campaigns.UITests.Project
+﻿namespace SFA.DAS.Campaigns.UITests.Project
 {
-    public class CampaignsConfig
+    public static class CampaignsConfig
     { 
-        public string CA_BaseUrl => UrlConfig.CABaseURL;
-        public string BasketViewPath => "/Basket/View";
+        public static string BasketViewPath => "/Basket/View";
     }
 }

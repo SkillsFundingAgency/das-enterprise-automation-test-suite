@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.ConfigurationBuilder;
@@ -6,43 +7,43 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper
+    public class ApprenticeDataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
 
-        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsSqlDataHelper commitmentsdataHelper)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsSqlDataHelper commitmentsdataHelper) : base(randomDataGenerator)
         {
             _objectContext = objectContext;
-            _randomDataGenerator = randomDataGenerator;
             _commitmentsdataHelper = commitmentsdataHelper;
-            ApprenticeFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
-            TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
-            EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
+            TrainingPrice = "1" + randomDataGenerator.GenerateRandomNumber(3);
+            EmployerReference = randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
         }
 
-        public string ApprenticeFirstname { get; private set; }
+        public string ApprenticeFirstname { get; set; }
 
-        public string ApprenticeLastname { get; private set; }
+        public string ApprenticeLastname { get; set; }
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
-        public int DateOfBirthDay { get; }
+        public int DateOfBirthDay { get; set; }
 
-        public int DateOfBirthMonth { get; }
+        public int DateOfBirthMonth { get; set; }
 
-        public int DateOfBirthYear { get; }
+        public int DateOfBirthYear { get; set; }
 
-        public string TrainingPrice { get; }
+        public string TrainingPrice { get; set; }
 
         public string EmployerReference { get; }
+
+        public string MadeRedundant { get; set; }
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
@@ -52,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string Uln()
         {
-            var uln = _randomDataGenerator.GenerateRandomUln();
+            var uln = randomDataGenerator.GenerateRandomUln();
             Ulns.Add(uln);
             return uln;
         }

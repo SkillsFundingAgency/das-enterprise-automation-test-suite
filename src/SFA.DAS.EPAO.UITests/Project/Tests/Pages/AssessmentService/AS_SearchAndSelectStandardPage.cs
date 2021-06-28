@@ -22,8 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_WhatGradePage SelectStandardAndContinue()
         {
             formCompletionHelper.Click(StandardTextBox);
-            var autoSuggestOptionElements = pageInteractionHelper.FindElements(AutoSuggestOptions);
-            formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(autoSuggestOptionElements, false, 0));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AutoSuggestOptions));
             Continue();
             return new AS_WhatGradePage(_context);
         }

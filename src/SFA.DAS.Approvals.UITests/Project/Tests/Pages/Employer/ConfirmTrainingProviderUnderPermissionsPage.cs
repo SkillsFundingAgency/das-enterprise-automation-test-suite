@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By SelectYesConfirm => By.XPath("//fieldset[@class='govuk-fieldset']//input[@automation-id='choice-1']");
-
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         public ConfirmTrainingProviderUnderPermissionsPage(ScenarioContext context) : base(context) => _context = context;
 
         internal TrainingProviderAddedPage ConfirmTrainingProvider()

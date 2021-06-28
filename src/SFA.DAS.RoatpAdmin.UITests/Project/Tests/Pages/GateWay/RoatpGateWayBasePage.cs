@@ -1,32 +1,26 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using SFA.DAS.UI.Framework;
-using System;
-using System.Linq;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
-    public abstract class RoatpGateWayBasePage : RoatpBasePage
+    public abstract class RoatpGateWayBasePage : RoatpNewAdminBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FrameworkConfig _frameworkConfig;
         #endregion
 
-        protected By EnterCommentsForFail => By.Id("OptionFailText");
+        private By ApplicationActions = By.CssSelector(".govuk-link--no-visited-state");
 
-        public RoatpGateWayBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _frameworkConfig = context.Get<FrameworkConfig>();
-        }
+        private By ClarificationText = By.Id("OptionClarificationText");
+        protected RoatpGateWayBasePage(ScenarioContext context) : base(context) => _context = context;
 
-        public  GWApplicationOverviewPage SelectFailAndContinue(string text)
+        public GWApplicationOverviewPage SelectFailAndContinue()
         {
             SelectRadioOptionByText("Fail");
-            formCompletionHelper.EnterText(EnterCommentsForFail, text);
+            EnterFailInternalComments();
             Continue();
             return new GWApplicationOverviewPage(_context);
         }
@@ -43,6 +37,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             SelectRadioOptionByText("Pass");
             Continue();
             return new GWApplicationOverviewPage(_context);
+        }
+
+        public GWApplicationOverviewPage SelectClarificationAndContinue()
+        {
+            SelectRadioOptionByText("Needs clarification");
+            formCompletionHelper.EnterText(ClarificationText, "Clarification Comments");
+            Continue();
+            return new GWApplicationOverviewPage(_context);
+        }
+
+        public WithdrawConfirmPage SelectApplicationWithdrawl()
+        {
+            formCompletionHelper.ClickLinkByText(ApplicationActions,"Applicant withdrawal of application");
+            return new WithdrawConfirmPage(_context);
+        }
+
+        public ConfirmClarificationPage SelectClarificationForOverallApplication()
+        {
+            formCompletionHelper.ClickLinkByText("Ask for clarification");
+            return new ConfirmClarificationPage(_context);
+        }
+
+        public RemoveConfirmPage SelectRemoveApplication()
+        {
+            formCompletionHelper.ClickLinkByText(ApplicationActions, "Internal removal of application");
+            return new RemoveConfirmPage(_context);
         }
     }
 }

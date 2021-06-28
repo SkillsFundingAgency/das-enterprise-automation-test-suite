@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
 {
     public class ApplicationSubmittedPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Application submitted";
+        protected override string PageTitle => "Application complete";
 
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
 

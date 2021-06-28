@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellationPages;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessmentSection;
 using TechTalk.SpecFlow;
 
@@ -20,6 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         private By OrganisationDetailsSectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[1]");
         private By DeclarationsSectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[2]");
         private By FHASectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[3]");
+        private By CancelAStandardLink => By.XPath("(//p[@class='govuk-body'])[4]");
         #endregion
 
         public AP_ApplicationOverviewPage(ScenarioContext context) : base(context)
@@ -39,6 +41,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             formCompletionHelper.Click(GoToDeclarationsLink);
             return new AP_DeclarationsBasePage(_context);
         }
+
+        public bool GoToFinancialHealthAssessmentLinkExists() => pageInteractionHelper.IsElementDisplayed(GoToFinancialHealthAssessmentLink);
 
         public AP_FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
         {
@@ -68,6 +72,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         {
             pageInteractionHelper.VerifyText(FHASectionCompletedTextLabel, _fHASectionCompletedText);
             return this;
+        }
+
+        public AP_OSC01_AreYouSureYouWantToCancelThisStandardPage ClickToCancelYourStandardApplication()
+        {
+            formCompletionHelper.Click(CancelAStandardLink);
+            return new AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(_context);
         }
     }
 }

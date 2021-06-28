@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -10,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private By TransferStatus => By.XPath("//p[3]");
-        private By AddNewOrganisationButton => By.LinkText("Add an organisation");
+        private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View all agreements");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
@@ -23,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
-            formCompletionHelper.Click(AddNewOrganisationButton);
+            formCompletionHelper.ClickButtonByText(AddNewOrganisationButton, "Add an organisation");
             return new SearchForYourOrganisationPage(_context);
         }
 
@@ -36,14 +37,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
-            formCompletionHelper.Click(ViewAgreementLink);
-            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
+            Action action = () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink));
+            
+            action.Invoke();
+            
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context, action);
         }
 
         public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()
         {
             tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
             return new AreYouSureYouWantToRemovePage(_context);
+        }
+
+        public AccessDeniedPage ClickToRemoveAnOrg()
+        {
+            tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
+            return new AccessDeniedPage(_context);
         }
 
         public bool IsRemoveLinkBesideNewlyAddedOrg() => pageInteractionHelper.IsElementDisplayed(RemoveLinkBesideNewlyAddedOrg);

@@ -27,10 +27,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             EnterDateFieldsAndContinue();
         }
 
-        public AS_UkprnPage EnterApprenticshipStartDateAndContinue()
+        public AS_SearchEmployerAddressPage EnterApprenticshipStartDateAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_UkprnPage(_context);
+            return new AS_SearchEmployerAddressPage(_context);
         }
 
         public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
@@ -50,10 +50,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {
-            formCompletionHelper.EnterText(DayTextBox, dataHelper.CurrentDay);
-            formCompletionHelper.EnterText(MonthTextBox, dataHelper.CurrentMonth);
+            formCompletionHelper.EnterText(DayTextBox, ePAOAssesmentServiceDataHelper.CurrentDay);
+            formCompletionHelper.EnterText(MonthTextBox, ePAOAssesmentServiceDataHelper.CurrentMonth);
             if (invalidDateScenario) return;
-            formCompletionHelper.EnterText(YearTextBox, dataHelper.CurrentYear);
+            formCompletionHelper.EnterText(YearTextBox, ePAOAssesmentServiceDataHelper.CurrentYear);
             Continue();
         }
     }

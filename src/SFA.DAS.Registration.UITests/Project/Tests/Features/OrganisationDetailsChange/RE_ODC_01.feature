@@ -2,7 +2,7 @@
 
 @regression
 @registration
-@addpayedetails
+@addnonlevyfunds
 Scenario: RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName change scenario
 	Given an Employer Account with Company Type Org is created and agreement is Signed
 	When the Employer reviews Agreement page

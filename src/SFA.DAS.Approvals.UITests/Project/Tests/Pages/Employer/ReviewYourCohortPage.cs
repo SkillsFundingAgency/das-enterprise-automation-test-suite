@@ -1,12 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ReviewYourCohortPage : ReviewYourCohort
     {
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
@@ -17,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApproveMessage => By.CssSelector("#approve-details");
 		private By ReviewMessage => By.CssSelector("#send-details");
 		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
+        private By AddAnotherApprenticeLink = By.LinkText("Add another apprentice");
 
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context, false)
@@ -46,10 +49,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAReservationPage(_context);
         }
 
-        public YourCohortRequestsPage SaveAndExit()
+        public ApprenticeRequestsPage SaveAndExit()
         {
             formCompletionHelper.ClickLinkByText("Save and exit");
-            return new YourCohortRequestsPage(_context);
+            return new ApprenticeRequestsPage(_context);
         }
 
 		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
@@ -82,5 +85,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");
+
+        public ReviewYourCohortPage IsAddApprenticeLinkDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(AddAnotherApprenticeLink))
+                throw new Exception("Link is still available to add another apprentice record");
+            else
+                return this;
+        }
     }
 }

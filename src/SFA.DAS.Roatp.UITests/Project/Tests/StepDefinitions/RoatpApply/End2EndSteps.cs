@@ -1,9 +1,9 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
@@ -11,20 +11,45 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     [Binding]
     public class End2EndSteps
     {
+        private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private ApplicationOverviewPage _overviewPage;
-        private ApplicationSubmittedPage _applicationSubmittedPage;
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
+        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
+        private readonly TabHelper _tabHelper;
 
         public End2EndSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _tabHelper = context.Get<TabHelper>();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
+            _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
         }
+
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
+        public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+
+            _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
+        }
+
+        [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
+        public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+
+            _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
+
+            new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
+        }
+        [Then(@"verify the (Application withdrawn|Application successful|Application unsuccessful|Application under review) page is displayed")]
+        public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
@@ -38,11 +63,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider initates an application as employer route")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
 
-        [Given(@"the provider initates an application as supporting route")]
+        [Given(@"the provider initates an application as Supporting Provider Route")]
         public void GivenTheProviderInitatesAnApplicationAsSupportingRoute() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
 
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
+
+        [When(@"the provider completes Your organisation section for supporting route org type company")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRouteOrgTypeCompany() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support_Company(_overviewPage);
 
         [When(@"the provider completes Your organisation section for company and charity")]
         public void WhenTheProviderCompletesYourOrganisationSectionForCompanyAndCharity() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1CharityAndCompany(_overviewPage);
@@ -57,7 +85,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesYourOrganisationSectionForFHAExemptions() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_FHAExempt(_overviewPage);
 
         [When(@"the provider completes Your organisation section for supporting route")]
-        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support(_overviewPage);
+        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support_Soletrader(_overviewPage);
 
         [When(@"the provider completes Financial evidence section")]
         public void WhenTheProviderCompletesFinancialEvidenceSection() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2(_overviewPage);
@@ -114,9 +142,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
 
         [Then(@"the provider completes Finish section")]
-        public void ThenTheProviderCompletesFinishSection() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
+        public void ThenTheProviderCompletesFinishSection() => _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
 
         [Then(@"the provider completes Finish section for supporting route")]
-        public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
+        public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
     }
 }

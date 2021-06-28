@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -6,6 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticeDetailsPage : ApprovalsBasePage
     {
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
 
         #region Helpers and Context
@@ -14,10 +16,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
+        private By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
-        private By EditStopDateLink => By.Id("editStopDateLink");
-        private By EditApprenticeDetailsLink => By.LinkText("Edit");
-        
+        private By EditStopDateLink => By.LinkText("Edit");
+        private By EditEndDateLink => By.Id("edit-end-date-link"); 
+        private By EditApprenticeDetailsLink => By.CssSelector("#edit-apprentice-link");
+        private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
+        private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
+        private By CompletionDate => By.Id("completionDate");
+        private By changeTrainingProviderLink => By.Id("change-training-provider-link");
+        private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
+        private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
+
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public EditApprenticePage ClickEditApprenticeDetailsLink()
@@ -50,6 +60,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Change request was not approved");
             else
                 return true;
+        }
+
+        public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
+        public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);
+        public string GetCompletionDate() => pageInteractionHelper.GetText(CompletionDate);
+        public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
+        public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
+        public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
+        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
+        public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
+        public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
+
+        public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
+        {
+            formCompletionHelper.ClickElement(changeTrainingProviderLink);
+            return new ChangingTrainingProviderPage(_context);
+        }
+
+        public ViewChangesPage ClickViewChangesLink()
+        {
+            formCompletionHelper.Click(ViewChangesLink);
+            return new ViewChangesPage(_context);
+        }
+
+        public ViewChangesPage ClickReviewChangesLink()
+        {
+            formCompletionHelper.Click(ReviewCopChangesLink);
+            return new ViewChangesPage(_context);
+        }
+
+        public ApprenticeDetailsPage ValidateFlashMessage(string expectedMsg)
+        {
+            pageInteractionHelper.VerifyText(GetFlashMsg(), expectedMsg);
+            return this;
         }
     }
 }

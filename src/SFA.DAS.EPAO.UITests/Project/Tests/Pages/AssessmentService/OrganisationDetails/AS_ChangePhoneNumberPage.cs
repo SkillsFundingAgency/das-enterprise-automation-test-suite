@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         public AS_ConfirmPhoneNumberPage EnterRandomPhoneNumberAndClickUpdate()
         {
-            formCompletionHelper.EnterText(PhoneNumberTextBox, dataHelper.GetRandomNumber(10));
+            formCompletionHelper.EnterText(PhoneNumberTextBox, ePAOAssesmentServiceDataHelper.GetRandomNumber(10));
             Continue();
             return new AS_ConfirmPhoneNumberPage(_context);
         }

@@ -5,12 +5,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderNotificationSettingsPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Notification Settings";
+        protected override string PageTitle => "Notification settings";
+        
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Update')]");
 
         private By NotificationOptions => By.CssSelector(".selection-button-radio");
         
-        private By UpdateButton => By.CssSelector(".button");
-
         private By Alert => By.CssSelector(".green-box-alert");
 
         public ProviderNotificationSettingsPage(ScenarioContext context) : base(context) { }
@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ProviderNotificationSettingsPage SelectReceiveEmailsOptions(string option)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(NotificationOptions, option);
-            formCompletionHelper.ClickElement(UpdateButton);
+            Continue();
             return this;
         }
     }

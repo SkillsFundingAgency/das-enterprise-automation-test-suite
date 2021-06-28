@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Linq;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
@@ -6,9 +8,11 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         private readonly DateTime _dateTime;
 
-        public DataHelper(string code)
+        public DataHelper(string[] tags)
         {
-            TwoDigitProjectCode = code;
+            LevyOrNonLevy = tags.Contains("addlevyfunds") || tags.Contains("addtransferslevyfunds") ? "LE" : "NL";
+
+            UserNamePrefix = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "PerfTest" : "Test";
             _dateTime = DateTime.Now;
             EmpRefDigits = _dateTime.ToString("fffff");
             NextNumber = NextNumberGenerator.GetNextCount();
@@ -16,7 +20,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             GatewayPassword = "password";
         }
 
-        public string TwoDigitProjectCode { get; }
+        public string LevyOrNonLevy { get; }
 
         public string EmpRefDigits { get; }
 
@@ -26,9 +30,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public string GatewayPassword { get; }
 
-        private string GenerateRandomUserName()
-        {
-            return $"{TwoDigitProjectCode}_Test_{NextNumber}_{_dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
-        }
+        private string UserNamePrefix { get; }
+
+        private string GenerateRandomUserName() => $"{LevyOrNonLevy}_{UserNamePrefix}_{NextNumber}_{_dateTime:ddMMMyyyy_HHmmss}{EmpRefDigits}";
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>SFA.DAS.UI.Framework</PackageId>
     <Title>Specflow DotNet Core UI framework</Title>
     <Configurations>Debug;Release;Development</Configurations>
@@ -13,7 +13,7 @@
     <Description>A generic repository wrapper for Specflow UI Framework integrated with donet core</Description>
     <PackageProjectUrl>https://accounts.manage-apprenticeships.service.gov.uk/service/index</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SkillsFundingAgency/DFE-Standardised-Test-Automation-Framework/tree/master/src/SFA.DAS.UI.Framework</RepositoryUrl>
-    <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>specflow bdd gherkin borwserstack</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -23,8 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="12.1.2" />
-    <PackageReference Include="RestSharp" Version="106.6.10" />
+    <PackageReference Include="CsvHelper" Version="15.0.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,9 +37,11 @@
     <None Update="appsettings.TimeOutConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+	<None Update="appsettings.NServiceBusConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.TestExecution.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

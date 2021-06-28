@@ -4,7 +4,6 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -13,69 +12,74 @@ namespace SFA.DAS.Registration.UITests.Project
     [Binding]
     public class PayeHooks
     {
-        private enum FundType { LevyFund, TransferFund }
+        private enum FundType { NonLevyFund, LevyFund, TransferFund }
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private LoginCredentialsHelper _loginCredentialsHelper;
-        private MongoDbDataGenerator _mongoDbDataGenerator;
-        private MongoDbDataGenerator _anotherMongoDbDataGenerator;
-        private readonly RegistrationConfig _config;
-        private List<string> _empRefs;
+        private bool _isAddPayeDetails;
 
         public PayeHooks(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
         [BeforeScenario(Order = 23)]
-        [Scope(Tag = "addpayedetails")]
-        public void SetUpMongoDbHelpers()
-        {
-            _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
+        [Scope(Tag = "addnonlevyfunds")]
+        public void AddNonLevyFunds() => AddPayeDetails(FundType.NonLevyFund);
 
-            _mongoDbDataGenerator.AddGatewayUsers(0);
+        [BeforeScenario(Order = 24)]
+        [Scope(Tag = "addtransferslevyfunds")]
+        public void AddTransfersLevyFunds() => AddPayeDetails(FundType.TransferFund);
+
+        [BeforeScenario(Order = 25)]
+        [Scope(Tag = "addlevyfunds")]
+        public void AddLevyFunds() => AddPayeDetails(FundType.LevyFund);
+
+        [BeforeScenario(Order = 26)]
+        [Scope(Tag = "addanothernonlevypayedetails")]
+        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(FundType.NonLevyFund);
+
+        [BeforeScenario(Order = 27)]
+        [Scope(Tag = "addanotherlevyfunds")]
+        public void SetUpAnotherLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund);
+
+        private void AddPayeDetails(FundType fundType)
+        {
+            _isAddPayeDetails = true;
+
+            var mongoDbDataGenerator = new MongoDbDataGenerator(_context);
+
+            mongoDbDataGenerator.AddGatewayUsers(0);
 
             var registrationDatahelpers = _context.Get<RegistrationDataHelper>();
 
             _loginCredentialsHelper = _context.Get<LoginCredentialsHelper>();
 
-            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
+            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
+
+            _objectContext.SetUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg, 0);
+
+            AddFunds(mongoDbDataGenerator, fundType);
         }
 
-        [BeforeScenario(Order = 24)]
-        [Scope(Tag = "addtransferslevyfunds")]
-        public void AddTransfersLevyFunds() => AddFunds(_mongoDbDataGenerator, FundType.TransferFund);
-
-        [BeforeScenario(Order = 25)]
-        [Scope(Tag = "addlevyfunds")]
-        public void AddLevyFunds() => AddFunds(_mongoDbDataGenerator, FundType.LevyFund);
-
-        [BeforeScenario(Order = 26)]
-        [Scope(Tag = "addanothernonlevypayedetails")]
-        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails();
-
-        [BeforeScenario(Order = 27)]
-        [Scope(Tag = "addanotherlevypayedetails")]
-        public void SetUpAnotherLevyPayeDetails()
+        private void AddAnotherPayeDetails(FundType fundType)
         {
-            AddAnotherPayeDetails();
+            _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
-            AddFunds(_anotherMongoDbDataGenerator, FundType.LevyFund);
-        }
+            var anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context);
 
-        private void AddAnotherPayeDetails()
-        {
-            _objectContext.SetDataHelper(new DataHelper(_config.TwoDigitProjectCode));
+            anotherMongoDbDataGenerator.AddGatewayUsers(1);
 
-            _anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context);
-
-            _anotherMongoDbDataGenerator.AddGatewayUsers(1);
+            AddFunds(anotherMongoDbDataGenerator, fundType);
         }
 
         private void AddFunds(MongoDbDataGenerator mongoDbDataGenerator, FundType fundType)
         {
+            if (fundType == FundType.NonLevyFund || _context.ScenarioInfo.Tags.Contains("adddynamicfunds")) { return; }
+
             var (fraction, calculatedAt, levyDeclarations) = fundType == FundType.TransferFund ? LevyDeclarationDataHelper.TransferslevyFunds() : LevyDeclarationDataHelper.LevyFunds();
 
             mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
@@ -83,38 +87,58 @@ namespace SFA.DAS.Registration.UITests.Project
             _loginCredentialsHelper.SetIsLevy();
         }
 
+        [AfterScenario(Order = 20)]
+        public void SetAccountId()
+        {
+            if (!_isAddPayeDetails) { return; }
+
+            _tryCatch.AfterScenarioException(() =>
+            {
+                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
+
+                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
+
+                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
+            });
+
+        }
+
         [AfterScenario(Order = 21)]
-        [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
-            _empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
+            if (!_isAddPayeDetails) { return; }
 
-            foreach (var empRef in _empRefs)
+            _tryCatch.AfterScenarioException(() => 
             {
-                if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
-                {
-                    levyDecMongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+                var empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
 
-                    if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
+                foreach (var empRef in empRefs)
+                {
+                    if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
                     {
-                        englishFractionMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                        levyDecMongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+
+                        if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
+                        {
+                            englishFractionMongoDbHelper.AsyncDeleteData().Wait();
+                            TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                        }
+                    }
+
+                    if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
+                    {
+                        emprefMongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
+                    }
+
+                    if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
+                    {
+                        gatewayusermongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
                     }
                 }
-
-                if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
-                {
-                    emprefMongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
-                }
-
-                if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
-                {
-                    gatewayusermongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
-                }
-            }
+            });
         }
     }
 }

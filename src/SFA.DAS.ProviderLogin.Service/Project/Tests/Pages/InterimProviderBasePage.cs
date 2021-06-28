@@ -12,8 +12,9 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         #endregion
         
         protected By NotificationSettingsLink => By.LinkText("Notification settings");
-
+        protected By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
         private By SignOutLink => By.LinkText("Sign out");
+        protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
 
         public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {

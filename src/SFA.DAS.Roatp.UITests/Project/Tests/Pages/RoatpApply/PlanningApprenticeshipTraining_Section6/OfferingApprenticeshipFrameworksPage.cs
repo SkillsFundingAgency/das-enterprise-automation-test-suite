@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class OfferingApprenticeshipFrameworksPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Offering apprenticeship frameworks";
+        protected override string PageTitle => "Does your organisation have a plan to transition from apprenticeship frameworks to apprenticeship standards?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

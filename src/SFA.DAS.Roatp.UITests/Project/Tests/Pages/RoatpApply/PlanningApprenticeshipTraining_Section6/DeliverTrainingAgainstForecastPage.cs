@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         private readonly ScenarioContext _context;
         #endregion
 
-        private By WithinFirstThreeMonthsRadio => By.Id("PAT-641");
+        private By WithinFirstThreeMonthsRadio => By.Id("PAT-651");
 
         public DeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context)
         {

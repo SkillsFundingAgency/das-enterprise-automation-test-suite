@@ -41,15 +41,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private string ReadinessToEngage_4 => "Contract for services template";
         private string ReadinessToEngage_5 => "Commitment statement template";
         private string ReadinessToEngage_6 => "Prior learning of apprentices";
-        private string ReadinessToEngage_7 => "Working with subcontractors";
+        private string ReadinessToEngage_7 => "English and maths assessments";
+        private string ReadinessToEngage_8 => "Working with subcontractors";
 
         private string PlanningApprenticeshipTraining => "6. Planning apprenticeship training";
         private string PlanningApprenticeshipTraining_1 => "Introduction and what you'll need";
         private string PlanningApprenticeshipTraining_2 => "Type of apprenticeship training";
-        private string PlanningApprenticeshipTraining_3 => "Supporting apprentices";
-        private string PlanningApprenticeshipTraining_4 => "Forecasting starts";
-        private string PlanningApprenticeshipTraining_5 => "Off the job training";
-        private string PlanningApprenticeshipTraining_6 => "Where will your apprentices be trained";
+        
+        private string PlanningApprenticeshipTraining_3 => "Training apprentices";
+        private string PlanningApprenticeshipTraining_4 => "Supporting apprentices";
+        private string PlanningApprenticeshipTraining_5 => "Forecasting starts";
+        private string PlanningApprenticeshipTraining_6 => "Off the job training";
+        private string PlanningApprenticeshipTraining_7 => "Where will your apprentices be trained";
 
         private string DeliveringApprenticeshipTraining => "7. Delivering apprenticeship training";
         private string DeliveringApprenticeshipTraining_1 => "Introduction and what you'll need";
@@ -57,7 +60,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private string DeliveringApprenticeshipTraining_3 => "Management hierarchy for apprenticeships";
         private string DeliveringApprenticeshipTraining_4 => "Quality and high standards in apprenticeship training";
         private string DeliveringApprenticeshipTraining_5 => "Developing and delivering training";
-        private string DeliveringApprenticeshipTraining_6 => "Your sectors and employees";
+        private string DeliveringApprenticeshipTraining_6 => "Sectors and employee experience";
         private string DeliveringApprenticeshipTraining_7 => "Policy for professional development of employees";
 
 

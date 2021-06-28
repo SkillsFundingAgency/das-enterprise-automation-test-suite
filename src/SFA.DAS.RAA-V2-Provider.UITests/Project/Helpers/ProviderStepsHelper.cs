@@ -67,15 +67,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private EmployerNamePage SelectOrganisation(SelectEmployersPage selectEmployers)
         {
-            return selectEmployers
+            selectEmployers
                 .SelectEmployer()
                 .EnterVacancyTitle()
                 .EnterTrainingTitle()
                 .ConfirmAndNavigateToNoOfPositionsPage()
-                .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
+                .EnterNumberOfPositionsAndContinue();
+
+            return new EmployerNamePage(_context);
         }
 
-        private ManageVacancyPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage(true).SearchVacancyByVacancyReference();
+        private ManageRecruitPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage(true).SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage(bool newTab)
         {
