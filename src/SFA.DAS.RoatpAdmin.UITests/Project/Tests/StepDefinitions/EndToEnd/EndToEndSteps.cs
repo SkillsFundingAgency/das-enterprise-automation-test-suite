@@ -98,14 +98,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
 
-        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL) application as Successful and verifies the provider added to the register")]
-        public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus)
+        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) application as (SUCCESSFUL) and verifies the provider added to the register")]
+        [Then(@"the Oversight user assess the FAIL application as SUCCESSFUL fitness for funding and verifies the provider added to the register")]
+        public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus,string expectdOverallStatus)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
             staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationSuccessful().SelectYesAskAndContinueOutcomePage();
 
-            new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
+            new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectdOverallStatus);
 
             var resultPage = new StaffDashboardPage(_context, true)
                 .SearchForATrainingProvider()

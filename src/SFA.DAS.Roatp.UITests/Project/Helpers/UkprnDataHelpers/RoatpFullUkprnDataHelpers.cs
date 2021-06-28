@@ -24,6 +24,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(providernamekey, "THE PAROCHIAL CHURCH COUNCIL OF THE ECCLESIASTICAL PARISH OF THE GOOD SHEPHERD"),
                     new KeyValuePair<string, string>(ukprnkey, "10065943"),
                 });
+            _data.Add("rpendtoend02apply",
+         new List<KeyValuePair<string, string>>
+             {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+InProgressApplication@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "THE PAROCHIAL CHURCH COUNCIL OF THE ECCLESIASTICAL PARISH OF THE GOOD SHEPHERD"),
+                    new KeyValuePair<string, string>(ukprnkey, "10065943"),
+             });
         }
     }
 }

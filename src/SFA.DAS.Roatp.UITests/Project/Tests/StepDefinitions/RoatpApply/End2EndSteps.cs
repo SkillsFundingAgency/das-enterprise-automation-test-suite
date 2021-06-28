@@ -31,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
         }
 
-        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider)")]
         public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
         {
             _objectContext.SetApplicationRoute(applicationRoute);
