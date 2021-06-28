@@ -62,7 +62,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the (.*) Step in PendingPaymentValidationResult table is set to (.*)")]
-        public void ThenTheHasDaysInLearningStepInPendingPaymentValidationResultTableIsSetTo(string stepName, bool stepValue)
+        public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, bool stepValue)
         {
             _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                                                                   && x.EarningType == EarningType.FirstPayment);
