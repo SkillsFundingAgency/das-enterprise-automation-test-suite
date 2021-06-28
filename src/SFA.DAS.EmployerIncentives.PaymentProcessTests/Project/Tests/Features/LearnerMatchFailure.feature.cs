@@ -37,7 +37,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchFailure", "    Learner Match Continues on failure", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchFailure", @"    Learner Match Continues on failure
+    https://skillsfundingagency.atlassian.net/browse/EI-1208
+    Reproduces failure in SFA.DAS.EmployerIncentives.Domain.ApprenticeshipIncentives.ApprenticeshipIncentive.cs
+        private void StopBreakInLearning(LearningStoppedStatus status)
+        {
+            var stopDate = status.DateResumed.Value.AddDays(-1); // here DateResumed is null because learning had resumed with a different Apprenticeship Id
+            ...
+        }", ProgrammingLanguage.CSharp, new string[] {
                         "employerincentivesPaymentsProcess"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -83,7 +90,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner Match Continues on failure", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,23 +110,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 13
     testRunner.Given("the learner match process has been triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 14
     testRunner.When("an exception occurs for a learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
-    testRunner.Then("each exception is logged with the detail of the exception in Kabana and Apps Insi" +
-                        "ght", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+    testRunner.Then("a record of learner match failure is created for the learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 16
     testRunner.And("the learner match process should continue for all remaining learners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 17
     testRunner.And("any CoCs are processed for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 18
     testRunner.And("days in learning is calculated for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

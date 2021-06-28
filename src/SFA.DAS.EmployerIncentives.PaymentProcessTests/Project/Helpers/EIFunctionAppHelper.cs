@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,9 +44,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             }
         }
 
-        protected async Task WaitUntilStatus(string status, TimeSpan? timeout)
+        protected async Task WaitUntilStatus(TimeSpan? timeout, bool continueOnFailure, params string[] status)
         {
-            await WaitUntil(x => x.RuntimeStatus == status, timeout);
+            await WaitUntil(x => status.Contains(x.RuntimeStatus), timeout, continueOnFailure);
         }
 
         protected async Task WaitUntilCustomStatus(string customStatus, TimeSpan? timeout)
@@ -53,7 +54,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await WaitUntil(x => x.CustomStatus == customStatus, timeout);
         }
 
-        private async Task WaitUntil(Func<OrchestratorStatusResponse, bool> comparison, TimeSpan? timeout)
+        private async Task WaitUntil(Func<OrchestratorStatusResponse, bool> comparison, TimeSpan? timeout, bool continueOnFailure = false)
         {
             using var cts = new CancellationTokenSource();
             if (timeout != null)
@@ -72,7 +73,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
                 var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var orchestratorStatusResponse = JsonConvert.DeserializeObject<OrchestratorStatusResponse>(json);
-                if (orchestratorStatusResponse.RuntimeStatus == "Failed")
+                if (!continueOnFailure && orchestratorStatusResponse.RuntimeStatus == "Failed")
                 {
                     throw new Exception(orchestratorStatusResponse.Output);
                 }

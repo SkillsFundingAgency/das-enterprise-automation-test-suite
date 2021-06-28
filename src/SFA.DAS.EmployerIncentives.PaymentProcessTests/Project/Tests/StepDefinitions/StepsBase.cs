@@ -60,11 +60,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
         }
 
-        protected async Task RunLearnerMatchOrchestrator()
+        protected async Task RunLearnerMatchOrchestrator(bool continueOnFailure = false)
         {
             StartStopWatch("RunLearnerMatchOrchestrator");
             await learnerMatchService.StartLearnerMatchOrchestrator();
-            await learnerMatchService.WaitUntilComplete();
+
+            if (continueOnFailure) await learnerMatchService.WaitUntilStopped();
+            else await learnerMatchService.WaitUntilComplete();
+            
             StopStopWatch("RunLearnerMatchOrchestrator");
         }
 
