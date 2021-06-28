@@ -11,12 +11,21 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.Id("proposition-name");
         protected override string PageTitle => "Manage apprenticeships";
+        private By viewMyTransfersButton = By.XPath("//*[@id='content']/div[2]/div[1]/section[2]/div[2]/div[3]/h3/a");
+        
 
         public bool CheckPageTitle()
         {
 
             bool pageTitleOK = VerifyPage(PageHeader, PageTitle);
             return pageTitleOK;
+
+        }
+
+        public void ClickViewMyTransfers()
+        {
+            formCompletionHelper.ClickElement(viewMyTransfersButton);
+            
 
         }
 

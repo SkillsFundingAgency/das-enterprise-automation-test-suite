@@ -44,7 +44,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new TransfersEmployerStepsHelper(context);
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
-
+            
 
         }
 
@@ -58,20 +58,52 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             ManageApprenticeshipsPage manageApprenticeshipsPage = new ManageApprenticeshipsPage(_context);
         
             bool Test1 =  manageApprenticeshipsPage.CheckPageTitle();
-            //Console.WriteLine(">>>" + Test1);
         }
 
         [When(@"I click on view my transfers")]
         public void WhenIClickOnViewMyTransfers()
         {
-            Console.WriteLine("Test OK");
+            ManageApprenticeshipsPage manageApprenticeshipsPage = new ManageApprenticeshipsPage(_context);
+
+            manageApprenticeshipsPage.ClickViewMyTransfers();
         }
 
         [Then(@"I am on the View Transfers Page")]
         public void ThenIAmOnTheViewTransfersPage()
         {
-            Console.WriteLine("Test OK");
+            YourTransfersPage yourTransfersPage = new YourTransfersPage(_context);
+            bool Test = yourTransfersPage.CheckPageTitle();
         }
+
+        [When(@"I click on Create A Transfers Pledge")]
+        public void WhenIClickOnCreateATransfersPledge()
+        {
+            YourTransfersPage yourTransfersPage = new YourTransfersPage(_context);
+            yourTransfersPage.ClickCreateATransfersPledge();
+            
+        }
+
+        [Then(@"I am on the Find A Business Page")]
+        public void ThenIAmOnTheFindABusinessPage()
+        {
+            FindABusinessPage findABusinessPage = new FindABusinessPage(_context);
+            bool Test = findABusinessPage.CheckPageTitle();
+        }
+
+        [When(@"I click on Continue")]
+        public void WhenIClickOnContinue()
+        {
+            FindABusinessPage findABusinessPage = new FindABusinessPage(_context);
+            findABusinessPage.ClickContinue();
+        }
+
+        [Then(@"I am on the Create A Transfers Pledge Page")]
+        public void ThenIAmOnTheCreateATransfersPledgePage()
+        {
+            CreateATransfersPledgePage createATransfersPledge = new CreateATransfersPledgePage(_context);
+            bool Test = createATransfersPledge.CheckPageTitle();
+        }
+
 
     }
 }
