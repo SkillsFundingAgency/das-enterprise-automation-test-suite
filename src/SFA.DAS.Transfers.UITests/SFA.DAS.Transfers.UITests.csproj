@@ -41,6 +41,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\LTM_02_Create_Levy_Transfer_Pledge.feature.cs">
+	    <DesignTime>True</DesignTime>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="SFA.DAS.Transfers.UITests.runtimeconfig.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -56,6 +62,13 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\LTM_02_Create_Levy_Transfer_Pledge.feature">
+	    <Generator>SpecFlowSingleFileGenerator</Generator>
+	    <LastGenOutput>LTM_02_Create_Levy_Transfer_Pledge.feature.cs</LastGenOutput>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>
