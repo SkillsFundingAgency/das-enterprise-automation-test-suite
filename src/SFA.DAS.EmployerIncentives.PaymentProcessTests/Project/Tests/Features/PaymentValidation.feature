@@ -1,7 +1,7 @@
 ﻿Feature: PaymentValidation
 	Test payment validation days in learning check
 @employerincentivesPaymentsProcess
-@ignore // test will fail until 90 days after 1st April
+
 Scenario: Validation 90 Day check
 
 Given an existing apprenticeship incentive

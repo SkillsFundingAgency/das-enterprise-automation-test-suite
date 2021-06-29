@@ -23,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
-            var startDate = new DateTime(2021, 04, 02);
+            var startDate = new DateTime(2021, 02, 02);
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
@@ -59,6 +59,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             short year = 2021;
             await SetActiveCollectionPeriod(period, year);
             await RunLearnerMatchOrchestrator();
+            await RunPaymentsOrchestrator();
         }
 
         [Then(@"the (.*) Step in PendingPaymentValidationResult table is set to (.*)")]
