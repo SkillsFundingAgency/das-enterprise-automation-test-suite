@@ -1,5 +1,5 @@
 ﻿Feature: PaymentValidation
-	Test payment validation days in learning check
+	Test payment validation checks
 @employerincentivesPaymentsProcess
 
 Scenario: Validation 90 Day check

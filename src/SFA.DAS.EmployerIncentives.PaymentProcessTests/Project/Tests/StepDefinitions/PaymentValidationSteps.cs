@@ -49,7 +49,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
-            await RunLearnerMatchOrchestrator();
         }
 
         [When(@"the Payment Run occurs")]
