@@ -68,8 +68,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                                                                   && x.EarningType == EarningType.FirstPayment);
 
-            var validationStep = _pendingPayment.ValidationResults.FirstOrDefault(x => x.Step == stepName);
-
+            var validationStep = GetFromDatabase<PendingPaymentValidationResult>(x =>
+                x.PendingPaymentId == _pendingPayment.Id
+                && x.Step == stepName);
+            
             validationStep.Should().NotBeNull();
             validationStep.Result.Should().Be(stepValue);
         }
