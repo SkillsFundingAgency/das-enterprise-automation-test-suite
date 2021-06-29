@@ -21,6 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             accountId = 14326;
             apprenticeshipId = fixture.Create<long>();
         }
+
         [Given(@"the learner match process has been triggered")]
         public async Task GivenTheLearnerMatchProcessHasBeenTriggered()
         {
@@ -71,7 +72,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
                     .WithEndDate(DateTime.Now.AddDays(-1)) // Learning Stopped!!!
-                    .WithPeriod(apprenticeship.ApprenticeshipId, 10)
+                    .WithPeriod(apprenticeship.ApprenticeshipId, 11)
                     .Create();
 
                 var learnerSubmissionDto = new LearnerSubmissionDtoBuilder()
@@ -99,9 +100,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             foreach (var apprenticeship in incentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
-                    .WithStartDate(_initialStartDate)
+                    .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
                     .WithEndDate(DateTime.Now.AddYears(2))
-                    .WithPeriod(apprenticeship.ApprenticeshipId, 10)
+                    .WithPeriod(apprenticeship.ApprenticeshipId, 12)
                     .Create();
 
                 if (apprenticeship.UKPRN == UKPRN && apprenticeship.ULN == ULN)
@@ -115,8 +116,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithUln(apprenticeship.ULN)
                     .WithAcademicYear(2021)
                     .WithIlrSubmissionDate(_initialIlrSubmissionDate.AddMonths(2))
-                    .WithIlrSubmissionWindowPeriod(10)
-                    .WithStartDate(_initialStartDate)
+                    .WithIlrSubmissionWindowPeriod(12)
+                    .WithStartDate(_initialStartDate.AddMonths(1))
                     .WithPriceEpisode(priceEpisode)
                     .Create();
 
@@ -148,25 +149,26 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"any CoCs are processed for each learner \(excluding exceptions\)")]
         public void ThenAnyCoCsAreProcessedForEachLearnerExcludingExceptions()
         {
-            var changeOfCircumstances = GetAllFromDatabase<ChangeOfCircumstance>().ToList();
-            changeOfCircumstances.Count.Should().BeGreaterOrEqualTo(3);
-
-            var learner = GetFromDatabase<Learner>(x => x.ULN == ULN && x.Ukprn == UKPRN);
-            GetAllFromDatabase<ChangeOfCircumstance>()
-                .Count(x => x.ApprenticeshipIncentiveId == learner.ApprenticeshipIncentiveId)
-                .Should().Be(1);
+            var changeOfCircumstances = GetAllFromDatabase<ChangeOfCircumstance>().Where(
+                x => incentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
+            
+            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped).Should().Be(3);
+            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningResumed).Should().Be(2);
+            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.StartDate).Should().Be(2);
         }
 
         [Then(@"days in learning is calculated for each learner \(excluding exceptions\)")]
         public void ThenDaysInLearningIsCalculatedForEachLearnerExcludingExceptions()
         {
-            var daysInLearnings = GetAllFromDatabase<ApprenticeshipDaysInLearning>().ToList();
-            daysInLearnings.Count.Should().BeGreaterOrEqualTo(7);
+            var learnerIds = GetAllFromDatabase<Learner>().Where(
+                x => incentiveIds.Contains(x.ApprenticeshipIncentiveId)).Select(x => x.Id).ToList();
 
-            var learner = GetFromDatabase<Learner>(x => x.ULN == ULN && x.Ukprn == UKPRN);
-            GetAllFromDatabase<ApprenticeshipDaysInLearning>()
-                .Count(x => x.LearnerId == learner.Id)
-                .Should().Be(1);
+            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 10).Should().Be(3);
+            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 11).Should().Be(3);
+            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 12).Should().Be(2);
         }
     }
 }

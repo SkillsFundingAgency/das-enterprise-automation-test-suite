@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
-        protected Guid apprenticeshipIncentiveId = Guid.Empty;
+        protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;
         protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
@@ -36,6 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected long apprenticeshipId;
         protected long UKPRN;
         protected long ULN;
+        protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
         protected StepsBase(ScenarioContext context)
         {
@@ -120,7 +121,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                var incentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                incentiveIds.Add(incentiveId);
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
