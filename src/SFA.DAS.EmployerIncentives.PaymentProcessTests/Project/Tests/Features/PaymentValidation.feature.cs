@@ -113,31 +113,13 @@ testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((Tec
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
-   testRunner.Then("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+   testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
-testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 13
-   testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 14
-   testRunner.Then("the IsInLearning Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
-   testRunner.Then("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 17
-testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 18
-   testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 19
-   testRunner.Then("the HasBankDetails Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 20
-   testRunner.Then("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
