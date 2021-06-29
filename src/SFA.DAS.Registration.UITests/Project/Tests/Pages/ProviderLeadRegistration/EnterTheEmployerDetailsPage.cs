@@ -47,7 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             pageInteractionHelper.VerifyPage(EmployerOrganisation($"[value='{OrganisationName}']"));
             pageInteractionHelper.VerifyPage(EmployerFirstName($"[value='{FirstName}']"));
             pageInteractionHelper.VerifyPage(EmployerLastName($"[value='{LastName}']"));
-            pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{Email.Substring(0,50)}']"));
+            pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{Email}']"));
             return this;
         }
 
