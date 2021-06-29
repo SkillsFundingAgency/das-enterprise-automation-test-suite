@@ -138,56 +138,6 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Phase2 1 - Learner Applied for Phase2 Incentives Payments- Age changes with the S" +
-            "tart date COC( DOB 15-04-1996 -   Initial start date 01-04-2021 - COC - 31-May-2" +
-            "021 )")]
-        public virtual void Phase21_LearnerAppliedForPhase2IncentivesPayments_AgeChangesWithTheStartDateCOCDOB15_04_1996_InitialStartDate01_04_2021_COC_31_May_2021()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Phase2 1 - Learner Applied for Phase2 Incentives Payments- Age changes with the S" +
-                    "tart date COC( DOB 15-04-1996 -   Initial start date 01-04-2021 - COC - 31-May-2" +
-                    "021 )", null, tagsOfScenario, argumentsOfScenario);
-#line 17
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 18
-    testRunner.Given("an existing phase 2 apprenticeship incentive for a learner under 25 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 19
-    testRunner.When("the start date is changed making the learner 25 on the start date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
-    testRunner.Then("the first earning of £1500 is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 22
-    testRunner.And("the second earning of £1500 is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore
