@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ganss.Excel;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {
@@ -20,11 +21,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public short? PaymentYear { get; set; }
         public long AccountLegalEntityId { get; set; }
 
-        [Column(TypeName = "nvarchar(20)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(20)")]
         public EarningType EarningType { get; set; }
         public bool ClawedBack { get; set; }
 
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<PendingPaymentValidationResult> ValidationResults { get; set; }
 
         public PendingPayment()

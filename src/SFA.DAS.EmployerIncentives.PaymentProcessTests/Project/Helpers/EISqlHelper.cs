@@ -1,20 +1,11 @@
 ﻿using Dapper;
-using Dapper.Contrib.Extensions;
-using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using CsvHelper.Excel;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
@@ -126,47 +117,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(SqlScripts.DeleteApplicationData, new { incentiveApplicationId });
-        }
-
-        public async Task TakeDataSnapshot()
-        {
-            var fileName = $"c:/temp/data_snapshot_{DateTime.Now:yyyy-MM-ddTHH-mm-ss}.xlsx";
-            var ci = new CultureInfo("en-GB");
-
-            await using var dbConnection = new SqlConnection(connectionString);
-            {
-                using (FileStream fs = File.Create(fileName))
-                {
-                    ExcelWriter writer = null;
-                    writer = new ExcelWriter(fs, "IncentiveApplication", ci, true);
-                    await writer.WriteRecordsAsync(dbConnection.GetAll<IncentiveApplication>());
-
-                    writer = new ExcelWriter(fs, "IncentiveApplicationApprtshp", ci, true);
-                    await writer.WriteRecordsAsync(dbConnection.GetAll<IncentiveApplicationApprenticeship>());
-
-                    await writer.DisposeAsync();
-                }
-
-
-                //await TakeDataSnapshot<IncentiveApplication>(dbConnection, fileName, nameof(IncentiveApplication));
-                //await TakeDataSnapshot<IncentiveApplicationApprenticeship>(dbConnection, fileName, nameof(IncentiveApplicationApprenticeship));
-                //await TakeDataSnapshot<PendingPayment>(dbConnection, fileName, nameof(PendingPayment));
-                //await TakeDataSnapshot<Payment>(dbConnection, fileName);
-                //await TakeDataSnapshot<PendingPaymentValidationResult>(dbConnection, fileName);
-                //await TakeDataSnapshot<ClawbackPayment>(dbConnection, fileName);
-            }
-        }
-
-        public async Task TakeDataSnapshot<T>(SqlConnection dbConnection, string fileName, string sheetName) where T : class
-        {
-            await using var writer = new ExcelWriter(fileName, sheetName, new CultureInfo("en-GB"));
-            await writer.WriteRecordsAsync(dbConnection.GetAll<T>());
-        }
-
-        public async Task TakeDataSnapshot<T>(SqlConnection dbConnection, string fileName) where T : class
-        {
-            await using var writer = new ExcelWriter(fileName, nameof(T), new CultureInfo("en-GB"));
-            await writer.WriteRecordsAsync(dbConnection.GetAll<T>());
         }
     }
 }

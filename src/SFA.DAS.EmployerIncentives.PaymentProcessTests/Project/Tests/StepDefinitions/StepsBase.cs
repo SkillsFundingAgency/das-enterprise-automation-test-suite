@@ -19,23 +19,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     public class StepsBase
     {
-        protected Fixture fixture;
-        protected readonly DbConfig dbConfig;
-        protected readonly EIPaymentProcessConfig eiConfig;
-        protected EISqlHelper sqlHelper;
-        protected LearnerMatchApiHelper learnerMatchApi;
-        protected EILearnerMatchHelper learnerMatchService;
-        protected BusinessCentralApiHelper businessCentralApiHelper;
+        protected readonly Fixture fixture;
+        protected readonly EISqlHelper sqlHelper;
+        protected readonly EIDataCaptor dataCaptor;
+        protected readonly LearnerMatchApiHelper learnerMatchApi;
+        protected readonly EILearnerMatchHelper learnerMatchService;
+        protected readonly BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
-        protected Guid apprenticeshipIncentiveId = Guid.Empty;
         protected IncentiveApplication incentiveApplication;
         protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
-        protected long accountId;
+        protected long accountId = 14326;
         protected long apprenticeshipId;
         protected long UKPRN;
         protected long ULN;
+        protected readonly IList<Guid> incentiveIds = new List<Guid>();
+        protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
         protected StepsBase(ScenarioContext context)
         {
@@ -45,9 +45,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             UKPRN = fixture.Create<long>();
             ULN = fixture.Create<long>();
 
-            eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
-            dbConfig = context.Get<DbConfig>();
+            var eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
+            var dbConfig = context.Get<DbConfig>();
             sqlHelper = new EISqlHelper(dbConfig);
+            dataCaptor = new EIDataCaptor(dbConfig);
 
             serviceBusHelper = new EIServiceBusHelper(eiConfig);
 
@@ -65,7 +66,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StartStopWatch("RunLearnerMatchOrchestrator");
             await learnerMatchService.StartLearnerMatchOrchestrator();
             await learnerMatchService.WaitUntilComplete();
-            await sqlHelper.TakeDataSnapshot();
+            await dataCaptor.TakeDataSnapshot();
             StopStopWatch("RunLearnerMatchOrchestrator");
         }
 
@@ -118,7 +119,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                var incentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                incentiveIds.Add(incentiveId);
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
@@ -170,6 +172,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StartStopWatch("RunPaymentsOrchestrator");
             await paymentService.StartPaymentProcessOrchestrator();
             await paymentService.WaitUntilWaitingForPaymentApproval();
+            await dataCaptor.TakeDataSnapshot();
             StopStopWatch("RunPaymentsOrchestrator");
         }
 
@@ -199,18 +202,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Assert.IsTrue(exist);
         }
 
-        //[AfterScenario()]
-        //public async Task CleanUpIncentives()
-        //{
-        //    if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
-        //    if (incentiveApplication != null) await DeleteApplicationData();
-        //    await learnerMatchApi.DeleteMapping(ULN, UKPRN);
-        //}
+        [AfterScenario()]
+        public async Task CleanUpIncentives()
+        {
+            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
+            if (incentiveApplication != null) await DeleteApplicationData();
+            await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+        }
 
-        //[BeforeScenario()]
-        //public async Task InitialCleanup()
-        //{
-        //    await DeleteIncentive(accountId, apprenticeshipId);
-        //}
+        [BeforeScenario()]
+        public async Task InitialCleanup()
+        {
+            await DeleteIncentive(accountId, apprenticeshipId);
+        }
     }
 }
