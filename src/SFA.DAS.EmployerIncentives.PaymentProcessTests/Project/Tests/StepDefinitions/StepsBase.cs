@@ -65,6 +65,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StartStopWatch("RunLearnerMatchOrchestrator");
             await learnerMatchService.StartLearnerMatchOrchestrator();
             await learnerMatchService.WaitUntilComplete();
+            await sqlHelper.TakeDataSnapshot();
             StopStopWatch("RunLearnerMatchOrchestrator");
         }
 
@@ -145,13 +146,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
         }
 
-        protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
-        {
-            StartStopWatch("SetupLearnerMatchApiResponse");
-            await learnerMatchApi.SetupResponse(uln, ukprn, json);
-            StopStopWatch("SetupLearnerMatchApiResponse");
-        }
-
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, LearnerSubmissionDto data)
         {
             StartStopWatch("SetupLearnerMatchApiResponse");
@@ -205,18 +199,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Assert.IsTrue(exist);
         }
 
-        [AfterScenario()]
-        public async Task CleanUpIncentives()
-        {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
-            if (incentiveApplication != null) await DeleteApplicationData();
-            await learnerMatchApi.DeleteMapping(ULN, UKPRN);
-        }
+        //[AfterScenario()]
+        //public async Task CleanUpIncentives()
+        //{
+        //    if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
+        //    if (incentiveApplication != null) await DeleteApplicationData();
+        //    await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+        //}
 
-        [BeforeScenario()]
-        public async Task InitialCleanup()
-        {
-            await DeleteIncentive(accountId, apprenticeshipId);
-        }
+        //[BeforeScenario()]
+        //public async Task InitialCleanup()
+        //{
+        //    await DeleteIncentive(accountId, apprenticeshipId);
+        //}
     }
 }
