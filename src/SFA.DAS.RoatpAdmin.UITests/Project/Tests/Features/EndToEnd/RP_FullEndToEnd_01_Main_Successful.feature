@@ -1,9 +1,9 @@
-﻿Feature: RP_FullEndToEnd_01
+﻿Feature: RP_FullEndToEnd_01_Main
 
 @roatp
 @rpendtoend01apply
 @roatpfulle2e
-Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks
+Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks_Successful
 	Given the provider completes the Apply Journey as Main Provider Route
 	When the GateWay user assess the application by confirming Gateway outcome as Pass
 	And the Financial user assess the application by confirming Finance outcome as outstanding

@@ -3,7 +3,7 @@
 @roatp
 @rpendtoend02apply
 @roatpfulle2e
-Scenario: RP_FullEndToEnd_02_EmployerRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks
+Scenario: RP_FullEndToEnd_02_EmployerRoute_Charity_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks_SuccessfulFitnessForFunding
 
 	Given the Main provider is already on the RoATP register as Active
 	Given the provider completes the Apply Journey as Employer Provider Route For Existing Provider
