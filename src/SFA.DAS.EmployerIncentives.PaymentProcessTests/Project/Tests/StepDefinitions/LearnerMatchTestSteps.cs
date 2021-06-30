@@ -23,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-06-12");
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);

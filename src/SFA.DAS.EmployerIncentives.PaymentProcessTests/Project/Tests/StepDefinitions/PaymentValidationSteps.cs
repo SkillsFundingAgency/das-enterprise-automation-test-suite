@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
@@ -27,7 +26,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-20))
+                .WithApprenticeship(apprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-20), context.ScenarioInfo.Title)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
