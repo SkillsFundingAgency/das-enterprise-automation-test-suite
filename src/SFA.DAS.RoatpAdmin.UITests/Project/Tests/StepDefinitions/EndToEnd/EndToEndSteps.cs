@@ -57,12 +57,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
         }
 
-        [When(@"the Financial user assess the application by confirming Finance outcome as Outstanding")]
-        public void WhenTheFinancialUserAssessTheApplicationByConfirmingFinanceOutcomeAsOutstanding()
+        [When(@"the Financial user assess the application by confirming Finance outcome as (outstanding|inadequate)")]
+        public void WhenTheFinancialUserAssessTheApplicationByConfirmingFinanceOutcomeAsOutstanding(string expectedoutcome)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("FinanceAdmin");
 
-            staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReviewAsOutstanding();
+            staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReviewAsOutstanding(expectedoutcome);
         }
 
         [Given(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
@@ -98,15 +98,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
 
-        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) application as (SUCCESSFUL) and verifies the provider added to the register")]
-        [Then(@"the Oversight user assess the FAIL application as SUCCESSFUL fitness for funding and verifies the provider added to the register")]
-        public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus,string expectdOverallStatus)
+        [Then(@"the Moderation user assess the application and marks outcomes as Fail")]
+        public void ThenTheModerationUserAssessTheApplicationAndMarksOutcomesAsFail()
+        {
+            var moderationApplicationAssessmentOverviewPage = ModeratorSelectsAssignToMe();
+
+            moderationApplicationAssessmentOverviewPage = CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+
+            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
+
+            moderationApplicationsPage.VerifyOutcomeStatus("FAIL");
+        }
+
+
+        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL) application as Successful and verifies the provider added to the register")]
+        public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
             staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationSuccessful().SelectYesAskAndContinueOutcomePage();
 
-            new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectdOverallStatus);
+            new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
 
             var resultPage = new StaffDashboardPage(_context, true)
                 .SearchForATrainingProvider()
@@ -117,7 +131,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             resultPage.VerifyProviderStatusAsOnBoarding();
 
         }
-
 
         [Given(@"the Moderation user assess the application and marks every section as Fail and outcome As Clarification")]
         public void GivenTheModerationUserAssessTheApplicationAndMarksEverySectionAsFailAndOutcomeAsClarification()

@@ -43,6 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         }
 
         [When(@"the oversight user selects the overall application outcome as Successful")]
+        [Then(@"the oversight user selects the overall application outcome as Successful")]
         public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsSuccessful()
         {
             ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessful());
@@ -73,6 +74,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         }
 
         [When(@"the oversight user selects the overall application outcome as Successful fitness for funding")]
+        [Then(@"the oversight user selects the overall application outcome as Successful fitness for funding")]
         public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsSuccessfulFitnessForFunding()
         {
             ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessfulFitnessForFunding());

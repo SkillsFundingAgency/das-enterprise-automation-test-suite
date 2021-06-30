@@ -15,12 +15,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [When(@"the admin access the Financial Applications")]
         public void WhenTheAdminAccessTheFinancialApplications() => _financialLandingPage = new StaffDashboardPage(_context).AccessFinancialApplications();
 
-        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Outstanding")]
-        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsOutstanding()
+        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as (outstanding)")]
+        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsOutstanding(string expectedoutcome)
         {
             _financialLandingPage = _financialLandingPage
                 .SelectNewApplication()
-                .ConfirmFHAReviewAsOutstanding()
+                .ConfirmFHAReviewAsOutstanding(expectedoutcome)
                 .GoToRoATPAssessorApplicationsPage();
         }
 

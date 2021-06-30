@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the Financial user assess the application by confirming Finance outcome as Outsta" +
+ testRunner.And("the Financial user assess the application by confirming Finance outcome as outsta" +
                         "nding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
@@ -126,8 +126,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Moderation user assess the application and marks outcomes as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("the Oversight user assess the PASS application as SUCCESSFUL and verifies the pro" +
-                        "vider added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the oversight user selects the overall application outcome as Successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+                        "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("verify the provider is added to the register with status of Onboarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("verify the Application successful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

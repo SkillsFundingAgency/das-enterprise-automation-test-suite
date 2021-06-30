@@ -28,13 +28,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
            VerifyPage();
         }
 
-        public FinancialHealthAssesmentCompletedPage ConfirmFHAReviewAsOutstanding()
+        public FinancialHealthAssesmentCompletedPage ConfirmFHAReviewAsOutstanding(string expectedoutcome)
         {
-            SelectRadioOptionByForAttribute("outstanding");
+            SelectRadioOptionByForAttribute(expectedoutcome);
             formCompletionHelper.EnterText(DayOutStandingField, "1");
             formCompletionHelper.EnterText(MonthOutStandingField, "2");
             formCompletionHelper.EnterText(YearOutStandingField, "2022");
             Continue();
+            return new FinancialHealthAssesmentCompletedPage(_context);
+        }
+
+        public FinancialHealthAssesmentCompletedPage ConfirmFHAReviewAsInadequate(string expectedoutcome)
+        {
+            SelectRadioOptionByForAttribute(expectedoutcome);
+            formCompletionHelper.EnterText(InadequateCommentBox, "PMO Internal Comments for Inadequate");
+            formCompletionHelper.EnterText(InadequateExternalCommentsBox, "PMO External Comments for Inadequate");
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Save outcome");
             return new FinancialHealthAssesmentCompletedPage(_context);
         }
 
