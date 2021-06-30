@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EIDataCaptor
+    public class EIDataCaptor : IEIDataCaptor
     {
-        public readonly string connectionString;
-
-        public EIDataCaptor(DbConfig config)
+        private readonly string _connectionString;
+        private EIDataCaptor(DbConfig config)
         {
-            connectionString = config.IncentivesDbConnectionString;
+            _connectionString = config.IncentivesDbConnectionString;
         }
 
         public async Task TakeDataSnapshot()
         {
             var fileName = $"c:/temp/ei_data_snapshot_{DateTime.Now:yyyy-MM-ddTHH-mm-ss}.xlsx";
 
-            await using var dbConnection = new SqlConnection(connectionString);
+            await using var dbConnection = new SqlConnection(_connectionString);
             {
                 var excel = new ExcelDataWriter(fileName);
 
@@ -39,6 +38,28 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 await excel.TakeDataSnapshot(dbConnection.GetAll<ArchivedPayment>());
                 await excel.TakeDataSnapshot(dbConnection.GetAll<ArchivedPendingPaymentValidationResult>());
             }
+        }
+
+        public static IEIDataCaptor Create(DbConfig dbConfig)
+        {
+#if DEBUG
+            return new EIDataCaptor(dbConfig);
+#else
+            return new LazyDataCaptor();
+#endif
+        }
+    }
+
+    public interface IEIDataCaptor
+    {
+        Task TakeDataSnapshot();
+    }
+
+    public class LazyDataCaptor : IEIDataCaptor
+    {
+        public Task TakeDataSnapshot()
+        {
+            return Task.CompletedTask;
         }
     }
 }

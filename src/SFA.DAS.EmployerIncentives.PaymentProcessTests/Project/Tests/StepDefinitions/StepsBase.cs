@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         protected readonly Fixture fixture;
         protected readonly EISqlHelper sqlHelper;
-        protected readonly EIDataCaptor dataCaptor;
+        protected readonly IEIDataCaptor dataCaptor;
         protected readonly LearnerMatchApiHelper learnerMatchApi;
         protected readonly EILearnerMatchHelper learnerMatchService;
         protected readonly BusinessCentralApiHelper businessCentralApiHelper;
@@ -48,13 +48,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
             var dbConfig = context.Get<DbConfig>();
             sqlHelper = new EISqlHelper(dbConfig);
-            dataCaptor = new EIDataCaptor(dbConfig);
-
+            dataCaptor = EIDataCaptor.Create(dbConfig);
             serviceBusHelper = new EIServiceBusHelper(eiConfig);
-
             learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
-
             businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
