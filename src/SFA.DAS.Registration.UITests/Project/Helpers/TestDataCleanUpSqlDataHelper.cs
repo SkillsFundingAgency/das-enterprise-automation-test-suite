@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,9 +7,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class TestDataCleanUpSqlDataHelper : SqlDbHelper
     {
-        public TestDataCleanUpSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        private readonly DbConfig _dbConfig;
 
-        public (List<string>, List<string>) CleanUpFromEasAccDb(string email)
+        private string _user, _userEmail, _accountId, _sqlFileName;
+
+        public TestDataCleanUpSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) => _dbConfig = dbConfig;
+
+        public (List<string>, List<string>) CleanUpTestData(string email)
         {
             List<string> usersdeleted = new List<string>();
 
@@ -22,21 +25,46 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             foreach (var userEmailArray in userEmailList)
             {
-                string userEmail = userEmailArray[0];
+                _userEmail = userEmailArray[0];
 
                 try
                 {
-                    SqlDatabaseConnectionHelper.ExecuteSqlCommand(FileHelper.GetSql("TestDataCleanUp"), connectionString, new Dictionary<string, string> { { "@email", userEmail } });
+                    _user = $"{_userEmail}";
 
-                    usersdeleted.Add(userEmail);
+                    var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')", 1);
+
+                    TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
+                    TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
+
+                    if (accountids.Count == 1 && string.IsNullOrEmpty(accountids[0][0])) continue;
+
+                    foreach (var accountId in accountids)
+                    {
+                        _accountId = accountId[0];
+
+                        _user = $"{_userEmail},{_accountId}";
+                        TryExecuteSqlCommand(GetSql("EasFinTestDataCleanUp"), _dbConfig.FinanceDbConnectionString, GetAccountId());
+                        TryExecuteSqlCommand(GetSql("EasFcastTestDataCleanUp"), _dbConfig.FcastDbConnectionString, GetAccountId());
+                        TryExecuteSqlCommand(GetSql("EmpIncTestDataCleanUp"), _dbConfig.IncentivesDbConnectionString, GetAccountId());
+                        TryExecuteSqlCommand(GetSql("EasRsrvTestDataCleanUp"), _dbConfig.ReservationsDbConnectionString, GetAccountId());
+                        _sqlFileName = string.Empty;
+                        
+                        usersdeleted.Add(_user);
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    userswithconstraints.Add(userEmail);
+                    userswithconstraints.Add($"{_user}({_sqlFileName}){Environment.NewLine}{ex.Message}");
                 }
             }
 
             return (usersdeleted, userswithconstraints);
         }
+
+        private string GetSql(string filename) { _sqlFileName = filename; return FileHelper.GetSql(_sqlFileName); }
+
+        private Dictionary<string, string> GetEmail() => new Dictionary<string, string> { { "@email", _userEmail } };
+
+        private Dictionary<string, string> GetAccountId() => new Dictionary<string, string> { { "@accountid", _accountId } };
     }
 }

@@ -18,9 +18,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the test data are cleaned up for email (.*)")]
-        public void ThenTheTestDataAreCleanedUpForEmailLE_Test_JunDasautomation_Com(string email)
+        public void ThenTheTestDataAreCleanedUp(string email)
         {
-          var (usersdeleted, userswithconstraints) = new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpFromEasAccDb(email);
+          var (usersdeleted, userswithconstraints) = new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
 
             if (usersdeleted.Count > 0)
             {
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             if (userswithconstraints.Count > 0)
             {
-                throw new Exception($"Exception occurred while executing SQL query for the below user's {Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
+                throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
             }
         }
     }

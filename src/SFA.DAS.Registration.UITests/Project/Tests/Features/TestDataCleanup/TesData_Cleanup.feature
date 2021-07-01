@@ -7,5 +7,5 @@ Scenario Outline: RE_01_Cleanup_Testdata_employer_accounts
 	Then the test data are cleaned up for email <email>
 
 	Examples: 
-	| email          |
-	| Test%05Jan2021 |
+	| email                                       |
+	| AP_Test_120_30Sep2019_23075545181@gmail.com |

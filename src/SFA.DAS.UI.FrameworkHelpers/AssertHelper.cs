@@ -13,7 +13,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public AssertHelper(ScenarioInfo scenarioInfo)
         {
             _title = scenarioInfo.Title;
-            TimeOut = Logging.SetTimeOut();
+            TimeOut = Logging.DefaultTimeout();
         }
         public void RetryOnNUnitException(Action action, Action retryAction = null)
         {

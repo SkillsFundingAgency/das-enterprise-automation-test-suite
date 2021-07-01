@@ -72,15 +72,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title).Execute(() => GetDataAsObject(queryToExecute));
+        protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters) 
+            => RetryOnException("Exception occurred while executing SQL query", string.Empty, Logging.Timeout())
+                .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters));
+
+        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
 
         private List<object[]> ReadDataFromDataBase(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
-        private Policy RetryOnException(string exception, string title)
+        private Policy RetryOnException(string exception, string title, TimeSpan[] timeSpans)
         {
             return Policy
                 .Handle<Exception>((x) => x.Message.Contains(exception))
-                 .WaitAndRetry(Logging.SetTimeOut(), (exception, timeSpan, retryCount, context) =>
+                 .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
                  {
                      Logging.Report(retryCount, exception, title);
                  });

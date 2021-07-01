@@ -3,6 +3,8 @@
     public class DbConfig
     {
         public string AccountsDbConnectionString { get; set; }
+        public string FinanceDbConnectionString { get; set; }
+        public string FcastDbConnectionString { get; set; }
         public string CommitmentsDbConnectionString { get; set; }
         public string ApprenticeCommitmentLoginDbConnectionString { get; set; }
         public string ApprenticeCommitmentDbConnectionString { get; set; }
@@ -13,6 +15,8 @@
         public string ProviderFeedbackDbConnectionString { get; set; }
         public string AssessorDbConnectionString { get; set; }
         public string IncentivesDbConnectionString { get; set; }
+        public string ReservationsDbConnectionString { get; set; }
+        public string UsersDbConnectionString { get; set; }
         public string PermissionsDbConnectionString { get; set; }
         public string PublicSectorReportingConnectionString { get; set; }
         public string PregDbConnectionString { get; set; }
@@ -26,6 +30,8 @@
         public string UserID { get; set; }
         public string Password { get; set; }
         public string AccountsDbName { get; set; }
+        public string FinanceDbName { get; set; }
+        public string FcastDbName { get; set; }
         public string CommitmentsDbName { get; set; }
         public string ApprenticeCommitmentLoginDbName { get; set; }
         public string ApprenticeCommitmentDbName { get; set; }
@@ -36,6 +42,8 @@
         public string ProviderFeedbackDbName { get; set; }
         public string AssessorDbName { get; set; }
         public string EmployerIncentivesDbName { get; set; }
+        public string ReservationsDbName { get; set; }
+        public string UsersDbName { get; set; }
         public string PublicSectorReportingDbName { get; set; }
         public string PermissionsDbName { get; set; }
         public string PregDbName { get; set; }

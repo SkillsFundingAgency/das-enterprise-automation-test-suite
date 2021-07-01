@@ -17,7 +17,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             _webDriver = webDriver;
             _title = scenarioInfo.Title;
-            TimeOut = Logging.SetTimeOut();
+            TimeOut = Logging.DefaultTimeout();
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
