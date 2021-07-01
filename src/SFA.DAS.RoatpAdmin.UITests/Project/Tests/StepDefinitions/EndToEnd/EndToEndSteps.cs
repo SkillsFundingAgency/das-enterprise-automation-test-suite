@@ -212,7 +212,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
-            if (_applicationRoute == ApplicationRoute.EmployerProviderRoute)
+            if (_applicationRoute == ApplicationRoute.EmployerProviderRoute || _applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
                 
             if (_applicationRoute == ApplicationRoute.SupportingProviderRoute) 
