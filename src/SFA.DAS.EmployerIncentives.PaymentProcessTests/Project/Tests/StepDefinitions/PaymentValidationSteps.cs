@@ -60,11 +60,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await RunPaymentsOrchestrator();
         }
 
-        [Then(@"the (.*) Step in PendingPaymentValidationResult table is set to (.*)")]
-        public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, bool stepValue)
+        [Then(@"the (.*) Step in PendingPaymentValidationResult table for the (.*) is set to (.*)")]
+        public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, EarningType earningType, bool stepValue)
         {
             _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
-                                                                  && x.EarningType == EarningType.FirstPayment);
+                                                                  && x.EarningType == earningType);
 
             var validationStep = GetFromDatabase<PendingPaymentValidationResult>(x =>
                 x.PendingPaymentId == _pendingPayment.Id
