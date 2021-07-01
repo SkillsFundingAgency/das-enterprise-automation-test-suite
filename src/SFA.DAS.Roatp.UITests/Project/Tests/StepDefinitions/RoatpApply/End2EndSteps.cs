@@ -48,7 +48,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
-        [Then(@"verify the (Application withdrawn) page is displayed")]
+        [Then(@"verify the (Application withdrawn|Application successful|Application unsuccessful|Application under review) page is displayed")]
         public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
 
         [Then(@"the provider do not accept the Terms and conditions")]
