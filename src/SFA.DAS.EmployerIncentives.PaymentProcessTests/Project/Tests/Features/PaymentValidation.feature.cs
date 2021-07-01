@@ -109,19 +109,26 @@ testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((Tec
    testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-   testRunner.Then("the HasDaysInLearning Step in PendingPaymentValidationResult table is set to true" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("the HasDaysInLearning Step in PendingPaymentValidationResult table for the FirstP" +
+                        "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
-   testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table for the FirstPaymen" +
+                        "t is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
-   testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table for the FirstPaym" +
+                        "ent is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
-   testRunner.And("the HasIlrSubmission Step in PendingPaymentValidationResult table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("the HasIlrSubmission Step in PendingPaymentValidationResult table for the FirstPa" +
+                        "yment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
+   testRunner.And("the PaymentsNotPaused Step in PendingPaymentValidationResult table for the FirstP" +
+                        "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
    testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
