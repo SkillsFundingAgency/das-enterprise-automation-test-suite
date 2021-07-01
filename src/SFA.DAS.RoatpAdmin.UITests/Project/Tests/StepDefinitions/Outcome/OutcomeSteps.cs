@@ -27,6 +27,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         public void TheAdminNavigatesToTheDashboard() => _tabhelper.GoToUrl(UrlConfig.Admin_BaseUrl, "dashboard");
 
         [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
+        [Then(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
         public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
         [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL|IN PROGRESS) status")]
@@ -48,6 +49,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         {
             ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationSuccessful());
         }
+
 
         [When(@"the oversight user overturns gateway and moderation outcome")]
         public void WhenTheOversightUserOverturnsGatewayAndModerationOutcome()

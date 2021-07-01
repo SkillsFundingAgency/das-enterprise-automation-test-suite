@@ -39,6 +39,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
         }
 
+        [Given(@"the provider naviagate to Apply")]
+        public void GivenTheProviderNaviagateToApply()
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+        }
+
+
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {

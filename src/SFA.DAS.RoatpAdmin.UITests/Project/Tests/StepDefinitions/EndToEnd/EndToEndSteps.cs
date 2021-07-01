@@ -98,6 +98,24 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
 
+        [Then(@"the (PASS) status overall application is marked as Successful")]
+        public void ThenThePASSStatusOverallApplicationIsMarkedAsSuccessful(string expectedStatus)
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
+
+            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationSuccessful()
+                .SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+        }
+
+        [Then(@"the (FAIL) status overall application is marked as UnSuccessful")]
+        public void ThenTheFAILStatusOverallApplicationIsMarkedAsUnSuccessful(string expectedStatus)
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
+
+            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationUnSuccessful()
+                .SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
+        }
+
         [Then(@"the Moderation user assess the application and marks outcomes as Fail")]
         public void ThenTheModerationUserAssessTheApplicationAndMarksOutcomesAsFail()
         {
