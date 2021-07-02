@@ -1,6 +1,8 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,18 +15,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         private StaffDashboardPage _staffDashboardPage;
         private ApplicationSummaryPage _applicationSummaryPage;
         private readonly TabHelper _tabhelper;
+        private readonly RestartWebDriverHelper _restartWebDriverHelper;
+        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
 
         public OutcomeSteps(ScenarioContext context)
         { 
             _context = context;
             _tabhelper = _context.Get<TabHelper>();
+            _restartWebDriverHelper = new RestartWebDriverHelper(context);
+            _loginStepsHelper = new RoatpAdminLoginStepsHelper(context);
         }
 
         [Then(@"Oversight user is able to send the application to Appeal Status")]
         public void ThenOversightUserIsAbleToSendTheApplicationToAppealStatus() => _applicationSummaryPage.ClickAppealThisApplication().AppealThisApplication();
 
         [Given(@"the admin navigates to the Dashboard")]
-        public void TheAdminNavigatesToTheDashboard() => _tabhelper.GoToUrl(UrlConfig.Admin_BaseUrl, "dashboard");
+        public void TheAdminNavigatesToTheDashboard()
+        {
+            RestartRoatpAdmin("RoATPAdmin");
+            _loginStepsHelper.SubmitValidLoginDetails();
+        }
 
         [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
         [Then(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
@@ -113,5 +123,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         {
             return areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
+
+        private void RestartWebDriver(string url, string applicationName) => _restartWebDriverHelper.RestartWebDriver(url, applicationName);
+        private void RestartRoatpAdmin(string applicationName) => RestartWebDriver(UrlConfig.Admin_BaseUrl, applicationName);
     }
 }

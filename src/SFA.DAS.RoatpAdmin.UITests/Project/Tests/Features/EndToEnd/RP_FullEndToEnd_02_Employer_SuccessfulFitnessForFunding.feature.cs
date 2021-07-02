@@ -142,9 +142,6 @@ this.ScenarioInitialize(scenarioInfo);
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
-    testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
     testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -15,5 +15,4 @@ Scenario: RP_FullEndToEnd_02_EmployerRoute_Charity_Complete_Apply_Gateway_Financ
 	Then the Moderation user assess the application and marks outcomes as Fail
 	And the FAIL status overall application is marked as UnSuccessful
     Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
-    And verify the provider is not added to the register
     And verify the Application unsuccessful page is displayed 

@@ -112,7 +112,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
-            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationUnSuccessful_ApprovedGatewayAndModerationFailOutcomes()
+            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).ApproveGatewayAndModerationOutcomes().MakeApplicationUnSuccessful_ApprovedGatewayModerationOutcomes_Unsuccessful()
                 .SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
