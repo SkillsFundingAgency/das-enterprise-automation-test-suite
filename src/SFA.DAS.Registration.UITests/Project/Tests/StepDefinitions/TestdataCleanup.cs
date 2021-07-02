@@ -24,7 +24,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             if (usersdeleted.Count > 0)
             {
-                _objectContext.Set("usersdeleted", $"{ Environment.NewLine}{ string.Join(Environment.NewLine, usersdeleted)}");
+                _objectContext.Set("usersdeleted", $"{usersdeleted.Count} accounts deleted" +
+                    $"{ Environment.NewLine}{ string.Join(Environment.NewLine, usersdeleted)}");
             }
 
             if (userswithconstraints.Count > 0)

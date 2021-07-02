@@ -73,17 +73,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TestDataCleanup
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_01_Cleanup_Testdata_Employer_Accounts(string email, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RE_01_Cleanup_Testdata_employer_accounts")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        public virtual void RE_01_Cleanup_Testdata_Employer_Accounts()
         {
-            string[] @__tags = new string[] {
+            string[] tagsOfScenario = new string[] {
                     "donottakescreenshot"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("email", email);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_01_Cleanup_Testdata_employer_accounts", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -106,21 +103,11 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Then(string.Format("the test data are cleaned up for email {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the test data are cleaned up for email LE_Test_131_29Jun2021_09394100719@dasautom" +
+                        "ation.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_01_Cleanup_Testdata_employer_accounts: AP_Test_120_30Sep2019_23075545181@gmail" +
-            ".com")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_01_Cleanup_Testdata_Employer_Accounts_AP_Test_120_30Sep2019_23075545181Gmail_Com()
-        {
-#line 6
-this.RE_01_Cleanup_Testdata_Employer_Accounts("AP_Test_120_30Sep2019_23075545181@gmail.com", ((string[])(null)));
-#line hidden
         }
     }
 }

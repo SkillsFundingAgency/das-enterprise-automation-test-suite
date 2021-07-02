@@ -41,6 +41,9 @@
     <None Update="Project\Helpers\PowerShellScripts\HashIds.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Project\Helpers\SqlScripts\EasComtTestDataCleanUp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\Helpers\SqlScripts\EasFcastTestDataCleanUp.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
