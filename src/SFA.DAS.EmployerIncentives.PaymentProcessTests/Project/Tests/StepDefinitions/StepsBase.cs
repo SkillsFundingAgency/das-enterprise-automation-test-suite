@@ -89,6 +89,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("SetActiveCollectionPeriod");
         }
 
+        protected async Task ResetPeriodEndInProgress()
+        {
+            await sqlHelper.ResetPeriodEndInProcess();
+        }
+
         protected async Task SubmitIncentiveApplication(IncentiveApplication application)
         {
             StartStopWatch("SubmitIncentiveApplication");

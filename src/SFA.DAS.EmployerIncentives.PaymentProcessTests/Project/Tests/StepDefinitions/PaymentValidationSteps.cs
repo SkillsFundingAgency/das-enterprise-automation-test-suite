@@ -58,6 +58,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await SetActiveCollectionPeriod(period, year);
             await RunLearnerMatchOrchestrator();
             await RunPaymentsOrchestrator();
+            await ResetPeriodEndInProgress();
         }
 
         [Then(@"the (.*) Step in PendingPaymentValidationResult table for the (.*) is set to (.*)")]

@@ -243,5 +243,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(SqlScripts.DeleteApplicationData, new { incentiveApplicationId });
         }
+
+        public async Task ResetPeriodEndInProcess()
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync("UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0");
+        }
     }
 }
