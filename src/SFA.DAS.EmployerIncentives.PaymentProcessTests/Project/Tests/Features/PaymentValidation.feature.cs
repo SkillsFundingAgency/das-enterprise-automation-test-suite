@@ -133,6 +133,10 @@ testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((Tec
                         "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
+   testRunner.And("the HasLearningRecord Step in PendingPaymentValidationResult table for the FirstP" +
+                        "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
    testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
