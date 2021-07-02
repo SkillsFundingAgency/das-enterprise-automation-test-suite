@@ -29,7 +29,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
            VerifyPage();
         }
 
-        public FinancialHealthAssesmentCompletedPage ConfirmFHAReviewAsOutstanding(string expectedoutcome)
+        public FinancialHealthAssesmentCompletedPage ConfirmFHAReview(string expectedoutcome)
         {
             SelectRadioOptionByForAttribute(expectedoutcome);
             if (_context.ScenarioInfo.Tags.Contains("rpendtoend02apply"))

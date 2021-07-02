@@ -62,7 +62,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("FinanceAdmin");
 
-            staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReviewAsOutstanding(expectedoutcome);
+            staffDashboardPage.AccessFinancialApplications().SelectNewApplication().ConfirmFHAReview(expectedoutcome);
         }
 
         [Given(@"the Asssesssors assess the application and marks the application as Ready for Moderation")]
@@ -112,7 +112,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
-            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationUnSuccessful()
+            staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus).MakeApplicationUnSuccessful_ApprovedGatewayAndModerationFailOutcomes()
                 .SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 

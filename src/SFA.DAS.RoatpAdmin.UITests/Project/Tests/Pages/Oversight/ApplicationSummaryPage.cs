@@ -83,6 +83,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             Continue();
             return new AreYouSureUnSuccessfullPage(_context);
         }
+        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful_ApprovedGatewayAndModerationFailOutcomes()
+        {
+            formCompletionHelper.ClickElement(OversightUnSuccessful);
+            formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments for approving Gateway and Moderation Fail outcome");
+            Continue();
+            return new AreYouSureUnSuccessfullPage(_context);
+        }
 
         public AreYouSureInProgressPage MakeApplicationInProgress()
         {

@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         {
             _financialLandingPage = _financialLandingPage
                 .SelectNewApplication()
-                .ConfirmFHAReviewAsOutstanding(expectedoutcome)
+                .ConfirmFHAReview(expectedoutcome)
                 .GoToRoATPAssessorApplicationsPage();
         }
 
