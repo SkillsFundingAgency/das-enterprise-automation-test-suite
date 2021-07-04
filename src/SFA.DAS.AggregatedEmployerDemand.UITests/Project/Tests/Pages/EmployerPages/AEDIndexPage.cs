@@ -13,7 +13,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         public AEDIndexPage(ScenarioContext context) : base(context) => _context = context;
 
         #region Locators
-        private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Get help with finding a training provider");
+        private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");
         #endregion
 
         public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink()

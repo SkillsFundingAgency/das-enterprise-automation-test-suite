@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 {
@@ -13,6 +14,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
         private readonly ScenarioContext _context;
+        protected readonly ProviderConfig providerConfig;
+
         #endregion
 
         private new By Continue => By.Id("continue");
@@ -25,6 +28,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
+            providerConfig = context.GetProviderConfig<ProviderConfig>();
             VerifyPage();
         }
 

@@ -3,6 +3,8 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.ProviderLogin.Service.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -13,13 +15,17 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
+        private readonly string _providerUrl;
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
+
 
 
         public AEDProviderSteps(ScenarioContext context)
         {
-            _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(_context);
             _config = context.GetProviderConfig<ProviderConfig>();
+            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
+            _providerUrl = UrlConfig.Provider_BaseUrl;
             _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 

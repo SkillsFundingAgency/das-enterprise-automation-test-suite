@@ -5,7 +5,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 {
     public class WhichEmployersAreYouInterestedInPage : AEDBasePage
     {
-        protected override string PageTitle => "Which employers are you interested in?";
+        protected override string PageTitle => "";
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
         private readonly ScenarioContext _context;
         public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context) => _context = context;
 
