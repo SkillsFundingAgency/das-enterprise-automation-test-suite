@@ -11,7 +11,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AEDProviderSteps
     {
-        private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;

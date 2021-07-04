@@ -11,18 +11,9 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests
     public class Hooks
     {
         private readonly IWebDriver _webDriver;
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ProviderConfig _config;
 
 
-        public Hooks(ScenarioContext context)
-        {
-            _context = context;
-            _webDriver = context.GetWebDriver();
-            _config = context.GetProviderConfig<ProviderConfig>();
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
 
 
         [BeforeScenario(Order = 21)]

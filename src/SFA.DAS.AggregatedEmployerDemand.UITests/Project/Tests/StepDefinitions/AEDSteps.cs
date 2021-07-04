@@ -15,8 +15,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly AEDStepsHelper _aEDStepsHelper;
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
         private CheckYourAnswersPage _checkYourAnswersPage;
-        private WeSharedThisInterestWithTrainingProvidersPage _weSharedThisInterestWithTrainingProvidersPage;
-        private ShareYourInterestWithTrainingProvidersPage _shareYourInterestWithTrainingProvidersPage;
         private EmailVerificationPage _emailVerificationPage;
 
         public AEDSteps(ScenarioContext context)

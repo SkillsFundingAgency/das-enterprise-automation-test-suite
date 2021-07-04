@@ -13,7 +13,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        private readonly ScenarioContext _context;
         protected readonly ProviderConfig providerConfig;
 
         #endregion
@@ -24,7 +23,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 
         protected AEDBasePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
