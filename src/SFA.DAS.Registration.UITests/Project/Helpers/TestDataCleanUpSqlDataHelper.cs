@@ -2,6 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -13,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public TestDataCleanUpSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) => _dbConfig = dbConfig;
 
-        public (List<string>, List<string>) CleanUpTestData(string email)
+        public async Task<(List<string>, List<string>)> CleanUpTestData(string email)
         {
             List<string> usersdeleted = new List<string>();
 
@@ -33,8 +34,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
                     var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')", 1);
 
-                    TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
-                    TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
+                    await TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
+                    await TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
 
                     if (accountids.Count == 1 && string.IsNullOrEmpty(accountids[0][0])) continue;
 
@@ -43,11 +44,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                         _accountId = accountId[0];
 
                         _user = $"{_userEmail},{_accountId}";
-                        TryExecuteSqlCommand(GetSql("EasFinTestDataCleanUp"), _dbConfig.FinanceDbConnectionString, GetAccountId());
-                        TryExecuteSqlCommand(GetSql("EasFcastTestDataCleanUp"), _dbConfig.FcastDbConnectionString, GetAccountId());
-                        TryExecuteSqlCommand(GetSql("EmpIncTestDataCleanUp"), _dbConfig.IncentivesDbConnectionString, GetAccountId());
-                        TryExecuteSqlCommand(GetSql("EasRsrvTestDataCleanUp"), _dbConfig.ReservationsDbConnectionString, GetAccountId());
-                        TryExecuteSqlCommand(GetSql("EasComtTestDataCleanUp"), _dbConfig.CommitmentsDbConnectionString, GetAccountId());
+                        await TryExecuteSqlCommand(GetSql("EasFinTestDataCleanUp"), _dbConfig.FinanceDbConnectionString, GetAccountId());
+                        await TryExecuteSqlCommand(GetSql("EasFcastTestDataCleanUp"), _dbConfig.FcastDbConnectionString, GetAccountId());
+                        await TryExecuteSqlCommand(GetSql("EmpIncTestDataCleanUp"), _dbConfig.IncentivesDbConnectionString, GetAccountId());
+                        await TryExecuteSqlCommand(GetSql("EasRsrvTestDataCleanUp"), _dbConfig.ReservationsDbConnectionString, GetAccountId());
+                        await TryExecuteSqlCommand(GetSql("EasComtTestDataCleanUp"), _dbConfig.CommitmentsDbConnectionString, GetAccountId());
                         _sqlFileName = string.Empty;
                         
                         usersdeleted.Add(_user);

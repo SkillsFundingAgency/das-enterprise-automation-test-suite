@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
-        public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
+        public static async Task<int> ExecuteSqlCommandAsync(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
             try
             {
@@ -21,7 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                         {
                             command.Parameters.AddWithValue(param.Key, param.Value);
                         }
-                        return command.ExecuteNonQuery();
+                        return await command.ExecuteNonQueryAsync();
                     }
                 }
             }

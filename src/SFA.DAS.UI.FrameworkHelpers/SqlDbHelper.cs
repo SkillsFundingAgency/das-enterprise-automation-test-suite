@@ -1,6 +1,7 @@
 ﻿using Polly;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -72,9 +73,18 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters) 
-            => RetryOnException("Exception occurred while executing SQL query", string.Empty, Logging.Timeout())
-                .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters));
+        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
+
+        {
+            return await Policy
+                .Handle<Exception>((x) => x.Message.Contains("Exception occurred while executing SQL query"))
+                 .WaitAndRetryAsync(Logging.Timeout(), (exception, timeSpan, retryCount, context) =>
+                 {
+                     Logging.Report(retryCount, exception, string.Empty);
+                 })
+                 .ExecuteAsync(() => SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(queryToExecute, connectionString, parameters));
+        }
+
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
 

@@ -1,6 +1,8 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -18,15 +20,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the test data are cleaned up for email (.*)")]
-        public void ThenTheTestDataAreCleanedUp(string email)
+        public async Task ThenTheTestDataAreCleanedUp(string email)
         {
-          var (usersdeleted, userswithconstraints) = new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
+          var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
 
             int x = usersdeleted.Count;
 
             if (x > 0)
             {
-                _objectContext.Set("usersdeleted", $"{x} account{(x == 1 ? string.Empty : "s")} deleted" +
+                _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_usersdeleted", $"{x} account{(x == 1 ? string.Empty : "s")} deleted" +
                     $"{ Environment.NewLine}{ string.Join(Environment.NewLine, usersdeleted)}");
             }
 
