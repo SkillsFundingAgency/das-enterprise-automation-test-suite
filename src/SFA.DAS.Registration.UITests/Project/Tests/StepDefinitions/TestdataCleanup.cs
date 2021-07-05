@@ -22,9 +22,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
           var (usersdeleted, userswithconstraints) = new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
 
-            if (usersdeleted.Count > 0)
+            int x = usersdeleted.Count;
+
+            if (x > 0)
             {
-                _objectContext.Set("usersdeleted", $"{usersdeleted.Count} accounts deleted" +
+                _objectContext.Set("usersdeleted", $"{x} account{(x == 1 ? string.Empty : "s")} deleted" +
                     $"{ Environment.NewLine}{ string.Join(Environment.NewLine, usersdeleted)}");
             }
 
