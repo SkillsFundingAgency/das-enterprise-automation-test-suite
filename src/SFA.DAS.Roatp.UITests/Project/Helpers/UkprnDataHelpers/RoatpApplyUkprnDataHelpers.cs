@@ -98,7 +98,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D2@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10048654"),
+                    new KeyValuePair<string, string>(ukprnkey, "10048894"),
                 });
             _data.Add("rps103",
                 new List<KeyValuePair<string, string>>
