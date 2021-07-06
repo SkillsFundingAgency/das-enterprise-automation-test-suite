@@ -3,6 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -20,9 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             List<string> userswithconstraints = new List<string>();
 
-            var userEmailList = GetMultipleData($"select Email from employer_account.[User] where Email like ('%{email}%')", 1);
+            var userEmailList = GetMultipleData($"select top 10 Email from employer_account.[User] where Email like ('%{email}%') and email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()})", 1);
 
             if (userEmailList.Count == 1 && string.IsNullOrEmpty(userEmailList[0][0])) return (usersdeleted, userswithconstraints);
+
+            TestDataCleanUpEmailsInUse.AddInUseEmails(userEmailList.Select(x => x[0]).ToList());
 
             foreach (var userEmailArray in userEmailList)
             {

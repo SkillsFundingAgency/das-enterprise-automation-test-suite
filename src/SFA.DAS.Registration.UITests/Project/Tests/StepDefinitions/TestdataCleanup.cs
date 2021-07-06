@@ -19,10 +19,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [Then(@"the test data are cleaned up for email (.*)")]
-        public async Task ThenTheTestDataAreCleanedUp(string email)
+        [Then(@"the test data are cleaned up")]
+        public async Task ThenTheTestDataAreCleanedUp()
         {
-          var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
+          var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData("commitments.example.com");
 
             int x = usersdeleted.Count;
 
