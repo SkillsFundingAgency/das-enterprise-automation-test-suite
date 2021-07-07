@@ -62,7 +62,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await RunLearnerMatchOrchestrator(true);
+            await RunLearnerMatchOrchestrator();
 
             // 2nd run
             await SetActiveCollectionPeriod(11, 2021);
@@ -88,7 +88,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await RunLearnerMatchOrchestrator(true);
+            await RunLearnerMatchOrchestrator();
         }
 
         [When(@"an exception occurs for a learner")]
@@ -153,7 +153,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 x => incentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
             
             changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped).Should().Be(3);
-            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningResumed).Should().Be(2);
             changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.StartDate).Should().Be(2);
         }
 
