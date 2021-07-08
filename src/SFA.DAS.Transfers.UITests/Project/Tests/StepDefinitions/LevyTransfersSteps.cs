@@ -49,8 +49,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"I am logged in as a Levy Payer")]
-        public void GivenIAmLoggedInAsALevyPayer() => _homePage = _employerPortalLoginHelper.Login(_levyUser, true);
-
+        //public void GivenIAmLoggedInAsALevyPayer() => _homePage = _employerPortalLoginHelper.Login(_levyUser, true);
+        public void GivenIAmLoggedInAsALevyPayer() =>  _employerPortalLoginHelper.Login(_levyUser, true);
 
         [Given(@"I am on the Manage Apprenticeships Page")]
         public void GivenIAmOnTheManageApprenticeshipsPage()
