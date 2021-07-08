@@ -18,19 +18,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public NewOrganisationDetailsPage GoToNewOrganisationDetailsPage()
         {
-            formCompletionHelper.ClickLinkByText("Organisation details");
+            formCompletionHelper.ClickLinkByText("Evaluate organisation details");
             return new NewOrganisationDetailsPage(_context);
         }
 
         public NewOrgDeclarationsPage GoToNewOrgDeclarationsPage()
         {
-            formCompletionHelper.ClickLinkByText("Declarations");
+            formCompletionHelper.ClickLinkByText("Evaluate declarations");
             return new NewOrgDeclarationsPage(_context);
         }
 
         public NewOrgFinancialhealthAssesmentPage GoToFinancialhealthAssesmentPage()
         {
-            formCompletionHelper.ClickLinkByText("Financial health assessment");
+            formCompletionHelper.ClickLinkByText("Evaluate financial health assessment");
             return new NewOrgFinancialhealthAssesmentPage(_context);
         }
 

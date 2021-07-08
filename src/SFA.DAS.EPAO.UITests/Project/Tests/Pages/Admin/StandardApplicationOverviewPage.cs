@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public ApplyToAssessAStandardPage GoToApplyToAssessAStandardPage()
         {
-            formCompletionHelper.ClickLinkByText("Apply to assess a standard");
+            formCompletionHelper.ClickLinkByText("Evaluate apply to assess a standard");
             return new ApplyToAssessAStandardPage(_context);
         }
 
