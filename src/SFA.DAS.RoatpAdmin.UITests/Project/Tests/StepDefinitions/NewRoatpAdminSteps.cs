@@ -19,7 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
             _roatpAdminStepsHelper = new NewRoatpAdminStepsHelper(_context);
         }
 
-        [Given(@"the (Main provider) is already on the RoATP register as Active")]
+        [Given(@"the (Main provider|Employer provider) is already on the RoATP register as Active")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActive(string providerType)
         {
             VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActive());

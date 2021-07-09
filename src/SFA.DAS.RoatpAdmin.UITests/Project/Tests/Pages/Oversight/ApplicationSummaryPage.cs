@@ -74,12 +74,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OverturnModerationOutcome);
             return new ApplicationSummaryPage(_context);
         }
+        public ApplicationSummaryPage ApproveGatewayAndModerationOutcomes()
+        {
+            formCompletionHelper.ClickElement(ApproveGatewayOutcome);
+            formCompletionHelper.ClickElement(ApproveModertionOutcome);
+            return new ApplicationSummaryPage(_context);
+        }
 
         public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful()
         {
             formCompletionHelper.ClickElement(OversightUnSuccessful);
             formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments ");
             formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments ");
+            Continue();
+            return new AreYouSureUnSuccessfullPage(_context);
+        }
+        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful_ApprovedGatewayModerationOutcomes_Unsuccessful()
+        {
+            formCompletionHelper.ClickElement(OversightUnSuccessful);
+            formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments for approving Gateway and Moderation outcome");
             Continue();
             return new AreYouSureUnSuccessfullPage(_context);
         }
