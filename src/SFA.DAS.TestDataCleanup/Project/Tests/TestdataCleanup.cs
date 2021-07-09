@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.TestDataCleanup.Project
+namespace SFA.DAS.TestDataCleanup.Project.Tests
 {
     [Binding]
     public class TestdataCleanup
