@@ -10,21 +10,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmChangesOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.Id("submit-review-changes");        
+        private By ConfirmChangesOptions => By.CssSelector(".govuk-radios__label"); 
+        protected override By ContinueButton => By.CssSelector("#continue-button");        
 
         public ProviderReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderEditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
-            SelectConfirmChangesOptions("changes-approved-true")
+            SelectConfirmChangesOptions("AcceptChanges")
             .Continue();
             return new ProviderEditedApprenticeDetailsPage(_context);
         }
 
         public ProviderApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
-            SelectConfirmChangesOptions("changes-approved-false")
+            SelectConfirmChangesOptions("AcceptChanges-no")
             .Continue();
             return new ProviderApprenticeDetailsPage(_context);
         }
