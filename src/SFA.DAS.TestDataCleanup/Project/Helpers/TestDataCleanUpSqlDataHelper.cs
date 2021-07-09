@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
     public class TestDataCleanUpSqlDataHelper : SqlDbHelper
     {
@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             List<string> userswithconstraints = new List<string>();
 
-            var userEmailList = GetMultipleData($"select top 10 Email from employer_account.[User] where Email like ('%{email}%') and email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()})", 1);
+            var userEmailList = GetMultipleData($"select top 5 Email from employer_account.[User] where Email like ('{email}') and email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
 
             if (userEmailList.Count == 1 && string.IsNullOrEmpty(userEmailList[0][0])) return (usersdeleted, userswithconstraints);
 
@@ -53,7 +53,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                         await TryExecuteSqlCommand(GetSql("EasRsrvTestDataCleanUp"), _dbConfig.ReservationsDbConnectionString, GetAccountId());
                         await TryExecuteSqlCommand(GetSql("EasComtTestDataCleanUp"), _dbConfig.CommitmentsDbConnectionString, GetAccountId());
                         _sqlFileName = string.Empty;
-                        
+
                         usersdeleted.Add(_user);
                     }
                 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
     internal static class TestDataCleanUpEmailsInUse
     {

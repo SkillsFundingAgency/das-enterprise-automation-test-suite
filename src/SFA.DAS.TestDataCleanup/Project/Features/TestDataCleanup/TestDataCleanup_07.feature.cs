@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TestDataCleanup
+namespace SFA.DAS.TestDataCleanup.Project.Features.TestDataCleanup
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TestDataCleanup
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TesData_Cleanup_02")]
-    public partial class TesData_Cleanup_02Feature
+    [NUnit.Framework.DescriptionAttribute("TesData_Cleanup_07")]
+    public partial class TesData_Cleanup_07Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TesData_Cleanup_02.feature"
+#line 1 "TestDataCleanup_07.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TesData_Cleanup_02", "To clean up test data from emp-acc-db", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TesData_Cleanup_07", "To clean up test data from emp-acc-db", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,15 +74,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TestDataCleanup
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_02_Cleanup_Testdata_employer_accounts")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_02_Cleanup_Testdata_Employer_Accounts()
+        [NUnit.Framework.DescriptionAttribute("Cleanup_Testdata_07")]
+        public virtual void Cleanup_Testdata_07()
         {
-            string[] tagsOfScenario = new string[] {
-                    "donottakescreenshot"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_02_Cleanup_Testdata_employer_accounts", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cleanup_Testdata_07", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,8 +100,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Then("the test data are cleaned up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Then("the test data are cleaned up for email First_%6@mailinator.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

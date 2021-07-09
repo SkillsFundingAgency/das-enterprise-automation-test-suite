@@ -101,6 +101,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Transfers.UITests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.AssessorCertification.APITests", "SFA.DAS.AssessorCertification.APITests\SFA.DAS.AssessorCertification.APITests.csproj", "{812AE8B5-626C-4EAD-AC08-43DB335A3633}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TestDataCleanup", "SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj", "{3EF33088-8375-45EF-A94E-335899F9CBCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -336,6 +338,12 @@ Global
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -357,6 +365,7 @@ Global
 		{2D6A9A1A-1C9E-42E5-84ED-433B42482D66} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{1C68FA3C-4D7E-43B3-80FB-4745D77CF86D} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
+		{3EF33088-8375-45EF-A94E-335899F9CBCB} = {FC4EA916-845D-4BCB-9F27-F95C653AB289}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}

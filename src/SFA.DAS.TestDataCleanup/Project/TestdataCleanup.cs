@@ -1,11 +1,11 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.TestDataCleanup.Project
 {
     [Binding]
     public class TestdataCleanup
@@ -19,10 +19,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
+        [Then(@"the test data are cleaned up for email (.*)")]
+        public async Task ThenTheTestDataAreCleanedUpForEmail(string email) => await CleanUpTestData(email);
+
+
         [Then(@"the test data are cleaned up")]
-        public async Task ThenTheTestDataAreCleanedUp()
+        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("First_%@mailinator.com");
+
+        private async Task CleanUpTestData(string email)
         {
-          var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData("commitments.example.com");
+            var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
 
             int x = usersdeleted.Count;
 

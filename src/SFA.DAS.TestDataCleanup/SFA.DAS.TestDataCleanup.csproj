@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <RootNamespace>SFA.DAS.TestDataCleanup</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appsettings.Environment.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.Project.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasAccTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasComtTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasFcastTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasFinTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasRsrvTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasUsersTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EmpIncTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="specflow.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

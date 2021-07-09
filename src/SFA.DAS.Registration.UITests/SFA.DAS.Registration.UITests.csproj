@@ -41,27 +41,6 @@
     <None Update="Project\Helpers\PowerShellScripts\HashIds.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Project\Helpers\SqlScripts\EasComtTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EasFcastTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EasUsersTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EasRsrvTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EmpIncTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EasFinTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Project\Helpers\SqlScripts\EasAccTestDataCleanUp.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="SFA.DAS.Registration.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

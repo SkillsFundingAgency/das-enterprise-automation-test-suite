@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.MongoDb.DataGenerator.Helpers
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class NextNumberGenerator
     {
