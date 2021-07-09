@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         private string[] _featureTags = new string[] {
                 "employerincentivesPaymentsProcess"};
         
-#line 1 "ResumeChangeOfCircumstance.feature"
+#line 1 "ResumeLearningChangeOfCircumstance.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
