@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+using SFA.DAS.UI.Framework;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -7,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class ConfirmIdentitySteps : BaseSteps
     {
-        private ApprenticeHomePage _ApprenticeHomePage;
+        private ApprenticeHomePage _apprenticeHomePage;
 
         public ConfirmIdentitySteps(ScenarioContext context) : base(context) { }
 
@@ -15,8 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeLoginInToTheService() => appreticeCommitmentsStepsHelper.CreateAccount();
 
         [Then(@"the apprentice is able to confirm the identitification details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails() =>
-            _ApprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
+        public void ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails()
+        {
+            _apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
+            appreticeCommitmentsStepsHelper.UpdateConfirmBeforeDate();
+            tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
+        }
 
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
@@ -40,10 +45,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             GivenAnApprenticeLoginInToTheService();
             ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails();
+            appreticeCommitmentsStepsHelper.VerifyDaysToConfirmWarning(_apprenticeHomePage);
         }
 
         [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _ApprenticeHomePage.SignOutFromTheService();
+        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService();
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
