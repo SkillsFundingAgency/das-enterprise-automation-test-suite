@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
         {
-            formCompletionHelper.ClickLinkByText("Withdrawal notification questions");
+            formCompletionHelper.ClickLinkByText("Evaluate withdrawal notification questions");
             return new AD_WithdrawalNotificationQuestionsPage(_context);
         }
 

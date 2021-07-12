@@ -23,14 +23,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
-        public AS_WithdrawalNotificationQuestionsPage EnterDateToWithdraw()
+        public AS_WithdrawalRequestQuestionsPage EnterDateToWithdraw()
         {
             VerifyPage(PageTitleLocator, PageTitle);
             formCompletionHelper.EnterText(DayText, "01");
             formCompletionHelper.EnterText(MonthText, "12");
             formCompletionHelper.EnterText(YearText, "2021");
             Continue();
-            return new AS_WithdrawalNotificationQuestionsPage(_context);
+            return new AS_WithdrawalRequestQuestionsPage(_context);
         }
     }
 }

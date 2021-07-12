@@ -6,9 +6,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
     {
         public EPAOApplyStandardDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
 
-        public string ApplyStandardName => "Software developer";
+        public string ApplyStandardName => "Advanced butcher";
 
-        public string ApplyStandardCode => "2";
+        public string ApplyStandardCode => "152";
 
         public string StandardAssessorOrganisationEpaoId => "EPA0002";
 
