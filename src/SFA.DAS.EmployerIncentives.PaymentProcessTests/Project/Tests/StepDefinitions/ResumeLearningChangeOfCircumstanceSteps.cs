@@ -27,14 +27,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
+            _initialStartDate = startDate;
             _initialEndDate = endDate;
+            await SetActiveCollectionPeriod(6, 2021);
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
                 .WithApprenticeship(apprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-20))
                 .Create();
 
-            await SetActiveCollectionPeriod(1, 2021);
             await SubmitIncentiveApplication(incentiveApplication);
         }
 
