@@ -10,11 +10,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     public abstract class AEDBasePage : BasePage
     {
         #region Helpers and Context
+        protected readonly IFrameHelper frameHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
         protected readonly ProviderConfig providerConfig;
-
         #endregion
 
         private new By Continue => By.Id("continue");
@@ -23,6 +23,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 
         protected AEDBasePage(ScenarioContext context) : base(context)
         {
+            frameHelper = context.Get<IFrameHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
