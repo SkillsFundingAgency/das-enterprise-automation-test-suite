@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
         private DateTime _lastPriceEpisodeEndDate;
-        
+
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
             accountId = 14326;
@@ -27,7 +27,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
-            _initialStartDate = startDate;
             _initialEndDate = endDate;
 
             incentiveApplication = new IncentiveApplicationBuilder()
@@ -35,6 +34,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(apprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-20))
                 .Create();
 
+            await SetActiveCollectionPeriod(1, 2021);
             await SubmitIncentiveApplication(incentiveApplication);
         }
 
@@ -77,7 +77,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _payment.Amount.Should().Be(amount);
         }
 
-        [When(@"Learner data is updated with PE End Date which is before the due date of the paid earning in Period R(.*) (.*)")]
+        [When(@"Learner data is updated with Price Episode End Date which is before the due date of the paid earning in Period R(.*) (.*)")]
         public async Task WhenLearnerDataIsUpdatedWithPeEndDateWhichIsBeforeTheDueDateOfThePaidEarning(byte period, short year)
         {
             _lastPriceEpisodeEndDate = _initialEarning.DueDate.AddDays(-6);
@@ -113,7 +113,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await WhenTheLearnerMatchIsRunInPeriodR(period, year);
         }
 
-        [When(@"Learner data is updated with Price Episode Start Date which is on or after Previous PE start date AND on or before the Previous PE end date")]
+        [When(@"Learner data is updated with Price Episode Start Date which is on or after Previous Price Episode start date AND on or before the Previous Price Episode end date")]
         public async Task WhenLearnerDataIsUpdatedWithPriceEpisodeStartDateWhichIsOnOrAfterPreviousPEStartDateANDOnOrBeforeThePreviousPEEndDate()
         {
             var priceEpisode1 = new PriceEpisodeDtoBuilder()
@@ -218,8 +218,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Should().HaveCount(1);
         }
 
-        [When(@"the paid earnings of £(.*) is marked as required a clawback in the currently active Period R(.*) (.*)")]
-        public void ThenThePaidEarningsOfIsMarkedAsRequiredAClawbackInTheCurrentlyActivePeriodR(int amount, byte period, short year)
+        [When(@"the paid earnings of £(.*) is marked as required a clawback in the currently active collection period")]
+        public void ThenThePaidEarningsOfIsMarkedAsRequiredAClawbackInTheCurrentlyActivePeriodR(int amount)
         {
             var pendingPayment = GetFromDatabase<PendingPayment>(p => p.Id == _initialEarning.Id);
             pendingPayment.PaymentMadeDate.Should().NotBeNull();
@@ -232,8 +232,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             );
 
             clawback.Amount.Should().Be(-amount);
-            clawback.CollectionPeriodYear.Should().Be(year);
-            clawback.CollectionPeriod.Should().Be(period);
+            clawback.CollectionPeriodYear.Should().Be(activePaymentPeriod.Year);
+            clawback.CollectionPeriod.Should().Be(activePaymentPeriod.Number);
         }
 
         [Then(@"a new first pending payment of £(.*) is created for Period R(.*) (.*)")]
@@ -243,11 +243,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
                 && p.EarningType == EarningType.FirstPayment && p.ClawedBack == false);
 
-            pendingPayment.PeriodNumber.Should().Be(period);
-            pendingPayment.PaymentYear.Should().Be(year);
             pendingPayment.Amount.Should().Be(amount);
             pendingPayment.PaymentMadeDate.Should().BeNull();
             pendingPayment.ClawedBack.Should().BeFalse();
+            pendingPayment.PeriodNumber.Should().Be(period);
+            pendingPayment.PaymentYear.Should().Be(year);
         }
 
         [Then(@"the existing first pending payment of £(.*) paid in Period R(.*) (.*) is unchanged")]
@@ -263,7 +263,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             pendingPayment.PaymentMadeDate.Should().NotBeNull();
             pendingPayment.ClawedBack.Should().BeFalse();
         }
-
 
         [Then(@"a new second pending payment of £(.*) is created for Period R(.*) (.*)")]
         public void ThenANewSecondPendingPaymentOfIsCreatedForPeriodR(int amount, byte period, short year)

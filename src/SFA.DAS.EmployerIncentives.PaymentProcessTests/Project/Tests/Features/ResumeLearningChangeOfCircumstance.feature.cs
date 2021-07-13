@@ -111,8 +111,8 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.And("a payment of £1000 sent in Period R06 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
-    testRunner.When("Learner data is updated with PE End Date which is before the due date of the paid" +
-                        " earning in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("Learner data is updated with Price Episode End Date which is before the due date " +
+                        "of the paid earning in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -122,11 +122,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
     testRunner.And("the paid earnings of £1000 is marked as required a clawback in the currently acti" +
-                        "ve Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "ve collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
     testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
-                        "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "us Price Episode start date AND on or before the Previous Price Episode end date" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -151,14 +152,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of the First " +
-            "Earning and then Resumed in later period")]
-        public virtual void Resume2_Defect_LearnerStoppedCOCTriggeredOnTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
+        [NUnit.Framework.DescriptionAttribute("Resume 2 - Learner Stopped COC triggered on the due date of the First Earning and" +
+            " then Resumed in later period")]
+        public virtual void Resume2_LearnerStoppedCOCTriggeredOnTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 2 - (Defect) - Learner Stopped COC triggered on the due date of the First " +
-                    "Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 2 - Learner Stopped COC triggered on the due date of the First Earning and" +
+                    " then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
 #line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -201,7 +202,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 27
     testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
-                        "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "us Price Episode start date AND on or before the Previous Price Episode end date" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 28
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -226,14 +228,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Resume 3 - (Defect) - Learner Stopped COC triggered one day after the due date of" +
-            " the First Earning and then Resumed in later period")]
-        public virtual void Resume3_Defect_LearnerStoppedCOCTriggeredOneDayAfterTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
+        [NUnit.Framework.DescriptionAttribute("Resume 3 - Learner Stopped COC triggered one day after the due date of the First " +
+            "Earning and then Resumed in later period")]
+        public virtual void Resume3_LearnerStoppedCOCTriggeredOneDayAfterTheDueDateOfTheFirstEarningAndThenResumedInLaterPeriod()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 3 - (Defect) - Learner Stopped COC triggered one day after the due date of" +
-                    " the First Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resume 3 - Learner Stopped COC triggered one day after the due date of the First " +
+                    "Earning and then Resumed in later period", null, tagsOfScenario, argumentsOfScenario);
 #line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -276,7 +278,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 42
     testRunner.And("Learner data is updated with Price Episode Start Date which is on or after Previo" +
-                        "us PE start date AND on or before the Previous PE end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "us Price Episode start date AND on or before the Previous Price Episode end date" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 43
     testRunner.And("the Learner Match is run in Period R08 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
