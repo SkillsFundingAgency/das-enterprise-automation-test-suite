@@ -7,6 +7,5 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         public TransferRequest(ScenarioContext context) : base(context) { }
 
-        protected override By PageHeader => By.Id("transfer-confirmation");
     }
 }

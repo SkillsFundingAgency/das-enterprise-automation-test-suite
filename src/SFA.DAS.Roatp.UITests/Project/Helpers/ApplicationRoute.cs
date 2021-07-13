@@ -4,6 +4,7 @@
     {
         MainProviderRoute = 01,
         SupportingProviderRoute = 02,
-        EmployerProviderRoute = 03
+        EmployerProviderRoute = 03,
+        EmployerProviderRouteForExistingProvider = 04
     }
 }

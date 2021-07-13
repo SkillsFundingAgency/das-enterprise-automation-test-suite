@@ -9,9 +9,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
         }
 
-        public async Task StartPaymentProcessOrchestrator(short collectionPeriodYear, byte collectionPeriodNumber)
+        public async Task StartPaymentProcessOrchestrator()
         {
-            await StartOrchestrator($"api/orchestrators/IncentivePaymentOrchestrator/{collectionPeriodYear}/{collectionPeriodNumber}");
+            await StartOrchestrator($"api/orchestrators/IncentivePaymentOrchestrator");
         }
 
         public async Task WaitUntilWaitingForPaymentApproval(TimeSpan? timeout = null)

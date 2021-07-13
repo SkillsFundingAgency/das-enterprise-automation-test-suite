@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
@@ -9,8 +10,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "LearnerMatchTest")]
     public class LearnerMatchTestSteps : StepsBase
     {
-        private const long Uln = 7229721;
-        private const long Ukprn = 10005;
         private const long AccountId = 14326;
         private const long ApprenticeshipId = 133217890;
 
@@ -20,11 +19,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
             await SetActiveCollectionPeriod(10, 2021);
-            
+
             var startDate = DateTime.Parse("2021-06-12");
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, Uln, Ukprn, startDate, startDate.AddYears(-24))
+                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
@@ -36,8 +35,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(Ukprn)
-                .WithUln(Uln)
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -45,7 +44,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(Uln, Ukprn, learnerSubmissionData);
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
         }
 
         [When(@"the learner match service is completed")]
