@@ -1,6 +1,6 @@
-﻿Feature: TesData_Cleanup_01
+﻿Feature: TesData_Cleanup_03
 
 To clean up test data from emp-acc-db
 
-Scenario: Cleanup_Testdata_01
+Scenario: Cleanup_Testdata_03
 	Then the test data are cleaned up

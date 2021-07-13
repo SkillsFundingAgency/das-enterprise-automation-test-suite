@@ -24,7 +24,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests
 
 
         [Then(@"the test data are cleaned up")]
-        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("First_%@mailinator.com");
+        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("nft.testuser%@testemail.com");
 
         private async Task CleanUpTestData(string email)
         {
