@@ -34,6 +34,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
                 .With(x => x.WithdrawnByCompliance, false)
                 .With(x => x.WithdrawnByEmployer, false)
                 .With(x => x.WithdrawnByEmployer, false)
+                .With(x => x.EmploymentStartDate, plannedStartDate)
                 .With(x => x.PlannedStartDate, plannedStartDate)
                 .With(x => x.DateOfBirth, dateOfBirth)
                 .With(x => x.Phase, phase)
