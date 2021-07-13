@@ -1,5 +1,7 @@
 ﻿using AutoFixture;
 using Dapper.Contrib.Extensions;
+using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
@@ -9,9 +11,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+
 // ReSharper disable PossibleInvalidOperationException
 // ReSharper disable InconsistentNaming
 
@@ -150,6 +151,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
         }
 
+        private async Task ResetCalendar()
+        {
+            await sqlHelper.ResetCalendar();
+        }
+
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
         {
             StartStopWatch("SetupLearnerMatchApiResponse");
@@ -216,12 +222,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
             await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+            await ResetCalendar();
         }
 
         [BeforeScenario()]
         public async Task InitialCleanup()
         {
             await DeleteIncentive(accountId, apprenticeshipId);
+            await ResetCalendar();
         }
     }
 }

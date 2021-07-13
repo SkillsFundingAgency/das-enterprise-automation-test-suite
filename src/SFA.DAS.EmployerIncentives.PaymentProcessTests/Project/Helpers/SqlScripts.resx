@@ -124,6 +124,9 @@
   <data name="DeleteIncentiveData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>SQL\DeleteIncentiveData.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ResetCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SQL\ResetCalendar.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="UpsertAccount" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>SQL\UpsertAccount.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
