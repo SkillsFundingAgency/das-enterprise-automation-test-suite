@@ -1,8 +1,8 @@
-﻿Feature: StartDateChangeOfCircumstance
+﻿@employerincentivesPaymentsProcess
+Feature: StartDateChangeOfCircumstance
 	When the refreshed learner data contains an updated start date
 	Then the apprenticeship incentive is updated
 
-@employerincentivesPaymentsProcess
 Scenario: Clawbacks 1 - Start Date Change Of Circumstance with eligible start date changing learner's age from under to over 25 - paid earning
 	Given an existing apprenticeship incentive with learning starting on 12-Nov-2020 and ending on 15-Oct-2022
 	And a payment of £1000 sent in Period R07 2021
