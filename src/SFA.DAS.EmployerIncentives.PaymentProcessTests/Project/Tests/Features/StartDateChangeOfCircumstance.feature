@@ -20,3 +20,10 @@ Scenario: Phase2 1 - Learner Applied for Phase2 Incentives Payments- Age changes
 	And the earnings are recalculated
     Then the first earning of £1500 is created 
     And the second earning of £1500 is created 
+
+Scenario: Phase2 2 - Learner Applied for Phase2 Incentives Payments with ineligible start date ( COC - 31-Mar-2021)
+    Given an existing phase 2 apprenticeship incentive
+    When the start date is changed to before the start of the eligibility period
+	And the earnings are recalculated
+    Then the first earning is removed
+    And the second earning is removed

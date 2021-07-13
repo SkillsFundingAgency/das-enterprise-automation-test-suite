@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -58,6 +59,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
+        }
+
+        [Given(@"an existing phase 2 apprenticeship incentive")]
+        public async Task GivenAPhase2Incentive()
+        {
+            await GivenAPhase2IncentiveForLearnerUnder25();
         }
 
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
@@ -117,15 +124,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPeriod(apprenticeshipId, 8)
                 .Create();
 
-            var learnerSubmissionDataR8 = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
-                .WithAcademicYear(2021)
-                .WithIlrSubmissionDate(DateTime.Parse("2021-01-10T09:11:46.82"))
-                .WithIlrSubmissionWindowPeriod(4)
-                .WithStartDate(newStartDate)
-                .WithPriceEpisode(priceEpisode)
-                .Create();
+            var learnerSubmissionDataR8 = CreateLearnerSubmissionDto(newStartDate, priceEpisode);
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR8);
             await RunLearnerMatchOrchestrator();
@@ -147,7 +146,33 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPeriod(apprenticeshipId, 8)
                 .Create();
 
-            var learnerSubmissionDataR8 = new LearnerSubmissionDtoBuilder()
+            var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode);
+
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+
+            await RunLearnerMatchOrchestrator();
+        }
+
+        [When(@"the start date is changed to before the start of the eligibility period")]
+        public async Task WhenTheStartDateIsBeforeTheEligibilityPeriod()
+        {
+            var newStartDate = new DateTime(2021, 03, 31);
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(newStartDate)
+                .WithEndDate("2023-10-15T00:00:00")
+                .WithPeriod(apprenticeshipId, 8)
+                .Create();
+
+            var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode);
+
+            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+
+            await RunLearnerMatchOrchestrator();
+        }
+
+        private LearnerSubmissionDto CreateLearnerSubmissionDto(DateTime newStartDate, PriceEpisodeDto priceEpisode)
+        {
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(UKPRN)
                 .WithUln(ULN)
                 .WithAcademicYear(2021)
@@ -157,9 +182,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR8);
-
-            await RunLearnerMatchOrchestrator();
+            return learnerSubmissionData;
         }
 
         [When(@"the earnings are recalculated")]
@@ -209,6 +232,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenTheSecondEarningOf1500IsCreated()
         {
             AssertPendingPayment(1500, 10, 2122, EarningType.SecondPayment);
+        }
+
+        [Then(@"the first earning is removed")]
+        public void ThenTheFirstEarningIsRemoved()
+        {
+            _newEarnings.Any(x => x.EarningType == EarningType.FirstPayment).Should().BeFalse();
+        }
+
+        [Then(@"the second earning is removed")]
+        public void ThenTheSecondEarningIsRemoved()
+        {
+            _newEarnings.Any(x => x.EarningType == EarningType.SecondPayment).Should().BeFalse();
         }
 
         private void AssertPendingPayment(int amount, byte period, short year, EarningType earningType)
