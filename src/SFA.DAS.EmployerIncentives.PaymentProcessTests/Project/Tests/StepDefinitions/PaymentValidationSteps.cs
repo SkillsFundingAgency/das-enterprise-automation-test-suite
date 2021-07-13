@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
@@ -23,7 +22,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
-            var startDate = new DateTime(2021, 02, 02);
+            var startDate = new DateTime(2021, 03, 03);
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
@@ -54,18 +53,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the Payment Run occurs")]
         public async Task WhenThePaymentRunOccurs()
         {
-            byte period = 11;
+            byte period = 10;
             short year = 2021;
             await SetActiveCollectionPeriod(period, year);
             await RunLearnerMatchOrchestrator();
             await RunPaymentsOrchestrator();
         }
 
-        [Then(@"the (.*) Step in PendingPaymentValidationResult table is set to (.*)")]
-        public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, bool stepValue)
+        [Then(@"the (.*) Step in PendingPaymentValidationResult table for the (.*) is set to (.*)")]
+        public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, EarningType earningType, bool stepValue)
         {
             _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
-                                                                  && x.EarningType == EarningType.FirstPayment);
+                                                                  && x.EarningType == earningType);
 
             var validationStep = GetFromDatabase<PendingPaymentValidationResult>(x =>
                 x.PendingPaymentId == _pendingPayment.Id
@@ -80,7 +79,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var payment = GetFromDatabase<Payment>(x => x.PendingPaymentId == _pendingPayment.Id);
             payment.Should().NotBeNull();
-            payment.PaymentPeriod.Should().Be(11);
+            payment.PaymentPeriod.Should().Be(10);
             payment.PaymentYear.Should().Be(2021);
         }
 

@@ -28,6 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 apprenticeCommitmentsDataHelper.DateOfBirthDay,
                 apprenticeCommitmentsDataHelper.DateOfBirthMonth,
                 apprenticeCommitmentsDataHelper.DateOfBirthYear);
+
             return new ApprenticeHomePage(_context);
         }
 
