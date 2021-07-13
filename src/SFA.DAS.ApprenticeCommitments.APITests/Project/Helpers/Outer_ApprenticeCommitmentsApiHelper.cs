@@ -24,7 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         {
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
-            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
+            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApprenticeCommitmentsApiAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
@@ -38,7 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeship()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
 
             var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
@@ -46,13 +46,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             var createApprenticeship = new CreateApprenticeship
             {
-                EmployerAccountId = accountid,
-                CommitmentsApprenticeshipId = apprenticeshipid,
-                CommitmentsApprovedOn = DateTime.Parse(startDate).ToString("yyyy-MM-dd"),
+                AccountId = accountid,
+                ApprenticeshipId = apprenticeshipid,
                 Email = email,
-                EmployerName = orgname,
-                EmployerAccountLegalEntityId = legalEntityId,
-                TrainingProviderId = providerId
+                LegalEntityName = orgname,
+                AccountLegalEntityId = legalEntityId,
+                ProviderId = providerId,
+                CreatedOn = createdOn,
+                AgreedOn = agreedOn
             };
 
             _objectContext.SetAccountId(accountid);

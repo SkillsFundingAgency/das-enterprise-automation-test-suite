@@ -4,13 +4,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class CreateApprenticeship
     {
-        public long EmployerAccountId { get; set; }
-        public long CommitmentsApprenticeshipId { get; set; }
-        public string CommitmentsApprovedOn { get; set; }
+        public long AccountId { get; set; }
+        public long ApprenticeshipId { get; set; }
+        public string AgreedOn { get; set; }
+        public string CreatedOn { get; set; }
         public string Email { get; set; }
-        public string EmployerName { get; set; }
-        public long EmployerAccountLegalEntityId { get; set; }
-        public long TrainingProviderId { get; set; }
+        public string LegalEntityName { get; set; }
+        public long AccountLegalEntityId { get; set; }
+        public long ProviderId { get; set; }
     }
 
     public class VerifyIdentityRegistrationCommand
