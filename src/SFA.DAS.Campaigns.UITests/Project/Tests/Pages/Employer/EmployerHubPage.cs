@@ -26,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected By RealStories => By.CssSelector("a[href='/employers/real-stories-employerswi']");
+        protected By RealStories => By.CssSelector("a[href='/employers/real-stories-employers']");
 
         protected By EmployerBenefits => By.CssSelector("a[href='/employers/benefits-of-hiring-apprentice']");
 
