@@ -16,6 +16,6 @@ namespace SFA.DAS.API.Framework
 
         public static string Outer_AssessorCertificationApiBaseUrl => $"https://test-apis.apprenticeships.education.gov.uk/";
 
-        public static string Outer_ApprenticeCommitmentsApiBaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-acomtwkr-fa.azurewebsites.net/";
+        public static string ApprenticeCommitmentsJobs_BaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-acomtwkr-fa.azurewebsites.net/";
     }
 }

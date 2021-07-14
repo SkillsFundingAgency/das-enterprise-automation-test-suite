@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     public class Outer_ApprenticeCommitmentsApiHelper
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
+        private readonly Outer_CreateApprenticeshipApiRestClient _outerCreateApprenticeshipApiRestClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
@@ -24,7 +25,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         {
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
-            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApprenticeCommitmentsApiAuthTokenConfig());
+            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
+            _outerCreateApprenticeshipApiRestClient = new Outer_CreateApprenticeshipApiRestClient(context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
@@ -70,7 +72,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
 
-            return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
+            return _outerCreateApprenticeshipApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
         }
 
         public IRestResponse VerifyIdentity()

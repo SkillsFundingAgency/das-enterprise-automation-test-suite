@@ -46,11 +46,11 @@ namespace SFA.DAS.API.Framework.Helpers
 
         private static string GetUri(string absoluteUri) 
         {
-            if (absoluteUri.ContainsCompareCaseInsensitive("code="))
-            {
-                var index = absoluteUri.IndexOf("=");
-                absoluteUri = absoluteUri.Substring(0, index + 1);
-            }
+            //if (absoluteUri.ContainsCompareCaseInsensitive("code="))
+            //{
+            //    var index = absoluteUri.IndexOf("=");
+            //    absoluteUri = absoluteUri.Substring(0, index + 1);
+            //}
 
             return absoluteUri;
         }

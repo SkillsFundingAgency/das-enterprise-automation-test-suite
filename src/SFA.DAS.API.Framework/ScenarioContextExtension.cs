@@ -17,7 +17,7 @@ namespace SFA.DAS.API.Framework
 
         #region Getters
         public static Outer_ApiAuthTokenConfig GetOuter_ApiAuthTokenConfig(this ScenarioContext context) => context.Get<Outer_ApiAuthTokenConfig>();
-        public static Outer_ApprenticeCommitmentsApiAuthTokenConfig GetOuter_ApprenticeCommitmentsApiAuthTokenConfig(this ScenarioContext context) => context.Get<Outer_ApprenticeCommitmentsApiAuthTokenConfig>();
+        public static ApprenticeCommitmentsJobsAuthTokenConfig GetApprenticeCommitmentsJobsAuthTokenConfig(this ScenarioContext context) => context.Get<ApprenticeCommitmentsJobsAuthTokenConfig>();
         public static Inner_CommitmentsApiAuthTokenConfig GetInner_CommitmentsApiAuthTokenConfig(this ScenarioContext context) => context.Get<Inner_CommitmentsApiAuthTokenConfig>();
         public static Inner_CoursesApiAuthTokenConfig GetInner_CoursesApiAuthTokenConfig(this ScenarioContext context) => context.Get<Inner_CoursesApiAuthTokenConfig>();
         public static T GetRestClient<T>(this ScenarioContext context) => Get<T>(context, RestClientKey<T>());

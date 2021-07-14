@@ -8,16 +8,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class Outer_ApprenticeCommitmentsApiRestClient : Outer_BaseApiRestClient
     {
-        public Outer_ApprenticeCommitmentsApiRestClient(Outer_ApprenticeCommitmentsApiAuthTokenConfig config) : base(config.Code) { }
+        public Outer_ApprenticeCommitmentsApiRestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
-        protected override string ApiName => "/api";
+        protected override string ApiName => "/apprenticecommitments";
 
-        protected override string ApiBaseUrl => UrlConfig.Outer_ApprenticeCommitmentsApiBaseUrl;
-
-        public IRestResponse CreateApprenticeship(CreateApprenticeship payload, HttpStatusCode expectedResponse)
-        {
-            return Execute(Method.POST, $"/test-apprenticeship-created-event", payload, expectedResponse);
-        }
+        protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
 
         public IRestResponse VerifyIdentity(VerifyIdentityRegistrationCommand payload, HttpStatusCode expectedResponse)
         {
@@ -38,9 +33,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         {
             return Execute($"/apprentices/{apprenticeId}/apprenticeships/{long.Parse(commitmentsApprenticeshipId)}", expectedResponse);
         }
-
-        protected override void AddAuthHeaders() { }
-
-        protected override void AddParameter() => restRequest.AddParameter("code", ApiAuthKey, ParameterType.QueryString);
     }
 }
