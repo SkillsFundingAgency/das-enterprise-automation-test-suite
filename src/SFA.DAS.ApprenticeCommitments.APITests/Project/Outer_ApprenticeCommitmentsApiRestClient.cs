@@ -14,6 +14,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
 
+        public IRestResponse CreateApprenticeshipViaApi(CreateApprenticeshipViaApi payload, HttpStatusCode expectedResponse)
+        {
+            return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
+        }
+
         public IRestResponse VerifyIdentity(VerifyIdentityRegistrationCommand payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/registrations", payload, expectedResponse);
