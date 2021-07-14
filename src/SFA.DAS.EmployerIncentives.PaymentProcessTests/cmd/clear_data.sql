@@ -19,3 +19,4 @@ DELETE incentives.ApprenticeshipDaysInLearning
 DELETE incentives.ApprenticeshipBreakInLearning
 DELETE incentives.Learner
 DELETE incentives.ApprenticeshipIncentive
+DELETE incentives.ChangeOfCircumstance

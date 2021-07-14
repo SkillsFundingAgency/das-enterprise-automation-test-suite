@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SaveAndContinueButton => By.Id("createVacancyButton");
         private By TraineeshipDropdown => By.Id("s2id_SectorCodeName");
         private By TrainingBody => By.XPath("//body");
-        public string TrainingStandard => "Accountancy Taxation Professional";
+        public string TrainingStandard => "Accountancy or taxation professional";
 
         public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context)
         {

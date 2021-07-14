@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "View changes";
         private By ReviewNewDetails => By.LinkText("reviewing the new details");
         private By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
-        protected override By ContinueButton => By.Id("submit-undo-changes");
+        protected override By ContinueButton => By.CssSelector("#submit-undo-changes, #continue-button");
         private By ViewChangesOptions => By.CssSelector(".selection-button-radio");
 
         private readonly ScenarioContext _context;

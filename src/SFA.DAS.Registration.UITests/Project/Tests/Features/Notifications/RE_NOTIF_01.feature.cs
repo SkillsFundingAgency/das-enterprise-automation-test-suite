@@ -21,16 +21,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
-    [NUnit.Framework.CategoryAttribute("regression")]
-    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class RE_NOTIF_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "regression",
-                "registration"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "RE_NOTIF_01.feature"
 #line hidden
@@ -39,9 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
-                        "regression",
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,12 +75,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("mailinator")]
         public virtual void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "registration",
+                    "mailinator"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,10 +106,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
  testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 9
  testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
