@@ -58,16 +58,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
 
+            VerifyPage(func, "The road to a quality apprenticeship"); 
             VerifyPage(func, "Real stories");
-            VerifyPage(func, "Benefits to your organisation");
+            VerifyPage(func, "What are the benefits of hiring an apprentice?");
             VerifyPage(func, "Hiring an apprentice");
-            VerifyPage(func, "Upskilling your current staff");
+            VerifyPage(func, "Upskilling your workforce");
             VerifyPage(func, "Funding an apprenticeship");
             VerifyPage(func, "Training your apprentice");
             VerifyPage(func, "End-point assessments");
             VerifyPage(func, "How to choose the right apprenticeship training");
             VerifyPage(func, "Choose a training provider");
             VerifyPage(func, "Set up a service account");
+            VerifyPage(func, "Browse by sector");
+            VerifyPage(func, "Financial incentives for employers");
         }
 
         public EmployerRealStoriesPage NavigateToRealStoriesPage()
