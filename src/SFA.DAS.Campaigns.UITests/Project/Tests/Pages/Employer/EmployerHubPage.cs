@@ -16,9 +16,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By FavCount => By.CssSelector(".fiu-navigation__favourites-link__count");
        
-        protected By AreTheyRightForYou = By.CssSelector("a[href='/employers/are-they-right-for-you']");
+        protected By AreTheyRightForYou = By.CssSelector("a[href='/employers/are-they-right-for-you-employers']");
         
-        protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work']");
+        protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work-for-employers']");
 
         protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
         
@@ -26,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected By RealStories => By.CssSelector("a[href='/employers/real-stories']");
+        protected By RealStories => By.CssSelector("a[href='/employers/real-stories-employerswi']");
 
         protected By EmployerBenefits => By.CssSelector("a[href='/employers/benefits-of-hiring-apprentice']");
 
