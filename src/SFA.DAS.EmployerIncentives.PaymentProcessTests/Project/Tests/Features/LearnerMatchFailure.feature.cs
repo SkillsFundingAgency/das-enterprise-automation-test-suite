@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
+namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
-    public partial class RE_NOTIF_01Feature
+    [NUnit.Framework.DescriptionAttribute("LearnerMatchFailure")]
+    [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+    public partial class LearnerMatchFailureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "employerincentivesPaymentsProcess"};
         
-#line 1 "RE_NOTIF_01.feature"
+#line 1 "LearnerMatchFailure.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchFailure", @"    Learner Match Continues on failure
+    https://skillsfundingagency.atlassian.net/browse/EI-1208
+    Reproduces failure in SFA.DAS.EmployerIncentives.Domain.ApprenticeshipIncentives.ApprenticeshipIncentive.cs
+        private void StopBreakInLearning(LearningStoppedStatus status)
+        {
+            var stopDate = status.DateResumed.Value.AddDays(-1); // here DateResumed is null because learning had resumed with a different Apprenticeship Id
+            ...
+        }", ProgrammingLanguage.CSharp, new string[] {
+                        "employerincentivesPaymentsProcess"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +84,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("mailinator")]
-        public virtual void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
+        [NUnit.Framework.DescriptionAttribute("Learner Match Continues on failure")]
+        public virtual void LearnerMatchContinuesOnFailure()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "registration",
-                    "mailinator"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner Match Continues on failure", null, tagsOfScenario, argumentsOfScenario);
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +110,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+    testRunner.Given("the learner match process has been triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
- testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+    testRunner.When("an exception occurs for a learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 15
+    testRunner.Then("a record of learner match failure is created for the learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 16
+    testRunner.And("the learner match process should continue for all remaining learners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+    testRunner.And("any CoCs are processed for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+    testRunner.And("days in learning is calculated for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
