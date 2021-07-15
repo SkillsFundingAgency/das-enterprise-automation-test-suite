@@ -18,6 +18,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         #endregion
 
         private new By Continue => By.Id("continue");
+
         protected virtual By FirstCheckbox => By.ClassName("govuk-checkboxes__input");
 
 

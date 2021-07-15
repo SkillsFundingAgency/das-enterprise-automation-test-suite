@@ -1,5 +1,4 @@
-﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.MailinatorPages;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Mailinator.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;

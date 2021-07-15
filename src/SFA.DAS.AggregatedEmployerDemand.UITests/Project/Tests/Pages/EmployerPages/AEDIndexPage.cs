@@ -19,6 +19,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink()
         {
             formCompletionHelper.Click(GetHelpWithFindingATrainingProviderLink);
+
             return new ShareYourInterestWithTrainingProvidersPage(_context);
         }
         

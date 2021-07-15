@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.MailinatorPages
+namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorEmailPage : AEDBasePage
+    public class MailinatorEmailPage : MailinatorBasePage
     {
         protected override string PageTitle => "Received";
         protected override By PageHeader => By.CssSelector(".sender-info");

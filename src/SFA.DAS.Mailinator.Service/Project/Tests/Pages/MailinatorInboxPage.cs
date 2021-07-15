@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.MailinatorPages
+namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorInboxPage : AEDBasePage
+    public class MailinatorInboxPage : MailinatorBasePage
     {
         protected override string PageTitle => "Public Messages";
         protected override By PageHeader => By.CssSelector("#inbox_pane");

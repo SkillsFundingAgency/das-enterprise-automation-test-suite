@@ -65,7 +65,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToSubmitTheFormToRegisterInterest()
         {
             _checkYourAnswersPage = _getHelpWithFindingATrainingProviderPage.ContinueToCheckYourAnswersPage();
-            _emailVerificationPage = _checkYourAnswersPage.ConfirmYourAnswers();
+
+            _checkYourAnswersPage.ConfirmYourAnswers();
         }
     }
 }

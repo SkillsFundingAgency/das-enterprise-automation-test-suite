@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.MailinatorPages
+namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorLandingPage : AEDBasePage
+    public class MailinatorLandingPage : MailinatorBasePage
     {
         protected override string PageTitle => "MAILINATOR";
         protected override By PageHeader => By.CssSelector(".nav-title");
