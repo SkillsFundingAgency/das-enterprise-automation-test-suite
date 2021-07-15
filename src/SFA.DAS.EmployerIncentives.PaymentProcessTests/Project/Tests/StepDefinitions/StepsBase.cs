@@ -151,7 +151,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
         }
 
-        private async Task ResetCalendar()
+        protected async Task ResetCalendar()
         {
             await sqlHelper.ResetCalendar();
         }
