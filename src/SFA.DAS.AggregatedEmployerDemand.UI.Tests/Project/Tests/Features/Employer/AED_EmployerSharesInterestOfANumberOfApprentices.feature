@@ -1,6 +1,6 @@
 ﻿Feature: AED_EmployerSharesInterestOfANumberOfApprentices
 
-@aed
+@aggregatedemployerdemand
 @regression
 Scenario: AED_ESIOANOA_01_ShareInterestOfANumberOfApprentices
 	Given the User searches a course then navigates to the provider list
@@ -12,6 +12,8 @@ Scenario: AED_ESIOANOA_01_ShareInterestOfANumberOfApprentices
 	Then the user is able to submit the form to register interest
 	And confirm the user is able to verify the email 'quintontestingltd@mailinator.com'
 
+@aggregatedemployerdemand
+@regression
 Scenario: AED_ESIOANOA_02_ShareInterestWithNoNumberOfApprentices
 	Given the User searches a course then navigates to the provider list
 	And the user selects get help with finding a training provider

@@ -75,12 +75,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employ
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AED_ESIOANOA_01_ShareInterestOfANumberOfApprentices")]
-        [NUnit.Framework.CategoryAttribute("aed")]
+        [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void AED_ESIOANOA_01_ShareInterestOfANumberOfApprentices()
         {
             string[] tagsOfScenario = new string[] {
-                    "aed",
+                    "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_ESIOANOA_01_ShareInterestOfANumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -135,12 +135,16 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AED_ESIOANOA_02_ShareInterestWithNoNumberOfApprentices")]
+        [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void AED_ESIOANOA_02_ShareInterestWithNoNumberOfApprentices()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "aggregatedemployerdemand",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_ESIOANOA_02_ShareInterestWithNoNumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -160,29 +164,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 18
  testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 19
  testRunner.And("the user selects get help with finding a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 20
  testRunner.When("the user selects no Apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 21
  testRunner.And("the user enters the location as \'Coventry, West Midlands\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 22
  testRunner.And("the user enters the Organisation name \'Quinton Testing Ltd\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 23
  testRunner.And("the user enters the Organisation Email Address \'quintontestingltd@mailinator.com\'" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 24
  testRunner.Then("the user is able to submit the form to register interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 23
+#line 25
  testRunner.And("confirm the user is able to verify the email \'quintontestingltd@mailinator.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

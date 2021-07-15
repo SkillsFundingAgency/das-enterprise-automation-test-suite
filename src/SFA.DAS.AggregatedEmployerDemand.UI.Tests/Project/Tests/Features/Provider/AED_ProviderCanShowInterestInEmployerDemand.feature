@@ -1,6 +1,6 @@
 ﻿Feature: AED_ProviderCanShowInterestInEmployerDemand
 
-@aed
+@aggregatedemployerdemand
 @regression
 Scenario: AED_PCSIIED_ProviderCanRegistertheirInterest
 	Given the provider navigates to Find employers that need a training provider

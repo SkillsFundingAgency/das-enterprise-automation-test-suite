@@ -75,12 +75,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AED_PCSIIED_ProviderCanRegistertheirInterest")]
-        [NUnit.Framework.CategoryAttribute("aed")]
+        [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void AED_PCSIIED_ProviderCanRegistertheirInterest()
         {
             string[] tagsOfScenario = new string[] {
-                    "aed",
+                    "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCSIIED_ProviderCanRegistertheirInterest", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
