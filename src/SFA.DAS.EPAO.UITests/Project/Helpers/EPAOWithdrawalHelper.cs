@@ -72,7 +72,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
         {
-            new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
+            new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
         }
 
         public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
