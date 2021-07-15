@@ -7,17 +7,14 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.Mailinato
     {
         protected override string PageTitle => "Public Messages";
         protected override By PageHeader => By.CssSelector("#inbox_pane");
+
         private readonly ScenarioContext _context;
 
         #region Locators
         private By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
         #endregion
 
-        public MailinatorInboxPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public MailinatorInboxPage(ScenarioContext context) : base(context) => _context = context;
 
         public MailinatorEmailPage ClickOnEmail()
         {

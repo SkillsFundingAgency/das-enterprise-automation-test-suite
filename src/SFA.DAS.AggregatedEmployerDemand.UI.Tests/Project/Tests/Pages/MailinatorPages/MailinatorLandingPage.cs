@@ -14,11 +14,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.Mailinato
         private By GoButton => By.Id("go-to-public");
         #endregion
 
-        public MailinatorLandingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public MailinatorLandingPage(ScenarioContext context) : base(context) => _context = context;
 
         public MailinatorInboxPage EnterEmailAndClickOnGoButton(string organisationEmailAddress)
         {

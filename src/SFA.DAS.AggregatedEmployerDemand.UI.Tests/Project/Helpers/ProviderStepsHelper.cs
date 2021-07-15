@@ -2,21 +2,18 @@
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 {
     public class ProviderStepsHelper
     {
         private readonly ScenarioContext _context;
-        //private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
 
 
         public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
-            //_objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
         }
 

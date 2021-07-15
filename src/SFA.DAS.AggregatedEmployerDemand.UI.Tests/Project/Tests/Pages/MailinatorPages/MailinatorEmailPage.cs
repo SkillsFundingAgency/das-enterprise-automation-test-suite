@@ -13,7 +13,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.Mailinato
         private By AedEmailLink => By.XPath("//a[contains(text(),'https://')]");
         #endregion
 
-        public MailinatorEmailPage(ScenarioContext context) : base(context) => VerifyPage();
+        public MailinatorEmailPage(ScenarioContext context) : base(context) { }
 
         public void VerifyEmailLink()
         {
