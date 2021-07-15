@@ -6,7 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_YourWithdrawalNotificationsPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Your withdrawal notifications";
+        protected override string PageTitle => "Your withdrawal requests";
         private readonly ScenarioContext _context;
         
         #region Locators
