@@ -1,14 +1,10 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_FeedbackOnYourWithdrawalNotificationStartPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Feedback on your withdrawal notification";
+        protected override string PageTitle => "Feedback on your withdrawal request";
 
         private readonly ScenarioContext _context;
 
