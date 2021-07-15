@@ -15,8 +15,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AS_WithdrawalRequestOverviewPage ClickASpecificStandardToWithdraw()
         {
-            formCompletionHelper.SelectRadioOptionByText("Brewer (Level 4)");
+            tableRowHelper.SelectRowFromTable("Select", "Brewer (Level 4)");
+
             Continue();
+
             return new AS_WithdrawalRequestOverviewPage(_context);
         }
     }
