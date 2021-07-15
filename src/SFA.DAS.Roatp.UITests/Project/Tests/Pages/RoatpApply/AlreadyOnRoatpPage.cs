@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public class AlreadyOnRoatpPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Your organisation is already on the RoATP as an employer provider";
+        protected override string PageTitle => "Your organisation is already on the RoATP as";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

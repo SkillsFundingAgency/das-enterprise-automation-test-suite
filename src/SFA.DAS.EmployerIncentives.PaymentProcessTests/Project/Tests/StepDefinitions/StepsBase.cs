@@ -1,5 +1,7 @@
 ﻿using AutoFixture;
 using Dapper.Contrib.Extensions;
+using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
@@ -9,9 +11,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+
 // ReSharper disable PossibleInvalidOperationException
 // ReSharper disable InconsistentNaming
 
@@ -29,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
-        protected Guid apprenticeshipIncentiveId = Guid.Empty;
+        protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;
         protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
@@ -37,6 +38,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected long apprenticeshipId;
         protected long UKPRN;
         protected long ULN;
+        protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
         protected StepsBase(ScenarioContext context)
         {
@@ -62,11 +64,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
         }
 
-        protected async Task RunLearnerMatchOrchestrator()
+        protected async Task RunLearnerMatchOrchestrator(bool continueOnFailure = false)
         {
             StartStopWatch("RunLearnerMatchOrchestrator");
             await learnerMatchService.StartLearnerMatchOrchestrator();
-            await learnerMatchService.WaitUntilComplete();
+
+            if (continueOnFailure) await learnerMatchService.WaitUntilStopped();
+            else await learnerMatchService.WaitUntilComplete();
+            
             StopStopWatch("RunLearnerMatchOrchestrator");
         }
 
@@ -119,7 +124,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 );
 
                 await serviceBusHelper.Publish(command);
-                apprenticeshipIncentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                var incentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                incentiveIds.Add(incentiveId);
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
             StopStopWatch("SubmitIncentiveApplication");
@@ -145,6 +151,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private async Task DeleteIncentive(long accountId, long apprenticeshipId)
         {
             await sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
+        }
+
+        protected async Task ResetCalendar()
+        {
+            await sqlHelper.ResetCalendar();
         }
 
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
@@ -219,12 +230,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
             await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+            await ResetCalendar();
         }
 
         [BeforeScenario()]
         public async Task InitialCleanup()
         {
             await DeleteIncentive(accountId, apprenticeshipId);
+            await ResetCalendar();
         }
     }
 }

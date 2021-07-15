@@ -66,7 +66,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-              if (applicationroute == ApplicationRoute.EmployerProviderRoute || applicationroute == ApplicationRoute.SupportingProviderRoute)
+              if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
+                applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .VerifySection4Link5Status(StatusHelper.NotRequired);

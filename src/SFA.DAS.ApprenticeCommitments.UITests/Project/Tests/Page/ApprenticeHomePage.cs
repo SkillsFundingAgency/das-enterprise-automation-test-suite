@@ -21,6 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and Support']");
         private By HelpAndSupportLink => By.LinkText("help and support section");
         private string SignOutLinkText => "Sign out";
+        private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -116,5 +117,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(PageHeader, PageTitleAfterConfirmation);
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship has been agreed and you're ready to start");
         }
+
+        public void VerifyDaysToConfirmWarning() => VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship");
     }
 }

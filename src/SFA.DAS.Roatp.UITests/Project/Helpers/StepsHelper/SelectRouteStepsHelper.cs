@@ -15,6 +15,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal ApplicationOverviewPage CompleteProviderCharityRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsEmployer().SelectYesForLevyPayingEmployerAndContinue());
 
+        internal ApplicationOverviewPage CompleteProviderCharityRouteSection_ExistingProvider() => ConfirmUkprnForProviderOnRoatp().SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsEmployer().SelectYesForLevyPayingEmployerAndContinue().AcceptTermAndConditionsAndContinue();
+
         internal AlreadyOnRoatpPage CompleteProviderCharityRouteWhoisAlreayOnRoatp() => ConfirmUkprnForProviderOnRoatp();
 
         internal ApplicationOverviewPage CompleteProviderSupportRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsSupporting());

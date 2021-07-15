@@ -12,7 +12,7 @@ Scenario: RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via M
 	When the oversight user selects the overall application outcome as Successful
 	Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status
 	Then verify the provider is added to the register with status of Onboarding
-
+	And verify the Application successful page is displayed 
 
 
 @roatp
@@ -28,6 +28,7 @@ When the oversight user overturns gateway and moderation outcome
 And the oversight user selects the overall application outcome as Unsuccessful
 Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
 And verify the provider is not added to the register
+And verify the Application unsuccessful page is displayed 
 
 
 @roatp
@@ -45,6 +46,7 @@ When the oversight user overturns gateway and moderation outcome
 And the oversight user selects the overall application outcome as Unsuccessful
 Given the application with UNSUCCESSFUL outcome is ready to be assessed
 Then Oversight user is able to send the application to Appeal Status
+And verify the Application unsuccessful page is displayed 
 
 
 
@@ -60,6 +62,7 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as In Progress
 Then Verify the application is transitioned to Oversight Outcome tab with IN PROGRESS status	
 And verify the provider is not added to the register
+And verify the Application in progress page is displayed 
 Given the admin navigates to the Dashboard
 And the application with IN PROGRESS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as Successful
@@ -81,6 +84,7 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as Successful already active
 Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status	
 Then verify the provider is added to the register with Application determined date updated
+And verify the Application successful page is displayed
 
 
 @roatp
@@ -97,3 +101,4 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as Successful fitness for funding
 Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status
 Then verify the provider is added to the register with Application determined date updated
+And verify the Application successful page is displayed

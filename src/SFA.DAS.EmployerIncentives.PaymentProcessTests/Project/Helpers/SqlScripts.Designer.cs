@@ -65,12 +65,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         ///    inner join IncentiveApplicationApprenticeship a on x.IncentiveApplicationApprenticeshipId=a.Id
         ///where IncentiveApplicationId=@incentiveApplicationId;
         ///
-        ///delete x from ApprenticeshipIncentive x 
-        ///    inner join IncentiveApplicationApprenticeship a on x.IncentiveApplicationApprenticeshipId=a.Id
-        ///where IncentiveApplicationId=@incentiveApplicationId;
-        ///    
         ///delete from IncentiveApplicationApprenticeship where IncentiveApplicationId=@incentiveApplicationId;
-        /// [rest of string was truncated]&quot;;.
+        ///
+        ///delete from IncentiveApplication where Id=@incentiveApplicationId;.
         /// </summary>
         internal static string DeleteApplicationData {
             get {
@@ -79,15 +76,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
-        /// DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
-        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+        ///   Looks up a localized string similar to  DECLARE @ApprenticeshipIncentiveId UNIQUEIDENTIFIER
+        /// SET @ApprenticeshipIncentiveId=(SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId)
         /// 
-        ///DELETE x FROM archive.PendingPaymentValidationResult x
-        ///	INNER JOIN archive.PendingPayment pp ON pp.PendingPaymentId = x.PendingPaymentId
-        ///	WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
-        ///
-        /// DELETE x FROM incentives.Pen [rest of string was truncated]&quot;;.
+        /// DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+        /// DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+        /// 
+        ///DELETE x FROM archive.Pend [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DeleteIncentiveData {
             get {
@@ -96,9 +92,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to   UPDATE
+        ///	[incentives].[CollectionCalendar]
+        ///  SET 
+        ///	[Active] = 0,
+        ///	[PeriodEndInProgress] = 0,
+        ///	[MonthEndProcessingCompleteUTC] = NULL.
+        /// </summary>
+        internal static string ResetCalendar {
+            get {
+                return ResourceManager.GetString("ResetCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IF NOT EXISTS (SELECT 1 FROM Accounts WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId)
-        ///INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, &apos;Test&apos;, 1, 5, &apos;ABC123&apos;)
-        ///ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName=&apos;TestLegalEntity&apos;, SignedAgreementVersion=5, VrfVendorId=&apos;ABC123&apos; WHERE Id=@accountId AND Accou [rest of string was truncated]&quot;;.
+        ///INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, &apos;Test&apos;, 6, &apos;ABC123&apos;)
+        ///ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName=&apos;TestLegalEntity&apos;, SignedAgreementVersion=6, VrfVendorId=&apos;ABC123&apos; WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId.
         /// </summary>
         internal static string UpsertAccount {
             get {

@@ -22,6 +22,8 @@ namespace SFA.DAS.API.Framework
         {
             _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
+            _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
+
             _context.Set(_configSection.GetConfigSection<Inner_CommitmentsApiAuthTokenConfig>());
 
             _context.Set(_configSection.GetConfigSection<Inner_CoursesApiAuthTokenConfig>());

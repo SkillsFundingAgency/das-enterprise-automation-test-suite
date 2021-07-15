@@ -134,7 +134,7 @@ testRunner.When("the Learner Withdraw Request is processed", ((string)(null)), (
 testRunner.Then("the first earnings should have been removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
-testRunner.Then("the second earnings should have been removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("the second earnings should have been removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

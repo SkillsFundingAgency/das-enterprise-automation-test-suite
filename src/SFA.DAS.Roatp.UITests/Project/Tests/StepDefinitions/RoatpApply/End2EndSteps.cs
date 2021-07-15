@@ -3,6 +3,7 @@ using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -19,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
         private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
         private readonly TabHelper _tabHelper;
+        private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
         public End2EndSteps(ScenarioContext context)
         {
@@ -29,9 +31,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
+            _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
-        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route)")]
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider)")]
         public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
         {
             _objectContext.SetApplicationRoute(applicationRoute);
@@ -39,16 +42,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
         }
 
+        [Given(@"the provider naviagate to Apply")]
+        public void GivenTheProviderNaviagateToApply()
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+        }
+
+
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {
-            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+             RestartRoatpApply("apply");
 
             _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
 
             new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
-        [Then(@"verify the (Application withdrawn) page is displayed")]
+        [Then(@"verify the (Application withdrawn|Application successful|Application unsuccessful|Application in progress) page is displayed")]
         public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
 
         [Then(@"the provider do not accept the Terms and conditions")]
@@ -146,5 +156,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider completes Finish section for supporting route")]
         public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
+
+        private void RestartWebDriver(string url, string applicationName) => _restartWebDriverHelper.RestartWebDriver(url, applicationName);
+        private void RestartRoatpApply(string applicationName) => RestartWebDriver(UrlConfig.Apply_BaseUrl, applicationName);
     }
 }

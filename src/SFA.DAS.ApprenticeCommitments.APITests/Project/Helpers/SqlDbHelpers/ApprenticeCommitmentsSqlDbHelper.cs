@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
@@ -25,5 +26,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public string GetApprenticeshipId(string apprenticeId) => GetData($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
 
         public string GetApprenticeEmail(string id) => GetData($"select Email from Apprentice where Id = '{id}'");
+
+        public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)
+        {
+            var confirmBeforeDate = DateTime.Now.AddDays(13).AddHours(23).ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+            ExecuteSqlCommand($"UPDATE[CommitmentStatement] SET ConfirmBefore = '{confirmBeforeDate}' WHERE CommitmentsApprenticeshipId = (SELECT CommitmentsApprenticeshipId from Registration WHERE Email = '{email}')");
+        }
     }
 }
