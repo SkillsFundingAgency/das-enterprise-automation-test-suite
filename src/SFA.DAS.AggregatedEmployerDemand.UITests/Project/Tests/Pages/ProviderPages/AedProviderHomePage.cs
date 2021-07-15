@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
@@ -8,6 +7,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
     public class AedProviderHomePage : ProviderHomePage
     {
         private readonly ScenarioContext _context;
+
         public AedProviderHomePage(ScenarioContext context) : base(context) => _context = context;
 
         private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");

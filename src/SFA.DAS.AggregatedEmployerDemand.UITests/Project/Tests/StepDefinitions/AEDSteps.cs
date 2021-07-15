@@ -1,10 +1,6 @@
-﻿using NUnit.Framework;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
-using SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions;
-using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -15,7 +11,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly AEDStepsHelper _aEDStepsHelper;
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
         private CheckYourAnswersPage _checkYourAnswersPage;
-        private EmailVerificationPage _emailVerificationPage;
 
         public AEDSteps(ScenarioContext context)
         {

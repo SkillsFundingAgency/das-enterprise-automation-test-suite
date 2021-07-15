@@ -10,13 +10,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
     public class MailinatorSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
 
         public MailinatorSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
         }
 
@@ -24,7 +22,9 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         public void ThenConfirmTheUserIsAbleToVerifyTheEmail(string organisationEmailAddress)
         {
             _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
-            new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(organisationEmailAddress)
+
+            new MailinatorLandingPage(_context)
+                .EnterEmailAndClickOnGoButton(organisationEmailAddress)
                 .ClickOnEmail()
                 .VerifyEmailLink();
         }
