@@ -10,7 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private readonly ScenarioContext _context;
         
         #region Locators
-        private By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal notification')]");
+        private By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal request')]");
         private By Status(string status) => By.XPath($"//td[contains(text(),'{status}')]");
         private By ViewRegisterWithdrawalFeedbackLink => By.XPath("//tr/td[contains(text(),'Register')]/../td[contains(text(), 'Not applicable')]/../td[contains(text(),'Feedback added')]/../td/a");
         #endregion
