@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employ
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_EmployerSharesInterestOfANumberOfApprentices")]
-    public partial class AED_EmployerSharesInterestOfANumberOfApprenticesFeature
+    [NUnit.Framework.DescriptionAttribute("AED_EmployerShareInterestWithNoNumberOfApprentices")]
+    public partial class AED_EmployerShareInterestWithNoNumberOfApprenticesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_EmployerSharesInterestOfANumberOfApprentices.feature"
+#line 1 "AED_EmployerShareInterestWithNoNumberOfApprentices.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AED_EmployerSharesInterestOfANumberOfApprentices", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AED_EmployerShareInterestWithNoNumberOfApprentices", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employ
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_ESIOANOA_02_ShareInterestOfANumberOfApprentices")]
+        [NUnit.Framework.DescriptionAttribute("AED_ESIOANOA_01_ShareInterestWithNoNumberOfApprentices")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_ESIOANOA_02_ShareInterestOfANumberOfApprentices()
+        public virtual void AED_ESIOANOA_01_ShareInterestWithNoNumberOfApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_ESIOANOA_02_ShareInterestOfANumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_ESIOANOA_01_ShareInterestWithNoNumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the user selects get help with finding a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.When("the user enters the number of Apprentices as \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the user selects no Apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.And("the user enters the location as \'Coventry, West Midlands\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

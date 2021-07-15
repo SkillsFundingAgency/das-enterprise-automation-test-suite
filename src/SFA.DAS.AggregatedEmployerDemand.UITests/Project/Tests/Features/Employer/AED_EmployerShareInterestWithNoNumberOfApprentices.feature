@@ -1,11 +1,11 @@
-﻿Feature: AED_EmployerSharesInterestOfANumberOfApprentices
+﻿Feature: AED_EmployerShareInterestWithNoNumberOfApprentices
 
 @aggregatedemployerdemand
 @regression
-Scenario: AED_ESIOANOA_02_ShareInterestOfANumberOfApprentices
+Scenario: AED_ESIOANOA_01_ShareInterestWithNoNumberOfApprentices
 	Given the User searches a course then navigates to the provider list
 	And the user selects get help with finding a training provider
-	When the user enters the number of Apprentices as '2'
+	When the user selects no Apprentices
 	And the user enters the location as 'Coventry, West Midlands' 
 	And the user enters the Organisation name 'Quinton Testing Ltd'
 	And the user enters the Organisation Email Address 'quintontestingltd@mailinator.com'
