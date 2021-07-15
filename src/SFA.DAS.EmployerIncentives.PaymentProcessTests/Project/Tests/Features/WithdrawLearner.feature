@@ -12,4 +12,4 @@ And the second unpaid earning is archived then deleted
 And new earnings are calculated
 When the Learner Withdraw Request is processed
 Then the first earnings should have been removed
-Then the second earnings should have been removed
+And the second earnings should have been removed
