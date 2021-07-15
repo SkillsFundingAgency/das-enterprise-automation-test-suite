@@ -19,7 +19,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         public MailinatorInboxPage EnterEmailAndClickOnGoButton(string organisationEmailAddress)
         {
             formCompletionHelper.EnterText(EmailTextBox, organisationEmailAddress);
+
             formCompletionHelper.Click(GoButton);
+
             return new MailinatorInboxPage(_context);
         }
     }

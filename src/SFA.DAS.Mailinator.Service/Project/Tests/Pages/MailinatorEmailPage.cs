@@ -10,7 +10,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 
         #region Locators
         private By EmailBodyFrame => By.Id("html_msg_body");
-        private By AedEmailLink => By.XPath("//a[contains(text(),'https://')]");
+        private By EmailLink => By.XPath("//a[contains(text(),'https://')]");
         #endregion
 
         public MailinatorEmailPage(ScenarioContext context) : base(context) { }
@@ -18,7 +18,8 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         public void VerifyEmailLink()
         {
             frameHelper.SwitchToFrame(EmailBodyFrame);
-            formCompletionHelper.ClickElement(AedEmailLink);
+
+            formCompletionHelper.ClickElement(EmailLink);
         }
     }
 }
