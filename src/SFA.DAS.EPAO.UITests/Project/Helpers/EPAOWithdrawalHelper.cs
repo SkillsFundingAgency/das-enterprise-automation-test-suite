@@ -32,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void StandardApplicationFinalJourney()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
                                       .ClickGoToReasonForWithdrawingQuestionLink()
                                       .ClickExternalQualityAssuranceProviderHasChanged()
@@ -45,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void RegisterWithdrawalQuestions()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
                 .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
                 .ClickAssessmentPlanHasChangedAndEnterOptionalReason()

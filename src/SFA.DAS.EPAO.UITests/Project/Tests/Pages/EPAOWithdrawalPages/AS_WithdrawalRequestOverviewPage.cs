@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
-    public class AS_ApplicationOverviewPage : EPAO_BasePage
+    public class AS_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Application overview";
+        protected override string PageTitle => "Withdrawal request overview";
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -14,11 +14,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By TotalQuestionsCompletedVerification => By.XPath("//*[contains(text(),'4 of 4 questions completed')]");
         private By TotalQuestionsWithAdditionalHowWillYouSupportLearnersCompletedVerification => By.XPath("//*[contains(text(),'5 of 5 questions completed')]");
         private By StartStandardWithdrawalQuestions => By.LinkText("Go to withdrawal request questions");
-        private By StartOrganisationWithdrawalQuestions => By.LinkText("Go to withdrawal notification questions");
+        private By StartOrganisationWithdrawalQuestions => By.LinkText("Go to withdrawal request questions");
       
         private By AmmedSupportingCurrentLearnersAnswer => By.XPath("//strong/../span/a[contains(text(), 'Supporting current learners')]");
         #endregion
-        public AS_ApplicationOverviewPage(ScenarioContext context) : base(context)
+        public AS_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
