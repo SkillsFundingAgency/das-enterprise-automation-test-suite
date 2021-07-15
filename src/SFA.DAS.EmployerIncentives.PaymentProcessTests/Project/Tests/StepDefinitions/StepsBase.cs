@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -170,6 +171,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("SetupLearnerMatchApiResponse");
         }
 
+        protected async Task SetupLearnerMatchApiStatusCodeResponse(long uln, long ukprn, HttpStatusCode statusCode)
+        {
+            StartStopWatch("SetupLearnerMatchApiStatusCodeResponse");
+            await learnerMatchApi.SetupResponseHttpStatusCode(uln, ukprn, statusCode);
+            StopStopWatch("SetupLearnerMatchApiStatusCodeResponse");
+        }
+
         protected List<T> GetAllFromDatabase<T>() where T : class
         {
             using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
@@ -208,6 +216,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
             Assert.IsTrue(exist);
+        }
+        protected async Task VerifyLearningRecordsDoNotExist()
+        {
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            Assert.IsFalse(exist);
         }
 
         protected async Task VerifyPaymentRecordsExist()

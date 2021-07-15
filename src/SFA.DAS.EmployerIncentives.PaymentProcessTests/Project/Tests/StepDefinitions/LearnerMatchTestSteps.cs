@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
@@ -58,5 +59,49 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await VerifyLearningRecordsExist();
         }
+
+
+        [Given(@"an apprenticeship incentive for a learner")]
+        public async Task GivenAnApprenticeshipIncentiveForALearner()
+        {
+            await SetActiveCollectionPeriod(10, 2021);
+
+            var startDate = DateTime.Parse("2021-06-12");
+            incentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccountId(AccountId)
+                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
+                .Create();
+
+            await SubmitIncentiveApplication(incentiveApplication);
+
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithEndDate("2022-10-15T00:00:00")
+                .WithPeriod(ApprenticeshipId, 7)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(UKPRN)
+                .WithUln(ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(7)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+        }
+
+        [When(@"the learner is not found")]
+        public async Task WhenTheLearnerIsNotFound()
+        {
+            await SetupLearnerMatchApiStatusCodeResponse(ULN, UKPRN, HttpStatusCode.NotFound);
+        }
+
+        [Then(@"a learner match record is not created")]
+        public async Task ThenALearnerMatchRecordIsNotCreated()
+        {
+            await VerifyLearningRecordsDoNotExist();
+        }
+
     }
 }
