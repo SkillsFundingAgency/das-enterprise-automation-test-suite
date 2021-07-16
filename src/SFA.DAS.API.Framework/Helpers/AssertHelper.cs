@@ -40,8 +40,19 @@ namespace SFA.DAS.API.Framework.Helpers
         {
             return $"REQUEST DETAILS: {Environment.NewLine}" +
                    $"Method: {response.Request.Method}{Environment.NewLine}" +
-                   $"URI: {response.ResponseUri.AbsoluteUri}{Environment.NewLine}" +
+                   $"URI: {GetUri(response.ResponseUri.AbsoluteUri)}{Environment.NewLine}" +
                    $"Body: {Environment.NewLine} {GetRequestBody(response)}";
+        }
+
+        private static string GetUri(string absoluteUri) 
+        {
+            if (absoluteUri.ContainsCompareCaseInsensitive("code="))
+            {
+                var index = absoluteUri.IndexOf("=");
+                absoluteUri = absoluteUri.Substring(0, index + 1);
+            }
+
+            return absoluteUri;
         }
     }
 }
