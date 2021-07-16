@@ -20,11 +20,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public AD_WithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
+        public AD_WithdrawalRequestOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Brewer");
-            return new AD_WithdrawalApplicationOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(_context);
         }
 
         public AD_WithdrawalApplicationsPage StoreCurrentTabValues()
@@ -37,18 +37,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return this;
         }
 
-        public AD_WithdrawalApplicationOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
+        public AD_WithdrawalRequestOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
-            return new AD_WithdrawalApplicationOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(_context);
         }
 
-        public AD_WithdrawalApplicationOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
+        public AD_WithdrawalRequestOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
-            return new AD_WithdrawalApplicationOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(_context);
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()
