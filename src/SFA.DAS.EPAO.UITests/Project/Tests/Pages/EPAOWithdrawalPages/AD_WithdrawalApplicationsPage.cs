@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AD_WithdrawalApplicationOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Brewer (ST0580)", NewTableSelector);
+            tableRowHelper.SelectRowFromTable("Ingram Limited", "Brewer");
             return new AD_WithdrawalApplicationOverviewPage(_context);
         }
 

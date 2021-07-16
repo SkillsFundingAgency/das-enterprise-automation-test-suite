@@ -18,7 +18,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                                .ClickStartNewWithdrawalNotification()
                                .ClickAssessingASpecificStandard()
-                               .ClickASpecificStandardToWithdraw();
+                               .ClickASpecificStandardToWithdraw()
+                               .ContinueWithWithdrawalRequest();
         }
 
         public void StartOfRegisterWithdrawalJourney()

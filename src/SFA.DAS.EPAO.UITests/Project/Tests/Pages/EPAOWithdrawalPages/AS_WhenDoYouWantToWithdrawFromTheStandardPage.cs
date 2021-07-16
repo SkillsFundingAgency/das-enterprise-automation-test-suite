@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_WhenDoYouWantToWithdrawFromTheStandardPage : EPAO_BasePage
     {
-        protected override string PageTitle => "When do you want to withdraw from the standard?";
+        protected override string PageTitle => "When do you want to withdraw from assessing the standard?";
         private readonly ScenarioContext _context;
         
         #region Locators
