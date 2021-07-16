@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     public class Outer_ApprenticeCommitmentsApiHelper
     {
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
+        private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
@@ -25,6 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<UI.FrameworkHelpers.AssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
+            _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
@@ -36,15 +38,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public IRestResponse CheckHealth() => _outerHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
 
-        protected IRestResponse CreateApprenticeship()
+        protected IRestResponse CreateApprenticeshipViaApi()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, startDate, _, _, _) = GetEmployerData();
 
-            var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
-
-            var email = GetApprenticeEmail();
-
-            var createApprenticeship = new CreateApprenticeship
+            var createApprenticeship = new CreateApprenticeshipViaApi
             {
                 EmployerAccountId = accountid,
                 CommitmentsApprenticeshipId = apprenticeshipid,
@@ -55,26 +53,31 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 TrainingProviderId = providerId
             };
 
-            _objectContext.SetAccountId(accountid);
-            _objectContext.SetCommitmentsApprenticeshipId(apprenticeshipid);
-            _objectContext.SetOrganisationName(orgname);
-            _objectContext.SetFirstName(firstname);
-            _objectContext.SetLastName(lastname);
-            _objectContext.SetTrainingName(trainingname);
-            _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
-            _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
-            _objectContext.SetEmployerName(orgname);
-            _objectContext.SetTrainingStartDate(startDate);
-            _objectContext.SetTrainingEndDate(endDate);
+            return _outerApiRestClient.CreateApprenticeshipViaApi(createApprenticeship, HttpStatusCode.Accepted);
+        }
 
-            _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
+        protected IRestResponse CreateApprenticeshipViaCommitmentsJob()
+        {
+            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, _, _, createdOn, agreedOn) = GetEmployerData();
 
-            return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.Accepted);
+            var createApprenticeship = new CreateApprenticeshipViaCommitmentsJob
+            {
+                AccountId = accountid,
+                ApprenticeshipId = apprenticeshipid,
+                Email = email,
+                LegalEntityName = orgname,
+                AccountLegalEntityId = legalEntityId,
+                ProviderId = providerId,
+                CreatedOn = createdOn,
+                AgreedOn = agreedOn
+            };
+
+            return _apprenticeCommitmentsJobs_CreateApprenticeshipClient.CreateApprenticeshipViaCommitmentsJob(createApprenticeship, HttpStatusCode.Accepted);
         }
 
         public IRestResponse VerifyIdentity()
         {
-            (string apprenticeId, string userIdentityid)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
+            (string apprenticeId, _)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
 
             var verifyIdentity = new VerifyIdentityRegistrationCommand
             {
@@ -146,6 +149,31 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                     Assert.AreEqual(_objectContext.GetLastName(), lastname, $"Apprentice last name did not match");
                 });
             });
+        }
+
+        private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn, string agreedOn) GetEmployerData()
+        {
+            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+
+            var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
+
+            var email = GetApprenticeEmail();
+
+            _objectContext.SetAccountId(accountid);
+            _objectContext.SetCommitmentsApprenticeshipId(apprenticeshipid);
+            _objectContext.SetOrganisationName(orgname);
+            _objectContext.SetFirstName(firstname);
+            _objectContext.SetLastName(lastname);
+            _objectContext.SetTrainingName(trainingname);
+            _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
+            _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
+            _objectContext.SetEmployerName(orgname);
+            _objectContext.SetTrainingStartDate(startDate);
+            _objectContext.SetTrainingEndDate(endDate);
+
+            _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
+
+            return (email, accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn);
         }
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
