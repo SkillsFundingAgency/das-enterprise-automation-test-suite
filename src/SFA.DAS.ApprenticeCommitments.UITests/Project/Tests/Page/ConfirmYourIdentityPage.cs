@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -24,9 +25,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname,
                 apprenticeCommitmentsDataHelper.ApprenticeLastname,
-                apprenticeCommitmentsDataHelper.DateOfBirthDay,
-                apprenticeCommitmentsDataHelper.DateOfBirthMonth,
-                apprenticeCommitmentsDataHelper.DateOfBirthYear);
+                objectContext.GetDateOfBirth().Day,
+                objectContext.GetDateOfBirth().Month,
+                objectContext.GetDateOfBirth().Year);
 
             return new ApprenticeHomePage(_context);
         }
