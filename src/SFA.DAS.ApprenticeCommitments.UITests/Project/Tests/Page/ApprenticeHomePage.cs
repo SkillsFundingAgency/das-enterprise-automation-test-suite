@@ -9,16 +9,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => "Confirm my apprenticeship details";
-        private string PageTitleAfterConfirmation => "My apprenticeship details";
+        private string PageTitleAfterConfirmation => "Your apprenticeship details";
         private string YourEmployerLinkText => SectionHelper.Section1;
         private string YourProviderLinkText => SectionHelper.Section2;
         private string YourApprenticeshipDetailsLinkText => SectionHelper.Section3;
         private string HowYourApprenticeshipWillBeDeliveredLinkText => SectionHelper.Section4;
         private string RolesAndResponsibilitiesLinkText => SectionHelper.Section5;
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
-        private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
+        private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        private By ConfirmYourApprenticeshipButton => By.XPath("//button[text()='Confirm your apprenticeship']");
+        private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and Support']");
         private By HelpAndSupportLink => By.LinkText("help and support section");
         private string SignOutLinkText => "Sign out";
@@ -103,7 +103,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyPage(AppreticeshipConfirmBannerHeader);
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
-            formCompletionHelper.Click(ConfirmYourApprenticeshipButton);
+            formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(_context);
         }
 
