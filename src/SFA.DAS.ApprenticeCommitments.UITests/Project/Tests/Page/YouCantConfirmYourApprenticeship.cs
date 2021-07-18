@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePage ReturnToApprenticeHomePage()
         {
-            formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, "Return to My Apprenticeship");
+            formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, $"Return to {ServiceName}");
             return new ApprenticeHomePage(_context);
         }
     }

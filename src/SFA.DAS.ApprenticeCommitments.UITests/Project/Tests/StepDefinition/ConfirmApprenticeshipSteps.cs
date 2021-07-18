@@ -110,15 +110,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection()
         {
             AssertSectionStatus(SectionHelper.Section4, StatusHelper.InComplete);
-            _apprenticeHomePage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().SelectYes();
-            AssertSectionStatus(SectionHelper.Section4, StatusHelper.Complete);
-        }
-
-        [Then(@"the apprentice is able to confirm '(.*)' section again as understood")]
-        public void ThenTheApprenticeIsAbleToConfirmSectionAgainAsUnderstood(string p0)
-        {
-            AssertSectionStatus(SectionHelper.Section4, StatusHelper.InCorrect);
-            _apprenticeHomePage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().SelectYes();
+            _apprenticeHomePage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
             AssertSectionStatus(SectionHelper.Section4, StatusHelper.Complete);
         }
 
@@ -126,27 +118,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenConfirmedHowTheApprenticeshipWillBeDeliveredSectionPageIsDisplayedForTryingToConfirmAgain() => 
             _apprenticeHomePage.ConfirmAlreadyConfirmedHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
 
-        [Then(@"the apprentice confirms 'How the apprenticeship will be delivered' section as NOT understood")]
-        public void ThenTheApprenticeConfirmsHowTheApprenticeshipWillBeDeliveredSectionAsNOTUnderstood()
-        {
-            AssertSectionStatus(SectionHelper.Section4, StatusHelper.InComplete);
-            NavigateToConfirmHowYourApprenticeshipWillBeDelivered().SelectNo().ReturnToApprenticeHomePage();
-            AssertSectionStatus(SectionHelper.Section4, StatusHelper.InCorrect);
-        }
-
         [Then(@"the apprentice is able to confirm Roles and responsibilities")]
         public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities()
         {
             AssertSectionStatus(SectionHelper.Section5, StatusHelper.InComplete);
-            _apprenticeHomePage = NavigateAndVerifyRolesAndResponsibilities().SelectYes();
-            AssertSectionStatus(SectionHelper.Section5, StatusHelper.Complete);
-        }
-
-        [Then(@"the apprentice is able to confirm Roles and responsibilities again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilitiesAgainAsCorrect()
-        {
-            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InCorrect);
-            _apprenticeHomePage = NavigateAndVerifyRolesAndResponsibilities().SelectYes();
+            _apprenticeHomePage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
             AssertSectionStatus(SectionHelper.Section5, StatusHelper.Complete);
         }
 
@@ -158,22 +134,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _alreadyConfirmedRolesAndResponsibilitiesPage.ContinueToHomePage();
         }
 
-        [Then(@"the apprentice confirms the Roles and responsibilities displayed as Incorrect")]
-        public void ThenTheApprenticeConfirmsTheRolesAndResponsibilitiesDisplayedAsIncorrect()
-        {
-            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InComplete);
-            NavigateAndVerifyRolesAndResponsibilities().SelectNo().ReturnToApprenticeHomePage();
-            AssertSectionStatus(SectionHelper.Section5, StatusHelper.InCorrect);
-        }
-
         [When(@"the apprentice confirms all the Apprenticeship sections")]
         public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections()
         {
-            ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities();
             ThenTheApprenticeIsAbleToConfirmTheEmployer();
             ThenTheApprenticeIsAbleToConfirmTheTrainingProvider();
             ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails();
             ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection();
+            ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities();
         }
 
         [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]

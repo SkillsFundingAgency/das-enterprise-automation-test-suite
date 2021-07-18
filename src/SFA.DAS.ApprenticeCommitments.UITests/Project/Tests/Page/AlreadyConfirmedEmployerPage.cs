@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedEmployerPage : ConfirmYourDetailsPage
     {
-        protected override string PageTitle => "You have confirmed your employer";
+        protected override string PageTitle => "You have confirmed this is your employer";
 
         public AlreadyConfirmedEmployerPage(ScenarioContext context) : base(context)
         {

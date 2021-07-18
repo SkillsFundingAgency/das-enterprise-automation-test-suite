@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public SignIntoApprenticeshipPortalPage ReturnToApprenticeshipPortal()
         {
-            formCompletionHelper.ClickLinkByText("My Apprenticeship");
+            formCompletionHelper.ClickLinkByText($"{ServiceName}");
             return new SignIntoApprenticeshipPortalPage(_context);
         }
     }

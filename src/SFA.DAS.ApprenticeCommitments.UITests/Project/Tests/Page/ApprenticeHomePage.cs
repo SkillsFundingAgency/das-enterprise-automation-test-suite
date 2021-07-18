@@ -7,11 +7,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-        protected override string PageTitle => "My apprenticeship";
+        protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "My apprenticeship details";
         private string YourEmployerLinkText => "Your employer";
         private string YourProviderLinkText => "Your training provider";
-        private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
+        private string YourApprenticeshipDetailsLinkText => "Your apprenticeship details";
         private string HowYourApprenticeshipWillBeDeliveredLinkText => "How your apprenticeship will be delivered";
         private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
@@ -115,9 +115,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public void VerifyPageAfterApprenticeshipConfirm()
         {
             VerifyPage(PageHeader, PageTitleAfterConfirmation);
-            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship has been agreed and you're ready to start");
+            VerifyPage(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
         }
 
-        public void VerifyDaysToConfirmWarning() => VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship");
+        public void VerifyDaysToConfirmWarning() => VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details");
     }
 }
