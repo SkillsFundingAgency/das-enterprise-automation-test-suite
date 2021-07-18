@@ -6,9 +6,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ConfirmYourIdentityPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "Confirm your personal details";
-
         private readonly ScenarioContext _context;
+        protected override string PageTitle => "Confirm your personal details";
 
         private By FirstName => By.CssSelector("input#FirstName");
         private By LastName => By.CssSelector("input#LastName");

@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Your account has been created";
 
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
+        protected override By ServiceHeader => By.CssSelector(".das-header__span");
 
         private readonly ScenarioContext _context;
 

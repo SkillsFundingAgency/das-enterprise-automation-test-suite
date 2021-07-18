@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmPassword => By.CssSelector("#ConfirmPassword");
         private By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         private By ErrorSummary => By.CssSelector(".govuk-error-summary");
+        protected override By ServiceHeader => By.CssSelector(".das-header__span");
 
         public PasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
 

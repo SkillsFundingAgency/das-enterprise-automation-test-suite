@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -9,11 +10,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "My apprenticeship details";
-        private string YourEmployerLinkText => "Your employer";
-        private string YourProviderLinkText => "Your training provider";
-        private string YourApprenticeshipDetailsLinkText => "Your apprenticeship details";
-        private string HowYourApprenticeshipWillBeDeliveredLinkText => "How your apprenticeship will be delivered";
-        private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
+        private string YourEmployerLinkText => SectionHelper.Section1;
+        private string YourProviderLinkText => SectionHelper.Section2;
+        private string YourApprenticeshipDetailsLinkText => SectionHelper.Section3;
+        private string HowYourApprenticeshipWillBeDeliveredLinkText => SectionHelper.Section4;
+        private string RolesAndResponsibilitiesLinkText => SectionHelper.Section5;
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
