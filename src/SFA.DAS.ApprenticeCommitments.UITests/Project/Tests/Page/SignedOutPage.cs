@@ -6,6 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "You have successfully signed out";
         private readonly ScenarioContext _context;
+        protected override By ServiceHeader => By.CssSelector(".das-header__span");
 
         public SignedOutPage(ScenarioContext context) : base(context) => _context = context;
 
