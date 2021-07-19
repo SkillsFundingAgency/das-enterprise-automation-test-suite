@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -37,5 +38,32 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.ConfirmAndShareProvidersDetailsWithEmployersContactDetails(emailAddress, telephoneNumber, website);
         }
+
+        [Given(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
+        public void GivenTheProviderHasEnteredTheirContactDetails(string emailAddress, string telephoneNumber, string website)
+        {
+            GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
+            WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn();
+            _providerStepsHelper.ConfirmProviderContactDetailsBeforeSubmitting(emailAddress, telephoneNumber, website);
+        }
+
+        [When(@"the provider selects the option to edit")]
+        public void WhenTheProviderSelectsTheOptionToEdit()
+        {
+            _providerStepsHelper.ChangeProviderContactDetails();
+        }
+
+        [When(@"the provider chooses to edit the contact details '(.*)', '(.*)' and '(.*)'")]
+        public void WhenTheProviderChoosesToEditTheContactDetailsAnd(string newEmailAddress, string newTelephoneNumber, string newWebsite)
+        {
+            _providerStepsHelper.ConfirmProviderContactDetailsHaveBeenEdited(newEmailAddress, newTelephoneNumber, newWebsite);
+        }
+
+        [Then(@"the provider is able to submit the edited details")]
+        public void ThenTheProviderIsAbleToSubmitTheEditedDetails()
+        {
+            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
+        }
+
     }
 }
