@@ -154,12 +154,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to navigate to the Help and Support")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupport()
         {
-            _apprenticeHomePage.NavigateToHelpAndSupportPage()
-                .NavigateToOverviewPageWithBackToDashBoardButton()
-                .NavigateToHelpAndSupportPage()
-                .NavigateToOverviewPageWithBackLink()
-                .SignOutFromTheService()
-                .SignBackInFromSignOutPage();
+            _apprenticeHomePage.NavigateToHelpAndSupportPage().NavigateToOverviewPageWithBackToDashBoardButton();
+            _apprenticeHomePage.NavigateToHelpAndSupportPage().NavigateToOverviewPageWithBackLink();
+            _apprenticeHomePage.SignOutFromTheService().SignBackInFromSignOutPage();
         }
 
         private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
