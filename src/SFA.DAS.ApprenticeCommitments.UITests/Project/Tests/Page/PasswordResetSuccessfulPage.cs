@@ -1,10 +1,12 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class PasswordResetSuccessfulPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "Password reset successful";
+        protected override By ServiceHeader => NonClickableServiceHeader;
 
         private readonly ScenarioContext _context;
 

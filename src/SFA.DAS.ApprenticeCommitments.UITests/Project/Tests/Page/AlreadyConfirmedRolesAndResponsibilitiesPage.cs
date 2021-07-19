@@ -4,7 +4,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedRolesAndResponsibilitiesPage : ConfirmYourDetailsPage
     {
-        protected override string PageTitle => "You have confirmed your apprentice roles and responsibilities";
+        protected override string PageTitle => "You have read through roles and responsibilities";
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage(ScenarioContext context) : base(context)
         {

@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Help and support";
 
         private readonly ScenarioContext _context;
-        private By GoBackToTheDashboardButton => By.LinkText("Go back to the dashboard");
+        private By GoBackToTheDashboardButton => By.LinkText("Return to homepage");
 
         public HelpAndSupportPage(ScenarioContext context) : base(context) => _context = context;
 
