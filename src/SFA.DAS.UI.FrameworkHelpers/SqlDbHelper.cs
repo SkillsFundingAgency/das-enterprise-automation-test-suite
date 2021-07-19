@@ -28,9 +28,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
-        protected List<string[]> GetMultipleData(string query, int noOfvalues)
+        protected List<string[]> GetMultipleData(string query, string connectionstring, int noOfvalues)
         {
-            List<object[]> data = ReadDataFromDataBase(query);
+            List<object[]> data = ReadDataFromDataBase(query, connectionstring);
 
             var returnItems = new List<string[]>();
 
@@ -55,6 +55,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
+        protected List<string[]> GetMultipleData(string query, int noOfvalues) => GetMultipleData(query, connectionString, noOfvalues);
+
         protected string GetNullableData(string queryToExecute)
         {
             var data = GetData(queryToExecute, 1);
@@ -67,13 +69,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
-        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute)[0][0];
+        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
+        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
 
         {
             return await Policy
@@ -88,7 +90,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
 
-        private List<object[]> ReadDataFromDataBase(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
         private Policy RetryOnException(string exception, string title, TimeSpan[] timeSpans)
         {
