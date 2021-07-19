@@ -38,6 +38,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             formCompletionHelper.ClickElement(OutcomeTab);
             return new GatewayLandingPage(_context);
         }
+        public GatewayLandingPage ClearSearchResult_OutcomeTab()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return new GatewayLandingPage(_context);
+        }
         public ReadOnlyGatewayOutcomePage SelectApplicationFromOutcomeTab()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
