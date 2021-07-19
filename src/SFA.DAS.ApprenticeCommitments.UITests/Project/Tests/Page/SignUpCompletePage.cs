@@ -14,10 +14,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public SignUpCompletePage(ScenarioContext context) : base(context) => _context = context;
 
-        public SignIntoApprenticeshipPortalPage ClickSignInToApprenticePortal()
+        public StartPage ClickSignInToApprenticePortal()
         {
             formCompletionHelper.ClickLinkByText($"sign in to {ServiceName}");
-            return new SignIntoApprenticeshipPortalPage(_context);
+            return new StartPage(_context);
         }
     }
 }
