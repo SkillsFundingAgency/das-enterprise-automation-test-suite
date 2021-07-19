@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage : EPAO_BasePage
     {
-        protected override string PageTitle => "What's the main reason you want to withdraw from assessing this standard?";
+        protected override string PageTitle => "What's the main reason you want to withdraw from assessing the standard?";
         private readonly ScenarioContext _context;
         #region Locators
         private By ExternalQualityAssuranceProviderHasChanged => By.XPath("//*[contains(text(),'External quality assurance provider has changed')]");

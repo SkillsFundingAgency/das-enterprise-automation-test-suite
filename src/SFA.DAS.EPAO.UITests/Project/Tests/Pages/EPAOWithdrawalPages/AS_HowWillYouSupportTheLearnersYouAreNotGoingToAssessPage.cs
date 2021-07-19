@@ -30,12 +30,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return new AS_HowWillYouCommunicateMarketExitToCustomersPage(_context);
         }
 
-        public AS_ApplicationOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
+        public AS_WithdrawalRequestOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
         {
             formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
             formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported by another training provider");
             Continue();
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(_context);
         }
     }
 }
