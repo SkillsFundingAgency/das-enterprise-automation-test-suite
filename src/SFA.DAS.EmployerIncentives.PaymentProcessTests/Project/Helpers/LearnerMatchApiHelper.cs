@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -36,8 +37,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public async Task DeleteMapping(long uln, long ukprn)
         {
             var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
-            var response = await httpClient.DeleteAsync($"{baseUrl}/api-stub/delete?httpMethod=Get&url={url}");
-            response.EnsureSuccessStatusCode();
+            await httpClient.DeleteAsync($"{baseUrl}/api-stub/delete?httpMethod=Get&url={url}");
         }
     }
 }

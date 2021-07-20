@@ -8,15 +8,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Your account has been created";
 
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
+        protected override By ServiceHeader => NonClickableServiceHeader;
 
         private readonly ScenarioContext _context;
 
         public SignUpCompletePage(ScenarioContext context) : base(context) => _context = context;
 
-        public SignIntoApprenticeshipPortalPage ClickSignInToApprenticePortal()
+        public StartPage ClickSignInToApprenticePortal()
         {
-            formCompletionHelper.ClickLinkByText("sign in to my apprenticeship");
-            return new SignIntoApprenticeshipPortalPage(_context);
+            formCompletionHelper.ClickLinkByText($"sign in to {ServiceName}");
+            return new StartPage(_context);
         }
     }
 }

@@ -55,6 +55,9 @@
     <None Update="Project\Helpers\SQL\DeleteIncentiveData.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Project\Helpers\SQL\ResetCalendar.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\Helpers\SQL\UpsertAccount.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

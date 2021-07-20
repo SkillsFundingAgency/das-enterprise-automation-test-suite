@@ -18,6 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ObjectContext _objectContext;
         protected readonly AssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
+        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
         private SignUpCompletePage signUpCompletePage;
@@ -31,11 +32,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<AssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
             config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
         }
 
-        public void CreateApprenticeship() => appreticeCommitmentsApiHelper.CreateApprenticeship();
+        public void CreateApprenticeshipViaCommitmentsJob() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJob();
 
         public CreatePasswordPage GetCreatePasswordPage()
         {
@@ -71,7 +73,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public SignUpCompletePage CreateAccount(bool postApprenticeship = true)
         {
             if (postApprenticeship)
-                CreateApprenticeship();
+                CreateApprenticeshipViaCommitmentsJob();
 
             return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
         }
@@ -126,7 +128,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .VerifyRolesYourTrainingProviderTab();
         }
 
-        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal();
+        public void UpdateConfirmBeforeDate() => _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
+
+        public void VerifyDaysToConfirmWarning(ApprenticeHomePage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
+
+        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal().CTAOnStartPageToSignIn();
 
         private void PopulateExpectedApprenticeshipDetails()
         {

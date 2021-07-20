@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
 {
-    class FATV2StepsHelper
+    public class FATV2StepsHelper
     {
         private readonly ScenarioContext _context;
 
@@ -22,6 +22,14 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
         {
             new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
             return new ProviderSummaryPage(_context);
+        }
+        public ProviderSearchResultsPage SelectTrainingCourseAndNavigateToProviderListPage(string course = "")
+        {
+            new FATV2IndexPage(_context).ClickStartButton()
+                .SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course)
+                .SelectFirstTrainingResult()
+                .ClickViewProvidersForThisCourse();
+            return new ProviderSearchResultsPage(_context);
         }
     }
 }

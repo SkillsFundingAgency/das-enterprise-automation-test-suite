@@ -35,6 +35,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             if (applicationRoute == ApplicationRoute.EmployerProviderRoute) { CompletesTheApplyJourneyAsEmployerRoute(selectRouteStepsHelper); }
 
             if (applicationRoute == ApplicationRoute.SupportingProviderRoute) { CompletesTheApplyJourneyAsSupportRoute(selectRouteStepsHelper); }
+
+            if (applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(selectRouteStepsHelper); }
         }
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsMainRoute(SelectRouteStepsHelper selectRouteStepsHelper)
@@ -64,6 +66,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
             return CompletesFinish_Section9(_overviewPage);
         }
+
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(SelectRouteStepsHelper selectRouteStepsHelper)
+        {
+            var _overviewPage = selectRouteStepsHelper.CompleteProviderCharityRouteSection_ExistingProvider();
+            _overviewPage = CompleteYourOrganisation_Section1_Charity(_overviewPage);
+            _overviewPage = CompleteFinancialEvidence_Section2_ForNoUltimateParentCompany(_overviewPage);
+            _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);
+            _overviewPage = CompletesProtectingYourApprentices_Section4(_overviewPage);
+            _overviewPage = CompletesReadinessToEngage_Section5_Charity(_overviewPage);
+            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
+            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+            _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
+            return CompletesFinish_Section9(_overviewPage);
+        }
+
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsSupportRoute(SelectRouteStepsHelper selectRouteStepsHelper)
         {

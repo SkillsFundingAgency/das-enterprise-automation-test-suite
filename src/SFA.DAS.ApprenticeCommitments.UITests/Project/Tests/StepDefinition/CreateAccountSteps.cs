@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public CreateAccountSteps(ScenarioContext context) : base(context) { }
 
         [When(@"employer or provider submits the details to create an account")]
-        public void WhenEmployerOrProviderSubmitsTheDetailsToCreateAnAccount() => appreticeCommitmentsStepsHelper.CreateApprenticeship();
+        public void WhenEmployerOrProviderSubmitsTheDetailsToCreateAnAccount() => appreticeCommitmentsStepsHelper.CreateApprenticeshipViaCommitmentsJob();
 
         [Then(@"the apprentice is able to create an account using the invitation")]
         public void ThenTheApprenticeIsAbleToCreateAnAccountUsingTheInvitation() => appreticeCommitmentsStepsHelper.CreateAccount(false);

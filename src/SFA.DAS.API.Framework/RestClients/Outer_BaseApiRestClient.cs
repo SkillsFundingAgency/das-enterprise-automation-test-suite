@@ -6,17 +6,19 @@ namespace SFA.DAS.API.Framework.RestClients
 {
     public abstract class Outer_BaseApiRestClient : BaseApiRestClient
     {
-        protected readonly Outer_ApiAuthTokenConfig config;
+        protected readonly string _authKey;
 
         protected abstract string ApiName { get; }
 
-        protected virtual string ApiSubscriptionKey => config.Apim_SubscriptionKey;
+        protected virtual string ApiAuthKey => _authKey;
 
         protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
 
-        public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config)
+        public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config) : this(config.Apim_SubscriptionKey) { }
+
+        public Outer_BaseApiRestClient(string authKey)
         {
-            this.config = config;
+            _authKey = authKey;
 
             CreateOuterApiRestClient();
         }
@@ -29,7 +31,7 @@ namespace SFA.DAS.API.Framework.RestClients
                 new Dictionary<string, string>
                 {
                     { "X-Version", "1" },
-                    { "Ocp-Apim-Subscription-Key", ApiSubscriptionKey}
+                    { "Ocp-Apim-Subscription-Key", ApiAuthKey}
                 });
         }
 
