@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
-        private By CourseOption => By.CssSelector("#trainingCourse");
+        protected By CourseOption => By.CssSelector("#trainingCourse");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
@@ -38,26 +38,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EditCostCourseAndReference(editedApprenticeDataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
+
         public ConfirmChangesPage EditApprenticeNameDobAndReference()
         {
             EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
-        protected override void SelectCourse()
+
+        protected EditApprenticePage AddValidStartDate()
         {
-            base.formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
+            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
+            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
+            return this;
         }
-        private ConfirmChangesPage ConfirmChangesPage()
+
+        protected EditApprenticePage AddValidEndDate()
         {
-            return new ConfirmChangesPage(_context);
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+            return this;
         }
+
+        protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
+        
+        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
+
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
-            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+
+            AddValidEndDate();
+            
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);

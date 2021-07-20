@@ -1,9 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Dynamitey;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
