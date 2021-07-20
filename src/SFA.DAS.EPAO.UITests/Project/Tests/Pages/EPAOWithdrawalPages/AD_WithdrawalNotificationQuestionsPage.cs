@@ -14,12 +14,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalNotificationQuestionsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public AD_WithdrawalApplicationOverviewPage MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+        public AD_WithdrawalRequestOverviewPage MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             formCompletionHelper.Click(SaveButton);
 
-            return new AD_WithdrawalApplicationOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(_context);
         }
 
         public AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
