@@ -212,14 +212,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await businessCentralApiHelper.SetupAcceptAllRequests();
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
         }
-        protected async Task VerifyLearningRecordsExist()
+        protected async Task VerifyLearningRecordsExist(long apprenticeshipId)
         {
-            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
             Assert.IsTrue(exist);
         }
-        protected async Task VerifyLearningRecordsDoNotExist()
+        protected async Task VerifyLearningRecordsDoNotExist(long apprenticeshipId)
         {
-            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
             Assert.IsFalse(exist);
         }
 

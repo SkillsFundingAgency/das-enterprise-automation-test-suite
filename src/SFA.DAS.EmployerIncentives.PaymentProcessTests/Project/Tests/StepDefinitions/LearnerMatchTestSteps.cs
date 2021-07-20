@@ -54,10 +54,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await RunLearnerMatchOrchestrator();
         }
 
-        [Then(@"we have some learner data")]
+        [Then(@"a learner match record is created for the apprenticeship id")]
         public async Task ThenWeHaveSomeLearnerData()
         {
-            await VerifyLearningRecordsExist();
+            await VerifyLearningRecordsExist(ApprenticeshipId);
         }
 
 
@@ -99,10 +99,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await SetupLearnerMatchApiStatusCodeResponse(ULN, UKPRN, HttpStatusCode.NotFound);
         }
 
-        [Then(@"a learner match record is not created")]
+        [Then(@"a learner match record is not created for the apprenticeship id")]
         public async Task ThenALearnerMatchRecordIsNotCreated()
         {
-            await VerifyLearningRecordsDoNotExist();
+            await VerifyLearningRecordsDoNotExist(ApprenticeshipId);
         }
 
         [Given(@"an apprenticeship incentive for a learner submitted in the previous academic year")]
