@@ -37,7 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
         }
 
-        public void CreateApprenticeship() => appreticeCommitmentsApiHelper.CreateApprenticeship();
+        public void CreateApprenticeshipViaCommitmentsJob() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJob();
 
         public CreatePasswordPage GetCreatePasswordPage()
         {
@@ -73,7 +73,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public SignUpCompletePage CreateAccount(bool postApprenticeship = true)
         {
             if (postApprenticeship)
-                CreateApprenticeship();
+                CreateApprenticeshipViaCommitmentsJob();
 
             return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
         }
@@ -132,7 +132,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyDaysToConfirmWarning(ApprenticeHomePage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
 
-        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal();
+        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal().CTAOnStartPageToSignIn();
 
         private void PopulateExpectedApprenticeshipDetails()
         {
