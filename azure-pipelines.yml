@@ -13,8 +13,8 @@ variables:
   buildConfiguration: 'release'
 
 pool:
-  name: 'DAS - Continuous Integration'
-  demands: Agent.OS -equals Linux
+  name: DAS - Continuous Integration Agents
+  demands: LATEST_DOTNET_VERSION -equals 3.1
 
 steps:
 - task: gittools.gitversion-preview.gitversion-task.GitVersion@5
