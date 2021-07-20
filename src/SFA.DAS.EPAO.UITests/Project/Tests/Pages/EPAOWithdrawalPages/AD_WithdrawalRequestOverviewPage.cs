@@ -4,16 +4,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
-    public class AD_WithdrawalApplicationOverviewPage : EPAO_BasePage
+    public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Application overview";
+        protected override string PageTitle => "Withdrawal request overview";
 
         private readonly ScenarioContext _context;
 
         private By CompleteReviewButton => By.CssSelector("button.govuk-button");
         private By Tag => By.CssSelector("div.govuk-tag");
 
-        public AD_WithdrawalApplicationOverviewPage(ScenarioContext context) : base(context)
+        public AD_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
         {
-            formCompletionHelper.ClickLinkByText("Withdrawal notification questions");
+            formCompletionHelper.ClickLinkByText("Evaluate withdrawal request questions");
             return new AD_WithdrawalNotificationQuestionsPage(_context);
         }
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return new AD_WithdrawalApplicationsPage(_context);
         }
 
-        public AD_WithdrawalApplicationOverviewPage VerifyAnswerUpdatedTag()
+        public AD_WithdrawalRequestOverviewPage VerifyAnswerUpdatedTag()
         {
             Assert.AreEqual("ANSWER UPDATED", pageInteractionHelper.GetText(Tag));
             return this;

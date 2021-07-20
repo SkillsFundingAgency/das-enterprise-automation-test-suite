@@ -20,11 +20,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
 
+        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
         protected By HeaderText => By.CssSelector(".app-user-header__name");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By BetaBanner => By.CssSelector(".govuk-phase-banner");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
+        protected string ServiceName => "My apprenticeship";
+        protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -38,6 +41,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             if (verifypage) VerifyPage();
             VerifyPage(CookieBanner);
             VerifyPage(BetaBanner);
+            VerifyPage(ServiceHeader, ServiceName);
         }
 
         public ApprenticeHomePage ContinueToHomePage()
