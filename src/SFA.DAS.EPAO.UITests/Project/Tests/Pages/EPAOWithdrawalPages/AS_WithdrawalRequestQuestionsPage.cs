@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
-    public class AS_WithdrawalNotificationQuestionsPage : EPAO_BasePage
+    public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Withdrawal notification questions";
+        protected override string PageTitle => "Withdrawal request questions";
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -18,7 +18,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By SupportingLearnersVerification => By.XPath("//a[contains(text(), 'Supporting current learners')]/../following-sibling::strong");
         private By ReturnToApplicationOverviewButton => By.LinkText("Return to application overview");
         #endregion
-        public AS_WithdrawalNotificationQuestionsPage(ScenarioContext context) : base(context)
+
+        public AS_WithdrawalRequestQuestionsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -37,17 +38,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(_context);
         }
 
-        public AS_ApplicationOverviewPage VerifyAndReturnToApplicationOverviewPage()
+        public AS_WithdrawalRequestOverviewPage VerifyAndReturnToApplicationOverviewPage()
         {
             VerifyPage(ReaasonForWithdrawingCompletedVerification, "COMPLETED");
             VerifyPage(CompletingAssessmentsForLearnersCompletedVerification, "COMPLETED");
             VerifyPage(CommunicatingMarketExitCompletedVerification, "COMPLETED");
             VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(_context);
         }
 
-        public AS_ApplicationOverviewPage VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
+        public AS_WithdrawalRequestOverviewPage VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
         {
             VerifyPage(ReaasonForWithdrawingCompletedVerification, "COMPLETED");
             VerifyPage(CompletingAssessmentsForLearnersCompletedVerification, "COMPLETED");
@@ -55,7 +56,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
             VerifyPage(SupportingLearnersVerification, "COMPLETED");
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(_context);
         }
     }
 }

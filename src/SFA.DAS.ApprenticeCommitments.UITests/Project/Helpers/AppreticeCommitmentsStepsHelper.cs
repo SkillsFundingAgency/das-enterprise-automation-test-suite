@@ -132,7 +132,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyDaysToConfirmWarning(ApprenticeHomePage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
 
-        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal();
+        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal().CTAOnStartPageToSignIn();
 
         private void PopulateExpectedApprenticeshipDetails()
         {

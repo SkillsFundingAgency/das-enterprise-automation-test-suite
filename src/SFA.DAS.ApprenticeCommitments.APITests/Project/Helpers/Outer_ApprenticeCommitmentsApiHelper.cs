@@ -86,7 +86,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
                 Email = GetApprenticeEmail(),
-                DateOfBirth = new DateTime(_dataHelper.DateOfBirthYear, _dataHelper.DateOfBirthMonth, _dataHelper.DateOfBirthDay)
+                DateOfBirth = _objectContext.GetDateOfBirth(),
             };
 
             return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
@@ -153,7 +153,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn, string agreedOn) GetEmployerData()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, dateOfBirth, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
 
             var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
@@ -164,6 +164,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetOrganisationName(orgname);
             _objectContext.SetFirstName(firstname);
             _objectContext.SetLastName(lastname);
+            _objectContext.SetDateOfBirth(dateOfBirth.Date);
             _objectContext.SetTrainingName(trainingname);
             _objectContext.SetEmployerAccountLegalEntityId(legalEntityId);
             _objectContext.SetProviderName(GetProviderName(tradingName, legalName));
