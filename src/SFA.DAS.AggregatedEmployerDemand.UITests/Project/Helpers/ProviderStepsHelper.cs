@@ -75,5 +75,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
             new CheckYourAnswersPage(_context).ChangeProviderContactDetails();
             return new EditProvidersContactDetailsPage(_context);
         }
+        public WhichEmployersAreYouInterestedInPage NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage()
+        {
+            new CheckYourAnswersPage(_context).BackToProvidersContactDetailsPage()
+                .BackToEditProvidersContactDetailsPage()
+                .BackToWhichEmployersAreYouInterestedInPage()
+                .BackToFindEmployersThatNeedATrainingProviderPage();
+            return new WhichEmployersAreYouInterestedInPage(_context);
+        }
     }
 }

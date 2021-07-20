@@ -14,6 +14,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
 
+
         public AEDProviderSteps(ScenarioContext context)
         {
             _config = context.GetProviderConfig<ProviderConfig>();
@@ -65,5 +66,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
         }
 
+        [Then(@"the provider is able to navigate to beginning of the journey using the back links")]
+        public void ThenTheProviderIsAbleToNavigateToBeginningOfTheJourneyUsingTheBackLinks()
+        {
+            _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
+        }
     }
 }

@@ -38,5 +38,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             ContinueToNextPage();
             return new ConfirmProvidersContactDetailsPage(_context);
         }
+        public WhichEmployersAreYouInterestedInPage BackToWhichEmployersAreYouInterestedInPage()
+        {
+            formCompletionHelper.Click(BackLink);
+            return new WhichEmployersAreYouInterestedInPage(_context);
+        }
     }
 }

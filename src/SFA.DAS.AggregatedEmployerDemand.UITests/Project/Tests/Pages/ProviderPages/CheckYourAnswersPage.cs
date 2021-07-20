@@ -22,5 +22,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             formCompletionHelper.Click(Change);
             return new EditProvidersContactDetailsPage(_context);
         }
+        public ConfirmProvidersContactDetailsPage BackToProvidersContactDetailsPage()
+        {
+            formCompletionHelper.Click(BackLink);
+            return new ConfirmProvidersContactDetailsPage(_context);
+        }
     }
 }
