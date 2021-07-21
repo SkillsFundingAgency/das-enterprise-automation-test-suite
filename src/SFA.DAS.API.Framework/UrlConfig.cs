@@ -15,5 +15,7 @@ namespace SFA.DAS.API.Framework
         public static string MangeIdentitybaseUrl(string tenant) => $"https://login.microsoftonline.com/{tenant}/oauth2/token/";
 
         public static string Outer_AssessorCertificationApiBaseUrl => $"https://test-apis.apprenticeships.education.gov.uk/";
+
+        public static string ApprenticeCommitmentsJobs_BaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-acomtwkr-fa.azurewebsites.net/";
     }
 }

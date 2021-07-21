@@ -38,6 +38,6 @@ namespace SFA.DAS.UI.Framework
 
         public static string Apprentice_ResetPasswordUrl(string clientId, string requestId) => $"https://login.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/NewPassword/{clientId}/{requestId}";
 
-        public static string Apprentice_BaseUrl() => $"https://commitments.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
+        public static string Apprentice_BaseUrl() => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
@@ -17,17 +18,18 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             return (providerData[0], providerData[1]);
         }
 
-        public (long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate) GetEmployerData()
+        public (long accountid, long apprenticeshipid, string firstname, string lastname, DateTime dateOfBirth, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn, string agreedOn) GetEmployerData()
         {
-            var query = "SELECT TOP 1 Commitment.EmployerAccountId, Apprenticeship.id, FirstName, LastName, TrainingName, Commitment.AccountLegalEntityId, Commitment.ProviderId, StartDate, EndDate " +
+            var query = "SELECT TOP 1 Commitment.EmployerAccountId, Apprenticeship.id, FirstName, LastName, TrainingName, Commitment.AccountLegalEntityId, " +
+                "Commitment.ProviderId, StartDate, EndDate, Apprenticeship.CreatedOn, AgreedOn, DateOfBirth " +
                 "FROM[dbo].[Apprenticeship] as Apprenticeship " +
                 "INNER JOIN Commitment on Apprenticeship.CommitmentId = Commitment.Id " +
                 "INNER JOIN Accounts on Accounts.Id = Commitment.EmployerAccountId " +
                 "INNER JOIN AccountLegalEntities on Commitment.AccountLegalEntityId = AccountLegalEntities.Id " +
                 "WHERE IsApproved = 1 and IsDeleted = 0 and AccountLegalEntityId is not null and AccountLegalEntities.Deleted is null and TrainingCode NOT like '%-%'" +
-                "ORDER BY NEWID()";
+                "and Apprenticeship.AgreedOn is not null ORDER BY NEWID()";
 
-            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 9);
+            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 12);
 
             var accountid = apprenticeData[0];
             var apprenticeshipid = apprenticeData[1];
@@ -38,13 +40,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var apprenticeProviderId = apprenticeData[6];
             var startDate = apprenticeData[7];
             var endDate = apprenticeData[8];
+            var createdOn = apprenticeData[9];
+            var agreedOn = apprenticeData[10];
+            var dateOfBirth = apprenticeData[11];
 
             List<object[]> empNameData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountid}", connectionString);
 
             if (empNameData.Count == 0)
-                return (0, 0, string.Empty, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty);
+                return (0, 0, string.Empty, string.Empty, default, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty);
             else
-                return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate);
+                return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, DateTime.Parse(dateOfBirth), apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate, createdOn, agreedOn);
         }
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
