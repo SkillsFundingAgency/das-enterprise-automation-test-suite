@@ -27,6 +27,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         //private By InputBox(string className) => By.ClassName(className); 
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
+        public ConfirmChangesPage EditCourseAndDate()
+        {
+            EditCourse();
+            AddValidStartDate();
+            AddValidEndDate();
+            Update();
+            return ConfirmChangesPage();
+        }
+
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            base.formCompletionHelper.ClickElement(DeleteButton);
@@ -45,23 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected EditApprenticePage AddValidStartDate()
-        {
-            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
-            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
-            return this;
-        }
-
-        protected EditApprenticePage AddValidEndDate()
-        {
-            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
-            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
-            return this;
-        }
-
         protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
-        
-        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
@@ -82,5 +75,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return pageInteractionHelper.FindElements(InputBox("input[type='text']"))
                 .Concat(pageInteractionHelper.FindElements(InputBox("input[type='number']"))).ToList();
         }
+
+        private EditApprenticePage AddValidStartDate()
+        {
+            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
+            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
+            return this;
+        }
+
+        private EditApprenticePage AddValidEndDate()
+        {
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+            return this;
+        }
+
+        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
+
     }
 }
