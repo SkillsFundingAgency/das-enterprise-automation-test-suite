@@ -18,7 +18,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                                .ClickStartNewWithdrawalNotification()
                                .ClickAssessingASpecificStandard()
-                               .ClickASpecificStandardToWithdraw();
+                               .ClickASpecificStandardToWithdraw()
+                               .ContinueWithWithdrawalRequest();
         }
 
         public void StartOfRegisterWithdrawalJourney()
@@ -32,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void StandardApplicationFinalJourney()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
                                       .ClickGoToReasonForWithdrawingQuestionLink()
                                       .ClickExternalQualityAssuranceProviderHasChanged()
@@ -45,7 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void RegisterWithdrawalQuestions()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
                 .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
                 .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
@@ -72,7 +73,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
         {
-            new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
+            new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
         }
 
         public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
