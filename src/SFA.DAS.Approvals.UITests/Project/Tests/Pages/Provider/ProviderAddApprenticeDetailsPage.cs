@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
+        private By EmailField => By.Id("Email");
         private By DateOfBirthDay => By.Id("BirthDay");
         private By DateOfBirthMonth => By.Id("BirthMonth");
         private By DateOfBirthYear => By.Id("BirthYear");
@@ -34,8 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderReviewYourCohortPage SubmitValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
-            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            var fName = apprenticeDataHelper.ApprenticeFirstname;
+            var lName = apprenticeDataHelper.ApprenticeLastname;
+
+            formCompletionHelper.EnterText(FirstNameField, fName);
+            formCompletionHelper.EnterText(LastNameField, lName);
+            if (pageInteractionHelper.IsElementDisplayed(EmailField)) formCompletionHelper.EnterText(EmailField, $"{fName}.{lName}@mailinator.com");
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);

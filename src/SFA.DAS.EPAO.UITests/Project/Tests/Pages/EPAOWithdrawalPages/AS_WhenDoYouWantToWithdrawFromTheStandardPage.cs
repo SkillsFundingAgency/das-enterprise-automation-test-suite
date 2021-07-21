@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AS_WithdrawalRequestQuestionsPage EnterDateToWithdraw()
         {
-            formCompletionHelper.EnterText(DayText, "01");
+            formCompletionHelper.EnterText(DayText, "19");
             formCompletionHelper.EnterText(MonthText, "01");
             formCompletionHelper.EnterText(YearText, "2022");
             Continue();
