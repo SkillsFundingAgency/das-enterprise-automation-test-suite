@@ -30,6 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
+        private By SearchButton => By.CssSelector(".app-search-form__button-wrap");
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
@@ -70,16 +71,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             Continue();
         }
 
-        public void SearchProviderByName()
+        protected void SearchProviderByName() => SearchProvider(objectContext.GetProviderName());
+        protected void SearchProviderByUKPRN() => SearchProvider(objectContext.GetUkprn());
+        private void SearchProvider(string searchText)
         {
-            formCompletionHelper.ClickElement(SearchField);
-            formCompletionHelper.EnterText(SearchField, objectContext.GetProviderName());
-        }
+            formCompletionHelper.EnterText(SearchField, searchText);
+            formCompletionHelper.ClickElement(SearchButton);
 
-        public void SearchProviderByUKPRN()
-        {
-            formCompletionHelper.ClickElement(SearchField);
-            formCompletionHelper.EnterText(SearchField, objectContext.GetUkprn());
         }
 
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>

@@ -13,6 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Search
     public class SearchSteps
     {
         private readonly ScenarioContext _context;
+        private GatewayLandingPage gatewayLandingPage;
 
         public SearchSteps(ScenarioContext context)
         {
@@ -22,21 +23,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Search
         [When(@"the admin searches for a provider in Gateway by provider name")]
         public void WhenTheAdminSearchesForAProviderInGatewayByProviderName()
         {
-            new StaffDashboardPage(_context).AccessGatewayApplications().SelectInOutcomeTab().SearchProviderByName();
-            new GatewayLandingPage(_context).ConfirmGatewaySearch();
+            gatewayLandingPage = new StaffDashboardPage(_context).AccessGatewayApplications().SelectInOutcomeTab().ConfirmGatewaySearchByName();
         }
 
         [Then(@"the search results should be displayed")]
         public void ThenTheSearchResultsShouldBeDisplayed()
         {
-            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
-            Assert.IsTrue(gatewayLandingPage.VerifyApplication(), "Gateway Search failed");
+            Assert.IsTrue(gatewayLandingPage.VerifyApplication(), "Verify gateway search functionality");
         }
 
         [When(@"the admin searches for a provider in Gateway by UKPRN")]
         public void WhenTheAdminSearchesForAProviderInGatewayByUKPRN()
         {
-            new GatewayLandingPage(_context).ClearSearchResult_OutcomeTab().SelectInOutcomeTab().SearchProviderByUKPRN();
+            gatewayLandingPage = new GatewayLandingPage(_context).ClearSearchResult_OutcomeTab().SelectInOutcomeTab().ConfirmGatewaySearchByUkprn();
         }
 
     }
