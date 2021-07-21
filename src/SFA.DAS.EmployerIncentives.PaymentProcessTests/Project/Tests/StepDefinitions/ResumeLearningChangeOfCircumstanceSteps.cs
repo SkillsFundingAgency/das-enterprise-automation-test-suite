@@ -20,6 +20,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _lastPriceEpisodeEndDate;
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
+        private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
 
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -27,6 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133218;
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+            _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -69,8 +71,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
-            await RunPaymentsOrchestrator();
-            await RunApprovePaymentsOrchestrator();
+            await _paymentsOrchestratorHelper.Run();
+            await _paymentsOrchestratorHelper.Approve();
 
             _initialEarning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
@@ -213,7 +215,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the earnings are recalculated")]
         public async Task WhenTheEarningsAreRecalculated()
         {
-            await RunPaymentsOrchestrator();
+            await _paymentsOrchestratorHelper.Run();
         }
 
         [When(@"the Unpaid Earnings are Archived")]

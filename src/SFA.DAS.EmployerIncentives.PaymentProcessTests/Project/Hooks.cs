@@ -17,6 +17,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
             _context.Set(new EISqlHelper(_context.Get<DbConfig>()));
             _context.Set(new StopWatchHelper());
             _context.Set(new CollectionPeriodHelper(_context));            
+            _context.Set(new EIPaymentsProcessHelper(_context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>()));
+            _context.Set(new PaymentsOrchestratorHelper(_context));
+            
         }
     }
 }

@@ -28,7 +28,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected EILearnerMatchHelper learnerMatchService;
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
-        protected readonly EIPaymentsProcessHelper paymentService;
         protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;        
         protected long accountId;
@@ -57,7 +56,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
 
             businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
-            paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             _stopWatchHelper.Stop("StepsBase");
         }
@@ -159,22 +157,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
             return dbConnection.GetAll<T>().Single(predicate);
-        }
-
-        protected async Task RunPaymentsOrchestrator()
-        {
-            _stopWatchHelper.Start("RunPaymentsOrchestrator");
-            await paymentService.StartPaymentProcessOrchestrator();
-            await paymentService.WaitUntilWaitingForPaymentApproval();
-            _stopWatchHelper.Stop("RunPaymentsOrchestrator");
-        }
-
-        protected async Task RunApprovePaymentsOrchestrator()
-        {
-            _stopWatchHelper.Start("RunApprovePaymentsOrchestrator");
-            await paymentService.ApprovePayments();
-            await paymentService.WaitUntilComplete();
-            _stopWatchHelper.Stop("RunApprovePaymentsOrchestrator");
         }
 
         protected async Task SetupBusinessCentralApiToAcceptAllPayments()

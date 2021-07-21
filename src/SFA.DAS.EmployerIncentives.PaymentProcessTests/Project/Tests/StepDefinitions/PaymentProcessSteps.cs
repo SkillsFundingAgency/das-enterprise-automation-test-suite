@@ -15,10 +15,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private const long ApprenticeshipId = 133217891;
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
+        private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
 
         public PaymentsProcessSteps(ScenarioContext context) : base(context) 
         {
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+            _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
         }
 
         [Given(@"there is a valid learner")]
@@ -58,8 +60,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenThePaymentProcessIsCompleted()
         {
             await SetupBusinessCentralApiToAcceptAllPayments();
-            await RunPaymentsOrchestrator();
-            await RunApprovePaymentsOrchestrator();
+            await _paymentsOrchestratorHelper.Run();
+            await _paymentsOrchestratorHelper.Approve();
         }
 
         [Then(@"payments exist")]

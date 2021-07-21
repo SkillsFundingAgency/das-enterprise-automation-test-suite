@@ -21,6 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private List<PendingPayment> _newEarnings;
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
+        private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
 
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -28,6 +29,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = 133217;
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+            _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -96,8 +98,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await RunLearnerMatchOrchestrator();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
-            await RunPaymentsOrchestrator();
-            await RunApprovePaymentsOrchestrator();
+            await _paymentsOrchestratorHelper.Run();
+            await _paymentsOrchestratorHelper.Approve();
 
             _initialEarning = GetFromDatabase<PendingPayment>(p =>
                 p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
