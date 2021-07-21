@@ -30,18 +30,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
         protected readonly IList<Guid> incentiveIds = new List<Guid>();
-        protected IncentiveApplication incentiveApplication;
-        private readonly Stopwatch _stopwatch;
+        protected IncentiveApplication incentiveApplication;        
         protected long accountId;
         protected long apprenticeshipId;
         protected long UKPRN;
         protected long ULN;
         protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
+        private readonly StopWatchHelper _stopWatchHelper;
+
         protected StepsBase(ScenarioContext context)
         {
-            _stopwatch = new Stopwatch();
-            _stopwatch.Start();
+            _stopWatchHelper = context.Get<StopWatchHelper>();
+            _stopWatchHelper.Start("StepsBase");
             fixture = new Fixture();
             UKPRN = fixture.Create<long>();
             ULN = fixture.Create<long>();
@@ -58,34 +59,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
-            Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
+            _stopWatchHelper.Stop("StepsBase");
         }
 
         protected async Task RunLearnerMatchOrchestrator(bool continueOnFailure = false)
         {
-            StartStopWatch("RunLearnerMatchOrchestrator");
+            _stopWatchHelper.Start("RunLearnerMatchOrchestrator");
             await learnerMatchService.StartLearnerMatchOrchestrator();
 
             if (continueOnFailure) await learnerMatchService.WaitUntilStopped();
             else await learnerMatchService.WaitUntilComplete();
-            
-            StopStopWatch("RunLearnerMatchOrchestrator");
-        }
 
-        protected void StartStopWatch(string caller)
-        {
-            _stopwatch.Restart();
-            Console.WriteLine($@"[{caller}] started");
-        }
-
-        protected void StopStopWatch(string caller)
-        {
-            Console.WriteLine($@"[{caller}] finished in {_stopwatch.ElapsedMilliseconds} ms");
+            _stopWatchHelper.Stop("RunLearnerMatchOrchestrator");
         }
 
         protected async Task SubmitIncentiveApplication(IncentiveApplication application)
         {
-            StartStopWatch("SubmitIncentiveApplication");
+            _stopWatchHelper.Start("SubmitIncentiveApplication");
             await sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
             await sqlHelper.CreateIncentiveApplication(application);
 
@@ -115,24 +105,24 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 incentiveIds.Add(incentiveId);
                 await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }
-            StopStopWatch("SubmitIncentiveApplication");
+            _stopWatchHelper.Stop("SubmitIncentiveApplication");
         }
 
         protected async Task DeleteApplicationData()
         {
-            StartStopWatch("DeleteApplicationData");
+            _stopWatchHelper.Start("DeleteApplicationData");
             await sqlHelper.DeleteApplicationData(incentiveApplication.Id);
-            StopStopWatch("DeleteApplicationData");
+            _stopWatchHelper.Stop("DeleteApplicationData");
         }
 
         protected async Task DeleteIncentives()
         {
-            StartStopWatch("DeleteIncentiveData");
+            _stopWatchHelper.Start("DeleteIncentiveData");
             foreach (var apprenticeship in incentiveApplication.Apprenticeships)
             {
                 await DeleteIncentive(incentiveApplication.AccountId, apprenticeship.ApprenticeshipId);
             }
-            StopStopWatch("DeleteIncentiveData");
+            _stopWatchHelper.Stop("DeleteIncentiveData");
         }
 
         private async Task DeleteIncentive(long accountId, long apprenticeshipId)
@@ -147,16 +137,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, string json)
         {
-            StartStopWatch("SetupLearnerMatchApiResponse");
+            _stopWatchHelper.Start("SetupLearnerMatchApiResponse");
             await learnerMatchApi.SetupResponse(uln, ukprn, json);
-            StopStopWatch("SetupLearnerMatchApiResponse");
+            _stopWatchHelper.Stop("SetupLearnerMatchApiResponse");
         }
 
         protected async Task SetupLearnerMatchApiResponse(long uln, long ukprn, LearnerSubmissionDto data)
         {
-            StartStopWatch("SetupLearnerMatchApiResponse");
+            _stopWatchHelper.Start("SetupLearnerMatchApiResponse");
             await learnerMatchApi.SetupResponse(uln, ukprn, data);
-            StopStopWatch("SetupLearnerMatchApiResponse");
+            _stopWatchHelper.Stop("SetupLearnerMatchApiResponse");
         }
 
         protected List<T> GetAllFromDatabase<T>() where T : class
@@ -173,25 +163,25 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         protected async Task RunPaymentsOrchestrator()
         {
-            StartStopWatch("RunPaymentsOrchestrator");
+            _stopWatchHelper.Start("RunPaymentsOrchestrator");
             await paymentService.StartPaymentProcessOrchestrator();
             await paymentService.WaitUntilWaitingForPaymentApproval();
-            StopStopWatch("RunPaymentsOrchestrator");
+            _stopWatchHelper.Stop("RunPaymentsOrchestrator");
         }
 
         protected async Task RunApprovePaymentsOrchestrator()
         {
-            StartStopWatch("RunApprovePaymentsOrchestrator");
+            _stopWatchHelper.Start("RunApprovePaymentsOrchestrator");
             await paymentService.ApprovePayments();
             await paymentService.WaitUntilComplete();
-            StopStopWatch("RunApprovePaymentsOrchestrator");
+            _stopWatchHelper.Stop("RunApprovePaymentsOrchestrator");
         }
 
         protected async Task SetupBusinessCentralApiToAcceptAllPayments()
         {
-            StartStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
+            _stopWatchHelper.Start("SetupBusinessCentralApiToAcceptAllPayments");
             await businessCentralApiHelper.SetupAcceptAllRequests();
-            StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
+            _stopWatchHelper.Stop("SetupBusinessCentralApiToAcceptAllPayments");
         }
         protected async Task VerifyLearningRecordsExist()
         {
