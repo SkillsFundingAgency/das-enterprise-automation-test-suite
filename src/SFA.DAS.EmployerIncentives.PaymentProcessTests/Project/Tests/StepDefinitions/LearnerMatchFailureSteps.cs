@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
@@ -16,10 +17,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialIlrSubmissionDate;
         private DateTime _initialStartDate;
 
+        private readonly CollectionPeriodHelper _collectionPeriodHelper;
+
         protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
         {
             accountId = 14326;
             apprenticeshipId = fixture.Create<long>();
+
+            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
         }
 
         [Given(@"the learner match process has been triggered")]
@@ -28,7 +33,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialStartDate = new DateTime(2021, 6, 1);
             _initialIlrSubmissionDate = new DateTime(2021, 5, 12);
 
-            await SetActiveCollectionPeriod(10, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(10, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11);
 
@@ -65,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await RunLearnerMatchOrchestrator();
 
             // 2nd run
-            await SetActiveCollectionPeriod(11, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(11, 2021);            
 
             foreach (var apprenticeship in incentiveApplication.Apprenticeships)
             {
@@ -95,7 +100,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenAnExceptionOccursForALearner()
         {
             // 3rd run 
-            await SetActiveCollectionPeriod(12, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(12, 2021);
 
             foreach (var apprenticeship in incentiveApplication.Apprenticeships)
             {

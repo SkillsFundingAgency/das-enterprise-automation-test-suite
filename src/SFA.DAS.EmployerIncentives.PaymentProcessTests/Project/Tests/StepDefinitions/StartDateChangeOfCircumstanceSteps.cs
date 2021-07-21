@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
@@ -20,10 +20,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private PendingPayment _initialEarning;
         private List<PendingPayment> _newEarnings;
 
+        private readonly CollectionPeriodHelper _collectionPeriodHelper;
+
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
             accountId = 14326;
             apprenticeshipId = 133217;
+
+            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -32,7 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _initialStartDate = startDate;
             _initialEndDate = endDate;
-            await SetActiveCollectionPeriod(6, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(6, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
@@ -49,7 +53,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _initialStartDate = new DateTime(2021, 04, 01);
             _initialEndDate = new DateTime(2023, 04, 01);
-            await SetActiveCollectionPeriod(6, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(6, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
@@ -70,7 +74,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
         public async Task GivenAPaymentOf1000SentInPeriodR072021(int amount, byte period, short year)
         {
-            await SetActiveCollectionPeriod(period, year);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(_initialStartDate)
@@ -109,7 +113,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a start date change of circumstance occurs in Period R(.*) (.*)")]
         public async Task GivenAStartDateChangeOfCircumstanceOccursInPeriodR09(byte period, short year)
         {
-            await SetActiveCollectionPeriod(period, year);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
         }
 
         [Given(

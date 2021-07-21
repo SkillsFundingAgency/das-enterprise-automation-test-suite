@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
@@ -13,10 +14,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private PendingPayment _pendingPayment;
 
+        private readonly CollectionPeriodHelper _collectionPeriodHelper;
+
         protected PaymentValidationSteps(ScenarioContext context) : base(context)
         {
             accountId = 14326;
             apprenticeshipId = 133218;
+
+            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive")]
@@ -55,7 +60,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             byte period = 10;
             short year = 2021;
-            await SetActiveCollectionPeriod(period, year);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
             await RunLearnerMatchOrchestrator();
             await RunPaymentsOrchestrator();
             await ResetCalendar();

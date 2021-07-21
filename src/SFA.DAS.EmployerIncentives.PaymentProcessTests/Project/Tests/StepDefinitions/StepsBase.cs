@@ -31,7 +31,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected readonly EIPaymentsProcessHelper paymentService;
         protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;
-        protected (byte Number, short Year) activePaymentPeriod;
         private readonly Stopwatch _stopwatch;
         protected long accountId;
         protected long apprenticeshipId;
@@ -82,16 +81,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected void StopStopWatch(string caller)
         {
             Console.WriteLine($@"[{caller}] finished in {_stopwatch.ElapsedMilliseconds} ms");
-        }
-
-        protected async Task SetActiveCollectionPeriod(byte periodNumber, short academicYear)
-        {
-            activePaymentPeriod.Number = periodNumber;
-            activePaymentPeriod.Year = academicYear;
-
-            StartStopWatch("SetActiveCollectionPeriod");
-            await sqlHelper.SetActiveCollectionPeriod(periodNumber, academicYear);
-            StopStopWatch("SetActiveCollectionPeriod");
         }
 
         protected async Task SubmitIncentiveApplication(IncentiveApplication application)

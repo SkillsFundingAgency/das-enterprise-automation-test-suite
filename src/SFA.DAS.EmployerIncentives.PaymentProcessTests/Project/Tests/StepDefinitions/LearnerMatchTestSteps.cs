@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
@@ -13,12 +14,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private const long AccountId = 14326;
         private const long ApprenticeshipId = 133217890;
 
-        public LearnerMatchTestSteps(ScenarioContext context) : base(context) { }
+        private readonly CollectionPeriodHelper _collectionPeriodHelper;
+
+        public LearnerMatchTestSteps(ScenarioContext context) : base(context) 
+        {
+            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+        }
 
         [Given(@"there are some apprenticeship incentives")]
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
-            await SetActiveCollectionPeriod(10, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(10, 2021);            
 
             var startDate = DateTime.Parse("2021-06-12");
             incentiveApplication = new IncentiveApplicationBuilder()

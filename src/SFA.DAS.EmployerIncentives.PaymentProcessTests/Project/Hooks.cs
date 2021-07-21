@@ -12,6 +12,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
         public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => _context.Set(new EISqlHelper(_context.Get<DbConfig>()));
+        public void SetUpHelpers()
+        {
+            _context.Set(new EISqlHelper(_context.Get<DbConfig>()));
+            _context.Set(new StopWatchHelper());
+            _context.Set(new CollectionPeriodHelper(_context));            
+        }
     }
 }

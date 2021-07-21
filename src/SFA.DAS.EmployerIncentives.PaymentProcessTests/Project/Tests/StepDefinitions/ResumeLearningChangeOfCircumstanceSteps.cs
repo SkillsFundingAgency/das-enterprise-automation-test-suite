@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
@@ -18,10 +19,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialEndDate;
         private DateTime _lastPriceEpisodeEndDate;
 
+        private readonly CollectionPeriodHelper _collectionPeriodHelper;
+
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
             accountId = 14326;
             apprenticeshipId = 133218;
+
+            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -29,7 +34,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _initialStartDate = startDate;
             _initialEndDate = endDate;
-            await SetActiveCollectionPeriod(6, 2021);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(6, 2021);
 
             incentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(accountId)
@@ -42,7 +47,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
         public async Task GivenAPaymentOfSentInPeriodR(int amount, byte period, short year)
         {
-            await SetActiveCollectionPeriod(period, year);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(_initialStartDate)
@@ -104,7 +109,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the Learner Match is run in Period R(.*) (.*)")]
         public async Task WhenTheLearnerMatchIsRunInPeriodR(byte period, short year)
         {
-            await SetActiveCollectionPeriod(period, year);
+            await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
             await RunLearnerMatchOrchestrator();
         }
 
@@ -233,8 +238,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             );
 
             clawback.Amount.Should().Be(-amount);
-            clawback.CollectionPeriodYear.Should().Be(activePaymentPeriod.Year);
-            clawback.CollectionPeriod.Should().Be(activePaymentPeriod.Number);
+            clawback.CollectionPeriodYear.Should().Be(_collectionPeriodHelper.ActivePeriod.Year);
+            clawback.CollectionPeriod.Should().Be(_collectionPeriodHelper.ActivePeriod.Number);
         }
 
         [Then(@"a new first pending payment of £(.*) is created for Period R(.*) (.*)")]
