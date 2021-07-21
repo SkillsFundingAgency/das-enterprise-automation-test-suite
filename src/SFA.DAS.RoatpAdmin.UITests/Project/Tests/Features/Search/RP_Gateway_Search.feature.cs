@@ -74,7 +74,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_Seacrh")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
@@ -82,7 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
         [NUnit.Framework.CategoryAttribute("rpadfha01")]
         [NUnit.Framework.CategoryAttribute("rpsearch01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_GW_Seacrh()
+        public virtual void RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -93,7 +93,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
                     "rpsearch01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_Seacrh", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN", null, tagsOfScenario, argumentsOfScenario);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
