@@ -23,6 +23,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Search
         public void WhenTheAdminSearchesForAProviderInGatewayByProviderName()
         {
             new StaffDashboardPage(_context).AccessGatewayApplications().SelectInOutcomeTab().SearchProviderByName();
+            new GatewayLandingPage(_context).ConfirmGatewaySearch();
         }
 
         [Then(@"the search results should be displayed")]

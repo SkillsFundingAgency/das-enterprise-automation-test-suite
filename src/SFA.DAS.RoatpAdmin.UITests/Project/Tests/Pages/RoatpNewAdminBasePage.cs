@@ -27,7 +27,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         private By SearchField => By.CssSelector("#SearchTerm");
-        private By SearchButton => By.CssSelector(".app-search-form__button-wrap");
         protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
@@ -75,14 +74,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(SearchField);
             formCompletionHelper.EnterText(SearchField, objectContext.GetProviderName());
-            formCompletionHelper.ClickElement(SearchButton);
         }
 
         public void SearchProviderByUKPRN()
         {
             formCompletionHelper.ClickElement(SearchField);
             formCompletionHelper.EnterText(SearchField, objectContext.GetUkprn());
-            formCompletionHelper.ClickElement(SearchButton);
         }
 
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
