@@ -63,7 +63,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
                .ContinueToConfirmProviderContactDetailsPage();
             return new ConfirmProvidersContactDetailsPage(_context);
         }
-
         public WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit()
         {
             new ConfirmProvidersContactDetailsPage(_context).ContinueToProviderCheckYourAnswersPage()
@@ -82,6 +81,27 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
                 .BackToWhichEmployersAreYouInterestedInPage()
                 .BackToFindEmployersThatNeedATrainingProviderPage();
             return new WhichEmployersAreYouInterestedInPage(_context);
+        }
+        public EditProvidersContactDetailsPage EnterIncorrectProviderContactDetailsBeforeResubmitting(string wrongEmailAddress, string wrongTelephoneNumber, string website)
+        {
+            new EditProvidersContactDetailsPage(_context).EnterProviderEmailAddressDetails(wrongEmailAddress)
+               .EnterProviderTelephoneNumberDetails(wrongTelephoneNumber)
+               .EnterProviderWebsiteDetails(website)
+               .ContinueToConfirmProviderContactDetailsPage();
+            return new EditProvidersContactDetailsPage(_context);
+        }
+        public ConfirmProvidersContactDetailsPage ReEnterProviderContactDetailsBeforeResubmitting(string emailAddress, string telephoneNumber, string website)
+        {
+            new EditProvidersContactDetailsPage(_context).EnterProviderEmailAddressDetails(emailAddress)
+               .EnterProviderTelephoneNumberDetails(telephoneNumber)
+               .EnterProviderWebsiteDetails(website)
+               .ContinueToConfirmProviderContactDetailsPage();
+            return new ConfirmProvidersContactDetailsPage(_context);
+        }
+        public EditProvidersContactDetailsPage AttemptToProgressWithoutEnteringProviderContactDetails()
+        {
+            new EditProvidersContactDetailsPage(_context).ContinueToConfirmProviderContactDetailsPage();
+            return new EditProvidersContactDetailsPage(_context);
         }
     }
 }

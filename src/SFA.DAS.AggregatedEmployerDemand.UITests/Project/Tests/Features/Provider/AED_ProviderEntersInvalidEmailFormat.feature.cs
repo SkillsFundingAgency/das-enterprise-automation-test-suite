@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_ProviderCanNavigateBackToBeginningOfTheJourney")]
-    public partial class AED_ProviderCanNavigateBackToBeginningOfTheJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("AED_ProviderEntersInvalidEmailFormat")]
+    public partial class AED_ProviderEntersInvalidEmailFormatFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_ProviderCanNavigateBackToBeginningOfTheJourney.feature"
+#line 1 "AED_ProviderEntersInvalidEmailFormat.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderCanNavigateBackToBeginningOfTheJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderEntersInvalidEmailFormat", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney")]
+        [NUnit.Framework.DescriptionAttribute("AED_PEIEAPF_01_ProviderEntersInvalidEmailAndPhoneFormat")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney()
+        public virtual void AED_PEIEAPF_01_ProviderEntersInvalidEmailAndPhoneFormat()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PEIEAPF_01_ProviderEntersInvalidEmailAndPhoneFormat", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,12 +105,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the provider has entered their contact details \'mailman@mailinator.com\', \'0190211" +
-                        "1222\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider has entered their email contact details incorrectly \'mailman@mailina" +
+                        "tor@com\', \'01902111222XXX08KER32\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("the provider is able to navigate to beginning of the journey using the back links" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the provider is presented with the validation error message before entering the c" +
+                        "orrect details \'mailman@mailinator.com\', \'01902111222\' and \'www.myinterestregist" +
+                        "er.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 8
+ testRunner.Then("the provider is able to submit their details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

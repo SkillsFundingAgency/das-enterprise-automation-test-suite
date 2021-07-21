@@ -15,6 +15,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         private By EmailAddressTextBox => By.Id("EmailAddress");
         private By TelephoneNumberTextBox => By.Id("PhoneNumber");
         private By WebsiteTextBox => By.Id("Website");
+        private By TelephoneNumberErrorText => By.PartialLinkText("Enter a telephone nu");
+        private By EmailAddressErrorText => By.PartialLinkText("Enter an email addre");
+
+
         #endregion
 
         public EditProvidersContactDetailsPage EnterProviderEmailAddressDetails(string emailAddress)
@@ -42,6 +46,18 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         {
             formCompletionHelper.Click(BackLink);
             return new WhichEmployersAreYouInterestedInPage(_context);
+        }
+        public EditProvidersContactDetailsPage ReEnterProviderTelephoneNumberDetails(string telephoneNumber)
+        {
+            formCompletionHelper.Click(TelephoneNumberErrorText);
+            formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
+            return new EditProvidersContactDetailsPage(_context);
+        }
+        public EditProvidersContactDetailsPage ReEnterProviderEmailAddressDetails(string emailAddress)
+        {
+            formCompletionHelper.Click(EmailAddressErrorText);
+            formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
+            return new EditProvidersContactDetailsPage(_context);
         }
     }
 }
