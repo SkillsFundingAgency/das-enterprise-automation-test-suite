@@ -4,6 +4,3 @@ To clean up test data from emp-acc-db
 
 Scenario: Cleanup_Testdata_01
 	Then the test data are cleaned up
-
-
-

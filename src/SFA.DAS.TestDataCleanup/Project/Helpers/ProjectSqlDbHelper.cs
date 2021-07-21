@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
-    public abstract class TestDataCleanUpSqlDbHelper : SqlDbHelper
+    public abstract class ProjectSqlDbHelper : SqlDbHelper
     {
         protected string _user, _userEmail, _accountId, _sqlFileName;
 
-        protected TestDataCleanUpSqlDbHelper(string connectionString) : base(connectionString) { }
+        protected ProjectSqlDbHelper(string connectionString) : base(connectionString) { }
 
         protected string GetSql(string filename) { _sqlFileName = filename; return FileHelper.GetSql(_sqlFileName); }
 

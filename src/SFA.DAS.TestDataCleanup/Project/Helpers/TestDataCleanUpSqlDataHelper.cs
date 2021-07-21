@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
-    public class TestDataCleanUpSqlDataHelper : TestDataCleanUpSqlDbHelper
+    public class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
@@ -34,7 +34,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
                     var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')", 1);
 
-                    await TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
                     await TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
 
                     if (accountids.Count == 1 && string.IsNullOrEmpty(accountids[0][0])) continue;
@@ -58,6 +57,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
                     await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
                     await new TestDataCleanUpPsrepDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
+
+                    await TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
 
                 }
                 catch (Exception ex)

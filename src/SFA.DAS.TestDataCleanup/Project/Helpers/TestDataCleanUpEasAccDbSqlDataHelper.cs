@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
-    public class TestDataCleanUpEasAccDbSqlDataHelper : TestDataCleanUpSqlDbHelper
+    public class TestDataCleanUpEasAccDbSqlDataHelper : ProjectSqlDbHelper
     {
         public TestDataCleanUpEasAccDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 

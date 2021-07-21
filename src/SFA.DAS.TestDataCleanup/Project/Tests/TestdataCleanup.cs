@@ -25,7 +25,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests
 
 
         [Then(@"the test data are cleaned up")]
-        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("nft.testuser%@testemail.com");
+        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("hemanjali.cheruku@digital.education.gov.uk");
 
         [Then(@"the test data are cleaned up in provider relationship for accounts between '([^']*)' and '([^']*)'")]
         public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAndAndNotIn(int greaterThan, int lessThan)

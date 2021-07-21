@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
-    public class TestDataCleanUpPrelDbSqlDataHelper : TestDataCleanUpSqlDbHelper
+    public class TestDataCleanUpPrelDbSqlDataHelper : ProjectSqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
