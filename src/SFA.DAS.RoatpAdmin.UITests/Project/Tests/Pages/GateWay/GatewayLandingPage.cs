@@ -53,7 +53,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GatewayLandingPage ConfirmGatewaySearch()
         {
             formCompletionHelper.ClickElement(SearchButton);
-            return new GatewayLandingPage(_context)
+            return new GatewayLandingPage(_context);
         }
     }
 }
