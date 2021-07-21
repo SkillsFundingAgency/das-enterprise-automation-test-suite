@@ -30,7 +30,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests
         [Then(@"the test data are cleaned up in provider relationship for accounts between '([^']*)' and '([^']*)'")]
         public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAndAndNotIn(int greaterThan, int lessThan)
         {
-            var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpPrelTestData(greaterThan, lessThan);
+            var (usersdeleted, userswithconstraints) = await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(greaterThan, lessThan);
 
             TestCleanUpReport(usersdeleted, userswithconstraints);
         }

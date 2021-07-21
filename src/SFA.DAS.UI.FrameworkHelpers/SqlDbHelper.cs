@@ -76,7 +76,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
         protected async Task<int> TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
-
         {
             return await Policy
                 .Handle<Exception>((x) => x.Message.Contains("Exception occurred while executing SQL query"))
@@ -87,6 +86,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .ExecuteAsync(() => SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(queryToExecute, connectionString, parameters));
         }
 
+        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)
+        {
+            return await TryExecuteSqlCommand(queryToExecute, connectionString, parameters);
+        }
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
 
