@@ -11,14 +11,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By DoYouWantToRequestChangesOptions => By.CssSelector(".selection-button-radio");
+        //private By DoYouWantToRequestChangesOptions => By.CssSelector(".selection-button-radio");
+        private By DoYouWantToRequestChangesOptions => By.XPath("//input[@value='true']");
         private By FinishButton => By.CssSelector("#fix-mismatch, #finish");
 
         public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderApprenticeDetailsPage ConfirmRequestToFixILRMismatch()
         {
-            formCompletionHelper.SelectRadioOptionByText(DoYouWantToRequestChangesOptions, "Yes, request this change");
+            //formCompletionHelper.SelectRadioOptionByText(DoYouWantToRequestChangesOptions, "Yes, request this change");
+            javaScriptHelper.ClickElement(DoYouWantToRequestChangesOptions);
             formCompletionHelper.ClickElement(FinishButton);
             return new ProviderApprenticeDetailsPage(_context);
         }
