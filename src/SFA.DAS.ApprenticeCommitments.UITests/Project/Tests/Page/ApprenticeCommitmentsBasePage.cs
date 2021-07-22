@@ -16,6 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly TableRowHelper tableRowHelper;
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
@@ -35,6 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             objectContext = context.Get<ObjectContext>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();

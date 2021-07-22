@@ -18,10 +18,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourIdentityPage SignInToApprenticePortal()
         {
-            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
-            formCompletionHelper.EnterText(Password, apprenticeCommitmentsConfig.AC_AccountPassword);
-            formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
+            SignIn();
             return new ConfirmYourIdentityPage(_context);
+        }
+
+        public CoCConfirmMyApprenticeDetailsPage CocSignInToApprenticePortal()
+        {
+            SignIn();
+            return new CoCConfirmMyApprenticeDetailsPage(_context);
         }
 
         public ForgottenPasswordPage Resetpassword()
@@ -29,5 +33,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickLinkByText("I have forgotten my password");
             return new ForgottenPasswordPage(_context);
         }
+
+        private void SignIn()
+        {
+            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
+            formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
+            formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
+        }
+
+
     }
 }

@@ -40,6 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
+        public void ApproveChangesAndSubmit() => GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails().ClickReviewChanges().SelectApproveChangesAndSubmit();
+
+
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
             var homePage = login != null
