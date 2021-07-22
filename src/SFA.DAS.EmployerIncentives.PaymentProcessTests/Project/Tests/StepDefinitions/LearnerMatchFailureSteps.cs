@@ -23,8 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
         {
-            accountId = 14326;
-            apprenticeshipId = fixture.Create<long>();
+            testData.AccountId = 14326;
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
@@ -41,11 +40,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11);
 
             incentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(accountId)
-                .WithApprenticeship(apprenticeshipId, ULN, UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
-                .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
-                .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
-                .Create();
+                    .WithAccountId(testData.AccountId)
+                    .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
+                    .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
+                    .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
+                    .Create();
 
             await SubmitIncentiveApplication(incentiveApplication);
 
@@ -113,7 +112,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithPeriod(apprenticeship.ApprenticeshipId, 12)
                     .Create();
 
-                if (apprenticeship.UKPRN == UKPRN && apprenticeship.ULN == ULN)
+                if (apprenticeship.UKPRN == testData.UKPRN && apprenticeship.ULN == testData.ULN)
                 {
                     // Apprenticeship Id changed to cause an error
                     priceEpisode.Periods.First().ApprenticeshipId -= 1;
@@ -138,7 +137,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a record of learner match failure is created for the learner")]
         public void ThenARecordOfLearnerMatchFailureIsCreatedForTheLearner()
         {
-            var learner = GetFromDatabase<Learner>(x => x.ULN == ULN && x.Ukprn == UKPRN);
+            var learner = GetFromDatabase<Learner>(x => x.ULN == testData.ULN && x.Ukprn == testData.UKPRN);
             learner.SuccessfulLearnerMatch.Should().BeFalse();
         }
         
@@ -146,7 +145,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenTheLearnerMatchProcessShouldContinueForAllRemainingLearners()
         {
             var learners = GetAllFromDatabase<Learner>()
-                .Where(x => x.ULN != ULN && x.Ukprn != UKPRN);
+                .Where(x => x.ULN != testData.ULN && x.Ukprn != testData.UKPRN);
 
             foreach (var learner in learners)
             {

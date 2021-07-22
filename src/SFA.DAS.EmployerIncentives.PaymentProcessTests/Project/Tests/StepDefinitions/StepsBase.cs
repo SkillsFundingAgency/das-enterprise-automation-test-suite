@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     public class StepsBase
     {
-        protected ObjectContext objectContext;
+        protected TestData testData;
 
         protected Fixture fixture;
         protected readonly DbConfig dbConfig;
@@ -30,24 +30,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;        
-        protected long accountId;
-        protected long apprenticeshipId;
-        protected long UKPRN;
-        protected long ULN;
         protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
         private readonly StopWatchHelper _stopWatchHelper;
+        
 
         protected StepsBase(ScenarioContext context)
         {
             _stopWatchHelper = context.Get<StopWatchHelper>();
             _stopWatchHelper.Start("StepsBase");
-
-            objectContext = context.Get<ObjectContext>();
-
             fixture = new Fixture();
-            UKPRN = fixture.Create<long>();
-            ULN = fixture.Create<long>();
+            testData = context.Get<TestData>();
 
             eiConfig = context.GetEIPaymentProcessConfig<EIPaymentProcessConfig>();
             dbConfig = context.Get<DbConfig>();
@@ -173,17 +166,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
-            await learnerMatchApi.DeleteMapping(ULN, UKPRN);
+            await learnerMatchApi.DeleteMapping(testData.ULN, testData.UKPRN);
             await ResetCalendar();
         }
 
         [BeforeScenario()]
         public async Task InitialCleanup()
         {
-            if (objectContext.GetAccountId().HasValue && objectContext.GetApprenticeshipId().HasValue)
-            {
-                await DeleteIncentive(objectContext.GetAccountId().Value, objectContext.GetApprenticeshipId().Value);
-            }
+            await DeleteIncentive(testData.AccountId, testData.ApprenticeshipId);
             await ResetCalendar();
         }
     }
