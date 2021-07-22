@@ -24,7 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditEmployerReference => By.Id("Reference");
         private By EditSaveAndContinueButton => By.Id("continue-button");
         private By DeleteButton => By.LinkText("Delete");
-        //private By InputBox(string className) => By.ClassName(className); 
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
