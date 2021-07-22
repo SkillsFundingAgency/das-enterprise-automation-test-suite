@@ -12,12 +12,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "LearnerMatchFailure")]
     public class LearnerMatchFailureSteps : StepsBase
     {
         private DateTime _initialIlrSubmissionDate;
         private DateTime _initialStartDate;
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
         {
@@ -25,6 +27,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             apprenticeshipId = fixture.Create<long>();
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
         }
 
         [Given(@"the learner match process has been triggered")]
@@ -67,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
 
             // 2nd run
             await _collectionPeriodHelper.SetActiveCollectionPeriod(11, 2021);            
@@ -93,7 +96,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"an exception occurs for a learner")]
@@ -129,7 +132,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await RunLearnerMatchOrchestrator(true);
+            await _learnerMatchOrchestratorHelper.Run(true);
         }
 
         [Then(@"a record of learner match failure is created for the learner")]

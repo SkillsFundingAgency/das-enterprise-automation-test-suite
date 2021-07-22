@@ -16,11 +16,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         public PaymentsProcessSteps(ScenarioContext context) : base(context) 
         {
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
         }
 
         [Given(@"there is a valid learner")]
@@ -53,7 +55,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the payment process is completed")]

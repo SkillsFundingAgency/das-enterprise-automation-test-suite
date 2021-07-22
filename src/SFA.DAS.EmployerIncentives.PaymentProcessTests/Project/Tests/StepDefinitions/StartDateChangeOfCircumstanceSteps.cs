@@ -22,6 +22,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -30,6 +31,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -95,7 +97,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR7);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
             await _paymentsOrchestratorHelper.Run();
@@ -133,13 +135,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var learnerSubmissionDataR8 = CreateLearnerSubmissionDto(newStartDate, priceEpisode);
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionDataR8);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the incentive learner data is refreshed")]
         public async Task WhenTheIncentiveLearnerDataIsRefreshed()
         {
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the start date is changed making the learner 25 on the start date")]
@@ -156,7 +158,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
 
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the start date is changed to before the start of the eligibility period")]
@@ -173,7 +175,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
 
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         private LearnerSubmissionDto CreateLearnerSubmissionDto(DateTime newStartDate, PriceEpisodeDto priceEpisode)

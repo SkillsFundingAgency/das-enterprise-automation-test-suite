@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
-    [Binding]
+    [Binding]            
     [Scope(Feature = "LearnerMatchTest")]
     public class LearnerMatchTestSteps : StepsBase
     {
@@ -15,10 +15,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private const long ApprenticeshipId = 133217890;
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         public LearnerMatchTestSteps(ScenarioContext context) : base(context) 
         {
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+
+            objectContext.SetAccountId(AccountId);
+            objectContext.SetApprenticeshipId(ApprenticeshipId);
         }
 
         [Given(@"there are some apprenticeship incentives")]
@@ -56,7 +61,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the learner match service is completed")]
         public async Task WhenTheLearnerMatchServiceIsCompleted()
         {
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [Then(@"we have some learner data")]

@@ -21,6 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -29,6 +30,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -68,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await SetupLearnerMatchApiResponse(ULN, UKPRN, submissionDto);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
 
             await SetupBusinessCentralApiToAcceptAllPayments();
             await _paymentsOrchestratorHelper.Run();
@@ -112,7 +114,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenTheLearnerMatchIsRunInPeriodR(byte period, short year)
         {
             await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"ILR Learner Stopped COC is occurred in Period R(.*) (.*)")]

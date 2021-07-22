@@ -8,7 +8,6 @@ using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -20,12 +19,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     public class StepsBase
     {
+        protected ObjectContext objectContext;
+
         protected Fixture fixture;
         protected readonly DbConfig dbConfig;
         protected readonly EIPaymentProcessConfig eiConfig;
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
-        protected EILearnerMatchHelper learnerMatchService;
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly IList<Guid> incentiveIds = new List<Guid>();
@@ -42,6 +42,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _stopWatchHelper = context.Get<StopWatchHelper>();
             _stopWatchHelper.Start("StepsBase");
+
+            objectContext = context.Get<ObjectContext>();
+
             fixture = new Fixture();
             UKPRN = fixture.Create<long>();
             ULN = fixture.Create<long>();
@@ -52,23 +55,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             serviceBusHelper = new EIServiceBusHelper(eiConfig);
 
-            learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
-            learnerMatchService = new EILearnerMatchHelper(eiConfig);
+            learnerMatchApi = new LearnerMatchApiHelper(eiConfig);            
 
             businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
 
             _stopWatchHelper.Stop("StepsBase");
-        }
-
-        protected async Task RunLearnerMatchOrchestrator(bool continueOnFailure = false)
-        {
-            _stopWatchHelper.Start("RunLearnerMatchOrchestrator");
-            await learnerMatchService.StartLearnerMatchOrchestrator();
-
-            if (continueOnFailure) await learnerMatchService.WaitUntilStopped();
-            else await learnerMatchService.WaitUntilComplete();
-
-            _stopWatchHelper.Stop("RunLearnerMatchOrchestrator");
         }
 
         protected async Task SubmitIncentiveApplication(IncentiveApplication application)
@@ -189,7 +180,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [BeforeScenario()]
         public async Task InitialCleanup()
         {
-            await DeleteIncentive(accountId, apprenticeshipId);
+            if (objectContext.GetAccountId().HasValue && objectContext.GetApprenticeshipId().HasValue)
+            {
+                await DeleteIncentive(objectContext.GetAccountId().Value, objectContext.GetApprenticeshipId().Value);
+            }
             await ResetCalendar();
         }
     }

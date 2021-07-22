@@ -16,6 +16,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
+        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
 
         protected PaymentValidationSteps(ScenarioContext context) : base(context)
         {
@@ -24,6 +25,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive")]
@@ -63,7 +65,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             byte period = 10;
             short year = 2021;
             await _collectionPeriodHelper.SetActiveCollectionPeriod(period, year);
-            await RunLearnerMatchOrchestrator();
+            await _learnerMatchOrchestratorHelper.Run();
             await _paymentsOrchestratorHelper.Run();
             await ResetCalendar();
         }
@@ -90,6 +92,5 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             payment.PaymentPeriod.Should().Be(10);
             payment.PaymentYear.Should().Be(2021);
         }
-
     }
 }
