@@ -12,6 +12,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Gateway/Closed']");
         private By InProgressTab => By.CssSelector("a[href='/Roatp/Gateway/InProgress']");
 
+      
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -38,10 +40,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             formCompletionHelper.ClickElement(OutcomeTab);
             return new GatewayLandingPage(_context);
         }
+        public GatewayLandingPage ClearSearchResult_OutcomeTab()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return new GatewayLandingPage(_context);
+        }
         public ReadOnlyGatewayOutcomePage SelectApplicationFromOutcomeTab()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new ReadOnlyGatewayOutcomePage(_context);
+        }
+        public GatewayLandingPage ConfirmGatewaySearchByName()
+        {
+            SearchProviderByName();
+            return this;
+        }
+        public GatewayLandingPage ConfirmGatewaySearchByUkprn()
+        {
+            SearchProviderByUKPRN();
+            return this;
         }
     }
 }
