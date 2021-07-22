@@ -46,5 +46,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string ApprenticeEditedLastname { get; private set; }
 
+        public void UpdateCurrentApprenticeName(string firstName, string lastName)
+        {
+            ApprenticeEditedFirstname = firstName;
+            ApprenticeEditedLastname = lastName;
+        }
+
     }
 }
