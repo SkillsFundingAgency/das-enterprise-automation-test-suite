@@ -5,14 +5,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class RandomCourseDataHelper
     {
+        private RandomDataGenerator _randomDataGenerator;
+
         public int RandomNumber { get; private set; }
 
         public List<string> AvailableCourses;
 
         public RandomCourseDataHelper(RandomDataGenerator randomDataGenerator, bool selectstandardcourse)
         {
+            _randomDataGenerator = randomDataGenerator;
+
             AvailableCourses = selectstandardcourse ? StandardCourses() : AllCourses();
-            RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
+
+            RandomNumber = GetRandomNumber(1, 10);
         }
 
         private string AbleSeafarerStandardCourseOption => "34";
@@ -22,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private string FrameworkCourseOption => "455-3-1";
 
         public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
+
+        public int GetRandomNumber(int min, int max) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
         //private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
         private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };

@@ -7,9 +7,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
     public class OversightLandingPage : RoatpNewAdminBasePage
     {
         protected override string PageTitle => "RoATP application outcomes";
-        protected By ApplicationsTab => By.CssSelector("a[href='#applications']");
+        protected By ApplicationsTab => By.Id("tab_applications");
         protected By ApplicationsStatus => By.CssSelector("[data-label='Outcome']");
-        protected override By OutcomeTab => By.CssSelector("a[href='#outcomes']");
+        protected override By OutcomeTab => By.Id("tab_outcomes");
         protected override By OutcomeStatus => By.CssSelector("[data-label='Overall outcome']");
 
         #region Helpers and Context

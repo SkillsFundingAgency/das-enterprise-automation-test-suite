@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -12,6 +13,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
+
 
         public AEDProviderSteps(ScenarioContext context)
         {
@@ -26,6 +28,30 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.GoToProviderHomePagePage(_login, true).FindEmployersThatNeedATrainingProvider();
         }
 
+        [Given(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
+        public void GivenTheProviderHasEnteredTheirContactDetails(string emailAddress, string telephoneNumber, string website)
+        {
+            GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
+            WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn();
+            _providerStepsHelper.ConfirmProviderContactDetailsBeforeSubmitting(emailAddress, telephoneNumber, website);
+        }
+
+        [Given(@"the provider has entered their email contact details incorrectly '(.*)', '(.*)' and '(.*)'")]
+        public void GivenTheProviderHasEnteredTheirEmailContactDetailsIncorrectlyAnd(string wrongEmailAddress, string wrongTelephoneNumber, string website)
+        {
+            GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
+            WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn();
+            _providerStepsHelper.EnterIncorrectProviderContactDetailsBeforeResubmitting(wrongEmailAddress, wrongTelephoneNumber, website);
+        }
+
+        [Given(@"the provider has not entered contact details")]
+        public void GivenTheProviderHasNotEnteredContactDetails()
+        {
+            GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
+            WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn();
+            _providerStepsHelper.AttemptToProgressWithoutEnteringProviderContactDetails();
+        }
+
         [When(@"the provider shows the which employers they are interested in")]
         public void WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn()
         {
@@ -36,6 +62,41 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderIsAbleToEnterTheirDetailsAnd(string emailAddress, string telephoneNumber, string website)
         {
             _providerStepsHelper.ConfirmAndShareProvidersDetailsWithEmployersContactDetails(emailAddress, telephoneNumber, website);
+        }
+
+        [When(@"the provider selects the option to edit")]
+        public void WhenTheProviderSelectsTheOptionToEdit()
+        {
+            _providerStepsHelper.ChangeProviderContactDetails();
+        }
+
+        [When(@"the provider chooses to edit the contact details '(.*)', '(.*)' and '(.*)'")]
+        public void WhenTheProviderChoosesToEditTheContactDetailsAnd(string newEmailAddress, string newTelephoneNumber, string newWebsite)
+        {
+            _providerStepsHelper.ConfirmProviderContactDetailsHaveBeenEdited(newEmailAddress, newTelephoneNumber, newWebsite);
+        }
+        [When(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
+        public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website)
+        {
+            _providerStepsHelper.ReEnterProviderContactDetailsBeforeResubmitting(emailAddress, telephoneNumber, website);
+        }
+
+        [Then(@"the provider is able to submit the edited details")]
+        public void ThenTheProviderIsAbleToSubmitTheEditedDetails()
+        {
+            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
+        }
+
+        [Then(@"the provider is able to navigate to beginning of the journey using the back links")]
+        public void ThenTheProviderIsAbleToNavigateToBeginningOfTheJourneyUsingTheBackLinks()
+        {
+            _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
+        }
+
+        [Then(@"the provider is able to submit their details")]
+        public void ThenTheProviderIsAbleToReenterValidContactDetailsAndSubmit()
+        {
+            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
         }
     }
 }

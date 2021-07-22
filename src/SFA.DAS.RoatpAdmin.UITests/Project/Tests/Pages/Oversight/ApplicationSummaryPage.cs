@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
         private By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
         private By OversightSuccessful => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OptionSuccessfulAlreadyActive']");
+        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OversightStatus']");
         private By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
         private By OversightUnSuccessful => By.CssSelector("label[for='OptionUnsuccessful']");
         private By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");

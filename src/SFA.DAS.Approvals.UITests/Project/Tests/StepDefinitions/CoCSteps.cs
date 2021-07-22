@@ -7,8 +7,6 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -84,14 +82,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the provider can review and approve the changes")]
-        public void ThenTheProviderCanReviewAndApproveTheChanges()
-        {
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
-        }
+        public void ThenTheProviderCanReviewAndApproveTheChanges() => _providerStepsHelper.ApproveChangesAndSubmit();
+
 
         [When(@"the provider edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheProviderEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
