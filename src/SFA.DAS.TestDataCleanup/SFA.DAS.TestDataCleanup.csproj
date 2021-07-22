@@ -43,7 +43,13 @@
 	  <None Update="Project\Helpers\SqlScripts\EasFinTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Project\Helpers\SqlScripts\EasPsrepTestDataCleanUp.sql">
+	  <None Update="Project\Helpers\SqlScripts\EasPregTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasPfbeTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasPsrTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Project\Helpers\SqlScripts\EasRsrvTestDataCleanUp.sql">

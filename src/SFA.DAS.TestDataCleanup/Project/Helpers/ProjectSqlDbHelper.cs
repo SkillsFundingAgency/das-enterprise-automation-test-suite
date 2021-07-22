@@ -22,7 +22,18 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         protected bool IsNullOrEmpty(List<string> x) => (x.Count == 1 && string.IsNullOrEmpty(x[0]));
 
-        protected async Task<(List<string>, List<string>)> CleanUpPrelTestData(Func<List<string>> getAccountidfunc, Func<List<string>, Task> deleteAccountidfunc)
+        protected async Task CleanUpTestData(List<string> accountIdToDelete, Func<string, string> insertQueryFunc, string createQuery, string sqlfilename)
+        {
+            var insertquery = accountIdToDelete.Select(x => insertQueryFunc(x)).ToList();
+
+            var sqlQuery = $"{createQuery};{string.Join(";", insertquery)};" + GetSql(sqlfilename);
+
+            await TryExecuteSqlCommand(sqlQuery);
+        }
+
+        protected List<string> GetAccountids(string query) => GetMultipleData(query, 1).ListOfArrayToList(0);
+
+        protected async Task<(List<string>, List<string>)> CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, Task> deleteAccountidfunc)
         {
             List<string> accountIdToDelete = new List<string>();
 

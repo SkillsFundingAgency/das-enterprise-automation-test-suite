@@ -1,29 +1,31 @@
-﻿PRINT CONCAT('Accountid - ', @accountid);
+﻿select id into #commitmentids from Commitment where EmployerAccountId in (select id from #accountids)
+select id into #apprenticeshipids from Apprenticeship where CommitmentId in (select id from #commitmentids)
+
 PRINT 'delete from History';
-delete h from dbo.History h inner join Commitment c on h.CommitmentId = c.Id and c.EmployerAccountId = @accountid;
+delete from dbo.History where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from Message';
-delete m from dbo.[Message] m inner join Commitment c on m.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.[Message] where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from BulkUpload';
-delete b from dbo.BulkUpload b inner join Commitment c on b.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.BulkUpload where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from CustomProviderPaymentPriority';
-delete from dbo.CustomProviderPaymentPriority where EmployerAccountId = @accountid;
+delete from dbo.CustomProviderPaymentPriority where EmployerAccountId in (select id from #accountids);
 PRINT 'delete from ChangeOfPartyRequest';
-delete r from dbo.ChangeOfPartyRequest r inner join AccountLegalEntities l on l.AccountId = @accountid;
+delete from dbo.ChangeOfPartyRequest where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from PriceHistory';
-delete p from dbo.PriceHistory p inner join Apprenticeship a on p.ApprenticeshipId = a.id inner join Commitment c on a.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.PriceHistory where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from Relationship';
-delete from dbo.Relationship where EmployerAccountId = @accountid;
+delete from dbo.Relationship where EmployerAccountId in (select id from #accountids);
 PRINT 'delete from TransferRequest';
-delete t from dbo.TransferRequest t inner join Commitment c on t.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.TransferRequest where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from DataLockStatus';
-delete d from dbo.DataLockStatus d inner join Apprenticeship a on d.ApprenticeshipId = a.id inner join Commitment c on a.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.DataLockStatus where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from ApprenticeshipUpdate';
-delete u from dbo.ApprenticeshipUpdate u inner join Apprenticeship a on u.ApprenticeshipId = a.id inner join Commitment c on a.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.ApprenticeshipUpdate where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from Apprenticeship';
-delete a from dbo.Apprenticeship a inner join Commitment c on a.CommitmentId = c.id and c.EmployerAccountId = @accountid;
+delete from dbo.Apprenticeship where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from Commitment';
-delete from dbo.Commitment where EmployerAccountId = @accountid;
+delete from dbo.Commitment where EmployerAccountId in (select id from #accountids);
 PRINT 'delete from AccountLegalEntities';
-delete from dbo.AccountLegalEntities where AccountId = @accountid;
+delete from dbo.AccountLegalEntities where AccountId in (select id from #accountids);
 PRINT 'delete from Accounts';
-delete from dbo.Accounts where Id = @accountid;
+delete from dbo.Accounts where Id in (select id from #accountids);

@@ -47,19 +47,21 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                         await TryExecuteSqlCommand(GetSql("EasFcastTestDataCleanUp"), _dbConfig.FcastDbConnectionString, GetAccountId());
                         await TryExecuteSqlCommand(GetSql("EmpIncTestDataCleanUp"), _dbConfig.IncentivesDbConnectionString, GetAccountId());
                         await TryExecuteSqlCommand(GetSql("EasRsrvTestDataCleanUp"), _dbConfig.ReservationsDbConnectionString, GetAccountId());
-                        await TryExecuteSqlCommand(GetSql("EasComtTestDataCleanUp"), _dbConfig.CommitmentsDbConnectionString, GetAccountId());
                         _sqlFileName = string.Empty;
 
                         usersdeleted.Add(_user);
                     }
 
+                    await TryExecuteSqlCommand(GetSql("EasPregTestDataCleanUp"), _dbConfig.PregDbConnectionString, GetEmail());
+
                     var accountidsTodelete = accountids.ListOfArrayToList(0);
 
                     await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
-                    await new TestDataCleanUpPsrepDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
+                    await new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
+                    await new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(accountidsTodelete);
+                    await new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
 
                     await TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
-
                 }
                 catch (Exception ex)
                 {

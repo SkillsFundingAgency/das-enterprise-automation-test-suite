@@ -3,6 +3,7 @@ using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -25,15 +26,37 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests
 
 
         [Then(@"the test data are cleaned up")]
-        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("hemanjali.cheruku@digital.education.gov.uk");
+        public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("dele.odusanya@lynkmiigroup.com");
 
-        [Then(@"the test data are cleaned up in provider relationship for accounts between '([^']*)' and '([^']*)'")]
-        public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAndAndNotIn(int greaterThan, int lessThan)
+        [Then(@"the test data are cleaned up in other dbs for accounts between '(\d*)' and '(\d*)'")]
+        public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAnd(int greaterThan, int lessThan)
         {
-            var (usersdeleted, userswithconstraints) = await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(greaterThan, lessThan);
+            var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
 
-            TestCleanUpReport(usersdeleted, userswithconstraints);
+            var easAccountsNotToDelete = easAccountIds.ListOfArrayToList(0);
+
+            var (comtusersdeleted, comtuserswithconstraints) = await new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(greaterThan, lessThan, easAccountsNotToDelete);
+            comtusersdeleted = AddDbName(comtusersdeleted, "comt");
+            comtuserswithconstraints = AddDbName(comtuserswithconstraints, "comt");
+
+            var (prelusersdeleted, preluserswithconstraints) = await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(greaterThan, lessThan, easAccountsNotToDelete);
+            prelusersdeleted = AddDbName(prelusersdeleted, "prel");
+            preluserswithconstraints = AddDbName(preluserswithconstraints, "prel");
+
+            var (pfbeusersdeleted, pfbeuserswithconstraints) = await new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(greaterThan, lessThan, easAccountsNotToDelete);
+            pfbeusersdeleted = AddDbName(pfbeusersdeleted, "pfbe");
+            pfbeuserswithconstraints = AddDbName(pfbeuserswithconstraints, "pfbe");
+
+            comtusersdeleted.AddRange(prelusersdeleted);
+            comtuserswithconstraints.AddRange(preluserswithconstraints);
+
+            prelusersdeleted.AddRange(pfbeusersdeleted);
+            preluserswithconstraints.AddRange(pfbeuserswithconstraints);
+
+            TestCleanUpReport(prelusersdeleted, preluserswithconstraints);
         }
+
+        private List<string> AddDbName(List<string> users, string dbname) => users.Select(x => $"{x},{dbname}").ToList();
 
         private async Task CleanUpTestData(string email)
         {

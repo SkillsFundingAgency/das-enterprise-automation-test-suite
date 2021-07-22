@@ -1,44 +1,26 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
     public class TestDataCleanUpPrelDbSqlDataHelper : ProjectSqlDbHelper
     {
-        private readonly DbConfig _dbConfig;
+        public TestDataCleanUpPrelDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PermissionsDbConnectionString) { }
 
-        public TestDataCleanUpPrelDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PermissionsDbConnectionString) => _dbConfig = dbConfig;
-
-        public async Task<(List<string>, List<string>)> CleanUpPrelTestData(int greaterThan, int lessThan)
+        public async Task<(List<string>, List<string>)> CleanUpPrelTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
-            var easaccountids = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
-
-            return await CleanUpPrelTestData(greaterThan, lessThan, easaccountids.ListOfArrayToList(0));
+            return await CleanUpTestData(() => GetPrelAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpPrelTestData(x));
         }
 
         internal async Task CleanUpPrelTestData(List<string> accountIdToDelete)
         {
-            var insertquery = accountIdToDelete.Select(x => $"Insert into #accountids values ({x})").ToList();
-
-            var sqlQuery = $"create table #accountids (id bigint);{string.Join(";", insertquery)};" + GetSql("EasPrelTestDataCleanUp");
-
-            await TryExecuteSqlCommand(sqlQuery);
+            await CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasPrelTestDataCleanUp");
         }
 
-        private async Task<(List<string>, List<string>)> CleanUpPrelTestData(int greaterThan, int lessThan, List<string> easaccountids)
+        private List<string> GetPrelAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
-            return await CleanUpPrelTestData(() => GetPrelAccountids(greaterThan, lessThan, easaccountids), (x) => CleanUpPrelTestData(x));
-        }
-
-        private List<string> GetPrelAccountids(int greaterThan, int lessThan, List<string> easaccountids)
-        {
-            var prelaccountids = GetMultipleData($"select Id from dbo.Accounts where Id > {greaterThan} and id < {lessThan} and Id not in ({string.Join(",", easaccountids)}) order by id desc", 1);
-
-            return prelaccountids.ListOfArrayToList(0);
+            return GetAccountids($"select Id from dbo.Accounts where Id > {greaterThan} and id < {lessThan} and Id not in ({string.Join(",", easaccountidsnottodelete)}) order by id desc");
         }
     }
 }
