@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
 
             VerifyPage(func, "Hiring an apprentice");
-            VerifyPage(func, "Upskilling your current staff");
+            VerifyPage(func, "Upskilling your workforce");
             VerifyPage(func, "Funding an apprenticeship");
             VerifyPage(func, "Training your apprentice");
             VerifyPage(func, "End-point assessments");
