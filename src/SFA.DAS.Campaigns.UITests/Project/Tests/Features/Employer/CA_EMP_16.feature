@@ -3,9 +3,7 @@
 @campaigns
 @apprentice
 @regression
-Scenario: CA_EMP_15 Check Employer Guide Page
+@ignore
+Scenario: CA_EMP_16 Check Employer Guide Page
 	Given the user navigates to Employer Guide Page
 	Then the links are not broken
-
-
-

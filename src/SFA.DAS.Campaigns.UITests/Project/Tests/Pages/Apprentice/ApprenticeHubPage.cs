@@ -56,7 +56,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
             VerifyPage(func, "Real stories");
             VerifyPage(func, "What are the benefits of an apprenticeship?");
-            VerifyPage(func, "Help shape their career");
+            //VerifyPage(func, "Help shape their career");
             VerifyPage(func, "Browse by interest");
             VerifyPage(func, "Becoming an apprentice");
             VerifyPage(func, "Applying for an apprenticeship");
