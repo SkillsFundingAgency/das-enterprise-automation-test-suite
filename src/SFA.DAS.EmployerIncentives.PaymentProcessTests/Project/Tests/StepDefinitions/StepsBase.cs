@@ -231,9 +231,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Assert.IsFalse(exist);
         }
 
-        protected async Task VerifyPaymentRecordsExist()
+        protected async Task VerifyPaymentRecordsExist(bool paymentsSent = false)
         {
-            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId, paymentsSent);
             Assert.IsTrue(exist);
         }
 

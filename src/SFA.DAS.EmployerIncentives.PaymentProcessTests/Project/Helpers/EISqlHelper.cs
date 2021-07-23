@@ -80,10 +80,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             return count >= 1;
         }
 
-        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId, bool paymentsSent)
         {
             using var dbConnection = new SqlConnection(connectionString);
-            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            var sql = $"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId";
+            if (paymentsSent)
+            {
+                sql = $"{sql} AND PaidDate IS NOT NULL AND VrfVendorId IS NOT NULL";
+            }
+            var count = await dbConnection.ExecuteScalarAsync<int>(sql, new { apprenticeshipIncentiveId });
 
             return count >= 1;
         }
