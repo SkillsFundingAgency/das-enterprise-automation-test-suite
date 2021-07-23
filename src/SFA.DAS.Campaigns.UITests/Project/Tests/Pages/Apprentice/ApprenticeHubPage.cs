@@ -63,7 +63,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             VerifyPage(func, "The interview process");
             VerifyPage(func, "Starting your apprenticeship");
             VerifyPage(func, "Assessment and certification");
-            VerifyPage(func, "Set up a service account");
+            VerifyPage(func, "Create an apprenticeship service account");
         }
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
