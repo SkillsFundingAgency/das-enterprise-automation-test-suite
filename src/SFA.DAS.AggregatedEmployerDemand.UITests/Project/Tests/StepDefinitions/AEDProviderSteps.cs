@@ -93,10 +93,17 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
         }
 
-        [Then(@"the provider is able to submit their details")]
-        public void ThenTheProviderIsAbleToReenterValidContactDetailsAndSubmit()
+        [Then(@"the provider is able to submit their location details")]
+        public void TheProviderIsAbleToSubmitTheirLocationDetails()
         {
-            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
+            _providerStepsHelper.ConfirmEditedProviderLocationDetailsAndSubmit();
         }
+
+        [When(@"the provider selects the option to edit the location")]
+        public void WhenTheProviderSelectsTheOptionToEditTheLocation()
+        {
+            _providerStepsHelper.ChangeProviderLocationDetails();
+        }
+
     }
 }
