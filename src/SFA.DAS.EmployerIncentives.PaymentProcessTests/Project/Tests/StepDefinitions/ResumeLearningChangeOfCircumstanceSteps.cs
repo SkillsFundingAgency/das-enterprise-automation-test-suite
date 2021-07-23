@@ -22,6 +22,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
         private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
+        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
 
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -31,6 +32,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
             _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -45,7 +47,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-20))
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
         }
 
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
@@ -76,12 +78,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _paymentsOrchestratorHelper.Run();
             await _paymentsOrchestratorHelper.Approve();
 
-            _initialEarning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
+            _initialEarning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
             _initialEarning.Amount.Should().Be(amount);
 
-            _payment = GetFromDatabase<Payment>(p => p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
+            _payment = GetFromDatabase<Payment>(p => p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
             _payment.Should().NotBeNull();
             _payment.PaidDate.Should().NotBeNull();
             _payment.Amount.Should().Be(amount);
@@ -203,7 +205,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the paid earnings of £(.*) is still available in the currently active Period")]
         public void WhenThePaidEarningsOfIsStillAvailableInTheCurrentlyActivePeriodR(int amount)
         {
-            var earning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId);
+            var earning = GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId);
             earning.Should().BeEquivalentTo(_initialEarning, opts => opts.Excluding(
                 x =>x.ClawedBack).Excluding(x => x.PaymentMadeDate));
             earning.Amount.Should().Be(amount);
@@ -224,7 +226,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenTheUnpaidEarningsAreArchived()
         {
             GetAllFromDatabase<ArchivedPendingPayment>()
-                .Where(p => p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId)
+                .Where(p => p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId)
                 .Should().HaveCount(1);
         }
 
@@ -250,7 +252,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenANewFirstPendingPaymentOfIsCreatedForPeriodR(int amount, byte period, short year)
         {
             var pendingPayment = GetFromDatabase<PendingPayment>(p =>
-                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
                 && p.EarningType == EarningType.FirstPayment && p.ClawedBack == false);
 
             pendingPayment.Amount.Should().Be(amount);
@@ -264,7 +266,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenTheExistingFirstPendingPaymentOfPaidInPeriodRIsUnchanged(int amount, byte period, short year)
         {
             var pendingPayment = GetFromDatabase<PendingPayment>(p =>
-                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
                 && p.EarningType == EarningType.FirstPayment);
 
             pendingPayment.PeriodNumber.Should().Be(period);
@@ -278,7 +280,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenANewSecondPendingPaymentOfIsCreatedForPeriodR(int amount, byte period, short year)
         {
             var pendingPayment = GetFromDatabase<PendingPayment>(p =>
-                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
                 & p.EarningType == EarningType.SecondPayment);
 
             pendingPayment.PeriodNumber.Should().Be(period);

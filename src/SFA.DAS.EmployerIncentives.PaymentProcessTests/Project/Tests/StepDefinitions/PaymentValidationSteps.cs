@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using SFA.DAS.ConfigurationBuilder;
@@ -18,6 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
         private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
+        private readonly IncentiveApplicationHelper  _incentiveApplicationHelper;
 
         protected PaymentValidationSteps(ScenarioContext context) : base(context)
         {
@@ -26,7 +28,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
-            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();           
+            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive")]
@@ -39,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-20))
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
@@ -74,7 +77,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the (.*) Step in PendingPaymentValidationResult table for the (.*) is set to (.*)")]
         public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, EarningType earningType, bool stepValue)
         {
-            _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+            _pendingPayment = GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId 
                                                                   && x.EarningType == earningType);
 
             var validationStep = GetFromDatabase<PendingPaymentValidationResult>(x =>

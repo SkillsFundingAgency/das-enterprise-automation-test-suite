@@ -13,6 +13,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
+        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
 
         public LearnerMatchTestSteps(ScenarioContext context) : base(context) 
         {
@@ -21,6 +22,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
         }
 
         [Given(@"there are some apprenticeship incentives")]
@@ -34,7 +36,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)

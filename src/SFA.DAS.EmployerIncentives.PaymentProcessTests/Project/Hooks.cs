@@ -1,7 +1,6 @@
 ﻿using AutoFixture;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
@@ -32,7 +31,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
             _context.Set(new EIPaymentsProcessHelper(eiConfig));
             _context.Set(new EILearnerMatchHelper(eiConfig));
             _context.Set(new PaymentsOrchestratorHelper(_context));
-            _context.Set(new LearnerMatchOrchestratorHelper(_context));            
+            _context.Set(new LearnerMatchOrchestratorHelper(_context));
+            _context.Set(new EIServiceBusHelper(eiConfig));
+            _context.Set(new IncentiveApplicationHelper(_context));            
         }
     }
 }

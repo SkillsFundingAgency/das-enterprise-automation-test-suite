@@ -23,7 +23,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
         private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
-        
+        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
+
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
             testData.AccountId = 14326;
@@ -32,6 +33,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
             _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -50,7 +52,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase1)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
         }
 
         [Given(@"an existing phase 2 apprenticeship incentive for a learner under 25 years old")]
@@ -67,7 +69,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
         }
 
         [Given(@"an existing phase 2 apprenticeship incentive")]
@@ -105,11 +107,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _paymentsOrchestratorHelper.Approve();
 
             _initialEarning = GetFromDatabase<PendingPayment>(p =>
-                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
+                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
 
             _payment = GetFromDatabase<Payment>(p =>
-                p.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
+                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
             _payment.Should().NotBeNull();
             _payment.PaidDate.Should().NotBeNull();
             _payment.Amount.Should().Be(amount);
@@ -258,7 +260,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private void AssertPendingPayment(int amount, byte period, short year, EarningType earningType)
         {
             var pp = _newEarnings.Single(x =>
-                x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId
+                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
                 && x.EarningType == earningType
                 && !x.ClawedBack);
 

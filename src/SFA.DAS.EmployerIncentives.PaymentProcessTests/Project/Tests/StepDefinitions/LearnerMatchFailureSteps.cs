@@ -20,6 +20,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private readonly CollectionPeriodHelper _collectionPeriodHelper;
         private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
+        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
 
         protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
         {
@@ -27,6 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
             _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
+            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
         }
 
         [Given(@"the learner match process has been triggered")]
@@ -46,7 +48,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
                     .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _incentiveApplicationHelper.Submit(incentiveApplication);
 
             foreach (var apprenticeship in incentiveApplication.Apprenticeships)
             {
@@ -157,7 +159,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenAnyCoCsAreProcessedForEachLearnerExcludingExceptions()
         {
             var changeOfCircumstances = GetAllFromDatabase<ChangeOfCircumstance>().Where(
-                x => incentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
+                x => testData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
             
             changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped).Should().Be(3);
             changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.StartDate).Should().Be(2);
@@ -167,7 +169,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenDaysInLearningIsCalculatedForEachLearnerExcludingExceptions()
         {
             var learnerIds = GetAllFromDatabase<Learner>().Where(
-                x => incentiveIds.Contains(x.ApprenticeshipIncentiveId)).Select(x => x.Id).ToList();
+                x => testData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).Select(x => x.Id).ToList();
 
             GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
                 learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 10).Should().Be(3);

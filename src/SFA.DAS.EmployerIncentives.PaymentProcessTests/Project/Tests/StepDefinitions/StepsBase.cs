@@ -27,10 +27,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected BusinessCentralApiHelper businessCentralApiHelper;
-        protected readonly EIServiceBusHelper serviceBusHelper;
-        protected readonly IList<Guid> incentiveIds = new List<Guid>();
         protected IncentiveApplication incentiveApplication;        
-        protected Guid apprenticeshipIncentiveId => incentiveIds.FirstOrDefault();
 
         private readonly StopWatchHelper _stopWatchHelper;
         
@@ -46,48 +43,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             dbConfig = context.Get<DbConfig>();
             sqlHelper = new EISqlHelper(dbConfig);
 
-            serviceBusHelper = new EIServiceBusHelper(eiConfig);
-
             learnerMatchApi = new LearnerMatchApiHelper(eiConfig);            
 
             businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
 
             _stopWatchHelper.Stop("StepsBase");
-        }
-
-        protected async Task SubmitIncentiveApplication(IncentiveApplication application)
-        {
-            _stopWatchHelper.Start("SubmitIncentiveApplication");
-            await sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
-            await sqlHelper.CreateIncentiveApplication(application);
-
-            foreach (var apprenticeship in application.Apprenticeships)
-            {
-                var command = new CreateIncentiveCommand(
-                    application.AccountId,
-                    application.AccountLegalEntityId,
-                    apprenticeship.Id,
-                    apprenticeship.ApprenticeshipId,
-                    apprenticeship.FirstName,
-                    apprenticeship.LastName,
-                    apprenticeship.DateOfBirth,
-                    apprenticeship.ULN,
-                    apprenticeship.PlannedStartDate,
-                    apprenticeship.ApprenticeshipEmployerTypeOnApproval,
-                    apprenticeship.UKPRN,
-                    application.DateSubmitted.Value,
-                    application.SubmittedByEmail,
-                    apprenticeship.CourseName,
-                    apprenticeship.EmploymentStartDate.Value,
-                    apprenticeship.Phase
-                );
-
-                await serviceBusHelper.Publish(command);
-                var incentiveId = await sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
-                incentiveIds.Add(incentiveId);
-                await sqlHelper.WaitUntilEarningsExist(apprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
-            }
-            _stopWatchHelper.Stop("SubmitIncentiveApplication");
         }
 
         protected async Task DeleteApplicationData()
@@ -151,20 +111,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
         protected async Task VerifyLearningRecordsExist()
         {
-            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyLearningRecordsExist(testData.ApprenticeshipIncentiveId);
             Assert.IsTrue(exist);
         }
 
         protected async Task VerifyPaymentRecordsExist()
         {
-            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyPaymentRecordsExist(testData.ApprenticeshipIncentiveId);
             Assert.IsTrue(exist);
         }
 
         [AfterScenario()]
         public async Task CleanUpIncentives()
         {
-            if (apprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
+            if (testData.ApprenticeshipIncentiveId != Guid.Empty) await DeleteIncentives();
             if (incentiveApplication != null) await DeleteApplicationData();
             await learnerMatchApi.DeleteMapping(testData.ULN, testData.UKPRN);
             await ResetCalendar();
