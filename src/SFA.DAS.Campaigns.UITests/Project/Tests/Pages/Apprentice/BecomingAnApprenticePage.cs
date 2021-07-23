@@ -2,10 +2,10 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class WhatIsAnApprenticeshipPage : ApprenticeBasePage
+    public class BecomingAnApprenticePage : ApprenticeBasePage
     {
         protected override string PageTitle => "Becoming an apprentice";
 
-        public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context) { }
+        public BecomingAnApprenticePage(ScenarioContext context) : base(context) { }
     }
 }

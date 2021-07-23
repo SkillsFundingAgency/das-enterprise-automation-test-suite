@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -13,6 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected abstract void SelectCourse();
 
+        public string GetSelectedCourse() => formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
+
         public void EditCostCourseAndReference(string reference)
         {
             EditCourse()
@@ -26,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return this;
         }
 
-        private EditApprentice EditCourse()
+        protected EditApprentice EditCourse()
         {
             formCompletionHelper.ClickElement(TrainingCourseContainer);
             SelectCourse();
