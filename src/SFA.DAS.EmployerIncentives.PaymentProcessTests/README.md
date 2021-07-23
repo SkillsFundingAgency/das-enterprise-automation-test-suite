@@ -16,7 +16,8 @@
     "EI_PaymentsAppBaseUrl": "http://localhost:7071",
     "EI_ApiStubBaseUrl": "https://at-stub.apprenticeships.education.gov.uk",
     "EI_ServiceBusConnectionString": "UseLearningEndpoint=true",
-    "LearningTransportStorageDirectory": "c:\\temp\\learningtransport"
+    "LearningTransportStorageDirectory": "c:\\temp\\learningtransport",
+    "EI_FunctionsBaseUrl": "http://localhost:7072"
   },
   "DbDevConfig": {
     "Server": "(localdb)\\MSSQLLocalDB",

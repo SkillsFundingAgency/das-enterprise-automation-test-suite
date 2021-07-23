@@ -27,6 +27,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public string GetApprenticeEmail(string id) => GetData($"select Email from Apprentice where Id = '{id}'");
 
+        public (string firstName, string lastName) GetApprenticeName(string email)
+        {
+            var data = GetData($"select FirstName, LastName from Registration where email = '{email}'", 2);
+            return (data[0], data[1]);
+        }
+
         public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)
         {
             var confirmBeforeDate = DateTime.Now.AddDays(13).AddHours(23).ToString("yyyy-MM-dd HH:mm:ss.fffffff");

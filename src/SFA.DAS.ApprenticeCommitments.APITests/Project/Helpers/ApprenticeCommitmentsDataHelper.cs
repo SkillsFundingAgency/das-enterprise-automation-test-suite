@@ -13,9 +13,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             NewEmail = $"New{Email}";
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
         }
 
         public string Email { get; }
@@ -25,11 +22,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         public string ApprenticeFirstname { get; }
 
         public string ApprenticeLastname { get; }
-
-        public int DateOfBirthDay { get; }
-
-        public int DateOfBirthMonth { get; }
-
-        public int DateOfBirthYear { get; }
     }
 }

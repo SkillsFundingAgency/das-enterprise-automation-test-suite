@@ -104,7 +104,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .Start()
                 .EnterStandardName()
                 .Apply()
-                .ConfirmAndApply()
+                .ConfirmAndApplyWithVersion()
                 .GoToApplyToStandard();
 
             applyToStandard = applyToStandard.AccessYourPolicies_01()
