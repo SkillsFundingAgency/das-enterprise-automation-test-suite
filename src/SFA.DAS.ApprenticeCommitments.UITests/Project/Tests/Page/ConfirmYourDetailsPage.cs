@@ -9,10 +9,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         private By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
         private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
-        private By DurationInfo => By.XPath("//th[text()='Duration']/following-sibling::td");
-        private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date']/following-sibling::td");
-        private By PlannedEndDateInfo => By.XPath("//th[text()='Planned end date']/following-sibling::td");
-        protected By NotificationBar => By.CssSelector(".app-notification-banner");
+        private By EstimatedDurationInfo => By.XPath("//th[text()='Estimated duration']/following-sibling::td");
+        private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date for training']/following-sibling::td");
+        protected By GreenTickText => By.CssSelector(".app-notification-banner");
         protected By YourResponsibilitiesTab => By.XPath("//a[@id='tab_tab_you' and text()='Your responsibilities']");
         protected By YourEmployerTab => By.XPath("//a[@id='tab_tab_youremployer' and contains(text(),'Your employer')]");
         protected By YourTrainingProviderTab => By.XPath("//a[@id='tab_tab_yourprovider' and contains(text(),'Your training provider')]");
@@ -41,13 +40,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public string GetApprenticeshipLevelInfo() => pageInteractionHelper.GetText(LevelInfo);
 
-        public string GetApprenticeshipDurationInfo() => pageInteractionHelper.GetText(DurationInfo);
+        public string GetApprenticeshipEstimatedDurationInfo() => pageInteractionHelper.GetText(EstimatedDurationInfo);
 
         public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
 
-        public string GetApprenticeshipPlannedEndDateInfo() => pageInteractionHelper.GetText(PlannedEndDateInfo);
-
-        public void VerifyRolesYouTab() => VerifyPage(YourResponsibilitiesTab);
+        public void VerifyRolesYourResponsibilitiesTab() => VerifyPage(YourResponsibilitiesTab);
 
         public void VerifyRolesYourEmployerTab() => VerifyPage(YourEmployerTab);
 

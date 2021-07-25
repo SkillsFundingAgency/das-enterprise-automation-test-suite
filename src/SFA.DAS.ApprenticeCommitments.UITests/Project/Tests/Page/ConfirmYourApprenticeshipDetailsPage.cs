@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ConfirmYourApprenticeshipDetailsPage : ConfirmYourDetailsPage
     {
-        protected override string PageTitle => SectionHelper.Section3;
+        protected override string PageTitle => "Confirm the details of your apprenticeship";
         protected override By ContinueButton => By.CssSelector("#apprenticeship-details-confirm");
 
         public ConfirmYourApprenticeshipDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
