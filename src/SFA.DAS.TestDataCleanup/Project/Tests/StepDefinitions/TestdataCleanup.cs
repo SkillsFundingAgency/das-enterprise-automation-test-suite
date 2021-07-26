@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -24,14 +25,19 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
         [Then(@"the test data are cleaned up")]
         public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("dele.odusanya@lynkmiigroup.com");
 
+        [Then(@"the test data are cleaned up in comt dbs for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInComtDbsForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData();
+
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
+
+
         [Then(@"the test data are cleaned up in other dbs for accounts between '(\d*)' and '(\d*)'")]
         public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAnd(int greaterThan, int lessThan)
         {
-            var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
-
-            var easAccountsNotToDelete = easAccountIds.ListOfArrayToList(0);
-
-            var helper = new TestdataCleanUpStepsHelper(_dbConfig, greaterThan, lessThan, easAccountsNotToDelete);
+            var helper = GetCleanUpHelper(greaterThan, lessThan);
 
             var (comtusersdeleted, comtuserswithconstraints) = await helper.CleanUpComtTestData();
 
@@ -63,6 +69,15 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
             var (usersdeleted, userswithconstraints) = await new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email);
 
             _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
+
+        private TestdataCleanUpStepsHelper GetCleanUpHelper(int greaterThan, int lessThan)
+        {
+            var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
+
+            var easAccountsNotToDelete =  easAccountIds.ListOfArrayToList(0);
+
+            return new TestdataCleanUpStepsHelper(_dbConfig, greaterThan, lessThan, easAccountsNotToDelete);
         }
     }
 }
