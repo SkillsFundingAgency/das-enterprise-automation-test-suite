@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -25,7 +24,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
         [Then(@"the test data are cleaned up")]
         public async Task ThenTheTestDataAreCleanedUp() => await CleanUpTestData("dele.odusanya@lynkmiigroup.com");
 
-        [Then(@"the test data are cleaned up in comt dbs for accounts between '(\d*)' and '(\d*)'")]
+        [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
         public async void ThenTheTestDataAreCleanedUpInComtDbsForAccountsBetweenAnd(int greaterThan, int lessThan)
         {
             var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData();
@@ -33,35 +32,52 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
             _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
         }
 
-
-        [Then(@"the test data are cleaned up in other dbs for accounts between '(\d*)' and '(\d*)'")]
-        public async Task ThenTheTestDataAreCleanedUpForAccountsBetweenAnd(int greaterThan, int lessThan)
+        [Then(@"the test data are cleaned up in prel db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInPrelDbForAccountsBetweenAnd(int greaterThan, int lessThan)
         {
-            var helper = GetCleanUpHelper(greaterThan, lessThan);
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpPrelTestData();
 
-            var (comtusersdeleted, comtuserswithconstraints) = await helper.CleanUpComtTestData();
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
 
-            var (prelusersdeleted, preluserswithconstraints) = await helper.CleanUpPrelTestData();
+        [Then(@"the test data are cleaned up in pfbe db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInPfbeDbForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpPfbeTestData();
 
-            comtusersdeleted.AddRange(prelusersdeleted);
-            comtuserswithconstraints.AddRange(preluserswithconstraints);
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
 
-            var (pfbeusersdeleted, pfbeuserswithconstraints) = await helper.CleanUpPfbeTestData();
+        [Then(@"the test data are cleaned up in fcast db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInFcastDbForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFcastTestData();
 
-            prelusersdeleted.AddRange(pfbeusersdeleted);
-            preluserswithconstraints.AddRange(pfbeuserswithconstraints);
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
 
-            var (fcastusersdeleted, fcastuserswithconstraints) = await helper.CleanUpEmpFcastTestData();
+        [Then(@"the test data are cleaned up in fin db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInFinDbForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFinTestData();
 
-            fcastusersdeleted.AddRange(prelusersdeleted);
-            fcastuserswithconstraints.AddRange(preluserswithconstraints);
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
 
-            var (empfinusersdeleted, empfinuserswithconstraints) = await helper.CleanUpEmpFinTestData();
+        [Then(@"the test data are cleaned up in rsvr db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInRsvrDbForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpRsvrTestData();
 
-            empfinusersdeleted.AddRange(fcastusersdeleted);
-            empfinuserswithconstraints.AddRange(fcastuserswithconstraints);
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
+        }
 
-            _testDataCleanUpReport.TestCleanUpReport(empfinusersdeleted, empfinuserswithconstraints);
+        [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
+        public async void ThenTheTestDataAreCleanedUpInEmpIncDbForAccountsBetweenAnd(int greaterThan, int lessThan)
+        {
+            var (usersdeleted, userswithconstraints) = await GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpIncTestData();
+
+            _testDataCleanUpReport.TestCleanUpReport(usersdeleted, userswithconstraints);
         }
 
         private async Task CleanUpTestData(string email)

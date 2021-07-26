@@ -54,9 +54,9 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             }
             finally
             {
-                var accountIdNotDeletedinPrel = getAccountidfunc.Invoke();
+                var accountIdNotDeletedindb = getAccountidfunc.Invoke();
 
-                if (!(IsNullOrEmpty(accountIdNotDeletedinPrel))) accountIdNotDeleted.AddRange(accountIdNotDeletedinPrel);
+                if (!(IsNullOrEmpty(accountIdNotDeletedindb))) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
             }
 
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);

@@ -46,6 +46,16 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
             return AddDbName(await new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empfin");
         }
 
+        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpRsvrTestData()
+        {
+            return AddDbName(await new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "rsvr");
+        }
+
+        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpEmpIncTestData()
+        {
+            return AddDbName(await new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empinc");
+        }
+
         private (List<string> usersdeleted, List<string> userswithconstraints) AddDbName((List<string>, List<string>) users, string dbname)
         {
             List<string> x(List<string> users, string dbname) => users.Select(x => $"{x},{dbname}").ToList();
