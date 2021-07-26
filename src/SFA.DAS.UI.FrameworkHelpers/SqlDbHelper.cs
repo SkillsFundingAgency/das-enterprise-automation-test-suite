@@ -1,7 +1,6 @@
 ﻿using Polly;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -73,7 +72,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
+        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
@@ -83,7 +82,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  {
                      Logging.Report(retryCount, exception, string.Empty);
                  })
-                 .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters));
+                 .Execute(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
         }
 
         protected int TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)
