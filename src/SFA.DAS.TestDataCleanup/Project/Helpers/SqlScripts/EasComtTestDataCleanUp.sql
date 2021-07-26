@@ -1,5 +1,5 @@
-﻿select id into #commitmentids from Commitment where EmployerAccountId in (select id from #accountids)
-select id into #apprenticeshipids from Apprenticeship where CommitmentId in (select id from #commitmentids)
+﻿select id into #commitmentids from Commitment where EmployerAccountId in (select id from #accountids);
+select id into #apprenticeshipids from Apprenticeship where CommitmentId in (select id from #commitmentids);
 
 PRINT 'delete from History';
 delete from dbo.History where CommitmentId in (select id from #commitmentids)
