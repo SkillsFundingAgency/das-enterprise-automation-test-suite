@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
@@ -10,11 +9,13 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
     public class TestdataCleanup
     {
         private readonly DbConfig _dbConfig;
+
         private readonly TestDataCleanUpReport _testDataCleanUpReport;
 
         public TestdataCleanup(ScenarioContext context)
         {
             _dbConfig = context.Get<DbConfig>();
+
             _testDataCleanUpReport = new TestDataCleanUpReport(context.Get<ObjectContext>());
         }
 
@@ -22,7 +23,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
         public void ThenTheTestDataAreCleanedUpForEmail(string email) =>  CleanUpTestData(email);
 
         [Then(@"the test data are cleaned up")]
-        public void ThenTheTestDataAreCleanedUp() =>  CleanUpTestData("dele.odusanya@lynkmiigroup.com");
+        public void ThenTheTestDataAreCleanedUp() =>  CleanUpTestData("AP_Test_133_01Nov2019%");
 
         [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
         public void ThenTheTestDataAreCleanedUpInComtDbsForAccountsBetweenAnd(int greaterThan, int lessThan)
