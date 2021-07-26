@@ -20,5 +20,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             ContinueToNextPage();
             return new EditProvidersContactDetailsPage(_context);
         }
+        public FindEmployersThatNeedATrainingProviderPage BackToFindEmployersThatNeedATrainingProviderPage()
+        {
+            formCompletionHelper.Click(BackLink);
+            return new FindEmployersThatNeedATrainingProviderPage(_context);
+        }
     }
 }

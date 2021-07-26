@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDetails
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CD_08_UnConfirmHowApprenticeshipDelivered")]
-    public partial class AC_CD_08_UnConfirmHowApprenticeshipDeliveredFeature
+    [NUnit.Framework.DescriptionAttribute("RP_Gateway_Search")]
+    public partial class RP_Gateway_SearchFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_CD_08_UnConfirmHowApprenticeshipDelivered.feature"
+#line 1 "RP_Gateway_Search.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CD_08_UnConfirmHowApprenticeshipDelivered", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Gateway_Search", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,27 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CD_08_UnConfirmHowApprenticeshipDelivered")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
+        [NUnit.Framework.CategoryAttribute("rpsearch")]
+        [NUnit.Framework.CategoryAttribute("rpadfha01")]
+        [NUnit.Framework.CategoryAttribute("rpsearch01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_CD_08_UnConfirmHowApprenticeshipDelivered()
+        public virtual void RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
-                    "regression",
-                    "deleteuser"};
+                    "roatp",
+                    "roatpadmin",
+                    "newroatpadmin",
+                    "rpsearch",
+                    "rpadfha01",
+                    "rpsearch01",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CD_08_UnConfirmHowApprenticeshipDelivered", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN", null, tagsOfScenario, argumentsOfScenario);
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,16 +114,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.Then("the apprentice confirms \'How the apprenticeship will be delivered\' section as NOT" +
-                        " understood", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.When("the admin searches for a provider in Gateway by provider name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
- testRunner.And("the apprentice is able to confirm \'How the apprenticeship will be delivered\' sect" +
-                        "ion again as understood", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.Then("the search results should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+ testRunner.When("the admin searches for a provider in Gateway by UKPRN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("the search results should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

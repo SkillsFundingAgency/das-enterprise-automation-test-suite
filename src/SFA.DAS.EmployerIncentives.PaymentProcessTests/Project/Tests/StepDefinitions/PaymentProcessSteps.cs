@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class PaymentsProcessSteps : StepsBase
     {
         private readonly Helper _helper;
-
+        
         public PaymentsProcessSteps(ScenarioContext context) : base(context) 
         {
             testData.AccountId = 14326;
@@ -65,7 +65,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"payments exist")]
         public async Task ThenPaymentsExist()
         {
-            await _helper.LearnerDataHelper.VerifyPaymentRecordsExist(testData.ApprenticeshipIncentiveId);
+            await _helper.LearnerDataHelper.VerifyPaymentRecordsExist(testData.ApprenticeshipIncentiveId, paymentsSent: true);
         }
     }
 }

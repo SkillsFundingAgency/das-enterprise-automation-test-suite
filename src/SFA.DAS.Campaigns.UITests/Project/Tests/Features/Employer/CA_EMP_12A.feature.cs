@@ -74,18 +74,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_AP_12A Check Hire An Apprentice hub Page")]
+        [NUnit.Framework.DescriptionAttribute("CA_EMP_12A Check Hire An Apprentice hub Page")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_AP_12ACheckHireAnApprenticeHubPage()
+        public virtual void CA_EMP_12ACheckHireAnApprenticeHubPage()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
                     "apprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_12A Check Hire An Apprentice hub Page", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMP_12A Check Hire An Apprentice hub Page", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -26,9 +26,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         
         private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
+        private By SearchField => By.CssSelector("#SearchTerm");
         protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
+        private By SearchButton => By.CssSelector(".app-search-form__button-wrap");
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
@@ -67,6 +69,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             SelectRadioOptionByText("Ask for clarification");
             EnterAskForClarificationInternalComments();
             Continue();
+        }
+
+        protected void SearchProviderByName() => SearchProvider(objectContext.GetProviderName());
+        protected void SearchProviderByUKPRN() => SearchProvider(objectContext.GetUkprn());
+        private void SearchProvider(string searchText)
+        {
+            formCompletionHelper.EnterText(SearchField, searchText);
+            formCompletionHelper.ClickElement(SearchButton);
+
         }
 
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>

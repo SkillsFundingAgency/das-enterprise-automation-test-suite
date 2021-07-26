@@ -1,14 +1,14 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ConfirmYourIdentityPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "Confirm your identity";
-
         private readonly ScenarioContext _context;
+        protected override string PageTitle => "Confirm your personal details";
 
         private By FirstName => By.CssSelector("input#FirstName");
         private By LastName => By.CssSelector("input#LastName");
@@ -25,9 +25,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname,
                 apprenticeCommitmentsDataHelper.ApprenticeLastname,
-                apprenticeCommitmentsDataHelper.DateOfBirthDay,
-                apprenticeCommitmentsDataHelper.DateOfBirthMonth,
-                apprenticeCommitmentsDataHelper.DateOfBirthYear);
+                objectContext.GetDateOfBirth().Day,
+                objectContext.GetDateOfBirth().Month,
+                objectContext.GetDateOfBirth().Year);
 
             return new ApprenticeHomePage(_context);
         }

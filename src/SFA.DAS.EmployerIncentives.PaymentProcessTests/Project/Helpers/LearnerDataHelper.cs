@@ -14,15 +14,21 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _sqlHelper = context.Get<EISqlHelper>();
         }
 
-        public async Task VerifyLearningRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task VerifyLearningRecordsExist(long apprenticeshipId)
         {
-            var exist = await _sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            var exist = await _sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
             Assert.IsTrue(exist);
         }
 
-        public async Task VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task VerifyLearningRecordsDoNotExist(long apprenticeshipId)
         {
-            var exist = await _sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            var exist = await _sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
+            Assert.IsFalse(exist);
+        }
+
+        public async Task VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId, bool paymentsSent = false)
+        {
+            var exist = await _sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId, paymentsSent);
             Assert.IsTrue(exist);
         }
     }

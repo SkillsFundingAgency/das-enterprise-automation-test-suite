@@ -75,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
-        internal EditApprenticePage EditApprenticeDetailsPagePostApproval() => ViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
+        public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
         internal ReviewYourCohortPage EmployerReviewCohort()
         {

@@ -20,27 +20,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By FindAnApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
-        protected By RealStories => By.CssSelector(".fiu-card__link--citizens");
+        protected By RealStories => By.CssSelector("a[href*='real-stories']");
 
         protected By ApprenticeshipBenefits => By.XPath("//a[contains(@href,'/apprentices/benefits-apprenticeship') and contains(text(), 'Learn more')]");
 
-        protected By WhatIsAnApprenticeship => By.CssSelector("#fiu-app-hub-card-5");
+        protected By BecomingAnApprentice => By.CssSelector("a[href*='becoming-apprentice']");
 
-        protected By Application => By.CssSelector("#fiu-app-hub-card-6");
+        protected By Application => By.CssSelector("a[href*='applying-apprenticeship']");
 
-        protected By Interview => By.CssSelector("#fiu-app-hub-card-7");
+        protected By Interview => By.CssSelector("a[href*='interview-process']"); 
 
-        protected By BrowserInterest => By.CssSelector("#fiu-app-hub-card-4");
+        protected By BrowserInterest => By.CssSelector("a[href*='browse-by-interests']"); 
 
-        protected By AdviceForParents => By.CssSelector("#fiu-app-hub-card-3");
+        protected By HelpShapeTheirCareer => By.CssSelector("a[href*='help-shape-their-career']"); 
 
-        protected By SetUpService => By.CssSelector("#fiu-app-hub-card-10");
+        protected By SetUpService => By.CssSelector("a[href*='create-account']"); 
 
         protected By SiteMap => By.CssSelector("#link-footer-sitemap");
 
-        protected By YourApprenticeship => By.CssSelector("#fiu-app-hub-card-8");
+        protected By YourApprenticeship => By.CssSelector("a[href*='starting-apprenticeship']"); 
 
-        protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
+        protected By AssesmentAndCertification => By.CssSelector("a[href*='assessment-and-certification']");
 
         #endregion
 
@@ -56,14 +56,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
             VerifyPage(func, "Real stories");
             VerifyPage(func, "What are the benefits of an apprenticeship?");
-            VerifyPage(func, "Help shape their career");
+            //VerifyPage(func, "Help shape their career");
             VerifyPage(func, "Browse by interest");
             VerifyPage(func, "Becoming an apprentice");
             VerifyPage(func, "Applying for an apprenticeship");
             VerifyPage(func, "The interview process");
             VerifyPage(func, "Starting your apprenticeship");
             VerifyPage(func, "Assessment and certification");
-            VerifyPage(func, "Set up a service account");
+            VerifyPage(func, "Create an apprenticeship service account");
         }
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
@@ -110,16 +110,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
 
-        public HelpShapeTheirCareerPage NavigateToAdviceForParentPage()
+        public HelpShapeTheirCareerPage NavigateToHelpShapeTheirCareerPage()
         {
-            formCompletionHelper.ClickElement(AdviceForParents);
+            formCompletionHelper.ClickElement(HelpShapeTheirCareer);
             return new HelpShapeTheirCareerPage(_context);
         }
 
-        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
+        public BecomingAnApprenticePage NavigateToWhatIsAnApprenticeshipPage()
         {
-            formCompletionHelper.ClickElement(WhatIsAnApprenticeship);
-            return new WhatIsAnApprenticeshipPage(_context);
+            formCompletionHelper.ClickElement(BecomingAnApprentice);
+            return new BecomingAnApprenticePage(_context);
         }
 
         public ApplicationPage NavigateToApplicationPage()

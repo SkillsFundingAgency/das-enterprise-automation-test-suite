@@ -8,9 +8,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class FireItUpHomePage : CampaingnsPage
     {
-        protected override string PageTitle => "APPRENTICESHIPS";
+        protected override string PageTitle => "APPRENTICES EMPLOYERS INFLUENCERS";
 
-        protected override By PageHeader => By.CssSelector(".fiu-homepage-banner__heading");
+        protected override By PageHeader => By.CssSelector(".fiu-header");
 
         private string HomePageFiuCard1Heading => "Find an apprenticeship";
 
