@@ -12,8 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        protected By CourseCode => By.Id("CourseCode");
-        private By SearchCourse => By.CssSelector(".select2-search__field");
+        private By CourseOption => By.CssSelector("#trainingCourse");
 
         public ProviderEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
@@ -29,13 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return ProviderConfirmChangesPage();
         }
 
-        protected override void SelectCourse()
-        {
-            var course = (editedApprenticeCourseDataHelper.EditedCourse == "91") ? "Software Tester" : "Able Seafarer";
-            formCompletionHelper.EnterText(SearchCourse, course);
-            formCompletionHelper.SendKeys(SearchCourse, Keys.Enter);
-        }
-
+        protected override void SelectCourse() => base.formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(_context);
     }

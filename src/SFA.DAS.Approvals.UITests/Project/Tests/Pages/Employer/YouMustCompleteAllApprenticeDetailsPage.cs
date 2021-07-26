@@ -7,6 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class YouMustCompleteAllApprenticeDetailsPage : ApprovalsBasePage
     {
+        protected override By PageHeader => By.CssSelector(".govuk-notification-banner__heading");
         protected override string PageTitle => "You must complete all apprentice details before you can approve this record";
 
         protected virtual By Reference => By.CssSelector("dd.das-definition-list__definition:nth-child(4)");
