@@ -16,5 +16,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             return listarray.Select(x => x[index]).ToList();
         }
+
+        public static string ToString(this List<string> list, string separator) => string.Join(separator, list);
     }
 }

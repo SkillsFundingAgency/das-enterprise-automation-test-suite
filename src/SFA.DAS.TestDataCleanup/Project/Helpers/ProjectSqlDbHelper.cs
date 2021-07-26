@@ -26,7 +26,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
         {
             var insertquery = accountIdToDelete.Select(x => insertQueryFunc(x)).ToList();
 
-            var sqlQuery = $"{createQuery};{string.Join(";", insertquery)};" + GetSql(sqlfilename);
+            var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + GetSql(sqlfilename);
 
             await TryExecuteSqlCommand(sqlQuery);
         }
