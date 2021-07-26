@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
-    public class TestDataCleanUpEasAccDbSqlDataHelper : ProjectSqlDbHelper
+    public class EasAccDbSqlDataHelper : ProjectSqlDbHelper
     {
-        public TestDataCleanUpEasAccDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        public EasAccDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
         internal List<string[]> GetAccountIds(int greaterThan, int lessThan)
         {

@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
-    public class TestdataCleanUpStepsHelper
+    public class TestdataCleanupWithAccountIdStepsHelper
     {
         private readonly DbConfig _dbConfig;
         private readonly int _greaterThan;
         private readonly int _lessThan;
         private readonly List<string> _easaccountidsnottodelete;
 
-        public TestdataCleanUpStepsHelper(DbConfig dbConfig, int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
+        public TestdataCleanupWithAccountIdStepsHelper(DbConfig dbConfig, int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
             _dbConfig = dbConfig;
             _greaterThan = greaterThan;
