@@ -30,7 +30,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected List<string[]> GetMultipleData(string query, string connectionstring, int noOfvalues)
         {
-            List<object[]> data = ReadDataFromDataBase(query, connectionstring);
+            List<object[]> data = TryReadDataFromDataBase(query, connectionstring);
 
             var returnItems = new List<string[]>();
 
@@ -75,23 +75,27 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
+        protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
-            return await Policy
+            return Policy
                 .Handle<Exception>((x) => x.Message.Contains("Exception occurred while executing SQL query"))
-                 .WaitAndRetryAsync(Logging.Timeout(), (exception, timeSpan, retryCount, context) =>
+                 .WaitAndRetry(Logging.Timeout(), (exception, timeSpan, retryCount, context) =>
                  {
                      Logging.Report(retryCount, exception, string.Empty);
                  })
-                 .ExecuteAsync(() => SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(queryToExecute, connectionString, parameters));
+                 .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(queryToExecute, connectionString, parameters).Result);
         }
 
-        protected async Task<int> TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)
+        protected int TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)
         {
-            return await TryExecuteSqlCommand(queryToExecute, connectionString, parameters);
+            return TryExecuteSqlCommand(queryToExecute, connectionString, parameters);
         }
 
-        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
+        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) 
+            => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
+
+        private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString) 
+            => RetryOnException("Exception occurred while executing SQL query", string.Empty, Logging.Timeout()).Execute(() => ReadDataFromDataBase(queryToExecute, connectionString));
 
         private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 

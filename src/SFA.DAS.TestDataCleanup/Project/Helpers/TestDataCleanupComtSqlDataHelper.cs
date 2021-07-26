@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
@@ -8,14 +7,14 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
     {
         public TestDataCleanupComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.CommitmentsDbConnectionString) { }
 
-        public async Task<(List<string>, List<string>)> CleanUpComtTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
+        public (List<string>, List<string>) CleanUpComtTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
-            return await CleanUpTestData(() => GetComtAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpComtTestData(x));
+            return CleanUpTestData(() => GetComtAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpComtTestData(x));
         }
 
-        internal async Task CleanUpComtTestData(List<string> accountIdToDelete)
+        internal int CleanUpComtTestData(List<string> accountIdToDelete)
         {
-            await CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasComtTestDataCleanUp");
+            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasComtTestDataCleanUp");
         }
 
         private List<string> GetComtAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)

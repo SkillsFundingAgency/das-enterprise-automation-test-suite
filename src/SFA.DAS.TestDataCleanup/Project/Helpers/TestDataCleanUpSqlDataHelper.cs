@@ -2,7 +2,6 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
@@ -12,7 +11,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         public TestDataCleanUpSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) => _dbConfig = dbConfig;
 
-        public async Task<(List<string>, List<string>)> CleanUpTestData(string email)
+        public (List<string>, List<string>) CleanUpTestData(string email)
         {
             List<string> usersdeleted = new List<string>();
 
@@ -34,24 +33,24 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
                     var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')", 1);
 
-                    await TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
+                    TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
 
                     if (accountids.Count == 1 && string.IsNullOrEmpty(accountids[0][0])) continue;
 
-                    await TryExecuteSqlCommand(GetSql("EasPregTestDataCleanUp"), _dbConfig.PregDbConnectionString, GetEmail());
+                    TryExecuteSqlCommand(GetSql("EasPregTestDataCleanUp"), _dbConfig.PregDbConnectionString, GetEmail());
 
                     var accountidsTodelete = accountids.ListOfArrayToList(0);
 
-                    await new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(accountidsTodelete);
-                    await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
-                    await new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
-                    await new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(accountidsTodelete);
-                    await new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(accountidsTodelete);
-                    await new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(accountidsTodelete);
-                    await new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
-                    await new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
+                    new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(accountidsTodelete);
+                    new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
+                    new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
+                    new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(accountidsTodelete);
+                    new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(accountidsTodelete);
+                    new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(accountidsTodelete);
+                    new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
+                    new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
 
-                    await TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
+                    TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
 
                     _user = $"{_userEmail},{accountidsTodelete.ToString(",")}";
 

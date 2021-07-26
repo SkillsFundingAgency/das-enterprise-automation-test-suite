@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers
 {
@@ -8,14 +7,14 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
     {
         public TestDataCleanUpRsvrSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ReservationsDbConnectionString) { }
 
-        public async Task<(List<string>, List<string>)> CleanUpRsvrTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
+        public (List<string>, List<string>) CleanUpRsvrTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
-            return await CleanUpTestData(() => GetRsvrAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpRsvrTestData(x));
+            return CleanUpTestData(() => GetRsvrAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpRsvrTestData(x));
         }
 
-        internal async Task CleanUpRsvrTestData(List<string> accountIdToDelete)
+        internal int CleanUpRsvrTestData(List<string> accountIdToDelete)
         {
-            await CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasRsrvTestDataCleanUp");
+            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasRsrvTestDataCleanUp");
         }
 
         private List<string> GetRsvrAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)

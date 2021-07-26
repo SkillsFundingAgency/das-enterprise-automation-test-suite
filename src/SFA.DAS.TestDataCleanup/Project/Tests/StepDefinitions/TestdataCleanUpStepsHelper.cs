@@ -2,7 +2,6 @@
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
@@ -21,39 +20,39 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
             _easaccountidsnottodelete = easaccountidsnottodelete;
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpComtTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpComtTestData()
         {
-            return AddDbName(await new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "comt");
+            return AddDbName(new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "comt");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpPrelTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpPrelTestData()
         {
-            return AddDbName(await new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "prel");
+            return AddDbName(new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "prel");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpPfbeTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpPfbeTestData()
         {
-            return AddDbName(await new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "pfbe");
+            return AddDbName(new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "pfbe");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpEmpFcastTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpEmpFcastTestData()
         {
-            return AddDbName(await new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "fcast");
+            return AddDbName(new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "fcast");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpEmpFinTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpEmpFinTestData()
         {
-            return AddDbName(await new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empfin");
+            return AddDbName(new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empfin");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpRsvrTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpRsvrTestData()
         {
-            return AddDbName(await new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "rsvr");
+            return AddDbName(new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "rsvr");
         }
 
-        internal async Task<(List<string> usersdeleted, List<string> userswithconstraints)> CleanUpEmpIncTestData()
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpEmpIncTestData()
         {
-            return AddDbName(await new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empinc");
+            return AddDbName(new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empinc");
         }
 
         private (List<string> usersdeleted, List<string> userswithconstraints) AddDbName((List<string>, List<string>) users, string dbname)
