@@ -19,7 +19,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         private List<string> GetEmpFcastAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
-            return GetAccountids($"select EmployerAccountId from dbo.LevyDeclaration where EmployerAccountId > {greaterThan} and EmployerAccountId < {lessThan} and EmployerAccountId not in ({string.Join(",", easaccountidsnottodelete)}) order by EmployerAccountId desc");
+            return GetAccountids($"select distinct EmployerAccountId from dbo.Commitment where EmployerAccountId > {greaterThan} and EmployerAccountId < {lessThan} and EmployerAccountId not in ({string.Join(",", easaccountidsnottodelete)}) order by EmployerAccountId desc");
         }
     }
 }

@@ -101,8 +101,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 4
- testRunner.Then("the test data are cleaned up in fcast db for accounts between \'56610\' and \'56616\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the test data are cleaned up in fcast db for accounts between \'214000\' and \'21500" +
+                        "0\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
