@@ -72,18 +72,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             }
         }
 
-        public async Task<bool> VerifyLearningRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task<bool> VerifyLearningRecordsExist(long apprenticeshipId)
         {
             using var dbConnection = new SqlConnection(connectionString);
-            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Learner WHERE ApprenticeshipId = @apprenticeshipId AND LearningFound = 1", new { apprenticeshipId });
 
             return count >= 1;
         }
 
-        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId, bool paymentsSent)
         {
             using var dbConnection = new SqlConnection(connectionString);
-            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            var sql = $"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId";
+            if (paymentsSent)
+            {
+                sql = $"{sql} AND PaidDate IS NOT NULL AND VrfVendorId IS NOT NULL";
+            }
+            var count = await dbConnection.ExecuteScalarAsync<int>(sql, new { apprenticeshipIncentiveId });
 
             return count >= 1;
         }
