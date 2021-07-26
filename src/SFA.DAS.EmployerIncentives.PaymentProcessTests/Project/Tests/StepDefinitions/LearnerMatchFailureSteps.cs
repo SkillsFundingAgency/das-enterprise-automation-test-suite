@@ -18,17 +18,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialIlrSubmissionDate;
         private DateTime _initialStartDate;
 
-        private readonly CollectionPeriodHelper _collectionPeriodHelper;
-        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
-        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
+        private readonly Helper _helper;
 
         protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
         {
             testData.AccountId = 14326;
 
-            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
-            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
-            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
+            _helper = context.Get<Helper>();
         }
 
         [Given(@"the learner match process has been triggered")]
@@ -37,20 +33,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialStartDate = new DateTime(2021, 6, 1);
             _initialIlrSubmissionDate = new DateTime(2021, 5, 12);
 
-            await _collectionPeriodHelper.SetActiveCollectionPeriod(10, 2021);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11);
 
-            incentiveApplication = new IncentiveApplicationBuilder()
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
                     .WithAccountId(testData.AccountId)
                     .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
                     .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
                     .WithApprenticeship(fixture.Create<long>(), fixture.Create<long>(), fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
                     .Create();
 
-            await _incentiveApplicationHelper.Submit(incentiveApplication);
+            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
-            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
@@ -68,15 +64,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithPriceEpisode(priceEpisode)
                     .Create();
 
-                await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
+                await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await _learnerMatchOrchestratorHelper.Run();
+            await _helper.LearnerMatchOrchestratorHelper.Run();
 
             // 2nd run
-            await _collectionPeriodHelper.SetActiveCollectionPeriod(11, 2021);            
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(11, 2021);            
 
-            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
@@ -94,19 +90,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithPriceEpisode(priceEpisode)
                     .Create();
 
-                await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
+                await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await _learnerMatchOrchestratorHelper.Run();
+            await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"an exception occurs for a learner")]
         public async Task WhenAnExceptionOccursForALearner()
         {
             // 3rd run 
-            await _collectionPeriodHelper.SetActiveCollectionPeriod(12, 2021);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
 
-            foreach (var apprenticeship in incentiveApplication.Apprenticeships)
+            foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
@@ -130,23 +126,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithPriceEpisode(priceEpisode)
                     .Create();
 
-                await SetupLearnerMatchApiResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
+                await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
             }
 
-            await _learnerMatchOrchestratorHelper.Run(true);
+            await _helper.LearnerMatchOrchestratorHelper.Run(true);
         }
 
         [Then(@"a record of learner match failure is created for the learner")]
         public void ThenARecordOfLearnerMatchFailureIsCreatedForTheLearner()
         {
-            var learner = GetFromDatabase<Learner>(x => x.ULN == testData.ULN && x.Ukprn == testData.UKPRN);
+            var learner = _helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ULN == testData.ULN && x.Ukprn == testData.UKPRN);
             learner.SuccessfulLearnerMatch.Should().BeFalse();
         }
         
         [Then(@"the learner match process should continue for all remaining learners")]
         public void ThenTheLearnerMatchProcessShouldContinueForAllRemainingLearners()
         {
-            var learners = GetAllFromDatabase<Learner>()
+            var learners = _helper.EISqlHelper.GetAllFromDatabase<Learner>()
                 .Where(x => x.ULN != testData.ULN && x.Ukprn != testData.UKPRN);
 
             foreach (var learner in learners)
@@ -158,7 +154,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"any CoCs are processed for each learner \(excluding exceptions\)")]
         public void ThenAnyCoCsAreProcessedForEachLearnerExcludingExceptions()
         {
-            var changeOfCircumstances = GetAllFromDatabase<ChangeOfCircumstance>().Where(
+            var changeOfCircumstances = _helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Where(
                 x => testData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
             
             changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped).Should().Be(3);
@@ -168,14 +164,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"days in learning is calculated for each learner \(excluding exceptions\)")]
         public void ThenDaysInLearningIsCalculatedForEachLearnerExcludingExceptions()
         {
-            var learnerIds = GetAllFromDatabase<Learner>().Where(
+            var learnerIds = _helper.EISqlHelper.GetAllFromDatabase<Learner>().Where(
                 x => testData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).Select(x => x.Id).ToList();
 
-            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+            _helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
                 learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 10).Should().Be(3);
-            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+            _helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
                 learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 11).Should().Be(3);
-            GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
+            _helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
                 learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 12).Should().Be(2);
         }
     }

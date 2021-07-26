@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class CollectionPeriodHelper
+    public class CollectionCalendarHelper
     {
         private readonly EISqlHelper _sqlHelper;
         private readonly StopWatchHelper _stopWatchHelper;
@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public (byte Number, short Year) ActivePeriod => _activePeriod;
 
-        public CollectionPeriodHelper(ScenarioContext context)
+        public CollectionCalendarHelper(ScenarioContext context)
         {
             _sqlHelper = context.Get<EISqlHelper>();
             _stopWatchHelper = context.Get<StopWatchHelper>();
@@ -25,6 +25,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _stopWatchHelper.Start("SetActiveCollectionPeriod");
             await _sqlHelper.SetActiveCollectionPeriod(periodNumber, academicYear);
             _stopWatchHelper.Stop("SetActiveCollectionPeriod");
-        }    
+        }
+
+        public async Task Reset()
+        {
+            await _sqlHelper.ResetCalendar();
+        }
     }
 }

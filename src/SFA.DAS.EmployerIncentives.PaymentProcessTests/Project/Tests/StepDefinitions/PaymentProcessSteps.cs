@@ -11,34 +11,28 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "PaymentsProcess")]
     public class PaymentsProcessSteps : StepsBase
     {
-        private readonly CollectionPeriodHelper _collectionPeriodHelper;
-        private readonly PaymentsOrchestratorHelper _paymentsOrchestratorHelper;
-        private readonly LearnerMatchOrchestratorHelper _learnerMatchOrchestratorHelper;
-        private readonly IncentiveApplicationHelper _incentiveApplicationHelper;
+        private readonly Helper _helper;
 
         public PaymentsProcessSteps(ScenarioContext context) : base(context) 
         {
             testData.AccountId = 14326;
             testData.ApprenticeshipId = 133217891;
 
-            _collectionPeriodHelper = context.Get<CollectionPeriodHelper>();
-            _paymentsOrchestratorHelper = context.Get<PaymentsOrchestratorHelper>();
-            _learnerMatchOrchestratorHelper = context.Get<LearnerMatchOrchestratorHelper>();
-            _incentiveApplicationHelper = context.Get<IncentiveApplicationHelper>();
+            _helper = context.Get<Helper>();
         }
 
         [Given(@"there is a valid learner")]
         public async Task GivenThereIsAValidLearner()
         {
-            await _collectionPeriodHelper.SetActiveCollectionPeriod(2, 2122);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(2, 2122);
 
             var startDate = DateTime.Parse("2021-6-12");
-            incentiveApplication = new IncentiveApplicationBuilder()
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(testData.AccountId)
                 .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await _incentiveApplicationHelper.Submit(incentiveApplication);
+            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
@@ -56,22 +50,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
-            await _learnerMatchOrchestratorHelper.Run();
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the payment process is completed")]
         public async Task WhenThePaymentProcessIsCompleted()
         {
-            await SetupBusinessCentralApiToAcceptAllPayments();
-            await _paymentsOrchestratorHelper.Run();
-            await _paymentsOrchestratorHelper.Approve();
+            await _helper.BusinessCentralApiHelper.AcceptAllPayments();
+            await _helper.PaymentsOrchestratorHelper.Run();
+            await _helper.PaymentsOrchestratorHelper.Approve();
         }
 
         [Then(@"payments exist")]
         public async Task ThenPaymentsExist()
         {
-            await VerifyPaymentRecordsExist();
+            await _helper.LearnerDataHelper.VerifyPaymentRecordsExist(testData.ApprenticeshipIncentiveId);
         }
     }
 }

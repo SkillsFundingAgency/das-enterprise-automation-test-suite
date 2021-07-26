@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -26,7 +25,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             _stopWatchHelper.Start("SubmitIncentiveApplication");
             await _sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
-            await _sqlHelper.CreateIncentiveApplication(application);            
+            await _sqlHelper.CreateIncentiveApplication(application);
 
             foreach (var apprenticeship in application.Apprenticeships)
             {
@@ -51,10 +50,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
                 await _eIServiceBusHelper.Publish(command);
                 _testData.ApprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
-                _testData.IncentiveIds.Add(_testData.ApprenticeshipIncentiveId);    
+                _testData.IncentiveIds.Add(_testData.ApprenticeshipIncentiveId);
                 await _sqlHelper.WaitUntilEarningsExist(_testData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
-            }            
+            }
             _stopWatchHelper.Stop("SubmitIncentiveApplication");
+        }
+
+        public async Task Delete(IncentiveApplication application)
+        {
+            _stopWatchHelper.Start("DeleteApplicationData");
+            await _sqlHelper.DeleteApplicationData(application.Id);
+            _stopWatchHelper.Stop("DeleteApplicationData");
         }
     }
 }

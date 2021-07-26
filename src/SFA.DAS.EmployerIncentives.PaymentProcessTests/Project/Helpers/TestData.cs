@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
@@ -11,6 +12,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public long ULN { get; set; }
         public IList<Guid> IncentiveIds { get; set; }
         public Guid ApprenticeshipIncentiveId { get; set; }
+        public IncentiveApplication IncentiveApplication { get; set; }
 
         public TestData()
         {
