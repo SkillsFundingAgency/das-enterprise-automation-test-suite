@@ -29,11 +29,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeHomePage(_context);
         }
 
-        public YouCantConfirmYourApprenticeship SelectNo()
+        public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployer()
         {
             formCompletionHelper.SelectRadioOptionByText("No");
             Continue();
-            return new YouCantConfirmYourApprenticeship(_context);
+            return new YouCantConfirmYourEmployerPage(_context);
+        }
+
+        public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProvider()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            Continue();
+            return new YouCantConfirmYourTrainingProviderPage(_context);
+        }
+
+        public YouCantConfirmYourDetailsPage SelectNoConfirmYourDetails()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            Continue();
+            return new YouCantConfirmYourDetailsPage(_context);
         }
 
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);
