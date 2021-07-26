@@ -27,7 +27,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
             var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + GetSql(sqlfilename);
 
-            var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery) - accountIdToDelete.Count;
+            var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery, connectionString) - accountIdToDelete.Count;
 
             return noOfRowsDeleted;
         }

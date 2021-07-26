@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public abstract class SqlDbHelper
+    public abstract class SqlDbHelper : SqlDbRetryHelper
     {
         protected readonly string connectionString;
 
@@ -72,40 +72,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
+        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 
+            => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
-        {
-            return Policy
-                .Handle<Exception>((x) => x.Message.Contains("Exception occurred while executing SQL query"))
-                 .WaitAndRetry(Logging.Timeout(), (exception, timeSpan, retryCount, context) =>
-                 {
-                     Logging.Report(retryCount, exception, string.Empty);
-                 })
-                 .Execute(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
-        }
+            => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
-        protected int TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)
-        {
-            return TryExecuteSqlCommand(queryToExecute, connectionString, parameters);
-        }
+        protected object TryGetDataAsObject(string queryToExecute, string exception, string title)
+            => RetryOnException(() => GetDataAsObject(queryToExecute), exception, title, Logging.DefaultTimeout());
 
-        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) 
-            => RetryOnException(exception, title, Logging.DefaultTimeout()).Execute(() => GetDataAsObject(queryToExecute));
-
-        private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString) 
-            => RetryOnException("Exception occurred while executing SQL query", string.Empty, Logging.Timeout()).Execute(() => ReadDataFromDataBase(queryToExecute, connectionString));
+        private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString)
+            => RetryOnException(() => ReadDataFromDataBase(queryToExecute, connectionString));
 
         private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
-        private Policy RetryOnException(string exception, string title, TimeSpan[] timeSpans)
-        {
-            return Policy
-                .Handle<Exception>((x) => x.Message.Contains(exception))
-                 .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
-                 {
-                     Logging.Report(retryCount, exception, title);
-                 });
-        }
     }
 }

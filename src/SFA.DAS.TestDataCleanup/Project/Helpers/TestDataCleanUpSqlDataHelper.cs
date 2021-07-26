@@ -50,7 +50,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                     noOfRowsDeleted += new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
                     noOfRowsDeleted += new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
 
-                    noOfRowsDeleted += TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), GetEmail());
+                    noOfRowsDeleted += TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
 
                     _user = $"{_userEmail},{accountidsTodelete.ToString(",")},{noOfRowsDeleted} rows deleted";
 
