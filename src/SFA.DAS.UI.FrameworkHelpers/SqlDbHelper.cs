@@ -83,7 +83,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  {
                      Logging.Report(retryCount, exception, string.Empty);
                  })
-                 .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(queryToExecute, connectionString, parameters).Result);
+                 .Execute(() => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters));
         }
 
         protected int TryExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters = null)

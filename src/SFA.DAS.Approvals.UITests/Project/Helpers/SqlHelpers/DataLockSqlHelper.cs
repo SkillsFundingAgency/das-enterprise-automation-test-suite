@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 { "@TrainingPrice", _dataHelper.TrainingPrice}
             };
 
-            _ = SqlDatabaseConnectionHelper.ExecuteSqlCommandAsync(sqlQueryFromFile, connectionString, sqlParameters);
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(sqlQueryFromFile, connectionString, sqlParameters);
         }
     }
 }
