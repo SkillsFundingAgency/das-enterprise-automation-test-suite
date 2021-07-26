@@ -34,6 +34,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task SetupResponseHttpStatusCode(long uln, long ukprn, HttpStatusCode statusCode)
+        {
+            var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
+            var nullContent = new StringContent("{}", Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=Get&url={url}&httpStatusCode={(int)statusCode}", nullContent);
+            response.EnsureSuccessStatusCode();
+        }
+
         public async Task DeleteMapping(long uln, long ukprn)
         {
             var url = WebUtility.UrlEncode($"/learner-match/api/v1/{ukprn}/{uln}?");
