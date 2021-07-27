@@ -18,10 +18,10 @@ PRINT 'delete from AccountHistory'
 delete from employer_account.AccountHistory where AccountId in (select id from #accountids);
 PRINT 'delete from Paye'
 delete from employer_account.Paye where Ref in ( select EmpRef from employer_account.GetAccountPayeSchemes where AccountId in (select id from #accountids));
-PRINT 'delete from TransferConnectionInvitation'
-delete from employer_account.TransferConnectionInvitation where SenderAccountId in (select id from #accountids) or ReceiverAccountId in (select id from #accountids);
 PRINT 'delete from TransferConnectionInvitationChange'
 delete from employer_account.TransferConnectionInvitationChange where SenderAccountId in (select id from #accountids) or ReceiverAccountId in (select id from #accountids) or UserId in (select id from #userids);
+PRINT 'delete from TransferConnectionInvitation'
+delete from employer_account.TransferConnectionInvitation where SenderAccountId in (select id from #accountids) or ReceiverAccountId in (select id from #accountids);
 PRINT 'delete from TransferRequest'
 delete from employer_account.TransferRequest where SenderAccountId in (select id from #accountids) or ReceiverAccountId in (select id from #accountids);
 PRINT 'delete from UserAccountSettings'

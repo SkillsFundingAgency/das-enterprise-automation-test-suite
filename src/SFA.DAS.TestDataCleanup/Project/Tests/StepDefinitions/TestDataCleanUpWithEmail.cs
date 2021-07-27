@@ -14,7 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 
 
         [Then(@"the test data are cleaned up")]
-        public void ThenTheTestDataAreCleanedUp() => CleanUpTestData("AP_Test_133_01Nov2019%");
+        public void ThenTheTestDataAreCleanedUp() => CleanUpTestData("AP_Test_%05Nov2019%");
 
         private void CleanUpTestData(string email) => CleanUpTestData(() => new TestDataCleanUpSqlDataHelper(_dbConfig).CleanUpTestData(email));
     }
