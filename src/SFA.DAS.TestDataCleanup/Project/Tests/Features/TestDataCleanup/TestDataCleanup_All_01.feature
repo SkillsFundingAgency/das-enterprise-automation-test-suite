@@ -3,4 +3,4 @@
 To clean up test data from emp-acc-db
 
 Scenario: Cleanup_Testdata_All_01
-	Then the test data are cleaned up for email %Aug2019%
+	Then the test data are cleaned up for email %0_Mar2020%
