@@ -24,16 +24,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task InitialCleanup()
         {
             await _helper.IncentiveHelper.Delete(testData.AccountId, testData.ApprenticeshipId);
-            await _helper.CollectionCalendarHelper.Reset();
-        }
-
-        [AfterScenario()]
-        public async Task CleanUpIncentives()
-        {
-            if (testData.ApprenticeshipIncentiveId != Guid.Empty) await _helper.IncentiveHelper.Delete(testData.IncentiveApplication);
-            if (testData.IncentiveApplication != null) await _helper.IncentiveApplicationHelper.Delete(testData.IncentiveApplication);
-            await _helper.LearnerMatchApiHelper.DeleteMapping(testData.ULN, testData.UKPRN);
-            await _helper.CollectionCalendarHelper.Reset();
         }
     }
 }

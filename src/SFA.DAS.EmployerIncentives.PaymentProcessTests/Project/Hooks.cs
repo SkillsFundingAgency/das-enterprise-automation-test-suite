@@ -1,5 +1,7 @@
 ﻿using AutoFixture;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
+using System;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
@@ -9,6 +11,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
     {
         private readonly ScenarioContext _context;
         private readonly Fixture _fixture;
+        private TestData _testData;
+        private Helper _helper;
 
         public Hooks(ScenarioContext context)
         {
@@ -17,10 +21,24 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers()
+        public async Task SetUpHelpers()
         {
-            _context.Set(_fixture.Create<TestData>());
-            _context.Set(new Helper(_context));                       
+            _testData = _fixture.Create<TestData>();
+            _context.Set(_testData);
+
+            _helper = new Helper(_context);
+            _context.Set(_helper);
+
+            await _helper.CollectionCalendarHelper.Reset();
+        }
+
+        [AfterScenario()]
+        public async Task CleanUpIncentives()
+        {
+            if (_testData.ApprenticeshipIncentiveId != Guid.Empty) await _helper.IncentiveHelper.Delete(_testData.IncentiveApplication);
+            if (_testData.IncentiveApplication != null) await _helper.IncentiveApplicationHelper.Delete(_testData.IncentiveApplication);
+            await _helper.LearnerMatchApiHelper.DeleteMapping(_testData.ULN, _testData.UKPRN);
+            await _helper.CollectionCalendarHelper.Reset();
         }
     }
 }
