@@ -21,6 +21,8 @@ PRINT 'delete from DataLockStatus';
 delete from dbo.DataLockStatus where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from ApprenticeshipUpdate';
 delete from dbo.ApprenticeshipUpdate where ApprenticeshipId in (select id from #apprenticeshipids)
+PRINT 'delete from ApprenticeshipConfirmationStatus';
+delete from dbo.ApprenticeshipConfirmationStatus where ApprenticeshipId in (select id from #apprenticeshipids)
 PRINT 'delete from Apprenticeship';
 delete from dbo.Apprenticeship where CommitmentId in (select id from #commitmentids)
 PRINT 'delete from Commitment';

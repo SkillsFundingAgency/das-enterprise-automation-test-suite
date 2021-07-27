@@ -17,7 +17,11 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
             List<string> userswithconstraints = new List<string>();
 
-            var userEmailList = GetMultipleData($"select top 200 Email from employer_account.[User] where Email like ('{email}') and Email not like '%perftest.com' and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
+            var userEmailList = GetMultipleData($"select top 200 Email from employer_account.[User] where " +
+                $"Email like ('{email}') " +
+                $"and Email like '___Test__________________________@%' " +
+                $"and Email not like '%perftest.com' " +
+                $"and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
 
             if (IsNullOrEmpty(userEmailList)) return (usersdeleted, userswithconstraints);
 
