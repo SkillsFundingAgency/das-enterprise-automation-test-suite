@@ -1,19 +1,22 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedRolesAndResponsibilitiesPage : ConfirmYourDetailsPage
     {
-        protected override string PageTitle => "You have read through roles and responsibilities";
+        protected override string PageTitle => SectionHelper.Section5;
+        private string GreenTickTextInfo => "You have read through roles and responsibilities";
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
+            VerifyPage();
+            pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
         }
 
-        public new AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesYouTab()
+        public new AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesYourResponsibilitiesTab()
         {
-            base.VerifyRolesYouTab();
+            base.VerifyRolesYourResponsibilitiesTab();
             return this;
         }
 
