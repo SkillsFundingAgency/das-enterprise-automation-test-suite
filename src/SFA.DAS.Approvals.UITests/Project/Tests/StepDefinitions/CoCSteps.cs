@@ -132,8 +132,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                var empex = Assert.Throws(typeof(WebDriverTimeoutException), () => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.That(empex.InnerException, Is.TypeOf<NoSuchElementException>(), "Employer can edit cost and course after ILR match");
+                var empex = Assert.Throws(typeof(NoSuchElementException), () => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.That(empex.Message.Contains("no such element: Unable to locate element:"), "Employer can edit cost and course after ILR match");
             });
         }
 
@@ -154,8 +154,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                var proex = Assert.Throws(typeof(WebDriverTimeoutException), () => provideraction(), "Provider can edit cost and course after ILR match");
-                Assert.That(proex.InnerException, Is.TypeOf<NoSuchElementException>(), "Provider can edit cost and course after ILR match");
+                var proex = Assert.Throws(typeof(NoSuchElementException), () => provideraction(), "Provider can edit cost and course after ILR match");
+                Assert.That(proex.Message.Contains("no such element: Unable to locate element:"), "Provider can edit cost and course after ILR match");
             });
         }
 
