@@ -1,7 +1,5 @@
 ﻿using AutoFixture;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using System;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -18,12 +16,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             fixture = new Fixture();
             testData = context.Get<TestData>();
-        }
-
-        [BeforeScenario()]
-        public async Task InitialCleanup()
-        {
-            await _helper.IncentiveHelper.Delete(testData.AccountId, testData.ApprenticeshipId);
         }
     }
 }

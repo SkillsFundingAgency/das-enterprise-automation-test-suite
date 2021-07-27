@@ -13,11 +13,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
         private readonly Fixture _fixture;
         private TestData _testData;
         private Helper _helper;
+        private bool _hasRunInitialCleanup;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _fixture = new Fixture();
+            _hasRunInitialCleanup = false;
         }
 
         [BeforeScenario(Order = 42)]
@@ -30,6 +32,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
             _context.Set(_helper);
 
             await _helper.CollectionCalendarHelper.Reset();
+        }
+
+        [BeforeScenarioBlock()]
+        public async Task InitialCleanup()
+        {
+            if (!_hasRunInitialCleanup)
+            {
+                await _helper.IncentiveHelper.Delete(_testData.AccountId, _testData.ApprenticeshipId);
+            }
+            _hasRunInitialCleanup = true;
         }
 
         [AfterScenario()]
