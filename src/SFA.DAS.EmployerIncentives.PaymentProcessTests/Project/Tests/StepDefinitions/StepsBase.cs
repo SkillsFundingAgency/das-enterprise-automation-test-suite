@@ -8,11 +8,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         protected TestData testData;
         protected Fixture fixture;
-        private readonly Helper _helper;
+        protected Helper helper;
 
         protected StepsBase(ScenarioContext context)
         {
-            _helper = context.Get<Helper>();
+            helper = context.Get<Helper>();
 
             fixture = new Fixture();
             testData = context.Get<TestData>();
