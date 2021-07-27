@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 		#endregion
 
 		private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-        private By AddAnApprenticeButton => By.ClassName("button-secondary");
+        private By AddAnApprenticeButton => By.CssSelector(".add-app-btn");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private By EditApprenticeLink => By.LinkText("Edit");
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");

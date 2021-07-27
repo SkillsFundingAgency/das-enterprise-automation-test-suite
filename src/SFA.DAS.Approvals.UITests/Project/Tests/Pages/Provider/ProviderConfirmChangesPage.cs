@@ -11,14 +11,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By AcceptChangesOptions => By.CssSelector(".selection-button-radio");
-        private By FinishButton => By.CssSelector("#submit-confirm-changes");
+        private By AcceptChangesOptions => By.Id("ConfirmChanges");
+        private By FinishButton => By.Id("submit-confirm-change");
 
         public ProviderConfirmChangesPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderApprenticeDetailsPage AcceptChangesAndSubmit()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(AcceptChangesOptions, "changes-confirmed-true");
+            javaScriptHelper.ClickElement(AcceptChangesOptions);
             formCompletionHelper.ClickElement(FinishButton);
             return new ProviderApprenticeDetailsPage(_context);
         }

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -26,6 +27,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected EISqlHelper sqlHelper;
         protected LearnerMatchApiHelper learnerMatchApi;
         protected EILearnerMatchHelper learnerMatchService;
+        protected EIFunctionsHelper functionsService;
         protected BusinessCentralApiHelper businessCentralApiHelper;
         protected readonly EIServiceBusHelper serviceBusHelper;
         protected readonly EIPaymentsProcessHelper paymentService;
@@ -55,8 +57,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             learnerMatchApi = new LearnerMatchApiHelper(eiConfig);
             learnerMatchService = new EILearnerMatchHelper(eiConfig);
+            functionsService = new EIFunctionsHelper(eiConfig);
 
-            businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
+           businessCentralApiHelper = new BusinessCentralApiHelper(eiConfig);
             paymentService = new EIPaymentsProcessHelper(eiConfig);
 
             Console.WriteLine($@"[StepsBase] initialised in {_stopwatch.Elapsed.Milliseconds} ms");
@@ -170,6 +173,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             StopStopWatch("SetupLearnerMatchApiResponse");
         }
 
+        protected async Task SetupLearnerMatchApiStatusCodeResponse(long uln, long ukprn, HttpStatusCode statusCode)
+        {
+            StartStopWatch("SetupLearnerMatchApiStatusCodeResponse");
+            await learnerMatchApi.SetupResponseHttpStatusCode(uln, ukprn, statusCode);
+            StopStopWatch("SetupLearnerMatchApiStatusCodeResponse");
+        }
+
         protected List<T> GetAllFromDatabase<T>() where T : class
         {
             using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
@@ -180,6 +190,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
             return dbConnection.GetAll<T>().Single(predicate);
+        }
+
+        protected T GetSingleOrDefaultFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(sqlHelper.ConnectionString);
+            return dbConnection.GetAll<T>().SingleOrDefault(predicate);
         }
 
         protected async Task RunPaymentsOrchestrator()
@@ -204,15 +220,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await businessCentralApiHelper.SetupAcceptAllRequests();
             StopStopWatch("SetupBusinessCentralApiToAcceptAllPayments");
         }
-        protected async Task VerifyLearningRecordsExist()
+        protected async Task VerifyLearningRecordsExist(long apprenticeshipId)
         {
-            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
             Assert.IsTrue(exist);
         }
-
-        protected async Task VerifyPaymentRecordsExist()
+        protected async Task VerifyLearningRecordsDoNotExist(long apprenticeshipId)
         {
-            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId);
+            var exist = await sqlHelper.VerifyLearningRecordsExist(apprenticeshipId);
+            Assert.IsFalse(exist);
+        }
+
+        protected async Task VerifyPaymentRecordsExist(bool paymentsSent = false)
+        {
+            var exist = await sqlHelper.VerifyPaymentRecordsExist(apprenticeshipIncentiveId, paymentsSent);
             Assert.IsTrue(exist);
         }
 
