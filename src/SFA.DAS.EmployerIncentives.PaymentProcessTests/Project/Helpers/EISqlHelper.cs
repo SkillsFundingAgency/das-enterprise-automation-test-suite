@@ -5,6 +5,8 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,6 +21,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public EISqlHelper(DbConfig eIConfig) : base(eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString; // todo: undo : )
 
+        public List<T> GetAllFromDatabase<T>() where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().ToList();
+        }
+
+        public T GetFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().Single(predicate);
+        }
+        public T GetSingleOrDefaultFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().SingleOrDefault(predicate);
+        }
         public void DeleteIncentiveApplication(string accountId)
         {
             query =

@@ -11,9 +11,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmRolesAndResponsibilitiesPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public new ConfirmRolesAndResponsibilitiesPage VerifyRolesYouTab()
+        public new ConfirmRolesAndResponsibilitiesPage VerifyRolesYourResponsibilitiesTab()
         {
-            base.VerifyRolesYouTab();
+            base.VerifyRolesYourResponsibilitiesTab();
             return this;
         }
 
