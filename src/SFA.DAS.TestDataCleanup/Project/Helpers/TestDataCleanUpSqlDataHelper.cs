@@ -39,7 +39,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
                     var accountidsTodelete = accountids.ListOfArrayToList(0);
 
-                    if (accountidsTodelete.Count != 1 && !string.IsNullOrEmpty(accountidsTodelete[0]))
+                    if (!string.IsNullOrEmpty(accountidsTodelete[0]))
                     {
                         noOfRowsDeleted += new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(accountidsTodelete);
                         noOfRowsDeleted += new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
