@@ -20,22 +20,22 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.Features.TestDataCleanup
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TesData_Cleanup_All_05")]
-    public partial class TesData_Cleanup_All_05Feature
+    [NUnit.Framework.DescriptionAttribute("TesData_Cleanup_All")]
+    public partial class TesData_Cleanup_AllFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TestDataCleanup_All_05.feature"
+#line 1 "TestDataCleanup_All.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TesData_Cleanup_All_05", "To clean up test data from emp-acc-db", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TesData_Cleanup_All", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,13 +74,13 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.Features.TestDataCleanup
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cleanup_Testdata_All_05")]
-        public virtual void Cleanup_Testdata_All_05()
+        [NUnit.Framework.DescriptionAttribute("Cleanup_Testdata_All")]
+        public virtual void Cleanup_Testdata_All()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cleanup_Testdata_All_05", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cleanup_Testdata_All", null, tagsOfScenario, argumentsOfScenario);
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -100,8 +100,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Then("the test data are cleaned up for email %May2020%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 4
+ testRunner.Then("the test data are cleaned up for email %Aug2020%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

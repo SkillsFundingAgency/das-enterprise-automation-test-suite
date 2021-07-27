@@ -21,6 +21,23 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 $"Email like ('{email}') " +
                 $"and Email like '___Test__________________________@%' " +
                 $"and Email not like '%perftest.com' " +
+                $"and Email not like '%PerfTest%' " +
+                $"and Email not like '%Sep2020%' " +
+                $"and Email not like '%Oct2020%' " +
+                $"and Email not like '%Nov2020%' " +
+                $"and Email not like '%Dec2020%' " +
+                $"and Email not like '%Jan2021%' " +
+                $"and Email not like '%Feb2021%' " +
+                $"and Email not like '%Mar2021%' " +
+                $"and Email not like '%Apr2021%' " +
+                $"and Email not like '%May2021%' " +
+                $"and Email not like '%Jun2021%' " +
+                $"and Email not like '%Jul2021%' " +
+                $"and Email not like '%Aug2021%' " +
+                $"and Email not like '%Sep2021%' " +
+                $"and Email not like '%Oct2021%' " +
+                $"and Email not like '%Nov2021%' " +
+                $"and Email not like '%Dec2021%' " +
                 $"and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
 
             if (IsNullOrEmpty(userEmailList)) return (usersdeleted, userswithconstraints);
