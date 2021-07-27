@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
@@ -11,33 +12,38 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "LearnerMatchTest")]
     public class LearnerMatchTestSteps : StepsBase
     {
-        private const long AccountId = 14326;
-        private const long ApprenticeshipId = 133217890;
+        private readonly Helper _helper;
 
-        public LearnerMatchTestSteps(ScenarioContext context) : base(context) { }
+        public LearnerMatchTestSteps(ScenarioContext context) : base(context) 
+        {
+            testData.AccountId = 14326;
+            testData.ApprenticeshipId = 133217890;
+
+            _helper = context.Get<Helper>();
+        }
 
         [Given(@"there are some apprenticeship incentives")]
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
-            await SetActiveCollectionPeriod(10, 2021);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
 
             var startDate = DateTime.Parse("2021-06-12");
-            incentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccountId(testData.AccountId)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 7)
+                .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -45,44 +51,44 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
         [When(@"the learner match service is completed")]
         public async Task WhenTheLearnerMatchServiceIsCompleted()
         {
-            await RunLearnerMatchOrchestrator();
+            await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [Then(@"a learner match record is created for the apprenticeship id")]
         public async Task ThenWeHaveSomeLearnerData()
         {
-            await VerifyLearningRecordsExist(ApprenticeshipId);
+            await _helper.LearnerDataHelper.VerifyLearningRecordsExist(testData.ApprenticeshipId);
         }
 
 
         [Given(@"an apprenticeship incentive for a learner")]
         public async Task GivenAnApprenticeshipIncentiveForALearner()
         {
-            await SetActiveCollectionPeriod(10, 2021);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
 
             var startDate = DateTime.Parse("2021-06-12");
-            incentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccountId(testData.AccountId)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 7)
+                .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -90,33 +96,33 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
         [When(@"the learner is not found")]
         public async Task WhenTheLearnerIsNotFound()
         {
-            await SetupLearnerMatchApiStatusCodeResponse(ULN, UKPRN, HttpStatusCode.NotFound);
+            await _helper.LearnerMatchApiHelper.SetupResponseHttpStatusCode(testData.ULN, testData.UKPRN, HttpStatusCode.NotFound);
         }
 
         [Then(@"a learner match record is not created for the apprenticeship id")]
         public async Task ThenALearnerMatchRecordIsNotCreated()
         {
-            await VerifyLearningRecordsDoNotExist(ApprenticeshipId);
+            await _helper.LearnerDataHelper.VerifyLearningRecordsDoNotExist(testData.ApprenticeshipId);
         }
 
         [Given(@"an apprenticeship incentive for a learner submitted in the previous academic year")]
         public async Task GivenAnApprenticeshipIncentiveForALearnerSubmittedInThePreviousAY()
         {
-            await SetActiveCollectionPeriod(01, 2122);
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
 
             var startDate = DateTime.Parse("2021-06-12");
-            incentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(AccountId)
-                .WithApprenticeship(ApprenticeshipId, ULN, UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccountId(testData.AccountId)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await SubmitIncentiveApplication(incentiveApplication);
+            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
         }
 
         [When(@"the learner is found in the current academic year")]
@@ -126,12 +132,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 7)
+                .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
                 .WithAcademicYear(2122)
                 .WithIlrSubmissionDate("2021-08-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(1)
@@ -139,7 +145,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
         [When(@"the learner is found in the previous academic year")]
@@ -149,12 +155,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 7)
+                .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(11)
@@ -162,7 +168,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
         [When(@"the learner is found in the previous and current academic year")]
@@ -172,17 +178,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisodePreviousAY = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 7)
+                .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
             var priceEpisodeCurrentAY = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(ApprenticeshipId, 1)
+                .WithPeriod(testData.ApprenticeshipId, 1)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(UKPRN)
-                .WithUln(ULN)
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(11)
@@ -191,7 +197,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisodeCurrentAY)
                 .Create();
 
-            await SetupLearnerMatchApiResponse(ULN, UKPRN, learnerSubmissionData);
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
     }
