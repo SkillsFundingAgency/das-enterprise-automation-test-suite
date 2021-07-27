@@ -16,7 +16,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
           "'LE_Test_101_01Dec2020_13165726403@mailinator.com'",
           "'LE_Test_101_01Dec2020_13091928413@mailinator.com'",
           "'LE_Test_101_01Dec2020_13030055901@mailinator.com'",
-          "'LE_Test_101_30Nov2020_22564021583@mailinator.com'"};
+          "'LE_Test_101_30Nov2020_22564021583@mailinator.com'",
+          "'LE_Test_101_28Jul2020_08403294994@mailinator.com'"};
 
         internal static string GetInUseEmails() { lock (_emails) { return string.Join(",", _emails); } }
 
