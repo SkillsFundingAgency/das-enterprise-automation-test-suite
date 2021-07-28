@@ -22,7 +22,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 $"and Email like '___Test__________________________@%' " +
                 $"and Email not like '%perftest.com' " +
                 $"and Email not like '%PerfTest%' " +
-                $"and Email not like '%Sep2020%' " +
                 $"and Email not like '%Oct2020%' " +
                 $"and Email not like '%Nov2020%' " +
                 $"and Email not like '%Dec2020%' " +
