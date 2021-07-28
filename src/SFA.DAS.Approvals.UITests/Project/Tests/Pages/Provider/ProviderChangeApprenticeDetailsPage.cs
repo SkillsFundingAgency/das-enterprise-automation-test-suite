@@ -10,8 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-        private By DoYouWantToRequestChangesOptions => By.XPath("//input[@value='Confirm']");
-        private By FinishButton => By.Id("finish-button");
+        private By DoYouWantToRequestChangesOptions => By.XPath("(//input[@class='govuk-radios__input'])[1]");
+        private By FinishButton => By.XPath("(//button[@type='submit'])[2]");
 
         public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
