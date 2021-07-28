@@ -48,17 +48,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
         }
 
-        public int WhiteListProviders(string ukprn)
+        public int AllowListProviders(string ukprn)
         {
             ukprn ??= _objectContext.GetUkprn();
 
-            var insertWhiteListProviderQuery =
-                $"IF NOT EXISTS(SELECT * FROM WhitelistedProviders WHERE [UKPRN] = {ukprn}) " +
+            var insertAllowListProviderQuery =
+                $"IF NOT EXISTS(SELECT * FROM AllowedProviders WHERE [UKPRN] = {ukprn}) " +
                 $"BEGIN " +
-                $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({ukprn}) " +
+                $"INSERT INTO AllowedProviders([UKPRN]) VALUES({ukprn}) " +
                 $"END";
 
-            return ExecuteSqlCommand(insertWhiteListProviderQuery);
+            return ExecuteSqlCommand(insertAllowListProviderQuery);
         }
 
 

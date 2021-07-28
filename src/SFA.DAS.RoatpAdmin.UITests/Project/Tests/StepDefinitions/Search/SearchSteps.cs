@@ -13,7 +13,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Search
     public class SearchSteps
     {
         private readonly ScenarioContext _context;
-        private GatewayLandingPage gatewayLandingPage;
+        private GatewayLandingPage _gatewayLandingPage;
+        private FinancialLandingPage _financialLandingPage;
 
         public SearchSteps(ScenarioContext context)
         {
@@ -23,20 +24,36 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Search
         [When(@"the admin searches for a provider in Gateway by provider name")]
         public void WhenTheAdminSearchesForAProviderInGatewayByProviderName()
         {
-            gatewayLandingPage = new StaffDashboardPage(_context).AccessGatewayApplications().SelectInOutcomeTab().ConfirmGatewaySearchByName();
+            _gatewayLandingPage = new StaffDashboardPage(_context).AccessGatewayApplications().SelectInOutcomeTab().ConfirmGatewaySearchByName();
         }
 
-        [Then(@"the search results should be displayed")]
-        public void ThenTheSearchResultsShouldBeDisplayed()
+        [Then(@"the search results should be displayed for Gateway")]
+        public void ThenTheSearchResultsShouldBeDisplayedForGateway()
         {
-            Assert.IsTrue(gatewayLandingPage.VerifyApplication(), "Verify gateway search functionality");
+            Assert.IsTrue(_gatewayLandingPage.VerifyApplication(), "Verify gateway search functionality");
         }
 
         [When(@"the admin searches for a provider in Gateway by UKPRN")]
         public void WhenTheAdminSearchesForAProviderInGatewayByUKPRN()
         {
-            gatewayLandingPage = new GatewayLandingPage(_context).ClearSearchResult_OutcomeTab().SelectInOutcomeTab().ConfirmGatewaySearchByUkprn();
+            _gatewayLandingPage = new GatewayLandingPage(_context).ClearSearchResult_OutcomeTab().SelectInOutcomeTab().ConfirmFinanceSearchByUkprn();
+        }
+        [When(@"the admin searches for a provider in Finance by provider name")]
+        public void WhenTheAdminSearchesForAProviderInFinanceByProviderName()
+        {
+            _financialLandingPage = new StaffDashboardPage(_context).AccessFinancialApplications().SelectInOutcomeTab().ConfirmFinanceSearchByName();
         }
 
+        [Then(@"the search results should be displayed for Finance")]
+        public void ThenTheSearchResultsShouldBeDisplayedForFinance()
+        {
+            Assert.IsTrue(_financialLandingPage.VerifyApplication(), "Verify Finance search functionality");
+        }
+
+        [When(@"the admin searches for a provider in Finance by UKPRN")]
+        public void WhenTheAdminSearchesForAProviderInFinanceByUKPRN()
+        {
+            gatewayLandingPage = new GatewayLandingPage(_context).ClearSearchResult_OutcomeTab().SelectInOutcomeTab().ConfirmFinanceSearchByUkprn();
+        }
     }
 }

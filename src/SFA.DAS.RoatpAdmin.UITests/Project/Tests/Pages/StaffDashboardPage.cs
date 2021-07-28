@@ -45,10 +45,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new OversightLandingPage(_context);
         }
 
-        public RoatpAdminHomePage SearchForATrainingProvider()
+        public SearchPage SearchForATrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
-            return new RoatpAdminHomePage(_context);
+            return new SearchPage(_context);
         }
 
         public StaffDashboardPage DownloadTrainingProvider()

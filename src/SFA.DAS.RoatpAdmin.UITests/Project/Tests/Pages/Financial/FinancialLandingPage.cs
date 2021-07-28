@@ -47,5 +47,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             base.VerifyOutcomeStatus(expectedStatus);
             return new FinancialLandingPage(_context);
         }
+        public FinancialLandingPage ConfirmFinanceSearchByName()
+        {
+            SearchProviderByName();
+            return this;
+        }
+        public FinancialLandingPage ConfirmFinanceSearchByUkprn()
+        {
+            SearchProviderByUKPRN();
+            return this;
+        }
     }
 }
