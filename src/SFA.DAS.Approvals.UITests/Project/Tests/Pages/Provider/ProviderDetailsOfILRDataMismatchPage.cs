@@ -10,8 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        //private By FixILRMismatchOptions => By.CssSelector(".selection-button-radio");
         private By FixILRMismatchOptions => By.XPath("//input[@value='Confirm']");
         protected override By ContinueButton => By.Id("fix-mismatch");
 
@@ -19,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderChangeApprenticeDetailsPage RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
         {
-            //formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-Confirm");
             javaScriptHelper.ClickElement(FixILRMismatchOptions);
             Continue();
             return new ProviderChangeApprenticeDetailsPage(_context);
