@@ -1,0 +1,33 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+
+
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+{
+    public class AD_CheckTheWithdrawDatePage : EPAO_BasePage
+    {
+        protected override string PageTitle => "Check the withdrawal date";
+
+        protected override By ContinueButton => By.CssSelector(".govuk-button");
+
+        private readonly ScenarioContext _context;
+
+        private By YesInput => By.CssSelector("#dateApproved-yes");
+
+        public AD_CheckTheWithdrawDatePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public AD_CompleteReview ContinueWithWithdrawalRequest()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(YesInput));
+            Continue();
+            return new AD_CompleteReview(_context);
+        }
+
+    }
+}

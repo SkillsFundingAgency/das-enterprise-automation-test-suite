@@ -6,7 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Withdrawal request overview";
+        protected override string PageTitle => "Withdrawal application overview";
 
         private readonly ScenarioContext _context;
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
         {
-            formCompletionHelper.ClickLinkByText("Evaluate withdrawal request questions");
+            formCompletionHelper.ClickLinkByText("Evaluate withdrawal application");
             return new AD_WithdrawalNotificationQuestionsPage(_context);
         }
 
@@ -37,10 +37,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             return this;
         }
 
-        public AD_CompleteReview ClickCompleteReview()
+        public AD_CheckTheWithdrawDatePage ClickCompleteReview()
         {
             formCompletionHelper.Click(CompleteReviewButton);
-            return new AD_CompleteReview(_context);
+            return new AD_CheckTheWithdrawDatePage(_context);
         }
     }
 }
