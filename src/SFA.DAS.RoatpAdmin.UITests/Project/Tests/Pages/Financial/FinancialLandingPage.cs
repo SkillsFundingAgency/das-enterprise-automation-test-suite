@@ -57,5 +57,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             SearchProviderByUKPRN();
             return this;
         }
+        public FinancialLandingPage SelectInOutcomeTab_Finance()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return this;
+        }
+        public FinancialLandingPage ClearSearchResult_FinancialOutcomeTab()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return this;
+        }
     }
 }

@@ -62,5 +62,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Download application data");
             return new RoatpApplicationReportPage(_context);
         }
+
+        public AllowListPage Add_UKPRN_Allowlist()
+        {
+            formCompletionHelper.ClickLinkByText("Add UKPRNs to the allow list");
+            return new AllowListPage(_context);
+        }
     }
 }
