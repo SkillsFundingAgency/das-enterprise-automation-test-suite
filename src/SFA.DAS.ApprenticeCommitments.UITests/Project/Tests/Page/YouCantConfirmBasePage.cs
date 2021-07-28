@@ -3,19 +3,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class YouCantConfirmYourApprenticeship : ApprenticeCommitmentsBasePage
+    public abstract class YouCantConfirmBasePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
 
-        protected override string PageTitle => "You can't confirm your apprenticeship yet.";
-
         private By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
 
-        public YouCantConfirmYourApprenticeship(ScenarioContext context) : base(context) => _context = context;
+        public YouCantConfirmBasePage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeHomePage ReturnToApprenticeHomePage()
         {
-            formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, $"Return to {ServiceName}");
+            formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, $"{ServiceName} details");
             return new ApprenticeHomePage(_context);
         }
     }

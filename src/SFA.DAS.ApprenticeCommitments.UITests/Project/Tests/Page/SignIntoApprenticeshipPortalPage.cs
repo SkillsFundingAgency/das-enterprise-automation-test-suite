@@ -38,7 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.EnterText(Username, objectContext.GetApprenticeEmail());
             formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
-            formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
+            formCompletionHelper.Click(SignInButton);
         }
 
 
