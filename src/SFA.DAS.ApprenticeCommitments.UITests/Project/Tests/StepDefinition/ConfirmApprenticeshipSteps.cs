@@ -42,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect()
         {
             AssertSectionStatus(SectionHelper.Section1, StatusHelper.InComplete);
-            new ApprenticeHomePage(_context).ConfirmYourEmployer().SelectNo().ReturnToApprenticeHomePage();
+            new ApprenticeHomePage(_context).ConfirmYourEmployer().SelectNoToConfirmEmployer().ReturnToApprenticeHomePage();
             AssertSectionStatus(SectionHelper.Section1, StatusHelper.InCorrect);
         }
 
@@ -70,7 +70,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheProviderDetailsDisplayedAsIncorrect()
         {
             AssertSectionStatus(SectionHelper.Section2, StatusHelper.InComplete);
-            new ApprenticeHomePage(_context).ConfirmYourTrainingProvider().SelectNo().ReturnToApprenticeHomePage();
+            new ApprenticeHomePage(_context).ConfirmYourTrainingProvider().SelectNoToConfirmTrainingProvider().ReturnToApprenticeHomePage();
             AssertSectionStatus(SectionHelper.Section2, StatusHelper.InCorrect);
         }
 
@@ -102,7 +102,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
             AssertSectionStatus(SectionHelper.Section3, StatusHelper.InComplete);
-            NavigateAndVerifyApprenticeshipDetails().SelectNo().ReturnToApprenticeHomePage();
+            NavigateAndVerifyApprenticeshipDetails().SelectNoConfirmYourDetails().ReturnToApprenticeHomePage();
             AssertSectionStatus(SectionHelper.Section3, StatusHelper.InCorrect);
         }
 

@@ -22,9 +22,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
         private SignUpCompletePage signUpCompletePage;
-        private string expectedApprenticeshipName, expectedApprenticeshipLevel, expectedApprenticeshipDuration;
-        private DateTime expectedApprenticeshipStartDate, expectedApprenticeshipEndDate;
-        private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualApprenticeshipEndDate, actualApprenticeshipDuration;
+        private string expectedApprenticeshipName, expectedApprenticeshipLevel;
+        private DateTime expectedApprenticeshipStartDate;
+        private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
 
         public AppreticeCommitmentsStepsHelper(ScenarioContext context)
         {
@@ -96,9 +96,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             actualApprenticeshipName = confirmYourApprenticeshipDetailsPage.GetApprenticeshipInfo();
             actualApprenticeshipLevel = confirmYourApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
             actualApprenticeshipStartDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
-            actualApprenticeshipEndDate = confirmYourApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
-            actualApprenticeshipDuration = confirmYourApprenticeshipDetailsPage.GetApprenticeshipDurationInfo();
-
+            actualEsimatedDurationInfo = confirmYourApprenticeshipDetailsPage.GetApprenticeshipEstimatedDurationInfo();
             AssertApprenticeshipDetails();
         }
 
@@ -108,22 +106,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             actualApprenticeshipName = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipInfo();
             actualApprenticeshipLevel = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
             actualApprenticeshipStartDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedStartDateInfo();
-            actualApprenticeshipEndDate = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipPlannedEndDateInfo();
-            actualApprenticeshipDuration = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipDurationInfo();
-
+            actualEsimatedDurationInfo = alreadyConfirmedApprenticeshipDetailsPage.GetApprenticeshipEstimatedDurationInfo();
             AssertApprenticeshipDetails();
         }
 
         public ConfirmRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesPage(ConfirmRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
         {
-            return confirmRolesAndResponsibilitiesPage.VerifyRolesYouTab()
+            return confirmRolesAndResponsibilitiesPage.VerifyRolesYourResponsibilitiesTab()
                 .VerifyRolesYourEmployerTab()
                 .VerifyRolesYourTrainingProviderTab();
         }
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
         {
-            return confirmRolesAndResponsibilitiesPage.VerifyRolesYouTab()
+            return confirmRolesAndResponsibilitiesPage.VerifyRolesYourResponsibilitiesTab()
                 .VerifyRolesYourEmployerTab()
                 .VerifyRolesYourTrainingProviderTab();
         }
@@ -139,17 +135,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
             expectedApprenticeshipLevel = _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
             expectedApprenticeshipStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
-            expectedApprenticeshipEndDate = DateTime.Parse(_objectContext.GetTrainingEndDate());
-            expectedApprenticeshipDuration = CalculateMonthsBetweenDates(expectedApprenticeshipStartDate, expectedApprenticeshipEndDate);
         }
 
         private void AssertApprenticeshipDetails()
         {
-            Assert.AreEqual(expectedApprenticeshipName, actualApprenticeshipName);
+            Assert.AreEqual(expectedApprenticeshipName.ToLower(), actualApprenticeshipName.ToLower());
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
             Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
-            Assert.AreEqual(actualApprenticeshipEndDate, expectedApprenticeshipEndDate.ToString("MMMM yyyy"));
-            Assert.AreEqual($"{expectedApprenticeshipDuration} months", actualApprenticeshipDuration);
+            Assert.IsNotNull(actualEsimatedDurationInfo);
         }
 
         private string CalculateMonthsBetweenDates(DateTime startDate, DateTime endDate) =>
