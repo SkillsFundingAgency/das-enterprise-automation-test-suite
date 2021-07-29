@@ -92,5 +92,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $"UPDATE Apply set Applicationstatus = 'GatewayAssessed' WHERE ApplicationId = @ApplicationID");
 
         private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
+
+        public void Delete_AllowListProviders(string ukprn)
+        {
+            var deleteAllowListProviderQuery =
+                 $"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}";
+            ExecuteSqlCommand(deleteAllowListProviderQuery);
+        }
     }
 }

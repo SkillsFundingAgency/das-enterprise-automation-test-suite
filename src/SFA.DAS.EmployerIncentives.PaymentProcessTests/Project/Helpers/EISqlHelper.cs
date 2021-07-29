@@ -5,6 +5,8 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,6 +21,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public EISqlHelper(DbConfig eIConfig) : base(eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString; // todo: undo : )
 
+        public List<T> GetAllFromDatabase<T>() where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().ToList();
+        }
+
+        public T GetFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().Single(predicate);
+        }
+        public T GetSingleOrDefaultFromDatabase<T>(Func<T, bool> predicate) where T : class
+        {
+            using var dbConnection = new SqlConnection(connectionString);
+            return dbConnection.GetAll<T>().SingleOrDefault(predicate);
+        }
         public void DeleteIncentiveApplication(string accountId)
         {
             query =
@@ -72,18 +90,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             }
         }
 
-        public async Task<bool> VerifyLearningRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task<bool> VerifyLearningRecordsExist(long apprenticeshipId)
         {
             using var dbConnection = new SqlConnection(connectionString);
-            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Learner WHERE ApprenticeshipId = @apprenticeshipId AND LearningFound = 1", new { apprenticeshipId });
 
             return count >= 1;
         }
 
-        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId)
+        public async Task<bool> VerifyPaymentRecordsExist(Guid apprenticeshipIncentiveId, bool paymentsSent)
         {
             using var dbConnection = new SqlConnection(connectionString);
-            var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
+            var sql = $"SELECT COUNT(1) FROM incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId";
+            if (paymentsSent)
+            {
+                sql = $"{sql} AND PaidDate IS NOT NULL AND VrfVendorId IS NOT NULL";
+            }
+            var count = await dbConnection.ExecuteScalarAsync<int>(sql, new { apprenticeshipIncentiveId });
 
             return count >= 1;
         }

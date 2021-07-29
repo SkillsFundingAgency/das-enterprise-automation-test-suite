@@ -11,6 +11,6 @@
 Scenario: RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN
 	Given the admin lands on the Dashboard
 	When the admin searches for a provider in Gateway by provider name
-	Then the search results should be displayed  
+	Then the search results should be displayed for Gateway 
 	When the admin searches for a provider in Gateway by UKPRN
-	Then the search results should be displayed 
+	Then the search results should be displayed for Gateway 
