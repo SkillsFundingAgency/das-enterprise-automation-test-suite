@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using System;
@@ -28,23 +29,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the provider submit an ILR with price mismatch")]
+        [When(@"the provider submit another ILR with price mismatch")]
         public void WhenTheProviderSubmitAnILRWithPriceMismatch()
         {
             _dlockDataHelper.SubmitILRWithPriceMismatch();
-            ConfirmIlrismatch();
         }
         
         [When(@"the provider submit an ILR with course mismatch")]
+        [When(@"the provider submit another ILR with course mismatch")]
         public void WhenTheProviderSubmitAnILRWithCourseMismatch()
         {
             _dlockDataHelper.SubmitILRWithCourseMismatch();
-            ConfirmIlrismatch();
         }
 
         [When(@"the provider submit an ILR with course price mismatch")]
         public void WhenTheProviderSubmitAnILRWithCoursePriceMismatch()
         {
-            _dlockDataHelper.SubmitILRWithCourseAndPriceMismatch();
+            _dlockDataHelper.SubmitILRWithCourseAndPriceMismatch();            
+        }
+
+        [When(@"provider requests Employer to update details in MA")]
+        public void WhenProviderRequestsEmployerToUpdateDetailsInMA()
+        {
             ConfirmIlrismatch();
         }
 
@@ -82,6 +88,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 throw new Exception("ILR mismatch still exists and datalock is not resolved");
             }
         }
+
+        [Then(@"provider will see two links on PAS for each ILR mismatch")]
+        public void ThenProviderWillSeeTwoLinksOnPASForEachILRMismatch()
+        {
+            var ProviderApprenticeDetailsPage = _providerStepsHelper.GoToProviderHomePage()
+                                                                    .GoToProviderManageYourApprenticePage()
+                                                                    .SelectViewCurrentApprenticeDetails();
+
+            Assert.IsTrue(ProviderApprenticeDetailsPage.IsPricemismatchLinkDisplayed(), "Validate price mismatch link is displayed");
+            Assert.IsTrue(ProviderApprenticeDetailsPage.IsCoursemismatchLinkDisplayed(), "Validate cours mismatch link is displayed");
+
+        }
+
 
         private void ConfirmIlrismatch()
         {

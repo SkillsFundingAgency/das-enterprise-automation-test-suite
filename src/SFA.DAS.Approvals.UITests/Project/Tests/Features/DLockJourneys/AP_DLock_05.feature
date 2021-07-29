@@ -9,4 +9,5 @@ Scenario: AP_DLock_05 Employer can stop the waiting to start apprentice after Da
 	Given the Employer has approved apprentice
 	And the datalock has been successful
 	When the provider submit an ILR with course price mismatch
+	And provider requests Employer to update details in MA
 	Then the Employer can stop the waiting to start apprentice
