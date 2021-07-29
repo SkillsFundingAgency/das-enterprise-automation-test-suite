@@ -28,21 +28,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public AllowListPage AddUkprnToAllowList()
+        private void AddToAllowList()
         {
             formCompletionHelper.EnterText(UkprnField, (objectContext.GetUkprn()));
             formCompletionHelper.SendKeys(StartDate, DateTime.Now.ToString("dd-MMM-yyyy"));
             formCompletionHelper.SendKeys(EndDate, DateTime.Now.AddMonths(+1).ToString("dd-MMM-yyyy"));
             Continue();
+        }
+        public AllowListPage AddUkprnToAllowList()
+        {
+            AddToAllowList();
             return this;
         }
 
         public AllowListPage VerifyDuplicateUkrpnNotAdded()
         {
-            formCompletionHelper.EnterText(UkprnField, objectContext.GetUkprn());
-            formCompletionHelper.SendKeys(StartDate, DateTime.Now.ToString("dd-MMM-yyyy"));
-            formCompletionHelper.SendKeys(EndDate, DateTime.Now.AddMonths(+1).ToString("dd-MMM-yyyy"));
-            Continue();
+            AddToAllowList();
             pageInteractionHelper.VerifyText(ErrorText, "UKPRN 10001234 exists in the allow list");
             return this;
         }

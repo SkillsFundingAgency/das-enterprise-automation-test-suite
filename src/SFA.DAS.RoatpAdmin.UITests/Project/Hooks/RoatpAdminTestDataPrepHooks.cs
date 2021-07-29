@@ -22,6 +22,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Hooks
         public new void ClearDownApplyData() => base.ClearDownApplyData();
 
         [BeforeScenario(Order = 35)]
-        public void WhiteListProviders() => base.AllowListProviders();
+        public void AllowListProviders() => base.AllowListProviders();
     }
 }
