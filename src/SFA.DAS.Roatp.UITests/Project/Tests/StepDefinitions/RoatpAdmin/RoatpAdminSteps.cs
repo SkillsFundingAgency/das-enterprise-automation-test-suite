@@ -9,6 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
     {
         private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
+        private SearchPage _searchPage;
         private ResultsFoundPage _resultsFoundPage;
         private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
@@ -20,16 +21,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
 
 
         [When(@"the admin searches for a provider by partial provider name")]
-        public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProvider("PEOPLE");
+        public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProvider("PEOPLE");
 
         [Then(@"the admin should be taken to multiple results found page")]
         public void ThenTheAdminShouldBeTakenToMultipleResultsFoundPage() => _resultsFoundPage.VerifyMultipleMatchingResults();
 
         [When(@"the admin searches for a provider by provider name")]
-        public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().SearchTrainingProviderByName();
+        public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().SearchForTrainingProvider().SearchTrainingProviderByName();
 
         [When(@"the admin searches for a provider by ukprn")]
-        public void WhenTheAdminSearchesForAProviderByUkprn() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProviderByUkprn();
+        public void WhenTheAdminSearchesForAProviderByUkprn() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProviderByUkprn();
 
         [Then(@"the admin should be taken to one provider name result found page")]
         public void ThenTheAdminShouldBeTakenToOneProviderNameResultFoundPage() => _resultsFoundPage.VerifyOneProviderNameResultFound();
@@ -64,7 +65,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         public void ThenTheAdminCanDownloadListOfTrainingProviders() => _roatpAdminStepsHelper.GoToRoatpAdminHomePage().DownloadRegister();
 
         [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
-        public void GivenTheAdminInitatesAnApplication(string providerType) => _roatpAdminHomePage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+        public void GivenTheAdminInitatesAnApplication(string providerType) => _searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
         [When(@"the admin update the provider details")]
         public void WhenTheAdminUpdateTheProviderDetails()
@@ -87,12 +88,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         }
 
         [Then(@"Organisation is successfully Added to the Register")]
-        public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage.VerifyNewProviderHasBeenAdded();
+        public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage = _searchPage.VerifyNewProviderHasBeenAdded().ReturnToDahsboard();
 
         [Then(@"the provider status should be set to On-Boarding")]
-        public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
+        public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
 
         [Then(@"the provider status should be set to Active")]
-        public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifyProviderStatusAsActive();
+        public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsActive();
     }
 }
