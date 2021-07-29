@@ -31,5 +31,15 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
                 .ClickViewProvidersForThisCourse();
             return new ProviderSearchResultsPage(_context);
         }
+        public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage(string course = "")
+        {
+            new FATV2IndexPage(_context).ClickStartButton()
+                .SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course)
+                .SelectFirstTrainingResult()
+                .ClickViewProvidersForThisCourse()
+                .ShortlistAProviderFromProviderList()
+                .NavigateToProviderShortlistPage();
+            return new ProviderShortlistPage(_context);
+        }
     }
 }
