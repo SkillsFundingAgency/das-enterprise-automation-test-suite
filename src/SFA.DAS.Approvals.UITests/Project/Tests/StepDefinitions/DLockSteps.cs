@@ -54,6 +54,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ConfirmIlrismatch();
         }
 
+        [Then(@"only course mismatch is displayed")]
+        public void ThenOnlyCourseMismatchIsDisplayed()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [Then(@"the Employer can approve the ILR mismatch changes")]
         public void ThenTheEmployerCanApproveTheILRMismatchChanges()
         {
@@ -92,19 +99,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"provider will see two links on PAS for each ILR mismatch")]
         public void ThenProviderWillSeeTwoLinksOnPASForEachILRMismatch()
         {
-            var ProviderApprenticeDetailsPage = _providerStepsHelper.GoToProviderHomePage()
+            var ProviderApprenticeDetailsPage = _providerStepsHelper.GoToProviderHomePage(false)
                                                                     .GoToProviderManageYourApprenticePage()
                                                                     .SelectViewCurrentApprenticeDetails();
 
             Assert.IsTrue(ProviderApprenticeDetailsPage.IsPricemismatchLinkDisplayed(), "Validate price mismatch link is displayed");
-            Assert.IsTrue(ProviderApprenticeDetailsPage.IsCoursemismatchLinkDisplayed(), "Validate cours mismatch link is displayed");
-
+            Assert.IsTrue(ProviderApprenticeDetailsPage.IsCoursemismatchLinkDisplayed(), "Validate course mismatch link is displayed");
         }
+
+        [Then(@"provider will see all price episodes on single page")]
+        public void ThenProviderWillSeeAllPriceEpisodesOnSinglePage()
+        {
+            var ProviderApprenticeDetailsPage = _providerStepsHelper.GoToProviderHomePage(false)
+                                                        .GoToProviderManageYourApprenticePage()
+                                                        .SelectViewCurrentApprenticeDetails();
+        }
+
 
 
         private void ConfirmIlrismatch()
         {
-            _providerStepsHelper.GoToProviderHomePage()
+            _providerStepsHelper.GoToProviderHomePage(false)
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickViewIlrMismatchDetails()
