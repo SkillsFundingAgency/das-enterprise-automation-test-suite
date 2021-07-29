@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public class RoatpAdminHomePage : RoatpAdminBasePage
     {
-        protected override string PageTitle => "Search for an apprenticeship training provider";
+        protected override string PageTitle => "Staff dashboard";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -13,9 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Confirmation => By.CssSelector(".govuk-panel--confirmation");
-
-        private By ProviderSearch => By.Id("SearchTerm");
+ 
 
         public RoatpAdminHomePage(ScenarioContext context) : base(context)
         {
@@ -24,27 +22,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public OrganisationUkprnPage AddANewTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText("Add a new training provider");
+            formCompletionHelper.ClickLinkByText("Add a new apprenticeship training provider");
             return new OrganisationUkprnPage(_context);
         }
 
         public RoatpAdminHomePage DownloadRegister()
         {
-            formCompletionHelper.ClickLinkByText("Download list of training providers");
+            formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
             return new RoatpAdminHomePage(_context);
         }
 
-        public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, $"{objectContext.GetProviderName()} has been added");
-
-        public ResultsFoundPage SearchTrainingProviderByName() => SearchTrainingProvider(objectContext.GetProviderName());
-
-        public ResultsFoundPage SearchTrainingProviderByUkprn() => SearchTrainingProvider(objectContext.GetUkprn());
-
-        public ResultsFoundPage SearchTrainingProvider(string text)
+        public SearchPage SearchForTrainingProvider()
         {
-            formCompletionHelper.EnterText(ProviderSearch, text);
-            Continue();
-            return new ResultsFoundPage(_context);
+            formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
+            return new SearchPage(_context);
         }
     }
 }

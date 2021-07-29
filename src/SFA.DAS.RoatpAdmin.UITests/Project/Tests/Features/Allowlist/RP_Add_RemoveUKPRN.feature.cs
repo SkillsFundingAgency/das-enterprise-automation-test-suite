@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Allowlist
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_Gateway_Search")]
-    public partial class RP_Gateway_SearchFeature
+    [NUnit.Framework.DescriptionAttribute("RP_Add_RemoveUKPRN")]
+    public partial class RP_Add_RemoveUKPRNFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RP_Gateway_Search.feature"
+#line 1 "RP_Add_RemoveUKPRN.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Gateway_Search", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Add_RemoveUKPRN", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,27 +74,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Search
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_Add_Remove_Validate_UKPRN_In_Allowlist_Table")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
-        [NUnit.Framework.CategoryAttribute("rpsearch")]
-        [NUnit.Framework.CategoryAttribute("rpadfha01")]
-        [NUnit.Framework.CategoryAttribute("rpsearch01")]
+        [NUnit.Framework.CategoryAttribute("rpallowlist")]
+        [NUnit.Framework.CategoryAttribute("rpadallowlist01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN()
+        public virtual void RP_AD_Add_Remove_Validate_UKPRN_In_Allowlist_Table()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
                     "roatpadmin",
                     "newroatpadmin",
-                    "rpsearch",
-                    "rpadfha01",
-                    "rpsearch01",
+                    "rpallowlist",
+                    "rpadallowlist01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GatewayAdmin_Search_Using_NameAndUKPRN", null, tagsOfScenario, argumentsOfScenario);
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_Add_Remove_Validate_UKPRN_In_Allowlist_Table", null, tagsOfScenario, argumentsOfScenario);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,20 +112,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 11
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 12
+ testRunner.When("the admin access the Allowlist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 13
- testRunner.When("the admin searches for a provider in Gateway by provider name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the admin is able to add a ukprn to Allow list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.Then("the search results should be displayed for Gateway", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the admin is not able to add a ukprn exists in allow list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.When("the admin searches for a provider in Gateway by UKPRN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
- testRunner.Then("the search results should be displayed for Gateway", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the admin is able to remove a ukprn from the allow list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

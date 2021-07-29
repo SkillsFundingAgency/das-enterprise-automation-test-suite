@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             formCompletionHelper.ClickElement(InProgressTab);
             return new GatewayLandingPage(_context);
         }
-        public GatewayLandingPage SelectInOutcomeTab()
+        public GatewayLandingPage SelectInOutcomeTab_Gateway()
         {
             formCompletionHelper.ClickElement(OutcomeTab);
             return new GatewayLandingPage(_context);
