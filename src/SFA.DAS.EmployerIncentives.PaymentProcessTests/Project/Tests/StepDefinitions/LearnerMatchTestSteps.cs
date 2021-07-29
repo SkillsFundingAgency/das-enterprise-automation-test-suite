@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
@@ -125,7 +126,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
         }
 
-        [When(@"the learner is found in the current academic year")]
+        [When(@"the learner is found in learning in the current academic year")]
         public async Task WhenTheLearnerIsFoundInTheCurrentAY()
         {
             var startDate = DateTime.Parse("2021-06-12");
@@ -148,7 +149,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
-        [When(@"the learner is found in the previous academic year")]
+        [When(@"the learner is found in learning in the previous academic year")]
         public async Task WhenTheLearnerIsFoundInThePreviousAY()
         {
             var startDate = DateTime.Parse("2021-06-12");
@@ -171,7 +172,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
         }
 
-        [When(@"the learner is found in the previous and current academic year")]
+        [When(@"the learner is found in learning in the previous and current academic year")]
         public async Task WhenTheLearnerIsFoundInThePreviousAndCurrentAY()
         {
             var startDate = DateTime.Parse("2021-06-12");
@@ -198,6 +199,61 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [Then(@"the learner record has in learning set to true")]
+        public async Task ThenTheLearnerRecordHasInLearningSetToTrue()
+        {
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+            learnerRecord.InLearning.Should().BeTrue();
+        }
+
+        [When(@"the learner is found not in learning in the previous academic year")]
+        public async Task WhenTheLearnerIsFoundNotInLearningInThePreviousAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(11)
+                .WithStartDate(startDate)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [When(@"the learner is found not in learning in the current academic year")]
+        public async Task WhenTheLearnerIsFoundNotInLearningInTheCurrentAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+
+            var priceEpisodeFutureDate = new PriceEpisodeDtoBuilder()
+                    .WithStartDate(startDate)
+                    .WithEndDate(DateTime.Now.AddDays(1))
+                    .WithPeriod(testData.ApprenticeshipId, 1)
+                    .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(11)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisodeFutureDate)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [Then(@"the learner record has in learning set to false")]
+        public async Task ThenTheLearnerRecordHasInLearningSetToFalse()
+        {
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+            learnerRecord.InLearning.Should().BeFalse();
         }
 
     }

@@ -54,5 +54,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             if (_context.ScenarioInfo.Tags.Contains("roatpclarification"))
                 _roatpApplyClearDownDataHelpers.ClarificationClearDownFromApply(GetUkprn());
         }
+        [BeforeScenario(Order = 40)]
+        public void ClearDown_UKPRN_Allowlisttable()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("rpallowlist"))
+                _roatpApplyClearDownDataHelpers.Delete_AllowListProviders(GetUkprn());
+        }
     }
 }
