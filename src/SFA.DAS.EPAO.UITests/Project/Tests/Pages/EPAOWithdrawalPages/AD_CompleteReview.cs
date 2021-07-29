@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-
-
-
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AD_CompleteReview : EPAO_BasePage

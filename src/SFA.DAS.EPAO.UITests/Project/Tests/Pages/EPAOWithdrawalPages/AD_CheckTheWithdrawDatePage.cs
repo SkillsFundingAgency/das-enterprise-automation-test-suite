@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-
-
-
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AD_CheckTheWithdrawDatePage : EPAO_BasePage
@@ -28,6 +25,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             Continue();
             return new AD_CompleteReview(_context);
         }
-
     }
 }

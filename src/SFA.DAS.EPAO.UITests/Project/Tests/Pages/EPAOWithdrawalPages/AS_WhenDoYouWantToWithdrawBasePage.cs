@@ -14,7 +14,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By YearText => By.XPath("//label[contains(text(), 'Year')]/following-sibling::input");
         #endregion
 
-
         public AS_WhenDoYouWantToWithdrawBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -31,6 +30,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             Continue();
             return new AS_WithdrawalRequestQuestionsPage(_context);
         }
-
     }
 }
