@@ -64,12 +64,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+employer@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10061310"),
                });
-            _data.Add("rpe2e03",
-                new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10083833"),
-                });
             _data.Add("rpe2e04",
               new List<KeyValuePair<string, string>>
               {
@@ -87,6 +81,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GOVT@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10052113"),
+            });
+            _data.Add("rpe2e07",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+SupportingNew@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10083878"),
             });
             _data.Add("rps101",
                 new List<KeyValuePair<string, string>>

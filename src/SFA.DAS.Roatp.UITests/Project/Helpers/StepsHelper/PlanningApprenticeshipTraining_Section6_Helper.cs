@@ -37,14 +37,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextForEngageAndWorkWithAwardingBodies()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            return applicationOverviewPage
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return applicationOverviewPage
+                .Access_Section6_TypeOfApprenticeshipTraining()
+                .SelectFunctionalSkillsAndContinue()
+                .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
+            else
+            {
+                return applicationOverviewPage
                 .Access_Section6_TypeOfApprenticeshipTraining()
                 .SelectFrameworksOnlyAndContinue()
                 .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
                 .EnterTextForTransitionFromFramewordsToStandardsAndContinueSupportingRoute()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
         }
 
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)

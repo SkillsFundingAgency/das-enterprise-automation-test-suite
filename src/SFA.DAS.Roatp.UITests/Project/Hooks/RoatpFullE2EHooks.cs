@@ -1,7 +1,6 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Hooks;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project
+namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpfulle2e")]
     public class RoatpFullE2EHooks : RoatpBaseHooks

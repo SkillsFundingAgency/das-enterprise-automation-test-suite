@@ -34,6 +34,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
+        [Given(@"the provider initates an application as (Supporting Provider Route For Existing Provider)")]
+        public void GivenTheProviderInitatesAnApplicationAsSupportingProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _selectRouteStepsHelper.
+                CompleteProviderCharityRouteWhoisAlreayOnRoatp().SelectYesToChangeProviderRouteAndContinue().
+                SelectApplicationRouteAsSupporting().AcceptTermAndConditionsAndContinue();
+
+        }
+
         [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider)")]
         public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
         {
@@ -43,6 +53,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [Given(@"the provider naviagate to Apply")]
+        [Then(@"the provider naviagate to Apply")]
         public void GivenTheProviderNaviagateToApply()
         {
             _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
@@ -52,7 +63,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {
-             RestartRoatpApply("apply");
+            RestartRoatpApply("apply");
 
             _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
 
@@ -133,9 +144,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Planning apprenticeship training section for charity")]
         public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
 
-        [When(@"the provider completes Planning apprenticeship training section for supporting route")]
-        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage);
-
+        [When(@"the provider completes Planning apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionFor(ApplicationRoute applicationRoute)
+            {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _end2EndStepsHelper.
+            CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
+            }
         [When(@"the provider completes Delivering apprenticeship training section for main route")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
 

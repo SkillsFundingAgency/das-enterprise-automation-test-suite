@@ -25,12 +25,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(ukprnkey, "10065943"),
                 });
             _data.Add("rpendtoend02apply",
-         new List<KeyValuePair<string, string>>
+            new List<KeyValuePair<string, string>>
              {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+E2E02@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "METROPOLITAN TABERNACLE"),
                     new KeyValuePair<string, string>(ukprnkey, "10068436"),
              });
+            _data.Add("rpexistingprovider01",
+             new List<KeyValuePair<string, string>>
+             {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "COLEMAN TRAINING & CONSULTANCY"),
+                    new KeyValuePair<string, string>(ukprnkey, "10083833"),
+              });
         }
     }
 }
