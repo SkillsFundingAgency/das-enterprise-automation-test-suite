@@ -57,15 +57,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"only course mismatch is displayed")]
         public void ThenOnlyCourseMismatchIsDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            var rows = _providerStepsHelper.GoToProviderHomePage(false)
+                                             .GoToProviderManageYourApprenticePage()
+                                             .SelectViewCurrentApprenticeDetails()
+                                             .ClickViewIlrMismatchDetails()
+                                             .GetRowCountForMismatch();
+
+            Assert.IsTrue(rows == 1, "validate only course mismatch row is displayed");
         }
+
+        [Then(@"both mismatches are displayed on single page")]
+        public void ThenBothMismatchesAreDisplayedOnSinglePage()
+        {
+            var rows = _providerStepsHelper.GoToProviderHomePage(false)
+                                             .GoToProviderManageYourApprenticePage()
+                                             .SelectViewCurrentApprenticeDetails()
+                                             .ClickViewIlrMismatchDetails()
+                                             .GetRowCountForMismatch();
+
+            Assert.IsTrue(rows == 4, "validate both mismatched rows are displayed");
+        }
+
 
 
         [Then(@"the Employer can approve the ILR mismatch changes")]
         public void ThenTheEmployerCanApproveTheILRMismatchChanges()
         {
             var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
+
             _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
+
             apprenticeDetails.VerifyIfChangeRequestWasApproved();
         }
 

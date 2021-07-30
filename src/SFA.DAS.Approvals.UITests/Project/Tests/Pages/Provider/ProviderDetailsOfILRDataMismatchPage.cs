@@ -12,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
         private By FixILRMismatchOptions => By.XPath("//input[@value='Confirm']");
         protected override By ContinueButton => By.Id("fix-mismatch");
+        private By TableRowIdentifier => By.CssSelector("#new-course-name, .govuk-grid-column-one-half");     //(".govuk-table .govuk-table__body > tr #ilr-date, .govuk-grid-row");
 
         public ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -41,6 +42,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return this;
         }
+
+        public int? GetRowCountForMismatch()
+        {
+            var x = pageInteractionHelper.FindElements(TableRowIdentifier);
+            return x.Count;
+        }
+        
+        
+ 
 
     }
 }
