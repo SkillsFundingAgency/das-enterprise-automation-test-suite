@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
@@ -6,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class TransactionCompletePage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "You have confirmed your apprenticeship";
+        protected override string PageTitle => "You have confirmed your apprenticeship details";
         private readonly ScenarioContext _context;
 
         protected By TrainingName => By.CssSelector(".govuk-panel__body");
@@ -14,9 +15,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public TransactionCompletePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage(TrainingName, objectContext.GetTrainingName().Split(",")[0]);
+            VerifyTrainingNameOnPageHeader();
         }
 
         public void NavigateBackToOverviewPage() => NavigateBack();
+
+        private void VerifyTrainingNameOnPageHeader() =>
+            Assert.AreEqual(objectContext.GetTrainingName().Split(',')[0].ToLower(), pageInteractionHelper.GetText(TrainingName).ToLower());
     }
 }
