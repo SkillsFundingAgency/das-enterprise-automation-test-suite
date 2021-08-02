@@ -53,7 +53,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [Given(@"the provider naviagate to Apply")]
-        [Then(@"the provider naviagate to Apply")]
         public void GivenTheProviderNaviagateToApply()
         {
             _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
