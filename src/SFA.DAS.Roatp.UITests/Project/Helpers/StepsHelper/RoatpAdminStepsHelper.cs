@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
         }
 
-        public RoatpAdminHomePage InitatesAnApplication(string providerType)
+        public SearchPage InitatesAnApplication(string providerType)
         {
             return GoToRoatpAdminHomePage()
                 .AddANewTrainingProvider()
@@ -26,11 +26,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .ConfirmOrganisationsDetails();
         }
 
-        public abstract RoatpAdminHomePage GoToRoatpAdminHomePage();
-
-        public RoatpAdminHomePage GoToRoatpAdminHomePage(ResultsFoundPage resultsFoundPage) => resultsFoundPage.GetRoatpAdminHomePage();
-
-        protected void SubmitValidLoginDetails() => _loginStepsHelper.SubmitValidLoginDetails();
-
+        public RoatpAdminHomePage GoToRoatpAdminHomePage()
+        {
+            _loginStepsHelper.SubmitValidLoginDetails();
+            return new RoatpAdminHomePage(_context);
+        } 
     }
 }

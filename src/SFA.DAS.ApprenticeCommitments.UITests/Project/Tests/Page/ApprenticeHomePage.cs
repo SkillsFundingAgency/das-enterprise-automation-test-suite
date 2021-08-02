@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -7,20 +8,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-        protected override string PageTitle => "My apprenticeship";
-        private string PageTitleAfterConfirmation => "My apprenticeship details";
-        private string YourEmployerLinkText => "Your employer";
-        private string YourProviderLinkText => "Your training provider";
-        private string YourApprenticeshipDetailsLinkText => "Your Apprenticeship Details";
-        private string HowYourApprenticeshipWillBeDeliveredLinkText => "How your apprenticeship will be delivered";
-        private string RolesAndResponsibilitiesLinkText => "Roles and responsibilities";
+        protected override string PageTitle => "Confirm my apprenticeship details";
+        private string PageTitleAfterConfirmation => "Your apprenticeship details";
+        private string YourEmployerLinkText => SectionHelper.Section1;
+        private string YourProviderLinkText => SectionHelper.Section2;
+        private string YourApprenticeshipDetailsLinkText => SectionHelper.Section3;
+        private string HowYourApprenticeshipWillBeDeliveredLinkText => SectionHelper.Section4;
+        private string RolesAndResponsibilitiesLinkText => SectionHelper.Section5;
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
-        private By AppreticeshipConfirmBannerHeader => By.XPath("//h2[@class='govuk-heading-m'][text()='Your apprenticeship is ready to confirm']");
+        private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        private By ConfirmYourApprenticeshipButton => By.XPath("//button[text()='Confirm your apprenticeship']");
+        private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and Support']");
         private By HelpAndSupportLink => By.LinkText("help and support section");
         private string SignOutLinkText => "Sign out";
+        private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -101,7 +103,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyPage(AppreticeshipConfirmBannerHeader);
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
-            formCompletionHelper.Click(ConfirmYourApprenticeshipButton);
+            formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(_context);
         }
 
@@ -114,7 +116,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public void VerifyPageAfterApprenticeshipConfirm()
         {
             VerifyPage(PageHeader, PageTitleAfterConfirmation);
-            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship has been agreed and you're ready to start");
+            VerifyPage(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
         }
+
+        public void VerifyDaysToConfirmWarning() => VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details");
     }
 }

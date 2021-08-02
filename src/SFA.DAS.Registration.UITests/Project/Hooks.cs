@@ -44,7 +44,8 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
 
-            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" : "dasautomation.com";
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com"; 
 
             var registrationDatahelpers = new RegistrationDataHelper($"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 

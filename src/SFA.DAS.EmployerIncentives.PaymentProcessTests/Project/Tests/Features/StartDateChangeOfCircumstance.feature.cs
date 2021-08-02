@@ -21,12 +21,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("StartDateChangeOfCircumstance")]
+    [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
     public partial class StartDateChangeOfCircumstanceFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "employerincentivesPaymentsProcess"};
         
 #line 1 "StartDateChangeOfCircumstance.feature"
 #line hidden
@@ -36,7 +38,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "StartDateChangeOfCircumstance", "\tWhen the refreshed learner data contains an updated start date\r\n\tThen the appren" +
-                    "ticeship incentive is updated", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "ticeship incentive is updated", ProgrammingLanguage.CSharp, new string[] {
+                        "employerincentivesPaymentsProcess"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,11 +80,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Clawbacks 1 - Start Date Change Of Circumstance with eligible start date changing" +
             " learner\'s age from under to over 25 - paid earning")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
         public virtual void Clawbacks1_StartDateChangeOfCircumstanceWithEligibleStartDateChangingLearnersAgeFromUnderToOver25_PaidEarning()
         {
-            string[] tagsOfScenario = new string[] {
-                    "employerincentivesPaymentsProcess"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clawbacks 1 - Start Date Change Of Circumstance with eligible start date changing" +
                     " learner\'s age from under to over 25 - paid earning", null, tagsOfScenario, argumentsOfScenario);

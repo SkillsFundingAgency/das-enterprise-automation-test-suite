@@ -17,10 +17,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(TrainingName, objectContext.GetTrainingName().Split(",")[0]);
         }
 
-        public ApprenticeHomePage NavigateBackToOverviewPage()
-        {
-            NavigateBack();
-            return new ApprenticeHomePage(_context);
-        }
+        public void NavigateBackToOverviewPage() => NavigateBack();
     }
 }

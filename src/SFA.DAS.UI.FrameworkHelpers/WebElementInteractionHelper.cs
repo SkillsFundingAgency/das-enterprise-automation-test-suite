@@ -37,5 +37,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         protected SelectElement SelectElement(IWebElement element) => new SelectElement(element);
+
+        protected SelectElement SelectElement(By by) => SelectElement(_webDriver.FindElement(by));
     }
 }

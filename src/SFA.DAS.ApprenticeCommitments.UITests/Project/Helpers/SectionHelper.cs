@@ -6,7 +6,7 @@
 
         internal static string Section2 => "Your training provider";
 
-        internal static string Section3 => "Your Apprenticeship Details";
+        internal static string Section3 => "Your apprenticeship details";
 
         internal static string Section4 => "How your apprenticeship will be delivered";
 
