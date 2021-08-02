@@ -8,19 +8,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class TransactionCompletePage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "You have confirmed your apprenticeship details";
-        private readonly ScenarioContext _context;
 
         protected By TrainingName => By.CssSelector(".govuk-panel__body");
 
-        public TransactionCompletePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyTrainingNameOnPageHeader();
-        }
+        public TransactionCompletePage(ScenarioContext context) : base(context) { }
 
         public void NavigateBackToOverviewPage() => NavigateBack();
 
-        private void VerifyTrainingNameOnPageHeader() =>
+        public TransactionCompletePage VerifyTrainingNameOnPageHeader()
+        {
             Assert.AreEqual(objectContext.GetTrainingName().Split(',')[0].ToLower(), pageInteractionHelper.GetText(TrainingName).ToLower());
+            return this;
+        }
     }
 }
