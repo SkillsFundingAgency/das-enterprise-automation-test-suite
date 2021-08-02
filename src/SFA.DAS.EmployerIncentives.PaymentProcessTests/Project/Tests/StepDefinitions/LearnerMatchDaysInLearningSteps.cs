@@ -1,10 +1,9 @@
-﻿using System;
+﻿using FluentAssertions;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentAssertions;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -12,58 +11,96 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Binding]
     public class LearnerMatchDaysInLearningSteps : StepsBase
     {
-        private readonly Helper _helper;
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
         private Learner _learner;
+        private DateTime _stoppedDate;
+        private DateTime _resumedDate;
 
         protected LearnerMatchDaysInLearningSteps(ScenarioContext context) : base(context)
         {
-            _helper = context.Get<Helper>();
             testData.AccountId = 14326;
         }
 
-        [Given(@"an existing apprenticeship incentive")]
+        [Given(@"an existing Phase2 apprenticeship incentive")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
+            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
+
             _initialStartDate = new DateTime(2021,5,5);
             _initialEndDate = DateTime.Today.AddMonths(12);
 
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
-
-            var dateOfBirth = _initialStartDate.AddYears(-24);
-
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase1)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, 
+                    _initialStartDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
-            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
-        }
-        
-        [When(@"the Learner Match occurs")]
-        public async Task WhenTheLearnerMatchOccurs()
-        {
+            await helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
+
+            const byte period = 4;
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
-                .WithPeriod(testData.ApprenticeshipId, 4)
+                .WithPeriod(testData.ApprenticeshipId, period)
                 .Create();
 
-            var learnerSubmissionDataR7 = new LearnerSubmissionDtoBuilder()
+            var submission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
-                .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
-                .WithIlrSubmissionWindowPeriod(4)
+                .WithIlrSubmissionDate(_initialStartDate.AddMonths(-1))
+                .WithIlrSubmissionWindowPeriod(period)
                 .WithStartDate(_initialStartDate)
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionDataR7);
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
+        }
 
-            _learner = _helper.EISqlHelper.GetFromDatabase<Learner>(x =>
+        [Given(@"an existing Phase1 apprenticeship incentive")]
+        public async Task GivenAnExistingPhaseApprenticeshipIncentive()
+        {
+            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(3, 2021);
+           
+            _initialStartDate = new DateTime(2020, 9, 1);
+            _initialEndDate = DateTime.Today.AddMonths(12);
+
+            testData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccountId(testData.AccountId)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate,
+                    _initialStartDate.AddYears(-24), Phase.Phase1)
+                .Create();
+
+            await helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
+
+            const byte period = 1;
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_initialEndDate)
+                .WithPeriod(testData.ApprenticeshipId, period)
+                .Create();
+
+            var submission = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate(_initialStartDate.AddMonths(-1))
+                .WithIlrSubmissionWindowPeriod(period)
+                .WithStartDate(_initialStartDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
+        }
+
+
+        [When(@"the Learner Match occurs")]
+        public async Task WhenTheLearnerMatchOccurs()
+        {
+            await helper.LearnerMatchOrchestratorHelper.Run();
+
+            _learner = helper.EISqlHelper.GetFromDatabase<Learner>(x =>
                 x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId);
             _learner.Should().NotBeNull();
         }
@@ -72,54 +109,140 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenASuccessfulLearnerMatchInPreviousCollectionPeriod()
         {
             await WhenTheLearnerMatchOccurs();
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
+
+            await helper.CollectionCalendarHelper.SetNextActiveCollectionPeriod();
         }
 
-        [Then(@"Submission Found is set against the Learner")]
-        public void ThenSubmissionFoundIsSetAgainstTheLearner()
+        [Given(@"ILR Learner Stopped Change of Circumstance has occurred")]
+        public async Task GivenILRLearnerStoppedChangeOfCircumstanceHasOccurred()
         {
-            _learner.SubmissionFound.Should().BeTrue();
-        }
-        
-        [Then(@"Learning Found is set against the Learner")]
-        public void ThenLearningFoundIsSetAgainstTheLearner()
-        {
-            _learner.LearningFound.Should().BeTrue();
+            _stoppedDate = _initialStartDate.AddDays(40);
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_stoppedDate)
+                .WithPeriod(testData.ApprenticeshipId, helper.CollectionCalendarHelper.ActivePeriod.Number)
+                .Create();
+
+            var submission = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate(_initialStartDate.AddMonths(1))
+                .WithIlrSubmissionWindowPeriod(helper.CollectionCalendarHelper.ActivePeriod.Number)
+                .WithStartDate(_initialStartDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
         }
 
-        [Then(@"In Learning is set against the Learner")]
-        public void ThenInLearningIsSetAgainstTheLearner()
+        [Given(@"ILR Learner Resumed Change of Circumstance has occurred in the current period")]
+        public async Task GivenILRLearnerResumedChangeOfCircumstanceHasOccurredInTheCurrentPeriod()
         {
-            _learner.InLearning.Should().BeTrue();
+            var priceEpisode1 = new PriceEpisodeDtoBuilder()
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_stoppedDate)
+                .WithPeriod(testData.ApprenticeshipId, helper.CollectionCalendarHelper.ActivePeriod.Number)
+                .Create();
+
+            _resumedDate = _stoppedDate.AddDays(14);
+            var priceEpisode2 = new PriceEpisodeDtoBuilder()
+                .WithStartDate(_resumedDate)
+                .WithEndDate(DateTime.Today.AddMonths(1))
+                .WithPeriod(testData.ApprenticeshipId, (byte)(helper.CollectionCalendarHelper.ActivePeriod.Number + 1))
+                .Create();
+
+            var submission = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate(_initialStartDate.AddMonths(2))
+                .WithIlrSubmissionWindowPeriod(helper.CollectionCalendarHelper.ActivePeriod.Number)
+                .WithStartDate(_initialStartDate)
+                .WithPriceEpisode(priceEpisode1)
+                .WithPriceEpisode(priceEpisode2)
+                .Create();
+
+            await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
+
+            await WhenTheLearnerMatchOccurs();
+        }
+
+        [Then(@"the Number of days in learning is calculated and set as a total number of days spent in learning")]
+        public void ThenTheNumberOfDaysInLearningIsCalculatedAndSetAsATotalNumberOfDaysSpentInLearning()
+        {
+            var daysInLearning = helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
+                .Where(x => x.LearnerId == _learner.Id)
+                .OrderBy(x => x.NumberOfDaysInLearning).ToList();
+
+            daysInLearning.Count.Should().Be(2);
+            var activePeriod = helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+            var expectedNoOfDays = (_stoppedDate - _initialStartDate).TotalDays + 1 + (activePeriod.CensusDate - _resumedDate).TotalDays + 1;
+            daysInLearning.Last().NumberOfDaysInLearning.Should().Be((int)expectedNoOfDays);
+            daysInLearning.Last().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
+            daysInLearning.Last().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
+        }
+
+        [Then(@"the SubmissionFound Column in Learner table is set to (.*)")]
+        public void ThenTheSubmissionFoundColumnInLearnerTableIsSetTo(bool value)
+        {
+            _learner.SubmissionFound.Should().Be(value); 
+        }
+
+        [Then(@"the LearningFound Column in Learner table is set to (.*)")]
+        public void ThenTheLearningFoundColumnInLearnerTableIsSetTo(bool value)
+        {
+            _learner.LearningFound.Should().Be(value);
+        }
+
+        [Then(@"the InLearning Column in Learner table is set to (.*)")]
+        public void ThenTheInLearningColumnInLearnerTableIsSetTo(bool value)
+        {
+            _learner.InLearning.Should().Be(value);
+        }
+
+        [Then(@"the Number of days in learning is calculated and set as ILRStart Date to LearningStoppedDate in the Learner table")]
+        public void ThenTheNumberOfDaysInLearningIsCalculatedAndSetAsIlrStartDateToLearningStoppedDateInTheLearnerTable()
+        {
+            var daysInLearning = helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
+                .Where(x => x.LearnerId == _learner.Id)
+                .OrderBy(x => x.NumberOfDaysInLearning).ToList();
+
+            daysInLearning.Count.Should().Be(1);
+            var activePeriod = helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+            var expectedNoOfDays = (_stoppedDate - _initialStartDate).TotalDays + 1;
+            daysInLearning.First().NumberOfDaysInLearning.Should().Be((int)expectedNoOfDays);
+            daysInLearning.First().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
+            daysInLearning.First().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
         }
 
         [Then(@"the Number of days in learning is calculated and set as number of days from ILRStart Date to Census date of the Active Period")]
         public void ThenTheNumberOfDaysInLearningIsCalculatedAndSetAsNumberOfDaysFromIlrStartDateToCensusDateOfTheActivePeriod()
         {
-            var daysInLearning = _helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
+            var daysInLearning = helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
                 .Where(x => x.LearnerId == _learner.Id).ToList();
 
             daysInLearning.Count.Should().Be(1);
-            var census = new DateTime(2021, 07, 31); // Period 12/2021
-            var expectedNoOfDays = (census - _initialStartDate).TotalDays + 1;
+            var activePeriod = helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+            var expectedNoOfDays = (activePeriod.CensusDate - _initialStartDate).TotalDays + 1;
             daysInLearning.First().NumberOfDaysInLearning.Should().Be((int) expectedNoOfDays);
-            daysInLearning.First().CollectionPeriodNumber.Should().Be(12);
-            daysInLearning.First().CollectionPeriodYear.Should().Be(2021);
+            daysInLearning.First().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
+            daysInLearning.First().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
         }
 
         [Then(@"the Number of days in learning is re-calculated and set as number of days from ILRStart Date to Census date of the Active Period")]
         public void ThenTheNumberOfDaysInLearningIsRe_CalculatedAndSetAsNumberOfDaysFromILRStartDateToCensusDateOfTheActivePeriod()
         {
-            var daysInLearning = _helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
+            var daysInLearning = helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>()
                 .Where(x => x.LearnerId == _learner.Id)
                 .OrderBy(x => x.NumberOfDaysInLearning).ToList();
 
             daysInLearning.Count.Should().Be(2);
-            var census = new DateTime(2021, 08, 31); // Period 1/2122
-            var expectedNoOfDays = (census - _initialStartDate).TotalDays + 1;
+            var activePeriod = helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+            var expectedNoOfDays = (activePeriod.CensusDate - _initialStartDate).TotalDays + 1;
             daysInLearning.Last().NumberOfDaysInLearning.Should().Be((int)expectedNoOfDays);
-            daysInLearning.Last().CollectionPeriodNumber.Should().Be(1);
-            daysInLearning.Last().CollectionPeriodYear.Should().Be(2122);
+            daysInLearning.Last().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
+            daysInLearning.Last().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
         }
 
     }
