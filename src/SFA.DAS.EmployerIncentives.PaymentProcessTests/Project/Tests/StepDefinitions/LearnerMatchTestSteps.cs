@@ -61,6 +61,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
+        [When(@"a learner match record is created for the apprenticeship id")]
         [Then(@"a learner match record is created for the apprenticeship id")]
         public async Task ThenWeHaveSomeLearnerData()
         {
@@ -105,7 +106,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await _helper.LearnerMatchApiHelper.SetupResponseHttpStatusCode(testData.ULN, testData.UKPRN, HttpStatusCode.NotFound);
         }
-
+        
         [Then(@"a learner match record is not created for the apprenticeship id")]
         public async Task ThenALearnerMatchRecordIsNotCreated()
         {
@@ -254,6 +255,116 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
             learnerRecord.InLearning.Should().BeFalse();
+        }
+
+        [When(@"the learner has a data lock for a price episode in the previous academic year")]
+        public async Task WhenTheLearnerHasADataLockForAPriceEpisodeInThePreviousAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+            
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithEndDate("2022-10-15T00:00:00")
+                .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(2)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [When(@"the learner has no data lock for a price episode in the current academic year")]
+        public async Task WhenTheLearnerHasNoDataLockForAPriceEpisodeInTheCurrentAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithEndDate("2022-10-15T00:00:00")
+                .WithPeriod(testData.ApprenticeshipId, 7, payable: false)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-08-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(1)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [When(@"the learner has no data lock for a price episode in the previous academic year")]
+        public async Task WhenTheLearnerHasNoDataLockForAPriceEpisodeInThePreviousAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithEndDate("2022-10-15T00:00:00")
+                .WithPeriod(testData.ApprenticeshipId, 7, payable: true)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(7)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [When(@"the learner has a data lock for a price episode in the current academic year")]
+        public async Task WhenTheLearnerHasADataLockForAPriceEpisodeInTheCurrentAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithEndDate("2022-10-15T00:00:00")
+                .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-08-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(2)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [When(@"the learner record has data lock set to true")]
+        [Then(@"the learner record has data lock set to true")]
+        public void ThenTheLearnerRecordHasDataLockSetToTrue()
+        {
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+            learnerRecord.HasDataLock.Should().BeTrue();
+        }
+
+        [When(@"the learner record has data lock set to false")]
+        [Then(@"the learner record has data lock set to false")]
+        public void ThenTheLearnerRecordHasDataLockSetToFalse()
+        {
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+            learnerRecord.HasDataLock.Should().BeFalse();
         }
 
     }
