@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -12,7 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
         private By FixILRMismatchOptions => By.XPath("//input[@value='Confirm']");
         protected override By ContinueButton => By.Id("fix-mismatch");
-        private By TableRowIdentifier => By.CssSelector("#new-course-name, .govuk-grid-column-one-half");     //(".govuk-table .govuk-table__body > tr #ilr-date, .govuk-grid-row");
+        private By PriceMismatchRow => By.XPath("//*[text() = 'training price']");
+        private By CourseMismatchRow => By.XPath("//*[text() = 'training course']");
+        private By CourseMismatchRow2 => By.CssSelector("#new-course-name");
 
         public ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -43,14 +46,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public int? GetRowCountForMismatch()
+        public Dictionary<string, int?> GetRowCountForMismatch()
         {
-            var x = pageInteractionHelper.FindElements(TableRowIdentifier);
-            return x.Count;
+            Dictionary<string, int?> mismatchRows = new Dictionary<string, int?>();
+            var courseMismatchRows = pageInteractionHelper.FindElements(CourseMismatchRow).Count + pageInteractionHelper.FindElements(CourseMismatchRow2).Count;
+            var priceMismatchRows = pageInteractionHelper.FindElements(PriceMismatchRow).Count;
+            mismatchRows.Add("CourseMismatchRows", courseMismatchRows);
+            mismatchRows.Add("PriceMismatchRows", priceMismatchRows);
+
+            return mismatchRows;
         }
-        
-        
- 
+
 
     }
 }

@@ -63,7 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                              .ClickViewIlrMismatchDetails()
                                              .GetRowCountForMismatch();
 
-            Assert.IsTrue(rows == 1, "validate only course mismatch row is displayed");
+            Assert.IsTrue(rows["CourseMismatchRows"] == 1, "validate 1 course mismatch row is displayed");
+            Assert.IsTrue(rows["PriceMismatchRows"] == 0, "validate no other mismatch row is displayed");
         }
 
         [Then(@"both mismatches are displayed on single page")]
@@ -75,10 +76,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                              .ClickViewIlrMismatchDetails()
                                              .GetRowCountForMismatch();
 
-            Assert.IsTrue(rows == 4, "validate both mismatched rows are displayed");
+            Assert.IsTrue(rows["CourseMismatchRows"] == 2, "validate 1 course mismatch row is displayed");      //1 row is split b/w 2 grids
+            Assert.IsTrue(rows["PriceMismatchRows"] == 2, "validate 1 price mismatch row is displayed");
         }
 
+        [Then(@"provider will see all price episodes on single page")]
+        public void ThenProviderWillSeeAllPriceEpisodesOnSinglePage()
+        {
+            var rows = _providerStepsHelper.GoToProviderHomePage(false)
+                                             .GoToProviderManageYourApprenticePage()
+                                             .SelectViewCurrentApprenticeDetails()
+                                             .ClickViewIlrMismatchDetails()
+                                             .GetRowCountForMismatch();
 
+            Assert.IsTrue(rows["CourseMismatchRows"] == 0, "validate no course mismatch row is displayed");  
+            Assert.IsTrue(rows["PriceMismatchRows"] == 4, "validate 1 price mismatch row is displayed");        //1 row is split b/w 2 grids
+        }
 
         [Then(@"the Employer can approve the ILR mismatch changes")]
         public void ThenTheEmployerCanApproveTheILRMismatchChanges()
@@ -127,16 +140,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(ProviderApprenticeDetailsPage.IsPricemismatchLinkDisplayed(), "Validate price mismatch link is displayed");
             Assert.IsTrue(ProviderApprenticeDetailsPage.IsCoursemismatchLinkDisplayed(), "Validate course mismatch link is displayed");
         }
-
-        [Then(@"provider will see all price episodes on single page")]
-        public void ThenProviderWillSeeAllPriceEpisodesOnSinglePage()
-        {
-            var ProviderApprenticeDetailsPage = _providerStepsHelper.GoToProviderHomePage(false)
-                                                        .GoToProviderManageYourApprenticePage()
-                                                        .SelectViewCurrentApprenticeDetails();
-        }
-
-
 
         private void ConfirmIlrismatch()
         {
