@@ -13,33 +13,44 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
-        private Learner _learner;
         private DateTime _stoppedDate;
         private DateTime _resumedDate;
+        private Phase _phase;
+        private Learner _learner;
 
         protected LearnerMatchDaysInLearningSteps(ScenarioContext context) : base(context)
         {
             testData.AccountId = 14326;
         }
 
-        [Given(@"an existing Phase2 apprenticeship incentive")]
-        public async Task GivenAnExistingApprenticeshipIncentive()
+        [Given(@"an existing (.*) apprenticeship incentive submitted in Academic Year (.*)")]
+        public async Task GivenAnExistingPhaseApprenticeshipIncentiveSubmittedInAcademicYear(string phase, short year)
         {
-            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
+            _phase = Enum.Parse<Phase>(phase);
+            if (_phase == Phase.Phase1)
+            {
+                await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(3, year);
+                _initialStartDate = new DateTime(2020, 9, 1);
+            }
+            else
+            {
+                await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, year);
+                _initialStartDate = new DateTime(2021, 5, 5);
+            }
 
-            _initialStartDate = new DateTime(2021,5,5);
             _initialEndDate = DateTime.Today.AddMonths(12);
 
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, 
-                    _initialStartDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate,
+                    _initialStartDate.AddYears(-24), _phase)
                 .Create();
 
             await helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             const byte period = 4;
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
                 .WithPeriod(testData.ApprenticeshipId, period)
@@ -48,7 +59,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var submission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(2021)
+                .WithAcademicYear(year)
                 .WithIlrSubmissionDate(_initialStartDate.AddMonths(-1))
                 .WithIlrSubmissionWindowPeriod(period)
                 .WithStartDate(_initialStartDate)
@@ -58,66 +69,32 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
         }
 
-        [Given(@"an existing Phase1 apprenticeship incentive")]
-        public async Task GivenAnExistingPhaseApprenticeshipIncentive()
+        [When(@"the Learner Match occurs in Period R(.*) (.*)")]
+        public async Task WhenTheLearnerMatchOccursInPeriodR(byte period, short year)
         {
-            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(3, 2021);
-           
-            _initialStartDate = new DateTime(2020, 9, 1);
-            _initialEndDate = DateTime.Today.AddMonths(12);
-
-            testData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate,
-                    _initialStartDate.AddYears(-24), Phase.Phase1)
-                .Create();
-
-            await helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
-
-            const byte period = 1;
-            var priceEpisode = new PriceEpisodeDtoBuilder()
-                .WithStartDate(_initialStartDate)
-                .WithEndDate(_initialEndDate)
-                .WithPeriod(testData.ApprenticeshipId, period)
-                .Create();
-
-            var submission = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(testData.UKPRN)
-                .WithUln(testData.ULN)
-                .WithAcademicYear(2021)
-                .WithIlrSubmissionDate(_initialStartDate.AddMonths(-1))
-                .WithIlrSubmissionWindowPeriod(period)
-                .WithStartDate(_initialStartDate)
-                .WithPriceEpisode(priceEpisode)
-                .Create();
-
-            await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
-        }
-
-
-        [When(@"the Learner Match occurs")]
-        public async Task WhenTheLearnerMatchOccurs()
-        {
+            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
             await helper.LearnerMatchOrchestratorHelper.Run();
 
-            _learner = helper.EISqlHelper.GetFromDatabase<Learner>(x =>
-                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId);
+            _learner = helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId);
             _learner.Should().NotBeNull();
         }
+      
 
         [Given(@"a successful Learner Match in previous collection period")]
         public async Task GivenASuccessfulLearnerMatchInPreviousCollectionPeriod()
         {
-            await WhenTheLearnerMatchOccurs();
+            await WhenTheLearnerMatchOccursInPeriodR(helper.CollectionCalendarHelper.ActivePeriod.Number,
+                helper.CollectionCalendarHelper.ActivePeriod.Year);
 
             await helper.CollectionCalendarHelper.SetNextActiveCollectionPeriod();
         }
 
         [Given(@"ILR Learner Stopped Change of Circumstance has occurred")]
-        public async Task GivenILRLearnerStoppedChangeOfCircumstanceHasOccurred()
+        public async Task GivenIlrLearnerStoppedChangeOfCircumstanceHasOccurred()
         {
             _stoppedDate = _initialStartDate.AddDays(40);
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_stoppedDate)
                 .WithPeriod(testData.ApprenticeshipId, helper.CollectionCalendarHelper.ActivePeriod.Number)
@@ -137,9 +114,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"ILR Learner Resumed Change of Circumstance has occurred in the current period")]
-        public async Task GivenILRLearnerResumedChangeOfCircumstanceHasOccurredInTheCurrentPeriod()
+        public async Task GivenIlrLearnerResumedChangeOfCircumstanceHasOccurredInTheCurrentPeriod()
         {
             var priceEpisode1 = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_stoppedDate)
                 .WithPeriod(testData.ApprenticeshipId, helper.CollectionCalendarHelper.ActivePeriod.Number)
@@ -165,7 +143,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, submission);
 
-            await WhenTheLearnerMatchOccurs();
+            await WhenTheLearnerMatchOccursInPeriodR(helper.CollectionCalendarHelper.ActivePeriod.Number,
+                helper.CollectionCalendarHelper.ActivePeriod.Year);
         }
 
         [Then(@"the Number of days in learning is calculated and set as a total number of days spent in learning")]
@@ -244,6 +223,5 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             daysInLearning.Last().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
             daysInLearning.Last().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
         }
-
     }
 }

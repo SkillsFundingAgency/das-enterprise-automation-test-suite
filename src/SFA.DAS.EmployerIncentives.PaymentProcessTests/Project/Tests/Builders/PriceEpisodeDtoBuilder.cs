@@ -52,5 +52,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             });
             return this;
         }
+
+        public PriceEpisodeDtoBuilder WithAcademicYear(in int value)
+        {
+            _data.AcademicYear = value.ToString();
+            return this;
+        }
+
     }
 }
