@@ -90,6 +90,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             const byte period = 4;
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
                 .WithPeriod(testData.ApprenticeshipId, period)

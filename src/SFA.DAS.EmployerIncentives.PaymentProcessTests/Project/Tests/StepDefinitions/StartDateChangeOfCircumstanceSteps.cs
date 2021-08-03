@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
@@ -78,6 +78,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -124,6 +125,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 DateTime newStartDate)
         {
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 8)
@@ -146,6 +148,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var newStartDate = new DateTime(2021, 05, 31);
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 8)
@@ -163,6 +166,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var newStartDate = new DateTime(2021, 03, 31);
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 8)
@@ -178,6 +182,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private LearnerSubmissionDto CreateLearnerSubmissionDto(DateTime newStartDate, PriceEpisodeDto priceEpisode)
         {
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
@@ -263,5 +268,5 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             pp.PeriodNumber.Should().Be(period);
             pp.PaymentYear.Should().Be(year);
         }
-}
+    }
 }
