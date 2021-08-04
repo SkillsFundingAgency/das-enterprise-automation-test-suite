@@ -11,10 +11,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 
        public CampaignsStepsHelper(ScenarioContext context) => _context = context;
 
-       public FireItUpHomePage GoToFireItUpHomePage() => new FireItUpHomePage(_context).AcceptCookieAndAlert();
+       public CampaingnsHomePage GoToCampaingnsHomePage() => new CampaingnsHomePage(_context).AcceptCookieAndAlert();
 
-       public ApprenticeHubPage GoToApprenticeshipHubPage() => GoToFireItUpHomePage().NavigateToApprenticeshipHubPage();
+       public ApprenticeHubPage GoToApprenticeshipHubPage() => GoToCampaingnsHomePage().NavigateToApprenticeshipHubPage();
 
-       public EmployerHubPage GoToEmployerHubPage() => GoToFireItUpHomePage().NavigateToEmployerHubPage();
+       public EmployerHubPage GoToEmployerHubPage() => GoToCampaingnsHomePage().NavigateToEmployerHubPage();
     }
 }

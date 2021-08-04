@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class FireItUpHomePage : CampaingnsPage
+    public class CampaingnsHomePage : CampaingnsPage
     {
         protected override string PageTitle => "APPRENTICES EMPLOYERS INFLUENCERS";
 
@@ -44,16 +44,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private By FiuHomePageCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Find apprenticeship training')]");
         #endregion
 
-        public FireItUpHomePage(ScenarioContext context) : base(context) => _context = context;
+        public CampaingnsHomePage(ScenarioContext context) : base(context) => _context = context;
         
-        public FireItUpHomePage AcceptCookieAndAlert()
+        public CampaingnsHomePage AcceptCookieAndAlert()
         {
             if (pageInteractionHelper.WaitUntilAnyElements(CookieButton))
             {
                 formCompletionHelper.ClickElement(CookieButton);
                 formCompletionHelper.ClickElement(CloseCookieButton);
             }
-            return new FireItUpHomePage(_context);
+            return new CampaingnsHomePage(_context);
         }
 
         public RegisterInterestPage NavigateToRegisterInterest()
@@ -73,27 +73,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(Employer);
             return new EmployerHubPage(_context);
         }
-        public FireItUpHomePage VerifyFiuHomePageCard1()
+        public CampaingnsHomePage VerifyFiuHomePageCard1()
         {
             pageInteractionHelper.VerifyText(FiuHomePageCard1, HomePageFiuCard1Heading);
-            return new FireItUpHomePage(_context);
+            return new CampaingnsHomePage(_context);
         }
 
-        public FireItUpHomePage VerifyFiuHomePageCard2()
+        public CampaingnsHomePage VerifyFiuHomePageCard2()
         {
             pageInteractionHelper.VerifyText(FiuHomePageCard2, HomePageFiuCard2Heading);
-            return new FireItUpHomePage(_context);
+            return new CampaingnsHomePage(_context);
         }
 
-        public FireItUpHomePage VerifyFiuHomePageCard3()
+        public CampaingnsHomePage VerifyFiuHomePageCard3()
         {
             pageInteractionHelper.VerifyText(FiuHomePageCard3, HomePageFiuCard3Heading);
-            return new FireItUpHomePage(_context);
+            return new CampaingnsHomePage(_context);
         }
-        public FireItUpHomePage VerifyFiuHomePageCard4()
+        public CampaingnsHomePage VerifyFiuHomePageCard4()
         {
             pageInteractionHelper.VerifyText(FiuHomePageCard4, HomePageFiuCard4Heading);
-            return new FireItUpHomePage(_context);
+            return new CampaingnsHomePage(_context);
         }
 
     }

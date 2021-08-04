@@ -10,6 +10,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public CampaignsHomeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user navigates to Home page and verifies the content")]
-        public void GivenTheUserNavigatesToHomePageAndVerifiesTheContent() => _stepsHelper.GoToFireItUpHomePage();
+        public void GivenTheUserNavigatesToHomePageAndVerifiesTheContent() => _stepsHelper.GoToCampaingnsHomePage();
     }
 }
