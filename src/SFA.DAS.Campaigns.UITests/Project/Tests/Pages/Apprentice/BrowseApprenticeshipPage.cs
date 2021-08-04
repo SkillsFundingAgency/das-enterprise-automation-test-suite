@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class FindAnApprenticeshipPage : ApprenticeBasePage
+    public class BrowseApprenticeshipPage : ApprenticeBasePage
     {
         protected override string PageTitle => "Browse apprenticeships before you apply";
 
@@ -16,9 +16,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private By Distance => By.CssSelector("#header-distance");
         private By SearchButton => By.CssSelector("#search-apprenticeship");
 
-        public FindAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public BrowseApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
-            public ResultsPage SearchForAnApprenticeship()
+        public ResultsPage SearchForAnApprenticeship()
         {
             formCompletionHelper.SelectFromDropDownByText(Route, campaignsDataHelper.Route);
             formCompletionHelper.EnterText(Postcode, campaignsDataHelper.Postcode);

@@ -1,24 +1,22 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class ApprenticeHubPage : CampaingnsPage
+    public class ApprenticeHubPage : HubBasePage
     {
-        protected override string PageTitle => "BECOME AN APPRENTICE";
+        protected override string PageTitle => "APPRENTICES";
 
         #region element /objects
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
         protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
         protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
 
         protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
 
-        protected By FindAnApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
+        protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
         protected By RealStories => By.CssSelector("a[href*='real-stories']");
 
@@ -36,8 +34,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By SetUpService => By.CssSelector("a[href*='create-account']"); 
 
-        protected By SiteMap => By.CssSelector("#link-footer-sitemap");
-
         protected By YourApprenticeship => By.CssSelector("a[href*='starting-apprenticeship']"); 
 
         protected By AssesmentAndCertification => By.CssSelector("a[href*='assessment-and-certification']");
@@ -50,21 +46,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public ApprenticeHubPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifySubHeadings()
-        {
-            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
-
-            VerifyPage(func, "Real stories");
-            VerifyPage(func, "What are the benefits of an apprenticeship?");
-            //VerifyPage(func, "Help shape their career");
-            VerifyPage(func, "Browse by interest");
-            VerifyPage(func, "Becoming an apprentice");
-            VerifyPage(func, "Applying for an apprenticeship");
-            VerifyPage(func, "The interview process");
-            VerifyPage(func, "Starting your apprenticeship");
-            VerifyPage(func, "Assessment and certification");
-            VerifyPage(func, "Create an apprenticeship service account");
-        }
+        public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToApprenticeshipHubPage());
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
         {
@@ -99,13 +81,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         {
             formCompletionHelper.ClickElement(SetUpService);
             return new SetUpServicePage(_context);
-        }
-
-
-        public SiteMapPage NavigateToSiteMapPage()
-        {
-            formCompletionHelper.ClickElement(SiteMap);
-            return new SiteMapPage(_context);
         }
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
@@ -146,10 +121,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             return new AssesmentAndCertificationPage(_context);
         }
 
-        public FindAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
+        public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()
         {
-            formCompletionHelper.ClickElement(FindAnApprenticeship);
-            return new FindAnApprenticeshipPage(_context);
+            formCompletionHelper.ClickElement(BrowseApprenticeship);
+            return new BrowseApprenticeshipPage(_context);
         }
 
         private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);

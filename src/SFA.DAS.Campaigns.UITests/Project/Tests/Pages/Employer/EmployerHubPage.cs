@@ -6,11 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerHubPage : CampaingnsPage
+    public class EmployerHubPage : HubBasePage
     {
-        protected override string PageTitle => "HIRE AN APPRENTICE";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected override string PageTitle => "EMPLOYERS";
 
         protected By Basket => By.CssSelector("a[href='/Basket/View']");
 
@@ -52,7 +50,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public EmployerHubPage(ScenarioContext context) : base(context, true) => _context = context;
+        public EmployerHubPage(ScenarioContext context) : base(context) => _context = context;
 
         public void VerifySubHeadings()
         {

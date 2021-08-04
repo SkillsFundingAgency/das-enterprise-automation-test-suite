@@ -3,8 +3,7 @@
 @campaigns
 @apprentice
 @regression
-Scenario: CA_AP_01_Check Real stories Page Details
-	Given the user navigates to the real stories page
+Scenario: CA_AP_01_Check Browse Apprenticeship Page And Search For An Apprenticeship
+	Given the user navigates to the browse apprenticeship page
 	Then the links are not broken
-	And the video links are not broken
-	
+

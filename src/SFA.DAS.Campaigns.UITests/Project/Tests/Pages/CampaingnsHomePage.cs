@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class CampaingnsHomePage : CampaingnsPage
+    public class CampaingnsHomePage : CampaingnsHeaderBasePage
     {
         protected override string PageTitle => "APPRENTICES EMPLOYERS INFLUENCERS";
 
@@ -29,9 +27,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By CloseCookieButton => By.Id("fiu-cb-close");
 
-        private By Apprentice => By.CssSelector("a[href*='apprentice']");
-
-        private By Employer => By.CssSelector("a[href*='employers']");
 
         private By RegisterInterest => By.CssSelector("a[href*='register-interest']");
 
@@ -62,17 +57,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new RegisterInterestPage(_context);
         }
 
-        public ApprenticeHubPage NavigateToApprenticeshipHubPage()
-        {
-            formCompletionHelper.ClickElement(Apprentice);
-            return new ApprenticeHubPage(_context);
-        }
-
-        public EmployerHubPage NavigateToEmployerHubPage()
-        {
-            formCompletionHelper.ClickElement(Employer);
-            return new EmployerHubPage(_context);
-        }
         public CampaingnsHomePage VerifyFiuHomePageCard1()
         {
             pageInteractionHelper.VerifyText(FiuHomePageCard1, HomePageFiuCard1Heading);
@@ -95,6 +79,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             pageInteractionHelper.VerifyText(FiuHomePageCard4, HomePageFiuCard4Heading);
             return new CampaingnsHomePage(_context);
         }
-
     }
 }
