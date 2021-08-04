@@ -102,11 +102,6 @@ Scenario: Submission Not Found during end of year roll over
 	When a learner match request in the current academic year does not find the requested ULN and UKPRN
 	Then update the learner match record to reflect that no current data has been found
 
-Scenario: Submission Not Found during end of year roll over
-	Given an incentive application has a learner match record in previous academic year
-	When a learner match request in the current academic year does not find the requested ULN and UKPRN
-	Then update the learner match record to reflect that no current data has been found
-
 Scenario: Learning found in previous academic year but not in current academic year
 	Given an incentive application has a learner match record in previous academic year
 	And learner match does not have a matching apprenticeship ID in a price episode in the current academic year 
