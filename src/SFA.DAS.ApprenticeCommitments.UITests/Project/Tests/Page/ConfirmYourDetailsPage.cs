@@ -15,6 +15,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By YourResponsibilitiesTab => By.XPath("//a[@id='tab_tab_you' and text()='Your responsibilities']");
         protected By YourEmployerTab => By.XPath("//a[@id='tab_tab_youremployer' and contains(text(),'Your employer')]");
         protected By YourTrainingProviderTab => By.XPath("//a[@id='tab_tab_yourprovider' and contains(text(),'Your training provider')]");
+        protected By EmployerHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your employer's name\")]");
+        protected By EmployerHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetEmployerName()} is your employer's legal name registered with Companies House.  You may know them by their trading name instead.\")]");
+        protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
+        protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
 
         public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false)
         {

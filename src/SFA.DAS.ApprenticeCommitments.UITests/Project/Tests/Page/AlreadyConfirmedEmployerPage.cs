@@ -13,6 +13,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage();
             pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
             VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetEmployerName().Replace("  "," "));
+            VerifyPage(EmployerHelpSectionLink);
+            VerifyPage(EmployerHelpSectionText);
         }
     }
 }
