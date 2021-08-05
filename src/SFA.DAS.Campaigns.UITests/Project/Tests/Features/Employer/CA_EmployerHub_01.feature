@@ -8,4 +8,3 @@ Scenario: CA_EmployerHub_01_Check Employer Hub Page Details
 	Then the links are not broken
 	And the video links are not broken
 	And the fire it up tile card links are not broken
-	

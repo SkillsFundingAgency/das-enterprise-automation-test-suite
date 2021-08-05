@@ -8,4 +8,3 @@ Scenario: CA_ApprenticeHub_01_Check Apprentice Hub Page Details
 	Then the links are not broken
 	And the video links are not broken
 	And the fire it up tile card links are not broken
-	
