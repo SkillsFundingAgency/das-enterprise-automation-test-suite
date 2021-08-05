@@ -24,7 +24,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ViewChanges => By.Id("change-employer-link");        
         private By ViewChangesLink => By.LinkText("View changes");
         private By ViewDetailsLink => By.LinkText("View details");
-        
+        private By TriageLinkRestartLink => By.LinkText("View course mismatch");
+        private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
+
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -81,12 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
 
         }
-
-        public string GetCoPBanner()
-        {
-            return pageInteractionHelper.GetText(ChangeOfPartyBanner);
-        }
-
+        
         public ProviderViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChanges);
@@ -106,5 +103,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }      
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
+        public string GetCoPBanner() => pageInteractionHelper.GetText(ChangeOfPartyBanner);
+
+        public bool IsPricemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkUpdateLink);
+
+        public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
+
     }
 }
