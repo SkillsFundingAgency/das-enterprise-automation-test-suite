@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class LevyingPayingEmployerPage: EmployerBasePage
+    public class LevyingPayingEmployerPage: EmployerHubPage
     {
         protected override string PageTitle => "Funding an apprenticeship for levy payers";
 

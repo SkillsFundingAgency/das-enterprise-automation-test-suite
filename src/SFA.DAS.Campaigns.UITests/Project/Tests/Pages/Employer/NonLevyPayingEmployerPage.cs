@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class NonLevyPayingEmployerPage: EmployerBasePage
+    public class NonLevyPayingEmployerPage: EmployerHubPage
     {
         protected override string PageTitle => "Funding an apprenticeship for non levy employers";
 

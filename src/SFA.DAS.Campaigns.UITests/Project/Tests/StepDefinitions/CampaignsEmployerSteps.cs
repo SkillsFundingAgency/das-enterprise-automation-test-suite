@@ -10,7 +10,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly CampaignsStepsHelper _stepsHelper;
 
         private EmployerHubPage _employerHubPage;
-        private EndPointAssessmentPage _endPointAssessmentPage;
 
         public CampaignsEmployerSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 

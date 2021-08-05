@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerHowDoTheyWorkPage : EmployerBasePage
+    public class EmployerHowDoTheyWorkPage : EmployerHubPage
     {
         protected override string PageTitle => "How do they work?";
 

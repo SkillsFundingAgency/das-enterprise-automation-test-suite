@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerAreTheyRightForYouPage: EmployerBasePage
+    public class EmployerAreTheyRightForYouPage: EmployerHubPage
     {
         protected override string PageTitle => "Are they right for you?";
 
