@@ -3,10 +3,44 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
-    public abstract class InfluencersBasePage : InfluencersHubPage
+    public abstract class InfluencersBasePage : HubBasePage
     {
-        protected override By PageHeader => SubPageHeader;
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
 
-        protected InfluencersBasePage(ScenarioContext context) : base(context) { }
+        private By HowDoTheyWork => By.CssSelector("a[href= '/influencers/how-apprenticeships-work']");
+
+        private By RequestSupport => By.CssSelector("a[href= '/influencers/request-ask-support']");
+
+        private By ResourceHub => By.CssSelector("a[href= '/influencers/resource-hub']");
+
+        private By BecomeAnAmbassador => By.CssSelector("a[href= '/influencers/become-an-ambassador']");
+
+        public InfluencersBasePage(ScenarioContext context) : base(context) => _context = context;
+
+        public InfluencersHowTheyWorkPage NavigateToHowDoTheyWorkPage()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new InfluencersHowTheyWorkPage(_context);
+        }
+
+        public InfluencersRequestSupportPage NavigateToRequestSupportPage()
+        {
+            formCompletionHelper.ClickElement(RequestSupport);
+            return new InfluencersRequestSupportPage(_context);
+        }
+
+        public InfluencersResourceHubPage NavigateToResourceHubPage()
+        {
+            formCompletionHelper.ClickElement(ResourceHub);
+            return new InfluencersResourceHubPage(_context);
+        }
+
+        public InfluencersBecomeAnAmbassadorPage NavigateToBecomeAnAmbassadorPage()
+        {
+            formCompletionHelper.ClickElement(BecomeAnAmbassador);
+            return new InfluencersBecomeAnAmbassadorPage(_context);
+        }
     }
 }

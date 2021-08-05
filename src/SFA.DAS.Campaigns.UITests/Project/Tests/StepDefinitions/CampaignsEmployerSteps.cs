@@ -9,18 +9,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
 
-        private EmployerHubPage _employerHubPage;
-
         public CampaignsEmployerSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user navigates to Setting Up Page")]
         public void GivenTheUserNavigatesToSettingUpPage() => GoToEmployerHubPage().ClickSettingUpLink();
-
-        [Then(@"the employer sub headings are displayed")]
-        public void ThenTheEmployerSubHeadingsAreDisplayed() => _employerHubPage.VerifySubHeadings();
-
-        [Given(@"the user navigates to Hire An Apprentice hub Page")]
-        public void GivenTheUserNavigatesToHireAnApprenticeHubPage() => _employerHubPage = GoToEmployerHubPage();
 
         [Given(@"the user navigates to employer How do they work page")]
         public void GivenTheUserNavigatesToEmployerHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink().VerifyHowDoTheyWorkPageSubHeadings();

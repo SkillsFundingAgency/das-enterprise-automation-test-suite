@@ -9,7 +9,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private BrowseApprenticeshipPage _findAnApprenticeshipPage;
-        private ApprenticeAreTheyRightForYouPage _apprenticeAreTheyRightForYouPage;
         private ApprenticeHubPage _apprenticeHubPage;
 
         public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
@@ -27,9 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserNavigatesToGettingStartedPage() => GoToApprenticeshipHubPage().NavigateToGettingStarted();
 
         [Given(@"the user navigates to Are ApprenticeShip Right For You Page")]
-        public void GivenTheUserNavigatesToAreApprenticeShipRightForYouPage() => _apprenticeAreTheyRightForYouPage = GoToApprenticeshipHubPage()
-            .NavigateToAreApprenticeShipRightForMe()
-            .VerifyApprenticeAreTheyRightForYouPageSubHeadings();
+        public void GivenTheUserNavigatesToAreApprenticeShipRightForYouPage() => GoToApprenticeshipHubPage().NavigateToAreApprenticeShipRightForMe().VerifyApprenticeAreTheyRightForYouPageSubHeadings();
 
         [Given(@"the user navigates to the browse apprenticeship page")]
         public void GivenTheUserNavigatesToBrowseApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToBrowseApprenticeshipPage();

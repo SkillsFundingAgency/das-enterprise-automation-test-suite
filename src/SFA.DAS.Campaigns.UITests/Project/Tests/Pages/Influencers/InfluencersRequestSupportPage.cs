@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
@@ -6,8 +7,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
     {
         protected override string PageTitle => "Request support";
 
+        protected override By PageHeader => SubPageHeader;
+
         public InfluencersRequestSupportPage(ScenarioContext context) : base(context) { }
 
-        public void VerifyInfluencersRequestSupportPageSubHeadings() => VerifyFiuCards(() => NavigateToRequestSupportPage());
+        public InfluencersRequestSupportPage VerifySubHeadings() => VerifyFiuCards(() => NavigateToRequestSupportPage());
     }
 }
