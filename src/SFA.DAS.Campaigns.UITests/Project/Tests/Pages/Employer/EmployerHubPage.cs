@@ -52,24 +52,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmployerHubPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifySubHeadings()
-        {
-            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
-
-            VerifyPage(func, "The road to a quality apprenticeship"); 
-            VerifyPage(func, "Real stories");
-            VerifyPage(func, "What are the benefits of hiring an apprentice?");
-            VerifyPage(func, "Hiring an apprentice");
-            VerifyPage(func, "Upskilling your workforce");
-            VerifyPage(func, "Funding an apprenticeship");
-            VerifyPage(func, "Training your apprentice");
-            VerifyPage(func, "End-point assessments");
-            VerifyPage(func, "How to choose the right apprenticeship training");
-            VerifyPage(func, "Choose a training provider");
-            VerifyPage(func, "Set up a service account");
-            VerifyPage(func, "Browse by sector");
-            VerifyPage(func, "Financial incentives for employers");
-        }
+        public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 
         public EmployerRealStoriesPage NavigateToRealStoriesPage()
         {
