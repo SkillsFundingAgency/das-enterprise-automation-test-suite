@@ -31,9 +31,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             .NavigateToAreApprenticeShipRightForMe()
             .VerifyApprenticeAreTheyRightForYouPageSubHeadings();
 
-        [Then(@"check that RealStories Page loads")]
-        public void ThenCheckThatRealStoriesPageLoads() => _apprenticeAreTheyRightForYouPage.NavigateToRealStoriesPage();
-
         [Given(@"the user navigates to the browse apprenticeship page")]
         public void GivenTheUserNavigatesToBrowseApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToBrowseApprenticeshipPage();
 

@@ -110,9 +110,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the user navigates to Are ApprenticeShip Right For You Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("check that RealStories Page loads", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

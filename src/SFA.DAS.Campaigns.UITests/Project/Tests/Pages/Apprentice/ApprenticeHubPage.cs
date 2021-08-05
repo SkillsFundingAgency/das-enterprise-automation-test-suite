@@ -37,12 +37,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToApprenticeshipHubPage());
 
-        public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
-        {
-            formCompletionHelper.ClickElement(RealStories);
-            return new ApprenticeRealStoriesPage(_context);
-        }
-
         public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
         {
             formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
@@ -59,12 +53,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         {
             formCompletionHelper.ClickElement(GettingStarted);
             return new GettingStartedPage(_context);
-        }
-
-        public BrowseByInterestPage NavigateToBrowseInterestPage()
-        {
-            formCompletionHelper.ClickElement(BrowserInterest);
-            return new BrowseByInterestPage(_context);
         }
 
         public SetUpServicePage NavigateToSetUpServiceAccountPage()

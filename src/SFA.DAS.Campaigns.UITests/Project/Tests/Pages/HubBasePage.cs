@@ -22,8 +22,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         public HubBasePage(ScenarioContext context) : base(context) => _context = context;
 
-        protected void VerifyFiuCards<T>(Func<T> func)
+        protected T VerifyFiuCards<T>(Func<T> func)
         {
+            T result = default;
+
             var fiuCardsHeading = GetFiuCards().Select(x => pageInteractionHelper.GetText(() => x.FindElement(FiuHeading))).ToList();
 
             foreach (var fiuCardHeading in fiuCardsHeading)
@@ -32,8 +34,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
                 new CampaingnsDynamicFiuPage(_context, () => formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink)), fiuCardHeading);
 
-                func.Invoke();
+                result = func.Invoke();
             }
+            return result;
         }
 
         private List<IWebElement> GetFiuCards() => pageInteractionHelper.FindElements(FiuCard);
