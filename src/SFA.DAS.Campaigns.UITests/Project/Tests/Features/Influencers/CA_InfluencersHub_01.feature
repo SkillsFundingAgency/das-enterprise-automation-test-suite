@@ -1,9 +1,9 @@
-﻿Feature: CA_Influencers_01
+﻿Feature: CA_InfluencersHub_01
 
 @campaigns
 @influencers
 @regression
-Scenario: CA_Influencers_01_Check Influencers Page Details
+Scenario: CA_InfluencersHub_01_Check Influencers Hub Page Details
 	Given the user navigates to the influencers page
 	Then the links are not broken
 	And the video links are not broken

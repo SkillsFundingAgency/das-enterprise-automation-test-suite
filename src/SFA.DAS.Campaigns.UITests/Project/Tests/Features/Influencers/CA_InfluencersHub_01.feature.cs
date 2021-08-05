@@ -20,22 +20,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Influencers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CA_Influencers_01")]
-    public partial class CA_Influencers_01Feature
+    [NUnit.Framework.DescriptionAttribute("CA_InfluencersHub_01")]
+    public partial class CA_InfluencersHub_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CA_Influencers_01.feature"
+#line 1 "CA_InfluencersHub_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_Influencers_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_InfluencersHub_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Influencers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_Influencers_01_Check Influencers Page Details")]
+        [NUnit.Framework.DescriptionAttribute("CA_InfluencersHub_01_Check Influencers Hub Page Details")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("influencers")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_Influencers_01_CheckInfluencersPageDetails()
+        public virtual void CA_InfluencersHub_01_CheckInfluencersHubPageDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
                     "influencers",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_Influencers_01_Check Influencers Page Details", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_InfluencersHub_01_Check Influencers Hub Page Details", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
