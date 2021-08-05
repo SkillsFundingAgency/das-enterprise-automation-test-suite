@@ -37,10 +37,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can search for an apprenticeship")]
         public void ThenTheUserCanSearchForAnApprenticeship() => _findAnApprenticeshipPage.SearchForAnApprenticeship().VerifySearchResults().SelectFirstSearchResult().VerifyVacancyTitle();
 
-        [Given(@"the user navigates to the Advice for Parent  page")]
-        public void GivenTheUserNavigatesToTheAdviceForParentPage() => GoToApprenticeshipHubPage().NavigateToHelpShapeTheirCareerPage();
-
-
         [Given(@"the user navigates to the Set Up Service Account page")]
         public void GivenTheUserNavigatesToTheSetUpServiceAccountPage() => GoToApprenticeshipHubPage().NavigateToSetUpServiceAccountPage();
 

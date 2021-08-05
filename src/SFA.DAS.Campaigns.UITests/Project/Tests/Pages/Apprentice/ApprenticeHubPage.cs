@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
@@ -17,8 +16,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
 
         protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
-
-        protected By HelpShapeTheirCareer => By.CssSelector("a[href*='help-shape-their-career']"); 
 
         protected By SetUpService => By.CssSelector("a[href*='create-account']"); 
 
@@ -54,12 +51,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         {
             formCompletionHelper.ClickElement(SetUpService);
             return new SetUpServicePage(_context);
-        }
-
-        public HelpShapeTheirCareerPage NavigateToHelpShapeTheirCareerPage()
-        {
-            formCompletionHelper.ClickElement(HelpShapeTheirCareer);
-            return new HelpShapeTheirCareerPage(_context);
         }
 
         public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()

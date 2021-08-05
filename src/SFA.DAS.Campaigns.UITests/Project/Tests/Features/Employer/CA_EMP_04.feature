@@ -3,7 +3,7 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_04_Check Hiring an Apprentice Page Details
-	Given the user navigates to hiring an apprentice page
+Scenario: CA_EMPP_04_Check The links on How do they work Page
+	Given the user navigates to employer How do they work page
 	Then the links are not broken
-
+	

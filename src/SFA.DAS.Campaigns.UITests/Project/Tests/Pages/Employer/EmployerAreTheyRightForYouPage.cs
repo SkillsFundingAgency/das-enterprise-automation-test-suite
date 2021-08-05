@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
