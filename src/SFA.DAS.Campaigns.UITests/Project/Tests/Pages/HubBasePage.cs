@@ -8,9 +8,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class HubBasePage : CampaingnsHeaderBasePage
     {
-        protected override By PageHeader => By.CssSelector(".fiu-page-header__tag");
-
-        protected By FiuPageHeading => By.CssSelector(".fiu-page-heading__title");
+        protected override By PageHeader => By.CssSelector(".fiu-page-header__tag");      
 
         private By FiuCard => By.CssSelector(".fiu-card");
 
@@ -18,7 +16,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By FiuLink => By.CssSelector(".fiu-card__link");
 
-        public HubBasePage(ScenarioContext context) : base(context) { }
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        public HubBasePage(ScenarioContext context) : base(context) => _context = context;
 
         protected void VerifyFiuCards<T>(Func<T> func)
         {
@@ -28,13 +30,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             {
                 var fiuCard = GetFiuCards().FirstOrDefault(x => x.Text.Contains(fiuCardHeading));
 
-                formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
-
-                VerifyPage(FiuPageHeading, fiuCardHeading);
-
-                VerifyLinks();
-
-                VerifyVideoLinks();
+                new CampaingnsDynamicFiuPage(_context, () => formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink)), fiuCardHeading);
 
                 func.Invoke();
             }

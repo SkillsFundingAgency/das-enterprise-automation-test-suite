@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using TechTalk.SpecFlow;
 

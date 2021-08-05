@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
@@ -11,13 +8,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmployerAreTheyRightForYouPage(ScenarioContext context): base(context) { }
 
-        public void VerifyApprenticeHowDoTheyWorkPageSubHeadings()
-        {
-            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
-
-            VerifyPage(func, "Real stories");
-            VerifyPage(func, "What are the benefits of hiring an apprentice?");
-            VerifyPage(func, "Browse by sector");
-        }
+        public void VerifyApprenticeHowDoTheyWorkPageSubHeadings() => VerifyFiuCards(() => NavigateToAreTheyRightForYouPage());
     }
 }
