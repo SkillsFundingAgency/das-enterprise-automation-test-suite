@@ -16,11 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderMessageForEmployerPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderCohortApprovedAndSentToEmployerPage SendInstructionsToEmployerForAnApprovedCohort()
+        public ProviderCohortApprovedPage SendInstructionsToEmployerForAnApprovedCohort()
         {
             formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
             formCompletionHelper.ClickElement(SendButton);
-            return new ProviderCohortApprovedAndSentToEmployerPage(_context);
+            return new ProviderCohortApprovedPage(_context);
         }
         public  ProviderCohortSentForReviewPage SendInstructionsToEmployerForCohortToReview()
         {
