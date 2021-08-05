@@ -1,10 +1,10 @@
-﻿Feature: CA_Apprentice_01
+﻿Feature: CA_Influencers_01
 
 @campaigns
 @apprentice
 @regression
-Scenario: CA_Apprentice_01_Check Apprentice Page Details
-	Given the user navigates to the apprentice page
+Scenario: CA_Influencers_01_Check Influencers Page Details
+	Given the user navigates to the influencers page
 	Then the links are not broken
 	And the video links are not broken
 	And the fire it up tile card links are not broken

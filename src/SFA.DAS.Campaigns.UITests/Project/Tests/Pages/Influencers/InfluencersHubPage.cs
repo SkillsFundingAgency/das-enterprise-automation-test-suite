@@ -11,5 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
         #endregion
 
         public InfluencersHubPage(ScenarioContext context) : base(context) => _context = context;
+
+        public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToInfluencersHubPage());
     }
 }
