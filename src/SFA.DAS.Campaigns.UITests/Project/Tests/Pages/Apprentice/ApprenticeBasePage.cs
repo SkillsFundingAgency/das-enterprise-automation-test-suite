@@ -5,7 +5,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public abstract class ApprenticeBasePage : ApprenticeHubPage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected override By PageHeader => SubPageHeader;
+
         protected ApprenticeBasePage(ScenarioContext context) : base(context) { }
     }
 }

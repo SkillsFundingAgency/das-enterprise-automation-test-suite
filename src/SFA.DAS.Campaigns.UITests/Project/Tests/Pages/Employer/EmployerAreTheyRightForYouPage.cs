@@ -1,8 +1,9 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerAreTheyRightForYouPage: EmployerHubPage
+    public class EmployerAreTheyRightForYouPage : EmployerBasePage
     {
         protected override string PageTitle => "Are they right for you?";
 

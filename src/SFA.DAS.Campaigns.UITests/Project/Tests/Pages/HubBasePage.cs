@@ -8,7 +8,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class HubBasePage : CampaingnsHeaderBasePage
     {
-        protected override By PageHeader => By.CssSelector(".fiu-page-header__tag");      
+        protected override By PageHeader => By.CssSelector(".fiu-page-header__tag");
+
+        protected By SubPageHeader => By.CssSelector(".govuk-heading-xl");
+
 
         private By FiuCard => By.CssSelector(".fiu-card");
 
