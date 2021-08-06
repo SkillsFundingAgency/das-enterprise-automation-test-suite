@@ -1,0 +1,124 @@
+﻿using System.Collections.Generic;
+
+namespace SFA.DAS.TestDataCleanup.Project.Helpers
+{
+    internal static class TestDataCleanUpEmailsInUse
+    {
+        private static readonly List<string> _emails = new List<string>() 
+        { 
+          "'first111@test.com'", 
+          "'HJDemoTestPP@mailinator.com'",
+          "'EiDfeLogin@gmail.com'",
+          "'SreeLevyUser@mailinator.com'",
+          "'SreeNonLevyUser@mailinator.com'",
+          "'EIAutomationUser@mailinator.com'",
+          "'EIAutomationUserWithMultipleAccounts@mailinator.com'",
+          "'EITransactorUser@mailinator.com'",
+          "'EIViewOnlyUser@mailinator.com'",
+          "'EIV4SignedUser@mailinator.com'",
+          "'EIV5SignedUser@mailinator.com'",
+          "'LE_Test_101_10Dec2020_20093533414@mailinator.com'",
+          "'LE_Test_101_01Dec2020_14273181086@mailinator.com'",
+          "'LE_Test_101_01Dec2020_14231043754@mailinator.com'",
+          "'LE_Test_101_01Dec2020_14062448752@mailinator.com'",
+          "'LE_Test_101_01Dec2020_13591940469@mailinator.com'",
+          "'LE_Test_101_01Dec2020_13165726403@mailinator.com'",
+          "'LE_Test_101_01Dec2020_13091928413@mailinator.com'",
+          "'LE_Test_101_01Dec2020_13030055901@mailinator.com'",
+          "'LE_Test_101_30Nov2020_22564021583@mailinator.com'",
+          "'LE_Test_101_28Jul2020_08403294994@mailinator.com'",
+          "'LE_Test_101_18Aug2020_18453894282@mailinator.com'",
+          "'NL_PerfTest_124_25Aug2020_18021985893@mailinator.com'",
+          "'NL_PerfTest_122_25Aug2020_17593311722@mailinator.com'",
+          "'NL_PerfTest_119_25Aug2020_17561619921@mailinator.com'",
+          "'NL_PerfTest_118_25Aug2020_17535466684@mailinator.com'",
+          "'NL_PerfTest_115_25Aug2020_17503833650@mailinator.com'",
+          "'NL_PerfTest_114_25Aug2020_17481846667@mailinator.com'",
+          "'NL_PerfTest_111_25Aug2020_17445137131@mailinator.com'",
+          "'NL_PerfTest_110_25Aug2020_17422564494@mailinator.com'",
+          "'NL_PerfTest_109_25Aug2020_17400580325@mailinator.com'",
+          "'NL_PerfTest_108_25Aug2020_17374068125@mailinator.com'",
+          "'NL_PerfTest_107_25Aug2020_17351495314@mailinator.com'",
+          "'NL_PerfTest_103_25Aug2020_17310784396@mailinator.com'",
+          "'NL_PerfTest_101_25Aug2020_15250219698@mailinator.com'",
+          "'NL_PerfTest_125_26Aug2020_11211649497@mailinator.com'",
+          "'NL_PerfTest_124_26Aug2020_11182342518@mailinator.com'",
+          "'NL_PerfTest_123_26Aug2020_11153710665@mailinator.com'",
+          "'NL_PerfTest_122_26Aug2020_11124531865@mailinator.com'",
+          "'NL_PerfTest_121_26Aug2020_11100048686@mailinator.com'",
+          "'NL_PerfTest_120_26Aug2020_11071583700@mailinator.com'",
+          "'NL_PerfTest_119_26Aug2020_11042705125@mailinator.com'",
+          "'NL_PerfTest_118_26Aug2020_11013423416@mailinator.com'",
+          "'NL_PerfTest_117_26Aug2020_10585356356@mailinator.com'",
+          "'NL_PerfTest_116_26Aug2020_10560927024@mailinator.com'",
+          "'NL_PerfTest_115_26Aug2020_10524975441@mailinator.com'",
+          "'NL_PerfTest_114_26Aug2020_10494940258@mailinator.com'",
+          "'NL_PerfTest_113_26Aug2020_10465665688@mailinator.com'",
+          "'NL_PerfTest_112_26Aug2020_10441476410@mailinator.com'",
+          "'NL_PerfTest_111_26Aug2020_10412779644@mailinator.com'",
+          "'NL_PerfTest_110_26Aug2020_10384162757@mailinator.com'",
+          "'NL_PerfTest_109_26Aug2020_10360015030@mailinator.com'",
+          "'NL_PerfTest_108_26Aug2020_10331830966@mailinator.com'",
+          "'NL_PerfTest_107_26Aug2020_10303709723@mailinator.com'",
+          "'NL_PerfTest_106_26Aug2020_10275386981@mailinator.com'",
+          "'NL_PerfTest_105_26Aug2020_10250772831@mailinator.com'",
+          "'NL_PerfTest_104_26Aug2020_10223134097@mailinator.com'",
+          "'NL_PerfTest_103_26Aug2020_10195667875@mailinator.com'",
+          "'NL_PerfTest_102_26Aug2020_10172041201@mailinator.com'",
+          "'NL_PerfTest_101_26Aug2020_10142328670@mailinator.com'",
+          "'LE_PerfTest_125_25Aug2020_17244321950@mailinator.com'",
+          "'LE_PerfTest_119_25Aug2020_17193096535@mailinator.com'",
+          "'LE_PerfTest_118_25Aug2020_17170611323@mailinator.com'",
+          "'LE_PerfTest_117_25Aug2020_17144187209@mailinator.com'",
+          "'LE_PerfTest_116_25Aug2020_17121960516@mailinator.com'",
+          "'LE_PerfTest_115_25Aug2020_17095959180@mailinator.com'",
+          "'LE_PerfTest_114_25Aug2020_17073587155@mailinator.com'",
+          "'LE_PerfTest_108_25Aug2020_17024078121@mailinator.com'",
+          "'LE_PerfTest_106_25Aug2020_16594287280@mailinator.com'",
+          "'LE_PerfTest_105_25Aug2020_16572789087@mailinator.com'",
+          "'LE_PerfTest_104_25Aug2020_16550794437@mailinator.com'",
+          "'LE_PerfTest_103_25Aug2020_16524260024@mailinator.com'",
+          "'LE_PerfTest_102_25Aug2020_16500995915@mailinator.com'",
+          "'LE_PerfTest_102_25Aug2020_15250217174@mailinator.com'",
+          "'LE_PerfTest_101_25Aug2020_16471777475@mailinator.com'",
+          "'LE_PerfTest_125_26Aug2020_09525888553@mailinator.com'",
+          "'LE_PerfTest_124_26Aug2020_09502491388@mailinator.com'",
+          "'LE_PerfTest_123_26Aug2020_09475952254@mailinator.com'",
+          "'LE_PerfTest_122_26Aug2020_09452207442@mailinator.com'",
+          "'LE_PerfTest_121_26Aug2020_09424744958@mailinator.com'",
+          "'LE_PerfTest_120_26Aug2020_09401394904@mailinator.com'",
+          "'LE_PerfTest_119_26Aug2020_09374897951@mailinator.com'",
+          "'LE_PerfTest_118_26Aug2020_09351886767@mailinator.com'",
+          "'LE_PerfTest_117_26Aug2020_09325514459@mailinator.com'",
+          "'LE_PerfTest_116_26Aug2020_09302880547@mailinator.com'",
+          "'LE_PerfTest_115_26Aug2020_09275948526@mailinator.com'",
+          "'LE_PerfTest_114_26Aug2020_09253398655@mailinator.com'",
+          "'LE_PerfTest_113_26Aug2020_09231581570@mailinator.com'",
+          "'LE_PerfTest_112_26Aug2020_09204795688@mailinator.com'",
+          "'LE_PerfTest_111_26Aug2020_09182775670@mailinator.com'",
+          "'LE_PerfTest_110_26Aug2020_09160220869@mailinator.com'",
+          "'LE_PerfTest_109_26Aug2020_09134359056@mailinator.com'",
+          "'LE_PerfTest_108_26Aug2020_09111375566@mailinator.com'",
+          "'LE_PerfTest_107_26Aug2020_09084636899@mailinator.com'",
+          "'LE_PerfTest_106_26Aug2020_09062097989@mailinator.com'",
+          "'LE_PerfTest_105_26Aug2020_09035973579@mailinator.com'",
+          "'LE_PerfTest_104_26Aug2020_09013366572@mailinator.com'",
+          "'LE_PerfTest_103_26Aug2020_08585900026@mailinator.com'",
+          "'LE_PerfTest_102_26Aug2020_08562706744@mailinator.com'",
+          "'LE_PerfTest_101_26Aug2020_08540081925@mailinator.com'"
+        };
+
+        internal static string GetInUseEmails() { lock (_emails) { return string.Join(",", _emails); } }
+
+        internal static void AddInUseEmails(List<string> emails)
+        {
+            lock (_emails)
+            {
+                foreach (var email in emails)
+                {
+                    _emails.Add($"'{email}'");
+                }
+            }
+        }
+    }
+}
