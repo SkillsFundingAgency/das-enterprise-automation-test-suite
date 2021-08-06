@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 }
             }
 
-            if (exceptions.Count > 0) throw new Exception(string.Join(Environment.NewLine, exceptions.Select(x => x.Message).ToList()));
+            if (exceptions.Count > 0) throw new Exception(exceptions.Select(x => x.Message).ToList().ToString(Environment.NewLine));
 
             return result;
         }
