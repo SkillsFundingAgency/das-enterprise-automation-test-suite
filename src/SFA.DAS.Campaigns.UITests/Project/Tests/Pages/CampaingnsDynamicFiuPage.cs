@@ -8,10 +8,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected By FiuPageHeading => By.CssSelector(".fiu-page-heading__title");
 
-        public CampaingnsDynamicFiuPage(ScenarioContext context, Action navigateAction, string pageTitle) : base(context) 
+        public CampaingnsDynamicFiuPage(ScenarioContext context, string pageTitle) : base(context) 
         {
-            navigateAction();
-
             VerifyPage(FiuPageHeading, pageTitle);
 
             VerifyLinks();

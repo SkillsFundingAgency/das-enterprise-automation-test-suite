@@ -28,18 +28,34 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected T VerifyFiuCards<T>(Func<T> func)
         {
+            List<Exception> exceptions = new List<Exception>();
+
             T result = default;
 
             var fiuCardsHeading = GetFiuCards().Select(x => pageInteractionHelper.GetText(() => x.FindElement(FiuHeading))).ToList();
 
             foreach (var fiuCardHeading in fiuCardsHeading)
             {
-                var fiuCard = GetFiuCards().FirstOrDefault(x => x.Text.Contains(fiuCardHeading));
+                try
+                {
+                    var fiuCard = GetFiuCards().FirstOrDefault(x => x.Text.Contains(fiuCardHeading));
 
-                new CampaingnsDynamicFiuPage(_context, () => formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink)), fiuCardHeading);
+                    formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
 
-                result = func.Invoke();
+                    new CampaingnsDynamicFiuPage(_context, fiuCardHeading);
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+                finally
+                {
+                    result = func.Invoke();
+                }
             }
+
+            if (exceptions.Count > 0) throw new Exception(string.Join(Environment.NewLine, exceptions.Select(x => x.Message).ToList()));
+
             return result;
         }
 
