@@ -25,5 +25,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             formCompletionHelper.Click(BackLink);
             return new FindEmployersThatNeedATrainingProviderPage(_context);
         }
+        public ConfirmProvidersContactDetailsPage CheckAndContinueWithfirstEmployerCheckboxAfterChange()
+        {
+            formCompletionHelper.SelectCheckbox(FirstEmployerCheckbox);
+            ContinueToNextPage();
+            return new ConfirmProvidersContactDetailsPage(_context);
+        }
     }
 }

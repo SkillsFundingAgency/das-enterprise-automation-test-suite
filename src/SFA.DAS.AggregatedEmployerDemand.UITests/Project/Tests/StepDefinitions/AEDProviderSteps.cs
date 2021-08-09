@@ -75,10 +75,18 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.ConfirmProviderContactDetailsHaveBeenEdited(newEmailAddress, newTelephoneNumber, newWebsite);
         }
+
         [When(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
+        [Then(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
         public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website)
         {
             _providerStepsHelper.ReEnterProviderContactDetailsBeforeResubmitting(emailAddress, telephoneNumber, website);
+        }
+
+        [When(@"the provider selects the option to edit the location")]
+        public void WhenTheProviderSelectsTheOptionToEditTheLocation()
+        {
+            _providerStepsHelper.ChangeProviderLocationDetails();
         }
 
         [Then(@"the provider is able to submit the edited details")]
@@ -93,10 +101,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
         }
 
-        [Then(@"the provider is able to submit their details")]
-        public void ThenTheProviderIsAbleToReenterValidContactDetailsAndSubmit()
+        [Then(@"the provider is able to submit their location details")]
+        public void TheProviderIsAbleToSubmitTheirLocationDetails()
         {
-            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
+            _providerStepsHelper.ConfirmEditedProviderLocationDetailsAndSubmit();
         }
     }
 }

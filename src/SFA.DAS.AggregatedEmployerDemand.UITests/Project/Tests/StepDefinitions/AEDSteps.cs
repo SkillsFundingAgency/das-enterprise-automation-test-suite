@@ -31,6 +31,19 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
             _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProvider();
         }
 
+        [Given(@"the user selects share interest with finding a training provider")]
+        public void GivenTheUserSelectsShareInterestWithFindingATrainingProvider()
+        {
+            _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProviderViaShortlistPage();
+        }
+
+
+        [Given(@"the user has navigated to shortlist page")]
+        public void GivenTheUserHasNavigatedToShortlistPage()
+        {
+            _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage();
+        }
+
         [When(@"the user enters the number of Apprentices as '(.*)'")]
         public void WhenTheUserEntersTheNumberOfApprenticesAs(string noOfApprentices)
         {
