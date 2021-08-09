@@ -51,7 +51,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(providernamekey, "COLEMAN TRAINING & CONSULTANCY"),
                     new KeyValuePair<string, string>(ukprnkey, "10083833"),
+              }); 
+            _data.Add("rpexistingprovider04",
+              new List<KeyValuePair<string, string>>
+              {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+mainCC@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "NORTH ORMESBY NEIGHBOURHOOD DEVELOPMENT TRUST LTD"),
+                    new KeyValuePair<string, string>(ukprnkey, "10004708"),
               });
+            _data.Add("rpexistingprovider05",
+             new List<KeyValuePair<string, string>>
+             {
+                    new KeyValuePair<string, string>(emailkey, "umakanth.gangaraju+FHAExempt@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "TALENTINO LIMITED"),
+                    new KeyValuePair<string, string>(ukprnkey, "10046095"),
+             });
+            _data.Add("rpexistingprovider06",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GOVT@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "WILLIAMSTON PRIMARY SCHOOL"),
+                    new KeyValuePair<string, string>(ukprnkey, "10052113"),
+            });
         }
     }
 }
