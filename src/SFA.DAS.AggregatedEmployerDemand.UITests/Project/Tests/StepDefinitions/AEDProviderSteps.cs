@@ -77,6 +77,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
+        [Then(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
         public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website)
         {
             _providerStepsHelper.ReEnterProviderContactDetailsBeforeResubmitting(emailAddress, telephoneNumber, website);

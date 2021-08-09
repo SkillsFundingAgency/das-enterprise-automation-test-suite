@@ -108,12 +108,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the provider has not entered contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the provider is presented with the validation error message before entering the c" +
+ testRunner.Then("the provider is presented with the validation error message before entering the c" +
                         "orrect details \'mailman@mailinator.com\', \'01902111222\' and \'www.myinterestregist" +
-                        "er.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
- testRunner.Then("the provider is able to submit the edited details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "er.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
