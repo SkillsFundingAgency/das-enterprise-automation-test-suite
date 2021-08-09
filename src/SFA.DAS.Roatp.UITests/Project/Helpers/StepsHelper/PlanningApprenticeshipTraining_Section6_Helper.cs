@@ -16,8 +16,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                .SelectInYourOrganisationAndContinue()
                 .VerifyTrainingApprentices_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return applicationOverviewPage
+                .Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
+                .EnterTextRegardingReadyToDeliverTrainingAndContinue()
+                .EnterTextRegardingEngageWithEPAOandContinue_Main_Employer_NewProviders()
+                .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
             return applicationOverviewPage.Access_Section6_TypeOfApprenticeshipTraining()
                 .SelectStandardsFrameworksAndContinue()
                 .EnterTextRegardingReadyToDeliverTrainingAndContinue()

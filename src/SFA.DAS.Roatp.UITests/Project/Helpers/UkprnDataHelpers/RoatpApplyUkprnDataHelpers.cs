@@ -52,18 +52,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+B2@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10062499"),
                 });
-            _data.Add("rpe2e01",
-                new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10047117"),
-                });
-            _data.Add("rpe2e02",
-               new List<KeyValuePair<string, string>>
-               {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+employer@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10061310"),
-               });
             _data.Add("rpe2e04",
               new List<KeyValuePair<string, string>>
               {
@@ -88,6 +76,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+SupportingNew@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10083878"),
             });
+            _data.Add("rpe2e08",
+            new List<KeyValuePair<string, string>>
+           {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+MainNew@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10047196"),
+           });
+            _data.Add("rpe2e09",
+           new List<KeyValuePair<string, string>>
+           {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+EmployerNew@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10056078"),
+           });
             _data.Add("rps101",
                 new List<KeyValuePair<string, string>>
                 {

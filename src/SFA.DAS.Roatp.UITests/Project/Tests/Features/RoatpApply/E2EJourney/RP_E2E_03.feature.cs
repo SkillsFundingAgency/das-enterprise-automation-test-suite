@@ -75,7 +75,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_E2E_03_SupportingRoute-Soletrader_Existing Provider")]
-        [NUnit.Framework.CategoryAttribute("rpexistingprovider01")]
+        [NUnit.Framework.CategoryAttribute("rpexistingprovider03")]
         [NUnit.Framework.CategoryAttribute("roatpfulle2e")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmin")]
@@ -83,7 +83,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         public virtual void RP_E2E_03_SupportingRoute_Soletrader_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "rpexistingprovider01",
+                    "rpexistingprovider03",
                     "roatpfulle2e",
                     "roatp",
                     "roatpfulle2eviaadmin",
