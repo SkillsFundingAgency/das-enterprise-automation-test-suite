@@ -9,6 +9,9 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         private readonly ScenarioContext _context;
         public CreateATransfersPledgePage(ScenarioContext context) : base(context) => _context = context;
+        private By pledgeAmountLink = By.LinkText("Amount you want to pledge");
+        private By submitMyPledgeButton = By.Id("pledge-create-submit");
+
 
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
         protected override string PageTitle => "Create a transfers pledge";
@@ -21,5 +24,24 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             return pageTitleOK;
 
         }
+
+        public void ClickPledgeAmountLink()
+        {
+            formCompletionHelper.ClickElement(pledgeAmountLink);
+
+        }
+
+        public void CheckSubmitButtonActivated()
+        {
+            pageInteractionHelper.WaitForElementToBeDisplayed(submitMyPledgeButton);
+        }
+
+        public void ClickSubmitMyPledge()
+        {
+            formCompletionHelper.ClickElement(submitMyPledgeButton);
+
+
+        }
+
     }
 }

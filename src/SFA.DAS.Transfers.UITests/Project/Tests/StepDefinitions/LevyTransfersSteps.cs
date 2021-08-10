@@ -104,6 +104,65 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             bool Test = createATransfersPledge.CheckPageTitle();
         }
 
+        //new
+        [When(@"I click on the Amount You Want To Pledge Link")]
+        public void WhenIClickOnTheAmountYouWantToPledgeLink()
+        {
+            CreateATransfersPledgePage createATransfersPledge = new CreateATransfersPledgePage(_context);
+            createATransfersPledge.ClickPledgeAmountLink();
+        }
+
+        [Then(@"I am on Pledge Amount And Org Name Page")]
+        public void ThenIAmOnPledgeAmountAndOrgNamePage()
+        {
+            PledgeAmountAndOrgNamePage pledgeAmountAndOrgNamePage = new PledgeAmountAndOrgNamePage(_context);
+            pledgeAmountAndOrgNamePage.CheckPageTitle();
+        }
+
+        [Then(@"I enter Transfer Amount of '(.*)'")]
+        public void ThenIEnterTransferAmountOf(int p0)
+        {
+            PledgeAmountAndOrgNamePage pledgeAmountAndOrgNamePage = new PledgeAmountAndOrgNamePage(_context);
+            pledgeAmountAndOrgNamePage.ClickPledgeAmountLink();
+            pledgeAmountAndOrgNamePage.EnterPledgeAmount(p0);
+
+        }
+
+        [Then(@"I select '(.*)' to Organisation Name Shown Publicly")]
+        public void ThenISelectToOrganisationNameShownPublicly(string p0)
+        {
+            PledgeAmountAndOrgNamePage pledgeAmountAndOrgNamePage = new PledgeAmountAndOrgNamePage(_context);
+            pledgeAmountAndOrgNamePage.SelectIsNamePublicRadioButton(p0);
+        }
+
+        [When(@"I click on Pledge Amount Continue")]
+        public void WhenIClickOnPledgeAmountContinue()
+        {
+            PledgeAmountAndOrgNamePage pledgeAmountAndOrgNamePage = new PledgeAmountAndOrgNamePage(_context);
+            pledgeAmountAndOrgNamePage.ClickContinue();
+        }
+
+        [Then(@"the Submit Your Transfer Pledge Button is displayed")]
+        public void ThenTheSubmitYourTransferPledgeButtonIsDisplayed()
+        {
+            CreateATransfersPledgePage createATransfersPledge = new CreateATransfersPledgePage(_context);
+            createATransfersPledge.CheckSubmitButtonActivated();
+        }
+
+        [When(@"I click on Submit My Pledge")]
+        public void WhenIClickOnSubmitMyPledge()
+        {
+            CreateATransfersPledgePage createATransfersPledge = new CreateATransfersPledgePage(_context);
+            createATransfersPledge.ClickSubmitMyPledge();
+        }
+
+        [Then(@"I am on the Your Pledge Has Been Created Screen")]
+        public void ThenIAmOnTheYourPledgeHasBeenCreatedScreen()
+        {
+            PledgeCreatedSuccessPage pledgeCreatedSuccessPage = new PledgeCreatedSuccessPage(_context);
+            pledgeCreatedSuccessPage.CheckPagePanelTitle();
+
+        }
 
     }
 }

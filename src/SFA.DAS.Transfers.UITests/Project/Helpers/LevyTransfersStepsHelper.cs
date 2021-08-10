@@ -1,10 +1,46 @@
-﻿using System;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
-    class LevyTransfersStepsHelper
+    public class LevyTransfersStepsHelper 
     {
+        private readonly IWebDriver _webDriver;
+        private readonly ScenarioContext _context;
+
+        //public LevyTransfersStepsHelper(IWebDriver webDriver) 
+
+        //{
+        //    _webDriver = webDriver;
+        //}
+
+        public LevyTransfersStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _webDriver = context.GetWebDriver();
+        }
+
+        public bool DoesConfirmationBoxContainSubstring(By locator, String subString)
+        {
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            //try
+            //{
+            //    return _webDriver.FindElement(locator).Displayed;
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //}
+            String actualSubstring = _webDriver.FindElement(locator).Text;
+            bool result = actualSubstring.Contains(subString);
+            return result;//_webDriver.FindElement(locator).Displayed;
+
+
+        }
     }
 }

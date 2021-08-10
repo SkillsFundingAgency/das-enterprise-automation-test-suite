@@ -13,3 +13,16 @@
 
 	When I click on Continue 
 	Then I am on the Create A Transfers Pledge Page
+
+	When I click on the Amount You Want To Pledge Link
+	Then I am on Pledge Amount And Org Name Page
+	And I enter Transfer Amount of '22000'
+	And I select 'Yes' to Organisation Name Shown Publicly
+
+	When I click on Pledge Amount Continue
+	Then I am on the Create A Transfers Pledge Page
+
+	And the Submit Your Transfer Pledge Button is displayed
+
+	When I click on Submit My Pledge
+	Then I am on the Your Pledge Has Been Created Screen

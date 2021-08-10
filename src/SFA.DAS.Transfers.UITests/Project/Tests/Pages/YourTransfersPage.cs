@@ -25,7 +25,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(createTransfersPledgeButton);
 
-
         }
 
 
