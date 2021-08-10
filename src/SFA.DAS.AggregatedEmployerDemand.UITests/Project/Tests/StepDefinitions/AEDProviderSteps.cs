@@ -29,6 +29,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
+        [When(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
         public void GivenTheProviderHasEnteredTheirContactDetails(string emailAddress, string telephoneNumber, string website)
         {
             GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
