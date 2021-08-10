@@ -21,6 +21,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         }
 
         [BeforeScenario(Order = 35)]
-        public void WhiteListProviders() => base.WhiteListProviders();
+        public void AllowListProviders() => base.AllowListProviders();
     }
 }

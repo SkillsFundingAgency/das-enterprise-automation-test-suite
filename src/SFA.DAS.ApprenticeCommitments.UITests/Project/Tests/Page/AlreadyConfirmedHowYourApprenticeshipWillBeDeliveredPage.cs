@@ -1,14 +1,17 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsPage
     {
-        protected override string PageTitle => "You have understood how your apprenticeship will be delivered";
+        protected override string PageTitle => SectionHelper.Section4;
+        private string GreenTickTextInfo => "You have read through how your apprenticeship will be delivered";
 
         public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(NotificationBar, PageTitle);
+            VerifyPage();
+            pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
         }
     }
 }

@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.And("the Financial user assess the application by confirming Finance outcome as Outsta" +
+ testRunner.And("the Financial user assess the application by confirming Finance outcome as outsta" +
                         "nding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12

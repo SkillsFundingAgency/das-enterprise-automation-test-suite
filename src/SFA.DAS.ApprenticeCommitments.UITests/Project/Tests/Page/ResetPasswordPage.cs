@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -11,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             _context = context;
             _validPassword = $"{_validPassword}!%&";
-            apprenticeCommitmentsConfig.AC_AccountPassword = _validPassword;
+            objectContext.UpdateApprenticePassword(_validPassword);
         }
 
         public PasswordResetSuccessfulPage CreatePassword()

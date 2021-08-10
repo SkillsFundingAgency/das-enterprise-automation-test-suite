@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -7,11 +8,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         private By TrainingCost => By.CssSelector("#Cost, #cost");
 
-        private By TrainingCourseContainer => By.CssSelector(".select2-container, .govuk-select");
+        private By TrainingCourseContainer => By.CssSelector("#trainingCourse");
 
         protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         protected abstract void SelectCourse();
+
+        public string GetSelectedCourse() => formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
 
         public void EditCostCourseAndReference(string reference)
         {
@@ -26,11 +29,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return this;
         }
 
-        private EditApprentice EditCourse()
+        protected EditApprentice EditCourse()
         {
-            formCompletionHelper.ClickElement(TrainingCourseContainer);
+            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
             SelectCourse();
-            formCompletionHelper.ClickElement(StartDateMonth);
             return this;
         }
     }
