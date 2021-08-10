@@ -18,12 +18,50 @@ Scenario: Phase2 1 - Learner Applied for Phase2 Incentives Payments- Age changes
     Given an existing phase 2 apprenticeship incentive for a learner under 25 years old
     When the start date is changed making the learner 25 on the start date
 	And the earnings are recalculated
-    Then the first earning of £1500 is created 
-    And the second earning of £1500 is created 
+    Then a new first pending payment of £1500 is created
+	And a new second pending payment of £1500 is created
 
 Scenario: Phase2 2 - Learner Applied for Phase2 Incentives Payments with ineligible start date ( COC - 31-Mar-2021)
     Given an existing phase 2 apprenticeship incentive
-    When the start date is changed to before the start of the eligibility period
+    When the start date is changed to before the start of the eligibility period in period 8 AY 2021
 	And the earnings are recalculated
     Then the first earning is removed
     And the second earning is removed
+
+Scenario: Data submitted for previous academic year in R13 - eligible start date
+	Given an existing phase 2 apprenticeship incentive
+	And a start date change of circumstance occurs in Period R13 2021
+	When the start date is changed to a date after the start of the eligibility period in period 13 AY 2021
+	And the earnings are recalculated
+    Then a new first pending payment of £1500 is created for Period R11 2021
+	And a new second pending payment of £1500 is created for Period R08 2122
+
+Scenario: Data submitted for previous academic year in R14 - eligible start date
+	Given an existing phase 2 apprenticeship incentive
+	And a start date change of circumstance occurs in Period R14 2021
+	When the start date is changed to a date after the start of the eligibility period in period 14 AY 2021
+	And the earnings are recalculated
+    Then a new first pending payment of £1500 is created for Period R11 2021
+	And a new second pending payment of £1500 is created for Period R08 2122
+
+Scenario: Data submitted for previous academic year in R13 - ineligible start date
+	Given an existing phase 2 apprenticeship incentive
+    When the start date is changed to before the start of the eligibility period in period 13 AY 2021
+	And the earnings are recalculated
+    Then the first earning is removed
+    And the second earning is removed
+
+Scenario: Data submitted for previous academic year in R14 - ineligible start date
+	Given an existing phase 2 apprenticeship incentive
+    When the start date is changed to before the start of the eligibility period in period 14 AY 2021
+	And the earnings are recalculated
+    Then the first earning is removed
+    And the second earning is removed
+
+Scenario: Start date change for previous academic year submitted for current academic year
+	Given an existing phase 2 apprenticeship incentive
+	And a start date change of circumstance occurs in Period R01 2122
+	When the start date is changed to a date after the start of the eligibility period in period 12 AY 2021
+	And the earnings are recalculated
+    Then a new first pending payment of £1500 is created for Period R11 2021
+	And a new second pending payment of £1500 is created for Period R08 2122
