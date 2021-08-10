@@ -136,11 +136,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider completes Readiness to engage section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("the provider completes Planning apprenticeship training section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Planning apprenticeship training section for charity Emplo" +
+                        "yer Provider Route For Existing Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.And("the provider completes Delivering apprenticeship training section for employer ro" +
-                        "ute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Delivering apprenticeship training section for Employer Pr" +
+                        "ovider Route For Existing Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
  testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

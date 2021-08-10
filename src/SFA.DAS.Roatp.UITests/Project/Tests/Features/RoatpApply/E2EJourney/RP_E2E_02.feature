@@ -14,7 +14,7 @@ Scenario: RP_E2E_02_EmployerRoute-Charity_ExistingProvider
 	And the provider completes Criminal and Compliance section
 	And the provider completes Protecting your apprentices section
 	And the provider completes Readiness to engage section for charity
-	And the provider completes Planning apprenticeship training section for charity
-	And the provider completes Delivering apprenticeship training section for employer route
+	And the provider completes Planning apprenticeship training section for charity Employer Provider Route For Existing Provider 
+	And the provider completes Delivering apprenticeship training section for Employer Provider Route For Existing Provider 
 	And the provider completes Evaluating apprenticeship training section
 	Then the provider completes Finish section

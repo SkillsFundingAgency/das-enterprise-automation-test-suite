@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 return applicationOverviewPage
                 .Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
@@ -26,24 +26,38 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextRegardingEngageWithEPAOandContinue_Main_Employer_NewProviders()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
             }
-            return applicationOverviewPage.Access_Section6_TypeOfApprenticeshipTraining()
-                .SelectStandardsFrameworksAndContinue()
-                .EnterTextRegardingReadyToDeliverTrainingAndContinue()
-                .EnterTextRegardingEngageWithEPAOandContinue()
-                .EnterTextForTransitionFromFramewordsToStandardsAndContinueIncludesFrameworks()
-                .EnterTextForEngageAndWorkWithAwardingBodies()
-                .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            else
+            {
+                return applicationOverviewPage.Access_Section6_TypeOfApprenticeshipTraining()
+                    .SelectStandardsFrameworksAndContinue()
+                    .EnterTextRegardingReadyToDeliverTrainingAndContinue()
+                    .EnterTextRegardingEngageWithEPAOandContinue()
+                    .EnterTextForTransitionFromFramewordsToStandardsAndContinueIncludesFrameworks()
+                    .EnterTextForEngageAndWorkWithAwardingBodies()
+                    .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            return applicationOverviewPage
-                .Access_Section6_TypeOfApprenticeshipTraining()
-                .SelectFrameworksOnlyAndContinue()
-                .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
-                .EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
-                .EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
-                .EnterTextForEngageAndWorkWithAwardingBodies()
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return applicationOverviewPage
+                .Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
+                .EnterTextRegardingReadyToDeliverTrainingAndContinue()
+                .EnterTextRegardingEngageWithEPAOandContinue_Main_Employer_NewProviders()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
+            else
+            {
+                return applicationOverviewPage
+                    .Access_Section6_TypeOfApprenticeshipTraining()
+                    .SelectFrameworksOnlyAndContinue()
+                    .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
+                    .EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
+                    .EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
+                    .EnterTextForEngageAndWorkWithAwardingBodies()
+                    .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+            }
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {

@@ -13,6 +13,6 @@ Scenario: RP_E2E_07_SupportingRoute-Soletrader_NewProvider
 	And the provider completes Protecting your apprentices section for supporting route
 	And the provider does not require to complete Readiness to engage section
 	And the provider completes Planning apprenticeship training section for Supporting Provider Route
-	And the provider completes Delivering apprenticeship training section for supporting route
+	And the provider completes Delivering apprenticeship training section for Supporting Provider Route
 	And the provider completes Evaluating apprenticeship training section for supporting route
 	Then the provider completes Finish section for supporting route

@@ -160,8 +160,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Planning apprenticeship training section for (Main Provider Route|Main Provider Route For Existing Provider|Employer Provider Route)")]
         public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSection(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6(_overviewPage, applicationRoute);
 
-        [When(@"the provider completes Planning apprenticeship training section for charity")]
-        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
+        [When(@"the provider completes Planning apprenticeship training section for charity (Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage, applicationRoute);
 
         [When(@"the provider completes Planning apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
         public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionFor(ApplicationRoute applicationRoute)
@@ -173,11 +173,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Delivering apprenticeship training section for main route")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
 
-        [When(@"the provider completes Delivering apprenticeship training section for employer route")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+        [When(@"the provider completes Delivering apprenticeship training section for (Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
 
-        [When(@"the provider completes Delivering apprenticeship training section for supporting route")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage);
+        [When(@"the provider completes Delivering apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
 
         [When(@"the provider completes Evaluating apprenticeship training section")]
         public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSection() => _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);

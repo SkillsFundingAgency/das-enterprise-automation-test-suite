@@ -32,11 +32,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             if (applicationRoute == ApplicationRoute.MainProviderRoute) { CompletesTheApplyJourneyAsMainRoute(selectRouteStepsHelper, applicationRoute); }
 
-            if (applicationRoute == ApplicationRoute.EmployerProviderRoute) { CompletesTheApplyJourneyAsEmployerRoute(selectRouteStepsHelper); }
+            if (applicationRoute == ApplicationRoute.EmployerProviderRoute) { CompletesTheApplyJourneyAsEmployerRoute(selectRouteStepsHelper, applicationRoute); }
 
             if (applicationRoute == ApplicationRoute.SupportingProviderRoute) { CompletesTheApplyJourneyAsSupportRoute(selectRouteStepsHelper, applicationRoute); }
 
-            if (applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(selectRouteStepsHelper); }
+            if (applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(selectRouteStepsHelper, applicationRoute); }
         }
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsMainRoute(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
@@ -53,7 +53,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return CompletesFinish_Section9(overviewPage);
         }
 
-        public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute(SelectRouteStepsHelper selectRouteStepsHelper)
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
         {
             var _overviewPage = selectRouteStepsHelper.CompleteProviderCharityRouteSection();
             _overviewPage = CompleteYourOrganisation_Section1_Charity(_overviewPage);
@@ -61,13 +61,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);
             _overviewPage = CompletesProtectingYourApprentices_Section4(_overviewPage);
             _overviewPage = CompletesReadinessToEngage_Section5_Charity(_overviewPage);
-            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
-            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage, applicationRoute);
+            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
             _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
             return CompletesFinish_Section9(_overviewPage);
         }
 
-        public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(SelectRouteStepsHelper selectRouteStepsHelper)
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
         {
             var _overviewPage = selectRouteStepsHelper.CompleteProviderCharityRouteSection_ExistingProvider();
             _overviewPage = CompleteYourOrganisation_Section1_Charity(_overviewPage);
@@ -75,8 +75,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);
             _overviewPage = CompletesProtectingYourApprentices_Section4(_overviewPage);
             _overviewPage = CompletesReadinessToEngage_Section5_Charity(_overviewPage);
-            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
-            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage, applicationRoute);
+            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
             _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
             return CompletesFinish_Section9(_overviewPage);
         }
@@ -91,7 +91,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _overviewPage = CompletesProtectingYourApprentices_Section4_SupportingRoute(_overviewPage);
             _overviewPage = NotRequiredReadinessToEngage_Section5(_overviewPage);
             _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
-            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage);
+            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
             _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
             return CompletesFinish_Section9_SupportingRoute(_overviewPage);
         }
@@ -293,10 +293,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return applicationOverviewPage;
         }
 
-        public ApplicationOverviewPage CompletesPlanningApprenticeshipTraining_Section6_Charity(ApplicationOverviewPage applicationOverviewPage)
+        public ApplicationOverviewPage CompletesPlanningApprenticeshipTraining_Section6_Charity(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_1(applicationOverviewPage);
-            applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_2_Charity(applicationOverviewPage);
+            applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_2_Charity(applicationOverviewPage, applicationroute);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_3(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_4(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_5(applicationOverviewPage);
@@ -324,26 +324,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             return applicationOverviewPage;
         }
 
-        public ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        public ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_1(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_2(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_3(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_4(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_5_EmployerRoute(applicationOverviewPage);
-            applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_6_NotRequired(applicationOverviewPage);
+            applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_6_NotRequired(applicationOverviewPage, applicationroute);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_7(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
-        public ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        public ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_1(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_2(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_3(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_4(applicationOverviewPage);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(applicationOverviewPage);
-            applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_6_NotRequired(applicationOverviewPage);
+            applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_6_NotRequired(applicationOverviewPage, applicationroute);
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_7(applicationOverviewPage);
             return applicationOverviewPage;
         }
