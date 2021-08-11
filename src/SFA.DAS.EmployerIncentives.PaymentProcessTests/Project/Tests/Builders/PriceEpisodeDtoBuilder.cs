@@ -38,6 +38,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
 
         public PriceEpisodeDtoBuilder WithEndDate(in string value)
         {
+            if (value == null)
+            {
+                _data.EndDate = null;
+                return this;
+            }
+
             _data.EndDate = DateTime.Parse(value);
             return this;
         }
