@@ -9,6 +9,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "LearnerMatchDaysInLearning")]
     public class LearnerMatchDaysInLearningSteps : StepsBase
     {
         private DateTime _initialStartDate;
