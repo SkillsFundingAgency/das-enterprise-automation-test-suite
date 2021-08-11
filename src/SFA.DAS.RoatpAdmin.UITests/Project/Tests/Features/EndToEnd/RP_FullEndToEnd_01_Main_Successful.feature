@@ -1,6 +1,5 @@
 ﻿Feature: RP_FullEndToEnd_01_Main
 
-@ignore
 @roatp
 @rpendtoend01apply
 @roatpfulle2eviaapply

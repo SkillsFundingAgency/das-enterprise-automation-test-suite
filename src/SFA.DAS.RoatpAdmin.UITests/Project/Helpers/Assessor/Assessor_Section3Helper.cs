@@ -7,7 +7,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
     {
         public ApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
@@ -18,12 +18,27 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TypeOfApprenticeshipTraining()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (applicationroute == ApplicationRoute.EmployerProviderRoute || applicationroute == ApplicationRoute.MainProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TypeOfApprenticeshipTraining_New_Main_Employer()
+                    .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }

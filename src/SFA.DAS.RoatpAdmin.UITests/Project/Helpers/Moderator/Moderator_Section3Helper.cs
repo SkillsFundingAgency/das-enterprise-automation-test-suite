@@ -21,11 +21,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
+            //var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
                     .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
@@ -33,17 +33,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinue();
 
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinue();
             }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
+                     .SelectPassAndContinue();
+            }
+            else if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining_New_Main_Employer()
+                    .SelectPassAndContinueInDeliveringTraining()
+                    .SelectPassAndContinue();
+            }
             else
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
-                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
+                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
@@ -58,7 +69,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
@@ -67,7 +78,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
                     .SelectPassAndContinue();
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
