@@ -22,10 +22,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         }
 
         [BeforeScenario(Order = 35)]
-        public void WhiteListProviders()
+        public void AllowListProviders()
         {
-            WhiteListProviders(_objectContext.GetUkprn());
-            WhiteListProviders(_objectContext.GetNewUkprn());
+            AllowListProviders(_objectContext.GetUkprn());
+            AllowListProviders(_objectContext.GetNewUkprn());
         }
     }
 }

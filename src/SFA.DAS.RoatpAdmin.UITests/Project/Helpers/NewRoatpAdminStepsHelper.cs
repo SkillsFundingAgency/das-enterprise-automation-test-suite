@@ -11,13 +11,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 
         public NewRoatpAdminStepsHelper(ScenarioContext context) : base(context) => _context = context;
 
-        public override RoatpAdminHomePage GoToRoatpAdminHomePage()
-        {
-            SubmitValidLoginDetails();
-
-            return SearchForATrainingProvider();
-        }
-
-        public RoatpAdminHomePage SearchForATrainingProvider() => new StaffDashboardPage(_context, true).SearchForATrainingProvider();
+        public SearchPage SearchForATrainingProvider() => new StaffDashboardPage(_context, true).SearchForATrainingProvider();
     }
 }

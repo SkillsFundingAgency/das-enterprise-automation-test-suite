@@ -66,5 +66,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             VerifyClarificationStatus(UkprnStatus, objectContext.GetUkprn());
             return new RoatpAssessorApplicationsHomePage(_context);
         }
+
+        public RoatpAssessorApplicationsHomePage ClearSearchResult_AssessorOutcomeTab()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return this;
+        }
+
+        public RoatpAssessorApplicationsHomePage ConfirmAssessorSearchByUkprn()
+        {
+            SearchProviderByUKPRN();
+            return this;
+        }
+
+        public RoatpAssessorApplicationsHomePage SelectInOutcomeTab_Assessor()
+        {
+            formCompletionHelper.ClickElement(OutcomeTab);
+            return this;
+        }
+
+        public RoatpAssessorApplicationsHomePage ConfirmAssessorSearchByName()
+        {
+            SearchProviderByName();
+            return this;
+        }
     }
 }
