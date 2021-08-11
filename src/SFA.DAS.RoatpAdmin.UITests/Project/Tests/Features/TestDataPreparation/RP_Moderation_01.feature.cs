@@ -121,6 +121,64 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RP_Moderation_01A_TestDataPreparation-For_RP_AD_MOD_01")]
+        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpadminmodtestdataprep")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("rpadmod01")]
+        public virtual void RP_Moderation_01A_TestDataPreparation_For_RP_AD_MOD_01()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "roatpadmintestdataprep",
+                    "roatpadminmodtestdataprep",
+                    "donottakescreenshot",
+                    "roatpfulle2eviaadmintestdataprep",
+                    "rpadmod01"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Moderation_01A_TestDataPreparation-For_RP_AD_MOD_01", null, tagsOfScenario, argumentsOfScenario);
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+ testRunner.Given("the Provider is added to the register as Main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+ testRunner.And("the provider naviagate to Apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+ testRunner.Given("the provider completes the Apply Journey as Main Provider Route For Existing Prov" +
+                        "ider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 24
+ testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
+                        "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

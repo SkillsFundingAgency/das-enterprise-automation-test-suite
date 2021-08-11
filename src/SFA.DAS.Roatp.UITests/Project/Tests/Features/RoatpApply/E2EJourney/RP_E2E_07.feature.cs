@@ -133,8 +133,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "ovider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("the provider completes Delivering apprenticeship training section for supporting " +
-                        "route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Delivering apprenticeship training section for Supporting " +
+                        "Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
  testRunner.And("the provider completes Evaluating apprenticeship training section for supporting " +

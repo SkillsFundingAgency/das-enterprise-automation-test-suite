@@ -1,7 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {

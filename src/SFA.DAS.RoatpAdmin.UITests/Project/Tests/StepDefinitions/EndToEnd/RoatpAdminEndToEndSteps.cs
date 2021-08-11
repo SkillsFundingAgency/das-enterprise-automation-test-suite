@@ -17,7 +17,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 {
     [Binding]
-    public class EndToEndSteps
+    public class RoatpAdminEndToEndSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -30,7 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private ApplicationRoute _applicationRoute;
 
-        public EndToEndSteps(ScenarioContext context)
+        public RoatpAdminEndToEndSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();

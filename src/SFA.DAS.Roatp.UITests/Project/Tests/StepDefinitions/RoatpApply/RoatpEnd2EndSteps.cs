@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class End2EndSteps
+    public class RoatpEnd2EndSteps
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
-        public End2EndSteps(ScenarioContext context)
+        public RoatpEnd2EndSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -64,7 +64,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         }
 
-        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider|Main Provider Route For Existing Provider)")]
         public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
         {
             _objectContext.SetApplicationRoute(applicationRoute);

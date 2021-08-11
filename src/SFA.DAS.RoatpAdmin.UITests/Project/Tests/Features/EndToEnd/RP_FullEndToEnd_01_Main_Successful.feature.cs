@@ -76,6 +76,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Mode" +
             "ration_Checks_Successful")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpendtoend01apply")]
         [NUnit.Framework.CategoryAttribute("roatpfulle2eviaapply")]
@@ -83,6 +84,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
         public virtual void RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks_Successful()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "roatp",
                     "rpendtoend01apply",
                     "roatpfulle2eviaapply",
@@ -90,7 +92,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Mode" +
                     "ration_Checks_Successful", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,34 +112,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("the provider completes the Apply Journey as Main Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("the Financial user assess the application by confirming Finance outcome as outsta" +
                         "nding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
                         "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the Moderation user assess the application and marks outcomes as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("the PASS status overall application is marked as Successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("verify the provider is added to the register with status of Onboarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
  testRunner.And("verify the Application successful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

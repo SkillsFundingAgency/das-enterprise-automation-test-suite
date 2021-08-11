@@ -18,12 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public new void GetRoatpFullData() => base.GetRoatpFullData();
 
         [BeforeScenario(Order = 34)]
-        public new void ClearDownApplyData()
-        {
-            base.ClearDownApplyData();
-
-            DeleteTrainingProvider();
-        }
+        public new void ClearDownApplyDataAndTrainingProvider() => base.ClearDownApplyDataAndTrainingProvider();
 
         [BeforeScenario(Order = 35)]
         public void AllowListProviders() => base.AllowListProviders();
