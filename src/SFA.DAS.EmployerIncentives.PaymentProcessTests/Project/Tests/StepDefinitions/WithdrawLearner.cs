@@ -53,6 +53,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task TheFirstPaymentHasBeenMade()
         {
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                 .WithAcademicYear(2021)
                  .WithStartDate(_startDate)
                  .WithEndDate("2022-10-15T00:00:00")
                  .WithPeriod(testData.ApprenticeshipId, 7)
@@ -106,6 +107,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _startDate = DateTime.Parse("2021-5-02");
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                 .WithAcademicYear(2021)
                  .WithStartDate(_startDate)
                  .WithEndDate("2022-10-15T00:00:00")
                  .WithPeriod(testData.ApprenticeshipId, 7)
