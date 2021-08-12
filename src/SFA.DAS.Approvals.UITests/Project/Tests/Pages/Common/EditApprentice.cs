@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         private By TrainingCost => By.CssSelector("#Cost, #cost");
 
-        private By TrainingCourseContainer => By.CssSelector(".select2-container, .govuk-select");
+        private By TrainingCourseContainer => By.CssSelector("#trainingCourse");
 
         protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
@@ -31,9 +31,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected EditApprentice EditCourse()
         {
-            formCompletionHelper.ClickElement(TrainingCourseContainer);
+            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
             SelectCourse();
-            formCompletionHelper.ClickElement(StartDateMonth);
             return this;
         }
     }

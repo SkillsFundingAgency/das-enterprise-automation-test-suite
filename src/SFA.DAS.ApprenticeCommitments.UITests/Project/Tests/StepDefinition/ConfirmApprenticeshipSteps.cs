@@ -147,7 +147,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]
         public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus()
         {
-            _apprenticeHomePage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateBackToOverviewPage();
+            _apprenticeHomePage.ConfirmYourApprenticeshipFromTheTopBanner().VerifyTrainingNameOnPageHeader().NavigateBackToOverviewPage();
             _apprenticeHomePage.VerifyPageAfterApprenticeshipConfirm();
         }
 

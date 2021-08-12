@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
-        public string MessageToEmployer => $"Added {string.Join(",", Ulns)} ulns, {MessageToProvider}";
+        public string MessageToEmployer => $"Added {Ulns.ToString(",")} ulns, {MessageToProvider}";
 
         public List<string> Ulns { get; private set; }
 

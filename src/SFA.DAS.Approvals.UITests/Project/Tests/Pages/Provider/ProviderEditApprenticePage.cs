@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By CourseOption => By.CssSelector("#trainingCourse");
+        private By FirstOption => By.CssSelector("#trainingCourse__option--0");
 
         public ProviderEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
@@ -28,8 +29,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return ProviderConfirmChangesPage();
         }
 
-        protected override void SelectCourse() => base.formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
-
+        protected override void SelectCourse()
+        {
+            var course = (editedApprenticeCourseDataHelper.EditedCourse == "91") ? "Software Tester" : "Able Seafarer";
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(CourseOption, course); return pageInteractionHelper.FindElement(FirstOption); });
+        }
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(_context);
     }
 }

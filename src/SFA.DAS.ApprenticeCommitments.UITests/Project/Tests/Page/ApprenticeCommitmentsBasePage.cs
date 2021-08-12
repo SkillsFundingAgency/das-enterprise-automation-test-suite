@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
         protected By HeaderText => By.CssSelector(".app-user-header__name");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
-        private By BetaBanner => By.CssSelector(".govuk-phase-banner");
+        private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
@@ -42,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
             if (verifypage) VerifyPage();
             VerifyPage(CookieBanner);
-            VerifyPage(BetaBanner);
+            VerifyPage(FeedbackLinkOnBetaBanner);
             VerifyPage(ServiceHeader, ServiceName);
         }
 
