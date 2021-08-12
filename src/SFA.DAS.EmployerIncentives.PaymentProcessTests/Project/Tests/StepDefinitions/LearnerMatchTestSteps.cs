@@ -128,6 +128,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2022)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId, 1)
@@ -162,6 +163,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2022)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId

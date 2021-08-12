@@ -107,6 +107,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
                     .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
                     .WithEndDate(DateTime.Now.AddYears(2))
                     .WithAcademicYear(2021)

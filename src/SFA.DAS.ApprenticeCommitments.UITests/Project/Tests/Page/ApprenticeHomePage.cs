@@ -102,7 +102,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
         {
             VerifyPage(AppreticeshipConfirmBannerHeader);
-            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready for you to check confirm");
+            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(_context);
         }

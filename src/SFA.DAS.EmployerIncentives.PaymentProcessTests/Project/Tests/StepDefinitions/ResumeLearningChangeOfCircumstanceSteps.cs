@@ -38,7 +38,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-20))
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN,
+                    startDate, startDate.AddYears(-20), Phase.Phase1)
                 .Create();
 
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
@@ -142,7 +143,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(_initialEarning.PaymentYear.Value)
+                .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-02-11T14:06:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
@@ -168,7 +169,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithAcademicYear(2021)
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(_initialEarning.PaymentYear.Value)
+                .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
@@ -192,7 +193,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(_initialEarning.PaymentYear.Value)
+                .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
