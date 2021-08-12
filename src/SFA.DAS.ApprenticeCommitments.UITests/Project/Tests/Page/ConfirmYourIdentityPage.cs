@@ -23,11 +23,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePage ConfirmIdentity()
         {
-            EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname,
-                apprenticeCommitmentsDataHelper.ApprenticeLastname,
+            EnterApprenticeDetails(objectContext.GetFirstName(),
+                objectContext.GetLastName(),
                 objectContext.GetDateOfBirth().Day,
                 objectContext.GetDateOfBirth().Month,
-                objectContext.GetDateOfBirth().Year);
+                objectContext.GetDateOfBirth().Year); ;
 
             return new ApprenticeHomePage(_context);
         }
