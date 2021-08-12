@@ -37,6 +37,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             if (applicationRoute == ApplicationRoute.SupportingProviderRoute) { CompletesTheApplyJourneyAsSupportRoute(selectRouteStepsHelper, applicationRoute); }
 
             if (applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(selectRouteStepsHelper, applicationRoute); }
+
+            if (applicationRoute == ApplicationRoute.MainProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsMainRoute_Existingprovider(selectRouteStepsHelper, applicationRoute); }
+
+            if (applicationRoute == ApplicationRoute.SupportingProviderRouteForExistingProvider) { CompletesTheApplyJourneyAsSupportRoute_Existingprovider(selectRouteStepsHelper, applicationRoute); }
         }
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsMainRoute(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
@@ -69,7 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsEmployerRoute_Existinprovider(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
         {
-            var _overviewPage = selectRouteStepsHelper.CompleteProviderCharityRouteSection_ExistingProvider();
+            var _overviewPage = selectRouteStepsHelper.CompleteProviderEmployerRouteSection_ExistingProvider();
             _overviewPage = CompleteYourOrganisation_Section1_Charity(_overviewPage);
             _overviewPage = CompleteFinancialEvidence_Section2_ForNoUltimateParentCompany(_overviewPage);
             _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);
@@ -80,11 +84,38 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
             return CompletesFinish_Section9(_overviewPage);
         }
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsMainRoute_Existingprovider(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
+        {
+            var overviewPage = selectRouteStepsHelper.CompleteProviderMainRouteSection_ExistingProvider();
+            overviewPage = CompleteYourOrganisation_Section1(overviewPage);
+            overviewPage = CompleteFinancialEvidence_Section2(overviewPage);
+            overviewPage = CompletesCriminalAndCompliance_Section3(overviewPage);
+            overviewPage = CompletesProtectingYourApprentices_Section4(overviewPage);
+            overviewPage = CompletesReadinessToEngage_Section5(overviewPage);
+            overviewPage = CompletesPlanningApprenticeshipTraining_Section6(overviewPage, applicationRoute);
+            overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(overviewPage);
+            overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8(overviewPage);
+            return CompletesFinish_Section9(overviewPage);
+        }
 
 
         public ApplicationSubmittedPage CompletesTheApplyJourneyAsSupportRoute(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
         {
             var _overviewPage = selectRouteStepsHelper.CompleteProviderSupportRouteSection();
+            _overviewPage = CompleteYourOrganisation_Section1_Support_Soletrader(_overviewPage);
+            _overviewPage = CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
+            _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);
+            _overviewPage = CompletesProtectingYourApprentices_Section4_SupportingRoute(_overviewPage);
+            _overviewPage = NotRequiredReadinessToEngage_Section5(_overviewPage);
+            _overviewPage = CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
+            _overviewPage = CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
+            _overviewPage = CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
+            return CompletesFinish_Section9_SupportingRoute(_overviewPage);
+        }
+
+        public ApplicationSubmittedPage CompletesTheApplyJourneyAsSupportRoute_Existingprovider(SelectRouteStepsHelper selectRouteStepsHelper, ApplicationRoute applicationRoute)
+        {
+            var _overviewPage = selectRouteStepsHelper.CompleteProviderSupportingRouteSection_ExistingProvider();
             _overviewPage = CompleteYourOrganisation_Section1_Support_Soletrader(_overviewPage);
             _overviewPage = CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
             _overviewPage = CompletesCriminalAndCompliance_Section3(_overviewPage);

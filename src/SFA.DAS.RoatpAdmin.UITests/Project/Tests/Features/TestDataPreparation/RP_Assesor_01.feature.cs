@@ -75,6 +75,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_Assessor_01A_TestDataPreparation-For_RP_AD_AS_01A_ExistingProvider")]
+        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadminastestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -82,6 +83,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         public virtual void RP_Assessor_01A_TestDataPreparation_For_RP_AD_AS_01A_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
+                    "roatpfulle2eviaadmintestdataprep",
                     "roatpadmintestdataprep",
                     "roatpadminastestdataprep",
                     "donottakescreenshot",

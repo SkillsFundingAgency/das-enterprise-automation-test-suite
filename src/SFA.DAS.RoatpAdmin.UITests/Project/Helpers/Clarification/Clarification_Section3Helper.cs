@@ -16,7 +16,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassTrainingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.StatusClarification);
             }
@@ -26,7 +27,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusClarification);
             }
@@ -50,7 +52,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider )
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusClarification);
             }
@@ -60,7 +65,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage FailWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusClarification);
             }
