@@ -33,6 +33,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TypeOfApprenticeshipTraining()
+                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                    .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
             else
             {
                 return applicationAssessmentOverviewPage
