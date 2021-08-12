@@ -141,7 +141,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
-        public ProviderCohortApprovedAndSentToEmployerPage AddApprenticeViaBulkUpload(int numberOfApprentices)
+        public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
 

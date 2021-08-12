@@ -36,10 +36,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public void VerifyApplicationDeterminedDate() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
 
-        public RoatpAdminHomePage GetRoatpAdminHomePage()
+        public SearchPage GoToSearchPage()
         {
             Back();
-            return new RoatpAdminHomePage(_context);
+            return new SearchPage(_context);
         }
 
         public ChangeLegalNamePage ClickChangeLegalNameLink()
