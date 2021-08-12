@@ -21,8 +21,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            //var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
-
             if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
