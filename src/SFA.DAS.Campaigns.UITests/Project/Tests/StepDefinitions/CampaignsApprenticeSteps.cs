@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
-    [Binding]
+    [Binding, Scope(Tag = "apprentice")]
     public class CampaignsApprenticeSteps
     {
         private readonly CampaignsStepsHelper _stepsHelper;
