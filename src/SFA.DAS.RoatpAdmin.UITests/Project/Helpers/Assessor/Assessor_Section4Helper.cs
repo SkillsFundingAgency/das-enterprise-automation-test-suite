@@ -71,7 +71,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
               if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
                   applicationroute == ApplicationRoute.SupportingProviderRoute ||
                   applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
-                  applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
+                  applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .VerifySection4Link5Status(StatusHelper.NotRequired);
