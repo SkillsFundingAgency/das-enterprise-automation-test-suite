@@ -11,10 +11,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
 
         private readonly ScenarioContext _context;
+        //private IWebDriver _webDriver;
 
-
-        private By pledgeCreatedConfirmationPanel = By.ClassName("govuk-panel__title");// By.XPath("[@class='govuk-panel__title']");
+        private By pledgeCreatedConfirmationPanel = By.ClassName("govuk-panel__title");
         private string confirmationTitleSubstring = "Your pledge has been created as pledge number";
+        private string pledgeConfirmationFullMessage;
+        public static string pledgeID;
+       
         public PledgeCreatedSuccessPage(ScenarioContext context) => _context = context;// : base(context) => _context = context;
 
 
@@ -35,6 +38,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             return pageTitleOK;
 
             } 
+
+    public string GetNewPledgeID()
+        {
+
+            IWebDriver _webDriver = _context.GetWebDriver();
+            
+            pledgeConfirmationFullMessage = _webDriver.FindElement(pledgeCreatedConfirmationPanel).Text;
+            pledgeID = pledgeConfirmationFullMessage.Substring(pledgeConfirmationFullMessage.Length - 6);
+            return pledgeConfirmationFullMessage;
+        }
 
     }
 }

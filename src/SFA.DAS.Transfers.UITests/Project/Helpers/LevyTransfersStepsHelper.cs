@@ -13,12 +13,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         private readonly IWebDriver _webDriver;
         private readonly ScenarioContext _context;
 
-        //public LevyTransfersStepsHelper(IWebDriver webDriver) 
-
-        //{
-        //    _webDriver = webDriver;
-        //}
-
         public LevyTransfersStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -28,18 +22,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         public bool DoesConfirmationBoxContainSubstring(By locator, String subString)
         {
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            //try
-            //{
-            //    return _webDriver.FindElement(locator).Displayed;
-            //}
-            //catch (Exception)
-            //{
-            //    return false;
-            //}
+
             String actualSubstring = _webDriver.FindElement(locator).Text;
             bool result = actualSubstring.Contains(subString);
-            return result;//_webDriver.FindElement(locator).Displayed;
-
+            return result;
 
         }
     }
