@@ -37,6 +37,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -77,6 +78,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
                     .WithStartDate(testData.StartDate)
                     .WithEndDate("2021-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId, 11)
@@ -137,7 +139,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"a learner match request in the current academic year does not find the requested ULN and UKPRN")]
-        public async Task WhenTheLearnerMatchRequestInTheCurrentAcademivYearDoesNotHaveAMatchingRecord()
+        public async Task WhenTheLearnerMatchRequestInTheCurrentAcademicYearDoesNotHaveAMatchingRecord()
         {
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
 
@@ -216,6 +218,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -265,6 +268,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -288,6 +292,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -311,11 +316,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisodePreviousAY = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
             var priceEpisodeCurrentAY = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 1)
@@ -348,9 +355,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             testData.StartDate = DateTime.Parse("2021-06-12");
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(11)
                 .WithStartDate(testData.StartDate)
@@ -365,10 +372,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             testData.StartDate = DateTime.Parse("2021-06-12");
 
             var priceEpisodeFutureDate = new PriceEpisodeDtoBuilder()
-                    .WithStartDate(testData.StartDate)
-                    .WithEndDate(DateTime.Now.AddDays(1))
-                    .WithPeriod(testData.ApprenticeshipId, 1)
-                    .Create();
+                .WithAcademicYear(2021)
+                .WithStartDate(testData.StartDate)
+                .WithEndDate(DateTime.Now.AddDays(1))
+                .WithPeriod(testData.ApprenticeshipId, 1)
+                .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
@@ -396,6 +404,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-06-12");
             
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
@@ -419,6 +428,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var startDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7, payable: false)
@@ -456,6 +466,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-06-12");
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7, payable: true)
@@ -479,6 +490,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var startDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
