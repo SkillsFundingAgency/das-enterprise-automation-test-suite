@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Clarification_02", "TestDataPreparation for RP_AD_CLA_02", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Clarification_02", "TestDataPreparation for RP_AD_CLA_02_ExistingProvider", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_Clarification_02_TestDataPreparation-For_RP_AD_CLA_02")]
+        [NUnit.Framework.DescriptionAttribute("RP_Clarification_02_TestDataPreparation-For_RP_AD_CLA_02_ExistingProvider")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadminclatestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("rpadcla02")]
-        public virtual void RP_Clarification_02_TestDataPreparation_For_RP_AD_CLA_02()
+        public virtual void RP_Clarification_02_TestDataPreparation_For_RP_AD_CLA_02_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpadmintestdataprep",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
                     "donottakescreenshot",
                     "rpadcla02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Clarification_02_TestDataPreparation-For_RP_AD_CLA_02", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Clarification_02_TestDataPreparation-For_RP_AD_CLA_02_ExistingProvider", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,16 +109,23 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 10
- testRunner.Given("the provider completes the Apply Journey as Employer Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("the Provider is added to the register as Main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider naviagate to Apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
+ testRunner.Given("the provider completes the Apply Journey as Employer Provider Route For Existing " +
+                        "Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 13
+ testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
  testRunner.And("the Asssesssors assess the application and marks the application as Ready for Mod" +
                         "eration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 15
  testRunner.And("the Moderation user assess the application and marks few section as Fail and outc" +
                         "ome As Clarification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
