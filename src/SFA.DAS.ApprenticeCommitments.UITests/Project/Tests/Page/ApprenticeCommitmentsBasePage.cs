@@ -26,9 +26,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By HeaderText => By.CssSelector(".app-user-header__name");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
+        private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
+        private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
+        private By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
+
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -44,12 +48,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(CookieBanner);
             VerifyPage(FeedbackLinkOnBetaBanner);
             VerifyPage(ServiceHeader, ServiceName);
+            VerifyFooterLinks();
         }
 
         public ApprenticeHomePage ContinueToHomePage()
         {
             Continue();
             return new ApprenticeHomePage(_context);
+        }
+
+        private void VerifyFooterLinks()
+        {
+            VerifyPage(PrivacyFooterLink);
+            VerifyPage(CookiesFooterLink);
+            VerifyPage(TermsOfUseFooterLink);
         }
     }
 }
