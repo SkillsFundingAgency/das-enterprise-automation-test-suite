@@ -21,6 +21,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 
             return new GetHelpWithFindingATrainingProviderPage(_context);
         }
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage()
+        {
+            new AEDIndexPage(_context).ClickShareInterestButton().ClickStartNow();
+
+            return new GetHelpWithFindingATrainingProviderPage(_context);
+        }
 
         public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPage()
         {
@@ -28,6 +34,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 
             return new AEDIndexPage(_context);
         }
+        public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
+        {
+            _fATV2StepsHelper.ShortlistATrainingCourseAndNavigateToShortlistPage();
 
+            return new AEDIndexPage(_context);
+        }
     }
 }

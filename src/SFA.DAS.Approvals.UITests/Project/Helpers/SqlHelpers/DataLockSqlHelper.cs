@@ -22,6 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public int GetDatalocksResolvedStatus() => Convert.ToInt32(GetDataAsObject($"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{_apprenticeshipId}'"));
 
+        private string ExistingRecordOnDataLockStatusTable(int apprenticeshipId) => GetNullableData($"SELECT Id from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{apprenticeshipId}'");
+        
         public void SubmitILRWithPriceMismatch() => SubmitILRMismatch("PriceDataLock");
 
         public void SubmitILRWithCourseMismatch() => SubmitILRMismatch("CourseDataLock");
@@ -32,22 +34,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         {
             string sqlQueryFromFile = FileHelper.GetSql(type);
 
-            string courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_coursedataHelper.CourseStartDate.Month) + "-01";
-
             _apprenticeshipId = _dataHelper.ApprenticeshipId();
+
+            bool DoesRecordExistOnDataLockStatusTable = (ExistingRecordOnDataLockStatusTable(_apprenticeshipId) == "") ? false : true;
+            
+            string priceEpisodeIdentifier = (DoesRecordExistOnDataLockStatusTable) ? "455-3-1-01-01-2019" : "455-3-1-01-01-2018";
+            int month = (DoesRecordExistOnDataLockStatusTable) ? _coursedataHelper.CourseStartDate.Month + 1 : _coursedataHelper.CourseStartDate.Month;
+            string price = (DoesRecordExistOnDataLockStatusTable) ? (Convert.ToInt32(_dataHelper.TrainingPrice) + 500).ToString() : _dataHelper.TrainingPrice;
+
+            string courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(month) + "-01";
 
             Dictionary<string, string> sqlParameters = new Dictionary<string, string>
             {
                 { "@MaxDataLockEventId", Convert.ToString(DataLockEventIdSqlHelper.GetMaxDataLockEventId(connectionString)) },
+                { "@PriceEpisode", priceEpisodeIdentifier},
                 { "@CurrentApprenticeshipId", Convert.ToString(_apprenticeshipId) },
                 { "@StartDate", courseStartDate },
-                { "@TrainingPrice", _dataHelper.TrainingPrice}
+                { "@TrainingPrice", price}
             };
 
-            SqlDatabaseConnectionHelper.ExecuteSqlCommand(
-                sqlQueryFromFile,
-                connectionString,
-                sqlParameters);
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(sqlQueryFromFile, connectionString, sqlParameters);
         }
     }
 }
