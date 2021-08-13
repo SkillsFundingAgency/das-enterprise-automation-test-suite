@@ -346,7 +346,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the learner record has in learning set to true")]
-        public async Task ThenTheLearnerRecordHasInLearningSetToTrue()
+        public void ThenTheLearnerRecordHasInLearningSetToTrue()
         {
             var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
             learnerRecord.InLearning.Should().BeTrue();
@@ -395,7 +395,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the learner record has in learning set to false")]
-        public async Task ThenTheLearnerRecordHasInLearningSetToFalse()
+        public void ThenTheLearnerRecordHasInLearningSetToFalse()
         {
             var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
             learnerRecord.InLearning.Should().BeFalse();
