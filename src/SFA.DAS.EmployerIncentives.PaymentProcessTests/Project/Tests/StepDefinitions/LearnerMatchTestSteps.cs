@@ -3,6 +3,7 @@ using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -107,8 +108,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             expectedDaysInLearning.Days.Should().Be(daysInLearning.Days);
         }
 
-        [Given(@"learner match does not have a matching apprenticeship ID in a price episode in the current academic year")]
-        public async Task GivenLearnerMatchDoesNotHaveAMatchingApprenticeshipIdInAPriceEpisodeInTheCurrentAcademicYear()
+        [Given(@"the provider has not submitted an ILR in the current academic year")]
+        public async Task GiventheProviderHasNotSubmittedAnIlrInTheCurrentAcademicYear()
         {
             // data not changed
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
@@ -128,6 +129,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2122)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId, 1)
@@ -148,23 +150,24 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
-        [Given(@"learner match does not find a matching apprenticeship ID in a price episode in the current academic year")]
-        public async Task GivenLearnerDoesNotFindAMatchingApprenticeshipIdInAPriceEpisodeInTheCurrentAcademicYear()
+        [Given(@"learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year")]
+        public async Task GivenLearnerHasAMatchingApprenticeshipIdInAPriceEpisodeInThePreviousAcademicYearButNotTheCurrentAcademicYear()
         {
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
 
-            testData.LearnerSubmission  = new LearnerSubmissionDtoBuilder()
+            testData.LearnerSubmission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(2022)
-                .WithIlrSubmissionDate("2021-08-01T09:11:46.82")
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-08-30T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
-                    .WithStartDate("2021-08-01T00:00:00")
-                    .WithEndDate("2022-07-31T00:00:00")
-                    .WithPeriod(testData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId
+                    .WithAcademicYear(2122)
+                    .WithStartDate(testData.StartDate)
+                    .WithEndDate("2021-07-31T00:00:00")
+                    .WithPeriod(testData.ApprenticeshipId, 1)
                     .Create()
                 )
                 .Create();
@@ -553,6 +556,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learnerRecord.HasDataLock.Should().BeNull();
             learnerRecord.InLearning.Should().BeNull();
             learnerRecord.SubmissionDate.Should().Be(testData.LearnerSubmission.IlrSubmissionDate);
+        }
+
+        [Then(@"the learning is stopped")]
+        public void ThenLearningisStopped()
+        {
+            var changeOfCircumstance = _helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Single();
+
+            changeOfCircumstance.ApprenticeshipIncentiveId.Should().Be(testData.ApprenticeshipIncentiveId);
+            changeOfCircumstance.ChangeType.Should().Be(ChangeOfCircumstanceType.LearningStopped);
+            changeOfCircumstance.NewValue.Should().Be("2021-08-01");
         }
     }
 }

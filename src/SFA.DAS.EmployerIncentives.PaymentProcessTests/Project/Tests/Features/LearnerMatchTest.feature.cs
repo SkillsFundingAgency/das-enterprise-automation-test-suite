@@ -692,12 +692,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Learning found in previous academic year but not in current academic year")]
-        public virtual void LearningFoundInPreviousAcademicYearButNotInCurrentAcademicYear()
+        [NUnit.Framework.DescriptionAttribute("Learning found in previous academic year but not in current academic year and pro" +
+            "vider has NOT submitted ILR in current academic year")]
+        public virtual void LearningFoundInPreviousAcademicYearButNotInCurrentAcademicYearAndProviderHasNOTSubmittedILRInCurrentAcademicYear()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learning found in previous academic year but not in current academic year", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learning found in previous academic year but not in current academic year and pro" +
+                    "vider has NOT submitted ILR in current academic year", null, tagsOfScenario, argumentsOfScenario);
 #line 105
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -722,8 +724,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an incentive application has a learner match record in previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 107
- testRunner.And("learner match does not have a matching apprenticeship ID in a price episode in th" +
-                        "e current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider has not submitted an ILR in the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 108
  testRunner.And("learner match has a matching apprenticeship ID in a price episode in the previous" +
@@ -788,12 +789,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Learning not found in current academic year or previous academic year")]
-        public virtual void LearningNotFoundInCurrentAcademicYearOrPreviousAcademicYear()
+        [NUnit.Framework.DescriptionAttribute("Learning found in previous academic year but not current academic year AND provid" +
+            "er has submitted ILR in current academic year")]
+        public virtual void LearningFoundInPreviousAcademicYearButNotCurrentAcademicYearANDProviderHasSubmittedILRInCurrentAcademicYear()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learning not found in current academic year or previous academic year", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learning found in previous academic year but not current academic year AND provid" +
+                    "er has submitted ILR in current academic year", null, tagsOfScenario, argumentsOfScenario);
 #line 119
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -818,18 +821,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an incentive application has a learner match record in previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 121
- testRunner.And("learner match does not find a matching apprenticeship ID in a price episode in th" +
-                        "e current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("learner match has a matching apprenticeship ID in a price episode in the previous" +
+                        " academic year but not the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 122
- testRunner.And("learner match does not have a matching apprenticeship ID in a price episode in th" +
-                        "e previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 123
  testRunner.When("the learner match process has run", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 123
+ testRunner.Then("learner data is updated to reflect that learning has been found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 124
- testRunner.Then("learner data is updated to reflect that learning has not been found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the learning is stopped", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
