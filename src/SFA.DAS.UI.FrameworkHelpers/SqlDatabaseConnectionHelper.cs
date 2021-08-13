@@ -8,19 +8,24 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
-        public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
+        public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
             try
             {
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
+
                     using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
                     {
-                        foreach (KeyValuePair<string, string> param in parameters)
+                        if (parameters != null)
                         {
-                            command.Parameters.AddWithValue(param.Key, param.Value);
+                            foreach (KeyValuePair<string, string> param in parameters)
+                            {
+                                command.Parameters.AddWithValue(param.Key, param.Value);
+                            }
                         }
+
                         return command.ExecuteNonQuery();
                     }
                 }

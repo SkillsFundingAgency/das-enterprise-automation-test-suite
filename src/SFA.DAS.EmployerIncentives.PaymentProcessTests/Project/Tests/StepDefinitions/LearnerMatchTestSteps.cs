@@ -150,6 +150,43 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchOrchestratorHelper.Run();
         }
 
+        [Given(@"learner match does not find a matching apprenticeship ID in a price episode in the current academic year")]
+        public async Task GivenLearnerDoesNotFindAMatchingApprenticeshipIdInAPriceEpisodeInTheCurrentAcademicYear()
+        {
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
+
+            testData.LearnerSubmission  = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2022)
+                .WithIlrSubmissionDate("2021-08-01T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(1)
+                .WithStartDate(testData.StartDate)
+                .WithPriceEpisode(
+                    new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2022)
+                    .WithStartDate("2021-08-01T00:00:00")
+                    .WithEndDate("2022-07-31T00:00:00")
+                    .WithPeriod(testData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId
+                    .Create()
+                )
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, testData.LearnerSubmission);
+        }
+
+        [Given(@"learner match has a matching apprenticeship ID in a price episode in the previous academic year")]
+        public void GivenLearnerMatchHasAMatchingApprenticeshipIdInAPriceEpisodeInThePreviousAcademicYear()
+        {
+            // data not changed         
+        }
+
+        [When(@"the learner match process has run")]
+        public async Task WhenTheLearnerMatchProcessHasRun()
+        {
+            await _helper.LearnerMatchOrchestratorHelper.Run();
+        }
+
         [Given(@"learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year")]
         public async Task GivenLearnerHasAMatchingApprenticeshipIdInAPriceEpisodeInThePreviousAcademicYearButNotTheCurrentAcademicYear()
         {

@@ -11,11 +11,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         private readonly AEDStepsHelper _aEDStepsHelper;
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
         private CheckYourAnswersPage _checkYourAnswersPage;
+        private readonly MailinatorSteps _mailinatorSteps;
 
         public AEDSteps(ScenarioContext context)
         {
             _context = context;
             _aEDStepsHelper = new AEDStepsHelper(_context);
+            _mailinatorSteps = new MailinatorSteps(_context);
         }
 
         [Given(@"the User searches a course then navigates to the provider list")]
@@ -30,6 +32,33 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         {
             _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProvider();
         }
+
+        [Given(@"the user selects share interest with finding a training provider")]
+        public void GivenTheUserSelectsShareInterestWithFindingATrainingProvider()
+        {
+            _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProviderViaShortlistPage();
+        }
+
+
+        [Given(@"the user has navigated to shortlist page")]
+        public void GivenTheUserHasNavigatedToShortlistPage()
+        {
+            _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage();
+        }
+
+        [Given(@"the employer has shared interest '(.*)', '(.*)' and '(.*)'")]
+        public void GivenTheEmployerHasSharedInterest(string location, string organisationName, string organisationEmailAddress)
+        {
+            GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
+            GivenTheUserSelectsGetHelpWithFindingATrainingProvider();
+            WhenTheUserEntersTheLocationAs(location);
+            WhenTheUserSelectsNoApprentices();
+            WhenTheUserEntersTheOrganisationName(organisationName);
+            WhenTheUserEntersTheOrganisationEmailAddress(organisationEmailAddress);
+            ThenTheUserIsAbleToSubmitTheFormToRegisterInterest();
+            _mailinatorSteps.ThenConfirmTheUserIsAbleToVerifyTheEmail(organisationEmailAddress);
+        }
+
 
         [When(@"the user enters the number of Apprentices as '(.*)'")]
         public void WhenTheUserEntersTheNumberOfApprenticesAs(string noOfApprentices)
