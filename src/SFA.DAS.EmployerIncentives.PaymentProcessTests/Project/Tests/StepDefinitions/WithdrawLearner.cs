@@ -91,7 +91,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             archivedPayments.Count.Should().Be(0);
 
             var pendingPaymentValidationResults = _helper.EISqlHelper.GetAllFromDatabase<PendingPaymentValidationResult>();
-            pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningFirstPayment.Id).Should().Be(8);
+            pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningFirstPayment.Id).Should().BeGreaterOrEqualTo(9);
             pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningSecondPayment.Id).Should().Be(0);
 
             var clawbackPayments = _helper.EISqlHelper.GetAllFromDatabase<ClawbackPayment>();
@@ -152,7 +152,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             firstPendingPayment.PaymentMadeDate.Should().Be(DateTime.Today);
 
             var pendingPaymentValidationResults = _helper.EISqlHelper.GetAllFromDatabase<PendingPaymentValidationResult>();
-            pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningFirstPayment.Id).Should().Be(8);
+            pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningFirstPayment.Id).Should().BeGreaterOrEqualTo(9);
             pendingPaymentValidationResults.Count(v => v.PendingPaymentId == _initialEarningSecondPayment.Id).Should().Be(0);
 
             var firstPayment = _helper.EISqlHelper.GetFromDatabase<Payment>(p => p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.PendingPaymentId == _initialEarningFirstPayment.Id);

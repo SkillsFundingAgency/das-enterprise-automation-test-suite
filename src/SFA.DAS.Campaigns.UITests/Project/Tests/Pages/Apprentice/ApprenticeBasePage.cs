@@ -3,9 +3,46 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public abstract class ApprenticeBasePage : ApprenticeHubPage
+    public abstract class ApprenticeBasePage : HubBasePage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        protected ApprenticeBasePage(ScenarioContext context) : base(context) { }
+        protected override By PageHeader => SubPageHeader;
+
+        protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
+
+        protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
+
+        protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
+
+        protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        protected ApprenticeBasePage(ScenarioContext context) : base(context) => _context = context;
+
+        public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
+        {
+            formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
+            return new ApprenticeAreTheyRightForYouPage(_context);
+        }
+
+        public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new ApprenticeHowDoTheyWorkPage(_context);
+        }
+
+        public GettingStartedPage NavigateToGettingStarted()
+        {
+            formCompletionHelper.ClickElement(GettingStarted);
+            return new GettingStartedPage(_context);
+        }
+
+        public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(BrowseApprenticeship);
+            return new BrowseApprenticeshipPage(_context);
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Create password";
         private By PrivacyLink => By.XPath("//a[text()='privacy statement']");
-        private By TermsLink => By.XPath("//a[text()='terms and conditions']");
+        private By TermsLink => By.XPath("//a[text()='terms of use']");
 
         private readonly ScenarioContext _context;
 

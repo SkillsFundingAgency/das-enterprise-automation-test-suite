@@ -186,7 +186,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
                 .WithAcademicYear(2021)
-                .WithIlrSubmissionDate(DateTime.Parse("2021-01-10T09:11:46.82"))
+                .WithIlrSubmissionDate(DateTime.Now)
                 .WithIlrSubmissionWindowPeriod(4)
                 .WithStartDate(newStartDate)
                 .WithPriceEpisode(priceEpisode)
@@ -198,7 +198,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the earnings are recalculated")]
         public void WhenTheEarningsAreRecalculated()
         {
-            _newEarnings = _helper.EISqlHelper.GetAllFromDatabase<PendingPayment>();
+            _newEarnings = _helper.EISqlHelper.GetAllFromDatabase<PendingPayment>()
+                .Where(x => x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId).ToList();
         }
 
         [Then(@"the paid earning of £(.*) is marked as requiring a clawback in the currently active Period R(.*) (.*)")]
