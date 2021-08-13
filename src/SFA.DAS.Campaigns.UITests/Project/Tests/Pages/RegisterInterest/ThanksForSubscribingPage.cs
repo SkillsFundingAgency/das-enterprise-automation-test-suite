@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
-    public class ThanksForSubscribingPage : CampaingnsPage
+    public class ThanksForSubscribingPage : CampaingnsVerifyLinks
     {
         protected override string PageTitle => "Thank you for signing up";
 

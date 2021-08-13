@@ -1,33 +1,40 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public abstract class EmployerBasePage : EmployerHubPage
+    public abstract class EmployerBasePage : HubBasePage
     {
-        protected By AddFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link ");
+        protected override By PageHeader => SubPageHeader;
 
-        protected By RemoveFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link--active");
+        protected By AreTheyRightForYou => By.CssSelector("a[href='/employers/are-they-right-for-you-employers']");
 
-        protected EmployerBasePage(ScenarioContext context) : base(context) { }
+        protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work-for-employers']");
 
-        protected void AddFavourite(Action<string> action, Func<List<IWebElement>, IWebElement> func)
+        protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        protected EmployerBasePage(ScenarioContext context) : base(context) => _context = context;
+
+        public EmployerAreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
         {
-            formCompletionHelper.ClickElement(() =>
-            {
-                var element = func(pageInteractionHelper.FindElements(AddFavouriteSelector).Where(x => x.GetAttribute("innerText") == "Add to favourites").ToList());
-                var courseId = element.GetAttribute("value");
-                action(courseId);
-                return element;
-            });
+            formCompletionHelper.ClickElement(AreTheyRightForYou);
+            return new EmployerAreTheyRightForYouPage(_context);
         }
 
-        protected void GoToBasket() => tabHelper.OpenInNewTab(UrlConfig.CA_BaseUrl, CampaignsConfig.BasketViewPath);
+        public EmployerHowDoTheyWorkPage ClickHowDoTheyWorkLink()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new EmployerHowDoTheyWorkPage(_context);
+        }
 
-        public bool VerifyCount(int count) => (count == 0) ? !pageInteractionHelper.IsElementDisplayed(FavCount) : VerifyPage(FavCount, count.ToString());
+        public SettingItUpPage ClickSettingUpLink()
+        {
+            formCompletionHelper.ClickElement(SettingItUp);
+            return new SettingItUpPage(_context);
+        }
     }
 }

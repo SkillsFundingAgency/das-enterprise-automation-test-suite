@@ -9,6 +9,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static string RandomOrDefault(this List<string> list)
         {
             var randomnNumber = new Random().Next(0, list.Count);
+
             return list.Count == 0  ? null : list[randomnNumber];
         }
 

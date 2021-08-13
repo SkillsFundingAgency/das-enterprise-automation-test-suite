@@ -166,6 +166,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
                 .WithAcademicYear(2021)

@@ -7,23 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Find apprenticeship training";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        private By Search => By.CssSelector("#employer-apprenticeship-search");
-
-        public SearchForAnApprenticeshipPage(ScenarioContext context) : base(context)
-
-        {
-            _context = context;
-        }
-
-        public SearchResultsPage GoToSearchResultsPage()
-        {
-            formCompletionHelper.ClickElement(Search);
-            return new SearchResultsPage(_context);
-        }
+        public SearchForAnApprenticeshipPage(ScenarioContext context) : base(context) { }
     }
 }
 
