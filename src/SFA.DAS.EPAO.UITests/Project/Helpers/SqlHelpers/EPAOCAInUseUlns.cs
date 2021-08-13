@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {
@@ -6,7 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
     {
         private static readonly List<string> _ulns = new List<string>() { "1" };
 
-        internal static string GetInUseUln() { lock(_ulns) {return string.Join(",", _ulns); } }
+        internal static string GetInUseUln() { lock(_ulns) {return _ulns.ToString(","); } }
 
         internal static void RemoveInUseUln(string uln) => _ulns.Remove(uln);
 

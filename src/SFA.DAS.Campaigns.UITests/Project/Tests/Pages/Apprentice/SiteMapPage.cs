@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SiteMapPage: ApprenticeBasePage
+    public class SiteMapPage : ApprenticeBasePage
     {
         protected override string PageTitle => "Sitemap";
      

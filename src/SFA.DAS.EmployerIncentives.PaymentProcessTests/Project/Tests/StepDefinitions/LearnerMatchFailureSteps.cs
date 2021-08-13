@@ -50,6 +50,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
+                    .WithAcademicYear(2021)
                     .WithEndDate(DateTime.Now.AddYears(1))
                     .WithPeriod(apprenticeship.ApprenticeshipId, 10)
                     .Create();
@@ -76,6 +77,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
+                    .WithAcademicYear(2021)
                     .WithEndDate(DateTime.Now.AddDays(-1)) // Learning Stopped!!!
                     .WithPeriod(apprenticeship.ApprenticeshipId, 11)
                     .Create();
@@ -105,6 +107,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
                     .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
                     .WithEndDate(DateTime.Now.AddYears(2))
                     .WithPeriod(apprenticeship.ApprenticeshipId, 12)

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
-    public class RegisterInterestPage : CampaingnsPage
+    public class RegisterInterestPage : CampaingnsVerifyLinks
     {
         protected override string PageTitle => "Sign up to stay connected";
 
@@ -17,17 +17,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By EmailField => By.Id("Email");
 
-        private By IncludeInUserResearch = By.Id("IncludeInUR");
-
-        private By RadioLabel => By.CssSelector(".radios__label");
+        private By IncludeInUserResearch => By.Id("IncludeInUR");
 
         private By Signup => By.CssSelector("#btn-register-interest-complete");
 
-        public RegisterInterestPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
-        public ThanksForSubscribingPage  RegisterInterest()
+        public RegisterInterestPage(ScenarioContext context) : base(context) => _context = context;
+
+        public ThanksForSubscribingPage RegisterInterest()
         {
             formCompletionHelper.EnterText(FirstNameField, campaignsDataHelper.Firstname);
             formCompletionHelper.EnterText(LastNameField, campaignsDataHelper.Lastname);
