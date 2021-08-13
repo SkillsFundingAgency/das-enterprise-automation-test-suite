@@ -12,14 +12,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return index >= 0;
         }
 
-        public static bool CompareToIgnoreCase(this string strA, string strB)
-        {
-            return string.Compare(strA.RemoveSpace(), strB, true) == 0;
-        }
+        public static bool CompareToIgnoreCase(this string strA, string strB) => string.Compare(strA.RemoveSpace(), strB, true) == 0;
 
-        public static string RemoveSpace(this string s)
-        {
-           return Regex.Replace(s, @"\s+", string.Empty);
-        }
+        public static string RemoveSpace(this string s) => Regex.Replace(s, @"\s+", string.Empty);
     }
 }

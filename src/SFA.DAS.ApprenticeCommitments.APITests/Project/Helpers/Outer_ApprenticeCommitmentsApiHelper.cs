@@ -40,7 +40,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeshipViaApi()
         {
-            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, startDate, _, _, _) = GetEmployerData();
+            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, startDate, _, _) = GetEmployerData();
 
             var createApprenticeship = new CreateApprenticeshipViaApi
             {
@@ -58,7 +58,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         protected IRestResponse CreateApprenticeshipViaCommitmentsJob()
         {
-            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, _, _, createdOn, agreedOn) = GetEmployerData();
+            var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, _, _, createdOn) = GetEmployerData();
 
             var createApprenticeship = new CreateApprenticeshipViaCommitmentsJob
             {
@@ -68,8 +68,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 LegalEntityName = orgname,
                 AccountLegalEntityId = legalEntityId,
                 ProviderId = providerId,
-                CreatedOn = createdOn,
-                AgreedOn = agreedOn
+                CreatedOn = createdOn
             };
 
             return _apprenticeCommitmentsJobs_CreateApprenticeshipClient.CreateApprenticeshipViaCommitmentsJob(createApprenticeship, HttpStatusCode.Accepted);
@@ -151,9 +150,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             });
         }
 
-        private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn, string agreedOn) GetEmployerData()
+        private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, dateOfBirth, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, dateOfBirth, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
 
             var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 
@@ -174,7 +173,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
 
-            return (email, accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn, agreedOn);
+            return (email, accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn);
         }
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();

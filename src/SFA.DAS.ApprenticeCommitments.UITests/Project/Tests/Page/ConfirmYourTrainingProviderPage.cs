@@ -10,7 +10,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
 
-        public ConfirmYourTrainingProviderPage(ScenarioContext context) : base(context) =>
+        public ConfirmYourTrainingProviderPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
             VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetProviderName());
+            VerifyPage(ProviderHelpSectionLink);
+            VerifyPage(ProviderHelpSectionText);
+        }
     }
 }

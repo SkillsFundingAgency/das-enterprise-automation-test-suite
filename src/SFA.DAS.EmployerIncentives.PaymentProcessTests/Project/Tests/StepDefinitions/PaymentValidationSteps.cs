@@ -27,11 +27,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive")]
         public async Task GivenAnExistingApprenticeshipIncentive()
         {
+            const byte period = 10;
+            const short year = 2021;
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
+
             var startDate = new DateTime(2021, 03, 03);
 
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, startDate, startDate.AddYears(-20))
+                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, 
+                    testData.UKPRN, startDate, startDate.AddYears(-20)
+                    ,Phase.Phase1)
                 .Create();
 
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
@@ -58,9 +64,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the Payment Run occurs")]
         public async Task WhenThePaymentRunOccurs()
         {
-            byte period = 10;
-            short year = 2021;
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
             await _helper.LearnerMatchOrchestratorHelper.Run();
             await _helper.PaymentsOrchestratorHelper.Run();
             await _helper.CollectionCalendarHelper.Reset();

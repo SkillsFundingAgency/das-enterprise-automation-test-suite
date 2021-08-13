@@ -116,7 +116,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 
-            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, "Index was out of range", _context.ScenarioInfo.Title);
+            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
 
             _objectContext.UpdateCohortReference(cohortRef);
         }
