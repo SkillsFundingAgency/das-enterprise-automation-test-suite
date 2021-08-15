@@ -3,8 +3,6 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_08_Check Choose a training provider Page Details
-	Given the user navigates to choose a training provider page
-	Then the links are not broken
-	
-
+Scenario: CA_EMP_08 Check that Non Levy Paying Employer content is displayed 
+	Given the user navigates to the funding an apprenticeship page
+	Then Employer selects non Levy Paying and continues
