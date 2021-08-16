@@ -105,11 +105,5 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             Continue();
             return new AreYouSureInProgressPage(_context);
         }
-
-        public AppealThisMessagePage ClickAppealThisApplication()
-        {
-            formCompletionHelper.ClickLinkByText("Appeal this application");
-            return new AppealThisMessagePage(_context);
-        }
     }
 }

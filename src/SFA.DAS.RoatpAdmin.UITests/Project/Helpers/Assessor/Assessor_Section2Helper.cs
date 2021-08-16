@@ -7,7 +7,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
     {
         public ApplicationAssessmentOverviewPage PassEngagingWithEmployers(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_EngagingWithEmployers()
@@ -26,7 +27,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassComplaintsPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+               applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_ComplaintsPolicy()
@@ -43,7 +45,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassContractForServicesTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+               applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_ContractForServicesTemplate()
@@ -60,6 +63,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -77,7 +81,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassPriorLearningOfApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute|| 
+            if (applicationroute == ApplicationRoute.MainProviderRoute||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -95,7 +100,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         }
         public ApplicationAssessmentOverviewPage PassEnglishAndMathsAssessment(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider )
             {
@@ -115,7 +121,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {

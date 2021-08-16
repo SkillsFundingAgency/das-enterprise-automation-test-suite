@@ -75,13 +75,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
-            "SS")]
+            "SS for existing provider")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadcla01")]
         [NUnit.Framework.CategoryAttribute("roatpclarification")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_CLA_01CompleteClarificationJourneyAsMainProviderRouteAndMarkAsPASS()
+        public virtual void RP_AD_CLA_01CompleteClarificationJourneyAsMainProviderRouteAndMarkAsPASSForExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -91,7 +91,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
-                    "SS", null, tagsOfScenario, argumentsOfScenario);
+                    "SS for existing provider", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -116,7 +116,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard as Assessor1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("selects the Main Provider Route application from Clarification Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("selects the Main Provider Route For Existing Provider application from Clarificat" +
+                        "ion Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
  testRunner.Then("the Clarification assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

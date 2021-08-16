@@ -5,9 +5,9 @@
 @roatpassessoradmin
 @newroatpadmin
 @regression
-Scenario: RP_AD_AS_02 Assess a Charity type Application via Employer provider route
+Scenario: RP_AD_AS_02 Assess a Charity type Application via Employer provider route existing provider
 	When the Assessor1 is on the RoATP assessor applications dashboard
-	And selects the Employer Provider Route application
+	And selects the Employer Provider Route For Existing Provider application
 	Then the Assessor assesses all the sections of the application as PASS
 	And marks the Application as Ready for moderation
 	When the Assessor2 is on the RoATP assessor applications dashboard
