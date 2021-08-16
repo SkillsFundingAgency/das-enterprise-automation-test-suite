@@ -54,24 +54,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewViewYourCohortPageByClickingViewLinkOnViewYourCohortPageSelectingTheEmployersBox()
         {
             new ProviderYourCohortsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
-                                                        .SelectViewCurrentCohortDetails()
-                                                        .SelectViewApprentice();
+                                                        .SelectViewCurrentCohortDetails();
+                                                        //.SelectViewApprentice();
         }
 
         [Then(@"the user can view view your cohort page by clicking view link on view your cohort page selecting with transfer sending employers box")]
         public void ThenTheUserCanViewViewYourCohortPageByClickingViewLinkOnViewYourCohortPageSelectingWithTransferSendingEmployersBox()
         {
             new ProviderYourCohortsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
-                                                        .SelectViewCurrentCohortDetails()
-                                                        .SelectViewApprentice();
+                                                        .SelectViewCurrentCohortDetails();
+                                                        //.SelectViewApprentice();
         }
 
 
         [Then(@"the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting with employers box")]
         public void ThenTheUserCanViewReviewYourCohortPageWhenUserClicksOnDetailsLinkFromApprenticeDetailsReadyForReviewPageSelectingWithEmployersBox()
         {
-            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage()
-                                                        .SelectViewCurrentCohortDetails();
+            new ProviderYourCohortsPage(_context, true).GoToCohortsToReviewPage();
+                                                        //.SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting drafts box")]

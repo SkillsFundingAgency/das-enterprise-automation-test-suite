@@ -19,11 +19,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
 
-        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             _javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }        
     }
 }

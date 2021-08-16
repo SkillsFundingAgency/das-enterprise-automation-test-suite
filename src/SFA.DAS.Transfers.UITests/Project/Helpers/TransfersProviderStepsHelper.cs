@@ -14,9 +14,9 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         public void ApprovesTheCohortsAndSendsToEmployer()
         {
             EditApprentice()
-                .SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                //.SelectContinueToApproval()
+                .SubmitApproveAndSendToEmployerForApproval();
+                //.SendInstructionsToEmployerForAnApprovedCohort();
         }
     }
 }

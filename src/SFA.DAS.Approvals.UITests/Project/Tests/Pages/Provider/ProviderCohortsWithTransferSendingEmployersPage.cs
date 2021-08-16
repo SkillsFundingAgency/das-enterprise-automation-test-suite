@@ -12,10 +12,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortsWithTransferSendingEmployersPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderViewYourCohortPage SelectViewCurrentCohortDetails()
+        internal ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProviderViewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }

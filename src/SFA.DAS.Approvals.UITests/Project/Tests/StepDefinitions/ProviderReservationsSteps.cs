@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
 		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
-		private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
+		private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
         public ProviderReservationsSteps(ScenarioContext context)
         {
@@ -53,11 +53,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 			_providerAddApprenticeDetailsPage = _providerStepsHelper
                 .ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
 
-			_providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices);
 
-            _providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+            _providerApproveApprenticeDetailsPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval();
+                //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         [Then(@"Provider can make a reservation")]
@@ -70,19 +70,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
         }
 
         [Then(@"Provider can edit an apprentice")]
         public void ThenProviderCanEditAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.EditApprentice(_providerReviewYourCohortPage);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
         }
 
         [Then(@"Provider can delete an apprentice")]
         public void ThenProviderCanDeleteAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.DeleteApprentice(_providerReviewYourCohortPage);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
         }
 
         [Then(@"Provider can delete the funding")]

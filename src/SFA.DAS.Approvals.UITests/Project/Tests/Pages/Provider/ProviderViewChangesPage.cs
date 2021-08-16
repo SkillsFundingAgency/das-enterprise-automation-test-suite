@@ -21,10 +21,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderViewYourCohortPage(_context);
         }
 
-        public ProviderReviewYourCohortPage ClickOnReviewNewDetailsToUpdateLink()
+        public ProviderApproveApprenticeDetailsPage ClickOnReviewNewDetailsToUpdateLink()
         {
             formCompletionHelper.Click(ReviewNewDetailsToUpdate);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()

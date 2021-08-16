@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _bulkUploadDataHelper = new BulkUploadDataHelper();
         }
 
-        public ProviderReviewYourCohortPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
             _objectContext.SetNoOfApprentices(numberOfApprentices);
 
@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Review your cohort' page");
             }
             
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
         private ApprenticeDetails SetApprenticeDetails(CourseType courseType)

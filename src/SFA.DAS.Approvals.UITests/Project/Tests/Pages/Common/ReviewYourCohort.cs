@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected ReviewYourCohort(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-        protected List<IWebElement> TotalNoOfEditableApprentices() => pageInteractionHelper.GetLinks("Edit");
+        protected List<IWebElement> TotalNoOfEditableApprentices() => pageInteractionHelper.GetLinks("edit");
 
         public int TotalNoOfApprentices() => TotalNoOfEditableApprentices().Count;
 

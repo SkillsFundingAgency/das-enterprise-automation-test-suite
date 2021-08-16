@@ -16,11 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderReviewYourCohortPage ConfirmDeleteAndSubmit()
+        internal ProviderApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }

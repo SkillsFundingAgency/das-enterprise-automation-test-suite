@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
+    /*
     public class ProviderReviewYourCohortPage : ReviewYourCohort
     {
         protected override string PageTitle => "Review your cohort";
@@ -131,4 +132,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAccessDeniedPage(_context);
         }
     }
+    */
 }

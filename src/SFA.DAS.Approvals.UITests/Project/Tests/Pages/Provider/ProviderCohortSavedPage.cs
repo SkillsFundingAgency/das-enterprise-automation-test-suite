@@ -15,10 +15,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortSavedPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }

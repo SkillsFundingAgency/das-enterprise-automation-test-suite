@@ -89,8 +89,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
 
             providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                //.SubmitApproveAndSendToEmployerForApproval();
+                //.SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         public void BulkUploadApprenticeDetails(int numberOfApprentices)
@@ -98,8 +99,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
 
             providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApproveAndSendToEmployerForApproval();
+                //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
@@ -109,13 +110,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .SubmitSaveButDontSendToEmployer();
         }
 
-        public ProviderReviewYourCohortPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
 
             for (int i = 1; i < numberOfApprentices; i++)
             {
-                providerReviewYourCohortPage = providerReviewYourCohortPage
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage
                     .SelectAddAnApprenticeUsingReservation()
                     .CreateANewReservation()
                     .AddTrainingCourseAndDate()
@@ -125,35 +126,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SubmitValidApprenticeDetails();
             }
 
-            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
-        public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage AddApprentice(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = CurrentCohortDetails();
+            var providerApproveApprenticeDetailsPage = CurrentCohortDetails();
 
             for (int i = 0; i < numberOfApprentices; i++)
             {
-                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
 
-            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
         public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = CurrentCohortDetails();
-
-            return providerReviewYourCohortPage
+            return CurrentCohortDetails()
                 .SelectBulkUploadApprentices()
                 .UploadFileAndConfirmSuccessful(numberOfApprentices)
                 .SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
+                //.SubmitApproveAndSendToEmployerForApproval();
+                //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        public ProviderReviewYourCohortPage CurrentCohortDetails()
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
             GoToProviderHomePage();
 
@@ -162,20 +162,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage, bool shouldCheckCoursesAreStandards = false)
+        public ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                var ulnFields = providerReviewYourCohortPage.ApprenticeUlns().Reverse<IWebElement>();
+                var ulnFields = providerApproveApprenticeDetailsPage.ApprenticeUlns().Reverse<IWebElement>();
                 int j = ulnFields.Count() - 1;
 
                 foreach (IWebElement uln in ulnFields)
                 {
-                    if (uln.Text.Equals("–"))
+                    if (uln.Text.Equals("-"))
                     {
-                        var providerEditApprenticeDetailsPage = providerReviewYourCohortPage.SelectEditApprentice(j);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
                         if (shouldCheckCoursesAreStandards)
                         {
@@ -189,52 +189,47 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 }
             }
 
-            return providerReviewYourCohortPage;
+            return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderReviewYourCohortPage EditApprentice(bool shouldCheckCoursesAreStandards = false)
+        public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false)
         {
             return EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
         }
 
-        public ProviderReviewYourCohortPage EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
-                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i)
                                          .EditAllApprenticeDetails();
 
-            return providerReviewYourCohortPage;
+            return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderReviewYourCohortPage DeleteApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public ProviderApproveApprenticeDetailsPage DeleteApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(0)
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(0)
                                           .DeleteApprentice()
                                           .ConfirmDeleteAndSubmit();
             }
 
-            return providerReviewYourCohortPage;
+            return providerApproveApprenticeDetailsPage;
         }
 
-        public void DeleteCohort(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
-            providerReviewYourCohortPage.SelectDeleteCohort()
+            providerApproveApprenticeDetailsPage.SelectDeleteCohort()
                 .ConfirmDeleteAndSubmit();
         }
 
-        public void Approve()
-        {
-            EditApprentice()
-                .SelectContinueToApproval()
-                .SubmitApprove();
-        }
-
+        public void Approve() => EditApprentice().SubmitApprove();
+        
         public void ViewApprentices()
         {
             ProviderViewYourCohortPage _providerViewYourCohortPage = new ProviderViewYourCohortPage(_context);
@@ -246,12 +241,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
         }
 
-        private ProviderReviewYourCohortPage SetApprenticeDetails(ProviderReviewYourCohortPage providerReviewYourCohortPage, int numberOfApprentices)
+        private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
         {
-            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerReviewYourCohortPage, numberOfApprentices));
-            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerReviewYourCohortPage));
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage, numberOfApprentices));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
 
-            return providerReviewYourCohortPage;
+            return providerApproveApprenticeDetailsPage;
         }
 
         public ProviderManageYourApprenticesPage FilterAndPaginate(string filterselection)
@@ -274,8 +269,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SelectEditApprentice(0)
              .EnterUlnAndSave()
              .SelectSaveAndContinue()
-             .SubmitApproveAndSendToEmployerForApproval()
-             .SendInstructionsToEmployerForAnApprovedCohort();
+             .SubmitApproveAndSendToEmployerForApproval();
+             //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
