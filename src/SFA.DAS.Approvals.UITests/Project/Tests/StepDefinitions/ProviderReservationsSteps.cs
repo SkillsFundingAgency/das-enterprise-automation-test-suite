@@ -55,7 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices);
 
-            _providerApproveApprenticeDetailsPage.SelectSaveAndContinue()
+            _providerApproveApprenticeDetailsPage
+                //.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
         }

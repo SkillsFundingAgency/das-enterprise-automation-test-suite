@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderApproveApprenticeDetailsPage : ReviewYourCohort
     {
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
         protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
@@ -20,8 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private By EditApprenticeLink => By.PartialLinkText("Edit");
-        private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-        private By SaveAndSubmitButton => By.Id("continue-button");
+        //private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
+        //private By SaveAndSubmitButton => By.Id("continue-button");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
@@ -29,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By MessageBox => By.Name("sendmessage");
         private By CohortApproveOptions => By.CssSelector(".govuk-radios__label");
         private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
+        private By FlashMessage => By.ClassName("govuk-panel__title");
 
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
@@ -78,11 +80,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
         */
 
+        /*
         public ProviderApproveApprenticeDetailsPage SelectSaveAndContinue()
         {
             formCompletionHelper.ClickElement(SaveAndSubmitButton);
             return this;
         }
+        */
 
         public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
         {
@@ -92,7 +96,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()
         {
-            formCompletionHelper.ClickButtonByText("Bulk upload apprentices");
+            //formCompletionHelper.ClickButtonByText("Bulk upload apprentices");
+            formCompletionHelper.ClickElement(BulkUploadLink);
             return new ProviderBulkUploadApprenticesPage(_context);
         }
 
@@ -195,7 +200,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);            
             Continue();
         }
-        
+
+        public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);
+       
 
     }
 }

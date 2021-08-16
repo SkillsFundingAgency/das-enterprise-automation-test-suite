@@ -6,14 +6,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderViewYourCohortPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "View your cohort";
-        private By ViewApprenticeLink => By.LinkText("View");
+        protected override string PageTitle => _pageTitle;
+        private By ViewApprenticeLink => By.PartialLinkText("View");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly string _pageTitle;
         #endregion
 
-        public ProviderViewYourCohortPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderViewYourCohortPage(ScenarioContext context) : base(context, false)
+        {
+            _context = context;
+            var noOfApprentice = TotalNoOfApprentices();
+            _pageTitle = noOfApprentice < 2 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
+            VerifyPage();
+        }
 
         public int TotalNoOfApprentices() => pageInteractionHelper.FindElements(ViewApprenticeLink).Count;
 

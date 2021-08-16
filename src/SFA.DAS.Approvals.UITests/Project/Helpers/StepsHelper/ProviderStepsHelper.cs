@@ -8,6 +8,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using NUnit.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -86,19 +87,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
+            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices).SubmitApprove();
 
-            providerReviewYourCohortPage.SelectSaveAndContinue()
+            //providerReviewYourCohortPage
+                //.SelectSaveAndContinue()
                 //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
-                .SubmitApprove();
+                //.SubmitApprove();
         }
 
         public void BulkUploadApprenticeDetails(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
-
-            providerReviewYourCohortPage.SelectSaveAndContinue()
+            AddApprentice(numberOfApprentices)
+                //.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
         }
@@ -106,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
             return AddApprentice(numberOfApprentices)
-                 .SelectSaveAndContinue()
+                 //.SelectSaveAndContinue()
                  .SubmitSaveButDontSendToEmployer();
         }
 
@@ -147,7 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return CurrentCohortDetails()
                 .SelectBulkUploadApprentices()
                 .UploadFileAndConfirmSuccessful(numberOfApprentices)
-                .SelectSaveAndContinue()
+                //.SelectSaveAndContinue()
                 .SubmitApprove();
                 //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
@@ -214,9 +215,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(0)
+                string flashMessage = providerApproveApprenticeDetailsPage
+                                          .SelectEditApprentice(0)
                                           .DeleteApprentice()
-                                          .ConfirmDeleteAndSubmit();
+                                          .ConfirmDeleteAndSubmit()
+                                          .GetFlashMessage();
+
+                Assert.IsTrue(flashMessage == "Apprentice record deleted", "validate 'Apprentice record deleted' flash message is displayed");
             }
 
             return providerApproveApprenticeDetailsPage;
@@ -268,7 +273,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SelectViewCurrentCohortDetails()
              .SelectEditApprentice(0)
              .EnterUlnAndSave()
-             .SelectSaveAndContinue()
+             //.SelectSaveAndContinue()
              .SubmitApproveAndSendToEmployerForApproval();
              //.SendInstructionsToEmployerForAnApprovedCohort();
         }

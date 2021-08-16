@@ -193,7 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderYourCohortsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SelectSaveAndContinue()
+                                                        //.SelectSaveAndContinue()
                                                         .SubmitSaveButDontSendToEmployer();                                                        
         }
     }

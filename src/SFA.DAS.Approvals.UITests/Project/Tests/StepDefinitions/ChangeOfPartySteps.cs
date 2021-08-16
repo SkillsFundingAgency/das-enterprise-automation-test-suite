@@ -125,8 +125,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 //.SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval();
+                //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         [When(@"Provider deletes the Cohort")]

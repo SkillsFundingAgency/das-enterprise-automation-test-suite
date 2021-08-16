@@ -30,7 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
 
-            providerReviewYourCohortPage.SelectSaveAndContinue()
+            providerReviewYourCohortPage
+                //.SelectSaveAndContinue()
                 .SubmitSendToEmployerToReview();
                 //.SendInstructionsToEmployerForCohortToReview();
         }
@@ -61,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer()
         {
             _providerStepsHelper.EditApprentice(true)
-                .SelectSaveAndContinue()
+                //.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
         }
