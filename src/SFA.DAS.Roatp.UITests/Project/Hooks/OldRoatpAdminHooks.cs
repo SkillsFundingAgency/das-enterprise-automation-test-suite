@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [BeforeScenario(Order = 33)]
         public new void GetOldRoatpAdminData()
         {
-            if (!_tags.Any( x => x == "oldroatpadmindownloadprovider" || x == "rpadoutcome01")) base.GetOldRoatpAdminData();
+            if (!_tags.Any( x => x == "oldroatpadmindownloadprovider" || x == "rpadoutcome01" || x == "roatpapplye2e")) base.GetOldRoatpAdminData();
         }
 
         [BeforeScenario(Order = 34)]

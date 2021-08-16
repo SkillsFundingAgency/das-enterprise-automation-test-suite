@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             if (_tags.Any(x => x == "roatpapply" || x == "roatpapplycreateaccount" || x == "roatpfulle2eviaapply" || IsAdminTestDataPrep(x)
             || x == "roatpapplyinprogressapplication" || x == "roatpapplychangeukprn" || x == "roatpapplytestdataprep")) GoToUrl(UrlConfig.Apply_BaseUrl);
 
-            if (_tags.Any(x => x == "oldroatpadmin" || x == "newroatpadmin" || x == "roatpfulle2eviaadmin")) GoToUrl(UrlConfig.Admin_BaseUrl);
+            if (_tags.Any(x => x == "oldroatpadmin" || x == "newroatpadmin" || x == "roatpfulle2eviaadmin" || x == "roatpfulle2eviaadmintestdataprep")) GoToUrl(UrlConfig.Admin_BaseUrl);
 
             if (_tags.Contains("roatpassessoradmin")) GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
         }

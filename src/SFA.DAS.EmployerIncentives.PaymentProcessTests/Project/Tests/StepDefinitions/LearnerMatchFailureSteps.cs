@@ -110,6 +110,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithAcademicYear(2021)
                     .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
                     .WithEndDate(DateTime.Now.AddYears(2))
+                    .WithAcademicYear(2021)
                     .WithPeriod(apprenticeship.ApprenticeshipId, 12)
                     .Create();
 

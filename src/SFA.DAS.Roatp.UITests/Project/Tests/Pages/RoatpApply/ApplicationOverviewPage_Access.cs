@@ -142,6 +142,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             return new TypeOfApprenticeshipTrainingPage(_context);
         }
 
+        public ReadyToDeliverTrainingPage Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
+        {
+            NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_2);
+            return new ReadyToDeliverTrainingPage(_context);
+        }
+
         public TrainApprenticesPage Access_Section6_TrainingApprentices()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3);

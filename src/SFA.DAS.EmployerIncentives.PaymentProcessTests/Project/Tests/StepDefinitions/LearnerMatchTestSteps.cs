@@ -3,6 +3,7 @@ using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -107,8 +108,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             expectedDaysInLearning.Days.Should().Be(daysInLearning.Days);
         }
 
-        [Given(@"learner match does not have a matching apprenticeship ID in a price episode in the current academic year")]
-        public async Task GivenLearnerMatchDoesNotHaveAMatchingApprenticeshipIdInAPriceEpisodeInTheCurrentAcademicYear()
+        [Given(@"the provider has not submitted an ILR in the current academic year")]
+        public async Task GiventheProviderHasNotSubmittedAnIlrInTheCurrentAcademicYear()
         {
             // data not changed
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
@@ -122,13 +123,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             testData.LearnerSubmission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(2022)
+                .WithAcademicYear(2122)
                 .WithIlrSubmissionDate("2021-08-30T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(testData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
-                    .WithAcademicYear(2022)
+                    .WithAcademicYear(2122)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId, 1)
@@ -140,7 +141,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"a learner match request in the current academic year does not find the requested ULN and UKPRN")]
-        public async Task WhenTheLearnerMatchRequestInTheCurrentAcademivYearDoesNotHaveAMatchingRecord()
+        public async Task WhenTheLearnerMatchRequestInTheCurrentAcademicYearDoesNotHaveAMatchingRecord()
         {
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
 
@@ -167,6 +168,31 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(testData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId
+                    .Create()
+                )
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, testData.LearnerSubmission);
+        }
+
+        [Given(@"learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year")]
+        public async Task GivenLearnerHasAMatchingApprenticeshipIdInAPriceEpisodeInThePreviousAcademicYearButNotTheCurrentAcademicYear()
+        {
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
+
+            testData.LearnerSubmission = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-08-30T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(1)
+                .WithStartDate(testData.StartDate)
+                .WithPriceEpisode(
+                    new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
+                    .WithStartDate(testData.StartDate)
+                    .WithEndDate("2021-07-31T00:00:00")
+                    .WithPeriod(testData.ApprenticeshipId, 12)
                     .Create()
                 )
                 .Create();
@@ -220,6 +246,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -269,6 +296,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -292,6 +320,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
@@ -315,11 +344,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisodePreviousAY = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
             var priceEpisodeCurrentAY = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 1)
@@ -340,7 +371,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the learner record has in learning set to true")]
-        public async Task ThenTheLearnerRecordHasInLearningSetToTrue()
+        public void ThenTheLearnerRecordHasInLearningSetToTrue()
         {
             var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
             learnerRecord.InLearning.Should().BeTrue();
@@ -352,9 +383,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             testData.StartDate = DateTime.Parse("2021-06-12");
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithUkprn(testData.UKPRN)
                 .WithUln(testData.ULN)
-                .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2021-07-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(11)
                 .WithStartDate(testData.StartDate)
@@ -369,6 +400,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             testData.StartDate = DateTime.Parse("2021-06-12");
 
             var priceEpisodeFutureDate = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
                     .WithStartDate(testData.StartDate)
                     .WithEndDate(DateTime.Now.AddDays(1))
                     .WithPeriod(testData.ApprenticeshipId, 1)
@@ -388,7 +420,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the learner record has in learning set to false")]
-        public async Task ThenTheLearnerRecordHasInLearningSetToFalse()
+        public void ThenTheLearnerRecordHasInLearningSetToFalse()
         {
             var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
             learnerRecord.InLearning.Should().BeFalse();
@@ -400,6 +432,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-06-12");
             
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
@@ -423,6 +456,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var startDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7, payable: false)
@@ -460,6 +494,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = DateTime.Parse("2021-06-12");
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 7, payable: true)
@@ -483,6 +518,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var startDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2021)
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
                 .WithPeriod(testData.ApprenticeshipId, 2, payable: false)
@@ -545,6 +581,90 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learnerRecord.HasDataLock.Should().BeNull();
             learnerRecord.InLearning.Should().BeNull();
             learnerRecord.SubmissionDate.Should().Be(testData.LearnerSubmission.IlrSubmissionDate);
+        }
+
+        [Then(@"the learning is stopped")]
+        public void ThenLearningisStopped()
+        {
+            var changeOfCircumstance = _helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Single();
+
+            changeOfCircumstance.ApprenticeshipIncentiveId.Should().Be(testData.ApprenticeshipIncentiveId);
+            changeOfCircumstance.ChangeType.Should().Be(ChangeOfCircumstanceType.LearningStopped);
+            changeOfCircumstance.NewValue.Should().Be("2021-08-01");
+        }
+
+        [Given(@"learner match finds a matching apprenticeship ID in a price episode with no end date in the previous academic year")]
+        public async Task GivenLearnerMatchFindsAMatchingApprenticeshipIDInAPriceEpisodeWithNoEndDateInThePreviousAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithAcademicYear(2021)
+                .WithEndDate(null)
+                .WithPeriod(testData.ApprenticeshipId, 2, payable: true)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2021)
+                .WithIlrSubmissionDate("2021-08-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(2)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [Then(@"the learner data is updated with the price episode end date of the end of the previous academic year")]
+        public async Task ThenTheLearnerDataIsUpdatedWithThePriceEpisodeEndDateOfTheEndOfThePreviousAcademicYear()
+        {
+            await _helper.LearnerDataHelper.VerifyLearningRecordsExist(testData.ApprenticeshipId);
+
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+
+            var learningPeriod = _helper.EISqlHelper.GetFromDatabase<LearningPeriod>(l => l.LearnerId == learnerRecord.Id);
+
+            var expectedEndDate = new DateTime(2021, 07, 31);
+            learningPeriod.EndDate.Should().Be(expectedEndDate);
+        }
+
+        [Given(@"learner match finds a matching apprenticeship ID in a price episode with no end date in the current academic year")]
+        public async Task GivenLearnerMatchFindsAMatchingApprenticeshipIDInAPriceEpisodeWithNoEndDateInTheCurrentAcademicYear()
+        {
+            var startDate = DateTime.Parse("2021-06-12");
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithStartDate(startDate)
+                .WithAcademicYear(2122)
+                .WithEndDate(null)
+                .WithPeriod(testData.ApprenticeshipId, 2, payable: true)
+                .Create();
+
+            var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(testData.UKPRN)
+                .WithUln(testData.ULN)
+                .WithAcademicYear(2122)
+                .WithIlrSubmissionDate("2021-08-12T09:11:46.82")
+                .WithIlrSubmissionWindowPeriod(2)
+                .WithStartDate(startDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+        }
+
+        [Then(@"the learner data is updated with the price episode end date of the end of the current academic year")]
+        public async Task ThenTheLearnerDataIsUpdatedWithThePriceEpisodeEndDateOfTheEndOfTheCurrentAcademicYear()
+        {
+            await _helper.LearnerDataHelper.VerifyLearningRecordsExist(testData.ApprenticeshipId);
+
+            var learnerRecord = _helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == testData.ApprenticeshipId);
+
+            var learningPeriod = _helper.EISqlHelper.GetFromDatabase<LearningPeriod>(l => l.LearnerId == learnerRecord.Id);
+
+            var expectedEndDate = new DateTime(2022, 07, 31);
+            learningPeriod.EndDate.Should().Be(expectedEndDate);
         }
     }
 }

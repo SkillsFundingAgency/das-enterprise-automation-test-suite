@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
 {
     public class DeliveringTrainingInApprenticeshipStandardsPage : AssessorBasePage
     {
-        protected override string PageTitle => "Delivering training in apprenticeship standards";
+        protected override string PageTitle => "standards";
         private readonly ScenarioContext _context;
 
         public DeliveringTrainingInApprenticeshipStandardsPage(ScenarioContext context) : base(context) => _context = context;

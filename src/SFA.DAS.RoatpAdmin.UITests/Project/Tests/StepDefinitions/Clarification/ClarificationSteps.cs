@@ -24,7 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Clarification
             _clarificationEndtoEndStepsHelper = new ClarificationEndtoEndStepsHelper();
         }
 
-        [When(@"selects the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Clarification Tab")]
+        [When(@"selects the (Employer Provider Route For Existing Provider|Supporting Provider Route For Existing Provider|Main Provider Route For Existing Provider|Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Clarification Tab")]
         public void WhenSelectsTheEmployerProviderRouteApplicationFromClarificationTab(ApplicationRoute applicationroute)
         {
             _objectContext.SetClarificationJourney();

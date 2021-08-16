@@ -13,6 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         private ResultsFoundPage _resultsFoundPage;
         private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
+
         public RoatpAdminSteps(ScenarioContext context)
         {
             _context = context;
@@ -66,6 +67,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
 
         [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
         public void GivenTheAdminInitatesAnApplication(string providerType) => _searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+
+        [Given(@"the Provider is added to the register as (Main provider|Employer provider|Supporting provider)")]
+        public void GivenTheProviderIsAddedToTheRegisterAsSupportingProvider(string providerType)
+        {
+            _searchPage = _roatpAdminStepsHelper.
+                InitatesAnApplication(providerType)
+                .VerifyNewProviderHasBeenAdded();         
+        }
 
         [When(@"the admin update the provider details")]
         public void WhenTheAdminUpdateTheProviderDetails()

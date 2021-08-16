@@ -3,7 +3,6 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMPP_02_Check The Benefits Of Your Organisation Page Details
-	Given the user navigates to the benefits of your organisation page
+Scenario: CA_EMP_02_Check Hiring an Apprentice Page Details
+	Given the user navigates to hiring an apprentice page
 	Then the links are not broken
-

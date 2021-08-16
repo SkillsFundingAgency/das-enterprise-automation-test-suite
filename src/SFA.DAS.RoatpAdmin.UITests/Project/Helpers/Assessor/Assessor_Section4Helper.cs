@@ -34,7 +34,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider )
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
@@ -44,7 +45,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                 applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
@@ -67,8 +69,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
               if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
-                applicationroute == ApplicationRoute.SupportingProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
+                  applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                  applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                  applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .VerifySection4Link5Status(StatusHelper.NotRequired);

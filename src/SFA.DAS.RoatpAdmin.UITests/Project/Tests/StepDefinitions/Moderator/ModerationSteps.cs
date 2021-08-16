@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
             _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
         }
 
-        [When(@"selects the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Moderation Tab")]
+        [When(@"selects the (Employer Provider Route For Existing Provider|Supporting Provider Route For Existing Provider|Main Provider Route For Existing Provider|Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Moderation Tab")]
         public void WhenSelectsTheMainProviderRouteApplicationFromModerationTab(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;

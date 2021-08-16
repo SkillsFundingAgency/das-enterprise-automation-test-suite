@@ -91,5 +91,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider can change the route as main provider")]
         public void ThenTheProviderCanChangeTheRouteAsMainProvider() => _alreadyOnRoatpPage.SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsMain().AcceptTermAndConditionsAndContinue();
+
     }
 }
