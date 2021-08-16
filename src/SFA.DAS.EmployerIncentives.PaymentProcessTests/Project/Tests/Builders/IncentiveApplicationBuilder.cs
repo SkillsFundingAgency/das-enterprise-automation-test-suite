@@ -24,7 +24,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
         }
 
         public IncentiveApplicationBuilder WithApprenticeship(long apprenticeshipId, long uln, long ukprn,
-            DateTime plannedStartDate, DateTime dateOfBirth, Phase phase = Phase.Phase1)
+            DateTime plannedStartDate, DateTime dateOfBirth, Phase phase)
         {
             var apprenticeship = _fixture.Build<IncentiveApplicationApprenticeship>()
                 .With(a => a.ApprenticeshipId, apprenticeshipId)

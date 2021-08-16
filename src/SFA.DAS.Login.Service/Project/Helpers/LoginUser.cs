@@ -9,8 +9,6 @@
         public string OrganisationName { get; set; }
     }
 
-    public class CampaingnsEmployerUser : LoginUser { }
-
     public class RAAV2EmployerUser : LoginUser { }
 
     public class ProviderLoginUser : LoginUser

@@ -3,6 +3,6 @@
 @campaigns
 @apprentice
 @regression
-Scenario: CA_AP_03_Check What Is An Apprenticeship Page
-	Given the user navigates to the what is an apprenticeship page
+Scenario: CA_AP_03 Check How do they work Page Details
+	Given the user navigates to apprentice How do they work Page
 	Then the links are not broken
