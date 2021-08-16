@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using System.Collections.Generic;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -12,6 +13,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string WebDriverUrl = "webdriverurl";
         private const string CurrentApplicationName = "currentapplicationname";
         private const string ChromedriverVersion = "chromedriverVersion";
+        private const string AuthUrlsKey = "AuthUrlsKey";
+        private static readonly List<(int, string)> AuthUrls = new List<(int, string)>();
         #endregion
 
         public static void SetCurrentApplicationName(this ObjectContext objectContext, string value) => objectContext.Replace(CurrentApplicationName, value);
@@ -23,6 +26,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         internal static string GetChromedriverVersion(this ObjectContext objectContext) => objectContext.Get(ChromedriverVersion);
         internal static string GetUrl(this ObjectContext objectContext) => objectContext.Get(WebDriverUrl);
         internal static void SetUrl(this ObjectContext objectContext, string value) => objectContext.Set(WebDriverUrl, value);
+        public static List<(int no, string url)> GetAuthUrl(this ObjectContext objectContext) => objectContext.Get<List<(int,string)>>(AuthUrlsKey);
+        public static void InitAuthUrl(this ObjectContext objectContext) => objectContext.Set(AuthUrlsKey, AuthUrls);
+        internal static void SetAuthUrl(this ObjectContext objectContext, (int, string) value) => objectContext.GetAuthUrl().Add(value);
         internal static void SetBrowserstackResponse(this ObjectContext objectContext) => objectContext.Set(BrowserstackFailedToUpdateTestResult, true);
         public static bool FailedtoUpdateTestResultInBrowserStack(this ObjectContext objectContext) => objectContext.KeyExists<bool>(BrowserstackFailedToUpdateTestResult);
     }

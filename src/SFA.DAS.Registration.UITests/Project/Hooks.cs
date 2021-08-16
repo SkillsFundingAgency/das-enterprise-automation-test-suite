@@ -63,6 +63,10 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 23)]
+        [Scope(Tag = "authtests")]
+        public void InitAuthUrl() => _objectContext.InitAuthUrl();
+
+        [BeforeScenario(Order = 23)]
         [Scope(Tag = "providerleadregistration")]
         public void SetUpProviderLeadRegistrationDataHelpers()
         {
