@@ -50,26 +50,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-			_providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
+            _providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
             _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices).SubmitApprove();
         }
 
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation()
         {
-			_providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
+            _providerAddApprenticeDetailsPage = _providerStepsHelper
+                .ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
         }
 
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice()
         {
-            _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
         }
 
         [Then(@"Provider can edit an apprentice")]
         public void ThenProviderCanEditAnApprentice()
         {
-            _providerStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
+            _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
         }
 
         [Then(@"Provider can delete an apprentice")]
