@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderViewYourCohortPage : ReviewYourCohort
+    public class ProvideViewApprenticesDetailsPage : ReviewYourCohort
     {
         protected override string PageTitle => _pageTitle;
         private By ViewApprenticeLink => By.PartialLinkText("View");
@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly string _pageTitle;
         #endregion
 
-        public ProviderViewYourCohortPage(ScenarioContext context) : base(context, false)
+        public ProvideViewApprenticesDetailsPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
             var noOfApprentice = TotalNoOfApprentices();

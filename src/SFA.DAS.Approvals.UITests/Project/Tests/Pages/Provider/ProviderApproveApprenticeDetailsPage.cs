@@ -186,11 +186,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCohortSentForReviewPage(_context);
         }
 
-        public ProviderYourCohortsPage SubmitSaveButDontSendToEmployer()
+        public ProviderApprenticeRequestsPage SubmitSaveButDontSendToEmployer()
         {
             //SelectOption("SaveStatus-Save");
             formCompletionHelper.ClickElement(SaveAndExitCohort);
-            return new ProviderYourCohortsPage(_context);
+            return new ProviderApprenticeRequestsPage(_context);
         }
 
         private void SelectOption(string option, bool sendMessageToEmployer = true)

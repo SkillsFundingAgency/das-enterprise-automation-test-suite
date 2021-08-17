@@ -15,10 +15,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderViewChangesPage(ScenarioContext context) : base(context) => _context = context;
         
-        public ProviderViewYourCohortPage ClickOnReviewNewDetailsLink()
+        public ProvideViewApprenticesDetailsPage ClickOnReviewNewDetailsLink()
         {
             formCompletionHelper.Click(ReviewNewDetails);
-            return new ProviderViewYourCohortPage(_context);
+            return new ProvideViewApprenticesDetailsPage(_context);
         }
 
         public ProviderApproveApprenticeDetailsPage ClickOnReviewNewDetailsToUpdateLink()

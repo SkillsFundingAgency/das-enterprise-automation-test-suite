@@ -104,7 +104,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
             return AddApprentice(numberOfApprentices)
                  //.SelectSaveAndContinue()
@@ -158,7 +158,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             GoToProviderHomePage();
 
-            return new ProviderYourCohortsPage(_context, true)
+            return new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails();
         }
@@ -237,7 +237,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         
         public void ViewApprentices()
         {
-            ProviderViewYourCohortPage _providerViewYourCohortPage = new ProviderViewYourCohortPage(_context);
+            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new ProvideViewApprenticesDetailsPage(_context);
             int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {

@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var providerHomePage = _providerStepsHelper.GoToProviderHomePage();
 
-            new ProviderYourCohortsPage(_context, true)
+            new ProviderApprenticeRequestsPage(_context, true)
                     .GoToCohortsWithEmployers()
                     .SelectViewCurrentCohortDetails();
         }
