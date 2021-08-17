@@ -17,7 +17,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 {
     [Binding]
-    public class EndToEndSteps
+    public class RoatpAdminEndToEndSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -30,7 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private ApplicationRoute _applicationRoute;
 
-        public EndToEndSteps(ScenarioContext context)
+        public RoatpAdminEndToEndSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -209,13 +209,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            if (_applicationRoute == ApplicationRoute.MainProviderRoute) 
+            if (_applicationRoute == ApplicationRoute.MainProviderRoute || _applicationRoute == ApplicationRoute.MainProviderRouteForExistingProvider) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
             if (_applicationRoute == ApplicationRoute.EmployerProviderRoute || _applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
                 
-            if (_applicationRoute == ApplicationRoute.SupportingProviderRoute) 
+            if (_applicationRoute == ApplicationRoute.SupportingProviderRoute || _applicationRoute == ApplicationRoute.SupportingProviderRouteForExistingProvider) 
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
 
             return gwApplicationOverviewPage;

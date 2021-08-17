@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class End2EndSteps
+    public class RoatpEnd2EndSteps
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
-        public End2EndSteps(ScenarioContext context)
+        public RoatpEnd2EndSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -34,7 +34,37 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
-        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        [Given(@"the provider initates an application as (Supporting Provider Route For Existing Provider)")]
+        public void GivenTheProviderInitatesAnApplicationAsSupportingProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _selectRouteStepsHelper.
+                CompleteProviderCharityRouteWhoisAlreayOnRoatp().SelectYesToChangeProviderRouteAndContinue().
+                SelectApplicationRouteAsSupporting().AcceptTermAndConditionsAndContinue();
+
+        }
+
+        [Given(@"the provider initates an application as (Main Provider Route For Existing Provider)")]
+        public void GivenTheProviderInitatesAnApplicationAsMainProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _selectRouteStepsHelper.
+                CompleteProviderCharityRouteWhoisAlreayOnRoatp().SelectYesToChangeProviderRouteAndContinue().
+                SelectApplicationRouteAsMain().AcceptTermAndConditionsAndContinue();
+
+        }
+
+        [Given(@"the provider initates an application as (Employer Provider Route For Existing Provider)")]
+        public void GivenTheProviderInitatesAnApplicationAsEmployerProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
+        {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _selectRouteStepsHelper.
+                CompleteProviderCharityRouteWhoisAlreayOnRoatp().SelectYesToChangeProviderRouteAndContinue().
+                SelectApplicationRouteAsEmployer().SelectYesForLevyPayingEmployerAndContinue().AcceptTermAndConditionsAndContinue();
+
+        }
+
+        [Given(@"the provider completes the Apply Journey as (Main Provider Route|Supporting Provider Route|Employer Provider Route|Employer Provider Route For Existing Provider|Main Provider Route For Existing Provider|Supporting Provider Route For Existing Provider)")]
         public void GivenTheProviderCompletesTheApplyJourneyAsMainRouteCompany(ApplicationRoute applicationRoute)
         {
             _objectContext.SetApplicationRoute(applicationRoute);
@@ -52,7 +82,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {
-             RestartRoatpApply("apply");
+            RestartRoatpApply("apply");
 
             _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
 
@@ -127,23 +157,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Readiness to engage section for charity")]
         public void WhenTheProviderCompletesReadinessToEngageSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompletesReadinessToEngage_Section5_Charity(_overviewPage);
 
-        [When(@"the provider completes Planning apprenticeship training section")]
-        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSection() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6(_overviewPage);
+        [When(@"the provider completes Planning apprenticeship training section for (Main Provider Route|Main Provider Route For Existing Provider|Employer Provider Route)")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSection(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6(_overviewPage, applicationRoute);
 
-        [When(@"the provider completes Planning apprenticeship training section for charity")]
-        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
+        [When(@"the provider completes Planning apprenticeship training section for charity (Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage, applicationRoute);
 
-        [When(@"the provider completes Planning apprenticeship training section for supporting route")]
-        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage);
-
+        [When(@"the provider completes Planning apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionFor(ApplicationRoute applicationRoute)
+            {
+            _objectContext.SetApplicationRoute(applicationRoute);
+            _overviewPage = _end2EndStepsHelper.
+            CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
+            }
         [When(@"the provider completes Delivering apprenticeship training section for main route")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
 
-        [When(@"the provider completes Delivering apprenticeship training section for employer route")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+        [When(@"the provider completes Delivering apprenticeship training section for (Employer Provider Route|Employer Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
 
-        [When(@"the provider completes Delivering apprenticeship training section for supporting route")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage);
+        [When(@"the provider completes Delivering apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
 
         [When(@"the provider completes Evaluating apprenticeship training section")]
         public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSection() => _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);

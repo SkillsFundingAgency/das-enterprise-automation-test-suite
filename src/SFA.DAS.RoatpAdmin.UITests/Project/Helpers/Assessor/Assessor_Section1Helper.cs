@@ -10,7 +10,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || 
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section1_ContinuityPlanForApprenticeshipTraining()

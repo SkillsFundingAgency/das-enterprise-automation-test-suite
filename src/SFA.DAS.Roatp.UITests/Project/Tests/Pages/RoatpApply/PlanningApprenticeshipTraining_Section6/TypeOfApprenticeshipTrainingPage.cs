@@ -12,10 +12,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         #endregion
 
         private By StandardsCheckBox => By.Id("option_0");
-
         private By FrameworksCheckBox => By.Id("option_1");
-
-        private By partFrameWorksCheckBox => By.Id("option_3");
+        private By FunctionalSkills => By.Id("option_2");
 
         public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
@@ -36,6 +34,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
             Continue();
             return new OfferingApprenticeshipFrameworksPage(_context);
+        }
+        public ApplicationOverviewPage SelectFunctionalSkillsAndContinue()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FunctionalSkills));
+            Continue();
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

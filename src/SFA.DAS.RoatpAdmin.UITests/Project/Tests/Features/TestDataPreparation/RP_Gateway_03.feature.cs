@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Gateway_03", "TestDataPreparation for RP_AD_GW_03_SupportRoute", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_Gateway_03", "TestDataPreparation for RP_AD_GW_03_SupportRoute_ExistingProvider", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_Gateway_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute")]
+        [NUnit.Framework.DescriptionAttribute("RP_Gateway_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute_ExistingProvider")]
+        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("rpadgw03")]
-        public virtual void RP_Gateway_03_TestDataPreparation_For_RP_AD_GW_03_SupportRoute()
+        public virtual void RP_Gateway_03_TestDataPreparation_For_RP_AD_GW_03_SupportRoute_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
+                    "roatpfulle2eviaadmintestdataprep",
                     "roatpadmintestdataprep",
                     "roatpadmingwtestdataprep",
                     "donottakescreenshot",
                     "rpadgw03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Gateway_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Gateway_03_TestDataPreparation-For_RP_AD_GW_03_SupportRoute_ExistingProvider", null, tagsOfScenario, argumentsOfScenario);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,8 +110,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Given("the provider completes the Apply Journey as Supporting Provider Route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+    testRunner.Given("the Provider is added to the register as Supporting provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 12
+ testRunner.And("the provider naviagate to Apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.Given("the provider completes the Apply Journey as Supporting Provider Route For Existin" +
+                        "g Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

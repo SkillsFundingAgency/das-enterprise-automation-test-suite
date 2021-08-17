@@ -22,7 +22,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -40,7 +41,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                   applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                   applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                   applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section1_ContinuityPlanForApprenticeshipTraining()
