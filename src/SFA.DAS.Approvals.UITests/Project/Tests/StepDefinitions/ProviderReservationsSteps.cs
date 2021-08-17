@@ -57,8 +57,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerApproveApprenticeDetailsPage
                 //.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval();
+                //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         [Then(@"Provider can make a reservation")]

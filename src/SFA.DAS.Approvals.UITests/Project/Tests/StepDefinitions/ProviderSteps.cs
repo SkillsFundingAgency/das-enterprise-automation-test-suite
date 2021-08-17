@@ -63,8 +63,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.EditApprentice(true)
                 //.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval();
+                //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
+                    .SubmitApprove();
         }
 
 
