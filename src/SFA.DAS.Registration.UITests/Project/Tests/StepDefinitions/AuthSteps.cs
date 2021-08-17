@@ -24,11 +24,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"an unauthorised user can not access the service")]
         public void AnUnauthorisedUserCanNotAccessTheService()
         {
-            List<string> authurls = new List<string>();
+            HashSet<string> authurls = new HashSet<string>();
 
             var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
 
-            authurls = _objectContext.GetAuthUrl().Select(x => x.url).ToList();
+            authurls = _objectContext.GetAuthUrl().Select(x => x.url).ToList().ToHashSet();
 
             List<string> exceptions = new List<string>();
 
