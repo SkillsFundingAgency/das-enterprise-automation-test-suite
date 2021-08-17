@@ -85,31 +85,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .GoToHomePage();
         }
 
-        public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
-        {
-            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices).SubmitApprove();
+        public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApprove();
 
-            //providerReviewYourCohortPage
-                //.SelectSaveAndContinue()
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
-                //.SubmitApprove();
-        }
+        public void BulkUploadApprenticeDetails(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApproveAndSendToEmployerForApproval();
 
-        public void BulkUploadApprenticeDetails(int numberOfApprentices)
-        {
-            AddApprentice(numberOfApprentices)
-                //.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
-        }
-
-        public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
-        {
-            return AddApprentice(numberOfApprentices)
-                 //.SelectSaveAndContinue()
-                 .SubmitSaveButDontSendToEmployer();
-        }
+        public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
+        
 
         public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
@@ -148,10 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return CurrentCohortDetails()
                 .SelectBulkUploadApprentices()
                 .UploadFileAndConfirmSuccessful(numberOfApprentices)
-                //.SelectSaveAndContinue()
                 .SubmitApprove();
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
@@ -193,10 +171,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false)
-        {
-            return EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
-        }
+        public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
+
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
@@ -229,7 +205,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
-            providerApproveApprenticeDetailsPage.SelectDeleteCohort()
+            providerApproveApprenticeDetailsPage
+                .SelectDeleteCohort()
                 .ConfirmDeleteAndSubmit();
         }
 
@@ -254,29 +231,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderManageYourApprenticesPage FilterAndPaginate(string filterselection)
-        {
+        public ProviderManageYourApprenticesPage FilterAndPaginate(string filterselection) => new ProviderManageYourApprenticesPage(_context).FilterPagination(filterselection);
 
-            return new ProviderManageYourApprenticesPage(_context).FilterPagination(filterselection);
-        }
-
-        public bool VerifyDownloadAllLinkIsDisplayed()
-        {
-            return new ProviderManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
-        }
+        public bool VerifyDownloadAllLinkIsDisplayed() => new ProviderManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
 
         public void DynamicHomePageProviderApproval()
         {
-            ApprovalsProviderHomePage _approvalsProviderHomePage = new ApprovalsProviderHomePage(_context);
-            _approvalsProviderHomePage.GoToYourCohorts()
-            .GoToCohortsToReviewPage()
-             .SelectViewCurrentCohortDetails()
-             .SelectEditApprentice(0)
-             .EnterUlnAndSave()
-             //.SelectSaveAndContinue()
-             //.SubmitApproveAndSendToEmployerForApproval();
-             //.SendInstructionsToEmployerForAnApprovedCohort();
-             .SubmitApprove();
+            new ApprovalsProviderHomePage(_context)
+                .GoToYourCohorts()
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprentice(0)
+                .EnterUlnAndSave()
+                .SubmitApprove();
         }
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()

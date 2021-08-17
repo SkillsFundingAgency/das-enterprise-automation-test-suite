@@ -44,9 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
-                //.SelectContinueToApproval()
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
                 .SubmitApprove();
         }
 
@@ -58,7 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                //.SelectContinueToApproval()
                 .SubmitApprove();
         }
 
@@ -99,9 +95,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
                 .EditCopApprenticeDetails()
-                //.SelectContinueToApproval()
                 .SubmitSendToEmployerToReview();
-                //.SendInstructionsToEmployerForCohortToReview();
         }
 
 
@@ -133,7 +127,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
-                //.SelectContinueToApproval()
                 .SubmitApprove();
         }
 

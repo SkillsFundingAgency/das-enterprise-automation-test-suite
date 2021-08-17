@@ -55,7 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
                                                         .SelectViewCurrentCohortDetails();
-                                                        //.SelectViewApprentice();
         }
 
         [Then(@"the user can view view your cohort page by clicking view link on view your cohort page selecting with transfer sending employers box")]
@@ -63,7 +62,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
                                                         .SelectViewCurrentCohortDetails();
-                                                        //.SelectViewApprentice();
         }
 
 
@@ -71,7 +69,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewReviewYourCohortPageWhenUserClicksOnDetailsLinkFromApprenticeDetailsReadyForReviewPageSelectingWithEmployersBox()
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage();
-                                                        //.SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting drafts box")]
@@ -193,7 +190,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
-                                                        //.SelectSaveAndContinue()
                                                         .SubmitSaveButDontSendToEmployer();                                                        
         }
     }

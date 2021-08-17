@@ -20,20 +20,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider approves the cohorts")]
         public void ThenTheProviderApprovesTheCohorts()
         {
-            _providerStepsHelper.CurrentCohortDetails()
-                //.SelectContinueToApproval()
+            _providerStepsHelper
+                .CurrentCohortDetails()
                 .SubmitApprove();
         }
 
         [When(@"the provider adds (.*) apprentices and sends to employer to review")]
         public void WhenTheProviderAddsApprenticesAndSendsToEmployerToReview(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
-
-            providerReviewYourCohortPage
-                //.SelectSaveAndContinue()
+            _providerStepsHelper
+                .AddApprentice(numberOfApprentices)
                 .SubmitSendToEmployerToReview();
-                //.SendInstructionsToEmployerForCohortToReview();
         }
 
         [When(@"the provider adds (.*) apprentices approves them and sends to employer to approve")]
@@ -51,28 +48,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
         {
-            _providerStepsHelper.EditApprentice()
-                //.SelectSaveAndContinue()
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
+            _providerStepsHelper
+                .EditApprentice()
                 .SubmitApprove();
         }
 
         [When(@"the provider adds Ulns confirms courses are standards and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer()
         {
-            _providerStepsHelper.EditApprentice(true)
-                //.SelectSaveAndContinue()
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
-                    .SubmitApprove();
+            _providerStepsHelper
+                .EditApprentice(true)
+                .SubmitApprove();
         }
 
 
         [Then(@"Provider is able to view the cohort with employer")]
         public void ThenProviderIsAbleToViewTheCohortWithEmployer()
         {
-            var providerHomePage = _providerStepsHelper.GoToProviderHomePage();
+            _providerStepsHelper.GoToProviderHomePage();
 
             new ProviderApprenticeRequestsPage(_context, true)
                     .GoToCohortsWithEmployers()

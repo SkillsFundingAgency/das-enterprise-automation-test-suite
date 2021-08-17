@@ -3,7 +3,6 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Linq;
@@ -124,9 +123,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToYourCohorts()
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                //.SelectContinueToApproval()
-                //.SubmitApproveAndSendToEmployerForApproval();
-                //.SendInstructionsToEmployerForAnApprovedCohort();
                 .SubmitApprove();
         }
 

@@ -21,8 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private By EditApprenticeLink => By.ClassName("edit-apprentice");
-        //private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-        //private By SaveAndSubmitButton => By.Id("continue-button");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
@@ -72,22 +70,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeDetailsPage(_context);
         }
 
-        /*
-        public ProviderApproveApprenticeDetailsPage SelectContinueToApproval()
-        {
-            formCompletionHelper.ClickElement(ContinueToApprovalButton);
-            return this;
-        }
-        */
-
-        /*
-        public ProviderApproveApprenticeDetailsPage SelectSaveAndContinue()
-        {
-            formCompletionHelper.ClickElement(SaveAndSubmitButton);
-            return this;
-        }
-        */
-
         public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
         {
             formCompletionHelper.ClickElement(DeleteThisCohortLink);
@@ -96,7 +78,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()
         {
-            //formCompletionHelper.ClickButtonByText("Bulk upload apprentices");
             formCompletionHelper.ClickElement(BulkUploadLink);
             return new ProviderBulkUploadApprenticesPage(_context);
         }
@@ -149,26 +130,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAccessDeniedPage(_context);
         }
 
-        /*
-        public ProviderCohortApprovedPage SendInstructionsToEmployerForAnApprovedCohort()
-        {
-            formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
-            formCompletionHelper.ClickElement(SaveAndSubmitButton);
-            return new ProviderCohortApprovedPage(_context);
-        }
-
-        public ProviderCohortSentForReviewPage SendInstructionsToEmployerForCohortToReview()
-        {
-            formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
-            formCompletionHelper.ClickElement(SaveAndSubmitButton);
-            return new ProviderCohortSentForReviewPage(_context);
-        }
-        */
-
-
         public ProviderCohortSentForReviewPage SubmitSendToEmployerToReview()
         {
-            //SelectOption("send-details");
             SelectOption("radio-send");
             return new ProviderCohortSentForReviewPage(_context);
         }
@@ -181,14 +144,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortSentForReviewPage SubmitApproveAndSendToEmployerForApproval()
         {
-            //SelectOption("radio-send");
             SelectOption("send-details");
             return new ProviderCohortSentForReviewPage(_context);
         }
 
         public ProviderApprenticeRequestsPage SubmitSaveButDontSendToEmployer()
         {
-            //SelectOption("SaveStatus-Save");
             formCompletionHelper.ClickElement(SaveAndExitCohort);
             return new ProviderApprenticeRequestsPage(_context);
         }
