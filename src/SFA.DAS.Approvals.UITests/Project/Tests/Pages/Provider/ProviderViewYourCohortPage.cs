@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderViewYourCohortPage : ApprovalsBasePage
+    public class ProviderViewYourCohortPage : ReviewYourCohort
     {
         protected override string PageTitle => _pageTitle;
         private By ViewApprenticeLink => By.PartialLinkText("View");
@@ -22,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public int TotalNoOfApprentices() => pageInteractionHelper.FindElements(ViewApprenticeLink).Count;
+        //public int TotalNoOfApprentices() => pageInteractionHelper.FindElements(ViewApprenticeLink).Count;
 
         internal ProviderViewApprenticeDetailsPage SelectViewApprentice(int apprenticeNumber = 0)
         {
