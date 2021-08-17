@@ -45,8 +45,6 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user overturns gateway and moderation outcome
 And the oversight user selects the overall application outcome as Unsuccessful
 Given the application with UNSUCCESSFUL outcome is ready to be assessed
-Then Oversight user is able to send the application to Appeal Status
-And verify the Application unsuccessful page is displayed 
 
 
 

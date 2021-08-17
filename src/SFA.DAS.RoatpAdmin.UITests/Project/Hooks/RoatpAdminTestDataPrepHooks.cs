@@ -19,7 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Hooks
         public new void GetNewRoatpAdminData() => base.GetNewRoatpAdminData();
 
         [BeforeScenario(Order = 34)]
-        public new void ClearDownApplyData() => base.ClearDownApplyData();
+        public new void ClearDownApplyDataAndTrainingProvider() => base.ClearDownApplyDataAndTrainingProvider();
 
         [BeforeScenario(Order = 35)]
         public void AllowListProviders() => base.AllowListProviders();

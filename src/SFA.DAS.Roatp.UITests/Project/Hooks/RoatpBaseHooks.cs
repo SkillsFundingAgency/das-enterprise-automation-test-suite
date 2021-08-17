@@ -51,6 +51,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers(config));
 
+        protected void ClearDownApplyDataAndTrainingProvider()
+        {
+            ClearDownApplyData();
+
+            DeleteTrainingProvider();
+        }
+
         protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
         protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));

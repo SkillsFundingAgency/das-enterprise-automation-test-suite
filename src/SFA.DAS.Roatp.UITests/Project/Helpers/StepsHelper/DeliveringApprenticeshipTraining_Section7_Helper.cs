@@ -63,9 +63,29 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterDetailsOfTheManagerPerson()
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6_NotRequired(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6_NotRequired(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            return applicationOverviewPage.VerifyYourSectorsAndEmployees_Section7(StatusHelper.NotRequired);
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+
+                return applicationOverviewPage.Access_Section7_YourSectorsAndEmployees()
+                    .NavigateToChooseYourOrganisationSectors()
+                    .SelectSectors("Digital")
+                    .NavigateToMostExperiencedEmployeePage("Digital")
+                    .EnterTextForWhatStandardsToDeliver()
+                    .EnterNumberOfStartsAndContinue()
+                    .EnterNumberOfEmployeesAndContinue()
+                    .EnterDetails()
+                    .EnterExperienceDetails()
+                    .SelectTypeOfApprenticeship()
+                    .EnterDetails()
+                    .ContinueToApplicationOverviewPage()
+                    .VerifyYourSectorsAndEmployees_Section7(StatusHelper.StatusCompleted);
+            }
+            else
+            {
+                return applicationOverviewPage.VerifyYourSectorsAndEmployees_Section7(StatusHelper.NotRequired);
+            }
         }
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
