@@ -45,8 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
                 //.SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval();
+                //.SubmitApproveAndSendToEmployerForApproval();
                 //.SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         [When(@"new provider approves the employer led change of provider cohort")]

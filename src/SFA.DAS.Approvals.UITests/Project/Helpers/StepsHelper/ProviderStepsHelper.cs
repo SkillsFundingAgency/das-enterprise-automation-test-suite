@@ -274,8 +274,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SelectEditApprentice(0)
              .EnterUlnAndSave()
              //.SelectSaveAndContinue()
-             .SubmitApproveAndSendToEmployerForApproval();
+             //.SubmitApproveAndSendToEmployerForApproval();
              //.SendInstructionsToEmployerForAnApprovedCohort();
+             .SubmitApprove();
         }
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
