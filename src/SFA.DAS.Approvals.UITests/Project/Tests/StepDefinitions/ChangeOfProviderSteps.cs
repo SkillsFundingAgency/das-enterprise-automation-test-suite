@@ -36,17 +36,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderYourCohortsPage(_context, true)
+            new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                .IsAddApprenticeButtonDisplayed()
-                .IsBulkUpLoadButtonDisplayed()
+                .IsAddApprenticeLinkDisplayed()
+                .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
-                .SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         [When(@"new provider approves the employer led change of provider cohort")]
@@ -54,10 +52,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderYourCohortsPage(_context, true)
+            new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                .SelectContinueToApproval()
                 .SubmitApprove();
         }
 
@@ -93,14 +90,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderYourCohortsPage(_context, true)
+            new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
                 .EditCopApprenticeDetails()
-                .SelectContinueToApproval()
-                .SubmitSendToEmployerToReview()
-                .SendInstructionsToEmployerForCohortToReview();
+                .SubmitSendToEmployerToReview();
         }
 
 
@@ -124,15 +119,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderYourCohortsPage(_context, true)
+            new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                .IsAddApprenticeButtonDisplayed()
-                .IsBulkUpLoadButtonDisplayed()
+                .IsAddApprenticeLinkDisplayed()
+                .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
-                .SelectContinueToApproval()
                 .SubmitApprove();
         }
 

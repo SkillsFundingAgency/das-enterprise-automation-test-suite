@@ -34,14 +34,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderReviewYourCohortPage EnterUlnAndSave()
+        public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
             formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
             formCompletionHelper.ClickElement(SaveButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
-        public ProviderReviewYourCohortPage EditAllApprenticeDetails()
+        public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
@@ -65,10 +65,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
-        public ProviderReviewYourCohortPage EditCopApprenticeDetails()
+        public ProviderApproveApprenticeDetailsPage EditCopApprenticeDetails()
         {
             formCompletionHelper.ClickElement(StartDateMonth);
             DateTime now = DateTime.Now;
@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
