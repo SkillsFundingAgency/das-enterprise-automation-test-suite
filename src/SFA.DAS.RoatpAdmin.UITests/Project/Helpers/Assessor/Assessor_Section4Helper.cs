@@ -17,6 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         {
             return applicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectPassAndContinueInManagementHierarchyPage()
                 .SelectPassAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }

@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
-            $" DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
+            $" DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
             $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $" DELETE FROM dbo.Audit WHERE UpdatedState like '%{applicationId}%'; " +
             $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE [UKPRN] = {ukprn} " +
@@ -37,7 +37,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', " +         
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null  WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
-            $" DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
+            $" DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
             $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE   ApplicationId =  @ApplicationID; " +
             $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE  ApplicationId =  @ApplicationID";
@@ -50,6 +50,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             var AssessorResetQuery = $"{GetApplicationId(ukprn)} DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = @ApplicationID; " +
             $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM dbo.OversightReview WHERE ApplicationId =  @ApplicationID; " +
+            $" DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
+            $" DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
             $" Update dbo.Apply set  [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
             $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', Applicationstatus = 'GatewayAssessed', " +
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null where ApplicationId = @ApplicationID";
@@ -65,7 +67,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" [ClarificationStatus] = null, [ClarificationComment]= null, [ClarificationResponse]= null, [ClarificationFile]= null ," +
             $" [ClarificationUpdatedAt]= null WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
-            $" DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
+            $" DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
             $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $" Update dbo.Apply set [ModerationStatus] = 'New', Applicationstatus = 'GatewayAssessed', " +
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null where ApplicationId = @ApplicationID";
@@ -76,7 +78,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
         public void ClarificationClearDownFromApply(string ukprn)
         {
             var ClarificationResetQuery = $"{GetApplicationId(ukprn)}  DELETE FROM[dbo].[AppealUpload] where ApplicationId = @ApplicationID; " +
-                $"DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
+                $"DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
                 $"DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
                 $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent', Applicationstatus = 'GatewayAssessed', [AssessorReviewStatus] = 'New',[ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
                 $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationUserName = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, ClarificationFile = NULL, " +
@@ -87,7 +89,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public void OversightReviewClearDownFromApply(string ukprn) => ExecuteSqlCommand($"{GetApplicationId(ukprn)}" +
             $"DELETE FROM [dbo].[AppealUpload] where ApplicationId = @ApplicationID;" +
-            $"DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId = @ApplicationID)" +
+            $"DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
             $"DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $"UPDATE Apply set Applicationstatus = 'GatewayAssessed' WHERE ApplicationId = @ApplicationID");
 
