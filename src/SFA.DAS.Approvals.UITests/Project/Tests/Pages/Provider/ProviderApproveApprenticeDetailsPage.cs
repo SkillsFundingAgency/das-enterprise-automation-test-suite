@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
-        private By EditApprenticeLink => By.ClassName("edit-apprentice");
+        private new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
