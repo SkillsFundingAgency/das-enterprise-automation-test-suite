@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
 {
     public class AnnualTurnOverFTEPage : ModeratorBasePage
     {
-        protected override string PageTitle => "Management hierarchy for apprenticeships";
+        protected override string PageTitle => "Turnover and full time equivalent (FTE) employees";
 
         public AnnualTurnOverFTEPage(ScenarioContext context) : base(context) { }
     }
