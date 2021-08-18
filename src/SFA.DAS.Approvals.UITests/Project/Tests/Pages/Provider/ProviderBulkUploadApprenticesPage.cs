@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Bulk upload apprentices";
         private By ChooseFileButton => By.Id("files-upload");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
-        private By TableCells => By.Id("cohort-details");
+        private By TableCells => By.ClassName("govuk-table__row");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _bulkUploadDataHelper = new BulkUploadDataHelper();
         }
 
-        public ProviderReviewYourCohortPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
             _objectContext.SetNoOfApprentices(numberOfApprentices);
 
@@ -50,10 +50,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             for (int i = 0; i < numberOfApprentices; i++)
             {
                 Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(apprenticeDataHelper.Ulns[i]),
-                    $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Review your cohort' page");
+                    $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Approve apprentices details' page");
             }
             
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
         private ApprenticeDetails SetApprenticeDetails(CourseType courseType)

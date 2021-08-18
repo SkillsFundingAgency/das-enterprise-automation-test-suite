@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCohortsToReviewPage : ApprovalsBasePage
+    public class ProviderApprenticeDetailsReadyToReviewPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Apprentice details ready for review";
 
@@ -12,18 +12,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly JavaScriptHelper _javaScriptHelper;
         #endregion
 
-        public ProviderCohortsToReviewPage(ScenarioContext context) : base(context)
+        public ProviderApprenticeDetailsReadyToReviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _javaScriptHelper = _context.Get<JavaScriptHelper>();
         }
 
 
-        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             _javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }        
     }
 }
