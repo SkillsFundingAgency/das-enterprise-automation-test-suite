@@ -106,31 +106,30 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
-                var priceEpisode = new PriceEpisodeDtoBuilder()
-                    .WithAcademicYear(2021)
-                    .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
-                    .WithEndDate(DateTime.Now.AddYears(2))
-                    .WithAcademicYear(2021)
-                    .WithPeriod(apprenticeship.ApprenticeshipId, 12)
-                    .Create();
-
                 if (apprenticeship.UKPRN == testData.UKPRN && apprenticeship.ULN == testData.ULN)
                 {
-                    // Apprenticeship Id changed to cause an error
-                    priceEpisode.Periods.First().ApprenticeshipId -= 1;
+                    // invalidate data to cause an error
+                    await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, "{\"bad\": \"json\"}");
                 }
-
-                var learnerSubmissionDto = new LearnerSubmissionDtoBuilder()
-                    .WithUkprn(apprenticeship.UKPRN.Value)
-                    .WithUln(apprenticeship.ULN)
-                    .WithAcademicYear(2021)
-                    .WithIlrSubmissionDate(_initialIlrSubmissionDate.AddMonths(2))
-                    .WithIlrSubmissionWindowPeriod(12)
-                    .WithStartDate(_initialStartDate.AddMonths(1))
-                    .WithPriceEpisode(priceEpisode)
-                    .Create();
-
-                await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
+                else
+                {
+                    var priceEpisode = new PriceEpisodeDtoBuilder()
+                        .WithAcademicYear(2021)
+                        .WithStartDate(_initialStartDate.AddMonths(1)) // Start date CoC
+                        .WithEndDate(DateTime.Now.AddYears(2))
+                        .WithPeriod(apprenticeship.ApprenticeshipId, 12)
+                        .Create();
+                    var learnerSubmissionDto = new LearnerSubmissionDtoBuilder()
+                        .WithUkprn(apprenticeship.UKPRN.Value)
+                        .WithUln(apprenticeship.ULN)
+                        .WithAcademicYear(2021)
+                        .WithIlrSubmissionDate(_initialIlrSubmissionDate.AddMonths(2))
+                        .WithIlrSubmissionWindowPeriod(12)
+                        .WithStartDate(_initialStartDate.AddMonths(1))
+                        .WithPriceEpisode(priceEpisode)
+                        .Create();
+                    await _helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
+                }
             }
 
             await _helper.LearnerMatchOrchestratorHelper.Run(true);

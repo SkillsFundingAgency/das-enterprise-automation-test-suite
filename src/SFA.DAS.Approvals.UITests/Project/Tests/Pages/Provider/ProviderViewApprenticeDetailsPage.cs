@@ -18,10 +18,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderViewYourCohortPage SelectReturnToCohortView()
+        internal ProvideViewApprenticesDetailsPage SelectReturnToCohortView()
         {
             formCompletionHelper.ClickElement(ReturnToCohortViewLink);
-            return new ProviderViewYourCohortPage(_context);
+            return new ProvideViewApprenticesDetailsPage(_context);
         }
 
         internal List<IWebElement> GetAllEditBoxes()

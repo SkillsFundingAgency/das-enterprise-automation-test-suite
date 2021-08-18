@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCohortsWithEmployersPage : ApprovalsBasePage
+    public class ProviderApprenticeDetailsWithEmployersPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Apprentice details with employer";
 
@@ -10,12 +10,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        public ProviderCohortsWithEmployersPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderApprenticeDetailsWithEmployersPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderViewYourCohortPage SelectViewCurrentCohortDetails()
+        internal ProvideViewApprenticesDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProviderViewYourCohortPage(_context);
+            return new ProvideViewApprenticesDetailsPage(_context);
         }
     }
 }
