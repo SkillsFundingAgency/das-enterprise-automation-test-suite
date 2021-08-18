@@ -52,8 +52,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             bool func()
             {
                 var actual = elements().Select(x => x.Text).ToList();
-                if (actual.Any(x => x.Contains(expected)))
-                    return true;
+
+                if (actual.Any(x => x.Contains(expected))) return true;
 
                 throw new Exception("Page verification failed:"
                     + "\n Expected: " + expected + " page"
@@ -63,13 +63,29 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
+        public bool VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
+        {
+            bool func()
+            {
+                var actual = GetText(element, retryAction);
+
+                if (expected.Any(x=> x.Contains(actual))) return true;
+
+                throw new Exception("Page verification failed:"
+                + "\n Expected: " + string.Join("OR ", expected) + " page"
+                + "\n Found: " + actual + " page");
+            }
+
+            return VerifyPage(func, retryAction);
+        }
+
         public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
         {
             bool func()
             {
                 var actual = GetText(element, retryAction);
-                if (actual.Contains(expected))
-                    return true;
+
+                if (actual.Contains(expected)) return true;
 
                 throw new Exception("Page verification failed:"
                 + "\n Expected: " + expected + " page"

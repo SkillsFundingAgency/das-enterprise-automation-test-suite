@@ -36,11 +36,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             {
                 try
                 {
-                    if (UrlExceptionList().Any(x=>x.ContainsCompareCaseInsensitive(url))) continue;
+                    if ((UrlExceptionListContains().Any(x => url.ContainsCompareCaseInsensitive(x)))
+                       || (UrlExceptionListEquals().Any(x => x.CompareToIgnoreCase(url)))) continue;
 
                     webDriver.Navigate().GoToUrl(url);
 
-                    new SignInPage(_context);
+                    new UnauthorisedAccessPage(_context);
                 }
                 catch (Exception ex)
                 {
@@ -51,6 +52,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             if (exceptions.Count > 0) throw new Exception(exceptions.ToString(Environment.NewLine));
         }
 
-        private List<string> UrlExceptionList() => new List<string> { $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/service/index?" };
+        private List<string> UrlExceptionListContains() => 
+            new List<string> { 
+                $"https://{EnvironmentConfig.EnvironmentName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc"
+            };
+
+        private List<string> UrlExceptionListEquals() =>
+            new List<string> {
+                $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/service/index?",
+                $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/"
+            };
     }
 }

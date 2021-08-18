@@ -31,6 +31,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual By AcceptCookieButton { get; }
 
+        protected virtual bool CaptureUrl => true;
+
         protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -44,7 +46,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
 
-            if (context.ScenarioInfo.Tags.Contains("authtests"))
+            if (CaptureUrl && (context.ScenarioInfo.Tags.Contains("authtests")))
             { objectContext.SetAuthUrl((_screenShotTitleGenerator.count, _webDriver.Url)); }
         }
 
@@ -61,6 +63,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected bool VerifyPage(By locator, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, retryAction);
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
+
+        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
 
         protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
 
