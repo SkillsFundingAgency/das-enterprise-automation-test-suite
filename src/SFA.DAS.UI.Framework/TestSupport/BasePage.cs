@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using System.Linq;
+using NUnit.Framework;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -42,6 +43,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
+
+            //test code
+            if (CaptureUrl == false)
+            {
+                TestContext.Progress.WriteLine($"_frameworkConfig.IsVstsExecution = {_frameworkConfig.IsVstsExecution}");
+                TestContext.Progress.WriteLine($"!context.ScenarioInfo.Tags.Contains(\"donottakescreenshot\") = {!context.ScenarioInfo.Tags.Contains("donottakescreenshot")}");
+            }
 
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
