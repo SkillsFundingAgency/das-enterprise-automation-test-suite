@@ -69,7 +69,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             var applicationId = queryResult[0][0].ToString();
 
             var query = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; " +
-                $"DELETE FROM Appeal where OversightReviewId in (SELECT Id from OversightReview where ApplicationId ='{applicationId}')" +
+                $"DELETE FROM Appeal WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM [dbo].[OversightReview] where ApplicationId = '{applicationId}'; " +
                 $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.SubmittedApplicationAnswers WHERE ApplicationId = '{applicationId}'; " +
