@@ -45,6 +45,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _directory = objectContext.GetDirectory();
 
             //test code
+            TestContext.Progress.WriteLine($"CaptureUrl = {CaptureUrl}");
             if (CaptureUrl == false)
             {
                 TestContext.Progress.WriteLine($"_frameworkConfig.IsVstsExecution = {_frameworkConfig.IsVstsExecution}");
