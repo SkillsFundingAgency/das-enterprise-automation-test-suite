@@ -6,6 +6,10 @@ using System.Linq;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -21,14 +25,26 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
+        [Then(@"a valid user can not access different account")]
+        public void ThenAValidUserCanNotAccessDifferentAccount() => VerifyAuthUrls(true);
+
         [Then(@"an unauthorised user can not access the service")]
-        public void AnUnauthorisedUserCanNotAccessTheService()
+        public void AnUnauthorisedUserCanNotAccessTheService() => VerifyAuthUrls(false);
+
+        private void VerifyAuthUrls(bool login)
         {
             HashSet<string> authurls = new HashSet<string>();
 
+            authurls = _objectContext.GetAuthUrl().ToHashSet();
+
             var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
 
-            authurls = _objectContext.GetAuthUrl().ToHashSet();
+            if (login)
+            {
+                webDriver.Navigate().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+
+                new EmployerPortalLoginHelper(_context).Login(_context.GetUser<AuthTestUser>(), true);
+            }
 
             List<string> exceptions = new List<string>();
 
@@ -45,11 +61,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 }
                 catch (Exception ex)
                 {
-                    exceptions.Add($"{ex.Message}{Environment.NewLine}URL: {url}");
+                    exceptions.Add($"{ex.Message}" +
+                        $"{Environment.NewLine}AuthUrl: {url}" +
+                        $"{Environment.NewLine}ActualUrl: {webDriver.Url}");
                 }
             }
 
-            if (exceptions.Count > 0) throw new Exception(exceptions.ToString(Environment.NewLine));
+            if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}{authurls.ToList().ToString(Environment.NewLine)}");
         }
 
         private List<string> UrlExceptionListContains() => 
@@ -59,8 +77,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private List<string> UrlExceptionListEquals() =>
             new List<string> {
-                $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/service/index?",
-                $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/"
+                $"{UriHelper.GetAbsoluteUri(UrlConfig.EmployerApprenticeshipService_BaseUrl,"service/index?")}",
+                $"{UrlConfig.EmployerApprenticeshipService_BaseUrl}",
+                $"{UriHelper.GetAbsoluteUri(UrlConfig.EmployerApprenticeshipService_BaseUrl, "service/accounts")}",
+                $"https://{EnvironmentConfig.EnvironmentName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvironmentConfig.EnvironmentName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Fpassword%2Fchange",
+                $"https://{EnvironmentConfig.EnvironmentName}-login.apprenticeships.education.gov.uk/account/changeemail?clientId=easacc{EnvironmentConfig.EnvironmentName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Femail%2Fchange",
+                $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/settings/notifications"
             };
     }
 }

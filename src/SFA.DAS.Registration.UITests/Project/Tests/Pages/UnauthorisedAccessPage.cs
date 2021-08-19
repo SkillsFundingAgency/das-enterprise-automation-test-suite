@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public UnauthorisedAccessPage(ScenarioContext context) : base(context)
         {
             VerifyPage(() => context.Get<PageInteractionHelper>().FindElement(PageHeader),
-                new List<string> { "Sign in", "Page not found" });
+                new List<string> { "Sign in", "Page not found", "Access denied" });
         }
     }
 }

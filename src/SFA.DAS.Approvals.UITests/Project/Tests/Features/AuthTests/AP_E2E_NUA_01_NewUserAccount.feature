@@ -7,3 +7,4 @@ Scenario: AP_E2E_NUA_AUTH_01 Create Employer send an approved cohort then provid
 	When the Employer approves 2 cohort and sends to provider
 	Then the provider adds Ulns and approves the cohorts
 	Then an unauthorised user can not access the service
+	And a valid user can not access different account

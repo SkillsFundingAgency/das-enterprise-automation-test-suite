@@ -72,7 +72,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 if (expected.Any(x=> x.Contains(actual))) return true;
 
                 throw new Exception("Page verification failed:"
-                + "\n Expected: " + string.Join("OR ", expected) + " page"
+                + "\n Expected: " + string.Join(" OR ", expected) + " page"
                 + "\n Found: " + actual + " page");
             }
 
