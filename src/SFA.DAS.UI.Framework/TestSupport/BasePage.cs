@@ -48,7 +48,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
 
             if (CaptureUrl && (context.ScenarioInfo.Tags.Contains("authtests")))
-            { objectContext.SetAuthUrl((_screenShotTitleGenerator.count, _webDriver.Url)); }
+            { objectContext.SetAuthUrl(_webDriver.Url); }
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);

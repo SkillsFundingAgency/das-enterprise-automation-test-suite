@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
 
-            authurls = _objectContext.GetAuthUrl().Select(x => x.url).ToList().ToHashSet();
+            authurls = _objectContext.GetAuthUrl().ToHashSet();
 
             List<string> exceptions = new List<string>();
 
