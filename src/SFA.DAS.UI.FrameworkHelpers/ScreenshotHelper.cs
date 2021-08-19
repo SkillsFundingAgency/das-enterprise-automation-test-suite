@@ -12,6 +12,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
             var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
 
+            TestContext.Progress.WriteLine($"screenshotPath - {screenshotPath}");
+
             try
             {
                 ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;

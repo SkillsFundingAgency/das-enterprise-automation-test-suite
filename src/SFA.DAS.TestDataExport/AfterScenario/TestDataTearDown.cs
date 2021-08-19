@@ -40,7 +40,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             string directory = _objectContext.GetDirectory();
 
             string filePath = Path.Combine(directory, fileName);
-            
+
+            TestContext.Progress.WriteLine($"Teardown filePath - {filePath}");
+
             List<TestData> records = new List<TestData>();
 
             var testdataset = _objectContext.GetAll();

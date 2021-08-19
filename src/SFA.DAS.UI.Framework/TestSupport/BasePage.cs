@@ -48,7 +48,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             TestContext.Progress.WriteLine($"CaptureUrl = {CaptureUrl}");
             TestContext.Progress.WriteLine($"_frameworkConfig.IsVstsExecution = {_frameworkConfig.IsVstsExecution}");
             TestContext.Progress.WriteLine($"!context.ScenarioInfo.Tags.Contains(\"donottakescreenshot\") = {!context.ScenarioInfo.Tags.Contains("donottakescreenshot")}");
-            
+            TestContext.Progress.WriteLine($"directory = {_directory}");
 
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
