@@ -35,6 +35,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
 
+            var activePeriod = _helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11);
 
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -51,7 +53,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
                     .WithAcademicYear(2021)
-                    .WithEndDate(DateTime.Now.AddYears(1))
+                    .WithEndDate(activePeriod.CensusDate.AddYears(1))
                     .WithPeriod(apprenticeship.ApprenticeshipId, 10)
                     .Create();
 
@@ -71,14 +73,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await _helper.LearnerMatchOrchestratorHelper.Run();
 
             // 2nd run
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(11, 2021);            
+            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(11, 2021);
+
+            activePeriod = _helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
 
             foreach (var apprenticeship in testData.IncentiveApplication.Apprenticeships)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithStartDate(_initialStartDate)
                     .WithAcademicYear(2021)
-                    .WithEndDate(DateTime.Now.AddDays(-1)) // Learning Stopped!!!
+                    .WithEndDate(activePeriod.CensusDate.AddDays(-1)) // Learning Stopped!!!
                     .WithPeriod(apprenticeship.ApprenticeshipId, 11)
                     .Create();
 

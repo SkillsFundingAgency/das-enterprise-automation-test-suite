@@ -23,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing Phase1 apprenticeship incentive")]
         public async Task GivenAnExistingPhase1ApprenticeshipIncentive()
         {
-            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(11, 2021);
+            await helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
 
             _initialStartDate = new DateTime(2021, 1, 5);
 
@@ -36,10 +36,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
         }
 
-        [Given(@"the end date of the most recent price episode is before the current date")]
+        [Given(@"the end date of the most recent price episode is before the current period census date")]
         public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCurrentDate()
         {
-            _initialEndDate = DateTime.Today.AddDays(-1);
+            var activePeriod = helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+            
+            _initialEndDate = activePeriod.CensusDate.AddDays(-1);
             await SetupIlrDataAndRunLearnerMatch();
         }
 

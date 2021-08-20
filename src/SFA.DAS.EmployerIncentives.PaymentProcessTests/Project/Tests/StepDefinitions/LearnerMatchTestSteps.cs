@@ -28,6 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenThereAreSomeApprenticeshipIncentives()
         {
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
+            var activePeriod = _helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
 
             testData.StartDate = DateTime.Parse("2021-06-12");
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -40,7 +41,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
-                .WithEndDate("2022-10-15T00:00:00")
+                .WithEndDate(activePeriod.CensusDate.AddYears(1))
                 .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
@@ -236,6 +237,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenAnApprenticeshipIncentiveForALearner()
         {
             await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(10, 2021);
+            var activePeriod = _helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
 
             testData.StartDate = DateTime.Parse("2021-06-12");
             testData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -248,7 +250,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
-                .WithEndDate("2022-10-15T00:00:00")
+                .WithEndDate(activePeriod.CensusDate.AddYears(1))
                 .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
@@ -318,11 +320,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the learner is found in learning in the previous academic year")]
         public async Task WhenTheLearnerIsFoundInThePreviousAY()
         {
+            var activePeriod = _helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+
             testData.StartDate = DateTime.Parse("2021-06-12");
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(testData.StartDate)
-                .WithEndDate("2022-10-15T00:00:00")
+                .WithEndDate(activePeriod.CensusDate.AddYears(1))
                 .WithPeriod(testData.ApprenticeshipId, 7)
                 .Create();
 
@@ -583,14 +587,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learnerRecord.SubmissionDate.Should().Be(testData.LearnerSubmission.IlrSubmissionDate);
         }
 
-        [Then(@"the learning is stopped")]
-        public void ThenLearningisStopped()
+        [Then(@"the learning is not stopped")]
+        public void ThenLearningIsNotStopped()
         {
-            var changeOfCircumstance = _helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Single();
+            var changeOfCircumstances = _helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>();
 
-            changeOfCircumstance.ApprenticeshipIncentiveId.Should().Be(testData.ApprenticeshipIncentiveId);
-            changeOfCircumstance.ChangeType.Should().Be(ChangeOfCircumstanceType.LearningStopped);
-            changeOfCircumstance.NewValue.Should().Be("2021-08-01");
+            var learningStopped = changeOfCircumstances.FirstOrDefault(x =>
+                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
+                && x.ChangeType == ChangeOfCircumstanceType.LearningStopped);
+
+            learningStopped.Should().BeNull();
         }
 
         [Given(@"learner match finds a matching apprenticeship ID in a price episode with no end date in the previous academic year")]

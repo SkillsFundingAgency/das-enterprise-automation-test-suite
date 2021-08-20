@@ -121,4 +121,4 @@ Scenario: Learning found in previous academic year but not current academic year
 	And learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year
 	When the learner match process has run
 	Then learner data is updated to reflect that learning has been found
-	And the learning is stopped
+	And the learning is not stopped
