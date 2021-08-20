@@ -36,6 +36,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected BasePage(ScenarioContext context)
         {
+            bool IsAuthTest() => context.ScenarioInfo.Tags.Contains("authtests");
+
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -45,10 +47,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _directory = objectContext.GetDirectory();
 
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(IsAuthTest() ? "_AuthTest" : "")}");
 
-            if (CaptureUrl && (context.ScenarioInfo.Tags.Contains("authtests")))
-            { objectContext.SetAuthUrl(_webDriver.Url); }
+            if (CaptureUrl && IsAuthTest()) objectContext.SetAuthUrl(_webDriver.Url); 
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
