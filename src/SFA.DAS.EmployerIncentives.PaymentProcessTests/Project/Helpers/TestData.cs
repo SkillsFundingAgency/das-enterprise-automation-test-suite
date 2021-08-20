@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
     public class TestData
     {
-        public long AccountId { get; set; }
+        public (long AccountId, long AccountLegalEntityId) Account { get; set; }
         public long ApprenticeshipId { get; set; }
         public long UKPRN { get; set; }
         public long ULN { get; set; }
@@ -14,13 +14,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public DateTime StartDate { get; set; }
         public LearnerSubmissionDto LearnerSubmission { get; set; }        
         public short AcademicYear { get; set; }
-        public IList<Guid> IncentiveIds { get; set; }
+        public IList<Guid> IncentiveIds { get; set; } = new List<Guid>();
         public Guid ApprenticeshipIncentiveId { get; set; }
         public IncentiveApplication IncentiveApplication { get; set; }
-
-        public TestData()
-        {
-            IncentiveIds = new List<Guid>();
-        }
     }
 }
