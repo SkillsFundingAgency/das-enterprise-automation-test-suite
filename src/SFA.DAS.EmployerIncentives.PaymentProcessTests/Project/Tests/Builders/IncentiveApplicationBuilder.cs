@@ -23,6 +23,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             return this;
         }
 
+        public IncentiveApplicationBuilder WithDateSubmitted(DateTime dateSubmitted)
+        {
+            _incentiveApplication.DateSubmitted = dateSubmitted;
+            return this;
+        }
+
         public IncentiveApplicationBuilder WithApprenticeship(long apprenticeshipId, long uln, long ukprn,
             DateTime plannedStartDate, DateTime dateOfBirth, Phase phase)
         {
