@@ -92,7 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
         {
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
-            Assert.True(options.All(x => x.Contains("(Standard)")));
+            Assert.False(options.All(x => x.Contains("(Framework)")));
             return this;
         }
 

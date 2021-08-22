@@ -74,7 +74,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
         {
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
-            Assert.True(options.All(x => x.Contains("(Standard)")));
+            //Assert.True(options.All(x => x.Contains("(Standard)")));
+            Assert.True(options.All(x => !x.Contains("(Framework)")));
             return this;
         }
 
