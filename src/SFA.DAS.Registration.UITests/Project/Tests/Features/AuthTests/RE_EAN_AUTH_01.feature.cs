@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_AUTH_01")]
-    public partial class RE_AUTH_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_EAN_AUTH_01")]
+    public partial class RE_EAN_AUTH_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RE_AUTH_01.feature"
+#line 1 "RE_EAN_AUTH_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_AUTH_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_EAN_AUTH_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,14 +74,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_Auth_01_Verify Auth for existing Levy Account")]
+        [NUnit.Framework.DescriptionAttribute("RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved fav" +
+            "ourites, Help and all Settings pages")]
         [NUnit.Framework.CategoryAttribute("authtests")]
-        public virtual void RE_Auth_01_VerifyAuthForExistingLevyAccount()
+        public virtual void RE_EAN_AUTH_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
         {
             string[] tagsOfScenario = new string[] {
                     "authtests"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Auth_01_Verify Auth for existing Levy Account", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved fav" +
+                    "ourites, Help and all Settings pages", null, tagsOfScenario, argumentsOfScenario);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

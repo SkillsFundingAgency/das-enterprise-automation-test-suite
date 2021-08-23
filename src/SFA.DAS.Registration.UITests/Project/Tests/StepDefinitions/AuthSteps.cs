@@ -52,9 +52,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             List<string> exceptions = new List<string>();
 
+            string scenarioTitle = string.Empty;
+
             foreach (var url in authurls)
             {
                 int x = _context.Get<ScreenShotTitleGenerator>().count + 1;
+
+                string result = "Pass";
 
                 try
                 {
@@ -64,22 +68,31 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         continue; 
                     }
 
-                    verifiedurls.Add($"{x} - {url}");
-
                     webDriver.Navigate().GoToUrl(url);
 
-                    if (login) { new UnauthorisedUserWithLoginPage(_context); } else { new UnauthorisedUserWithoutLoginPage(_context); }
+                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context).ScenarioTitle();
                 }
                 catch (Exception ex)
                 {
-                    exceptions.Add($"{ex.Message}{Environment.NewLine}Url: {x} - {url}");
+                    result = "Fail";
+
+                    exceptions.Add($"{ex.Message}{Environment.NewLine}Url: {scenarioTitle}_{x}_{result} - {url}");
+                }
+                finally
+                {
+                    verifiedurls.Add($"{scenarioTitle}_{x}_{result} - {url}");
                 }
             }
 
-            if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
-                $"Verified Urls : {Environment.NewLine}{verifiedurls.ToList().ToString(Environment.NewLine)}{Environment.NewLine}" +
-                $"Skipped Urls : {Environment.NewLine}{skippedurls.ToList().ToString(Environment.NewLine)}");
+            _objectContext.Set($"{scenarioTitle}_Verified Urls", ToString("Verified Urls", verifiedurls));
+            _objectContext.Set($"{scenarioTitle}_Skipped Urls", ToString("Skipped Urls", skippedurls));
+
+            if (exceptions.Count > 0) throw new Exception($"{exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
+                $"{ToString("Verified Urls", verifiedurls)}" +
+                $"{ToString("Skipped Urls", skippedurls)}");
         }
+
+        private string ToString(string message, HashSet<string> x) => $"{message} : {Environment.NewLine}{x.ToList().ToString(Environment.NewLine)}{Environment.NewLine}";
 
         private List<string> ExcludeUrlContains() =>
             new List<string> {

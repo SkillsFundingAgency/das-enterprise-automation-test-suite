@@ -21,5 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
         protected string AccessDeniedPageTitle => "Access denied";
 
         public UnauthorisedAccessBasePage(ScenarioContext context) : base(context) => VerifyPage(() => context.Get<PageInteractionHelper>().FindElement(PageHeader), ExpectedPageTitles);
+
+        public string ScenarioTitle() => PageTitle;
     }
 }

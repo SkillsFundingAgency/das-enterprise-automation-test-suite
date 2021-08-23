@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
 {
     public class UnauthorisedUserWithoutLoginPage : UnauthorisedAccessBasePage
     {
-        protected override string PageTitle => "s1";
+        protected override string PageTitle => "S1";
 
         protected override List<string> ExpectedPageTitles => new List<string> { SignInPageTitle, PageNotFoundPageTitle };
 

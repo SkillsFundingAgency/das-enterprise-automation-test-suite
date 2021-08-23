@@ -1,7 +1,7 @@
-﻿Feature: RE_AUTH_01
+﻿Feature: RE_EAN_AUTH_01
 
 @authtests
-Scenario: RE_Auth_01_Verify Auth for existing Levy Account 
+Scenario: RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved favourites, Help and all Settings pages
 	When the Employer logins using existing Levy Account
 	Then Employer is able to navigate to all the link under Settings
 	And a valid user can not access different account
