@@ -84,7 +84,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private List<string> ExcludeUrlContains() =>
             new List<string> {
                 $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc",
-                UrlConfig.Provider_BaseUrl
+                $"{EnvName}-pas.apprenticeships.education.gov.uk/"
             };
 
         private List<string> ExcludeUrlEquals() =>
