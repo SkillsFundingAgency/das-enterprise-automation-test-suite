@@ -10,7 +10,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
 
         private By FindEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
-        private By SelectFirstViewEmployerLink => By.Id("view-274");
 
         public FindEmployersThatNeedATrainingProviderPage ViewFindEmployersThatNeedATrainingProvider()
         {
@@ -20,7 +19,9 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 
         public WhichEmployersAreYouInterestedInPage ViewWhichEmployerNeedsATrainingProvider()
         {
-            formCompletionHelper.ClickElement(SelectFirstViewEmployerLink);
+            /*Select the First ViewEmployers Link*/
+            formCompletionHelper.ClickLinkByText("View employers");
+
             return new WhichEmployersAreYouInterestedInPage(_context);
         }
     }

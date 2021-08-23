@@ -17,11 +17,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderConfirmCohortDeletionPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderYourCohortsPage ConfirmDeleteAndSubmit()
+        public ProviderApprenticeRequestsPage ConfirmDeleteAndSubmit()
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             Continue();
-            return new ProviderYourCohortsPage(_context);
+            return new ProviderApprenticeRequestsPage(_context);
         }
     }
 }

@@ -16,10 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
         public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
         {
@@ -27,12 +24,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(_continueButton);
             return new NonLevyPayingEmployerPage(_context);
         }
+
         public LevyingPayingEmployerPage NavigateToLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(__levyPayingEmployer);
             formCompletionHelper.ClickElement(_continueButton);
             return new LevyingPayingEmployerPage(_context);
         }
+        
         public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);

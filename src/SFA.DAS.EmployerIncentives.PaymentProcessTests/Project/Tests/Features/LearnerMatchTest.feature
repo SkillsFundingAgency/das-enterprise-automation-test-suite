@@ -1,7 +1,7 @@
-﻿Feature: LearnerMatchTest
+﻿@employerincentivesPaymentsProcess
+Feature: LearnerMatchTest
 	Test feature to verify learner match helper is working
 
-@employerincentivesPaymentsProcess
 Scenario: Learner match runs
 	Given there are some apprenticeship incentives
 	When the learner match service is completed
@@ -102,9 +102,9 @@ Scenario: Submission Not Found during end of year roll over
 	When a learner match request in the current academic year does not find the requested ULN and UKPRN
 	Then update the learner match record to reflect that no current data has been found
 
-Scenario: Learning found in previous academic year but not in current academic year
-	Given an incentive application has a learner match record in previous academic year
-	And learner match does not have a matching apprenticeship ID in a price episode in the current academic year 
+Scenario: Learning found in previous academic year but not in current academic year and provider has NOT submitted ILR in current academic year
+	Given an incentive application has a learner match record in previous academic year	
+	And the provider has not submitted an ILR in the current academic year
 	And learner match has a matching apprenticeship ID in a price episode in the previous academic year
 	When the learner match process has run
 	Then learner data is updated to reflect that learning has been found
@@ -116,9 +116,10 @@ Scenario: Learning found in current academic year but not in previous academic y
 	When the learner match process has run
 	Then learner data is updated to reflect that learning has been found
 
-Scenario: Learning not found in current academic year or previous academic year
-	Given an incentive application has a learner match record in previous academic year
-	And learner match does not find a matching apprenticeship ID in a price episode in the current academic year
-	And learner match does not have a matching apprenticeship ID in a price episode in the previous academic year
+@ignore
+Scenario: Learning found in previous academic year but not current academic year AND provider has submitted ILR in current academic year
+	Given an incentive application has a learner match record in previous academic year	
+	And learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year
 	When the learner match process has run
-	Then learner data is updated to reflect that learning has not been found
+	Then learner data is updated to reflect that learning has been found
+	And the learning is stopped

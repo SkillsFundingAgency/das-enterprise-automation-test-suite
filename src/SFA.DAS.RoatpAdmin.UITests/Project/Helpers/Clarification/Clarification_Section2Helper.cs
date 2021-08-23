@@ -29,7 +29,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusClarification);
             }
@@ -45,7 +48,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection2Link7Status(StatusHelper.StatusClarification);
             }
@@ -54,7 +60,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage FailCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection2Link4Status(StatusHelper.StatusClarification);
             }
@@ -64,7 +73,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection2Link7Status(StatusHelper.StatusClarification);
             }

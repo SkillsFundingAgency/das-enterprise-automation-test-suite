@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link5Status(StatusHelper.StatusPass);
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusPass);
 
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection3Link3Status(StatusHelper.StatusPass);
             }
@@ -21,44 +21,56 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
-
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
                     .SelectPassAndContinueInDeliveringTraining()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
-                    .SelectPassAndContinue();
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
 
+            }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
+            {
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
+                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                    .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
             else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
-                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
-                    .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
-                    .SelectPassAndContinue();
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
+                     .SelectPassAndContinue()
+                     .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            {
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining_New_Main_Employer()
+                    .SelectPassAndContinueInDeliveringTraining()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
             else
             {
-                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
-                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                return moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining()
+                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
-                    .SelectPassAndContinue();
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
-
-            return moderatorApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusPass);
-
         }
 
         public virtual ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
@@ -67,7 +79,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
                     .SelectPassAndContinue();
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider ||
+                     applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
@@ -91,7 +104,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+               applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
@@ -100,7 +114,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_DeliveryIncludesFrameworks()
                     .SelectFailAndContinue();
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider ||
+                     applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
@@ -138,7 +153,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailTrainingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                  applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_TrainingApprentices()
@@ -163,7 +179,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinue()
                     .VerifySection3Link3Status(StatusHelper.StatusPass);
             }
-            else if (applicationroute == ApplicationRoute.MainProviderRoute)
+            else if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                     applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -178,7 +195,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -187,7 +205,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinue()
                     .VerifySection3Link3Status(StatusHelper.StatusFail);
             }
-            else if (applicationroute == ApplicationRoute.MainProviderRoute)
+            else if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                      applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -204,6 +223,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         public virtual ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute || 
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -225,7 +245,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_ForecastingStarts()
@@ -246,6 +269,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         public virtual ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -264,7 +288,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_OffTheJobTraining()
@@ -281,7 +308,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -299,7 +327,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                 .Access_Section3_WhereWillYourApprenticesBeTrained()

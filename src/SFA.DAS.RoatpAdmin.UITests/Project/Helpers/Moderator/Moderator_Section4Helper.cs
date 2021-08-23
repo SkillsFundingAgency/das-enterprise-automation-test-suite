@@ -43,6 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectPassAndContinueInManagementHierarchyPage()
                 .SelectPassAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }
@@ -51,6 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectFailAndContinueInManagementHierarchyPage()
                 .SelectFailAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusFail);
         }
@@ -68,7 +70,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
@@ -77,7 +80,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInHowTheTeamWorkedWithPage()
                     .SelectPassAndContinue();
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                     applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
@@ -99,7 +103,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
@@ -108,7 +113,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectFailAndContinueInHowTheTeamWorkedWithPage()
                     .SelectFailAndContinue();
             }
-            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                     applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
@@ -133,7 +139,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
                 applicationroute == ApplicationRoute.SupportingProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .VerifySection4Link5Status(StatusHelper.NotRequired);

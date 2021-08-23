@@ -3,7 +3,6 @@
 @campaigns
 @apprentice
 @regression
-Scenario: CA_AP_04_Check Application Page Details
-	Given the user navigates to the application page
+Scenario: CA_AP_04 Check Getting started Page Details
+	Given the user navigates to Getting started Page
 	Then the links are not broken
-

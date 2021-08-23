@@ -25,11 +25,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderApprenticeshipTrainingPage(_context);
         }
 
-        internal ProviderReviewYourCohortPage ConfirmEmployer()
+        internal ProviderApproveApprenticeDetailsPage ConfirmEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-true");            
             formCompletionHelper.ClickElement(ContinueButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }
