@@ -18,11 +18,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
 
         public AuthSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
         }
 
         [Then(@"a valid user can not access different account")]
@@ -33,9 +35,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VerifyAuthUrls(bool login)
         {
-            HashSet<string> authurls = new HashSet<string>();
 
-            authurls = _objectContext.GetAuthUrl().ToHashSet();
+            HashSet<string> skippedurls = new HashSet<string>();
+
+            HashSet<string> verifiedurls = new HashSet<string>();
+
+            HashSet<string> authurls = _objectContext.GetAuthUrl().ToHashSet();
 
             var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
 
@@ -50,9 +55,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             foreach (var url in authurls)
             {
+                int x = _screenShotTitleGenerator.count + 1;
                 try
                 {
-                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) continue;
+                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) { skippedurls.Add(url); continue; }
+
+                    verifiedurls.Add($"{x} - {url}");
 
                     webDriver.Navigate().GoToUrl(url);
 
@@ -60,18 +68,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 }
                 catch (Exception ex)
                 {
-                    exceptions.Add($"{ex.Message}" +
-                        $"{Environment.NewLine}AuthUrl: {url}" +
-                        $"{Environment.NewLine}ActualUrl: {webDriver.Url}");
+                    exceptions.Add($"{ex.Message}{Environment.NewLine}Url: {x} - {url}");
                 }
             }
 
-            if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}{authurls.ToList().ToString(Environment.NewLine)}");
+            if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
+                $"Skipped Urls : {Environment.NewLine}{skippedurls.ToList().ToString(Environment.NewLine)}" +
+                $"Verified Urls : {Environment.NewLine}{verifiedurls.ToList().ToString(Environment.NewLine)}");
         }
 
         private List<string> ExcludeUrlContains() =>
             new List<string> {
-                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc"
+                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc",
+                UrlConfig.Provider_BaseUrl
             };
 
         private List<string> ExcludeUrlEquals() =>
