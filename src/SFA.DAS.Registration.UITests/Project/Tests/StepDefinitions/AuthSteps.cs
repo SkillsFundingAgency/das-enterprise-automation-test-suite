@@ -10,6 +10,7 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -54,15 +55,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             foreach (var url in authurls)
             {
                 int x = _context.Get<ScreenShotTitleGenerator>().count + 1;
+
                 try
                 {
-                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) { skippedurls.Add(url); continue; }
+                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) 
+                    {
+                        skippedurls.Add(url); 
+                        continue; 
+                    }
 
                     verifiedurls.Add($"{x} - {url}");
 
                     webDriver.Navigate().GoToUrl(url);
 
-                    new UnauthorisedAccessPage(_context, login ? "s2" : "s1");
+                    if (login) { new UnauthorisedUserWithLoginPage(_context); } else { new UnauthorisedUserWithoutLoginPage(_context); }
                 }
                 catch (Exception ex)
                 {
@@ -73,7 +79,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
                 $"Verified Urls : {Environment.NewLine}{verifiedurls.ToList().ToString(Environment.NewLine)}{Environment.NewLine}" +
                 $"Skipped Urls : {Environment.NewLine}{skippedurls.ToList().ToString(Environment.NewLine)}");
-                
         }
 
         private List<string> ExcludeUrlContains() =>
