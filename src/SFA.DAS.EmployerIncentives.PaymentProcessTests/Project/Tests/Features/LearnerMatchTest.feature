@@ -1,7 +1,7 @@
-﻿Feature: LearnerMatchTest
+﻿@employerincentivesPaymentsProcess
+Feature: LearnerMatchTest
 	Test feature to verify learner match helper is working
 
-@employerincentivesPaymentsProcess
 Scenario: Learner match runs
 	Given there are some apprenticeship incentives
 	When the learner match service is completed
@@ -116,6 +116,7 @@ Scenario: Learning found in current academic year but not in previous academic y
 	When the learner match process has run
 	Then learner data is updated to reflect that learning has been found
 
+@ignore
 Scenario: Learning found in previous academic year but not current academic year AND provider has submitted ILR in current academic year
 	Given an incentive application has a learner match record in previous academic year	
 	And learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year

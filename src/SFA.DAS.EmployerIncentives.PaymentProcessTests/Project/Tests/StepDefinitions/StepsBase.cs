@@ -6,16 +6,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     public class StepsBase
     {
-        protected TestData testData;
-        protected Fixture fixture;
-        protected Helper helper;
+        protected TestData TestData;
+        protected Fixture Fixture;
+        protected Helper Helper;
 
         protected StepsBase(ScenarioContext context)
         {
-            helper = context.Get<Helper>();
-
-            fixture = new Fixture();
-            testData = context.Get<TestData>();
+            Helper = context.Get<Helper>();
+            Fixture = new Fixture();
+            TestData = context.Get<TestData>();
+            TestData.Account = (Fixture.Create<long>(), Fixture.Create<long>());
+            TestData.ApprenticeshipId = Fixture.Create<long>();
         }
     }
 }
