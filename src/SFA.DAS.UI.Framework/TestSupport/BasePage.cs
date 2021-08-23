@@ -44,7 +44,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _directory = objectContext.GetDirectory();
 
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : "_AuthStep")}");
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"{PageTitle}_AuthStep")}");
 
             if (CaptureUrl && context.ScenarioInfo.Tags.Contains("authtests")) objectContext.SetAuthUrl(_webDriver.Url);
         }

@@ -18,13 +18,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
 
         public AuthSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
         }
 
         [Then(@"a valid user can not access different account")]
@@ -55,7 +53,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             foreach (var url in authurls)
             {
-                int x = _screenShotTitleGenerator.count + 1;
+                int x = _context.Get<ScreenShotTitleGenerator>().count + 1;
                 try
                 {
                     if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) { skippedurls.Add(url); continue; }
@@ -64,7 +62,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
                     webDriver.Navigate().GoToUrl(url);
 
-                    new UnauthorisedAccessPage(_context);
+                    new UnauthorisedAccessPage(_context, login ? "s2" : "s1");
                 }
                 catch (Exception ex)
                 {
@@ -73,8 +71,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             }
 
             if (exceptions.Count > 0) throw new Exception($"{ exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
-                $"Skipped Urls : {Environment.NewLine}{skippedurls.ToList().ToString(Environment.NewLine)}" +
-                $"Verified Urls : {Environment.NewLine}{verifiedurls.ToList().ToString(Environment.NewLine)}");
+                $"Verified Urls : {Environment.NewLine}{verifiedurls.ToList().ToString(Environment.NewLine)}{Environment.NewLine}" +
+                $"Skipped Urls : {Environment.NewLine}{skippedurls.ToList().ToString(Environment.NewLine)}");
+                
         }
 
         private List<string> ExcludeUrlContains() =>
