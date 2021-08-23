@@ -1,39 +1,38 @@
-DECLARE @ApprenticeshipIncentiveId UNIQUEIDENTIFIER
+DECLARE @apprenticeshipIncentiveId UNIQUEIDENTIFIER
+DECLARE @apprenticeshipIncentiveIds TABLE (Id UNIQUEIDENTIFIER)
+INSERT INTO @apprenticeshipIncentiveIds SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId
  
-DROP TABLE IF EXISTS ApprenticeshipIncentiveIds
-SELECT Id INTO ApprenticeshipIncentiveIds FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId
- 
-WHILE EXISTS (SELECT 1 FROM ApprenticeshipIncentiveIds)
+WHILE EXISTS (SELECT 1 FROM @apprenticeshipIncentiveIds)
 BEGIN
-    SET @ApprenticeshipIncentiveId = (SELECT TOP 1 Id FROM ApprenticeshipIncentiveIds)
-    DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-    DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-    DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    SET @apprenticeshipIncentiveId = (SELECT TOP 1 Id FROM @apprenticeshipIncentiveIds)
+    DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+    DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+    DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
  
     DELETE x FROM archive.PendingPaymentValidationResult x
         INNER JOIN archive.PendingPayment pp ON pp.PendingPaymentId = x.PendingPaymentId
-        WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+        WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
     DELETE x FROM incentives.PendingPaymentValidationResult x
     INNER JOIN incentives.PendingPayment pp ON pp.Id = PendingPaymentId
-    WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE archive.PendingPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-    DELETE incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE archive.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
+    DELETE incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE x FROM incentives.LearningPeriod x INNER JOIN incentives.Learner l ON LearnerId=l.Id  WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE x FROM incentives.LearningPeriod x INNER JOIN incentives.Learner l ON LearnerId=l.Id  WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE x FROM incentives.ApprenticeshipDaysInLearning x INNER JOIN incentives.Learner l ON LearnerId=l.Id  WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE x FROM incentives.ApprenticeshipDaysInLearning x INNER JOIN incentives.Learner l ON LearnerId=l.Id  WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE incentives.ApprenticeshipBreakInLearning WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE incentives.ApprenticeshipBreakInLearning WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE incentives.Learner WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE incentives.Learner WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
-    DELETE incentives.ChangeOfCircumstance WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
+    DELETE incentives.ChangeOfCircumstance WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
     /* DELETE from the Main incentive table */
-    DELETE incentives.ApprenticeshipIncentive WHERE Id = @ApprenticeshipIncentiveId;
+    DELETE incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId;
 
-    DELETE ApprenticeshipIncentiveIds WHERE Id=@ApprenticeshipIncentiveId
+    DELETE @apprenticeshipIncentiveIds WHERE Id=@apprenticeshipIncentiveId
 END
 
