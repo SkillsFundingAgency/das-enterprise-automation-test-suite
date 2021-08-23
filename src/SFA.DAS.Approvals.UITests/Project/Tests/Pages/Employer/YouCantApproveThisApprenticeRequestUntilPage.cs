@@ -5,10 +5,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class YouMustCompleteAllApprenticeDetailsPage : ApprovalsBasePage
+    public class YouCantApproveThisApprenticeRequestUntilPage : ApprovalsBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-notification-banner__heading");
-        protected override string PageTitle => "You must complete all apprentice details before you can approve this record";
+        protected override string PageTitle => "You can’t approve this apprentice request until:";
 
         protected virtual By Reference => By.CssSelector("dd.das-definition-list__definition:nth-child(4)");
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By DraftSaveAndSubmit => By.Id("continue-button");
 
-        public YouMustCompleteAllApprenticeDetailsPage (ScenarioContext context) : base(context) => _context = context;
+        public YouCantApproveThisApprenticeRequestUntilPage (ScenarioContext context) : base(context) => _context = context;
         
         public DynamicHomePages DraftReturnToHomePage()
         {
