@@ -34,12 +34,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VerifyAuthUrls(bool login)
         {
-
             HashSet<string> skippedurls = new HashSet<string>();
 
             HashSet<string> verifiedurls = new HashSet<string>();
 
             HashSet<string> authurls = _objectContext.GetAuthUrl().ToHashSet();
+
+            string VerifiedUrlsToString() => ToString("Verified Urls", verifiedurls);
+
+            string SkippedUrlsToString() => ToString("Skipped Urls", skippedurls);
 
             var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
 
@@ -60,10 +63,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
                 string result = "Pass";
 
+                bool skipped = false;
+
                 try
                 {
                     if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) 
                     {
+                        skipped = true;
                         skippedurls.Add(url); 
                         continue; 
                     }
@@ -74,22 +80,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 }
                 catch (Exception ex)
                 {
-                    result = "Fail";
+                    result = "FAIL";
 
                     exceptions.Add($"{ex.Message}{Environment.NewLine}Url: {scenarioTitle}_{x}_{result} - {url}");
                 }
                 finally
                 {
-                    verifiedurls.Add($"{scenarioTitle}_{x}_{result} - {url}");
-                }
+                    if (!(skipped)) verifiedurls.Add($"{scenarioTitle}_{x}_{result} - {url}");
+                }              
             }
 
-            _objectContext.Set($"{scenarioTitle}_Verified Urls", ToString("Verified Urls", verifiedurls));
-            _objectContext.Set($"{scenarioTitle}_Skipped Urls", ToString("Skipped Urls", skippedurls));
+            _objectContext.Set($"{scenarioTitle}_Verified Urls", VerifiedUrlsToString());
+            _objectContext.Set($"{scenarioTitle}_Skipped Urls", SkippedUrlsToString());
 
             if (exceptions.Count > 0) throw new Exception($"{exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
-                $"{ToString("Verified Urls", verifiedurls)}" +
-                $"{ToString("Skipped Urls", skippedurls)}");
+                $"{VerifiedUrlsToString()}{SkippedUrlsToString()}");
         }
 
         private string ToString(string message, HashSet<string> x) => $"{message} : {Environment.NewLine}{x.ToList().ToString(Environment.NewLine)}{Environment.NewLine}";
