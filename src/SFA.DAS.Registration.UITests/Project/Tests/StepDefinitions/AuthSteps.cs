@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Linq;
@@ -108,14 +107,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private List<string> ExcludeUrlEquals() =>
             new List<string>
             {
-                $"{UriHelper.GetAbsoluteUri(UrlConfig.EmployerApprenticeshipService_BaseUrl,"service/index?")}",
+                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/index?",
                 $"{UrlConfig.EmployerApprenticeshipService_BaseUrl}",
-                $"{UriHelper.GetAbsoluteUri(UrlConfig.EmployerApprenticeshipService_BaseUrl, "service/accounts")}",
-                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvName}" +
-                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Fpassword%2Fchange",
-                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changeemail?clientId=easacc{EnvName}" +
-                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Femail%2Fchange",
-                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/settings/notifications"
             };
 
         private List<string> ExcludeUrlEqualsForLogedInUser() =>
@@ -124,7 +117,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/getApprenticeshipFunding",
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/gatewayInform",
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/organisations/search",
-                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/summary"
+                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/summary",
+                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/settings/notifications",
+                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/accounts",
+                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Fpassword%2Fchange",
+                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changeemail?clientId=easacc{EnvName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Femail%2Fchange"
             };
 
         private List<string> ExcludeUrlContainsForLogedInUser() =>
