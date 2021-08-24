@@ -11,7 +11,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public YourTransfersPage(ScenarioContext context) : base(context) => _context = context;
 
         protected override By PageHeader => By.XPath("//*[@id='content']/h1");
-        protected override string PageTitle => "Your Transfers";
+        protected override string PageTitle => "Transfers";
         private By createTransfersPledgeButton = By.Id("CreateTransfersPledgeButton");
 
         public bool CheckPageTitle()

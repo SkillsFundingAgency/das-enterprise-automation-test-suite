@@ -14,8 +14,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
 
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        protected override string PageTitle => "Create a transfers pledge";
-        //private By createTransfersPledgeButton = By.CssSelector("//a[@id='MainContent']/../h1");
+        protected override string PageTitle => "Create a transfer pledge";
+ 
 
         public bool CheckPageTitle()
         {

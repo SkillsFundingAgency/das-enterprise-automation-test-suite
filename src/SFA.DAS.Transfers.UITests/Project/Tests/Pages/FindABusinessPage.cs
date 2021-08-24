@@ -11,7 +11,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public FindABusinessPage(ScenarioContext context) : base(context) => _context = context;
 
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        protected override string PageTitle => "Find a business to transfer your levy to by creating a transfers pledge";
+        protected override string PageTitle => "Pledge and transfer your levy funds";
         private By continueButton = By.XPath("//*[@id='main-content']/div/div/div/a[1]");
         public bool CheckPageTitle()
         {
