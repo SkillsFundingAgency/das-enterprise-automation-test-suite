@@ -166,9 +166,15 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 21
- testRunner.And("user verifies the different statuses of the standard withdrawl application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("starts the journey to withdraw a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
+ testRunner.Then("the withdrawal user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 23
+ testRunner.And("user verifies the different statuses of the standard withdrawl application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
  testRunner.And("user verifies view links navigate to the appropriate corresponding page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
