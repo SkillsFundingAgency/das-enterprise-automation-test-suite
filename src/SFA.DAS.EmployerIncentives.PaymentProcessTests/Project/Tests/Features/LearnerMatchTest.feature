@@ -1,7 +1,7 @@
-﻿Feature: LearnerMatchTest
+﻿@employerincentivesPaymentsProcess
+Feature: LearnerMatchTest
 	Test feature to verify learner match helper is working
 
-@employerincentivesPaymentsProcess
 Scenario: Learner match runs
 	Given there are some apprenticeship incentives
 	When the learner match service is completed
@@ -56,7 +56,7 @@ Scenario: Learner match found with data lock in previous academic year
 	And the learner has a data lock for a price episode in the previous academic year
 	And the learner match service is completed
 	Then a learner match record is created for the apprenticeship id
-	And the learner record has data lock set to true
+	And the learner record has data lock set to false
 
 Scenario: Learner match found with data lock in previous academic year and no data lock in current academic year
 	Given an apprenticeship incentive for a learner submitted in the previous academic year
@@ -64,7 +64,7 @@ Scenario: Learner match found with data lock in previous academic year and no da
 	And the learner has a data lock for a price episode in the previous academic year
 	And the learner match service is completed
 	And a learner match record is created for the apprenticeship id
-	And the learner record has data lock set to true
+	And the learner record has data lock set to false
 	And the learner is found in learning in the current academic year
 	And the learner has no data lock for a price episode in the current academic year
 	And the learner match service is completed
@@ -116,6 +116,7 @@ Scenario: Learning found in current academic year but not in previous academic y
 	When the learner match process has run
 	Then learner data is updated to reflect that learning has been found
 
+@ignore
 Scenario: Learning found in previous academic year but not current academic year AND provider has submitted ILR in current academic year
 	Given an incentive application has a learner match record in previous academic year	
 	And learner match has a matching apprenticeship ID in a price episode in the previous academic year but not the current academic year

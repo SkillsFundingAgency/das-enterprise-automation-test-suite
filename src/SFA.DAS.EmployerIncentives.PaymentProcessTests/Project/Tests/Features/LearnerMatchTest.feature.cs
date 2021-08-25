@@ -21,12 +21,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("LearnerMatchTest")]
+    [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
     public partial class LearnerMatchTestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "employerincentivesPaymentsProcess"};
         
 #line 1 "LearnerMatchTest.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchTest", "\tTest feature to verify learner match helper is working", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchTest", "\tTest feature to verify learner match helper is working", ProgrammingLanguage.CSharp, new string[] {
+                        "employerincentivesPaymentsProcess"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,11 +78,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Learner match runs")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
         public virtual void LearnerMatchRuns()
         {
-            string[] tagsOfScenario = new string[] {
-                    "employerincentivesPaymentsProcess"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner match runs", null, tagsOfScenario, argumentsOfScenario);
 #line 5
@@ -445,7 +446,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("a learner match record is created for the apprenticeship id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 59
- testRunner.And("the learner record has data lock set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the learner record has data lock set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -497,7 +498,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("a learner match record is created for the apprenticeship id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 67
- testRunner.And("the learner record has data lock set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the learner record has data lock set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 68
  testRunner.And("the learner is found in learning in the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -791,13 +792,15 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Learning found in previous academic year but not current academic year AND provid" +
             "er has submitted ILR in current academic year")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
         public virtual void LearningFoundInPreviousAcademicYearButNotCurrentAcademicYearANDProviderHasSubmittedILRInCurrentAcademicYear()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learning found in previous academic year but not current academic year AND provid" +
                     "er has submitted ILR in current academic year", null, tagsOfScenario, argumentsOfScenario);
-#line 119
+#line 120
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -817,20 +820,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 120
+#line 121
  testRunner.Given("an incentive application has a learner match record in previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 121
+#line 122
  testRunner.And("learner match has a matching apprenticeship ID in a price episode in the previous" +
                         " academic year but not the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 122
+#line 123
  testRunner.When("the learner match process has run", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 123
+#line 124
  testRunner.Then("learner data is updated to reflect that learning has been found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 124
+#line 125
  testRunner.And("the learning is stopped", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

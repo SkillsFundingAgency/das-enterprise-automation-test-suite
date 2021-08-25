@@ -63,12 +63,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ReviewYourCohortPage(_context);
         }
 
-        public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new YouMustCompleteAllApprenticeDetailsPage(_context);
+            return new YouCantApproveThisApprenticeRequestUntilPage(_context);
         }
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
