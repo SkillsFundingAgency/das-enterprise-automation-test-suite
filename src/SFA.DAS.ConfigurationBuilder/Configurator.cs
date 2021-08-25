@@ -72,6 +72,8 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static string GetProjectName() => GetHostingConfigSection("ProjectName");
 
+        public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
+
         private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
     }
 }

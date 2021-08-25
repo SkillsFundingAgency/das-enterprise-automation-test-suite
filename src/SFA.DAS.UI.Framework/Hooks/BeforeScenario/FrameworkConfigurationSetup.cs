@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
@@ -24,17 +25,20 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 2)]
         public void SetUpFrameworkConfiguration()
         {
+            var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
+
+            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList();
+
             var frameworkConfig = new FrameworkConfig
             {
                 NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                IsVstsExecution = Configurator.IsVstsExecution
-            };
-
+                IsVstsExecution = Configurator.IsVstsExecution,
+                CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x))
+        };
+            
             _context.Set(frameworkConfig);
-
-            var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
 

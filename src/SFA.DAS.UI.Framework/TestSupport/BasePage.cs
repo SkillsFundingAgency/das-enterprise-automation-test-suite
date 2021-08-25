@@ -12,6 +12,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class BasePage
     {
         #region Helpers and Context
+        private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly FrameworkConfig _frameworkConfig;
@@ -35,6 +36,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected BasePage(ScenarioContext context)
         {
+            _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -46,8 +48,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
 
-            if (CaptureUrl && context.ScenarioInfo.Tags.Contains("authtests")) objectContext.SetAuthUrl(_webDriver.Url);
+            if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
+
+        private bool CanCaptureUrl() => (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl && _context.ScenarioInfo.Tags.Contains("authtests"));
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
