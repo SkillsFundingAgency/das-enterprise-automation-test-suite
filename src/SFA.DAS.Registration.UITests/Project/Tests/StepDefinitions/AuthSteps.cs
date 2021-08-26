@@ -89,8 +89,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 }              
             }
 
-            _objectContext.Set($"{scenarioTitle}_Verified Urls", VerifiedUrlsToString());
-            _objectContext.Set($"{scenarioTitle}_Skipped Urls", SkippedUrlsToString());
+            _objectContext.Replace($"{scenarioTitle}_Verified Urls", VerifiedUrlsToString());
+            _objectContext.Replace($"{scenarioTitle}_Skipped Urls", SkippedUrlsToString());
 
             if (exceptions.Count > 0) throw new Exception($"{exceptions.ToString(Environment.NewLine)}{Environment.NewLine}" +
                 $"{VerifiedUrlsToString()}{SkippedUrlsToString()}");
