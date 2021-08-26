@@ -54,11 +54,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool CanCaptureUrl()
         {
-            TestContext.Progress.WriteLine($"_frameworkConfig.IsVstsExecution - {_frameworkConfig.IsVstsExecution}");
             TestContext.Progress.WriteLine($"_frameworkConfig.CanCaptureUrl - {_frameworkConfig.CanCaptureUrl}");
             TestContext.Progress.WriteLine($"CaptureUrl - {CaptureUrl}");
 
-            return (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl);
+            return (_frameworkConfig.CanCaptureUrl && CaptureUrl);
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);

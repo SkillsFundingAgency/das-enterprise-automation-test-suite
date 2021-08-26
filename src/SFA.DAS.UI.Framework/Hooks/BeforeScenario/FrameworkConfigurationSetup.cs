@@ -34,13 +34,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             TestContext.Progress.WriteLine($"Configurator.GetDeploymentRequestedFor() - {Configurator.GetDeploymentRequestedFor()}");
 
+            bool IsVstsExecution = Configurator.IsVstsExecution;
+
             var frameworkConfig = new FrameworkConfig
             {
                 NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                IsVstsExecution = Configurator.IsVstsExecution,
-                CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x))
+                IsVstsExecution = IsVstsExecution,
+                CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x)) && IsVstsExecution
             };
 
             TestContext.Progress.WriteLine($"frameworkConfig.CanCaptureUrl - {frameworkConfig.CanCaptureUrl}");
