@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
+using NUnit.Framework;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
@@ -28,6 +29,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList();
+
+            TestContext.WriteLine($"Configurator.GetDeploymentRequestedFor() - {Configurator.GetDeploymentRequestedFor()}");
 
             var frameworkConfig = new FrameworkConfig
             {
