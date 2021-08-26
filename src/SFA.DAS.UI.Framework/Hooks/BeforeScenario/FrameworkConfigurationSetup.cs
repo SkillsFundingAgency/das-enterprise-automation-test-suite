@@ -36,7 +36,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = Configurator.IsVstsExecution,
                 CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x))
-        };
+            };
             
             _context.Set(frameworkConfig);
 

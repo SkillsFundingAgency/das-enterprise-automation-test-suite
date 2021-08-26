@@ -33,7 +33,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By AcceptCookieButton { get; }
 
         protected virtual bool CaptureUrl => true;
-
+        
         protected BasePage(ScenarioContext context)
         {
             _context = context;
@@ -51,7 +51,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
 
-        private bool CanCaptureUrl() => (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl && _context.ScenarioInfo.Tags.Contains("authtests"));
+        private bool CanCaptureUrl() => (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl);
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
