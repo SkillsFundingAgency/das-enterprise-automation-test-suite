@@ -13,7 +13,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class BasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly FrameworkConfig _frameworkConfig;
@@ -37,7 +36,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         
         protected BasePage(ScenarioContext context)
         {
-            _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -54,7 +52,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
 
-        private bool CanCaptureUrl() => (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl);
+        private bool CanCaptureUrl()
+        {
+            TestContext.Progress.WriteLine($"_frameworkConfig.IsVstsExecution - {_frameworkConfig.IsVstsExecution}");
+            TestContext.Progress.WriteLine($"_frameworkConfig.CanCaptureUrl - {_frameworkConfig.CanCaptureUrl}");
+            TestContext.Progress.WriteLine($"CaptureUrl - {CaptureUrl}");
+
+            return (_frameworkConfig.IsVstsExecution && _frameworkConfig.CanCaptureUrl && CaptureUrl);
+        }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 

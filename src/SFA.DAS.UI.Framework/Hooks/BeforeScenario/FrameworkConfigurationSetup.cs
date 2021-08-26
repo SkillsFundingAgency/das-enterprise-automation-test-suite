@@ -42,7 +42,9 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 IsVstsExecution = Configurator.IsVstsExecution,
                 CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x))
             };
-            
+
+            TestContext.Progress.WriteLine($"frameworkConfig.CanCaptureUrl - {frameworkConfig.CanCaptureUrl}");
+
             _context.Set(frameworkConfig);
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
