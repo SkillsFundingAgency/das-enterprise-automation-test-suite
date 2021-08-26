@@ -57,9 +57,11 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             var urldataset = _objectContext.GetAll().GetValue<List<string>>("AuthUrlsKey");
 
+            List<string> distinctUrls = urldataset.ToHashSet().ToList();
+
             TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
 
-            for (int i = 0; i < urldataset.Count; i++) { records.Add(new TestData { Key = i.ToString(), Value = urldataset[i].ToString() });  };
+            for (int i = 0; i < distinctUrls.Count; i++) { records.Add(new TestData { Key = i.ToString(), Value = distinctUrls[i].ToString() });  };
             
             WriteRecords(fileName, records);
         }
