@@ -51,16 +51,20 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 99)]
         public void CollectUrlData()
         {
-            string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
+            string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.json";
+
+            List<TestData> records = new List<TestData>();
 
             var urldataset = _objectContext.GetAll().GetValue<List<string>>("AuthUrlsKey");
 
-            TestContext.Progress.WriteLine($"{urldataset.Count} url data set are available for {_scenarioTitle}");
+            TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
 
-            WriteRecords(fileName, urldataset);
+            for (int i = 0; i < urldataset.Count; i++) { records.Add(new TestData { Key = i.ToString(), Value = urldataset[i].ToString() });  };
+            
+            WriteRecords(fileName, records);
         }
 
-        private void WriteRecords<T>(string fileName, List<T> data)
+        private void WriteRecords(string fileName, List<TestData> data)
         {
             string filePath = Path.Combine(GetDirectory(), fileName);
 
