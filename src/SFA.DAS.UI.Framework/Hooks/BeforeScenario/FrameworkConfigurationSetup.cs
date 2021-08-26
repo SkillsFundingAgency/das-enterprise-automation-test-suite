@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
-            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList();
+            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList().Select(x => x.Trim()).ToList();
 
             TestContext.Progress.WriteLine($"captureUrlAdmin - {testExecutionConfig.CaptureUrlAdmins}");
 
