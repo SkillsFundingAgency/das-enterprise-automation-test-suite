@@ -49,7 +49,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
 
-            TestContext.WriteLine($"CanCaptureUrl() - {CanCaptureUrl()}");
+            TestContext.Progress.WriteLine($"CanCaptureUrl() - {CanCaptureUrl()}");
 
             if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
