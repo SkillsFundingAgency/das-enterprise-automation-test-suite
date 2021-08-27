@@ -37,6 +37,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         }
 
+        public void EnterPledgeAmount(string pledgeAmount)
+        {
+            formCompletionHelper.EnterText(pledgeAmountField, pledgeAmount);
+
+        }
+
         public void SelectAmount(int pledgeAmount)
         {
             formCompletionHelper.EnterText(pledgeAmountField, pledgeAmount);

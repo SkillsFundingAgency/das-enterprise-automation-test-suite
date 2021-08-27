@@ -18,6 +18,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class LevyTransfersSteps
     {
+        public static string newPledgeID;
         private readonly ScenarioContext _context;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
@@ -128,6 +129,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         }
 
+        [Then(@"I enter Transfer Amount using comma separator of '(.*)'")]
+        public void ThenIEnterTransferAmountUsingCommaSeparatorOf(String p0)
+        {
+            PledgeAmountAndOrgNamePage pledgeAmountAndOrgNamePage = new PledgeAmountAndOrgNamePage(_context);
+            pledgeAmountAndOrgNamePage.ClickPledgeAmountLink();
+            pledgeAmountAndOrgNamePage.EnterPledgeAmount(p0);
+        }
+
+
         [Then(@"I select '(.*)' to Organisation Name Shown Publicly")]
         public void ThenISelectToOrganisationNameShownPublicly(string p0)
         {
@@ -163,6 +173,34 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             pledgeCreatedSuccessPage.CheckPagePanelTitle();
 
         }
+
+        [Then(@"I store the newly created pledge ID")]
+        public void ThenIStoreTheNewlyCreatedPledgeID()
+        {
+            PledgeCreatedSuccessPage pledgeCreatedSuccessPage = new PledgeCreatedSuccessPage(_context);
+            newPledgeID = pledgeCreatedSuccessPage.GetNewPledgeID();
+            
+            TestContext.Progress.WriteLine(newPledgeID);
+        }
+
+        [When(@"I click on View Your Pledges")]
+        public void WhenIClickOnViewYourPledges()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"I am taken to the My Transfer Pledges page")]
+        public void ThenIAmTakenToTheMyTransferPledgesPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the created pledge appears on the page")]
+        public void ThenTheCreatedPledgeAppearsOnThePage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
     }
 }

@@ -17,6 +17,7 @@
 	When I click on the Amount You Want To Pledge Link
 	Then I am on Pledge Amount And Org Name Page
 	And I enter Transfer Amount of '22000'
+	And I enter Transfer Amount using comma separator of '22,123'
 	And I select 'Yes' to Organisation Name Shown Publicly
 
 	When I click on Pledge Amount Continue
@@ -26,3 +27,9 @@
 
 	When I click on Submit My Pledge
 	Then I am on the Your Pledge Has Been Created Screen
+
+	And I store the newly created pledge ID
+
+	When I click on View Your Pledges
+	Then I am taken to the My Transfer Pledges page
+	And the created pledge appears on the page

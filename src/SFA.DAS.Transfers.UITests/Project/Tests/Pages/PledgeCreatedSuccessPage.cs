@@ -46,7 +46,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             
             pledgeConfirmationFullMessage = _webDriver.FindElement(pledgeCreatedConfirmationPanel).Text;
             pledgeID = pledgeConfirmationFullMessage.Substring(pledgeConfirmationFullMessage.Length - 6);
-            return pledgeConfirmationFullMessage;
+            return pledgeID;
         }
 
     }
