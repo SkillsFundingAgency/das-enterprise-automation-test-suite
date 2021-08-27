@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Collections.Generic;
@@ -20,14 +19,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private PendingPayment _initialEarning;
         private List<PendingPayment> _newEarnings;
 
-        private readonly Helper _helper;
-
         public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
-            testData.AccountId = 14326;
-            testData.ApprenticeshipId = 133217;
-
-            _helper = context.Get<Helper>();
         }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
@@ -37,16 +30,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _initialStartDate = startDate;
             _initialEndDate = endDate;
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
-            testData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase1)
+            TestData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccount(TestData.Account)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase1)
                 .Create();
 
-            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
+            await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
         }
 
         [Given(@"an existing phase 2 apprenticeship incentive for a learner under 25 years old")]
@@ -54,16 +47,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             _initialStartDate = new DateTime(2021, 04, 01);
             _initialEndDate = new DateTime(2023, 04, 01);
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
-            testData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, testData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
+            TestData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccount(TestData.Account)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
                 .Create();
 
-            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
+            await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
         }
 
         [Given(@"an existing phase 2 apprenticeship incentive")]
@@ -75,18 +68,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
         public async Task GivenAPaymentOf1000SentInPeriodR072021(int amount, byte period, short year)
         {
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
-                .WithPeriod(testData.ApprenticeshipId, 7)
+                .WithPeriod(TestData.ApprenticeshipId, 7)
                 .Create();
 
             var learnerSubmissionDataR7 = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(testData.UKPRN)
-                .WithUln(testData.ULN)
+                .WithUkprn(TestData.UKPRN)
+                .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(7)
@@ -94,19 +87,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionDataR7);
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionDataR7);
+            await Helper.LearnerMatchOrchestratorHelper.Run();
 
-            await _helper.BusinessCentralApiHelper.AcceptAllPayments();
-            await _helper.PaymentsOrchestratorHelper.Run();
-            await _helper.PaymentsOrchestratorHelper.Approve();
+            await Helper.BusinessCentralApiHelper.AcceptAllPayments();
+            await Helper.PaymentsOrchestratorHelper.Run();
+            await Helper.PaymentsOrchestratorHelper.Approve();
 
-            _initialEarning = _helper.EISqlHelper.GetFromDatabase<PendingPayment>(p =>
-                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
+            _initialEarning = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(p =>
+                p.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && p.EarningType == EarningType.FirstPayment);
             _initialEarning.PaymentMadeDate.Should().NotBeNull();
 
-            _payment = _helper.EISqlHelper.GetFromDatabase<Payment>(p =>
-                p.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
+            _payment = Helper.EISqlHelper.GetFromDatabase<Payment>(p =>
+                p.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && p.PendingPaymentId == _initialEarning.Id);
             _payment.Should().NotBeNull();
             _payment.PaidDate.Should().NotBeNull();
             _payment.Amount.Should().Be(amount);
@@ -115,7 +108,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a start date change of circumstance occurs in Period R(.*) (.*)")]
         public async Task GivenAStartDateChangeOfCircumstanceOccursInPeriodR09(byte period, short year)
         {
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
         }
 
         [Given(
@@ -128,19 +121,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
-                .WithPeriod(testData.ApprenticeshipId, 8)
+                .WithPeriod(TestData.ApprenticeshipId, 8)
                 .Create();
 
             var learnerSubmissionDataR8 = CreateLearnerSubmissionDto(newStartDate, priceEpisode, 2021);
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionDataR8);
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionDataR8);
+            await Helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the incentive learner data is refreshed")]
         public async Task WhenTheIncentiveLearnerDataIsRefreshed()
         {
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the start date is changed making the learner 25 on the start date")]
@@ -151,61 +144,61 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
-                .WithPeriod(testData.ApprenticeshipId, 8)
+                .WithPeriod(TestData.ApprenticeshipId, 8)
                 .Create();
 
             var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode, 2021);
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
 
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         [When(@"the start date is changed to before the start of the eligibility period in period (.*) AY (.*)")]
         public async Task WhenTheStartDateIsBeforeTheEligibilityPeriod(byte period, short academicYear)
         {
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
 
             var newStartDate = new DateTime(2021, 03, 31);
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
-                .WithPeriod(testData.ApprenticeshipId, period)
+                .WithPeriod(TestData.ApprenticeshipId, period)
                 .Create();
 
             var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode, academicYear);
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
 
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchOrchestratorHelper.Run();
         }
         
         [When(@"the start date is changed to a date after the start of the eligibility period in period (.*) AY (.*)")]
         public async Task WhenTheStartDateIsChangedToADateAfterTheStartOfTheEligibilityPeriodInPeriodAcademicYear(byte period, short academicYear)
         {
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
 
             var newStartDate = new DateTime(2021, 04, 01);
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(newStartDate)
                 .WithEndDate("2023-10-15T00:00:00")
-                .WithPeriod(testData.ApprenticeshipId, period)
+                .WithPeriod(TestData.ApprenticeshipId, period)
                 .Create();
 
             var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode, academicYear);
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
 
-            await _helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.LearnerMatchOrchestratorHelper.Run();
         }
 
         private LearnerSubmissionDto CreateLearnerSubmissionDto(DateTime newStartDate, PriceEpisodeDto priceEpisode, short academicYear)
         {
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithAcademicYear(2021)
-                .WithUkprn(testData.UKPRN)
-                .WithUln(testData.ULN)
+                .WithUkprn(TestData.UKPRN)
+                .WithUln(TestData.ULN)
                 .WithAcademicYear(academicYear)
                 .WithIlrSubmissionDate(DateTime.Now)
                 .WithIlrSubmissionWindowPeriod(4)
@@ -219,19 +212,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the earnings are recalculated")]
         public void WhenTheEarningsAreRecalculated()
         {
-            _newEarnings = _helper.EISqlHelper.GetAllFromDatabase<PendingPayment>()
-                .Where(x => x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId).ToList();
+            _newEarnings = Helper.EISqlHelper.GetAllFromDatabase<PendingPayment>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
         }
 
         [Then(@"the paid earning of £(.*) is marked as requiring a clawback in the currently active Period R(.*) (.*)")]
         public void ThenThePaidEarningOfIsMarkedAsRequiringAClawbackInTheCurrentlyActivePeriodR(int amount, byte period,
             short year)
         {
-            var pendingPayment = _helper.EISqlHelper.GetFromDatabase<PendingPayment>(p => p.Id == _initialEarning.Id);
+            var pendingPayment = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(p => p.Id == _initialEarning.Id);
             pendingPayment.PaymentMadeDate.Should().NotBeNull();
             pendingPayment.ClawedBack.Should().BeTrue();
 
-            var clawback = _helper.EISqlHelper.GetFromDatabase<ClawbackPayment>(p => p.PendingPaymentId == _initialEarning.Id);
+            var clawback = Helper.EISqlHelper.GetFromDatabase<ClawbackPayment>(p => p.PendingPaymentId == _initialEarning.Id);
             clawback.Should().BeEquivalentTo(_payment, opt => opt.ExcludingMissingMembers()
                 .Excluding(x => x.Id)
                 .Excluding(x => x.Amount)
@@ -270,7 +263,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenANewFirstPendingPaymentOfIsCreated(int amount)
         {
             var pp = _newEarnings.Single(x =>
-                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
+                x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                 && x.EarningType == EarningType.FirstPayment
                 && !x.ClawedBack);
 
@@ -282,7 +275,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenANewSecondPendingPaymentOfIsCreated(int amount)
         {
             var pp = _newEarnings.Single(x =>
-                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
+                x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                 && x.EarningType == EarningType.SecondPayment
                 && !x.ClawedBack);
 
@@ -293,7 +286,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private void AssertPendingPayment(int amount, byte period, short year, EarningType earningType)
         {
             var pp = _newEarnings.Single(x =>
-                x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId
+                x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                 && x.EarningType == earningType
                 && !x.ClawedBack);
 

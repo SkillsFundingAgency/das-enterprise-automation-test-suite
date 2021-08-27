@@ -14,6 +14,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             var fixture = new Fixture();
             _data = fixture.Create<PriceEpisodeDto>();
             _data.Periods = new List<PeriodDto>();
+            _data.AcademicYear = "2021";
         }
 
         public PriceEpisodeDto Create() => _data;

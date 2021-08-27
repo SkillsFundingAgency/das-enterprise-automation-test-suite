@@ -43,6 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectPassAndContinueInManagementHierarchyPage()
                 .SelectPassAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }
@@ -51,6 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
+                .SelectFailAndContinueInManagementHierarchyPage()
                 .SelectFailAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusFail);
         }
