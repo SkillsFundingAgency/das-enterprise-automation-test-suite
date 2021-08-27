@@ -42,7 +42,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = IsVstsExecution,
-                CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x)) && IsVstsExecution
+                CanCaptureUrl = true //captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x)) && IsVstsExecution
             };
 
             _context.Set(frameworkConfig);

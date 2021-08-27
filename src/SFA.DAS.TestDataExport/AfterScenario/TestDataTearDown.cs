@@ -46,7 +46,15 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
 
-            WriteRecords(fileName, (x) => x.WriteRecords(records));
+            WriteRecords(fileName, (x) =>
+            {
+                using (var writer = new StreamWriter(x))
+                {
+                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                    csv.WriteRecords(records);
+                    writer?.Flush();
+                };
+            });
         }
 
         [AfterScenario(Order = 99)]
@@ -56,31 +64,34 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             List<TestData> records = new List<TestData>();
 
-            var urldataset = _objectContext.GetAll().GetValue<List<string>>("AuthUrlsKey");
+            var urldataset = _objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
             List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
             TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
 
-            for (int i = 0; i < distinctUrls.Count; i++) { records.Add(new TestData { Key = i.ToString(), Value = distinctUrls[i].ToString() });  };
+            for (int i = 0; i < distinctUrls.Count; i++) { records.Add(new TestData { Key = i, Value = distinctUrls[i].ToString() });  };
 
             string strJson = JsonHelper.Serialize(records);
 
-            WriteRecords(fileName, (x) => x.WriteRecord(strJson));
+            WriteRecords(fileName, (x) =>
+            {
+                using (var writer = new StreamWriter(x))
+                {
+                    writer.WriteLine(strJson);
+                    writer?.Flush();
+                }
+            });
         }
 
-        private void WriteRecords(string fileName, Action<CsvWriter> action)
+        private void WriteRecords(string fileName, Action<string> action)
         {
             string filePath = Path.Combine(GetDirectory(), fileName);
 
             try
             {
-                using (var writer = new StreamWriter(filePath))
-                {
-                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                    action(csv);
-                    writer?.Flush();
-                }
+                action(filePath);
+
                 TestContext.AddTestAttachment(filePath, fileName);
             }
             catch (Exception ex)
