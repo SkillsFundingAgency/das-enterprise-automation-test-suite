@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         protected readonly ObjectContext _objectContext;
-        protected readonly AssertHelper _assertHelper;
+        protected readonly RetryAssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _assertHelper = context.Get<AssertHelper>();
+            _assertHelper = context.Get<RetryAssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
