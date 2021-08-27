@@ -7,6 +7,8 @@ using NUnit.Framework;
 using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using System.Globalization;
+using System.Text.Json;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -45,7 +47,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
 
-            WriteRecords(fileName, records);
+            WriteRecords(fileName, (x) => x.WriteRecords(records));
         }
 
         [AfterScenario(Order = 99)]
@@ -62,11 +64,13 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
 
             for (int i = 0; i < distinctUrls.Count; i++) { records.Add(new TestData { Key = i.ToString(), Value = distinctUrls[i].ToString() });  };
-            
-            WriteRecords(fileName, records);
+
+            string strJson = JsonHelper.Serialize(records);
+
+            WriteRecords(fileName, (x) => x.WriteRecord(strJson));
         }
 
-        private void WriteRecords(string fileName, List<TestData> data)
+        private void WriteRecords(string fileName, Action<CsvWriter> action)
         {
             string filePath = Path.Combine(GetDirectory(), fileName);
 
@@ -75,7 +79,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
                 using (var writer = new StreamWriter(filePath))
                 {
                     using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                    csv.WriteRecords(data);
+                    action(csv);
                     writer?.Flush();
                 }
                 TestContext.AddTestAttachment(filePath, fileName);
