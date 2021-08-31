@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             objectContext.SetRegisteredEmail(loginusername);
             objectContext.UpdateOrganisationName(organisationName);
-            objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
+            objectContext.Replace(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
         internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);

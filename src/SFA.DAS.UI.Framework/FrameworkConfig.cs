@@ -12,6 +12,8 @@ namespace SFA.DAS.UI.Framework
 
         public bool IsVstsExecution { get; internal set; }
 
+        public bool CanCaptureUrl { get; internal set; }
+
         public string SampleFileName => "Sample.pdf";
     }
 }
