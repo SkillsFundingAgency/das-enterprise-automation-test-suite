@@ -17,7 +17,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         private readonly ObjectContext _objectContext;
         private readonly string _scenarioTitle;
         private readonly ScenarioContext _context;
-        private static string _directory;
         private static List<string> _urls;
 
         public TestDataTearDown(ScenarioContext context)
@@ -25,7 +24,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             _context = context;
             _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
-            _directory = _objectContext.GetDirectory();
         }
 
 
@@ -39,11 +37,20 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             string fileName = $"UrlCollection_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            string filePath = Path.Combine(_directory, fileName);
+            string filePath = Path.Combine($"{Configurator.GetAgentTempDir()}/TestResults", fileName);
 
-            File.WriteAllLines(filePath, _urls);
+            TestContext.Progress.WriteLine($"filePath - {filePath}");
 
-            TestContext.AddTestAttachment(filePath, fileName);
+            try
+            {
+                File.WriteAllLines(filePath, _urls);
+
+                TestContext.AddTestAttachment(filePath, fileName);
+            }
+            catch (Exception ex)
+            {
+                TestContext.Progress.WriteLine($"Exception occurred while writing UrlCollection data in AfterTestRun - {filePath}" + ex);
+            }
         }
 
 
@@ -117,12 +124,10 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         private void WriteRecords(string fileName, Action<string> action)
         {
-            string filePath = Path.Combine(_directory, fileName);
+            string filePath = Path.Combine(_objectContext.GetDirectory(), fileName);
 
             try
             {
-                TestContext.Progress.WriteLine($"filePath - {filePath}");
-
                 action(filePath);
 
                 TestContext.AddTestAttachment(filePath, fileName);
@@ -136,6 +141,5 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         }
 
         private string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
-
     }
 }
