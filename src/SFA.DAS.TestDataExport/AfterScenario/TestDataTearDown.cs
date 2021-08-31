@@ -66,6 +66,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             var urldataset = _objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
+            if (urldataset == null || urldataset?.Count == 0) return;
+
             List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
             TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
