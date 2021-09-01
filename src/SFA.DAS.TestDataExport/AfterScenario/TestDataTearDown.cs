@@ -11,19 +11,40 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
-    [Binding]
+     [Binding]
     public class TestDataTearDown
     {
         private readonly ObjectContext _objectContext;
         private readonly string _scenarioTitle;
         private readonly ScenarioContext _context;
+        private static string _directory;
+        private static List<string> _urls;
 
         public TestDataTearDown(ScenarioContext context)
         {
             _context = context;
             _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
+            _directory = _objectContext.GetDirectory();
         }
+
+        [BeforeTestRun]
+        public static void BeforeTestRun() => _urls = new List<string>();
+
+        [AfterTestRun]
+        public static void AfterTestRun()
+        {
+            if (_urls.Count == 0) return;
+
+            string fileName = $"UrlCollection_{DateTime.Now:HH-mm-ss-fffff}.txt";
+
+            string filePath = Path.Combine(_directory, fileName);
+
+            File.WriteAllLines(filePath, _urls);
+
+            TestContext.AddTestAttachment(filePath, fileName);
+        }
+
 
         [AfterStep(Order = 10)]
         public void AfterStep()
@@ -72,7 +93,14 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
 
-            for (int i = 0; i < distinctUrls.Count; i++) { records.Add(new TestData { Key = i, Value = distinctUrls[i].ToString() });  };
+            for (int i = 0; i < distinctUrls.Count; i++) 
+            {
+                var url = distinctUrls[i].ToString();
+
+                _urls.Add(url);
+
+                records.Add(new TestData { Key = i, Value = url });  
+            };
 
             string strJson = JsonHelper.Serialize(records);
 
@@ -88,7 +116,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         private void WriteRecords(string fileName, Action<string> action)
         {
-            string filePath = Path.Combine(GetDirectory(), fileName);
+            string filePath = Path.Combine(_directory, fileName);
 
             try
             {
@@ -103,8 +131,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
                 _objectContext.SetAfterScenarioException(ex);
             }
         }
-
-        private string GetDirectory() => _objectContext.GetDirectory();
 
         private string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
 

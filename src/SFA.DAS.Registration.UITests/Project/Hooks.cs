@@ -65,12 +65,6 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 23)]
-        public void InitAuthUrl()
-        {
-            if (_frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
-        }
-
-        [BeforeScenario(Order = 23)]
         [Scope(Tag = "providerleadregistration")]
         public void SetUpProviderLeadRegistrationDataHelpers()
         {
