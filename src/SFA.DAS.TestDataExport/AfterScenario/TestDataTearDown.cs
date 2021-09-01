@@ -97,7 +97,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 99)]
         public void CollectUrlData()
         {
-            string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.json";
+            string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
             List<TestData> records = new List<TestData>();
 
@@ -109,24 +109,11 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             TestContext.Progress.WriteLine($"{distinctUrls?.Count} url data set are available for {_scenarioTitle}");
 
-            for (int i = 0; i < distinctUrls.Count; i++) 
-            {
-                var url = distinctUrls[i].ToString();
-
-                _urls.Add(url);
-
-                records.Add(new TestData { Key = i, Value = url });  
-            };
-
-            string strJson = JsonHelper.Serialize(records);
+            _urls.AddRange(distinctUrls);
 
             WriteRecords(fileName, (x) =>
             {
-                using (var writer = new StreamWriter(x))
-                {
-                    writer.WriteLine(strJson);
-                    writer?.Flush();
-                }
+                File.WriteAllLines(x, distinctUrls);
             });
         }
 
