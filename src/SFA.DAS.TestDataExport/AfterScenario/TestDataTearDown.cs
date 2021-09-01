@@ -40,6 +40,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             TestContext.Progress.WriteLine($"filePath - {filePath}");
 
+            TestContext.Progress.WriteLine($"{_urls.Count} url data set are available for the test suite execution");
+
             try
             {
                 File.WriteAllLines(filePath, _urls);
