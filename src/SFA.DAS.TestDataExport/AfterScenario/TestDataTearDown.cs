@@ -26,7 +26,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             _objectContext = context.Get<ObjectContext>();
         }
 
-
         [BeforeTestRun]
         public static void BeforeTestRun() => _urls = new List<string>();
 
