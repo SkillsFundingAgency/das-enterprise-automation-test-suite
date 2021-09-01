@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderReviewYourCohortPage SubmitValidApprenticeDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
             var fName = apprenticeDataHelper.ApprenticeFirstname;
             var lName = apprenticeDataHelper.ApprenticeLastname;
@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }

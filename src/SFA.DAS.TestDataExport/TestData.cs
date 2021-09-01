@@ -5,7 +5,7 @@ namespace SFA.DAS.TestDataExport
     public class TestData
     {
         [Name("Key")]
-        public string Key { get; set; }
+        public object Key { get; set; }
 
         [Name("Value")]
         public string Value { get; set; }

@@ -23,6 +23,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             return this;
         }
 
+        public IncentiveApplicationBuilder WithAccount((long AccountId, long AccountLegalEntityId) account)
+        {
+            _incentiveApplication.AccountId = account.AccountId;
+            _incentiveApplication.AccountLegalEntityId = account.AccountLegalEntityId;
+            return this;
+        }
+
         public IncentiveApplicationBuilder WithApprenticeship(long apprenticeshipId, long uln, long ukprn,
             DateTime plannedStartDate, DateTime dateOfBirth, Phase phase)
         {
@@ -47,5 +54,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
         {
             return _incentiveApplication;
         }
+
     }
 }

@@ -55,7 +55,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 }
             }
 
-            if (exceptions.Count > 0) throw new Exception(exceptions.Select(x => x.Message).ToList().ToString(Environment.NewLine));
+            if (exceptions.Count > 0) throw new Exception(exceptions.ExceptionToString());
 
             return result;
         }
