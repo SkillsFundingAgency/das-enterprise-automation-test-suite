@@ -30,10 +30,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList().Select(x => x.Trim()).ToList();
 
-            TestContext.Progress.WriteLine($"captureUrlAdmin - {testExecutionConfig.CaptureUrlAdmins}");
-
-            TestContext.Progress.WriteLine($"Configurator.GetDeploymentRequestedFor() - {Configurator.GetDeploymentRequestedFor()}");
-
             bool IsVstsExecution = Configurator.IsVstsExecution;
 
             var frameworkConfig = new FrameworkConfig

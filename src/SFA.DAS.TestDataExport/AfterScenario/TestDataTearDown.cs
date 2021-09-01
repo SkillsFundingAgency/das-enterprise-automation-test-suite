@@ -28,7 +28,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             _directory = _objectContext.GetDirectory();
         }
 
-
         [BeforeTestRun]
         public static void BeforeTestRun() => _urls = new List<string>();
 
@@ -121,8 +120,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             try
             {
-                TestContext.Progress.WriteLine($"filePath - {filePath}");
-
                 action(filePath);
 
                 TestContext.AddTestAttachment(filePath, fileName);
