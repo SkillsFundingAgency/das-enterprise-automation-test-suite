@@ -44,6 +44,11 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             TestContext.Progress.WriteLine($"{distinctUrls.Count} url data set are available for the test suite execution");
 
+            for (int i = 0; i < distinctUrls.Count; i++)
+            {
+                TestContext.Progress.WriteLine($"{i} - {distinctUrls[i]}");
+            }
+
             try
             {
                 File.WriteAllLines(filePath, distinctUrls);
