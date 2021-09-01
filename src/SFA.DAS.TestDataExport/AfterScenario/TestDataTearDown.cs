@@ -102,7 +102,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
-            TestContext.Progress.WriteLine($"{urldataset?.Count} url data set are available for {_scenarioTitle}");
+            TestContext.Progress.WriteLine($"{distinctUrls?.Count} url data set are available for {_scenarioTitle}");
 
             for (int i = 0; i < distinctUrls.Count; i++) 
             {
