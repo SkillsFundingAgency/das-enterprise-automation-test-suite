@@ -34,17 +34,19 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             if (_urls.Count == 0) return;
 
+            List<string> distinctUrls = _urls.ToHashSet().ToList();
+
             string fileName = $"UrlCollection_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
             string filePath = Path.Combine($"{Configurator.GetAgentTempDir()}\\TestResults", fileName);
 
             TestContext.Progress.WriteLine($"filePath - {filePath}");
 
-            TestContext.Progress.WriteLine($"{_urls.Count} url data set are available for the test suite execution");
+            TestContext.Progress.WriteLine($"{distinctUrls.Count} url data set are available for the test suite execution");
 
             try
             {
-                File.WriteAllLines(filePath, _urls);
+                File.WriteAllLines(filePath, distinctUrls);
 
                 TestContext.AddTestAttachment(filePath, fileName);
             }
