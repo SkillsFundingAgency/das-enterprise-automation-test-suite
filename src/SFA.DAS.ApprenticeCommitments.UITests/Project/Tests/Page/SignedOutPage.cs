@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public SignedOutPage(ScenarioContext context) : base(context) => _context = context;
 
-        public SignIntoApprenticeshipPortalPage SignBackInFromSignOutPage()
+        public SignIntoApprenticeshipPortalPage ClickSignBackInLinkFromSignOutPage()
         {
             formCompletionHelper.ClickLinkByText("sign back in");
             return new SignIntoApprenticeshipPortalPage(_context);

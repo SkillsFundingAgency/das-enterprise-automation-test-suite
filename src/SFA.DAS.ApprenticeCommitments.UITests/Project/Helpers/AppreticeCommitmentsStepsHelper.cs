@@ -126,7 +126,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void UpdateConfirmBeforeDate() => _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
 
-        public void VerifyDaysToConfirmWarning(ApprenticeHomePage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
+        public void VerifyDaysToConfirmWarning(ApprenticeOverviewPage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
 
         private SignIntoApprenticeshipPortalPage NavigateToSignInPageFromSignUpCompletePage() => signUpCompletePage.ClickSignInToApprenticePortal();
 

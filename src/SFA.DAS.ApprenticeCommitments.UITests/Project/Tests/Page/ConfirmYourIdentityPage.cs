@@ -21,7 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeHomePage ConfirmIdentity()
+        public ApprenticeOverviewPage ConfirmIdentity()
         {
             EnterApprenticeDetails(objectContext.GetFirstName(),
                 objectContext.GetLastName(),
@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 objectContext.GetDateOfBirth().Month,
                 objectContext.GetDateOfBirth().Year);
 
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeOverviewPage(_context);
         }
 
         public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int? day, int? month, int? year)
