@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 objectContext.GetLastName(),
                 objectContext.GetDateOfBirth().Day,
                 objectContext.GetDateOfBirth().Month,
-                objectContext.GetDateOfBirth().Year); ;
+                objectContext.GetDateOfBirth().Year);
 
             return new ApprenticeHomePage(_context);
         }

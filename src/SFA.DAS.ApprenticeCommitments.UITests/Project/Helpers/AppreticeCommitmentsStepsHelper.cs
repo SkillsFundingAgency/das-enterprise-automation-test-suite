@@ -53,7 +53,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new CreatePasswordPage(_context);
         }
 
-        public ResetPasswordPage GetResetPasswordPage()
+        public ResetPasswordPage BuildResetPasswordPageUsingDBHelper()
         {
             RetryOnNUnitException(() =>
             {
@@ -78,13 +78,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
         }
 
-        public ForgottenPasswordConfirmPage SubmitResetPassword() => SignInPage().Resetpassword().Submit();
+        public ForgottenPasswordConfirmPage SubmitEmailToResetPasswordFromSignInPage() => NavigateToSignInPageFromSignUpCompletePage().ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
 
-        public SignIntoApprenticeshipPortalPage ResetPassword() => GetResetPasswordPage().CreatePassword().ReturnToApprenticeshipPortal();
+        public SignIntoApprenticeshipPortalPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().CreateAndConfirmPasswordOnCreatePasswordPage().ReturnToSignInPage();
 
-        public ConfirmYourIdentityPage SignInToApprenticePortal() => SignInPage().SignInToApprenticePortal();
+        public ConfirmYourIdentityPage SignInToApprenticePortal() => NavigateToSignInPageFromSignUpCompletePage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
 
-        public void InvalidPassword(PasswordBasePage passwordPage)
+        public void EnterMismatchedPasswordsAndValidateError(PasswordBasePage passwordPage)
         {
             var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
             StringAssert.Contains("There is a problem", error, "Password error message did not match");
@@ -128,7 +128,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyDaysToConfirmWarning(ApprenticeHomePage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
 
-        private SignIntoApprenticeshipPortalPage SignInPage() => signUpCompletePage.ClickSignInToApprenticePortal();
+        private SignIntoApprenticeshipPortalPage NavigateToSignInPageFromSignUpCompletePage() => signUpCompletePage.ClickSignInToApprenticePortal();
 
         private void PopulateExpectedApprenticeshipDetails()
         {
