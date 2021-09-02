@@ -46,7 +46,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             for (int i = 0; i < distinctUrls.Count; i++)
             {
-                TestContext.Progress.WriteLine($"{i} - {distinctUrls[i]}");
+                TestContext.Progress.WriteLine($"{i + 1} - {distinctUrls[i]}");
             }
 
             try
@@ -108,6 +108,11 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
             TestContext.Progress.WriteLine($"{distinctUrls?.Count} url data set are available for {_scenarioTitle}");
+
+            for (int i = 0; i < distinctUrls.Count; i++)
+            {
+                TestContext.Progress.WriteLine($"{i + 1} - {distinctUrls[i]}");
+            }
 
             _urls.AddRange(distinctUrls);
 
