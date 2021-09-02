@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Net;
 

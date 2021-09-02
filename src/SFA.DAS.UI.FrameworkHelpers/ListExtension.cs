@@ -19,5 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public static string ToString(this List<string> list, string separator) => string.Join(separator, list);
+
+        public static string ExceptionToString(this List<Exception> list) => string.Join(Environment.NewLine, list.Select(x => x.Message).ToList());
     }
 }

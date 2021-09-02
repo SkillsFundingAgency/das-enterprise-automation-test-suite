@@ -20,10 +20,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         [Then(@"application is submitted for review")]
         public void ThenApplicationIsSubmittedForReview() => _ePAOWithdrawalHelper.VerifyStandardSubmitted();
 
-        [Given(@"user verifies the different statuses of the standard withdrawl application")]
+        [Then(@"user verifies the different statuses of the standard withdrawl application")]
         public void GivenUserVerifiesTheDifferentStatusesOfTheStandardWithdrawlApplication() => _ePAOWithdrawalHelper.VerifyTheInProgressStatus();
 
-        [Given(@"user verifies view links navigate to the appropriate corresponding page")]
+        [Then(@"user verifies view links navigate to the appropriate corresponding page")]
         public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage() => _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
 
         [Then(@"the admin user logs in to approve the standard withdrawal application")]

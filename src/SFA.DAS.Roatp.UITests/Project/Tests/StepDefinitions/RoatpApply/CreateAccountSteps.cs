@@ -18,18 +18,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         private readonly RoatpApplyCreateUserDataHelpers _applydataHelpers;
-        private readonly AssertHelper _assertHelper;
+        private readonly RetryAssertHelper _assertHelper;
         private readonly ObjectContext _objectContext;
-        private readonly RoatpConfig _roatpConfig;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelpers>();
-            _assertHelper = context.Get<AssertHelper>();
+            _assertHelper = context.Get<RetryAssertHelper>();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
-            _roatpConfig = context.GetRoatpConfig<RoatpConfig>();
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.Get<DbConfig>());
         }
 
