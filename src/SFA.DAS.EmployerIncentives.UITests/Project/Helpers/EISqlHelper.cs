@@ -88,10 +88,21 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         private string CalculatedDueDate(string expectedEarningType)
         {
+
+            DateTime startDate = new DateTime(startYear, startMonth, 01);
+
             var monthDays = DateTime.DaysInMonth(startYear, startMonth);
-            DateTime expectedDueDate;
-            expectedDueDate = new DateTime(startYear, startMonth, monthDays);
-            expectedDueDate = expectedEarningType.Equals("FirstPayment") ? expectedDueDate.AddDays(89) : expectedDueDate.AddDays(364);
+            DateTime expectedDueDate = new DateTime(startYear, startMonth, monthDays);
+
+            if (expectedEarningType.Equals("FirstPayment"))
+            {
+                var currentDate = DateTime.Now;
+
+                if (startDate < new DateTime(currentDate.Year, currentDate.Month - 3, 01)) expectedDueDate = expectedDueDate.AddDays(89);
+                else expectedDueDate = currentDate.AddDays(21);
+            }
+            else expectedDueDate = expectedDueDate.AddDays(364);
+
             return expectedDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
