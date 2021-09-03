@@ -6,7 +6,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class ResubmittedVacancyReferencePage : RAAV2CSSBasePage
     {
 
-        //protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
         protected override string PageTitle => "Advert resubmitted to ESFA";
 
         protected By ReturnToDashboard => By.LinkText("Return to dashboard");
