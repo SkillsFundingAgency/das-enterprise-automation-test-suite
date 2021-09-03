@@ -229,8 +229,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, startdate.Month, startdate.Year);
         }
 
-
-
         [Then(@"the user can add an apprentices")]
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context, true).AddAnApprentice();
     }
