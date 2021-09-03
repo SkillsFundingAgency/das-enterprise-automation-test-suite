@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Threading.Tasks;
@@ -14,14 +13,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private PendingPayment _pendingPayment;
 
-        private readonly Helper _helper;
-
         protected PaymentValidationSteps(ScenarioContext context) : base(context)
         {
-            testData.AccountId = 14326;
-            testData.ApprenticeshipId = 133218;
-
-            _helper = context.Get<Helper>();
         }
 
         [Given(@"an existing apprenticeship incentive")]
@@ -29,28 +22,28 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             const byte period = 10;
             const short year = 2021;
-            await _helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
 
             var startDate = new DateTime(2021, 03, 03);
 
-            testData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccountId(testData.AccountId)
-                .WithApprenticeship(testData.ApprenticeshipId, testData.ULN, 
-                    testData.UKPRN, startDate, startDate.AddYears(-20)
+            TestData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccount(TestData.Account)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, 
+                    TestData.UKPRN, startDate, startDate.AddYears(-20)
                     ,Phase.Phase1)
                 .Create();
 
-            await _helper.IncentiveApplicationHelper.Submit(testData.IncentiveApplication);
+            await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
 
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithStartDate(startDate)
                 .WithEndDate("2022-10-15T00:00:00")
-                .WithPeriod(testData.ApprenticeshipId, 11)
+                .WithPeriod(TestData.ApprenticeshipId, 11)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
-                .WithUkprn(testData.UKPRN)
-                .WithUln(testData.ULN)
+                .WithUkprn(TestData.UKPRN)
+                .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
                 .WithIlrSubmissionDate("2020-11-12T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(11)
@@ -58,24 +51,24 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await _helper.LearnerMatchApiHelper.SetupResponse(testData.ULN, testData.UKPRN, learnerSubmissionData);
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
         }
 
         [When(@"the Payment Run occurs")]
         public async Task WhenThePaymentRunOccurs()
         {
-            await _helper.LearnerMatchOrchestratorHelper.Run();
-            await _helper.PaymentsOrchestratorHelper.Run();
-            await _helper.CollectionCalendarHelper.Reset();
+            await Helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.PaymentsOrchestratorHelper.Run();
+            await Helper.CollectionCalendarHelper.Reset();
         }
 
         [Then(@"the (.*) Step in PendingPaymentValidationResult table for the (.*) is set to (.*)")]
         public void ThenHasPendingPaymentValidationStepSetToValue(string stepName, EarningType earningType, bool stepValue)
         {
-            _pendingPayment = _helper.EISqlHelper.GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == testData.ApprenticeshipIncentiveId 
+            _pendingPayment = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId 
                                                                   && x.EarningType == earningType);
 
-            var validationStep = _helper.EISqlHelper.GetFromDatabase<PendingPaymentValidationResult>(x =>
+            var validationStep = Helper.EISqlHelper.GetFromDatabase<PendingPaymentValidationResult>(x =>
                 x.PendingPaymentId == _pendingPayment.Id
                 && x.Step == stepName);
             
@@ -86,7 +79,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the payment record for the first earnings is created")]
         public void ThenThePaymentRecordForTheFirstEarningsIsCreated()
         {
-            var payment = _helper.EISqlHelper.GetFromDatabase<Payment>(x => x.PendingPaymentId == _pendingPayment.Id);
+            var payment = Helper.EISqlHelper.GetFromDatabase<Payment>(x => x.PendingPaymentId == _pendingPayment.Id);
             payment.Should().NotBeNull();
             payment.PaymentPeriod.Should().Be(10);
             payment.PaymentYear.Should().Be(2021);

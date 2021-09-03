@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPassword
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PaymentsProcess")]
-    public partial class PaymentsProcessFeature
+    [NUnit.Framework.DescriptionAttribute("AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount")]
+    public partial class AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "PaymentsProcess.feature"
+#line 1 "AC_RP_02_ValidatePwdResetMismatchForPDPendingAc.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PaymentsProcess", "\tTest feature to verify the payments process works", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,15 +74,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Payments are generated")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
-        public virtual void PaymentsAreGenerated()
+        [NUnit.Framework.DescriptionAttribute("AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        public virtual void AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount()
         {
             string[] tagsOfScenario = new string[] {
-                    "employerincentivesPaymentsProcess"};
+                    "apprenticecommitments",
+                    "regression",
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Payments are generated", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,14 +106,12 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("there is a valid learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 7
- testRunner.When("the payment process is completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an apprentice submits Email to reset password for a new account pending personal " +
+                        "details confirmation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("payments exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an error is shown for entering misatched reset passwords", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class ConfirmIdentitySteps : BaseSteps
     {
-        private ApprenticeHomePage _apprenticeHomePage;
+        private ApprenticeOverviewPage _apprenticeHomePage;
 
         public ConfirmIdentitySteps(ScenarioContext context) : base(context) { }
 
@@ -49,7 +49,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService();
+        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
         private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }

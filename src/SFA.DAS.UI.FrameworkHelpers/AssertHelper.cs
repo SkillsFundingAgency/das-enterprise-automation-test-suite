@@ -5,16 +5,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class AssertHelper
+    public class RetryAssertHelper
     {
         private readonly string _title;
         private readonly TimeSpan[] TimeOut;
 
-        public AssertHelper(ScenarioInfo scenarioInfo)
+        public RetryAssertHelper(ScenarioInfo scenarioInfo)
         {
             _title = scenarioInfo.Title;
             TimeOut = Logging.DefaultTimeout();
         }
+
         public void RetryOnNUnitException(Action action, Action retryAction = null)
         {
             Policy

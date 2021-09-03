@@ -61,6 +61,16 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE Accounts WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId AND NOT EXISTS
+        /// (SELECT 1 FROM IncentiveApplication WHERE AccountId=@accountId AND AccountLegalEntityId=@accountLegalEntityId).
+        /// </summary>
+        internal static string DeleteAccount {
+            get {
+                return ResourceManager.GetString("DeleteAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete x from IncentiveApplicationStatusAudit x 
         ///    inner join IncentiveApplicationApprenticeship a on x.IncentiveApplicationApprenticeshipId=a.Id
         ///where IncentiveApplicationId=@incentiveApplicationId;
@@ -95,7 +105,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         ///   Looks up a localized string similar to   UPDATE
         ///	[incentives].[CollectionCalendar]
         ///  SET 
-        ///	[Active] = 0,
         ///	[PeriodEndInProgress] = 0,
         ///	[MonthEndProcessingCompleteUTC] = NULL.
         /// </summary>
