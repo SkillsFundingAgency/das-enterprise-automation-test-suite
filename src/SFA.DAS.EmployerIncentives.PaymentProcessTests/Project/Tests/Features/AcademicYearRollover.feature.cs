@@ -78,12 +78,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC1 -  trigger learning stopped for current Academic Year")]
-        public virtual void AC1_TriggerLearningStoppedForCurrentAcademicYear()
+        [NUnit.Framework.DescriptionAttribute("1 - trigger learning stopped for current Academic Year")]
+        public virtual void _1_TriggerLearningStoppedForCurrentAcademicYear()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC1 -  trigger learning stopped for current Academic Year", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 - trigger learning stopped for current Academic Year", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -123,12 +123,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC2 -  trigger learning stopped for previous Academic Year")]
-        public virtual void AC2_TriggerLearningStoppedForPreviousAcademicYear()
+        [NUnit.Framework.DescriptionAttribute("2 - trigger learning stopped for previous Academic Year")]
+        public virtual void _2_TriggerLearningStoppedForPreviousAcademicYear()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC2 -  trigger learning stopped for previous Academic Year", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2 - trigger learning stopped for previous Academic Year", null, tagsOfScenario, argumentsOfScenario);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -168,12 +168,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC3 - do not trigger learning stopped after end of previous Academic Year")]
-        public virtual void AC3_DoNotTriggerLearningStoppedAfterEndOfPreviousAcademicYear()
+        [NUnit.Framework.DescriptionAttribute("3 - do not trigger learning stopped after end of previous Academic Year")]
+        public virtual void _3_DoNotTriggerLearningStoppedAfterEndOfPreviousAcademicYear()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC3 - do not trigger learning stopped after end of previous Academic Year", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 - do not trigger learning stopped after end of previous Academic Year", null, tagsOfScenario, argumentsOfScenario);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -207,6 +207,55 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 22
  testRunner.Then("do not trigger a learning stopped CoC event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("4- Learning stops in R1 after learner has been added for R13")]
+        public virtual void _4_LearningStopsInR1AfterLearnerHasBeenAddedForR13()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4- Learning stops in R1 after learner has been added for R13", null, tagsOfScenario, argumentsOfScenario);
+#line 25
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 26
+ testRunner.Given("an existing Phase1 apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 27
+ testRunner.And("the end date of the most recent price episode is the census date of the previous " +
+                        "Academic Year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 28
+ testRunner.When("in period R01 of the new academic year the most recent price episode has no perio" +
+                        "ds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+ testRunner.And("a call to the learner match service is made for an incentive application after th" +
+                        "e census date for R12 of the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 30
+ testRunner.Then("trigger a Learning stopped CoC event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
