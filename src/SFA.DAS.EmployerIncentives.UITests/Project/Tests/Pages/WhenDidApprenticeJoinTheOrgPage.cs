@@ -22,13 +22,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ConfirmApprenticesPage EnterDOBAndContinue()
         {
-            var apprenties = pageInteractionHelper.FindElements(DateGroup);
+            var apprentices = pageInteractionHelper.FindElements(DateGroup);
 
-            foreach (var apprentie in apprenties)
+            foreach (var apprentice in apprentices)
             {
-                formCompletionHelper.EnterText(apprentie.FindElement(DayInputField), eIDataHelper.JoiningDay);
-                formCompletionHelper.EnterText(apprentie.FindElement(MonthInputField), eIDataHelper.JoiningMonth);
-                formCompletionHelper.EnterText(apprentie.FindElement(YearInputField), "2021");
+                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), eIDataHelper.JoiningDay);
+                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), eIDataHelper.JoiningMonth);
+                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), "2021");
             }
 
             Continue();
