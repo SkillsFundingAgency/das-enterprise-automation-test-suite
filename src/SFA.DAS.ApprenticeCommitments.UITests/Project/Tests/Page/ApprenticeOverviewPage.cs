@@ -24,7 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string SignOutLinkText => "Sign out";
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
-        public ApprenticeOverviewPage(ScenarioContext context) : base(context)
+        public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
             _context = context;
             VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");

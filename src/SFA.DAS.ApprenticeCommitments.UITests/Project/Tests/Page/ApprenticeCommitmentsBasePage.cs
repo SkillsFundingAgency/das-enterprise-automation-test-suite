@@ -68,7 +68,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage NavigateToOverviewPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(_context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()
