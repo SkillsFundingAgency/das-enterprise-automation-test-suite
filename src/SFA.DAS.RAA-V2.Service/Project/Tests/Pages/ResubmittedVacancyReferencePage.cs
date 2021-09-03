@@ -6,13 +6,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class ResubmittedVacancyReferencePage : RAAV2CSSBasePage
     {
 
-        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
+        //protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
+        protected override string PageTitle => "Advert resubmitted to ESFA";
 
         protected By ReturnToDashboard => By.LinkText("Return to dashboard");
         protected By VacancyResubmissionText => By.ClassName("govuk-panel__title");
 
         public ResubmittedVacancyReferencePage(ScenarioContext context) : base(context) { }
     
-        public void ConfirmVacancyResubmission() => pageInteractionHelper.VerifyText(VacancyResubmissionText, "Advert resubmitted for approval");
+        public void ConfirmVacancyResubmission() => pageInteractionHelper.VerifyText(VacancyResubmissionText, "Advert resubmitted to ESFA");
     }
 }
