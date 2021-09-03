@@ -7,21 +7,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         public ResetPasswordSteps(ScenarioContext context) : base(context) { }
 
-        [When(@"an apprentice submits to reset password")]
-        public void WhenAnApprenticeSubmitsToResetPassword()
+        [When(@"an apprentice submits Email to reset password for a new account pending personal details confirmation")]
+        public void WhenAnApprenticeSubmitsEmailToResetPasswordForANewAccountPendingPD()
         {
             appreticeCommitmentsStepsHelper.CreateAccount();
-            appreticeCommitmentsStepsHelper.SubmitResetPassword();
+            appreticeCommitmentsStepsHelper.SubmitEmailToResetPasswordFromSignInPage();
         }
 
-        [Then(@"the apprentice can reset password using the invitation")]
-        public void ThenTheApprenticeCanResetPasswordUsingTheInvitation() => appreticeCommitmentsStepsHelper.ResetPassword().SignInToApprenticePortal();
+        [Then(@"the apprentice is able to reset the password using the invitation")]
+        public void ThenTheApprenticeIsAbleToResetThePasswordUsingTheInvitation() => appreticeCommitmentsStepsHelper.ResetPasswordAndReturnToSignInPage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
 
-        [Then(@"an error is shown for invalid reset passwords")]
-        public void ThenAnErrorIsShownForInvalidResetPasswords()
+        [Then(@"an error is shown for entering misatched reset passwords")]
+        public void ThenAnErrorIsShownForEnteringMismatchedResetPasswords()
         {
-            var resetPasswordPage = appreticeCommitmentsStepsHelper.GetResetPasswordPage();
-            appreticeCommitmentsStepsHelper.InvalidPassword(resetPasswordPage);
+            var resetPasswordPage = appreticeCommitmentsStepsHelper.BuildResetPasswordPageUsingDBHelper();
+            appreticeCommitmentsStepsHelper.EnterMismatchedPasswordsAndValidateError(resetPasswordPage);
         }
     }
 }

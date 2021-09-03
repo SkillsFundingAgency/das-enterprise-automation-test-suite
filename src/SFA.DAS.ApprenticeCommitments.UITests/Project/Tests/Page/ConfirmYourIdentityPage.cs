@@ -21,15 +21,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeHomePage ConfirmIdentity()
+        public ApprenticeOverviewPage ConfirmIdentity()
         {
-            EnterApprenticeDetails(apprenticeCommitmentsDataHelper.ApprenticeFirstname,
-                apprenticeCommitmentsDataHelper.ApprenticeLastname,
+            EnterApprenticeDetails(objectContext.GetFirstName(),
+                objectContext.GetLastName(),
                 objectContext.GetDateOfBirth().Day,
                 objectContext.GetDateOfBirth().Month,
                 objectContext.GetDateOfBirth().Year);
 
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeOverviewPage(_context);
         }
 
         public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int? day, int? month, int? year)
