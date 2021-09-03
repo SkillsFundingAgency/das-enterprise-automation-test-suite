@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ForgottenPasswordPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ForgottenPasswordConfirmPage Submit()
+        public ForgottenPasswordConfirmPage SubmitEmailOnForgottenPasswordPage()
         {
             formCompletionHelper.EnterText(Email, objectContext.GetApprenticeEmail());
             formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");

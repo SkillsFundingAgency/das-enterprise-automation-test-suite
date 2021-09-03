@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ConfirmYourIdentityPage SignInToApprenticePortal()
+        public ConfirmYourIdentityPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {
             SignIn();
             return new ConfirmYourIdentityPage(_context);
@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new CoCConfirmMyApprenticeDetailsPage(_context);
         }
 
-        public ForgottenPasswordPage Resetpassword()
+        public ForgottenPasswordPage ClickForgottenMyPasswordLinkOnSignInPage()
         {
             formCompletionHelper.ClickLinkByText("I have forgotten my password");
             return new ForgottenPasswordPage(_context);

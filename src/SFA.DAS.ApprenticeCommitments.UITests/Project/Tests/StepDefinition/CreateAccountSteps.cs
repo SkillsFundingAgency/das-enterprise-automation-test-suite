@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             var createPasswordPage = appreticeCommitmentsStepsHelper.GetCreatePasswordPage();
 
-            appreticeCommitmentsStepsHelper.InvalidPassword(createPasswordPage);
+            appreticeCommitmentsStepsHelper.EnterMismatchedPasswordsAndValidateError(createPasswordPage);
         }
     }
 }

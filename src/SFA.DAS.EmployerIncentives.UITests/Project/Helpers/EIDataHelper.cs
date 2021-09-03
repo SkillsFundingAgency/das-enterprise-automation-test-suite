@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -25,5 +26,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         public string FirstName => _randomDataGenerator.GenerateRandomAlphabeticString(10);
 
         public string SurName => _randomDataGenerator.GenerateRandomAlphabeticString(10);
+
+        public string JoiningDay =>  new DateTime(2020,12,_randomDataGenerator.GenerateRandomDateOfMonth()).ToString("dd");
+
+        public string JoiningMonth => new DateTime(2020, _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(4, 10), 01).ToString("MM");
     }
 }
