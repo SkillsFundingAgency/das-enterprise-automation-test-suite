@@ -14,5 +14,3 @@ Scenario: Learner Match Continues on failure
     When an exception occurs for a learner
     Then a record of learner match failure is created for the learner
     And the learner match process should continue for all remaining learners
-    And any CoCs are processed for each learner (excluding exceptions)
-    And days in learning is calculated for each learner (excluding exceptions)

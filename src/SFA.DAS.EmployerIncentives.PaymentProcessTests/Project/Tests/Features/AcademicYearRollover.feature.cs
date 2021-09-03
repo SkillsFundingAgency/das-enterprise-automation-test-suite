@@ -108,7 +108,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an existing Phase1 apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the end date of the most recent price episode is before the current date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the end date of the most recent price episode is before the census date of the ac" +
+                        "tive collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("a call to the learner match service is made for an incentive application after th" +

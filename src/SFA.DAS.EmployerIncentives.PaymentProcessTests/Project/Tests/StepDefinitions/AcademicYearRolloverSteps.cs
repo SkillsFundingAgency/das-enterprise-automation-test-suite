@@ -35,10 +35,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
         }
 
-        [Given(@"the end date of the most recent price episode is before the current date")]
-        public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCurrentDate()
+
+        [Given(@"the end date of the most recent price episode is before the census date of the active collection period")]
+        public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCensusDateOfTheActiveCollectionPeriod()
         {
-            _initialEndDate = DateTime.Today.AddDays(-1);
+            var census = Helper.CollectionCalendarHelper.GetActiveCollectionPeriod().CensusDate;
+            _initialEndDate = census.AddDays(-1);
             await SetupIlrDataAndRunLearnerMatch();
         }
 
@@ -72,7 +74,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                 && x.ChangeType == ChangeOfCircumstanceType.LearningStopped);
 
-            DateTime.Parse(coc.NewValue).Should().Be(_initialEndDate.AddDays(1)); // why +1 tho?
+            DateTime.Parse(coc.NewValue).Should().Be(_initialEndDate.AddDays(1));
             coc.PreviousValue.Should().BeNullOrEmpty();
             coc.ChangedDate.Should().BeCloseTo(DateTime.Today);
         }
