@@ -12,8 +12,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class AcademicYearRolloverSteps : StepsBase
     {
         private DateTime _initialStartDate;
-        private DateTime _initialEndDate;
-        private Learner _learner;
+        private DateTime _endDate;
+        private LearnerSubmissionDto _submission;
 
         protected AcademicYearRolloverSteps(ScenarioContext context) : base(context)
         {
@@ -35,10 +35,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
         }
 
-        [Given(@"the end date of the most recent price episode is before the current date")]
-        public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCurrentDate()
+
+        [Given(@"the end date of the most recent price episode is before the census date of the active collection period")]
+        public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCensusDateOfTheActiveCollectionPeriod()
         {
-            _initialEndDate = DateTime.Today.AddDays(-1);
+            var census = Helper.CollectionCalendarHelper.GetActiveCollectionPeriod().CensusDate;
+            _endDate = census.AddDays(-1);
             await SetupIlrDataAndRunLearnerMatch();
         }
 
@@ -47,21 +49,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
             await Helper.LearnerMatchOrchestratorHelper.Run();
-            _learner = Helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
-            _learner.Should().NotBeNull();
+
         }
 
         [Given(@"the end date of the most recent price episode is the census date of the previous Academic Year")]
         public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsTheCensusDateOfThePreviousAcademicYear()
         {
-            _initialEndDate = new DateTime(2021, 7, 31);
+            _endDate = new DateTime(2021, 7, 31);
             await SetupIlrDataAndRunLearnerMatch();
         }
 
         [Given(@"the end date of the most recent price episode is before the census date of the previous Academic Year")]
         public async Task GivenTheEndDateOfTheMostRecentPriceEpisodeIsBeforeTheCensusDateOfThePreviousAcademicYear()
         {
-            _initialEndDate = new DateTime(2021, 6, 19);
+            _endDate = new DateTime(2021, 6, 19);
             await SetupIlrDataAndRunLearnerMatch();
         }
 
@@ -72,7 +73,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                 && x.ChangeType == ChangeOfCircumstanceType.LearningStopped);
 
-            DateTime.Parse(coc.NewValue).Should().Be(_initialEndDate.AddDays(1)); // why +1 tho?
+            DateTime.Parse(coc.NewValue).Should().Be(_endDate.AddDays(1));
             coc.PreviousValue.Should().BeNullOrEmpty();
             coc.ChangedDate.Should().BeCloseTo(DateTime.Today);
         }
@@ -85,17 +86,34 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Should().BeFalse();
         }
 
+        [When(@"in period R01 of the new academic year the most recent price episode has no periods")]
+        public async Task WhenInPeriodROfTheNewAcademicYearTheMostRecentPriceEpisodeHasNoPeriods()
+        {
+            _endDate = DateTime.Parse("2021-08-10T00:00:00");
+
+            var episode = new PriceEpisodeDtoBuilder() // price episode with no periods
+                .WithAcademicYear(2122)
+                .WithStartDate(DateTime.Parse("2021-08-01T00:00:00"))
+                .WithEndDate(_endDate)
+                .Create();
+
+            _submission.Training.First().PriceEpisodes.Add(episode);
+
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, _submission);
+        }
+
+
         private async Task SetupIlrDataAndRunLearnerMatch()
         {
             const byte period = 4;
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
-                .WithEndDate(_initialEndDate)
+                .WithEndDate(_endDate)
                 .WithPeriod(TestData.ApprenticeshipId, period)
                 .Create();
 
-            var submission = new LearnerSubmissionDtoBuilder()
+            _submission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
@@ -105,7 +123,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPriceEpisode(priceEpisode)
                 .Create();
 
-            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, submission);
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, _submission);
             await Helper.LearnerMatchOrchestratorHelper.Run();
         }
     }
