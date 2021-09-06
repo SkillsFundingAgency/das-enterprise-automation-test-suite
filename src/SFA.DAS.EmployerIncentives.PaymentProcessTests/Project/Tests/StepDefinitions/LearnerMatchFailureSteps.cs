@@ -17,9 +17,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialIlrSubmissionDate;
         private DateTime _initialStartDate;
 
-        protected LearnerMatchFailureSteps(ScenarioContext context) : base(context)
-        {
-        }
+        protected LearnerMatchFailureSteps(ScenarioContext context) : base(context) { }
 
         [Given(@"the learner match process has been triggered")]
         public async Task GivenTheLearnerMatchProcessHasBeenTriggered()
@@ -54,33 +52,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                     .WithUln(apprenticeship.ULN)
                     .WithAcademicYear(2021)
                     .WithIlrSubmissionDate(_initialIlrSubmissionDate)
-                    .WithIlrSubmissionWindowPeriod(10)
-                    .WithStartDate(_initialStartDate)
-                    .WithPriceEpisode(priceEpisode)
-                    .Create();
-
-                await Helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value, learnerSubmissionDto);
-            }
-
-            await Helper.LearnerMatchOrchestratorHelper.Run();
-
-            // 2nd run
-            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(11, 2021);            
-
-            foreach (var apprenticeship in TestData.IncentiveApplication.Apprenticeships)
-            {
-                var priceEpisode = new PriceEpisodeDtoBuilder()
-                    .WithStartDate(_initialStartDate)
-                    .WithAcademicYear(2021)
-                    .WithEndDate(DateTime.Now.AddDays(-1)) // Learning Stopped!!!
-                    .WithPeriod(apprenticeship.ApprenticeshipId, 11)
-                    .Create();
-
-                var learnerSubmissionDto = new LearnerSubmissionDtoBuilder()
-                    .WithUkprn(apprenticeship.UKPRN.Value)
-                    .WithUln(apprenticeship.ULN)
-                    .WithAcademicYear(2021)
-                    .WithIlrSubmissionDate(_initialIlrSubmissionDate.AddMonths(1))
                     .WithIlrSubmissionWindowPeriod(10)
                     .WithStartDate(_initialStartDate)
                     .WithPriceEpisode(priceEpisode)
@@ -146,30 +117,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             {
                 learner.SuccessfulLearnerMatch.Should().BeTrue();
             }
-        }
-        
-        [Then(@"any CoCs are processed for each learner \(excluding exceptions\)")]
-        public void ThenAnyCoCsAreProcessedForEachLearnerExcludingExceptions()
-        {
-            var changeOfCircumstances = Helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Where(
-                x => TestData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).ToList();
-            
-            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped).Should().Be(3);
-            changeOfCircumstances.Count(x => x.ChangeType == ChangeOfCircumstanceType.StartDate).Should().Be(2);
-        }
-
-        [Then(@"days in learning is calculated for each learner \(excluding exceptions\)")]
-        public void ThenDaysInLearningIsCalculatedForEachLearnerExcludingExceptions()
-        {
-            var learnerIds = Helper.EISqlHelper.GetAllFromDatabase<Learner>().Where(
-                x => TestData.IncentiveIds.Contains(x.ApprenticeshipIncentiveId)).Select(x => x.Id).ToList();
-
-            Helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
-                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 10).Should().Be(3);
-            Helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
-                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 11).Should().Be(3);
-            Helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipDaysInLearning>().Count(x => 
-                learnerIds.Contains(x.LearnerId) && x.CollectionPeriodNumber == 12).Should().Be(2);
         }
     }
 }
