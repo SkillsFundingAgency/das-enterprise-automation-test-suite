@@ -103,7 +103,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             }
             else expectedDueDate = expectedDueDate.AddDays(364);
 
-            return expectedDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            return expectedDueDate.ToString("yyyy-MM-dd");
         }
 
         private void AssertQueryData()
