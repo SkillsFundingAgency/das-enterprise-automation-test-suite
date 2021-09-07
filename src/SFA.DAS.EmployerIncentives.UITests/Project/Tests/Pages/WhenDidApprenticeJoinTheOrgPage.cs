@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false) => _context = context;
 
-        public ConfirmApprenticesPage EnterDOBAndContinue()
+        public ConfirmApprenticesPage EnterJoiningDateAndContinue()
         {
             var apprentices = pageInteractionHelper.FindElements(DateGroup);
 
