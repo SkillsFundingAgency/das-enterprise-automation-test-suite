@@ -65,7 +65,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";
             query = $"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE accountId = {accountId} order by CalculatedDate {searchOrder}";
-            actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+            actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd");
             actualAmount = FetchIntegerQueryData(1);
             actualPeriodNumber = FetchIntegerQueryData(2);
             actualPaymentYear = FetchIntegerQueryData(3);
