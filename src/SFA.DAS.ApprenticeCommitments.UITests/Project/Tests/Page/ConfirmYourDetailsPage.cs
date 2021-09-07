@@ -23,14 +23,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            VerifyPage(HeaderText, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+            VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
         }
 
-        public ApprenticeHomePage SelectYes()
+        public ApprenticeOverviewPage SelectYes()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             Continue();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeOverviewPage(_context);
         }
 
         public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployer()

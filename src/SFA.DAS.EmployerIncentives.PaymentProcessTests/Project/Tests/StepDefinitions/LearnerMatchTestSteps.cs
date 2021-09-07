@@ -25,6 +25,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
+				.WithDateSubmitted(TestData.StartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
@@ -58,6 +59,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-05-02");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
+				.WithDateSubmitted(TestData.StartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
@@ -233,6 +235,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
+				.WithDateSubmitted(TestData.StartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
                 .Create();
 
@@ -278,6 +281,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
+				.WithDateSubmitted(TestData.StartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
                 .Create();
 

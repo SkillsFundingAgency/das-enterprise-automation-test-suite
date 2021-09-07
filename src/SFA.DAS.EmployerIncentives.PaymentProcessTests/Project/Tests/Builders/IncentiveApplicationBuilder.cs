@@ -23,6 +23,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             return this;
         }
 
+        public IncentiveApplicationBuilder WithDateSubmitted(DateTime dateSubmitted)
+        {
+            _incentiveApplication.DateSubmitted = dateSubmitted;
+			return this;
+		}
+
         public IncentiveApplicationBuilder WithAccount((long AccountId, long AccountLegalEntityId) account)
         {
             _incentiveApplication.AccountId = account.AccountId;

@@ -20,9 +20,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("LearnerMatchFailure")]
+    [NUnit.Framework.DescriptionAttribute("CreateIncentive")]
     [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
-    public partial class LearnerMatchFailureFeature
+    public partial class CreateIncentiveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,21 +30,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         private string[] _featureTags = new string[] {
                 "employerincentivesPaymentsProcess"};
         
-#line 1 "LearnerMatchFailure.feature"
+#line 1 "CreateIncentive.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchFailure", @"    Learner Match Continues on failure
-    https://skillsfundingagency.atlassian.net/browse/EI-1208
-    Reproduces failure in SFA.DAS.EmployerIncentives.Domain.ApprenticeshipIncentives.ApprenticeshipIncentive.cs
-        private void StopBreakInLearning(LearningStoppedStatus status)
-        {
-            var stopDate = status.DateResumed.Value.AddDays(-1); // here DateResumed is null because learning had resumed with a different Apprenticeship Id
-            ...
-        }", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CreateIncentive", "\tWhen an application has been submitted\r\n\tThen an apprenticeship incentive is cre" +
+                    "ated for each apprentiveship in the applicaiton", ProgrammingLanguage.CSharp, new string[] {
                         "employerincentivesPaymentsProcess"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -84,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Learner Match Continues on failure")]
-        public virtual void LearnerMatchContinuesOnFailure()
+        [NUnit.Framework.DescriptionAttribute("Incentive application is submitted for withdrawn apprenticeship")]
+        public virtual void IncentiveApplicationIsSubmittedForWithdrawnApprenticeship()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner Match Continues on failure", null, tagsOfScenario, argumentsOfScenario);
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Incentive application is submitted for withdrawn apprenticeship", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,17 +104,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
-    testRunner.Given("the learner match process has been triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Given("an existing withdrawn incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
-    testRunner.When("an exception occurs for a learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.And("an employer is re-applying for apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
-    testRunner.Then("a record of learner match failure is created for the learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.When("they submit the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
-    testRunner.And("the learner match process should continue for all remaining learners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.Then("a new apprenticeship incentive is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("original withdrawn incentive is retained", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
