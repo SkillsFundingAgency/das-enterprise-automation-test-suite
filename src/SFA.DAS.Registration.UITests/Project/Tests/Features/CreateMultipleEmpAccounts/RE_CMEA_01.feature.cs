@@ -79,18 +79,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateMultipleEmpA
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
-        [NUnit.Framework.CategoryAttribute("captureurl")]
         public virtual void RE_CMEA_01_CreateAnEmployerAccountAndAddAnotherAccountForTheSameLogin()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
                     "addnonlevyfunds",
-                    "addanothernonlevypayedetails",
-                    "captureurl"};
+                    "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CMEA_01_Create an Employer Account and Add another Account for the same login", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,15 +108,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
  testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("the Employer is able to add another Account with Charity Type Org to the same use" +
                         "r login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("the Employer is able to switch between the Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

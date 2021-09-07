@@ -4,6 +4,7 @@
 @recordagrade
 @regression
 @epaoca1standard1version0option
+@captureurl
 Scenario: EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Options
 	Given the Assessor User is logged into Assessment Service Application
 	When the User certifies an Apprentice as 'pass'
