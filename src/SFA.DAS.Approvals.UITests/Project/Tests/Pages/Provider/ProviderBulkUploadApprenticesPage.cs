@@ -1,7 +1,10 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,12 +38,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
             List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
+            
             for (int i = 0; i < numberOfApprentices; i++)
             {
-                if (i % 2 == 0)
-                    ApprenticeList.Add(SetApprenticeDetails(CourseType.Standard));
-                else
-                    ApprenticeList.Add(SetApprenticeDetails(CourseType.Framework));
+                ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
             }
             
             _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
@@ -56,21 +57,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
-        private ApprenticeDetails SetApprenticeDetails(CourseType courseType)
+        private ApprenticeDetails SetApprenticeDetails(int courseCode)
         {
+            var employerUser = _context.GetUser<LevyUser>();
+            var employerName = employerUser.OrganisationName.Substring(0, 7) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
-
-            return new ApprenticeDetails(courseType)
+            string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            
+            return new ApprenticeDetails(courseCode)
             {
                 CohortRef = objectContext.GetCohortReference(),
                 ULN = apprenticeDataHelper.Uln(),
                 FamilyName = apprenticeDataHelper.ApprenticeLastname,
                 GivenNames = apprenticeDataHelper.ApprenticeFirstname,
                 DateOfBirth = dateOfBirth,
-                StartDate = apprenticeCourseDataHelper.CourseStartDate,
-                EndDate = apprenticeCourseDataHelper.CourseEndDate,
+                StartDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseStartDate),
+                EndDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseEndDate),
                 TotalPrice = apprenticeDataHelper.TrainingPrice,
-                ProviderRef = apprenticeDataHelper.EmployerReference
+                ProviderRef = apprenticeDataHelper.EmployerReference,
+                EmailAddress = emailAddress,
+                AgreementId = agreementId
             };
         }
     }
