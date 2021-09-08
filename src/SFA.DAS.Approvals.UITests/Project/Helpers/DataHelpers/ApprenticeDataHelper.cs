@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _commitmentsdataHelper = commitmentsdataHelper;
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeEmail = $"{ApprenticeFirstname}_{ApprenticeLastname}_{randomDataGenerator.GenerateRandomAlphabeticString(10)}@email.com";
+            ApprenticeEmail = $"{ApprenticeFirstname}_{ApprenticeLastname}_{DateTime.Now.ToSeconds()}_{DateTime.Now.ToNanoSeconds()}@email.com";
             DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
