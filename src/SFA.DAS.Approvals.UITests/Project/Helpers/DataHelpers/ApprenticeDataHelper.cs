@@ -18,6 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _commitmentsdataHelper = commitmentsdataHelper;
             ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeEmail = $"{ApprenticeFirstname}_{ApprenticeLastname}_{randomDataGenerator.GenerateRandomAlphabeticString(10)}@email.com";
             DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
@@ -32,6 +33,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public string ApprenticeLastname { get; set; }
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
+
+        public string ApprenticeEmail { get; set; }
 
         public int DateOfBirthDay { get; set; }
 
