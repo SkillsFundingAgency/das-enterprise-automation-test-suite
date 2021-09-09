@@ -27,6 +27,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
+            EnterTrainingTitleAction();
+
+            return new ConfirmApprenticeshipTrainingPage(_context, EnterTrainingTitleAction);
+        }
+
+        private void EnterTrainingTitleAction()
+        {
             formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
 
             formCompletionHelper.ClickElement(() =>
@@ -36,7 +43,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             });
 
             Continue();
-            return new ConfirmApprenticeshipTrainingPage(_context);
         }
 
         public YourAdvertsPage CancelVacancy()
