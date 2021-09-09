@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By CancelLink => By.LinkText("Cancel");
 
+        protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
+
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
