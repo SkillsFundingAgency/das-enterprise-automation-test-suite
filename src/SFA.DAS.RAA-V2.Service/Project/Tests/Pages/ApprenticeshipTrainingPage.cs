@@ -36,11 +36,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
 
-            formCompletionHelper.ClickElement(() =>
+            if (pageInteractionHelper.IsElementDisplayed(FirstOption))
             {
-                pageInteractionHelper.WaitForElementToBeClickable(FirstOption);
-                return pageInteractionHelper.FindElement(FirstOption);
-            });
+                formCompletionHelper.ClickElement(() =>
+                {
+                    pageInteractionHelper.WaitForElementToBeClickable(FirstOption);
+                    return pageInteractionHelper.FindElement(FirstOption);
+                });
+            }
 
             Continue();
         }
