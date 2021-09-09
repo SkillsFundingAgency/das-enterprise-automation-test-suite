@@ -64,7 +64,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(By locator, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, retryAction);
 
-        protected bool VerifyPage(Action retryAction) => _pageInteractionHelper.VerifyPage(PageHeader, retryAction);
+        protected bool VerifyPage(Action retryAction) => _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction);
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 

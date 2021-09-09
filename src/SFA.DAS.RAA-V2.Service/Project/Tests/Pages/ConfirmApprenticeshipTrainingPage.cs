@@ -10,7 +10,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-
         #endregion
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
