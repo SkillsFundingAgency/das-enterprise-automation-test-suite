@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
+        private By EmailField => By.Id("Email");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
@@ -57,6 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
+            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
