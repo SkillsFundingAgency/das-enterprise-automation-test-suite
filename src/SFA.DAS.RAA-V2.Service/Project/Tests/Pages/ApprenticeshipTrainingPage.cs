@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
 
-            if (pageInteractionHelper.IsElementDisplayed(FirstOption))
+            if (pageInteractionHelper.FindElements(FirstOption).Count > 0)
             {
                 formCompletionHelper.ClickElement(() =>
                 {
