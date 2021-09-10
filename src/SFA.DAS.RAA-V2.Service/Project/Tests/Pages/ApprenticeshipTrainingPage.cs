@@ -47,7 +47,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
                 });
             }
 
-            Continue();
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueButton));
         }
 
         public YourAdvertsPage CancelVacancy()
