@@ -17,21 +17,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected RegistrationConfig registrationConfig;
         #endregion
 
-        public VRFBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
-        {
-            registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
-        }
+        public VRFBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
 
         protected override void Continue() => formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ContinueButton), false);
 
-        protected void SelectOptionByText(string forvalue, string text)
-        {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(RadioOptions).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
-        }
+        protected void SelectOptionByText(string forvalue, string text) => formCompletionHelper.ClickElement(SelectByText(RadioOptions, forvalue, text), false);
+    
+        protected void SelectCheckBoxByText(string forvalue, string text) => formCompletionHelper.ClickElement(SelectByText(CheckboxOptions, forvalue, text), false);
 
-        protected void SelectCheckBoxByText(string forvalue, string text)
-        {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(CheckboxOptions).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
-        }
+        private IWebElement SelectByText(By by, string forvalue, string text) => pageInteractionHelper.FindElements(by).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text);
     }
 }
