@@ -33,9 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
+        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
-            var courseStartDate = SetEIJourneyTestData();
+            var courseStartDate = SetEIJourneyTestData(apprenticeNo);
 
             EnterApprenticeMandatoryValidDetails();
 
@@ -77,10 +77,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        private DateTime SetEIJourneyTestData()
+        private DateTime SetEIJourneyTestData(int apprenticeNo)
         {
             if (objectContext.IsEIJourney())
             {
+                if (objectContext.GetEIApprenticeDetailList().Count > 0)
+                {
+                    var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
+
+                    var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
+
+                    objectContext.SetEIAgeCategoryAsOfAug2020(eiApprenticeDetail.AgeCategoryAsOfAug2020);
+                    objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
+                    objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
+                }
+
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
                 apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;

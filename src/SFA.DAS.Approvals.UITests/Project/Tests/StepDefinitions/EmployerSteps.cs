@@ -199,6 +199,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
         public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
 
+        [When(@"the Employer adds following apprentices")]
+        public void ThenTheEmployerAddsFollowingApprentices(Table table)
+        {
+            _objectContext.SetIsEIJourney();
+            _objectContext.SetEIApprenticeDetailList();
+
+            foreach (var tablerow in table.Rows)
+            {
+                _objectContext.SetEIApprenticeDetail(tablerow[0], tablerow[1], tablerow[2]);
+            }
+
+            TheEmployerApprovesCohortAndSendsToProvider(table.RowCount);
+        }
+
         [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
@@ -208,6 +222,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
             _objectContext.SetEIStartMonth(eIStartmonth);
             _objectContext.SetEIStartYear(eIStartyear);
+
             TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
         }
 
