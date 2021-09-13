@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
 
-        internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
+        internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Replace(EIJourney, true);
 
         internal static void SetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2020, value);
 
