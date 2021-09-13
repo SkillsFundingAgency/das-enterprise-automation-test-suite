@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -9,14 +10,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-
         #endregion
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
 
-        public ConfirmApprenticeshipTrainingPage(ScenarioContext context) : base(context)
+        public ConfirmApprenticeshipTrainingPage(ScenarioContext context, Action retryAction) : base(context, false)
         {
             _context = context;
+
+            VerifyPage(retryAction);
         }
 
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
