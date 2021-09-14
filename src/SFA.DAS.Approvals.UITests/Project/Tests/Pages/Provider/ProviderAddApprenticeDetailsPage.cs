@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -35,12 +34,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
-            var fName = apprenticeDataHelper.ApprenticeFirstname;
-            var lName = apprenticeDataHelper.ApprenticeLastname;
-
-            formCompletionHelper.EnterText(FirstNameField, fName);
-            formCompletionHelper.EnterText(LastNameField, lName);
-            if (pageInteractionHelper.IsElementDisplayed(EmailField)) formCompletionHelper.EnterText(EmailField, $"{fName}.{lName}@mailinator.com");
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);

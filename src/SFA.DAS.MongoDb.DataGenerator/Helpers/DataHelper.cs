@@ -14,7 +14,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
             UserNamePrefix = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "PerfTest" : tags.Contains("providerleadregistration") ? "Plr" : "Test";
             _dateTime = DateTime.Now;
-            EmpRefDigits = _dateTime.ToString("fffff");
+            EmpRefDigits = _dateTime.ToNanoSeconds();
             NextNumber = NextNumberGenerator.GetNextCount();
             GatewayUsername = GenerateRandomUserName();
             GatewayPassword = "password";
@@ -32,6 +32,6 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         private string UserNamePrefix { get; }
 
-        private string GenerateRandomUserName() => $"{LevyOrNonLevy}_{UserNamePrefix}_{NextNumber}_{_dateTime:ddMMMyyyy_HHmmss}{EmpRefDigits}";
+        private string GenerateRandomUserName() => $"{LevyOrNonLevy}_{UserNamePrefix}_{NextNumber}_{_dateTime.ToSeconds()}{EmpRefDigits}";
     }
 }

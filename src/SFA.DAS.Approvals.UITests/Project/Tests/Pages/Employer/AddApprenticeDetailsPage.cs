@@ -36,12 +36,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
         {
             var courseStartDate = SetEIJourneyTestData();
-            var fName = apprenticeDataHelper.ApprenticeFirstname;
-            var lName = apprenticeDataHelper.ApprenticeLastname;
 
-            formCompletionHelper.EnterText(FirstNameField, fName);
-            formCompletionHelper.EnterText(LastNameField, lName);
-            if (pageInteractionHelper.IsElementDisplayed(EmailField)) formCompletionHelper.EnterText(EmailField, $"{fName}.{lName}@mailinator.com");
+            EnterApprenticeMandatoryValidDetails();
+
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
@@ -65,8 +62,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
-            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            EnterApprenticeMandatoryValidDetails();
+
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new YouCantApproveThisApprenticeRequestUntilPage(_context);
         }
@@ -74,8 +71,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
         {
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
-            //Assert.True(options.All(x => x.Contains("(Standard)")));
+
             Assert.True(options.All(x => !x.Contains("(Framework)")));
+            
             return this;
         }
 
@@ -93,6 +91,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
             return apprenticeCourseDataHelper.CourseStartDate;
+        }
+
+        private void EnterApprenticeMandatoryValidDetails()
+        {
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }
     }
 }
