@@ -213,5 +213,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .AcknowledgeSummaryDetails()
                 .ReturnToEIHubPage();
         }
+
+        [Then(@"the incentive phase is set to Phase(.*)")]
+        public void ThenTheIncentivePhaseIsSetToPhase(string phase)
+        {
+            _eISqlHelper.VerifyIncentivePhase(_email, phase);
+        }
+
     }
 }
