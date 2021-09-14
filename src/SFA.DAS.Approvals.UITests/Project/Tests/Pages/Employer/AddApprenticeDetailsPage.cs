@@ -81,16 +81,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             if (objectContext.IsEIJourney())
             {
-                if (objectContext.GetEIApprenticeDetailList().Count > 0)
-                {
-                    var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
+                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
 
-                    var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
+                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
 
-                    objectContext.SetEIAgeCategoryAsOfAug2020(eiApprenticeDetail.AgeCategoryAsOfAug2020);
-                    objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
-                    objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
-                }
+                objectContext.SetEIAgeCategoryAsOfAug2020(eiApprenticeDetail.AgeCategoryAsOfAug2020);
+                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
+                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
 
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;

@@ -218,12 +218,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         public void EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
         {
-            _objectContext.SetIsEIJourney();
-            _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
-            _objectContext.SetEIStartMonth(eIStartmonth);
-            _objectContext.SetEIStartYear(eIStartyear);
+            var table = new Table("Age", "StartMonth", "StartYear");
 
-            TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                table.AddRow(eIAgeCategoryAsOfAug2020, eIStartmonth.ToString(), eIStartyear.ToString());
+            }
+
+            ThenTheEmployerAddsFollowingApprentices(table);
         }
 
         [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
