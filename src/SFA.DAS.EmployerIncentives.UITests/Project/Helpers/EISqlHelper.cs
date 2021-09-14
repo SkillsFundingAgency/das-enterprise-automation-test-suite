@@ -25,6 +25,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             SetCaseDetailsToNull(accountId);
         }
 
+        public void ResetPeriodEndInProgress()
+        {
+            query = "UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0";
+            ExecuteSqlCommand(query);
+        }
+
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)
         {
             this.startMonth = startMonth; this.startYear = startYear;
