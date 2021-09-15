@@ -33,6 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ShutterPages\EmploymentStartDate\EI_ESD_01.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -48,6 +54,13 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ShutterPages\EmploymentStartDate\EI_ESD_01.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EI_ESD_01.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
