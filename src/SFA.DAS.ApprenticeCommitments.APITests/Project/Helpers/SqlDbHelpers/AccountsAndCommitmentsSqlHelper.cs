@@ -24,10 +24,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "C.ProviderId, App.StartDate, App.EndDate, App.CreatedOn, App.DateOfBirth " +
                 "FROM Apprenticeship as App " +
                 "INNER JOIN Commitment C on App.CommitmentId = C.Id " +
-                "INNER JOIN Accounts on Accounts.Id = C.EmployerAccountId " +
+                "INNER JOIN Accounts A on A.Id = C.EmployerAccountId " +
                 "INNER JOIN AccountLegalEntities ALE on C.AccountLegalEntityId = ALE.Id " +
-                "INNER JOIN Providers P on C.ProviderId = P.Ukprn" +
-                "WHERE App.IsApproved = 1 and C.IsDeleted = 0 and C.AccountLegalEntityId is not null and ALE.Deleted is null and App.TrainingCode NOT like '%-%' and App.Email is null" +
+                "INNER JOIN Providers P on C.ProviderId = P.Ukprn " +
+                "WHERE App.IsApproved = 1 AND C.IsDeleted = 0 AND C.AccountLegalEntityId IS NOT NULL AND ALE.Deleted IS NULL AND App.TrainingCode NOT LIKE '%-%' AND App.Email IS NULL " +
                 "ORDER BY NEWID()";
 
             var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 11);
