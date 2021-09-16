@@ -35,8 +35,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                new List<KeyValuePair<string, string>>
                {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "INDUSTRY VETERANS LTD"),
-                    new KeyValuePair<string, string>(ukprnkey, "10047117"),
+                    new KeyValuePair<string, string>(providernamekey, "CHRYSALIS NOT FOR PROFIT LIMITED"),
+                    new KeyValuePair<string, string>(ukprnkey, "10047121"),
                });
             _data.Add("rpexistingprovider02",
                new List<KeyValuePair<string, string>>
