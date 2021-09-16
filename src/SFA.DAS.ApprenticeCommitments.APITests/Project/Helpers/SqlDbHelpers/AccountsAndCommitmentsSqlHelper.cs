@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "INNER JOIN Accounts A on A.Id = C.EmployerAccountId " +
                 "INNER JOIN AccountLegalEntities ALE on C.AccountLegalEntityId = ALE.Id " +
                 "INNER JOIN Providers P on C.ProviderId = P.Ukprn " +
-                "WHERE App.IsApproved = 1 AND C.IsDeleted = 0 AND C.AccountLegalEntityId IS NOT NULL AND ALE.Deleted IS NULL AND App.TrainingCode NOT LIKE '%-%' AND App.Email IS NULL " +
+                "WHERE App.IsApproved = 1 AND C.IsDeleted = 0 AND C.AccountLegalEntityId IS NOT NULL AND ALE.Deleted IS NULL AND LEN(App.TrainingCode) = 3 AND App.Email IS NULL " +
                 "ORDER BY NEWID()";
 
             var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 11);
@@ -53,5 +53,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         }
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
+
+        public void ResetEmailForApprenticeshipRecord(long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
     }
 }
