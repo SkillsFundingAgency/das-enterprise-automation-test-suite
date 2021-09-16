@@ -11,8 +11,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected override By ContinueButton => By.CssSelector(".button[type='submit']");
         private By EnterCodeTextBox => By.Id("PasswordResetCode");
-        private By CreateNewPasswordTextBox => By.Id("Password");
-        private By ConfirmPasswordTextBox => By.Id("ConfirmPassword");
         #endregion
 
         public EnterYourResetCodePage(ScenarioContext context) : base(context)
@@ -21,14 +19,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public AddAPAYESchemePage ResetPasswordDuringAccountCreation()
+
+        public ChangePasswordPage ResetPasswordDuringAccountCreation()
         {
-            var newPassword = registrationDataHelper.NewPassword;
             formCompletionHelper.EnterText(EnterCodeTextBox, config.RE_ConfirmCode);
-            formCompletionHelper.EnterText(CreateNewPasswordTextBox, newPassword);
-            formCompletionHelper.EnterText(ConfirmPasswordTextBox, newPassword);
             Continue();
-            return new AddAPAYESchemePage(_context);
+            return new ChangePasswordPage(_context);
         }
     }
 }
