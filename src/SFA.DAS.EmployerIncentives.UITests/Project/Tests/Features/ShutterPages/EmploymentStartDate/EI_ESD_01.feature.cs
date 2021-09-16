@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "hips")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("addLevyFunds")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EmployerEntersValidEmploymentStartDateForPhase2AndAPhase3Apprenticeships()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "addLevyFunds"};
+                    "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer enters valid employment start date for phase 2 and a phase 3 apprentices" +
                     "hips", null, tagsOfScenario, argumentsOfScenario);
@@ -144,13 +144,13 @@ this.ScenarioInitialize(scenarioInfo);
             "ticeships")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("addLevyFunds")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EmployerEntersAnInvalidEmploymentStartDateForPhase2AndAPhase3Apprenticeships()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "addLevyFunds"};
+                    "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer enters an invalid employment start date for phase 2 and a phase 3 appren" +
                     "ticeships", null, tagsOfScenario, argumentsOfScenario);
@@ -192,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
-    testRunner.And("the Employer enters an employment start date of \'01/02/2021\' for the second learn" +
+    testRunner.And("the Employer enters an employment start date of \'01/02/2022\' for the second learn" +
                         "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
@@ -213,13 +213,13 @@ this.ScenarioInitialize(scenarioInfo);
             "itment")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("addLevyFunds")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EmployerEntersAnEmploymentStartDateInThePhase3WindowForAPhase2Commitment()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "addLevyFunds"};
+                    "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer enters an employment start date in the phase 3 window for a phase 2 comm" +
                     "itment", null, tagsOfScenario, argumentsOfScenario);
@@ -268,6 +268,71 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 41
  testRunner.And("the Cancel Application button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Employer enters an invalid  and valid employment start date in the phase 3 window" +
+            " for a phase 3 commitment")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        public virtual void EmployerEntersAnInvalidAndValidEmploymentStartDateInThePhase3WindowForAPhase3Commitment()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "employerincentives",
+                    "addlevyfunds"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer enters an invalid  and valid employment start date in the phase 3 window" +
+                    " for a phase 3 commitment", null, tagsOfScenario, argumentsOfScenario);
+#line 46
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 47
+ testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 48
+ testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
+                        "th 12 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 49
+ testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 50
+ testRunner.And("the Employer selects the apprentice on an incentive application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 51
+ testRunner.And("the Employer enters an employment start date of \'30/09/21\' for the first learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
+    testRunner.And("the Employer enters an employment start date of \'01/10/21 \' for the second learne" +
+                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 53
+ testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 54
+    testRunner.Then("the Confirm Apprenticeships page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
