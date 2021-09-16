@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to confirm the identitification details")]
         public void ThenTheApprenticeIsAbleToConfirmTheIdentificationDetails()
         {
-            _apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
+            //_apprenticeHomePage = SignInToApprenticePortal().ConfirmIdentity();
             appreticeCommitmentsStepsHelper.UpdateConfirmBeforeDate();
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
         }
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for invalid data")]
         public void ThenAnErrorIsShownForInvalidData()
         {
-            var confirmYourIdentityPage = SignInToApprenticePortal();
+            //var confirmYourIdentityPage = SignInToApprenticePortal();
 
             var invalidDatas = new List<(string, string, int, int, int)>
             {
@@ -35,8 +35,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             foreach (var d in invalidDatas)
             {
-                confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
-                confirmYourIdentityPage.VerifyErrorSummary();
+                //confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
+                //confirmYourIdentityPage.VerifyErrorSummary();
             }
         }
 
@@ -51,6 +51,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to logout from the service")]
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
-        private ConfirmYourIdentityPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
+        //private CreateMyApprenticeshipAccountPage SignInToApprenticePortal() => appreticeCommitmentsStepsHelper.SignInToApprenticePortal();
     }
 }

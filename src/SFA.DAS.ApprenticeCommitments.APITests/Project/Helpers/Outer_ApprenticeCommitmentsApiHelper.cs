@@ -76,7 +76,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public IRestResponse VerifyIdentity()
         {
-            (string apprenticeId, _)  = _aComtSqlDbHelper.GetRegistrationId(GetApprenticeEmail());
+            (string apprenticeId, _)  = _aComtSqlDbHelper.GetApprenticeIdFromRegistrationTable(GetApprenticeEmail());
 
             var verifyIdentity = new VerifyIdentityRegistrationCommand
             {

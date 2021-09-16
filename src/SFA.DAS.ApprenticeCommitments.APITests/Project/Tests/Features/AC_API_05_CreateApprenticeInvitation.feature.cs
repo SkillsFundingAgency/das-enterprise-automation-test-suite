@@ -79,7 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteinvitation")]
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
         public virtual void AC_API_05A_NewApprenticeshipEmailSent()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "apprenticecommitmentsapi",
                     "outerapi",
                     "regression",
-                    "deleteinvitation"};
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_05A_New apprenticeship email sent", null, tagsOfScenario, argumentsOfScenario);
 #line 8

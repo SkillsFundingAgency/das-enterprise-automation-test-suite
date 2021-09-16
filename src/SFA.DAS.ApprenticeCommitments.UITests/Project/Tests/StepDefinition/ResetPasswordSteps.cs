@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void WhenAnApprenticeSubmitsEmailToResetPasswordForANewAccountPendingPD()
         {
             appreticeCommitmentsStepsHelper.CreateAccount();
-            appreticeCommitmentsStepsHelper.SubmitEmailToResetPasswordFromSignInPage();
+            //appreticeCommitmentsStepsHelper.SubmitEmailToResetPasswordFromSignInPage();
         }
 
         [Then(@"the apprentice is able to reset the password using the invitation")]

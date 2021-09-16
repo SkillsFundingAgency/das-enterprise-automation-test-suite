@@ -5,10 +5,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmYourIdentityPage : ApprenticeCommitmentsBasePage
+    public class CreateMyApprenticeshipAccountPage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-        protected override string PageTitle => "Confirm your personal details";
+        protected override string PageTitle => "Create My apprenticeship account";
 
         private By FirstName => By.CssSelector("input#FirstName");
         private By LastName => By.CssSelector("input#LastName");
@@ -19,9 +19,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
-        public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => _context = context;
+        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeOverviewPage ConfirmIdentity()
+        public ApprenticeHomePage ConfirmIdentity()
         {
             EnterApprenticeDetails(objectContext.GetFirstName(),
                 objectContext.GetLastName(),
@@ -29,10 +29,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 objectContext.GetDateOfBirth().Month,
                 objectContext.GetDateOfBirth().Year);
 
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeHomePage(_context);
         }
 
-        public ConfirmYourIdentityPage InvalidData(string firstname, string lastname, int? day, int? month, int? year)
+        public CreateMyApprenticeshipAccountPage InvalidData(string firstname, string lastname, int? day, int? month, int? year)
         {
             EnterApprenticeDetails(firstname, lastname, day, month, year);
             return this;

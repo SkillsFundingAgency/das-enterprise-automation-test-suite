@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             $"DELETE FROM Apprentice WHERE Email = '{email}'" +
             $"DELETE FROM Registration WHERE Email = '{email}'");
 
-        public (string apprenticeId, string userIdentityid) GetRegistrationId(string email)
+        public (string apprenticeId, string userIdentityid) GetApprenticeIdFromRegistrationTable(string email)
         {
             var data = GetData($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'", 2);
             return (data[0], data[1]);
@@ -38,5 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var confirmBeforeDate = DateTime.Now.AddDays(13).AddHours(23).ToString("yyyy-MM-dd HH:mm:ss.fffffff");
             ExecuteSqlCommand($"UPDATE[CommitmentStatement] SET ConfirmBefore = '{confirmBeforeDate}' WHERE CommitmentsApprenticeshipId = (SELECT CommitmentsApprenticeshipId from Registration WHERE Email = '{email}')");
         }
+
+        public string GetRegistrationId(string email) => GetData($"select RegistrationId from Registration where Email ='{email}'");
     }
 }

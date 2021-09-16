@@ -21,10 +21,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private readonly ApprenticeCommitmentsConfig config;
-        private SignUpCompletePage signUpCompletePage;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel;
         private DateTime expectedApprenticeshipStartDate;
         private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
+        private SignIntoMyApprenticeshipPage signIntoMyApprenticeshipPage;
 
         public AppreticeCommitmentsStepsHelper(ScenarioContext context)
         {
@@ -39,18 +39,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void CreateApprenticeshipViaCommitmentsJob() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJob();
 
-        public CreatePasswordPage GetCreatePasswordPage()
+        public StartPage GetStartPage()
         {
             RetryOnNUnitException(() =>
             {
                 string email = _objectContext.GetApprenticeEmail();
-                var invitationId = _apprenticeLoginSqlDbHelper.GetId(email);
+                var registrationId = _aComtSqlDbHelper.GetRegistrationId(email);
 
-                Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
-                OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(invitationId));
+                Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
+                OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
             });
 
-            return new CreatePasswordPage(_context);
+            return new StartPage(_context);
         }
 
         public ResetPasswordPage BuildResetPasswordPageUsingDBHelper()
@@ -70,21 +70,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new ResetPasswordPage(_context);
         }
 
-        public SignUpCompletePage CreateAccount(bool postApprenticeship = true)
+        public SignIntoMyApprenticeshipPage CreateAccount(bool postApprenticeship = true)
         {
             if (postApprenticeship)
                 CreateApprenticeshipViaCommitmentsJob();
 
-            return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
+            return signIntoMyApprenticeshipPage = GetStartPage().CTAOnStartPageToSignIn();
         }
 
-        public ForgottenPasswordConfirmPage SubmitEmailToResetPasswordFromSignInPage() => NavigateToSignInPageFromSignUpCompletePage().ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
+        //public ForgottenPasswordConfirmPage SubmitEmailToResetPasswordFromSignInPage() => NavigateToSignInPageFromSignUpCompletePage().ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
 
-        public SignIntoApprenticeshipPortalPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().CreateAndConfirmPasswordOnCreatePasswordPage().ReturnToSignInPage();
+        public SignIntoMyApprenticeshipPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().CreateAndConfirmPasswordOnCreatePasswordPage().ReturnToSignInPage();
 
-        public ConfirmYourIdentityPage SignInToApprenticePortal() => NavigateToSignInPageFromSignUpCompletePage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
+        //public CreateMyApprenticeshipAccountPage SignInToApprenticePortal() => NavigateToSignInPageFromSignUpCompletePage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
 
-        public void EnterMismatchedPasswordsAndValidateError(PasswordBasePage passwordPage)
+        public void EnterMismatchedPasswordsAndValidateError(CreatePasswordBasePage passwordPage)
         {
             var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
             StringAssert.Contains("There is a problem", error, "Password error message did not match");
@@ -128,7 +128,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyDaysToConfirmWarning(ApprenticeOverviewPage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
 
-        private SignIntoApprenticeshipPortalPage NavigateToSignInPageFromSignUpCompletePage() => signUpCompletePage.ClickSignInToApprenticePortal();
+        //private SignIntoMyApprenticeshipPage NavigateToSignInPageFromSignUpCompletePage() => signIntoMyApprenticeshipPage.ClickSignInToApprenticePortal();
 
         private void PopulateExpectedApprenticeshipDetails()
         {

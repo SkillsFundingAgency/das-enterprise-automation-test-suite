@@ -3,18 +3,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class PasswordBasePage : ApprenticeCommitmentsBasePage
+    public abstract class CreatePasswordBasePage : ApprenticeCommitmentsBasePage
     {
-        protected string _validPassword;
+        protected string _validPassword, email;
         protected override string PageTitle { get; }
 
-        private By Password => By.CssSelector("#Password");
-        private By ConfirmPassword => By.CssSelector("#ConfirmPassword");
-        private By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
+        protected By Password => By.CssSelector("#Password");
+        protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
+        protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         private By ErrorSummary => By.CssSelector(".govuk-error-summary");
         protected override By ServiceHeader => NonClickableServiceHeader;
 
-        public PasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
+        public CreatePasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
 
         public string InvalidPassword(string password, string confirmpassword)
         {

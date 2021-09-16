@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ResetPasswordPage : PasswordBasePage
+    public class ResetPasswordPage : CreatePasswordBasePage
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => "Reset password";
