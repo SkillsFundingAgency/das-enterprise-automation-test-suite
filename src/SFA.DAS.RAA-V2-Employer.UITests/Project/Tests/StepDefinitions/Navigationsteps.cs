@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
@@ -53,6 +53,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the employer can navigate to notification settings page")]
         public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToNotificationSettingsPage();
+
+        [Then(@"the employer can navigate to advert notifications page via settings dropdwon")]
+        public void ThenTheEmployerCanNavigateToAdvertNotificationsPageViaSettingsDropdwon() => new YourApprenticeshipAdvertsHomePage(_context, true, true).GoToAdvertNotificationsPage();
 
         [Then(@"the employer can navigate to help settings page")]
         public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToHelpPage();
