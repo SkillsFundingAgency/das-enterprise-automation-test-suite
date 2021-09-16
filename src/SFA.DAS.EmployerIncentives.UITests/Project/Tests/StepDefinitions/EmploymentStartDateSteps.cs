@@ -19,6 +19,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer selects those apprentices on an incentive application")]
+        [Given(@"the Employer selects the apprentice on an incentive application")]
         public void GivenTheEmployerSelectsThoseApprenticesOnAnIncentiveApplication()
         {
             var qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
@@ -43,11 +44,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _whenDidApprenticeJoinPage.Continue();
         }
 
-        [Then(@"Then the Confirm Apprenticeships page is displayed")]
+        [Then(@"the Confirm Apprenticeships page is displayed")]
         public void ThenTheConfirmApprenticeshipsPageIsDisplayed()
         {
             // Apparently this will verify the correct page has been displayed.
             var confirmApprenticesPage = new ConfirmApprenticesPage(_context);
+        }
+
+        [Then(@"the Ineligible Employment Start Date page is displayed")]
+        public void ThenTheIneligibleEmploymentStartDatePageIsDisplayed()
+        {
+            var notEligibleShutterPage = new NotEligibleShutterPage(_context);
+
+            //TODO: Verify contents
         }
     }
 }

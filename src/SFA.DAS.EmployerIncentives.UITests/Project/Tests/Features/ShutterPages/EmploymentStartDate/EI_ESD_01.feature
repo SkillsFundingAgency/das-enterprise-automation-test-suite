@@ -25,3 +25,15 @@ Scenario: Employer enters an invalid employment start date for phase 2 and a pha
     And the Employer enters an employment start date of '01/02/2021' for the second learner
 	When the Employer selects Continue
 	Then the Ineligible Employment Start Date page is displayed
+
+@regression
+@employerincentives
+@addLevyFunds
+Scenario: Employer enters an employment start date in the phase 3 window for a phase 2 commitment
+	Given an Employer creates a Levy Account and Signs the Agreement
+	And the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Month 09 and Year 2021
+	And the Provider approves the apprenticeship request
+	And the Employer selects the apprentice on an incentive application
+	And the Employer enters an employment start date of '01/10/2021' for the first learner
+    When the Employer selects Continue
+	Then the Ineligible Employment Start Date page is displayed
