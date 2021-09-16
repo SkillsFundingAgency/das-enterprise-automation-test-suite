@@ -44,6 +44,18 @@
 	  <Compile Update="Project\Tests\Features\LTM_02_Create_Levy_Transfer_Pledge.feature.cs">
 	    <DesignTime>True</DesignTime>
 	  </Compile>
+	  <Compile Update="Project\Tests\Features\TM_02_Create_Pledge.feature.cs">
+	    <DesignTime>True</DesignTime>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TM_01_Login.feature.cs">
+	    <DesignTime>True</DesignTime>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TM_03_Apply_For_Pledge.feature.cs">
+	    <DesignTime>True</DesignTime>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\TM_04_View_And_Approve_Application.feature.cs">
+	    <DesignTime>True</DesignTime>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,6 +80,22 @@
 	  <SpecFlowFeatureFiles Update="Project\Tests\Features\LTM_02_Create_Levy_Transfer_Pledge.feature">
 	    <Generator>SpecFlowSingleFileGenerator</Generator>
 	    <LastGenOutput>LTM_02_Create_Levy_Transfer_Pledge.feature.cs</LastGenOutput>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TM_02_Create_Pledge.feature">
+	    <Generator>SpecFlowSingleFileGenerator</Generator>
+	    <LastGenOutput>TM_02_Create_Pledge.feature.cs</LastGenOutput>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TM_01_Login.feature">
+	    <Generator>SpecFlowSingleFileGenerator</Generator>
+	    <LastGenOutput>TM_01_Login.feature.cs</LastGenOutput>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TM_03_Apply_For_Pledge.feature">
+	    <Generator>SpecFlowSingleFileGenerator</Generator>
+	    <LastGenOutput>TM_03_Apply_For_Pledge.feature.cs</LastGenOutput>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TM_04_View_And_Approve_Application.feature">
+	    <Generator>SpecFlowSingleFileGenerator</Generator>
+	    <LastGenOutput>TM_04_View_And_Approve_Application.feature.cs</LastGenOutput>
 	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 

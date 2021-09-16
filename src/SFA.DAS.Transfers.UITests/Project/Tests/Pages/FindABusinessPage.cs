@@ -12,7 +12,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
         protected override string PageTitle => "Pledge and transfer your levy funds";
-        private By continueButton = By.XPath("//*[@id='main-content']/div/div/div/a[1]");
+        private By continueButton = By.XPath("//*[text()='Start']");
         public bool CheckPageTitle()
         {
 
