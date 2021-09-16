@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
         public string CharityTypeOrg1Name => "ALLHALLOWS CHARITY";
-        public string CharityTypeOrg1Address => "Ford Simey, 118 High Street, Honiton, EX14 1JP";
+        public string CharityTypeOrg1Address => "WBW Solicitors, 118 High Street, Honiton, EX14 1JP";
         public string CharityTypeOrg2Number => "202918";
         public string CharityTypeOrg2Name => "OXFAM";
         public string CharityTypeOrg2Address => "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY";
