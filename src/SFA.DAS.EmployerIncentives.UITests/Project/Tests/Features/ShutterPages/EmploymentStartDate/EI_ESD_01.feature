@@ -25,6 +25,7 @@ Scenario: Employer enters an invalid employment start date for phase 2 and a pha
     And the Employer enters an employment start date of '01/02/2021' for the second learner
 	When the Employer selects Continue
 	Then the Ineligible Employment Start Date page is displayed
+	And the Cancel Application button is displayed
 
 @regression
 @employerincentives
@@ -37,3 +38,4 @@ Scenario: Employer enters an employment start date in the phase 3 window for a p
 	And the Employer enters an employment start date of '01/10/2021' for the first learner
     When the Employer selects Continue
 	Then the Ineligible Employment Start Date page is displayed
+	And the Cancel Application button is displayed
