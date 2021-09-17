@@ -12,9 +12,57 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class PaymentValidationSteps : StepsBase
     {
         private PendingPayment _pendingPayment;
+        private Phase _phase;
+        private DateTime _initialStartDate;
+        private DateTime _initialEndDate;
 
         protected PaymentValidationSteps(ScenarioContext context) : base(context)
         {
+        }
+
+        [Given(@"an existing (.*) apprenticeship incentive submitted in Academic Year (.*)")]
+        public async Task GivenAnExistingPhaseApprenticeshipIncentiveSubmittedInAcademicYear(string phase, short year)
+        {
+            _phase = Enum.Parse<Phase>(phase);
+            if (_phase == Phase.Phase3)
+            {
+                await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(5, year);
+                _initialStartDate = new DateTime(2021, 10, 1);
+                _initialEndDate = new DateTime(2022, 12, 31);
+            }
+            else
+            {
+                _phase.Should().Be(Phase.Phase3);
+            }
+            
+            TestData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccount(TestData.Account)
+                .WithDateSubmitted(_initialStartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
+                    _initialStartDate.AddYears(-24), _phase)
+                .Create();
+
+            await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
+
+            const byte period = 5;
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(2122)
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_initialEndDate)
+                .WithPeriod(TestData.ApprenticeshipId, period)
+                .Create();
+
+            var submission = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(TestData.UKPRN)
+                .WithUln(TestData.ULN)
+                .WithAcademicYear(year)
+                .WithIlrSubmissionDate(_initialStartDate.AddMonths(-1))
+                .WithIlrSubmissionWindowPeriod(period)
+                .WithStartDate(_initialStartDate)
+                .WithPriceEpisode(priceEpisode)
+                .Create();
+
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, submission);
         }
 
         [Given(@"an existing apprenticeship incentive")]
