@@ -55,7 +55,7 @@ Scenario: Employer enters an invalid  and valid employment start date in the pha
 
 @regression
 @employerincentives
-@addLevyFunds
+@addlevyfunds
 Scenario: Employer enters an invalid  and valid employment start date in the phase 2 window for a phase 2 commitment
 	Given an Employer creates a Levy Account and Signs the Agreement
 	And the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Month 09 and Year 2021

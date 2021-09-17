@@ -70,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheCancelApplicationButtonIsDisplayed()
         {
             Assert.IsTrue(_notEligibleShutterPage.CancelApplicationButtonExists);
-            Assert.IsTrue(_notEligibleShutterPage.ContinueApplicationButtonExists);
+            Assert.IsFalse(_notEligibleShutterPage.ContinueApplicationButtonExists);
         }
     }
 }
