@@ -77,13 +77,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
         [NUnit.Framework.DescriptionAttribute("AP_PSR_01_CreateAndAmendReport")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("ignore_demo")]
+        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
         public virtual void AP_PSR_01_CreateAndAmendReport()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
-                    "ignore_demo"};
+                    "ignoreindemo"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PSR_01_CreateAndAmendReport", null, tagsOfScenario, argumentsOfScenario);
 #line 6
