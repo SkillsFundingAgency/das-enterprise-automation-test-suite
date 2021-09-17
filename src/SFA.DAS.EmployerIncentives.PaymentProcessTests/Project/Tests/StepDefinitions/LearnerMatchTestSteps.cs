@@ -399,7 +399,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisodeFutureDate = new PriceEpisodeDtoBuilder()
                     .WithAcademicYear(2021)
                     .WithStartDate(TestData.StartDate)
-                    .WithEndDate(DateTime.Now.AddDays(1))
+                    .WithEndDate(TestData.StartDate.AddDays(30))
                     .WithPeriod(TestData.ApprenticeshipId, 1)
                     .Create();
 
