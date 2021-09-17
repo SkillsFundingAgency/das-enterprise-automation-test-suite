@@ -75,12 +75,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_01 Transfers - Verify transfer status when agreement is not signed")]
-        [NUnit.Framework.CategoryAttribute("transfers")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void TR_05_01Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
         {
             string[] tagsOfScenario = new string[] {
-                    "transfers",
+                    "approvals",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_01 Transfers - Verify transfer status when agreement is not signed", null, tagsOfScenario, argumentsOfScenario);
@@ -116,12 +116,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_02 Transfers - Verify transfer status when agreement is signed")]
-        [NUnit.Framework.CategoryAttribute("transfers")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void TR_05_02Transfers_VerifyTransferStatusWhenAgreementIsSigned()
         {
             string[] tagsOfScenario = new string[] {
-                    "transfers",
+                    "approvals",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_02 Transfers - Verify transfer status when agreement is signed", null, tagsOfScenario, argumentsOfScenario);

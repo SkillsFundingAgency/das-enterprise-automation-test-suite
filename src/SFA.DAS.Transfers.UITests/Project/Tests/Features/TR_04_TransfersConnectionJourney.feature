@@ -1,4 +1,4 @@
-﻿@transfers
+﻿@approvals
 Feature: TR_04_TransfersConnectionJourney
 
 @regression

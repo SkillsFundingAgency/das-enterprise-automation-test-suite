@@ -21,14 +21,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_01_TransfersApprovalJourney")]
-    [NUnit.Framework.CategoryAttribute("transfers")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class TR_01_TransfersApprovalJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "transfers"};
+                "approvals"};
         
 #line 1 "TR_01_TransfersApprovalJourney.feature"
 #line hidden
@@ -38,7 +38,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "transfers"});
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

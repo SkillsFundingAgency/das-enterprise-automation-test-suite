@@ -1,4 +1,4 @@
-﻿@transfers
+﻿@approvals
 Feature: TR_03_TransfersApprovalJourney
 
 @liveapprentice
