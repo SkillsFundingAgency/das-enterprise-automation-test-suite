@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         #region Locators
         private readonly ScenarioContext _context;
 
-        private By IneligibleApprenticesList => By.Name("ineligible-apprenticeship");
+        private By IneligibleApprenticesList => By.CssSelector("[data-name=ineligible-apprenticeship]");
         private By EmploymentStartDateFields => By.Name("ineligible-apprenticeship-start-date");
         private By CancelApplicationButton => By.Id("cancelApplication");
         private By ContinueApplicationButton => By.Id("continueApplication");
