@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class NotEligibleShutterPage : EIBasePage
     {
-        protected override string PageTitle => $"Not eligible for the payment";
+        protected override string PageTitle => $"One or more apprentices are not eligible for the payment";
 
         #region Locators
         private readonly ScenarioContext _context;
