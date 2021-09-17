@@ -123,11 +123,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.And("the Employer enters an employment start date of \'30/09/2021\' for the first learne" +
-                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "r - eligible = \'true\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
     testRunner.And("the Employer enters an employment start date of \'01/10/2021\' for the second learn" +
-                        "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "er - eligible = \'true\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
  testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -189,11 +189,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 24
  testRunner.And("the Employer enters an employment start date of \'31/03/2021\' for the first learne" +
-                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "r - eligible = \'false\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
     testRunner.And("the Employer enters an employment start date of \'01/02/2022\' for the second learn" +
-                        "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "er - eligible = \'false\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
  testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -258,7 +258,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 38
  testRunner.And("the Employer enters an employment start date of \'01/10/2021\' for the first learne" +
-                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "r - eligible = \'false\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
     testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -322,17 +322,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer selects the apprentice on an incentive application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 51
- testRunner.And("the Employer enters an employment start date of \'30/09/21\' for the first learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer enters an employment start date of \'30/09/21\' for the first learner " +
+                        "- eligible = \'false\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
     testRunner.And("the Employer enters an employment start date of \'01/10/21 \' for the second learne" +
-                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "r - eligible = \'true\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 53
  testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 54
-    testRunner.Then("the Confirm Apprenticeships page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the Ineligible Employment Start Date page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 55
+ testRunner.And("the Continue Application button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -353,7 +357,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer enters an invalid  and valid employment start date in the phase 2 window" +
                     " for a phase 2 commitment", null, tagsOfScenario, argumentsOfScenario);
-#line 59
+#line 60
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -373,31 +377,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 60
+#line 61
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 61
+#line 62
  testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
                         "th 09 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 62
+#line 63
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
+#line 64
  testRunner.And("the Employer selects the apprentice on an incentive application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 64
- testRunner.And("the Employer enters an employment start date of \'30/9/21\' for the first learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 65
-    testRunner.And("the Employer enters an employment start date of \'01/12/21 \' for the second learne" +
-                        "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer enters an employment start date of \'30/9/21\' for the first learner -" +
+                        " eligible = \'true\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 66
- testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.And("the Employer enters an employment start date of \'01/12/21 \' for the second learne" +
+                        "r - eligible = \'false\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 67
-    testRunner.Then("the Confirm Apprenticeships page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer selects Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 68
+    testRunner.Then("the Ineligible Employment Start Date page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 69
+ testRunner.And("the Continue Application button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -30,18 +30,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _whenDidApprenticeJoinPage = qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario().SubmitApprentices();
         }
 
-        [Given(@"the Employer enters an employment start date of '(.*)' for the first learner")]
-        public void GivenTheEmployerEntersAnEmploymentStartDateForTheFirstLearner(DateTime employmentStartDate)
+        [Given(@"the Employer enters an employment start date of '(.*)' for the first learner - eligible = '(.*)'")]
+        public void GivenTheEmployerEntersAnEmploymentStartDateForTheFirstLearner(DateTime employmentStartDate, bool eligible)
         {
             _whenDidApprenticeJoinPage.EnterJoiningDate(0, employmentStartDate);
-            employmentStartDates.Add(employmentStartDate);
+            if(!eligible)
+                employmentStartDates.Add(employmentStartDate);
         }
 
-        [Given(@"the Employer enters an employment start date of '(.*)' for the second learner")]
-        public void GivenTheEmployerEntersAnEmploymentStartDateForTheSecondLearner(DateTime employmentStartDate)
+        [Given(@"the Employer enters an employment start date of '(.*)' for the second learner - eligible = '(.*)'")]
+        public void GivenTheEmployerEntersAnEmploymentStartDateForTheSecondLearner(DateTime employmentStartDate, bool eligible)
         {
             _whenDidApprenticeJoinPage.EnterJoiningDate(1, employmentStartDate);
-            employmentStartDates.Add(employmentStartDate);
+            if(!eligible)
+                employmentStartDates.Add(employmentStartDate);
         }
 
         [When(@"the Employer selects Continue")]
@@ -71,6 +73,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             Assert.IsTrue(_notEligibleShutterPage.CancelApplicationButtonExists);
             Assert.IsFalse(_notEligibleShutterPage.ContinueApplicationButtonExists);
+        }
+
+        [Then(@"the Continue Application button is displayed")]
+        public void ThenTheContinueApplicationButtonIsDisplayed()
+        {
+            Assert.IsFalse(_notEligibleShutterPage.CancelApplicationButtonExists);
+            Assert.IsTrue(_notEligibleShutterPage.ContinueApplicationButtonExists);
         }
     }
 }
