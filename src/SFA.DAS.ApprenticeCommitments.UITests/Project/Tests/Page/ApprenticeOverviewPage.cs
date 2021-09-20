@@ -21,7 +21,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and Support']");
         private By HelpAndSupportLink => By.LinkText("help and support section");
-        private string SignOutLinkText => "Sign out";
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
@@ -92,12 +91,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
-
-        public SignedOutPage SignOutFromTheService()
-        {
-            formCompletionHelper.ClickLinkByText(SignOutLinkText);
-            return new SignedOutPage(_context);
-        }
 
         public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
         {

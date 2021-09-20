@@ -35,6 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
         private By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship']");
         private By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
+        private string SignOutLinkText => "Sign out";
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -82,6 +83,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(PrivacyFooterLink);
             VerifyPage(CookiesFooterLink);
             VerifyPage(TermsOfUseFooterLink);
+        }
+
+        public SignedOutPage SignOutFromTheService()
+        {
+            formCompletionHelper.ClickLinkByText(SignOutLinkText);
+            return new SignedOutPage(_context);
         }
     }
 }

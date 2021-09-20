@@ -54,7 +54,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an apprenticeship is posted")]
-        public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJob();
+        public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJobApiRequest();
 
         [Then(@"the apprentice details are updated in the login db")]
         public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _apprenticeCommitmentsApiHelper.AssertApprenticeLoginData();

@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateLoginDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public CreateMyApprenticeshipAccountPage CreateLoginDetails()
+        public CreateMyApprenticeshipAccountPage EnterDetailsOnCreateLoginDetailsPageAndContinue()
         {
             var email = objectContext.GetApprenticeEmail();
             formCompletionHelper.EnterText(EmailAddress, email);

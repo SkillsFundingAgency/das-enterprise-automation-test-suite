@@ -4,5 +4,5 @@
 @regression
 @deleteuser
 Scenario: AC_CA_02_Invalid_Password
-	When employer or provider submits the details to create an account
-	Then an error is shown for invalid passwords
+	When an apprenticeship is created via API request
+	Then an error is shown for entering mismatched passwords
