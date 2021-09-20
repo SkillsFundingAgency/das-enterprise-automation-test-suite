@@ -82,7 +82,7 @@ stages:
               #  **\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.dll
               #  **\SFA.DAS.Transfers.UITests\SFA.DAS.Transfers.UITests.dll
               searchFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/'
-              testFiltercriteria: 'TestCategory=captureurl'
+              testFiltercriteria: 'TestCategory=fatv2|TestCategory=findepao'
               runSettingsFile: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/runsettings/src/Parellel.runsettings'
               runInParallel: false
               otherConsoleOptions: '/logger:trx'
