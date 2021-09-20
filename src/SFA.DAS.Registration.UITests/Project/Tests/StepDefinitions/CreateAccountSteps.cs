@@ -461,8 +461,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.RelaunchApplication();
 
-            new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword();
-            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
+            new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword()
+                .LoginWithResetPassword(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
         }
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
