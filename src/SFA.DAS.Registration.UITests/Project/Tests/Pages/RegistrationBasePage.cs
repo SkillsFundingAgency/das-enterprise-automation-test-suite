@@ -47,11 +47,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        public ChangePasswordPage GoToChangeYourPasswordPage()
+        public ChangeYourPasswordPage GoToChangeYourPasswordPage()
         {
             formCompletionHelper.ClickElement(SettingsLink);
             formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangePasswordPage(_context);
+            return new ChangeYourPasswordPage(_context);
         }
 
         public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()

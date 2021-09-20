@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By ContinueButton = By.LinkText("Continue");
+        protected override By ContinueButton => By.LinkText("Continue");
         #endregion
 
         public PasswordResetCodePage(ScenarioContext context) : base(context)
@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public EmailAddressPage EnterEmailToReset()
         {
-            formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new EmailAddressPage(_context);
         }
     }

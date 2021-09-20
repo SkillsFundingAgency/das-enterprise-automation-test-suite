@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
 
-        public ChangePasswordPage ResetPasswordDuringAccountCreation()
+        public ChangePasswordPage EnterConfirmationCode()
         {
             formCompletionHelper.EnterText(EnterCodeTextBox, config.RE_ConfirmCode);
             Continue();

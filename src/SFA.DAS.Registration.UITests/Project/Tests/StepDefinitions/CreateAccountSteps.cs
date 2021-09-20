@@ -461,7 +461,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.RelaunchApplication();
 
-            _addAPAYESchemePage = new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPasswordDuringAccountCreation();
+            new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword();
             SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
         }
 

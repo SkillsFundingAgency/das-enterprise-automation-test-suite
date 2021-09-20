@@ -12,8 +12,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By EmailAddressTextField = By.Id("Email");
-        private By ContinueButton = By.Id("forgottenpassword-button");
+        private By EmailAddressTextField => By.Id("Email");
+        protected override By ContinueButton => By.Id("forgottenpassword-button");
         #endregion
 
         public EmailAddressPage(ScenarioContext context) : base(context)
@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public EnterYourResetCodePage EnterResetCode()
         {
             formCompletionHelper.EnterText(EmailAddressTextField, objectContext.GetRegisteredEmail());
-            formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new EnterYourResetCodePage(_context);
         }
     }

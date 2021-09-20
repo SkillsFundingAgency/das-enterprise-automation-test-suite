@@ -64,10 +64,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public ResetYourPasswordPage ClickForgottenYourPasswordLink()
+        public PasswordResetCodePage ClickForgottenYourPasswordLink()
         {
             _formCompletionHelper.Click(ForgottenYourPasswordLink);
-            return new ResetYourPasswordPage(_context);
+            return new PasswordResetCodePage(_context);
         }
     }
 }
