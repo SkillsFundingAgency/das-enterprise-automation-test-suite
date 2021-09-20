@@ -43,7 +43,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateLoginDetailsPage ClickCreateAnAccountLinkOnSignInPage()
         {
-            formCompletionHelper.ClickLinkByText("I have forgotten my password");
+            formCompletionHelper.ClickLinkByText("create an account");
             return new CreateLoginDetailsPage(_context);
         }
     }
