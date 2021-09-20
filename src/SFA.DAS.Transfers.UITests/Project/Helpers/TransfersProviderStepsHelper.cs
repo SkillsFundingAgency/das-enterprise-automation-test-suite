@@ -13,7 +13,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ApprovesTheCohortsAndSendsToEmployer()
         {
-            EditApprentice().SubmitApproveAndSendToEmployerForApproval();
+            EditApprentice().SubmitApprove();
         }
     }
 }
