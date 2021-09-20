@@ -75,16 +75,18 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_01 Transfers - Verify transfer status when agreement is not signed")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void TR_05_01Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
                     "transfers",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_01 Transfers - Verify transfer status when agreement is not signed", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,10 +106,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("We have a Sender with sufficient levy funds without signing an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the sender transfer status is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -116,16 +118,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_05_02 Transfers - Verify transfer status when agreement is signed")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void TR_05_02Transfers_VerifyTransferStatusWhenAgreementIsSigned()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
                     "transfers",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_05_02 Transfers - Verify transfer status when agreement is signed", null, tagsOfScenario, argumentsOfScenario);
-#line 12
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -145,10 +149,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 15
  testRunner.Given("We have a Sender with sufficient levy funds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 16
  testRunner.Then("the sender transfer status is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
