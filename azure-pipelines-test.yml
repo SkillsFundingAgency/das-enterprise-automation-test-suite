@@ -35,8 +35,9 @@ stages:
           - task: ExtractFiles@1
             displayName: 'Extract files'
             inputs:
-              archiveFilePatterns: '**\tests.zip'
+              archiveFilePatterns: 'das-enterprise-automation-test-suite\drop\tests.zip'
               destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+              cleanDestinationFolder: true
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
             displayName: 'Tokenization: Transform file *.json'
             inputs:
@@ -46,7 +47,7 @@ stages:
             displayName: 'Update NumberOfTestWorkers'
             inputs:
               targetType: filePath
-              filePath: './$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
+              filePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
               arguments: '-browser $(Browser)'
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
             displayName: 'Tokenization: Transform file *.runsettings'
