@@ -86,14 +86,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  DECLARE @ApprenticeshipIncentiveId UNIQUEIDENTIFIER
-        /// SET @ApprenticeshipIncentiveId=(SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId)
+        ///   Looks up a localized string similar to DECLARE @apprenticeshipIncentiveId UNIQUEIDENTIFIER
+        ///DECLARE @apprenticeshipIncentiveIds TABLE (Id UNIQUEIDENTIFIER)
+        ///INSERT INTO @apprenticeshipIncentiveIds SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId
         /// 
-        /// DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// 
-        ///DELETE x FROM archive.Pend [rest of string was truncated]&quot;;.
+        ///WHILE EXISTS (SELECT 1 FROM @apprenticeshipIncentiveIds)
+        ///BEGIN
+        ///    SET @apprenticeshipIncentiveId = (SELECT TOP 1 Id FROM @apprenticeshipIncentiveIds)
+        ///    DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprent [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DeleteIncentiveData {
             get {
@@ -116,8 +116,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         
         /// <summary>
         ///   Looks up a localized string similar to IF NOT EXISTS (SELECT 1 FROM Accounts WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId)
-        ///INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, &apos;Test&apos;, 6, &apos;ABC123&apos;)
-        ///ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName=&apos;TestLegalEntity&apos;, SignedAgreementVersion=6, VrfVendorId=&apos;ABC123&apos; WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId.
+        ///INSERT INTO Accounts (Id, AccountLegalEntityId, LegalEntityId, LegalEntityName, SignedAgreementVersion, VrfVendorId) VALUES (@accountId, @accountLegalEntityId, 123456, &apos;Test&apos;, @signedAgreementVersion, &apos;ABC123&apos;)
+        ///ELSE UPDATE Accounts SET LegalEntityId=123456, LegalEntityName=&apos;TestLegalEntity&apos;, SignedAgreementVersion=@signedAgreementVersion, VrfVendorId=&apos;ABC123&apos; WHERE Id=@accountId AND AccountLegalEntity [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string UpsertAccount {
             get {
