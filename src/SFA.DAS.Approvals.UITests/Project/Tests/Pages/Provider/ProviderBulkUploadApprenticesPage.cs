@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ApprenticeDetails SetApprenticeDetails(int courseCode)
         {
             var employerUser = _context.GetUser<LevyUser>();
-            var employerName = employerUser.OrganisationName.Substring(0, 7) + "%";
+            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
             string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
