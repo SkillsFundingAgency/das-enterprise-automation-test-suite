@@ -27,8 +27,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public string SurName => _randomDataGenerator.GenerateRandomAlphabeticString(10);
 
-        public string JoiningDay =>  new DateTime(2020,12,_randomDataGenerator.GenerateRandomDateOfMonth()).ToString("dd");
+        public int JoiningDay =>  _randomDataGenerator.GenerateRandomDateOfMonth();
 
-        public string JoiningMonth => new DateTime(2020, _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(4, 10), 01).ToString("MM");
+        public int JoiningMonth => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(4, 10);
     }
 }
