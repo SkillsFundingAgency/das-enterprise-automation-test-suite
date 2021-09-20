@@ -106,22 +106,6 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the Employer grants permission to the provider to create advert with review optio" +
                         "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
-testRunner.When("the Provider creates a vacancy on behalf of the employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
-testRunner.And("submits it to the employer for reviewAND Employer rejects the advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
-testRunner.Then("the Provider should see the advert in \'Rejected vacancies\' section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
-testRunner.When("Provider re-submits the advertAnd Employer approves the advertAnd the Reviewer Ap" +
-                        "proves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
-testRunner.Then("the Provider should see the advert in \'Live vacancies\' section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

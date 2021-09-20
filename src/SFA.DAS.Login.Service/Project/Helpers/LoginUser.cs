@@ -13,6 +13,11 @@
 
     public class RAAV2EmployerUser : LoginUser { }
 
+    public class RAAV2EmployerProviderPermissionUser : LoginUser 
+    {
+        public string PermissionOrganisationName { get; set; }
+    }
+
     public class ProviderLoginUser : LoginUser
     {
         public string Ukprn { get; set; }

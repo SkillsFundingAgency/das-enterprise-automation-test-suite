@@ -4,6 +4,7 @@ using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
@@ -96,12 +97,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal WhatDoYouWantToCallThisAdvertPage GoToAddAnAdvert()
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
+
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
+        internal HomePage GoToHomePage(LoginUser loginUser) => _loginhelper.Login(loginUser, true);
+    
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
         {
-            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+            GoToHomePage(_context.GetUser<RAAV2EmployerUser>());
 
             return NavigateToRecruitmentHomePage();
         }

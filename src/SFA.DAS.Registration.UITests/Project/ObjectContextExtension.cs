@@ -49,6 +49,7 @@ namespace SFA.DAS.Registration.UITests.Project
             usercreds.HashedAccountid = hashedaccountid;
         }
 
+        public static string GetDBAccountId(this ObjectContext objectContext) => objectContext.Get(DbAccountIdKey);
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
