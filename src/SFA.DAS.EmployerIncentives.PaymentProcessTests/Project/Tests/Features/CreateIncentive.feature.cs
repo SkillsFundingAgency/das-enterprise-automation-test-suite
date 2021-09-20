@@ -22,13 +22,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CreateIncentive")]
     [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+    [NUnit.Framework.CategoryAttribute("createIncentive")]
     public partial class CreateIncentiveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "employerincentivesPaymentsProcess"};
+                "employerincentivesPaymentsProcess",
+                "createIncentive"};
         
 #line 1 "CreateIncentive.feature"
 #line hidden
@@ -39,7 +41,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CreateIncentive", "\tWhen an application has been submitted\r\n\tThen an apprenticeship incentive is cre" +
                     "ated for each apprentiveship in the applicaiton", ProgrammingLanguage.CSharp, new string[] {
-                        "employerincentivesPaymentsProcess"});
+                        "employerincentivesPaymentsProcess",
+                        "createIncentive"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -84,7 +87,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Incentive application is submitted for withdrawn apprenticeship", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,19 +107,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("an existing withdrawn incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("an employer is re-applying for apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("they submit the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("a new apprenticeship incentive is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("original withdrawn incentive is retained", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

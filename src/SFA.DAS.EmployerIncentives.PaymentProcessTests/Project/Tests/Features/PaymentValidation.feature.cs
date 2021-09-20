@@ -76,13 +76,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validation 90 Day check")]
         [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+        [NUnit.Framework.CategoryAttribute("PaymentValidation")]
         public virtual void Validation90DayCheck()
         {
             string[] tagsOfScenario = new string[] {
-                    "employerincentivesPaymentsProcess"};
+                    "employerincentivesPaymentsProcess",
+                    "PaymentValidation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validation 90 Day check", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,41 +104,41 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
 testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
    testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
    testRunner.Then("the HasDaysInLearning Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
    testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table for the FirstPaymen" +
                         "t is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
    testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table for the FirstPaym" +
                         "ent is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
    testRunner.And("the HasIlrSubmission Step in PendingPaymentValidationResult table for the FirstPa" +
                         "yment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
    testRunner.And("the PaymentsNotPaused Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
    testRunner.And("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
                         "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
    testRunner.And("the HasLearningRecord Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
    testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
