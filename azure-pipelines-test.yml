@@ -48,7 +48,7 @@ stages:
             inputs:
               targetType: filePath
               filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
-              arguments: '-browser $(Browser)'
+              arguments: '-browser local'
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
             displayName: 'Tokenization: Transform file *.runsettings'
             inputs:
@@ -82,7 +82,7 @@ stages:
                 **\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.dll
                 **\SFA.DAS.Transfers.UITests\SFA.DAS.Transfers.UITests.dll
               searchFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/'
-              testFiltercriteria: '$(TestCategory)'
+              testFiltercriteria: 'TestCategory=captureurl'
               runSettingsFile: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/runsettings/src/Parellel.runsettings'
               runInParallel: false
               otherConsoleOptions: '/logger:trx'
