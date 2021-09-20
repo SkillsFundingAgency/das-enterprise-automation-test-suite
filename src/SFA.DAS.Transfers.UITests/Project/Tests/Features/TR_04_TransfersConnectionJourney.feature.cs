@@ -22,13 +22,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_04_TransfersConnectionJourney")]
     [NUnit.Framework.CategoryAttribute("approvals")]
+    [NUnit.Framework.CategoryAttribute("transfers")]
     public partial class TR_04_TransfersConnectionJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "approvals"};
+                "approvals",
+                "transfers"};
         
 #line 1 "TR_04_TransfersConnectionJourney.feature"
 #line hidden
@@ -38,7 +40,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_04_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+                        "approvals",
+                        "transfers"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -89,7 +92,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
                     "addanothernonlevypayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04 Transfers - Creating Transfer Connection between Sender and Receiver", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,14 +112,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
