@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project;
+﻿using System;
+using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
@@ -102,6 +103,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
 
+        [Then(@"the Employer is able to submit the phase 3 EI Application without submitting bank details")]
+        public void ThenTheEmployerIsAbleToSubmitThePhase3EIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage(new DateTime(2021, 11, 01));
+
         [Then(@"Earnings data is populated for the Employer")]
         public void ThenEarningsDataIsPopulatedForTheEmployer()
         {
@@ -178,7 +182,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
         }
 
-        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage(DateTime? employmentStartDate = null)
         {
             _email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _loginCredentialsHelper.GetLoginCredentials().Username;
             _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
@@ -186,7 +190,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             return _qualificationQuestionPage
                 .SelectYesAndContinueForEligibleApprenticesScenario()
                 .SubmitApprentices()
-                .EnterJoiningDateAndContinue()
+                .EnterJoiningDateAndContinue(employmentStartDate)
                 .ConfirmApprentices()
                 .SubmitDeclaration();
         }

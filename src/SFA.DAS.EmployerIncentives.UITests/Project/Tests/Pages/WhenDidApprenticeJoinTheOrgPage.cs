@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 
@@ -20,20 +21,39 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false) => _context = context;
 
-        public ConfirmApprenticesPage EnterJoiningDateAndContinue()
+        public ConfirmApprenticesPage EnterJoiningDateAndContinue(DateTime? employmentStartDate)
         {
+            if (employmentStartDate == null)
+            {
+                employmentStartDate = new DateTime(2021, eIDataHelper.JoiningMonth, eIDataHelper.JoiningDay);
+            }
+
             var apprentices = pageInteractionHelper.FindElements(DateGroup);
 
             foreach (var apprentice in apprentices)
             {
-                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), eIDataHelper.JoiningDay);
-                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), eIDataHelper.JoiningMonth);
-                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), "2021");
+                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), employmentStartDate.Value.Day);
+                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), employmentStartDate.Value.Month);
+                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), employmentStartDate.Value.Year);
             }
 
             Continue();
 
             return new ConfirmApprenticesPage(_context);
+        }
+
+        public WhenDidApprenticeJoinTheOrgPage EnterJoiningDate(int apprenticeshipIndex, DateTime employmentStartDate)
+        {
+            var apprentices = pageInteractionHelper.FindElements(DateGroup);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(DayInputField), employmentStartDate.Day);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(MonthInputField), employmentStartDate.Month);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(YearInputField), employmentStartDate.Year);
+            return this;
+        }
+
+        public new void Continue()
+        {
+            base.Continue();
         }
     }
 }
