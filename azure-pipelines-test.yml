@@ -35,7 +35,7 @@ stages:
           - task: ExtractFiles@1
             displayName: 'Extract files'
             inputs:
-              archiveFilePatterns: 'das-enterprise-automation-test-suite\drop\tests.zip'
+              archiveFilePatterns: '$(System.DefaultWorkingDirectory)\das-enterprise-automation-test-suite\drop\tests.zip'
               destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
               cleanDestinationFolder: true
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
