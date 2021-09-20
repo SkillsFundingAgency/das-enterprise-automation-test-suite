@@ -36,23 +36,23 @@ stages:
             displayName: 'Extract files'
             inputs:
               archiveFilePatterns: '$(Pipeline.Workspace)/**/*.zip'
-              destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+              destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
               cleanDestinationFolder: true
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
             displayName: 'Tokenization: Transform file *.json'
             inputs:
-              SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+              SourcePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
               TargetFileNames: '*.json'
           - task: PowerShell@2
             displayName: 'Update NumberOfTestWorkers'
             inputs:
               targetType: filePath
-              filePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
+              filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
               arguments: '-browser $(Browser)'
           - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
             displayName: 'Tokenization: Transform file *.runsettings'
             inputs:
-              SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/runsettings/src/'
+              SourcePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/runsettings/src/'
               TargetFileNames: '*.runsettings'
           - task: ms-autotest.screen-resolution-utility-task.screen-resolution-utlity-task.ScreenResolutionUtility@1
             displayName: 'Set Screen Resolution'
@@ -81,9 +81,9 @@ stages:
                 **\SFA.DAS.RoatpAdmin.UITests\SFA.DAS.RoatpAdmin.UITests.dll
                 **\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.dll
                 **\SFA.DAS.Transfers.UITests\SFA.DAS.Transfers.UITests.dll
-              searchFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests/'
+              searchFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/'
               testFiltercriteria: '$(TestCategory)'
-              runSettingsFile: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/runsettings/src/Parellel.runsettings'
+              runSettingsFile: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/runsettings/src/Parellel.runsettings'
               runInParallel: false
               otherConsoleOptions: '/logger:trx'
               rerunFailedTests: true
@@ -94,5 +94,5 @@ stages:
             displayName: 'Check .trx File Exists'
             inputs:
               targetType: filePath
-              filePath: './$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
+              filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
               arguments: '-SourcePath "$(Agent.TempDirectory)/TestResults"'
