@@ -1,6 +1,7 @@
 ﻿Feature: PaymentValidation
 	Test payment validation checks
 @employerincentivesPaymentsProcess
+@PaymentValidation
 
 Scenario: Validation 90 Day check
 

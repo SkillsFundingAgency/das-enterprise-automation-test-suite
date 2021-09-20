@@ -1,4 +1,5 @@
 ﻿@employerincentivesPaymentsProcess
+@resumeLearningChangeOfCircumstance
 Feature: ResumeLearningChangeOfCircumstance
     Learnering resumes after a pause
 
