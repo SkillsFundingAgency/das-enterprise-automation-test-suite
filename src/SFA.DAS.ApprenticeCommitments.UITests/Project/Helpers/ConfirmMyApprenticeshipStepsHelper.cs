@@ -64,8 +64,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .VerifyRolesYourTrainingProviderTab();
         }
 
-        public void UpdateConfirmBeforeDate() => _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
-
         private void PopulateExpectedApprenticeshipDetails()
         {
             expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];

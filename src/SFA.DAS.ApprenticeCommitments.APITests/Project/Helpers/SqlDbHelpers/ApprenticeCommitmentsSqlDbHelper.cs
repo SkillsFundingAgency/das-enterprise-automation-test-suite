@@ -36,9 +36,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)
         {
             var confirmBeforeDate = DateTime.Now.AddDays(13).AddHours(23).ToString("yyyy-MM-dd HH:mm:ss.fffffff");
-            ExecuteSqlCommand($"UPDATE[CommitmentStatement] SET ConfirmBefore = '{confirmBeforeDate}' WHERE CommitmentsApprenticeshipId = (SELECT CommitmentsApprenticeshipId from Registration WHERE Email = '{email}')");
+            ExecuteSqlCommand($"UPDATE Revision SET ConfirmBefore = '{confirmBeforeDate}' WHERE ApprenticeshipId in (SELECT Id  FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))");
         }
 
-        public string GetRegistrationId(string email) => GetData($"select RegistrationId from Registration where Email ='{email}'");
+        public string GetRegistrationId(string email, string scenarioTitle)
+        {
+            var query = $"select RegistrationId from Registration where Email ='{email}'";
+            return Convert.ToString(TryGetDataAsObject(query, "Index was out of range", scenarioTitle));
+        }
     }
 }

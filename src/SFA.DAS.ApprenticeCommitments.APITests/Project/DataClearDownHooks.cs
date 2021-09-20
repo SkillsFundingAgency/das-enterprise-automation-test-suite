@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public void ClearDownUser()
         {
             var email = _objectContext.GetApprenticeEmail();
-            var apprenticeshipid = _objectContext.GetApprenticeId();
+            var apprenticeshipid = _objectContext.GetCommitmentsApprenticeshipId();
 
             //acomt db
             _aComtSqlDbHelper.DeleteApprentice(email);

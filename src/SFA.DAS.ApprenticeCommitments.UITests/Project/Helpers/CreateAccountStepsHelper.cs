@@ -38,7 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             RetryOnNUnitException(() =>
             {
                 string email = _objectContext.GetApprenticeEmail();
-                var registrationId = _aComtSqlDbHelper.GetRegistrationId(email);
+                var registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
 
                 Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
                 tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
@@ -50,7 +50,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeHomePage CreateAccount()
         {
             CreateApprenticeshipViaApiRequest();
-            return CreateAccountAndGetToConfirmIdentityPage().ConfirmIdentity();
+            var apprenticeHomePage = CreateAccountAndGetToConfirmIdentityPage().ConfirmIdentity();
+            _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
+            return apprenticeHomePage;
         }
 
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
