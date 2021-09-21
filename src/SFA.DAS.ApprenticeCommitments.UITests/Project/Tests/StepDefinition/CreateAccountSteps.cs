@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CreateAccountSteps : BaseSteps
     {
         private ApprenticeOverviewPage _apprenticeHomePage;
+        private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
 
         public CreateAccountSteps(ScenarioContext context) : base(context) { }
 
@@ -17,11 +18,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to create an account with the invite generated")]
         public void ThenTheApprenticeIsAbleToCreateAnAccountWithTheInviteGenerated() => createAccountStepsHelper.CreateAccount();
 
-        [Then(@"an error is shown for entering invalid data")]
-        public void ThenAnErrorIsShownForEnteringInvalidData()
+        [Then(@"an error is shown for entering invalid identity data")]
+        public void ThenAnErrorIsShownForEnteringInvalidIdentityData()
         {
-            var confirmYourIdentityPage = createAccountStepsHelper.CreateAccountAndGetToConfirmIdentityPage();
-
             var invalidData = new List<(string, string, int, int, int)>
             {
                 (string.Empty, string.Empty, 0,0,0)
@@ -29,8 +28,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             foreach (var d in invalidData)
             {
-                confirmYourIdentityPage = confirmYourIdentityPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
-                confirmYourIdentityPage.VerifyErrorSummary();
+                _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
+                _createMyApprenticeshipAccountPage.VerifyErrorSummary();
             }
         }
 
@@ -45,6 +44,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
         [Given(@"an apprentice has created the account and about to validate personal details")]
-        public void GivenAnApprenticeHasCreatedTheAccountAndAboutToValidatePersonalDetails() => createAccountStepsHelper.CreateAccountAndGetToConfirmIdentityPage();
+        public void GivenAnApprenticeHasCreatedTheAccountAndAboutToValidatePersonalDetails()
+        {
+            createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
+            _createMyApprenticeshipAccountPage = createAccountStepsHelper.CreateAccountAndGetToCreateMyApprenticeshipAccountPage();
+        }
     }
 }

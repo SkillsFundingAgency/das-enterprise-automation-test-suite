@@ -13,8 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ServiceHeader => NonClickableServiceHeader;
         private By ErrorSummaryTitle => By.Id("error-summary-title");
-        private By PasswordError1 => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
-        private By PasswordError2 => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[2]");
+        private By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
 
         public CreatePasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
 
@@ -28,13 +27,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyErrorSummaryTitle() => pageInteractionHelper.VerifyText(ErrorSummaryTitle, "There is a problem");
 
-        public void VerifyMismatchPasswordErrorOnCreateLoginDetailsPage() => pageInteractionHelper.VerifyText(PasswordError1, "Enter the same password");
+        public void VerifyMismatchPasswordErrorOnCreateLoginDetailsPage() => pageInteractionHelper.VerifyText(PasswordError, "Enter the same password");
 
-        public void VerifyMismatchPasswordErrorOnPasswordResetPage() => pageInteractionHelper.VerifyText(PasswordError1, "Passwords should match");
-
-        public void VerifyBlankPasswordError() => pageInteractionHelper.VerifyText(PasswordError1, "Enter a password");
-
-        public void VerifyBlankReTypePasswordError() => pageInteractionHelper.VerifyText(PasswordError2, "Re-enter the password");
+        public void VerifyMismatchPasswordErrorOnPasswordResetPage() => pageInteractionHelper.VerifyText(PasswordError, "Passwords should match");
 
         protected void SubmitPassword(string password, string confirmpassword, bool clickSubmit = false)
         {

@@ -50,7 +50,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeHomePage CreateAccount()
         {
             CreateApprenticeshipViaApiRequest();
-            var apprenticeHomePage = CreateAccountAndGetToConfirmIdentityPage().ConfirmIdentity();
+            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
             _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
             return apprenticeHomePage;
         }
@@ -58,12 +58,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
         {
             CreateApprenticeshipViaApiRequest();
-            return _signIntoMyApprenticeshipPage = CreateAccountAndGetToConfirmIdentityPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
+            return _signIntoMyApprenticeshipPage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
         public void CreateApprenticeshipViaApiRequest() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJobApiRequest();
 
-        public CreateMyApprenticeshipAccountPage CreateAccountAndGetToConfirmIdentityPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
+        public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
