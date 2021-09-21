@@ -76,13 +76,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validation 90 Day check")]
         [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+        [NUnit.Framework.CategoryAttribute("PaymentValidation")]
         public virtual void Validation90DayCheck()
         {
             string[] tagsOfScenario = new string[] {
-                    "employerincentivesPaymentsProcess"};
+                    "employerincentivesPaymentsProcess",
+                    "PaymentValidation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validation 90 Day check", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,42 +104,140 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
 testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
    testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
    testRunner.Then("the HasDaysInLearning Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
    testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table for the FirstPaymen" +
                         "t is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
    testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table for the FirstPaym" +
                         "ent is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
    testRunner.And("the HasIlrSubmission Step in PendingPaymentValidationResult table for the FirstPa" +
                         "yment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
    testRunner.And("the PaymentsNotPaused Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
    testRunner.And("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
                         "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
    testRunner.And("the HasLearningRecord Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
    testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Phase 3 Validation success - Perform HasSignedMinVersion Validation Check for Pha" +
+            "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
+            " 2122)")]
+        public virtual void Phase3ValidationSuccess_PerformHasSignedMinVersionValidationCheckForPhase3StartDate01_10_2021RunThePaymentProcessForPeriod05Academicyear2122()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Phase 3 Validation success - Perform HasSignedMinVersion Validation Check for Pha" +
+                    "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
+                    " 2122)", null, tagsOfScenario, argumentsOfScenario);
+#line 18
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+ testRunner.Given("an existing Phase3 apprenticeship incentive submitted in Academic Year 2122 and s" +
+                        "igned version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 21
+ testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 22
+ testRunner.Then("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
+                        "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 23
+ testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Phase 3 Validation failure - Perform HasSignedMinVersion Validation Check for Pha" +
+            "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
+            " 2122)")]
+        public virtual void Phase3ValidationFailure_PerformHasSignedMinVersionValidationCheckForPhase3StartDate01_10_2021RunThePaymentProcessForPeriod05Academicyear2122()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Phase 3 Validation failure - Perform HasSignedMinVersion Validation Check for Pha" +
+                    "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
+                    " 2122)", null, tagsOfScenario, argumentsOfScenario);
+#line 25
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 27
+ testRunner.Given("an existing Phase3 apprenticeship incentive submitted in Academic Year 2122 and s" +
+                        "igned version 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 28
+ testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+ testRunner.Then("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
+                        "tPayment is set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 30
+ testRunner.And("the payment record for the first earnings is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

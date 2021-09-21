@@ -119,6 +119,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             throw new Exception("Earnings not found!");
         }
+                
 
         public async Task CleanUpAccount(long accountId)
         {
@@ -126,10 +127,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await dbConnection.ExecuteAsync("DELETE FROM Accounts WHERE Id = @accountId", new { accountId });
         }
 
-        public async Task CreateAccount(long accountId, long accountLegalEntityId)
+        public async Task CreateAccount(long accountId, long accountLegalEntityId, int signedAgreementVersion)
         {
             await using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId });
+            await dbConnection.ExecuteAsync(SqlScripts.UpsertAccount, new { accountId, accountLegalEntityId, signedAgreementVersion });
         }
 
         public async Task DeleteIncentiveData(long accountId, long apprenticeshipId)

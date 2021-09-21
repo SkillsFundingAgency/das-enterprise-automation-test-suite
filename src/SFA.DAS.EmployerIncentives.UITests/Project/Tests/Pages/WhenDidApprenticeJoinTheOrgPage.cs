@@ -41,5 +41,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
             return new ConfirmApprenticesPage(_context);
         }
+
+        public WhenDidApprenticeJoinTheOrgPage EnterJoiningDate(int apprenticeshipIndex, DateTime employmentStartDate)
+        {
+            var apprentices = pageInteractionHelper.FindElements(DateGroup);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(DayInputField), employmentStartDate.Day);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(MonthInputField), employmentStartDate.Month);
+            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(YearInputField), employmentStartDate.Year);
+            return this;
+        }
+
+        public new void Continue()
+        {
+            base.Continue();
+        }
     }
 }
