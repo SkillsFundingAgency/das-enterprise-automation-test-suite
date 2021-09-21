@@ -12,10 +12,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public HelpAndSupportPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeOverviewPage NavigateToOverviewPageWithReturnToHomePageButton()
+        public ApprenticeHomePage NavigateToHomePageWithReturnToHomePageButton()
         {
             formCompletionHelper.Click(ReturnToHomePageButton);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeHomePage(_context);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageWithBackLink()

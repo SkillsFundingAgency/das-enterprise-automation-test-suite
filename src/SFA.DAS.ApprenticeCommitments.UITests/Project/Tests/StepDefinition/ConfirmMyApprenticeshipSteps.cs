@@ -155,7 +155,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to navigate to the Help and Support from the link on Overview page and Navigation menu link")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupport()
         {
-            _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToOverviewPageWithReturnToHomePageButton();
+            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToHomePageWithReturnToHomePageButton();
+            _apprenticeOverviewPage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
             _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToOverviewPageWithBackLink();
         }
 
