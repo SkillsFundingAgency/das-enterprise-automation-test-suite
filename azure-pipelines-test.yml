@@ -25,7 +25,8 @@ stages:
   - deployment: RunTests
     pool:
       vmImage: windows-2019
-      demands: ['InteractiveSession','vstest']
+      demands:
+      - InteractiveSession
     environment: TEST
     workspace:
       clean: all
