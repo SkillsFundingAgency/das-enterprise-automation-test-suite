@@ -8,8 +8,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
-        private By CMADLink => By.XPath("//h2[text()='Confirm my apprenticeship details']");
-        private By HelpAndSupportLink => By.XPath("//h2[text()='Help and support']");
+        private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
+        private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
 
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
@@ -19,13 +19,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {
-            formCompletionHelper.Click(CMADLink);
+            formCompletionHelper.Click(ConfirmYourApprenticeshipNowLink);
             return new ApprenticeOverviewPage(_context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnHomePage()
         {
-            formCompletionHelper.Click(HelpAndSupportLink);
+            formCompletionHelper.Click(HelpAndSupportSectionLink);
             return new HelpAndSupportPage(_context);
         }
     }
