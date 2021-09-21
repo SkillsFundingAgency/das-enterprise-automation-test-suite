@@ -24,11 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickButtonByText(SubmitButton, "Save and continue");
         }
 
-        public void EnterMismatchedPasswordsOnResetPasswordPage(string password)
-        {
-            SubmitPassword(password, password + 1);
-            formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
-        }
+        public void EnterMismatchedPasswordsOnResetPasswordPage(string password) => SubmitPassword(password, password + 1, true);
 
         public void VerifyErrorSummaryTitle() => pageInteractionHelper.VerifyText(ErrorSummaryTitle, "There is a problem");
 
@@ -40,10 +36,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyBlankReTypePasswordError() => pageInteractionHelper.VerifyText(PasswordError2, "Re-enter the password");
 
-        protected void SubmitPassword(string password, string confirmpassword)
+        protected void SubmitPassword(string password, string confirmpassword, bool clickSubmit = false)
         {
             formCompletionHelper.EnterText(Password, password);
             formCompletionHelper.EnterText(ConfirmPassword, confirmpassword);
+            
+            if (clickSubmit)
+                formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
         }
     }
 }

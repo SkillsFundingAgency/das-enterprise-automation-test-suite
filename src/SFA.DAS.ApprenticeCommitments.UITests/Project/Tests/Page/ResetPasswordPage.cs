@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public PasswordResetSuccessfulPage CreateAndConfirmPasswordOnCreatePasswordPage()
         {
-            SubmitPassword(_validPassword, _validPassword);
+            SubmitPassword(_validPassword, _validPassword, true);
             return new PasswordResetSuccessfulPage(_context);
         }
     }
