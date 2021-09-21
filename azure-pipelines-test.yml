@@ -26,7 +26,7 @@ stages:
     pool:
       vmImage: windows-2019
       demands:
-      - InteractiveSession
+      - vstest
     environment: TEST
     workspace:
       clean: all
