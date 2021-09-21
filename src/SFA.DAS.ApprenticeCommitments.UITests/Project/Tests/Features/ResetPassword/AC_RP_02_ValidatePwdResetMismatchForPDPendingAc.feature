@@ -5,4 +5,4 @@
 @deleteuser
 Scenario: AC_RP_02_ValidatePasswordResetMismatchForPersonalDetailsPendingAccount
 	When an apprentice submits Email to reset password for a new account pending personal details confirmation
-	Then an error is shown for entering misatched reset passwords
+	Then an error is shown for entering mismatched reset passwords

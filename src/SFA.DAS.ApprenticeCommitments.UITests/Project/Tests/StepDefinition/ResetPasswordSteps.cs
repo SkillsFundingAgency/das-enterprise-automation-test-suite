@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to reset the password using the invitation")]
         public void ThenTheApprenticeIsAbleToResetThePasswordUsingTheInvitation() => passwordResetStepsHelper.ResetPasswordAndReturnToSignInPage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
 
-        [Then(@"an error is shown for entering misatched reset passwords")]
+        [Then(@"an error is shown for entering mismatched reset passwords")]
         public void ThenAnErrorIsShownForEnteringMismatchedResetPasswords()
         {
             var resetPasswordPage = passwordResetStepsHelper.BuildResetPasswordPageUsingDBHelper();
@@ -27,8 +27,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for entering mismatched passwords")]
         public void ThenAnErrorIsShownForEnteringMismatchedPasswords()
         {
-            var craeteLoginDetailsPage = createAccountStepsHelper.NavigateToCreateLoginDetailsPage();
-            passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(craeteLoginDetailsPage);
+            var createLoginDetailsPage = createAccountStepsHelper.NavigateToCreateLoginDetailsPage().EnterEmailAndConfirmEmail();
+            passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(createLoginDetailsPage);
         }
     }
 }

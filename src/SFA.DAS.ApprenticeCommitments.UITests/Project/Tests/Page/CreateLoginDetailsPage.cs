@@ -15,13 +15,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage EnterDetailsOnCreateLoginDetailsPageAndContinue()
         {
-            var email = objectContext.GetApprenticeEmail();
-            formCompletionHelper.EnterText(EmailAddress, email);
-            formCompletionHelper.EnterText(ConfirmEmail, email);
+            EnterEmailAndConfirmEmail();
             formCompletionHelper.EnterText(Password, _validPassword);
             formCompletionHelper.EnterText(ConfirmPassword, _validPassword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Save and continue");
             return new CreateMyApprenticeshipAccountPage(_context);
+        }
+
+        public CreateLoginDetailsPage EnterEmailAndConfirmEmail()
+        {
+            var email = objectContext.GetApprenticeEmail();
+            formCompletionHelper.EnterText(EmailAddress, email);
+            formCompletionHelper.EnterText(ConfirmEmail, email);
+            return this;
         }
     }
 }

@@ -60,14 +60,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void EnterMismatchedPasswordsAndValidateError(ResetPasswordPage resetPasswordPage)
         {
-            var error = resetPasswordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
-            StringAssert.Contains("There is a problem", error, "Password error message did not match");
+            resetPasswordPage.EnterMismatchedPasswordsOnResetPasswordPage(config.AC_AccountPassword);
+            resetPasswordPage.VerifyErrorSummaryTitle();
+            resetPasswordPage.VerifyMismatchPasswordErrorOnPasswordResetPage();
         }
 
         public void EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(CreateLoginDetailsPage createLoginDetailsPage)
         {
-            var error = createLoginDetailsPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
-            StringAssert.Contains("There is a problem", error, "Password error message did not match");
+            createLoginDetailsPage.EnterMismatchedPasswordsOnCreateLoginDetailsPage(config.AC_AccountPassword);
+            createLoginDetailsPage.VerifyErrorSummaryTitle();
+            createLoginDetailsPage.VerifyMismatchPasswordErrorOnCreateLoginDetailsPage();
         }
 
         private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
