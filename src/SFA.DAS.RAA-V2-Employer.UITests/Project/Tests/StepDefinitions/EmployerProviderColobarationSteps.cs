@@ -76,7 +76,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             _resultPage = _providerStepsHelper.SearchVacancy();
 
-            ConfirmStatusMessage(_resultPage, expectedStatus);
+            _resultPage.VerifyAdvertStatus(expectedStatus);
         }
 
         [When(@"Provider re-submits the advert")]
@@ -103,12 +103,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             var yourAdvert = _employerStepsHelper.YourAdvert();
 
-            ConfirmStatusMessage(yourAdvert, "Ready for review");
+            yourAdvert.VerifyAdvertStatus("Ready for review");
 
             return yourAdvert.GoToVacancyCompletedPage();
         }
-
-        private void ConfirmStatusMessage(VacancySearchResultPage page, string expected) => AssertMessage(expected, page.GetYourAdvertStatus());
 
         private void ConfirmationMessage(VacancyReferencePage vacancyReferencePage, string expected) => AssertMessage(expected, vacancyReferencePage.GetConfirmationMessage());
 

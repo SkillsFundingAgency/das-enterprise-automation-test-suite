@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -17,7 +18,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
 
-        public string GetYourAdvertStatus() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyStatusSelector).Text;
+        public void VerifyAdvertStatus(string expected)
+        {
+            VerifyElement(() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyStatusSelector), expected, () => new SearchVacancyPageHelper(_context).SearchEmployerProviderPermissionVacancy());
+        }
 
         protected void DraftVacancy()
         {

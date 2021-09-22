@@ -48,7 +48,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()
         {
-            SearchVacancy(false);
+            SearchEmployerProviderPermissionVacancy();
             return new ProviderVacancySearchResultPage(_context);
         }
 
@@ -60,9 +60,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
         {
-            SearchVacancy(false);
+            SearchEmployerProviderPermissionVacancy();
             return new EmployerVacancySearchResultPage(_context);
         }
+
+        internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy(false);
 
         private void SearchVacancy(bool navigate = true)
         {
