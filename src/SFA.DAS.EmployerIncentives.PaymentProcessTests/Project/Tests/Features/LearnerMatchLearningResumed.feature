@@ -1,5 +1,7 @@
 ﻿@employerincentivesPaymentsProcess
 @learnerMatchLearningResumed
+@eiRegression
+@learnerMatchTests
 Feature: LearnerMatchLearningResumed
 	Learning resumed trigger for multiple academic years
 

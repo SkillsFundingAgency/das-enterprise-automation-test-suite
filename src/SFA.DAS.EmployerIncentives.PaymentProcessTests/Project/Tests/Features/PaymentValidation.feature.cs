@@ -21,12 +21,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PaymentValidation")]
+    [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
+    [NUnit.Framework.CategoryAttribute("PaymentValidation")]
+    [NUnit.Framework.CategoryAttribute("eiRegression")]
     public partial class PaymentValidationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "employerincentivesPaymentsProcess",
+                "PaymentValidation",
+                "eiRegression"};
         
 #line 1 "PaymentValidation.feature"
 #line hidden
@@ -35,7 +41,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PaymentValidation", "\tTest payment validation checks", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PaymentValidation", "\tTest payment validation checks", ProgrammingLanguage.CSharp, new string[] {
+                        "employerincentivesPaymentsProcess",
+                        "PaymentValidation",
+                        "eiRegression"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -84,7 +93,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
                     "PaymentValidation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validation 90 Day check", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,41 +113,41 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 11
 testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 12
    testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 13
    testRunner.Then("the HasDaysInLearning Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 14
    testRunner.And("the IsInLearning Step in PendingPaymentValidationResult table for the FirstPaymen" +
                         "t is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 15
    testRunner.And("the HasBankDetails Step in PendingPaymentValidationResult table for the FirstPaym" +
                         "ent is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 16
    testRunner.And("the HasIlrSubmission Step in PendingPaymentValidationResult table for the FirstPa" +
                         "yment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 17
    testRunner.And("the PaymentsNotPaused Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 18
    testRunner.And("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
                         "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 19
    testRunner.And("the HasLearningRecord Step in PendingPaymentValidationResult table for the FirstP" +
                         "ayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 20
    testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -156,7 +165,7 @@ testRunner.Given("an existing apprenticeship incentive", ((string)(null)), ((Tec
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Phase 3 Validation success - Perform HasSignedMinVersion Validation Check for Pha" +
                     "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
                     " 2122)", null, tagsOfScenario, argumentsOfScenario);
-#line 18
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -176,18 +185,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 24
  testRunner.Given("an existing Phase3 apprenticeship incentive submitted in Academic Year 2122 and s" +
                         "igned version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 21
+#line 25
  testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 26
  testRunner.Then("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
                         "tPayment is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 23
+#line 27
  testRunner.And("the payment record for the first earnings is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -205,7 +214,7 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Phase 3 Validation failure - Perform HasSignedMinVersion Validation Check for Pha" +
                     "se 3  ( Start Date 01-10-2021 Run the Payment Process for Period 05 Academicyear" +
                     " 2122)", null, tagsOfScenario, argumentsOfScenario);
-#line 25
+#line 29
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -225,18 +234,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 27
+#line 31
  testRunner.Given("an existing Phase3 apprenticeship incentive submitted in Academic Year 2122 and s" +
                         "igned version 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 28
+#line 32
  testRunner.When("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 29
+#line 33
  testRunner.Then("the HasSignedMinVersion Step in PendingPaymentValidationResult table for the Firs" +
                         "tPayment is set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 30
+#line 34
  testRunner.And("the payment record for the first earnings is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

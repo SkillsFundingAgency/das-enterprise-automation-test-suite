@@ -1,5 +1,7 @@
 ﻿@employerincentivesPaymentsProcess
 @learnerMatchDaysInLearning
+@eiRegression
+@learnerMatchTests
 Feature: LearnerMatchDaysInLearning
     Learner Match - Learning Day Count
 

@@ -23,6 +23,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [NUnit.Framework.DescriptionAttribute("LearnerMatchDaysInLearning")]
     [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
     [NUnit.Framework.CategoryAttribute("learnerMatchDaysInLearning")]
+    [NUnit.Framework.CategoryAttribute("eiRegression")]
+    [NUnit.Framework.CategoryAttribute("learnerMatchTests")]
     public partial class LearnerMatchDaysInLearningFeature
     {
         
@@ -30,7 +32,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         
         private string[] _featureTags = new string[] {
                 "employerincentivesPaymentsProcess",
-                "learnerMatchDaysInLearning"};
+                "learnerMatchDaysInLearning",
+                "eiRegression",
+                "learnerMatchTests"};
         
 #line 1 "LearnerMatchDaysInLearning.feature"
 #line hidden
@@ -41,7 +45,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchDaysInLearning", "    Learner Match - Learning Day Count", ProgrammingLanguage.CSharp, new string[] {
                         "employerincentivesPaymentsProcess",
-                        "learnerMatchDaysInLearning"});
+                        "learnerMatchDaysInLearning",
+                        "eiRegression",
+                        "learnerMatchTests"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -86,7 +92,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Learning Day Count Check - Phase 2", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,22 +112,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
    testRunner.Given("an existing Phase2 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
    testRunner.When("the Learner Match occurs in Period R12 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 11
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 12
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 13
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 14
    testRunner.And("the Number of days in learning is calculated and set as number of days from ILRSt" +
                         "art Date to Census date of the Active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -136,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Learning Day Count Check - Phase 1", null, tagsOfScenario, argumentsOfScenario);
-#line 14
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -156,22 +162,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 17
    testRunner.Given("an existing Phase1 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 18
    testRunner.When("the Learner Match occurs in Period R03 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 19
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 18
+#line 20
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 21
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 22
    testRunner.And("the Number of days in learning is calculated and set as number of days from ILRSt" +
                         "art Date to Census date of the Active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -186,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Subsequent Learning Day Count Check - Phase 2", null, tagsOfScenario, argumentsOfScenario);
-#line 22
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -206,25 +212,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 25
    testRunner.Given("an existing Phase2 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 26
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 27
    testRunner.When("the Learner Match occurs in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 28
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 27
+#line 29
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 30
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 29
+#line 31
    testRunner.And("the Number of days in learning is re-calculated and set as number of days from IL" +
                         "RStart Date to Census date of the Active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -239,7 +245,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4. Subsequent Learning Day Count Check - Phase 1", null, tagsOfScenario, argumentsOfScenario);
-#line 31
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -259,25 +265,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 32
+#line 34
    testRunner.Given("an existing Phase1 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 33
+#line 35
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 34
+#line 36
    testRunner.When("the Learner Match occurs in Period R04 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 35
+#line 37
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 36
+#line 38
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 39
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
+#line 40
    testRunner.And("the Number of days in learning is re-calculated and set as number of days from IL" +
                         "RStart Date to Census date of the Active Period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -292,7 +298,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5. Learning Day Count Check when Learning Stopped - Phase 2", null, tagsOfScenario, argumentsOfScenario);
-#line 40
+#line 42
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -312,25 +318,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 41
+#line 43
    testRunner.Given("an existing Phase2 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 42
+#line 44
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 43
+#line 45
    testRunner.When("the Learner Match occurs in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 46
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 45
+#line 47
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 46
+#line 48
    testRunner.And("the InLearning Column in Learner table is set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 49
    testRunner.And("the Number of days in learning is calculated and set as ILRStart Date to Learning" +
                         "StoppedDate in the Learner table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -345,7 +351,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("6. Learning Day Count Check when Learning Stopped - Phase 1", null, tagsOfScenario, argumentsOfScenario);
-#line 49
+#line 51
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -365,25 +371,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 50
+#line 52
    testRunner.Given("an existing Phase1 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 51
+#line 53
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 52
+#line 54
    testRunner.When("the Learner Match occurs in Period R04 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 53
+#line 55
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 54
+#line 56
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 55
+#line 57
    testRunner.And("the InLearning Column in Learner table is set to false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 56
+#line 58
    testRunner.And("the Number of days in learning is calculated and set as ILRStart Date to Learning" +
                         "StoppedDate in the Learner table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -398,7 +404,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("7. Learning Day Count Check when Learning Stopped and Resumed - Phase 2", null, tagsOfScenario, argumentsOfScenario);
-#line 58
+#line 60
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -418,31 +424,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 59
+#line 61
    testRunner.Given("an existing Phase2 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 60
+#line 62
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 61
+#line 63
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 62
+#line 64
    testRunner.And("ILR Learner Resumed Change of Circumstance has occurred in the current period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
+#line 65
    testRunner.When("the Learner Match occurs in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 64
+#line 66
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 65
+#line 67
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 66
+#line 68
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 67
+#line 69
    testRunner.And("the Number of days in learning is calculated and set as a total number of days sp" +
                         "ent in learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -457,7 +463,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("8. Learning Day Count Check when Learning Stopped and Resumed - Phase 1", null, tagsOfScenario, argumentsOfScenario);
-#line 69
+#line 71
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -477,31 +483,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 70
+#line 72
    testRunner.Given("an existing Phase1 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 71
+#line 73
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 72
+#line 74
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 75
    testRunner.And("ILR Learner Resumed Change of Circumstance has occurred in the current period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 74
+#line 76
    testRunner.When("the Learner Match occurs in Period R04 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 75
+#line 77
    testRunner.Then("the SubmissionFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 76
+#line 78
    testRunner.And("the LearningFound Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 77
+#line 79
    testRunner.And("the InLearning Column in Learner table is set to true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 78
+#line 80
    testRunner.And("the Number of days in learning is calculated and set as a total number of days sp" +
                         "ent in learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
