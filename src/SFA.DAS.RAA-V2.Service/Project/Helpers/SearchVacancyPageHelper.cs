@@ -48,7 +48,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()
         {
-            SearchVacancy();
+            SearchVacancy(false);
             return new ProviderVacancySearchResultPage(_context);
         }
 

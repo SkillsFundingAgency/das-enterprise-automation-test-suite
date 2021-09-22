@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class EmployerVacancySearchResultPage : VacancySearchResultPage
     {
         protected override string PageTitle => "Your adverts";
+
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -22,13 +25,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             DraftVacancy();
             return new VacancyPreviewPart2Page(_context);
-        }
-
-        public VacancyCompletedAllSectionsPage GoToVacancyCompletedPage()
-        {
-            tableRowHelper.SelectRowFromTable("Manage", vacancyTitleDataHelper.VacancyTitle);
-
-            return new VacancyCompletedAllSectionsPage(_context);
         }
     }
 }
