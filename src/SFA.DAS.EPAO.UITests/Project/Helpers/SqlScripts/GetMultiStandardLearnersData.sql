@@ -20,21 +20,21 @@ LEFT JOIN ( SELECT COUNT(*) options, [StandardUId] from [Standardoptions] GROUP 
 ) ab1 GROUP BY LarsCode
 )
 SELECT Top 1 * FROM (
-SELECT il1.ULN
-    , min(il1.stdcode) "StdCode"
-    ,(SELECT MAX(title) from standards WHERE larscode = min(il1.stdcode)) "Title"
+SELECT lrn1.ULN
+    , min(lrn1.stdcode) "StdCode"
+    ,(SELECT MAX(title) from standards WHERE larscode = min(lrn1.stdcode)) "Title"
     ,GivenNames
     ,familyname
-FROM ILRS il1
-left join [dbo].[certificates] ce1 on ce1.uln = il1.uln and ce1.StandardCode = il1.stdcode 
-join StandardsList st1 on st1.StdCode = il1.StdCode
+FROM learner lrn1
+left join [dbo].[certificates] ce1 on ce1.uln = lrn1.uln and ce1.StandardCode = lrn1.stdcode 
+join StandardsList st1 on st1.StdCode = lrn1.StdCode
 WHERE 1=1 
 AND standard_Active = __Isactivestandard__ 
 AND Has_versions = __HasVersions__    
 AND Has_options = __HasOptions__     
 AND ce1.id IS NULL
-AND il1.ULN not in (__InUseUln__)
-GROUP BY il1.ULN, il1.GivenNames, il1.familyname
+AND lrn1.ULN not in (__InUseUln__)
+GROUP BY lrn1.ULN, lrn1.GivenNames, lrn1.familyname
 HAVING COUNT(*) > 1     
 ) ab1 order by NEWID() desc
 
