@@ -17,11 +17,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     public class EmployerProviderColobarationSteps
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly RAAV2DataHelper _rAAV2DataHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
-        private readonly ProviderPermissionsConfig _providerPermissionConfig;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private LoginUser _loginUser;
         private ProviderVacancySearchResultPage _resultPage;
@@ -29,11 +26,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public EmployerProviderColobarationSteps(ScenarioContext context)
         {
             _context = context;
-            _rAAV2DataHelper = context.Get<RAAV2DataHelper>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
-            _providerPermissionConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
 

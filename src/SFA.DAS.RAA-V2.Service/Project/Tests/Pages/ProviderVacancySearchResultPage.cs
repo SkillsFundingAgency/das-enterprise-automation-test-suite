@@ -9,10 +9,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "Vacancies";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) { }
     }
 }
