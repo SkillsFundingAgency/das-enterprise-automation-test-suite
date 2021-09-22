@@ -3,6 +3,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using EmployerStepsHelper = SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers.EmployerStepsHelper;
+using ProviderStepsHelper = SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers.ProviderStepsHelper;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Approvals.UITests.Project;
@@ -19,6 +20,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
+        private readonly ProviderStepsHelper _providerStepsHelper;
 
         public EmployerProviderColobarationSteps(ScenarioContext context)
         {
@@ -28,6 +30,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _providerPermissionConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
+            _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
         [Given(@"the Employer grants permission to the provider to create advert with review option")]
@@ -43,5 +46,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
             _employerPermissionsStepsHelper.SetRecruitApprenticesPermission(_providerPermissionConfig.Ukprn, loginUser.PermissionOrganisationName);
         }
+
+        [When(@"the Provider creates a vacancy on behalf of the employer")]
+        public void WhenTheProviderCreatesAVacancyOnBehalfOfTheEmployer()
+        {
+            _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true, false, true);
+        }
+
     }
 }

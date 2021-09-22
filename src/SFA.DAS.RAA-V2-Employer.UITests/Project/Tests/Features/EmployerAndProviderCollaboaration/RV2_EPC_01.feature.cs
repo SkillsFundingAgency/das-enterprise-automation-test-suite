@@ -106,6 +106,9 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the Employer grants permission to the provider to create advert with review optio" +
                         "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+testRunner.When("the Provider creates a vacancy on behalf of the employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

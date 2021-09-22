@@ -19,6 +19,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(_context);
         }
 
+        public void CreateANewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false, bool newTab = false)
+        {
+            var employernamePage = SelectOrganisation(newTab);
+
+            PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
+        }
+
         internal void ViewReferVacancy() => GoToRecruitmentHomePage(true).SearchReferVacancy();
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
@@ -29,20 +36,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         internal void CreateANewVacancy(string wageType)
         {
-            var employernamePage = SelectOrganisation();
+            var employernamePage = SelectOrganisation(false);
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
             var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
             _stepsHelper.SubmitVacancy(previewPage, true, false);
-        }
-
-        internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
-        {
-            var employernamePage = SelectOrganisation();
-
-            PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
         }
 
         internal void CreateVacancyViaViewAllVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
@@ -59,11 +59,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper.SubmitVacancy(previewVacancy, isApplicationMethodFAA, optionalFields);
         }
 
-        private SelectEmployersPage CreateVacancy() => GoToRecruitmentHomePage(false).CreateVacancy();
+        private SelectEmployersPage CreateVacancy(bool newTab) => GoToRecruitmentHomePage(newTab).CreateVacancy();
 
         private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
 
-        private EmployerNamePage SelectOrganisation() => SelectOrganisation(CreateVacancy());
+        private EmployerNamePage SelectOrganisation(bool newTab) => SelectOrganisation(CreateVacancy(newTab));
 
         private EmployerNamePage SelectOrganisation(SelectEmployersPage selectEmployers)
         {
