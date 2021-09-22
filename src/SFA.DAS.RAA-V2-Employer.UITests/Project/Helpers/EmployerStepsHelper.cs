@@ -25,11 +25,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(context);
         }
 
+        internal EmployerVacancySearchResultPage YourAdvert()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+
+            return NavigateToRecruitmentHomePage().SearchYourAdverts();
+        }
+
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
-        internal YourAdvertsPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        internal EmployerVacancySearchResultPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
-        internal YourAdvertsPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
+        internal EmployerVacancySearchResultPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {
@@ -40,7 +47,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal VacancyReferencePage CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
@@ -59,7 +66,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyEmployerName();
         }
 
-        internal void CreateANewVacancy(string wageType)
+        internal VacancyReferencePage CreateANewVacancy(string wageType)
         {
             var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisation();
 
@@ -67,14 +74,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
-            _stepsHelper.SubmitVacancy(previewPage, true, false);
+            return _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void CreateSubmittedVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
+        internal VacancyReferencePage CreateSubmittedVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
         {
             var previewPage = CreateDraftVacancy(whatDoYouWantToCallThisAdvertPage, wageType);
 
-            _stepsHelper.SubmitVacancy(previewPage, true, false);
+            return _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
         internal VacancyPreviewPart2Page CreateDraftVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)

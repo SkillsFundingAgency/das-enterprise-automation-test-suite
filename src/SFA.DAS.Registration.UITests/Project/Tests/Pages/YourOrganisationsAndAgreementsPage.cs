@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink() => By.LinkText("View all agreements");
-        private By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}']");
+        private By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}/agreements']");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion

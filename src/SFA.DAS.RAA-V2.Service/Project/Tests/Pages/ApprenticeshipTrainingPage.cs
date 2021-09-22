@@ -35,10 +35,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueButton));
         }
 
-        public YourAdvertsPage CancelVacancy()
+        public EmployerVacancySearchResultPage CancelVacancy()
         {
             formCompletionHelper.Click(CancelLink);
-            return new YourAdvertsPage(_context);
+            return new EmployerVacancySearchResultPage(_context);
         }
     }
 }
