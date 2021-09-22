@@ -81,5 +81,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(_notEligibleShutterPage.CancelApplicationButtonExists);
             Assert.IsTrue(_notEligibleShutterPage.ContinueApplicationButtonExists);
         }
+
+        [Then(@"the New Agreement Version needs signing page is displayed")]
+        public void ThenTheNewAgreementVersionNeedsSigningPageIsDisplayed()
+        {
+            _ = new NewLegalAgreementRequiredShutterPage(_context);
+        }
+
     }
 }

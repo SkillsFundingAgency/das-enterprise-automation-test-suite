@@ -30,6 +30,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public DateTime? EmploymentStartDate { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public Phase Phase { get; set; }
-        public bool HasEligibleEmploymentStartDate { get; set; }
+        public bool StartDatesAreEligible { get; set; }
     }
 }
