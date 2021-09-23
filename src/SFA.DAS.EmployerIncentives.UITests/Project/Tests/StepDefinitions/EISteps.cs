@@ -67,7 +67,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Access to EI Hub is denied to the Employer")]
         public void ThenAccessToEIHubIsDeniedToTheEmployer() =>
-            new HomePageFinancesSection(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage(_objectContext.GetOrganisationName());
+            new HomePageFinancesSection_EI(_context).AccessEIHubLinkRedirectsToAccessDeniedPage().GoBackToTheServiceHomePage(_objectContext.GetOrganisationName());
 
         [Then(@"the Employer is able to navigate to EI application Select apprentices page")]
         public void TheEmployeIsAbleToNavigateToEIApplicationSelectApprenticesPage() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();
@@ -115,7 +115,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToViwEIApplications()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
-            new HomePageFinancesSection(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsPage();
+            new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsPage();
         }
 
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
@@ -127,7 +127,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = new HomePageFinancesSection(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = new HomePageFinancesSection_EI(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
         }
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
@@ -168,7 +168,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications")]
         public void ThenViewEIApplicationsShutterPageIsDiplayedToTheEmployerWhenNavigatingToViewEIApplicationsPageWithNoApplications()
         {
-            _viewApplicationsShutterPage = new HomePageFinancesSection(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
+            _viewApplicationsShutterPage = new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
         }
 
         [Then(@"EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page")]

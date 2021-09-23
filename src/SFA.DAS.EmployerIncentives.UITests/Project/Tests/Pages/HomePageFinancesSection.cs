@@ -3,11 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class HomePageFinancesSection : HomePage
+    public class HomePageFinancesSection_EI : HomePage
     {
         private readonly ScenarioContext _context;
 
-        public HomePageFinancesSection(ScenarioContext context) : base(context) => _context = context;
+        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) => _context = context;
 
         public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
         {

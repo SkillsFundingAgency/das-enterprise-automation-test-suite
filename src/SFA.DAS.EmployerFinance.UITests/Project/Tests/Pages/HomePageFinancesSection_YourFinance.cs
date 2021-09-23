@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
-    public partial class HomePageFinancesSection_YourFinance : HomePageFinancesSection
+    public class HomePageFinancesSection_YourFinance : HomePageFinancesSection
     {
         private readonly ScenarioContext _context;
 

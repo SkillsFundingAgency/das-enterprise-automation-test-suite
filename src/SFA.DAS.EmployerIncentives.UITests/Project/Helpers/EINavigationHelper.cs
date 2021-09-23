@@ -10,8 +10,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         internal EINavigationHelper(ScenarioContext context) => _context = context;
 
         internal QualificationQuestionPage NavigateToEISelectApprenticesPage() => 
-            new HomePageFinancesSection(_context).NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+            new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
 
-        internal EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection(_context).NavigateToEIHubPage();
+        internal EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection_EI(_context).NavigateToEIHubPage();
     }
 }
