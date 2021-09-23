@@ -7,13 +7,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     public class BaseSteps
     {
-        protected readonly AppreticeCommitmentsStepsHelper appreticeCommitmentsStepsHelper;
+        protected readonly CreateAccountStepsHelper createAccountStepsHelper;
+        protected readonly ConfirmMyApprenticeshipStepsHelper confirmMyApprenticeshipStepsHelper;
+        protected readonly PasswordResetStepsHelper passwordResetStepsHelper;
         protected readonly ApprenticeCommitmentsConfig config;
         protected readonly TabHelper tabHelper;
 
         public BaseSteps(ScenarioContext context)
         {
-            appreticeCommitmentsStepsHelper = new AppreticeCommitmentsStepsHelper(context);
+            createAccountStepsHelper = new CreateAccountStepsHelper(context);
+            confirmMyApprenticeshipStepsHelper = new ConfirmMyApprenticeshipStepsHelper(context);
+            passwordResetStepsHelper = new PasswordResetStepsHelper(context);
             config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             tabHelper = context.Get<TabHelper>();
         }

@@ -4,90 +4,30 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 {
-    public class AppreticeCommitmentsStepsHelper
+    public class ConfirmMyApprenticeshipStepsHelper
     {
-        private readonly ScenarioContext _context;
         protected readonly ObjectContext _objectContext;
         protected readonly RetryAssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
-        private readonly ApprenticeCommitmentsConfig config;
-        private SignUpCompletePage signUpCompletePage;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel;
         private DateTime expectedApprenticeshipStartDate;
         private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
 
-        public AppreticeCommitmentsStepsHelper(ScenarioContext context)
+        public ConfirmMyApprenticeshipStepsHelper(ScenarioContext context)
         {
-            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<RetryAssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
-            config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-        }
-
-        public void CreateApprenticeshipViaCommitmentsJob() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJob();
-
-        public CreatePasswordPage GetCreatePasswordPage()
-        {
-            RetryOnNUnitException(() =>
-            {
-                string email = _objectContext.GetApprenticeEmail();
-                var invitationId = _apprenticeLoginSqlDbHelper.GetId(email);
-
-                Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
-                OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(invitationId));
-            });
-
-            return new CreatePasswordPage(_context);
-        }
-
-        public ResetPasswordPage BuildResetPasswordPageUsingDBHelper()
-        {
-            RetryOnNUnitException(() =>
-            {
-                (string clientId, string requestId) id = (string.Empty, string.Empty);
-                string email = _objectContext.GetApprenticeEmail();
-                id = _apprenticeLoginSqlDbHelper.GetApprenticeResetLoginData(email);
-
-                Assert.IsNotEmpty(id.clientId, $"Client id not found in the Login db for email '{email}'");
-                Assert.IsNotEmpty(id.requestId, $"Request id not found in the Login db for email '{email}'");
-
-                OpenInNewTab(UrlConfig.Apprentice_ResetPasswordUrl(id.clientId, id.requestId));
-            });
-
-            return new ResetPasswordPage(_context);
-        }
-
-        public SignUpCompletePage CreateAccount(bool postApprenticeship = true)
-        {
-            if (postApprenticeship)
-                CreateApprenticeshipViaCommitmentsJob();
-
-            return signUpCompletePage = GetCreatePasswordPage().CreatePassword();
-        }
-
-        public ForgottenPasswordConfirmPage SubmitEmailToResetPasswordFromSignInPage() => NavigateToSignInPageFromSignUpCompletePage().ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
-
-        public SignIntoApprenticeshipPortalPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().CreateAndConfirmPasswordOnCreatePasswordPage().ReturnToSignInPage();
-
-        public ConfirmYourIdentityPage SignInToApprenticePortal() => NavigateToSignInPageFromSignUpCompletePage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
-
-        public void EnterMismatchedPasswordsAndValidateError(PasswordBasePage passwordPage)
-        {
-            var error = passwordPage.InvalidPassword(config.AC_AccountPassword, $"{config.AC_AccountPassword}1");
-            StringAssert.Contains("There is a problem", error, "Password error message did not match");
         }
 
         public void VerifyApprenticeshipDataDisplayed(ConfirmYourApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
@@ -124,12 +64,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .VerifyRolesYourTrainingProviderTab();
         }
 
-        public void UpdateConfirmBeforeDate() => _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
-
-        public void VerifyDaysToConfirmWarning(ApprenticeOverviewPage _apprenticeHomePage) => _apprenticeHomePage.VerifyDaysToConfirmWarning();
-
-        private SignIntoApprenticeshipPortalPage NavigateToSignInPageFromSignUpCompletePage() => signUpCompletePage.ClickSignInToApprenticePortal();
-
         private void PopulateExpectedApprenticeshipDetails()
         {
             expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
@@ -144,12 +78,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
             Assert.IsNotNull(actualEsimatedDurationInfo);
         }
-
-        private string CalculateMonthsBetweenDates(DateTime startDate, DateTime endDate) =>
-            (Math.Abs(12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month) + 1).ToString();
-
-        private void OpenInNewTab(string url) => _context.Get<TabHelper>().OpenInNewTab(url);
-
-        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
     }
 }

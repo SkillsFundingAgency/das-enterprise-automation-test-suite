@@ -64,7 +64,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
 
-            coCConfirmMyApprenticeDetailsPage = new SignIntoApprenticeshipPortalPage(_context).CocSignInToApprenticePortal();
+            coCConfirmMyApprenticeDetailsPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
         }
 
         [Then(@"the apprenticeship details section on the overview page is marked as Incomplete")]
