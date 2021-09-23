@@ -1,5 +1,6 @@
 ﻿@employerincentivesPaymentsProcess
 @learnerMatchFailure
+@learnerMatchTests
 Feature: LearnerMatchFailure
     Learner Match Continues on failure
     https://skillsfundingagency.atlassian.net/browse/EI-1208

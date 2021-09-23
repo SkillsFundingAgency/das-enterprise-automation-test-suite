@@ -1,4 +1,7 @@
-﻿Feature: PaymentValidation
+﻿@employerincentivesPaymentsProcess
+@PaymentValidation
+@eiRegression
+Feature: PaymentValidation
 	Test payment validation checks
 @employerincentivesPaymentsProcess
 @PaymentValidation

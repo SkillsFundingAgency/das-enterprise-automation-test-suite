@@ -23,6 +23,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [NUnit.Framework.DescriptionAttribute("LearnerMatchLearningResumed")]
     [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
     [NUnit.Framework.CategoryAttribute("learnerMatchLearningResumed")]
+    [NUnit.Framework.CategoryAttribute("eiRegression")]
+    [NUnit.Framework.CategoryAttribute("learnerMatchTests")]
     public partial class LearnerMatchLearningResumedFeature
     {
         
@@ -30,7 +32,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         
         private string[] _featureTags = new string[] {
                 "employerincentivesPaymentsProcess",
-                "learnerMatchLearningResumed"};
+                "learnerMatchLearningResumed",
+                "eiRegression",
+                "learnerMatchTests"};
         
 #line 1 "LearnerMatchLearningResumed.feature"
 #line hidden
@@ -41,7 +45,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "LearnerMatchLearningResumed", "\tLearning resumed trigger for multiple academic years", ProgrammingLanguage.CSharp, new string[] {
                         "employerincentivesPaymentsProcess",
-                        "learnerMatchLearningResumed"});
+                        "learnerMatchLearningResumed",
+                        "eiRegression",
+                        "learnerMatchTests"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -86,7 +92,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Learning Stopped and Resumed - Phase 2", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,25 +112,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
    testRunner.Given("an existing Phase2 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 11
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 12
    testRunner.And("ILR Learner Resumed Change of Circumstance has occurred in the current period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 13
    testRunner.When("the Learner Match occurs in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 14
    testRunner.Then("earnings are re-calculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 15
    testRunner.And("a Learning Resumed change of circumstance is recorded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -138,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Learning Stopped and Resumed - Phase 1", null, tagsOfScenario, argumentsOfScenario);
-#line 15
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -158,25 +164,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 18
    testRunner.Given("an existing Phase1 apprenticeship incentive submitted in Academic Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 19
    testRunner.And("ILR Learner Stopped Change of Circumstance has occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 20
    testRunner.And("a successful Learner Match in previous collection period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 21
    testRunner.And("ILR Learner Resumed Change of Circumstance has occurred in the current period", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 22
    testRunner.When("the Learner Match occurs in Period R04 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 23
    testRunner.Then("earnings are re-calculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 24
    testRunner.And("a Learning Resumed change of circumstance is recorded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

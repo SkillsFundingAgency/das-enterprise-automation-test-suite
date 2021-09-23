@@ -23,6 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
     [NUnit.Framework.DescriptionAttribute("LearnerMatchFailure")]
     [NUnit.Framework.CategoryAttribute("employerincentivesPaymentsProcess")]
     [NUnit.Framework.CategoryAttribute("learnerMatchFailure")]
+    [NUnit.Framework.CategoryAttribute("learnerMatchTests")]
     public partial class LearnerMatchFailureFeature
     {
         
@@ -30,7 +31,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         
         private string[] _featureTags = new string[] {
                 "employerincentivesPaymentsProcess",
-                "learnerMatchFailure"};
+                "learnerMatchFailure",
+                "learnerMatchTests"};
         
 #line 1 "LearnerMatchFailure.feature"
 #line hidden
@@ -48,7 +50,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             ...
         }", ProgrammingLanguage.CSharp, new string[] {
                         "employerincentivesPaymentsProcess",
-                        "learnerMatchFailure"});
+                        "learnerMatchFailure",
+                        "learnerMatchTests"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -93,7 +96,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Learner Match Continues on failure", null, tagsOfScenario, argumentsOfScenario);
-#line 13
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -113,16 +116,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 14
+#line 15
     testRunner.Given("the learner match process has been triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 15
+#line 16
     testRunner.When("an exception occurs for a learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 17
     testRunner.Then("a record of learner match failure is created for the learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
+#line 18
     testRunner.And("the learner match process should continue for all remaining learners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
