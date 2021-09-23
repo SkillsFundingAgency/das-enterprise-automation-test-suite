@@ -1,5 +1,4 @@
-﻿@transfermatching
-Feature: TM_01_ViewTransfers
+﻿Feature: TM_01_ViewTransfers
 
 @regression
 @transfermatching
