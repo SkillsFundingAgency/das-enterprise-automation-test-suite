@@ -103,9 +103,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.AssessorCertificati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.AggregatedEmployerDemand.UITests", "SFA.DAS.AggregatedEmployerDemand.UITests\SFA.DAS.AggregatedEmployerDemand.UITests.csproj", "{687C80F1-8778-4809-A001-FA62B99028F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Mailinator.Service", "SFA.DAS.Mailinator.Service\SFA.DAS.Mailinator.Service.csproj", "{FEF338DE-36A5-4CF0-AB52-386174D8CD85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Mailinator.Service", "SFA.DAS.Mailinator.Service\SFA.DAS.Mailinator.Service.csproj", "{FEF338DE-36A5-4CF0-AB52-386174D8CD85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TestDataCleanup", "SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj", "{3EF33088-8375-45EF-A94E-335899F9CBCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TestDataCleanup", "SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj", "{3EF33088-8375-45EF-A94E-335899F9CBCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TransferMatching.UITests", "SFA.DAS.TransferMatching.UITests\SFA.DAS.TransferMatching.UITests.csproj", "{371487DB-38BA-44F4-8CE2-28C20A4660DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -360,6 +362,12 @@ Global
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371487DB-38BA-44F4-8CE2-28C20A4660DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
