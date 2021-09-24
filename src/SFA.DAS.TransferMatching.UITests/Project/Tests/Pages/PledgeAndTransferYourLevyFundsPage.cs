@@ -19,7 +19,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public void StartCreatePledge()
         {
             formCompletionHelper.Click(StartCreatePledgesSelector);
-
         }
     }
 }

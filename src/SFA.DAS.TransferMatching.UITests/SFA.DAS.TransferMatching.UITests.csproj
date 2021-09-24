@@ -48,10 +48,4 @@
     </None>
   </ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\TM_01_ViewTransfers.feature.cs">
-	    <DependentUpon>TM_01_ViewTransfers.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
 </Project>
