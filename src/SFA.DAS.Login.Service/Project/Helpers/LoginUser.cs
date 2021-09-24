@@ -24,6 +24,8 @@
 
     public class TransfersUser : MultipleAccountUser { }
 
+    public class TransferMatchingUser : MultipleAccountUser { }
+
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
     public class LevyUser : LoginUser { }
