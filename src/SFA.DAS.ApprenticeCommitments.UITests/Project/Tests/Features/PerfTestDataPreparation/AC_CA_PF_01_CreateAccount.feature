@@ -3,8 +3,8 @@
 @perftest
 @donottakescreenshot
 Scenario Outline: AC_CA_PF_01_Create_Account
-	When employer or provider submits the details to create an account
-	Then the apprentice is able to create an account using the invitation
+	When an apprenticeship is created via API request
+	Then the apprentice is able to create an account with the invite generated
 
 	Examples: 
 	| Test |

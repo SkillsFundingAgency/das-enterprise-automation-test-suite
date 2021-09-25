@@ -40,17 +40,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Replace(EmployerNameKey, value);
         internal static void SetTrainingStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingStartDateKey, value);
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
+        public static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
         public static string GetApprenticePassword(this ObjectContext objectContext) => objectContext.Get(PasswordKey);
         public static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
         public static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);
         public static DateTime GetDateOfBirth(this ObjectContext objectContext) => objectContext.Get<DateTime>(DateOfBirthKey);
-        internal static long GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get<long>(CommitmentsApprenticeshipIdKey);
         internal static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerNameKey);
         public static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);
         public static string GetTrainingStartDate(this ObjectContext objectContext) => objectContext.Get(TrainingStartDateKey);
-        public static string GetTrainingEndDate(this ObjectContext objectContext) => objectContext.Get(TrainingEndDateKey);
     }
 }

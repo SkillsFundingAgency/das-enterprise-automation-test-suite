@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class SignIntoApprenticeshipPortalPage : ApprenticeCommitmentsBasePage
+    public class SignIntoMyApprenticeshipPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Sign in to {ServiceName}";
 
@@ -14,12 +14,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By Password => By.CssSelector("#Password");
         private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
-        public SignIntoApprenticeshipPortalPage(ScenarioContext context) : base(context) => _context = context;
+        public SignIntoMyApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ConfirmYourIdentityPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
+        public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {
             SignIn();
-            return new ConfirmYourIdentityPage(_context);
+            return new CreateMyApprenticeshipAccountPage(_context);
         }
 
         public CoCConfirmMyApprenticeDetailsPage CocSignInToApprenticePortal()
@@ -41,6 +41,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.Click(SignInButton);
         }
 
-
+        public CreateLoginDetailsPage ClickCreateAnAccountLinkOnSignInPage()
+        {
+            formCompletionHelper.ClickLinkByText("create an account");
+            return new CreateLoginDetailsPage(_context);
+        }
     }
 }

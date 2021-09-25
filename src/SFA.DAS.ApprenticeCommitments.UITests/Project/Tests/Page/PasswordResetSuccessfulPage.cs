@@ -12,10 +12,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public PasswordResetSuccessfulPage(ScenarioContext context) : base(context) => _context = context;
 
-        public SignIntoApprenticeshipPortalPage ReturnToSignInPage()
+        public SignIntoMyApprenticeshipPage ReturnToSignInPage()
         {
             formCompletionHelper.ClickLinkByText($"{ServiceName}");
-            return new SignIntoApprenticeshipPortalPage(_context);
+            return new SignIntoMyApprenticeshipPage(_context);
         }
     }
 }
