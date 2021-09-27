@@ -2,7 +2,6 @@
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-
     public class TransferMatchingPage : TransferMatchingBasePage
     {
         protected override string PageTitle => "Transfers";
