@@ -31,22 +31,42 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can create pledge using default criteria")]
         public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            var page = new HomePageFinancesSection_YourTransfers(_context)
+            var page = CreateATransferPledge(true);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeId();
+        }
+
+        [Then(@"the Employer can create anonymous pledge using non default criteria")]
+        public void ThenTheEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
+        {
+            _pledgeVerificationPage = CreateATransferPledge(false)
+                .GoToAddtheLocationPage().EnterLocation()
+                .GoToChoosetheSectorPage().SelectSetorAndContinue()
+                .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+                .GoToChooseTheLevelPage().SelectLevelAndContinue()
+                .ContinueToPledgeVerificationPage();
+
+            SetPledgeId();
+        }
+
+        protected void SetPledgeId() => _pledgeVerificationPage.SetPledgeId();
+
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName)
+        {
+            return new HomePageFinancesSection_YourTransfers(_context)
                 .NavigateToTransferMatchingPage()
                 .GotoCreateTransfersPledgePage()
                 .StartCreatePledge()
                 .GoToPledgeAmountAndOptionPage()
                 .CaptureAvailablePledgeAmount()
-                .EnterAmountAndShowOrgName();
-
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue("Location"));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue("Sector"));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue("Type of job role"));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue("Level"));
-
-            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
-
-            _pledgeVerificationPage.SetPledgeId();
+                .EnterAmountAndOrgName(showOrgName);
         }
 
         [Then(@"the Employer can view pledges")]

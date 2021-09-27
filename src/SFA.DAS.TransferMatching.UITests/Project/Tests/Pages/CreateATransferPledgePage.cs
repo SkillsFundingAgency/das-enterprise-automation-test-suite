@@ -3,6 +3,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
+    public class ChooseTheLevelPage : TransferMatchingBasePage
+    {
+        protected override string PageTitle => "Choose the levels of apprenticeship training you'd like to fund";
+
+        protected override By ContinueButton => By.CssSelector("#pledge-level-continue");
+
+        public ChooseTheLevelPage(ScenarioContext context) : base(context) { }
+
+        public CreateATransferPledgePage SelectLevelAndContinue() => SelectAndContinue();
+    }
+
+
     public class CreateATransferPledgePage : TransferMatchingBasePage
     {
         protected override string PageTitle => "Create a transfer pledge";
@@ -19,12 +31,41 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private string TableRowIdentifier => ".das-task-list__item";
 
+        public string LocationLink => "Location";
+        public string SectorLink => "Sector";
+        public string TypeOfJobRoleLink => "Type of job role";
+        public string LevelLink => "Level";
+
         public CreateATransferPledgePage(ScenarioContext context) : base(context) => _context = context;
 
-        public EnterPledgeAmountPage GoToPledgeAmountAndOptionPage()
+        public PledgeAmountAndOptionToHideOrganisastionNamePage GoToPledgeAmountAndOptionPage()
         {
             formCompletionHelper.ClickLinkByText("Amount you want to pledge");
-            return new EnterPledgeAmountPage(_context);
+            return new PledgeAmountAndOptionToHideOrganisastionNamePage(_context);
+        }
+
+        public AddtheLocationPage GoToAddtheLocationPage()
+        {
+            formCompletionHelper.ClickLinkByText(LocationLink);
+            return new AddtheLocationPage(_context);
+        }
+
+        public ChoosetheSectorsPage GoToChoosetheSectorPage()
+        {
+            formCompletionHelper.ClickLinkByText(SectorLink);
+            return new ChoosetheSectorsPage(_context);
+        }
+
+        public ChooseTheTypesOfJobPage GoToChooseTheTypesOfJobPage()
+        {
+            formCompletionHelper.ClickLinkByText(TypeOfJobRoleLink);
+            return new ChooseTheTypesOfJobPage(_context);
+        }
+
+        public ChooseTheLevelPage GoToChooseTheLevelPage()
+        {
+            formCompletionHelper.ClickLinkByText(LevelLink);
+            return new ChooseTheLevelPage(_context);
         }
 
         public PledgeVerificationPage ContinueToPledgeVerificationPage()
