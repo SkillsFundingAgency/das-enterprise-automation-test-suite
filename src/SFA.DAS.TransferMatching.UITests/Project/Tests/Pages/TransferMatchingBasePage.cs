@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -19,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly TableRowHelper tableRowHelper;
         #endregion
 
-        private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__item");
+        private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
 
         protected TransferMatchingBasePage(ScenarioContext context) : base(context)
         {
@@ -35,8 +36,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected CreateATransferPledgePage SelectAndContinue()
         {
-            formCompletionHelper.ClickElement(() => tMDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(NonDefaultSelector)));
+            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaultSelector);
+
+            int randomvalue = tMDataHelper.GenerateRandomNumberBetweenTwoValues(NonDefaultList.Count);
+
+            formCompletionHelper.ClickElement(NonDefaultList.ElementAt(randomvalue));
+
             Continue();
+
             return new CreateATransferPledgePage(_context);
         }
 

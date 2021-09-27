@@ -13,11 +13,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected By Location => By.CssSelector("#Locations_0_");
 
+        protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
+
         public AddtheLocationPage(ScenarioContext context) : base(context) => _context = context;
 
         public CreateATransferPledgePage EnterLocation()
         {
             formCompletionHelper.EnterText(Location, tMDataHelper.GetRandomLocation());
+
+            Continue();
 
             return new CreateATransferPledgePage(_context);
         }

@@ -1,9 +1,5 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
@@ -13,9 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public TMDataHelper(RandomDataGenerator randomDataGenerator): base(randomDataGenerator) => _randomDataGenerator = randomDataGenerator;
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
+        public int GenerateRandomNumberBetweenTwoValues(int options) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, options);
 
-        public int PledgeAmount(int availablePledgeAmount) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, availablePledgeAmount);
+        public int PledgeAmount(int availablePledgeAmount) => GenerateRandomNumberBetweenTwoValues(availablePledgeAmount);
 
         public string GetRandomLocation() => GetRandomElementFromListOfElements(Locations);
 
