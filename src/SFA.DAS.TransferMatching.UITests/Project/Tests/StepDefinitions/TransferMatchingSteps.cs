@@ -1,11 +1,9 @@
-﻿using SFA.DAS.Login.Service;
+﻿using NUnit.Framework;
+using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
@@ -18,6 +16,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly TransferMatchingUser _transfersUser;
         private HomePage _homePage;
+        private PledgeVerificationPage _pledgeVerificationPage;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -32,12 +31,26 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can create pledge using default criteria")]
         public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            new HomePageFinancesSection_YourTransfers(_context)
+            var page = new HomePageFinancesSection_YourTransfers(_context)
                 .NavigateToTransferMatchingPage()
                 .GotoCreateTransfersPledgePage()
                 .StartCreatePledge()
-                .EnterPledgeAmount();
+                .EnterPledgeAmount()
+                .CaptureAvailablePledgeAmount()
+                .EnterAmountAndShowOrgName();
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue("Location"));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue("Sector"));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue("Type of job role"));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue("Level"));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            _pledgeVerificationPage.SetPledgeId();
         }
+
+        [Then(@"the Employer can view pledges")]
+        public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
 
         [Then(@"the Employer can view transfers")]
@@ -54,6 +67,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _homePage = _multipleAccountsLoginHelper.Login(_transfersUser, true);
         }
-
     }
 }

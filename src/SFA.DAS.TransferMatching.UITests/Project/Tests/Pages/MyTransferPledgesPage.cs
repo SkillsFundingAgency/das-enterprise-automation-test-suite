@@ -5,7 +5,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class MyTransferPledgesPage : TransferMatchingBasePage
     {
-
         protected override string PageTitle => "My transfer pledges";
 
         #region Helpers and Context
@@ -14,6 +13,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
+        private By PledgeSelector => By.CssSelector($"a[href='pledges/{objectContext.GetPledgeId()}/applications']");
+
         public MyTransferPledgesPage(ScenarioContext context) : base(context) => _context = context;
 
         public PledgeAndTransferYourLevyFundsPage CreatePledge()
@@ -21,5 +22,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreatePledgesSelector);
             return new PledgeAndTransferYourLevyFundsPage(_context);
         }
+
+        public void VerifyPledge() => VerifyPage(PledgeSelector);
+
     }
 }

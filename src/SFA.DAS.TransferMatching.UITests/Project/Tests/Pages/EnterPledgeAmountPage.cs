@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -15,26 +16,34 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By AmountCssSelector => By.CssSelector("#Amount");
 
+        protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
+
         public EnterPledgeAmountPage(ScenarioContext context) : base(context) => _context = context;
 
         public EnterPledgeAmountPage CaptureAvailablePledgeAmount()
         {
             var amount = pageInteractionHelper.GetText(AvailablePledgeAmount);
 
-            objectContext.SetAvailablePledgeAmount(amount);
+            amount = regexHelper.Replace(amount, new List<string>() {"£", "," });
+
+            objectContext.SetAvailablePledgeAmount(int.Parse(amount));
 
             return this;
         }
 
-        public void EnterAmount()
+        public CreateATransferPledgePage EnterAmountAndShowOrgName()
         {
             var amount = objectContext.GetAvailablePledgeAmount();
+
+            amount = tMDataHelper.PledgeAmount((amount / 2 ));
 
             formCompletionHelper.EnterText(AmountCssSelector, amount);
 
             formCompletionHelper.SelectRadioOptionByText("Yes");
+
+            Continue();
+
+            return new CreateATransferPledgePage(_context);
         }
-
-
     }
 }

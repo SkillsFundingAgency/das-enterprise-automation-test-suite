@@ -1,6 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project
 {
@@ -8,10 +6,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project
     {
         #region Constants
         private const string AvailablePledgeAmount = "availablepledgeamount";
+        private const string PledgeId = "pledgeid";
         #endregion
 
-        internal static void SetAvailablePledgeAmount(this ObjectContext objectContext, string accountid) => objectContext.Replace(AvailablePledgeAmount, accountid);
+        internal static void SetAvailablePledgeAmount(this ObjectContext objectContext, int value) => objectContext.Replace(AvailablePledgeAmount, value);
 
-        public static string GetAvailablePledgeAmount(this ObjectContext objectContext) => objectContext.Get(AvailablePledgeAmount);
+        public static int GetAvailablePledgeAmount(this ObjectContext objectContext) => objectContext.Get<int>(AvailablePledgeAmount);
+
+        internal static void SetPledgeId(this ObjectContext objectContext, string value) => objectContext.Set(PledgeId, value);
+
+        public static string GetPledgeId(this ObjectContext objectContext) => objectContext.Get(PledgeId);
     }
 }
