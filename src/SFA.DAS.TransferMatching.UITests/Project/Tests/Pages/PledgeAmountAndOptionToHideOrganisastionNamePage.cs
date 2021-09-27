@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class EnterPledgeAmountPage : TransferMatchingBasePage
+    public class PledgeAmountAndOptionToHideOrganisastionNamePage : TransferMatchingBasePage
     {
         protected override string PageTitle => "Pledge amount and option to hide organisation name";
 
@@ -18,9 +18,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
-        public EnterPledgeAmountPage(ScenarioContext context) : base(context) => _context = context;
+        public PledgeAmountAndOptionToHideOrganisastionNamePage(ScenarioContext context) : base(context) => _context = context;
 
-        public EnterPledgeAmountPage CaptureAvailablePledgeAmount()
+        public PledgeAmountAndOptionToHideOrganisastionNamePage CaptureAvailablePledgeAmount()
         {
             var amount = pageInteractionHelper.GetText(AvailablePledgeAmount);
 
@@ -31,15 +31,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return this;
         }
 
-        public CreateATransferPledgePage EnterAmountAndShowOrgName()
+        public CreateATransferPledgePage EnterAmountAndOrgName(bool showOrg)
         {
             var amount = objectContext.GetAvailablePledgeAmount();
 
-            amount = tMDataHelper.PledgeAmount((amount / 2 ));
+            amount = tMDataHelper.PledgeAmount((amount / 2));
 
             formCompletionHelper.EnterText(AmountCssSelector, amount);
 
-            formCompletionHelper.SelectRadioOptionByText("Yes");
+            if (showOrg)
+                formCompletionHelper.SelectRadioOptionByText("Yes");
+            else
+                formCompletionHelper.SelectRadioOptionByText("No, I'd like our organisation to be anonymous");
 
             Continue();
 

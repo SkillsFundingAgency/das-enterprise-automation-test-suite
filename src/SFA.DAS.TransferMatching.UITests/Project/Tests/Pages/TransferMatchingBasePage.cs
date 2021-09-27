@@ -1,7 +1,9 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -9,6 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public abstract class TransferMatchingBasePage : BasePage
     {
         #region Helpers and Context
+        private readonly ScenarioContext _context;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
@@ -17,8 +20,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly TableRowHelper tableRowHelper;
         #endregion
 
+        private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
+
         protected TransferMatchingBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
@@ -27,5 +33,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
         }
+
+        protected CreateATransferPledgePage SelectAndContinue()
+        {
+            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaultSelector);
+
+            int randomvalue = tMDataHelper.GenerateRandomNumberBetweenTwoValues(NonDefaultList.Count);
+
+            formCompletionHelper.ClickElement(NonDefaultList.ElementAt(randomvalue));
+
+            Continue();
+
+            return new CreateATransferPledgePage(_context);
+        }
+
     }
 }
