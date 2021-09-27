@@ -61,10 +61,34 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
         }
 
+        [Given(@"an existing phase 3 apprenticeship incentive for a learner under 25 years old")]
+        public async Task GivenAPhase3IncentiveForLearnerUnder25()
+        {
+            _initialStartDate = new DateTime(2021, 10, 01);
+            _initialEndDate = new DateTime(2023, 04, 01);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(3, 2122);
+
+            var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
+
+            TestData.IncentiveApplication = new IncentiveApplicationBuilder()
+                .WithAccount(TestData.Account)
+                .WithDateSubmitted(_initialStartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase3)
+                .Create();
+
+            await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
+        }
+
         [Given(@"an existing phase 2 apprenticeship incentive")]
         public async Task GivenAPhase2Incentive()
         {
             await GivenAPhase2IncentiveForLearnerUnder25();
+        }
+
+        [Given(@"an existing phase 3 apprenticeship incentive")]
+        public async Task GivenAPhase3Incentive()
+        {
+            await GivenAPhase3IncentiveForLearnerUnder25();
         }
 
         [Given(@"a payment of £(.*) sent in Period R(.*) (.*)")]
@@ -108,7 +132,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"a start date change of circumstance occurs in Period R(.*) (.*)")]
-        public async Task GivenAStartDateChangeOfCircumstanceOccursInPeriodR09(byte period, short year)
+        public async Task GivenAStartDateChangeOfCircumstanceOccursInPeriod(byte period, short year)
         {
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, year);
         }
@@ -158,16 +182,35 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         [When(@"the start date is changed to before the start of the eligibility period in period (.*) AY (.*)")]
         public async Task WhenTheStartDateIsBeforeTheEligibilityPeriod(byte period, short academicYear)
-        {
-            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
+        {       
+            var apprenticeshipIncentive = TestData.IncentiveApplication.Apprenticeships.Single();
+            PriceEpisodeDto priceEpisode;
+            DateTime newStartDate = new DateTime(2021, 03, 31);
 
-            var newStartDate = new DateTime(2021, 03, 31);
-            var priceEpisode = new PriceEpisodeDtoBuilder()
-                .WithAcademicYear(2021)
-                .WithStartDate(newStartDate)
-                .WithEndDate("2023-10-15T00:00:00")
-                .WithPeriod(TestData.ApprenticeshipId, period)
-                .Create();
+            if (apprenticeshipIncentive.Phase == Phase.Phase3)
+            {
+                await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, academicYear);
+                var activePeriod = Helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+
+                newStartDate = activePeriod.EIScheduledOpenDateUTC.AddDays(-1);
+                priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(academicYear)
+                    .WithStartDate(newStartDate)
+                    .WithEndDate("2023-10-15T00:00:00")
+                    .WithPeriod(TestData.ApprenticeshipId, period)
+                    .Create();
+            }
+            else
+            {
+                await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
+
+                priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(2021)
+                    .WithStartDate(newStartDate)
+                    .WithEndDate("2023-10-15T00:00:00")
+                    .WithPeriod(TestData.ApprenticeshipId, period)
+                    .Create();
+            }
 
             var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode, academicYear);
 
@@ -175,7 +218,36 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await Helper.LearnerMatchOrchestratorHelper.Run();
         }
-        
+
+        [When(@"the start date is changed to be in the eligibility period (.*) AY (.*)")]
+        public async Task WhenTheStartDateIsInTheEligibilityPeriod(byte period, short academicYear)
+        {
+            var apprenticeshipIncentive = TestData.IncentiveApplication.Apprenticeships.Single();
+            PriceEpisodeDto priceEpisode = null;
+            DateTime newStartDate = new DateTime(2021, 03, 31);
+
+            if (apprenticeshipIncentive.Phase == Phase.Phase3)
+            {
+                await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, academicYear);
+
+                var activePeriod = Helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
+                newStartDate = activePeriod.EIScheduledOpenDateUTC.AddDays(1);
+
+                priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(academicYear)
+                    .WithStartDate(newStartDate)
+                    .WithEndDate("2023-10-15T00:00:00")
+                    .WithPeriod(TestData.ApprenticeshipId, period)
+                    .Create();
+            }
+            var learnerSubmissionData = CreateLearnerSubmissionDto(newStartDate, priceEpisode, academicYear);
+
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
+
+            await Helper.LearnerMatchOrchestratorHelper.Run();
+        }
+
+
         [When(@"the start date is changed to a date after the start of the eligibility period in period (.*) AY (.*)")]
         public async Task WhenTheStartDateIsChangedToADateAfterTheStartOfTheEligibilityPeriodInPeriodAcademicYear(byte period, short academicYear)
         {
