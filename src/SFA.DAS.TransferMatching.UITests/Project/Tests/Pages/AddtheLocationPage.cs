@@ -21,6 +21,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(Location, tMDataHelper.GetRandomLocation());
 
+            formCompletionHelper.ClickElement(PageHeader);
+
             Continue();
 
             return new CreateATransferPledgePage(_context);
