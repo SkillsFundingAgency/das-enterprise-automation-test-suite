@@ -35,7 +35,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .NavigateToTransferMatchingPage()
                 .GotoCreateTransfersPledgePage()
                 .StartCreatePledge()
-                .EnterPledgeAmount()
+                .GoToPledgeAmountAndOptionPage()
                 .CaptureAvailablePledgeAmount()
                 .EnterAmountAndShowOrgName();
 

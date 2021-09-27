@@ -21,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public CreateATransferPledgePage(ScenarioContext context) : base(context) => _context = context;
 
-        public EnterPledgeAmountPage EnterPledgeAmount()
+        public EnterPledgeAmountPage GoToPledgeAmountAndOptionPage()
         {
             formCompletionHelper.ClickLinkByText("Amount you want to pledge");
             return new EnterPledgeAmountPage(_context);
