@@ -29,12 +29,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing Transfer Matching Account")]
         public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount() => Login(_transfersUser.OrganisationName);
 
+        [Then(@"the Employer can create pledge using default criteria")]
+        public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
+        {
+            new HomePageFinancesSection_YourTransfers(_context)
+                .NavigateToTransferMatchingPage()
+                .GotoCreateTransfersPledgePage()
+                .StartCreatePledge()
+                .EnterPledgeAmount();
+        }
+
+
         [Then(@"the Employer can view transfers")]
         public void ThenTheEmployerCanViewTransfers()
         {
             new HomePageFinancesSection_YourTransfers(_context)
                 .NavigateToTransferMatchingPage()
-                .ViewPledges();
+                .GoToViewMyTransferPledgePage();
         }
 
         private void Login(string organisationName)

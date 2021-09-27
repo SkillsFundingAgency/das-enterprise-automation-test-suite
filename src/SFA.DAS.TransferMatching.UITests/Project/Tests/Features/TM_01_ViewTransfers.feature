@@ -4,4 +4,5 @@
 @transfermatching
 Scenario: TM_01_ViewTransfer Pledges
 	Given the Employer logins using existing Transfer Matching Account
-	Then the Employer can view transfers 
+	Then the Employer can create pledge using default criteria
+	And the Employer can view transfers 
