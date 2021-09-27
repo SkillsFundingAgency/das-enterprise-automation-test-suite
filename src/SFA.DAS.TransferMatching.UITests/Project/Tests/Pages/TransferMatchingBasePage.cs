@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -11,6 +12,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
+        protected readonly RegexHelper regexHelper;
+        protected readonly TMDataHelper tMDataHelper;
+        protected readonly TableRowHelper tableRowHelper;
         #endregion
 
         protected TransferMatchingBasePage(ScenarioContext context) : base(context)
@@ -18,6 +22,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
+            regexHelper = context.Get<RegexHelper>();
+            tMDataHelper = context.Get<TMDataHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
         }
     }

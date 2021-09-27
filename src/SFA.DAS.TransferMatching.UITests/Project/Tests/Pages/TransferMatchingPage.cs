@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
@@ -13,7 +12,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
 
-        public MyTransferPledgesPage ViewPledges()
+        public PledgeAndTransferYourLevyFundsPage GotoCreateTransfersPledgePage()
+        {
+            formCompletionHelper.ClickLinkByText("Create a transfers pledge");
+            return new PledgeAndTransferYourLevyFundsPage(_context);
+        }
+
+        public MyTransferPledgesPage GoToViewMyTransferPledgePage()
         {
             formCompletionHelper.ClickLinkByText("View my transfer pledges and applications");
             return new MyTransferPledgesPage(_context);
