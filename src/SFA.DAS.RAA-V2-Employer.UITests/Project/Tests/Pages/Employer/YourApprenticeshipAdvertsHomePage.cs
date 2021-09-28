@@ -17,8 +17,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
         private readonly By CreateAnAdvertButton = By.LinkText("Create an advert");
+        private By SettingsLink => By.LinkText("Settings");
+        private By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
 
-        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl)
         {
             _context = context;
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
@@ -31,14 +33,25 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateAnAdvertPage(_context);
         }
 
+        public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
+
+        public ManageRecruitPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+
+        public EmployerVacancySearchResultPage SearchYourAdverts() => _searchVacancyPageHelper.SearchEmployerVacancy();
+
+        public ManageYourAdvertEmailsPage GoToAdvertNotificationsPage()
+        {
+            NavigateToSettings();
+            formCompletionHelper.ClickElement(AdvertNotificationLink);
+            return new ManageYourAdvertEmailsPage(_context);
+        }
+
+        private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));
+
         private new YourApprenticeshipAdvertsHomePage AcceptCookies()
         {
             base.AcceptCookies();
             return this;
         }
-
-        public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
-
-        public ManageRecruitPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
     }
 }

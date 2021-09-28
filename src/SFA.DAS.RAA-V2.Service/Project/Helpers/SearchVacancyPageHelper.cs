@@ -46,18 +46,34 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ManageRecruitPage(_context);
         }
 
+        public ProviderVacancySearchResultPage SearchProviderVacancy()
+        {
+            SearchEmployerProviderPermissionVacancy();
+            return new ProviderVacancySearchResultPage(_context);
+        }
+
         public ReferVacancyPage SearchReferVacancy()
         {
             SearchVacancy();
             return new ReferVacancyPage(_context);
         }
 
-        private void SearchVacancy()
+        public EmployerVacancySearchResultPage SearchEmployerVacancy()
+        {
+            SearchEmployerProviderPermissionVacancy();
+            return new EmployerVacancySearchResultPage(_context);
+        }
+
+        internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy(false);
+
+        private void SearchVacancy(bool navigate = true)
         {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);            
             _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
+            
+            if (navigate)
             _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));                        
         }
     }

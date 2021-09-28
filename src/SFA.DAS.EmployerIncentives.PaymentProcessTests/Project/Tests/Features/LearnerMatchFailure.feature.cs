@@ -122,12 +122,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
     testRunner.And("the learner match process should continue for all remaining learners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
-    testRunner.And("any CoCs are processed for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
-    testRunner.And("days in learning is calculated for each learner (excluding exceptions)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

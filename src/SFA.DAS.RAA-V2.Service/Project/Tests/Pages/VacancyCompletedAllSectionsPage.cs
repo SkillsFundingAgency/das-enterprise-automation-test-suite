@@ -9,6 +9,44 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".info-summary__header-bar");
 
-        public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) { }
+        private By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
+
+        protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
+
+        private By ResubmitVacancyToEmployerButton => By.CssSelector(".govuk-button[type='submit'][value='Resubmit vacancy to employer']");
+
+        private By RejectedReason => By.CssSelector("textarea#RejectedReason");
+
+        private readonly ScenarioContext _context;
+
+        public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) => _context = context;
+     
+        public AreYouSureYouWantToSubmitPage SubmitAdvert()
+        {
+            SelectRadioOptionByText("Submit advert to ESFA for checking and publication");
+
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
+
+            return new AreYouSureYouWantToSubmitPage(_context);
+        }
+
+        public AreYouSureYouWantToRejectPage RejectAdvert()
+        {
+            SelectRadioOptionByText("Reject advert and return to training provider");
+
+            formCompletionHelper.EnterText(RejectedReason, $"Rejected {vacancyTitleDataHelper.VacancyTitle} by the employer");
+
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
+
+            return new AreYouSureYouWantToRejectPage(_context);
+        }
+
+        public VacancyReferencePage ResubmitVacancyToEmployer()
+        {
+            formCompletionHelper.Click(ResubmitVacancyToEmployerButton);
+            return new VacancyReferencePage(_context);
+        }
+
+        public string GetNotificationBanner() => pageInteractionHelper.GetText(NotificationBanner);
     }
 }
