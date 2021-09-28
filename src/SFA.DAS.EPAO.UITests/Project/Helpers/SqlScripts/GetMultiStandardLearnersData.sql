@@ -36,7 +36,7 @@ AND ce1.id IS NULL
 AND lrn1.ULN not in (__InUseUln__)
 GROUP BY lrn1.ULN, lrn1.GivenNames, lrn1.familyname
 HAVING  
-MAX(CASE WHEN VersionConfirmed = __VersionConfirmed__ THEN 1 ELSE 0 END) = 1   -- Version is/isn't confirmed
+MAX(CASE WHEN VersionConfirmed = 1 THEN 1 ELSE 0 END) = __VersionConfirmed__   -- Version is/isn't confirmed
 AND 
 MAX(CASE WHEN ISNULL(CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionIsSet__  -- option is/isn't set
 AND
