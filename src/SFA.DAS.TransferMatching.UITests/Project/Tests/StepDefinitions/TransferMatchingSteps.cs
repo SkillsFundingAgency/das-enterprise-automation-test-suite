@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer logins using existing Transfer Matching Account")]
-        public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount() => Login(_transfersUser.OrganisationName);
+        public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount() => Login(_context.GetUser<TransferMatchingUser>());
 
         [Then(@"the Employer can create pledge using default criteria")]
         public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
@@ -60,8 +60,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private CreateATransferPledgePage CreateATransferPledge(bool showOrgName)
         {
-            return new HomePageFinancesSection_YourTransfers(_context)
-                .NavigateToTransferMatchingPage()
+            return NavigateToTransferMatchingPage()
                 .GotoCreateTransfersPledgePage()
                 .StartCreatePledge()
                 .GoToPledgeAmountAndOptionPage()
@@ -72,20 +71,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can view pledges")]
         public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
-
         [Then(@"the Employer can view transfers")]
-        public void ThenTheEmployerCanViewTransfers()
-        {
-            new HomePageFinancesSection_YourTransfers(_context)
-                .NavigateToTransferMatchingPage()
-                .GoToViewMyTransferPledgePage();
-        }
+        public void ThenTheEmployerCanViewTransfers() => NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage();
 
-        private void Login(string organisationName)
-        {
-            _multipleAccountsLoginHelper.OrganisationName = organisationName;
+        [Then(@"the user can not create transfer pledge")]
+        public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
 
-            _homePage = _multipleAccountsLoginHelper.Login(_transfersUser, true);
+        private TransferMatchingPage NavigateToTransferMatchingPage() => new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+
+        private void Login(MultipleAccountUser user)
+        {
+            _multipleAccountsLoginHelper.OrganisationName = user.OrganisationName;
+
+            _homePage = _multipleAccountsLoginHelper.Login(user, true);
         }
     }
 }
