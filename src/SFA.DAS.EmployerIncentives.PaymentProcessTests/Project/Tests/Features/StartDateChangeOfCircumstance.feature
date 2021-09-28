@@ -68,3 +68,19 @@ Scenario: Start date change for previous academic year submitted for current aca
 	And the earnings are recalculated
     Then a new first pending payment of £1500 is created for Period R11 2021
 	And a new second pending payment of £1500 is created for Period R08 2122
+
+Scenario: Eligible Start date change for Phase3 apprentices ( Commitment start date - 01-10-2021 Emp Start Date - 01-10-2021)
+	Given an existing phase 3 apprenticeship incentive
+	And a start date change of circumstance occurs in Period R05 2122
+	When the start date is changed to be in the eligibility period 4 AY 2122
+	And the earnings are recalculated
+    Then a new first pending payment of £1500 is created for Period R07 2122
+	And a new second pending payment of £1500 is created for Period R04 2223
+
+Scenario: Ineligible Start date change for Phase3 apprentices ( Commitment start date - 01-10-2021 Emp Start Date - 01-10-2021)
+	Given an existing phase 3 apprenticeship incentive
+	And a start date change of circumstance occurs in Period R05 2122
+	When the start date is changed to before the start of the eligibility period in period 2 AY 2122
+	And the earnings are recalculated
+    Then the first earning is removed
+    And the second earning is removed
