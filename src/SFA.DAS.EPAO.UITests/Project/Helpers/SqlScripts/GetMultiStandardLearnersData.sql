@@ -35,7 +35,12 @@ AND Has_options = __HasOptions__
 AND ce1.id IS NULL
 AND lrn1.ULN not in (__InUseUln__)
 GROUP BY lrn1.ULN, lrn1.GivenNames, lrn1.familyname
-HAVING COUNT(*) > 1     
+HAVING  
+MAX(CASE WHEN VersionConfirmed = __VersionConfirmed__ THEN 1 ELSE 0 END) = 1   -- Version is/isn't confirmed
+AND 
+MAX(CASE WHEN ISNULL(CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionIsSet__  -- option is/isn't set
+AND
+COUNT(*) > 1      -- set to >1 for learners with more than one standard, =1 for learners with just one standard     
 ) ab1 order by NEWID() desc
 
 -- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards
