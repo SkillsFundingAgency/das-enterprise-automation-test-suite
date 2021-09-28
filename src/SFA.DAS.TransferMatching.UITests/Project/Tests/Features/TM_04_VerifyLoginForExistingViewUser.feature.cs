@@ -76,12 +76,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TM_04_Verify Login For Existing View user")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
         public virtual void TM_04_VerifyLoginForExistingViewUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "registration"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_04_Verify Login For Existing View user", null, tagsOfScenario, argumentsOfScenario);
 #line 5
