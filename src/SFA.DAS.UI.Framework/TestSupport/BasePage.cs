@@ -6,7 +6,6 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using System.Linq;
-using NUnit.Framework;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

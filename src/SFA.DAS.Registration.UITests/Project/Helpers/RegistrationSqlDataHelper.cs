@@ -22,6 +22,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
 
+        public string GetAccountLegalEntityPublicHashedId(string accountid, string orgname) => 
+            GetData($"select PublicHashedId from employer_account.AccountLegalEntity where AccountId = {accountid} and [Name] = '{orgname}'");
+        
+
         public (string accountId, string hashedAccountId) GetAccountIds(string email)
         {
             var id = GetMultipleData($"select id,HashedId from employer_account.Account where id in " +

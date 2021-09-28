@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public PerfTestProviderPermissionsSteps(ScenarioContext context)
         {
             _perfTestProviderPermissionsConfig = context.GetPerfTestProviderPermissionsConfig<PerfTestProviderPermissionsConfig>();
+
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
         }
 

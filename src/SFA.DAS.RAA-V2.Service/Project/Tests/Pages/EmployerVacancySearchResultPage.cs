@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class YourAdvertsPage : RAAV2CSSBasePage
+    public class EmployerVacancySearchResultPage : VacancySearchResultPage
     {
         protected override string PageTitle => "Your adverts";
 
@@ -13,10 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Filter => By.CssSelector("#Filter");
-
-        
-        public YourAdvertsPage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
@@ -29,12 +26,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             DraftVacancy();
             return new VacancyPreviewPart2Page(_context);
         }
-
-        private void DraftVacancy()
-        {
-            formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
-            pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
-            tableRowHelper.SelectRowFromTable("Edit and submit", vacancyTitleDataHelper.VacancyTitle);
-        }        
     }
 }

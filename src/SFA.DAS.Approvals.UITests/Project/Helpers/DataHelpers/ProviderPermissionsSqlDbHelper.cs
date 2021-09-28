@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ProviderPermissionsDatahelper : SqlDbHelper
+    public class ProviderPermissionsSqlDbHelper : SqlDbHelper
     {
-        public ProviderPermissionsDatahelper(DbConfig config) : base(config.PermissionsDbConnectionString) { }
+        public ProviderPermissionsSqlDbHelper(DbConfig config) : base(config.PermissionsDbConnectionString) { }
 
         public int GetAccountIdOfAProvider(string ukprn)
         {

@@ -1,24 +1,32 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
     {
         private readonly ScenarioContext _context;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
         private By TransferStatus => By.XPath("//p[3]");
         private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink => By.LinkText("View all agreements");
+        private By ViewAgreementLink() => By.LinkText("View all agreements");
+        private By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}/agreements']");
         private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        {
+            _context = context;
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+        }
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
 
@@ -35,12 +43,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink() => 
+            ClickViewAgreementLink(() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink())));
+
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(string orgName)
         {
-            Action action = () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink));
-            
+            var accountLegalEntityPublicHashedId = _registrationSqlDataHelper.GetAccountLegalEntityPublicHashedId(objectContext.GetDBAccountId(), orgName);
+
+            Action action = () => formCompletionHelper.ClickElement(() =>
+            {
+                var elements = pageInteractionHelper.FindElements(ViewAgreementLink(accountLegalEntityPublicHashedId));
+
+                return elements.FirstOrDefault(x => x.Text == "View all agreements");
+            });
+
+            return ClickViewAgreementLink(action);
+        }
+
+        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(Action action)
+        {
             action.Invoke();
-            
+
             return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context, action);
         }
 
