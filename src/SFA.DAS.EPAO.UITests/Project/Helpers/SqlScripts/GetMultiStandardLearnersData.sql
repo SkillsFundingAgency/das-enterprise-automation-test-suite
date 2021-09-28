@@ -36,14 +36,17 @@ AND ce1.id IS NULL
 AND lrn1.ULN not in (__InUseUln__)
 GROUP BY lrn1.ULN, lrn1.GivenNames, lrn1.familyname
 HAVING  
-MAX(CASE WHEN VersionConfirmed = 1 THEN 1 ELSE 0 END) = __VersionConfirmed__   -- Version is/isn't confirmed
+MAX(CASE WHEN VersionConfirmed = 1 THEN 1 ELSE 0 END) = __VersionConfirmed__   
 AND 
-MAX(CASE WHEN ISNULL(CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionIsSet__  -- option is/isn't set
+MAX(CASE WHEN ISNULL(CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionSet__ 
 AND
-COUNT(*) > 1      -- set to >1 for learners with more than one standard, =1 for learners with just one standard     
+COUNT(*) > 1      
 ) ab1 order by NEWID() desc
 
 -- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards
 -- set __HasVersions__ to 1 for standards with versions, 0 for standards with just one version, "1.0"
 -- set __HasOptions__ to 1 for standards with options, 0 for standards without options
 -- set to ce1.id "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate
+-- set __VersionConfirmed__ to 1 to indicte the learner data came from Approvals 
+-- set __OptionSet__ to indicte the option is already set from Approvals
+-- set to >1 for learners with more than one standard, =1 for learners with just one standard     
