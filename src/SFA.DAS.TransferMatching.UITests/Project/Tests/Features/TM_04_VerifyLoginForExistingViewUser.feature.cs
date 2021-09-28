@@ -110,6 +110,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Then("the user can not create transfer pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 8
+ testRunner.And("the user can view transfer pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

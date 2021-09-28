@@ -68,9 +68,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EnterAmountAndOrgName(showOrgName);
         }
 
-        [Then(@"the Employer can view pledges")]
+        [Then(@"the Employer can view pledges from verification page")]
         public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
+        [Then(@"the user can view transfer pledge")]
         [Then(@"the Employer can view transfers")]
         public void ThenTheEmployerCanViewTransfers() => NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage();
 
