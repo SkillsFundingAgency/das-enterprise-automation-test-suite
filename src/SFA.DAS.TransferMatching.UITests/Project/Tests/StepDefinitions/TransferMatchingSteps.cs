@@ -17,6 +17,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly TransferMatchingUser _transfersUser;
         private HomePage _homePage;
         private PledgeVerificationPage _pledgeVerificationPage;
+        private ManageTransferMatchingPage _manageTransferMatchingPage;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -72,13 +73,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
         [Then(@"the user can view transfer pledge")]
-        [Then(@"the Employer can view transfers")]
-        public void ThenTheEmployerCanViewTransfers() => NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage();
+        public void ThenTheEmployerCanViewTransfers() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
 
         [Then(@"the user can not create transfer pledge")]
         public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
 
-        private TransferMatchingPage NavigateToTransferMatchingPage() => new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+        private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
 
         private void Login(MultipleAccountUser user)
         {

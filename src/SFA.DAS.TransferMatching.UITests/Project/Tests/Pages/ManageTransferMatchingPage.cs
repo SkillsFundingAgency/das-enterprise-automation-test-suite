@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class TransferMatchingPage : TransferMatchingBasePage
+    public class ManageTransferMatchingPage : TransferMatchingBasePage
     {
         protected override string PageTitle => "Manage transfers";
 
@@ -13,7 +13,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
 
-        public TransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
+        public ManageTransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
 
         public PledgeAndTransferYourLevyFundsPage GotoCreateTransfersPledgePage()
         {
