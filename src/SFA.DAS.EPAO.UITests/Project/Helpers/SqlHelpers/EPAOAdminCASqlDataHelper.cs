@@ -53,31 +53,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return data;
         }
 
-        private List<string> GetTestData(string email, LeanerCriteria leanerCriteria)
+        private List<string> GetTestData(string email, LeanerCriteria learnerCriteria)
         {
-            string query = FileHelper.GetSql(GetLearnersDataSqlFileName(leanerCriteria));
+            string query = FileHelper.GetSql(GetLearnersDataSqlFileName(learnerCriteria));
 
             Dictionary<string, string> sqlParameters = new Dictionary<string, string>
             {
                 { "@endPointAssessorEmail", email }
             };
 
-            query = GetTestData(query, leanerCriteria.IsActiveStandard, leanerCriteria.HasMultipleVersions, leanerCriteria.WithOptions);
+            query = GetTestData(query, learnerCriteria.IsActiveStandard, learnerCriteria.HasMultipleVersions, learnerCriteria.WithOptions, learnerCriteria.VersionConfirmed, learnerCriteria.OptionIsSet);
 
             TestContext.Progress.WriteLine(query);
 
             return GetData(query, 5, sqlParameters);
         }
 
-        private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions)
+        private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool versionConfirmed, bool optionSet)
         {
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Isactivestandard__", isActiveStandard ? $"{1}" : $"{0}");
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasVersions__", hasMultipleVersions ? $"{1}" : $"{0}");
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasOptions__", withOptions ? $"{1}" : $"{0}");
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__InUseUln__", EPAOCAInUseUlns.GetInUseUln());
 
-            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__VersionConfirmed__", false ? $"{1}" : $"{0}");
-            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__OptionSet__", false ? $"{1}" : $"{0}");
+            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__VersionConfirmed__", versionConfirmed ? $"{1}" : $"{0}");
+            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__OptionSet__", optionSet ? $"{1}" : $"{0}");
 
 
             return sqlQueryFromFile;
