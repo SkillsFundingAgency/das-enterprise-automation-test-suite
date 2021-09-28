@@ -10,6 +10,7 @@ Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as less
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application without submitting bank details
 	And Earnings data is populated for the Employer
+	And the incentive phase is set to Phase2
 
 
 @regression
@@ -22,6 +23,7 @@ Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as more
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application without submitting bank details
 	And Earnings data is populated for the Employer
+	And the incentive phase is set to Phase2
 
 @regression
 @employerincentives
@@ -33,3 +35,4 @@ Scenario: EI_EC_01_Apply for Phase 3 Incentive for a New Account with start date
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the phase 3 EI Application without submitting bank details
 	And Earnings data is populated for the Employer
+	And the incentive phase is set to Phase3
