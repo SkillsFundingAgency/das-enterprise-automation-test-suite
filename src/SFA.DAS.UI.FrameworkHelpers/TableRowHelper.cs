@@ -17,9 +17,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _regexHelper = regexHelper;
         }
 
-        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr")
+        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr", int tableposition = 0)
         {
-            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).FirstOrDefault(x => x.Enabled && x.Displayed);
+            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).Where(x => x.Enabled && x.Displayed).ElementAtOrDefault(tableposition);
             var tableRows = table.FindElements(By.CssSelector(tableRowSelector));
 
             foreach (var tablerow in tableRows)

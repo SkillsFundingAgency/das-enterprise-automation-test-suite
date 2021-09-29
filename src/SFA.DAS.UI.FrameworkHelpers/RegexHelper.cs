@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
+        public string Replace(string value, List<string> pattern)
+        {
+            var patterns = pattern.ToString("|");
+
+            return TrimAnySpace(Regex.Replace(value, $@"{patterns}", string.Empty));
+        }
+
         public int GetMaxNoOfPages(string question)
         {
             var match = Regex.Match(question, @"of [0-9]*", RegexOptions.None);

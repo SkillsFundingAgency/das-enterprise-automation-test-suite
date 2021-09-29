@@ -37,6 +37,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public ManageRecruitPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
 
+        public EmployerVacancySearchResultPage SearchYourAdverts() => _searchVacancyPageHelper.SearchEmployerVacancy();
+
         public ManageYourAdvertEmailsPage GoToAdvertNotificationsPage()
         {
             NavigateToSettings();

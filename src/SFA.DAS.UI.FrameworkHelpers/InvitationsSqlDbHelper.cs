@@ -8,8 +8,6 @@
 
         public void DeleteUser(string email) => ExecuteSqlCommand($"DELETE FROM [IdentityServer].[aspnetusers] where email = '{email}'");
 
-        public string DeleteInvitation(string email) => GetNullableData($"DELETE [LoginService].[Invitations] where email = '{email}'");
-
         public string DeleteUserLogs(string email) => GetNullableData($"DELETE [LoginService].[UserLogs] where email = '{email}'");
     }
 }

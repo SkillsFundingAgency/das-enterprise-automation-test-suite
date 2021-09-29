@@ -38,9 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(commitmentsdatahelper);
 
-            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_dbConfig);
-
-            _context.Set(providerPermissionsdatahelper);
+            _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
             _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper);
 

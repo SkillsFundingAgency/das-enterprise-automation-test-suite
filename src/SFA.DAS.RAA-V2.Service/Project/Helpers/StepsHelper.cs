@@ -72,16 +72,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             ;
         }
 
-        public void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
+        public VacancyReferencePage SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
         {
             previewPage = EnterMandatoryFields(previewPage, isApplicationMethodFAA);
 
             previewPage = optionalFields ? EnterOptionalFields(previewPage) : previewPage;
 
-            SubmitVacancy(previewPage);
+            return SubmitVacancy(previewPage);
         }
 
-        public void SubmitVacancy(VacancyPreviewPart2Page previewPage) => previewPage.SubmitVacancy().SetVacancyReference();
+        public VacancyReferencePage SubmitVacancy(VacancyPreviewPart2Page previewPage) => previewPage.SubmitVacancy().SetVacancyReference();
 
         private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA)
         {
@@ -115,7 +115,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         }
 
         private VacancyPreviewPart2Page FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
-            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence).EnterDuration()
-                .SelectNationalMinimumWage().PreviewVacancy();
+            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence)
+            .EnterDuration().SelectNationalMinimumWage().PreviewVacancy();
     }
 }
