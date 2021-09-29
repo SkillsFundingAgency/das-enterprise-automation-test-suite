@@ -9,10 +9,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection_YourTransfers(ScenarioContext context) : base(context) => _context = context;
 
-        public TransferMatchingPage NavigateToTransferMatchingPage()
+        public ManageTransferMatchingPage NavigateToTransferMatchingPage()
         {
             formCompletionHelper.Click(YourTransfersLink);
-            return new TransferMatchingPage(_context);
+            return new ManageTransferMatchingPage(_context);
         }
     }
 }
