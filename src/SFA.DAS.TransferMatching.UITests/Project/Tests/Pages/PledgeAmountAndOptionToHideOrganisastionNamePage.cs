@@ -16,9 +16,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By AmountCssSelector => By.CssSelector("#Amount");
 
+        private By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
+
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
         public PledgeAmountAndOptionToHideOrganisastionNamePage(ScenarioContext context) : base(context) => _context = context;
+
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
         public PledgeAmountAndOptionToHideOrganisastionNamePage CaptureAvailablePledgeAmount()
         {
@@ -31,13 +35,32 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return this;
         }
 
+        public PledgeAmountAndOptionToHideOrganisastionNamePage EnterMoreThanAvailableFunding()
+        {
+            EnterAmountAndOrgName(true, true);
+
+            return new PledgeAmountAndOptionToHideOrganisastionNamePage(_context);
+        }
+
         public CreateATransferPledgePage EnterAmountAndOrgName(bool showOrg)
         {
-            var amount = objectContext.GetAvailablePledgeAmount();
+            EnterAmountAndOrgName(showOrg, false);
 
-            amount = tMDataHelper.PledgeAmount((amount / 2));
+            return new CreateATransferPledgePage(_context);
+        }
 
-            formCompletionHelper.EnterText(AmountCssSelector, amount);
+        private void EnterAmountAndOrgName(bool showOrg, bool exceedMaxFunding)
+        {
+            int amount = objectContext.GetAvailablePledgeAmount();
+
+            int randomAmount = amount / 2;
+
+            if (exceedMaxFunding)
+                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(amount, (amount + randomAmount));
+            else
+                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(randomAmount);
+
+            formCompletionHelper.EnterText(AmountCssSelector, randomAmount);
 
             if (showOrg)
                 formCompletionHelper.SelectRadioOptionByText("Yes");
@@ -45,8 +68,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
                 formCompletionHelper.SelectRadioOptionByText("No, I'd like our organisation to be anonymous");
 
             Continue();
-
-            return new CreateATransferPledgePage(_context);
         }
     }
 }

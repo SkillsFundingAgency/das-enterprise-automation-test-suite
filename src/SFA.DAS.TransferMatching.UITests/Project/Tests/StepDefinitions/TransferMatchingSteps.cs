@@ -29,6 +29,20 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing Transfer Matching Account")]
         public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount() => Login(_context.GetUser<TransferMatchingUser>());
 
+        [Then(@"the Employer cannot exceed the maximum funding available")]
+        public void ThenTheEmployerCannotExceedTheMaximumFundingAvailable()
+        {
+            string errorMessage = GoToEnterPlegeAmountPage().EnterMoreThanAvailableFunding().GetErrorMessage();
+
+            Assert.Multiple(() => 
+            {
+                StringAssert.Contains("There is a problem", errorMessage);
+
+                StringAssert.Contains("Enter a number between", errorMessage);
+            });
+        }
+
+
         [Then(@"the Employer can create pledge using default criteria")]
         public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
         {
@@ -59,14 +73,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeId() => _pledgeVerificationPage.SetPledgeId();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName)
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterAmountAndOrgName(showOrgName);
+
+        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage()
         {
             return NavigateToTransferMatchingPage()
                 .GotoCreateTransfersPledgePage()
                 .StartCreatePledge()
                 .GoToPledgeAmountAndOptionPage()
-                .CaptureAvailablePledgeAmount()
-                .EnterAmountAndOrgName(showOrgName);
+                .CaptureAvailablePledgeAmount();
         }
 
         [Then(@"the Employer can view pledges from verification page")]

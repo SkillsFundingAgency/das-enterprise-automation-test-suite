@@ -9,9 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public TMDataHelper(RandomDataGenerator randomDataGenerator): base(randomDataGenerator) => _randomDataGenerator = randomDataGenerator;
 
-        public int GenerateRandomNumberBetweenTwoValues(int options) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, options);
+        public int GenerateRandomNumberBetweenTwoValues(int min, int max) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
-        public int PledgeAmount(int availablePledgeAmount) => GenerateRandomNumberBetweenTwoValues(availablePledgeAmount);
+        public int GenerateRandomNumberBetweenTwoValues(int max) => GenerateRandomNumberBetweenTwoValues(1, max);
 
         public string GetRandomLocation() => GetRandomElementFromListOfElements(Locations);
 
