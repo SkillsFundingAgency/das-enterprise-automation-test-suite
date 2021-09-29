@@ -56,7 +56,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             int randomAmount = amount / 2;
 
             if (exceedMaxFunding)
-                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(amount, (amount + randomAmount));
+                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(amount + 1, (amount + randomAmount));
             else
                 randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(randomAmount);
 
