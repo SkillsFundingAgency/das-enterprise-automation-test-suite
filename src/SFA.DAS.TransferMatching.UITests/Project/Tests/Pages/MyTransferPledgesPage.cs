@@ -17,6 +17,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public MyTransferPledgesPage(ScenarioContext context) : base(context) => _context = context;
 
+        public TransferPledgePage GoToTransferPledgePage()
+        {
+            formCompletionHelper.Click(PledgeSelector);
+            return new TransferPledgePage(_context);
+        }
+
         public PledgeAndTransferYourLevyFundsPage CreatePledge()
         {
             formCompletionHelper.Click(CreatePledgesSelector);
@@ -24,6 +30,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         }
 
         public void VerifyPledge() => VerifyPage(PledgeSelector);
-
     }
 }

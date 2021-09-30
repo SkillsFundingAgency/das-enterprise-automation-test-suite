@@ -126,7 +126,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.RejectTransfersRequest();
         }
 
-
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {

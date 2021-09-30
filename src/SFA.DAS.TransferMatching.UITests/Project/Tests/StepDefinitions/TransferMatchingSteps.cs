@@ -1,8 +1,13 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
@@ -11,22 +16,83 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
     public class TransferMatchingSteps
     {
         private readonly ScenarioContext _context;
+        private readonly AccountSignOutHelper _accountSignOutHelper;
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
+        private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly TabHelper _tabHelper;
+        private readonly ObjectContext _objectContext;
+        private readonly TransferMatchingUser _transferMatchingUser;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
+        private readonly string _sender;
+        private readonly string _receiver;
 
-        public TransferMatchingSteps(ScenarioContext context) => _context = context;
+        public TransferMatchingSteps(ScenarioContext context)
+        {
+            _context = context;
+            _tabHelper = context.Get<TabHelper>();
+            _objectContext = context.Get<ObjectContext>();
+            _accountSignOutHelper = new AccountSignOutHelper(context);
+            _transferMatchingUser = context.GetUser<TransferMatchingUser>();
+            _sender = _transferMatchingUser.OrganisationName;
+            _receiver = _transferMatchingUser.SecondOrganisationName;
+            _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
+        }
+
+        [Then(@"the Employer can approve the application")]
+        public void ThenTheEmployerCanApproveTheApplication()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
+        }
+
+
+        [When(@"the receiver applies for the pledge")]
+        public void WhenTheReceiverAppliesForThePledge()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
+
+            new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding();
+
+            new MyAccountTransferFundingPage(_context)
+                .GoToCreateATransfersApplicationPage(_receiver)
+                .GoToApprenticeshipTrainingPage()
+                .EnterAppTrainingDetailsAndContinue()
+                .GoToYourBusinessDetailsPage()
+                .EnterBusinessDetailsAndContinue()
+                .GoToAboutYourApprenticeshipPage()
+                .EnterMoreDetailsAndContinue()
+                .GoToContactDetailsPage()
+                .EnterContactDetailsAndContinue()
+                .SubmitApplication();
+        }
 
         [Given(@"the Employer logins using existing Transfer Matching Account")]
         public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount()
         {
             var user = _context.GetUser<TransferMatchingUser>();
 
-            var userAccountHelper = new MultipleAccountsLoginHelper(_context, user)
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, user)
             {
                 OrganisationName = user.OrganisationName
             };
 
-            userAccountHelper.Login(user, true);
+            _multipleAccountsLoginHelper.Login(user, true);
         }
 
         [Then(@"the Employer cannot exceed the maximum funding available")]
@@ -87,11 +153,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
         [Then(@"the user can view transfer pledge")]
-        public void ThenTheEmployerCanViewTransfers() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
+        public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
 
         [Then(@"the user can not create transfer pledge")]
         public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
 
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+
+        private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
     }
 }
