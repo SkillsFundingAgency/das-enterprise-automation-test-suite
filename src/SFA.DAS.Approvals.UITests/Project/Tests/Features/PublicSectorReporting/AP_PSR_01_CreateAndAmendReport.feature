@@ -3,6 +3,8 @@
 @approvals
 @regression
 @ignoreindemo
+@ignoreintest
+@ignoreintest2
 Scenario: AP_PSR_01_CreateAndAmendReport
 	Given the Employer logins using existing NonLevy Account
 	Then the employer can create a new report
