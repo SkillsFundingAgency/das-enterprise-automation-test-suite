@@ -28,24 +28,24 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             switch (true)
             {
-                case bool _ when _tags.Contains("epaoca1standard1version0option"): SetLearnerCriteria(true, false, false, false); break;
-                case bool _ when _tags.Contains("epaoca1standard1version1option"): SetLearnerCriteria(true, false, true, false); break;
-                case bool _ when _tags.Contains("epaoca1standard2version0option"): SetLearnerCriteria(true, true, false, false); break;
-                case bool _ when _tags.Contains("epaoca1standard2version1option"): SetLearnerCriteria(true, true, true, false); break;
-                case bool _ when _tags.Contains("epaoca2standard1version0option"): SetLearnerCriteria(true, false, false, true); break;
-                case bool _ when _tags.Contains("epaoca2standard1version1option"): SetLearnerCriteria(true, false, true, true); break;
-                case bool _ when _tags.Contains("epaoca2standard2version0option"): SetLearnerCriteria(true, true, false, true); break;
-                case bool _ when _tags.Contains("epaoca2standard2version1option"): SetLearnerCriteria(true, true, true, true); break;
+                case bool _ when _tags.Contains("epaoca1standard1version0option"): SetLearnerCriteria(true, false, false, false, true, false); break;
+                case bool _ when _tags.Contains("epaoca1standard1version1option"): SetLearnerCriteria(true, false, true, false, true, false); break;
+                case bool _ when _tags.Contains("epaoca1standard2version0option"): SetLearnerCriteria(true, true, false, false, false, false); break;
+                case bool _ when _tags.Contains("epaoca1standard2version1option"): SetLearnerCriteria(true, true, true, false, false, false); break;
+                case bool _ when _tags.Contains("epaoca2standard1version0option"): SetLearnerCriteria(true, false, false, true, true, false); break;
+                case bool _ when _tags.Contains("epaoca2standard1version1option"): SetLearnerCriteria(true, false, true, true, true, false); break;
+                case bool _ when _tags.Contains("epaoca2standard2version0option"): SetLearnerCriteria(true, true, false, true, false, false); break;
+                case bool _ when _tags.Contains("epaoca2standard2version1option"): SetLearnerCriteria(true, true, true, true, false, false); break;
             };
         }
 
         [AfterScenario(Order = 35)]
         public void Recordagrade() => _tryCatch.AfterScenarioException(() => _context.Get<EPAOAdminCASqlDataHelper>().DeleteCertificate(_objectContext.GetLearnerULN(), _objectContext.GetLearnerStandardCode()));
 
-        private void SetLearnerCriteria(bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards)
+        private void SetLearnerCriteria(bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards, bool versionConfirmed, bool optionSet)
         {
-            var leanerDetails = new LeanerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards);
-            
+            var leanerDetails = new LeanerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards, versionConfirmed, optionSet);
+
             _context.Set(leanerDetails);
 
             _objectContext.SetLearnerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards);

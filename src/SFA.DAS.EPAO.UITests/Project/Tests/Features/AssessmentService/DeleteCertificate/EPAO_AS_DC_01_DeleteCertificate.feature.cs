@@ -129,13 +129,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the assessor user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.When("the User certifies same Apprentice as PassWithExcellence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies same Apprentice as pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
  testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.Then("the Assessment is recorded as \'pass with excellence\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
