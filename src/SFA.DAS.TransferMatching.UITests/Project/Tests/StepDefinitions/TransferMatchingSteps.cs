@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
@@ -23,9 +22,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly TransferMatchingUser _transferMatchingUser;
-        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly string _sender;
-        private readonly string _receiver;
+        private string _sender;
+        private string _receiver;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -36,8 +34,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingUser = context.GetUser<TransferMatchingUser>();
             _sender = _transferMatchingUser.OrganisationName;
             _receiver = _transferMatchingUser.SecondOrganisationName;
-            _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
+
+        [When(@"the levy employer applies for the pledge")]
+        public void WhenTheLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
+
+        [When(@"the non levy employer applies for the pledge")]
+        public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
         [Then(@"the Employer can approve the application")]
         public void ThenTheEmployerCanApproveTheApplication()
@@ -59,27 +62,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [When(@"the receiver applies for the pledge")]
         public void WhenTheReceiverAppliesForThePledge()
         {
-            _accountSignOutHelper.SignOut();
+            GoToTransferMacthingApplyUrl();
 
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
-
-            new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+            var signInPage = new TransferFundDetailsPage(_context).ApplyForTransferFunds();
 
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding();
+            _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding(signInPage);
 
-            new MyAccountTransferFundingPage(_context)
-                .GoToCreateATransfersApplicationPage(_receiver)
-                .GoToApprenticeshipTrainingPage()
-                .EnterAppTrainingDetailsAndContinue()
-                .GoToYourBusinessDetailsPage()
-                .EnterBusinessDetailsAndContinue()
-                .GoToAboutYourApprenticeshipPage()
-                .EnterMoreDetailsAndContinue()
-                .GoToContactDetailsPage()
-                .EnterContactDetailsAndContinue()
-                .SubmitApplication();
+            SubmitApplication(new MyAccountTransferFundingPage(_context).GoToCreateATransfersApplicationPage(_receiver));
         }
 
         [Given(@"the Employer logins using existing Transfer Matching Account")]
@@ -161,5 +152,38 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
 
         private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
+
+        private void GoToTransferMacthingApplyUrl()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
+        }
+
+        private ApplicationSubmittedPage SubmitApplication(CreateATransfersApplicationPage page)
+        {
+            return page.GoToApprenticeshipTrainingPage()
+                .EnterAppTrainingDetailsAndContinue()
+                .GoToYourBusinessDetailsPage()
+                .EnterBusinessDetailsAndContinue()
+                .GoToAboutYourApprenticeshipPage()
+                .EnterMoreDetailsAndContinue()
+                .GoToContactDetailsPage()
+                .EnterContactDetailsAndContinue()
+                .SubmitApplication();
+        }
+
+        private void ApplyForAPledge(LoginUser user)
+        {
+            GoToTransferMacthingApplyUrl();
+
+            _receiver = user.OrganisationName;
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            new TransferFundDetailsPage(_context).ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
+
+            SubmitApplication(new CreateATransfersApplicationPage(_context));
+        }
     }
 }

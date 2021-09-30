@@ -20,22 +20,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_01_CreateApplyAndApproveTransferPledge")]
-    public partial class TM_01_CreateApplyAndApproveTransferPledgeFeature
+    [NUnit.Framework.DescriptionAttribute("TM_01_TR_CreateApplyAndApproveTransferPledge")]
+    public partial class TM_01_TR_CreateApplyAndApproveTransferPledgeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TM_01_CreateTransferPledgeAndView.feature"
+#line 1 "TM_01_TR_CreateApplyAndApproveTransferPledge.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TM_01_CreateApplyAndApproveTransferPledge", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TM_01_TR_CreateApplyAndApproveTransferPledge", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_01_Create Apply and Approve transfer pledge")]
+        [NUnit.Framework.DescriptionAttribute("TM_01_TR_Create Apply and Approve transfer pledge")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
         [NUnit.Framework.CategoryAttribute("validatepledgeamount")]
-        public virtual void TM_01_CreateApplyAndApproveTransferPledge()
+        public virtual void TM_01_TR_CreateApplyAndApproveTransferPledge()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfermatching",
                     "validatepledgeamount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_01_Create Apply and Approve transfer pledge", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_01_TR_Create Apply and Approve transfer pledge", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

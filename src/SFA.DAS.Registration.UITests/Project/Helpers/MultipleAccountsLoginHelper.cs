@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         
         protected override HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
 
-        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding() => new SignInPage(_context).GoToMyAccountTransferFundingPage(GetLoginCredentials());
+        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(SignInPage signInPage) => signInPage.GoToMyAccountTransferFundingPage(GetLoginCredentials());
 
         public new HomePage ReLogin() => Login(GetLoginCredentials());
     }

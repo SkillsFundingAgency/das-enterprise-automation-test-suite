@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -15,11 +16,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferFundDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void ApplyForTransferFunds()
+        public SignInPage ApplyForTransferFunds()
         {
             SelectRadioOptionByText("Yes, apply for transfer funds");
 
             Continue();
+
+            return new SignInPage(_context);
         }
     }
 }
