@@ -39,10 +39,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderOrganisationsAndAgreementsPage(_context);
         }
 
-        public ProviderChooseAnEmployerNonLevyPage GotoChooseAnEmployerNonLevyPage()
+        public ProviderAddApprenticeDetails2Page GotoChooseAnEmployerNonLevyPage()
         {
-            _formCompletionHelper.ClickElement(CreateACohortLink);
-            return new ProviderChooseAnEmployerNonLevyPage(_context);
+            _formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            return new ProviderAddApprenticeDetails2Page(_context);
         }
 
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
@@ -68,9 +68,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeRequestsPage(_context);
         }
 
-        public ProviderAccessDeniedPage CreateCohortGoesToAccessDenied()
+        public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()
         {
-            _formCompletionHelper.ClickElement(CreateACohortLink);
+            _formCompletionHelper.ClickElement(AddNewApprenticesLink);
             return new ProviderAccessDeniedPage(_context);
         }
     }

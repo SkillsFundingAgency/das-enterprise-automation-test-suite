@@ -226,7 +226,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCannotCreateACohort()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .CreateCohortGoesToAccessDenied()
+                .AddNewApprenticesGoesToAccessDenied()
                 .GoBackToTheServiceHomePage();
         }
 
@@ -235,6 +235,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.NavigateToProviderHomePage()
             .GotoChooseAnEmployerNonLevyPage()
+            .SelectOptionCreateNewCohort()
+            //.ProviderChooseAnEmployerNonLevyPage()
             .ChooseAnEmployerNonLevy()
             .ConfirmEmployer();
         }
