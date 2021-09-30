@@ -79,16 +79,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AuthTests
         [NUnit.Framework.CategoryAttribute("authtests")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest2")]
+        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
         public virtual void AP_CoC_AUTH_01EmployerRequestsChangeToDobAndReferenceAfterILRMatchAndProviderApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "authtests",
                     "approvals",
-                    "regression"};
+                    "regression",
+                    "ignoreintest",
+                    "ignoreintest2",
+                    "ignoreindemo"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_AUTH_01 Employer requests change to dob and reference After ILR match and " +
                     "Provider approves", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,19 +114,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 10
  testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 11
  testRunner.When("the Employer edits Dob and Reference and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 12
  testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 13
  testRunner.Then("an unauthorised user can not access the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 14
  testRunner.And("a valid user can not access different account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
