@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -28,13 +30,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             var amount = pageInteractionHelper.GetText(AvailablePledgeAmount);
 
-            amount = regexHelper.Replace(amount, new List<string>() {"£", "," });
+            amount = regexHelper.Replace(amount, new List<string>() { "£", "," });
 
-            objectContext.SetAvailablePledgeAmount(int.Parse(amount));
+            var availablepledgeamount = int.Parse(amount);
+
+            objectContext.SetAvailablePledgeAmount(availablepledgeamount);
+
+            ValidatePledgeAmount(availablepledgeamount);
 
             return this;
         }
-
         public PledgeAmountAndOptionToHideOrganisastionNamePage EnterMoreThanAvailableFunding()
         {
             EnterAmountAndOrgName(true, true);
@@ -56,9 +61,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             int randomAmount = amount / 2;
 
             if (exceedMaxFunding)
-                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(amount + 1, (amount + randomAmount));
+                randomAmount = tMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount);
             else
-                randomAmount = tMDataHelper.GenerateRandomNumberBetweenTwoValues(randomAmount);
+                randomAmount = ShouldValidatePledgeAmount() ? tMDataHelper.GenerateRandomNumberMoreThanMinAmount(amount) : tMDataHelper.GenerateRandomNumberLessThanMaxAmount(randomAmount);
 
             formCompletionHelper.EnterText(AmountCssSelector, randomAmount);
 
@@ -69,5 +74,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
         }
+
+        private void ValidatePledgeAmount(int availablepledgeamount)
+        {
+            if (ShouldValidatePledgeAmount())
+            {
+                var minAmount = tMDataHelper.MinAmount;
+
+                Assert.GreaterOrEqual(availablepledgeamount, minAmount, $"Available pledge amount is less than the minimum amount needed, availablepledgeamount - {availablepledgeamount}, minAmount {minAmount}");
+            }
+        }
+
+        private bool ShouldValidatePledgeAmount() => _context.ScenarioInfo.Tags.Contains("validatepledgeamount");
+
     }
 }

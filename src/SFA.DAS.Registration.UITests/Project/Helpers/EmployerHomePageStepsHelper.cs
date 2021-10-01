@@ -1,6 +1,4 @@
-﻿using System;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ObjectContext _objectContext;
 
@@ -21,7 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = _context.Get<TabHelper>();
-            _registrationConfig = _context.GetRegistrationConfig<RegistrationConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 

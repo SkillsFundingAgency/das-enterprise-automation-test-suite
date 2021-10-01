@@ -51,6 +51,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourAccountsPage(_context);
         }
 
+        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new MyAccountTransferFundingPage(_context);
+        }
+
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)
         {
             _formCompletionHelper.EnterText(EmailAddressInput, userName);
