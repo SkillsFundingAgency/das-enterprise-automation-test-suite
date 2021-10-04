@@ -30,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing NonLevy Account")]
         [When(@"the Employer logins using existing NonLevy Account")]
+        [Given(@"the non levy employer logins using existing non levy account")]
         public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
 
         [Given(@"the Employer logins using existing transactor user account")]
