@@ -28,6 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly TMDataHelper _tMDataHelper;
         private string _sender;
         private string _receiver;
+        private bool _isAnonymousPledge;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -39,6 +40,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _tMDataHelper = context.Get<TMDataHelper>();
             _sender = _transferMatchingUser.OrganisationName;
             _receiver = _transferMatchingUser.SecondOrganisationName;
+            _isAnonymousPledge = false;
         }
 
         [Then(@"the non levy employer cannot create pledge")]
@@ -68,9 +70,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the pledge is available to apply")]
         public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
-        
-        [When(@"the receiver applies for the pledge")]
-        public void WhenTheReceiverAppliesForThePledge()
+
+        [When(@"the transfer receiver applies for the pledge")]
+        public void TheTransferReceiverAppliesForThePledge()
         {
             var signInPage = ApplyForTransferFunds();
 
@@ -114,7 +116,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create anonymous pledge using non default criteria")]
         public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
         {
-            _pledgeVerificationPage = CreateATransferPledge(false)
+            _isAnonymousPledge = true;
+
+           _pledgeVerificationPage = CreateATransferPledge(false)
                 .GoToAddtheLocationPage().EnterLocation()
                 .GoToChoosetheSectorPage().SelectSetorAndContinue()
                 .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
@@ -174,11 +178,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             GoToTransferMacthingApplyUrl();
 
+            var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
+
             _receiver = user.OrganisationName;
 
             _objectContext.UpdateOrganisationName(_receiver);
 
-            new TransferFundDetailsPage(_context).ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
+            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
 
             SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
