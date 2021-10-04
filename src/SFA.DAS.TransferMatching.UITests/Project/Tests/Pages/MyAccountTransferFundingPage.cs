@@ -13,6 +13,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public CreateATransfersApplicationPage GoToCreateATransfersApplicationPage(string orgName)
         {
             formCompletionHelper.ClickLinkByText(orgName);
+
             return new CreateATransfersApplicationPage(_context);
         }
     }

@@ -4,7 +4,9 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
+using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -36,14 +38,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _receiver = _transferMatchingUser.SecondOrganisationName;
         }
 
-        [When(@"the levy employer applies for the pledge")]
-        public void WhenTheLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
+        [When(@"the receiver levy employer applies for the pledge")]
+        public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
 
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
-        [Then(@"the Employer can approve the application")]
-        public void ThenTheEmployerCanApproveTheApplication()
+        [Then(@"the levy employer can approve the application")]
+        public void ThenTheLevyEmployerCanApproveTheApplication()
         {
             _accountSignOutHelper.SignOut();
 
@@ -58,13 +60,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
         }
 
-
+        [Then(@"the pledge is available to apply")]
+        public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
+        
         [When(@"the receiver applies for the pledge")]
         public void WhenTheReceiverAppliesForThePledge()
         {
-            GoToTransferMacthingApplyUrl();
-
-            var signInPage = new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+            var signInPage = ApplyForTransferFunds();
 
             _objectContext.UpdateOrganisationName(_receiver);
 
@@ -73,8 +75,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SubmitApplication(new MyAccountTransferFundingPage(_context).GoToCreateATransfersApplicationPage(_receiver));
         }
 
-        [Given(@"the Employer logins using existing Transfer Matching Account")]
-        public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount()
+        [Given(@"the levy employer logins using existing transfer matching account")]
+        public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount()
         {
             var user = _context.GetUser<TransferMatchingUser>();
 
@@ -85,9 +87,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _multipleAccountsLoginHelper.Login(user, true);
         }
-
-        [Then(@"the Employer cannot exceed the maximum funding available")]
-        public void ThenTheEmployerCannotExceedTheMaximumFundingAvailable()
+        [Then(@"the levy employer cannot exceed the maximum funding available")]
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable()
         {
             string errorMessage = GoToEnterPlegeAmountPage().EnterMoreThanAvailableFunding().GetErrorMessage();
 
@@ -99,8 +100,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             });
         }
 
-        [Then(@"the Employer can create pledge using default criteria")]
-        public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
+        [Then(@"the levy employer can create pledge using default criteria")]
+        public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
             var page = CreateATransferPledge(true);
 
@@ -114,8 +115,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeId();
         }
 
-        [Then(@"the Employer can create anonymous pledge using non default criteria")]
-        public void ThenTheEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
+        [Then(@"the levy employer can create anonymous pledge using non default criteria")]
+        public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
         {
             _pledgeVerificationPage = CreateATransferPledge(false)
                 .GoToAddtheLocationPage().EnterLocation()
@@ -140,8 +141,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .CaptureAvailablePledgeAmount();
         }
 
-        [Then(@"the Employer can view pledges from verification page")]
-        public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
+        [Then(@"the levy employer can view pledges from verification page")]
+        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
         [Then(@"the user can view transfer pledge")]
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
@@ -184,6 +185,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             new TransferFundDetailsPage(_context).ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
 
             SubmitApplication(new CreateATransfersApplicationPage(_context));
+        }
+
+        private SignInPage ApplyForTransferFunds()
+        {
+            GoToTransferMacthingApplyUrl();
+
+            return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
         }
     }
 }
