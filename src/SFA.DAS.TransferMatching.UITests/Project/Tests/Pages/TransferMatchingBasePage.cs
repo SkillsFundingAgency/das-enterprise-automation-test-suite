@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -18,6 +19,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly RegexHelper regexHelper;
         protected readonly TMDataHelper tMDataHelper;
         protected readonly TableRowHelper tableRowHelper;
+        protected readonly ApprenticeDataHelper datahelper;
         #endregion
 
         private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
@@ -31,21 +33,26 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             regexHelper = context.Get<RegexHelper>();
             tMDataHelper = context.Get<TMDataHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
+            datahelper = context.Get<ApprenticeDataHelper>();
             VerifyPage();
         }
 
         protected CreateATransferPledgePage SelectAndContinue()
         {
-            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaultSelector);
-
-            int randomvalue = tMDataHelper.GenerateRandomNumberBetweenTwoValues(NonDefaultList.Count);
-
-            formCompletionHelper.ClickElement(NonDefaultList.ElementAt(randomvalue));
+            SelectRandomCheckbox();
 
             Continue();
 
             return new CreateATransferPledgePage(_context);
         }
 
+        protected void SelectRandomCheckbox()
+        {
+            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaultSelector);
+
+            int randomvalue = tMDataHelper.GenerateRandomNumberLessThanMaxAmount(NonDefaultList.Count);
+
+            formCompletionHelper.ClickElement(NonDefaultList.ElementAt(randomvalue));
+        }
     }
 }

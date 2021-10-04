@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PSR_01_CreateAndAmendReport")]
-    public partial class AP_PSR_01_CreateAndAmendReportFeature
+    [NUnit.Framework.DescriptionAttribute("TM_01_NL_CreateApplyAndApproveTransferPledge")]
+    public partial class TM_01_NL_CreateApplyAndApproveTransferPledgeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_PSR_01_CreateAndAmendReport.feature"
+#line 1 "TM_01_NL_CreateApplyAndApproveTransferPledge.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PSR_01_CreateAndAmendReport", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TM_01_NL_CreateApplyAndApproveTransferPledge", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +74,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_PSR_01_CreateAndAmendReport")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.DescriptionAttribute("TM_01_NL_Create Apply and Approve transfer pledge")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
-        [NUnit.Framework.CategoryAttribute("ignoreintest")]
-        [NUnit.Framework.CategoryAttribute("ignoreintest2")]
-        public virtual void AP_PSR_01_CreateAndAmendReport()
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        [NUnit.Framework.CategoryAttribute("validatepledgeamount")]
+        public virtual void TM_01_NL_CreateApplyAndApproveTransferPledge()
         {
             string[] tagsOfScenario = new string[] {
-                    "approvals",
                     "regression",
-                    "ignoreindemo",
-                    "ignoreintest",
-                    "ignoreintest2"};
+                    "transfermatching",
+                    "validatepledgeamount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PSR_01_CreateAndAmendReport", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_01_NL_Create Apply and Approve transfer pledge", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,14 +106,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given("the Employer logins using existing Transfer Matching Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+ testRunner.Then("the Employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 9
- testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("the Employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.Then("the employer can create a new report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the non levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.And("then employer can edit a submitted report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Employer can approve the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

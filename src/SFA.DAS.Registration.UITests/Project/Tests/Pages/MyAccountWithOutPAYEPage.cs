@@ -5,9 +5,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class MyAccountWithOutPayePage : RegistrationBasePage
     {
-        protected override string PageTitle => "MY ACCOUNT";
-
         private readonly ScenarioContext _context;
+
+        protected override string PageTitle => "MY ACCOUNT";
 
         #region Locators
         private By AddYourPAYESchemeLink => By.CssSelector(".das-panel__link");

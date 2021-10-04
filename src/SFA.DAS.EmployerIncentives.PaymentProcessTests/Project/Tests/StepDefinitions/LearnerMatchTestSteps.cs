@@ -538,7 +538,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the learner record has data lock set to true")]
         public void ThenTheLearnerRecordHasDataLockSetToTrue()
         {
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             learnerRecord.HasDataLock.Should().BeTrue();
         }
 
@@ -546,7 +546,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the learner record has data lock set to false")]
         public void ThenTheLearnerRecordHasDataLockSetToFalse()
         {
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             learnerRecord.HasDataLock.Should().BeFalse();
         }
 
@@ -555,7 +555,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsDoNotExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             var learningPeriods = Helper.EISqlHelper.GetAllFromDatabase<LearningPeriod>();
 
             learnerRecord.SubmissionFound.Should().BeFalse();
@@ -571,7 +571,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsDoNotExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             learnerRecord.SubmissionFound.Should().BeTrue();
             learnerRecord.LearningFound.Should().BeFalse();
@@ -656,7 +656,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             var learningPeriod = Helper.EISqlHelper.GetFromDatabase<LearningPeriod>(l => l.LearnerId == learnerRecord.Id);
 
