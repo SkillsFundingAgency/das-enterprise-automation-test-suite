@@ -154,6 +154,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeRequestsPage(_context);
         }
 
+        public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);
+
+        public int? GetNumberOfEditableApprentices() => pageInteractionHelper.FindElements(EditApprenticeLink).Count;
+
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
@@ -162,7 +166,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
         }
 
-        public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);
+        
        
 
     }

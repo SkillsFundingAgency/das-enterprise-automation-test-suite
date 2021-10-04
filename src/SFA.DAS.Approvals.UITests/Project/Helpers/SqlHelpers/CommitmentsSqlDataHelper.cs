@@ -32,5 +32,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             return Convert.ToString(TryGetDataAsObject(query, "Index was out of range", title));
         }
+
+        public int? GetProvidersDraftAndReadyForReviewCohortsCount(int ukprn)
+        {
+            string query = $@"SELECT Count(Id)
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  AND IsDeleted = 0
+                                  --AND EditStatus = 2
+                                  And WithParty = 2
+                                  AND ChangeOfPartyRequestId is null";
+
+            return Convert.ToInt32(GetDataAsObject(query));
+        }
+
+        public string GetOldestEditableCohortReference(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 2
+                                  AND ChangeOfPartyRequestId is null
+                                  Order by CreatedOn ASC";
+
+            return Convert.ToString(GetDataAsObject(query)).Trim();
+        }
     }
 }

@@ -41,7 +41,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public void ApproveChangesAndSubmit() => GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails().ClickReviewChanges().SelectApproveChangesAndSubmit();
+        public void ApproveChangesAndSubmit()
+        {
+            GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickReviewChanges()
+                .SelectApproveChangesAndSubmit();
+        }
 
 
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
@@ -249,17 +256,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
             return GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickChangeEmployerLink()
-                .SelectChangeTheEmployer()
-                .SelectNewEmployer()
-                .ConfirmNewEmployer()
-                .EndNewStartDateAndContinue()
-                .EnterNewEndDateAndContinue()
-                .EnterNewPriceAndContinue()
-                .VerifyAndSubmitChangeOfEmployerRequest()
-                .VerifyChangeOfEmployerHasBeenRequested();
+                    .GoToProviderManageYourApprenticePage()
+                    .SelectViewCurrentApprenticeDetails()
+                    .ClickChangeEmployerLink()
+                    .SelectChangeTheEmployer()
+                    .SelectNewEmployer()
+                    .ConfirmNewEmployer()
+                    .EndNewStartDateAndContinue()
+                    .EnterNewEndDateAndContinue()
+                    .EnterNewPriceAndContinue()
+                    .VerifyAndSubmitChangeOfEmployerRequest()
+                    .VerifyChangeOfEmployerHasBeenRequested();
+        }
+
+        public ProviderChooseACohortPage NavigateToChooseACohortPage()
+        {
+            return GoToProviderHomePage(false)
+                    .GotoSelectJourneyPage()
+                    .SelectOptionAddToAnExistingCohort();
         }
     }
 }

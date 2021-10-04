@@ -19,10 +19,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetails2Page(ScenarioContext context) : base(context) => _context = context;
 
-        public void SelectOptionAddToAnExistingCohort()
+        public ProviderChooseACohortPage SelectOptionAddToAnExistingCohort()
         {
-            formCompletionHelper.ClickElement(AddToAnExistingCohortRadio);
+            javaScriptHelper.ClickElement(AddToAnExistingCohortRadio);
             Continue();
+            return new ProviderChooseACohortPage(_context);
         }
 
         public ProviderChooseAnEmployerNonLevyPage SelectOptionCreateNewCohort()

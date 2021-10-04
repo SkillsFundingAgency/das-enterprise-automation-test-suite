@@ -1,20 +1,35 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using NUnit.Framework;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class ProviderSteps
     {
+        #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        protected readonly ProviderConfig _providerConfig;
+        #endregion
+
+        private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;        
 
         public ProviderSteps(ScenarioContext context)
         {
             _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerStepsHelper = new ProviderStepsHelper(context);           
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _providerConfig = context.GetProviderConfig<ProviderConfig>();
         }
 
         [Then(@"the provider approves the cohorts")]
@@ -108,5 +123,46 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
         }
+
+        [Given(@"the Provider has some apprentices in ready to review and draft status")]
+        public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus()
+        {
+            var _expectedCohorts = _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(Convert.ToInt32(_providerConfig.Ukprn));
+            Assert.IsNotNull(_expectedCohorts, $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
+        }
+
+        [Given(@"the Provider navigates to Choose a cohort page via the Home page")]
+        public void GivenTheProviderNavigatesToChooseACohortPageViaTheHomePage()
+        {
+            _providerStepsHelper.NavigateToChooseACohortPage();
+        }
+
+        [Then(@"the Provider should only see apprentices with status Draft or Ready to review excluding apprentices related to change of party")]
+        public void ThenTheProviderShouldOnlySeeApprenticesWithStatusDraftOrReadyToReviewExcludingApprenticesRelatedToChangeOfParty()
+        {
+            var _expectedNumberOfCohorts = _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(Convert.ToInt32(_providerConfig.Ukprn));
+            var _actualNumberOfCohorts = new ProviderChooseACohortPage(_context).GetDataRowsCount();
+            Assert.AreEqual(_expectedNumberOfCohorts, _actualNumberOfCohorts, "Number of cohorts to be displayed");
+        }
+
+        [Then(@"User should be able to add or edit apprentice details on any cohort")]
+        public void ThenUserShouldBeAbleToAddOrEditApprenticeDetailsOnAnyCohort()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, employerName);
+            var cohortReference = _commitmentsSqlDataHelper.GetOldestEditableCohortReference(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
+
+            var providerApproveApprenticeDetailsPage = new ProviderChooseACohortPage(_context).SelectCohort(cohortReference);            
+            var existingapprentices = providerApproveApprenticeDetailsPage.GetNumberOfEditableApprentices();
+            if (existingapprentices > 0)
+            {
+                _context.Get<ObjectContext>().SetNoOfApprentices(Convert.ToInt32(existingapprentices));
+                _providerStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
+            }
+
+            providerApproveApprenticeDetailsPage.SelectAddAnApprentice().SubmitValidApprenticeDetails().SubmitApprove();
+        }
+
     }
 }
