@@ -34,7 +34,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
 
         [Given(@"the Employer logins using existing transactor user account")]
-        [Given(@"the levy employer login using existing transactor user account")]
         public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<TransactorUser>(), true);
 
         [Given(@"the Employer logins using existing view user account")]

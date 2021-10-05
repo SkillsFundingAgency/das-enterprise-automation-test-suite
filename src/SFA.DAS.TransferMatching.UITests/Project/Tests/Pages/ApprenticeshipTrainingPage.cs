@@ -29,42 +29,56 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public CreateATransfersApplicationPage EnterAppTrainingDetailsAndContinue()
         {
-            EnterDetailsAndContinue();
+            EnterDetails(); Continue(); 
 
             return new CreateATransfersApplicationPage(_context);
         }
 
         public ApprenticeshipTrainingPage EnterAmountMoreThanAvailableFunding()
         {
-            tMDataHelper.NoOfApprentice = 1;
+            SetCourseCost();
 
-            EnterDetails();
+            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeAmount() / tMDataHelper.Cost) + 1);
 
-            var estimatedAmount = regexHelper.GetAmount(pageInteractionHelper.GetText(AmountEstimateSelector));
+            formCompletionHelper.EnterText(NoOfApprenticeSelector, tMDataHelper.NoOfApprentice);
 
-            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeAmount() / estimatedAmount) + 1);
-
-            EnterDetailsAndContinue();
+            Continue();
 
             return this;
         }
 
+        private void SetCourseCost()
+        {
+            tMDataHelper.NoOfApprentice = 1;
+
+            EnterDetails();
+
+            tMDataHelper.Cost = regexHelper.GetAmount(pageInteractionHelper.GetText(AmountEstimateSelector));
+        }
+
         private void EnterDetails()
         {
-            var startDate = tMDataHelper.CourseStartDate;
-
             formCompletionHelper.EnterText(JobRoleSelector, tMDataHelper.Course);
-            formCompletionHelper.EnterText(NoOfApprenticeSelector, tMDataHelper.NoOfApprentice);
-            formCompletionHelper.EnterText(StartMonth, startDate.ToString("MM"));
-            formCompletionHelper.EnterText(StartYear, startDate.ToString("yyyy"));
 
-            formCompletionHelper.Click(NoOfApprenticeSelector);
-
-            VerifyPage(PanelEstimateSelector, "your apprenticeship training will cost:");
+            VerifyTrainingCost();
 
             SelectRadioOptionByText("No, show me apprenticeship training providers");
         }
 
-        private void EnterDetailsAndContinue() { EnterDetails(); Continue(); }
+        private void VerifyTrainingCost()
+        {
+            void RetryAction()
+            {
+                var startDate = tMDataHelper.CourseStartDate;
+                formCompletionHelper.EnterText(NoOfApprenticeSelector, tMDataHelper.NoOfApprentice);
+                formCompletionHelper.EnterText(StartMonth, startDate.ToString("MM"));
+                formCompletionHelper.EnterText(StartYear, startDate.ToString("yyyy"));
+                formCompletionHelper.Click(NoOfApprenticeSelector);
+            }
+
+            RetryAction();
+
+            VerifyPage(PanelEstimateSelector, "your apprenticeship training will cost:", RetryAction);
+        }
     }
 }

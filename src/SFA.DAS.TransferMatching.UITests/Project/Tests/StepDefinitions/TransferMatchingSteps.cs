@@ -22,6 +22,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly TransferMatchingUser _transferMatchingUser;
@@ -41,6 +42,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _sender = _transferMatchingUser.OrganisationName;
             _receiver = _transferMatchingUser.SecondOrganisationName;
             _isAnonymousPledge = false;
+            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
+        }
+
+        [Given(@"the levy employer login using existing transactor user account")]
+        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount()
+        {
+            var user = _context.GetUser<TransactorUser>();
+
+            _sender = user.OrganisationName;
+
+            _loginFromCreateAcccountPageHelper.Login(user, true);
         }
 
         [Then(@"the non levy employer cannot create pledge")]
@@ -197,6 +209,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private void GoToTransferMatchingAndSignIn(LoginUser user)
         {
             GoToTransferMacthingApplyUrl();
+
+            _objectContext.UpdateOrganisationName(_sender);
 
             var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
 
