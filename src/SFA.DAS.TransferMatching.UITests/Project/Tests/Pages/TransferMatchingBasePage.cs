@@ -24,6 +24,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
 
+        protected By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
+
         protected TransferMatchingBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -36,6 +38,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             datahelper = context.Get<ApprenticeDataHelper>();
             VerifyPage();
         }
+
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
         protected CreateATransferPledgePage SelectAndContinue()
         {

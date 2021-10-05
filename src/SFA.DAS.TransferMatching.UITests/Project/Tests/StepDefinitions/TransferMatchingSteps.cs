@@ -52,6 +52,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
+        [Then(@"the non levy employer cannot exceed the available pledge funding")]
+        public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding() 
+            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
+
         [Then(@"the levy employer can approve the application")]
         public void ThenTheLevyEmployerCanApproveTheApplication()
         {
@@ -161,9 +165,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
         }
 
+        private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
+
         private ApplicationSubmittedPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            return page.GoToApprenticeshipTrainingPage()
+            return GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
                 .GoToYourBusinessDetailsPage()
                 .EnterBusinessDetailsAndContinue()
@@ -174,7 +180,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .SubmitApplication();
         }
 
-        private void ApplyForAPledge(LoginUser user)
+        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(LoginUser user)
+        {
+            GoToTransferMatchingAndSignIn(user);
+
+            return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+        }
+
+        private ApplicationSubmittedPage ApplyForAPledge(LoginUser user)
+        {
+            GoToTransferMatchingAndSignIn(user);
+
+            return SubmitApplication(new CreateATransfersApplicationPage(_context));
+        }
+
+        private void GoToTransferMatchingAndSignIn(LoginUser user)
         {
             GoToTransferMacthingApplyUrl();
 
@@ -185,8 +205,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_receiver);
 
             page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
-
-            SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
         private SignInPage ApplyForTransferFunds()
@@ -196,16 +214,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
         }
 
-        private void EnterPlegeAmount(bool exceedMaxFunding)
+        private void EnterPlegeAmount(bool exceedMaxFunding) => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(exceedMaxFunding), "Enter a number between");
+
+        private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
-            string errorMessage = GoToEnterPlegeAmountPage().EnterValidAmount(exceedMaxFunding).GetErrorMessage();
+            string actualErrorMessage = page.GetErrorMessage();
 
             Assert.Multiple(() =>
             {
-                StringAssert.Contains("There is a problem", errorMessage);
+                StringAssert.Contains("There is a problem", actualErrorMessage);
 
-                StringAssert.Contains("Enter a number between", errorMessage);
+                StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
             });
+
         }
     }
 }

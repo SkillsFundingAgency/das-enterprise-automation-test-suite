@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -20,11 +21,35 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By PanelEstimateSelector => By.CssSelector("#panel-estimate");
 
+        private By AmountEstimateSelector => By.CssSelector("#panel-estimate #field-estimate");
+
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
 
         public CreateATransfersApplicationPage EnterAppTrainingDetailsAndContinue()
+        {
+            EnterDetailsAndContinue();
+
+            return new CreateATransfersApplicationPage(_context);
+        }
+
+        public ApprenticeshipTrainingPage EnterAmountMoreThanAvailableFunding()
+        {
+            tMDataHelper.NoOfApprentice = 1;
+
+            EnterDetails();
+
+            var estimatedAmount = regexHelper.GetAmount(pageInteractionHelper.GetText(AmountEstimateSelector));
+
+            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeAmount() / estimatedAmount) + 1);
+
+            EnterDetailsAndContinue();
+
+            return this;
+        }
+
+        private void EnterDetails()
         {
             var startDate = tMDataHelper.CourseStartDate;
 
@@ -38,11 +63,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             VerifyPage(PanelEstimateSelector, "your apprenticeship training will cost:");
 
             SelectRadioOptionByText("No, show me apprenticeship training providers");
-
-            Continue();
-
-            return new CreateATransfersApplicationPage(_context);
         }
 
+        private void EnterDetailsAndContinue() { EnterDetails(); Continue(); }
     }
 }

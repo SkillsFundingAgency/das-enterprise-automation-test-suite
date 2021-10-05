@@ -16,12 +16,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public PledgeVerificationPage(ScenarioContext context) : base(context) => _context = context;
 
-
         public PledgeVerificationPage SetPledgeId()
         {
-            var value = pageInteractionHelper.GetText(PageHeader);
-
-            var pledgeid = regexHelper.Replace(value, new List<string>() { PageTitle });
+            var pledgeid = regexHelper.Replace(pageInteractionHelper.GetText(PageHeader), new List<string>() { PageTitle });
 
             objectContext.SetPledgeId(pledgeid);
 
