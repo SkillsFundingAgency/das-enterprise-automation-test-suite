@@ -140,9 +140,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider should only see apprentices with status Draft or Ready to review excluding apprentices related to change of party")]
         public void ThenTheProviderShouldOnlySeeApprenticesWithStatusDraftOrReadyToReviewExcludingApprenticesRelatedToChangeOfParty()
         {
-            var _expectedNumberOfCohorts = _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(Convert.ToInt32(_providerConfig.Ukprn));
-            var _actualNumberOfCohorts = new ProviderChooseACohortPage(_context).GetDataRowsCount();
-            Assert.AreEqual(_expectedNumberOfCohorts, _actualNumberOfCohorts, "Number of cohorts to be displayed");
+            var expectedNumberOfCohorts = _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(Convert.ToInt32(_providerConfig.Ukprn));
+            var actualNumberOfCohorts = new ProviderChooseACohortPage(_context).GetDataRowsCount();
+            Assert.AreEqual(expectedNumberOfCohorts, actualNumberOfCohorts, "Number of cohorts to be displayed");
         }
 
         [Then(@"User should be able to add or edit apprentice details on any cohort")]

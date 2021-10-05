@@ -35,13 +35,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public int? GetProvidersDraftAndReadyForReviewCohortsCount(int ukprn)
         {
-            string query = $@"SELECT Count(Id)
-                                  FROM [dbo].[Commitment]
-                                  Where ProviderId = {ukprn}
-                                  AND IsDeleted = 0
-                                  --AND EditStatus = 2
-                                  And WithParty = 2
-                                  AND ChangeOfPartyRequestId is null";
+            string query = $@"SELECT Count(Reference)
+                                FROM [Commitment] AS [cmt]
+                                INNER JOIN (
+                                    SELECT [ale].*
+                                    FROM [AccountLegalEntities] AS [ale]
+                                    WHERE [ale].[Deleted] IS NULL
+                                            ) AS [t] ON [cmt].[AccountLegalEntityId] = [t].[Id]
+                                Where ProviderId = {ukprn}
+                                AND cmt.IsDeleted = 0
+                                AND cmt.EditStatus = 2
+                                And cmt.WithParty = 2
+                                AND cmt.ChangeOfPartyRequestId is null";
 
             return Convert.ToInt32(GetDataAsObject(query));
         }
