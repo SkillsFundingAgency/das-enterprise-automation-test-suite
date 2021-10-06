@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAddApprenticeDetails2Page : ApprovalsBasePage
+    public class ProviderAddApprenticeDetailsViaSelectJourneyPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By CreateANewCohort => By.Id("confirm-NewCohort");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderAddApprenticeDetails2Page(ScenarioContext context) : base(context) => _context = context;
+        public ProviderAddApprenticeDetailsViaSelectJourneyPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderChooseACohortPage SelectOptionAddToAnExistingCohort()
         {

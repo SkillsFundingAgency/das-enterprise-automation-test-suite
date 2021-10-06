@@ -77,14 +77,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_06_Providera Adds Apprentice To An Existing Cohort Journey")]
+        [NUnit.Framework.DescriptionAttribute("AP_Pro_06_Provider Adds Apprentice To An Existing Cohort Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AP_Pro_06_ProvideraAddsApprenticeToAnExistingCohortJourney()
+        public virtual void AP_Pro_06_ProviderAddsApprenticeToAnExistingCohortJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_06_Providera Adds Apprentice To An Existing Cohort Journey", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_06_Provider Adds Apprentice To An Existing Cohort Journey", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
