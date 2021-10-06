@@ -21,6 +21,7 @@
         public string PublicSectorReportingConnectionString { get; set; }
         public string PregDbConnectionString { get; set; }
         public string TPRDbConnectionString { get; set; }
+        public string TMDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
@@ -48,5 +49,6 @@
         public string PermissionsDbName { get; set; }
         public string PregDbName { get; set; }
         public string TPRDbName { get; set; }
+        public string TMDbName { get; set; }
     }
 }
