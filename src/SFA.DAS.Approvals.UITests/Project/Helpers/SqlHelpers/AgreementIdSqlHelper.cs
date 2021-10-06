@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 return responseData[0][0].ToString();
         }
 
-        public int GetEmployerAccountId(string email, string name)
+        public int GetEmployerAccountId(string email, string organisationName)
         {
             string query = @$"SELECT TOP 1 acc.Id
                                 FROM[employer_account].[Membership] msp
@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 INNER JOIN[employer_account].[Account] acc
                                 ON acc.Id = msp.AccountId
                                 WHERE usr.Email = '{email}'
-                                AND Name Like '{name}%'";
+                                AND Name Like '{organisationName}%'";
 
             return Convert.ToInt32(GetDataAsObject(query));
         }
