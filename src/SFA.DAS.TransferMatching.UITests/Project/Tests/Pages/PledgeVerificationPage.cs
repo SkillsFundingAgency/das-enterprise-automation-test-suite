@@ -20,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             var pledgeid = regexHelper.Replace(pageInteractionHelper.GetText(PageHeader), new List<string>() { PageTitle });
 
-            objectContext.SetPledgeId(pledgeid);
+            objectContext.SetPledgeDetail(pledgeid);
 
             return this;
         }

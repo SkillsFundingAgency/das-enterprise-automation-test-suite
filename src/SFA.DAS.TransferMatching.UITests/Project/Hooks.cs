@@ -32,6 +32,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
 
             _context.Set(_transferMatchingSqlDataHelper);
 
+            _objectContext.SetPledgeDetailList();
         }
 
         [AfterScenario(Order = 31)]
@@ -39,7 +40,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         public void DeletePledge() 
         {
             if (_context.TestError != null)
-                _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeId()));
+                _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeDetailList()));
         }
     }
 }

@@ -174,7 +174,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _accountSignOutHelper.SignOut();
 
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
         }
 
         private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
