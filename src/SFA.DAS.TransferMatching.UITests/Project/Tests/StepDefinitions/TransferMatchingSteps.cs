@@ -45,15 +45,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
+        [Given(@"the another levy employer creates a pledge")]
+        public void GivenTheAnotherLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<TransactorUser>());
+
+        [Given(@"the levy employer creates a pledge")]
+        public void GivenTheLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<LevyUser>());
+
         [Given(@"the levy employer login using existing transactor user account")]
-        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount()
-        {
-            var user = _context.GetUser<TransactorUser>();
-
-            _sender = user.OrganisationName;
-
-            _loginFromCreateAcccountPageHelper.Login(user, true);
-        }
+        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => LoginAsSender(_context.GetUser<TransactorUser>());
 
         [Then(@"the non levy employer cannot create pledge")]
         public void ThenTheNonLevyEmployerCannotCreatePledge() { _tMDataHelper.NoOfApprentice = 0; EnterPlegeAmount(false); }
@@ -61,6 +60,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [When(@"the receiver levy employer applies for the pledge")]
         public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
 
+        [Then(@"the non levy employer can apply for the pledge")]
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
@@ -126,7 +126,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
-            SetPledgeId();
+            SetPledgeDetail();
         }
 
         [Then(@"the levy employer can create anonymous pledge using non default criteria")]
@@ -141,7 +141,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
                 .ContinueToPledgeVerificationPage();
 
-            SetPledgeId();
+            SetPledgeDetail();
         }
 
         [Then(@"the levy employer can view pledges from verification page")]
@@ -153,7 +153,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not create transfer pledge")]
         public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
 
-        protected void SetPledgeId() => _pledgeVerificationPage.SetPledgeId();
+        protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
         private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
 
@@ -241,6 +241,20 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
             });
 
+        }
+
+        private void LoginAsSender(LoginUser login)
+        {
+            _sender = login.OrganisationName;
+
+            _loginFromCreateAcccountPageHelper.Login(login, true);
+        }
+
+        private void CreateATransferPledge(LoginUser login)
+        {
+            LoginAsSender(login);
+
+            CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
     }
 }
