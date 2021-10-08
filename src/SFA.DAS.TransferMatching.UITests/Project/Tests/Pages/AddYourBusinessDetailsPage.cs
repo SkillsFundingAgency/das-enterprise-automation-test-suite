@@ -13,6 +13,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By AdditionalLocationTextSelector => By.CssSelector("#AdditionalLocationText");
 
+        private By SpecificLocationSelector => By.CssSelector("#SpecificLocation");
+
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
         public AddYourBusinessDetailsPage(ScenarioContext context) : base(context) => _context = context;
@@ -21,9 +23,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRandomCheckbox();
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdditionalLocationSelector));
+            var location = tMDataHelper.GetRandomLocation();
 
-            formCompletionHelper.EnterText(AdditionalLocationTextSelector, tMDataHelper.GetRandomLocation());
+            if (pageInteractionHelper.IsElementDisplayed(AdditionalLocationSelector))
+            {
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdditionalLocationSelector));
+
+                formCompletionHelper.EnterText(AdditionalLocationTextSelector, location);
+            }
+            else
+            {
+                formCompletionHelper.EnterText(SpecificLocationSelector, location);
+            }
 
             Continue();
 
