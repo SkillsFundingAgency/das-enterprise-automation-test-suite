@@ -9,7 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private readonly ScenarioContext _context;
 
-        private By PostcodeSelector => By.CssSelector("#Postcode");
+        private By AdditionalLocationSelector => By.CssSelector("#AdditionalLocation");
+
+        private By AdditionalLocationTextSelector => By.CssSelector("#AdditionalLocationText");
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
@@ -19,7 +21,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRandomCheckbox();
 
-            formCompletionHelper.EnterText(PostcodeSelector, "CV3 5AT");
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdditionalLocationSelector));
+
+            formCompletionHelper.EnterText(AdditionalLocationTextSelector, tMDataHelper.GetRandomLocation());
 
             Continue();
 
