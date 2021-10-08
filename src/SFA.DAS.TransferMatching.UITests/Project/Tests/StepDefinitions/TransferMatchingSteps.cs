@@ -54,9 +54,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Given(@"the levy employer login using existing transactor user account")]
         public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => LoginAsSender(_context.GetUser<TransactorUser>());
 
-        [Then(@"the non levy employer cannot create pledge")]
-        public void ThenTheNonLevyEmployerCannotCreatePledge() { _tMDataHelper.NoOfApprentice = 0; EnterPlegeAmount(false); }
-
         [When(@"the receiver levy employer applies for the pledge")]
         public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
 
@@ -112,7 +109,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _multipleAccountsLoginHelper.Login(user, true);
         }
         [Then(@"the levy employer cannot exceed the maximum funding available")]
-        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => EnterPlegeAmount(true);
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
 
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
@@ -151,7 +148,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
 
         [Then(@"the user can not create transfer pledge")]
-        public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
+        public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "User can create transfer pledge");
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
@@ -227,8 +224,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
         }
-
-        private void EnterPlegeAmount(bool exceedMaxFunding) => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(exceedMaxFunding), "Enter a number between");
 
         private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {

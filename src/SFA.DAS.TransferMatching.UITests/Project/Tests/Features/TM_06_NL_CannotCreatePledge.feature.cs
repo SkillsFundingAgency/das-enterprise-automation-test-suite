@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the non levy employer logins using existing non levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the non levy employer cannot create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user can not create transfer pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
