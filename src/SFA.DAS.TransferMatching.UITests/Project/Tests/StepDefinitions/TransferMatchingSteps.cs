@@ -46,7 +46,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the another levy employer creates a pledge")]
-        public void GivenTheAnotherLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<TransactorUser>());
+        public void GivenTheAnotherLevyEmployerCreatesAPledge()
+        {
+            SignOut();
+
+            CreateATransferPledge(_context.GetUser<TransactorUser>());
+        }
 
         [Given(@"the levy employer creates a pledge")]
         public void GivenTheLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<LevyUser>());
@@ -169,10 +174,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void GoToTransferMacthingApplyUrl()
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
             _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
         }
+
+        private void SignOut() => _accountSignOutHelper.SignOut();
 
         private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
 
