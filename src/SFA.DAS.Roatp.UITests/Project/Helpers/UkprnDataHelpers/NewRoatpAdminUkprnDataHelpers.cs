@@ -137,6 +137,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                    new KeyValuePair<string, string>(providernamekey, "FYLO LTD."),
                    new KeyValuePair<string, string>(ukprnkey, "10067908"),
             });//rpe2e01, rpadgw01, rpadas01, rpadmod01
+            _data.Add("rpadoutcomeappeals01",
+       new List<KeyValuePair<string, string>>
+       {
+                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadoutcomeappeals01@digital.education.gov.uk"),
+                   new KeyValuePair<string, string>(providernamekey, "COUNTY BUSINESS SCHOOL LIMITED"),
+                   new KeyValuePair<string, string>(ukprnkey, "10067972"),
+       });//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadallowlist01",
            new List<KeyValuePair<string, string>>
            {
