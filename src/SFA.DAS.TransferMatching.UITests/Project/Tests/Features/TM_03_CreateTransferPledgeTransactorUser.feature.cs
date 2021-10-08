@@ -77,16 +77,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TM_03_Create Transfer pledge using Transactor User")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        [NUnit.Framework.CategoryAttribute("deletepledge")]
         public virtual void TM_03_CreateTransferPledgeUsingTransactorUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfermatching",
-                    "deletepledge"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_03_Create Transfer pledge using Transactor User", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,16 +104,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the levy employer login using existing transactor user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
  testRunner.And("the pledge is available to apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -36,7 +36,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         }
 
         [AfterScenario(Order = 31)]
-        [Scope(Tag = "deletepledge")]
         public void DeletePledge() 
         {
             if (_context.TestError == null)

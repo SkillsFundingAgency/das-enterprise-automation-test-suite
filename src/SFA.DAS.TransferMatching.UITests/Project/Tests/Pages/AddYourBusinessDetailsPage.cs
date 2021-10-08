@@ -25,7 +25,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             var location = tMDataHelper.GetRandomLocation();
 
-            if (pageInteractionHelper.IsElementDisplayed(AdditionalLocationSelector))
+            if (pageInteractionHelper.IsElementPresent(AdditionalLocationSelector))
             {
                 formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdditionalLocationSelector));
 

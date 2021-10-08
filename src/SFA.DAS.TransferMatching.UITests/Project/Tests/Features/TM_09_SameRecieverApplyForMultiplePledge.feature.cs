@@ -77,16 +77,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TM_09_Same Reciever Apply For Multiple Pledge")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        [NUnit.Framework.CategoryAttribute("validatepledgeamount")]
         public virtual void TM_09_SameRecieverApplyForMultiplePledge()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfermatching",
-                    "validatepledgeamount"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_09_Same Reciever Apply For Multiple Pledge", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,16 +104,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the levy employer creates a pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the non levy employer can apply for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.Given("the another levy employer creates a pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("the non levy employer can apply for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

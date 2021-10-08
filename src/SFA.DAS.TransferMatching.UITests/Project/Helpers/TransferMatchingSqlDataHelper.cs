@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
@@ -13,17 +13,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         {
             foreach (var pledge in pledges)
             {
-                var amount = pledge.Amount;
+                string sqlQueryFromFile = FileHelper.GetSql("TMTestDataCleanUp");
 
-                var query = $"if (select count(*) from Pledge where Amount = {amount} and CreatedOn < GETDATE() and CreatedOn > '{pledge.CreatedOn}') = 1 " +
-                            $"Begin " +
-                            $"DECLARE @id int; " +
-                            $"select @id = Id from Pledge where Amount = {amount};" +
-                            $"DELETE FROM[dbo].PledgeLocation WHERE PledgeId = @id; " +
-                            $"DELETE FROM [dbo].[Pledge] WHERE Id = @id; " +
-                            $"End";
+                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__EmployerAccountId__", pledge.EmployerAccountId);
 
-                ExecuteSqlCommand(query);
+                var sqlparams = new Dictionary<string, string> { { "@amount", pledge.Amount.ToString() }, { "@createdon", pledge.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss") } };
+
+                ExecuteSqlCommand(sqlQueryFromFile, connectionString, sqlparams);
             }
         }
     }

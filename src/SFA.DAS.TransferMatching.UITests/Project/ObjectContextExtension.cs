@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         {
             var pledgeDetailList = objectContext.GetPledgeDetailList();
 
-            pledgeDetailList.Add(new Pledge { PledgeId = pledgeId, Amount = objectContext.GetPledgeAmount(), CreatedOn = objectContext.GetPledgeCreatedOn()});
+            pledgeDetailList.Add(new Pledge 
+            {
+                PledgeId = pledgeId, 
+                Amount = objectContext.GetPledgeAmount(), 
+                CreatedOn = objectContext.GetPledgeCreatedOn(),
+                EmployerAccountId = objectContext.GetDBAccountId()
+            });
         }
 
         internal static Pledge GetPledgeDetail(this ObjectContext objectContext) => objectContext.GetPledgeDetailList().LastOrDefault();
@@ -48,6 +55,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         public string PledgeId;
         public int Amount;
         public DateTime CreatedOn;
+        public string EmployerAccountId;
         
         public override string ToString() => $"Pledge Id:'{PledgeId}', Amount:'{Amount}'";
     }
