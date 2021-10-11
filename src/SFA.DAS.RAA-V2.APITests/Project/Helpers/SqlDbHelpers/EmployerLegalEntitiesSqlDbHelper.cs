@@ -24,5 +24,17 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers
 
             return GetData(query, _dbConfig.AccountsDbConnectionString, 1);
         }
+
+        public string GetEmployerAccountHashedID()
+        {
+            var query = " select top (1) a.HashedId FROM [employer_account].[AccountLegalEntity] AS ale " +
+                " JOIN[employer_account].[LegalEntity] AS le ON le.Id = ale.LegalEntityId " +
+                " JOIN[employer_account].[Account] AS a ON a.Id = ale.AccountId " +
+                " Order by NEWID()";
+
+            List<string> queryResult =  GetData(query, _dbConfig.AccountsDbConnectionString, 1);
+
+            return queryResult[0];
+        }
     }
 }

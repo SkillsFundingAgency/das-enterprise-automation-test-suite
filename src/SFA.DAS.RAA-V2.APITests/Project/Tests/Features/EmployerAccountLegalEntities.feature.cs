@@ -73,7 +73,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void GetLegalEntities(string testCaseId, string hashedId, string method, string endpoint, string responseStatus, string[] exampleTags)
+        public virtual void RV2_API_(string testCaseId, string method, string endpoint, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -86,11 +86,10 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TestCaseId", testCaseId);
-            argumentsOfScenario.Add("HashedId", hashedId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Legal Entities", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_API_", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given(string.Format("user prepares request with Employer {0}", hashedId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user prepares request with Employer HashedID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When(string.Format("the user sends {0} request to {1}", method, endpoint), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -128,26 +127,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get Legal Entities: Raav2001")]
+        [NUnit.Framework.DescriptionAttribute("RV2_API_: 001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raav2api")]
-        public virtual void GetLegalEntities_Raav2001()
+        public virtual void RV2_API__001()
         {
 #line 6
-this.GetLegalEntities("Raav2001", "MKPYBB", "GET", "/vacancies/employeraccountlegalentities/", "OK", ((string[])(null)));
+this.RV2_API_("001", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get Legal Entities: Raav2002")]
+        [NUnit.Framework.DescriptionAttribute("RV2_API_: 002")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raav2api")]
-        public virtual void GetLegalEntities_Raav2002()
+        public virtual void RV2_API__002()
         {
 #line 6
-this.GetLegalEntities("Raav2002", "MBP6YD", "GET", "/vacancies/employeraccountlegalentities/", "OK", ((string[])(null)));
+this.RV2_API_("002", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
 #line hidden
         }
     }

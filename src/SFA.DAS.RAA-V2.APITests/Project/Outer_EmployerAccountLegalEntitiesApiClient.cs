@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project
 
         public Outer_EmployerAccountLegalEntitiesApiClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
-        protected override string ApiName => "/vacancies/employeraccountlegalentities/";
+        protected override string ApiName => "";
 
         protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
     }

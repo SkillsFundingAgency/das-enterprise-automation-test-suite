@@ -23,8 +23,8 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.StepDefinitions
             _employerLegalEntitiesSqlHelper = context.Get<EmployerLegalEntitiesSqlDbHelper>();
         }
 
-        [Given(@"user prepares request with Employer (.*)")]
-        public void GivenUserPreparesRequestWithEmployerHashedId(string hashedId) =>  _contextId = hashedId;
+        [Given(@"user prepares request with Employer HashedID")]
+        public void GivenUserPreparesRequestWithEmployerHashedId() =>  _contextId = _employerLegalEntitiesSqlHelper.GetEmployerAccountHashedID();
 
         [When(@"the user sends (GET) request to (.*)")]
         public void WhenTheUserSendsGETRequestToVacanciesEmployeraccountlegalentities(Method method, string endpoint)
@@ -43,10 +43,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.StepDefinitions
 
             var queryResponse = _employerLegalEntitiesSqlHelper.GetEmployerAccountLegalEntities(_contextId);
 
-            string apiContent = JsonConvert.SerializeObject(apiResponse.Content);
-            string queryContent = JsonConvert.SerializeObject(queryResponse[0]);
-
-            Assert.AreEqual(apiContent, queryContent);
+            Assert.AreEqual(apiResponse.Content, queryResponse[0]);
         }
 
         private void CreateRequest(Method method, string endpoint) => _restClient.CreateRestRequest(method, endpoint, null);
