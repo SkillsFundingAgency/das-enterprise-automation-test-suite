@@ -50,8 +50,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             SignOut();
 
-            //_tabHelper.OpenInNewTab();
-
             CreateATransferPledge(_context.GetUser<TransactorUser>());
         }
 
