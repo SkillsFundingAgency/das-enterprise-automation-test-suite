@@ -77,16 +77,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TM_07_NL_Cannot Exceed Available Pledge Amount")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        [NUnit.Framework.CategoryAttribute("validatepledgeamount")]
         public virtual void TM_07_NL_CannotExceedAvailablePledgeAmount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfermatching",
-                    "validatepledgeamount"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_07_NL_Cannot Exceed Available Pledge Amount", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,13 +104,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the non levy employer cannot exceed the available pledge funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

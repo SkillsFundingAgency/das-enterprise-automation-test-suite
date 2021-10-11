@@ -2,7 +2,6 @@
 
 @regression
 @transfermatching
-@validatepledgeamount
 Scenario: TM_08_Multiple Application For Same Pledge
 	Given the levy employer logins using existing transfer matching account
 	Then the levy employer can create pledge using default criteria
