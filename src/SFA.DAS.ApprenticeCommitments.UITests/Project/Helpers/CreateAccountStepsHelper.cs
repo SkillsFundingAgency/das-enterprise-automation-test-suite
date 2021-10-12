@@ -45,7 +45,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count}int the aComt db for email '{email}'");
 
-                registrationId = registrationIds.Last();
+                registrationId = registrationIds.First();
             });
 
             return OpenInvitation(registrationId);
@@ -59,7 +59,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             {
                 string email = GetApprenticeEmail();
 
-                var registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
+                registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
 
                 Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
             });
@@ -67,13 +67,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return OpenInvitation(registrationId);
         }
 
+        public ApprenticeOverviewPage ConfirmApprenticeshipDetail()
+        {
+            var page = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
+
+            _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
+
+            return page.NavigateToOverviewPageFromTopNavigationLink();
+        }
+
         public ApprenticeHomePage CreateAccount()
         {
             CreateApprenticeshipViaApiRequest();
             
-            var apprenticeHomePage = ConfirmIdentity();
+            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity(); 
             
-            _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
+            _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(GetApprenticeEmail());
             
             return apprenticeHomePage;
         }
@@ -89,8 +98,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
-
-        public ApprenticeHomePage ConfirmIdentity() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
 
         private StartPage OpenInvitation(string registrationId)
         {

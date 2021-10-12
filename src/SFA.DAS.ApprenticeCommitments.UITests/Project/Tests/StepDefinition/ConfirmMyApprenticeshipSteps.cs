@@ -18,17 +18,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
 
-
         [Then(@"only the latest apprenticeship should be visible")]
         public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
         {
             var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
 
-            invitation.CTAOnStartPageToSignIn().CocSignInToApprenticePortal();
+            invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage();
         }
 
         [Given(@"the apprentice completed confirm my apprenticeship details")]
-        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => _apprenticeHomePage = createAccountStepsHelper.ConfirmIdentity();
+        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => createAccountStepsHelper.ConfirmApprenticeshipDetail().SignOutFromTheService();
 
         [Then(@"the apprentice is able to confirm the Employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer()

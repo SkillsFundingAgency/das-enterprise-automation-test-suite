@@ -7,8 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeCommitmentsSqlDbHelper : SqlDbHelper
     {
-        private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}'";
-
         public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
         public void DeleteApprentice(string email) => ExecuteSqlCommand(
@@ -39,11 +37,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)
         {
             var confirmBeforeDate = DateTime.Now.AddDays(13).AddHours(23).ToString("yyyy-MM-dd HH:mm:ss.fffffff");
-            ExecuteSqlCommand($"UPDATE Revision SET ConfirmBefore = '{confirmBeforeDate}' WHERE ApprenticeshipId in (SELECT Id  FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))");
+            ExecuteSqlCommand($"UPDATE Revision SET ConfirmBefore = '{confirmBeforeDate}' WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
+        }
+
+        public void ConfirmApprenticeship(string email)
+        {
+            ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesCorrect = 1, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
         }
 
         public string GetRegistrationId(string email, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(GetRegistrationIdQuery(email), "Index was out of range", scenarioTitle));
 
         public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email), 1).ListOfArrayToList(0);
+
+        private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
+
+        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))";
     }
 }
