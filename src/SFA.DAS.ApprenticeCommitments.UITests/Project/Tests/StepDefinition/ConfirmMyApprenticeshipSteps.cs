@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
 
-            invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage();
+            invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage().VerifyDaysToConfirmWarning();
         }
 
         [Given(@"the apprentice completed confirm my apprenticeship details")]
