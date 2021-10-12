@@ -15,8 +15,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private ConfirmRolesAndResponsibilitiesPage _confirmRolesAndResponsibilitiesPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
-
+        
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
+
+
+        [Then(@"only the latest apprenticeship should be visible")]
+        public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
+        {
+            var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
+
+            invitation.CTAOnStartPageToSignIn().CocSignInToApprenticePortal();
+        }
+
+        [Given(@"the apprentice completed confirm my apprenticeship details")]
+        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => _apprenticeHomePage = createAccountStepsHelper.ConfirmIdentity();
 
         [Then(@"the apprentice is able to confirm the Employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer()
@@ -175,6 +187,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayed(_confirmYourApprenticeshipDetailsPage);
             return _confirmYourApprenticeshipDetailsPage;
         }
+
         private ConfirmHowYourApprenticeshipWillBeDeliveredPage NavigateToConfirmHowYourApprenticeshipWillBeDelivered() =>
             new ApprenticeOverviewPage(_context).ConfirmHowYourApprenticeshipWillBeDelivered();
 

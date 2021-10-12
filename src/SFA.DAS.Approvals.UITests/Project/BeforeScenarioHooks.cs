@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
+using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -16,12 +17,14 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
         private readonly DbConfig _dbConfig;
+        private readonly string[] _tags;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
             _dbConfig = context.Get<DbConfig>();
+            _tags = context.ScenarioInfo.Tags;
         }
 
         [BeforeScenario(Order = 32)]
@@ -29,10 +32,10 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
-                                   _context.ScenarioInfo.Tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
-                                   _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
-                                   _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
+            var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
+                                   _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
+                                   _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
+                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
             var commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
@@ -40,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper);
+            _datahelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, random, commitmentsdatahelper);
 
             _context.Set(_datahelper);
 

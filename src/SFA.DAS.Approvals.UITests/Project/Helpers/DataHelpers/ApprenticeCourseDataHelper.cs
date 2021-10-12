@@ -42,6 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _nextAcademicYearEndDate = GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
             Course = randomCourseHelper.RandomCourse();
+            OtherCourse = randomCourseHelper.OtherCourse(Course);
         }
 
         public int RandomCourse(List<string> availablecourses)
@@ -52,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         }
 
         public string Course { get; private set; }
+
+        public string OtherCourse { get; private set; }
 
         public int CourseDurationInMonths => 15;
 

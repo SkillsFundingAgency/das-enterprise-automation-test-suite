@@ -1,11 +1,14 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeCommitmentsSqlDbHelper : SqlDbHelper
     {
+        private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}'";
+
         public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
         public void DeleteApprentice(string email) => ExecuteSqlCommand(
@@ -39,10 +42,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand($"UPDATE Revision SET ConfirmBefore = '{confirmBeforeDate}' WHERE ApprenticeshipId in (SELECT Id  FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))");
         }
 
-        public string GetRegistrationId(string email, string scenarioTitle)
-        {
-            var query = $"select RegistrationId from Registration where Email ='{email}'";
-            return Convert.ToString(TryGetDataAsObject(query, "Index was out of range", scenarioTitle));
-        }
+        public string GetRegistrationId(string email, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(GetRegistrationIdQuery(email), "Index was out of range", scenarioTitle));
+
+        public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email), 1).ListOfArrayToList(0);
     }
 }

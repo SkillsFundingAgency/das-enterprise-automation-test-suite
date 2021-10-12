@@ -1,26 +1,35 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.TestDataExport.Helper;
 using System;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class ApprenticeCommitmentsDataHelper
     {
-        public ApprenticeCommitmentsDataHelper(RandomDataGenerator randomDataGenerator, bool isPerfTest)
+        public ApprenticeCommitmentsDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper)
         {
-            var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
-            var emaildomain = isPerfTest ? "email.com" : "mailinator.com";
-            Email = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
-            NewEmail = $"New{Email}";
-            ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeEmail = apprenticePPIDataHelper.ApprenticeEmail;
+            NewEmail = $"New{ApprenticeEmail}";
+            ApprenticeFirstname = apprenticePPIDataHelper.ApprenticeFirstname;
+            ApprenticeLastname = apprenticePPIDataHelper.ApprenticeLastname;
+            DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
+            DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
+            DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
         }
 
-        public string Email { get; }
+        public string ApprenticeEmail { get; }
 
         public string NewEmail { get; }
 
         public string ApprenticeFirstname { get; }
 
         public string ApprenticeLastname { get; }
+
+        public int DateOfBirthDay { get; }
+
+        public int DateOfBirthMonth { get; }
+
+        public int DateOfBirthYear { get; }
+
+        public DateTime ApprenticeDob => new DateTime(DateOfBirthDay, DateOfBirthMonth, DateOfBirthYear);
     }
 }

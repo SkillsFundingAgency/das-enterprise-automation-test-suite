@@ -112,13 +112,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
+        public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
+
         internal void UpdateNewCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 
             var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
 
-            _objectContext.UpdateCohortReference(cohortRef);
+            UpdateCohortReference(cohortRef);
         }
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
