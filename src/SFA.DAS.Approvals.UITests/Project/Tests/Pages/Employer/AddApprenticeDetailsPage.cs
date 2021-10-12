@@ -38,10 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var course = apprenticeCourseDataHelper.Course;
 
             if (objectContext.IsSameApprentice()) course = apprenticeCourseDataHelper.OtherCourse;
-
+            
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
         }
-
 
         public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
@@ -109,6 +108,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
+
+            if (objectContext.IsSameApprentice())
+            {
+                apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
+            }
+
             return apprenticeCourseDataHelper.CourseStartDate;
         }
 

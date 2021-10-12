@@ -78,14 +78,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        [NUnit.Framework.CategoryAttribute("onemonthbeforecurrentacademicyearstartdate")]
         public virtual void AC_CoC_02_ShowLatestApprenticeship()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "changeOfEmployer",
-                    "liveapprentice"};
+                    "onemonthbeforecurrentacademicyearstartdate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CoC_02_ShowLatestApprenticeship", null, tagsOfScenario, argumentsOfScenario);
 #line 7

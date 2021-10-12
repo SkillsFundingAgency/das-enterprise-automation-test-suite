@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public int DateOfBirthYear { get; set; }
 
-        public DateTime ApprenticeDob => new DateTime(DateOfBirthDay, DateOfBirthMonth, DateOfBirthYear);
+        public DateTime ApprenticeDob => new DateTime(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
 
         public string TrainingPrice { get; set; }
 

@@ -30,6 +30,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         public int DateOfBirthYear { get; }
 
-        public DateTime ApprenticeDob => new DateTime(DateOfBirthDay, DateOfBirthMonth, DateOfBirthYear);
+        public DateTime ApprenticeDob => new DateTime(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
     }
 }
