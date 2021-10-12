@@ -45,8 +45,6 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user overturns gateway and moderation outcome
 And the oversight user selects the overall application outcome as Unsuccessful
 Given the application with UNSUCCESSFUL outcome is ready to be assessed
-Then Oversight user is able to send the application to Appeal Status
-And verify the Application unsuccessful page is displayed 
 
 
 
@@ -62,7 +60,7 @@ And the application with PASS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as In Progress
 Then Verify the application is transitioned to Oversight Outcome tab with IN PROGRESS status	
 And verify the provider is not added to the register
-And verify the Application under review page is displayed 
+And verify the Application in progress page is displayed 
 Given the admin navigates to the Dashboard
 And the application with IN PROGRESS outcome is ready to be assessed
 When the oversight user selects the overall application outcome as Successful

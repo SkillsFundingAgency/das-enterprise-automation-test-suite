@@ -31,10 +31,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected void CheckSortOrder()
         {
             pageInteractionHelper.WaitforURLToChange("LocationType=National");
-            IWebElement selectElement = pageInteractionHelper.FindElement(SortResults);
-            SelectElement selectedValue = new SelectElement(selectElement);
-            string selectedText = selectedValue.SelectedOption.Text;
-            pageInteractionHelper.VerifyText(selectedText, "Closing date");
+
+            pageInteractionHelper.VerifyText(formCompletionHelper.GetSelectedOption(SortResults), "Closing date");
         }
 
         protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(NationwideVacanciesText, faaDataHelper.NationwideVacanciesText);

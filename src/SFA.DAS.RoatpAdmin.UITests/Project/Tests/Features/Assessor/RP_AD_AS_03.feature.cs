@@ -74,13 +74,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_03 Assess a Soletrader type Application via Supporting provider route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_03 Assess a Soletrader type Application via Supporting provider route ex" +
+            "isting provider")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadas03")]
         [NUnit.Framework.CategoryAttribute("roatpassessoradmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_AS_03AssessASoletraderTypeApplicationViaSupportingProviderRoute()
+        public virtual void RP_AD_AS_03AssessASoletraderTypeApplicationViaSupportingProviderRouteExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -89,7 +90,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_03 Assess a Soletrader type Application via Supporting provider route", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_03 Assess a Soletrader type Application via Supporting provider route ex" +
+                    "isting provider", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Assessor1 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("selects the Supporting Provider Route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("selects the Supporting Provider Route For Existing Provider application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

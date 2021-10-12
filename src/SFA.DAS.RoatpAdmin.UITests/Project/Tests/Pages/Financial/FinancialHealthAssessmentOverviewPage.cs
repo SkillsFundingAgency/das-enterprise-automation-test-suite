@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
@@ -28,13 +29,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
            VerifyPage();
         }
 
-        public FinancialHealthAssesmentCompletedPage ConfirmFHAReviewAsOutstanding()
+        public FinancialHealthAssesmentCompletedPage ConfirmFHAReview(string expectedoutcome)
         {
-            SelectRadioOptionByForAttribute("outstanding");
-            formCompletionHelper.EnterText(DayOutStandingField, "1");
-            formCompletionHelper.EnterText(MonthOutStandingField, "2");
-            formCompletionHelper.EnterText(YearOutStandingField, "2022");
-            Continue();
+            SelectRadioOptionByForAttribute(expectedoutcome);
+            if (_context.ScenarioInfo.Tags.Contains("rpendtoend02apply"))
+            {
+
+                formCompletionHelper.EnterText(InadequateCommentBox, "PMO Internal Comments for Inadequate");
+                formCompletionHelper.EnterText(InadequateExternalCommentsBox, "PMO External Comments for Inadequate");
+                formCompletionHelper.ClickButtonByText(ContinueButton, "Save outcome");
+            }
+            else
+            {
+                formCompletionHelper.EnterText(DayOutStandingField, "1");
+                formCompletionHelper.EnterText(MonthOutStandingField, "2");
+                formCompletionHelper.EnterText(YearOutStandingField, "2022");
+                Continue();
+            }
             return new FinancialHealthAssesmentCompletedPage(_context);
         }
 

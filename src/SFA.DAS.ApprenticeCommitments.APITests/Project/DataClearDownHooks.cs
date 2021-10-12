@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
         protected readonly ApprenticeCommitmentsDataHelper _apprenticeCommitmentsDataHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
 
         public DataClearDownHooks(ScenarioContext context)
         {
@@ -18,27 +19,25 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
-        }
-
-        public void ClearDownInvitationRecords()
-        {
-            var email = _objectContext.GetApprenticeEmail();
-
-            _aLoginSqlDbHelper.DeleteInvitation(email);
-            _aLoginSqlDbHelper.DeleteUserLogs(email);
+            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
 
         public void ClearDownUser()
         {
             var email = _objectContext.GetApprenticeEmail();
+            var apprenticeshipid = _objectContext.GetCommitmentsApprenticeshipId();
 
+            //acomt db
             _aComtSqlDbHelper.DeleteApprentice(email);
             _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
 
+            //alogin db
             _aLoginSqlDbHelper.DeleteUser(email);
             _aLoginSqlDbHelper.DeleteResetPasswordRequests(email);
+            _aLoginSqlDbHelper.DeleteUserLogs(email);
 
-            ClearDownInvitationRecords();
+            //Commitments db
+            _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(long.Parse(apprenticeshipid));
         }
     }
 }

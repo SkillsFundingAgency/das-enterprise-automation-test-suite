@@ -7,7 +7,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
     {
         public ApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
@@ -19,6 +19,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
             else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TypeOfApprenticeshipTraining()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (applicationroute == ApplicationRoute.EmployerProviderRoute || applicationroute == ApplicationRoute.MainProviderRoute)
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_TypeOfApprenticeshipTraining_New_Main_Employer()
+                    .SelectPassAndContinueInDeliveringTraining()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TypeOfApprenticeshipTraining()
@@ -42,7 +57,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassTrainingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_TrainingApprentices()
@@ -57,7 +73,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -66,7 +83,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection3Link3Status(StatusHelper.StatusPass);
             }
-            else if (applicationroute == ApplicationRoute.MainProviderRoute)
+            else if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                     applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -81,7 +99,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_ForecastingStarts()
@@ -101,7 +122,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassOffTheJobTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_OffTheJobTraining()
@@ -118,7 +142,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                 .Access_Section3_WhereWillYourApprenticesBeTrained()

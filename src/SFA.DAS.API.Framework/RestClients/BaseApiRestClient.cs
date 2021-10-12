@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Net;
 
@@ -15,6 +16,8 @@ namespace SFA.DAS.API.Framework.RestClients
 
         protected abstract void AddAuthHeaders();
 
+        protected virtual void AddParameter() { }
+
         public void CreateRestRequest(Method method, string resource, string payload)
         {
             restRequest.Method = method;
@@ -22,6 +25,8 @@ namespace SFA.DAS.API.Framework.RestClients
             AddResource(resource);
 
             restRequest.Parameters.Clear();
+
+            AddParameter();
 
             AddAuthHeaders();
 

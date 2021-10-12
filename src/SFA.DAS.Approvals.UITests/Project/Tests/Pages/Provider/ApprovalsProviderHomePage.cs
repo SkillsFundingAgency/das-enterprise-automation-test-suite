@@ -62,10 +62,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(ManageYourFundingLink);
             return new ProviderFundingForNonLevyEmployersPage(_context);
         }
-        public ProviderYourCohortsPage GoToYourCohorts()
+        public ProviderApprenticeRequestsPage GoToYourCohorts()
         {
             _formCompletionHelper.ClickElement(YourCohortsLink);
-            return new ProviderYourCohortsPage(_context);
+            return new ProviderApprenticeRequestsPage(_context);
         }
 
         public ProviderAccessDeniedPage CreateCohortGoesToAccessDenied()

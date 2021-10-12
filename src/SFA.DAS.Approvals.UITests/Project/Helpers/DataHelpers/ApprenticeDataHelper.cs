@@ -33,6 +33,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
+        public string ApprenticeEmail => $"{ApprenticeFirstname}_{ApprenticeLastname}_{DateTime.Now.ToSeconds()}_{DateTime.Now.ToNanoSeconds()}@email.com";
+
         public int DateOfBirthDay { get; set; }
 
         public int DateOfBirthMonth { get; set; }
@@ -47,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
-        public string MessageToEmployer => $"Added {string.Join(",", Ulns)} ulns, {MessageToProvider}";
+        public string MessageToEmployer => $"Added {Ulns.ToString(",")} ulns, {MessageToProvider}";
 
         public List<string> Ulns { get; private set; }
 

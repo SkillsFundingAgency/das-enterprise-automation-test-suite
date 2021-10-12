@@ -21,6 +21,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_02_TransfersApprovalJourney")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     [NUnit.Framework.CategoryAttribute("transfers")]
     public partial class TR_02_TransfersApprovalJourneyFeature
     {
@@ -28,6 +29,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
+                "approvals",
                 "transfers"};
         
 #line 1 "TR_02_TransfersApprovalJourney.feature"
@@ -38,6 +40,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TR_02_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals",
                         "transfers"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -91,7 +94,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approva" +
                     "l by provider", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,16 +114,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("Receiver sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -9,9 +9,11 @@
         public string OrganisationName { get; set; }
     }
 
-    public class CampaingnsEmployerUser : LoginUser { }
+    public class AuthTestUser : LoginUser { }
 
     public class RAAV2EmployerUser : LoginUser { }
+
+    public class RAAV2EmployerProviderPermissionUser : LoginUser  { }
 
     public class ProviderLoginUser : LoginUser
     {
@@ -23,6 +25,10 @@
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
     public class TransfersUser : MultipleAccountUser { }
+
+    public class TransfersUserNoFunds : MultipleAccountUser { }
+
+    public class TransferMatchingUser : MultipleAccountUser { }
 
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 

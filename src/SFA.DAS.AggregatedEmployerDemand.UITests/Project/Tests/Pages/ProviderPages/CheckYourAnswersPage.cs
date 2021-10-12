@@ -1,0 +1,38 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
+{
+    public class CheckYourAnswersPage : AEDBasePage
+    {
+        protected override string PageTitle => "Check your answers";
+        private readonly ScenarioContext _context;
+        public CheckYourAnswersPage(ScenarioContext context) : base(context) => _context = context;
+
+        private By ChangeEmail => By.XPath("//body/div[2]/main[1]/div[1]/div[1]/dl[2]/div[1]/dd[2]/a[1]");
+        private By ChangeLocation => By.XPath("//body/div[2]/main[1]/div[1]/div[1]/dl[1]/div[2]/dd[2]/a[1]");
+
+
+
+        public WeveSharedYourContactDetailsWithEmployersPage ContinueToWeveSharedYourContactDetailsWithEmployersPage()
+        {
+            ContinueToNextPage();
+            return new WeveSharedYourContactDetailsWithEmployersPage(_context);
+        }
+        public EditProvidersContactDetailsPage ChangeProviderContactDetails()
+        {
+            formCompletionHelper.Click(ChangeEmail);
+            return new EditProvidersContactDetailsPage(_context);
+        }
+        public ConfirmProvidersContactDetailsPage BackToProvidersContactDetailsPage()
+        {
+            formCompletionHelper.Click(BackLink);
+            return new ConfirmProvidersContactDetailsPage(_context);
+        }
+        public WhichEmployersAreYouInterestedInPage ChangeProviderLocationDetails()
+        {
+            formCompletionHelper.Click(ChangeLocation);
+            return new WhichEmployersAreYouInterestedInPage(_context);
+        }
+    }
+}

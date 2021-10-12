@@ -4,7 +4,7 @@
 @apprenticecommitmentsapi
 @outerapi
 @regression
-@deleteinvitation
+@deleteuser
 Scenario: AC_API_05A_New apprenticeship email sent
 	When an apprenticeship is posted
 	Then the apprentice details are updated in the login db

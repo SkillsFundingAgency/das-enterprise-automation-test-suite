@@ -9,58 +9,63 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         private By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
         private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
-        private By DurationInfo => By.XPath("//th[text()='Duration']/following-sibling::td");
-        private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date']/following-sibling::td");
-        private By PlannedEndDateInfo => By.XPath("//th[text()='Planned end date']/following-sibling::td");
-        protected By NotificationBar => By.CssSelector(".app-notification-banner");
-        protected By RolesYouTabHeaderText => By.XPath("//div[@class='govuk-tabs__panel']/h3[text()='Apprentice']/following-sibling::p[text()='These roles and responsibilities set out what is expected of you.']");
-        protected By RolesYourEmployerTab => By.Id("tab_tab_youremployer");
-        protected By RolesYourEmployerTabHeaderText => By.XPath("//div[@class='govuk-tabs__panel']/h3[text()='Your employer']/following-sibling::p[text()='These roles and responsibilities set out what is expected of your employer.']");
-        protected By RolesYourTrainingProviderTab => By.Id("tab_tab_yourprovider");
-        protected By RolesYourTrainingProviderTabHeaderText => By.XPath("//div[@class='govuk-tabs__panel']/h3[text()='Your training provider']/following-sibling::p[text()='These roles and responsibilities set out what is expected of your training provider.']");
+        private By EstimatedDurationInfo => By.XPath("//th[text()='Estimated duration']/following-sibling::td");
+        private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date for training']/following-sibling::td");
+        protected By GreenTickText => By.CssSelector(".app-notification-banner");
+        protected By YourResponsibilitiesTab => By.XPath("//a[@id='tab_tab_you' and text()='Your responsibilities']");
+        protected By YourEmployerTab => By.XPath("//a[@id='tab_tab_youremployer' and contains(text(),\"Your employer's responsibilities\")]");
+        protected By YourTrainingProviderTab => By.XPath("//a[@id='tab_tab_yourprovider' and contains(text(),\"Your training provider's responsibilities\")]");
+        protected By EmployerHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your employer's name\")]");
+        protected By EmployerHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetEmployerName()} is your employer's legal name registered with Companies House.  You may know them by their trading name instead.\")]");
+        protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
+        protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
 
         public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            VerifyPage(HeaderText, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+            VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
         }
 
-        public ApprenticeHomePage SelectYes()
+        public ApprenticeOverviewPage SelectYes()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             Continue();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeOverviewPage(_context);
         }
 
-        public YouCantConfirmYourApprenticeship SelectNo()
+        public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployer()
         {
             formCompletionHelper.SelectRadioOptionByText("No");
             Continue();
-            return new YouCantConfirmYourApprenticeship(_context);
+            return new YouCantConfirmYourEmployerPage(_context);
+        }
+
+        public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProvider()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            Continue();
+            return new YouCantConfirmYourTrainingProviderPage(_context);
+        }
+
+        public YouCantConfirmYourDetailsPage SelectNoConfirmYourDetails()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            Continue();
+            return new YouCantConfirmYourDetailsPage(_context);
         }
 
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);
 
         public string GetApprenticeshipLevelInfo() => pageInteractionHelper.GetText(LevelInfo);
 
-        public string GetApprenticeshipDurationInfo() => pageInteractionHelper.GetText(DurationInfo);
+        public string GetApprenticeshipEstimatedDurationInfo() => pageInteractionHelper.GetText(EstimatedDurationInfo);
 
         public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
 
-        public string GetApprenticeshipPlannedEndDateInfo() => pageInteractionHelper.GetText(PlannedEndDateInfo);
+        public void VerifyRolesYourResponsibilitiesTab() => VerifyPage(YourResponsibilitiesTab);
 
-        public void VerifyRolesYouTab() => VerifyPage(RolesYouTabHeaderText);
+        public void VerifyRolesYourEmployerTab() => VerifyPage(YourEmployerTab);
 
-        public void VerifyRolesYourEmployerTab()
-        {
-            formCompletionHelper.Click(RolesYourEmployerTab);
-            VerifyPage(RolesYourEmployerTabHeaderText);
-        }
-
-        public void VerifyRolesYourTrainingProviderTab()
-        {
-            formCompletionHelper.Click(RolesYourTrainingProviderTab);
-            VerifyPage(RolesYourTrainingProviderTabHeaderText);
-        }
+        public void VerifyRolesYourTrainingProviderTab() => VerifyPage(YourTrainingProviderTab);
     }
 }

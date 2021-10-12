@@ -25,6 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
 
+            _context.SetUser(_configSection.GetConfigSection<AuthTestUser>());
+            
             _context.SetUser(_configSection.GetConfigSection<LevyUser>());
 
             _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());

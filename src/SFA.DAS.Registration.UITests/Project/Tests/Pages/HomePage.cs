@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourFinancesLink => By.LinkText("Your finances");
+        protected By YourTransfersLink => By.LinkText("Your transfers");
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
@@ -22,6 +22,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         protected By EIHubLink => By.LinkText("Your hire a new apprentice payments");
+        protected By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
+        protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)

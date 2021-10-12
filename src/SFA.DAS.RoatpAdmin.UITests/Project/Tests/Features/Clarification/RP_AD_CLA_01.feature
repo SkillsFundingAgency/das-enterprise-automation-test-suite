@@ -5,10 +5,23 @@
 @roatpclarification
 @newroatpadmin
 @regression
-Scenario: RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PASS
+Scenario: RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PASS for existing provider
 	Given the admin lands on the Dashboard as Assessor1
-	When selects the Main Provider Route application from Clarification Tab
+	When selects the Main Provider Route For Existing Provider application from Clarification Tab
 	Then the Clarification assessor assesses all the sections of the application as PASS
 	Then the Clarification assessor assesses the outcome as PASS
 	Then the Outcome tab is updated as PASS
 	Then verify subsections outcome passed by Clarification assessor are updated as PASS
+
+#	@roatp
+#@rpadcla01
+#@roatpclarification
+#@newroatpadmin
+#@regression
+#Scenario: RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PASS
+#	Given the admin lands on the Dashboard as Assessor1
+#	When selects the Main Provider Route application from Clarification Tab
+#	Then the Clarification assessor assesses all the sections of the application as PASS
+#	Then the Clarification assessor assesses the outcome as PASS
+#	Then the Outcome tab is updated as PASS
+#	Then verify subsections outcome passed by Clarification assessor are updated as PASS

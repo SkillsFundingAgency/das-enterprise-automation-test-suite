@@ -7,9 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Confirm apprentice deletion";
 
-        private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
-
-        protected override By ContinueButton => By.CssSelector("#submit-confirm-delete");
+        private By ConfirmDeleteOptions => By.Id("confirm-true");
+        private By SaveAndContinueButton => By.Id("saveBtn");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -17,11 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderReviewYourCohortPage ConfirmDeleteAndSubmit()
+        internal ProviderApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "DeleteConfirmed-True");
-            Continue();
-            return new ProviderReviewYourCohortPage(_context);
+            javaScriptHelper.ClickElement(ConfirmDeleteOptions);
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }
 }

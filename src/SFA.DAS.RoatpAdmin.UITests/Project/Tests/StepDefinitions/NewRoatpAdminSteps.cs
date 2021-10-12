@@ -10,7 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
-        private RoatpAdminHomePage _roatpAdminHomePage;
         private readonly NewRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
         public NewRoatpAdminSteps(ScenarioContext context)
@@ -19,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
             _roatpAdminStepsHelper = new NewRoatpAdminStepsHelper(_context);
         }
 
-        [Given(@"the (Main provider) is already on the RoATP register as Active")]
+        [Given(@"the (Main provider|Employer provider) is already on the RoATP register as Active")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActive(string providerType)
         {
             VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActive());
@@ -48,11 +47,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 
         private ChangeStatusPage InitatesAnApplication(string providerType)
         {
-            _roatpAdminHomePage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+           var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
-            _roatpAdminHomePage.VerifyNewProviderHasBeenAdded();
+            searchPage = searchPage.VerifyNewProviderHasBeenAdded();
 
-            return _roatpAdminHomePage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
+            return searchPage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
         }
 
         private void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();

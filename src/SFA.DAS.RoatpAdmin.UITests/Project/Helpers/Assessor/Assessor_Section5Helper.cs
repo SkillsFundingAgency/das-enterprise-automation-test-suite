@@ -1,7 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
@@ -29,7 +27,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()

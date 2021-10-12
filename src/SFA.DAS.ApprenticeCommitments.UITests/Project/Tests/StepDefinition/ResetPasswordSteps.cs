@@ -7,21 +7,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         public ResetPasswordSteps(ScenarioContext context) : base(context) { }
 
-        [When(@"an apprentice submits to reset password")]
-        public void WhenAnApprenticeSubmitsToResetPassword()
+        [When(@"an apprentice submits Email to reset password for a new account pending personal details confirmation")]
+        public void WhenAnApprenticeSubmitsEmailToResetPasswordForANewAccountPendingPD()
         {
-            appreticeCommitmentsStepsHelper.CreateAccount();
-            appreticeCommitmentsStepsHelper.SubmitResetPassword();
+            var signIntoMyApprenticeshipPage = createAccountStepsHelper.CreateAccountAndSignOutBeforeConfirmingPersonalDetails();
+            passwordResetStepsHelper.ResetPasswordFromSignInPageForUnverifiedAccount(signIntoMyApprenticeshipPage);
         }
 
-        [Then(@"the apprentice can reset password using the invitation")]
-        public void ThenTheApprenticeCanResetPasswordUsingTheInvitation() => appreticeCommitmentsStepsHelper.ResetPassword().SignInToApprenticePortal();
+        [Then(@"the apprentice is able to reset the password using the invitation")]
+        public void ThenTheApprenticeIsAbleToResetThePasswordUsingTheInvitation() => passwordResetStepsHelper.ResetPasswordAndReturnToSignInPage().SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount();
 
-        [Then(@"an error is shown for invalid reset passwords")]
-        public void ThenAnErrorIsShownForInvalidResetPasswords()
+        [Then(@"an error is shown for entering mismatched reset passwords")]
+        public void ThenAnErrorIsShownForEnteringMismatchedResetPasswords()
         {
-            var resetPasswordPage = appreticeCommitmentsStepsHelper.GetResetPasswordPage();
-            appreticeCommitmentsStepsHelper.InvalidPassword(resetPasswordPage);
+            var resetPasswordPage = passwordResetStepsHelper.BuildResetPasswordPageUsingDBHelper();
+            passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateError(resetPasswordPage);
+        }
+
+        [Then(@"an error is shown for entering mismatched passwords")]
+        public void ThenAnErrorIsShownForEnteringMismatchedPasswords()
+        {
+            var createLoginDetailsPage = createAccountStepsHelper.NavigateToCreateLoginDetailsPage().EnterEmailAndConfirmEmail();
+            passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(createLoginDetailsPage);
         }
     }
 }

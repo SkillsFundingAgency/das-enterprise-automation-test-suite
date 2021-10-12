@@ -41,7 +41,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public IncentiveStatus Status { get; set; }
 
-        public int BreakInLearningDayCount { get; set; }
 
         [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<ApprenticeshipBreakInLearning> BreakInLearnings { get; set; }
@@ -51,6 +50,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         
         [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public Phase Phase { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
+        public WithdrawnBy? WithdrawnBy { get; set; }
 
         public ApprenticeshipIncentive()
         {
@@ -61,6 +62,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         }
     }
 
+    public enum WithdrawnBy
+    {
+        Employer,
+        Compliance
+    }
     public enum IncentiveStatus
     {
         Active,

@@ -33,7 +33,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()
@@ -68,7 +71,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailSystemsAndProcessesToCollectApprenticeshipData(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+               applicationroute == ApplicationRoute.EmployerProviderRoute ||
+               applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+               applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section5_SystemsAndProcessesToCollectApprenticeshipData()

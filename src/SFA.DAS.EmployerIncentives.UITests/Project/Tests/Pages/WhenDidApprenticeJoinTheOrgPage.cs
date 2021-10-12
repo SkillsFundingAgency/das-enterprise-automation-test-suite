@@ -11,6 +11,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
+
+        private By DateGroup => By.CssSelector(".govuk-date-input");
         private By DayInputField => By.Name("EmploymentStartDateDays");
         private By MonthInputField => By.Name("EmploymentStartDateMonths");
         private By YearInputField => By.Name("EmploymentStartDateYears");
@@ -18,12 +20,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false) => _context = context;
 
-        public ConfirmApprenticesPage EnterDOBAndContinue()
+        public ConfirmApprenticesPage EnterJoiningDateAndContinue()
         {
-            formCompletionHelper.EnterText(DayInputField, "01");
-            formCompletionHelper.EnterText(MonthInputField, "04");
-            formCompletionHelper.EnterText(YearInputField, "2021");
+            var apprentices = pageInteractionHelper.FindElements(DateGroup);
+
+            foreach (var apprentice in apprentices)
+            {
+                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), eIDataHelper.JoiningDay);
+                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), eIDataHelper.JoiningMonth);
+                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), "2021");
+            }
+
             Continue();
+
             return new ConfirmApprenticesPage(_context);
         }
     }

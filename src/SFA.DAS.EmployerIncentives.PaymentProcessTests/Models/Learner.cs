@@ -23,6 +23,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public bool? InLearning { get; set; }
         public DateTime? LearningStoppedDate { get; set; }
         public DateTime? LearningResumedDate { get; set; }
+        public bool SuccessfulLearnerMatchExecution { get; set; }
         public string RawJSON { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

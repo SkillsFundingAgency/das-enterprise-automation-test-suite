@@ -7,6 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ForgottenPasswordConfirmPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "Forgotten password";
+        protected override By ServiceHeader => NonClickableServiceHeader;
 
         private By Info => By.CssSelector("#main-content .govuk-body");
 

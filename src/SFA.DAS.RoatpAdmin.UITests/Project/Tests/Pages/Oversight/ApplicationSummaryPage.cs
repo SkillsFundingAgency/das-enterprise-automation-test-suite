@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
         private By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
         private By OversightSuccessful => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OptionSuccessfulAlreadyActive']");
+        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OversightStatus']");
         private By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
         private By OversightUnSuccessful => By.CssSelector("label[for='OptionUnsuccessful']");
         private By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");
@@ -23,6 +23,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By UnSuccessfulExternalText => By.Id("UnsuccessfulExternalText");
         private By InProgressInternalText => By.Id("InProgressInternalText");
         private By InProgressExternalText => By.Id("InProgressExternalText");
+        private By AppealOversightSuccessfulAlreadyActive = By.CssSelector("label[for= 'AppealStatus']");
+        private By AppealOversightSuccessfulAlreadyActiveTextBox = By.Id("SuccessfulAlreadyActiveText");
+        private By AppealOversightSuccessful = By.CssSelector("label[for= 'AppealStatus']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
 
@@ -74,6 +77,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OverturnModerationOutcome);
             return new ApplicationSummaryPage(_context);
         }
+        public ApplicationSummaryPage ApproveGatewayAndModerationOutcomes()
+        {
+            formCompletionHelper.ClickElement(ApproveGatewayOutcome);
+            formCompletionHelper.ClickElement(ApproveModertionOutcome);
+            return new ApplicationSummaryPage(_context);
+        }
 
         public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful()
         {
@@ -83,7 +92,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             Continue();
             return new AreYouSureUnSuccessfullPage(_context);
         }
-
+        public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful_ApprovedGatewayModerationOutcomes_Unsuccessful()
+        {
+            formCompletionHelper.ClickElement(OversightUnSuccessful);
+            formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments for approving Gateway and Moderation outcome");
+            Continue();
+            return new AreYouSureUnSuccessfullPage(_context);
+        }
         public AreYouSureInProgressPage MakeApplicationInProgress()
         {
             formCompletionHelper.ClickElement(OversightInProgress);
@@ -92,11 +107,43 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             Continue();
             return new AreYouSureInProgressPage(_context);
         }
-
-        public AppealThisMessagePage ClickAppealThisApplication()
+        public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessful_Appeal()
         {
-            formCompletionHelper.ClickLinkByText("Appeal this application");
-            return new AppealThisMessagePage(_context);
+            formCompletionHelper.ClickElement(AppealOversightSuccessful);
+            formCompletionHelper.EnterText(SuccessfulText, "Optional Successful Internal comments for Appeal");
+            Continue();
+            return new AreYouSureSuccessfullForAppealPage(_context);
+        }
+        public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessfulAlreadyActive_Appeal()
+        {
+            formCompletionHelper.ClickElement(AppealOversightSuccessfulAlreadyActive);
+            formCompletionHelper.EnterText(AppealOversightSuccessfulAlreadyActiveTextBox, "Optional Successful Already Active Internal comments for Appeal ");
+            Continue();
+            return new AreYouSureSuccessfullForAppealPage(_context);
+        }
+
+        public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessfulFitnessForFunding_Appeal()
+        {
+            formCompletionHelper.ClickElement(OversightSuccessfullFitnessForFunding);
+            formCompletionHelper.EnterText(SuccessfullFitnessForFundingText, "Optional Successful Fitness For Funding Internal comments for Appeal ");
+            Continue();
+            return new AreYouSureSuccessfullForAppealPage(_context);
+        }
+        public AreYouSureUnSuccessfullForAppealPage MakeApplicationUnSuccessful_Appeal()
+        {
+            formCompletionHelper.ClickElement(OversightUnSuccessful);
+            formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments ");
+            formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments ");
+            Continue();
+            return new AreYouSureUnSuccessfullForAppealPage(_context);
+        }
+        public AreYouSureInProgressForAppealPage MakeApplicationInProgress_Appeal()
+        {
+            formCompletionHelper.ClickElement(OversightInProgress);
+            formCompletionHelper.EnterText(InProgressInternalText, "In Progress Internal comments ");
+            formCompletionHelper.EnterText(InProgressExternalText, "In Progress External comments ");
+            Continue();
+            return new AreYouSureInProgressForAppealPage(_context);
         }
     }
 }

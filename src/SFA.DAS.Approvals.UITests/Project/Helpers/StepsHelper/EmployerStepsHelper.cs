@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
             _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
@@ -75,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
-        internal EditApprenticePage EditApprenticeDetailsPagePostApproval() => ViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
+        public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
         internal ReviewYourCohortPage EmployerReviewCohort()
         {
@@ -116,7 +116,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 
-            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, "Index was out of range", _context.ScenarioInfo.Title);
+            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
 
             _objectContext.UpdateCohortReference(cohortRef);
         }
@@ -257,7 +257,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             for (int i = 1; i < numberOfApprentices; i++)
             {
-                employerReviewYourCohortPage.SelectAddAnApprentice().SubmitValidApprenticeDetails(false);
+                employerReviewYourCohortPage.SelectAddAnApprentice().SubmitValidApprenticeDetails(false, i);
             }
 
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices));

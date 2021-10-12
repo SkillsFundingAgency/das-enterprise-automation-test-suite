@@ -16,6 +16,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public string NewValue { get; set; }
         public DateTime ChangedDate { get; set; }
     }
+
     public enum ChangeOfCircumstanceType : byte
     {
         StartDate = 1,

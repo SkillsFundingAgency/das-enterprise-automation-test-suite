@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <RootNamespace>SFA.DAS.Mailinator.Service</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+		<ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />
+	</ItemGroup>
+
+</Project>

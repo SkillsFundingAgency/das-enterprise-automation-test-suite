@@ -77,14 +77,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
         [NUnit.Framework.DescriptionAttribute("AP_PSR_01_CreateAndAmendReport")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest2")]
         public virtual void AP_PSR_01_CreateAndAmendReport()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
-                    "regression"};
+                    "regression",
+                    "ignoreindemo",
+                    "ignoreintest",
+                    "ignoreintest2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PSR_01_CreateAndAmendReport", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 9
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 10
  testRunner.Then("the employer can create a new report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
+#line 11
  testRunner.And("then employer can edit a submitted report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

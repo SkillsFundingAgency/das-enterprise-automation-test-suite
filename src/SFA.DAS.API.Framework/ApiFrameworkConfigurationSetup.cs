@@ -22,6 +22,8 @@ namespace SFA.DAS.API.Framework
         {
             _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
+            _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
+
             _context.Set(_configSection.GetConfigSection<Inner_CommitmentsApiAuthTokenConfig>());
 
             _context.Set(_configSection.GetConfigSection<Inner_CoursesApiAuthTokenConfig>());
@@ -30,7 +32,7 @@ namespace SFA.DAS.API.Framework
         [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
-            _context.Replace(new AssertHelper(_context.ScenarioInfo));
+            _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
 
             _context.Replace(new RandomDataGenerator());
         }

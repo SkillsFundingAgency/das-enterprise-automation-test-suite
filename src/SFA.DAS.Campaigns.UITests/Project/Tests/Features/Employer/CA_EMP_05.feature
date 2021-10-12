@@ -3,8 +3,6 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_05_Check End Point Assessments Page Details
-	Given the user navigates to the end point assessments page
-	Then the end point assessments sub headings are displayed
-	Then the links are not broken
-
+Scenario: CA_EMPP_05 Check that Levy Paying Employer Selected appropriate content displayed 
+	Given the user navigates to the funding an apprenticeship page
+	Then Employer selects Levy Paying and continues

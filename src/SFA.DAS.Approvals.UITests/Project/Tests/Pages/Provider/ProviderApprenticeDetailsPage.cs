@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -16,7 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
         private By ChangeEmployerLink => By.Id("change-employer-link");
-        private By ChangeRequestMessage => By.ClassName("das-notification");
+        private By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this apprenticeship')]");
+        private By ChangeRequestMessage => By.CssSelector("p.govuk-body");
         private By Name => By.Id("apprentice-name");
         private By DateOfBirth => By.Id("apprentice-dob");
         private By Reference => By.Id("apprentice-reference");
@@ -24,7 +26,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ViewChanges => By.Id("change-employer-link");        
         private By ViewChangesLink => By.LinkText("View changes");
         private By ViewDetailsLink => By.LinkText("View details");
-        
+        private By TriageLinkRestartLink => By.LinkText("View course mismatch");
+        private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
+
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -66,8 +70,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ConfirmChangeRequestPendingMessage()
         {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestHeading));
             string confirmationMessgage = pageInteractionHelper.GetText(ChangeRequestMessage);
-            pageInteractionHelper.VerifyText(confirmationMessgage, "Change request");
+            pageInteractionHelper.VerifyText(confirmationMessgage, "Change request pending:");
         }
 
         public void ConfirmNameDOBAndReferenceChanged(string expectedName, DateTime expectedDateOfBirth, string expectedReference)
@@ -81,12 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
 
         }
-
-        public string GetCoPBanner()
-        {
-            return pageInteractionHelper.GetText(ChangeOfPartyBanner);
-        }
-
+        
         public ProviderViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChanges);
@@ -106,5 +106,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }      
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
+        public string GetCoPBanner() => pageInteractionHelper.GetText(ChangeOfPartyBanner);
+
+        public bool IsPricemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkUpdateLink);
+
+        public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
+
     }
 }

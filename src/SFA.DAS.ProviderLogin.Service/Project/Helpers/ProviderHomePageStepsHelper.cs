@@ -31,8 +31,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);
 
-        public ProviderHomePage GoToProviderHomePageInNewTab() => GoToProviderHomePage(_login, true);
-
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
             if (newTab)

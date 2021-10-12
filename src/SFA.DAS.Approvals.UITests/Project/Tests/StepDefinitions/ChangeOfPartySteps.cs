@@ -3,7 +3,6 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Linq;
@@ -124,9 +123,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToYourCohorts()
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
-                .SelectContinueToApproval()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+                .SubmitApprove();
         }
 
         [When(@"Provider deletes the Cohort")]
@@ -266,7 +263,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the new employer.";
+            string expectedText = "You have made a change of employer request. It’s now with the new employer for review.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
@@ -282,7 +279,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "The new employer has requested changes to this apprentice's details.";
+            string expectedText = "The new employer has reviewed the change of employer request. You need to review the new details.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
