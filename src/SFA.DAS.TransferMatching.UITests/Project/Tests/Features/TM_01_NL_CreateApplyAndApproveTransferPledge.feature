@@ -2,7 +2,6 @@
 
 @regression
 @transfermatching
-@validatepledgeamount
 Scenario: TM_01_NL_Create Apply and Approve transfer pledge
 	Given the levy employer logins using existing transfer matching account
 	Then the levy employer can create pledge using default criteria

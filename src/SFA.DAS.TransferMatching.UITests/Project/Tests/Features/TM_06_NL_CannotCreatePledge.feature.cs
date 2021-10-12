@@ -77,16 +77,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TM_06_NL_Non Levy User Cannot Create Pledge")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        [NUnit.Framework.CategoryAttribute("validatepledgeamount")]
         public virtual void TM_06_NL_NonLevyUserCannotCreatePledge()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfermatching",
-                    "validatepledgeamount"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_06_NL_Non Levy User Cannot Create Pledge", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +104,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the non levy employer logins using existing non levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.Then("the non levy employer cannot create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+ testRunner.Then("the user can not create transfer pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

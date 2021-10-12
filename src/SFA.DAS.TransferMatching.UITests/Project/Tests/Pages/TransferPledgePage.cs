@@ -5,7 +5,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class TransferPledgePage : TransferMatchingBasePage
     {
-        protected override string PageTitle => $"Transfer pledge {objectContext.GetPledgeId()}";
+        protected override string PageTitle => $"Transfer pledge {objectContext.GetPledgeDetail().PledgeId}";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
