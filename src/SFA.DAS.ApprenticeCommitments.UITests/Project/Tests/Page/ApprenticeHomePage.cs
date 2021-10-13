@@ -11,6 +11,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
         private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
 
+        private By CompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--green");
+        private By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
+
         public ApprenticeHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -28,5 +31,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.Click(HelpAndSupportSectionLink);
             return new HelpAndSupportPage(_context);
         }
+
+        public void VerifyCompleteTag() => VerifyPage(CompleteStatusSelector);
+
+        public void VerifyInCompleteTag() => VerifyPage(InCompleteStatusSelector);
     }
 }

@@ -67,9 +67,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return OpenInvitation(registrationId);
         }
 
-        public ApprenticeOverviewPage ConfirmApprenticeshipDetail()
+        public ApprenticeOverviewPage CreateAccountAndConfirmApprenticeshipViaDb()
         {
-            var page = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
+            var page = ConfirmIdentityAndGoToApprenticeHomePage();
 
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
 
@@ -80,7 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             CreateApprenticeshipViaApiRequest();
             
-            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity(); 
+            var apprenticeHomePage = ConfirmIdentityAndGoToApprenticeHomePage(); 
             
             _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(GetApprenticeEmail());
             
@@ -90,6 +90,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
         {
             CreateApprenticeshipViaApiRequest();
+
             return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
@@ -98,6 +99,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
+
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToApprenticeHomePage();
 
         private StartPage OpenInvitation(string registrationId)
         {
