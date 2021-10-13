@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using System;
+using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
@@ -19,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task TakeDataSnapshot()
         {
-            var file = Path.Combine(Directory.GetCurrentDirectory(), "EI_data_snapshot_{DateTime.Now:yyyy-MM-ddTHH-mm-ss}.xlsx");
+            var file = Path.Combine(Directory.GetCurrentDirectory(), $"EI_data_snapshot_{DateTime.Now:yyyy-MM-ddTHH-mm-ss}.xlsx");
 
             await WriteToExcel(file);
 
