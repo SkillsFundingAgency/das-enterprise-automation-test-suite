@@ -43,25 +43,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
 
-                Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count}int the aComt db for email '{email}'");
+                Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
 
                 registrationId = registrationIds.First();
-            });
-
-            return OpenInvitation(registrationId);
-        }
-
-        public StartPage GetStartPage()
-        {
-            string registrationId = string.Empty;
-
-            RetryOnNUnitException(() =>
-            {
-                string email = GetApprenticeEmail();
-
-                registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
-
-                Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
             });
 
             return OpenInvitation(registrationId);
@@ -98,13 +82,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
-        public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
+        public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
         public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToApprenticeHomePage();
 
         private StartPage OpenInvitation(string registrationId)
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
+
+            _objectContext.SetRegistrationId(registrationId);
 
             return new StartPage(_context);
         }

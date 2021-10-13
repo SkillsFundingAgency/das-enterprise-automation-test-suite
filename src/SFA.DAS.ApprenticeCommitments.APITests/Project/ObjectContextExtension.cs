@@ -9,6 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string AccountIdKey = "accountid";
         private const string CommitmentsApprenticeshipIdKey = "commitmentsapprenticeshipid";
         private const string ApprenticeIdKey = "apprenticeid";
+        private const string RegistrationIdKey = "registrationidkey";
         private const string OrganisationNameKey = "organisationname";
         private const string FirstNameKey = "firstname";
         private const string LastNameKey = "lastname";
@@ -26,6 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetAccountId(this ObjectContext objectContext, long value) => objectContext.Replace(AccountIdKey, value);
         internal static void SetCommitmentsApprenticeshipId(this ObjectContext objectContext, long value) => objectContext.Replace(CommitmentsApprenticeshipIdKey, value);
         internal static void SetApprenticeId(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeIdKey, value);
+        public static void SetRegistrationId(this ObjectContext objectContext, string value) => objectContext.Replace(RegistrationIdKey, value);
         internal static void SetOrganisationName(this ObjectContext objectContext, string value) => objectContext.Replace(OrganisationNameKey, value);
         public static void SetFirstName(this ObjectContext objectContext, string value) => objectContext.Replace(FirstNameKey, value);
         public static void SetLastName(this ObjectContext objectContext, string value) => objectContext.Replace(LastNameKey, value);

@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public CreateAccountSteps(ScenarioContext context) : base(context) { }
 
         [Then(@"the apprentice can create account")]
-        public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyCompleteTag();
+        public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyInCompleteTag();
 
         [When(@"an apprenticeship is created via API request")]
         public void WhenAnApprenticeshipIsCreatedViaApiRequest() => createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
