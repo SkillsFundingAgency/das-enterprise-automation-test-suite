@@ -6,9 +6,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderReviewChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Review changes";
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
+        private By ApproveSelector => By.CssSelector("#ApproveChanges");
+
+        private By RejectSelector => By.CssSelector("#ApproveChanges-no");
 
         protected override By ContinueButton => By.CssSelector("#continue-button");        
 
@@ -16,14 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
-            SelectOption("Yes, approve these changes");
+            SelectOption(ApproveSelector);
             
             return new ProviderEditedApprenticeDetailsPage(_context);
         }
 
         public ProviderApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
-            SelectOption("No, reject these changes");
+            SelectOption(RejectSelector);
 
             return new ProviderApprenticeDetailsPage(_context);
         }
@@ -40,6 +45,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        private void SelectOption(string radioOption) { SelectRadioOptionByText(radioOption); Continue(); }
+        private void SelectOption(By by) { formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by)); Continue(); }
     }
 }
