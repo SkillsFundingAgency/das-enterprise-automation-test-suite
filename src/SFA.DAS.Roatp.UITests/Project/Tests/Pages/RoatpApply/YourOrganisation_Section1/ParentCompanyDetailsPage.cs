@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class ParentCompanyDetailsPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Enter your organisation's ultimate parent company details";
+        protected override string PageTitle => "Enter your organisation's UK ultimate parent company details";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
