@@ -50,7 +50,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _employerPortalLoginHelper.Login(_user, true);
 
-            var editAppPage = _employerStepsHelper.EditApprenticeDetailsPagePostApproval(false);
+            var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
+
+            if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
+
+            var editAppPage = appDetailPage.ClickEditApprenticeDetailsLink();
 
             _editedApprenticeCourseDataHelper.SelectAnyStandardCourse(editAppPage.GetSelectedCourse());
 
