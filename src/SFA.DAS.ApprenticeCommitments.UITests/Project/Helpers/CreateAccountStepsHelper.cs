@@ -35,20 +35,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public StartPage OpenLatestInvitation(int noOfRegistrations)
         {
-            string registrationId = string.Empty;
+            string email = GetApprenticeEmail();
 
             RetryOnNUnitException(() =>
-            {
-                string email = GetApprenticeEmail();
-                
+            {    
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
 
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
 
-                registrationId = registrationIds.First();
             });
 
-            return OpenInvitation(registrationId);
+            return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title));
         }
 
         public ApprenticeOverviewPage CreateAccountAndConfirmApprenticeshipViaDb()

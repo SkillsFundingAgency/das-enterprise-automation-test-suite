@@ -11,8 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
         private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
 
-        private By DashboardSection => By.CssSelector("#dashboard-section");
-
         private By CompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--green");
         private By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
@@ -20,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             _context = context;
             VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            VerifyPage(DashboardSection);
+            VerifyPage(ConfirmYourApprenticeshipNowLink);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
