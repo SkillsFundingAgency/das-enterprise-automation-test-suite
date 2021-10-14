@@ -35,7 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
 
-
         [Then(@"Employer is able to Pause the apprentice")]
         public void ThenEmployerIsAbleToPauseTheApprentice()
         {
@@ -116,11 +115,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to delete the cohort before approval")]
-        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval()
-        {
-            _reviewYourCohortPage.SelectDeleteThisGroup()
-                .ConfirmDeleteAndSubmit();
-        }
+        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval() => _reviewYourCohortPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
@@ -140,10 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices()
-        {
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
-        }
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
 
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]

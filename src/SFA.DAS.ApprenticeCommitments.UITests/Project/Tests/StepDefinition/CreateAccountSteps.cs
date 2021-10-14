@@ -37,6 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
         {
             _apprenticeHomePage = createAccountStepsHelper.CreateAccount().NavigateToOverviewPageFromTopNavigationLink();
+
             _apprenticeHomePage.VerifyDaysToConfirmWarning();
         }
 
