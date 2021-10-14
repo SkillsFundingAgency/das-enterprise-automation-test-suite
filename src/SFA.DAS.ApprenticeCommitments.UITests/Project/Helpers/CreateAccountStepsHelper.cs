@@ -7,6 +7,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -19,7 +20,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
-        private SignIntoMyApprenticeshipPage _signIntoMyApprenticeshipPage;
         protected readonly TabHelper tabHelper;
 
         public CreateAccountStepsHelper(ScenarioContext context)
@@ -33,32 +33,64 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             tabHelper = context.Get<TabHelper>();
         }
 
-        public StartPage GetStartPage()
+        public StartPage OpenLatestInvitation(int noOfRegistrations)
         {
+            string registrationId = string.Empty;
+
             RetryOnNUnitException(() =>
             {
-                string email = _objectContext.GetApprenticeEmail();
-                var registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
+                string email = GetApprenticeEmail();
+                
+                var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
 
-                Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
-                tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
+                Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count}int the aComt db for email '{email}'");
+
+                registrationId = registrationIds.First();
             });
 
-            return new StartPage(_context);
+            return OpenInvitation(registrationId);
+        }
+
+        public StartPage GetStartPage()
+        {
+            string registrationId = string.Empty;
+
+            RetryOnNUnitException(() =>
+            {
+                string email = GetApprenticeEmail();
+
+                registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
+
+                Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
+            });
+
+            return OpenInvitation(registrationId);
+        }
+
+        public ApprenticeOverviewPage ConfirmApprenticeshipDetail()
+        {
+            var page = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
+
+            _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
+
+            return page.NavigateToOverviewPageFromTopNavigationLink();
         }
 
         public ApprenticeHomePage CreateAccount()
         {
             CreateApprenticeshipViaApiRequest();
-            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
-            _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(_objectContext.GetApprenticeEmail());
+            
+            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity(); 
+            
+            _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(GetApprenticeEmail());
+            
             return apprenticeHomePage;
         }
 
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
         {
             CreateApprenticeshipViaApiRequest();
-            return _signIntoMyApprenticeshipPage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
+            return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
         public void CreateApprenticeshipViaApiRequest() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaCommitmentsJobApiRequest();
@@ -67,6 +99,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
+        private StartPage OpenInvitation(string registrationId)
+        {
+            tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
+
+            return new StartPage(_context);
+        }
+
         private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
+
+        private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }
 }

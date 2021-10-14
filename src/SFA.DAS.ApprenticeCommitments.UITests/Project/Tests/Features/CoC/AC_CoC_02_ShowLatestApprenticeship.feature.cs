@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_EAN_AUTH_01")]
-    public partial class RE_EAN_AUTH_01Feature
+    [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ShowLatestApprenticeship")]
+    public partial class AC_CoC_02_ShowLatestApprenticeshipFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RE_EAN_AUTH_01.feature"
+#line 1 "AC_CoC_02_ShowLatestApprenticeship.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_EAN_AUTH_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CoC_02_ShowLatestApprenticeship", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,29 +74,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved fav" +
-            "ourites, Help and all Settings pages")]
-        [NUnit.Framework.CategoryAttribute("authtests")]
+        [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ShowLatestApprenticeship")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("ignoreintest")]
-        [NUnit.Framework.CategoryAttribute("ignoreintest2")]
-        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
-        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
-        public virtual void RE_EAN_AUTH_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
+        [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
+        [NUnit.Framework.CategoryAttribute("onemonthbeforecurrentacademicyearstartdate")]
+        public virtual void AC_CoC_02_ShowLatestApprenticeship()
         {
             string[] tagsOfScenario = new string[] {
-                    "authtests",
+                    "apprenticecommitments",
                     "regression",
-                    "registration",
-                    "ignoreintest",
-                    "ignoreintest2",
-                    "ignoreinpp",
-                    "ignoreindemo"};
+                    "changeOfEmployer",
+                    "onemonthbeforecurrentacademicyearstartdate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved fav" +
-                    "ourites, Help and all Settings pages", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CoC_02_ShowLatestApprenticeship", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -116,17 +108,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 8
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("the apprentice completed confirm my apprenticeship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("the Employer can stop the live apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 11
- testRunner.When("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer has approved another apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("Employer is able to navigate to all the link under Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.And("a valid user can not access different account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("an unauthorised user can not access the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("only the latest apprenticeship should be visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

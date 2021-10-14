@@ -42,6 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _nextAcademicYearEndDate = GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
             Course = randomCourseHelper.RandomCourse();
+            OtherCourse = randomCourseHelper.OtherCourse(Course);
         }
 
         public int RandomCourse(List<string> availablecourses)
@@ -53,24 +54,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string Course { get; private set; }
 
+        public string OtherCourse { get; private set; }
+
         public int CourseDurationInMonths => 15;
 
         public DateTime CourseStartDate { get; internal set; }
 
         public DateTime CourseEndDate => CourseStartDate.AddMonths(CourseDurationInMonths);
 
-        private DateTime GenerateCourseStartDate()
+        public DateTime GenerateCourseStartDate(ApprenticeStatus apprenticeStatus)
         {
             DateTime start = _currentAcademicYearStartDate;
             DateTime end = _randomCourseHelper.RandomNumber % 2 == 0 ? _currentAcademicYearEndDate : DateTime.Now;
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
-            return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
-                   _apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
-                   _apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
-                   _apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
+            return apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
+                   apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
+                   apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
+                   apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
         }
 
+        private DateTime GenerateCourseStartDate() => GenerateCourseStartDate(_apprenticeStatus);
+        
         private DateTime GetLiveApprenticeStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
 
         private DateTime GetOneMonthBeforeCurrentAcademicYearStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;

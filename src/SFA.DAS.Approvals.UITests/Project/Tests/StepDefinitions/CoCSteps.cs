@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -15,6 +16,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class CoCSteps
     {
         private readonly ScenarioContext _context;
+
+        private readonly ObjectContext _objectContext;
 
         private readonly EmployerPortalLoginHelper _loginHelper;
 
@@ -31,6 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
              _dataHelper = context.Get<ApprenticeDataHelper>();
             _loginHelper = new EmployerPortalLoginHelper(context);
@@ -39,24 +43,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
+        [When(@"the Employer has approved another apprenticeship")]
+        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohort(false);
+
         [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
-        public void GivenTheEmployerHasApprovedApprentice()
-        {
-            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-
-            _employerStepsHelper.SetCohortReference(cohortReference);
-
-            _providerStepsHelper.Approve();
-        }
+        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohort(true);
 
         [Given(@"the datalock has been successful")]
-        public void GivenTheDatalockHasBeenSuccessful()
-        {
-            SetHasHadDataLockSuccessTrue();
-        }
+        public void GivenTheDatalockHasBeenSuccessful() => SetHasHadDataLockSuccessTrue();
 
         [When(@"the Employer edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
@@ -69,10 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer edits cost and course and confirm the changes before ILR match")]
-        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
-        {
-            EmployerEditsCostAndCourse();
-        }
+        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch() => EmployerEditsCostAndCourse();
 
         [When(@"the Employer edits cost and course and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
@@ -99,10 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the provider edits cost and course and confirm the changes before ILR match")]
-        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
-        {
-            ProviderEditsCostAndCourse();
-        }
+        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch() => ProviderEditsCostAndCourse();
 
         [When(@"the provider edits cost and course and confirm the changes after ILR match")]
         public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
@@ -221,6 +210,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectViewCurrentApprenticeDetails()
                 .ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
         }
-        
+
+        private void ApproveCohort(bool isFirstCourse)
+        {
+            if(isFirstCourse)
+                _loginHelper.Login(_context.GetUser<LevyUser>(), true);
+            else
+                _objectContext.SetIsSameApprentice();
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+
+            if (!(_objectContext.IsSameApprentice()))
+                _employerStepsHelper.SetCohortReference(cohortReference);
+            else
+                _employerStepsHelper.UpdateCohortReference(cohortReference);
+
+            _providerStepsHelper.Approve();
+        }
     }
 }
