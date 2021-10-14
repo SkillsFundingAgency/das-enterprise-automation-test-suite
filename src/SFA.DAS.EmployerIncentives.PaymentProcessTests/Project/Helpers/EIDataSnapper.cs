@@ -50,11 +50,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public static IEIDataSnapper Create(DbConfig dbConfig)
         {
-#if !DEBUG
-            return new LazyDataSnapper();
-#else
+//#if DEBUG
+//            return new LazyDataSnapper();
+//#else
             return new IEDataSnapper(dbConfig);
-#endif
+//#endif
         }
     }
 
