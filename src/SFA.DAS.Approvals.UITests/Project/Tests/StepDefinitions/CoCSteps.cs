@@ -43,12 +43,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
+        [Given(@"the Listed Employer has approved apprentice")]
+        public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, _context.GetUser<ASListedLevyUser>());
+
+
         [When(@"the Employer has approved another apprenticeship")]
-        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohort(false);
+        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohortForLevyUser(false);
 
         [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
-        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohort(true);
+        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohortForLevyUser(true);
 
         [Given(@"the datalock has been successful")]
         public void GivenTheDatalockHasBeenSuccessful() => SetHasHadDataLockSuccessTrue();
@@ -211,10 +215,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
         }
 
-        private void ApproveCohort(bool isFirstCourse)
+        private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
+
+        private void ApproveCohort(bool isFirstCourse, LoginUser loginUser)
         {
             if(isFirstCourse)
-                _loginHelper.Login(_context.GetUser<LevyUser>(), true);
+                _loginHelper.Login(loginUser, true);
             else
                 _objectContext.SetIsSameApprentice();
 
