@@ -37,7 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             string email = GetApprenticeEmail();
 
-            RetryOnNUnitException(() =>
+            RetryGetRegistrationId(() =>
             {    
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
 
@@ -92,7 +92,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new StartPage(_context);
         }
 
-        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action);
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }
