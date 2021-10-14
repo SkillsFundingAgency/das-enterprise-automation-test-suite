@@ -21,11 +21,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice can confirm apprenticeship")]
         public void ThenTheApprenticeCanConfirmApprenticeship()
         {
-            ThenTheApprenticeIsAbleToConfirmTheEmployer();
-            ThenTheApprenticeIsAbleToConfirmTheTrainingProvider();
-            ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails();
-            ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection();
-            ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities();
+            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromLinkOnTheHomePage();
+
+            _apprenticeOverviewPage = ConfirmAllSections(false);
 
             _apprenticeHomePage = _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateToHomePageFromTopNavigationLink();
 
@@ -51,6 +49,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to confirm the Employer details again as correct")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployerDetailsAgainAsCorrect() => ConfirmYourEmployer(StatusHelper.InCorrect);
 
+        [Then(@"the apprentice is able to confirm the Training Provider")]
+        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => ConfirmYourTrainingProvider(StatusHelper.InComplete);
+
+        [Then(@"the apprentice is able to confirm the Provider details again as correct")]
+        public void ThenTheApprenticeIsAbleToConfirmTheProviderDetailsAgainAsCorrect() => ConfirmYourTrainingProvider(StatusHelper.InCorrect);
+
+        [Then(@"the apprentice is able to confirm the Apprenticeship details")]
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => ConfirmApprenticeshipDetails(StatusHelper.InComplete, true);
+
+        [Then(@"the apprentice is able to confirm the Apprenticeship details again as correct")]
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetailsAgainAsCorrect() => ConfirmApprenticeshipDetails(StatusHelper.InCorrect, true);
+
+        [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
+        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+
+        [Then(@"the apprentice is able to confirm Roles and responsibilities")]
+        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities() => ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
         public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => _apprenticeOverviewPage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
@@ -64,12 +79,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             AssertSection1Status(StatusHelper.InCorrect);
         }
 
-        [Then(@"the apprentice is able to confirm the Training Provider")]
-        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => ConfirmYourTrainingProvider(StatusHelper.InComplete);
-        
-        [Then(@"the apprentice is able to confirm the Provider details again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmTheProviderDetailsAgainAsCorrect() => ConfirmYourTrainingProvider(StatusHelper.InCorrect);
-
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
         public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeOverviewPage.ConfirmAlreadyConfirmedTrainingProvider().ContinueToHomePage();
@@ -82,21 +91,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             AssertSection2Status(StatusHelper.InCorrect);
         }
 
-        [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails()
-        {
-            AssertSection3Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYes();
-            AssertSection3Status(StatusHelper.Complete);
-        }
-
-        [Then(@"the apprentice is able to confirm the Apprenticeship details again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetailsAgainAsCorrect()
-        {
-            AssertSection3Status(StatusHelper.InCorrect);
-            _apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYes();
-            AssertSection3Status(StatusHelper.Complete);
-        }
 
         [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
         public void ThenConfirmedApprenticeshipAlreadyPageIsDisplayedForTryingToConfirmAgain()
@@ -110,30 +104,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
             AssertSection3Status(StatusHelper.InComplete);
-            NavigateAndVerifyApprenticeshipDetails().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
+            NavigateAndVerifyApprenticeshipDetails(true).SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
             AssertSection3Status(StatusHelper.InCorrect);
-        }
-
-        [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
-        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection()
-        {
-            AssertSection4Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
-            AssertSection4Status(StatusHelper.Complete);
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
         public void ThenConfirmedHowTheApprenticeshipWillBeDeliveredSectionPageIsDisplayedForTryingToConfirmAgain() => 
             _apprenticeOverviewPage.ConfirmAlreadyConfirmedHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
 
-        [Then(@"the apprentice is able to confirm Roles and responsibilities")]
-        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities()
-        {
-            AssertSection5Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
-            AssertSection5Status(StatusHelper.Complete);
-        }
-
+        
         [Then(@"confirmed Roles already page is displayed for trying to confirm again")]
         public void ThenConfirmedRolesAlreadyPageIsDisplayedForTryingToConfirmAgain()
         {
@@ -143,14 +122,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [When(@"the apprentice confirms all the Apprenticeship sections")]
-        public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections()
-        {
-            ThenTheApprenticeIsAbleToConfirmTheEmployer();
-            ThenTheApprenticeIsAbleToConfirmTheTrainingProvider();
-            ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails();
-            ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection();
-            ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities();
-        }
+        public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections() => ConfirmAllSections(true);
 
         [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]
         public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus()
@@ -176,10 +148,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
         }
 
-        private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
+        private ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails(bool verify)
         {
             _confirmYourApprenticeshipDetailsPage = new ApprenticeOverviewPage(_context).ConfirmYourApprenticeshipDetails();
-            confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayed(_confirmYourApprenticeshipDetailsPage);
+            if (verify) confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayed(_confirmYourApprenticeshipDetailsPage);
             return _confirmYourApprenticeshipDetailsPage;
         }
 
@@ -189,7 +161,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
         {
             _confirmRolesAndResponsibilitiesPage = new ApprenticeOverviewPage(_context).ConfirmRolesAndResponsibilities();
+
             return confirmMyApprenticeshipStepsHelper.VerifyRolesAndResponsibilitiesPage(_confirmRolesAndResponsibilitiesPage);
+        }
+
+        private ApprenticeOverviewPage ConfirmAllSections(bool verifyApprenticeshipDetails)
+        {
+            _apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.InComplete);
+            _apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.InComplete);
+            _apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.InComplete, verifyApprenticeshipDetails);
+            _apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+            _apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
+            return _apprenticeOverviewPage;
         }
 
         private ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
@@ -211,6 +194,39 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeOverviewPage = new ApprenticeOverviewPage(_context).ConfirmYourTrainingProvider().SelectYes();
 
             AssertSection2Status(StatusHelper.Complete);
+
+            return _apprenticeOverviewPage;
+        }
+
+        private ApprenticeOverviewPage ConfirmApprenticeshipDetails(string initialStatus, bool verify)
+        {
+            AssertSection3Status(initialStatus);
+
+            _apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails(verify).SelectYes();
+
+            AssertSection3Status(StatusHelper.Complete);
+
+            return _apprenticeOverviewPage;
+        }
+
+        private ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(string initialStatus)
+        {
+            AssertSection4Status(initialStatus);
+
+            _apprenticeOverviewPage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
+
+            AssertSection4Status(StatusHelper.Complete);
+
+            return _apprenticeOverviewPage;
+        }
+
+        private ApprenticeOverviewPage ConfirmRolesAndResponsibilities(string initialStatus)
+        {
+            AssertSection5Status(initialStatus);
+
+            _apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
+
+            AssertSection5Status(StatusHelper.Complete);
 
             return _apprenticeOverviewPage;
         }
