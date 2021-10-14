@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -29,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
         public EditApprenticePage ClickEditApprenticeDetailsLink()
         {

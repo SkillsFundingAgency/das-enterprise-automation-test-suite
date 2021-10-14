@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            EnterUln();
             formCompletionHelper.ClickElement(SaveButton);
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            EnterUln();
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
@@ -98,7 +98,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
         {
-            var x = GetAllEditBoxes();
+            GetAllEditBoxes();
+
             int numberOfTextBoxesDisplayed = GetAllEditBoxes().Count;
 
             if (numberOfTextBoxesDisplayed != numberOfExpectedTextBoxes)
@@ -106,9 +107,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             else
                 return this;
         }
-        internal List<IWebElement> GetAllEditBoxes()
+
+        internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
+
+        private void EnterUln()
         {
-            return pageInteractionHelper.FindElements(InputBox);
+            var uln = apprenticeDataHelper.Uln();
+
+            if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
+
+            formCompletionHelper.EnterText(Uln, uln);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             _context = context;
 
-            var pledgeid = objectContext.GetPledgeId();
+            var pledgeid = objectContext.GetPledgeDetail().PledgeId;
 
             if (isAnonymousPledge)
             {

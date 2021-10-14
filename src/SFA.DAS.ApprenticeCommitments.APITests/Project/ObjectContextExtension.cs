@@ -32,7 +32,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetDateOfBirth(this ObjectContext objectContext, DateTime value) => objectContext.Replace(DateOfBirthKey, value);
         internal static void SetTrainingName(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingNameKey, value);
         internal static void SetEmployerAccountLegalEntityId(this ObjectContext objectContext, long value) => objectContext.Replace(EmployerAccountLegalEntityIdKey, value);
-        internal static void SetApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Set(EmailKey, value);
+        internal static void SetApprenticeDetail(this ObjectContext objectContext, string fName, string lName, DateTime dob, string email)
+        {
+            objectContext.SetFirstName(fName);
+            objectContext.SetLastName(lName);
+            objectContext.SetDateOfBirth(dob);
+            objectContext.Set(EmailKey, email);
+        }
         public static void UpdateApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Update(EmailKey, value);
         public static void SetApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Set(PasswordKey, value);
         public static void UpdateApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Update(PasswordKey, value);

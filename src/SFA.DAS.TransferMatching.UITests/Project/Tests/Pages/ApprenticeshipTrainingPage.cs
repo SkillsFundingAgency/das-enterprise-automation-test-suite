@@ -38,7 +38,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SetCourseCost();
 
-            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeAmount() / tMDataHelper.Cost) + 1);
+            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeDetail().Amount / tMDataHelper.Cost) + 1);
 
             formCompletionHelper.EnterText(NoOfApprenticeSelector, tMDataHelper.NoOfApprentice);
 

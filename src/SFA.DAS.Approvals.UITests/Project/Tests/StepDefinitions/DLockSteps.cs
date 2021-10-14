@@ -3,8 +3,6 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -37,22 +35,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         
         [When(@"the provider submit an ILR with course mismatch")]
         [When(@"the provider submit another ILR with course mismatch")]
-        public void WhenTheProviderSubmitAnILRWithCourseMismatch()
-        {
-            _dlockDataHelper.SubmitILRWithCourseMismatch();
-        }
+        public void WhenTheProviderSubmitAnILRWithCourseMismatch() => _dlockDataHelper.SubmitILRWithCourseMismatch();
 
         [When(@"the provider submit an ILR with course price mismatch")]
-        public void WhenTheProviderSubmitAnILRWithCoursePriceMismatch()
-        {
-            _dlockDataHelper.SubmitILRWithCourseAndPriceMismatch();            
-        }
+        public void WhenTheProviderSubmitAnILRWithCoursePriceMismatch() => _dlockDataHelper.SubmitILRWithCourseAndPriceMismatch();
 
         [When(@"provider requests Employer to update details in MA")]
-        public void WhenProviderRequestsEmployerToUpdateDetailsInMA()
-        {
-            ConfirmIlrismatch();
-        }
+        public void WhenProviderRequestsEmployerToUpdateDetailsInMA() => ConfirmIlrismatch();
 
         [Then(@"only course mismatch is displayed")]
         public void ThenOnlyCourseMismatchIsDisplayed()
@@ -104,10 +93,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can stop the live apprentice")]
-        public void ThenTheEmployerCanStopTheLiveApprentice()
-        {
-            _employerStepsHelper.StopApprenticeThisMonth();
-        }
+        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(); 
 
         [Then(@"the Employer can stop the waiting to start apprentice")]
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()

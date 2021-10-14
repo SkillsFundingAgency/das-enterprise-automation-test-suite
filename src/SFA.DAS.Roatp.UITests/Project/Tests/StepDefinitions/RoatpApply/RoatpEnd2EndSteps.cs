@@ -91,6 +91,31 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"verify the (Application withdrawn|Application successful|Application unsuccessful|Application in progress) page is displayed")]
         public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
 
+        [Then(@"verify the (Appeal successful|Appeal unsuccessful|Appeal in progress) page is displayed in Appeals tab")]
+        public void ThenVerifyTheAppealSuccessfulPageIsDisplayed(string expectedPage)
+        {
+            RestartRoatpApply("apply");
+
+            _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
+            new AppealSubmittedPage(_context).VerifyAppealOutcomePage(expectedPage);
+        }
+
+        [Then(@"verify the (Application successful|Application unsuccessful) page is displayed for Appealead Application")]
+        public void ThenVerifyTheApplicationPageIsDisplayedForAppeal(string expectedPage) =>
+            new AppealSubmittedPage(_context)
+            .AccessApplicationOverviewPage()
+            .VerifyApplicationOutcomePage(expectedPage, string.Empty);
+
+        [Then(@"verify (Appeal submitted) page is displayed once provider submits the APPEAL")]
+        public void ThenVerifyAppealSubmittedPageIsDisplayedOnceProviderSubmitsTheAPPEAL(string expectedPage)
+            { 
+            new ApplicationOutcomePage(_context)
+            .StartAppeal()
+            .SelectAppealOnAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
+            .EnterText_UploadFileForAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
+            .VerifyAppealOutcomePage(expectedPage);
+        }
+
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
 

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -58,7 +59,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public PledgeVerificationPage ContinueToPledgeVerificationPage()
         {
+            objectContext.SetPledgeCreatedOn(DateTime.UtcNow);
+
             Continue();
+
             return new PledgeVerificationPage(_context);
         }
 

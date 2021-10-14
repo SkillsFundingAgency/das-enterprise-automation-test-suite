@@ -5,6 +5,7 @@
 @registration
 @ignoreintest
 @ignoreintest2
+@ignoreinpp
 @ignoreindemo
 Scenario: RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved favourites, Help and all Settings pages
 	When the Employer logins using existing Levy Account

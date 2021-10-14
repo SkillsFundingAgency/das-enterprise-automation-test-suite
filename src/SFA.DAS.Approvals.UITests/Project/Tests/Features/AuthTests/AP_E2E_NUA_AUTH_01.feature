@@ -6,6 +6,7 @@
 @regression
 @ignoreintest
 @ignoreintest2
+@ignoreinpp
 @ignoreindemo
 Scenario: AP_E2E_NUA_AUTH_01 Create Employer send an approved cohort then provider approves the cohort
 	Given The User creates LevyEmployer account and sign an agreement
