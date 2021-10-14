@@ -83,7 +83,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(_employerStepsHelper.ViewCurrentApprenticeDetails(false).IsChangeOfProviderLinkDisplayed());
         }
 
-
         [When(@"provider sends COE request to new employer")]
         public void WhenProviderSendsCOERequestToNewEmployer()
         {
@@ -101,12 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"a new live apprenticeship record is created")]
-        public void ThenANewLiveApprenticeshipRecordIsCreated()
-        {
-            _employerStepsHelper
-                .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();
-        }
+        public void ThenANewLiveApprenticeshipRecordIsCreated() => _employerStepsHelper.GoToManageYourApprenticesPage().VerifyApprenticeExists();
 
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
@@ -127,16 +121,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider deletes the Cohort")]
-        public void WhenProviderDeletesTheCohort()
-        {
-            _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
-        }
+        public void WhenProviderDeletesTheCohort() => _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
 
         [Then(@"provider can change employer again")]
-        public void ThenProviderCanChangeEmployerAgain()
-        {
-            _providerStepsHelper.StartChangeOfEmployerJourney();
-        }
+        public void ThenProviderCanChangeEmployerAgain() => _providerStepsHelper.StartChangeOfEmployerJourney();
 
         [Then(@"a banner is displayed for provider with a link to ""(.*)"" cohort")]
         public void ThenABannerIsDisplayedForProviderWithALinkToCohort(string status)

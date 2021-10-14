@@ -5,6 +5,7 @@
 @regression
 @ignoreintest
 @ignoreintest2
+@ignoreinpp
 @ignoreindemo
 Scenario: AP_CoC_AUTH_01 Employer requests change to dob and reference After ILR match and Provider approves
 	Given the Employer has approved apprentice

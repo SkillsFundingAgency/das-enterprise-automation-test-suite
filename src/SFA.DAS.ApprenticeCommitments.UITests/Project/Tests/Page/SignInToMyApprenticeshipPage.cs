@@ -22,6 +22,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new CreateMyApprenticeshipAccountPage(_context);
         }
 
+        public ApprenticeHomePage GoToApprenticeHomePage()
+        {
+            SignIn();
+            return new ApprenticeHomePage(_context);
+        }
+
         public CoCConfirmMyApprenticeDetailsPage CocSignInToApprenticePortal()
         {
             SignIn();

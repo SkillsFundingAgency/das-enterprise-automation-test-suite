@@ -40,10 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
-        public void TheProviderAddsUlnsAndApprovesTheCohorts()
-        {
-            _providerStepsHelper.Approve();
-        }
+        public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerStepsHelper.Approve();
 
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
