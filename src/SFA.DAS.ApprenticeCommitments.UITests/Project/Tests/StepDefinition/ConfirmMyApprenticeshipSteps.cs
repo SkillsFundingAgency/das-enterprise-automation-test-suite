@@ -25,9 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _apprenticeOverviewPage = ConfirmAllSections(false);
 
-            _apprenticeHomePage = _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateToHomePageFromTopNavigationLink();
-
-            _apprenticeHomePage.VerifyCompleteTag();
+            _apprenticeHomePage = _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner().NavigateToHomePageFromTopNavigationLink().VerifyCompleteTag();
         }
 
         [Then(@"only the latest apprenticeship should be visible")]
@@ -168,12 +166,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private ApprenticeOverviewPage ConfirmAllSections(bool verifyApprenticeshipDetails)
         {
             _apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.InComplete);
+            VerifyInCompleteTag();
             _apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.InComplete);
+            VerifyInCompleteTag();
             _apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.InComplete, verifyApprenticeshipDetails);
+            VerifyInCompleteTag();
             _apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+            VerifyInCompleteTag();
             _apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
-            return _apprenticeOverviewPage;
+            return VerifyInCompleteTag();
         }
+
+        private ApprenticeOverviewPage VerifyInCompleteTag() => _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyInCompleteTag().NavigateToOverviewPageFromLinkOnTheHomePage();
 
         private ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
         {
