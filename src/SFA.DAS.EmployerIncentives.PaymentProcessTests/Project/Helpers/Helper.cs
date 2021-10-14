@@ -26,6 +26,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             _context = context;
             context.Set(new EISqlHelper(context.Get<DbConfig>()));
+            context.Set(IEDataSnapper.Create(context.Get<DbConfig>()));
             context.Set(new StopWatchHelper());
             context.Set(new CollectionCalendarHelper(context));
 
@@ -40,7 +41,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             context.Set(new BusinessCentralApiHelper(context));
             context.Set(new LearnerMatchApiHelper(context));
             context.Set(new LearnerDataHelper(context));
-            context.Set(new EIFunctionsHelper(eiConfig));            
+            context.Set(new EIFunctionsHelper(eiConfig));     
         }
     }
 }

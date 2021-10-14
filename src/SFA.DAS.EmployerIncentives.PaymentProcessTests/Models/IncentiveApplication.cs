@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ganss.Excel;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {
@@ -20,12 +21,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public long AccountId { get; set; }
         public long AccountLegalEntityId { get; set; }
         public DateTime DateCreated { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public IncentiveApplicationStatus Status { get; set; }
         public DateTime? DateSubmitted { get; set; }
         public string SubmittedByEmail { get; set; }
         public string SubmittedByName { get; set; }
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public IList<IncentiveApplicationApprenticeship> Apprenticeships { get; set; }
     }
 }
