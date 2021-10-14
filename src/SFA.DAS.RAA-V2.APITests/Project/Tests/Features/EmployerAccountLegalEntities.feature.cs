@@ -73,7 +73,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV2_API_(string testCaseId, string method, string endpoint, string responseStatus, string[] exampleTags)
+        public virtual void RV2_API_01_(string testCaseId, string method, string endpoint, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,7 +89,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_API_", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_API_01_", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -127,26 +127,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_API_: 001")]
+        [NUnit.Framework.DescriptionAttribute("RV2_API_01_: 001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raav2api")]
-        public virtual void RV2_API__001()
+        public virtual void RV2_API_01__001()
         {
 #line 6
-this.RV2_API_("001", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
+this.RV2_API_01_("001", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_API_: 002")]
+        [NUnit.Framework.DescriptionAttribute("RV2_API_01_: 002")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raav2api")]
-        public virtual void RV2_API__002()
+        public virtual void RV2_API_01__002()
         {
 #line 6
-this.RV2_API_("002", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
+this.RV2_API_01_("002", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
 #line hidden
         }
     }
