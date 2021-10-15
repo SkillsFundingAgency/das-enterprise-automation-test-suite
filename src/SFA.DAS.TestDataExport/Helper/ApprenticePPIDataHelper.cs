@@ -16,9 +16,13 @@ namespace SFA.DAS.TestDataExport.Helper
 
             var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
             var emaildomain = isPerfTest ? "email.com" : "mailinator.com";
-            
-            ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+
+            var firstName = randomDataGenerator.GenerateRandomAlphabeticString(10);
+            var lastName = randomDataGenerator.GenerateRandomAlphabeticString(10);
+
+            ApprenticeFirstname = _isApprenticeCommitments ? $"CMAD_F_{firstName}" : $"F_{firstName}";
+            ApprenticeLastname = _isApprenticeCommitments ? $"CMAD_L_{lastName}" : $"L_{lastName}";
+
             DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();

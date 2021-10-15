@@ -58,7 +58,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+            AddValidEmail();
+
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
@@ -71,11 +72,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AfterEditApproveApprenticeDetailsPage(_context);
         }
 
+        public AfterEditApproveApprenticeDetailsPage ContinueToAddValidEmailDetails()
+        {
+            AddValidEmail();
+            formCompletionHelper.ClickElement(EditSaveAndContinueButton);
+            return new AfterEditApproveApprenticeDetailsPage(_context);
+        }
+
         internal List<IWebElement> GetAllEditableBoxes()
         {
             return pageInteractionHelper.FindElements(InputBox("input[type='text']"))
                 .Concat(pageInteractionHelper.FindElements(InputBox("input[type='number']"))).ToList();
         }
+
+        private EditApprenticePage AddValidEmail() { formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail); return this; }
 
         private EditApprenticePage AddValidStartDate()
         {
@@ -92,6 +102,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
-
     }
 }
