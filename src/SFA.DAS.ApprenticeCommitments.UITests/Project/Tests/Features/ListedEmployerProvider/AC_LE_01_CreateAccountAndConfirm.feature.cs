@@ -120,9 +120,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("the apprentice can create account and confirm their details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
- testRunner.And("the apprentice can confirm apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

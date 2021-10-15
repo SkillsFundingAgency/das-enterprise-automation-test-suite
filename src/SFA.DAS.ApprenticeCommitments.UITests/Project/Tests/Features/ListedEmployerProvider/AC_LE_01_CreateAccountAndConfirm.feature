@@ -9,4 +9,3 @@ Scenario: AC_LE_01_CreateAccountAndConfirm
 	And the employer update the email address
 	Then the provider can review and approve the changes
 	Then the apprentice can create account and confirm their details
-	And the apprentice can confirm apprenticeship

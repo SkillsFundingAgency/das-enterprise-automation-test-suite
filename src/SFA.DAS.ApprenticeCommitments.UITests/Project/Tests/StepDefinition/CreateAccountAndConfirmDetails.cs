@@ -7,7 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CreateAccountAndConfirmDetails : BaseSteps
     {
         private readonly ScenarioContext _context;
-        private ApprenticeOverviewPage _apprenticeOverviewPage;
 
         public CreateAccountAndConfirmDetails(ScenarioContext context) : base(context) => _context = context;
 
@@ -16,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount() =>
-        _apprenticeOverviewPage = createAccountStepsHelper.CreateAccount().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
+        createAccountStepsHelper.CreateAccount().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
 
         [When(@"the apprentice confirms all the Apprenticeship sections")]
         public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections() => confirmMyApprenticeshipStepsHelper.ConfirmAllSections();
