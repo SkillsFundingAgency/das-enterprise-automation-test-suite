@@ -17,13 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
-        private By EmailField => By.Id("Email");
+        private By EmailField => By.CssSelector("#Email,#email");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditSaveAndContinueButton => By.Id("continue-button");
+        private By EditSaveAndContinueButton => By.CssSelector("#continue-button");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
@@ -72,11 +72,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AfterEditApproveApprenticeDetailsPage(_context);
         }
 
-        public AfterEditApproveApprenticeDetailsPage ContinueToAddValidEmailDetails()
+        public ConfirmChangesPage ContinueToAddValidEmailDetails()
         {
             AddValidEmail();
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
-            return new AfterEditApproveApprenticeDetailsPage(_context);
+            return ConfirmChangesPage();
         }
 
         internal List<IWebElement> GetAllEditableBoxes()
