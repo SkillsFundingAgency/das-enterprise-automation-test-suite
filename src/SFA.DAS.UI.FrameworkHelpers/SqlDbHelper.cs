@@ -79,7 +79,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
         protected object TryGetDataAsObject(string queryToExecute, string exception, string title)
-            => RetryOnException(() => GetDataAsObject(queryToExecute), exception, title, Logging.DefaultTimeout());
+            => RetryOnException(() => GetDataAsObject(queryToExecute), exception, title, Logging.LongerTimeout());
 
         private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString)
             => RetryOnException(() => ReadDataFromDataBase(queryToExecute, connectionString));

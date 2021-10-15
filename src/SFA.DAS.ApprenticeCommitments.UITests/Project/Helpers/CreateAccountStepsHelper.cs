@@ -35,41 +35,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public StartPage OpenLatestInvitation(int noOfRegistrations)
         {
-            string registrationId = string.Empty;
+            string email = GetApprenticeEmail();
 
-            RetryOnNUnitException(() =>
-            {
-                string email = GetApprenticeEmail();
-                
+            RetryGetRegistrationId(() =>
+            {    
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
 
-                Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count}int the aComt db for email '{email}'");
+                Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
 
-                registrationId = registrationIds.First();
             });
 
-            return OpenInvitation(registrationId);
+            return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title));
         }
 
-        public StartPage GetStartPage()
+        public ApprenticeOverviewPage CreateAccountAndConfirmApprenticeshipViaDb()
         {
-            string registrationId = string.Empty;
-
-            RetryOnNUnitException(() =>
-            {
-                string email = GetApprenticeEmail();
-
-                registrationId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
-
-                Assert.IsNotEmpty(registrationId, $"Registration id not found in the aComt db for email '{email}'");
-            });
-
-            return OpenInvitation(registrationId);
-        }
-
-        public ApprenticeOverviewPage ConfirmApprenticeshipDetail()
-        {
-            var page = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity();
+            var page = ConfirmIdentityAndGoToApprenticeHomePage();
 
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
 
@@ -80,7 +61,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             CreateApprenticeshipViaApiRequest();
             
-            var apprenticeHomePage = CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentity(); 
+            var apprenticeHomePage = ConfirmIdentityAndGoToApprenticeHomePage(); 
             
             _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(GetApprenticeEmail());
             
@@ -90,6 +71,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
         {
             CreateApprenticeshipViaApiRequest();
+
             return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
@@ -97,16 +79,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
-        public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => GetStartPage().CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
+        public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
+
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToApprenticeHomePage();
 
         private StartPage OpenInvitation(string registrationId)
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
 
+            _objectContext.SetRegistrationId(registrationId);
+
             return new StartPage(_context);
         }
 
-        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action);
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }

@@ -15,6 +15,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 $"Retry Action : {retryAction == null}");
         }
 
+        internal static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8) };
+
         internal static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
         internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };

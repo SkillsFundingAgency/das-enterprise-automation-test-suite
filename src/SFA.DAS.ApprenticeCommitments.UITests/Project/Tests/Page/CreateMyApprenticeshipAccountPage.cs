@@ -21,7 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeHomePage ConfirmIdentity()
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {
             EnterApprenticeDetails(objectContext.GetFirstName(),
                 objectContext.GetLastName(),

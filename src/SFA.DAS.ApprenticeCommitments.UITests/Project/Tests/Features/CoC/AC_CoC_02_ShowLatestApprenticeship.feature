@@ -2,7 +2,6 @@
 
 @apprenticecommitments
 @regression
-@changeOfEmployer
 @onemonthbeforecurrentacademicyearstartdate
 Scenario: AC_CoC_02_ShowLatestApprenticeship
 	Given the Employer has approved apprentice
