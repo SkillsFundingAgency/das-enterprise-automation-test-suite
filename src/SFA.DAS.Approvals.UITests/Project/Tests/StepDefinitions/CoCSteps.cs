@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
-        [Given(@"the Listed Employer has approved apprentice")]
+        [Given(@"the listed employer has approved apprentice")]
         public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, _context.GetUser<ASListedLevyUser>());
 
         [When(@"the Employer has approved another apprenticeship")]

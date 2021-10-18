@@ -237,13 +237,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SubmitApprove();
         }
 
-        public void VerifyReadOnlyEmail() => ProviderEditApprentice(true).VerifyReadOnlyEmail();
+        public void VerifyReadOnlyEmail() => ProviderEditApprentice().VerifyReadOnlyEmail();
 
-        public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice(false).AddValidEmailAndContinue().AcceptChangesAndSubmit();
+        public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
-            return SelectViewCurrentApprenticeDetails(true)
+            return SelectViewCurrentApprenticeDetails()
                 .ClickChangeEmployerLink()
                 .SelectChangeTheEmployer()
                 .SelectNewEmployer()
@@ -255,11 +255,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyChangeOfEmployerHasBeenRequested();
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(bool newTab) => SelectViewCurrentApprenticeDetails(newTab ? GoToProviderHomePage() : new ApprovalsProviderHomePage(_context, true));
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage());
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) => 
             page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
-        private ProviderEditApprenticePage ProviderEditApprentice(bool newTab) => SelectViewCurrentApprenticeDetails(newTab).ClickEditApprenticeDetailsLink();
+        private ProviderEditApprenticePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
     }
 }

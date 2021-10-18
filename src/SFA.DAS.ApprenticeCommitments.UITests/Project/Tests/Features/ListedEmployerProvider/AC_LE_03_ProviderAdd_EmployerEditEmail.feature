@@ -1,11 +1,11 @@
-﻿Feature: AC_LE_01_EmployerAdd_EmployerEditEmail
+﻿Feature: AC_LE_03_ProviderAdd_EmployerEditEmail
 
 @apprenticecommitments
 @regression
 @waitingtostartapprentice
 @aslistedemployer
-Scenario: AC_LE_01_EmployerAdd_EmployerEditEmail
-	Given the listed employer has approved apprentice
+Scenario: AC_LE_03_ProviderAdd_EmployerEditEmail
+	Given the listed provider has approved apprentice
 	And the employer update the email address
 	Then the provider can review and approve the changes
 	And the apprentice can create account and confirm their details
