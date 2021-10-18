@@ -35,10 +35,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             }
         }
 
-        [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => 
-            _apprenticeOverviewPage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
-
         [Given(@"an apprentice has created the account and about to validate personal details")]
         public void GivenAnApprenticeHasCreatedTheAccountAndAboutToValidatePersonalDetails()
         {

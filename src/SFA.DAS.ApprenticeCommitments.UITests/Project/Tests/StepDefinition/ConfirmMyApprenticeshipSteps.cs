@@ -105,29 +105,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(_alreadyConfirmedRolesAndResponsibilitiesPage);
             _alreadyConfirmedRolesAndResponsibilitiesPage.ContinueToHomePage();
         }
-
-        [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]
-        public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus()
-        {
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner().VerifyTrainingNameOnPageHeader().NavigateBackToOverviewPage();
-            _apprenticeOverviewPage.VerifyPageAfterApprenticeshipConfirm();
-        }
-
-        [Then(@"the apprentice is able to navigate to the Help and Support from the link on Overview page and Navigation menu link")]
-        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupport()
-        {
-            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToHomePageWithReturnToHomePageButton();
-            _apprenticeOverviewPage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
-            _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToOverviewPageWithBackLink();
-        }
-
-        [Then(@"the apprentice is able to navigate to Home page back and forth from Overview and Help pages")]
-        public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromOverviewAndHelpPages()
-        {
-            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
-        }
     }
 }
