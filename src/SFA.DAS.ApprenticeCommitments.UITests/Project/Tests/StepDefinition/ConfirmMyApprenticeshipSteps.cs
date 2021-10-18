@@ -9,7 +9,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         private readonly ScenarioContext _context;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
-        private ApprenticeHomePage _apprenticeHomePage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
         
@@ -29,28 +28,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => createAccountStepsHelper.CreateAccountAndConfirmApprenticeshipViaDb().SignOutFromTheService();
 
         [Then(@"the apprentice is able to confirm the Employer")]
-        public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(StatusHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Employer details again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmTheEmployerDetailsAgainAsCorrect() => confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(StatusHelper.InCorrect);
+        public void ThenTheApprenticeIsAbleToConfirmTheEmployerDetailsAgainAsCorrect() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(StatusHelper.InCorrect);
 
         [Then(@"the apprentice is able to confirm the Training Provider")]
-        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(StatusHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Provider details again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmTheProviderDetailsAgainAsCorrect() => confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(StatusHelper.InCorrect);
+        public void ThenTheApprenticeIsAbleToConfirmTheProviderDetailsAgainAsCorrect() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(StatusHelper.InCorrect);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(StatusHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details again as correct")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetailsAgainAsCorrect() => confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(StatusHelper.InCorrect);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetailsAgainAsCorrect() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(StatusHelper.InCorrect);
 
         [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
-        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm Roles and responsibilities")]
-        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities() => confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
         public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => _apprenticeOverviewPage.ConfirmAlreadyConfirmedEmployer().ContinueToHomePage();
@@ -60,7 +59,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.InComplete);
-            new ApprenticeOverviewPage(_context).ConfirmYourEmployer().SelectNoToConfirmEmployer().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = new ApprenticeOverviewPage(_context).ConfirmYourEmployer().SelectNoToConfirmEmployer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.InCorrect);
         }
 
@@ -72,7 +71,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheProviderDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.InComplete);
-            new ApprenticeOverviewPage(_context).ConfirmYourTrainingProvider().SelectNoToConfirmTrainingProvider().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = new ApprenticeOverviewPage(_context).ConfirmYourTrainingProvider().SelectNoToConfirmTrainingProvider().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.InCorrect);
         }
 
@@ -89,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.InComplete);
-            confirmMyApprenticeshipStepsHelper.NavigateAndVerifyApprenticeshipDetails().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.NavigateAndVerifyApprenticeshipDetails().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.InCorrect);
         }
 
