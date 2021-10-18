@@ -12,5 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the employer update the email address")]
         public void GivenTheEmployerUpdateTheEmailAddress() => _employerStepsHelper.EditApprenticeDetailsPagePostApproval().ContinueToAddValidEmailDetails().AcceptChangesAndSubmit();
+
     }
 }

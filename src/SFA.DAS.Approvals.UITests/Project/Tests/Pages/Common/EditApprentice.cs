@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -9,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By TrainingCost => By.CssSelector("#Cost, #cost");
 
         private By TrainingCourseContainer => By.CssSelector("#trainingCourse");
+
+        private By EmailField => By.CssSelector("#Email,#email");
 
         protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
@@ -35,5 +36,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             SelectCourse();
             return this;
         }
+
+        protected void EditEmail()
+        {
+            AddValidEmail();
+            Update();
+        }
+
+        protected void AddValidEmail() => formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+
     }
 }

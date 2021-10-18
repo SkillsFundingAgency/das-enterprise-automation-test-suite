@@ -105,11 +105,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can review and approve the changes")]
-        public void ThenTheEmployerCanReviewAndApproveTheChanges()
-        {
-            var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
-        }
+        public void ThenTheEmployerCanReviewAndApproveTheChanges() => _employerStepsHelper.ApproveChangesAndSubmit();
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
         public void ThenEmployerCannotMakeChangesToCostAndCourseAfterILRMatch()

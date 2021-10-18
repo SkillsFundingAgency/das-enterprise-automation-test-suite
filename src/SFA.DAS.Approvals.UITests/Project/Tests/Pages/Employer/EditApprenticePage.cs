@@ -17,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
-        private By EmailField => By.CssSelector("#Email,#email");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
@@ -74,8 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmChangesPage ContinueToAddValidEmailDetails()
         {
-            AddValidEmail();
-            formCompletionHelper.ClickElement(EditSaveAndContinueButton);
+            EditEmail();
             return ConfirmChangesPage();
         }
 
@@ -84,8 +82,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return pageInteractionHelper.FindElements(InputBox("input[type='text']"))
                 .Concat(pageInteractionHelper.FindElements(InputBox("input[type='number']"))).ToList();
         }
-
-        private EditApprenticePage AddValidEmail() { formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail); return this; }
 
         private EditApprenticePage AddValidStartDate()
         {

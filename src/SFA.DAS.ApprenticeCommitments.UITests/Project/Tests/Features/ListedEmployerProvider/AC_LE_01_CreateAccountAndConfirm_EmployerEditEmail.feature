@@ -1,10 +1,10 @@
-﻿Feature: AC_LE_01_CreateAccountAndConfirm
+﻿Feature: AC_LE_01_CreateAccountAndConfirm_EmployerEditEmail
 
 @apprenticecommitments
 @regression
 @waitingtostartapprentice
 @aslistedemployer
-Scenario: AC_LE_01_CreateAccountAndConfirm
+Scenario: AC_LE_01_CreateAccountAndConfirm_EmployerEditEmail
 	Given the Listed Employer has approved apprentice
 	And the employer update the email address
 	Then the provider can review and approve the changes

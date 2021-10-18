@@ -114,7 +114,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper
                 .GoToProviderHomePage(false)
-                .GoToYourCohorts()
+                .GoToApprenticeRequestsPage()
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SubmitApprove();

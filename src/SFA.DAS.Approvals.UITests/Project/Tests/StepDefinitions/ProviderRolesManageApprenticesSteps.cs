@@ -124,7 +124,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanCanAccessApprenticeRequestPageViaApprenticeRequestsLinkOnHomepageOrFromApprenticeRequestsMenuBar()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                                .GoToYourCohorts();
+                                .GoToApprenticeRequestsPage();
         }       
 
         [Then(@"the user cannot trigger change of employer journey using change link against the employer field")]

@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ListedEmp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_LE_01_CreateAccountAndConfirm")]
-    public partial class AC_LE_01_CreateAccountAndConfirmFeature
+    [NUnit.Framework.DescriptionAttribute("AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail")]
+    public partial class AC_LE_02_CreateAccountAndConfirm_ProviderEditEmailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_LE_01_CreateAccountAndConfirm.feature"
+#line 1 "AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_LE_01_CreateAccountAndConfirm", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ListedEmp
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_LE_01_CreateAccountAndConfirm")]
+        [NUnit.Framework.DescriptionAttribute("AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         [NUnit.Framework.CategoryAttribute("aslistedemployer")]
-        public virtual void AC_LE_01_CreateAccountAndConfirm()
+        public virtual void AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ListedEmp
                     "waitingtostartapprentice",
                     "aslistedemployer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_LE_01_CreateAccountAndConfirm", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_LE_02_CreateAccountAndConfirm_ProviderEditEmail", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,10 +112,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Listed Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("the employer update the email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider update the email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.Then("the apprentice can create account and confirm their details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
