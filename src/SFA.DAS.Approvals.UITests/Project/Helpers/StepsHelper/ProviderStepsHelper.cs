@@ -41,8 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public void ApproveChangesAndSubmit() => GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails().ClickReviewChanges().SelectApproveChangesAndSubmit();
-
+        public void ApproveChangesAndSubmit() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage()).ClickReviewChanges().SelectApproveChangesAndSubmit();
 
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
@@ -238,21 +237,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SubmitApprove();
         }
 
-        public void AddEmailAndSentToEmployerForApproval()
-        {
-            new ApprovalsProviderHomePage(_context, true)
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink()
-                .AddValidEmailAndContinue()
-                .AcceptChangesAndSubmit();
-        }
+        public void VerifyReadOnlyEmail() => ProviderEditApprentice(true).VerifyReadOnlyEmail();
+
+        public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice(false).AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
-            return GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
+            return SelectViewCurrentApprenticeDetails(true)
                 .ClickChangeEmployerLink()
                 .SelectChangeTheEmployer()
                 .SelectNewEmployer()
@@ -263,5 +254,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyAndSubmitChangeOfEmployerRequest()
                 .VerifyChangeOfEmployerHasBeenRequested();
         }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(bool newTab) => SelectViewCurrentApprenticeDetails(newTab ? GoToProviderHomePage() : new ApprovalsProviderHomePage(_context, true));
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) => 
+            page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+
+        private ProviderEditApprenticePage ProviderEditApprentice(bool newTab) => SelectViewCurrentApprenticeDetails(newTab).ClickEditApprenticeDetailsLink();
     }
 }

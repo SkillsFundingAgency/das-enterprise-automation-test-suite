@@ -17,6 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
+        [Then(@"the provider will no longer be able to change the email address")]
+        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.VerifyReadOnlyEmail();
+
         [Given(@"the provider update the email address")]
         public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.AddEmailAndSentToEmployerForApproval();
 
