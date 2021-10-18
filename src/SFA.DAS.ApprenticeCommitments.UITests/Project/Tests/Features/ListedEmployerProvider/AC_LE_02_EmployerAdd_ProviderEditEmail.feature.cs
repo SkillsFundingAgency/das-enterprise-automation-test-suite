@@ -77,14 +77,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ListedEmp
         [NUnit.Framework.DescriptionAttribute("AC_LE_02_EmployerAdd_ProviderEditEmail")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("aslistedemployer")]
         public virtual void AC_LE_02_EmployerAdd_ProviderEditEmail()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "waitingtostartapprentice",
+                    "liveapprentice",
                     "aslistedemployer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_LE_02_EmployerAdd_ProviderEditEmail", null, tagsOfScenario, argumentsOfScenario);

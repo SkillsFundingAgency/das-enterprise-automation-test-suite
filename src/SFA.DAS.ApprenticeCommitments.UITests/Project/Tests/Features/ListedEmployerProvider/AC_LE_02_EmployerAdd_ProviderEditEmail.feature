@@ -2,7 +2,7 @@
 
 @apprenticecommitments
 @regression
-@waitingtostartapprentice
+@liveapprentice
 @aslistedemployer
 Scenario: AC_LE_02_EmployerAdd_ProviderEditEmail
 	Given the Listed Employer has approved apprentice
