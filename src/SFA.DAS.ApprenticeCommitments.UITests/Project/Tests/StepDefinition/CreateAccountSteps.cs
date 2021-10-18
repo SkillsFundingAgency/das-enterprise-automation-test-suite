@@ -7,12 +7,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class CreateAccountSteps : BaseSteps
     {
-        private ApprenticeOverviewPage _apprenticeOverviewPage;
-
         private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
 
         public CreateAccountSteps(ScenarioContext context) : base(context) { }
-
 
         [When(@"an apprenticeship is created via API request")]
         public void WhenAnApprenticeshipIsCreatedViaApiRequest() => createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
