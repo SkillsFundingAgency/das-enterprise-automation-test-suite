@@ -2,8 +2,8 @@
 {
     internal static class SectionStatus
     {
-        internal static string Complete => "Complete";
+        internal static string Complete => "COMPLETE";
 
-        internal static string Incomplete => "Incomplete";
+        internal static string Incomplete => "INCOMPLETE";
     }
 }

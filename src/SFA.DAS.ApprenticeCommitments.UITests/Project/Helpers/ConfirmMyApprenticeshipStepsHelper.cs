@@ -37,12 +37,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmAllSections(ApprenticeOverviewPage apprenticeOverviewPage)
         {
-            return apprenticeOverviewPage.ConfirmYourEmployer().SelectYes()
-                .ConfirmYourTrainingProvider().SelectYes()
-                .ConfirmYourApprenticeshipDetails().SelectYes()
-                .ConfirmHowYourApprenticeshipWillBeDelivered().ContinueToHomePage()
-                .ConfirmRolesAndResponsibilities().ContinueToHomePage();
+            apprenticeOverviewPage = ConfirmYourEmployer(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmYourTrainingProvider(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(apprenticeOverviewPage);
+
+            return apprenticeOverviewPage;
         }
+
+        public ApprenticeOverviewPage ConfirmYourEmployer(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourEmployerPage().SelectYes();
+
+        public ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYes();
+
+        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYes();
+        
+        public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
+        
+        public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmRolesAndResponsibilitiesPage().ContinueToHomePage();
 
         public ApprenticeOverviewPage ConfirmAllSections()
         {
@@ -64,7 +76,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection1Status(initialStatus);
 
-            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).ConfirmYourEmployer().SelectYes();
+            var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
 
             AssertSection1Status(StatusHelper.Complete);
 
@@ -76,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
             AssertSection2Status(initialStatus);
 
-            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).ConfirmYourTrainingProvider().SelectYes();
+            var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
 
             AssertSection2Status(StatusHelper.Complete);
 
@@ -98,7 +110,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection4Status(initialStatus);
 
-            var apprenticeOverviewPage = NavigateToConfirmHowYourApprenticeshipWillBeDelivered().ContinueToHomePage();
+            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
 
             AssertSection4Status(StatusHelper.Complete);
 
@@ -118,35 +130,38 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
-            var page = new ApprenticeOverviewPage(_context).ConfirmYourApprenticeshipDetails();
+            var page = new ApprenticeOverviewPage(_context).GoToConfirmYourApprenticeshipDetailsPage();
 
             VerifyApprenticeshipDataDisplayed(page);
 
             return page;
         }
 
-        private ConfirmHowYourApprenticeshipWillBeDeliveredPage NavigateToConfirmHowYourApprenticeshipWillBeDelivered() =>
-            new ApprenticeOverviewPage(_context).ConfirmHowYourApprenticeshipWillBeDelivered();
-
         private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
         {
-            var page = new ApprenticeOverviewPage(_context).ConfirmRolesAndResponsibilities();
+            var page = new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
 
             return VerifyRolesAndResponsibilitiesPage(page);
         }
 
-        public void AssertSection1Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section1, expectedStatus);
+        public ApprenticeOverviewPage AssertSection1Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section1, expectedStatus);
 
-        public void AssertSection2Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section2, expectedStatus);
+        public ApprenticeOverviewPage AssertSection2Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section2, expectedStatus);
 
-        public void AssertSection3Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section3, expectedStatus);
+        public ApprenticeOverviewPage AssertSection3Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section3, expectedStatus);
 
-        public void AssertSection4Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section4, expectedStatus);
+        public ApprenticeOverviewPage AssertSection4Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section4, expectedStatus);
 
-        public void AssertSection5Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section5, expectedStatus);
+        public ApprenticeOverviewPage AssertSection5Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section5, expectedStatus);
 
-        public void AssertSectionStatus(string sectionName, string expectedStatus) =>
-            Assert.AreEqual(expectedStatus, new ApprenticeOverviewPage(_context).GetTheSectionStatus(sectionName));
+        public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
+        {
+            var page = new ApprenticeOverviewPage(_context);
+
+            Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
+            
+            return page;
+        }
 
         public void VerifyApprenticeshipDataDisplayed(ConfirmYourApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
         {

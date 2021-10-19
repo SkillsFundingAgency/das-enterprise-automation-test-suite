@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ASCoCEmployerUser _user;
 
-        private CoCConfirmMyApprenticeDetailsPage coCConfirmMyApprenticeDetailsPage;
+        private ApprenticeOverviewPage _apprenticeOverviewPage;
 
         public CocSteps(ScenarioContext context) : base(context)
         {
@@ -69,38 +69,48 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
 
-            coCConfirmMyApprenticeDetailsPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
+            _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
         }
 
-        [Then(@"only employer details section should be marked as Incomplete")]
-        public void ThenOnlyEmployerDetailsSectionShouldBeMarkedAsIncomplete()
+        [Then(@"only the employer and apprenticeship detail sections should be marked as Incomplete")]
+        public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Complete);
+            AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
 
-            coCConfirmMyApprenticeDetailsPage.VerifyEmployerOnlyCoCNotification();
+            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
         }
 
-        [Then(@"the apprenticeship details section on the overview page is marked as Incomplete")]
-        public void ThenTheApprenticeshipDetailsSectionOnTheOverviewPageIsMarkedAsIncomplete()
+        [Then(@"only the apprenticeship detail section is marked as Incomplete")]
+        public void ThenOnlyTheApprenticeshipDetailsSectionIsMarkedAsIncomplete()
         {
             AssertSectionStatus(SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
 
-            coCConfirmMyApprenticeDetailsPage.VerifyApprenticeshipOnlyCoCNotification();
+            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyApprenticeshipOnlyCoCNotification();
+        }
+
+        [Then(@"the apprentice is able to review and confirm employer and apprenticeship details section")]
+        public void ThenTheApprenticeIsAbleToReviewAndConfirmEmployerAndApprenticeshipDetailsSection()
+        {
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(_apprenticeOverviewPage);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
+            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
         }
 
         [Then(@"the apprentice is able to review and confirm apprenticeship details section")]
         public void ThenTheApprenticeIsAbleToReviewAndConfirmApprenticeshipDetailsSection()
         {
-            coCConfirmMyApprenticeDetailsPage.ConfirmYourApprenticeshipDetails().SelectYes().ConfirmYourApprenticeshipFromTheTopBanner();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
+
+            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
         }
 
         private void AssertSectionStatus(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
         {
-            var (sectionName1, section1Status) = coCConfirmMyApprenticeDetailsPage.GetConfirmYourEmployerStatus();
-            var (sectionName2, section2Status) = coCConfirmMyApprenticeDetailsPage.GetConfirmYourTrainingProviderStatus();
-            var (sectionName3, section3Status) = coCConfirmMyApprenticeDetailsPage.GetConfirmYourApprenticeshipStatus();
-            var (sectionName4, section4Status) = coCConfirmMyApprenticeDetailsPage.GetConfirmYourApprenticeshipDeliveryStatus();
-            var (sectionName5, section5Status) = coCConfirmMyApprenticeDetailsPage.GetConfirmYourRolesAndResponsibilityStatus();
+            var (sectionName1, section1Status) = _apprenticeOverviewPage.GetConfirmYourEmployerStatus();
+            var (sectionName2, section2Status) = _apprenticeOverviewPage.GetConfirmYourTrainingProviderStatus();
+            var (sectionName3, section3Status) = _apprenticeOverviewPage.GetConfirmYourApprenticeshipStatus();
+            var (sectionName4, section4Status) = _apprenticeOverviewPage.GetConfirmYourApprenticeshipDeliveryStatus();
+            var (sectionName5, section5Status) = _apprenticeOverviewPage.GetConfirmYourRolesAndResponsibilityStatus();
 
             Assert.Multiple(() =>
             {
