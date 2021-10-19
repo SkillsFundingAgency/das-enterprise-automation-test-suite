@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -26,9 +27,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (SectionHelper.Section5, GetConfirmationStatus(SectionHelper.Section5));
 
-        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification("Your employer and apprenticeship have been corrected. Please review and confirm the changes to your apprenticeship details.");
+        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification("Your employer and apprenticeship details have been corrected. Please review and confirm the changes to your apprenticeship details.");
 
         public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been corrected. Please review and confirm the changes to your apprenticeship details.");
+
+        public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
+        {
+            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed");
+
+            return this;
+        }
 
         public bool IsCoCNotificationDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
 

@@ -47,7 +47,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Given(@"a Course date CoC occurs on an apprenticeship on Employer side")]
         public void GivenACourseDateCoCOccursOnAnApprenticeshipOnEmployerSide()
         {
-            SetApprenticeName();
+            var apprenticeEmail = SetApprenticeDetails();
 
             _employerPortalLoginHelper.Login(_user, true);
 
@@ -62,6 +62,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             new ApprenticeCommitmentsEditApprenticePage(_context).EditCourseAndDate().AcceptChangesAndSubmit();
 
             _providerStepsHelper.ApproveChangesAndSubmit();
+
+            _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
         [When(@"the apprentice logs into the Apprentice portal")]
@@ -92,8 +94,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToReviewAndConfirmEmployerAndApprenticeshipDetailsSection()
         {
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(_apprenticeOverviewPage);
+
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
+
+            VerifyCocAndConfirmApprenticeship();
         }
 
         [Then(@"the apprentice is able to review and confirm apprenticeship details section")]
@@ -101,7 +105,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
 
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
+            VerifyCocAndConfirmApprenticeship();
         }
 
         private void AssertSectionStatus(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
@@ -122,7 +126,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             });
         }
 
-        private void SetApprenticeName()
+        private string SetApprenticeDetails()
         {
             var username = _user.CocApprenticeUser.ApprenticeUsername;
 
@@ -139,6 +143,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _objectContext.SetFirstName(firstName);
             _objectContext.SetLastName(lastName);
+
+            _aComtSqlDbHelper.ConfirmApprenticeship(username);
+
+            return username;
+        }
+
+        private void VerifyCocAndConfirmApprenticeship()
+        {
+            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
+
+            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
         }
     }
 }

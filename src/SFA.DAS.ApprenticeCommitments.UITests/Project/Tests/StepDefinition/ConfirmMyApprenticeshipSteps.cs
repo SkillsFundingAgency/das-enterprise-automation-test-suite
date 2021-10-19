@@ -16,12 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Then(@"the coc notification should not be displayed")]
-        public void ThenTheCocNotificationShouldNotBeDisplayed()
-        {
-            _apprenticeOverviewPage = new ApprenticeOverviewPage(_context, true);
-
-            Assert.AreEqual(false, _apprenticeOverviewPage.IsCoCNotificationDisplayed(), "CoC notification banner is displayed");
-        }
+        public void ThenTheCocNotificationShouldNotBeDisplayed() => _apprenticeOverviewPage = ApprenticeOverviewPage().VerifyCoCNotificationIsNotDisplayed();
 
         [Then(@"only the latest apprenticeship should be visible")]
         public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
@@ -67,7 +62,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmYourEmployerPage().SelectNoToConfirmEmployer().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourEmployerPage().SelectNoToConfirmEmployer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
         }
 
@@ -79,7 +74,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeConfirmsTheProviderDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmYourTrainingProviderPage().SelectNoToConfirmTrainingProvider().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourTrainingProviderPage().SelectNoToConfirmTrainingProvider().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.WaitingForCorrection);
         }
 
@@ -99,13 +94,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
         }
 
-
         [Then(@"the apprentice confirms the Apprenticeship details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
-            confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = _apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
-            confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
+            _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourApprenticeshipDetailsPage().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
@@ -120,5 +112,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(_alreadyConfirmedRolesAndResponsibilitiesPage);
             _alreadyConfirmedRolesAndResponsibilitiesPage.ContinueToHomePage();
         }
+
+        private ApprenticeOverviewPage ApprenticeOverviewPage() => new ApprenticeOverviewPage(_context);
     }
 }
