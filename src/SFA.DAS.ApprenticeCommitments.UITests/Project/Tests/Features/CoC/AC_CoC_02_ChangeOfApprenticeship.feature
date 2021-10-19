@@ -1,9 +1,9 @@
-﻿Feature: AC_CoC_01_PositiveCoCJourney
+﻿Feature: AC_CoC_02_ChangeOfApprenticeship
 
 @apprenticecommitments
 @regression
 @waitingtostartapprentice
-Scenario: AC_CoC_01_PositiveCoCJourney
+Scenario: AC_CoC_02_ChangeOfApprenticeship
 	Given a Course date CoC occurs on an apprenticeship on Employer side
 	When the apprentice logs into the Apprentice portal
 	Then the apprenticeship details section on the overview page is marked as Incomplete

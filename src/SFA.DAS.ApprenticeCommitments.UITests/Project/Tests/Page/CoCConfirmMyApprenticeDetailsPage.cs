@@ -20,13 +20,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private readonly ScenarioContext _context;
 
-        public CoCConfirmMyApprenticeDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyCocNotification();
-        }
+        public CoCConfirmMyApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public (string sectionName, string sectionStatus) GetConfirmYourEmployerStatus() => (SectionHelper.Section1, GetConfirmationStatus(SectionHelper.Section1));
+
+        public (string sectionName, string sectionStatus) GetConfirmYourTrainingProviderStatus() => (SectionHelper.Section2, GetConfirmationStatus(SectionHelper.Section2));
 
         public (string sectionName ,string sectionStatus) GetConfirmYourApprenticeshipStatus() => (SectionHelper.Section3, GetConfirmationStatus(SectionHelper.Section3));
+
+        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipDeliveryStatus() => (SectionHelper.Section4, GetConfirmationStatus(SectionHelper.Section4));
+
+        public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (SectionHelper.Section5, GetConfirmationStatus(SectionHelper.Section5));
 
         public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeshipDetails()
         {
@@ -34,7 +38,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ConfirmYourApprenticeshipDetailsPage(_context);
         }
 
-        public void VerifyCocNotification() => VerifyPage(NotificationBanner, "Changes have been made to your apprenticeship. Please review and confirm your new details.");
+        public void VerifyEmployerOnlyCoCNotification() => VerifyCocNotification("Your employer details been corrected. Please review and confirm the changes to your apprenticeship details");
+
+        public void VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been corrected. Please review and confirm the changes to your apprenticeship details");
+
+        private void VerifyCocNotification(string expected) => VerifyPage(NotificationBanner, expected);
 
         private string GetConfirmationStatus(string section) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(section, Status, AppStatusTableIdentifier, AppStatusRowIdentifier));
     }
