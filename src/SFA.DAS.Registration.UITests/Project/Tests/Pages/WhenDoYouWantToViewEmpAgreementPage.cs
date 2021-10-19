@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -18,6 +19,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
             VerifyPage();
+            StoreLegalEntityId(context);
+        }
+        
+        private void StoreLegalEntityId(ScenarioContext context)
+        {
+            var uri = new UriBuilder(Url).Uri;
+            var hashedLegalEntity = uri.Segments[2].Replace("/", "");
+            if (hashedLegalEntity.Length == 6)
+            {
+                context.Add("HashedLegalEntityId", hashedLegalEntity);
+            }
         }
 
         public SignAgreementPage SelectViewAgreementNowAndContinue()

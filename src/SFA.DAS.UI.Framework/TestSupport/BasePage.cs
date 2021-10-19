@@ -32,7 +32,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By AcceptCookieButton { get; }
 
         protected virtual bool CaptureUrl => true;
-        
+
+        protected string Url => _webDriver.Url;
+
         protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();

@@ -43,7 +43,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => _context.Set(new EISqlHelper(_dbConfig));
+        public void SetUpHelpers() {
+            _context.Set(new EISqlHelper(_dbConfig));
+            _context.Set(new CommitmentSqlHelper(_dbConfig));
+        }
 
         [BeforeScenario(Order = 43)]
         public void RemoveExistingApplications()
@@ -56,6 +59,25 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public void ResetPeriodEndInProgress()
         {
             _context.Get<EISqlHelper>().ResetPeriodEndInProgress();
+        }
+
+        [AfterScenario(Order = 43)]
+        [Scope(Tag = "employerincentives")]
+        public void RemoveLegalEntities()
+        {
+            try
+            {
+                if (_context.ContainsKey("HashedLegalEntityId"))
+                {
+                    var accountLegalEntityId = _context.Get<CommitmentSqlHelper>().GetAccountLegalEntityId(_context.Get<string>("HashedLegalEntityId"));
+                    _context.Get<EISqlHelper>().DeleteAccountLegalEntity(accountLegalEntityId);
+                    _context.Get<CommitmentSqlHelper>().DeleteAccountLegalEntity(_context.Get<string>("HashedLegalEntityId"));
+                }
+            }
+            catch 
+            {
+                // ignore
+            }
         }
     }
 }

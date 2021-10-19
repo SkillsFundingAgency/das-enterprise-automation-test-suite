@@ -101,7 +101,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _signAgreementPage = _searchForYourOrganisationPage
                 .SearchForAnOrganisation(orgType)
                 .SelectYourOrganisation(orgType)
-                .ContinueToAboutYourAgreementPage()
+                .ContinueToAboutYourAgreementPage()                
                 .SelectViewAgreementNowAndContinue();
 
         [When(@"enters an Invalid Company number for Org search")]

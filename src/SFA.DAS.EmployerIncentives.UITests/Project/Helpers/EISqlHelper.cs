@@ -31,6 +31,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             ExecuteSqlCommand(query);
         }
 
+        public void DeleteAccountLegalEntity(long accountLegalEntityId)
+        {
+            query = $"DELETE FROM [dbo].[Accounts] WHERE [AccountLegalEntityId] = {accountLegalEntityId};";
+
+            ExecuteSqlCommand(query);
+        }
+
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)
         {
             this.startMonth = startMonth; this.startYear = startYear;
