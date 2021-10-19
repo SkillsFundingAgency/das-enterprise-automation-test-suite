@@ -67,11 +67,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         {
             try
             {
-                if (_context.ContainsKey("HashedLegalEntityId"))
+                if (_context.ContainsKey("HashedCommitmentAccountId"))
                 {
-                    var accountLegalEntityId = _context.Get<CommitmentSqlHelper>().GetAccountLegalEntityId(_context.Get<string>("HashedLegalEntityId"));
+                    var accountLegalEntityId = _context.Get<CommitmentSqlHelper>().GetAccountLegalEntityId(_context.Get<string>("HashedCommitmentAccountId"));
                     _context.Get<EISqlHelper>().DeleteAccountLegalEntity(accountLegalEntityId);
-                    _context.Get<CommitmentSqlHelper>().DeleteAccountLegalEntity(_context.Get<string>("HashedLegalEntityId"));
+                    _context.Get<CommitmentSqlHelper>().DeleteAccountLegalEntity(_context.Get<string>("HashedCommitmentAccountId"));
                 }
             }
             catch 

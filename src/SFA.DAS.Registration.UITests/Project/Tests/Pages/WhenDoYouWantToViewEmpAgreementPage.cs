@@ -19,16 +19,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
             VerifyPage();
-            StoreLegalEntityId(context);
+            StoreHashedCommitmentAccountId(context);
         }
         
-        private void StoreLegalEntityId(ScenarioContext context)
+        private void StoreHashedCommitmentAccountId(ScenarioContext context)
         {
             var uri = new UriBuilder(Url).Uri;
             var hashedLegalEntity = uri.Segments[2].Replace("/", "");
             if (hashedLegalEntity.Length == 6)
             {
-                context.Add("HashedLegalEntityId", hashedLegalEntity);
+                context.Add("HashedCommitmentAccountId", hashedLegalEntity);
             }
         }
 
