@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
@@ -43,12 +44,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
+        [Given(@"the listed employer has approved apprentice")]
+        public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, _context.GetUser<ASListedLevyUser>());
+
         [When(@"the Employer has approved another apprenticeship")]
-        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohort(false);
+        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohortForLevyUser(false);
 
         [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
-        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohort(true);
+        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohortForLevyUser(true);
 
         [Given(@"the datalock has been successful")]
         public void GivenTheDatalockHasBeenSuccessful() => SetHasHadDataLockSuccessTrue();
@@ -76,15 +80,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider can review and approve the changes")]
         public void ThenTheProviderCanReviewAndApproveTheChanges() => _providerStepsHelper.ApproveChangesAndSubmit();
 
-
         [When(@"the provider edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheProviderEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
         {
             SetHasHadDataLockSuccessTrue();
 
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
                 .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
@@ -100,12 +101,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderEditsCostAndCourse();
         }
 
-        [Then(@"the Employer can review and approve the changes")]
-        public void ThenTheEmployerCanReviewAndApproveTheChanges()
-        {
-            var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
-        }
+        [Then(@"the employer can review and approve the changes")]
+        public void TheEmployerCanReviewAndApproveTheChanges() => _employerStepsHelper.ApproveChangesAndSubmit();
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
         public void ThenEmployerCannotMakeChangesToCostAndCourseAfterILRMatch()
@@ -133,9 +130,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             void provideraction()
             {
-                _providerStepsHelper.GoToProviderHomePage()
-                  .GoToProviderManageYourApprenticePage()
-                  .SelectViewCurrentApprenticeDetails()
+                  SelectViewCurrentApprenticeDetails()
                   .ClickEditApprenticeDetailsLink()
                   .EditCostCourseAndReference()
                   .AcceptChangesAndSubmit();
@@ -157,26 +152,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ProviderEditsCostAndCourse()
         {
-            _providerStepsHelper.GoToProviderHomePage()
-                 .GoToProviderManageYourApprenticePage()
-                 .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                  .ClickEditApprenticeDetailsLink()
                  .EditCostCourseAndReference()
                  .AcceptChangesAndSubmit();
         }
 
-        private void SetHasHadDataLockSuccessTrue()
-        {
-            _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
-        }
+        private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         
         [When(@"the provider edits Name Dob and Reference")]
         public void WhenTheProviderEditsDobAndReference()
         {
-            _providerStepsHelper
-                .GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
                 .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
@@ -204,17 +191,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var expectedReference = _editedApprenticeDataHelper.ProviderRefernce;
 
-            _providerStepsHelper
-                .GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
+            SelectViewCurrentApprenticeDetails().ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
         }
 
-        private void ApproveCohort(bool isFirstCourse)
+        private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
+
+        private void ApproveCohort(bool isFirstCourse, LoginUser loginUser)
         {
             if(isFirstCourse)
-                _loginHelper.Login(_context.GetUser<LevyUser>(), true);
+                _loginHelper.Login(loginUser, true);
             else
                 _objectContext.SetIsSameApprentice();
 
@@ -227,5 +212,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerStepsHelper.Approve();
         }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
+                _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
     }
 }

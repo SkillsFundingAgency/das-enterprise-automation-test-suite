@@ -112,6 +112,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
         }
 
-        public void VerifyDaysToConfirmWarning() => VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details");
+        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
     }
 }

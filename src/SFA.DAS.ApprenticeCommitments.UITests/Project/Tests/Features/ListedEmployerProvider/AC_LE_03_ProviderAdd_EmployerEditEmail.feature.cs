@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ListedEmployerProvider
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_CoC_04")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_CoC_04Feature
+    [NUnit.Framework.DescriptionAttribute("AC_LE_03_ProviderAdd_EmployerEditEmail")]
+    public partial class AC_LE_03_ProviderAdd_EmployerEditEmailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_CoC_04.feature"
+#line 1 "AC_LE_03_ProviderAdd_EmployerEditEmail.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_CoC_04", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_LE_03_ProviderAdd_EmployerEditEmail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,19 +74,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CoC_04 Provider requests changes to cost and course Before ILR match and Emplo" +
-            "yer approves")]
+        [NUnit.Framework.DescriptionAttribute("AC_LE_03_ProviderAdd_EmployerEditEmail")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("cocscenarios")]
-        public virtual void AP_CoC_04ProviderRequestsChangesToCostAndCourseBeforeILRMatchAndEmployerApproves()
+        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("aslistedemployer")]
+        public virtual void AC_LE_03_ProviderAdd_EmployerEditEmail()
         {
             string[] tagsOfScenario = new string[] {
+                    "apprenticecommitments",
                     "regression",
-                    "cocscenarios"};
+                    "waitingtostartapprentice",
+                    "aslistedemployer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_04 Provider requests changes to cost and course Before ILR match and Emplo" +
-                    "yer approves", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_LE_03_ProviderAdd_EmployerEditEmail", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,14 +108,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
- testRunner.When("the provider edits cost and course and confirm the changes before ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the listed provider has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.Then("the employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer update the email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("the apprentice can create account and confirm their details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("the employer will no longer be able to change the email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -17,13 +17,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
-        private By EmailField => By.Id("Email");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditSaveAndContinueButton => By.Id("continue-button");
+        private By EditSaveAndContinueButton => By.CssSelector("#continue-button");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
@@ -58,7 +57,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+            AddValidEmail();
+
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
@@ -69,6 +69,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
             return new AfterEditApproveApprenticeDetailsPage(_context);
+        }
+
+        public ConfirmChangesPage ContinueToAddValidEmailDetails()
+        {
+            EditEmail();
+            return ConfirmChangesPage();
         }
 
         internal List<IWebElement> GetAllEditableBoxes()
@@ -92,6 +98,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
-
     }
 }

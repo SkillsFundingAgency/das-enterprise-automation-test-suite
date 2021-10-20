@@ -40,7 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+
         internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
+
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
@@ -49,10 +51,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
         {
-            return apprenticeDetailsPage
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
+            return apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
         }
+
+        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
         internal StoppedApprenticeDetailsPage StopApprenticeThisMonth()
         {

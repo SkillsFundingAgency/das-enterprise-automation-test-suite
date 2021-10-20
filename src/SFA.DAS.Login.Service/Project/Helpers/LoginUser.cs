@@ -81,4 +81,6 @@
     public class Version5AgreementUser : LoginUser { }
 
     public class Version6AgreementUser : LoginUser { }
+
+    public class ASListedLevyUser : LoginUser { }
 }

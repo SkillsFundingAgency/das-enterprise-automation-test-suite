@@ -14,8 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By CourseOption => By.CssSelector("#trainingCourse");
         private By FirstOption => By.CssSelector("#trainingCourse__option--0");
-
+        
         public ProviderEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
+
+        public ProviderConfirmChangesPage AddValidEmailAndContinue()
+        {
+            EditEmail();
+            return ProviderConfirmChangesPage();
+        }
 
         public ProviderConfirmChangesPage EditCostCourseAndReference()
         {
@@ -34,6 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var course = (editedApprenticeCourseDataHelper.EditedCourse == "91") ? "Software Tester" : "Able Seafarer";
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(CourseOption, course); return pageInteractionHelper.FindElement(FirstOption); });
         }
+
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(_context);
     }
 }

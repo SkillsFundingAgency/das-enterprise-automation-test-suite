@@ -22,11 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected EditAppretinceNameDobAndReference(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-        public void EditApprenticeNameDobAndReference(string reference)
-        {
-            EditNameDobAndReference(reference)
-            .Update();
-        }
+        public void EditApprenticeNameDobAndReference(string reference) => EditNameDobAndReference(reference).Update();
 
         private EditAppretinceNameDobAndReference EditNameDobAndReference(string reference)
         {
