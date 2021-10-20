@@ -45,16 +45,27 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"Learner data is updated with a Break in Learning of 28 days before the first payment due date")]
         public async Task GivenABreakInLearningBeforeTheFirstPayment()
         {
+            await SetupBreakInLearning("2021-02-27T00:00:00", "2021-03-28T00:00:00");
+        }
+
+        [Given(@"Learner data is updated with a Break in Learning of less than 28 days before the first payment due date")]
+        public async Task GivenAShortBreakInLearningBeforeTheFirstPayment()
+        {
+            await SetupBreakInLearning("2021-02-27T00:00:00", "2021-03-26T00:00:00");
+        }
+
+        private async Task SetupBreakInLearning(string breakStart, string breakEnd)
+        {
             var priceEpisode1 = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
-                .WithEndDate("2021-02-27T00:00:00")
-                .WithPeriod(TestData.ApprenticeshipId, 7)                     
+                .WithEndDate(breakStart)
+                .WithPeriod(TestData.ApprenticeshipId, 7)
                 .Create();
 
             var priceEpisode2 = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
-                .WithStartDate("2021-03-28T00:00:00")
+                .WithStartDate(breakEnd)
                 .WithEndDate("2021-07-31T00:00:00")
                 .WithPeriod(TestData.ApprenticeshipId, 8)
                 .Create();
@@ -98,6 +109,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             breaksInLearning.Single().EndDate.Should().Be(new DateTime(2021, 03, 28));
         }
 
+        [Then(@"no Break in Learning is recorded")]
+        public async Task ThenNoBreakInLearningIsRecorded()
+        {
+            var breaksInLearning = Helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipBreakInLearning>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
+
+            breaksInLearning.Count.Should().Be(0);
+        }
+
         [Then(@"a new first pending payment of £(.*) is created for Period R(.*) (.*)")]
         public void ThenANewFirstPendingPaymentOfIsCreated(int amount, byte period, short year)
         {
@@ -108,6 +128,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenANewSecondPendingPaymentOfIsCreated(int amount, byte period, short year)
         {
             AssertPendingPayment(amount, period, year, EarningType.SecondPayment);
+        }
+
+        [Then(@"the pending payments are not changed")]
+        public void ThenThePendingPaymentsAreNotChanged()
+        {
+            AssertPendingPayment(1000, 7, 2021, EarningType.FirstPayment);
+            AssertPendingPayment(1000, 4, 2122, EarningType.SecondPayment);
         }
 
         [Then(@"the Learner is In Learning")]
