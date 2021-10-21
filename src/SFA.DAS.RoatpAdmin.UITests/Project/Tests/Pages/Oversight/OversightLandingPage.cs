@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         protected override string PageTitle => "RoATP application outcomes";
         protected By ApplicationsTab => By.Id("tab_applications");
         protected By ApplicationsStatus => By.CssSelector("[data-label='Outcome']");
-        protected By AppealStatus => OutcomeStatus;
+        protected By AppealStatus => By.CssSelector("[data-label='Appeal outcome']");
         protected override By OutcomeTab => By.Id("tab_outcomes");
         protected By AppealOutcomesTab => By.Id("tab_appealsoutcome");
         protected By AppealsTab => By.Id("tab_appeals");
