@@ -6,6 +6,10 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.1700" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 	</ItemGroup>
