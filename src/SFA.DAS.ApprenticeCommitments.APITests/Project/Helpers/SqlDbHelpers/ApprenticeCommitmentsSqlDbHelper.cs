@@ -55,6 +55,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))";
 
-        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query, "Index was out of range", scenarioTitle));
+        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query, scenarioTitle));
     }
 }
