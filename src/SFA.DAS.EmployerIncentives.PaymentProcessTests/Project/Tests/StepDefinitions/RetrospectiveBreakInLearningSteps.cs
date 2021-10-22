@@ -14,7 +14,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class RetrospectiveBreakInLearningSteps : StepsBase
     {
         private DateTime _initialStartDate;
-        private DateTime _initialEndDate;
         private List<PendingPayment> _newEarnings;
 
         protected RetrospectiveBreakInLearningSteps(ScenarioContext context) : base(context)
@@ -25,7 +24,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
             _initialStartDate = startDate;
-            _initialEndDate = endDate;
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -45,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"Learner data is updated with a Break in Learning of 28 days before the first payment due date")]
         public async Task GivenABreakInLearningBeforeTheFirstPayment()
         {
-            await SetupBreakInLearning("2021-02-27T00:00:00", "2021-03-28T00:00:00");
+            await SetupBreakInLearning("2021-02-25T00:00:00", "2021-03-26T00:00:00");
         }
 
         [Given(@"Learner data is updated with a Break in Learning of less than 28 days before the first payment due date")]
@@ -105,8 +103,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
             breaksInLearning.Count.Should().Be(1);
-            breaksInLearning.Single().StartDate.Should().Be(new DateTime(2021, 02, 28));
-            breaksInLearning.Single().EndDate.Should().Be(new DateTime(2021, 03, 28));
+            breaksInLearning.Single().StartDate.Should().Be(new DateTime(2021, 02, 26));
+            breaksInLearning.Single().EndDate.Should().Be(new DateTime(2021, 03, 26));
         }
 
         [Then(@"no Break in Learning is recorded")]
