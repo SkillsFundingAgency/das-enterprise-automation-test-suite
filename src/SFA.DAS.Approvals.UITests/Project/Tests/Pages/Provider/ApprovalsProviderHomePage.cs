@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
-        protected By YourCohortsLink => By.LinkText("Apprentice requests");
+        protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -62,9 +62,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(ManageYourFundingLink);
             return new ProviderFundingForNonLevyEmployersPage(_context);
         }
-        public ProviderApprenticeRequestsPage GoToYourCohorts()
+
+        public ProviderApprenticeRequestsPage GoToApprenticeRequestsPage()
         {
-            _formCompletionHelper.ClickElement(YourCohortsLink);
+            _formCompletionHelper.ClickElement(ApprenticeRequestsLink);
             return new ProviderApprenticeRequestsPage(_context);
         }
 

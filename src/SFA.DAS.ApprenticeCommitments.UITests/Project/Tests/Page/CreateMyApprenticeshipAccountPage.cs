@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
@@ -22,7 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeHomePage ConfirmIdentity()
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {
             EnterApprenticeDetails(objectContext.GetFirstName(),
                 objectContext.GetLastName(),

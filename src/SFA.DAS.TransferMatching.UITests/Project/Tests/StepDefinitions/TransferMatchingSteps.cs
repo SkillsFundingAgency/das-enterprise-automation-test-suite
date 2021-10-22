@@ -4,10 +4,13 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
+using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -19,11 +22,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
-        private readonly TransferMatchingUser _transferMatchingUser;
+        private MultipleAccountUser _transferMatchingUser;
         private string _sender;
         private string _receiver;
+        private bool _isAnonymousPledge;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -31,19 +36,48 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
-            _transferMatchingUser = context.GetUser<TransferMatchingUser>();
-            _sender = _transferMatchingUser.OrganisationName;
-            _receiver = _transferMatchingUser.SecondOrganisationName;
+            _isAnonymousPledge = false;
+            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
-        [When(@"the levy employer applies for the pledge")]
-        public void WhenTheLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
+        [Given(@"the levy employer who are currently sending transfer funds login")]
+        public void GivenTheLevyEmployerWhoAreCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUser>());
 
+
+        [Given(@"the levy employer who are not currently sending transfer funds login")]
+        public void GivenTheLevyEmployerWhoAreNotCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUserNoFunds>());
+
+        [Then(@"the levy employer can apply for transfer opportunities")]
+        public void ThenTheLevyEmployerCanApplyForTransferOpportunities() => NavigateToTransferMatchingPage().GoToFindABusinessPage();
+
+
+        [Given(@"the another levy employer creates a pledge")]
+        public void GivenTheAnotherLevyEmployerCreatesAPledge()
+        {
+            SignOut();
+
+            CreateATransferPledge(_context.GetUser<TransactorUser>());
+        }
+
+        [Given(@"the levy employer creates a pledge")]
+        public void GivenTheLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<LevyUser>());
+
+        [Given(@"the levy employer login using existing transactor user account")]
+        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => LoginAsSender(_context.GetUser<TransactorUser>());
+
+        [When(@"the receiver levy employer applies for the pledge")]
+        public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
+
+        [Then(@"the non levy employer can apply for the pledge")]
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
-        [Then(@"the Employer can approve the application")]
-        public void ThenTheEmployerCanApproveTheApplication()
+        [Then(@"the non levy employer cannot exceed the available pledge funding")]
+        public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding() 
+            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
+
+        [Then(@"the levy employer can approve the application")]
+        public void ThenTheLevyEmployerCanApproveTheApplication()
         {
             _accountSignOutHelper.SignOut();
 
@@ -58,13 +92,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
         }
 
+        [Then(@"the pledge is available to apply")]
+        public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
 
-        [When(@"the receiver applies for the pledge")]
-        public void WhenTheReceiverAppliesForThePledge()
+        [When(@"the transfer receiver applies for the pledge")]
+        public void TheTransferReceiverAppliesForThePledge()
         {
-            GoToTransferMacthingApplyUrl();
-
-            var signInPage = new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+            var signInPage = ApplyForTransferFunds();
 
             _objectContext.UpdateOrganisationName(_receiver);
 
@@ -73,34 +107,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SubmitApplication(new MyAccountTransferFundingPage(_context).GoToCreateATransfersApplicationPage(_receiver));
         }
 
-        [Given(@"the Employer logins using existing Transfer Matching Account")]
-        public void GivenTheEmployerLoginsUsingExistingTransferMatchingAccount()
-        {
-            var user = _context.GetUser<TransferMatchingUser>();
+        [Given(@"the levy employer logins using existing transfer matching account")]
+        public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, user)
-            {
-                OrganisationName = user.OrganisationName
-            };
+        [Then(@"the levy employer cannot exceed the maximum funding available")]
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
 
-            _multipleAccountsLoginHelper.Login(user, true);
-        }
-
-        [Then(@"the Employer cannot exceed the maximum funding available")]
-        public void ThenTheEmployerCannotExceedTheMaximumFundingAvailable()
-        {
-            string errorMessage = GoToEnterPlegeAmountPage().EnterMoreThanAvailableFunding().GetErrorMessage();
-
-            Assert.Multiple(() => 
-            {
-                StringAssert.Contains("There is a problem", errorMessage);
-
-                StringAssert.Contains("Enter a number between", errorMessage);
-            });
-        }
-
-        [Then(@"the Employer can create pledge using default criteria")]
-        public void ThenTheEmployerCanCreatePledgeUsingDefaultCriteria()
+        [Then(@"the levy employer can create pledge using default criteria")]
+        public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
             var page = CreateATransferPledge(true);
 
@@ -111,25 +125,47 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
-            SetPledgeId();
+            SetPledgeDetail();
         }
 
-        [Then(@"the Employer can create anonymous pledge using non default criteria")]
-        public void ThenTheEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
+        [Then(@"the levy employer can create anonymous pledge using non default criteria")]
+        public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
         {
-            _pledgeVerificationPage = CreateATransferPledge(false)
+            _isAnonymousPledge = true;
+
+           _pledgeVerificationPage = CreateATransferPledge(false)
                 .GoToAddtheLocationPage().EnterLocation()
                 .GoToChoosetheSectorPage().SelectSetorAndContinue()
                 .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
                 .ContinueToPledgeVerificationPage();
 
-            SetPledgeId();
+            SetPledgeDetail();
         }
 
-        protected void SetPledgeId() => _pledgeVerificationPage.SetPledgeId();
+        [Then(@"the levy employer can view pledges from verification page")]
+        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterAmountAndOrgName(showOrgName);
+        [Then(@"the user can view transfer pledge")]
+        public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
+
+        [Then(@"the levy employer currently receiving funds can not create pledge")]
+        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge()
+        {
+            new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
+
+            TheUserCanNotCreateTransferPledge();
+        }
+
+        [Then(@"the user can not create transfer pledge")]
+        public void TheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "User can create transfer pledge");
+
+        [Then(@"the levy employer can not apply for transfer opportunities")]
+        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), "User can apply for transfer oppurtunity");
+
+        protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
+
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
 
         private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage()
         {
@@ -140,29 +176,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .CaptureAvailablePledgeAmount();
         }
 
-        [Then(@"the Employer can view pledges from verification page")]
-        public void ThenTheEmployerCanViewPledges() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
-
-        [Then(@"the user can view transfer pledge")]
-        public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
-
-        [Then(@"the user can not create transfer pledge")]
-        public void ThenTheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "View user can create transfer pledge");
-
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
 
         private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
 
         private void GoToTransferMacthingApplyUrl()
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeId()));
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
         }
+
+        private void SignOut() => _accountSignOutHelper.SignOut();
+
+        private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
 
         private ApplicationSubmittedPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            return page.GoToApprenticeshipTrainingPage()
+            return GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
                 .GoToYourBusinessDetailsPage()
                 .EnterBusinessDetailsAndContinue()
@@ -173,17 +204,85 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .SubmitApplication();
         }
 
-        private void ApplyForAPledge(LoginUser user)
+        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(LoginUser user)
+        {
+            GoToTransferMatchingAndSignIn(user);
+
+            return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+        }
+
+        private ApplicationSubmittedPage ApplyForAPledge(LoginUser user)
+        {
+            GoToTransferMatchingAndSignIn(user);
+
+            return SubmitApplication(new CreateATransfersApplicationPage(_context));
+        }
+
+        private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
+
+        private void GoToTransferMatchingAndSignIn(LoginUser user)
         {
             GoToTransferMacthingApplyUrl();
 
+            UpdateOrganisationName(_sender);
+
+            var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
+
             _receiver = user.OrganisationName;
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
-            new TransferFundDetailsPage(_context).ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
+            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
+        }
 
-            SubmitApplication(new CreateATransfersApplicationPage(_context));
+        private SignInPage ApplyForTransferFunds()
+        {
+            GoToTransferMacthingApplyUrl();
+
+            return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+        }
+
+        private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
+        {
+            string actualErrorMessage = page.GetErrorMessage();
+
+            Assert.Multiple(() =>
+            {
+                StringAssert.Contains("There is a problem", actualErrorMessage);
+
+                StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
+            });
+
+        }
+
+        private void CreateATransferPledge(LoginUser login)
+        {
+            LoginAsSender(login);
+
+            CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
+        }
+
+        private void LoginAsSender(LoginUser login)
+        {
+            _sender = login.OrganisationName;
+
+            _loginFromCreateAcccountPageHelper.Login(login, true);
+        }
+
+        private void LoginAsSender(MultipleAccountUser login)
+        {
+            _transferMatchingUser = login;
+
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _transferMatchingUser)
+            {
+                OrganisationName = _transferMatchingUser.OrganisationName
+            };
+
+            _multipleAccountsLoginHelper.Login(_transferMatchingUser, true);
+
+            _sender = _transferMatchingUser.OrganisationName;
+
+            _receiver = _transferMatchingUser.SecondOrganisationName;
         }
     }
 }

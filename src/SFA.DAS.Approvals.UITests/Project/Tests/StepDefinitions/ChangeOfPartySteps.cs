@@ -83,7 +83,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(_employerStepsHelper.ViewCurrentApprenticeDetails(false).IsChangeOfProviderLinkDisplayed());
         }
 
-
         [When(@"provider sends COE request to new employer")]
         public void WhenProviderSendsCOERequestToNewEmployer()
         {
@@ -101,12 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"a new live apprenticeship record is created")]
-        public void ThenANewLiveApprenticeshipRecordIsCreated()
-        {
-            _employerStepsHelper
-                .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();
-        }
+        public void ThenANewLiveApprenticeshipRecordIsCreated() => _employerStepsHelper.GoToManageYourApprenticesPage().VerifyApprenticeExists();
 
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
@@ -120,33 +114,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper
                 .GoToProviderHomePage(false)
-                .GoToYourCohorts()
+                .GoToApprenticeRequestsPage()
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SubmitApprove();
         }
 
         [When(@"Provider deletes the Cohort")]
-        public void WhenProviderDeletesTheCohort()
-        {
-            _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
-        }
+        public void WhenProviderDeletesTheCohort() => _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
 
         [Then(@"provider can change employer again")]
-        public void ThenProviderCanChangeEmployerAgain()
-        {
-            _providerStepsHelper.StartChangeOfEmployerJourney();
-        }
+        public void ThenProviderCanChangeEmployerAgain() => _providerStepsHelper.StartChangeOfEmployerJourney();
 
         [Then(@"a banner is displayed for provider with a link to ""(.*)"" cohort")]
         public void ThenABannerIsDisplayedForProviderWithALinkToCohort(string status)
         {
             bool editable = status == "editable" ? true : false;
 
-            ProviderApprenticeDetailsPage providerApprenticeDetailsPage =
-                _providerStepsHelper.GoToProviderHomePage(editable)
-                                    .GoToProviderManageYourApprenticePage()
-                                    .SelectViewCurrentApprenticeDetails();
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = SelectViewCurrentApprenticeDetails(editable);
 
             if (editable)
                  ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
@@ -183,11 +168,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"previous Provider should not be able to start CoE on the old record when CoP is inflight")]
         public void ThenPreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordWhenCoPIsInflight()
         {
-            var CoELinkDisplayed = _providerStepsHelper
-                                        .GoToProviderHomePage()
-                                        .GoToProviderManageYourApprenticePage()
-                                        .SelectViewCurrentApprenticeDetails()
-                                        .IsCoELinkDisplayed();
+            var CoELinkDisplayed = SelectViewCurrentApprenticeDetails(true).IsCoELinkDisplayed();
 
             Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider during inflight CoP");
         }
@@ -263,7 +244,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     
         private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "There are changes to this apprentice's details that are waiting for approval by the new employer.";
+            string expectedText = "You have made a change of employer request. It’s now with the new employer for review.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
@@ -279,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "The new employer has requested changes to this apprentice's details.";
+            string expectedText = "The new employer has reviewed the change of employer request. You need to review the new details.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
 
             Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
@@ -292,6 +273,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
-        
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(bool newTab) => _providerStepsHelper
+                                .GoToProviderHomePage(newTab)
+                                .GoToProviderManageYourApprenticePage()
+                                .SelectViewCurrentApprenticeDetails();
+
     }
 }

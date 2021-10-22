@@ -72,17 +72,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
+            SelectViewCurrentApprenticeDetails();
         }
 
         [Then(@"Employer can only edit start date, end date and Price on the new record")]
         public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
         {
-            new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
+            var editApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
                 .SelectApprentices("LIVE")
                 .ClickEditApprenticeDetailsLink();
 
-            ValidateOnlyEditableApprenticeDetails();
+            ValidateOnlyEditableApprenticeDetails(editApprenticePage);
         }
 
         [When(@"new Provider sends the cohort back to employer to review")]
@@ -159,12 +159,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {                  
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
               
-            bool CoELinkDisplayed = new ProviderManageYourApprenticesPage(_context, true)
-                                            .SelectViewCurrentApprenticeDetails()
-                                            .IsCoELinkDisplayed();
-
-            Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider after successful CoP");
+            Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
 
         private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -191,21 +189,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
-            var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
+            var editApprenticePage = apprenticeDetailsPage
                                                     .ClickReviewChangesLink()
                                                     .ClickReviewTheApprenticeDetailsToUpdateLink()
-                                                    .SelectEditApprentice()
-                                                    .GetAllEditableBoxes();
+                                                    .SelectEditApprentice();
 
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count == 6, "validate that cohort is editable on View apprentice details page");            
+            ValidateOnlyEditableApprenticeDetails(editApprenticePage);     
         }
 
-        private void ValidateOnlyEditableApprenticeDetails()
+        private void ValidateOnlyEditableApprenticeDetails(EditApprenticePage editApprenticePage)
         {
-            EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
-            var EditApprenticeDetails = editApprenticePage.GetAllEditableBoxes();
-
-            Assert.IsTrue(EditApprenticeDetails.Count == 6, "validate that cohort is editable on View apprentice details page");
+            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == 6, "validate that cohort is editable on View apprentice details page");
         }
     }
 }

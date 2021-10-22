@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserClicksOnApprenticeRequestLinkFromHomepageOrApprenticeRequestLink()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                               .GoToYourCohorts();
+                               .GoToApprenticeRequestsPage();
         }
 
         [Then(@"the user can view apprentice details ready for review page when user clicks on with employer box")]

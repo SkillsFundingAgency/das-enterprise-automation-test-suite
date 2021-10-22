@@ -82,6 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AuthTests
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("ignoreintest")]
         [NUnit.Framework.CategoryAttribute("ignoreintest2")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         [NUnit.Framework.CategoryAttribute("ignoreindemo")]
         public virtual void AP_E2E_NUA_AUTH_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
@@ -92,11 +93,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AuthTests
                     "regression",
                     "ignoreintest",
                     "ignoreintest2",
+                    "ignoreinpp",
                     "ignoreindemo"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_AUTH_01 Create Employer send an approved cohort then provider approves" +
                     " the cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -116,19 +118,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 12
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 13
  testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 14
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("an unauthorised user can not access the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("a valid user can not access different account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

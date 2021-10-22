@@ -40,7 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+
         internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
+
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
@@ -49,10 +51,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
         {
-            return apprenticeDetailsPage
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
+            return apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
         }
+
+        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
         internal StoppedApprenticeDetailsPage StopApprenticeThisMonth()
         {
@@ -73,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ValidateRedundancyStatusAndStopDate();
         }
 
-        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
+        public ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
         public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
@@ -112,13 +114,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
+        public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
+
         internal void UpdateNewCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 
             var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
 
-            _objectContext.UpdateCohortReference(cohortRef);
+            UpdateCohortReference(cohortRef);
         }
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)

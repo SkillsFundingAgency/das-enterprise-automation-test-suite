@@ -7,7 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class CreateAccountSteps : BaseSteps
     {
-        private ApprenticeOverviewPage _apprenticeHomePage;
         private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
 
         public CreateAccountSteps(ScenarioContext context) : base(context) { }
@@ -33,20 +32,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             }
         }
 
-        [Given(@"an apprentice has created and validated the account")]
-        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
-        {
-            _apprenticeHomePage = createAccountStepsHelper.CreateAccount().NavigateToOverviewPageFromTopNavigationLink();
-            _apprenticeHomePage.VerifyDaysToConfirmWarning();
-        }
-
-        [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
-
         [Given(@"an apprentice has created the account and about to validate personal details")]
         public void GivenAnApprenticeHasCreatedTheAccountAndAboutToValidatePersonalDetails()
         {
             createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
+
             _createMyApprenticeshipAccountPage = createAccountStepsHelper.CreateAccountAndGetToCreateMyApprenticeshipAccountPage();
         }
     }

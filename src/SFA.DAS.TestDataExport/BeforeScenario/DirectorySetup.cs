@@ -2,6 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.IO;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataExport.BeforeScenario

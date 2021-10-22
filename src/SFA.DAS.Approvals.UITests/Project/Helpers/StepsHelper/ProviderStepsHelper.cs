@@ -50,7 +50,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectApproveChangesAndSubmit();
         }
 
-
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
             var homePage = login != null
@@ -69,14 +68,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
         {
-            return ProviderMakeReservation(login, false)
-                .GoToAddApprenticeDetailsPage();
+            return ProviderMakeReservation(login, false).GoToAddApprenticeDetailsPage();
         }
 
         public ApprovalsProviderHomePage ProviderMakeReservationThenGotoHomePage(ProviderLoginUser login = null)
         {
-            return ProviderMakeReservation(login, false)
-                .GoToHomePage();
+            return ProviderMakeReservation(login, false).GoToHomePage();
         }
 
         public ApprovalsProviderHomePage ProviderDeleteReservationThenGotoHomePage(ProviderLoginUser login = null)
@@ -163,10 +160,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        if (shouldCheckCoursesAreStandards)
-                        {
-                            providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
-                        }
+                        if (shouldCheckCoursesAreStandards) providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
 
                         providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
@@ -179,7 +173,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
-
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
@@ -212,9 +205,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
-            providerApproveApprenticeDetailsPage
-                .SelectDeleteCohort()
-                .ConfirmDeleteAndSubmit();
+            providerApproveApprenticeDetailsPage.SelectDeleteCohort().ConfirmDeleteAndSubmit();
         }
 
         public void Approve() => EditApprentice().SubmitApprove();
@@ -245,13 +236,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void DynamicHomePageProviderApproval()
         {
             new ApprovalsProviderHomePage(_context)
-                .GoToYourCohorts()
+                .GoToApprenticeRequestsPage()
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice(0)
                 .EnterUlnAndSave()
                 .SubmitApprove();
         }
+
+        public void VerifyReadOnlyEmail() => ProviderEditApprentice().VerifyReadOnlyEmail();
+
+        public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
@@ -268,6 +263,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .VerifyAndSubmitChangeOfEmployerRequest()
                     .VerifyChangeOfEmployerHasBeenRequested();
         }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage());
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) => 
+            page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+
+        private ProviderEditApprenticePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
 
         public ProviderChooseACohortPage NavigateToChooseACohortPage()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ganss.Excel;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {
@@ -26,9 +27,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public string RawJSON { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<LearningPeriod> LearningPeriods { get; set; }
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<ApprenticeshipDaysInLearning> DaysInLearnings { get; set; }
 
         public Learner()

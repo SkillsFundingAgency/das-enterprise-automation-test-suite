@@ -26,6 +26,8 @@
 
     public class TransfersUser : MultipleAccountUser { }
 
+    public class TransfersUserNoFunds : MultipleAccountUser { }
+
     public class TransferMatchingUser : MultipleAccountUser { }
 
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
@@ -79,4 +81,6 @@
     public class Version5AgreementUser : LoginUser { }
 
     public class Version6AgreementUser : LoginUser { }
+
+    public class ASListedLevyUser : LoginUser { }
 }

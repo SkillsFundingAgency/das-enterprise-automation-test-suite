@@ -31,7 +31,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public string Course { get; }
 
-        public int Cost { get; }
+        public int Cost { get; set;  }
 
         public int NoOfApprentice { get; set; }
 

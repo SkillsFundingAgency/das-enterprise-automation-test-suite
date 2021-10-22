@@ -9,6 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string AccountIdKey = "accountid";
         private const string CommitmentsApprenticeshipIdKey = "commitmentsapprenticeshipid";
         private const string ApprenticeIdKey = "apprenticeid";
+        private const string RegistrationIdKey = "registrationidkey";
         private const string OrganisationNameKey = "organisationname";
         private const string FirstNameKey = "firstname";
         private const string LastNameKey = "lastname";
@@ -26,13 +27,20 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetAccountId(this ObjectContext objectContext, long value) => objectContext.Replace(AccountIdKey, value);
         internal static void SetCommitmentsApprenticeshipId(this ObjectContext objectContext, long value) => objectContext.Replace(CommitmentsApprenticeshipIdKey, value);
         internal static void SetApprenticeId(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeIdKey, value);
+        public static void SetRegistrationId(this ObjectContext objectContext, string value) => objectContext.Replace(RegistrationIdKey, value);
         internal static void SetOrganisationName(this ObjectContext objectContext, string value) => objectContext.Replace(OrganisationNameKey, value);
         public static void SetFirstName(this ObjectContext objectContext, string value) => objectContext.Replace(FirstNameKey, value);
         public static void SetLastName(this ObjectContext objectContext, string value) => objectContext.Replace(LastNameKey, value);
         internal static void SetDateOfBirth(this ObjectContext objectContext, DateTime value) => objectContext.Replace(DateOfBirthKey, value);
         internal static void SetTrainingName(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingNameKey, value);
         internal static void SetEmployerAccountLegalEntityId(this ObjectContext objectContext, long value) => objectContext.Replace(EmployerAccountLegalEntityIdKey, value);
-        internal static void SetApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Set(EmailKey, value);
+        internal static void SetApprenticeDetail(this ObjectContext objectContext, string fName, string lName, DateTime dob, string email)
+        {
+            objectContext.SetFirstName(fName);
+            objectContext.SetLastName(lName);
+            objectContext.SetDateOfBirth(dob);
+            objectContext.Set(EmailKey, email);
+        }
         public static void UpdateApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Update(EmailKey, value);
         public static void SetApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Set(PasswordKey, value);
         public static void UpdateApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Update(PasswordKey, value);
