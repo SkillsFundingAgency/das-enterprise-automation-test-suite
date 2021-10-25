@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="15.0.5" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.1700" />
   </ItemGroup>
 
   <ItemGroup>
