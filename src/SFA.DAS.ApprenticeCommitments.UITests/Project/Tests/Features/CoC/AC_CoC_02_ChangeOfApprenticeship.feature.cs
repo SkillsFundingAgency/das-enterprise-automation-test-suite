@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDetails
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect")]
-    public partial class AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrectFeature
+    [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ChangeOfApprenticeship")]
+    public partial class AC_CoC_02_ChangeOfApprenticeshipFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect.feature"
+#line 1 "AC_CoC_02_ChangeOfApprenticeship.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CoC_02_ChangeOfApprenticeship", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect")]
+        [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ChangeOfApprenticeship")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect()
+        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        public virtual void AC_CoC_02_ChangeOfApprenticeship()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "deleteuser"};
+                    "waitingtostartapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CD_06_ConfirmApprenticeshipDetailsAsIncorrect", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CoC_02_ChangeOfApprenticeship", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,14 +107,22 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a Course date CoC occurs on an apprenticeship on Employer side", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the apprentice verifies and confirms the Apprenticeship details displayed as Inco" +
-                        "rrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the apprentice logs into the Apprentice portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the apprentice is able to confirm the Apprenticeship details again as correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("only the apprenticeship detail section is marked as Incomplete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+ testRunner.And("the apprentice confirms the Apprenticeship details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("the coc notification should not be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("the apprentice is able to review and confirm apprenticeship details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -5,16 +5,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
+    public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
+
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
-        private string YourEmployerLinkText => SectionHelper.Section1;
-        private string YourProviderLinkText => SectionHelper.Section2;
-        private string YourApprenticeshipDetailsLinkText => SectionHelper.Section3;
-        private string HowYourApprenticeshipWillBeDeliveredLinkText => SectionHelper.Section4;
-        private string RolesAndResponsibilitiesLinkText => SectionHelper.Section5;
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
@@ -30,63 +26,63 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(HelpAndSupportSection);
         }
 
-        public ConfirmYourEmployerPage ConfirmYourEmployer()
+        public ConfirmYourEmployerPage GoToConfirmYourEmployerPage()
         {
-            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
+            ClickYourEmployerLink();
             return new ConfirmYourEmployerPage(_context);
         }
 
-        public AlreadyConfirmedEmployerPage ConfirmAlreadyConfirmedEmployer()
+        public AlreadyConfirmedEmployerPage GoToAlreadyConfirmedEmployerPage()
         {
-            formCompletionHelper.ClickLinkByText(YourEmployerLinkText);
+            ClickYourEmployerLink();
             return new AlreadyConfirmedEmployerPage(_context);
         }
 
-        public ConfirmYourTrainingProviderPage ConfirmYourTrainingProvider()
+        public ConfirmYourTrainingProviderPage GoToConfirmYourTrainingProviderPage()
         {
-            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
+            ClickYourProviderLink();
             return new ConfirmYourTrainingProviderPage(_context);
         }
 
-        public AlreadyConfirmedTrainingProviderPage ConfirmAlreadyConfirmedTrainingProvider()
+        public AlreadyConfirmedTrainingProviderPage GoToAlreadyConfirmedTrainingProviderPage()
         {
-            formCompletionHelper.ClickLinkByText(YourProviderLinkText);
+            ClickYourProviderLink();
             return new AlreadyConfirmedTrainingProviderPage(_context);
         }
 
-        public ConfirmYourApprenticeshipDetailsPage ConfirmYourApprenticeshipDetails()
+        public ConfirmYourApprenticeshipDetailsPage GoToConfirmYourApprenticeshipDetailsPage()
         {
-            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
+            ClickYourApprenticeshipDetailsLink();
             return new ConfirmYourApprenticeshipDetailsPage(_context);
         }
 
-        public AlreadyConfirmedApprenticeshipDetailsPage ConfirmAlreadyConfirmedApprenticeship()
+        public AlreadyConfirmedApprenticeshipDetailsPage GoToAlreadyConfirmedApprenticeshipDetailsPage()
         {
-            formCompletionHelper.ClickLinkByText(YourApprenticeshipDetailsLinkText);
+            ClickYourApprenticeshipDetailsLink();
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
 
-        public ConfirmRolesAndResponsibilitiesPage ConfirmRolesAndResponsibilities()
+        public ConfirmRolesAndResponsibilitiesPage GoToConfirmRolesAndResponsibilitiesPage()
         {
-            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            ClickRolesAndResponsibilitiesLink();
             return new ConfirmRolesAndResponsibilitiesPage(_context);
         }
 
-        public AlreadyConfirmedRolesAndResponsibilitiesPage ConfirmAlreadyConfirmedRolesAndResponsibilities()
+        public AlreadyConfirmedRolesAndResponsibilitiesPage GoToAlreadyConfirmedRolesAndResponsibilitiesPage()
         {
-            formCompletionHelper.ClickLinkByText(RolesAndResponsibilitiesLinkText);
+            ClickRolesAndResponsibilitiesLink();
             return new AlreadyConfirmedRolesAndResponsibilitiesPage(_context);
         }
 
-        public ConfirmHowYourApprenticeshipWillBeDeliveredPage ConfirmHowYourApprenticeshipWillBeDelivered()
+        public ConfirmHowYourApprenticeshipWillBeDeliveredPage GoToConfirmHowYourApprenticeshipWillBeDeliveredPage()
         {
-            formCompletionHelper.ClickLinkByText(HowYourApprenticeshipWillBeDeliveredLinkText);
+            ClickHowYourApprenticeshipWillBeDeliveredLink();
             return new ConfirmHowYourApprenticeshipWillBeDeliveredPage(_context);
         }
 
-        public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage ConfirmAlreadyConfirmedHowYourApprenticeshipWillBeDelivered()
+        public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage GoToAlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage()
         {
-            formCompletionHelper.ClickLinkByText(HowYourApprenticeshipWillBeDeliveredLinkText);
+            ClickHowYourApprenticeshipWillBeDeliveredLink();
             return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(_context);
         }
 
@@ -113,5 +109,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
+
+        private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
+        private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section2);
+        private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section3);
+        private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section4);
+        private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section5);
     }
 }

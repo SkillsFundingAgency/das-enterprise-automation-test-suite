@@ -28,10 +28,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeHomePage(_context);
         }
 
-        public CoCConfirmMyApprenticeDetailsPage CocSignInToApprenticePortal()
+        public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();
-            return new CoCConfirmMyApprenticeDetailsPage(_context);
+            return new ApprenticeOverviewPage(_context);
         }
 
         public ForgottenPasswordPage ClickForgottenMyPasswordLinkOnSignInPage()

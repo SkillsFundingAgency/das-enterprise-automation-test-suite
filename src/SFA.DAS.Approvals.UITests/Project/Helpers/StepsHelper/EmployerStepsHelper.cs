@@ -49,19 +49,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprenticesHomePage(_context, true);
         }
 
-        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
-        {
-            return apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
-        }
+        public StoppedApprenticeDetailsPage StopApprenticeThisMonth() => StopApprenticeThisMonth(ViewCurrentApprenticeDetails());
+
+        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) => 
+            apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
-        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth()
-        {
-            var apprenticeDetailsPage = ViewCurrentApprenticeDetails();
-
-            return StopApprenticeThisMonth(apprenticeDetailsPage);
-        }
 
         internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -116,7 +110,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
 
-        internal void UpdateNewCohortReference()
+        public void UpdateNewCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 

@@ -45,12 +45,16 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesCorrect = 1, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
         }
 
-        public string GetRegistrationId(string email, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(GetRegistrationIdQuery(email), "Index was out of range", scenarioTitle));
+        public string ConfirmCoCEventHasTriggered(string email, string scenarioTitle) => GetDetails($"SELECT ApprenticeshipDetailsCorrect from Revision WHERE ConfirmedOn is Null and ApprenticeshipId in {GetRevionTableSubQuery(email)}", scenarioTitle);
+
+        public string GetRegistrationId(string email, string scenarioTitle) => GetDetails(GetRegistrationIdQuery(email), scenarioTitle);
 
         public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email), 1).ListOfArrayToList(0);
 
         private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 
         private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))";
+
+        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query, scenarioTitle));
     }
 }
