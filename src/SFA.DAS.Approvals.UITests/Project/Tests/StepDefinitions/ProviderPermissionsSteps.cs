@@ -85,7 +85,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private bool CanChooseAnEmployer() => _providerHomePage.GotoChooseAnEmployerNonLevyPage().CanChooseAnEmployer();
+        private bool CanChooseAnEmployer() => _providerHomePage.GotoSelectJourneyPage().SelectOptionCreateNewCohort().CanChooseAnEmployer();
 
         private bool CreateCohortPermissionLinkIsDisplayed()
         {

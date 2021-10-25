@@ -41,7 +41,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public void ApproveChangesAndSubmit() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage()).ClickReviewChanges().SelectApproveChangesAndSubmit();
+        public void ApproveChangesAndSubmit()
+        {
+            GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickReviewChanges()
+                .SelectApproveChangesAndSubmit();
+        }
 
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
@@ -243,16 +250,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
-            return SelectViewCurrentApprenticeDetails()
-                .ClickChangeEmployerLink()
-                .SelectChangeTheEmployer()
-                .SelectNewEmployer()
-                .ConfirmNewEmployer()
-                .EndNewStartDateAndContinue()
-                .EnterNewEndDateAndContinue()
-                .EnterNewPriceAndContinue()
-                .VerifyAndSubmitChangeOfEmployerRequest()
-                .VerifyChangeOfEmployerHasBeenRequested();
+            return GoToProviderHomePage()
+                    .GoToProviderManageYourApprenticePage()
+                    .SelectViewCurrentApprenticeDetails()
+                    .ClickChangeEmployerLink()
+                    .SelectChangeTheEmployer()
+                    .SelectNewEmployer()
+                    .ConfirmNewEmployer()
+                    .EndNewStartDateAndContinue()
+                    .EnterNewEndDateAndContinue()
+                    .EnterNewPriceAndContinue()
+                    .VerifyAndSubmitChangeOfEmployerRequest()
+                    .VerifyChangeOfEmployerHasBeenRequested();
         }
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage());
@@ -261,5 +270,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private ProviderEditApprenticePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
+
+        public ProviderChooseACohortPage NavigateToChooseACohortPage()
+        {
+            return GoToProviderHomePage(false)
+                    .GotoSelectJourneyPage()
+                    .SelectOptionAddToAnExistingCohort();
+        }
     }
 }
