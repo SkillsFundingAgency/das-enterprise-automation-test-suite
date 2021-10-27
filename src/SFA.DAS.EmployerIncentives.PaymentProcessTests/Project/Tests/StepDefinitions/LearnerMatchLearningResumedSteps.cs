@@ -42,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(_initialStartDate)
+                .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
                     _initialStartDate.AddYears(-24), _phase)
                 .Create();
@@ -156,10 +156,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             earnings.Should().HaveCount(2);
             var first = earnings.First();
-            first.DueDate.Should().Be(_initialStartDate.AddDays(90+11));
+            first.DueDate.Should().Be(_initialStartDate.AddDays(89));
 
             var second = earnings.Last();
-            second.DueDate.Should().Be(_initialStartDate.AddDays(365+11));
+            second.DueDate.Should().Be(_initialStartDate.AddDays(364));
         }
         
         [Then(@"a Learning Resumed change of circumstance is recorded")]
