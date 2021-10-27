@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private By UpdateTheseDetailsLink => By.LinkText("Update these details");
-        private By AgreementId => By.XPath("//dd[5]");
+        private By AgreementId => By.CssSelector("h3.govuk-heading-l");
         #endregion
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context)
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void SetAgreementId()
         {
-            var agreementId = pageInteractionHelper.GetText(AgreementId);
+            var agreementId = pageInteractionHelper.GetText(AgreementId).Remove(0, 14);
             objectContext.SetAgreementId(agreementId);
         }
 
