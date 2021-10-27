@@ -43,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(_initialStartDate)
+                .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
                     _initialStartDate.AddYears(-24), _phase)
                 .Create();
@@ -125,7 +125,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithPeriod(TestData.ApprenticeshipId, Helper.CollectionCalendarHelper.ActivePeriod.Number)
                 .Create();
 
-            _resumedDate = _stoppedDate.AddDays(14);
+            _resumedDate = _stoppedDate.AddDays(29);
             var priceEpisode2 = new PriceEpisodeDtoBuilder()
                 .WithStartDate(_resumedDate)
                 .WithEndDate(DateTime.Today.AddMonths(1))
