@@ -11,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private By UpdateTheseDetailsLink => By.LinkText("Update these details");
+        private By ExpandAgreementLink => By.ClassName("govuk-accordion__icon");
         private By AgreementId => By.CssSelector("h3.govuk-heading-l");
         #endregion
 
@@ -23,6 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ReviewYourDetailsPage ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
         {
+            formCompletionHelper.Click(ExpandAgreementLink);
             formCompletionHelper.Click(UpdateTheseDetailsLink);
             return new ReviewYourDetailsPage(_context);
         }
@@ -33,7 +35,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             objectContext.SetAgreementId(agreementId);
         }
 
-        public bool VerifyIfUpdateTheseDetailsLinkIsPresent() => pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink);
+        public bool VerifyIfUpdateTheseDetailsLinkIsPresent()
+        {
+            formCompletionHelper.Click(ExpandAgreementLink);
+            return pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink);
+        }
+
     }
 }
 

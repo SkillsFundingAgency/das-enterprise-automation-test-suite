@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
-        private By TransferStatus => By.XPath("//p[3]");
+        private By TransferStatus => By.CssSelector("p[3].govuk-body");
         private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink() => By.LinkText("View all agreements");
