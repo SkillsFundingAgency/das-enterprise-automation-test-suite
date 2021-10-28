@@ -37,6 +37,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
         private string SignOutLinkText => "Sign out";
 
+        private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
+
+        private By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
+
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             _context = context;
@@ -52,6 +56,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(FeedbackLinkOnBetaBanner);
             VerifyPage(ServiceHeader, ServiceName);
             VerifyFooterLinks();
+        }
+
+        public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
+        {
+            NavigateToSettings("Change your personal details");
+            return new ChangeYourPersonalDetailsPage(_context);
+        }
+
+        public ChangeYourPasswordPage NavigateToChangeYourPassword()
+        {
+            NavigateToSettings("Change your password");
+            return new ChangeYourPasswordPage(_context);
+        }
+
+        public ChangeYourEmailAddressPage NavigateToChangeYourEmailAddress()
+        {
+            NavigateToSettings("Change your email address");
+            return new ChangeYourEmailAddressPage(_context);
         }
 
         public ApprenticeOverviewPage ContinueToHomePage()
@@ -89,6 +111,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(_context);
+        }
+
+        private void NavigateToSettings(string settingsName)
+        {
+            formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
+            formCompletionHelper.ClickLinkByText(NavigationSubLink, settingsName);
         }
     }
 }

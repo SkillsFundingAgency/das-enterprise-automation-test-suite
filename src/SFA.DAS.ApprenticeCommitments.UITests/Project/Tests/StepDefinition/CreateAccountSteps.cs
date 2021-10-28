@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void WhenAnApprenticeshipIsCreatedViaApiRequest() => createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
 
         [Then(@"the apprentice is able to create an account with the invite generated")]
-        public void ThenTheApprenticeIsAbleToCreateAnAccountWithTheInviteGenerated() => createAccountStepsHelper.CreateAccount();
+        public void ThenTheApprenticeIsAbleToCreateAnAccountWithTheInviteGenerated() => createAccountStepsHelper.CreateAccountViaApi();
 
         [Then(@"an error is shown for entering invalid identity data")]
         public void ThenAnErrorIsShownForEnteringInvalidIdentityData()

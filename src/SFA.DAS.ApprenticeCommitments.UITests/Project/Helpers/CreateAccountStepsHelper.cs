@@ -48,7 +48,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title));
         }
 
-        public ApprenticeOverviewPage CreateAccountAndConfirmApprenticeshipViaDb()
+        public ApprenticeOverviewPage CreateAccountViaApiAndConfirmApprenticeshipViaDb()
+        {
+            var page = CreateAccountViaApi();
+
+            _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
+
+            return page.NavigateToOverviewPageFromTopNavigationLink();
+        }
+
+
+        public ApprenticeOverviewPage CreateAccountViaUIAndConfirmApprenticeshipViaDb()
         {
             var page = ConfirmIdentityAndGoToApprenticeHomePage();
 
@@ -57,7 +67,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return page.NavigateToOverviewPageFromTopNavigationLink();
         }
 
-        public ApprenticeHomePage CreateAccount()
+        public ApprenticeHomePage CreateAccountViaApi()
         {
             CreateApprenticeshipViaApiRequest();
             
