@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
-        private By TransferStatus => By.CssSelector("p[3].govuk-body");
+        private By TransferStatus => By.CssSelector("p.govuk-body");
         private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink() => By.LinkText("View all agreements");
@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
-        public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
+        public bool VerifyTransfersStatus(string expected) => VerifyPage(() => pageInteractionHelper.FindElements(TransferStatus), $"Transfers status:  {expected}");
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
