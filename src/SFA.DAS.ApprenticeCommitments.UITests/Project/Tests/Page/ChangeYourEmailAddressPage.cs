@@ -14,11 +14,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private By ConfirmEmailAddress => By.CssSelector("#ConfirmEmailAddress");
 
+        private By Password => By.CssSelector("#Password");
+
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         public ChangeYourEmailAddressPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
 
-        public WeHaveSentYouAnEmailPage UpdateEmailAddress()
+        public YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
+        {
+            formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
+
+            Continue();
+
+            return new YouHaveUpdatedYourEmailAddressPage(_context);
+        }
+
+        public WeHaveSentYouAnEmailPage RequestToUpdateEmailAddress()
         {
             var newEmail = $"New_{objectContext.GetApprenticeEmail()}";
 

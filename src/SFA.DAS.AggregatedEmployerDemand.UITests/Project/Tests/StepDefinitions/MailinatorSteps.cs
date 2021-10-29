@@ -11,6 +11,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         public MailinatorSteps(ScenarioContext context) => _context = context;
 
         [Then(@"confirm the user is able to verify the email '(.*)'")]
-        public void ThenConfirmTheUserIsAbleToVerifyTheEmail(string organisationEmailAddress) => new MailinatorStepsHelper(_context).VerifyLink(organisationEmailAddress);
+        public void ThenConfirmTheUserIsAbleToVerifyTheEmail(string organisationEmailAddress) => new MailinatorStepsHelper(_context, organisationEmailAddress).OpenLink("https://");
     }
 }

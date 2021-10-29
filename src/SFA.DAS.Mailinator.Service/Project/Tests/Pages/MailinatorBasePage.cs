@@ -4,7 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    internal abstract class MailinatorBasePage : BasePage
+    public abstract class MailinatorBasePage : BasePage
     {
         #region Helpers and Context
         protected readonly IFrameHelper frameHelper;

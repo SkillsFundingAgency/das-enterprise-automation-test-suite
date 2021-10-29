@@ -20,6 +20,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the User receives Access code notification to the registered email")]
-        public void TheUserReceivesAccessCodeNotificationToTheRegisteredEmail() => new MailinatorStepsHelper(_context).VerifyAccessCode(_objectContext.GetRegisteredEmail(), _config.RE_ConfirmCode);
+        public void TheUserReceivesAccessCodeNotificationToTheRegisteredEmail() => new MailinatorStepsHelper(_context, _objectContext.GetRegisteredEmail()).VerifyAccessCode(_config.RE_ConfirmCode);
     }
 }

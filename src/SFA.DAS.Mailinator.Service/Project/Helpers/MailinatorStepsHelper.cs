@@ -1,40 +1,36 @@
 ﻿using SFA.DAS.Mailinator.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Helpers
 {
-
     public class MailinatorStepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
+        private readonly string _email;
 
-        public MailinatorStepsHelper(ScenarioContext context)
+        public MailinatorStepsHelper(ScenarioContext context, string email)
         {
             _context = context;
             _tabHelper = context.Get<TabHelper>();
+            _email = email;
         }
 
-        public void VerifyAccessCode(string email, string code)
+        public void VerifyAccessCode(string code) => OpenEmail().VerifyAccessCode(code);
+
+        public void OpenLink(string linktext)
         {
-            _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
+            var page = OpenEmail();
 
-            new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(email)
-                .ClickOnEmail()
-                .VerifyAccessCode(code);
+            _tabHelper.OpenInNewTab(() => page.OpenLink(linktext));
         }
 
-        public void VerifyLink(string email)
+        private MailinatorEmailPage OpenEmail()
         {
-            _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
+            _tabHelper.OpenInNewTab("https://www.mailinator.com/");
 
-            new MailinatorLandingPage(_context)
-                .EnterEmailAndClickOnGoButton(email)
-                .ClickOnEmail()
-                .VerifyEmailLink();
+            return new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_email).OpenEmail();
         }
-
     }
 }

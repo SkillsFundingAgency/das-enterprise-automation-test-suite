@@ -31,10 +31,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ChangeYourPersonalDetailsPage(_context);
         }
 
-        public ChangeYourPasswordPage NavigateToChangeYourPassword()
+        public ForgottenYourPasswordPage NavigateToChangeYourPassword()
         {
             NavigateToSettings("Change your password");
-            return new ChangeYourPasswordPage(_context);
+            return new ForgottenYourPasswordPage(_context);
         }
 
         public ChangeYourEmailAddressPage NavigateToChangeYourEmailAddress()

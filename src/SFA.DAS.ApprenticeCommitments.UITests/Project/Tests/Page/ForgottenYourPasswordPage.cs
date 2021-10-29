@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ChangeYourPasswordPage : ApprenticeCommitmentsBasePage
+    public class ForgottenYourPasswordPage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
 
@@ -16,9 +16,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public ChangeYourPasswordPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
+        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
 
-        public ChangeYourPasswordPage UpdatePassword()
+        public ForgottenYourPasswordPage RequestToUpdatePassword()
         {
             formCompletionHelper.EnterText(NewEmailAddress, objectContext.GetApprenticeEmail());
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             VerifyPage(Message, "we have sent an email with instructions to reset your password.");
 
-            return new ChangeYourPasswordPage(_context);
+            return new ForgottenYourPasswordPage(_context);
         }
     }
 }
