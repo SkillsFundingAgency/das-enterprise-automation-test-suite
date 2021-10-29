@@ -19,5 +19,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             return new ApprenticeHomePage(_context);
         }
+
+        public new ApprenticeHomePage EnterValidApprenticeDetails(string firstName, string lastName)
+        {
+            base.EnterValidApprenticeDetails(firstName, lastName);
+            return new ApprenticeHomePage(_context);
+        }
+
     }
 }

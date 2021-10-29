@@ -15,12 +15,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By CompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--green");
         private By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
-        public ApprenticeHomePage(ScenarioContext context) : base(context)
+        public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmYourApprenticeLink = true) : base(context)
         {
             _context = context;
             VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            VerifyPage(ConfirmYourApprenticeshipNowLink);
+            if (verifyConfirmYourApprenticeLink) VerifyPage(ConfirmYourApprenticeshipNowLink);
         }
+
+        public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
+        {
+            VerifyNotificationBanner("There seems to be a problem, we cannot find your apprenticeship.");
+
+            formCompletionHelper.ClickLinkByText("account details");
+            
+            return new ChangeYourPersonalDetailsPage(_context);
+        }
+
+        public void VerifySucessNotification() => VerifyNotificationBanner("You have created an account and we have found your apprenticeship.");
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {

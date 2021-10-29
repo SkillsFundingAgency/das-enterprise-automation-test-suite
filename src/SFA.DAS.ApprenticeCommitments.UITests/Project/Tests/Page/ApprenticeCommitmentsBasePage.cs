@@ -21,6 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         #endregion
 
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
+        private By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
         protected By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
@@ -51,6 +52,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             if (verifyServiceHeader) VerifyPage(ServiceHeader, ServiceName);
             VerifyFooterLinks();
         }
+
+        protected void VerifyNotificationBanner(string expected) => VerifyPage(NotificationBanner, expected);
 
         public ApprenticeOverviewPage ContinueToHomePage()
         {

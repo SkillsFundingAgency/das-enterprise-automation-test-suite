@@ -91,7 +91,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
-        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndCondition();
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndCondition(true);
 
         private StartPage OpenInvitation(string registrationId)
         {

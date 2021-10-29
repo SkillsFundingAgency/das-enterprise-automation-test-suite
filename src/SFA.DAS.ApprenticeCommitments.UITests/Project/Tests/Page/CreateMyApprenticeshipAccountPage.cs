@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
 
-        public override List<string> AccountSettingList() => new List<string> { "Change your password", "Change your email address" };
+        public override List<string> AccountSettingList() => new List<string> { "Change your personal details", "Change your password", "Change your email address" };
 
         public List<string> GetAccountSettingMenuList()
         {
@@ -40,7 +40,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return this;
         }
 
-        public new CreateMyApprenticeshipAccountPage EnterInValidApprenticeDetails() { base.EnterInValidApprenticeDetails(); return this; }
+        public new (TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails() {var name = base.EnterInValidApprenticeDetails(); return (new TermsOfUsePage(_context), name); }
 
         public void VerifyErrorSummary()
         {
