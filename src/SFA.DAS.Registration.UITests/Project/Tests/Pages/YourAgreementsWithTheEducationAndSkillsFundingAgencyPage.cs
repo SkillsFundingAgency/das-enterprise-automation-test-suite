@@ -24,7 +24,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ReviewYourDetailsPage ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
         {
-            formCompletionHelper.Click(ExpandAgreementLink);
+            javaScriptHelper.ClickElement(ExpandAgreementLink);
+            if (!pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink)) 
+                formCompletionHelper.Click(ExpandAgreementLink);
+            
             formCompletionHelper.Click(UpdateTheseDetailsLink);
             return new ReviewYourDetailsPage(_context);
         }
@@ -37,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public bool VerifyIfUpdateTheseDetailsLinkIsPresent()
         {
-            formCompletionHelper.Click(ExpandAgreementLink);
+            javaScriptHelper.ClickElement(ExpandAgreementLink);
             return pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink);
         }
 
