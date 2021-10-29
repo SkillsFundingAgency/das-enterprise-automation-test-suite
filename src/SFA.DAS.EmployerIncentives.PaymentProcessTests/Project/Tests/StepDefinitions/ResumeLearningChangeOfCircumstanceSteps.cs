@@ -16,7 +16,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private PendingPayment _initialEarning;
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
-        private DateTime _lastPriceEpisodeEndDate;
+        private DateTime _breakStart;
+        private PriceEpisodeDto _priceEpisodeWithBreakInLearning;
 
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
@@ -25,9 +26,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
+           
             _initialStartDate = startDate;
             _initialEndDate = endDate;
-            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
@@ -47,7 +49,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
                 .WithEndDate(_initialEndDate)
-                .WithPeriod(TestData.ApprenticeshipId, period)
+                .WithPeriod(TestData.ApprenticeshipId, 3)
+                .WithPeriod(TestData.ApprenticeshipId, 4)
+                .WithPeriod(TestData.ApprenticeshipId, 5)
+                .WithPeriod(TestData.ApprenticeshipId, 6)
                 .Create();
 
             var submissionDto = new LearnerSubmissionDtoBuilder()
@@ -81,11 +86,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"Learner data is updated with Price Episode End Date which is before the due date of the paid earning in Period R(.*) (.*)")]
         public async Task WhenLearnerDataIsUpdatedWithPeEndDateWhichIsBeforeTheDueDateOfThePaidEarning(byte period, short year)
         {
-            _lastPriceEpisodeEndDate = _initialEarning.DueDate.AddDays(-6);
-            var priceEpisode = new PriceEpisodeDtoBuilder()
+            _breakStart = _initialEarning.DueDate.AddDays(-4); // 6-Jan-2021
+            _priceEpisodeWithBreakInLearning = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
-                .WithEndDate(_lastPriceEpisodeEndDate)
+                .WithEndDate(_breakStart)
+                .WithPeriod(TestData.ApprenticeshipId, 3)
+                .WithPeriod(TestData.ApprenticeshipId, 4)
                 .WithPeriod(TestData.ApprenticeshipId, 5)
                 .Create();
 
@@ -96,7 +103,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithIlrSubmissionDate(_initialStartDate.AddDays(1))
                 .WithIlrSubmissionWindowPeriod(period)
                 .WithStartDate(_initialStartDate)
-                .WithPriceEpisode(priceEpisode)
+                .WithPriceEpisode(_priceEpisodeWithBreakInLearning)
                 .Create();
 
             await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
@@ -121,23 +128,26 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisode1 = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(_initialStartDate)
-                .WithEndDate("2021-01-29T00:00:00")
+                .WithEndDate(_breakStart)
+                .WithPeriod(TestData.ApprenticeshipId, 3)
                 .WithPeriod(TestData.ApprenticeshipId, 4)
                 .WithPeriod(TestData.ApprenticeshipId, 5)
                 .Create();
-            
+
             var priceEpisode2 = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
-                .WithStartDate("2021-03-22T00:00:00")
-                .WithEndDate("2021-07-31T00:00:00")
-                .WithPeriod(TestData.ApprenticeshipId, 8)
+                .WithStartDate(DateTime.Parse("2021-03-22T00:00:00"))
+                .WithEndDate(_initialEndDate)
+                .WithPeriod(TestData.ApprenticeshipId, 3)
+                .WithPeriod(TestData.ApprenticeshipId, 4)
+                .WithPeriod(TestData.ApprenticeshipId, 5)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
-                .WithIlrSubmissionDate("2021-02-11T14:06:18.673+00:00")
+                .WithIlrSubmissionDate("2021-02-28")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
                 .WithPriceEpisode(priceEpisode1)
