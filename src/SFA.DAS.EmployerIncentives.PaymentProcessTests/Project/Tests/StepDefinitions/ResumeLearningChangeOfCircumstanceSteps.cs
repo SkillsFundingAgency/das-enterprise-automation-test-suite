@@ -160,10 +160,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"Learner data is updated with Price Episode End Date which is on the due date of the paid earning in Period R(.*) (.*)")]
         public async Task WhenLearnerDataIsUpdatedWithPEEndDateWhichIsOnTheDueDateOfThePaidEarningInPeriodR(byte period, short year)
         {
+            _breakStart = _initialEarning.DueDate;
+
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
-                .WithStartDate("2020-11-01T00:00:00")
-                .WithEndDate(_initialEarning.DueDate) // "2021-01-29T00:00:00"
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_breakStart) // "2021-01-29T00:00:00"
                 .WithPeriod(TestData.ApprenticeshipId, 4)
                 .WithPeriod(TestData.ApprenticeshipId, 5)
                 .Create();
@@ -173,7 +175,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
-                .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
+                .WithIlrSubmissionDate("2021-02-11")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
                 .WithPriceEpisode(priceEpisode)
@@ -185,10 +187,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"Learner data is updated with Price Episode End Date which is one day after the due date of the paid earning in Period R(.*)")]
         public async Task WhenLearnerDataIsUpdatedWithPriceEpisodeEndDateWhichIsOneDayAfterTheDueDateOfThePaidEarningInPeriodR(string p0)
         {
+            _breakStart = _initialEarning.DueDate.AddDays(1);
+
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
-                .WithStartDate("2020-11-01T00:00:00")
-                .WithEndDate(_initialEarning.DueDate.AddDays(1)) // "2021-01-29T00:00:00"
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_breakStart) // "2021-01-29T00:00:00"
                 .WithPeriod(TestData.ApprenticeshipId, 4)
                 .WithPeriod(TestData.ApprenticeshipId, 5)
                 .Create();
@@ -197,7 +201,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
                 .WithAcademicYear(2021)
-                .WithIlrSubmissionDate("2021-02-11T14:04:18.673+00:00")
+                .WithIlrSubmissionDate("2021-02-11")
                 .WithIlrSubmissionWindowPeriod(8)
                 .WithStartDate(_initialStartDate)
                 .WithPriceEpisode(priceEpisode)
