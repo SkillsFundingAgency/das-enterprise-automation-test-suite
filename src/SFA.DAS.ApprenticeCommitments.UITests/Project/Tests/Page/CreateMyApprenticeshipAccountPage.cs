@@ -40,6 +40,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return this;
         }
 
+        public new CreateMyApprenticeshipAccountPage EnterInValidApprenticeDetails() { base.EnterInValidApprenticeDetails(); return this; }
+
         public void VerifyErrorSummary()
         {
             pageInteractionHelper.VerifyText(ErrorSummaryTitle, "There is a problem");

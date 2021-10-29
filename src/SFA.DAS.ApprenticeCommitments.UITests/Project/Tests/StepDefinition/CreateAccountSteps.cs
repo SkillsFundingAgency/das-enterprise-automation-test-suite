@@ -20,6 +20,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an error is shown for entering invalid identity data")]
         public void ThenAnErrorIsShownForEnteringInvalidIdentityData()
         {
+            _createMyApprenticeshipAccountPage.EnterInValidApprenticeDetails();
+        }
+
+        [Then(@"an error is shown for entering empty data")]
+        public void ThenAnErrorIsShownForEnteringEmptyData()
+        {
             var invalidData = new List<(string, string, int, int, int)>
             {
                 (string.Empty, string.Empty, 0,0,0)

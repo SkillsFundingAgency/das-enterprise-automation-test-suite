@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorInboxPage : MailinatorBasePage
+    internal class MailinatorInboxPage : MailinatorBasePage
     {
         protected override string PageTitle => "Public Messages";
         protected override By PageHeader => By.CssSelector("#inbox_pane");
@@ -14,9 +14,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         private By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
         #endregion
 
-        public MailinatorInboxPage(ScenarioContext context) : base(context) => _context = context;
+        internal MailinatorInboxPage(ScenarioContext context) : base(context) => _context = context;
 
-        public MailinatorEmailPage ClickOnEmail()
+        internal MailinatorEmailPage ClickOnEmail()
         {
             formCompletionHelper.Click(EmailSubjectField);
             return new MailinatorEmailPage(_context);

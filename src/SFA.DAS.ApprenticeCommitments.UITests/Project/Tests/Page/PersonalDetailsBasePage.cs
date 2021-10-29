@@ -20,6 +20,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected void EnterValidApprenticeDetails() 
             => EnterApprenticeDetails(GetFirstName(), GetLastName(), GetDateOfBirth().Day, GetDateOfBirth().Month, GetDateOfBirth().Year);
 
+        protected void EnterInValidApprenticeDetails()
+            => EnterApprenticeDetails($"Invalid_{GetFirstName()}", $"Invalid_{GetLastName()}", GetDateOfBirth().Month, GetDateOfBirth().Month, GetDateOfBirth().Year);
+
         protected void EnterApprenticeDetails(string firstname, string lastname, int? day, int? month, int? year)
         {
             formCompletionHelper.EnterText(FirstName, firstname);
