@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public ChangeYourEmailAddressPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeYourEmailAddressPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
 
         public WeHaveSentYouAnEmailPage UpdateEmailAddress()
         {

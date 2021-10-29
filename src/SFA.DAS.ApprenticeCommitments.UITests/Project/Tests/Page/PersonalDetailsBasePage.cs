@@ -41,9 +41,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
         }
 
-        private string UpdatedFirstName() { var name = $"F_{GetFirstName()}TEST"; objectContext.SetFirstName(name); return name; }
+        private string UpdatedFirstName() { var name = $"New_{GetFirstName()}_TEST"; objectContext.SetFirstName(name); return name; }
 
-        private string UpdatedLastName() { var name = $"L_{GetLastName()}TEST"; objectContext.SetLastName(name); return name; }
+        private string UpdatedLastName() { var name = $"New_{GetLastName()}TEST"; objectContext.SetLastName(name); return name; }
 
         private string GetFirstName() => objectContext.GetFirstName();
 

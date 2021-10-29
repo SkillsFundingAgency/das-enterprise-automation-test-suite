@@ -2,6 +2,7 @@
 
 @apprenticecommitments
 @regression
+@accountsettingstest
 @deleteuser
 Scenario: AC_Setting_01_UpdatePersonalDetail after confirming account
 	Given an apprentice has a confirmed account

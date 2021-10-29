@@ -4,19 +4,17 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class ApprenticeCommitmentsBasePage : BasePage
+    public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
         #region Helpers and Context
         protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
         protected readonly ObjectContext objectContext;
         private readonly ScenarioContext _context;
         protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
@@ -38,17 +36,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
         private string SignOutLinkText => "Sign out";
 
-        private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
-
-        protected By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
-
-
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyServiceHeader = true) : base(context)
         {
             _context = context;
             objectContext = context.Get<ObjectContext>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
@@ -56,28 +48,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             if (verifypage) VerifyPage();
             VerifyPage(CookieBanner);
             VerifyPage(FeedbackLinkOnBetaBanner);
-            VerifyPage(ServiceHeader, ServiceName);
+            if (verifyServiceHeader) VerifyPage(ServiceHeader, ServiceName);
             VerifyFooterLinks();
-        }
-
-        public virtual List<string> AccountSettingList() => new List<string> { "Change your personal details", "Change your password", "Change your email address" };
-
-        public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
-        {
-            NavigateToSettings("Change your personal details");
-            return new ChangeYourPersonalDetailsPage(_context);
-        }
-
-        public ChangeYourPasswordPage NavigateToChangeYourPassword()
-        {
-            NavigateToSettings("Change your password");
-            return new ChangeYourPasswordPage(_context);
-        }
-
-        public ChangeYourEmailAddressPage NavigateToChangeYourEmailAddress()
-        {
-            NavigateToSettings("Change your email address");
-            return new ChangeYourEmailAddressPage(_context);
         }
 
         public ApprenticeOverviewPage ContinueToHomePage()
@@ -115,14 +87,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(_context);
-        }
-
-        protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
-
-        private void NavigateToSettings(string settingsName)
-        {
-            ClickAccountSettings();
-            formCompletionHelper.ClickLinkByText(NavigationSubLink, settingsName);
         }
     }
 }
