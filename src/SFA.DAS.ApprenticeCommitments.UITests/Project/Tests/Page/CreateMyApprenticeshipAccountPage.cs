@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -16,6 +18,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
+
+        public override List<string> AccountSettingList() => new List<string> { "Change your password", "Change your email address" };
+
+        public List<string> GetAccountSettingMenuList()
+        {
+            ClickAccountSettings();
+            return pageInteractionHelper.FindElements(NavigationSubLink).Select(x => x.Text).ToList();
+        }
 
         public TermsOfUsePage ConfirmIdentityAndGoToTermsOfUsePage()
         {

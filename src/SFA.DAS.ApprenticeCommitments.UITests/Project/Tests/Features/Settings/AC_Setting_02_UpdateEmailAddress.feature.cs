@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Setting_01_UpdateEmailAddress")]
+        [NUnit.Framework.DescriptionAttribute("AC_Setting_01_UpdateEmailAddress after confirming account")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_Setting_01_UpdateEmailAddress()
+        public virtual void AC_Setting_01_UpdateEmailAddressAfterConfirmingAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Setting_01_UpdateEmailAddress", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Setting_01_UpdateEmailAddress after confirming account", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

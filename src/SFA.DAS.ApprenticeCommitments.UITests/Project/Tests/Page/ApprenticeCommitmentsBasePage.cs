@@ -4,6 +4,7 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -39,7 +40,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
 
-        private By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
+        protected By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
+
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -57,6 +59,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(ServiceHeader, ServiceName);
             VerifyFooterLinks();
         }
+
+        public virtual List<string> AccountSettingList() => new List<string> { "Change your personal details", "Change your password", "Change your email address" };
 
         public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
         {
@@ -113,9 +117,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new SignedOutPage(_context);
         }
 
+        protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
+
         private void NavigateToSettings(string settingsName)
         {
-            formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
+            ClickAccountSettings();
             formCompletionHelper.ClickLinkByText(NavigationSubLink, settingsName);
         }
     }

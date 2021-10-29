@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Setting_01_UpdatePersonalDetail")]
+        [NUnit.Framework.DescriptionAttribute("AC_Setting_01_UpdatePersonalDetail after confirming account")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_Setting_01_UpdatePersonalDetail()
+        public virtual void AC_Setting_01_UpdatePersonalDetailAfterConfirmingAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Setting_01_UpdatePersonalDetail", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Setting_01_UpdatePersonalDetail after confirming account", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
