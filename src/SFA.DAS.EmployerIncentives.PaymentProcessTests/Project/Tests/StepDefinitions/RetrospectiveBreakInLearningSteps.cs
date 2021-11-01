@@ -53,9 +53,27 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _expectedPaymentAmount = amount;
         }
 
-        [Given(@"a payment of £(.*) is sent in Period R(.*)")]
-        public void GivenAPaymentOfIsSentInPeriodR(int amount, string p1)
+        [Given(@"a payment of £(.*) is sent in Period R(.*) (.*)")]
+        public async Task GivenAPaymentOfIsSentInPeriodR(int amount, byte period, short academicYear)
         {
+            _breakStart = _initialStartDate.AddDays(88);
+            _breakEnd = _breakStart.AddDays(1);
+            await SetupBreakInLearning();
+
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, academicYear);
+
+            await Helper.LearnerMatchOrchestratorHelper.Run();
+
+            await Helper.BusinessCentralApiHelper.AcceptAllPayments();
+            await Helper.PaymentsOrchestratorHelper.Run();
+            await Helper.PaymentsOrchestratorHelper.Approve();
+
+            var payments = Helper.EISqlHelper.GetAllFromDatabase<Payment>()
+               .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId)
+               .ToList();
+
+            payments.Count.Should().Be(1);            
+
             _expectedPaymentAmount = amount;
         }
 
@@ -71,6 +89,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenABreakInLearningBeforeTheFirstPayment() // WORKS
         {
             _breakStart = _initialStartDate.AddDays(88);
+            _breakEnd = _breakStart.AddDays(27);
+            await SetupBreakInLearning();
+        }
+
+        [Given(@"Learner data is updated with a Break in Learning of 28 days before the first payment due date starting (.*)")]
+        public async Task GivenABreakInLearningBeforeTheFirstPaymentStarting(DateTime startDate)
+        {
+            _breakStart = startDate;
             _breakEnd = _breakStart.AddDays(27);
             await SetupBreakInLearning();
         }
@@ -174,6 +200,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var learner = Helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             learner.InLearning.Should().BeTrue();
+        }
+
+        [Then(@"the paid earning of £(.*) is marked as requiring a clawback in Period R(.*) (.*)")]        
+        public void ThenAClawbackIsRecorded(int amount, byte period, short year)
+        {
+            var clawbacks = Helper.EISqlHelper.GetAllFromDatabase<ClawbackPayment>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
+
+            clawbacks.Count.Should().Be(1);
+            var clawback = clawbacks.Single();
+            clawback.Amount.Should().Be(amount * -1);
+            clawback.CollectionPeriod.Should().Be(period);
+            clawback.CollectionPeriodYear.Should().Be(year);
         }
 
         private void AssertPendingPayment(int amount, byte period, short year, EarningType earningType)
