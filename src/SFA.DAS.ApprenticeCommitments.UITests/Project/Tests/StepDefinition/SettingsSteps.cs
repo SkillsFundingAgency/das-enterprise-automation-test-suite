@@ -23,7 +23,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenAnApprenticeCanChangeTheirEmailBeforeConfirmingAccount() => UpdateEmailAddress().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
 
         [Then(@"an apprentice can change their personal details")]
-        public void ThenAnApprenticeCanChangeTheirPersonalDetails() => GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
+        public void ThenAnApprenticeCanChangeTheirPersonalDetails()
+        {
+            var page = GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails();
+           
+            Assert.Multiple(() => 
+            {
+                var (isDayDisabled, isMonthDisabled, isYearDisabled) = page.IsDateOfBirthDisabled();
+                Assert.AreEqual("true", isDayDisabled, "Day field under Date of Birth is not disabled");
+                Assert.AreEqual("true", isMonthDisabled, "Month field under Date of Birth is not disabled");
+                Assert.AreEqual("true", isYearDisabled, "Year field under Date of Birth is not disabled");
+            });
+
+            page.UpdateApprenticeName();
+        }
 
         [Then(@"an apprentice can change their password")]
         public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToMyApprenticeship();
@@ -31,17 +44,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an apprentice can change their password before confirming account")]
         public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
 
-        [Then(@"an apprentice can not change their personal details")]
-        public void ThenAnApprenticeCanNotChangeTheirPersonalDetails()
-        {
-            var page = new CreateMyApprenticeshipAccountPage(_context);
-
-            var expected = page.AccountSettingList();
-
-            var actual = new CreateMyApprenticeshipAccountPage(_context).GetAccountSettingMenuList();
-
-            CollectionAssert.AreEquivalent(expected, actual);
-        }
+        [Then(@"an apprentice change their personal details menu is available")]
+        public void ThenAnApprenticeChangeTheirPersonalDetailsMenuIsAvailable() => new CreateMyApprenticeshipAccountPage(_context).NavigateToChangeYourPersonalDetails();
 
         private PasswordResetSuccessfulPage UpdatePassword()
         {

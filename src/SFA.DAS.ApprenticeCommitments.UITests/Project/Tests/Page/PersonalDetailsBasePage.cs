@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -14,6 +15,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By DateOfBirth_Year => By.CssSelector("input#DateOfBirth_Year");
 
         public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
+
+        public (string isDayDisabled, string isMonthDisabled, string isYearDisabled) IsDateOfBirthDisabled() 
+            => (IsDateOfBirthDisabled(DateOfBirth_Day), IsDateOfBirthDisabled(DateOfBirth_Month), IsDateOfBirthDisabled(DateOfBirth_Year));
 
         protected void UpdateApprenticeName() => EnterApprenticeDetails(UpdatedNewName(GetFirstName()), UpdatedNewName(GetLastName()), null, null, null);
 
@@ -75,5 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string GetLastName() => objectContext.GetLastName();
 
         private DateTime GetDateOfBirth() => objectContext.GetDateOfBirth();
+
+        private string IsDateOfBirthDisabled(By by) => pageInteractionHelper.FindElement(by).GetAttribute(AttributeHelper.Disabled);
     }
 }

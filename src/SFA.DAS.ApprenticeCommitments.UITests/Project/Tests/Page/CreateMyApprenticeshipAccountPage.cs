@@ -19,12 +19,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
 
-        public override List<string> AccountSettingList() => new List<string> { "Change your personal details", "Change your password", "Change your email address" };
-
-        public List<string> GetAccountSettingMenuList()
+        public new CreateMyApprenticeshipAccountPage NavigateToChangeYourPersonalDetails()
         {
-            ClickAccountSettings();
-            return pageInteractionHelper.FindElements(NavigationSubLink).Select(x => x.Text).ToList();
+            NavigateToSettings("Change your personal details");
+            return new CreateMyApprenticeshipAccountPage(_context);
         }
 
         public TermsOfUsePage ConfirmIdentityAndGoToTermsOfUsePage()

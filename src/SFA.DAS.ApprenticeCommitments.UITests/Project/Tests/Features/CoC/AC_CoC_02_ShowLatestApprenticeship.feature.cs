@@ -20,8 +20,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ShowLatestApprenticeship")]
-    public partial class AC_CoC_02_ShowLatestApprenticeshipFeature
+    [NUnit.Framework.DescriptionAttribute("AC_CoC_03_ShowLatestApprenticeship")]
+    public partial class AC_CoC_03_ShowLatestApprenticeshipFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CoC_02_ShowLatestApprenticeship", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CoC_03_ShowLatestApprenticeship", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CoC
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CoC_02_ShowLatestApprenticeship")]
+        [NUnit.Framework.DescriptionAttribute("AC_CoC_03_ShowLatestApprenticeship")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("onemonthbeforecurrentacademicyearstartdate")]
-        public virtual void AC_CoC_02_ShowLatestApprenticeship()
+        public virtual void AC_CoC_03_ShowLatestApprenticeship()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "onemonthbeforecurrentacademicyearstartdate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CoC_02_ShowLatestApprenticeship", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CoC_03_ShowLatestApprenticeship", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

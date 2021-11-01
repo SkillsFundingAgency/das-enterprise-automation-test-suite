@@ -2,8 +2,6 @@
 {
     public static class AttributeHelper
     {
-        public static string InnerHTML => "innerHTML";
-
         public static string InnerText => "innerText";
 
         public static string AriaExpanded => "aria-expanded";
@@ -13,5 +11,7 @@
         public static string Value => "value";
 
         public static string DataCount => "data-count";
+
+        public static string Disabled => "disabled";
     }
 }

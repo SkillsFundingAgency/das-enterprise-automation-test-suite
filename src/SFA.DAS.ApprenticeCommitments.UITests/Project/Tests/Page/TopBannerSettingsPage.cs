@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -23,8 +22,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public virtual List<string> AccountSettingList() => new List<string> { "Change your personal details", "Change your password", "Change your email address" };
-
         public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
         {
             NavigateToSettings("Change your personal details");
@@ -44,7 +41,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
         protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
 
-        private void NavigateToSettings(string settingsName)
+        protected void NavigateToSettings(string settingsName)
         {
             ClickAccountSettings();
             formCompletionHelper.ClickLinkByText(NavigationSubLink, settingsName);
