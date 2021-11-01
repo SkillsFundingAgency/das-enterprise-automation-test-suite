@@ -22,6 +22,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             if (verifyConfirmYourApprenticeLink) VerifyPage(ConfirmYourApprenticeshipNowLink);
         }
 
+        public bool VerifyNotificationBannerIsNotDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
+
         public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
         {
             VerifyNotificationBanner("There seems to be a problem, we cannot find your apprenticeship.");
@@ -31,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ChangeYourPersonalDetailsPage(_context);
         }
 
-        public void VerifySucessNotification() => VerifyNotificationBanner("You have created an account and we have found your apprenticeship.");
+        public ApprenticeHomePage VerifySucessNotification() { VerifyNotificationBanner("You have created an account and we have found your apprenticeship."); return this; }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {

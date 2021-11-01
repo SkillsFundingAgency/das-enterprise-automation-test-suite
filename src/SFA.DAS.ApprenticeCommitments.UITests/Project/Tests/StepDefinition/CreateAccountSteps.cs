@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+﻿using NUnit.Framework;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -7,9 +8,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     [Binding]
     public class CreateAccountSteps : BaseSteps
     {
+        private readonly ScenarioContext _context;
         private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
+        private ApprenticeHomePage _apprenticeHomePage;
+        private (string firstName, string lastName) _name;
 
-        public CreateAccountSteps(ScenarioContext context) : base(context) { }
+        public CreateAccountSteps(ScenarioContext context) : base(context) => _context = context;
 
         [When(@"an apprenticeship is created via API request")]
         public void WhenAnApprenticeshipIsCreatedViaApiRequest() => createAccountStepsHelper.CreateApprenticeshipViaApiRequest();
@@ -22,7 +26,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             var (page, name) = _createMyApprenticeshipAccountPage.EnterInValidApprenticeDetails();
 
-            page.AcceptTermsAndCondition(false).GoToChangeYourPersonalDetailsPage().EnterValidApprenticeDetails(name.firstName, name.lastName).VerifySucessNotification();
+            _apprenticeHomePage = page.AcceptTermsAndCondition(false);
+
+            _name = name;
+        }
+
+        [Then(@"a positive match is shown after entering valid data")]
+        public void ThenAPositiveMatchIsShownAfterEnteringValidData()
+        {
+            _apprenticeHomePage = new ApprenticeHomePage(_context).GoToChangeYourPersonalDetailsPage().EnterValidApprenticeDetails(_name.firstName, _name.lastName).VerifySucessNotification();
+
+            _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+
+            Assert.IsFalse(_apprenticeHomePage.VerifyNotificationBannerIsNotDisplayed(), "Notification Banner is displayed");
         }
 
         [Then(@"an error is shown for entering empty data")]
@@ -36,6 +52,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             foreach (var d in invalidData)
             {
                 _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
+
                 _createMyApprenticeshipAccountPage.VerifyErrorSummary();
             }
         }
