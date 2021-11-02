@@ -17,16 +17,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         private readonly ScenarioContext _context;
         private readonly DbConfig _dbConfig;
         private readonly TabHelper _tabHelper;
-        private readonly EILevyUser _eILevyUser;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _dbConfig = context.Get<DbConfig>();
             _tabHelper = context.Get<TabHelper>();
-            _eILevyUser = context.GetUser<EILevyUser>();
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         [BeforeScenario(Order = 41)]
@@ -44,13 +40,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new EISqlHelper(_dbConfig));
-
-        [BeforeScenario(Order = 43)]
-        public void RemoveExistingApplications()
-        {
-           // if (_context.ScenarioInfo.Tags.Contains("eie2ejourney"))
-            //    _context.Get<EISqlHelper>().DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountIds(_eILevyUser.Username).accountId);
-        }
 
         [BeforeScenario(Order=44)]
         public void ResetPeriodEndInProgress()

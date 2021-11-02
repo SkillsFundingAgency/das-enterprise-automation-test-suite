@@ -1,9 +1,11 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
@@ -13,11 +15,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-
+        
         public EIEmployerLoginSteps(ScenarioContext context)
         {
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
+       
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
@@ -42,6 +45,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _employerPortalLoginHelper.Login(loginUser, true);
         }
 
-        private HomePage Login(LoginUser user) => _employerPortalLoginHelper.Login(user, true);
+        private HomePage Login(LoginUser user)
+        {
+            RemoveExistingApplications(user); 
+            
+            return _employerPortalLoginHelper.Login(user, true);
+        }
+
+        public void RemoveExistingApplications(LoginUser user)
+        {
+            if (_context.ScenarioInfo.Tags.Contains("deletedincentiveapplication"))
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);
+        }
+
     }
 }
