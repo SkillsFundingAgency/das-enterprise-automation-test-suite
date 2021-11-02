@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -41,10 +38,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new EISqlHelper(_dbConfig));
 
-        [BeforeScenario(Order=44)]
-        public void ResetPeriodEndInProgress()
-        {
-            _context.Get<EISqlHelper>().ResetPeriodEndInProgress();
-        }
+        [BeforeScenario(Order = 44)]
+        public void ResetPeriodEndInProgress() => _context.Get<EISqlHelper>().ResetPeriodEndInProgress();
     }
 }
