@@ -3,6 +3,7 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
@@ -21,7 +22,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing EI Levy Account")]
         [When(@"the Employer logins using existing EI Levy Account")]
-        public void GivenTheEmployerLoginsUsingExistingEILevyAccount() => _employerPortalLoginHelper.Login(_context.GetUser<EILevyUser>(), true);
+        public void TheEmployerLoginsUsingExistingEILevyAccount() => Login(_context.GetUser<EILevyUser>());
+
+        [Given(@"the Employer logins using existing EI Withdraw Levy Account")]
+        public void TheEmployerLoginsUsingExistingEIWithdrawLevyAccount() => Login(_context.GetUser<EIWithdrawLevyUser>());
 
         [Given(@"the Employer logins using existing Version4AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version4AgreementUser>());
@@ -37,5 +41,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
             _employerPortalLoginHelper.Login(loginUser, true);
         }
+
+        private HomePage Login(LoginUser user) => _employerPortalLoginHelper.Login(user, true);
     }
 }

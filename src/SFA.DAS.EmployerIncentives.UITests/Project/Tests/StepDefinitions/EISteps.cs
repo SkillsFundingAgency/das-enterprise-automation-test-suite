@@ -8,7 +8,6 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using System.Linq;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
 
@@ -19,7 +18,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly EILevyUser _eILevyUser;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
@@ -40,7 +38,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _multipleAccountUser = _context.GetUser<MultipleAccountUser>();
-            _eILevyUser = _context.GetUser<EILevyUser>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _multipleAccountUser);
@@ -180,7 +177,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
         {
-            _email = _context.ScenarioInfo.Tags.Contains("eie2ejourney") ? _eILevyUser.Username : _loginCredentialsHelper.GetLoginCredentials().Username;
+            _email = _loginCredentialsHelper.GetLoginCredentials().Username;
             _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
 
             return _qualificationQuestionPage
