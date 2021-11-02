@@ -19,7 +19,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $" DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $" DELETE FROM dbo.Audit WHERE UpdatedState like '%{applicationId}%'; " +
             $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE [UKPRN] = {ukprn} " +
-            $" UPDATE Apply set FinancialReviewStatus = 'New' , FinancialGrade = NULL WHERE [UKPRN] = {ukprn} " +
             $" DELETE FROM [dbo].[FinancialReviewClarificationFile] where ApplicationId = '{applicationId}'; " +
             $" DELETE FROM Financialreview where ApplicationId = '{applicationId}'; " +
             $" Update dbo.Apply set  [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
@@ -34,9 +33,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
         public void FHAClearDownDataFromApply(string ukprn)
         {
             var FhaResetQuery = $"{GetApplicationId(ukprn)} UPDATE Apply set GatewayReviewStatus = 'Pass' , Applicationstatus = 'GatewayAssessed'," +
-            $" FinancialReviewStatus = 'New', FinancialGrade = null," +
             $" [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
-            $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', " +         
+            $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', " +
             $" [AssessorReviewStatus] = 'New', [ApplicationDeterminedDate] = null  WHERE ApplicationId =  @ApplicationID; " +
             $" DELETE FROM [dbo].[AppealFile] where ApplicationId = @ApplicationID;" +
             $" DELETE FROM Appeal where ApplicationId = @ApplicationID;" +
