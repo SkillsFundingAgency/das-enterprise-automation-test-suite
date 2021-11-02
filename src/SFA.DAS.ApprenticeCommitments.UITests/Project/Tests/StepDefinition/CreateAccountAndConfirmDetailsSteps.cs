@@ -4,19 +4,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class CreateAccountAndConfirmDetails : BaseSteps
+    public class CreateAccountAndConfirmDetailsSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
 
-        public CreateAccountAndConfirmDetails(ScenarioContext context) : base(context) => _context = context;
+        public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Then(@"the apprentice can create account")]
         public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyInCompleteTag();
 
         [Given(@"an apprentice has created and validated the account")]
-        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount() =>
-        createAccountStepsHelper.CreateAccount().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
+        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount() => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
 
         [When(@"the apprentice confirms all the Apprenticeship sections")]
         public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmAllSections();
@@ -50,23 +49,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
 
         [Then(@"the apprentice can create account and confirm their details")]
-        public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
-        {
-            var apprenticeOverviewPage = createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
-
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship(apprenticeOverviewPage);
-        }
+        public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails() 
+            => ConfirmAllSectionsAndApprenticeship(createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage());
 
         [Then(@"the apprentice can confirm apprenticeship")]
-        public void ThenTheApprenticeCanConfirmApprenticeship()
-        {
-            var page = new ApprenticeHomePage(_context).NavigateToOverviewPageFromLinkOnTheHomePage();
+        public void ThenTheApprenticeCanConfirmApprenticeship() 
+            => ConfirmAllSectionsAndApprenticeship(new ApprenticeHomePage(_context).NavigateToOverviewPageFromLinkOnTheHomePage())
+            .NavigateToHomePageFromTopNavigationLink()
+            .VerifyCompleteTag();
 
-            confirmMyApprenticeshipStepsHelper
-                .ConfirmAllSections(page)
-                .ConfirmYourApprenticeshipFromTheTopBanner()
-                .NavigateToHomePageFromTopNavigationLink()
-                .VerifyCompleteTag();
-        }
+        private TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage) 
+            => confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship(apprenticeOverviewPage);
     }
 }

@@ -30,10 +30,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
         }
 
-        public TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage)
-        {
-            return ConfirmAllSections(apprenticeOverviewPage).ConfirmYourApprenticeshipFromTheTopBanner();
-        }
+        public TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage) 
+            => ConfirmAllSections(apprenticeOverviewPage).ConfirmYourApprenticeshipFromTheTopBanner();
 
         public ApprenticeOverviewPage ConfirmAllSections(ApprenticeOverviewPage apprenticeOverviewPage)
         {
@@ -85,7 +83,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmYourTrainingProvider(string initialStatus)
         {
-
             AssertSection2Status(initialStatus);
 
             var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));

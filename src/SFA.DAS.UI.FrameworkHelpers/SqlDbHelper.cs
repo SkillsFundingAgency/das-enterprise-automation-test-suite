@@ -1,5 +1,4 @@
-﻿using Polly;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
