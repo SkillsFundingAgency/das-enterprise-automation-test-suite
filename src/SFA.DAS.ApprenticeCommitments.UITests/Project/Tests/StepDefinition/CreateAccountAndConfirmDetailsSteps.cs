@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class CreateAccountAndConfirmDetails : BaseSteps
+    public class CreateAccountAndConfirmDetailsSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
 
-        public CreateAccountAndConfirmDetails(ScenarioContext context) : base(context) => _context = context;
+        public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Then(@"the apprentice can create account")]
         public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyInCompleteTag();
