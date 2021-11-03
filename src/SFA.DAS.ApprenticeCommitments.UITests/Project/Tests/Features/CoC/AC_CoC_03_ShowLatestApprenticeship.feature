@@ -1,10 +1,9 @@
-﻿Feature: AC_CoC_02_ShowLatestApprenticeship
+﻿Feature: AC_CoC_03_ShowLatestApprenticeship
 
 @apprenticecommitments
 @regression
-@changeOfEmployer
 @onemonthbeforecurrentacademicyearstartdate
-Scenario: AC_CoC_02_ShowLatestApprenticeship
+Scenario: AC_CoC_03_ShowLatestApprenticeship
 	Given the Employer has approved apprentice
 	And the apprentice completed confirm my apprenticeship details
 	Then the Employer can stop the live apprentice

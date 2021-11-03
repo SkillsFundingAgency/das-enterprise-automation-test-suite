@@ -12,10 +12,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 {
     public class ConfirmMyApprenticeshipStepsHelper
     {
+        private readonly ScenarioContext _context;
         protected readonly ObjectContext _objectContext;
         protected readonly RetryAssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel;
         private DateTime expectedApprenticeshipStartDate;
@@ -23,11 +23,141 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ConfirmMyApprenticeshipStepsHelper(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<RetryAssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
+        }
+
+        public TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage) 
+            => ConfirmAllSections(apprenticeOverviewPage).ConfirmYourApprenticeshipFromTheTopBanner();
+
+        public ApprenticeOverviewPage ConfirmAllSections(ApprenticeOverviewPage apprenticeOverviewPage)
+        {
+            apprenticeOverviewPage = ConfirmYourEmployer(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmYourTrainingProvider(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(apprenticeOverviewPage);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ApprenticeOverviewPage ConfirmYourEmployer(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourEmployerPage().SelectYes();
+
+        public ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYes();
+
+        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYes();
+        
+        public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
+        
+        public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmRolesAndResponsibilitiesPage().ContinueToHomePage();
+
+        public ApprenticeOverviewPage ConfirmAllSections()
+        {
+            var apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.InComplete);
+            VerifyInCompleteTag(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.InComplete);
+            VerifyInCompleteTag(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.InComplete);
+            VerifyInCompleteTag(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+            VerifyInCompleteTag(apprenticeOverviewPage);
+            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
+            return VerifyInCompleteTag(apprenticeOverviewPage);
+        }
+
+        public ApprenticeOverviewPage VerifyInCompleteTag(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyInCompleteTag().NavigateToOverviewPageFromLinkOnTheHomePage();
+
+        public ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
+        {
+            AssertSection1Status(initialStatus);
+
+            var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
+
+            AssertSection1Status(StatusHelper.Complete);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ApprenticeOverviewPage ConfirmYourTrainingProvider(string initialStatus)
+        {
+            AssertSection2Status(initialStatus);
+
+            var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
+
+            AssertSection2Status(StatusHelper.Complete);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ApprenticeOverviewPage ConfirmApprenticeshipDetails(string initialStatus)
+        {
+            AssertSection3Status(initialStatus);
+
+            var apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYes();
+
+            AssertSection3Status(StatusHelper.Complete);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(string initialStatus)
+        {
+            AssertSection4Status(initialStatus);
+
+            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
+
+            AssertSection4Status(StatusHelper.Complete);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(string initialStatus)
+        {
+            AssertSection5Status(initialStatus);
+
+            var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
+
+            AssertSection5Status(StatusHelper.Complete);
+
+            return apprenticeOverviewPage;
+        }
+
+        public ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
+        {
+            var page = new ApprenticeOverviewPage(_context).GoToConfirmYourApprenticeshipDetailsPage();
+
+            VerifyApprenticeshipDataDisplayed(page);
+
+            return page;
+        }
+
+        private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
+        {
+            var page = new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
+
+            return VerifyRolesAndResponsibilitiesPage(page);
+        }
+
+        public ApprenticeOverviewPage AssertSection1Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section1, expectedStatus);
+
+        public ApprenticeOverviewPage AssertSection2Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section2, expectedStatus);
+
+        public ApprenticeOverviewPage AssertSection3Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section3, expectedStatus);
+
+        public ApprenticeOverviewPage AssertSection4Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section4, expectedStatus);
+
+        public ApprenticeOverviewPage AssertSection5Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section5, expectedStatus);
+
+        public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
+        {
+            var page = new ApprenticeOverviewPage(_context);
+
+            Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
+            
+            return page;
         }
 
         public void VerifyApprenticeshipDataDisplayed(ConfirmYourApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)

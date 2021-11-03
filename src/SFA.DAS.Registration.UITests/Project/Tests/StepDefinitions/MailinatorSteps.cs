@@ -1,8 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.MailinatorPages;
-using SFA.DAS.UI.Framework;
+using SFA.DAS.Mailinator.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -12,22 +10,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
+        private readonly RegistrationConfig _config;
 
         public MailinatorSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
+            _config = _context.GetRegistrationConfig<RegistrationConfig>();
         }
 
         [Then(@"the User receives Access code notification to the registered email")]
-        public void ThenTheUserReceivesAccessCodeNotificationToTheRegisteredEmail()
-        {
-            _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
-            new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_objectContext.GetRegisteredEmail())
-                .ClickOnEmail()
-                .VerifyAccessCode();
-        }
+        public void TheUserReceivesAccessCodeNotificationToTheRegisteredEmail() => new MailinatorStepsHelper(_context, _objectContext.GetRegisteredEmail()).VerifyAccessCode(_config.RE_ConfirmCode);
     }
 }

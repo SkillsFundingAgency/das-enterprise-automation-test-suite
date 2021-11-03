@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -34,9 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
-            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
-            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+            EnterApprenticeMandatoryValidDetails();
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
@@ -57,6 +56,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
             return new ProviderApproveApprenticeDetailsPage(_context);
+        }
+
+        private void EnterApprenticeMandatoryValidDetails()
+        {
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+
+            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+
+            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }
     }
 }

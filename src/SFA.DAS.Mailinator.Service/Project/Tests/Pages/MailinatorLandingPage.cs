@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorLandingPage : MailinatorBasePage
+    internal class MailinatorLandingPage : MailinatorBasePage
     {
         protected override string PageTitle => "MAILINATOR";
         protected override By PageHeader => By.CssSelector(".nav-title");
@@ -14,9 +14,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         private By GoButton => By.Id("go-to-public");
         #endregion
 
-        public MailinatorLandingPage(ScenarioContext context) : base(context) => _context = context;
+        internal MailinatorLandingPage(ScenarioContext context) : base(context) => _context = context;
 
-        public MailinatorInboxPage EnterEmailAndClickOnGoButton(string organisationEmailAddress)
+        internal MailinatorInboxPage EnterEmailAndClickOnGoButton(string organisationEmailAddress)
         {
             formCompletionHelper.EnterText(EmailTextBox, organisationEmailAddress);
 

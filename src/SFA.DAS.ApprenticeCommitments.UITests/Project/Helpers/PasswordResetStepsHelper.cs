@@ -56,7 +56,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ForgottenPasswordConfirmPage ResetPasswordFromSignInPageForUnverifiedAccount(SignIntoMyApprenticeshipPage signIntoMyApprenticeshipPage) => signIntoMyApprenticeshipPage.ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
 
-        public SignIntoMyApprenticeshipPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().CreateAndConfirmPasswordOnCreatePasswordPage().ReturnToSignInPage();
+        public SignIntoMyApprenticeshipPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().UpdatePassword().ReturnToSignInPage();
 
         public void EnterMismatchedPasswordsAndValidateError(ResetPasswordPage resetPasswordPage)
         {
