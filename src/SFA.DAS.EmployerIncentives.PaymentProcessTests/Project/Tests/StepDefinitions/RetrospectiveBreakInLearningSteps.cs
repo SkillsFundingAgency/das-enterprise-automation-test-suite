@@ -15,12 +15,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private DateTime _initialStartDate;
         private List<PendingPayment> _newEarnings;
-        private DateTime _breakStart;
-        private DateTime _breakEnd;
         private DateTime _initialEndDate;
         private int _expectedPaymentAmount;
         private Phase _phase;
         private DateTime _submittedOn;
+        private List<Tuple<DateTime, DateTime>> _breaksInLearning = new List<Tuple<DateTime, DateTime>>();
 
         protected RetrospectiveBreakInLearningSteps(ScenarioContext context) : base(context)
         {
@@ -56,9 +55,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a payment of £(.*) is sent in Period R(.*) (.*)")]
         public async Task GivenAPaymentOfIsSentInPeriodR(int amount, byte period, short academicYear)
         {
-            _breakStart = _initialStartDate.AddDays(88);
-            _breakEnd = _breakStart.AddDays(1);
-            await SetupBreakInLearning();
+            await SetupSubmissionWithNoBreakInLearning();
 
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, academicYear);
 
@@ -80,50 +77,94 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"Learner data is updated with a Break in Learning of 28 days after the first payment due date")]
         public async Task GivenLearnerDataIsUpdatedWithABreakInLearningOfDaysAfterTheFirstPaymentDueDate()
         {
-            _breakStart = _initialStartDate.AddDays(89);
-            _breakEnd = _breakStart.AddDays(27);
+            var breakStart = _initialStartDate.AddDays(89);
+            var breakEnd = breakStart.AddDays(27);
+
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
         }
 
         [Given(@"Learner data is updated with a Break in Learning of 28 days before the first payment due date")]
         public async Task GivenABreakInLearningBeforeTheFirstPayment() // WORKS
         {
-            _breakStart = _initialStartDate.AddDays(88);
-            _breakEnd = _breakStart.AddDays(27);
+            var breakStart = _initialStartDate.AddDays(88);
+            var breakEnd = breakStart.AddDays(27);
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
         }
 
         [Given(@"Learner data is updated with a Break in Learning of 28 days before the first payment due date starting (.*)")]
         public async Task GivenABreakInLearningBeforeTheFirstPaymentStarting(DateTime startDate)
         {
-            _breakStart = startDate;
-            _breakEnd = _breakStart.AddDays(27);
+            var breakStart = startDate;
+            var breakEnd = breakStart.AddDays(27);
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
         }
 
         [Given(@"Learner data is updated with a Break in Learning of less than 28 days before the first payment due date")]
         public async Task GivenAShortBreakInLearningBeforeTheFirstPayment()
         {
-            _breakStart = _initialStartDate.AddDays(88);
-            _breakEnd = _breakStart.AddDays(26);
+            var breakStart = _initialStartDate.AddDays(88);
+            var breakEnd = breakStart.AddDays(26);
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
+            await SetupBreakInLearning();
+        }
+
+        [Given(@"Learner data is updated with a Break in Learning of 28 days starting 1 month after the first break resume")]
+        public async Task GivenASecondBreakInLearning()
+        {
+            var breakStart = _breaksInLearning.First().Item2.AddMonths(1);
+            var breakEnd = breakStart.AddDays(27);
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
         }
 
         private async Task SetupBreakInLearning()
         {
             var academicYear = _phase == Phase.Phase1 ? 2021 : 2122;
-            var priceEpisode1 = new PriceEpisodeDtoBuilder()
-                .WithAcademicYear(2021)
-                .WithStartDate(_initialStartDate)
-                .WithEndDate(_breakStart.AddDays(-1))
-                .WithPeriod(TestData.ApprenticeshipId, 11)
-                .Create();
 
-            var priceEpisode2 = new PriceEpisodeDtoBuilder()
+            var learnerSubmissionBuilder = new LearnerSubmissionDtoBuilder()
+                .WithUkprn(TestData.UKPRN)
+                .WithUln(TestData.ULN)
                 .WithAcademicYear(academicYear)
-                .WithStartDate(_breakEnd.AddDays(1))
+                .WithIlrSubmissionDate(_submittedOn.AddMonths(1))
+                .WithIlrSubmissionWindowPeriod(1)
+                .WithStartDate(_initialStartDate);
+
+            for (int i = 0; i < _breaksInLearning.Count(); i++)
+            {
+                var priceEpisode = new PriceEpisodeDtoBuilder()
+                    .WithAcademicYear(academicYear)
+                    .WithStartDate(i == 0 ? _initialStartDate : _breaksInLearning[i-1].Item2.AddDays(1))
+                    .WithEndDate(_breaksInLearning[i].Item1.AddDays(-1))
+                    .WithPeriod(TestData.ApprenticeshipId, 11)
+                    .Create();
+
+                learnerSubmissionBuilder.WithPriceEpisode(priceEpisode);
+            }
+
+            var lastPriceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(academicYear)
+                .WithStartDate(_breaksInLearning[_breaksInLearning.Count - 1].Item2.AddDays(1))
                 .WithEndDate(_initialEndDate)
                 .WithPeriod(TestData.ApprenticeshipId, 1)
+                .Create();
+
+            var learnerSubmissionData = learnerSubmissionBuilder.WithPriceEpisode(lastPriceEpisode).Create();
+
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
+        }
+
+        private async Task SetupSubmissionWithNoBreakInLearning()
+        {
+            var academicYear = _phase == Phase.Phase1 ? 2021 : 2122;
+
+            var priceEpisode = new PriceEpisodeDtoBuilder()
+                .WithAcademicYear(academicYear)
+                .WithStartDate(_initialStartDate)
+                .WithEndDate(_initialEndDate)
+                .WithPeriod(TestData.ApprenticeshipId, 11)
                 .Create();
 
             var learnerSubmissionData = new LearnerSubmissionDtoBuilder()
@@ -133,8 +174,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithIlrSubmissionDate(_submittedOn.AddMonths(1))
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(_initialStartDate)
-                .WithPriceEpisode(priceEpisode1)
-                .WithPriceEpisode(priceEpisode2)
+                .WithPriceEpisode(priceEpisode)
                 .Create();
 
             await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
@@ -162,9 +202,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .OrderBy(x => x.StartDate)
                 .ToList();
 
-            breaksInLearning.Count.Should().BeGreaterOrEqualTo(1);
-            breaksInLearning.First().StartDate.Should().Be(_breakStart);
-            breaksInLearning.First().EndDate.Should().Be(_breakEnd);
+            breaksInLearning.Count.Should().Be(_breaksInLearning.Count);
+            foreach (var expectedBreak in _breaksInLearning)
+            {
+                breaksInLearning.Should().Contain(x => x.StartDate == expectedBreak.Item1);
+                breaksInLearning.Should().Contain(x => x.EndDate == expectedBreak.Item2);
+            }
         }
 
         [Then(@"no Break in Learning is recorded")]
