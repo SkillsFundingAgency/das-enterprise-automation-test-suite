@@ -48,8 +48,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _eISqlHelper = _context.Get<EISqlHelper>();
         }
 
-        [Then(@"the Employer can cancel the application")]
-        public void ThenTheEmployerCanCancelTheApplication() => _viewApplicationsPage = _viewApplicationsPage.CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
+        [Then(@"the Employer can withdraw the application")]
+        public void ThenTheEmployerCanWithdrawTheApplication() => _viewApplicationsPage = _viewApplicationsPage.CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
 
         [Given(@"the Employer submits an EI Application")]
         public void GivenTheEmployerSubmitsAnEIApplication()

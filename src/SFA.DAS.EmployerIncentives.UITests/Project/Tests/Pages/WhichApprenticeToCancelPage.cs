@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class WhichApprenticeCancelPage : EIBasePage
+    public class WhichApprenticeToCancelPage : EIBasePage
     {
         protected override string PageTitle => "Which apprentices do you want to cancel an application for?";
 
@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public WhichApprenticeCancelPage(ScenarioContext context) : base(context) => _context = context;
+        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context) => _context = context;
 
         public ConfirmApprenticeCancelPage SelectApprenticeToCancel()
         {
