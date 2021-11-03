@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,6 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         protected readonly PasswordResetStepsHelper passwordResetStepsHelper;
         protected readonly ApprenticeCommitmentsConfig config;
         protected readonly TabHelper tabHelper;
+        protected readonly ObjectContext objectContext;
 
         public BaseSteps(ScenarioContext context)
         {
@@ -20,6 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             passwordResetStepsHelper = new PasswordResetStepsHelper(context);
             config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             tabHelper = context.Get<TabHelper>();
+            objectContext = context.Get<ObjectContext>();
         }
     }
 }

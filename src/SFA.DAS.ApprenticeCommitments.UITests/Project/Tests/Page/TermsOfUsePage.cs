@@ -13,10 +13,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public TermsOfUsePage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeHomePage AcceptTermsAndCondition()
+        public ApprenticeHomePage AcceptTermsAndCondition(bool IsConfirmYourApprenticeLinkDisplayed)
         {
             Continue();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(_context, IsConfirmYourApprenticeLinkDisplayed);
         }
         
     }

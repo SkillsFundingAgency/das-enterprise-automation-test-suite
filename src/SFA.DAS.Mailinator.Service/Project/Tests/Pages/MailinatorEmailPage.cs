@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
@@ -9,17 +10,39 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".sender-info");
 
         #region Locators
-        private By EmailBodyFrame => By.Id("html_msg_body");
-        private By EmailLink => By.XPath("//a[contains(text(),'https://')]");
+        private By EmailBodyFrame => By.CssSelector("#html_msg_body");
+
+        private By TexthtmlMsgBody => By.CssSelector("#texthtml_msg_body");
+
+
+        private By EmailLink(string linktext) => By.CssSelector($"a[href*='{linktext}']");
+
+        private By TextTab => By.CssSelector("#pills-textbuthtml-tab");
+
+        private By AccessCodeText(string code) => By.XPath($"//h2[contains(text(), '{code}')]");
         #endregion
 
         public MailinatorEmailPage(ScenarioContext context) : base(context) { }
 
-        public void VerifyEmailLink()
+        internal void OpenLink(string linktext)
+        {
+            formCompletionHelper.ClickElement(TextTab);
+
+            frameHelper.SwitchToFrame(TexthtmlMsgBody);
+
+            formCompletionHelper.ClickElement(EmailLink(linktext));
+
+            frameHelper.SwitchToDefaultContent();
+        }
+
+        public MailinatorEmailPage VerifyAccessCode(string code) { pageInteractionHelper.VerifyText(GetAccessCode(code), code); return this; }
+
+        private string GetAccessCode(string code)
         {
             frameHelper.SwitchToFrame(EmailBodyFrame);
-
-            formCompletionHelper.ClickElement(EmailLink);
+            var text = javaScriptHelper.GetTextUsingJavaScript(AccessCodeText(code));
+            frameHelper.SwitchToDefaultContent();
+            return text;
         }
     }
 }

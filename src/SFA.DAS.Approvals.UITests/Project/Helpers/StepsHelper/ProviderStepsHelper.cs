@@ -59,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return homePage
                    .GoToProviderGetFunding()
                    .StartReservedFunding()
-                   .ChooseAnEmployerNonLevy()
+                   .ChooseAnEmployer("NonLevy")
                    .ConfirmNonLevyEmployer()
                    .AddTrainingCourseAndDate()
                    .ConfirmReserveFunding()
