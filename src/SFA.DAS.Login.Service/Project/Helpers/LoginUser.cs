@@ -67,6 +67,8 @@
 
     public class EILevyUser : LoginUser { }
 
+    public class EIWithdrawLevyUser : LoginUser { }
+
     public class TransactorUser : LoginUser { }
 
     public class ViewOnlyUser : LoginUser { }
