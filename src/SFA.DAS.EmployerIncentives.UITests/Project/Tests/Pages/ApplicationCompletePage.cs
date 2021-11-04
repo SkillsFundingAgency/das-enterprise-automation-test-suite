@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {

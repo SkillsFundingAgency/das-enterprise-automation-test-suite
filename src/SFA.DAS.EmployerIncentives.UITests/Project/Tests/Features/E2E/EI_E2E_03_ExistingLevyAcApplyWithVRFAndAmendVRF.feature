@@ -3,6 +3,7 @@
 @regression
 @employerincentives
 @eie2ejourney
+@deletedincentiveapplication
 @vrfservice
 Scenario: EI_E2E_03_ExistingLevyAcApplyWithVRFAndAmendVRF
 	When the Employer logins using existing EI Levy Account
