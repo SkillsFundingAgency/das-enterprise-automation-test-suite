@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SFA.DAS.Login.Service.Helpers
+namespace SFA.DAS.Login.Service.Project.Helpers
 {
     public abstract class LoginUser
     {
@@ -10,14 +10,14 @@ namespace SFA.DAS.Login.Service.Helpers
 
         public string OrganisationName { get; set; }
 
-       public List<string> LegalEntities { get; set; }
+        public List<string> LegalEntities { get; set; }
     }
 
     public class AuthTestUser : LoginUser { }
 
     public class RAAV2EmployerUser : LoginUser { }
 
-    public class RAAV2EmployerProviderPermissionUser : LoginUser  { }
+    public class RAAV2EmployerProviderPermissionUser : LoginUser { }
 
     public class ProviderLoginUser : LoginUser
     {
@@ -33,7 +33,7 @@ namespace SFA.DAS.Login.Service.Helpers
     public class NonLevyUser : LoginUser { }
 
     public class LoggedInUser : LoginUser { }
-    
+
     public class EPAOStandardApplyUser : LoginUser { }
 
     public class EPAOAssessorUser : LoginUser { }

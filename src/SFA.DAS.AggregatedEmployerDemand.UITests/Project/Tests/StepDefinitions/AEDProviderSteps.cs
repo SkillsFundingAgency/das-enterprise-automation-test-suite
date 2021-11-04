@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {

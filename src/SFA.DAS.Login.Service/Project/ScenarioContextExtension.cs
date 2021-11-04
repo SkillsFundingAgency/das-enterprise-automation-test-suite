@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

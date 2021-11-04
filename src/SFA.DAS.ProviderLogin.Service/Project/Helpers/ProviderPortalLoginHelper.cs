@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Login.Service.Helpers;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using TechTalk.SpecFlow;
 

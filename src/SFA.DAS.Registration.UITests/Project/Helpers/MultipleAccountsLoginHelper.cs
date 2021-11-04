@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Login.Service.Helpers;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 

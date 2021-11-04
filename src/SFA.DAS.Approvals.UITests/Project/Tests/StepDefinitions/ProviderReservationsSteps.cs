@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

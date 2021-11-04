@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using EmployerStepsHelper = SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers.EmployerStepsHelper;
 using ProviderStepsHelper = SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers.ProviderStepsHelper;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using NUnit.Framework;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {

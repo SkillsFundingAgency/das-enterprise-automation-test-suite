@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
