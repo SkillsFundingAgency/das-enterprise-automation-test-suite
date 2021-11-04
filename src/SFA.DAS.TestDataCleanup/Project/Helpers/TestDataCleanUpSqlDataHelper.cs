@@ -39,7 +39,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 $"and Email not like '%Dec2021%' " +
                 $"and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
 
-            if (IsNullOrEmpty(userEmailList)) return (usersdeleted, userswithconstraints);
+            if (IsNoDataFound(userEmailList)) return (usersdeleted, userswithconstraints);
 
             TestDataCleanUpEmailsInUse.AddInUseEmails(userEmailList.ListOfArrayToList(0));
 

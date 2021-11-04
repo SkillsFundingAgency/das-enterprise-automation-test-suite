@@ -20,16 +20,15 @@ namespace SFA.DAS.ProviderLogin.Service
         [BeforeScenario(Order = 2)]
         public void SetUpProviderConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProviderConfig>();
-            _context.SetProviderConfig(config);
+            _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+            _context.SetProviderUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderContributorUser>());
+            _context.SetProviderUser(_configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+            _context.SetProviderUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
+            _context.SetProviderUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }
     }
 }

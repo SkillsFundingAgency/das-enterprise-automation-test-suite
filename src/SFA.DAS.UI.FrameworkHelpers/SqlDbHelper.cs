@@ -9,6 +9,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
+        protected bool IsNoDataFound(List<string[]> x) => IsNoDataFound(x.ListOfArrayToList(0));
+
+        protected bool IsNoDataFound(List<string> x) => (x.Count == 1 && string.IsNullOrEmpty(x[0]));
+
         protected List<string> GetData(string query, int noOfvalues, Dictionary<string, string> parameters = null) => GetData(query, connectionString, noOfvalues, parameters);
 
         protected List<string> GetData(string query, string connectionstring, int noOfvalues, Dictionary<string, string> parameters = null)

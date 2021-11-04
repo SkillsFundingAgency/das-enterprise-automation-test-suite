@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.Login.Service.Helpers
+﻿using System.Collections.Generic;
+
+namespace SFA.DAS.Login.Service.Helpers
 {
     public abstract class LoginUser
     {
@@ -7,6 +9,8 @@
         public string Password { get; set; }
 
         public string OrganisationName { get; set; }
+
+       public List<string> LegalEntities { get; set; }
     }
 
     public class AuthTestUser : LoginUser { }
@@ -23,14 +27,6 @@
     public class ProviderPermissionLevyUser : LoginUser { }
 
     public class AgreementNotSignedTransfersUser : LoginUser { }
-
-    public class TransfersUser : MultipleAccountUser { }
-
-    public class TransfersUserNoFunds : MultipleAccountUser { }
-
-    public class TransferMatchingUser : MultipleAccountUser { }
-
-    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
     public class LevyUser : LoginUser { }
 
@@ -73,11 +69,6 @@
 
     public class ViewOnlyUser : LoginUser { }
 
-    public class MultipleAccountUser : LoginUser
-    {
-        public string SecondOrganisationName { get; set; }
-    }
-
     public class Version4AgreementUser : LoginUser { }
 
     public class Version5AgreementUser : LoginUser { }
@@ -85,4 +76,17 @@
     public class Version6AgreementUser : LoginUser { }
 
     public class ASListedLevyUser : LoginUser { }
+
+    public class TransfersUser : MultipleAccountUser { }
+
+    public class TransfersUserNoFunds : MultipleAccountUser { }
+
+    public class TransferMatchingUser : MultipleAccountUser { }
+
+    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
+
+    public class MultipleAccountUser : LoginUser
+    {
+        public string SecondOrganisationName { get; set; }
+    }
 }
