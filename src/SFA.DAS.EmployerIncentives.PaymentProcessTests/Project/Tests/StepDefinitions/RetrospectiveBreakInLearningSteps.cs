@@ -44,6 +44,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
+
+            await SetupSubmissionWithNoBreakInLearning();
         }
 
         [Given(@"a payment of £(.*) is not sent in Period R(.*)")]
@@ -55,8 +57,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"a payment of £(.*) is sent in Period R(.*) (.*)")]
         public async Task GivenAPaymentOfIsSentInPeriodR(int amount, byte period, short academicYear)
         {
-            await SetupSubmissionWithNoBreakInLearning();
-
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(period, academicYear);
 
             await Helper.LearnerMatchOrchestratorHelper.Run();
@@ -79,6 +79,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var breakStart = _initialStartDate.AddDays(89);
             var breakEnd = breakStart.AddDays(27);
+
+            _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
+            await SetupBreakInLearning();
+        }
+
+        [Given(@"Learner data is updated with a Break in Learning of 56 days after the first payment due date")]
+        public async Task GivenLearnerDataIsUpdatedWithAnUpdatedBreakInLearningOfDaysAfterTheFirstPaymentDueDate()
+        {
+            _breaksInLearning.Clear();
+            var breakStart = _initialStartDate.AddDays(89);
+            var breakEnd = breakStart.AddDays(55);
 
             _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
@@ -118,6 +129,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var breakEnd = breakStart.AddDays(27);
             _breaksInLearning.Add(new Tuple<DateTime, DateTime>(breakStart, breakEnd));
             await SetupBreakInLearning();
+        }
+
+        [Given(@"Learner data is updated with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenLearningStartDateIsUpdated(DateTime startDate, DateTime endDate)
+        {
+            _initialStartDate = startDate;
+            _initialEndDate = endDate;
+
+            _breaksInLearning.Clear();
+            
+            await SetupSubmissionWithNoBreakInLearning();
         }
 
         private async Task SetupBreakInLearning()
@@ -180,6 +202,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
         }
 
+        [Given(@"the Learner Match is run in Period R(.*) (.*)")]
         [When(@"the Learner Match is run in Period R(.*) (.*)")]
         public async Task WhenTheLearnerMatchIsRunInPeriodR(byte period, short year)
         {
@@ -194,7 +217,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
         }
 
+        [Given(@"the Payment Run occurs")]
+        public async Task WhenThePaymentRunOccurs()
+        {
+            await Helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.PaymentsOrchestratorHelper.Run();
+            await Helper.CollectionCalendarHelper.Reset();
+        }
+
         [Then(@"the Break in Learning is recorded")]
+        [Then(@"the Break in Learning is amended")]
+        [Then(@"the Break in Learning is Removed")]
         public void ThenTheBreakInLearningIsRecorded()
         {
             var breaksInLearning = Helper.EISqlHelper.GetAllFromDatabase<ApprenticeshipBreakInLearning>()

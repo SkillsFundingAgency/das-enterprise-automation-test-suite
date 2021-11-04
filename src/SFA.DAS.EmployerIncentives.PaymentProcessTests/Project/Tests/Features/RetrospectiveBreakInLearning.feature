@@ -76,3 +76,33 @@ Scenario: Multiple Retro BIL - Learner Stopped before First Payment due date and
 	And a new first pending payment of £1500 is created for Period R01 2122
 	And a new second pending payment of £1500 is created for Period R11 2122
     And the Learner is In Learning
+
+Scenario: Amend Retro BIL - Learner Stopped before First Payment due date and Resumed later and Amended for Phase2
+    Given an existing Phase2 apprenticeship incentive with learning starting on 31-Aug-2021 and ending on 31-Jul-2023
+    And a payment of £1500 is not sent in Period R04 2122
+    And Learner data is updated with a Break in Learning of 28 days before the first payment due date
+	And the Learner Match is run in Period R06 2122
+	And the Payment Run occurs
+    And a payment of £1500 is sent in Period R06 2122
+	And Learner data is updated with a Break in Learning of 56 days after the first payment due date
+	When the Learner Match is run in Period R07 2122
+    And the earnings are recalculated
+    Then the Break in Learning is amended
+	And a new second pending payment of £1500 is created for Period R03 2223
+	And the Learner is In Learning
+	
+Scenario:Remove Retro BIL - Learner Stopped before First Payment due date and Resumed later and Removed for Phase2
+	Given an existing Phase2 apprenticeship incentive with learning starting on 31-Aug-2021 and ending on 31-Jul-2023
+    And a payment of £1500 is not sent in Period R04 2122
+    And Learner data is updated with a Break in Learning of 28 days before the first payment due date
+	And the Learner Match is run in Period R06 2122
+	And the Payment Run occurs
+	And a payment of £1500 is sent in Period R06 2122
+	And Learner data is updated with learning starting on 30-Nov-2021 and ending on 31-Jul-2023
+	When the Learner Match is run in Period R07 2122
+    And the earnings are recalculated
+    Then the Break in Learning is Removed
+	And the paid earning of £1500 is marked as requiring a clawback in Period R07 2122
+	And a new first pending payment of £1500 is created for Period R07 2122
+	And a new second pending payment of £1500 is created for Period R04 2223
+	And the Learner is In Learning
