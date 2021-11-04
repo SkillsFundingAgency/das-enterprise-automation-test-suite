@@ -9,7 +9,6 @@ using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Te
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
@@ -42,7 +41,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
         public void GivenTheLevyEmployerWhoAreCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUser>());
-
 
         [Given(@"the levy employer who are not currently sending transfer funds login")]
         public void GivenTheLevyEmployerWhoAreNotCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUserNoFunds>());

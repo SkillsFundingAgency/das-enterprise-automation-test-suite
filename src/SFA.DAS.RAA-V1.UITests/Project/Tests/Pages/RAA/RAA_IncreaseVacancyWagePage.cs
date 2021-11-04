@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,7 +11,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private RegexHelper _regexHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FAADataHelper _faaDataHelper;
 
@@ -29,7 +26,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _regexHelper = context.Get<RegexHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
         }
@@ -40,11 +36,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             if (_pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
             {
-                currentwage = _regexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(AmountLowerBound));
+                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(AmountLowerBound));
             }
             else
             {
-                currentwage = _regexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
+                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
                 
                 formCompletionHelper.SelectRadioOptionByText("Custom wage");
 
