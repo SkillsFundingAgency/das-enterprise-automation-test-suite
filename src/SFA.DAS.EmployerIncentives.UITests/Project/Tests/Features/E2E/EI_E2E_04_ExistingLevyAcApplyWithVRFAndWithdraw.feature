@@ -3,10 +3,10 @@
 @regression
 @employerincentives
 @eie2ejourney
-@deletedincentiveapplication
+@deleteincentiveapplication
 @vrfservice
 Scenario: EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw
-	Given the Employer logins using existing EI Withdraw Levy Account
+	Given the Employer logins using existing EI Levy Account to withdraw application
 	And the Employer submits an EI Application
 	Then the Employer can withdraw the application
 	
