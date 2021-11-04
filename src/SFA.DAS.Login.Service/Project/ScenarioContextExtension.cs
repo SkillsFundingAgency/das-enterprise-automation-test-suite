@@ -26,13 +26,11 @@ namespace SFA.DAS.Login.Service
         {
             if (value == null) return;
 
-            var legalEntities = GetAccountLegalEntities(context, value.Username);
+            value.LegalEntities = GetAccountLegalEntities(context, value.Username);
 
-            value.LegalEntities = legalEntities;
+            value.OrganisationName = value.LegalEntities.FirstOrDefault();
 
-            value.OrganisationName = legalEntities.FirstOrDefault();
-
-            if (legalEntities.Count > 1) { value.SecondOrganisationName = legalEntities[1]; }
+            if (value.LegalEntities.Count > 1) { value.SecondOrganisationName = value.LegalEntities[1]; }
 
             SetUser<MultipleAccountUser>(context, value);
         }
