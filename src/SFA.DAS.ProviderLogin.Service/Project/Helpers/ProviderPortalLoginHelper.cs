@@ -11,32 +11,14 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         internal ProviderPortalLoginHelper(ScenarioContext context) => _context = context;
 
-        public bool IsSignInPageDisplayed()
-        {
-            return new CheckProviderSignInPage(_context)
-                .IsPageDisplayed();
-        }
+        public bool IsSignInPageDisplayed() => new CheckProviderSignInPage(_context).IsPageDisplayed();
 
-        public bool IsIndexPageDisplayed()
-        {
-            return new CheckProviderIndexPage(_context)
-                    .IsPageDisplayed();
-        }
+        public bool IsIndexPageDisplayed() => new CheckProviderIndexPage(_context).IsPageDisplayed();
 
-        internal ProviderHomePage ReLogin(ProviderLoginUser login)
-        {
-            return Login(new ProviderSiginPage(_context), login);
-        }
+        internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSiginPage(_context), login);
 
-        internal ProviderHomePage Login(ProviderLoginUser login)
-        {
-            return Login(new ProviderIndexPage(_context)
-                    .StartNow(), login);
-        }
+        internal ProviderHomePage Login(ProviderLoginUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
 
-        private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login)
-        {
-            return siginPage.SubmitValidLoginDetails(login);
-        }
+        private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login);
     }
 }
