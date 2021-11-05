@@ -45,7 +45,7 @@ namespace SFA.DAS.Login.Service
             return legalEntities.Select(x => RegexHelper.ReplaceMultipleSpace(x)).ToList();
         }
 
-        private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, Key(data.GetType()));
+        private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, data == null ? Key<T>() : Key(data.GetType()));
 
         private static string Key<T>() => Key(typeof(T));
 

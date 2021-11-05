@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
@@ -22,7 +23,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public ProviderHomePage SubmitValidLoginDetails(ProviderLoginUser login)
         {
-            EnterEmailAddress(login.Username)
+            EnterEmailAddress(login.UserId)
                     .EnterPassword(login.Password)
                     .SignIn();
             return new ProviderHomePage(_context);

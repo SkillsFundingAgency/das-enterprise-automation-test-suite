@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
@@ -26,7 +27,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _config = context.GetProviderConfig<ProviderConfig>();
             _providerUrl = UrlConfig.Provider_BaseUrl;
             _loginHelper = new ProviderPortalLoginHelper(_context);
-            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+            _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);
@@ -57,7 +58,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
         {
-            var loginUser = new ProviderLoginUser { Username = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
+            var loginUser = new ProviderLoginUser { UserId = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
 
             return GoToProviderHomePage(loginUser, newTab);
         }

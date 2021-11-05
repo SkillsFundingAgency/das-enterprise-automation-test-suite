@@ -25,11 +25,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class RAAV2EmployerProviderPermissionUser : AccountUser { }
 
-    public class ProviderLoginUser : LoginUser
-    {
-        public string Ukprn { get; set; }
-    }
-
     public class ProviderPermissionLevyUser : AccountUser { }
 
     public class AgreementNotSignedTransfersUser : AccountUser { }

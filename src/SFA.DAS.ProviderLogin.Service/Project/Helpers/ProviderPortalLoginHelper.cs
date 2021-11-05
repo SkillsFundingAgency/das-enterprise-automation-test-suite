@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
@@ -8,10 +9,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
     {
         private readonly ScenarioContext _context;
 
-        internal ProviderPortalLoginHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
+        internal ProviderPortalLoginHelper(ScenarioContext context) => _context = context;
 
         public bool IsSignInPageDisplayed()
         {
