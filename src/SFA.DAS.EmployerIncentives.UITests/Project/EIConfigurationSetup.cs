@@ -29,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
             _context.SetAccountUser(_configSection.GetConfigSection<EIWithdrawLevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<MultipleAccountUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<EIMultipleAccountUser>());
 
             _context.SetAccountUser(_configSection.GetConfigSection<Version4AgreementUser>());
 

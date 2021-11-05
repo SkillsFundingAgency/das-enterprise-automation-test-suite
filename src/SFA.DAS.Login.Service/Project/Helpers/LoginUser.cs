@@ -57,6 +57,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string SecondOrganisationName { get; set; }
     }
 
+    public class EIMultipleAccountUser : MultipleAccountUser { }
+
     public class TransfersUser : MultipleAccountUser { }
 
     public class TransfersUserNoFunds : MultipleAccountUser { }

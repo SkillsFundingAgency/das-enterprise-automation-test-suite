@@ -24,7 +24,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
-        private MultipleAccountUser _transferMatchingUser;
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
@@ -268,18 +267,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void LoginAsSender(MultipleAccountUser login)
         {
-            _transferMatchingUser = login;
-
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _transferMatchingUser)
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, login)
             {
-                OrganisationName = _transferMatchingUser.OrganisationName
+                OrganisationName = login.OrganisationName
             };
 
-            _multipleAccountsLoginHelper.Login(_transferMatchingUser, true);
+            _multipleAccountsLoginHelper.Login(login, true);
 
-            _sender = _transferMatchingUser.OrganisationName;
+            _sender = login.OrganisationName;
 
-            _receiver = _transferMatchingUser.SecondOrganisationName;
+            _receiver = login.SecondOrganisationName;
         }
     }
 }
