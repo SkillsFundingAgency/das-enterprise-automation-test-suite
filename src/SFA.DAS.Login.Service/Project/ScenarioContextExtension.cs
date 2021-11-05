@@ -10,9 +10,9 @@ namespace SFA.DAS.Login.Service
 {
     public static class ScenarioContextExtension
     {
-        public static void SetProviderUser<T>(this ScenarioContext context, T value) => context.Set(value, Key<T>());
+        public static void SetNonAccountLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
 
-        public static void SetUser(this ScenarioContext context, LoginUser value)
+        public static void SetAccountUser(this ScenarioContext context, AccountUser value)
         {
             if (value == null) return;
 
@@ -20,10 +20,10 @@ namespace SFA.DAS.Login.Service
 
             value.OrganisationName = value.LegalEntities.FirstOrDefault();
 
-            SetUser<LoginUser>(context, value);
+            SetUser(context, value);
         }
 
-        public static void SetUser(this ScenarioContext context, MultipleAccountUser value)
+        public static void SetAccountUser(this ScenarioContext context, MultipleAccountUser value)
         {
             if (value == null) return;
 
@@ -33,7 +33,7 @@ namespace SFA.DAS.Login.Service
 
             if (value.LegalEntities.Count > 1) { value.SecondOrganisationName = value.LegalEntities[1]; }
 
-            SetUser<MultipleAccountUser>(context, value);
+            SetUser(context, value);
         }
 
         public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());

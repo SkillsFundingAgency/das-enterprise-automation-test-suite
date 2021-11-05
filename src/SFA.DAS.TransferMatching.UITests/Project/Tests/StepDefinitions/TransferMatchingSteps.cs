@@ -202,14 +202,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .SubmitApplication();
         }
 
-        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(LoginUser user)
+        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(AccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
             return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
-        private ApplicationSubmittedPage ApplyForAPledge(LoginUser user)
+        private ApplicationSubmittedPage ApplyForAPledge(AccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
@@ -218,7 +218,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
 
-        private void GoToTransferMatchingAndSignIn(LoginUser user)
+        private void GoToTransferMatchingAndSignIn(AccountUser user)
         {
             GoToTransferMacthingApplyUrl();
 
@@ -250,17 +250,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
                 StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
             });
-
         }
 
-        private void CreateATransferPledge(LoginUser login)
+        private void CreateATransferPledge(AccountUser login)
         {
             LoginAsSender(login);
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
-        private void LoginAsSender(LoginUser login)
+        private void LoginAsSender(AccountUser login)
         {
             _sender = login.OrganisationName;
 

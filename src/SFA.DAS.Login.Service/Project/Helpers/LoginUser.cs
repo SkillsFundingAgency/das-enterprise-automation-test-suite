@@ -2,80 +2,65 @@
 
 namespace SFA.DAS.Login.Service.Project.Helpers
 {
+    public class LoggedInAccountUser : AccountUser { }
+
     public abstract class LoginUser
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
+    }
+    #region SingleAccountUser
 
+    public abstract class AccountUser : LoginUser
+    {
         public string OrganisationName { get; set; }
 
         public List<string> LegalEntities { get; set; }
     }
 
-    public class AuthTestUser : LoginUser { }
+    public class AuthTestUser : AccountUser { }
 
-    public class RAAV2EmployerUser : LoginUser { }
+    public class RAAV2EmployerUser : AccountUser { }
 
-    public class RAAV2EmployerProviderPermissionUser : LoginUser { }
+    public class RAAV2EmployerProviderPermissionUser : AccountUser { }
 
     public class ProviderLoginUser : LoginUser
     {
         public string Ukprn { get; set; }
     }
 
-    public class ProviderPermissionLevyUser : LoginUser { }
+    public class ProviderPermissionLevyUser : AccountUser { }
 
-    public class AgreementNotSignedTransfersUser : LoginUser { }
+    public class AgreementNotSignedTransfersUser : AccountUser { }
 
-    public class LevyUser : LoginUser { }
+    public class LevyUser : AccountUser { }
 
-    public class NonLevyUser : LoginUser { }
+    public class NonLevyUser : AccountUser { }
 
-    public class LoggedInUser : LoginUser { }
+    public class EILevyUser : AccountUser { }
 
-    public class EPAOStandardApplyUser : LoginUser { }
+    public class EIWithdrawLevyUser : AccountUser { }
 
-    public class EPAOAssessorUser : LoginUser { }
+    public class TransactorUser : AccountUser { }
 
-    public class EPAODeleteAssessorUser : LoginUser { }
+    public class ViewOnlyUser : AccountUser { }
 
-    public class EPAOWithdrawalUser : LoggedInUser { }
+    public class Version4AgreementUser : AccountUser { }
 
-    public class EPAOManageUser : LoginUser { }
+    public class Version5AgreementUser : AccountUser { }
 
-    public class EPAOApplyUser : LoginUser
+    public class Version6AgreementUser : AccountUser { }
+
+    public class ASListedLevyUser : AccountUser { }
+
+    #endregion
+
+    #region MultipleAccountUser
+    public abstract class MultipleAccountUser : AccountUser
     {
-        public string FullName { get; set; }
+        public string SecondOrganisationName { get; set; }
     }
-
-    public class EPAOStageTwoStandardCancelUser : LoginUser { }
-
-    public class EPAOE2EApplyUser : LoginUser { }
-
-    public class EPAOAdminUser : LoginUser { }
-
-    public class SupportConsoleTier1User : LoginUser { }
-
-    public class SupportConsoleTier2User : LoginUser { }
-
-    public class SupportToolsUser : LoginUser { }
-
-    public class EILevyUser : LoginUser { }
-
-    public class EIWithdrawLevyUser : LoginUser { }
-
-    public class TransactorUser : LoginUser { }
-
-    public class ViewOnlyUser : LoginUser { }
-
-    public class Version4AgreementUser : LoginUser { }
-
-    public class Version5AgreementUser : LoginUser { }
-
-    public class Version6AgreementUser : LoginUser { }
-
-    public class ASListedLevyUser : LoginUser { }
 
     public class TransfersUser : MultipleAccountUser { }
 
@@ -85,8 +70,38 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
-    public class MultipleAccountUser : LoginUser
+    #endregion
+
+    #region NonAccountUser
+    public abstract class NonAccountUser : LoginUser { }
+
+    public class EPAOStandardApplyUser : NonAccountUser { }
+
+    public class EPAOAssessorUser : NonAccountUser { }
+
+    public class EPAODeleteAssessorUser : NonAccountUser { }
+
+    public class EPAOWithdrawalUser : NonAccountUser { }
+
+    public class EPAOManageUser : NonAccountUser { }
+
+    public class EPAOApplyUser : NonAccountUser
     {
-        public string SecondOrganisationName { get; set; }
+        public string FullName { get; set; }
     }
+
+    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
+
+    public class EPAOE2EApplyUser : NonAccountUser { }
+
+    public class EPAOAdminUser : NonAccountUser { }
+
+    public class SupportToolsUser : NonAccountUser { }
+
+    public class SupportConsoleTier1User : NonAccountUser { }
+
+    public class SupportConsoleTier2User : NonAccountUser { }
+
+    #endregion
+
 }

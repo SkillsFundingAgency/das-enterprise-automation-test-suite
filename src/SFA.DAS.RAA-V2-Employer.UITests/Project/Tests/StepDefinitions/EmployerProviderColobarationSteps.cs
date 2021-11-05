@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private LoginUser _loginUser;
+        private AccountUser _loginUser;
         private ProviderVacancySearchResultPage _resultPage;
 
         public EmployerProviderColobarationSteps(ScenarioContext context)

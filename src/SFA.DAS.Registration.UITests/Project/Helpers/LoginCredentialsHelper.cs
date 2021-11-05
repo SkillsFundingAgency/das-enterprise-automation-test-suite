@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public void SetIsLevy() => IsLevy = true;
 
-        public LoginUser GetLoginCredentials() => _objectContext.GetLoginCredentials();
+        public LoggedInAccountUser GetLoginCredentials() => _objectContext.GetLoginCredentials();
 
         private void Reportusername(string username) => TestContext.Progress.WriteLine($"Email : {username}");
     }

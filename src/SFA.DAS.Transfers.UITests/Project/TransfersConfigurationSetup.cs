@@ -20,9 +20,9 @@ namespace SFA.DAS.Transfers.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransfersConfiguration()
         {
-            _context.SetUser(_configSection.GetConfigSection<AgreementNotSignedTransfersUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<AgreementNotSignedTransfersUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<TransfersUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<TransfersUser>());
         }
     }
 }

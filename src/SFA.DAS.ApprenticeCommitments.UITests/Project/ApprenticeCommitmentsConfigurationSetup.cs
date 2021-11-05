@@ -27,9 +27,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
 
             cocEmpUser.CocApprenticeUser = _configSection.GetConfigSection<CocApprenticeUser>();
 
-            _context.SetUser(_configSection.GetConfigSection<ASListedLevyUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<ASListedLevyUser>());
 
-            _context.SetUser(cocEmpUser);
+            _context.SetAccountUser(cocEmpUser);
         }
     }
 }

@@ -22,13 +22,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployer(string employerType)
         {
-            var employerUser = (employerType == "Levy" ? _context.GetUser<LevyUser>() : (LoginUser)_context.GetUser<NonLevyUser>());
+            var employerUser = employerType == "Levy" ? _context.GetUser<LevyUser>() : (AccountUser)_context.GetUser<NonLevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             tableRowHelper.SelectRowFromTable("Select", agreementId);
             return new ProviderConfirmEmployerNonLevyPage(_context);
         }
-
 
         internal bool CanChooseAnEmployer()
         {
@@ -43,6 +42,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
                 return rows.Any(x => x.Text.Contains(objectContext.GetAgreementId()));
             }
         }
-
     }
 }

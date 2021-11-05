@@ -17,10 +17,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             OrganisationName = multipleAccountUser.OrganisationName;
         }
 
-        protected override void SetLoginCredentials(LoginUser loginUser, bool isLevy) => 
+        protected override void SetLoginCredentials(AccountUser loginUser, bool isLevy) => 
             loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, OrganisationName, isLevy); 
         
-        protected override HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
+        protected override HomePage Login(AccountUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
 
         public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(SignInPage signInPage) => signInPage.GoToMyAccountTransferFundingPage(GetLoginCredentials());
 

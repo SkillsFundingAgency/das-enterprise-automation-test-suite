@@ -196,7 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
 
-        private void ApproveCohort(bool isFirstCourse, LoginUser loginUser)
+        private void ApproveCohort(bool isFirstCourse, AccountUser loginUser)
         {
             if(isFirstCourse)
                 _loginHelper.Login(loginUser, true);

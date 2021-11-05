@@ -23,11 +23,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         {
             _context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportToolsUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportToolsUser>());
             
         }
     }
