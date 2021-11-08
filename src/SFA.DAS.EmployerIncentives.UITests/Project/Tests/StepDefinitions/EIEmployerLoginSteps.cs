@@ -38,20 +38,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing Version6AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version6AgreementUser>());
 
-        private void SetOrgAndLogin(AccountUser loginUser)
+        private void SetOrgAndLogin(EasAccountUser loginUser)
         {
             _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
             _employerPortalLoginHelper.Login(loginUser, true);
         }
 
-        private HomePage Login(AccountUser user)
+        private HomePage Login(EasAccountUser user)
         {
             RemoveExistingApplications(user); 
             
             return _employerPortalLoginHelper.Login(user, true);
         }
 
-        public void RemoveExistingApplications(AccountUser user)
+        public void RemoveExistingApplications(EasAccountUser user)
         {
             if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
                 _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);

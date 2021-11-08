@@ -25,15 +25,15 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<AuthTestUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<AuthTestUser>());
             
-            _context.SetAccountUser(_configSection.GetConfigSection<LevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<LevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<NonLevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<NonLevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<TransactorUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransactorUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<ViewOnlyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ViewOnlyUser>());
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
