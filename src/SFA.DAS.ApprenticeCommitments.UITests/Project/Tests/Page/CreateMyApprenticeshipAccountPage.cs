@@ -28,7 +28,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public TermsOfUsePage ConfirmIdentityAndGoToTermsOfUsePage()
         {
             EnterValidApprenticeDetails();
-
             return new TermsOfUsePage(_context);
         }
 

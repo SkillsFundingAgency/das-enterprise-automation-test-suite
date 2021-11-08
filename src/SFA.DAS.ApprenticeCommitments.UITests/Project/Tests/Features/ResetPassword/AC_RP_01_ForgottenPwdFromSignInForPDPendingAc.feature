@@ -1,8 +1,8 @@
-﻿Feature: AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount
+﻿Feature: AC_RP_01_ForgottenPwdFromSignInPageForPersonalDetailsPendingAccount
 
 @apprenticecommitments
 @regression
 @deleteuser
-Scenario: AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount
+Scenario: AC_RP_01_ForgottenPwdFromSignInPageForPersonalDetailsPendingAccount
 	When an apprentice submits Email to reset password for a new account pending personal details confirmation
 	Then the apprentice is able to reset the password using the invitation

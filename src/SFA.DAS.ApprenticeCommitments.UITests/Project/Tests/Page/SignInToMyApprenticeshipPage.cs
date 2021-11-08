@@ -17,8 +17,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {
-            SignIn();
             VerifyPage(PrivacyLinkInTheBody);
+            SignIn();
             return new CreateMyApprenticeshipAccountPage(_context);
         }
 
