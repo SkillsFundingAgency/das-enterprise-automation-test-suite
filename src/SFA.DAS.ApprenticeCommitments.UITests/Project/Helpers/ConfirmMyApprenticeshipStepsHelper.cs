@@ -6,6 +6,7 @@ using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -203,10 +204,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void AssertApprenticeshipDetails()
         {
-            Assert.AreEqual(expectedApprenticeshipName.ToLower(), actualApprenticeshipName.ToLower());
+            Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
             Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
             Assert.IsNotNull(actualEsimatedDurationInfo);
         }
+
+        private string GetStringWithoutSpacesAndLeftOfParanthesis(string str) => String.Concat(str.ToLower().Trim().Split('(')[0]).RemoveSpace();
     }
 }
