@@ -3,8 +3,6 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_01_Check Real stories Page
-	Given the user navigates to employer real stories page
+Scenario: CA_EMP_01_Check Funding An Apprenticeship Page Details
+	Given the user navigates to the funding an apprenticeship page
 	Then the links are not broken
-	And the video links are not broken
-	

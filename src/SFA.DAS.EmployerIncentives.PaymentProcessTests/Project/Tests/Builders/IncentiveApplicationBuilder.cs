@@ -23,6 +23,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             return this;
         }
 
+        public IncentiveApplicationBuilder WithDateSubmitted(DateTime dateSubmitted)
+        {
+            _incentiveApplication.DateSubmitted = dateSubmitted;
+            return this;
+        }
+
+        public IncentiveApplicationBuilder WithAccount((long AccountId, long AccountLegalEntityId) account)
+        {
+            _incentiveApplication.AccountId = account.AccountId;
+            _incentiveApplication.AccountLegalEntityId = account.AccountLegalEntityId;
+            return this;
+        }
+
         public IncentiveApplicationBuilder WithApprenticeship(long apprenticeshipId, long uln, long ukprn,
             DateTime plannedStartDate, DateTime dateOfBirth, string scenario, Phase phase = Phase.Phase1)
         {
@@ -34,7 +47,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
                 .With(a => a.IncentiveApplicationId, _incentiveApplication.Id)
                 .With(x => x.WithdrawnByCompliance, false)
                 .With(x => x.WithdrawnByEmployer, false)
-                .With(x => x.WithdrawnByEmployer, false)
+                .With(x => x.EmploymentStartDate, plannedStartDate)
                 .With(x => x.PlannedStartDate, plannedStartDate)
                 .With(x => x.DateOfBirth, dateOfBirth)
                 .With(x => x.Phase, phase)
@@ -48,5 +61,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
         {
             return _incentiveApplication;
         }
+
     }
 }

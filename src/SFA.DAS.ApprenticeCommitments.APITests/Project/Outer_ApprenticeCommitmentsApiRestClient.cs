@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiName => "/apprenticecommitments";
 
-        public IRestResponse CreateApprenticeship(CreateApprenticeship payload, HttpStatusCode expectedResponse)
+        public IRestResponse CreateApprenticeshipViaApi(CreateApprenticeshipViaApi payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
         }

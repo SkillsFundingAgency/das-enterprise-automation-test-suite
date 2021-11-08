@@ -15,17 +15,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [When(@"the admin access the Financial Applications")]
         public void WhenTheAdminAccessTheFinancialApplications() => _financialLandingPage = new StaffDashboardPage(_context).AccessFinancialApplications();
 
-        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Outstanding")]
-        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsOutstanding()
+        [Then(@"the Financial assessor completes assessment by confirming the Financial outcome as (outstanding)")]
+        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheFinancialOutcomeAsOutstanding(string expectedoutcome)
         {
             _financialLandingPage = _financialLandingPage
                 .SelectNewApplication()
-                .ConfirmFHAReviewAsOutstanding()
+                .ConfirmFHAReview(expectedoutcome)
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        [Then(@"the Financial assessor completes assessment by confirming the Gateway outcome as Clarification")]
-        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheGatewayOutcomeAsClarification()
+        [Then(@"the Financial assessor completes assessment by confirming the Financial outcome as Clarification")]
+        public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheFinancialOutcomeAsClarification()
         {
             _financialLandingPage = _financialLandingPage
                 .SelectNewApplication()
@@ -33,8 +33,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        [Then(@"the Financial assessor completes the Clarification process by confirming the Gateway outcome as Inadequate")]
-        public void ThenTheFinancialAssessorCompletesTheClarificationProcessByConfirmingTheGatewayOutcomeAsInadequate()
+        [Then(@"the Financial assessor completes the Clarification process by confirming the Financial outcome as Inadequate")]
+        public void ThenTheFinancialAssessorCompletesTheClarificationProcessByConfirmingTheFinancialOutcomeAsInadequate()
         {
             _financialLandingPage = _financialLandingPage.SelectClarificationApplication()
                 .EnterClarificationResponse()

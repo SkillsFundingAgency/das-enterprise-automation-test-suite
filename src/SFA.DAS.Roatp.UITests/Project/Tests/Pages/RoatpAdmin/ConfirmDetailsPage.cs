@@ -18,10 +18,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             _context = context;
         }
 
-        public RoatpAdminHomePage ConfirmOrganisationsDetails()
+        public SearchPage ConfirmOrganisationsDetails()
         {
             Continue();
-            return new RoatpAdminHomePage(_context);
+            return new SearchPage(_context);
         }
     }
 }

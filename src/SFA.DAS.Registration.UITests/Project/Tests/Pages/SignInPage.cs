@@ -51,6 +51,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourAccountsPage(_context);
         }
 
+        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new MyAccountTransferFundingPage(_context);
+        }
+
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)
         {
             _formCompletionHelper.EnterText(EmailAddressInput, userName);
@@ -64,10 +70,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public ResetYourPasswordPage ClickForgottenYourPasswordLink()
+        public PasswordResetCodePage ClickForgottenYourPasswordLink()
         {
             _formCompletionHelper.Click(ForgottenYourPasswordLink);
-            return new ResetYourPasswordPage(_context);
+            return new PasswordResetCodePage(_context);
+        }
+
+        public AddAPAYESchemePage LoginWithResetPassword(string userName, string password)
+        {
+            EnterLoginDetailsAndClickSignIn(userName,password);
+            return new AddAPAYESchemePage(_context);
         }
     }
 }

@@ -3,12 +3,12 @@ using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -17,6 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class CoCSteps
     {
         private readonly ScenarioContext _context;
+
+        private readonly ObjectContext _objectContext;
 
         private readonly EmployerPortalLoginHelper _loginHelper;
 
@@ -33,6 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
              _dataHelper = context.Get<ApprenticeDataHelper>();
             _loginHelper = new EmployerPortalLoginHelper(context);
@@ -41,24 +44,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
+        [Given(@"the listed employer has approved apprentice")]
+        public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, _context.GetUser<ASListedLevyUser>());
+
+        [When(@"the Employer has approved another apprenticeship")]
+        public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohortForLevyUser(false);
+
         [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
-        public void GivenTheEmployerHasApprovedApprentice()
-        {
-            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-
-            _employerStepsHelper.SetCohortReference(cohortReference);
-
-            _providerStepsHelper.Approve();
-        }
+        public void GivenTheEmployerHasApprovedApprentice() => ApproveCohortForLevyUser(true);
 
         [Given(@"the datalock has been successful")]
-        public void GivenTheDatalockHasBeenSuccessful()
-        {
-            SetHasHadDataLockSuccessTrue();
-        }
+        public void GivenTheDatalockHasBeenSuccessful() => SetHasHadDataLockSuccessTrue();
 
         [When(@"the Employer edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
@@ -71,10 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer edits cost and course and confirm the changes before ILR match")]
-        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
-        {
-            EmployerEditsCostAndCourse();
-        }
+        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch() => EmployerEditsCostAndCourse();
 
         [When(@"the Employer edits cost and course and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
@@ -84,33 +78,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the provider can review and approve the changes")]
-        public void ThenTheProviderCanReviewAndApproveTheChanges()
-        {
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
-        }
+        public void ThenTheProviderCanReviewAndApproveTheChanges() => _providerStepsHelper.ApproveChangesAndSubmit();
 
         [When(@"the provider edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheProviderEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
         {
             SetHasHadDataLockSuccessTrue();
 
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
                 .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
         }
 
         [When(@"the provider edits cost and course and confirm the changes before ILR match")]
-        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
-        {
-            ProviderEditsCostAndCourse();
-        }
+        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch() => ProviderEditsCostAndCourse();
 
         [When(@"the provider edits cost and course and confirm the changes after ILR match")]
         public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
@@ -119,12 +101,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderEditsCostAndCourse();
         }
 
-        [Then(@"the Employer can review and approve the changes")]
-        public void ThenTheEmployerCanReviewAndApproveTheChanges()
-        {
-            var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
-        }
+        [Then(@"the employer can review and approve the changes")]
+        public void TheEmployerCanReviewAndApproveTheChanges() => _employerStepsHelper.ApproveChangesAndSubmit();
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
         public void ThenEmployerCannotMakeChangesToCostAndCourseAfterILRMatch()
@@ -140,8 +118,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                var empex = Assert.Throws(typeof(WebDriverTimeoutException), () => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.That(empex.InnerException, Is.TypeOf<NoSuchElementException>(), "Employer can edit cost and course after ILR match");
+                var empex = Assert.Throws(typeof(NoSuchElementException), () => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.That(empex.Message.Contains("no such element: Unable to locate element:"), "Employer can edit cost and course after ILR match");
             });
         }
 
@@ -152,9 +130,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             void provideraction()
             {
-                _providerStepsHelper.GoToProviderHomePage()
-                  .GoToProviderManageYourApprenticePage()
-                  .SelectViewCurrentApprenticeDetails()
+                  SelectViewCurrentApprenticeDetails()
                   .ClickEditApprenticeDetailsLink()
                   .EditCostCourseAndReference()
                   .AcceptChangesAndSubmit();
@@ -162,8 +138,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                var proex = Assert.Throws(typeof(WebDriverTimeoutException), () => provideraction(), "Provider can edit cost and course after ILR match");
-                Assert.That(proex.InnerException, Is.TypeOf<NoSuchElementException>(), "Provider can edit cost and course after ILR match");
+                var proex = Assert.Throws(typeof(NoSuchElementException), () => provideraction(), "Provider can edit cost and course after ILR match");
+                Assert.That(proex.Message.Contains("no such element: Unable to locate element:"), "Provider can edit cost and course after ILR match");
             });
         }
 
@@ -176,26 +152,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ProviderEditsCostAndCourse()
         {
-            _providerStepsHelper.GoToProviderHomePage()
-                 .GoToProviderManageYourApprenticePage()
-                 .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                  .ClickEditApprenticeDetailsLink()
                  .EditCostCourseAndReference()
                  .AcceptChangesAndSubmit();
         }
 
-        private void SetHasHadDataLockSuccessTrue()
-        {
-            _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
-        }
+        private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         
         [When(@"the provider edits Name Dob and Reference")]
         public void WhenTheProviderEditsDobAndReference()
         {
-            _providerStepsHelper
-                .GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
+                SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
                 .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
@@ -223,12 +191,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var expectedReference = _editedApprenticeDataHelper.ProviderRefernce;
 
-            _providerStepsHelper
-                .GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
+            SelectViewCurrentApprenticeDetails().ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
         }
-        
+
+        private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
+
+        private void ApproveCohort(bool isFirstCourse, LoginUser loginUser)
+        {
+            if(isFirstCourse)
+                _loginHelper.Login(loginUser, true);
+            else
+                _objectContext.SetIsSameApprentice();
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+
+            if (!(_objectContext.IsSameApprentice()))
+                _employerStepsHelper.SetCohortReference(cohortReference);
+            else
+                _employerStepsHelper.UpdateCohortReference(cohortReference);
+
+            _providerStepsHelper.Approve();
+        }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
+                _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
     }
 }

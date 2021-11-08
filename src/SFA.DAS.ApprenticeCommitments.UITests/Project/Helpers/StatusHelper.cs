@@ -6,6 +6,6 @@
 
         internal static string InComplete => "INCOMPLETE";
 
-        internal static string InCorrect => "WAITING FOR CORRECTION";
+        internal static string WaitingForCorrection => "WAITING FOR CORRECTION";
     }
 }

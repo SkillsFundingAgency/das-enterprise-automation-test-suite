@@ -1,18 +1,28 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class RandomCourseDataHelper
     {
+        private RandomDataGenerator _randomDataGenerator;
+
+        private readonly bool _selectstandardcourse;
+
         public int RandomNumber { get; private set; }
 
         public List<string> AvailableCourses;
 
         public RandomCourseDataHelper(RandomDataGenerator randomDataGenerator, bool selectstandardcourse)
         {
+            _randomDataGenerator = randomDataGenerator;
+
+            _selectstandardcourse = selectstandardcourse;
+
             AvailableCourses = selectstandardcourse ? StandardCourses() : AllCourses();
-            RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
+
+            RandomNumber = GetRandomNumber(1, 10);
         }
 
         private string AbleSeafarerStandardCourseOption => "34";
@@ -23,8 +33,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
 
+        public string OtherCourse(string selectedCourse) => _selectstandardcourse ? SelectACourse(StandardCourses(), selectedCourse) : SelectACourse(AllCourses(), selectedCourse);
+
+        public int GetRandomNumber(int min, int max) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
+
         //private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
         private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
         private List<string> StandardCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
+
+        private string SelectACourse(List<string> list, string except)
+        {
+            var newlist = list.Where(x => x != except).ToList();
+
+            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, newlist.Count);
+
+            return newlist[randomNumber - 1];
+        }
     }
 }

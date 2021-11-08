@@ -18,7 +18,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                                .ClickStartNewWithdrawalNotification()
                                .ClickAssessingASpecificStandard()
-                               .ClickASpecificStandardToWithdraw();
+                               .ClickASpecificStandardToWithdraw()
+                               .ContinueWithWithdrawalRequest();
         }
 
         public void StartOfRegisterWithdrawalJourney()
@@ -27,12 +28,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
                                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                                .ClickStartNewWithdrawalNotification()
-                               .ClickWithdrawFromRegister();
+                               .ClickWithdrawFromRegister()
+                               .ContinueWithWithdrawalRequest();
         }
 
         public void StandardApplicationFinalJourney()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
                                       .ClickGoToReasonForWithdrawingQuestionLink()
                                       .ClickExternalQualityAssuranceProviderHasChanged()
@@ -45,7 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void RegisterWithdrawalQuestions()
         {
-            AS_ApplicationOverviewPage aS_ApplicationOverviewPage = new AS_ApplicationOverviewPage(_context);
+            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
             aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
                 .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
                 .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
@@ -72,7 +74,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
         {
-            new AS_YourWithdrawalNotificationsPage(_context).ClickOnViewLinkForInProgressApplication();
+            new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
         }
 
         public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
@@ -81,8 +83,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToNewWithdrawalApplications()
                 .GoToStandardWithdrawlApplicationOverivewPage()
                 .GoToWithdrawalNotificationQuestionsPage()
-                .MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
+                .ContinueWithWithdrawalRequest()
                 .ClickApproveApplication();
         }
 
@@ -93,8 +96,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .StoreCurrentTabValues()
                 .GoToRegisterWithdrawlApplicationOverviewPage()
                 .GoToWithdrawalNotificationQuestionsPage()
-                .MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
+                .ContinueWithWithdrawalRequest()
                 .ClickApproveApplication();
         }
 
@@ -107,8 +111,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToWithdrawalNotificationQuestionsPage()
                 .ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
                 .AddFeedbackMessage()
-                .MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
+                .ContinueWithWithdrawalRequest()
                 .ClickAddFeedback()
                 .ReturnToWithdrawalApplications();
         }
@@ -156,8 +161,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToAmmendedWithdrawalApplicationOverviewPage()
                 .VerifyAnswerUpdatedTag()
                 .GoToWithdrawalNotificationQuestionsPage()
-                .MarkCompleteAndGoToStandardWithdrawalApplicationOverviewPage()
+                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
+                .ContinueWithWithdrawalRequest()
                 .ClickApproveApplication();
         }
 

@@ -11,7 +11,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected override string Linktext => "Home";
 
-        protected By CreateACohortLink => By.LinkText("Create a cohort");
+        protected By AddNewApprenticesLink => By.LinkText("Add new apprentices");
 
         protected By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
@@ -23,8 +23,10 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected By InvitedEmployers => By.LinkText("View invited employers");
 
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
-       
-        public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
+        protected By FindingEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
+
+
+        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();       
+        public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(AddNewApprenticesLink);
     }
 }

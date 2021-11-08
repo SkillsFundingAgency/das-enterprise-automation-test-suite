@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public OrganisationHasBeenAddedPage ClickYesContinueButton()
         {
-            formCompletionHelper.Click(YesContinueButton);
+            javaScriptHelper.ClickElement(YesContinueButton);
             return new OrganisationHasBeenAddedPage(_context);
         }
 

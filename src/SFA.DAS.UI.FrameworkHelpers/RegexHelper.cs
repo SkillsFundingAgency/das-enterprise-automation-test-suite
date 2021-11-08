@@ -1,15 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
+        public int GetAmount(string value) => int.Parse(Replace(value, new List<string>() { "£", "," }));
+
+        public string Replace(string value, List<string> pattern) => TrimAnySpace(Regex.Replace(value, $@"{pattern.ToString("|")}", string.Empty));
+
         public int GetMaxNoOfPages(string question)
         {
             var match = Regex.Match(question, @"of [0-9]*", RegexOptions.None);
 
-            return Int16.Parse(TrimAnySpace(Regex.Replace(match.Value, @"of", string.Empty)));
+            return int.Parse(TrimAnySpace(Regex.Replace(match.Value, @"of", string.Empty)));
         }
 
         public string GetLevyBalance(string levybalance) => Regex.Replace(levybalance, @",|\.[0-9]*", string.Empty);
@@ -18,7 +23,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             var matches = Regex.Matches(question, @"[0-9]{1}", RegexOptions.None);
 
-            return (Int16.Parse(matches[0].Value), Int16.Parse(matches[1].Value));
+            return (int.Parse(matches[0].Value), int.Parse(matches[1].Value));
         }
 
         public string GetAccountId(string url)

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
+        private By EmailField => By.Id("Email");
         private By DateOfBirthDay => By.Id("BirthDay");
         private By DateOfBirthMonth => By.Id("BirthMonth");
         private By DateOfBirthYear => By.Id("BirthYear");
@@ -32,10 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderReviewYourCohortPage SubmitValidApprenticeDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
-            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
-            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            EnterApprenticeMandatoryValidDetails();
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
@@ -55,7 +55,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
+        }
+
+        private void EnterApprenticeMandatoryValidDetails()
+        {
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+
+            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+
+            formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }
     }
 }

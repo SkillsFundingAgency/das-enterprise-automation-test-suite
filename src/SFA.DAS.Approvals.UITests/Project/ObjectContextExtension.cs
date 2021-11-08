@@ -1,7 +1,15 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
+    public class EIApprenticeDetail
+    {
+        public int StartMonth;
+        public int StartYear;
+        public string AgeCategoryAsOfAug2020;
+    }
+
     public static class ObjectContextExtension
     {
         #region Constants
@@ -15,6 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIStartMonth = "EIStartMonth";
         private const string EIStartYear = "EIStartYear";
         private const string EIJourney = "IsEIJourney";
+        private const string SameApprentice = "IsSameApprentice";
+        private const string EIApprenticeDetailList = "eiapprenticedetaillist";
         #endregion
 
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
@@ -34,6 +44,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
 
+        internal static void SetEIApprenticeDetailList(this ObjectContext objectContext) => objectContext.Set(EIApprenticeDetailList, new List<EIApprenticeDetail>());
+
+        internal static void SetEIApprenticeDetail(this ObjectContext objectContext, string eIAgeCategory, string startMonth, string startYear)
+        {
+            var eIApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
+
+            eIApprenticeDetailList.Add(new EIApprenticeDetail {StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2020 = eIAgeCategory });
+        }
+
         internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
 
         internal static void SetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2020, value);
@@ -44,7 +63,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
-        
+
+        public static List<EIApprenticeDetail> GetEIApprenticeDetailList(this ObjectContext objectContext) => objectContext.Get<List<EIApprenticeDetail>>(EIApprenticeDetailList);
+
         public static string GetApprenticeTotalCost(this ObjectContext objectContext) => objectContext.Get(ApprenticeTotalCost);
 
         internal static int GetNoOfApprentices(this ObjectContext objectContext) => objectContext.Get<int>(NoOfApprentices);
@@ -60,5 +81,11 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
 
         internal static bool IsEIJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EIJourney);
+
+        internal static void SetIsSameApprentice(this ObjectContext objectContext) => objectContext.Replace(SameApprentice, true);
+
+        internal static void ResetIsSameApprentice(this ObjectContext objectContext) => objectContext.Remove<bool>(SameApprentice);
+
+        internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
     }
 }

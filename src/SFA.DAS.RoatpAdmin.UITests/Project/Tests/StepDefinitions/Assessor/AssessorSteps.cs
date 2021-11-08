@@ -39,7 +39,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
             }
         }
 
-        [When(@"selects the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application")]
+        [When(@"selects the (Supporting Provider Route For Existing Provider|Main Provider Route For Existing Provider|Employer Provider Route For Existing Provider|Main Provider Route|Supporting Provider Route|Employer Provider Route) application")]
         public void SelectsTheRouteApplication(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;

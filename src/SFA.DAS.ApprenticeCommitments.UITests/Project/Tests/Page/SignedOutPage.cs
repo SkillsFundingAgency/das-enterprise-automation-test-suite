@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -6,13 +7,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "You have successfully signed out";
         private readonly ScenarioContext _context;
+        protected override By ServiceHeader => NonClickableServiceHeader;
 
         public SignedOutPage(ScenarioContext context) : base(context) => _context = context;
 
-        public SignIntoApprenticeshipPortalPage SignBackInFromSignOutPage()
+        public SignIntoMyApprenticeshipPage ClickSignBackInLinkFromSignOutPage()
         {
             formCompletionHelper.ClickLinkByText("sign back in");
-            return new SignIntoApprenticeshipPortalPage(_context);
+            return new SignIntoMyApprenticeshipPage(_context);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             objectContext.SetRegisteredEmail(loginusername);
             objectContext.UpdateOrganisationName(organisationName);
-            objectContext.Set(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
+            objectContext.Replace(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
         internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);
@@ -49,6 +49,7 @@ namespace SFA.DAS.Registration.UITests.Project
             usercreds.HashedAccountid = hashedaccountid;
         }
 
+        public static string GetDBAccountId(this ObjectContext objectContext) => objectContext.Get(DbAccountIdKey);
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);

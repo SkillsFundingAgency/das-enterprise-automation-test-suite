@@ -9,9 +9,11 @@
         public string OrganisationName { get; set; }
     }
 
-    public class CampaingnsEmployerUser : LoginUser { }
+    public class AuthTestUser : LoginUser { }
 
     public class RAAV2EmployerUser : LoginUser { }
+
+    public class RAAV2EmployerProviderPermissionUser : LoginUser  { }
 
     public class ProviderLoginUser : LoginUser
     {
@@ -23,6 +25,10 @@
     public class AgreementNotSignedTransfersUser : LoginUser { }
 
     public class TransfersUser : MultipleAccountUser { }
+
+    public class TransfersUserNoFunds : MultipleAccountUser { }
+
+    public class TransferMatchingUser : MultipleAccountUser { }
 
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
@@ -61,6 +67,8 @@
 
     public class EILevyUser : LoginUser { }
 
+    public class EIWithdrawLevyUser : LoginUser { }
+
     public class TransactorUser : LoginUser { }
 
     public class ViewOnlyUser : LoginUser { }
@@ -75,4 +83,6 @@
     public class Version5AgreementUser : LoginUser { }
 
     public class Version6AgreementUser : LoginUser { }
+
+    public class ASListedLevyUser : LoginUser { }
 }

@@ -5,22 +5,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class AssertHelper
+    public class RetryAssertHelper
     {
         private readonly string _title;
-        private readonly TimeSpan[] TimeOut;
+        
+        public RetryAssertHelper(ScenarioInfo scenarioInfo) => _title = scenarioInfo.Title;
 
-        public AssertHelper(ScenarioInfo scenarioInfo)
-        {
-            _title = scenarioInfo.Title;
-            TimeOut = Logging.SetTimeOut();
-        }
         public void RetryOnNUnitException(Action action, Action retryAction = null)
         {
             Policy
                  .Handle<AssertionException>()
                  .Or<MultipleAssertException>()
-                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                 .WaitAndRetry(Logging.DefaultTimeout(), (exception, timeSpan, retryCount, context) =>
                  {
                      Logging.Report(retryCount, exception, _title, retryAction);
                      retryAction?.Invoke();

@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project
 {

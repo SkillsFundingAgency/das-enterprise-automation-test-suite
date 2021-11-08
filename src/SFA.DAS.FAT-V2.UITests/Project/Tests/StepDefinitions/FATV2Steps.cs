@@ -101,6 +101,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             _providerSearchResultsPage.ShortlistAProviderFromProviderList();
         }
 
+        [Given(@"the the user navigates to shortlist page")]
         [When(@"the the user navigates to shortlist page")]
         public void WhenTheTheUserNavigatesToShortlistPage()
         {

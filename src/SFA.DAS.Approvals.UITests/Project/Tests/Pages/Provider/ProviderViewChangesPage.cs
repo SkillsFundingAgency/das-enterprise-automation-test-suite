@@ -8,23 +8,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "View changes";
         private By ReviewNewDetails => By.LinkText("reviewing the new details");
         private By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
-        protected override By ContinueButton => By.Id("submit-undo-changes");
+        protected override By ContinueButton => By.CssSelector("#submit-undo-changes, #continue-button");
         private By ViewChangesOptions => By.CssSelector(".selection-button-radio");
 
         private readonly ScenarioContext _context;
 
         public ProviderViewChangesPage(ScenarioContext context) : base(context) => _context = context;
         
-        public ProviderViewYourCohortPage ClickOnReviewNewDetailsLink()
+        public ProvideViewApprenticesDetailsPage ClickOnReviewNewDetailsLink()
         {
             formCompletionHelper.Click(ReviewNewDetails);
-            return new ProviderViewYourCohortPage(_context);
+            return new ProvideViewApprenticesDetailsPage(_context);
         }
 
-        public ProviderReviewYourCohortPage ClickOnReviewNewDetailsToUpdateLink()
+        public ProviderApproveApprenticeDetailsPage ClickOnReviewNewDetailsToUpdateLink()
         {
             formCompletionHelper.Click(ReviewNewDetailsToUpdate);
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()

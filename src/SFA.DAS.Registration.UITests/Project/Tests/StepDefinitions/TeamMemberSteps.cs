@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private YourTeamPage _yourTeamPage;
-        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        private readonly AccountSignOutHelper _accountSignOutHelper;
         private string _invitedMemberEmailId;
 
         public TeamMemberSteps(ScenarioContext context)
@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
+            _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
         [Then(@"Employer is able to invite a team member with Viewer access")]
@@ -70,7 +70,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
 
-            _accountCreationStepsHelper.SignOut()
+            _accountSignOutHelper.SignOut()
                 .CreateAccount()
                 .Register(_invitedMemberEmailId)
                 .EnterAccessCode()
@@ -81,7 +81,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Remove the team member from the account")]
         public void ThenEmployerIsAbleToRemoveTheTeamMemberFromTheAccount()
         {
-            _accountCreationStepsHelper.SignOut()
+            _accountSignOutHelper.SignOut()
                 .ClickSignInLinkOnIndexPage()
                 .Login(_objectContext.GetLoginCredentials())
                 .GotoYourTeamPage()

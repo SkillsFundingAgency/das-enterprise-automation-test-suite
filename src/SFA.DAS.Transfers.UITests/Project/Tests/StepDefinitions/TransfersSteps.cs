@@ -49,12 +49,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the sender transfer status is (disabled|enabled)")]
-        public void CheckTheSenderTransferStatus(string expectedtransferStatus)
-        {
-            var actualtransferStatus = _homePage.GoToYourOrganisationsAndAgreementsPage().GetTransfersStatus();
-
-            Assert.IsTrue(actualtransferStatus.ContainsCompareCaseInsensitive(expectedtransferStatus), $"Expected {expectedtransferStatus}, Actual {actualtransferStatus}");
-        }
+        public void CheckTheSenderTransferStatus(string expectedtransferStatus) => _homePage.GoToYourOrganisationsAndAgreementsPage().VerifyTransfersStatus(expectedtransferStatus);
 
         [Given(@"Receiver sends a cohort to the provider for review and approval")]
         public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval()
@@ -125,7 +120,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.RejectTransfersRequest();
         }
-
 
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()

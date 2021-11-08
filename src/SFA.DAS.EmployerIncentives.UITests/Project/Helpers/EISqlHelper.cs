@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,15 +15,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public void DeleteIncentiveApplication(string accountId)
         {
-            query =
-                $"DELETE FROM[incentives].[Payment] WHERE accountId = {accountId};" +
-                $"DELETE FROM[incentives].[PendingPaymentValidationResult] WHERE PendingPaymentId in (SELECT Id FROM[incentives].[PendingPayment] where accountId = {accountId});" +
-                $"DELETE FROM [incentives].[PendingPayment] WHERE accountId = {accountId};" +
-                $"DELETE FROM [incentives].[ApprenticeshipIncentive] WHERE accountId = {accountId};" +
-                $"DELETE FROM [dbo].[IncentiveApplicationApprenticeship] WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE accountId = {accountId});" +
-                $"DELETE FROM [dbo].[IncentiveApplication] WHERE accountId = {accountId}";
-            ExecuteSqlCommand(query);
+            TryExecuteSqlCommand(FileHelper.GetSql("DeleteIncentiveApplication"), connectionString, new Dictionary<string, string> { { "@accountid", accountId } });
+
             SetCaseDetailsToNull(accountId);
+        }
+
+        public void ResetPeriodEndInProgress()
+        {
+            query = "UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0";
+            ExecuteSqlCommand(query);
         }
 
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)
@@ -65,7 +66,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         {
             var searchOrder = expectedEarningType.Equals("FirstPayment") ? "asc" : "desc";
             query = $"SELECT DueDate, Amount, PeriodNumber, PaymentYear, EarningType FROM [incentives].[PendingPayment] WHERE accountId = {accountId} order by CalculatedDate {searchOrder}";
-            actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+            actualDueDate = DateTime.Parse(FetchStringQueryData(0)).ToString("yyyy-MM-dd");
             actualAmount = FetchIntegerQueryData(1);
             actualPeriodNumber = FetchIntegerQueryData(2);
             actualPaymentYear = FetchIntegerQueryData(3);
@@ -88,11 +89,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         private string CalculatedDueDate(string expectedEarningType)
         {
+
+            DateTime startDate = new DateTime(startYear, startMonth, 01);
+
             var monthDays = DateTime.DaysInMonth(startYear, startMonth);
-            DateTime expectedDueDate;
-            expectedDueDate = new DateTime(startYear, startMonth, monthDays);
-            expectedDueDate = expectedEarningType.Equals("FirstPayment") ? expectedDueDate.AddDays(89) : expectedDueDate.AddDays(364);
-            return expectedDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            DateTime expectedDueDate = new DateTime(startYear, startMonth, monthDays);
+
+            if (expectedEarningType.Equals("FirstPayment"))
+            {
+                var currentDate = DateTime.Now;
+
+                if (startDate > new DateTime(currentDate.Year, currentDate.Month - 3, 01)) expectedDueDate = expectedDueDate.AddDays(89);
+                else expectedDueDate = currentDate.AddDays(21);
+            }
+            else expectedDueDate = expectedDueDate.AddDays(364);
+
+            return expectedDueDate.ToString("yyyy-MM-dd");
         }
 
         private void AssertQueryData()

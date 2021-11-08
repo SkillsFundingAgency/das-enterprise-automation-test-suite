@@ -1,10 +1,9 @@
-﻿using Polly;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public abstract class SqlDbHelper
+    public abstract class SqlDbHelper : SqlDbRetryHelper
     {
         protected readonly string connectionString;
 
@@ -27,9 +26,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
-        protected List<string[]> GetMultipleData(string query, int noOfvalues)
+        protected List<string[]> GetMultipleData(string query, string connectionstring, int noOfvalues)
         {
-            List<object[]> data = ReadDataFromDataBase(query);
+            List<object[]> data = TryReadDataFromDataBase(query, connectionstring);
 
             var returnItems = new List<string[]>();
 
@@ -54,6 +53,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
+        protected List<string[]> GetMultipleData(string query, int noOfvalues) => GetMultipleData(query, connectionString, noOfvalues);
+
         protected string GetNullableData(string queryToExecute)
         {
             var data = GetData(queryToExecute, 1);
@@ -66,24 +67,23 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
-        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute)[0][0];
+        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
-        protected int ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
+        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 
+            => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 
-        protected object TryGetDataAsObject(string queryToExecute, string exception, string title) => RetryOnException(exception, title).Execute(() => GetDataAsObject(queryToExecute));
+        protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
+            => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
-        private List<object[]> ReadDataFromDataBase(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+        protected object TryGetDataAsObject(string queryToExecute, string title)
+            => RetryOnIndexOutOfRangeException(() => GetDataAsObject(queryToExecute), title);
 
-        private Policy RetryOnException(string exception, string title)
-        {
-            return Policy
-                .Handle<Exception>((x) => x.Message.Contains(exception))
-                 .WaitAndRetry(Logging.SetTimeOut(), (exception, timeSpan, retryCount, context) =>
-                 {
-                     Logging.Report(retryCount, exception, title);
-                 });
-        }
+        private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString)
+            => RetryOnException(() => ReadDataFromDataBase(queryToExecute, connectionString));
+
+        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+
     }
 }
