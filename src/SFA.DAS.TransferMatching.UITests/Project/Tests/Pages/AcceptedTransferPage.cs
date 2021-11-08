@@ -17,6 +17,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("View my applications");
             return new MyApplicationsPage(_context);
         }
-
     }
 }

@@ -106,7 +106,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .OpenPledgeApplication("FUNDS AVAILABLE");
         }
 
-
         [Then(@"the pledge is available to apply")]
         public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
 

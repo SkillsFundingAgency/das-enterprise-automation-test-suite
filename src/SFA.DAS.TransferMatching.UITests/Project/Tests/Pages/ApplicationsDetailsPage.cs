@@ -45,27 +45,34 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
+            VerifyTermsError();
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));
-
-            Continue();
-
-            VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
-            
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));
-
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ComplyWithRulesSelector));
+            AcceptInformationTerms();
 
             Continue();
 
-            VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
-            
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));
+            VerifyTermsError();
+
+            AcceptInformationTerms();
+
+            AcceptComplyWithRulesTerms();
+
+            Continue();
+
+            VerifyTermsError();
+
+            AcceptInformationTerms();
 
             Continue();
 
             return new AcceptedTransferPage(_context);
         }
+
+        private void VerifyTermsError() => VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
+
+        private void AcceptInformationTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));
+
+        private void AcceptComplyWithRulesTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ComplyWithRulesSelector));
+
     }
 }
