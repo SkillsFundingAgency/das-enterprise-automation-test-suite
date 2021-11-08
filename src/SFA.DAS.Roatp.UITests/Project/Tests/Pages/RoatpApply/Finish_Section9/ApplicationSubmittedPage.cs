@@ -13,20 +13,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
 
         #region Helpers and Context
         private readonly ObjectContext _objectContext;
-        private readonly RegexHelper _regexHelper;
         #endregion
 
         public ApplicationSubmittedPage(ScenarioContext context) : base(context)
         {
             _objectContext = context.Get<ObjectContext>();
-            _regexHelper = context.Get<RegexHelper>();
             VerifyPage();
         }
 
         public ApplicationSubmittedPage SetApplicationReference()
         {
             var value = pageInteractionHelper.GetText(PageHeader);
-            var reference = _regexHelper.GetApplicationReference(value);
+            var reference = RegexHelper.GetApplicationReference(value);
             _objectContext.SetApplicationReference(reference);
             return this;
         }

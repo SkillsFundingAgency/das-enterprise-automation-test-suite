@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;

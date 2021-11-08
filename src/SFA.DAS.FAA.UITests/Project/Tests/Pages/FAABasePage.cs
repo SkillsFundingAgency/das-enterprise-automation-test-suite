@@ -16,7 +16,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly TabHelper tabHelper;
         protected readonly FAAConfig faaConfig;
-        protected readonly RegexHelper regexHelper;
         #endregion
 
         protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
@@ -30,7 +29,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             faaDataHelper = context.Get<FAADataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            regexHelper = context.Get<RegexHelper>();
             if (verifyPage) VerifyPage();
         }
     }

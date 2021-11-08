@@ -22,10 +22,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-
-            var regexHelper = _context.Get<RegexHelper>();
-
-            _context.Set(new RAAV1DataHelper(random, regexHelper));
+            
+            _context.Set(new RAAV1DataHelper(random));
 
             _context.Set(new RAAV1RegistrationDataHelper(random));
 

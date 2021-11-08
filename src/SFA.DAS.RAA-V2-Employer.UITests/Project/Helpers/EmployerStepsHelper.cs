@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
@@ -108,7 +108,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
-        internal HomePage GoToHomePage(LoginUser loginUser) => _loginhelper.Login(loginUser, true);
+        internal HomePage GoToHomePage(EasAccountUser loginUser) => _loginhelper.Login(loginUser, true);
     
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
         {

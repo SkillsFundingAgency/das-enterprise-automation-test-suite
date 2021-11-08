@@ -2,7 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -34,6 +34,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.Approve();
         }
-
     }
 }

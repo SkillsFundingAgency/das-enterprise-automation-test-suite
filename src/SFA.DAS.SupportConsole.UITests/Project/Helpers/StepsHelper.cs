@@ -2,10 +2,10 @@
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {

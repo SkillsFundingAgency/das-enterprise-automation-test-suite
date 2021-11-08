@@ -26,7 +26,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -60,7 +60,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -153,13 +153,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.LearnerSubmission  = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
-                .WithAcademicYear(2022)
+                .WithAcademicYear(2122)
                 .WithIlrSubmissionDate("2021-08-01T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(TestData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
-                    .WithAcademicYear(2022)
+                    .WithAcademicYear(2122)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(TestData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId
@@ -236,7 +236,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -282,7 +282,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);

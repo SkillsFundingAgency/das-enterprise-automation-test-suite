@@ -9,8 +9,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private By Status => By.CssSelector(".govuk-tag");
 
-        private By NotificationBanner => By.CssSelector(".govuk-notification-banner");
-
         private string AppStatusTableIdentifier => ".govuk-list.app-status-list";
 
         private string AppStatusRowIdentifier => ".app-status-list__list-item";

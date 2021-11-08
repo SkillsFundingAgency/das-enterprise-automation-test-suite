@@ -1,7 +1,7 @@
-﻿using SFA.DAS.Login.Service.Helpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {

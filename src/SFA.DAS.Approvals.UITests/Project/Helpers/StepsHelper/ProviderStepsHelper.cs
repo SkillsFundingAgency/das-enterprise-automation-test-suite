@@ -6,9 +6,9 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {

@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages

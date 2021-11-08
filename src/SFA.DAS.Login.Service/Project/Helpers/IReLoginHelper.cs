@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Login.Service.Helpers
+﻿namespace SFA.DAS.Login.Service.Project.Helpers
 {
     public interface IReLoginHelper
     {
