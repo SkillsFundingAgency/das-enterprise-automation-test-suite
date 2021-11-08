@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Login.Service.Project.Helpers
 {
-    public class LoggedInAccountUser : AccountUser { }
+    public class LoggedInAccountUser : EasAccountUser { }
 
     public abstract class LoginUser
     {
@@ -12,60 +12,60 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     }
     #region SingleAccountUser
 
-    public abstract class AccountUser : LoginUser
+    public abstract class EasAccountUser : LoginUser
     {
         public string OrganisationName { get; set; }
 
         public List<string> LegalEntities { get; set; }
     }
 
-    public class AuthTestUser : AccountUser { }
+    public class AuthTestUser : EasAccountUser { }
 
-    public class RAAV2EmployerUser : AccountUser { }
+    public class RAAV2EmployerUser : EasAccountUser { }
 
-    public class RAAV2EmployerProviderPermissionUser : AccountUser { }
+    public class RAAV2EmployerProviderPermissionUser : EasAccountUser { }
 
-    public class ProviderPermissionLevyUser : AccountUser { }
+    public class ProviderPermissionLevyUser : EasAccountUser { }
 
-    public class AgreementNotSignedTransfersUser : AccountUser { }
+    public class AgreementNotSignedTransfersUser : EasAccountUser { }
 
-    public class LevyUser : AccountUser { }
+    public class LevyUser : EasAccountUser { }
 
-    public class NonLevyUser : AccountUser { }
+    public class NonLevyUser : EasAccountUser { }
 
-    public class EILevyUser : AccountUser { }
+    public class EILevyUser : EasAccountUser { }
 
-    public class EIWithdrawLevyUser : AccountUser { }
+    public class EIWithdrawLevyUser : EasAccountUser { }
 
-    public class TransactorUser : AccountUser { }
+    public class TransactorUser : EasAccountUser { }
 
-    public class ViewOnlyUser : AccountUser { }
+    public class ViewOnlyUser : EasAccountUser { }
 
-    public class Version4AgreementUser : AccountUser { }
+    public class Version4AgreementUser : EasAccountUser { }
 
-    public class Version5AgreementUser : AccountUser { }
+    public class Version5AgreementUser : EasAccountUser { }
 
-    public class Version6AgreementUser : AccountUser { }
+    public class Version6AgreementUser : EasAccountUser { }
 
-    public class ASListedLevyUser : AccountUser { }
+    public class ASListedLevyUser : EasAccountUser { }
 
     #endregion
 
     #region MultipleAccountUser
-    public abstract class MultipleAccountUser : AccountUser
+    public abstract class MultipleEasAccountUser : EasAccountUser
     {
         public string SecondOrganisationName { get; set; }
     }
 
-    public class EIMultipleAccountUser : MultipleAccountUser { }
+    public class EIMultipleAccountUser : MultipleEasAccountUser { }
 
-    public class TransfersUser : MultipleAccountUser { }
+    public class TransfersUser : MultipleEasAccountUser { }
 
-    public class TransfersUserNoFunds : MultipleAccountUser { }
+    public class TransfersUserNoFunds : MultipleEasAccountUser { }
 
-    public class TransferMatchingUser : MultipleAccountUser { }
+    public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
+    public class ChangeOfEmployerLevyUser : MultipleEasAccountUser { }
 
     #endregion
 

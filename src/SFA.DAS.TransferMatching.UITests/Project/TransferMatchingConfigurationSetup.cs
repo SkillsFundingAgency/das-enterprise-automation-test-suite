@@ -20,11 +20,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransferMatchingConfiguration()
         {
-            _context.SetAccountUser(_configSection.GetConfigSection<TransferMatchingUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransferMatchingUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<TransfersUserNoFunds>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransfersUserNoFunds>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<TransfersUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransfersUser>());
         }
     }
 }

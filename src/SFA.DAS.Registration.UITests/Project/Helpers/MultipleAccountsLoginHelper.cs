@@ -10,17 +10,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string OrganisationName { get; set; }
 
-        public MultipleAccountsLoginHelper(ScenarioContext context, MultipleAccountUser multipleAccountUser) : base(context)
+        public MultipleAccountsLoginHelper(ScenarioContext context, MultipleEasAccountUser multipleAccountUser) : base(context)
         {
             _context = context;
 
             OrganisationName = multipleAccountUser.OrganisationName;
         }
 
-        protected override void SetLoginCredentials(AccountUser loginUser, bool isLevy) => 
+        protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) => 
             loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, OrganisationName, isLevy); 
         
-        protected override HomePage Login(AccountUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
+        protected override HomePage Login(EasAccountUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
 
         public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(SignInPage signInPage) => signInPage.GoToMyAccountTransferFundingPage(GetLoginCredentials());
 

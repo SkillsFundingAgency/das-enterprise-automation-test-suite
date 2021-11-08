@@ -23,23 +23,23 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             _context.SetEPAOConfig(_configSection.GetConfigSection<EPAOConfig>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOStandardApplyUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOStandardApplyUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOAssessorUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOAssessorUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAODeleteAssessorUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAODeleteAssessorUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOManageUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOManageUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOApplyUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOApplyUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOE2EApplyUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOE2EApplyUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOWithdrawalUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOWithdrawalUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOAdminUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOAdminUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>());
         }             
     }
 }
