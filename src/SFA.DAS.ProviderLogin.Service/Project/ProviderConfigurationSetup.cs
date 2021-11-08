@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -20,16 +21,15 @@ namespace SFA.DAS.ProviderLogin.Service
         [BeforeScenario(Order = 2)]
         public void SetUpProviderConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProviderConfig>();
-            _context.SetProviderConfig(config);
+            _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderContributorUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }
     }
 }

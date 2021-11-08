@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -24,7 +25,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             var amount = pageInteractionHelper.GetText(AvailablePledgeAmount);
 
-            var availablepledgeamount = regexHelper.GetAmount(amount);
+            var availablepledgeamount = RegexHelper.GetAmount(amount);
 
             objectContext.SetEmployerTotalPledgeAmount(availablepledgeamount);
 

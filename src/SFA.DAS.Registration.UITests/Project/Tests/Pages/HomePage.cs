@@ -7,7 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : InterimHomeBasePage
     {
-        private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -29,7 +28,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
-            _regexHelper = context.Get<RegexHelper>();
             base.AcceptCookies();
         }
 
@@ -47,9 +45,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+        public string AccountId() => RegexHelper.GetAccountId(pageInteractionHelper.GetUrl());
 
-        public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
+        public string PublicAccountId() => RegexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
 
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {

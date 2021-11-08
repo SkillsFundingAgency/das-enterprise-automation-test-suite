@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
@@ -10,16 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected CohortReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
     
-        public string CohortReference()
-        {
-            var reference = pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference", "Cohort reference");
-            return regexHelper.GetCohortReference(reference);
-        }
+        public string CohortReference() => RegexHelper.GetCohortReference(pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference", "Cohort reference"));
 
-        public string CohortReferenceFromUrl()
-        {
-            var url = pageInteractionHelper.GetUrl();
-            return regexHelper.GetCohortReferenceFromUrl(url);
-        }
+        public string CohortReferenceFromUrl() => RegexHelper.GetCohortReferenceFromUrl(pageInteractionHelper.GetUrl());
     }
 }

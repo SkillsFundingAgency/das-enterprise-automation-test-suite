@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -38,20 +38,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing Version6AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version6AgreementUser>());
 
-        private void SetOrgAndLogin(LoginUser loginUser)
+        private void SetOrgAndLogin(AccountUser loginUser)
         {
             _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
             _employerPortalLoginHelper.Login(loginUser, true);
         }
 
-        private HomePage Login(LoginUser user)
+        private HomePage Login(AccountUser user)
         {
             RemoveExistingApplications(user); 
             
             return _employerPortalLoginHelper.Login(user, true);
         }
 
-        public void RemoveExistingApplications(LoginUser user)
+        public void RemoveExistingApplications(AccountUser user)
         {
             if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
                 _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);

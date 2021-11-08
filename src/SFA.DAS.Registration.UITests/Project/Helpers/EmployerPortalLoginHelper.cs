@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -28,12 +28,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage ReLogin() => new SignInPage(_context).Login(GetLoginCredentials());
 
-        protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
+        protected virtual HomePage Login(AccountUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
-        protected virtual void SetLoginCredentials(LoginUser loginUser, bool isLevy) 
+        protected virtual void SetLoginCredentials(AccountUser loginUser, bool isLevy) 
             => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName, isLevy);
 
-        public HomePage Login(LoginUser loginUser, bool isLevy)
+        public HomePage Login(AccountUser loginUser, bool isLevy)
         {
             SetLoginCredentials(loginUser, isLevy);
 
@@ -50,6 +50,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
 
-        public LoginUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
+        public AccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }

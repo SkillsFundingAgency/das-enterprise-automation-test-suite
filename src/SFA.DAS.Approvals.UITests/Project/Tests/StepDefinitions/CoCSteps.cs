@@ -6,7 +6,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using TechTalk.SpecFlow;
@@ -196,7 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
 
-        private void ApproveCohort(bool isFirstCourse, LoginUser loginUser)
+        private void ApproveCohort(bool isFirstCourse, AccountUser loginUser)
         {
             if(isFirstCourse)
                 _loginHelper.Login(loginUser, true);

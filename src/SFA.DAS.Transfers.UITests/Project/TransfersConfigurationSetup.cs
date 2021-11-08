@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project
@@ -20,9 +20,9 @@ namespace SFA.DAS.Transfers.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransfersConfiguration()
         {
-            _context.SetUser(_configSection.GetConfigSection<AgreementNotSignedTransfersUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<AgreementNotSignedTransfersUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<TransfersUser>());
+            _context.SetAccountUser(_configSection.GetConfigSection<TransfersUser>());
         }
     }
 }

@@ -8,14 +8,12 @@ namespace SFA.DAS.RAA.DataGenerator
     public class VacancyReferenceHelper
     {
         #region Helpers and Context
-        private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        public VacancyReferenceHelper(PageInteractionHelper pageInteractionHelper, ObjectContext objectContext, RegexHelper regexHelper)
+        public VacancyReferenceHelper(PageInteractionHelper pageInteractionHelper, ObjectContext objectContext)
         {
-            _regexHelper = regexHelper;
             _objectContext = objectContext;
             _pageInteractionHelper = pageInteractionHelper;
         }
@@ -24,7 +22,7 @@ namespace SFA.DAS.RAA.DataGenerator
         {
             var referenceNumber = _pageInteractionHelper.GetText(vacancyReferenceNumber);
 
-            _objectContext.SetVacancyReference(_regexHelper.GetVacancyReference(referenceNumber));
+            _objectContext.SetVacancyReference(RegexHelper.GetVacancyReference(referenceNumber));
         }
     }
 }

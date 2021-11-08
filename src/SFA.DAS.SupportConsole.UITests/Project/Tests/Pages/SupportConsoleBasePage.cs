@@ -14,7 +14,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly SupportConsoleConfig config;
-        protected readonly RegexHelper regexHelper;
         protected readonly TableRowHelper tableRowHelper;
         #endregion
 
@@ -32,7 +31,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             tableRowHelper = context.Get<TableRowHelper>();
-            regexHelper = context.Get<RegexHelper>();
         }
 
         public void ClickFinanceMenuLink() => formCompletionHelper.Click(FinanceLink);

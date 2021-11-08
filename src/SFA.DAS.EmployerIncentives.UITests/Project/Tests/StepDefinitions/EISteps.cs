@@ -4,7 +4,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -22,7 +22,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EINavigationHelper _eINavigationHelper;
-        private readonly MultipleAccountUser _multipleAccountUser;
+        private readonly EIMultipleAccountUser _multipleAccountUser;
         private ViewApplicationsShutterPage _viewApplicationsShutterPage;
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
         private QualificationQuestionPage _qualificationQuestionPage;
@@ -38,7 +38,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _multipleAccountUser = _context.GetUser<MultipleAccountUser>();
+            _multipleAccountUser = _context.GetUser<EIMultipleAccountUser>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _multipleAccountUser);

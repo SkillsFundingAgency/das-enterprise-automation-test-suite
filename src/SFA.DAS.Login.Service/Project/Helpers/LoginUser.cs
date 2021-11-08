@@ -1,28 +1,63 @@
-﻿namespace SFA.DAS.Login.Service.Helpers
+﻿using System.Collections.Generic;
+
+namespace SFA.DAS.Login.Service.Project.Helpers
 {
+    public class LoggedInAccountUser : AccountUser { }
+
     public abstract class LoginUser
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
-
-        public string OrganisationName { get; set; }
     }
+    #region SingleAccountUser
 
-    public class AuthTestUser : LoginUser { }
-
-    public class RAAV2EmployerUser : LoginUser { }
-
-    public class RAAV2EmployerProviderPermissionUser : LoginUser  { }
-
-    public class ProviderLoginUser : LoginUser
+    public abstract class AccountUser : LoginUser
     {
-        public string Ukprn { get; set; }
+        public string OrganisationName { get; set; }
+
+        public List<string> LegalEntities { get; set; }
     }
 
-    public class ProviderPermissionLevyUser : LoginUser { }
+    public class AuthTestUser : AccountUser { }
 
-    public class AgreementNotSignedTransfersUser : LoginUser { }
+    public class RAAV2EmployerUser : AccountUser { }
+
+    public class RAAV2EmployerProviderPermissionUser : AccountUser { }
+
+    public class ProviderPermissionLevyUser : AccountUser { }
+
+    public class AgreementNotSignedTransfersUser : AccountUser { }
+
+    public class LevyUser : AccountUser { }
+
+    public class NonLevyUser : AccountUser { }
+
+    public class EILevyUser : AccountUser { }
+
+    public class EIWithdrawLevyUser : AccountUser { }
+
+    public class TransactorUser : AccountUser { }
+
+    public class ViewOnlyUser : AccountUser { }
+
+    public class Version4AgreementUser : AccountUser { }
+
+    public class Version5AgreementUser : AccountUser { }
+
+    public class Version6AgreementUser : AccountUser { }
+
+    public class ASListedLevyUser : AccountUser { }
+
+    #endregion
+
+    #region MultipleAccountUser
+    public abstract class MultipleAccountUser : AccountUser
+    {
+        public string SecondOrganisationName { get; set; }
+    }
+
+    public class EIMultipleAccountUser : MultipleAccountUser { }
 
     public class TransfersUser : MultipleAccountUser { }
 
@@ -32,57 +67,38 @@
 
     public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
 
-    public class LevyUser : LoginUser { }
+    #endregion
 
-    public class NonLevyUser : LoginUser { }
+    #region NonAccountUser
+    public abstract class NonAccountUser : LoginUser { }
 
-    public class LoggedInUser : LoginUser { }
-    
-    public class EPAOStandardApplyUser : LoginUser { }
+    public class EPAOStandardApplyUser : NonAccountUser { }
 
-    public class EPAOAssessorUser : LoginUser { }
+    public class EPAOAssessorUser : NonAccountUser { }
 
-    public class EPAODeleteAssessorUser : LoginUser { }
+    public class EPAODeleteAssessorUser : NonAccountUser { }
 
-    public class EPAOWithdrawalUser : LoggedInUser { }
+    public class EPAOWithdrawalUser : NonAccountUser { }
 
-    public class EPAOManageUser : LoginUser { }
+    public class EPAOManageUser : NonAccountUser { }
 
-    public class EPAOApplyUser : LoginUser
+    public class EPAOApplyUser : NonAccountUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : LoginUser { }
+    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
 
-    public class EPAOE2EApplyUser : LoginUser { }
+    public class EPAOE2EApplyUser : NonAccountUser { }
 
-    public class EPAOAdminUser : LoginUser { }
+    public class EPAOAdminUser : NonAccountUser { }
 
-    public class SupportConsoleTier1User : LoginUser { }
+    public class SupportToolsUser : NonAccountUser { }
 
-    public class SupportConsoleTier2User : LoginUser { }
+    public class SupportConsoleTier1User : NonAccountUser { }
 
-    public class SupportToolsUser : LoginUser { }
+    public class SupportConsoleTier2User : NonAccountUser { }
 
-    public class EILevyUser : LoginUser { }
+    #endregion
 
-    public class EIWithdrawLevyUser : LoginUser { }
-
-    public class TransactorUser : LoginUser { }
-
-    public class ViewOnlyUser : LoginUser { }
-
-    public class MultipleAccountUser : LoginUser
-    {
-        public string SecondOrganisationName { get; set; }
-    }
-
-    public class Version4AgreementUser : LoginUser { }
-
-    public class Version5AgreementUser : LoginUser { }
-
-    public class Version6AgreementUser : LoginUser { }
-
-    public class ASListedLevyUser : LoginUser { }
 }

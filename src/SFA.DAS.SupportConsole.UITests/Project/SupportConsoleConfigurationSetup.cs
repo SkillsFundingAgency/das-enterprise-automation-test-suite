@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -23,11 +23,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         {
             _context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
 
-            _context.SetUser(_configSection.GetConfigSection<SupportToolsUser>());
+            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<SupportToolsUser>());
             
         }
     }
