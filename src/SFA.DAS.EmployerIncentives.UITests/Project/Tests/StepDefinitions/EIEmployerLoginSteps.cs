@@ -20,15 +20,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-       
         }
 
         [Given(@"the Employer logins using existing EI Levy Account")]
         [When(@"the Employer logins using existing EI Levy Account")]
         public void TheEmployerLoginsUsingExistingEILevyAccount() => Login(_context.GetUser<EILevyUser>());
 
-        [Given(@"the Employer logins using existing EI Withdraw Levy Account")]
-        public void TheEmployerLoginsUsingExistingEIWithdrawLevyAccount() => Login(_context.GetUser<EIWithdrawLevyUser>());
+        [Given(@"the Employer logins using existing EI Levy Account to withdraw application")]
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToWithdrawApplication() => Login(_context.GetUser<EIWithdrawLevyUser>());
 
         [Given(@"the Employer logins using existing Version4AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version4AgreementUser>());
@@ -54,7 +53,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         public void RemoveExistingApplications(AccountUser user)
         {
-            if (_context.ScenarioInfo.Tags.Contains("deletedincentiveapplication"))
+            if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
                 _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);
         }
 
