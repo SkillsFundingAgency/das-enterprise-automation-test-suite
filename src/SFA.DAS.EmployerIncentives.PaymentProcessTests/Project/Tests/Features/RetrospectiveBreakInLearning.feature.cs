@@ -443,14 +443,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Multiple Retro BIL - Learner Stopped before First Payment due date and Resumed la" +
-            "ter several time for Phase2")]
-        public virtual void MultipleRetroBIL_LearnerStoppedBeforeFirstPaymentDueDateAndResumedLaterSeveralTimeForPhase2()
+        [NUnit.Framework.DescriptionAttribute("Simple Retro BIL 7 - Learner Stopped before First Payment due date when due date " +
+            "within delay period")]
+        public virtual void SimpleRetroBIL7_LearnerStoppedBeforeFirstPaymentDueDateWhenDueDateWithinDelayPeriod()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Multiple Retro BIL - Learner Stopped before First Payment due date and Resumed la" +
-                    "ter several time for Phase2", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple Retro BIL 7 - Learner Stopped before First Payment due date when due date " +
+                    "within delay period", null, tagsOfScenario, argumentsOfScenario);
 #line 68
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -472,36 +472,92 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 69
- testRunner.Given("an existing Phase2 apprenticeship incentive with learning starting on 30-Apr-2021" +
-                        " and ending on 31-Jul-2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an existing Phase2 apprenticeship incentive with learning starting on 30-Apr-2021" +
+                        " and ending on 31-Jul-2022 submitted on 07-Aug-2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 70
- testRunner.And("a payment of £1500 is not sent in Period R12 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("a payment of £1500 is not sent in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 71
- testRunner.And("Learner data is updated with a Break in Learning of 28 days before the first paym" +
+    testRunner.And("Learner data is updated with a Break in Learning of 28 days before the first paym" +
                         "ent due date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 72
+    testRunner.When("the Learner Match is run in Period R02 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 73
+    testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 74
+    testRunner.Then("the Break in Learning is recorded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 75
+    testRunner.And("the first payment is still in Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Multiple Retro BIL - Learner Stopped before First Payment due date and Resumed la" +
+            "ter several time for Phase2")]
+        public virtual void MultipleRetroBIL_LearnerStoppedBeforeFirstPaymentDueDateAndResumedLaterSeveralTimeForPhase2()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Multiple Retro BIL - Learner Stopped before First Payment due date and Resumed la" +
+                    "ter several time for Phase2", null, tagsOfScenario, argumentsOfScenario);
+#line 77
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 78
+ testRunner.Given("an existing Phase2 apprenticeship incentive with learning starting on 30-Apr-2021" +
+                        " and ending on 31-Jul-2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 79
+ testRunner.And("a payment of £1500 is not sent in Period R12 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 80
+ testRunner.And("Learner data is updated with a Break in Learning of 28 days before the first paym" +
+                        "ent due date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 81
     testRunner.And("Learner data is updated with a Break in Learning of 28 days starting 1 month afte" +
                         "r the first break resume", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 82
     testRunner.When("the Learner Match is run in Period R11 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 74
+#line 83
  testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 75
+#line 84
  testRunner.Then("the Break in Learning is recorded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 76
+#line 85
  testRunner.And("a new first pending payment of £1500 is created for Period R01 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 77
+#line 86
  testRunner.And("a new second pending payment of £1500 is created for Period R11 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 78
+#line 87
     testRunner.And("the Learner is In Learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -517,7 +573,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Amend Retro BIL - Learner Stopped before First Payment due date and Resumed later" +
                     " and Amended for Phase2", null, tagsOfScenario, argumentsOfScenario);
-#line 80
+#line 89
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -537,43 +593,43 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 81
+#line 90
     testRunner.Given("an existing Phase2 apprenticeship incentive with learning starting on 31-Aug-2021" +
                         " and ending on 31-Jul-2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 82
+#line 91
     testRunner.And("a payment of £1500 is not sent in Period R04 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 83
+#line 92
     testRunner.And("Learner data is updated with a Break in Learning of 28 days before the first paym" +
                         "ent due date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 84
+#line 93
  testRunner.And("the Learner Match is run in Period R06 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 85
+#line 94
  testRunner.And("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 86
+#line 95
     testRunner.And("a payment of £1500 is sent in Period R06 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 87
+#line 96
  testRunner.And("Learner data is updated with a Break in Learning of 56 days after the first payme" +
                         "nt due date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 88
+#line 97
  testRunner.When("the Learner Match is run in Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 89
+#line 98
     testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 90
+#line 99
     testRunner.Then("the Break in Learning is amended", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 91
+#line 100
  testRunner.And("a new second pending payment of £1500 is created for Period R03 2223", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 92
+#line 101
  testRunner.And("the Learner is In Learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -589,7 +645,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove Retro BIL - Learner Stopped before First Payment due date and Resumed late" +
                     "r and Removed for Phase2", null, tagsOfScenario, argumentsOfScenario);
-#line 94
+#line 103
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -609,49 +665,49 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 95
+#line 104
  testRunner.Given("an existing Phase2 apprenticeship incentive with learning starting on 31-Aug-2021" +
                         " and ending on 31-Jul-2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 96
+#line 105
     testRunner.And("a payment of £1500 is not sent in Period R04 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 97
+#line 106
     testRunner.And("Learner data is updated with a Break in Learning of 28 days before the first paym" +
                         "ent due date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 98
+#line 107
  testRunner.And("the Learner Match is run in Period R06 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 99
+#line 108
  testRunner.And("the Payment Run occurs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 100
+#line 109
  testRunner.And("a payment of £1500 is sent in Period R06 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 101
+#line 110
  testRunner.And("Learner data is updated with learning starting on 30-Nov-2021 and ending on 31-Ju" +
                         "l-2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 102
+#line 111
  testRunner.When("the Learner Match is run in Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 103
+#line 112
     testRunner.And("the earnings are recalculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 104
+#line 113
     testRunner.Then("the Break in Learning is Removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 105
+#line 114
  testRunner.And("the paid earning of £1500 is marked as requiring a clawback in Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 106
+#line 115
  testRunner.And("a new first pending payment of £1500 is created for Period R07 2122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 107
+#line 116
  testRunner.And("a new second pending payment of £1500 is created for Period R04 2223", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 108
+#line 117
  testRunner.And("the Learner is In Learning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

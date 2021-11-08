@@ -25,13 +25,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
         }
 
-        [Given(@"an existing (.*) apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
-        public async Task GivenAnExistingApprenticeshipIncentive(string phase, DateTime startDate, DateTime endDate)
+        [Given(
+            @"an existing (.*) apprenticeship incentive with learning starting on (.*) and ending on (.*) submitted on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentive(string phase, DateTime startDate, DateTime endDate, DateTime submittedOn)
         {
             _phase = Enum.Parse<Phase>(phase);
             _initialStartDate = startDate;
             _initialEndDate = endDate;
-            _submittedOn = _phase == Phase.Phase1 ? new DateTime(2020, 11, 1) : new DateTime(2021, 4, 1);
+            _submittedOn = submittedOn;
 
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
@@ -46,6 +47,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
 
             await SetupSubmissionWithNoBreakInLearning();
+        }
+
+        [Given(@"an existing (.*) apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
+        public async Task GivenAnExistingApprenticeshipIncentive(string phase, DateTime startDate, DateTime endDate)
+        {
+            _phase = Enum.Parse<Phase>(phase);
+            var submittedOn = _phase == Phase.Phase1 ? new DateTime(2020, 11, 1) : new DateTime(2021, 4, 1);
+            await GivenAnExistingApprenticeshipIncentive(phase, startDate, endDate, submittedOn);
         }
 
         [Given(@"a payment of £(.*) is not sent in Period R(.*)")]
@@ -269,6 +278,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             AssertPendingPayment(_expectedPaymentAmount, 7, 2021, EarningType.FirstPayment);
             AssertPendingPayment(_expectedPaymentAmount, 4, 2122, EarningType.SecondPayment);
+        }
+
+        [Then(@"the first payment is still in Period R(.*) (.*)")]
+        public void ThenTheFirstPaymentIsNotChanged(byte period, short year)
+        {
+            AssertPendingPayment(1500, period, year, EarningType.FirstPayment);
         }
 
         [Then(@"the Learner is In Learning")]
