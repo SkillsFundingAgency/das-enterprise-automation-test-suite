@@ -228,7 +228,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
-        private ApplicationSubmittedPage ApplyForAPledge(EasAccountUser user)
+        private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
