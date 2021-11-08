@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CreateAccount
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmIdentity
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CreateAcc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CA_01_InvalidPassword")]
-    public partial class AC_CA_01_InvalidPasswordFeature
+    [NUnit.Framework.DescriptionAttribute("AC_CI_01_InvalidPassword")]
+    public partial class AC_CI_01_InvalidPasswordFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_CA_01_InvalidPassword.feature"
+#line 1 "AC_CI_01_InvalidPassword.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CA_01_InvalidPassword", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_CI_01_InvalidPassword", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.CreateAcc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CA_01_InvalidPassword")]
+        [NUnit.Framework.DescriptionAttribute("AC_CI_01_InvalidPassword")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_CA_01_InvalidPassword()
+        public virtual void AC_CI_01_InvalidPassword()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CA_01_InvalidPassword", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CI_01_InvalidPassword", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

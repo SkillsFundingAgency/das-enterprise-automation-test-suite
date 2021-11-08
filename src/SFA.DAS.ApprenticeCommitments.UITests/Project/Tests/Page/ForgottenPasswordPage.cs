@@ -12,7 +12,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override By ServiceHeader => NonClickableServiceHeader;
 
         private By Email => By.CssSelector("input#Email");
-        private By SubmitButton => By.XPath("//button[text()='Submit']");
 
         public ForgottenPasswordPage(ScenarioContext context) : base(context) => _context = context;
 
