@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private readonly ScenarioContext _context;
         protected override By ServiceHeader => NonClickableServiceHeader;
         private By Username => By.CssSelector("#Username");
-        private By Password => By.CssSelector("#Password");
         private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
         public SignIntoMyApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
@@ -19,6 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {
             SignIn();
+            VerifyPage(PrivacyLinkInTheBody);
             return new CreateMyApprenticeshipAccountPage(_context);
         }
 
