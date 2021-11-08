@@ -13,7 +13,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
-        private By PledgeSelector => By.CssSelector($"a[href='pledges/{objectContext.GetPledgeDetail().PledgeId}/applications']");
+        private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
 
         public MyTransferPledgesPage(ScenarioContext context) : base(context) => _context = context;
 

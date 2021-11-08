@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private void SetCurrentReservationId()
         {
-            var currentUrl = pageInteractionHelper.GetUrl();
+            var currentUrl = GetUrl();
 
             int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
             int subStringIndexTo = currentUrl.LastIndexOf("/completed");
