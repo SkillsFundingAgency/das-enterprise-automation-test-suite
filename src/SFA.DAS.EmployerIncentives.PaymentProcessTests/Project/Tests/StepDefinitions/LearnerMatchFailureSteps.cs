@@ -31,9 +31,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                     .WithAccount(TestData.Account)
-                    .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Phase.Phase2)
-                    .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
-                    .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Phase.Phase2)
+                    .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
+                    .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
+                    .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
                     .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
