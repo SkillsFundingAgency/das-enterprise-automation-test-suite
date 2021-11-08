@@ -27,9 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<ProviderPermissionLevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ProviderPermissionLevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<ChangeOfEmployerLevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ChangeOfEmployerLevyUser>());
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
         }

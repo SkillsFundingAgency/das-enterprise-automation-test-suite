@@ -25,17 +25,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
             _context.SetEIConfig(config);
 
-            _context.SetAccountUser(_configSection.GetConfigSection<EILevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EILevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<EIWithdrawLevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EIWithdrawLevyUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<EIMultipleAccountUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EIMultipleAccountUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<Version4AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version4AgreementUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<Version5AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version5AgreementUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<Version6AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version6AgreementUser>());
         }
     }
 }

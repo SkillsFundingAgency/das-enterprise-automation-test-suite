@@ -10,9 +10,9 @@ namespace SFA.DAS.Login.Service
 {
     public static class ScenarioContextExtension
     {
-        public static void SetNonAccountLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
+        public static void SetNonEasLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
 
-        public static void SetAccountUser(this ScenarioContext context, AccountUser value)
+        public static void SetEasLoginUser(this ScenarioContext context, EasAccountUser value)
         {
             if (value == null) return;
 
@@ -23,7 +23,7 @@ namespace SFA.DAS.Login.Service
             SetUser(context, value);
         }
 
-        public static void SetAccountUser(this ScenarioContext context, MultipleAccountUser value)
+        public static void SetEasLoginUser(this ScenarioContext context, MultipleEasAccountUser value)
         {
             if (value == null) return;
 

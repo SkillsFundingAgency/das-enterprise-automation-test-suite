@@ -221,14 +221,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
-        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(AccountUser user)
+        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
             return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
-        private ApplicationsDetailsPage ApplyForAPledge(AccountUser user)
+        private ApplicationSubmittedPage ApplyForAPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
@@ -237,7 +237,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
 
-        private void GoToTransferMatchingAndSignIn(AccountUser user)
+        private void GoToTransferMatchingAndSignIn(EasAccountUser user)
         {
             GoToTransferMacthingApplyUrl();
 
@@ -271,28 +271,28 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             });
         }
 
-        private void CreateATransferPledge(AccountUser login)
+        private void CreateATransferPledge(EasAccountUser login)
         {
             LoginAsSender(login);
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
-        private void LoginAsReceiver(AccountUser login, bool isLevy)
+        private void LoginAsReceiver(EasAccountUser login, bool isLevy)
         {
             _receiver = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, true);
         }
 
-        private void LoginAsSender(AccountUser login)
+        private void LoginAsSender(EasAccountUser login)
         {
             _sender = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, true);
         }
 
-        private void LoginAsSender(MultipleAccountUser login)
+        private void LoginAsSender(MultipleEasAccountUser login)
         {
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, login)
             {

@@ -108,7 +108,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
-        internal HomePage GoToHomePage(AccountUser loginUser) => _loginhelper.Login(loginUser, true);
+        internal HomePage GoToHomePage(EasAccountUser loginUser) => _loginhelper.Login(loginUser, true);
     
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
         {

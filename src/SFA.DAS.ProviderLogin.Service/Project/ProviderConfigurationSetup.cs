@@ -23,13 +23,13 @@ namespace SFA.DAS.ProviderLogin.Service
         {
             _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
 
-            _context.SetNonAccountLoginUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }
     }
 }

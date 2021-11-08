@@ -23,9 +23,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRAAV2EmployerProjectConfiguration()
         {
-            _context.SetAccountUser(_configSection.GetConfigSection<RAAV2EmployerUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<RAAV2EmployerUser>());
 
-            _context.SetAccountUser(_configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>());
 
             var x = _configSection.GetConfigSection<ProviderPermissionsConfig>();
 

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project
 {
-    public class ASCoCEmployerUser : AccountUser
+    public class ASCoCEmployerUser : EasAccountUser
     {
         public CocApprenticeUser CocApprenticeUser { get; set; }
     }
