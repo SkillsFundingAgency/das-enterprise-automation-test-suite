@@ -9,7 +9,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
-        private By ApplyLink => By.LinkText("Hire a new apprentice payment");
+        private By ApplyLink => By.LinkText("Apply for the hire a new apprentice payment");
         private By ViewApplicationsLink => By.LinkText("View applications");
         private By ChangeBankDetailsLink => By.LinkText("Change organisation and finance details");
         #endregion
