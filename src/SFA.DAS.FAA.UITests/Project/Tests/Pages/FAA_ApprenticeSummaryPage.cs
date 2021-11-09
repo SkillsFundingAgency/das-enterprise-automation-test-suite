@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using System;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -69,8 +70,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             string displayedWageFAA = pageInteractionHelper.GetText(VacancyWage);
             string[] wageRange = displayedWageFAA.Split('-');
-            string minWage =regexHelper.GetVacancyCurrentWage(wageRange[0]);
-            string maxWage = regexHelper.GetVacancyCurrentWage(wageRange[1]);
+            string minWage = RegexHelper.GetVacancyCurrentWage(wageRange[0]);
+            string maxWage = RegexHelper.GetVacancyCurrentWage(wageRange[1]);
             pageInteractionHelper.VerifyText(minWage,faaDataHelper.NewCustomMinWagePerWeek);
             pageInteractionHelper.VerifyText(maxWage,faaDataHelper.NewCustomMaxWagePerWeek);
         }

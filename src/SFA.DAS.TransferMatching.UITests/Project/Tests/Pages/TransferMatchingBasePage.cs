@@ -16,7 +16,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly RegexHelper regexHelper;
         protected readonly TMDataHelper tMDataHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly ApprenticeDataHelper datahelper;
@@ -32,7 +31,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            regexHelper = context.Get<RegexHelper>();
             tMDataHelper = context.Get<TMDataHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             datahelper = context.Get<ApprenticeDataHelper>();

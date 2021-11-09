@@ -9,6 +9,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         protected TestData TestData;
         protected Fixture Fixture;
         protected Helper Helper;
+        protected ScenarioContext Context;
 
         protected StepsBase(ScenarioContext context)
         {
@@ -17,6 +18,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData = context.Get<TestData>();
             TestData.Account = (Fixture.Create<long>(), Fixture.Create<long>());
             TestData.ApprenticeshipId = Fixture.Create<long>();
+            Context = context;
         }
     }
 }

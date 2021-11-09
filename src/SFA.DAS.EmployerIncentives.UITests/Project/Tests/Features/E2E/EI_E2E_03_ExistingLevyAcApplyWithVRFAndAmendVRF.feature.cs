@@ -78,7 +78,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
-        [NUnit.Framework.CategoryAttribute("deletedincentiveapplication")]
+        [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
         public virtual void EI_E2E_03_ExistingLevyAcApplyWithVRFAndAmendVRF()
         {
@@ -86,7 +86,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
                     "regression",
                     "employerincentives",
                     "eie2ejourney",
-                    "deletedincentiveapplication",
+                    "deleteincentiveapplication",
                     "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_03_ExistingLevyAcApplyWithVRFAndAmendVRF", null, tagsOfScenario, argumentsOfScenario);

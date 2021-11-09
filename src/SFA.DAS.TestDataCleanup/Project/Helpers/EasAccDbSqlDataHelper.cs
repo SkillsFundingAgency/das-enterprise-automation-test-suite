@@ -21,7 +21,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
         {
             var id = GetMultipleData(sqlQuery, 1);
 
-            if (IsNullOrEmpty(id)) id[0][0] = "0";
+            if (IsNoDataFound(id)) id[0][0] = "0";
 
             return id;
         }

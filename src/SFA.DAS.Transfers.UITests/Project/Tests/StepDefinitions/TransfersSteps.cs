@@ -2,12 +2,10 @@
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using NUnit.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Transfers.UITests.Project.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {

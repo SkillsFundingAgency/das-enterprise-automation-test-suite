@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project
@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             objectContext.SetRegisteredEmail(loginusername);
             objectContext.UpdateOrganisationName(organisationName);
-            objectContext.Replace(LoggedInUserObject, new LoggedInUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
+            objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
         internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);
@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
         public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
-        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserObject);
+        internal static LoggedInAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoggedInAccountUser>(LoggedInUserObject);
         internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);
     }
 }
