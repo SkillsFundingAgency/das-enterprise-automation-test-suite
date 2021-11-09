@@ -156,10 +156,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             earnings.Should().HaveCount(2);
             var first = earnings.First();
-            first.DueDate.Should().Be(_initialStartDate.AddDays(89));
+            first.DueDate.Should().Be(_initialStartDate.AddDays(90 + 11));
 
             var second = earnings.Last();
-            second.DueDate.Should().Be(_initialStartDate.AddDays(364));
+            second.DueDate.Should().Be(_initialStartDate.AddDays(365 + 11));
         }
         
         [Then(@"a Learning Resumed change of circumstance is recorded")]
