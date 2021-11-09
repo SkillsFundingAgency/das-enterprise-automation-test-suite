@@ -8,9 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
         private By Status => By.CssSelector(".govuk-tag");
-
         private string AppStatusTableIdentifier => ".govuk-list.app-status-list";
-
         private string AppStatusRowIdentifier => ".app-status-list__list-item";
 
         public ApprenticeOverviewPage(ScenarioContext context) : base(context) => _context = context;
@@ -19,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public (string sectionName, string sectionStatus) GetConfirmYourTrainingProviderStatus() => (SectionHelper.Section2, GetConfirmationStatus(SectionHelper.Section2));
 
-        public (string sectionName ,string sectionStatus) GetConfirmYourApprenticeshipStatus() => (SectionHelper.Section3, GetConfirmationStatus(SectionHelper.Section3));
+        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipStatus() => (SectionHelper.Section3, GetConfirmationStatus(SectionHelper.Section3));
 
         public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipDeliveryStatus() => (SectionHelper.Section4, GetConfirmationStatus(SectionHelper.Section4));
 
@@ -31,8 +29,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
         {
-            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed");
-
+            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed")
             return this;
         }
 

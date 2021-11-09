@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "";
         private string GreenTickTextInfo => "You have confirmed these are the details of your apprenticeship";
 
-        public AlreadyConfirmedApprenticeshipDetailsPage(ScenarioContext context) : base(context) => 
+        public AlreadyConfirmedApprenticeshipDetailsPage(ScenarioContext context) : base(context) =>
             pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
     }
 }

@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
         private readonly ScenarioContext _context;
-
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
@@ -111,9 +110,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
 
         private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
+
         private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section2);
+
         private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section3);
+
         private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section4);
+
         private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section5);
     }
 }

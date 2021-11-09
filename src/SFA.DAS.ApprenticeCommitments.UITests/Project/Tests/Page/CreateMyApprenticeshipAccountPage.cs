@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -8,9 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class CreateMyApprenticeshipAccountPage : PersonalDetailsBasePage
     {
         private readonly ScenarioContext _context;
-
         protected override string PageTitle => "Create My apprenticeship account";
-
         private By ErrorSummaryTitle => By.Id("error-summary-title");
         private By LastNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[1]");
         private By FirstNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[2]");
@@ -37,7 +33,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return this;
         }
 
-        public new (TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails() {var name = base.EnterInValidApprenticeDetails(); return (new TermsOfUsePage(_context), name); }
+        public new(TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails()
+        {
+            var name = base.EnterInValidApprenticeDetails();
+            return (new TermsOfUsePage(_context), name);
+        }
 
         public void VerifyErrorSummary()
         {
