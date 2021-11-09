@@ -7,13 +7,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class TopBannerSettingsPage : BasePage
     {
-        private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
-
-        protected By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
-
-        protected override string PageTitle => string.Empty;
-
         private readonly ScenarioContext _context;
+        private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
+        protected By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
+        protected override string PageTitle => string.Empty;
         protected readonly FormCompletionHelper formCompletionHelper;
 
         public TopBannerSettingsPage(ScenarioContext context) : base(context)
@@ -39,6 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             NavigateToSettings("Change your email address");
             return new ChangeYourEmailAddressPage(_context);
         }
+
         protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
 
         protected void NavigateToSettings(string settingsName)

@@ -16,12 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
 
-        public (string isDayDisabled, string isMonthDisabled, string isYearDisabled) IsDateOfBirthDisabled() 
+        public (string isDayDisabled, string isMonthDisabled, string isYearDisabled) IsDateOfBirthDisabled()
             => (IsDateOfBirthDisabled(DateOfBirth_Day), IsDateOfBirthDisabled(DateOfBirth_Month), IsDateOfBirthDisabled(DateOfBirth_Year));
 
         protected void UpdateApprenticeName() => EnterApprenticeDetails(UpdatedNewName(GetFirstName()), UpdatedNewName(GetLastName()), null, null, null);
 
-        protected void EnterValidApprenticeDetails() 
+        protected void EnterValidApprenticeDetails()
             => EnterApprenticeDetails(GetFirstName(), GetLastName(), GetDateOfBirth().Day, GetDateOfBirth().Month, GetDateOfBirth().Year);
 
         protected void EnterValidApprenticeDetails(string firstName, string lastName)
@@ -30,30 +30,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected (string firstName, string lastName) EnterInValidApprenticeDetails()
         {
             var firstName = GetFirstName(); var lastName = GetLastName(); var dob = GetDateOfBirth();
-
             EnterApprenticeDetails(UpdatedInvalidFirstName(), UpdatedInvalidLastName(), dob.Month, dob.Month, dob.Year);
-
             return (firstName, lastName);
         }
 
         protected void EnterApprenticeDetails(string firstname, string lastname, int? day, int? month, int? year)
         {
             formCompletionHelper.EnterText(FirstName, firstname);
-
             formCompletionHelper.EnterText(LastName, lastname);
 
             if (day != null)
-            {
                 formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 0);
-            }
+
             if (month != null)
-            {
                 formCompletionHelper.EnterText(DateOfBirth_Month, month ?? 0);
-            }
+
             if (year != null)
-            {
                 formCompletionHelper.EnterText(DateOfBirth_Year, year ?? 0);
-            }
 
             Continue();
         }
@@ -70,7 +63,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private string UpdatedInvalidName(string name) => $"Invalid_{name}_TEST";
 
-        private string SetFirstName(string name) {objectContext.SetFirstName(name); return name; }
+        private string SetFirstName(string name) { objectContext.SetFirstName(name); return name; }
 
         private string SetLastName(string name) { objectContext.SetLastName(name); return name; }
 

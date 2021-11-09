@@ -11,13 +11,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmEmail => By.Id("ConfirmEmail");
         private readonly ScenarioContext _context;
 
-        public CreateLoginDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public CreateLoginDetailsPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage(PrivacyLinkInTheBody);
+            _context = context;
+        }
 
         public CreateMyApprenticeshipAccountPage EnterDetailsOnCreateLoginDetailsPageAndContinue()
         {
             EnterEmailAndConfirmEmail();
-            formCompletionHelper.EnterText(Password, _validPassword);
-            formCompletionHelper.EnterText(ConfirmPassword, _validPassword);
+            formCompletionHelper.EnterText(Password, validPassword);
+            formCompletionHelper.EnterText(ConfirmPassword, validPassword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Save and continue");
             return new CreateMyApprenticeshipAccountPage(_context);
         }

@@ -16,7 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
         public void SetUpHelpers()
         {
             var config = _context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-
             _context.Get<ObjectContext>().SetApprenticePassword(config.AC_AccountPassword);
         }
     }

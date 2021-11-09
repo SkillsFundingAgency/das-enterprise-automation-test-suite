@@ -5,13 +5,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ApprenticeCommitmentsEditApprenticePage : EditApprenticePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
-        public ApprenticeCommitmentsEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeCommitmentsEditApprenticePage(ScenarioContext context) : base(context) { }
 
         protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByText(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
-
     }
 }

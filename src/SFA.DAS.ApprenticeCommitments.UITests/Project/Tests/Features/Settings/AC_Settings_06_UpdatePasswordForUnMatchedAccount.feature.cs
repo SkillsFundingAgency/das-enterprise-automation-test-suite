@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPassword
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPass
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount")]
-    public partial class AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccountFeature
+    [NUnit.Framework.DescriptionAttribute("AC_Settings_06_UpdatePasswordForUnMatchedAccount")]
+    public partial class AC_Settings_06_UpdatePasswordForUnMatchedAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_RP_01_ResetPwdFromSignInForPDPendingAc.feature"
+#line 1 "AC_Settings_06_UpdatePasswordForUnMatchedAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AC_Settings_06_UpdatePasswordForUnMatchedAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPass
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount")]
+        [NUnit.Framework.DescriptionAttribute("AC_Settings_06_UpdatePassword before confirming account")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("accountsettingstest")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount()
+        public virtual void AC_Settings_06_UpdatePasswordBeforeConfirmingAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
+                    "accountsettingstest",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_RP_01_ResetPasswordFromSignInPageForPersonalDetailsPendingAccount", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_06_UpdatePassword before confirming account", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,12 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.When("an apprentice submits Email to reset password for a new account pending personal " +
-                        "details confirmation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 8
- testRunner.Then("the apprentice is able to reset the password using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("an apprentice has created the account and about to validate personal details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.Then("an apprentice can change their password before confirming account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

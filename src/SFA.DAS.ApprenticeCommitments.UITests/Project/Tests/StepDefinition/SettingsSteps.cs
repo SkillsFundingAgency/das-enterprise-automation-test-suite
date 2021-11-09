@@ -50,24 +50,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private PasswordResetSuccessfulPage UpdatePassword()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
-
             OpenLink("https://login");
-
             return new ResetPasswordPage(_context).UpdatePassword();
         }
 
         private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
-
             OpenLink("https://confirm.");
-
             return new ChangeYourEmailAddressPage(_context).UpdateEmailAddress();
         }
 
         private void OpenLink(string linkText) => new MailinatorStepsHelper(_context, objectContext.GetApprenticeEmail()).OpenLink(linkText);
 
         private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
-
     }
 }

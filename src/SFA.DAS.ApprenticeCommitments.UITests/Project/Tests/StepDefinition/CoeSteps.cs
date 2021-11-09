@@ -1,6 +1,4 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -14,9 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CoeSteps : BaseSteps
     {
         private readonly ObjectContext _objectContext;
-
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ChangeOfEmployerLevyUser _changeOfEmployerLevyUser;
@@ -36,21 +32,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-
             _employerStepsHelper.SetCohortReference(cohortReference);
 
             _providerStepsHelper.Approve();
-
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
-
             _employerStepsHelper.StopApprenticeThisMonth();
-
             _providerStepsHelper.StartChangeOfEmployerJourney();
-
             _employerStepsHelper.UpdateNewCohortReference();
 
             _objectContext.UpdateOrganisationName(_changeOfEmployerLevyUser.SecondOrganisationName);
-
             _employerStepsHelper.Approve();
         }
     }

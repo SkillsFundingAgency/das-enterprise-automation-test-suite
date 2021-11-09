@@ -11,13 +11,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ResetPasswordPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _validPassword = $"{_validPassword}!%&";
-            objectContext.UpdateApprenticePassword(_validPassword);
+            validPassword = $"{validPassword}!%&";
+            objectContext.UpdateApprenticePassword(validPassword);
         }
 
         public PasswordResetSuccessfulPage UpdatePassword()
         {
-            SubmitPassword(_validPassword, _validPassword, true);
+            SubmitPassword(validPassword, validPassword, true);
             return new PasswordResetSuccessfulPage(_context);
         }
     }

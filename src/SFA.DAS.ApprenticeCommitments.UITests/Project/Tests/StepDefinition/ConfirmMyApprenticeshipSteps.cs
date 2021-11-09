@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using TechTalk.SpecFlow;
 
@@ -12,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
-        
+
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Then(@"the coc notification should not be displayed")]
@@ -22,9 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
         {
             var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
-
             _apprenticeOverviewPage = invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
-            
             _apprenticeOverviewPage.VerifyDaysToConfirmWarning();
         }
 
@@ -101,10 +98,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
-        public void ThenConfirmedHowTheApprenticeshipWillBeDeliveredSectionPageIsDisplayedForTryingToConfirmAgain() => 
+        public void ThenConfirmedHowTheApprenticeshipWillBeDeliveredSectionPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeOverviewPage.GoToAlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
 
-        
+
         [Then(@"confirmed Roles already page is displayed for trying to confirm again")]
         public void ThenConfirmedRolesAlreadyPageIsDisplayedForTryingToConfirmAgain()
         {
