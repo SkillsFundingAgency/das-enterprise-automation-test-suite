@@ -49,6 +49,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
 
+        protected string GetUrl() => _pageInteractionHelper.GetUrl();
+
         private bool CanCaptureUrl() => (_frameworkConfig.CanCaptureUrl && CaptureUrl);
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);

@@ -35,9 +35,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new FindABusinessPage(_context);
         }
 
-        public void ViewApplications()
+        public MyApplicationsPage ViewApplicationsIhaveSubmitted()
         {
             formCompletionHelper.ClickLinkByText("View applications I've submitted");
+            return new MyApplicationsPage(_context);
         }
 
         public bool CanCreateTransferPledge() => pageInteractionHelper.IsElementDisplayed(CreateTransferPledgeSelector);

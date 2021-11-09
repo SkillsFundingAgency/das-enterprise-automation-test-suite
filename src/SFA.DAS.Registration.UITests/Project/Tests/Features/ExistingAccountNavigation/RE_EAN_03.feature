@@ -1,8 +1,8 @@
-﻿Feature: RE_EAN_04
+﻿Feature: RE_EAN_03
 
 @regression
 @registration
-Scenario: RE_EAN_04_Verify Login for Existing View user
+Scenario: RE_EAN_03_Verify Login for Existing View user
 	Given the Employer logins using existing view user account
 	Then the user can not add an organisation
 	And the user can not remove the organisation

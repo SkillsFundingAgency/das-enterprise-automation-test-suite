@@ -8,3 +8,4 @@ Scenario: TM_01_NL_Create Apply and Approve transfer pledge
 	And the levy employer can view pledges from verification page
 	When the non levy employer applies for the pledge
 	Then the levy employer can approve the application
+	And the non levy employer can accept funding
