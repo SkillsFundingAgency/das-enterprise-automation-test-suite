@@ -30,7 +30,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, "Index was out of range", title));
+            return Convert.ToString(TryGetDataAsObject(query, title));
+        }
+
+        public int? GetProvidersDraftAndReadyForReviewCohortsCount(int ukprn)
+        {
+            string query = $@"SELECT Count(Reference)
+                                FROM [Commitment] AS [cmt]
+                                INNER JOIN (
+                                    SELECT [ale].*
+                                    FROM [AccountLegalEntities] AS [ale]
+                                    WHERE [ale].[Deleted] IS NULL
+                                            ) AS [t] ON [cmt].[AccountLegalEntityId] = [t].[Id]
+                                Where ProviderId = {ukprn}
+                                AND cmt.IsDeleted = 0
+                                AND cmt.EditStatus = 2
+                                And cmt.WithParty = 2
+                                AND cmt.ChangeOfPartyRequestId is null";
+
+            return Convert.ToInt32(GetDataAsObject(query));
+        }
+
+        public string GetOldestEditableCohortReference(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 2
+                                  AND ChangeOfPartyRequestId is null
+                                  Order by CreatedOn ASC";
+
+            return Convert.ToString(GetDataAsObject(query)).Trim();
         }
     }
 }

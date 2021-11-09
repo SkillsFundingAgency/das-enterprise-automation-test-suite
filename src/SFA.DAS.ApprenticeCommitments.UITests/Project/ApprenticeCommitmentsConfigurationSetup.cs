@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -23,10 +24,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
             _context.SetApprenticeCommitmentsConfig(_configSection.GetConfigSection<ApprenticeCommitmentsConfig>());
 
             var cocEmpUser = _configSection.GetConfigSection<ASCoCEmployerUser>();
-
             cocEmpUser.CocApprenticeUser = _configSection.GetConfigSection<CocApprenticeUser>();
 
-            _context.SetUser(cocEmpUser);
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ASListedLevyUser>());
+            _context.SetEasLoginUser(cocEmpUser);
         }
     }
 }

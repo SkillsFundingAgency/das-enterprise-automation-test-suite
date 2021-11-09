@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -25,15 +25,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
             _context.SetEIConfig(config);
 
-            _context.SetUser(_configSection.GetConfigSection<EILevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EILevyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<MultipleAccountUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EIWithdrawLevyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<Version4AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<EIMultipleAccountUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<Version5AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version4AgreementUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<Version6AgreementUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version5AgreementUser>());
+
+            _context.SetEasLoginUser(_configSection.GetConfigSection<Version6AgreementUser>());
         }
     }
 }

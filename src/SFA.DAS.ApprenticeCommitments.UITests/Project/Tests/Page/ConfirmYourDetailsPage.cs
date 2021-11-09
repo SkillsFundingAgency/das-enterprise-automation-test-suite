@@ -28,29 +28,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage SelectYes()
         {
-            formCompletionHelper.SelectRadioOptionByText("Yes");
-            Continue();
+            SelectYesRadioOption();
             return new ApprenticeOverviewPage(_context);
         }
 
         public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployer()
         {
-            formCompletionHelper.SelectRadioOptionByText("No");
-            Continue();
+            SelectNoRadioOption();
             return new YouCantConfirmYourEmployerPage(_context);
         }
 
         public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProvider()
         {
-            formCompletionHelper.SelectRadioOptionByText("No");
-            Continue();
+            SelectNoRadioOption();
             return new YouCantConfirmYourTrainingProviderPage(_context);
         }
 
         public YouCantConfirmYourDetailsPage SelectNoConfirmYourDetails()
         {
-            formCompletionHelper.SelectRadioOptionByText("No");
-            Continue();
+            SelectNoRadioOption();
             return new YouCantConfirmYourDetailsPage(_context);
         }
 
@@ -67,5 +63,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public void VerifyRolesYourEmployerTab() => VerifyPage(YourEmployerTab);
 
         public void VerifyRolesYourTrainingProviderTab() => VerifyPage(YourTrainingProviderTab);
+
+        private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }
+
+        private void SelectNoRadioOption() { formCompletionHelper.SelectRadioOptionByText("No"); Continue(); }
     }
 }

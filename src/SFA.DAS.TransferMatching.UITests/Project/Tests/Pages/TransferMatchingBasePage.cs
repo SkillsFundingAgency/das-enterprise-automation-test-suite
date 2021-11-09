@@ -16,7 +16,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly RegexHelper regexHelper;
         protected readonly TMDataHelper tMDataHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly ApprenticeDataHelper datahelper;
@@ -26,20 +25,27 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
-        protected TransferMatchingBasePage(ScenarioContext context) : base(context)
+        private By ApplicaitonStatusSelector => By.CssSelector("#main-content .application-status-one");
+
+        protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
             _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            regexHelper = context.Get<RegexHelper>();
             tMDataHelper = context.Get<TMDataHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             datahelper = context.Get<ApprenticeDataHelper>();
-            VerifyPage();
+            if (verifyPage) VerifyPage();
         }
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
+
+        protected void VerifyApplicationStatus(string expectedStatus) => VerifyPage(ApplicaitonStatusSelector, expectedStatus);
+
+        protected Pledge GetPledgeDetail() => objectContext.GetPledgeDetail();
+
+        protected string GetPledgeId() => GetPledgeDetail().PledgeId;
 
         protected CreateATransferPledgePage SelectAndContinue()
         {

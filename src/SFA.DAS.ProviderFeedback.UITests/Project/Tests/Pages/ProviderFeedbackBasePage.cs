@@ -16,7 +16,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         protected By Labels => By.CssSelector(".multiple-choice label");
 
         #region Helpers and Context
-        protected readonly RegexHelper regexHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly TabHelper tabHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
@@ -27,7 +26,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            regexHelper = context.Get<RegexHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();

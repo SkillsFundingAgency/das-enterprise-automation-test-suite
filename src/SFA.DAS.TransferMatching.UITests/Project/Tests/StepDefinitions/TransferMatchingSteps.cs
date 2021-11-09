@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -10,7 +9,7 @@ using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Te
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.TransferMatching.UITests.Project.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -25,7 +24,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
-        private MultipleAccountUser _transferMatchingUser;
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
@@ -42,7 +40,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
         public void GivenTheLevyEmployerWhoAreCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUser>());
-
 
         [Given(@"the levy employer who are not currently sending transfer funds login")]
         public void GivenTheLevyEmployerWhoAreNotCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUserNoFunds>());
@@ -90,6 +87,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_receiver);
 
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
+        }
+
+        [Then(@"the non levy employer can accept funding")]
+        public void ThenTheNonLevyEmployerCanAcceptFunding()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _accountSignOutHelper.SignOut();
+
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            NavigateToTransferMatchingPage()
+                .ViewApplicationsIhaveSubmitted()
+                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
+                .VerifyAgreeToTermsIsMandatoryAndAcceptFunding()
+                .ViewMyApplications()
+                .OpenPledgeApplication("FUNDS AVAILABLE");
         }
 
         [Then(@"the pledge is available to apply")]
@@ -191,9 +205,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
 
-        private ApplicationSubmittedPage SubmitApplication(CreateATransfersApplicationPage page)
+        private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            return GoToApprenticeshipTrainingPage(page)
+            GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
                 .GoToYourBusinessDetailsPage()
                 .EnterBusinessDetailsAndContinue()
@@ -201,17 +215,20 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EnterMoreDetailsAndContinue()
                 .GoToContactDetailsPage()
                 .EnterContactDetailsAndContinue()
-                .SubmitApplication();
+                .SubmitApplication()
+                .ContinueToMyAccount();
+
+            return NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
-        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(LoginUser user)
+        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
             return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
-        private ApplicationSubmittedPage ApplyForAPledge(LoginUser user)
+        private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
@@ -220,7 +237,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
 
-        private void GoToTransferMatchingAndSignIn(LoginUser user)
+        private void GoToTransferMatchingAndSignIn(EasAccountUser user)
         {
             GoToTransferMacthingApplyUrl();
 
@@ -252,37 +269,41 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
                 StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
             });
-
         }
 
-        private void CreateATransferPledge(LoginUser login)
+        private void CreateATransferPledge(EasAccountUser login)
         {
             LoginAsSender(login);
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
-        private void LoginAsSender(LoginUser login)
+        private void LoginAsReceiver(EasAccountUser login, bool isLevy)
+        {
+            _receiver = login.OrganisationName;
+
+            _loginFromCreateAcccountPageHelper.Login(login, true);
+        }
+
+        private void LoginAsSender(EasAccountUser login)
         {
             _sender = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, true);
         }
 
-        private void LoginAsSender(MultipleAccountUser login)
+        private void LoginAsSender(MultipleEasAccountUser login)
         {
-            _transferMatchingUser = login;
-
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _transferMatchingUser)
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, login)
             {
-                OrganisationName = _transferMatchingUser.OrganisationName
+                OrganisationName = login.OrganisationName
             };
 
-            _multipleAccountsLoginHelper.Login(_transferMatchingUser, true);
+            _multipleAccountsLoginHelper.Login(login, true);
 
-            _sender = _transferMatchingUser.OrganisationName;
+            _sender = login.OrganisationName;
 
-            _receiver = _transferMatchingUser.SecondOrganisationName;
+            _receiver = login.SecondOrganisationName;
         }
     }
 }

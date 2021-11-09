@@ -221,8 +221,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
-        public string GetUrl() => _webDriver.Url;
-
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
         public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
@@ -248,6 +246,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
 
         public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+
+        public string GetUrl() => _webDriver.Url;
 
         private Func<bool> Func(By locator)
         {

@@ -1,84 +1,104 @@
-﻿namespace SFA.DAS.Login.Service.Helpers
+﻿using System.Collections.Generic;
+
+namespace SFA.DAS.Login.Service.Project.Helpers
 {
+    public class LoggedInAccountUser : EasAccountUser { }
+
     public abstract class LoginUser
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
+    }
+    #region SingleAccountUser
 
+    public abstract class EasAccountUser : LoginUser
+    {
         public string OrganisationName { get; set; }
+
+        public List<string> LegalEntities { get; set; }
     }
 
-    public class AuthTestUser : LoginUser { }
+    public class AuthTestUser : EasAccountUser { }
 
-    public class RAAV2EmployerUser : LoginUser { }
+    public class RAAV2EmployerUser : EasAccountUser { }
 
-    public class RAAV2EmployerProviderPermissionUser : LoginUser  { }
+    public class RAAV2EmployerProviderPermissionUser : EasAccountUser { }
 
-    public class ProviderLoginUser : LoginUser
-    {
-        public string Ukprn { get; set; }
-    }
+    public class ProviderPermissionLevyUser : EasAccountUser { }
 
-    public class ProviderPermissionLevyUser : LoginUser { }
+    public class AgreementNotSignedTransfersUser : EasAccountUser { }
 
-    public class AgreementNotSignedTransfersUser : LoginUser { }
+    public class LevyUser : EasAccountUser { }
 
-    public class TransfersUser : MultipleAccountUser { }
+    public class NonLevyUser : EasAccountUser { }
 
-    public class TransfersUserNoFunds : MultipleAccountUser { }
+    public class EILevyUser : EasAccountUser { }
 
-    public class TransferMatchingUser : MultipleAccountUser { }
+    public class EIWithdrawLevyUser : EasAccountUser { }
 
-    public class ChangeOfEmployerLevyUser : MultipleAccountUser { }
+    public class TransactorUser : EasAccountUser { }
 
-    public class LevyUser : LoginUser { }
+    public class ViewOnlyUser : EasAccountUser { }
 
-    public class NonLevyUser : LoginUser { }
+    public class Version4AgreementUser : EasAccountUser { }
 
-    public class LoggedInUser : LoginUser { }
-    
-    public class EPAOStandardApplyUser : LoginUser { }
+    public class Version5AgreementUser : EasAccountUser { }
 
-    public class EPAOAssessorUser : LoginUser { }
+    public class Version6AgreementUser : EasAccountUser { }
 
-    public class EPAODeleteAssessorUser : LoginUser { }
+    public class ASListedLevyUser : EasAccountUser { }
 
-    public class EPAOWithdrawalUser : LoggedInUser { }
+    #endregion
 
-    public class EPAOManageUser : LoginUser { }
-
-    public class EPAOApplyUser : LoginUser
-    {
-        public string FullName { get; set; }
-    }
-
-    public class EPAOStageTwoStandardCancelUser : LoginUser { }
-
-    public class EPAOE2EApplyUser : LoginUser { }
-
-    public class EPAOAdminUser : LoginUser { }
-
-    public class SupportConsoleTier1User : LoginUser { }
-
-    public class SupportConsoleTier2User : LoginUser { }
-
-    public class SupportToolsUser : LoginUser { }
-
-    public class EILevyUser : LoginUser { }
-
-    public class TransactorUser : LoginUser { }
-
-    public class ViewOnlyUser : LoginUser { }
-
-    public class MultipleAccountUser : LoginUser
+    #region MultipleAccountUser
+    public abstract class MultipleEasAccountUser : EasAccountUser
     {
         public string SecondOrganisationName { get; set; }
     }
 
-    public class Version4AgreementUser : LoginUser { }
+    public class EIMultipleAccountUser : MultipleEasAccountUser { }
 
-    public class Version5AgreementUser : LoginUser { }
+    public class TransfersUser : MultipleEasAccountUser { }
 
-    public class Version6AgreementUser : LoginUser { }
+    public class TransfersUserNoFunds : MultipleEasAccountUser { }
+
+    public class TransferMatchingUser : MultipleEasAccountUser { }
+
+    public class ChangeOfEmployerLevyUser : MultipleEasAccountUser { }
+
+    #endregion
+
+    #region NonAccountUser
+    public abstract class NonAccountUser : LoginUser { }
+
+    public class EPAOStandardApplyUser : NonAccountUser { }
+
+    public class EPAOAssessorUser : NonAccountUser { }
+
+    public class EPAODeleteAssessorUser : NonAccountUser { }
+
+    public class EPAOWithdrawalUser : NonAccountUser { }
+
+    public class EPAOManageUser : NonAccountUser { }
+
+    public class EPAOApplyUser : NonAccountUser
+    {
+        public string FullName { get; set; }
+    }
+
+    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
+
+    public class EPAOE2EApplyUser : NonAccountUser { }
+
+    public class EPAOAdminUser : NonAccountUser { }
+
+    public class SupportToolsUser : NonAccountUser { }
+
+    public class SupportConsoleTier1User : NonAccountUser { }
+
+    public class SupportConsoleTier2User : NonAccountUser { }
+
+    #endregion
+
 }

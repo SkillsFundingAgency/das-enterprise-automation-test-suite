@@ -29,7 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
 
-
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -40,13 +39,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditApprenticePage ClickEditApprenticeDetailsLink()
         {
-            formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+            EditApprentice();
             return new ProviderEditApprenticePage(_context);
         }
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+            EditApprentice();
             return new ProviderAccessDeniedPage(_context);
         }
 
@@ -112,5 +111,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
 
+        private void EditApprentice() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
     }
 }

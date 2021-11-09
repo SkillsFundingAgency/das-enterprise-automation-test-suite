@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project
@@ -20,11 +20,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransferMatchingConfiguration()
         {
-            _context.SetUser(_configSection.GetConfigSection<TransferMatchingUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransferMatchingUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<TransfersUserNoFunds>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransfersUserNoFunds>());
 
-            _context.SetUser(_configSection.GetConfigSection<TransfersUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransfersUser>());
         }
     }
 }

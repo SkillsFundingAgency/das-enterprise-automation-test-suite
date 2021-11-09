@@ -1,8 +1,8 @@
-﻿using SFA.DAS.Login.Service.Helpers;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project
 {
-    public class ASCoCEmployerUser : LoginUser
+    public class ASCoCEmployerUser : EasAccountUser
     {
         public CocApprenticeUser CocApprenticeUser { get; set; }
     }
@@ -12,7 +12,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
     public abstract class ApprenticeUser
     {
         public string ApprenticeUsername { get; set; }
-
         public string ApprenticePassword { get; set; }
     }
 }

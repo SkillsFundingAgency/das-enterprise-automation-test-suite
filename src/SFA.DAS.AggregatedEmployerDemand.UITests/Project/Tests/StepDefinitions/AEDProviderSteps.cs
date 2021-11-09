@@ -1,9 +1,10 @@
 ﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
@@ -19,7 +20,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         {
             _config = context.GetProviderConfig<ProviderConfig>();
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+            _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Given(@"the provider navigates to Find employers that need a training provider")]

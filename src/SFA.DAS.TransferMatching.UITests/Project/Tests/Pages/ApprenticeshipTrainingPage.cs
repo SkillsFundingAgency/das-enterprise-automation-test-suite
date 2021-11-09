@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -38,7 +37,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SetCourseCost();
 
-            tMDataHelper.NoOfApprentice = ((objectContext.GetPledgeDetail().Amount / tMDataHelper.Cost) + 1);
+            tMDataHelper.NoOfApprentice = ((GetPledgeDetail().Amount / tMDataHelper.Cost) + 1);
 
             formCompletionHelper.EnterText(NoOfApprenticeSelector, tMDataHelper.NoOfApprentice);
 
@@ -53,7 +52,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             EnterDetails();
 
-            tMDataHelper.Cost = regexHelper.GetAmount(pageInteractionHelper.GetText(AmountEstimateSelector));
+            tMDataHelper.Cost = RegexHelper.GetAmount(pageInteractionHelper.GetText(AmountEstimateSelector));
         }
 
         private void EnterDetails()

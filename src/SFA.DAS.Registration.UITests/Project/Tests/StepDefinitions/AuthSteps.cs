@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {

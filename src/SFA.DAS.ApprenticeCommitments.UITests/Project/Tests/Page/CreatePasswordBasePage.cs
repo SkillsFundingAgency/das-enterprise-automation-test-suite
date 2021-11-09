@@ -5,17 +5,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class CreatePasswordBasePage : ApprenticeCommitmentsBasePage
     {
-        protected string _validPassword, email;
+        protected string validPassword;
         protected override string PageTitle { get; }
-
-        protected By Password => By.CssSelector("#Password");
-        protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
-        protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ServiceHeader => NonClickableServiceHeader;
         private By ErrorSummaryTitle => By.Id("error-summary-title");
         private By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
+        protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
 
-        public CreatePasswordBasePage(ScenarioContext context) : base(context) => _validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
+        public CreatePasswordBasePage(ScenarioContext context) : base(context) => validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
 
         public void EnterMismatchedPasswordsOnCreateLoginDetailsPage(string password)
         {

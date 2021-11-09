@@ -110,7 +110,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the apprentice confirms the Apprenticeship details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprentice verifies and confirms the Apprenticeship details displayed as Inco" +
+                        "rrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
  testRunner.And("the apprentice is able to confirm the Apprenticeship details again as correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

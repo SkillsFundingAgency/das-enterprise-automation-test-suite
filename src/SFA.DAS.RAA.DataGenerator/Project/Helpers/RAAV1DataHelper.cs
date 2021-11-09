@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,11 +7,8 @@ namespace SFA.DAS.RAA.DataGenerator
 {
     public class RAAV1DataHelper : RandomElementHelper
     {
-        private readonly RegexHelper _regexHelper;
-
-        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper) : base(randomDataGenerator)
+        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _regexHelper = regexHelper;
             EmployerDescription = randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerBody = randomDataGenerator.GenerateRandomAlphabeticString(25);
@@ -50,7 +46,7 @@ namespace SFA.DAS.RAA.DataGenerator
         {
             var randomEmployer = GetRandomElementFromListOfElements(links);
 
-            EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
+            EmployerErn = RegexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
             return randomEmployer;
         }
@@ -121,6 +117,5 @@ namespace SFA.DAS.RAA.DataGenerator
         public string OptionalMessage { get; }
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
-
     }
 }

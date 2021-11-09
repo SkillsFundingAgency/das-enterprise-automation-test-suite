@@ -8,13 +8,8 @@ namespace SFA.DAS.FAT.UITests.Project.Helpers
     public class FATStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly RegexHelper _regexHelper;
-
-        public FATStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _regexHelper = context.Get<RegexHelper>();
-        }
+        
+        public FATStepsHelper(ScenarioContext context) => _context = context;
 
         public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "")
         {
@@ -24,11 +19,12 @@ namespace SFA.DAS.FAT.UITests.Project.Helpers
 
         public void CheckIfSatisfactionAndAchievementRatesAreDisplayed(ProviderSearchResultsPage providerSearchResultsPage)
         {
-            Assert.IsTrue(_regexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetEmployerSatisfactionPercentageInfo()), "EmployerSatisfactionPercentageInfo is Not displayed");
-            Assert.IsTrue(_regexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetLearnerSatisfactionPercentageInfoInfo()), "LearnerSatisfactionPercentageInfo is Not displayed");
+            Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetEmployerSatisfactionPercentageInfo()), "EmployerSatisfactionPercentageInfo is Not displayed");
+            Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetLearnerSatisfactionPercentageInfoInfo()), "LearnerSatisfactionPercentageInfo is Not displayed");
 
             var achievementRatePercentageInfo = providerSearchResultsPage.GetAchievementRatePercentageInfoInfo();
-            if (!_regexHelper.CheckForPercentageValueMatch(achievementRatePercentageInfo))
+
+            if (!RegexHelper.CheckForPercentageValueMatch(achievementRatePercentageInfo))
                 Assert.AreEqual("no data available", achievementRatePercentageInfo, "AchievementRateInfo is Not displayed");
         }
     }

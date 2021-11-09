@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -17,16 +14,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         private readonly ScenarioContext _context;
         private readonly DbConfig _dbConfig;
         private readonly TabHelper _tabHelper;
-        private readonly EILevyUser _eILevyUser;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _dbConfig = context.Get<DbConfig>();
             _tabHelper = context.Get<TabHelper>();
-            _eILevyUser = context.GetUser<EILevyUser>();
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         [BeforeScenario(Order = 41)]
@@ -79,5 +72,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                 // ignore
             }
         }
+
+        [BeforeScenario(Order = 44)]
+        public void ResetPeriodEndInProgress() => _context.Get<EISqlHelper>().ResetPeriodEndInProgress();
     }
 }

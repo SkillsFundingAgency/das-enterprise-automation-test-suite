@@ -2,7 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private EmployerPortalLoginHelper _loginHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
         private ManageYourApprenticesPage _manageYourApprenticesPage;
 
         public EmployerManageYourApprenticeStep(ScenarioContext context)
