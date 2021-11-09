@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
         {
-            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed")
+            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed");
             return this;
         }
 
