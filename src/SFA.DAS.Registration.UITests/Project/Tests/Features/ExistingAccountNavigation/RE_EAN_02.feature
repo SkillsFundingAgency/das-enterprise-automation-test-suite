@@ -1,8 +1,8 @@
-﻿Feature: RE_EAN_03
+﻿Feature: RE_EAN_02
 
 @regression
 @registration
-Scenario: RE_EAN_03_Verify Login for Existing Transactor user
+Scenario: RE_EAN_02_Verify Login for Existing Transactor user
 	Given the Employer logins using existing transactor user account
 	Then the user can not add an organisation
 	And the user can not remove the organisation

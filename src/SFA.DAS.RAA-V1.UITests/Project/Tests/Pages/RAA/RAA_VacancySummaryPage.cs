@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public string GetVacancyStatus() => _pageInteractionHelper.GetText(VacancyStatus);
 
-        public new void SetVacancyReference() => _objectContext.SetVacancyReference(RegexHelper.GetVacancyReferenceFromUrl(_pageInteractionHelper.GetUrl()));
+        public new void SetVacancyReference() => _objectContext.SetVacancyReference(RegexHelper.GetVacancyReferenceFromUrl(GetUrl()));
 
         public RAA_ApplicationPreviewPage ViewApplication()
         {

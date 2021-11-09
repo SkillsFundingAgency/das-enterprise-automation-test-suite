@@ -13,6 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     
         public string CohortReference() => RegexHelper.GetCohortReference(pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference", "Cohort reference"));
 
-        public string CohortReferenceFromUrl() => RegexHelper.GetCohortReferenceFromUrl(pageInteractionHelper.GetUrl());
+        public string CohortReferenceFromUrl() => RegexHelper.GetCohortReferenceFromUrl(GetUrl());
     }
 }

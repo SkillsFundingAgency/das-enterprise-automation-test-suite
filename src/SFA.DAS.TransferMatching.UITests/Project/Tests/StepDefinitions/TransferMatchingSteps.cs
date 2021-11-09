@@ -89,6 +89,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
         }
 
+        [Then(@"the non levy employer can accept funding")]
+        public void ThenTheNonLevyEmployerCanAcceptFunding()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _accountSignOutHelper.SignOut();
+
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            NavigateToTransferMatchingPage()
+                .ViewApplicationsIhaveSubmitted()
+                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
+                .VerifyAgreeToTermsIsMandatoryAndAcceptFunding()
+                .ViewMyApplications()
+                .OpenPledgeApplication("FUNDS AVAILABLE");
+        }
+
         [Then(@"the pledge is available to apply")]
         public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
 
@@ -188,9 +205,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
 
-        private ApplicationSubmittedPage SubmitApplication(CreateATransfersApplicationPage page)
+        private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            return GoToApprenticeshipTrainingPage(page)
+            GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
                 .GoToYourBusinessDetailsPage()
                 .EnterBusinessDetailsAndContinue()
@@ -198,7 +215,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EnterMoreDetailsAndContinue()
                 .GoToContactDetailsPage()
                 .EnterContactDetailsAndContinue()
-                .SubmitApplication();
+                .SubmitApplication()
+                .ContinueToMyAccount();
+
+            return NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
         private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
@@ -208,7 +228,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
-        private ApplicationSubmittedPage ApplyForAPledge(EasAccountUser user)
+        private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
         {
             GoToTransferMatchingAndSignIn(user);
 
@@ -256,6 +276,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             LoginAsSender(login);
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
+        }
+
+        private void LoginAsReceiver(EasAccountUser login, bool isLevy)
+        {
+            _receiver = login.OrganisationName;
+
+            _loginFromCreateAcccountPageHelper.Login(login, true);
         }
 
         private void LoginAsSender(EasAccountUser login)
