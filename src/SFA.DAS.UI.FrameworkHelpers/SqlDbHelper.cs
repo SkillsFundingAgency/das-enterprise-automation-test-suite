@@ -30,21 +30,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
-        protected List<string[]> GetMultipleData(string query, string connectionstring, int noOfvalues)
+        protected List<string[]> GetMultipleData(string query, string connectionstring, int noOfColumns)
         {
             List<object[]> data = TryReadDataFromDataBase(query, connectionstring);
 
             var returnItems = new List<string[]>();
 
-            if (data.Count == 0) returnItems.Add(new string[noOfvalues]);
+            if (data.Count == 0) returnItems.Add(new string[noOfColumns]);
 
             var length = data.Count;
 
             for (int i = 0; i < length; i++)
             {
-                var items = new string[noOfvalues];
+                var items = new string[noOfColumns];
 
-                for (int j = 0; j < noOfvalues; j++)
+                for (int j = 0; j < noOfColumns; j++)
                 {
                     var item = data[i][j].ToString();
 
@@ -57,7 +57,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return returnItems;
         }
 
-        protected List<string[]> GetMultipleData(string query, int noOfvalues) => GetMultipleData(query, connectionString, noOfvalues);
+        protected List<string[]> GetMultipleData(string query, int noOfColumns) => GetMultipleData(query, connectionString, noOfColumns);
 
         protected string GetNullableData(string queryToExecute)
         {

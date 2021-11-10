@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Azure.Services.AppAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,11 +9,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
+        private const string AzureResource = "https://database.windows.net/";
+
         public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
             try
             {
-                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                using (SqlConnection databaseConnection = GetSqlConnection(connectionString))
                 {
                     databaseConnection.Open();
 
@@ -41,7 +44,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             try
             {
-                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                using (SqlConnection databaseConnection = GetSqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
                     {
@@ -53,7 +56,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                             {
                                 command.Parameters.AddWithValue(param.Key, param.Value);
                             }
-                        }                        
+                        }
 
                         databaseConnection.Open();
                         SqlDataReader dataReader = command.ExecuteReader();
@@ -64,6 +67,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                             dataReader.GetValues(items);
                             result.Add(items);
                         }
+
                         return result;
                     }
                 }
@@ -77,10 +81,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static int ExecuteSqlCommand(string queryToExecute, string connectionString)
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                return connection.Execute(queryToExecute);
-            }
+            using var connection = GetSqlConnection(connectionString);
+            return connection.Execute(queryToExecute);
         }
+
+        private static SqlConnection GetSqlConnection(string connectionString) => connectionString.Contains("User ID=") ? new SqlConnection(connectionString) :  new SqlConnection { ConnectionString = connectionString, AccessToken = new AzureServiceTokenProvider().GetAccessTokenAsync(AzureResource).Result };
     }
 }
