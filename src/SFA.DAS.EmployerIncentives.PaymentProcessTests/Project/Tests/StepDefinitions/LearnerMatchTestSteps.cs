@@ -25,8 +25,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithDateSubmitted(TestData.StartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -59,8 +59,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-05-02");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithDateSubmitted(TestData.StartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -153,13 +153,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.LearnerSubmission  = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
-                .WithAcademicYear(2022)
+                .WithAcademicYear(2122)
                 .WithIlrSubmissionDate("2021-08-01T09:11:46.82")
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(TestData.StartDate)
                 .WithPriceEpisode(
                     new PriceEpisodeDtoBuilder()
-                    .WithAcademicYear(2022)
+                    .WithAcademicYear(2122)
                     .WithStartDate("2021-08-01T00:00:00")
                     .WithEndDate("2022-07-31T00:00:00")
                     .WithPeriod(TestData.ApprenticeshipId + 1, 1) // not found ApprenticeshipId
@@ -235,8 +235,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithDateSubmitted(TestData.StartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -281,8 +281,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.StartDate = DateTime.Parse("2021-06-12");
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(TestData.StartDate)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Phase.Phase2)
+                .WithDateSubmitted(TestData.StartDate)
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, TestData.StartDate, TestData.StartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -399,7 +399,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var priceEpisodeFutureDate = new PriceEpisodeDtoBuilder()
                     .WithAcademicYear(2021)
                     .WithStartDate(TestData.StartDate)
-                    .WithEndDate(DateTime.Now.AddDays(1))
+                    .WithEndDate(TestData.StartDate.AddDays(30))
                     .WithPeriod(TestData.ApprenticeshipId, 1)
                     .Create();
 
@@ -538,7 +538,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the learner record has data lock set to true")]
         public void ThenTheLearnerRecordHasDataLockSetToTrue()
         {
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             learnerRecord.HasDataLock.Should().BeTrue();
         }
 
@@ -546,7 +546,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the learner record has data lock set to false")]
         public void ThenTheLearnerRecordHasDataLockSetToFalse()
         {
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             learnerRecord.HasDataLock.Should().BeFalse();
         }
 
@@ -555,8 +555,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsDoNotExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
-            var learningPeriods = Helper.EISqlHelper.GetAllFromDatabase<LearningPeriod>();
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
+            var learningPeriods = Helper.EISqlHelper.GetAllFromDatabase<LearningPeriod>().Where(lp => lp.LearnerId == learnerRecord.Id).ToList();
 
             learnerRecord.SubmissionFound.Should().BeFalse();
             learnerRecord.SubmissionDate.Should().BeNull();
@@ -571,7 +571,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsDoNotExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             learnerRecord.SubmissionFound.Should().BeTrue();
             learnerRecord.LearningFound.Should().BeFalse();
@@ -656,7 +656,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerDataHelper.VerifyLearningRecordsExist(TestData.ApprenticeshipId);
 
-            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
+            var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             var learningPeriod = Helper.EISqlHelper.GetFromDatabase<LearningPeriod>(l => l.LearnerId == learnerRecord.Id);
 

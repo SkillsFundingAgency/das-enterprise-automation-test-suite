@@ -1,4 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -17,9 +20,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployerNonLevy()
+        internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployer(string employerType)
         {
-            tableRowHelper.SelectRowFromTable("Select", objectContext.GetAgreementId());
+            var employerUser = employerType == "Levy" ? _context.GetUser<LevyUser>() : (EasAccountUser)_context.GetUser<NonLevyUser>();
+            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            tableRowHelper.SelectRowFromTable("Select", agreementId);
             return new ProviderConfirmEmployerNonLevyPage(_context);
         }
 

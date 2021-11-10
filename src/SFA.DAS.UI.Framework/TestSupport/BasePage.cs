@@ -6,7 +6,6 @@ using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using System.Linq;
-using NUnit.Framework;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -49,6 +48,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
         }
+
+        protected string GetUrl() => _pageInteractionHelper.GetUrl();
 
         private bool CanCaptureUrl() => (_frameworkConfig.CanCaptureUrl && CaptureUrl);
 

@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -25,15 +25,15 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
 
-            _context.SetUser(_configSection.GetConfigSection<AuthTestUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<AuthTestUser>());
             
-            _context.SetUser(_configSection.GetConfigSection<LevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<LevyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<NonLevyUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<TransactorUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<TransactorUser>());
 
-            _context.SetUser(_configSection.GetConfigSection<ViewOnlyUser>());
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ViewOnlyUser>());
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }

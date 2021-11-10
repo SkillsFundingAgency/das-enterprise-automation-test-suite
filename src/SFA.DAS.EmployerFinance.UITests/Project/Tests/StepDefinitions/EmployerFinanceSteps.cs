@@ -18,13 +18,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         public void ThenSetUpAnApprnticeshipSectionIsDisplayed() => new HomePage(_context).VerifySetupAnApprenticeshipSection();
 
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
-        public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
+        public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
 
         [Then(@"'Your finances' link is displayed in the Finances section")]
-        public void ThenLinkIsDisplayedInTheFinancesSection() => new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForALevyUser();
+        public void ThenLinkIsDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(_context).VerifyYourFinancesSectionLinksForALevyUser();
 
         [When(@"the Employer navigates to 'Finance' Page")]
-        public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection(_context).NavigateToFinancePage();
+        public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection_YourFinance(_context).NavigateToFinancePage();
 
         [Then(@"the employer can navigate to recruitment page")]
         public void ThenTheEmployerCanNavigateToRecruitment()

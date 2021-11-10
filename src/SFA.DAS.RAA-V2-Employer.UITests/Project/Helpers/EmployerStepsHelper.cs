@@ -1,9 +1,10 @@
 ﻿using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
@@ -24,11 +25,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(context);
         }
 
+        internal EmployerVacancySearchResultPage YourAdvert()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+
+            return NavigateToRecruitmentHomePage().SearchYourAdverts();
+        }
+
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
-        internal YourAdvertsPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        internal EmployerVacancySearchResultPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
-        internal YourAdvertsPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
+        internal EmployerVacancySearchResultPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {
@@ -39,7 +47,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal VacancyReferencePage CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
@@ -58,7 +66,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyEmployerName();
         }
 
-        internal void CreateANewVacancy(string wageType)
+        internal VacancyReferencePage CreateANewVacancy(string wageType)
         {
             var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisation();
 
@@ -66,14 +74,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
-            _stepsHelper.SubmitVacancy(previewPage, true, false);
+            return _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void CreateSubmittedVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
+        internal VacancyReferencePage CreateSubmittedVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
         {
             var previewPage = CreateDraftVacancy(whatDoYouWantToCallThisAdvertPage, wageType);
 
-            _stepsHelper.SubmitVacancy(previewPage, true, false);
+            return _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
         internal VacancyPreviewPart2Page CreateDraftVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
@@ -96,12 +104,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal WhatDoYouWantToCallThisAdvertPage GoToAddAnAdvert()
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
+
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
+        internal HomePage GoToHomePage(EasAccountUser loginUser) => _loginhelper.Login(loginUser, true);
+    
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
         {
-            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+            GoToHomePage(_context.GetUser<RAAV2EmployerUser>());
 
             return NavigateToRecruitmentHomePage();
         }

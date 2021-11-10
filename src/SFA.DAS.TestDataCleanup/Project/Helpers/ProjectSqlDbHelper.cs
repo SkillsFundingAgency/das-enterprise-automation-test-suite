@@ -17,10 +17,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         protected Dictionary<string, string> GetAccountId() => new Dictionary<string, string> { { "@accountid", _accountId } };
 
-        protected bool IsNullOrEmpty(List<string[]> x) => IsNullOrEmpty(x.ListOfArrayToList(0));
-
-        protected bool IsNullOrEmpty(List<string> x) => (x.Count == 1 && string.IsNullOrEmpty(x[0]));
-
         protected int CleanUpTestData(List<string> accountIdToDelete, Func<string, string> insertQueryFunc, string createQuery, string sqlfilename)
         {
             var insertquery = accountIdToDelete.Select(x => insertQueryFunc(x)).ToList();
@@ -44,7 +40,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             {
                 accountIdToDelete = getAccountidfunc.Invoke();
 
-                if (IsNullOrEmpty(accountIdToDelete)) return (new List<string>(), new List<string>());
+                if (IsNoDataFound(accountIdToDelete)) return (new List<string>(), new List<string>());
 
                 deleteAccountidfunc(accountIdToDelete);
 
@@ -57,7 +53,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             {
                 var accountIdNotDeletedindb = getAccountidfunc.Invoke();
 
-                if (!(IsNullOrEmpty(accountIdNotDeletedindb))) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
+                if (!(IsNoDataFound(accountIdNotDeletedindb))) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
             }
 
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,15 +15,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public void DeleteIncentiveApplication(string accountId)
         {
-            query =
-                $"DELETE FROM[incentives].[Payment] WHERE accountId = {accountId};" +
-                $"DELETE FROM[incentives].[PendingPaymentValidationResult] WHERE PendingPaymentId in (SELECT Id FROM[incentives].[PendingPayment] where accountId = {accountId});" +
-                $"DELETE FROM [incentives].[PendingPayment] WHERE accountId = {accountId};" +
-                $"DELETE FROM [incentives].[ApprenticeshipIncentive] WHERE accountId = {accountId};" +
-                $"DELETE FROM [dbo].[IncentiveApplicationApprenticeship] WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE accountId = {accountId});" +
-                $"DELETE FROM [dbo].[IncentiveApplication] WHERE accountId = {accountId}";
-            ExecuteSqlCommand(query);
+            TryExecuteSqlCommand(FileHelper.GetSql("DeleteIncentiveApplication"), connectionString, new Dictionary<string, string> { { "@accountid", accountId } });
+
             SetCaseDetailsToNull(accountId);
+        }
+
+        public void ResetPeriodEndInProgress()
+        {
+            query = "UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0";
+            ExecuteSqlCommand(query);
         }
 
         public void VerifyEarningData(string email, int startMonth, int startYear, string ageCategory)

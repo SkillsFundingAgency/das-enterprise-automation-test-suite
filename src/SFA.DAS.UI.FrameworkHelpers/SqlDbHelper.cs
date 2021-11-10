@@ -1,5 +1,4 @@
-﻿using Polly;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -9,6 +8,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected readonly string connectionString;
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
+
+        protected bool IsNoDataFound(List<string[]> x) => IsNoDataFound(x.ListOfArrayToList(0));
+
+        protected bool IsNoDataFound(List<string> x) => (x.Count == 1 && string.IsNullOrEmpty(x[0]));
 
         protected List<string> GetData(string query, int noOfvalues, Dictionary<string, string> parameters = null) => GetData(query, connectionString, noOfvalues, parameters);
 
@@ -78,8 +81,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
             => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
-        protected object TryGetDataAsObject(string queryToExecute, string exception, string title)
-            => RetryOnException(() => GetDataAsObject(queryToExecute), exception, title, Logging.DefaultTimeout());
+        protected object TryGetDataAsObject(string queryToExecute, string title)
+            => RetryOnIndexOutOfRangeException(() => GetDataAsObject(queryToExecute), title);
 
         private List<object[]> TryReadDataFromDataBase(string queryToExecute, string connectionString)
             => RetryOnException(() => ReadDataFromDataBase(queryToExecute, connectionString));

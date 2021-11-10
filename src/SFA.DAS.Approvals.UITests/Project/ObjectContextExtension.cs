@@ -23,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIStartMonth = "EIStartMonth";
         private const string EIStartYear = "EIStartYear";
         private const string EIJourney = "IsEIJourney";
+        private const string SameApprentice = "IsSameApprentice";
         private const string EIApprenticeDetailList = "eiapprenticedetaillist";
         #endregion
 
@@ -80,5 +81,11 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
 
         internal static bool IsEIJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EIJourney);
+
+        internal static void SetIsSameApprentice(this ObjectContext objectContext) => objectContext.Replace(SameApprentice, true);
+
+        internal static void ResetIsSameApprentice(this ObjectContext objectContext) => objectContext.Remove<bool>(SameApprentice);
+
+        internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -13,7 +12,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
+        
         private By ReviewRequestedChangesLink=> By.Id("review-requested-changes-link");
+
+        private By UndoChangesSelector => By.CssSelector("#UndoChanges");
+
+        private By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
 
         public ViewChangesPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -29,5 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ReviewYourCohortPage(_context);
         }
 
+
+        public ApprenticeDetailsPage UndoChanges()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(UndoChangesSelector));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueUndoChangesSelector));
+            return new ApprenticeDetailsPage(_context);
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.UI.FrameworkHelpers
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class AttributeHelper
     {
@@ -15,5 +11,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static string Value => "value";
 
         public static string DataCount => "data-count";
+
+        public static string Disabled => "disabled";
     }
 }

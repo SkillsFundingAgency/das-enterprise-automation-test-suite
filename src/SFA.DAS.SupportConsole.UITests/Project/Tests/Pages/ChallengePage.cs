@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System.Linq;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
@@ -38,12 +39,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
             var text = pageInteractionHelper.GetText(PayeChallengeLabel);
             
-            (int x, int y) = regexHelper.GetPayeChallenge(text);
+            (int x, int y) = RegexHelper.GetPayeChallenge(text);
 
             EnterPayeChallenge(func(_payeschemechars, x), func(_payeschemechars, y));
         }
 
-        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, regexHelper.GetLevyBalance(config.CurrentLevyBalance));
+        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, RegexHelper.GetLevyBalance(config.CurrentLevyBalance));
 
         public void Submit() => formCompletionHelper.ClickElement(SubmitButton);
 

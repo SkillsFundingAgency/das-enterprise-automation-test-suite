@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         public ApprenticeCommitmentsApiHelper(ScenarioContext context) : base(context) { }
 
-        public new void CreateApprenticeshipViaCommitmentsJob()
+        public void CreateApprenticeshipViaCommitmentsJobApiRequest()
         {
             _assertHelper.RetryOnNUnitException(() => 
             {

@@ -61,7 +61,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 PublicSectorReportingConnectionString = GetConnectionString(_dbDevConfig.PublicSectorReportingDbName),
                 PregDbConnectionString = GetConnectionString(_dbDevConfig.PregDbName),
                 TPRDbConnectionString = GetConnectionString(_dbDevConfig.TPRDbName),
-                UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName)
+                UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
+                TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName)
             };
         }
 

@@ -8,18 +8,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly RegexHelper _regexHelper;
 
-        public TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, RegexHelper regexHelper)
+        public TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper)
         {
             _formCompletionHelper = formCompletionHelper;
             _pageInteractionHelper = pageInteractionHelper;
-            _regexHelper = regexHelper;
         }
 
-        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr")
+        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr", int tableposition = 0)
         {
-            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).FirstOrDefault(x => x.Enabled && x.Displayed);
+            var table = _pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).Where(x => x.Enabled && x.Displayed).ElementAtOrDefault(tableposition);
             var tableRows = table.FindElements(By.CssSelector(tableRowSelector));
 
             foreach (var tablerow in tableRows)
@@ -79,7 +77,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
              if (_pageInteractionHelper.IsElementDisplayed(nextPage))
             {
-                int NoOfpages = _regexHelper.GetMaxNoOfPages(_pageInteractionHelper.GetText(noOfPages));
+                int NoOfpages = RegexHelper.GetMaxNoOfPages(_pageInteractionHelper.GetText(noOfPages));
 
                 for (int i = 1; i <= NoOfpages - 1; i++)
                 {

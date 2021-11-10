@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -21,23 +21,17 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
-            var config = _configSection.GetConfigSection<ApprovalsConfig>();
-            _context.SetApprovalsConfig(config);
+            _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
-            var ppconfig = _configSection.GetConfigSection<ProviderPermissionsConfig>();
-            _context.SetProviderPermissionConfig(ppconfig);
+            _context.SetProviderPermissionConfig(_configSection.GetConfigSection<ProviderPermissionsConfig>());
 
-            var pppfconfig = _configSection.GetConfigSection<PerfTestProviderPermissionsConfig>();
-            _context.SetPerfTestProviderPermissionsConfig(pppfconfig);
+            _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
 
-            var providerPermissionLevyUser = _configSection.GetConfigSection<ProviderPermissionLevyUser>();
-            _context.SetUser(providerPermissionLevyUser);
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ProviderPermissionLevyUser>());
 
-            var changeOfEmployerLevyUser = _configSection.GetConfigSection<ChangeOfEmployerLevyUser>();
-            _context.SetUser(changeOfEmployerLevyUser);
+            _context.SetEasLoginUser(_configSection.GetConfigSection<ChangeOfEmployerLevyUser>());
 
-            var changeOfPartyConfig = _configSection.GetConfigSection<ChangeOfPartyConfig>();
-            _context.SetChangeOfPartyConfig(changeOfPartyConfig);
+            _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
         }
     }
 }

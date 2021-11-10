@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private readonly RAAV2DataHelper _dataHelper;
         #endregion
 
+
+
         public SelectEmployersPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,9 +26,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public VacancyTitlePage SelectEmployer()
+        public VacancyTitlePage SelectEmployer(string empName)
         {
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            if (string.IsNullOrEmpty(empName))
+                _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            else
+                SelectRadioOptionByText(empName);
+
             Continue();
             return new VacancyTitlePage(_context);
         }

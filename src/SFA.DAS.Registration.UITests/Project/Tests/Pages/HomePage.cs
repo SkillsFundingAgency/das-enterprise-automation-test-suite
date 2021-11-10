@@ -7,13 +7,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : InterimHomeBasePage
     {
-        private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
 
         #region Locators
         protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourFinancesLink => By.LinkText("Your finances");
+        protected By YourTransfersLink => By.LinkText("Your transfers");
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
@@ -22,12 +21,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         protected By EIHubLink => By.LinkText("Your hire a new apprentice payments");
+        protected By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
+        protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
-            _regexHelper = context.Get<RegexHelper>();
             base.AcceptCookies();
         }
 
@@ -45,9 +45,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+        public string AccountId() => RegexHelper.GetAccountId(GetUrl());
 
-        public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
+        public string PublicAccountId() => RegexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
 
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {

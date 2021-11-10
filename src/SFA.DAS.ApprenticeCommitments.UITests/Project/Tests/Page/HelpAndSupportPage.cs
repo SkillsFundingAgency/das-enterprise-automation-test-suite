@@ -5,17 +5,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class HelpAndSupportPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => "Help and support";
-
         private readonly ScenarioContext _context;
+        protected override string PageTitle => "Help and support";
         private By ReturnToHomePageButton => By.LinkText("Return to homepage");
 
         public HelpAndSupportPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeOverviewPage NavigateToOverviewPageWithReturnToHomePageButton()
+        public ApprenticeHomePage NavigateToHomePageWithReturnToHomePageButton()
         {
             formCompletionHelper.Click(ReturnToHomePageButton);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeHomePage(_context);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageWithBackLink()

@@ -62,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 return new ProviderDraftApprenticeDetailsPage(_context);
             }
 
-            throw new Exception("No cohorts available with employers");
+            throw new Exception("No draft cohorts are available");
         }
 
         internal ProviderApprenticeDetailsWithTransferSendingEmployersPage GoToCohortsWithTransferSendingEmployers()
