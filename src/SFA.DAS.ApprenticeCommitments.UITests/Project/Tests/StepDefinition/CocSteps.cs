@@ -23,11 +23,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
         private readonly EditedApprenticeCourseDataHelper _editedApprenticeCourseDataHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ASCoCEmployerUser _user;
-
         private ApprenticeOverviewPage _apprenticeOverviewPage;
 
         public CocSteps(ScenarioContext context) : base(context)
@@ -48,21 +46,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenACourseDateCoCOccursOnAnApprenticeshipOnEmployerSide()
         {
             var apprenticeEmail = SetApprenticeDetails();
-
             _employerPortalLoginHelper.Login(_user, true);
 
             var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
-
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
             var editAppPage = appDetailPage.ClickEditApprenticeDetailsLink();
-
             _editedApprenticeCourseDataHelper.SelectAnyStandardCourse(editAppPage.GetSelectedCourse());
 
             new ApprenticeCommitmentsEditApprenticePage(_context).EditCourseAndDate().AcceptChangesAndSubmit();
-
             _providerStepsHelper.ApproveChangesAndSubmit();
-
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
@@ -70,7 +63,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void WhenTheApprenticeLogsIntoTheApprenticePortal()
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
-
             _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
         }
 
@@ -78,7 +70,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
             AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
-
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
         }
 
@@ -86,7 +77,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheApprenticeshipDetailsSectionIsMarkedAsIncomplete()
         {
             AssertSectionStatus(SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
-
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyApprenticeshipOnlyCoCNotification();
         }
 
@@ -94,9 +84,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToReviewAndConfirmEmployerAndApprenticeshipDetailsSection()
         {
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(_apprenticeOverviewPage);
-
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
-
             VerifyCocAndConfirmApprenticeship();
         }
 
@@ -104,7 +92,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToReviewAndConfirmApprenticeshipDetailsSection()
         {
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
-
             VerifyCocAndConfirmApprenticeship();
         }
 
@@ -152,7 +139,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private void VerifyCocAndConfirmApprenticeship()
         {
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
-
             _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner();
         }
     }

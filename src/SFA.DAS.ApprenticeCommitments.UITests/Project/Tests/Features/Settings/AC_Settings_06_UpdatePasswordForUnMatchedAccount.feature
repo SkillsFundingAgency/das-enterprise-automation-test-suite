@@ -1,9 +1,9 @@
-﻿Feature: AC_Setting_06_UpdatePassword
+﻿Feature: AC_Settings_06_UpdatePasswordForUnMatchedAccount
 
 @apprenticecommitments
 @regression
 @accountsettingstest
 @deleteuser
-Scenario: AC_Setting_06_UpdatePassword before confirming account
+Scenario: AC_Settings_06_UpdatePassword before confirming account
 	Given an apprentice has created the account and about to validate personal details
 	Then an apprentice can change their password before confirming account

@@ -12,7 +12,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
     public abstract class ApprenticeUser
     {
         public string ApprenticeUsername { get; set; }
-
         public string ApprenticePassword { get; set; }
     }
 }

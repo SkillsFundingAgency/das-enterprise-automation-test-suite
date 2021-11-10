@@ -24,6 +24,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
         protected By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
+        protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
+        protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
@@ -36,6 +38,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
         private By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
         private string SignOutLinkText => "Sign out";
+        protected By Password => By.CssSelector("#Password");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyServiceHeader = true) : base(context)
         {

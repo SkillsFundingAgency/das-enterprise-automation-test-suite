@@ -40,7 +40,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmRolesAndResponsibilities(apprenticeOverviewPage);
-
             return apprenticeOverviewPage;
         }
 
@@ -75,9 +74,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertSection1Status(initialStatus);
 
             var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
-
             AssertSection1Status(StatusHelper.Complete);
-
             return apprenticeOverviewPage;
         }
 
@@ -86,9 +83,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertSection2Status(initialStatus);
 
             var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
-
             AssertSection2Status(StatusHelper.Complete);
-
             return apprenticeOverviewPage;
         }
 
@@ -97,9 +92,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertSection3Status(initialStatus);
 
             var apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYes();
-
             AssertSection3Status(StatusHelper.Complete);
-
             return apprenticeOverviewPage;
         }
 
@@ -108,36 +101,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertSection4Status(initialStatus);
 
             var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
-
             AssertSection4Status(StatusHelper.Complete);
-
             return apprenticeOverviewPage;
         }
 
         public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(string initialStatus)
         {
             AssertSection5Status(initialStatus);
-
             var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
-
             AssertSection5Status(StatusHelper.Complete);
-
             return apprenticeOverviewPage;
         }
 
         public ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
             var page = new ApprenticeOverviewPage(_context).GoToConfirmYourApprenticeshipDetailsPage();
-
             VerifyApprenticeshipDataDisplayed(page);
-
             return page;
         }
 
         private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
         {
             var page = new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
-
             return VerifyRolesAndResponsibilitiesPage(page);
         }
 
@@ -154,9 +139,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
         {
             var page = new ApprenticeOverviewPage(_context);
-
             Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
-            
             return page;
         }
 
@@ -203,10 +186,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void AssertApprenticeshipDetails()
         {
-            Assert.AreEqual(expectedApprenticeshipName.ToLower(), actualApprenticeshipName.ToLower());
+            Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
             Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
             Assert.IsNotNull(actualEsimatedDurationInfo);
         }
+
+        private string GetStringWithoutSpacesAndLeftOfParanthesis(string str) => String.Concat(str.ToLower().Trim().Split('(')[0]).RemoveSpace();
     }
 }

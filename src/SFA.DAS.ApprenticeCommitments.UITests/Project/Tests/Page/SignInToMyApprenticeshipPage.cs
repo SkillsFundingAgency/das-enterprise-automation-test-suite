@@ -6,18 +6,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class SignIntoMyApprenticeshipPage : ApprenticeCommitmentsBasePage
     {
-        protected override string PageTitle => $"Sign in to {ServiceName}";
-
         private readonly ScenarioContext _context;
+        protected override string PageTitle => $"Sign in to {ServiceName}";
         protected override By ServiceHeader => NonClickableServiceHeader;
         private By Username => By.CssSelector("#Username");
-        private By Password => By.CssSelector("#Password");
         private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
         public SignIntoMyApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
         public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {
+            VerifyPage(PrivacyLinkInTheBody);
             SignIn();
             return new CreateMyApprenticeshipAccountPage(_context);
         }

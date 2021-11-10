@@ -38,11 +38,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             string email = GetApprenticeEmail();
 
             RetryGetRegistrationId(() =>
-            {    
+            {
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
-
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
-
             });
 
             return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title));
@@ -51,9 +49,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage CreateAccountViaApiAndConfirmApprenticeshipViaDb()
         {
             var page = CreateAccountViaApi();
-
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
-
             return page.NavigateToOverviewPageFromTopNavigationLink();
         }
 
@@ -61,27 +57,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage CreateAccountViaUIAndConfirmApprenticeshipViaDb()
         {
             var page = ConfirmIdentityAndGoToApprenticeHomePage();
-
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
-
             return page.NavigateToOverviewPageFromTopNavigationLink();
         }
 
         public ApprenticeHomePage CreateAccountViaApi()
         {
             CreateApprenticeshipViaApiRequest();
-            
-            var apprenticeHomePage = ConfirmIdentityAndGoToApprenticeHomePage(); 
-            
+
+            var apprenticeHomePage = ConfirmIdentityAndGoToApprenticeHomePage();
             _aComtSqlDbHelper.UpdateConfirmBeforeFieldInCommitmentStatementTable(GetApprenticeEmail());
-            
             return apprenticeHomePage;
         }
 
         public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
         {
             CreateApprenticeshipViaApiRequest();
-
             return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
@@ -96,9 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private StartPage OpenInvitation(string registrationId)
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_InvitationUrl(registrationId));
-
             _objectContext.SetRegistrationId(registrationId);
-
             return new StartPage(_context);
         }
 

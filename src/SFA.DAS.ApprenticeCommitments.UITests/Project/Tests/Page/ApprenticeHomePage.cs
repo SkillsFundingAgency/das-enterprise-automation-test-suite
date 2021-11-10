@@ -8,10 +8,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
-
         private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
         private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
-
         private By CompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--green");
         private By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
@@ -27,13 +25,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
         {
             VerifyNotificationBanner("There seems to be a problem, we cannot find your apprenticeship.");
-
             formCompletionHelper.ClickLinkByText("account details");
-            
             return new ChangeYourPersonalDetailsPage(_context);
         }
 
-        public ApprenticeHomePage VerifySucessNotification() { VerifyNotificationBanner("You have created an account and we have found your apprenticeship."); return this; }
+        public ApprenticeHomePage VerifySucessNotification()
+        {
+            VerifyNotificationBanner("You have created an account and we have found your apprenticeship.");
+            return this;
+        }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {
