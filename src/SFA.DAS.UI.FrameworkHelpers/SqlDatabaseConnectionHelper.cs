@@ -49,8 +49,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
             List<(List<object[]>, int)> multiresult = new List<(List<object[]>, int)>();
-            
-            
 
             try
             {

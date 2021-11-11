@@ -16,6 +16,8 @@ namespace SFA.DAS.Login.Service
         {
             var notNullUsers = users.Where(x => x != null).ToList();
 
+            if (notNullUsers.Count == 0) return;
+
             var legalentities = GetAccountLegalEntities(context, notNullUsers.Select(x => x.Username).ToList());
 
             for (int i = 0; i < notNullUsers.Count; i++)
@@ -23,6 +25,8 @@ namespace SFA.DAS.Login.Service
                 notNullUsers[i].LegalEntities = legalentities[i];
 
                 notNullUsers[i].OrganisationName = notNullUsers[i].LegalEntities.FirstOrDefault();
+
+                if (notNullUsers[i] is MultipleEasAccountUser) { ((MultipleEasAccountUser)notNullUsers[i]).SecondOrganisationName = notNullUsers[i].LegalEntities[1]; }
 
                 SetUser(context, notNullUsers[i]);
             }
