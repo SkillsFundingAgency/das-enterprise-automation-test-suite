@@ -54,7 +54,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     #region MultipleAccountUser
     public abstract class MultipleEasAccountUser : EasAccountUser
     {
-        public string SecondOrganisationName { get; set; }
+        public string SecondOrganisationName => LegalEntities[1];
     }
 
     public class EIMultipleAccountUser : MultipleEasAccountUser { }

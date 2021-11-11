@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
         public void ResetApplyUserOrganisationId(string applyUserEmail)
         {
-            var organisationId = GetData($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
+            var organisationId = GetDataAsString($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
             if (organisationId.Equals("")) return;
             ExecuteSqlCommand($"UPDATE Contacts SET OrganisationID = null WHERE Email = '{applyUserEmail}'");
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");

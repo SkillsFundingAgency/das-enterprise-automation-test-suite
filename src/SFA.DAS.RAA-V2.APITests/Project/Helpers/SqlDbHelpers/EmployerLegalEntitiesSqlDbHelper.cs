@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers
                 $" FOR JSON PATH, ROOT('employerAccountLegalEntities') " +
                 $" ) AS queryResponse";
 
-            return GetData(query, _dbConfig.AccountsDbConnectionString, 1);
+            return GetData(query, _dbConfig.AccountsDbConnectionString);
         }
 
         public string GetEmployerAccountHashedID()
@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers
                 " JOIN[employer_account].[Account] AS a ON a.Id = ale.AccountId " +
                 " Order by NEWID()";
 
-            List<string> queryResult =  GetData(query, _dbConfig.AccountsDbConnectionString, 1);
+            List<string> queryResult =  GetData(query, _dbConfig.AccountsDbConnectionString);
 
             return queryResult[0];
         }
