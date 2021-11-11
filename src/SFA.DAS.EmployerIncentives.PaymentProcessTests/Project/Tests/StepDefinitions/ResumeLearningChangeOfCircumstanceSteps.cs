@@ -228,7 +228,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the earnings are recalculated")]
         public async Task WhenTheEarningsAreRecalculated()
         {
-            await Helper.PaymentsOrchestratorHelper.Run();
         }
 
         [When(@"the Unpaid Earnings are Archived")]
