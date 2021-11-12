@@ -9,13 +9,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public LegalEntitiesSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
-        internal List<string> GetAccountLegalEntities(string email)
-        {
-            var legalEntities = GetMultipleData(GetSqlQuery(email)).ListOfArrayToList(0);
-
-            return IsNoDataFound(legalEntities) ? new List<string>() : legalEntities;
-        }
-
         internal List<List<string>> GetAccountLegalEntities(List<string> emails)
         {
             var query = emails.Select(x => GetSqlQuery(x)).ToList();
@@ -31,7 +24,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
             return listoflegalEntities;
         }
-
 
         private static string GetSqlQuery(string email) => $"select [name] from employer_account.AccountLegalEntity where deleted is null and AccountId in (select AccountId from employer_account.Membership where UserId in ( select id from employer_account.[User] where Email = '{email}' )) order by Created asc;";
     }
