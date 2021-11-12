@@ -66,11 +66,6 @@ namespace SFA.DAS.ConfigurationBuilder
             };
         }
 
-        private string GetConnectionString(string dbName)
-        {
-             var connectionString = $"Server={_dbDevConfig.Server};Database={dbName};User ID={_dbDevConfig.UserID};Password={_dbDevConfig.Password};{_dbDevConfig.ConnectionDetails};";
-
-            return Regex.Replace(connectionString, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
-        }
+        private string GetConnectionString(string dbName) => Regex.Replace($"Server={_dbDevConfig.Server};Initial Catalog={dbName};{_dbDevConfig.ConnectionDetails};", "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
     }
 }
