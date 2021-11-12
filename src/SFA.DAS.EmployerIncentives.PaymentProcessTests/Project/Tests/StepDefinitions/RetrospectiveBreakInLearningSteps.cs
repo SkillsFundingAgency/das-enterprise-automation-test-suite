@@ -227,6 +227,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"the Payment Run occurs")]
+        [When(@"the Payment Run occurs")]
         public async Task WhenThePaymentRunOccurs()
         {
             await Helper.LearnerMatchOrchestratorHelper.Run();
@@ -304,6 +305,26 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             clawback.Amount.Should().Be(amount * -1);
             clawback.CollectionPeriod.Should().Be(period);
             clawback.CollectionPeriodYear.Should().Be(year);
+        }
+
+        [Then(@"the Days In Learning validation succeeds")]
+        public void ThenDaysInLearningValidationSucceeds()
+        {
+            var pendingPayment = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && x.EarningType == EarningType.FirstPayment);
+
+            var validationStep = Helper.EISqlHelper.GetFromDatabase<PendingPaymentValidationResult>(x =>
+                x.PendingPaymentId == pendingPayment.Id
+                && x.Step == "HasDaysInLearning");
+
+            validationStep.Should().NotBeNull();
+            validationStep.Result.Should().BeTrue();
+        }
+
+        [Then(@"the payment record for the first earnings is created")]
+        public void ThenThePaymentRecordIsCreated()
+        {
+            var payment = Helper.EISqlHelper.GetSingleOrDefaultFromDatabase<Payment>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
+            payment.Should().NotBeNull();
         }
 
         private void AssertPendingPayment(int amount, byte period, short year, EarningType earningType)
