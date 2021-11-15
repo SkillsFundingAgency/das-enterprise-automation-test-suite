@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public void GateWayClearDownDataFromApply(string ukprn)
         {
-            var applicationId = GetData($"SELECT ApplicationId from dbo.Apply where ukprn = {ukprn}");
+            var applicationId = GetDataAsString($"SELECT ApplicationId from dbo.Apply where ukprn = {ukprn}");
 
             var GateWayResetQuery = $"{GetApplicationId(ukprn)} DELETE FROM dbo.gatewayanswer WHERE ApplicationId = @ApplicationID; " +
             $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId =  @ApplicationID; " +

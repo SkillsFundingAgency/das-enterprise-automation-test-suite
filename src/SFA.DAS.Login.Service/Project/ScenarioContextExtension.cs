@@ -12,37 +12,33 @@ namespace SFA.DAS.Login.Service
     {
         public static void SetNonEasLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
 
-        public static void SetEasLoginUser(this ScenarioContext context, EasAccountUser value)
+        public static void SetEasLoginUser(this ScenarioContext context, List<EasAccountUser> users)
         {
-            if (value == null) return;
+            var notNullUsers = users.Where(x => x != null).ToList();
 
-            value.LegalEntities = GetAccountLegalEntities(context, value.Username);
+            if (notNullUsers.Count == 0) return;
 
-            value.OrganisationName = value.LegalEntities.FirstOrDefault();
+            var legalentities = GetAccountLegalEntities(context, notNullUsers.Select(x => x.Username).ToList());
 
-            SetUser(context, value);
-        }
+            for (int i = 0; i < notNullUsers.Count; i++)
+            {
+                notNullUsers[i].LegalEntities = legalentities[i];
 
-        public static void SetEasLoginUser(this ScenarioContext context, MultipleEasAccountUser value)
-        {
-            if (value == null) return;
+                notNullUsers[i].OrganisationName = notNullUsers[i].LegalEntities.FirstOrDefault();
 
-            value.LegalEntities = GetAccountLegalEntities(context, value.Username);
+                if (notNullUsers[i] is MultipleEasAccountUser) { ((MultipleEasAccountUser)notNullUsers[i]).SecondOrganisationName = notNullUsers[i].LegalEntities[1]; }
 
-            value.OrganisationName = value.LegalEntities.FirstOrDefault();
-
-            if (value.LegalEntities.Count > 1) { value.SecondOrganisationName = value.LegalEntities[1]; }
-
-            SetUser(context, value);
+                SetUser(context, notNullUsers[i]);
+            }
         }
 
         public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());
 
-        private static List<string> GetAccountLegalEntities(ScenarioContext context, string username)
+        private static List<List<string>> GetAccountLegalEntities(ScenarioContext context, List<string> username)
         {
-          var legalEntities = new LegalEntitiesSqlDataHelper(context.Get<DbConfig>()).GetAccountLegalEntities(username);
+            var legalEntities = new LegalEntitiesSqlDataHelper(context.Get<DbConfig>()).GetAccountLegalEntities(username);
 
-            return legalEntities.Select(x => RegexHelper.ReplaceMultipleSpace(x)).ToList();
+            return legalEntities.Select(x => x.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList()).ToList();
         }
 
         private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, data == null ? Key<T>() : Key(data.GetType()));
