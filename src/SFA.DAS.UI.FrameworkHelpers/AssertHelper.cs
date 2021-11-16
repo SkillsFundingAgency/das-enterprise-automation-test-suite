@@ -11,7 +11,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         
         public RetryAssertHelper(ScenarioInfo scenarioInfo) => _title = scenarioInfo.Title;
 
-        public void RetryOnNUnitException(Action action, bool longerTimeout = false)
+        public void RetryOnNUnitException(Action action) => RetryOnNUnitException(action, false);
+
+        public void RetryOnNUnitExceptionWithLongerTimeOut(Action action) => RetryOnNUnitException(action, true);
+
+        private void RetryOnNUnitException(Action action, bool longerTimeout)
         {
             Policy
                  .Handle<AssertionException>()

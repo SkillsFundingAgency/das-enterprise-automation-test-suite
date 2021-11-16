@@ -92,7 +92,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new StartPage(_context);
         }
 
-        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action, longerTimeout: true);
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }
