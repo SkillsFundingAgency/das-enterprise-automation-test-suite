@@ -26,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
         {
             var query = $"select top 1 uln, StdCode, title, GivenNames, FamilyName from [Ilrs] join standards on larscode = stdcode and uln = {data.uln} and FamilyName = '{data.familyName}'";
 
-            return GetTestData(() => GetData(query, 5));
+            return GetTestData(() => GetData(query));
         }
 
         public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria) => GetTestData(() => GetTestData(email, leanerCriteria));
@@ -66,7 +66,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             TestContext.Progress.WriteLine(query);
 
-            return GetData(query, 5, sqlParameters);
+            return GetData(query, sqlParameters);
         }
 
         private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool versionConfirmed, bool optionSet)

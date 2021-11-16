@@ -72,6 +72,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             createLoginDetailsPage.VerifyMismatchPasswordErrorOnCreateLoginDetailsPage();
         }
 
-        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitException(action);
+        private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
     }
 }

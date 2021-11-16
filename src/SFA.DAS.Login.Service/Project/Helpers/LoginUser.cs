@@ -33,6 +33,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class NonLevyUser : EasAccountUser { }
 
+    public class EINonLevyUnsignedUser : EasAccountUser { }
+
     public class EILevyUser : EasAccountUser { }
 
     public class EIWithdrawLevyUser : EasAccountUser { }

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project
@@ -20,9 +21,11 @@ namespace SFA.DAS.Transfers.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransfersConfiguration()
         {
-            _context.SetEasLoginUser(_configSection.GetConfigSection<AgreementNotSignedTransfersUser>());
-
-            _context.SetEasLoginUser(_configSection.GetConfigSection<TransfersUser>());
+            _context.SetEasLoginUser(new List<EasAccountUser>() 
+            {
+                _configSection.GetConfigSection<AgreementNotSignedTransfersUser>(),
+                _configSection.GetConfigSection<TransfersUser>()
+            });
         }
     }
 }

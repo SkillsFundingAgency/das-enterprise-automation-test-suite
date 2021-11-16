@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -40,13 +41,20 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
+        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => ReadDataFromDataBase(queryToExecute, connectionString, null).data;
+
+        public static (List<object[]> data, int noOfColumns) ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters) =>
+            ReadMultipleDataFromDataBase(new List<string> { queryToExecute }, connectionString, parameters).FirstOrDefault();
+
+        public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
+            List<(List<object[]>, int)> multiresult = new List<(List<object[]>, int)>();
+
             try
             {
-                using (SqlConnection databaseConnection = GetSqlConnection(connectionString))
+                using (SqlConnection dbConnection = GetSqlConnection(connectionString))
                 {
-                    using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
+                    using (SqlCommand command = new SqlCommand(string.Join(string.Empty, queryToExecute), dbConnection))
                     {
                         command.CommandType = CommandType.Text;
 
@@ -58,17 +66,26 @@ namespace SFA.DAS.UI.FrameworkHelpers
                             }
                         }
 
-                        databaseConnection.Open();
-                        SqlDataReader dataReader = command.ExecuteReader();
-                        List<object[]> result = new List<object[]>();
-                        while (dataReader.Read())
-                        {
-                            object[] items = new object[100];
-                            dataReader.GetValues(items);
-                            result.Add(items);
-                        }
+                        dbConnection.Open();
 
-                        return result;
+                        SqlDataReader dataReader = command.ExecuteReader();
+
+                        foreach (var item in queryToExecute)
+                        {
+                            List<object[]> result = new List<object[]>();
+                            int noOfColumns = dataReader.FieldCount;
+                            while (dataReader.Read())
+                            {
+                                object[] items = new object[noOfColumns];
+                                dataReader.GetValues(items);
+                                result.Add(items);
+                            }
+
+                            multiresult.Add((result, noOfColumns));
+                            dataReader.NextResult();
+                        }
+                        
+                        return multiresult;
                     }
                 }
             }

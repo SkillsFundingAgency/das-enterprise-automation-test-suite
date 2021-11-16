@@ -2,6 +2,7 @@
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -27,9 +28,11 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
 
-            _context.SetEasLoginUser(_configSection.GetConfigSection<ProviderPermissionLevyUser>());
-
-            _context.SetEasLoginUser(_configSection.GetConfigSection<ChangeOfEmployerLevyUser>());
+            _context.SetEasLoginUser(new List<EasAccountUser>()
+            {
+                _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
+                _configSection.GetConfigSection<ChangeOfEmployerLevyUser>()
+            });
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
         }
