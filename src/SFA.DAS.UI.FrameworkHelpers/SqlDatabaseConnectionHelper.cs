@@ -73,10 +73,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
                         foreach (var item in queryToExecute)
                         {
                             List<object[]> result = new List<object[]>();
-                            int noOfColumns = 0;
+                            int noOfColumns = dataReader.FieldCount;
                             while (dataReader.Read())
                             {
-                                noOfColumns = dataReader.FieldCount;
                                 object[] items = new object[noOfColumns];
                                 dataReader.GetValues(items);
                                 result.Add(items);
