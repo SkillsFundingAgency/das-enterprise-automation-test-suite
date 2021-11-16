@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -49,6 +49,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new YourAccountsPage(_context);
+        }
+
+        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new MyAccountTransferFundingPage(_context);
         }
 
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)

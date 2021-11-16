@@ -76,6 +76,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
                 $"DELETE FROM dbo.ExtractedApplications WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM [dbo].[FinancialReviewClarificationFile] where ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM Financialreview where ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.FinancialData WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.Audit WHERE UpdatedState like '%{applicationId}%'; " +
                 $"DELETE FROM dbo.GatewayAnswer WHERE ApplicationId = '{applicationId}'; " +

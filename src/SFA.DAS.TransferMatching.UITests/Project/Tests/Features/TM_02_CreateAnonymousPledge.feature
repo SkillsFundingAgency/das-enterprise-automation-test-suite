@@ -1,8 +1,10 @@
-﻿Feature: TM_02_CreateAnonymousPledge
+﻿Feature: TM_02_CreateAnonymousPledgeApplyAndApprove
 
 @regression
 @transfermatching
-Scenario: TM_02_Create Anonymous pledge using non default criteria and view
-	Given the Employer logins using existing Transfer Matching Account
-	Then the Employer can create anonymous pledge using non default criteria
-	And the Employer can view pledges from verification page
+Scenario: TM_02_Create Anonymous pledge using non default criteria Apply and Approve
+	Given the levy employer logins using existing transfer matching account
+	Then the levy employer can create anonymous pledge using non default criteria
+	And the levy employer can view pledges from verification page
+	When the non levy employer applies for the pledge
+	Then the levy employer can approve the application

@@ -1,9 +1,10 @@
 ﻿using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project
@@ -23,9 +24,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRAAV2EmployerProjectConfiguration()
         {
-            _context.SetUser(_configSection.GetConfigSection<RAAV2EmployerUser>());
+            _context.SetEasLoginUser(new List<EasAccountUser>()
+            {
+                _configSection.GetConfigSection<RAAV2EmployerUser>(),
 
-            _context.SetUser(_configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>());
+                _configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>()
+            });
 
             var x = _configSection.GetConfigSection<ProviderPermissionsConfig>();
 

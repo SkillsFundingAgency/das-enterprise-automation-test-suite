@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
@@ -30,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing NonLevy Account")]
         [When(@"the Employer logins using existing NonLevy Account")]
+        [Given(@"the non levy employer logins using existing non levy account")]
         public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
 
         [Given(@"the Employer logins using existing transactor user account")]
@@ -37,6 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing view user account")]
         [When(@"the Employer logins using existing view user account")]
+        [Given(@"the levy employer login using existing view user account")]
         public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
 
         [Then(@"Employer is able to navigate to all the link under Settings")]

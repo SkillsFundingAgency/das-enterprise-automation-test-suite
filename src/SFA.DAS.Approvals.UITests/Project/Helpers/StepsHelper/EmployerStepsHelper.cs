@@ -40,26 +40,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+
         internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
+
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
             return new ApprenticesHomePage(_context, true);
         }
 
-        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
-        {
-            return apprenticeDetailsPage
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
-        }
+        public StoppedApprenticeDetailsPage StopApprenticeThisMonth() => StopApprenticeThisMonth(ViewCurrentApprenticeDetails());
 
-        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth()
-        {
-            var apprenticeDetailsPage = ViewCurrentApprenticeDetails();
+        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) => 
+            apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
 
-            return StopApprenticeThisMonth(apprenticeDetailsPage);
-        }
+        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
+
 
         internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -73,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ValidateRedundancyStatusAndStopDate();
         }
 
-        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
+        public ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
         public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
@@ -112,13 +108,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
-        internal void UpdateNewCohortReference()
+        public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
+
+        public void UpdateNewCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 
             var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
 
-            _objectContext.UpdateCohortReference(cohortRef);
+            UpdateCohortReference(cohortRef);
         }
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)

@@ -13,9 +13,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
-        private By PledgeSelector => By.CssSelector($"a[href='pledges/{objectContext.GetPledgeId()}/applications']");
+        private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
 
         public MyTransferPledgesPage(ScenarioContext context) : base(context) => _context = context;
+
+        public TransferPledgePage GoToTransferPledgePage()
+        {
+            formCompletionHelper.Click(PledgeSelector);
+            return new TransferPledgePage(_context);
+        }
 
         public PledgeAndTransferYourLevyFundsPage CreatePledge()
         {
@@ -24,6 +30,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         }
 
         public void VerifyPledge() => VerifyPage(PledgeSelector);
-
     }
 }

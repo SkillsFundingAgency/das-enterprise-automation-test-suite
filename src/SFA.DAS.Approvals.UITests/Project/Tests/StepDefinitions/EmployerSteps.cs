@@ -35,7 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
 
-
         [Then(@"Employer is able to Pause the apprentice")]
         public void ThenEmployerIsAbleToPauseTheApprentice()
         {
@@ -63,6 +62,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = _employerStepsHelper
             .StopApprenticeThisMonth(_apprenticeDetailsPage)
              .ValidateFlashMessage("Apprenticeship stopped");
+        }
+        
+        [Then(@"Employer is able to edit all apprentices before approval")]
+        public void EmployerIsAbleToEditAllApprenticesBeforeApproval()
+        {
+            int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
+            for (int i = 0; i < totalApprentices; i++)
+            {
+                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
+                    .EditApprenticePreApprovalAndSubmit();
+            }
         }
 
         [Then(@"Employer can edit stop date to learner start date")]
@@ -92,17 +102,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectViewCurrentCohortDetails();
         }
 
-        [Then(@"Employer is able to edit all apprentices before approval")]
-        public void EmployerIsAbleToEditAllApprenticesBeforeApproval()
-        {
-            int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
-            for (int i = 0; i < totalApprentices; i++)
-            {
-                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
-                    .EditApprenticePreApprovalAndSubmit();
-            }
-        }
-
         [Then(@"Employer is able to delete all apprentices before approval")]
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
         {
@@ -116,11 +115,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to delete the cohort before approval")]
-        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval()
-        {
-            _reviewYourCohortPage.SelectDeleteThisGroup()
-                .ConfirmDeleteAndSubmit();
-        }
+        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval() => _reviewYourCohortPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
@@ -140,10 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices()
-        {
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
-        }
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
 
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
@@ -157,10 +149,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer approves the cohorts")]
-        public void ThenTheEmployerApprovesTheCohorts()
-        {
-            _employerStepsHelper.Approve();
-        }
+        public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
@@ -188,10 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]
-        public void ANewLiveApprenticeRecordIsCreated()
-        {
-            _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
-        }
+        public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
         [Then(@"the apprenticeship status changes to completed")]
         public void ThenTheApprenticeshipStatusChangesToCompleted() => _employerStepsHelper.ValidateCompletionStatus();

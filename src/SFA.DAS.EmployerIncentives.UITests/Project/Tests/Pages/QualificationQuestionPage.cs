@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class QualificationQuestionPage : EIBasePage
     {
-        protected override string PageTitle => $"Does {ObjectContextExtension.GetOrganisationName(objectContext)} have apprentices who are eligible for the payment?";
+        protected override string PageTitle => $"Eligible apprentices at {ObjectContextExtension.GetOrganisationName(objectContext)}";
 
         #region Locators
         private readonly ScenarioContext _context;

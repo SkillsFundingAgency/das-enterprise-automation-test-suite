@@ -1,6 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.UI.Framework;
@@ -14,19 +12,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly MongoDbDataGenerator _mongoDbDataGenerator;
-        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private readonly ObjectContext _objectContext;
+        private readonly AccountSignOutHelper _accountSignOutHelper;
 
         public AccountCreationStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
-            _objectContext = _context.Get<ObjectContext>();
+            _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
         public ConfirmYourIdentityPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
@@ -44,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN()
                 .ReEnterTheSameAornDetailsAndContinue();
 
-        public IndexPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
+        public IndexPage SignOut() => _accountSignOutHelper.SignOut();
 
         public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
             searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);

@@ -33,6 +33,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
+        private void AddCourse()
+        {
+            var course = apprenticeCourseDataHelper.Course;
+
+            if (objectContext.IsSameApprentice()) course = apprenticeCourseDataHelper.OtherCourse;
+            
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
+        }
+
         public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
@@ -43,7 +52,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
 
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
+            AddCourse();
+
             formCompletionHelper.ClickElement(StartDateMonth);
             if (isMF == false)
             {
@@ -98,6 +108,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
+
+            if (objectContext.IsSameApprentice())
+            {
+                apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
+            }
+
             return apprenticeCourseDataHelper.CourseStartDate;
         }
 
@@ -105,6 +121,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+
+            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }
     }

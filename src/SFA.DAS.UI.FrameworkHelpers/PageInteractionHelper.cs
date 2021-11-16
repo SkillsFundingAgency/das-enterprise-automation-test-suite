@@ -221,8 +221,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
-        public string GetUrl() => _webDriver.Url;
-
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
         public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
@@ -261,6 +259,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 return false;
             }
         }
+        public string GetUrl() => _webDriver.Url;
 
         private Func<bool> Func(By locator)
         {

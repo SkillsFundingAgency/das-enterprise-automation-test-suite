@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -43,7 +43,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
-                    _initialStartDate.AddYears(-24), _phase)
+                    _initialStartDate.AddYears(-24), Context.ScenarioInfo.Title, _phase)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication, signedVersion);
@@ -81,7 +81,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, 
-                    TestData.UKPRN, startDate, startDate.AddYears(-20)
+                    TestData.UKPRN, startDate, startDate.AddYears(-20), Context.ScenarioInfo.Title
                     ,Phase.Phase1)
                 .Create();
 

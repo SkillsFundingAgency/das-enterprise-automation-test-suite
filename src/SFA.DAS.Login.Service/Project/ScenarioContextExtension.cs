@@ -1,21 +1,50 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service
 {
     public static class ScenarioContextExtension
     {
-        #region Constants
-        static string Key<T>() => typeof(T).FullName;
-        #endregion
+        public static void SetNonEasLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
 
-        public static void SetUser<T>(this ScenarioContext context, T value)
+        public static void SetEasLoginUser(this ScenarioContext context, List<EasAccountUser> users)
         {
-            context.Set(value, Key<T>());
+            var notNullUsers = users.Where(x => x != null).ToList();
+
+            if (notNullUsers.Count == 0) return;
+
+            var legalentities = GetAccountLegalEntities(context, notNullUsers.Select(x => x.Username).ToList());
+
+            for (int i = 0; i < notNullUsers.Count; i++)
+            {
+                notNullUsers[i].LegalEntities = legalentities[i];
+
+                notNullUsers[i].OrganisationName = notNullUsers[i].LegalEntities.FirstOrDefault();
+
+                if (notNullUsers[i] is MultipleEasAccountUser) { ((MultipleEasAccountUser)notNullUsers[i]).SecondOrganisationName = notNullUsers[i].LegalEntities[1]; }
+
+                SetUser(context, notNullUsers[i]);
+            }
         }
 
-        public static T GetUser<T>(this ScenarioContext context)
+        public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());
+
+        private static List<List<string>> GetAccountLegalEntities(ScenarioContext context, List<string> username)
         {
-            return context.Get<T>(Key<T>());
+            var legalEntities = new LegalEntitiesSqlDataHelper(context.Get<DbConfig>()).GetAccountLegalEntities(username);
+
+            return legalEntities.Select(x => x.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList()).ToList();
         }
+
+        private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, data == null ? Key<T>() : Key(data.GetType()));
+
+        private static string Key<T>() => Key(typeof(T));
+
+        private static string Key(Type t) => t.FullName;
     }
 }

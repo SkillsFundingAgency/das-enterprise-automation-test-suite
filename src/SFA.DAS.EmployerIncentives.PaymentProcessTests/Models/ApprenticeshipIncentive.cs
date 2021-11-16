@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ganss.Excel;
 using SFA.DAS.Common.Domain.Types;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
@@ -29,27 +30,27 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public string SubmittedByEmail { get; set; }
         public string CourseName { get; set; }
 
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<PendingPayment> PendingPayments { get; set; }
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<Payment> Payments { get; set; }
 
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<ClawbackPayment> ClawbackPayments { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public IncentiveStatus Status { get; set; }
 
 
-        [Dapper.Contrib.Extensions.Write(false)]
+        [Dapper.Contrib.Extensions.Write(false), Ignore]
         public ICollection<ApprenticeshipBreakInLearning> BreakInLearnings { get; set; }
 
         public int? MinimumAgreementVersion { get; set; }
         public DateTime? EmploymentStartDate { get; set; }
         
-        [Column(TypeName = "nvarchar(50)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public Phase Phase { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public WithdrawnBy? WithdrawnBy { get; set; }
 
         public ApprenticeshipIncentive()

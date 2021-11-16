@@ -26,6 +26,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public bool EarningsCalculated { get; set; }
         public bool WithdrawnByEmployer { get; set; }
         public bool WithdrawnByCompliance { get; set; }
+        [Column(TypeName = "nvarchar(126)")]
         public string CourseName { get; set; }
         public DateTime? EmploymentStartDate { get; set; }
         [Column(TypeName = "nvarchar(50)")]

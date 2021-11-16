@@ -29,9 +29,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
-            var regexHelper = new RegexHelper();
-            _context.Replace(regexHelper);
-            _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper, regexHelper));
+            _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
             _context.Replace(new RandomDataGenerator());
             _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
             _context.Replace(new ScreenShotTitleGenerator(0));

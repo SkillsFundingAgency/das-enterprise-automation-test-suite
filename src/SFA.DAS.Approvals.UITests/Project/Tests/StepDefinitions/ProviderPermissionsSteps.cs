@@ -1,13 +1,11 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -45,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);
 
-            _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
+            _providerLoginUser = new ProviderLoginUser { UserId = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]
@@ -88,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private bool CanChooseAnEmployer() => _providerHomePage.GotoChooseAnEmployerNonLevyPage().CanChooseAnEmployer();
+        private bool CanChooseAnEmployer() => _providerHomePage.GotoSelectJourneyPage().SelectOptionCreateNewCohort().CanChooseAnEmployer();
 
         private bool CreateCohortPermissionLinkIsDisplayed()
         {

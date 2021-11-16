@@ -28,5 +28,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
                 DeleteTrainingProvider();
             }
         }
+        [BeforeScenario(Order = 35)]
+        public void ClearDownTrainingProviderFromRegister()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("rpadoutcomeappeals01"))
+            {
+                DeleteTrainingProvider();
+            }
+        }
     }
 }

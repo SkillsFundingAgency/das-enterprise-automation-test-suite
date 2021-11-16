@@ -79,16 +79,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AuthTests
         [NUnit.Framework.CategoryAttribute("authtests")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest")]
+        [NUnit.Framework.CategoryAttribute("ignoreintest2")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
+        [NUnit.Framework.CategoryAttribute("ignoreindemo")]
         public virtual void RE_EAN_AUTH_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
         {
             string[] tagsOfScenario = new string[] {
                     "authtests",
                     "regression",
-                    "registration"};
+                    "registration",
+                    "ignoreintest",
+                    "ignoreintest2",
+                    "ignoreinpp",
+                    "ignoreindemo"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EAN_AUTH_01_Verify Login for Existing Levy Account and Navigation to Saved fav" +
                     "ourites, Help and all Settings pages", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,16 +116,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 11
  testRunner.When("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 12
  testRunner.Then("Employer is able to navigate to all the link under Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 13
  testRunner.And("a valid user can not access different account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 14
  testRunner.And("an unauthorised user can not access the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

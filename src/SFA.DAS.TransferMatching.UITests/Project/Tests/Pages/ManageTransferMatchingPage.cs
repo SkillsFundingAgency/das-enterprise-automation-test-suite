@@ -13,6 +13,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
 
+        private By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
+
         public ManageTransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
 
         public PledgeAndTransferYourLevyFundsPage GotoCreateTransfersPledgePage()
@@ -27,6 +29,20 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new MyTransferPledgesPage(_context);
         }
 
+        public FindABusinessPage GoToFindABusinessPage()
+        {
+            formCompletionHelper.Click(ApplyForTransferOppurtunitySelector);
+            return new FindABusinessPage(_context);
+        }
+
+        public MyApplicationsPage ViewApplicationsIhaveSubmitted()
+        {
+            formCompletionHelper.ClickLinkByText("View applications I've submitted");
+            return new MyApplicationsPage(_context);
+        }
+
         public bool CanCreateTransferPledge() => pageInteractionHelper.IsElementDisplayed(CreateTransferPledgeSelector);
+
+        public bool CanApplyForTransferOppurtunity() => pageInteractionHelper.IsElementDisplayed(ApplyForTransferOppurtunitySelector);
     }
 }

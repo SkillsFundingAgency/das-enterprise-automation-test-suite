@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class TransactionCompletePage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "You have confirmed your apprenticeship details";
-
         protected By TrainingName => By.CssSelector(".govuk-panel__body");
 
         public TransactionCompletePage(ScenarioContext context) : base(context) { }

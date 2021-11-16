@@ -2,9 +2,9 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -25,8 +25,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             _oldProviderLogin = context.GetProviderConfig<ProviderConfig>();
-            _newProviderLoginDetails = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
-            _oldProviderLoginDetails = new ProviderLoginUser { Username = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
+            _newProviderLoginDetails = new ProviderLoginUser { UserId = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
+            _oldProviderLoginDetails = new ProviderLoginUser { UserId = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
  
@@ -72,17 +72,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
+            SelectViewCurrentApprenticeDetails();
         }
 
         [Then(@"Employer can only edit start date, end date and Price on the new record")]
         public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
         {
-            new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
+            var editApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
                 .SelectApprentices("LIVE")
                 .ClickEditApprenticeDetailsLink();
 
-            ValidateOnlyEditableApprenticeDetails();
+            ValidateOnlyEditableApprenticeDetails(editApprenticePage);
         }
 
         [When(@"new Provider sends the cohort back to employer to review")]
@@ -159,12 +159,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {                  
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
               
-            bool CoELinkDisplayed = new ProviderManageYourApprenticesPage(_context, true)
-                                            .SelectViewCurrentApprenticeDetails()
-                                            .IsCoELinkDisplayed();
-
-            Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider after successful CoP");
+            Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }
+
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
 
         private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -191,21 +189,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
 
-            var EditBoxOnApprenticeDetailsPage = apprenticeDetailsPage
+            var editApprenticePage = apprenticeDetailsPage
                                                     .ClickReviewChangesLink()
                                                     .ClickReviewTheApprenticeDetailsToUpdateLink()
-                                                    .SelectEditApprentice()
-                                                    .GetAllEditableBoxes();
+                                                    .SelectEditApprentice();
 
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count == 6, "validate that cohort is editable on View apprentice details page");            
+            ValidateOnlyEditableApprenticeDetails(editApprenticePage);     
         }
 
-        private void ValidateOnlyEditableApprenticeDetails()
+        private void ValidateOnlyEditableApprenticeDetails(EditApprenticePage editApprenticePage)
         {
-            EditApprenticePage editApprenticePage = new EditApprenticePage(_context);
-            var EditApprenticeDetails = editApprenticePage.GetAllEditableBoxes();
-
-            Assert.IsTrue(EditApprenticeDetails.Count == 6, "validate that cohort is editable on View apprentice details page");
+            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == 6, "validate that cohort is editable on View apprentice details page");
         }
     }
 }

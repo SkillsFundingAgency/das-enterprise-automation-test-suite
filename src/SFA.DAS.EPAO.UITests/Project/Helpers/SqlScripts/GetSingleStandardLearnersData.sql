@@ -22,7 +22,7 @@ LEFT JOIN ( SELECT COUNT(*) options, [StandardUId] from [Standardoptions] GROUP 
 learner
 AS
 (
-select count (StdCode) OVER (PARTITION BY uln, GivenNames, FamilyName) multi, uln, stdcode, familyname, GivenNames from ilrs
+select count (StdCode) OVER (PARTITION BY uln, GivenNames, FamilyName) multi, uln, stdcode, familyname, GivenNames, VersionConfirmed, CourseOption from dbo.Learner
 )
 SELECT TOP 1
 learner.uln, learner.stdcode, StandardName, GivenNames, familyname FROM StandardsList
@@ -35,9 +35,14 @@ AND Has_options = __HasOptions__
 AND multi = 1           
 AND ce1.id IS NULL
 AND learner.ULN not in (__InUseUln__)
-and learner.uln is not null and GivenNames is not null and FamilyName is not null order by Newid() desc
+and learner.uln is not null and GivenNames is not null and FamilyName is not null 
+AND (CASE WHEN learner.VersionConfirmed = 1 THEN 1 ELSE 0 END) = __VersionConfirmed__   
+AND (CASE WHEN ISNULL(learner.CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionSet__ 
+order by Newid() desc
 
 -- set __Isactivestandard__ to 1 for active standards, 0 for inactive standards
 -- set __HasVersions__ to 1 for standards with versions, 0 for standards with just one version, "1.0"
 -- set __HasOptions__ to 1 for standards with options, 0 for standards without options
 -- set to ce1.id "IS NULL" to get learner(s) without certificates, or "IS NOT NULL" to get learner(s) with certificate
+-- set __VersionConfirmed__ to 1 to indicte the learner data came from Approvals 
+-- set __OptionSet__ to indicte the option is already set from Approvalsv
