@@ -29,13 +29,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
         {
-            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBannerContent), "CoC notification banner is displayed");
+            Assert.AreEqual(false, pageInteractionHelper.IsElementDisplayed(NotificationBanner), "CoC notification banner is displayed");
             return this;
         }
 
-        public bool IsCoCNotificationDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBannerContent);
+        public bool IsCoCNotificationDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
 
-        private ApprenticeOverviewPage VerifyCocNotification(string expected) { VerifyPage(NotificationBannerContent, expected); return this; }
+        private ApprenticeOverviewPage VerifyCocNotification(string expected) { VerifyPage(NotificationBanner, expected); return this; }
 
         private string GetConfirmationStatus(string section) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(section, Status, AppStatusTableIdentifier, AppStatusRowIdentifier));
     }

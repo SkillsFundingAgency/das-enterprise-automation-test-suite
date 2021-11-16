@@ -21,8 +21,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         #endregion
 
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
+        protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
-        protected By NotificationBannerContent => By.CssSelector(".govuk-notification-banner");
+        protected By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
         protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-l");
         protected By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
         protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
@@ -70,7 +71,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage NavigateToHomePageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HomeTopNavigationLink);
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(_context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromTopNavigationLink()
