@@ -24,7 +24,15 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
+            var regConfig = _configSection.GetConfigSection<RegistrationConfig>();
+
+            var listoforg = ListOfOrganisation();
+
+            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count - 1);
+
+            regConfig.RE_OrganisationName = listoforg[randomvalue];
+
+            _context.SetRegistrationConfig(regConfig);
 
             _context.SetEasLoginUser(new List<EasAccountUser>() 
             {
@@ -37,5 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
+
+        private List<string> ListOfOrganisation() => new List<string>() { "ABCD BUILDING SERVICE LTD", "COVENTRY AIRPORT LIMITED", "LOAD ESTATES LIMITED" };
     }
 }

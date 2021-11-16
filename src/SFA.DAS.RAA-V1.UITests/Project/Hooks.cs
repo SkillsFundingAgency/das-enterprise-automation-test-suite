@@ -21,13 +21,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var random = _context.Get<RandomDataGenerator>();
-            
-            _context.Set(new RAAV1DataHelper(random));
+            _context.Set(new RAAV1DataHelper());
 
-            _context.Set(new RAAV1RegistrationDataHelper(random));
+            _context.Set(new RAAV1RegistrationDataHelper());
 
-            _context.Set(new RAAV1ManagedataHelper(random));
+            _context.Set(new RAAV1ManagedataHelper());
 
             _objectContext.SetFAARestart();
 

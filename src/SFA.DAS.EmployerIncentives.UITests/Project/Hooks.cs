@@ -25,7 +25,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         [BeforeScenario(Order = 41)]
         public void LoginToVRFService()
         {
-            _context.Set(new EIDataHelper(_context.Get<RandomDataGenerator>()));
+            _context.Set(new EIDataHelper());
 
             if (_context.ScenarioInfo.Tags.Contains("vrfservice"))
             {

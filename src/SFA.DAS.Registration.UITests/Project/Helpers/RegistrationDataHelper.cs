@@ -5,10 +5,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper : RandomElementHelper
     {
-        public RegistrationDataHelper(string emailaddress, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public RegistrationDataHelper(string emailaddress, string password, string organisationName) : base()
         {
             RandomEmail = emailaddress;
-            AnotherRandomEmail = randomDataGenerator.GenerateRandomEmail();
+            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail();
             AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
@@ -41,8 +41,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Address => "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY";
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
         public string InvalidAornNumber => $"A{GetDateTimeValue()}";
-        private string RandomAlphaNumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericString(length);
-        private string RandomNumericString(int length) => randomDataGenerator.GenerateRandomNumber(length);
+        private string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
+        private string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }
