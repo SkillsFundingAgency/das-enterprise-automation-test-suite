@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
@@ -17,22 +18,36 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             _context = context;
             VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            if (verifyConfirmYourApprenticeLink) VerifyPage(ConfirmYourApprenticeshipNowLink);
+            if (verifyConfirmYourApprenticeLink)
+            {
+                VerifyPage(ConfirmYourApprenticeshipNowLink);
+                VerifyPage(HomeTopNavigationLink);
+                VerifyPage(CMADTopNavigationLink);
+                VerifyPage(HelpTopNavigationLink);
+            }
+            else
+            {
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(HomeTopNavigationLink), "Home Top navigation link is present when it should not for a Negative match Acccount");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CMADTopNavigationLink), "CMAD Top navigation link is present when it should not for a Negative match Acccount");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(HelpTopNavigationLink), "Help Top navigation link is present when it should not for a Negative match Acccount");
+            }
         }
 
-        public bool VerifyNotificationBannerIsNotDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
-
-        public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
-        {
-            VerifyNotificationBanner("There seems to be a problem, we cannot find your apprenticeship.");
-            formCompletionHelper.ClickLinkByText("account details");
-            return new ChangeYourPersonalDetailsPage(_context);
-        }
+        public bool VerifyNotificationBannerIsNotDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBannerContent);
 
         public ApprenticeHomePage VerifySucessNotification()
         {
-            VerifyNotificationBanner("You have created an account and we have found your apprenticeship.");
+            VerifyNotificationBannerHeader("Success");
+            VerifyNotificationBannerContent("You have created an account and we have found your apprenticeship.");
             return this;
+        }
+
+        public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
+        {
+            VerifyNotificationBannerHeader("There seems to be a problem, we cannot find your apprenticeship.");
+            VerifyNotificationBannerContent("Check your name and date of birth details. If they are incorrect, please update your details. ");
+            formCompletionHelper.ClickLinkByText("update your details");
+            return new ChangeYourPersonalDetailsPage(_context);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()

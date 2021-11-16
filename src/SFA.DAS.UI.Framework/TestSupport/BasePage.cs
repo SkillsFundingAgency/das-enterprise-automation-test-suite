@@ -32,7 +32,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By AcceptCookieButton { get; }
 
         protected virtual bool CaptureUrl => true;
-        
+
         protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -46,7 +46,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
 
-            if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
+            if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
         }
 
         protected string GetUrl() => _pageInteractionHelper.GetUrl();
@@ -88,9 +88,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void AcceptCookies()
         {
             if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-            {
                 _formCompletionHelper.Click(AcceptCookieButton);
-            }
         }
     }
 }
