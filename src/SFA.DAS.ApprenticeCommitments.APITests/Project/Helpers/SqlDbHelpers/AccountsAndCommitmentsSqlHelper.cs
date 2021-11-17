@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public (string legalName, string tradingName) GetProviderData(long providerId)
         {
-            var providerData = GetData($"select LegalName, TradingName from Organisations where UKPRN = {providerId}", _dbConfig.RoatpDatabaseConnectionString, 2);
+            var providerData = GetData($"select LegalName, TradingName from Organisations where UKPRN = {providerId}", _dbConfig.RoatpDatabaseConnectionString);
 
             return (providerData[0], providerData[1]);
         }
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "WHERE App.IsApproved = 1 AND C.IsDeleted = 0 AND C.AccountLegalEntityId IS NOT NULL AND ALE.Deleted IS NULL AND LEN(App.TrainingCode) = 3 AND App.Email IS NULL " +
                 "ORDER BY NEWID()";
 
-            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString, 11);
+            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString);
 
             var accountid = apprenticeData[0];
             var apprenticeshipid = apprenticeData[1];
