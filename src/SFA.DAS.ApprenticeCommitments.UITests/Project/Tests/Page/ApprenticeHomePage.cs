@@ -17,21 +17,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             _context = context;
             VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            if (verifyConfirmYourApprenticeLink) VerifyPage(ConfirmYourApprenticeshipNowLink);
+            if(verifyConfirmYourApprenticeLink) VerifySucessNotification();
         }
 
         public bool VerifyNotificationBannerIsNotDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
 
-        public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
-        {
-            VerifyNotificationBanner("There seems to be a problem, we cannot find your apprenticeship.");
-            formCompletionHelper.ClickLinkByText("account details");
-            return new ChangeYourPersonalDetailsPage(_context);
-        }
-
         public ApprenticeHomePage VerifySucessNotification()
         {
-            VerifyNotificationBanner("You have created an account and we have found your apprenticeship.");
+            VerifyNotificationBannerHeader("Success");
+            VerifyNotificationBannerContent("You have created an account and we have found your apprenticeship.");
+            VerifyPage(ConfirmYourApprenticeshipNowLink);
             return this;
         }
 
