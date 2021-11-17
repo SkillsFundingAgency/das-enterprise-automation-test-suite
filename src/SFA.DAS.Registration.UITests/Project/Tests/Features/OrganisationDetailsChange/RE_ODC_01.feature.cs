@@ -79,16 +79,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("donotuserandomorgname")]
+        [NUnit.Framework.CategoryAttribute("reodc01")]
         public virtual void RE_ODC_01_CreateAnEmployerAccountWithCompanyTypeOrgAndVerifyOrgNameChangeScenario()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "addnonlevyfunds"};
+                    "addnonlevyfunds",
+                    "donotuserandomorgname",
+                    "reodc01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName cha" +
                     "nge scenario", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,26 +112,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.When("the Employer reviews Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 11
  testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
                         "ng These details are the same as those previously held", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 12
  testRunner.When("the Employer revisits the Agreement page during change in Organisation name scena" +
                         "rio", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 13
  testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
                         "ng We\'ve retrieved the most up-to-date details we could find for your organisati" +
                         "on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 14
  testRunner.And("continuing by choosing \'Update details\' option displays \'Details updated\' page sh" +
                         "owing You\'ve successfully updated your organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

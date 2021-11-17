@@ -6,6 +6,8 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using System.Linq;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
@@ -26,11 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var regConfig = _configSection.GetConfigSection<RegistrationConfig>();
 
-            var listoforg = ListOfOrganisation();
-
-            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count - 1);
-
-            regConfig.RE_OrganisationName = listoforg[randomvalue];
+            regConfig.RE_OrganisationName = RandomOrganisationNameHelper.GetOrganisationName(_context.ScenarioInfo.Tags.ToList());
 
             _context.SetRegistrationConfig(regConfig);
 
@@ -45,15 +43,5 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
-
-        private List<string> ListOfOrganisation() => new List<string>() 
-        { 
-            "SURREY LIMITED", "CROYDON LIMITED", "TWO LTD", "TWO A ENTERPRISES LIMITED", 
-            "THREE LTD", "FOUR ACE LIMITED", "FOUR ACRE CHEM LTD", "FOUR ACRE FIELD LTD", 
-            "FOUR ACRE SITE LTD","FIVE LIMITED", "FIVE A DAY LTD", "FIVE ACRE KOI SUPPLIES LTD", 
-            "FIVE ACRES LIMITED", "SIX LIMITED", "SIX ADRIAN SQUARE LIMITED", "SIX AND OUT LTD",
-            "SEVEN LIMITED", "SEVEN ACRES FARM LTD", "SEVEN AIR LIMITED", "SEVEN AND FOUR LIMITED",
-            "EIGHT ACCOUNTING LTD", "EIGHT AND FOUR LTD", "EIGHT BRANDS LIMITED", "NINE ALMINGTON LIMITED",
-            "NINE BLESSINGS LIMITED", "NEXT IQ LTD", "TEN ALEXANDER LIMITED", "TEN BAT LTD"};
     }
 }
