@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new ApprenticeHomePage UpdateApprenticeName()
         {
             base.UpdateApprenticeName();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(_context, false);
         }
 
         public new ApprenticeHomePage EnterValidApprenticeDetails(string firstName, string lastName)
