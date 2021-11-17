@@ -74,20 +74,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_EMPP_02 Check that Levy Paying Employer Selected appropriate content displayed" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("CA_EMP_02 Check that Levy Paying Employer Selected appropriate content displayed")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_EMPP_02CheckThatLevyPayingEmployerSelectedAppropriateContentDisplayed()
+        public virtual void CA_EMP_02CheckThatLevyPayingEmployerSelectedAppropriateContentDisplayed()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
                     "employer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMPP_02 Check that Levy Paying Employer Selected appropriate content displayed" +
-                    "", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMP_02 Check that Levy Paying Employer Selected appropriate content displayed", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
