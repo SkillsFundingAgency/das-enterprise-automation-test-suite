@@ -14,6 +14,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE ULN = '{uln}'");
         }
 
+        public void DeleteOrganisationStandardVersion()
+        {
+            ExecuteSqlCommand($"DELETE FROM [OrganisationStandardVersion] where OrganisationStandardId " +
+                $"in(select Id from OrganisationStandard where StandardCode = 128 And EndPointAssessorOrganisationId = 'EPA0008') And Version in (1.1)");
+        }
+
         public void ResetApplyUserOrganisationId(string applyUserEmail)
         {
             var organisationId = GetData($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
