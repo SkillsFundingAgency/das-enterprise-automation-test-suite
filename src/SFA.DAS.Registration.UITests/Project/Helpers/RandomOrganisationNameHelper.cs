@@ -19,24 +19,24 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public CharityTypeOrg GetCharityTypeOrg() => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity));
 
-        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg.Name).ToList());
+        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg?.Name).ToList());
 
         public string GetCompanyTypeOrganisationName(string existingOrgName) => GetRandomOrgName(ListOfCompanyTypeOrganisation().Where(x => x != existingOrgName).ToList());
 
         private string GetOrgName(OrgType orgType)
-            => _tags.Contains("donotuserandomorgname") ? GetScenarioSpecificOrgName() :
+            => _tags.Contains("donotuserandomorgname") ? GetScenarioSpecificOrgName(orgType) :
             orgType == OrgType.Company ? GetRandomCompanyTypeOrgName() :
             orgType == OrgType.PublicSector ? GetRandomPublicSectorTypeOrgName() : GetRandomCharityTypeOrgName();
 
-        private string GetScenarioSpecificOrgName()
+        private string GetScenarioSpecificOrgName(OrgType expOrgType)
         {
             var listofScenarioSpecificOrg = ListofScenarioSpecificOrg();
 
             var key = _tags.ToList().Where(x => listofScenarioSpecificOrg.Keys.ToList().Any(y => y == x)).ToList();
 
-            listofScenarioSpecificOrg.TryGetValue(key.SingleOrDefault(), out string OrgName);
+            listofScenarioSpecificOrg.TryGetValue(key.SingleOrDefault(), out List<(string orgName, OrgType orgtype)> value);
 
-            return OrgName;
+            return value.Any(x => x.orgtype == expOrgType) ? value.FirstOrDefault(x => x.orgtype == expOrgType).orgName : string.Empty;
         }
 
         private static string GetRandomCompanyTypeOrgName() => GetRandomOrgName(ListOfCompanyTypeOrganisation());
@@ -52,7 +52,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return listoforg[randomvalue];
         }
 
-        private static Dictionary<string, string> ListofScenarioSpecificOrg() => new Dictionary<string, string>() { { "reodc01", "COVENTRY AIRPORT LIMITED" } };
+        private static Dictionary<string, List<(string , OrgType)>> ListofScenarioSpecificOrg()
+        {
+            return new Dictionary<string, List<(string, OrgType)>>
+            {
+                { "reodc01", new List<(string, OrgType)>() { ("COVENTRY AIRPORT LIMITED", OrgType.Company) } }
+            };
+        }
 
         private static List<CharityTypeOrg> ListOfCharityTypeOrgOrganisation() => new List<CharityTypeOrg>
         {

@@ -5,11 +5,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper : RandomElementHelper
     {
-        private readonly RandomOrganisationNameHelper randomOrganisationNameHelper;
-
         public RegistrationDataHelper(string[] tags, string emailaddress, string password) : base()
         {
-            randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
+            var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail();
             AornNumber = $"A{GetDateTimeValue()}";
