@@ -9,30 +9,30 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
     public class RandomOrganisationNameHelper
     {
-        private readonly List<string> _tags;
+        private readonly string[] _tags;
 
-        public RandomOrganisationNameHelper(List<string> tags) => _tags = tags;
+        public RandomOrganisationNameHelper(string[] tags) => _tags = tags;
 
         public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company);
 
         public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector);
 
-        public CharityTypeOrg GetCharityTypeOrg() => GetRandomOrgName(ListOfCharityTypeOrgOrganisation());
+        public CharityTypeOrg GetCharityTypeOrg() => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity));
 
         public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg.Name).ToList());
 
         public string GetCompanyTypeOrganisationName(string existingOrgName) => GetRandomOrgName(ListOfCompanyTypeOrganisation().Where(x => x != existingOrgName).ToList());
 
         private string GetOrgName(OrgType orgType)
-        {
-            return _tags.Contains("donotuserandomorgname") ? GetScenarioSpecificOrgName(_tags) : orgType == OrgType.Company ? GetRandomCompanyTypeOrgName() : GetRandomPublicSectorTypeOrgName();
-        }
+            => _tags.Contains("donotuserandomorgname") ? GetScenarioSpecificOrgName() :
+            orgType == OrgType.Company ? GetRandomCompanyTypeOrgName() :
+            orgType == OrgType.PublicSector ? GetRandomPublicSectorTypeOrgName() : GetRandomCharityTypeOrgName();
 
-        private static string GetScenarioSpecificOrgName(List<string> tags)
+        private string GetScenarioSpecificOrgName()
         {
             var listofScenarioSpecificOrg = ListofScenarioSpecificOrg();
 
-            var key = tags.Where(x => listofScenarioSpecificOrg.Keys.ToList().Any(y => y == x)).ToList();
+            var key = _tags.ToList().Where(x => listofScenarioSpecificOrg.Keys.ToList().Any(y => y == x)).ToList();
 
             listofScenarioSpecificOrg.TryGetValue(key.SingleOrDefault(), out string OrgName);
 
@@ -42,6 +42,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private static string GetRandomCompanyTypeOrgName() => GetRandomOrgName(ListOfCompanyTypeOrganisation());
 
         private static string GetRandomPublicSectorTypeOrgName() => GetRandomOrgName(ListOfPublicSectorTypeOrganisation());
+
+        private static string GetRandomCharityTypeOrgName() => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Select(x => x.Name).ToList());
 
         private static T GetRandomOrgName<T>(List<T> listoforg)
         {

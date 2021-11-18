@@ -1,19 +1,15 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper : RandomElementHelper
     {
-        private readonly List<string> _tags;
         private readonly RandomOrganisationNameHelper randomOrganisationNameHelper;
 
         public RegistrationDataHelper(string[] tags, string emailaddress, string password) : base()
         {
-            _tags = tags.ToList();
-            randomOrganisationNameHelper = new RandomOrganisationNameHelper(_tags);
+            randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail();
             AornNumber = $"A{GetDateTimeValue()}";
