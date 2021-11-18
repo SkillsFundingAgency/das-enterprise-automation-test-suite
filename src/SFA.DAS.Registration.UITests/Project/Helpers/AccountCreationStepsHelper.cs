@@ -95,15 +95,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private string GetOrgName(OrgType orgType)
         {
-            switch (orgType)
+            return orgType switch
             {
-                case OrgType.Company:
-                    return _registrationDataHelper.CompanyTypeOrg;
-                case OrgType.PublicSector:
-                    return _registrationDataHelper.PublicSectorTypeOrg;
-                default:
-                    return _registrationDataHelper.CharityTypeOrg1Name;
-            }
+                OrgType.Company => _registrationDataHelper.CompanyTypeOrg,
+                OrgType.PublicSector => _registrationDataHelper.PublicSectorTypeOrg,
+                _ => _registrationDataHelper.CharityTypeOrg1Name,
+            };
         }
     }
 }

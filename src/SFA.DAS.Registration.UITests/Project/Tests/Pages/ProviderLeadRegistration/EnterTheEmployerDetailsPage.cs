@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         public EnterTheEmployerDetailsPage(ScenarioContext context): base(context)
         {
             _context = context;
-            OrganisationName = config.RE_OrganisationName;
+            OrganisationName = registrationDataHelper.CompanyTypeOrg;
             FirstName = registrationDataHelper.FirstName;
             LastName = registrationDataHelper.LastName;
             Email = objectContext.GetRegisteredEmail();

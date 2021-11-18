@@ -6,8 +6,6 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using System.Linq;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
@@ -26,11 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            var regConfig = _configSection.GetConfigSection<RegistrationConfig>();
-
-            regConfig.RE_OrganisationName = RandomOrganisationNameHelper.GetOrganisationName(_context.ScenarioInfo.Tags.ToList());
-
-            _context.SetRegistrationConfig(regConfig);
+            _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
 
             _context.SetEasLoginUser(new List<EasAccountUser>() 
             {

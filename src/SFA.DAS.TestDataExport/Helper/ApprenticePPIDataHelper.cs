@@ -13,7 +13,9 @@ namespace SFA.DAS.TestDataExport.Helper
         public ApprenticePPIDataHelper(string[] tags)
         {
             _tags = tags;
+
             bool isPerfTest = tags.Contains("perftest");
+
             _isApprenticeCommitments = tags.Contains("apprenticecommitments");
 
             var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
