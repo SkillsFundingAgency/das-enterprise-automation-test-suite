@@ -15,18 +15,27 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company);
 
+        public string GetCompanyTypeOrganisationName(string existingOrgName) => GetOrgName(OrgType.Company2, existingOrgName);
+
         public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector);
 
         public CharityTypeOrg GetCharityTypeOrg() => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity));
 
-        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg?.Name).ToList());
-
-        public string GetCompanyTypeOrganisationName(string existingOrgName) => GetRandomOrgName(ListOfCompanyTypeOrganisation().Where(x => x != existingOrgName).ToList());
+        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity2, existingCharityTypeOrg?.Name));
 
         private string GetOrgName(OrgType orgType)
-            => _tags.Contains("donotuserandomorgname") ? GetScenarioSpecificOrgName(orgType) :
-            orgType == OrgType.Company ? GetRandomCompanyTypeOrgName() :
-            orgType == OrgType.PublicSector ? GetRandomPublicSectorTypeOrgName() : GetRandomCharityTypeOrgName();
+            => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) :
+            orgType == OrgType.Company ? GetRandomOrgName(ListOfCompanyTypeOrganisation()) :
+            orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation()) :
+            GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Select(x => x.Name).ToList());
+
+        private string GetOrgName(OrgType orgType, string existingOrgName)
+            => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) :
+            orgType == OrgType.Company ? GetRandomOrgName(ListOfCompanyTypeOrganisation().Where(x => x != existingOrgName).ToList()) :
+            orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation().Where(x => x != existingOrgName).ToList()) :
+            GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingOrgName).ToList())?.Name;
+
+        private bool DoNotUseRandomOrgname() => _tags.Contains("donotuserandomorgname");
 
         private string GetScenarioSpecificOrgName(OrgType expOrgType)
         {
@@ -34,16 +43,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var key = _tags.ToList().Where(x => listofScenarioSpecificOrg.Keys.ToList().Any(y => y == x)).ToList();
 
-            listofScenarioSpecificOrg.TryGetValue(key.SingleOrDefault(), out List<(string orgName, OrgType orgtype)> value);
+            listofScenarioSpecificOrg.TryGetValue(key.SingleOrDefault(), out Dictionary<OrgType, string> value);
 
-            return value.Any(x => x.orgtype == expOrgType) ? value.FirstOrDefault(x => x.orgtype == expOrgType).orgName : string.Empty;
+            value.TryGetValue(expOrgType, out string orgName);
+
+            return orgName;
         }
-
-        private static string GetRandomCompanyTypeOrgName() => GetRandomOrgName(ListOfCompanyTypeOrganisation());
-
-        private static string GetRandomPublicSectorTypeOrgName() => GetRandomOrgName(ListOfPublicSectorTypeOrganisation());
-
-        private static string GetRandomCharityTypeOrgName() => GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Select(x => x.Name).ToList());
 
         private static T GetRandomOrgName<T>(List<T> listoforg)
         {
@@ -52,11 +57,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return listoforg[randomvalue];
         }
 
-        private static Dictionary<string, List<(string , OrgType)>> ListofScenarioSpecificOrg()
+        private static Dictionary<string, Dictionary<OrgType, string>> ListofScenarioSpecificOrg()
         {
-            return new Dictionary<string, List<(string, OrgType)>>
+            return new Dictionary<string, Dictionary<OrgType, string>>
             {
-                { "reodc01", new List<(string, OrgType)>() { ("COVENTRY AIRPORT LIMITED", OrgType.Company) } }
+                { "reodc01", new Dictionary<OrgType, string>() { { OrgType.Company, "COVENTRY AIRPORT LIMITED" } } }
             };
         }
 
