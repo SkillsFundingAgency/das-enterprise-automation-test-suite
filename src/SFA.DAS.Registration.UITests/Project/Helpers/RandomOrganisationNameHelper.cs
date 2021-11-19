@@ -52,7 +52,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private static T GetRandomOrgName<T>(List<T> listoforg)
         {
-            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count - 1);
+            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count);
 
             return listoforg[randomvalue];
         }
