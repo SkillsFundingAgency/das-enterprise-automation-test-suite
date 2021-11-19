@@ -171,11 +171,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
-        {
-            return confirmRolesAndResponsibilitiesPage.VerifyRolesYourResponsibilitiesTab()
-                .VerifyRolesYourEmployerTab()
-                .VerifyRolesYourTrainingProviderTab();
-        }
+            => confirmRolesAndResponsibilitiesPage.VerifySubSectionHeaders();
 
         private void PopulateExpectedApprenticeshipDetails()
         {
