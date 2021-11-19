@@ -61,10 +61,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
         }
 
-        public ConfirmRolesAndResponsibilitiesPage GoToConfirmRolesAndResponsibilitiesPage()
+        public ConfirmRolesAndResponsibilitiesPage1of3 GoToConfirmRolesAndResponsibilitiesPage()
         {
             ClickRolesAndResponsibilitiesLink();
-            return new ConfirmRolesAndResponsibilitiesPage(_context);
+            return new ConfirmRolesAndResponsibilitiesPage1of3(_context);
         }
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage GoToAlreadyConfirmedRolesAndResponsibilitiesPage()

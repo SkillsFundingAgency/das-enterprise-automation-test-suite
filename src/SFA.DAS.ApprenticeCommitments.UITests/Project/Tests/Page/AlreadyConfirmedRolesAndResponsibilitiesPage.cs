@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedRolesAndResponsibilitiesPage : ConfirmYourDetailsPage
     {
-        private ScenarioContext _context;
+        private readonly ScenarioContext _context;
         protected override string PageTitle => SectionHelper.Section5;
         private By SubHeader1 => By.XPath("//h2[@class='govuk-heading-m' and text()='Your responsibilities as an apprentice']");
         private By SubHeader2 => By.XPath("//h2[@class='govuk-heading-m' and text()='Your employer’s responsibilities']");
