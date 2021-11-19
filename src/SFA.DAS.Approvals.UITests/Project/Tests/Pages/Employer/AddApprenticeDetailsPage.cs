@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -102,8 +103,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
                 apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomLastName();
+                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
                 apprenticeDataHelper.TrainingPrice = "7500";
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);

@@ -4,10 +4,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
     public class CampaignsDataHelper : RandomElementHelper
     {
-        public CampaignsDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public CampaignsDataHelper() : base()
         {
-            Firstname = randomDataGenerator.GenerateRandomAlphabeticString(6);
-            Lastname = randomDataGenerator.GenerateRandomAlphabeticString(9);
+            Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
+            Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
             Email = $"{Firstname}.{Lastname}@example.com";
         }

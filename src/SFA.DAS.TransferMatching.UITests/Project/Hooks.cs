@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project
@@ -26,7 +25,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            _context.Set(new TMDataHelper(_context.Get<RandomDataGenerator>()));
+            _context.Set(new TMDataHelper());
 
             _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_dbConfig);
 

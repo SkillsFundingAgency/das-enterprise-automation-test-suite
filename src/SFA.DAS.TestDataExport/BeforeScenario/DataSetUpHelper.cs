@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataExport.BeforeScenario
@@ -12,12 +11,6 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
         public DataSetUpHelper(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 12)]
-        public void SetUpHelpers()
-        {
-            if (_context.TryGetValue(out RandomDataGenerator random))
-            {
-                _context.Set(new ApprenticePPIDataHelper(random, _context.ScenarioInfo.Tags));
-            }
-        }
+        public void SetUpHelpers() => _context.Set(new ApprenticePPIDataHelper(_context.ScenarioInfo.Tags));
     }
 }

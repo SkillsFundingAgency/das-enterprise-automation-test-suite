@@ -12,17 +12,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private const string WholeNumbers = "123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
 
-        public string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
+        public static string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 
-        public string GenerateRandomNumber(int length) => GenerateRandomString(Numbers, length);
+        public static string GenerateRandomNumber(int length) => GenerateRandomString(Numbers, length);
 
-        public string GenerateRandomWholeNumber(int length) => GenerateRandomString(WholeNumbers, length);
+        public static string GenerateRandomWholeNumber(int length) => GenerateRandomString(WholeNumbers, length);
 
-        public string GenerateRandomAlphanumericString(int length) => GenerateRandomString(Alphabets + Numbers, length);
+        public static string GenerateRandomAlphanumericString(int length) => GenerateRandomString(Alphabets + Numbers, length);
 
-        public string GenerateRandomAlphanumericStringWithSpecialCharacters(int length) => GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
+        public static string GenerateRandomAlphanumericStringWithSpecialCharacters(int length) => GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
 
-        public string GenerateRandomPassword(int noOfUppercaseLetters, int noOfLowerCaseLetters, int noOfNumbers, int noOfSpecialChars)
+        public static string GenerateRandomPassword(int noOfUppercaseLetters, int noOfLowerCaseLetters, int noOfNumbers, int noOfSpecialChars)
         {
             var randomString = GenerateRandomString(LowerCaseAlphabets, noOfUppercaseLetters);
             randomString += GenerateRandomString(UpperCaseAlphabets, noOfLowerCaseLetters);
@@ -31,22 +31,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return randomString;
         }
 
-        public string GenerateRandomEmail() => GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + "@example.com";
+        public static string GenerateRandomEmail() => GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + "@example.com";
 
-        public int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
+        public static int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
 
-        public int GenerateRandomMonth() => GenerateRandomNumberBetweenTwoValues(1, 13);
+        public static int GenerateRandomMonth() => GenerateRandomNumberBetweenTwoValues(1, 13);
 
-        public int GenerateRandomNumberBetweenTwoValues(int min, int max) => new Random().Next(min, max);
+        public static int GenerateRandomNumberBetweenTwoValues(int min, int max) => new Random().Next(min, max);
 
-        public int GenerateRandomDobYear()
+        public static int GenerateRandomDobYear()
         {
             int yearsToAdd = GenerateRandomNumberBetweenTwoValues(-30, -18);
             DateTime date = DateTime.Now.AddYears(yearsToAdd);
             return date.Year;
         }
 
-        public String GenerateRandomUln()
+        public static string GenerateRandomUln()
         {
             String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString()
                 + DateTime.Now.ToString("ssffffff");
@@ -62,7 +62,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             throw new Exception("Unable to generate ULN");
         }
 
-        public string GenerateRandomFirstName()
+        public static string GenerateRandomFirstName()
         {
             var names = new string[] { "Oliver", "George", "Noah", "Arthur", "Harry", "Jack", "Charlie", "Henry",
             "Michael", "Ethan", "Thomas", "Freddie", "William", "James", "Edward", "Scarlett", "Daisy", "Phoebe",
@@ -71,7 +71,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return names[new Random().Next(names.Length)];
         }
 
-        public string GenerateRandomLastName()
+        public static string GenerateRandomLastName()
         {
             var names = new string[] { "Cox", "Jones", "Taylor", "Williams", "Brown", "White", "Harris", "Martin",
             "Davies", "Wilson", "Cooper", "Evans", "King", "Baker", "Green", "Wright", "Clark", "Webb",
@@ -80,7 +80,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return names[new Random().Next(names.Length)];
         }
 
-        private bool IsValidCheckSum(string uln)
+        private static bool IsValidCheckSum(string uln)
         {
             var ulnCheckArray = uln.ToCharArray()
                                     .Select(c => long.Parse(c.ToString()))
@@ -97,7 +97,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return checkSumValue % 11 == 10;
         }
 
-        private string GenerateRandomString(string characters, int length)
+        private static string GenerateRandomString(string characters, int length)
         {
             var random = new Random();
             return new string(Enumerable.Repeat(characters, length)

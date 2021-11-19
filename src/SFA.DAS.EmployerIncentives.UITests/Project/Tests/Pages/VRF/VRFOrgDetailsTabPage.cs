@@ -48,7 +48,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         private void AddOtherOrgDetails()
         {
-            formCompletionHelper.EnterText(OrganisationName, registrationConfig.RE_OrganisationName);
+            formCompletionHelper.EnterText(OrganisationName, registrationDataHelper.CompanyTypeOrg);
             formCompletionHelper.EnterText(TelephoneNumber, eIDataHelper.TelephoneNumber);
             SelectOptionByText("provider_supplier_have_company_number", "No");
             SelectOptionByText("provider_supplier_have_vat_number", "No");

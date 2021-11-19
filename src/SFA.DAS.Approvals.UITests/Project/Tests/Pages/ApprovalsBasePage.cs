@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -18,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly RegistrationConfig registrationConfig;
         protected readonly ApprovalsConfig approvalsConfig;
         protected readonly ProviderConfig providerConfig;
         protected readonly ChangeOfPartyConfig changeOfPartyConfig;
@@ -27,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
         protected readonly EditedApprenticeCourseDataHelper editedApprenticeCourseDataHelper; 
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
+        protected readonly RegistrationDataHelper registrationDataHelper; 
         protected readonly RandomDataGenerator randomDataGenerator;
         protected readonly JavaScriptHelper javaScriptHelper;
         #endregion
@@ -38,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
+            registrationDataHelper = context.Get<RegistrationDataHelper>();
             providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();

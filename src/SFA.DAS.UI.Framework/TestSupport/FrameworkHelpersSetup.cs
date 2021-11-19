@@ -7,13 +7,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public class FrameworkHelpersSetup
     {
         private readonly ScenarioContext _context;
-        private readonly FrameworkConfig _config;
-
-        public FrameworkHelpersSetup(ScenarioContext context)
-        {
-            _context = context;
-            _config = context.Get<FrameworkConfig>();
-        }
+        
+        public FrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
         public void SetupFrameworkHelpers()
         {
@@ -23,7 +18,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var javaScriptHelper = new JavaScriptHelper(webDriver, iFrameHelper);
             _context.Replace(javaScriptHelper);
             _context.Replace(new TabHelper(webDriver));
-            var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _config.TimeOutConfig);
+            var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
             var retryHelper = new RetryHelper(webDriver, _context.ScenarioInfo);
             var pageInteractionHelper = new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
