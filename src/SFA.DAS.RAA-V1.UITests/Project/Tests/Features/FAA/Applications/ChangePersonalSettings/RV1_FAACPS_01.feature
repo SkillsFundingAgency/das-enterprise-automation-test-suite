@@ -7,7 +7,7 @@ Background:
 @faa
 @apprenticeshipvacancy
 @regression
-@FAALoginNewCredentials
+@faaloginwithnewcredentials
 Scenario: RV1_FAACPS_01 - Changing candidate details in FAA and checking the changes in Recruit and Manage
 	Given the apprenticeship vacancy is Live in Recruit with an application
 	Then the Provider is able to search and select a Candidate

@@ -89,7 +89,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
         [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
+        [NUnit.Framework.CategoryAttribute("faaloginwithnewcredentials")]
         public virtual void RV1_FAACPS_01_ChangingCandidateDetailsInFAAAndCheckingTheChangesInRecruitAndManage()
         {
             string[] tagsOfScenario = new string[] {
@@ -97,7 +97,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
                     "faa",
                     "apprenticeshipvacancy",
                     "regression",
-                    "FAALoginNewCredentials"};
+                    "faaloginwithnewcredentials"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAACPS_01 - Changing candidate details in FAA and checking the changes in Rec" +
                     "ruit and Manage", null, tagsOfScenario, argumentsOfScenario);
