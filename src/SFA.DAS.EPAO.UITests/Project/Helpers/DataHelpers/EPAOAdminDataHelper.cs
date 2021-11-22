@@ -1,12 +1,11 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
     public class EPAOAdminDataHelper : EPAODataHelper
     {
-        public EPAOAdminDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public EPAOAdminDataHelper() : base()
         {
             FirstName = GetRandomAlphabeticString(6);
             LastName = GetRandomAlphabeticString(6);

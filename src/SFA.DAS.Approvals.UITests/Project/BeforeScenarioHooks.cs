@@ -30,8 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var random = _context.Get<RandomDataGenerator>();
-
             var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
                                    _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
@@ -43,15 +41,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            _datahelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, random, commitmentsdatahelper);
+            _datahelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, commitmentsdatahelper);
 
             _context.Set(_datahelper);
 
-            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
+            _context.Set(new EditedApprenticeDataHelper(_datahelper));
 
             var selectstandardcourse = _context.ScenarioInfo.Tags.Contains("selectstandardcourse");
 
-            var randomCoursehelper = new RandomCourseDataHelper(random, selectstandardcourse);
+            var randomCoursehelper = new RandomCourseDataHelper(selectstandardcourse);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
@@ -63,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new AgreementIdSqlHelper(_dbConfig));
 
-            _context.Set(new PublicSectorReportingDataHelper(random));
+            _context.Set(new PublicSectorReportingDataHelper());
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 

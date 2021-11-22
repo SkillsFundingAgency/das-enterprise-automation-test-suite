@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpAdminDataHelpers : RandomElementHelper
     {
-        public RoatpAdminDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
+        public RoatpAdminDataHelpers() : base() { }
 
         public DateTime Dob => DateTime.Now.AddYears(-45);
 

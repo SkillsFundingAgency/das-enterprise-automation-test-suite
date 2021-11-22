@@ -4,7 +4,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
     public class EPAOApplyStandardDataHelper : EPAODataHelper
     {
-        public EPAOApplyStandardDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
+        public EPAOApplyStandardDataHelper() : base() { }
 
         public string ApplyStandardName => "Advanced butcher";
 
@@ -12,8 +12,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string StandardAssessorOrganisationEpaoId => "EPA0002";
 
-        public string GenerateRandomAlphanumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericString(length);
+        public string GenerateRandomAlphanumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
 
-        public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
+        public string GenerateRandomWholeNumber(int length) => RandomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }

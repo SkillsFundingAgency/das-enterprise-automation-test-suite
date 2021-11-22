@@ -6,12 +6,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
     public class TMDataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public TMDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public TMDataHelper() : base()
         {
-            _randomDataGenerator = randomDataGenerator;
-            
             var randomCourse = GetRandomElementFromListOfElements(Courses);
             Course = randomCourse.Course;
             Cost = randomCourse.Cost;
@@ -19,7 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             CourseStartDate = DateTime.Now.AddMonths(2);
         }
 
-        public string ApprenticeshipMoreDetails => _randomDataGenerator.GenerateRandomAlphabeticString(25);
+        public string ApprenticeshipMoreDetails => RandomDataGenerator.GenerateRandomAlphabeticString(25);
 
         public int GenerateRandomNumberMoreThanMaxAmount(int max) => Func(max + 1, max * 2);
 
@@ -41,7 +37,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public string GetRandomElementFromListOfElements(List<string> list) => base.GetRandomElementFromListOfElements(list);
 
-        private int Func(int min, int max) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
+        private int Func(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
         private List<string> Locations => new List<string>()
         {

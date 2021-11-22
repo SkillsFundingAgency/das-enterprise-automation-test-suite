@@ -33,7 +33,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
 
             _context.Set(_providerFeedbackSqlHelper);
 
-            _context.Set(new ProviderFeedbackDataHelper(_context.Get<RandomDataGenerator>()));
+            _context.Set(new ProviderFeedbackDataHelper());
         }
 
         [BeforeScenario(Order = 22)]

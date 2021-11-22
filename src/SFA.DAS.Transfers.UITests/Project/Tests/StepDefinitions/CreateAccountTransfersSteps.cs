@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using SFA.DAS.ConfigurationBuilder;
@@ -32,7 +31,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
             _senderAccountId = null;
             _recieverAccountId = null;
-            _sender = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
+            _sender = context.Get<RegistrationDataHelper>().CompanyTypeOrg;
             _receiver = context.GetUser<TransfersUser>().SecondOrganisationName;
         }
 

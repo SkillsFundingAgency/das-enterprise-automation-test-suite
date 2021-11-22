@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly ObjectContext _objectContext;
         private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsSqlDataHelper commitmentsdataHelper) : base(randomDataGenerator)
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) : base()
         {
             _objectContext = objectContext;
             _apprenticePPIDataHelper = apprenticePPIDataHelper;
@@ -24,8 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
             DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
-            TrainingPrice = "1" + randomDataGenerator.GenerateRandomNumber(3);
-            EmployerReference = randomDataGenerator.GenerateRandomAlphanumericString(10);
+            TrainingPrice = "1" + RandomDataGenerator.GenerateRandomNumber(3);
+            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
         }
@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string Uln()
         {
-            var uln = randomDataGenerator.GenerateRandomUln();
+            var uln = RandomDataGenerator.GenerateRandomUln();
             Ulns.Add(uln);
             return uln;
         }
