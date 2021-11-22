@@ -220,7 +220,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
 2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
-	- ```@addtransferslevyfunds (to create a levy account which makes sender eligible to transfer funds), @addlevyfunds (to create a levy funds), @donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
+	- ```@addtransferslevyfunds``` (to create a levy account which makes sender eligible to transfer funds), ```@addlevyfunds``` (to create a levy funds), ```@donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
 	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse, @changeOfEmployer, @changeOfProvider``` (in approvals (including transfers), apprenticecommitments)
 	- ```@deleteuser, @aslistedemployer``` (in apprenticecommitments)
 	- ```@deleteuser``` (in apprenticecommitments.api)
@@ -230,6 +230,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@clonevacancy``` (in RAAV2)
 	- ```@ignoreintest, @ignoreintest2, @ignoreinpp, @ignoreindemo ```(to ignore test excution in azure devops)
 	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
+	- Roatp related tags - ```@newroatpadmin, @newroatpadminreporting, @resetApplicationToNew, @resetFhaApplicationToNew, @roatpassessoradmin, @roatpmoderator, @roatpclarification, @rpallowlist, @roatpoutcome, @oldroatpadmin, @deletetrainingprovider, @oldroatpadmindownloadprovider, @roatpapply, @roatpapplye2e, @roatpapplyinprogressapplication, @roatpapplychangeukprn, @roatpapplycreateaccount, @roatpfulle2e, @roatpapplycreateaccount, @roatpfulle2eviaapply, @roatpfulle2eviaadmin, @roatpassessoradmin, @rpgateway```
 3. Optional tags / requirement specific tags
 	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
 	- naming convention - all tags should be specified in lower cases and should start with your project name for ex: ```@<yourprojectnamee2e>```
