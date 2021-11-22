@@ -10,7 +10,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => ""; //There is NO Title on this page
         private readonly ScenarioContext _context;
-
         #region Locators
         private By RecordAGradeLink => By.Id("Record a grade");
         private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
@@ -22,6 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
         private By SignOutLink => By.XPath("//a[@href='/Account/SignOut']");
         private By ApplyToAssessStandardLink => By.CssSelector("a[href='/ApplyToAssessStandard']");
+        private By ApprovedStandardsAndVersions => By.CssSelector("a[href='/OrganisationStandards']");
         #endregion
 
         public AS_LoggedInHomePage(ScenarioContext context) : base(context) => _context = context;
@@ -30,6 +30,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.Click(ApplyToAssessStandardLink);
             return new AS_ApplyToAssessStandardPage(_context);
+        }
+
+        public ApprovedStandardsAndVersionsLandingPage ApprovedStandardAndVersions()
+        {
+            formCompletionHelper.Click(ApprovedStandardsAndVersions);
+            return new ApprovedStandardsAndVersionsLandingPage(_context);
         }
 
         public AS_RecordAGradePage GoToRecordAGradePage()

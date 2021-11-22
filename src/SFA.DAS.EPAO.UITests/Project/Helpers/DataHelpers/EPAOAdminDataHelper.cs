@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
             FinancialAssesmentDueDate = DateTime.Today.AddDays(100);
             LearnerUln = "7278214419";
+            LearnerUlnForExistingCertificate = "4972280890";
             StandardCode = "100";
             StandardsName = "Transport planning technician";
         }
@@ -38,6 +39,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string BatchSearch => EnvironmentConfig.IsPPEnvironment ? "298" : "142";
 
         public string LearnerUln { get; set; }
+
+        public string LearnerUlnForExistingCertificate { get; set; }
 
         public string FirstName { get; set; }
 

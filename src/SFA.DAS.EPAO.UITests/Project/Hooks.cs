@@ -62,6 +62,10 @@ namespace SFA.DAS.EPAO.UITests.Project
         [Scope(Tag = "deletestandardwithdrawal")]
         public void DeleteStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.DeleteStandardWithdrawalApplication(_context.GetUser<EPAOWithdrawalUser>().Username);
 
+        [BeforeScenario(Order = 36)]
+        [Scope(Tag = "deleteorganisationstandardversion")]
+        public void ClearOrgganisationStandardVersion() => _ePAOApplySqlDataHelper.DeleteOrganisationStandardVersion();
+
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]
         public void ClearContact() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email));

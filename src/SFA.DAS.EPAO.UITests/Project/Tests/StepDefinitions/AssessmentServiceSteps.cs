@@ -45,6 +45,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User certifies an Apprentice as '(pass|fail)'")]
         public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade) => RecordAGrade(grade, SetLearnerDetails(), true);
 
+        [When(@"the User provides the matching uln and invalid Family name for the existing certificate")]
+        public void WhenTheUserProvidesTheMatchingUlnAndInvalidFamilyNameForTheExistingCertificate() => loggedInHomePage.GoToRecordAGradePage().EnterApprenticeDetailsForExistingCertificateAndContinue();
+
         [When(@"the User certifies same Apprentice as (pass|PassWithExcellence)")]
         public void WhenTheUserCertifiesSameApprenticeAsPass(string grade) => RecordAGrade(grade, GetLearnerCriteria(), false);
 
@@ -64,6 +67,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the User can navigates to record another grade")]
         public void ThenTheUserCanNavigatesToRecordAnotherGrade() => assessmentRecordedPage.ClickRecordAnotherGradeLink();
+
+        [Given(@"the User should be able to Opt In for the new version of the Standard")]
+        public void GivenTheUserShouldBeAbleToOptInForTheNewVersionOfTheStandard() =>
+            loggedInHomePage
+            .ApprovedStandardAndVersions()
+            .ClickOnAssociateProjectManagerLink()
+            .ClickOnAssociateProjectManagerOptInLinkForVersion1_1()
+            .ConfirmOptIn();
 
         [Then(@"'(.*)' message is displayed")]
         public void ThenErrorMessageIsDisplayed(string errorMessage) => Assert.AreEqual(recordAGradePage.GetPageTitle(), errorMessage);
