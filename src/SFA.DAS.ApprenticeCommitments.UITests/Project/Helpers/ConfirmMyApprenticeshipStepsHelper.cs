@@ -108,7 +108,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(string initialStatus)
         {
             AssertSection5Status(initialStatus);
-            var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().NavigateBackToCMADOverviewPage();
+            var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities();
             AssertSection5Status(StatusHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -120,7 +120,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return page;
         }
 
-        private AlreadyConfirmedRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
+        private ApprenticeOverviewPage NavigateAndVerifyRolesAndResponsibilities()
         {
             var page = new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
             return VerifyAndConfirmRolesAndResponsibilities(page);
@@ -163,7 +163,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertApprenticeshipDetails();
         }
 
-        public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyAndConfirmRolesAndResponsibilities(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
+        public ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilities(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
         {
             return confirmRolesAndResponsibilitiesPage1of3.ConfirmYourRolesAndContinue().ConfirmEmployerRolesAndContinue().ConfirmTrainingProviderRolesAndContinue();
         }

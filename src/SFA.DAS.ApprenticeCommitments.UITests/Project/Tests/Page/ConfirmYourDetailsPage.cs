@@ -58,7 +58,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void SelectCheckBoxAndContinue()
         {
-            SelectCheckBoxByText("sectionConfirmed");
+            SelectCheckBoxByText("I confirm I have read the roles and responsibilities.");
             Continue();
         }
 
