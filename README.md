@@ -220,7 +220,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
 2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
-	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
+	- ```@addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
 	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse, @changeOfEmployer, @changeOfProvider``` (in approvals (including transfers), apprenticecommitments)
 	- ```@deleteuser, @aslistedemployer``` (in apprenticecommitments)
 	- ```@deleteuser``` (in apprenticecommitments.api)
