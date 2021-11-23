@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
@@ -21,18 +20,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _nextAcademicYearStartDate;
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
-        private readonly RandomCourseDataHelper _randomCourseHelper;
 
         private readonly CourseDetails _courseDetails;
         private readonly CourseDetails _otherCourseDetails;
 
         public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
         {
-            _randomCourseHelper = randomCourseHelper;
             _apprenticeStatus = apprenticeStatus;
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
-            _currentAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_currentAcademicYearStartDate);
-            _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate(_currentAcademicYearStartDate);
+            _currentAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate();
+            _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
             _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
             _courseDetails = randomCourseHelper.RandomCourse();

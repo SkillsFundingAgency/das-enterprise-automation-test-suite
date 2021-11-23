@@ -9,6 +9,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private const int StartDay = 1;
         private const int EndDay = 31;
 
+        private static readonly DateTime _currentAcademicYearStartDate;
+
+        static AcademicYearDatesHelper() => _currentAcademicYearStartDate = GetCurrentAcademicYearStartDate();
+
         public static DateTime GetCurrentAcademicYearStartDate()
         {
             var now = DateTime.Now;
@@ -16,8 +20,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return now >= cutoff ? cutoff : new DateTime(now.Year - 1, StartMonth, StartDay);
         }
 
+        public static DateTime GetAcademicYearEndDate() => GetAcademicYearEndDate(_currentAcademicYearStartDate);
+
         public static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new DateTime(academicYearStartDate.Year + 1, EndMonth, EndDay);
 
-        public static DateTime GetNextAcademicYearStartDate(DateTime currentAcademicYearStartDate) => new DateTime(currentAcademicYearStartDate.Year + 1, StartMonth, StartDay);
+        public static DateTime GetNextAcademicYearStartDate() => new DateTime(_currentAcademicYearStartDate.Year + 1, StartMonth, StartDay);
     }
 }
