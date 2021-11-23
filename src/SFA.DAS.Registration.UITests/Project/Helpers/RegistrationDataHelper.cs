@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             CompanyTypeOrg = randomOrganisationNameHelper.GetCompanyTypeOrgName();
-            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrganisationName(CompanyTypeOrg);
+            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrgName(CompanyTypeOrg);
             PublicSectorTypeOrg = randomOrganisationNameHelper.GetPublicSectorTypeOrgName();
             CharityTypeOrg1 = randomOrganisationNameHelper.GetCharityTypeOrg();
             CharityTypeOrg2 = randomOrganisationNameHelper.GetCharityTypeOrg(CharityTypeOrg1);
