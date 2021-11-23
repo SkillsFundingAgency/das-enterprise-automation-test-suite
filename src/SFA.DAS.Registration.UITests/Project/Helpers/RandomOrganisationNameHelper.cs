@@ -68,8 +68,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             new CharityTypeOrg {Number = "200895", Name = "ALLHALLOWS CHARITY", Address = "WBW Solicitors, 118 High Street, Honiton, EX14 1JP"},
             new CharityTypeOrg {Number = "202918", Name = "OXFAM", Address = "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY"},
-            new CharityTypeOrg {Number = "219348", Name = "CITY HOSPITAL NHS TRUST", Address = "LIFFORD HALL TUNNEL LANE KINGS NORTON BIRMINGHAM B30 3JN"},
-            new CharityTypeOrg {Number = "509965", Name = "Friends of Nottingham University Hospitals NHS Trust", Address = "NOTTINGHAM NG9 6AS"},
+            new CharityTypeOrg {Number = "219348", Name = "CITY HOSPITAL NHS TRUST", Address = "LIFFORD HALL, TUNNEL LANE, KINGS NORTON, BIRMINGHAM, B30 3JN"},
+            new CharityTypeOrg {Number = "509965", Name = "Friends of Nottingham University Hospitals NHS Trust", Address = "NOTTINGHAM, NG9 6AS"},
         };
 
         private static List<string> ListOfPublicSectorTypeOrganisation() => new List<string>
