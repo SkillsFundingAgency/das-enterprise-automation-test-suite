@@ -1,13 +1,11 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmRolesAndResponsibilitiesPage2of3 : ConfirmYourDetailsPage
+    public class ConfirmRolesAndResponsibilitiesPage2of3 : ConfirmYourRolesAbstractPage
     {
         private readonly ScenarioContext _context;
         protected override string PageTitle => "Your employer’s responsibilities";
-        protected override By ContinueButton => By.CssSelector("#roles-responsibilities-confirm");
 
         public ConfirmRolesAndResponsibilitiesPage2of3(ScenarioContext context) : base(context)
         {
