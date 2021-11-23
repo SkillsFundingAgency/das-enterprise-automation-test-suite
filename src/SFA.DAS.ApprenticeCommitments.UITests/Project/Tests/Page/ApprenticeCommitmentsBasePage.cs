@@ -63,7 +63,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected void VerifyNotificationBannerContent(string expected) => VerifyPage(NotificationBannerContent, expected);
 
-        public ApprenticeOverviewPage ContinueToHomePage()
+        public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
             Continue();
             return new ApprenticeOverviewPage(_context);

@@ -53,7 +53,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
-        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToHomePage();
+        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToCMADOverviewPage();
 
         [Then(@"the apprentice confirms the Employer details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect()
@@ -65,7 +65,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
         public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
-            _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ContinueToHomePage();
+            _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ContinueToCMADOverviewPage();
 
         [Then(@"the apprentice confirms the Provider details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheProviderDetailsDisplayedAsIncorrect()
@@ -80,7 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             _alreadyConfirmedApprenticeshipDetailsPage = _apprenticeOverviewPage.GoToAlreadyConfirmedApprenticeshipDetailsPage();
             confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(_alreadyConfirmedApprenticeshipDetailsPage);
-            _alreadyConfirmedApprenticeshipDetailsPage.ContinueToHomePage();
+            _alreadyConfirmedApprenticeshipDetailsPage.ContinueToCMADOverviewPage();
         }
 
         [Then(@"the apprentice verifies and confirms the Apprenticeship details displayed as Incorrect")]
@@ -99,7 +99,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
         public void ThenConfirmedHowTheApprenticeshipWillBeDeliveredSectionPageIsDisplayedForTryingToConfirmAgain() =>
-            _apprenticeOverviewPage.GoToAlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
+            _apprenticeOverviewPage.GoToAlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
 
 
         [Then(@"confirmed Roles already page is displayed for trying to confirm again")]
