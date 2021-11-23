@@ -6,36 +6,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class RandomCourseDataHelper
     {
-        private readonly bool _selectstandardcourse;
-
         public int RandomNumber { get; private set; }
 
         public List<string> AvailableCourses;
 
-        public RandomCourseDataHelper(bool selectstandardcourse)
+        public RandomCourseDataHelper()
         {
-            _selectstandardcourse = selectstandardcourse;
+            AvailableCourses = new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
 
-            AvailableCourses = selectstandardcourse ? StandardCourses() : AllCourses();
-
-            RandomNumber = GetRandomNumber(1, 10);
+            RandomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
         }
-
-        private string AbleSeafarerStandardCourseOption => "34";
-
-        private string SoftwareTesterStandardCourseOption => "91";
-
-        private string FrameworkCourseOption => "455-3-1";
 
         public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
 
-        public string OtherCourse(string selectedCourse) => _selectstandardcourse ? SelectACourse(StandardCourses(), selectedCourse) : SelectACourse(AllCourses(), selectedCourse);
-
-        public int GetRandomNumber(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
-
-        //private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
-        private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
-        private List<string> StandardCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
+        public string OtherCourse(string selectedCourse) => SelectACourse(AvailableCourses, selectedCourse);
 
         private string SelectACourse(List<string> list, string except)
         {
@@ -45,5 +29,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             return newlist[randomNumber - 1];
         }
+
+        private string AbleSeafarerStandardCourseOption => "34";
+
+        private string SoftwareTesterStandardCourseOption => "91";
     }
 }
