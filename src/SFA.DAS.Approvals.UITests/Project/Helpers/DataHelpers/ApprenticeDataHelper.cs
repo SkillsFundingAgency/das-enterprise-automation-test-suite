@@ -65,16 +65,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return uln;
         }
 
-        public int ApprenticeshipId()
+        public int ApprenticeshipId(string title)
         {
-            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
+            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
         }
 
         private int _apprenticeid;
 
-        private int GetApprenticeshipIdForCurrentLearner()
+        private int GetApprenticeshipIdForCurrentLearner(string title)
         {
-            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single(), title);
             _objectContext.SetApprenticeId(_apprenticeid);
             return _apprenticeid;
         }

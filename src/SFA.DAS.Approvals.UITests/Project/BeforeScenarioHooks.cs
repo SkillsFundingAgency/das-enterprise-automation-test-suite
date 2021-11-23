@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(_datahelper));
 
-            var randomCoursehelper = new RandomCourseDataHelper();
+            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig.CRSDbConnectionString));
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
@@ -55,9 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper));
-
-            _context.Set(new CrsSqlhelper(_dbConfig));
+            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
 
             _context.Set(new AgreementIdSqlHelper(_dbConfig));
 

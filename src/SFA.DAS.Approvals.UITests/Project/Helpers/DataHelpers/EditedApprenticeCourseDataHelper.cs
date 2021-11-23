@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             _apprenticeCourseDataHelper = apprenticeCourseDataHelper;
 
-            EditedCourse = _randomCourseHelper.AvailableCourses.Where(x => x != _apprenticeCourseDataHelper.Course).FirstOrDefault();
+            EditedCourse = _randomCourseHelper.RandomCourse(_apprenticeCourseDataHelper.Course).Course.larsCode;
         }
 
         public string EditedCourse { get; private set; }

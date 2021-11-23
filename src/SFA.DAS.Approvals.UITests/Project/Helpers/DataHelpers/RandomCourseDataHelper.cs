@@ -1,4 +1,6 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,32 +8,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class RandomCourseDataHelper
     {
-        public int RandomNumber { get; private set; }
+        private readonly List<CourseDetails> _availableCourses;
 
-        public List<string> AvailableCourses;
+        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
 
-        public RandomCourseDataHelper()
+        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper) => _availableCourses = crsSqlhelper.GetApprenticeCourseWithNoOptions();
+
+        public CourseDetails RandomCourse() => SelectACourse(null);
+
+        public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
+
+        private CourseDetails SelectACourse(string except)
         {
-            AvailableCourses = new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
+            var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
 
-            RandomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
+            var randomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, newlist.Count);
+
+            return newlist[randomNumber];
         }
 
-        public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
-
-        public string OtherCourse(string selectedCourse) => SelectACourse(AvailableCourses, selectedCourse);
-
-        private string SelectACourse(List<string> list, string except)
+        private CourseDetails AbleSeafarerStandardCourseOption => new CourseDetails 
         {
-            var newlist = list.Where(x => x != except).ToList();
+            Course = ("34", "Able seafarer (deck)", new DateTime(2015, 08, 27), 18, 9000) 
+        };
 
-            var randomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, newlist.Count);
-
-            return newlist[randomNumber - 1];
-        }
-
-        private string AbleSeafarerStandardCourseOption => "34";
-
-        private string SoftwareTesterStandardCourseOption => "91";
+        private CourseDetails SoftwareTesterStandardCourseOption => new CourseDetails
+        {
+            Course = ("91", "Software tester", new DateTime(2016, 04, 21), 24, 18000)
+        };
     }
 }

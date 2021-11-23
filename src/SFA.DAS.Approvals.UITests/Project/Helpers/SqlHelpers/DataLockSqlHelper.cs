@@ -12,10 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private readonly ApprenticeCourseDataHelper _coursedataHelper;
 
+        private readonly string _title;
+
         private int _apprenticeshipId;
 
-        public DataLockSqlHelper(DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(dBConfig.CommitmentsDbConnectionString)
+        public DataLockSqlHelper(DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper, string title) : base(dBConfig.CommitmentsDbConnectionString)
         {
+            _title = title;
             _dataHelper = dataHelper;
             _coursedataHelper = coursedataHelper;
         }
@@ -34,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         {
             string sqlQueryFromFile = FileHelper.GetSql(type);
 
-            _apprenticeshipId = _dataHelper.ApprenticeshipId();
+            _apprenticeshipId = _dataHelper.ApprenticeshipId(_title);
 
             bool DoesRecordExistOnDataLockStatusTable = (ExistingRecordOnDataLockStatusTable(_apprenticeshipId) == "") ? false : true;
             
