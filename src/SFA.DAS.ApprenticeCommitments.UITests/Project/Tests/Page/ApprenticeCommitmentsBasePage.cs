@@ -63,7 +63,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected void VerifyNotificationBannerContent(string expected) => VerifyPage(NotificationBannerContent, expected);
 
-        public ApprenticeOverviewPage ContinueToHomePage()
+        public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
             Continue();
             return new ApprenticeOverviewPage(_context);
@@ -106,5 +106,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CMADTopNavigationLink), "CMAD Top navigation link is present and it should not be on this page");
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(HelpTopNavigationLink), "Help Top navigation link is present and it should not be on this page");
         }
+
+        protected override void Continue() => formCompletionHelper.Click(ContinueButton);
     }
 }
