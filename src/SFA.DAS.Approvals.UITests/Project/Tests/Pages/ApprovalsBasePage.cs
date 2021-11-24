@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -13,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
     public abstract class ApprovalsBasePage : BasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        private readonly string[] _tags;
         protected readonly LoginCredentialsHelper loginCredentialsHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly TabHelper tabHelper;
@@ -35,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            _context = context;
+            _tags = context.ScenarioInfo.Tags;
             tableRowHelper = context.Get<TableRowHelper>();
             tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -56,6 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             if (verifypage) VerifyPage();
         }
 
-        protected bool IsSelectStandardWithMultipleOptions() => _context.ScenarioInfo.Tags.Contains("selectstandardwithmultipleoptions");
+        protected bool IsSelectStandardWithMultipleOptions() => _tags.Contains("selectstandardwithmultipleoptions");
     }
 }
