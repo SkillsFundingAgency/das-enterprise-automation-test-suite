@@ -1,9 +1,11 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
@@ -11,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
     public abstract class ApprovalsBasePage : BasePage
     {
         #region Helpers and Context
+        private readonly ScenarioContext _context;
         protected readonly LoginCredentialsHelper loginCredentialsHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly TabHelper tabHelper;
@@ -32,6 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
+            _context = context;
             tableRowHelper = context.Get<TableRowHelper>();
             tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -51,5 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             javaScriptHelper = context.Get<JavaScriptHelper>();
             if (verifypage) VerifyPage();
         }
+
+        protected bool IsSelectStandardWithMultipleOptions() => _context.ScenarioInfo.Tags.Contains("selectstandardwithmultipleoptions");
     }
 }

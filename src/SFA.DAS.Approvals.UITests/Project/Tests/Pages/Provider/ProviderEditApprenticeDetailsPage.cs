@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -37,7 +38,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
             EnterUln();
+            
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).ContinueWithAlreadySelectedStandard();
+
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
@@ -65,6 +70,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandard();
+
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
 

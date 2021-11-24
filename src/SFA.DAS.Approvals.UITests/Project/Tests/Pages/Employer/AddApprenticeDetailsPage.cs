@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -68,6 +69,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
+
+            if (_context.ScenarioInfo.Tags.Contains("selectstandardwithmultipleoptions"))  new SelectAStandardOptionpage(_context).SelectAStandard();
+
             return new ReviewYourCohortPage(_context);
         }
 

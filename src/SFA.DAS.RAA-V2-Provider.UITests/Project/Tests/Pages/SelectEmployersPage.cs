@@ -16,8 +16,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private readonly RAAV2DataHelper _dataHelper;
         #endregion
 
-
-
         public SelectEmployersPage(ScenarioContext context) : base(context)
         {
             _context = context;
