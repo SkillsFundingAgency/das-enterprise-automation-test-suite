@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
-    public class TMDataHelper : RandomElementHelper
+    public class TMDataHelper
     {
-        public TMDataHelper() : base()
+        public TMDataHelper()
         {
-            var randomCourse = GetRandomElementFromListOfElements(Courses);
+            var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(Courses);
             Course = randomCourse.Course;
             Cost = randomCourse.Cost;
             NoOfApprentice = 1;
@@ -23,7 +23,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public int GenerateRandomNumberMoreThanMinAmount(int max) => Func(MinAmount, max);
 
-        public string GetRandomLocation() => GetRandomElementFromListOfElements(Locations);
+        public string GetRandomLocation() => RandomDataGenerator.GetRandomElementFromListOfElements(Locations);
 
         public string Course { get; }
 
@@ -35,9 +35,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public DateTime CourseStartDate { get; set; } 
 
-        public string GetRandomElementFromListOfElements(List<string> list) => base.GetRandomElementFromListOfElements(list);
-
-        private int Func(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
+        private static int Func(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
         private List<string> Locations => new List<string>()
         {

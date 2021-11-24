@@ -8,11 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public RoatpFullE2EHooks(ScenarioContext context) : base(context) { }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            SetUpApplyDataHelpers();
-            SetUpAdminDataHelpers();
-        }
+        public void SetUpHelpers() => SetUpApplyDataHelpers();
 
         [BeforeScenario(Order = 33)]
         public new void GetRoatpFullData() => base.GetRoatpFullData();

@@ -8,13 +8,13 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper : RandomElementHelper
+    public class ApprenticeDataHelper
     {
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
         private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) : base()
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
         {
             _objectContext = objectContext;
             _apprenticePPIDataHelper = apprenticePPIDataHelper;

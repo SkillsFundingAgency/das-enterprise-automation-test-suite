@@ -22,9 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
 
-            var randomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, newlist.Count);
-
-            return newlist[randomNumber];
+            return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
 
         private CourseDetails AbleSeafarerStandardCourseOption => new CourseDetails 

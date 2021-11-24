@@ -32,8 +32,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
             _providerFeedbackSqlHelper = new ProviderFeedbackSqlHelper(_dbConfig);
 
             _context.Set(_providerFeedbackSqlHelper);
-
-            _context.Set(new ProviderFeedbackDataHelper());
         }
 
         [BeforeScenario(Order = 22)]

@@ -3,9 +3,9 @@ using System;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class FAADataHelper : RandomElementHelper
+    public class FAADataHelper
     {
-        public FAADataHelper() : base()
+        public FAADataHelper()
         {            
             var datetime = DateTime.Now;            
             EducationSchoolOrCollege = RandomDataGenerator.GenerateRandomAlphabeticString(10);

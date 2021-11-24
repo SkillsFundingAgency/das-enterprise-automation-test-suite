@@ -3,9 +3,9 @@ using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class RegistrationDataHelper : RandomElementHelper
+    public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, string password) : base()
+        public RegistrationDataHelper(string[] tags, string emailaddress, string password)
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;

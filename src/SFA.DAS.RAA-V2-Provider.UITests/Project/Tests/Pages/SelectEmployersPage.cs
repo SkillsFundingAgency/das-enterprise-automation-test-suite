@@ -1,5 +1,4 @@
-﻿using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,13 +12,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV2DataHelper _dataHelper;
         #endregion
 
         public SelectEmployersPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAAV2DataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
@@ -27,7 +24,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public VacancyTitlePage SelectEmployer(string empName)
         {
             if (string.IsNullOrEmpty(empName))
-                _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+                _formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             else
                 SelectRadioOptionByText(empName);
 
