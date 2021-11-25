@@ -57,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandard();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(_context);
         }

@@ -70,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            if (IsSelectStandardWithMultipleOptions())  new SelectAStandardOptionpage(_context).SelectAStandard();
+            if (IsSelectStandardWithMultipleOptions())  new SelectAStandardOptionpage(_context).SelectAStandardOption();
 
             return new ReviewYourCohortPage(_context);
         }

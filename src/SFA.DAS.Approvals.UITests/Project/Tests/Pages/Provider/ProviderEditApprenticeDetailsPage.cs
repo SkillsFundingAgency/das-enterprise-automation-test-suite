@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).ContinueWithAlreadySelectedStandard();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).ContinueWithAlreadySelectedStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
@@ -71,7 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandard();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(_context);
         }

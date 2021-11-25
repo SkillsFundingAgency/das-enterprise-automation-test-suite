@@ -12,13 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectAStandardOptionpage(ScenarioContext context) : base(context) { }
 
-        public void SelectAStandard()
+        public void SelectAStandardOption()
         {
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
 
             Continue();
         }
 
-        public void ContinueWithAlreadySelectedStandard() => Continue();
+        public void ContinueWithAlreadySelectedStandardOption() => Continue();
     }
 }
