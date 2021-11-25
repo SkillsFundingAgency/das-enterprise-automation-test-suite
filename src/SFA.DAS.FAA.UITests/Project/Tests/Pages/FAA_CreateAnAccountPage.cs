@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -54,7 +55,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
             pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
-            formCompletionHelper.ClickElement(() => faaDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
         public void SubmitAccountCreationDetailsWithRegisteredEmail()

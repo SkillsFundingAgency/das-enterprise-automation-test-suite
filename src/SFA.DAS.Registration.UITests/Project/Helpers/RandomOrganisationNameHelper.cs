@@ -47,13 +47,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private static string GetRandomOrgName(List<string> listoforg, string existingOrgName) => GetRandomOrgName(listoforg.Where(x => x != existingOrgName).ToList());
 
-        private static T GetRandomOrgName<T>(List<T> listoforg)
-        {
-            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count);
-
-            return listoforg[randomvalue];
-        }
-
+        private static T GetRandomOrgName<T>(List<T> listoforg) => RandomDataGenerator.GetRandomElementFromListOfElements(listoforg);
+        
         private bool DoNotUseRandomOrgname() => _tags.Contains("donotuserandomorgname");
 
         private static Dictionary<string, Dictionary<OrgType, string>> ListofScenarioSpecificOrg()

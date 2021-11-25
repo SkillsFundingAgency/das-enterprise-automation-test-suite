@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
@@ -20,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public ApplicationDateDeterminedPage SubmitOrganisationType()
         {
-            formCompletionHelper.ClickElement(() => admindataHelpers.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs)));
             Continue();
             return new ApplicationDateDeterminedPage(_context);
         }

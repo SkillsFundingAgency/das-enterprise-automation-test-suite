@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1DataHelper : RandomElementHelper
+    public class RAAV1DataHelper
     {
-        public RAAV1DataHelper() : base()
+        public RAAV1DataHelper()
         {
             EmployerDescription = RandomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = RandomDataGenerator.GenerateRandomAlphabeticString(10);
@@ -44,7 +44,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = GetRandomElementFromListOfElements(links);
+            var randomEmployer = RandomDataGenerator.GetRandomElementFromListOfElements(links);
 
             EmployerErn = RegexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 

@@ -56,6 +56,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             Continue();
         }
                
-        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
+        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
 }

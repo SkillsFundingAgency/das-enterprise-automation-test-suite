@@ -9,11 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Hooks
         public RoatpAdminTestDataPrepHooks(ScenarioContext context) : base(context) { }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            SetUpApplyDataHelpers();
-            SetUpAdminDataHelpers();
-        }
+        public void SetUpHelpers() => SetUpApplyDataHelpers();
 
         [BeforeScenario(Order = 33)]
         public new void GetNewRoatpAdminData() => base.GetNewRoatpAdminData();

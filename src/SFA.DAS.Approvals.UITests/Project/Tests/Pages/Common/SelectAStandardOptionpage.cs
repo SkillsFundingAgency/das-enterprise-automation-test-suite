@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -13,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public void SelectAStandard()
         {
-            formCompletionHelper.ClickElement(() => apprenticeDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
 
             Continue();
         }

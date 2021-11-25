@@ -27,9 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
 
-            var randomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, availableCourses.Count);
-
-            EditedCourse = availableCourses.ElementAt(randomNumber);
+            EditedCourse = RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation()
         {
-            formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }

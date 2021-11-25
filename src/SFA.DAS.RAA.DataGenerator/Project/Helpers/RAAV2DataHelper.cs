@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV2DataHelper : RandomElementHelper
+    public class RAAV2DataHelper
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public RAAV2DataHelper(VacancyTitleDatahelper vacancyTitleDatahelper) : base()
+        public RAAV2DataHelper(VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
             EmployerTradingName = $"{RandomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
