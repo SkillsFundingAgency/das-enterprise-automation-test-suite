@@ -52,23 +52,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can add contact details")]
         public void ThenTheAdminCanAddContactDetails() => organisationDetailsPage = organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
 
-        [Then(@"the admin can add standards details")]
-        public void ThenTheAdminCanAddStandardsDetails() => organisationDetailsPage = organisationDetailsPage.AddAStandard().SearchStandards().AddStandardToOrganisation().AddStandardsDetails().VerifyStandards().ReturnToOrganisationDetailsPage();
-
-        [Then(@"the admin can update organisation standards status to be live")]
-        public void ThenTheAdminCanUpdateOrganisationStandardsStatusToBeLive()
-        {
-            ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(ePAOAdminDataHelper.OrganisationEpaoId, ePAOAdminDataHelper.StandardCode);
-            
-            organisationDetailsPage = organisationDetailsPage
-                .SelectStandards()
-                .VerifyOrgStandardsStatus("New")
-                .EditStandard()
-                .EditStandardsDetails()
-                .VerifyOrgStandardsStatus("Live")
-                .ReturnToOrganisationDetailsPage();
-        }
-
         [Then(@"the admin can search using organisation ukprn")]
         public void ThenTheAdminCanSearchUsingOrganisationUkprn()
         {
