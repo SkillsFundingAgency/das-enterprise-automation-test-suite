@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class PublicSectorReportingDataHelper : RandomElementHelper
+    public class PublicSectorReportingDataHelper
     {
-        public PublicSectorReportingDataHelper() : base()
+        public PublicSectorReportingDataHelper()
         {
             NoofEmployees2019 = RandomDataGenerator.GenerateRandomWholeNumber(2);
             NoofEmployees2020 = RandomDataGenerator.GenerateRandomWholeNumber(3);

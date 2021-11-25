@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
@@ -19,14 +20,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By Year => By.CssSelector("#Year");
 
-        public ApplicationDateDeterminedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ApplicationDateDeterminedPage(ScenarioContext context) : base(context) => _context = context;
 
         public ConfirmDetailsPage EnterDob()
         {
-            var dob = admindataHelpers.Dob;
+            var dob = DateTime.Now.AddYears(-45);
             formCompletionHelper.EnterText(Day, dob.Day);
             formCompletionHelper.EnterText(Month, dob.Month);
             formCompletionHelper.EnterText(Year, dob.Year);

@@ -45,8 +45,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void GoToUrl(string url) => _tabHelper.GoToUrl(url);
 
-        protected void SetUpAdminDataHelpers() => _context.Set(new RoatpAdminDataHelpers());
-
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
         protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers(config));

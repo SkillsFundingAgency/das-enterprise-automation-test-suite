@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class EditedApprenticeDataHelper : RandomElementHelper
+    public class EditedApprenticeDataHelper
     {
-        public EditedApprenticeDataHelper(ApprenticeDataHelper apprenticeDataHelper) : base()
+        public EditedApprenticeDataHelper(ApprenticeDataHelper apprenticeDataHelper)
         {
             ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
@@ -51,6 +51,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeEditedFirstname = firstName;
             ApprenticeEditedLastname = lastName;
         }
-
     }
 }

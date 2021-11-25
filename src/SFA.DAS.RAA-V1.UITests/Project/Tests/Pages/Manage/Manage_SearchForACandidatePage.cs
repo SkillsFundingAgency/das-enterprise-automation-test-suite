@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -52,7 +53,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_MyApplicationsPage ViewApplications()
         {
             List<IWebElement> filteredRows = pageInteractionHelper.GetLinks("Select candidate");
-            formCompletionHelper.ClickElement(() => rAAV1DataHelper.GetRandomElementFromListOfElements(filteredRows));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(filteredRows));
             return new Manage_MyApplicationsPage(_context);
         }
 

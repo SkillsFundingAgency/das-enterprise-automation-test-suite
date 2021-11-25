@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1RegistrationDataHelper : RandomElementHelper
+    public class RAAV1RegistrationDataHelper
     {
-        public RAAV1RegistrationDataHelper() : base()
+        public RAAV1RegistrationDataHelper()
         {
             FirstName = RandomDataGenerator.GenerateRandomAlphabeticString(6);
             LastName = RandomDataGenerator.GenerateRandomAlphabeticString(7);

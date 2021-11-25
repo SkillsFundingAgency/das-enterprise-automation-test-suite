@@ -1,4 +1,6 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,44 +8,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class RandomCourseDataHelper
     {
-        private readonly bool _selectstandardcourse;
+        private readonly List<CourseDetails> _availableCourses;
 
-        public int RandomNumber { get; private set; }
+        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
 
-        public List<string> AvailableCourses;
+        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, string[] tags) => _availableCourses = tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetApprenticeCourseWithMultipleOptions() : crsSqlhelper.GetApprenticeCourseWithNoOptions();
 
-        public RandomCourseDataHelper(bool selectstandardcourse)
+        public CourseDetails RandomCourse() => SelectACourse(null);
+
+        public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
+
+        private CourseDetails SelectACourse(string except)
         {
-            _selectstandardcourse = selectstandardcourse;
+            var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
 
-            AvailableCourses = selectstandardcourse ? StandardCourses() : AllCourses();
-
-            RandomNumber = GetRandomNumber(1, 10);
+            return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
 
-        private string AbleSeafarerStandardCourseOption => "34";
-
-        private string SoftwareTesterStandardCourseOption => "91";
-
-        private string FrameworkCourseOption => "455-3-1";
-
-        public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
-
-        public string OtherCourse(string selectedCourse) => _selectstandardcourse ? SelectACourse(StandardCourses(), selectedCourse) : SelectACourse(AllCourses(), selectedCourse);
-
-        public int GetRandomNumber(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
-
-        //private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
-        private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
-        private List<string> StandardCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
-
-        private string SelectACourse(List<string> list, string except)
+        private CourseDetails AbleSeafarerStandardCourseOption => new CourseDetails 
         {
-            var newlist = list.Where(x => x != except).ToList();
+            Course = ("34", "Able seafarer (deck)", new DateTime(2015, 08, 27), 18, 9000) 
+        };
 
-            var randomNumber = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, newlist.Count);
-
-            return newlist[randomNumber - 1];
-        }
+        private CourseDetails SoftwareTesterStandardCourseOption => new CourseDetails
+        {
+            Course = ("91", "Software tester", new DateTime(2016, 04, 21), 24, 18000)
+        };
     }
 }

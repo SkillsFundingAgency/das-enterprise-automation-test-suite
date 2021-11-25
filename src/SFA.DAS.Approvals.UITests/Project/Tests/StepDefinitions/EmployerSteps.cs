@@ -173,7 +173,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
+        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId(_context.ScenarioInfo.Title));
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]

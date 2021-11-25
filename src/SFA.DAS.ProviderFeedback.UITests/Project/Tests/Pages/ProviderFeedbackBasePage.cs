@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
@@ -21,7 +20,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly ProviderFeedbackDataHelper providerFeedbackDatahelper;
         #endregion
 
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
@@ -31,7 +29,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            providerFeedbackDatahelper = context.GetValue<ProviderFeedbackDataHelper>();
             if (verifypage) VerifyPage();
         }
 
@@ -41,7 +38,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
             for (int i = 0; i <= 2; i++)
             {
-                var randomoption = providerFeedbackDatahelper.GetRandomElementFromListOfElements(checkboxList);
+                var randomoption = RandomDataGenerator.GetRandomElementFromListOfElements(checkboxList);
                 formCompletionHelper.SelectCheckBoxByText(Labels, randomoption);
                 checkboxList.Remove(randomoption);
             }
