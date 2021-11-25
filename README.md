@@ -221,7 +221,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
 2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
 	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot``` (in registration)
-	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse``` (in approvals)
+	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardwithmultipleoptions``` (in approvals)
 	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
 3. Optional tags / requirement specific tags
 	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
