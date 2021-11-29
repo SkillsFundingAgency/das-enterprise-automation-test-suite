@@ -19,8 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         protected By PostCodeField => By.Id("Postcode");
         protected By CompanyNumberField => By.Id("CompanyNumber");
         protected By CharityNumberField => By.Id("CharityNumber");
-        public AddOrEditOrganisationPage(ScenarioContext context) : base(context) { }
-    
+        public AddOrEditOrganisationPage(ScenarioContext context) : base(context) { }   
     }
 }
 

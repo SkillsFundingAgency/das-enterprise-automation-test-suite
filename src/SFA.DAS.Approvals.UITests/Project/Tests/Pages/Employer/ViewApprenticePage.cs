@@ -12,17 +12,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By viewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
-        
+        private By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
         public ViewApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         public ViewApprenticeDetailsPage ClickViewApprenticeLink()
         {
-            formCompletionHelper.ClickElement(viewApprenticeLink);
+            formCompletionHelper.ClickElement(ViewApprenticeLink);
             return new ViewApprenticeDetailsPage(_context);
         }
-
-
     }
 }

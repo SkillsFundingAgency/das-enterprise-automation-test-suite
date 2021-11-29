@@ -14,10 +14,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         #endregion
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
      
-        public CreateAnAdvertHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public CreateAnAdvertHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {

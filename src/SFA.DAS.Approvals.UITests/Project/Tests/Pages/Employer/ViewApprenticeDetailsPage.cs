@@ -17,9 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ViewApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal List<IWebElement> GetAllEditBoxes()
-        {
-            return pageInteractionHelper.FindElements(InputBox);
-        }
+        internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
     }
 }

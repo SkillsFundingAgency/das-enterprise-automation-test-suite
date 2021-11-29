@@ -12,7 +12,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         
         private readonly ScenarioContext _context;
 
-        public AD_WithdrawalNotificationQuestionsPage(ScenarioContext context) : base(context) => _context = context;
+        public AD_WithdrawalNotificationQuestionsPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public AD_WithdrawalRequestOverviewPage MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
         {

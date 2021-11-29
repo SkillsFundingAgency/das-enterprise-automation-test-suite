@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -46,9 +48,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
-            VerifyPage();
-            VerifyPage(TicketOrganisationName, dataHelper.OrganisationName);
-            VerifyPage(TicketOrganisationUserName, dataHelper.OrganisationUserName);
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(),
+                () => VerifyPage(TicketOrganisationName, dataHelper.OrganisationName),
+                () => VerifyPage(TicketOrganisationUserName, dataHelper.OrganisationUserName)
+            });
         }
 
         public void VerifyTicketStatus(string expectedstatus) => VerifyPage(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());

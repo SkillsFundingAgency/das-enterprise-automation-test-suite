@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
@@ -16,8 +18,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         public VRFIntroductionTabPage(ScenarioContext context) : base(context, false)
         { 
             _context = context;
-            VerifyPage(frameHelper.Iframe);
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(frameHelper.Iframe),
+                () => {frameHelper.SwitchFrameAndAction(() => VerifyPage()); return true; }
+            });
         }
 
         public VRFOrgDetailsTabPage ContinueToVRFOrgDetailsTab2Page()

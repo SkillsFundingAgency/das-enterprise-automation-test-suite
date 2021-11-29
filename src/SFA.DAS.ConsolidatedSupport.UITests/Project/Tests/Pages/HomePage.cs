@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -33,10 +35,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             if (navigateTo) 
             {
                 action();
-                VerifyPage(PageHeader, action);
-                VerifyPage(BrandingHeader, action);
-                VerifyPage(Indicators, action);
-                VerifyPage(TicketTable, action);
+                MultipleVerifyPage(new List<Func<bool>>
+                {
+                    () => VerifyPage(PageHeader, action),
+                    () => VerifyPage(BrandingHeader, action),
+                    () => VerifyPage(Indicators, action),
+                    () => VerifyPage(TicketTable, action)
+                });
             }
         }
 
