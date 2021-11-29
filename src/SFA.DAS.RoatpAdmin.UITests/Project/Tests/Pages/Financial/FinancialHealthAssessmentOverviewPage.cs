@@ -32,7 +32,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         public FinancialHealthAssesmentCompletedPage ConfirmFHAReview(string expectedoutcome)
         {
             SelectRadioOptionByForAttribute(expectedoutcome);
-            if (_context.ScenarioInfo.Tags.Contains("rpendtoend02apply"))
+            if (tags.Contains("rpendtoend02apply"))
             {
 
                 formCompletionHelper.EnterText(InadequateCommentBox, "PMO Internal Comments for Inadequate");

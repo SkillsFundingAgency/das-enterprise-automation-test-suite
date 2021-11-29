@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
        
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
-            isRaaV2Employer = context.ScenarioInfo.Tags.Contains("raa-v2e");
+            isRaaV2Employer = tags.Contains("raa-v2e");
             vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();

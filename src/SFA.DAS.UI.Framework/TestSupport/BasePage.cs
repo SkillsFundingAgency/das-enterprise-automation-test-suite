@@ -18,6 +18,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
+        protected readonly string[] tags;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
@@ -33,8 +34,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual bool CaptureUrl => true;
 
+        protected virtual bool TakeScreenShot => true;
+
         protected BasePage(ScenarioContext context)
         {
+            tags = context.ScenarioInfo.Tags;
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -43,10 +47,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
 
-            if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
+            if (TakeScreenShot) TakeScreenShotMethod();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
+        }
+
+        protected internal void TakeScreenShotMethod() 
+        {
+            if (_frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot")) 
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
         }
 
         protected string GetUrl() => _pageInteractionHelper.GetUrl();

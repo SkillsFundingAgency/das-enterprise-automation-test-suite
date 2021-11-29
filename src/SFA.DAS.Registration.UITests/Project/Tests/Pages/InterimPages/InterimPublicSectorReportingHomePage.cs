@@ -12,9 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         private static string Link => "Report public sector apprenticeship target";
 
-        public InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
-
-        public InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, OpenPublicSectorReporting(context, navigate), gotourl) { }
+        public InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : base(context, OpenPublicSectorReporting(context, navigate), false) { }
 
         private static Action OpenPublicSectorReporting(ScenarioContext context, bool navigate)
         {

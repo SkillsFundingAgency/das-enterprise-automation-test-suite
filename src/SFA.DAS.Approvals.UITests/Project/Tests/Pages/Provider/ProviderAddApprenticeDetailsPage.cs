@@ -67,7 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
 
-            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+            if (tags.Contains("aslistedemployer")) return;
 
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }
