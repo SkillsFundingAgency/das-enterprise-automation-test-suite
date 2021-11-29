@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -10,11 +12,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public AlreadyConfirmedTrainingProviderPage(ScenarioContext context) : base(context)
         {
-            VerifyPage();
-            pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
-            VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetProviderName());
-            VerifyPage(ProviderHelpSectionLink);
-            VerifyPage(ProviderHelpSectionText);
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(),
+                () => pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo),
+                () => VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetProviderName()),
+                () => VerifyPage(ProviderHelpSectionLink),
+                () => VerifyPage(ProviderHelpSectionText)
+            });
         }
     }
 }

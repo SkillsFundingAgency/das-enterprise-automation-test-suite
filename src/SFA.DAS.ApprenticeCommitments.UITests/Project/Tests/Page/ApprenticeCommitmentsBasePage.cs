@@ -3,7 +3,8 @@ using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -39,17 +40,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string SignOutLinkText => "Sign out";
         protected By Password => By.CssSelector("#Password");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyServiceHeader = true) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
+            bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
+
+            bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
+
             _context = context;
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
-            if (verifypage) VerifyPage();
-            VerifyPage(CookieBanner);
-            VerifyPage(FeedbackLinkOnBetaBanner);
-            if (verifyServiceHeader) VerifyPage(ServiceHeader, ServiceName);
-            VerifyFooterLinks();
+
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => verifyPage(verifypage),
+                () => VerifyPage(CookieBanner),
+                () => VerifyPage(FeedbackLinkOnBetaBanner),
+                () => verifyServiceHeader(verifyserviceheader),
+                () => { VerifyFooterLinks(); return true; }
+            });
         }
 
         protected void VerifyNotificationBannerHeader(string expected) => VerifyPage(NotificationBannerHeader, expected);

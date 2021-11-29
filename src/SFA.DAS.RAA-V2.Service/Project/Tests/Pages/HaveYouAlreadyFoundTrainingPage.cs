@@ -15,11 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
 
-        public HaveYouAlreadyFoundTrainingPage(ScenarioContext context):base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public HaveYouAlreadyFoundTrainingPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipTrainingPage SelectYes()
         {

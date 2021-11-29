@@ -17,10 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");
 
-        public EmployerDescriptionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public EmployerDescriptionPage(ScenarioContext context) : base(context) => _context = context;
         public VacancyPreviewPart2Page EnterEmployerDescription()
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);

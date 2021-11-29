@@ -58,6 +58,21 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
         }
 
+        protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
+        {
+            return VeriFyPage(() => 
+            {
+                bool result = true;
+
+                foreach (var item in testDelegate)
+                {
+                    result = result && item();
+                }
+
+                return result;
+            });
+        }
+
         protected string GetUrl() => pageInteractionHelper.GetUrl();
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
