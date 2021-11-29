@@ -25,7 +25,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
             _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
-            _context.Replace(new RandomDataGenerator());
             _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
             _context.Replace(new ScreenShotTitleGenerator(0));
             var objectContext = _context.Get<ObjectContext>();

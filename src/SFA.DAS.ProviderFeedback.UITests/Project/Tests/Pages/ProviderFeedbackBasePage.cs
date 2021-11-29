@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
@@ -14,21 +13,8 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         protected By Labels => By.CssSelector(".multiple-choice label");
 
-        #region Helpers and Context
-        protected readonly TableRowHelper tableRowHelper;
-        protected readonly TabHelper tabHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
-        #endregion
-
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            tableRowHelper = context.Get<TableRowHelper>();
-            tabHelper = context.Get<TabHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
             if (verifypage) VerifyPage();
         }
 

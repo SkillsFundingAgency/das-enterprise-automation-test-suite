@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             {
                 return () =>
                 {
-                    new InterimApprenticesHomePage(context, true);
+                    new InterimApprenticesHomePage(context, false);
 
                     var helper = context.Get<FormCompletionHelper>();
 

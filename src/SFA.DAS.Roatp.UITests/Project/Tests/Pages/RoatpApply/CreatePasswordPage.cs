@@ -31,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             {
                 var invitationId = _loginInvitationsSqlDbHelper.GetId(applyCreateUserDataHelpers.CreateAccountEmail);
 
-                context.Get<TabHelper>().OpenInNewTab(UrlConfig.RoatpApply_InvitationUrl, invitationId);
+                tabHelper.OpenInNewTab(UrlConfig.RoatpApply_InvitationUrl, invitationId);
 
                 return pageInteractionHelper.FindElements(PageHeader);
 
