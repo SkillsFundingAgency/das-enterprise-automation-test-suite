@@ -16,10 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
 
-        public WageTypePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public WageTypePage(ScenarioContext context) : base(context) => _context = context;
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {

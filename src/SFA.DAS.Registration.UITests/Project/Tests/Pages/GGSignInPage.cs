@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
@@ -12,7 +11,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
 
         #region Locators
         private By UserIdInput => By.Id("userId");
@@ -24,7 +22,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -50,7 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void EnterGateWayCredentialsAndSignIn(int index)
         {
-            var gatewaydetails = _objectContext.GetGatewayCreds(index);
+            var gatewaydetails = objectContext.GetGatewayCreds(index);
             SignInTo(gatewaydetails.GatewayId, gatewaydetails.GatewayPassword);
         }
 

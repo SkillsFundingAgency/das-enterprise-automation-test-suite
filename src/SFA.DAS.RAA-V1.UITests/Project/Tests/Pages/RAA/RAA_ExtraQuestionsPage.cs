@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -8,18 +7,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Extra questions you'd like to ask candidates (optional)";
 
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
         private By ClickPreviewVacacncy => By.Name("VacancyQuestions");
         private By FirstQuestion => By.Id("FirstQuestion");
         private By SecondQuestion => By.Id("SecondQuestion");
 
-        public RAA_ExtraQuestionsPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public RAA_ExtraQuestionsPage(ScenarioContext context) : base(context) { }
 
         public RAA_ExtraQuestionsPage EnterFirstQuestion()
         {
@@ -35,10 +27,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public void ClickPreviewVacancyButton()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy))
-            {
+            if (pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy)) 
                 formCompletionHelper.Click(ClickPreviewVacacncy);
-            }
         }
     }
 }

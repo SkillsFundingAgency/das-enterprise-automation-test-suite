@@ -15,10 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By NumberOfPositions => By.CssSelector("#NumberOfPositions");
         
-        public SubmitNoOfPositionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public SubmitNoOfPositionsPage(ScenarioContext context) : base(context) => _context = context;
 
         public SelectOrganisationPage SubmitNoOfPositionsAndNavigateToSelectOrganisationPage()
         {

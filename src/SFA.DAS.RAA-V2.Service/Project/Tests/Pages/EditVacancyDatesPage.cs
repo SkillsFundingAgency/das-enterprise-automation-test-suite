@@ -10,10 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public EditVacancyDatesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public EditVacancyDatesPage(ScenarioContext context) : base(context) => _context = context;
 
         public EditVacancyPage EnterVacancyDates()
         {

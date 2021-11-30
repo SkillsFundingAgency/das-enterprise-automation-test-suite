@@ -13,7 +13,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By NoCandidateInfo => By.ClassName("info-summary");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         #endregion
@@ -29,7 +28,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_SearchCandidatesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();           
             _objectcontext = context.Get<ObjectContext>();
         }
 
@@ -44,14 +42,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_SearchCandidatesPage VerifyCandidateDeletion()
         {
-            _pageInteractionHelper.VerifyText(NoCandidateInfo, "There are currently no candidates that match your search.");
+            pageInteractionHelper.VerifyText(NoCandidateInfo, "There are currently no candidates that match your search.");
             return this;
         }
 
         public RAA_CandidateApplicationPage SelectACandidate()
         {
-            var links = _pageInteractionHelper.GetLinks(SelectCandidateLinks, "Select candidate");
-            formCompletionHelper.ClickElement(rAAV1DataHelper.GetRandomElementFromListOfElements(links));
+            var links = pageInteractionHelper.GetLinks(SelectCandidateLinks, "Select candidate");
+            formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(links));
             return new RAA_CandidateApplicationPage(_context);
         }
     }

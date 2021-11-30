@@ -11,7 +11,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FAADataHelper _faaDataHelper;
 
         #endregion
@@ -26,7 +25,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
         }
 
@@ -34,13 +32,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             string currentwage;
 
-            if (_pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
+            if (pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
             {
-                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(AmountLowerBound));
+                currentwage = RegexHelper.GetVacancyCurrentWage(pageInteractionHelper.GetText(AmountLowerBound));
             }
             else
             {
-                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
+                currentwage = RegexHelper.GetVacancyCurrentWage(pageInteractionHelper.GetText(CurrentWage));
                 
                 formCompletionHelper.SelectRadioOptionByText("Custom wage");
 

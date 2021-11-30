@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By ConfirmEmailAddress => By.CssSelector("#ConfirmEmailAddress");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public ChangeYourEmailAddressPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
+        public ChangeYourEmailAddressPage(ScenarioContext context) : base(context, verifyserviceheader: false) => _context = context;
 
         public YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {

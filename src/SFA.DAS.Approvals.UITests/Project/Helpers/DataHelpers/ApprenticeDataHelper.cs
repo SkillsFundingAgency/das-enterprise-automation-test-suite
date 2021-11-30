@@ -8,13 +8,13 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper : RandomElementHelper
+    public class ApprenticeDataHelper
     {
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
         private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) : base()
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
         {
             _objectContext = objectContext;
             _apprenticePPIDataHelper = apprenticePPIDataHelper;
@@ -65,16 +65,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return uln;
         }
 
-        public int ApprenticeshipId()
+        public int ApprenticeshipId(string title)
         {
-            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
+            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
         }
 
         private int _apprenticeid;
 
-        private int GetApprenticeshipIdForCurrentLearner()
+        private int GetApprenticeshipIdForCurrentLearner(string title)
         {
-            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single(), title);
             _objectContext.SetApprenticeId(_apprenticeid);
             return _apprenticeid;
         }

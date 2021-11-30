@@ -13,10 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-        public ProviderRoutePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ProviderRoutePage(ScenarioContext context) : base(context) => _context = context;
 
         public TypeOrganisationsPage SubmitProviderType(string providerType)
         {

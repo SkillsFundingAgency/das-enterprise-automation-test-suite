@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
@@ -12,7 +11,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By OfflineApplicationProcess => By.Id("apprenticheship-offline-application-instructions");
@@ -21,11 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyShortDescription => By.CssSelector("#ShortDescription");
         private By VacancyTitle => By.CssSelector("#Title");
 
-        public RAA_BasicVacancyDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public RAA_BasicVacancyDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public RAA_BasicVacancyDetailsPage EnterVacancyTitle()
         {
@@ -77,6 +71,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        private void SetVacancyShortDescription(string value) => _objectContext.SetVacancyShortDescription(value);
+        private void SetVacancyShortDescription(string value) => objectContext.SetVacancyShortDescription(value);
     }
 }

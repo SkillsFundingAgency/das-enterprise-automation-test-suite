@@ -48,30 +48,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.ClickElement(AddContactLink);
             return new AddContactPage(_context);
         }
-
-        public AddStandardPage AddAStandard()
-        {
-            formCompletionHelper.ClickElement(AddStandardLink);
-            return new AddStandardPage(_context);
-        }
-
+        
         public ContactDetailsPage SelectContact()
         {
             VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
             formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
             return new ContactDetailsPage(_context);
         }
-
-        public OrganisationStandardDetailsPage SelectStandards()
-        {
-            var pageoptions = pageInteractionHelper.GetAvailableOptions(StandardPagination);
-            var maxoption = pageoptions.Select(x => int.Parse(x)).Max();
-            formCompletionHelper.SelectFromDropDownByValue(StandardPagination, maxoption.ToString());
-            pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
-            tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
-            return new OrganisationStandardDetailsPage(_context);
-        }
-
+        
         private OrganisationDetailsPage VerifyOrganisationDetails(string headerName, string value)
         {
             pageInteractionHelper.VerifyText(GetData(headerName).Text, value);

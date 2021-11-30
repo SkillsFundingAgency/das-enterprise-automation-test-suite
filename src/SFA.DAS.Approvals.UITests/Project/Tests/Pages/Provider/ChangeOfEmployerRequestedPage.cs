@@ -8,9 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ChangeOfEmployerRequestedPage(ScenarioContext context) : base(context) { }
 
-        public ChangeOfEmployerRequestedPage VerifyChangeOfEmployerHasBeenRequested()
-        {
-            return this;
-        }
+        public ChangeOfEmployerRequestedPage VerifyChangeOfEmployerHasBeenRequested() => this;
     }
 }

@@ -1,7 +1,6 @@
 ﻿Feature: AP_E2E_PF_NL_01
 
 @addnonlevyfunds
-@selectstandardcourse
 @perftest
 @donottakescreenshot
 @liveapprentice

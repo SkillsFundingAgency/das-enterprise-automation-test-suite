@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -12,7 +10,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By Yes => By.CssSelector("#application-method-faa");
@@ -21,17 +18,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By ApplicationInstructions => By.CssSelector("#ApplicationInstructions");
 
-        public ApplicationProcessPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public ApplicationProcessPage(ScenarioContext context) : base(context) => _context = context;
 
         public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) => isFAA ? ApplicationMethodFAA() : ApplicationMethodExternal();
 
         private VacancyPreviewPart2Page ApplicationMethodFAA()
         {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(Yes));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(Yes));
             return SaveAndContinue();
         }
 

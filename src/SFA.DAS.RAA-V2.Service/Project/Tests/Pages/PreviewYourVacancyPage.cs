@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 
@@ -15,10 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;        
         #endregion
 
-        public PreviewYourVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public PreviewYourVacancyPage(ScenarioContext context) : base(context) => _context = context;
 
         public VacancyPreviewPart2Page PreviewVacancy()
         {

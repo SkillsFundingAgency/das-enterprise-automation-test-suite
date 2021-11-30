@@ -13,12 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         private readonly ScenarioContext _context;
         #endregion
 
- 
-
-        public RoatpAdminHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public RoatpAdminHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public OrganisationUkprnPage AddANewTrainingProvider()
         {

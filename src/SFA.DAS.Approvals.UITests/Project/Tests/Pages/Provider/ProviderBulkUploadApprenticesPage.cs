@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System;
@@ -21,20 +20,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;
         #endregion
 
         public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
             _bulkUploadDataHelper = new BulkUploadDataHelper();
         }
 
         public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
-            _objectContext.SetNoOfApprentices(numberOfApprentices);
+            objectContext.SetNoOfApprentices(numberOfApprentices);
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
             List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
