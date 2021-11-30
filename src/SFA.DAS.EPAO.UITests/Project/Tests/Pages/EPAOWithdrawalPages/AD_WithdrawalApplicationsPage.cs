@@ -18,7 +18,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By FeedbackTab => By.Id("tab_feedback");
         private By ApprovedTab => By.Id("tab_approved");
 
-        public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => _context = context;
+        public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public AD_WithdrawalRequestOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {

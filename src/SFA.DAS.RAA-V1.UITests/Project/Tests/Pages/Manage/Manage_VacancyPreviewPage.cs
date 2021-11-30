@@ -15,10 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By ApproveAndContinue => By.Name("VacancyQAAction");
 
-        public Manage_VacancyPreviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public Manage_VacancyPreviewPage(ScenarioContext context) : base(context) => _context = context;
 
         public void ApproveAVacancy()
         {

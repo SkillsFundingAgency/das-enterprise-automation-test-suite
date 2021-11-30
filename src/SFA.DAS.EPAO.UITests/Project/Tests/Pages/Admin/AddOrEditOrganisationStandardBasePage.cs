@@ -26,6 +26,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(EffectiveFromMonth, effectiveFrom.Month.ToString());
             formCompletionHelper.EnterText(EffectiveFromYear, effectiveFrom.Year.ToString());
         }
-
     }
 }

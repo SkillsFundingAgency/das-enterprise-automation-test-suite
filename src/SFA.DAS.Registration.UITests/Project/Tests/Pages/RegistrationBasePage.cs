@@ -1,7 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using OpenQA.Selenium;
 
@@ -10,12 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class RegistrationBasePage : BasePage
     {
         #region Helpers and Context
-        protected readonly IFrameHelper frameHelper;
-        protected readonly JavaScriptHelper javaScriptHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly RegistrationConfig config;
-        protected readonly ObjectContext objectContext;
         protected readonly RegistrationDataHelper registrationDataHelper;
         private readonly ScenarioContext _context;
         #endregion
@@ -30,12 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected RegistrationBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            frameHelper = context.Get<IFrameHelper>();
-            javaScriptHelper = context.Get<JavaScriptHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();
-            objectContext = context.Get<ObjectContext>();
             registrationDataHelper = context.Get<RegistrationDataHelper>();
         }
 

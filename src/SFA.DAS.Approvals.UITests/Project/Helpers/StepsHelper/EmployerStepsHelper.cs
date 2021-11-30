@@ -46,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
-            return new ApprenticesHomePage(_context, true);
+            return new ApprenticesHomePage(_context);
         }
 
         public StoppedApprenticeDetailsPage StopApprenticeThisMonth() => StopApprenticeThisMonth(ViewCurrentApprenticeDetails());
@@ -244,7 +244,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
-            var addAnApprenticePage = new ApprenticesHomePage(_context, true).AddAnApprentice();
+            var addAnApprenticePage = new ApprenticesHomePage(_context).AddAnApprentice();
 
             var addTrainingProviderDetailsPage = AddTrainingProviderDetails(addAnApprenticePage);
 

@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -21,8 +23,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
             _context = context;
-            VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            VerifyPage(HelpAndSupportSection);
+
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
+                () => VerifyPage(HelpAndSupportSection)
+            });
         }
 
         public ConfirmYourEmployerPage GoToConfirmYourEmployerPage()

@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public ManageFundingHomePage ClickConfirmButton()
         {
             Continue();
-            return new ManageFundingHomePage(_context);
+            return new ManageFundingHomePage(_context, false);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            VerifyPage();
         }
 
         public AS_HowWillYouCommunicateMarketExitToCustomersPage EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()

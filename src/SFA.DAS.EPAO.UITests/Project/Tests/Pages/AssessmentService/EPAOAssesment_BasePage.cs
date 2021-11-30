@@ -8,10 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private readonly ScenarioContext _context;
         #endregion
 
-        public EPAOAssesment_BasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public EPAOAssesment_BasePage(ScenarioContext context) : base(context) => _context = context;
 
         public AS_CheckAndSubmitAssessmentPage ClickBackLink()
         {

@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -21,6 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             _context = context;
             VerifyPage();
         }
+
         public YouHaveSuccessfullyDeletedPage ClickDeleteCertificateButton()
         {
             formCompletionHelper.ClickElement(DeleteCertificate);

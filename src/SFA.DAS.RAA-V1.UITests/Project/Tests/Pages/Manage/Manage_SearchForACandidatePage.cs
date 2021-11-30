@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,7 +13,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectcontext;
         private readonly FAADataHelper _faaDataHelper;
         #endregion
 
@@ -29,13 +27,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_SearchForACandidatePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectcontext = context.Get<ObjectContext>();
             _faaDataHelper = context.Get<FAADataHelper>();
         }
 
         public Manage_SearchForACandidatePage Search()
         {
-            var (_, _, firstname, lastname) = _objectcontext.GetFAALogin();
+            var (_, _, firstname, lastname) = objectContext.GetFAALogin();
             formCompletionHelper.EnterText(FirstName, firstname);
             formCompletionHelper.EnterText(LastName, lastname);
             formCompletionHelper.ClickButtonByText("Search");

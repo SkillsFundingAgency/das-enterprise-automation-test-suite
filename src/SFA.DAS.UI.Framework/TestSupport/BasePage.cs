@@ -12,12 +12,19 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class BasePage
     {
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FrameworkConfig _frameworkConfig;
+        protected readonly string[] tags;
+        protected readonly ObjectContext objectContext;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly IFrameHelper frameHelper;
+        protected readonly JavaScriptHelper javaScriptHelper;
+        protected readonly TabHelper tabHelper;
+        protected readonly TableRowHelper tableRowHelper;
+        protected readonly FrameworkConfig frameworkConfig;
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
+        private bool _takescreenshot;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
@@ -35,60 +42,91 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected BasePage(ScenarioContext context)
         {
-            _frameworkConfig = context.Get<FrameworkConfig>();
-            _webDriver = context.GetWebDriver();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            var objectContext = context.Get<ObjectContext>();
-            _directory = objectContext.GetDirectory();
+            objectContext = context.Get<ObjectContext>();
+            tags = context.ScenarioInfo.Tags;
+            frameworkConfig = context.Get<FrameworkConfig>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
+            frameHelper = context.Get<IFrameHelper>();
+            javaScriptHelper = context.Get<JavaScriptHelper>();
+            tabHelper = context.Get<TabHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
 
-            if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
+            _takescreenshot = true;
+            _webDriver = context.GetWebDriver();
+            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
+            _directory = objectContext.GetDirectory();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
         }
 
-        protected string GetUrl() => _pageInteractionHelper.GetUrl();
+        protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
+        {
+            return VeriFyPage(() => 
+            {
+                _takescreenshot = false;
 
-        private bool CanCaptureUrl() => (_frameworkConfig.CanCaptureUrl && CaptureUrl);
+                bool result = true;
 
-        protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
+                foreach (var item in testDelegate)
+                {
+                    result = result && item();
+                }
 
-        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
+                _takescreenshot = true;
 
-        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => _pageInteractionHelper.VerifyPage(func, expected);
+                return result;
+            });
+        }
 
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
-
-        protected bool VerifyPage(By locator) => _pageInteractionHelper.VerifyPage(locator);
-
-        protected bool VerifyPage(By locator, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, retryAction);
-
-        protected bool VerifyPage(Action retryAction) => _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction);
+        protected string GetUrl() => pageInteractionHelper.GetUrl();
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 
-        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
+        protected bool VerifyPageAfterRefresh(By locator) => VeriFyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
-        protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
+        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
 
-        protected bool VerifyPage(By locator, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, text, retryAction);
+        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, expected));
 
-        protected virtual void Continue() => _formCompletionHelper.Click(ContinueButton);
+        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
 
-        protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
+        protected bool VerifyPage(By locator) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator));
 
-        protected void SelectRadioOptionByText(string value) => _formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
+        protected bool VerifyPage(By locator, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, retryAction));
 
-        protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
+        protected bool VerifyPage(Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction));
 
-        protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
+        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
+
+        protected bool VerifyPage(By locator, string text) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, text));
+
+        protected bool VerifyPage(By locator, string text, Action retryAction) => VeriFyPage(() =>pageInteractionHelper.VerifyPage(locator, text, retryAction));
+
+        protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
+
+        protected void SelectRadioOptionByForAttribute(string value) => formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
+
+        protected void SelectRadioOptionByText(string value) => formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
+
+        protected void SelectCheckBoxByText(string value) => formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
+
+        protected void NavigateBack() => formCompletionHelper.Click(BackLink);
 
         protected void AcceptCookies()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-                _formCompletionHelper.Click(AcceptCookieButton);
+            if (pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+                formCompletionHelper.Click(AcceptCookieButton);
+        }
+
+        private bool CanCaptureUrl() => (frameworkConfig.CanCaptureUrl && CaptureUrl);
+
+        private bool VeriFyPage(Func<bool> func) { var result = func(); TakeScreenShotMethod(); return result; }
+
+        private void TakeScreenShotMethod()
+        {
+            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
         }
     }
 }

@@ -9,9 +9,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public abstract class FATBasePage : BasePage
     {
         #region Helpers and Context
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -22,13 +19,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected virtual By FirstResultLink => By.CssSelector("h2.result-title a");
         #endregion
 
-        protected FATBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
-        }
+        protected FATBasePage(ScenarioContext context) : base(context) => _context = context;
 
         public void SearchApprenticeship(string searchTerm)
         {

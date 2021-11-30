@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.ConfigurationBuilder;
 using System;
 using TechTalk.SpecFlow;
 
@@ -12,7 +11,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
@@ -31,13 +29,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
-        private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={_objectContext.GetVacancyReference()}']");
+        private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={objectContext.GetVacancyReference()}']");
 
-        public Manage_HomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public Manage_HomePage(ScenarioContext context) : base(context) => _context = context;
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
@@ -97,9 +91,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             ChangeFilter(ChangeTeam, InputChangeTeam, "West Midlands");
         }
         
-        private void ChangeToHelpdeskAdviser()
-        {
-            ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
-        }
+        private void ChangeToHelpdeskAdviser() => ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
     }
 }

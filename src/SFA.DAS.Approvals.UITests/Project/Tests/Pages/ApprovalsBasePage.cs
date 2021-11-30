@@ -3,7 +3,6 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -12,13 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
     public abstract class ApprovalsBasePage : BasePage
     {
         #region Helpers and Context
-        private readonly string[] _tags;
         protected readonly LoginCredentialsHelper loginCredentialsHelper;
-        protected readonly TableRowHelper tableRowHelper;
-        protected readonly TabHelper tabHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
         protected readonly ApprovalsConfig approvalsConfig;
         protected readonly ProviderConfig providerConfig;
         protected readonly ChangeOfPartyConfig changeOfPartyConfig;
@@ -28,18 +21,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly EditedApprenticeCourseDataHelper editedApprenticeCourseDataHelper; 
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
         protected readonly RegistrationDataHelper registrationDataHelper; 
-        protected readonly RandomDataGenerator randomDataGenerator;
-        protected readonly JavaScriptHelper javaScriptHelper;
         #endregion
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            _tags = context.ScenarioInfo.Tags;
-            tableRowHelper = context.Get<TableRowHelper>();
-            tabHelper = context.Get<TabHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
             registrationDataHelper = context.Get<RegistrationDataHelper>();
             providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -50,11 +35,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
             apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
             editedApprenticeCourseDataHelper = context.GetValue<EditedApprenticeCourseDataHelper>();
-            randomDataGenerator = context.Get<RandomDataGenerator>();
-            javaScriptHelper = context.Get<JavaScriptHelper>();
             if (verifypage) VerifyPage();
         }
 
-        protected bool IsSelectStandardWithMultipleOptions() => _tags.Contains("selectstandardwithmultipleoptions");
+        protected bool IsSelectStandardWithMultipleOptions() => tags.Contains("selectstandardwithmultipleoptions");
     }
 }

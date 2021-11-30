@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -16,10 +18,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePageNegativeMatch(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            AssertTopNavigationLinksNotToBePresent();
-            AssertNotificationBanner();
-            VerifyPageContent();
+
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}"),
+                () => { AssertTopNavigationLinksNotToBePresent(); return true; },
+                () => { AssertNotificationBanner(); return true; },
+                () => { VerifyPageContent(); return true; }
+            });
         }
 
         public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
