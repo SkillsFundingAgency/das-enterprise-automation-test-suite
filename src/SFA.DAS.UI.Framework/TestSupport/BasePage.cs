@@ -42,11 +42,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected BasePage(ScenarioContext context)
         {
-            _takescreenshot = true;
-            _webDriver = context.GetWebDriver();
-            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            _directory = objectContext.GetDirectory();
-
             objectContext = context.Get<ObjectContext>();
             tags = context.ScenarioInfo.Tags;
             frameworkConfig = context.Get<FrameworkConfig>();
@@ -56,7 +51,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
             javaScriptHelper = context.Get<JavaScriptHelper>();
             tabHelper = context.Get<TabHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
-            
+
+            _takescreenshot = true;
+            _webDriver = context.GetWebDriver();
+            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
+            _directory = objectContext.GetDirectory();
+
             if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
         }
 
