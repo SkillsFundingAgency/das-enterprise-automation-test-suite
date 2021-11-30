@@ -12,6 +12,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class BasePage
     {
         #region Helpers and Context
+        protected readonly string[] tags;
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
@@ -19,11 +20,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected readonly JavaScriptHelper javaScriptHelper;
         protected readonly TabHelper tabHelper;
         protected readonly TableRowHelper tableRowHelper;
-        protected readonly FrameworkConfig _frameworkConfig;
+        protected readonly FrameworkConfig frameworkConfig;
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
-        protected readonly string[] tags;
+        private bool _takescreenshot;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
@@ -41,20 +42,21 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected BasePage(ScenarioContext context)
         {
-            this.objectContext = context.Get<ObjectContext>();
-            tags = context.ScenarioInfo.Tags;
-            _frameworkConfig = context.Get<FrameworkConfig>();
+            _takescreenshot = true;
             _webDriver = context.GetWebDriver();
+            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
+            _directory = objectContext.GetDirectory();
+
+            objectContext = context.Get<ObjectContext>();
+            tags = context.ScenarioInfo.Tags;
+            frameworkConfig = context.Get<FrameworkConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             frameHelper = context.Get<IFrameHelper>();
             javaScriptHelper = context.Get<JavaScriptHelper>();
             tabHelper = context.Get<TabHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
-            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            var objectContext = context.Get<ObjectContext>();
-            _directory = objectContext.GetDirectory();
-
+            
             if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
         }
 
@@ -62,12 +64,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return VeriFyPage(() => 
             {
+                _takescreenshot = false;
+
                 bool result = true;
 
                 foreach (var item in testDelegate)
                 {
                     result = result && item();
                 }
+
+                _takescreenshot = true;
 
                 return result;
             });
@@ -113,13 +119,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 formCompletionHelper.Click(AcceptCookieButton);
         }
 
-        private bool CanCaptureUrl() => (_frameworkConfig.CanCaptureUrl && CaptureUrl);
+        private bool CanCaptureUrl() => (frameworkConfig.CanCaptureUrl && CaptureUrl);
 
         private bool VeriFyPage(Func<bool> func) { var result = func(); TakeScreenShotMethod(); return result; }
 
         private void TakeScreenShotMethod()
         {
-            if (_frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot"))
+            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
         }
     }

@@ -39,7 +39,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
 
         protected void UploadFile()
         {
-            string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
+            string File = AppDomain.CurrentDomain.BaseDirectory + frameworkConfig.SampleFileName;
             formCompletionHelper.EnterText(ChooseFile, File);
             Continue();
         }
