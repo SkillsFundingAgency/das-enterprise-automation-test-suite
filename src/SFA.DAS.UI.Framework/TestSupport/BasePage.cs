@@ -101,7 +101,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(By locator, string text) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, text));
 
-        protected bool VerifyPage(By locator, string text, Action retryAction) => VeriFyPage(() =>pageInteractionHelper.VerifyPage(locator, text, retryAction));
+        protected bool VerifyPage(By locator, string text, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, text, retryAction));
 
         protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
 
