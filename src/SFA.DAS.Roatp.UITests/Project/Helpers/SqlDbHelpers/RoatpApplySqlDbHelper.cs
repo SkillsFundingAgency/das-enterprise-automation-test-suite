@@ -95,7 +95,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             $"DELETE FROM [dbo].[OversightReview] where ApplicationId = @ApplicationID;" +
             $"UPDATE Apply set Applicationstatus = 'GatewayAssessed' WHERE ApplicationId = @ApplicationID");
 
+        public void OversightReviewClearDownFromApply_GatewayReject(string ukprn) => ExecuteSqlCommand($"{GeRejectedApplication_ApplicationId(ukprn)}" +
+           $"UPDATE Apply set [ApplyData] = JSON_MODIFY(JSON_MODIFY(JSON_Modify(ApplyData, '$.ApplyDetails.RequestToReapplyMade', null), '$.ApplyDetails.RequestToReapplyBy', null), '$.ApplyDetails.RequestToReapplyOn', null) " +
+            $"Where ApplicationId =  @ApplicationID");
+
         private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
+
+        private string GeRejectedApplication_ApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'Rejected';";
 
         public void Delete_AllowListProviders(string ukprn)
         {

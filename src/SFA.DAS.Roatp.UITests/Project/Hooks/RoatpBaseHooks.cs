@@ -60,6 +60,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
+        protected void ClearDownApplyData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromApply_ReapplyRecord(ukprn);
+
+        protected void ClearDownQnAData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(ukprn);
+
         protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
 
         protected void AllowListProviders(string ukprn = null) => _roatpApplyAndQnASqlDbHelper.AllowListProviders(ukprn);
