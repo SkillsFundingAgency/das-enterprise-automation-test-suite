@@ -8,8 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-fieldset__heading");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -30,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By AddButton => By.CssSelector("#addApprenticeship > button");
+
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -58,6 +59,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
 
+        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
+        {
+            SelectRadioOptionByForAttribute("confirm-Manual");
+            Continue();
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+        }
+        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectBulkUpload()
+        {
+            SelectRadioOptionByForAttribute("confirm-BulkCsv");
+            Continue();
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+        }
         private void EnterApprenticeMandatoryValidDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);

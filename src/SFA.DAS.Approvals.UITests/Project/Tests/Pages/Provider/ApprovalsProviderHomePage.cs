@@ -39,10 +39,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderOrganisationsAndAgreementsPage(_context);
         }
 
-        public ProviderAddApprenticeDetailsViaSelectJourneyPage GotoSelectJourneyPage()
+        public ProviderAddApprenticeDetailsPage GotoSelectJourneyPage()
         {
             _formCompletionHelper.ClickElement(AddNewApprenticesLink);
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+            return new ProviderAddApprenticeDetailsPage(_context);
         }
 
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
