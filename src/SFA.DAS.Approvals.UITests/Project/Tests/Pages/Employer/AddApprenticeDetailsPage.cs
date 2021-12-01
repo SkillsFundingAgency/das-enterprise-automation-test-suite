@@ -2,6 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -67,6 +69,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
+
+            if (IsSelectStandardWithMultipleOptions())  new SelectAStandardOptionpage(_context).SelectAStandardOption();
+
             return new ReviewYourCohortPage(_context);
         }
 
@@ -102,8 +107,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
                 apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomLastName();
+                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
                 apprenticeDataHelper.TrainingPrice = "7500";
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
@@ -122,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
 
-            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+            if (tags.Contains("aslistedemployer")) return;
 
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }

@@ -22,6 +22,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             formCompletionHelper.Click(AgencyButton);
             return new IdamsPage(_context);
         }
-
     }
 }

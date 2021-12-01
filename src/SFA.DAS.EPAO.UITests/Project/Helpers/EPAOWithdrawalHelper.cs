@@ -59,10 +59,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .AcceptAndSubmitWithHowWillYouSuportQuestion();
         }
 
-        public void VerifyStandardSubmitted()
-        {
-            new AS_WithdrawalApplicationSubmittedPage(_context).StandardSubmissionVerification();
-        }
+        public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
 
         public void VerifyTheInProgressStatus()
         {

@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage NavigateToHomePageWithReturnToHomePageButton()
         {
             formCompletionHelper.Click(ReturnToHomePageButton);
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(_context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageWithBackLink()
@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage NavigateToHomePageWithBackLink()
         {
             NavigateBack();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(_context, false);
         }
     }
 }

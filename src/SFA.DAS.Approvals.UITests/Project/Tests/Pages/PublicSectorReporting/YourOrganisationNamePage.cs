@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         
         public ReportYourProgressPage EnterNameOftheOrganisation()
         {
-            formCompletionHelper.EnterText(OrganisatiponNameInput, registrationConfig.RE_OrganisationName);
+            formCompletionHelper.EnterText(OrganisatiponNameInput, registrationDataHelper.CompanyTypeOrg);
             Continue();
             return new ReportYourProgressPage(_context);
         }

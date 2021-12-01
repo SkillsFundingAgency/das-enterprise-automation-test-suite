@@ -5,46 +5,46 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1DataHelper : RandomElementHelper
+    public class RAAV1DataHelper
     {
-        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public RAAV1DataHelper()
         {
-            EmployerDescription = randomDataGenerator.GenerateRandomAlphabeticString(10);
-            EmployerReason = randomDataGenerator.GenerateRandomAlphabeticString(10);
-            EmployerBody = randomDataGenerator.GenerateRandomAlphabeticString(25);
+            EmployerDescription = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerReason = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerBody = RandomDataGenerator.GenerateRandomAlphabeticString(25);
             EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
-            VacancyShortDescription = randomDataGenerator.GenerateRandomAlphabeticString(15);
-            VacancyDescription = randomDataGenerator.GenerateRandomAlphabeticString(50);
+            VacancyShortDescription = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyDescription = RandomDataGenerator.GenerateRandomAlphabeticString(50);
             VacancyWebsiteUrl = WebsiteUrl(VacancyShortDescription);
-            ApplicationProcess = randomDataGenerator.GenerateRandomAlphabeticString(40);
-            TrainingDetails = randomDataGenerator.GenerateRandomAlphabeticString(28);
-            TrainingContactName = randomDataGenerator.GenerateRandomAlphabeticString(5);
+            ApplicationProcess = RandomDataGenerator.GenerateRandomAlphabeticString(40);
+            TrainingDetails = RandomDataGenerator.GenerateRandomAlphabeticString(28);
+            TrainingContactName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
             TrainingEmail = $"{TrainingContactName}@lorem.com";
-            WorkkingWeek = randomDataGenerator.GenerateRandomAlphabeticString(15);
-            FixedWagePerWeek = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(300, 350).ToString();
+            WorkkingWeek = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            FixedWagePerWeek = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(300, 350).ToString();
             CustomMinWagePerWeek = FixedWagePerWeek;
-            CustomMaxWagePerWeek = (int.Parse(FixedWagePerWeek) + this.randomDataGenerator.GenerateRandomNumberBetweenTwoValues(50, 100)).ToString();
+            CustomMaxWagePerWeek = (int.Parse(FixedWagePerWeek) + RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(50, 100)).ToString();
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             NewVacancyClosing = VacancyClosing.AddDays(15);
             NewVacancyStart = NewVacancyClosing.AddDays(15);
-            DesiredSkills = randomDataGenerator.GenerateRandomAlphabeticString(18);
-            PersonalQualities = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            DesiredQualifications = randomDataGenerator.GenerateRandomAlphabeticString(24);
-            FutureProspects = randomDataGenerator.GenerateRandomAlphabeticString(30);
-            ThingsToConsider = randomDataGenerator.GenerateRandomAlphabeticString(35);
-            FirstQuestion = randomDataGenerator.GenerateRandomAlphabeticString(15);
-            SecondQuestion = randomDataGenerator.GenerateRandomAlphabeticString(15);
-            AdditionalLocationInformation = randomDataGenerator.GenerateRandomAlphabeticString(5);
+            DesiredSkills = RandomDataGenerator.GenerateRandomAlphabeticString(18);
+            PersonalQualities = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            DesiredQualifications = RandomDataGenerator.GenerateRandomAlphabeticString(24);
+            FutureProspects = RandomDataGenerator.GenerateRandomAlphabeticString(30);
+            ThingsToConsider = RandomDataGenerator.GenerateRandomAlphabeticString(35);
+            FirstQuestion = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            SecondQuestion = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            AdditionalLocationInformation = RandomDataGenerator.GenerateRandomAlphabeticString(5);
             ShareApplicationEmail = $"{TrainingContactName}@gmail.com";
-            OptionalMessage = randomDataGenerator.GenerateRandomAlphabeticString(30);              
+            OptionalMessage = RandomDataGenerator.GenerateRandomAlphabeticString(30);              
         }
 
         public string EmployerErn { get; private set; }
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = GetRandomElementFromListOfElements(links);
+            var randomEmployer = RandomDataGenerator.GetRandomElementFromListOfElements(links);
 
             EmployerErn = RegexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
@@ -68,7 +68,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string TrainingDetails { get; }
 
-        public int RandomNumber => randomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
+        public int RandomNumber => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
 
         public string TrainingContactName { get; }
 

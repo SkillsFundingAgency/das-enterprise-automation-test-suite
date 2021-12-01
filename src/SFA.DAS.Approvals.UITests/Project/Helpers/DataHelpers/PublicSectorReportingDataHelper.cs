@@ -2,24 +2,24 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class PublicSectorReportingDataHelper : RandomElementHelper
+    public class PublicSectorReportingDataHelper
     {
-        public PublicSectorReportingDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public PublicSectorReportingDataHelper()
         {
-            NoofEmployees2019 = randomDataGenerator.GenerateRandomWholeNumber(2);
-            NoofEmployees2020 = randomDataGenerator.GenerateRandomWholeNumber(3);
+            NoofEmployees2019 = RandomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofEmployees2020 = RandomDataGenerator.GenerateRandomWholeNumber(3);
             NoofNewEmployees = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
 
-            NoofApprentices2019 = randomDataGenerator.GenerateRandomWholeNumber(1);
-            NoofApprentices2020 = randomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofApprentices2019 = RandomDataGenerator.GenerateRandomWholeNumber(1);
+            NoofApprentices2020 = RandomDataGenerator.GenerateRandomWholeNumber(2);
             NoofNewApprentices = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
 
-            NoofFullTimeEmployees = randomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofFullTimeEmployees = RandomDataGenerator.GenerateRandomWholeNumber(2);
 
-            EmployerActions = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EmployerChallenges = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EmployerPlanning = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EmployerComments = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            EmployerActions = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EmployerChallenges = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EmployerPlanning = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EmployerComments = RandomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         internal string EmployerActions { get; }

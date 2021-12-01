@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ManageApplicantPage : RAAV2CSSBasePage
@@ -18,10 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 
-        public ManageApplicantPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ManageApplicantPage(ScenarioContext context) : base(context) => _context = context;
 
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {

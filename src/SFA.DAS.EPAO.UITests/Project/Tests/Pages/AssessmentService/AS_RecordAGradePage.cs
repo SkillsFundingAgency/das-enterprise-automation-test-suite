@@ -68,5 +68,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
             return SearchApprentice(deleteCertificate);
         }
+
+        public AS_CannotFindApprenticePage EnterApprenticeDetailsForExistingCertificateAndContinue()
+        {
+            formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.LastName);
+            formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
+            Continue();
+            return new AS_CannotFindApprenticePage(_context);
+        }
     }
 }

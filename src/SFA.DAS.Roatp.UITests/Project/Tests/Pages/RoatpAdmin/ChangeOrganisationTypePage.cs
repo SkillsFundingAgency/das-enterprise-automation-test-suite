@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
@@ -16,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.ClickElement(() => 
             {
-                var randomElement = admindataHelpers.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs));
+                var randomElement = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs));
                 objectContext.UpdateOrganisationType(randomElement?.Text);
                 return randomElement;
             });

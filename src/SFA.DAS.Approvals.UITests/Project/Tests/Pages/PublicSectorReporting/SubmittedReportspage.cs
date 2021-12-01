@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         public SubmittedDetailsPage ViewReport()
         {
-            tableRowHelper.SelectRowFromTable("View", registrationConfig.RE_OrganisationName);
+            tableRowHelper.SelectRowFromTable("View", registrationDataHelper.CompanyTypeOrg);
             return new SubmittedDetailsPage(_context);
         }
     }

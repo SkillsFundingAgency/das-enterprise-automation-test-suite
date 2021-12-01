@@ -1,5 +1,4 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
 using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
@@ -15,7 +14,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         protected readonly RegistrationConfig config;
-        protected readonly ObjectContext objectContext;
         #endregion
 
         #region Locators
@@ -35,7 +33,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         {
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
-            objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -43,7 +40,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         {
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
-            objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 

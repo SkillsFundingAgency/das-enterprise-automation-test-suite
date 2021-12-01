@@ -2,14 +2,14 @@
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1RegistrationDataHelper : RandomElementHelper
+    public class RAAV1RegistrationDataHelper
     {
-        public RAAV1RegistrationDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public RAAV1RegistrationDataHelper()
         {
-            FirstName = randomDataGenerator.GenerateRandomAlphabeticString(6);
-            LastName = randomDataGenerator.GenerateRandomAlphabeticString(7);
+            FirstName = RandomDataGenerator.GenerateRandomAlphabeticString(6);
+            LastName = RandomDataGenerator.GenerateRandomAlphabeticString(7);
             EmailAddress = $"{FirstName}.{LastName}@lorem.com";
-            Password = $"{randomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(9)}1";
+            Password = $"{RandomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(9)}1";
         }
 
         public string Title => "Mr";

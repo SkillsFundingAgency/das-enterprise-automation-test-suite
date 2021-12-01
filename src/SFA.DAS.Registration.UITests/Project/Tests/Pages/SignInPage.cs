@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -10,7 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Sign in";
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
 
         #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
@@ -23,7 +21,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -59,9 +56,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, userName);
-            _formCompletionHelper.EnterText(PasswordInput, password);
-            _formCompletionHelper.ClickElement(SignInButton);
+            formCompletionHelper.EnterText(EmailAddressInput, userName);
+            formCompletionHelper.EnterText(PasswordInput, password);
+            formCompletionHelper.ClickElement(SignInButton);
         }
 
         public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
@@ -72,7 +69,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public PasswordResetCodePage ClickForgottenYourPasswordLink()
         {
-            _formCompletionHelper.Click(ForgottenYourPasswordLink);
+            formCompletionHelper.Click(ForgottenYourPasswordLink);
             return new PasswordResetCodePage(_context);
         }
 

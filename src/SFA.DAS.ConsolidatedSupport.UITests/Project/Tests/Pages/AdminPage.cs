@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -27,9 +29,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             _context = context;
 
-            VerifyPage();
-
-            VerifyPage(PeopleLink);
+            MultipleVerifyPage(new List<Func<bool>> { () => VerifyPage(), () => VerifyPage(PeopleLink) });
         }
 
         public UserPage NavigateToUserPage()

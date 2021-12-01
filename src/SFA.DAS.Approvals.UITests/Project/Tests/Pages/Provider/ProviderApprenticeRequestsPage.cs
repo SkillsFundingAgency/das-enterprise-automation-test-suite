@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -14,7 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
@@ -25,7 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApprenticeRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -79,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
+            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
             return new ProviderApproveApprenticeDetailsPage(_context);
         }
     }

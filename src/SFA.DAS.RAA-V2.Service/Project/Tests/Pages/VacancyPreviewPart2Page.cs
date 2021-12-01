@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
@@ -11,7 +10,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
@@ -29,11 +27,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private By ApplicationWebAddress => By.Id("ApplicationUrl");
 
-        public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) => _context = context;
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {
@@ -113,7 +107,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyPreviewPart2WithErrorsPage(_context);
         }
 
-        private By ContactDetails() => _objectContext.IsRAAV2Employer() ? EmployerContactDetails : ProviderContactDetails;
+        private By ContactDetails() => objectContext.IsRAAV2Employer() ? EmployerContactDetails : ProviderContactDetails;
 
         public ApplicationProcessPage UpdateApplicationProcess()
         {

@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage GoBackToTheServiceHomePage() => GoBackToTheServiceHomePage(config.RE_OrganisationName);
+        public HomePage GoBackToTheServiceHomePage() => GoBackToTheServiceHomePage(registrationDataHelper.CompanyTypeOrg);
 
         public HomePage GoBackToTheServiceHomePage(string orgName)
         {
