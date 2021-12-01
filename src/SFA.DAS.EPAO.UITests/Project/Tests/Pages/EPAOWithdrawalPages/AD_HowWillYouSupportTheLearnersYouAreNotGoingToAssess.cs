@@ -19,12 +19,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
-        public AD_WithdrawalNotificationQuestionsPage AddFeedbackMessage()
+        public AD_WithdrawalRequestQuestionsPage AddFeedbackMessage()
         {
             formCompletionHelper.Click(FeedbackMessageTextArea);
             formCompletionHelper.EnterText(FeedbackMessageTextArea, ePAOAdminDataHelper.GetRandomAlphabeticString(200));
             formCompletionHelper.Click(AddFeedbackButton);
-            return new AD_WithdrawalNotificationQuestionsPage(_context);
+            return new AD_WithdrawalRequestQuestionsPage(_context);
         }
     }
 }
