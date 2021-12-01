@@ -113,6 +113,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToViwEIApplications()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
+
             new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsPage();
         }
 
@@ -224,7 +225,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ReturnToEasApplicationCompletePage()
                 .NavigateToViewApplicationsPage();
         }
-
     }
 }
 
