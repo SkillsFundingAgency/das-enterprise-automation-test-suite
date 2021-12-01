@@ -77,13 +77,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.EarningsCalc
         [NUnit.Framework.DescriptionAttribute("EI_EC_01_Apply for Incentive for a New Account with start date as less than 3 mon" +
             "ths in past and verify Earnings")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EI_EC_01_ApplyForIncentiveForANewAccountWithStartDateAsLessThan3MonthsInPastAndVerifyEarnings()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives",
+                    "employerincentivesphase3",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_EC_01_Apply for Incentive for a New Account with start date as less than 3 mon" +
@@ -136,13 +136,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("EI_EC_01_Apply for Incentive for a New Account with start date as more than 3 mon" +
             "ths in past and verify Earnings")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EI_EC_01_ApplyForIncentiveForANewAccountWithStartDateAsMoreThan3MonthsInPastAndVerifyEarnings()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives",
+                    "employerincentivesphase3",
                     "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_EC_01_Apply for Incentive for a New Account with start date as more than 3 mon" +

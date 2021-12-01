@@ -2,7 +2,7 @@
 
 @regression
 @addlevyfunds
-@employerincentives
+@employerincentivesphase3
 Scenario: EI_E2E_01_NewLevyAcApplyWithNoVRF_Apply for Incentive and submit bank details for a New Levy Account with one legal entity
 	Given an Employer creates a Levy Account and Signs the Agreement
 	And the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Month 4 and Year 2021

@@ -2,7 +2,7 @@
 
 @regression
 @addlevyfunds
-@employerincentives
+@employerincentivesphase3
 @vrfservice
 Scenario: EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend bank details for a New Levy Account
 	Given an Employer creates a Levy Account and Signs the Agreement

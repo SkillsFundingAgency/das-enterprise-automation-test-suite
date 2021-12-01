@@ -1,7 +1,7 @@
 ﻿Feature: EI_LA_02_V6SignedEmployer
 
 @regression
-@employerincentives
+@employerincentivesphase3
 Scenario: EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments starting APR2021 or over
 	Given the Employer logins using existing Version6AgreementUser Account
 	And the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Month 4 and Year 2021

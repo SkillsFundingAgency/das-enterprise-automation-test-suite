@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "al entity having Commitments with start date prior to APR 2021")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2021()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
-                    "employerincentives"};
+                    "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
                     "al entity having Commitments with start date prior to APR 2021", null, tagsOfScenario, argumentsOfScenario);

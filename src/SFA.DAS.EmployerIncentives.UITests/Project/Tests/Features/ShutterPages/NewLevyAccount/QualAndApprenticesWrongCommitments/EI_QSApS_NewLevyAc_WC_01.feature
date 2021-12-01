@@ -2,7 +2,7 @@
 
 @regression
 @addlevyfunds
-@employerincentives
+@employerincentivesphase3
 Scenario: EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One legal entity having Commitments with start date prior to APR 2021
 	Given an Employer creates a Levy Account and Signs the Agreement
 	Then View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications

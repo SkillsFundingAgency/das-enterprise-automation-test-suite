@@ -1,7 +1,7 @@
 ﻿Feature: EI_EC_01_VerifyEarnings
 
 @regression
-@employerincentives
+@employerincentivesphase3
 @addlevyfunds
 Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as less than 3 months in past and verify Earnings
 	Given an Employer creates a Levy Account and Signs the Agreement
@@ -13,7 +13,7 @@ Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as less
 
 
 @regression
-@employerincentives
+@employerincentivesphase3
 @addlevyfunds
 Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as more than 3 months in past and verify Earnings
 	Given an Employer creates a Levy Account and Signs the Agreement

@@ -78,14 +78,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
             "bank details for a New Levy Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
         public virtual void EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_ApplyForIncentiveSubmitAndAmendBankDetailsForANewLevyAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
-                    "employerincentives",
+                    "employerincentivesphase3",
                     "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
