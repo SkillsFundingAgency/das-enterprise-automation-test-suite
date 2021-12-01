@@ -14,10 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By ShortDescription => By.Id("ShortDescription");
         
-        public ShortDescriptionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ShortDescriptionPage(ScenarioContext context) : base(context) => _context = context;
 
         public VacancyPreviewPart2Page EnterBriefOverview()
         {

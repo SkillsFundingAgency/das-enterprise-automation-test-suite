@@ -21,11 +21,9 @@ namespace SFA.DAS.RAA_V2.Service.Project
         [BeforeScenario(Order = 33)]
         public void SetUpHelpers()
         {
-            var random = _context.Get<RandomDataGenerator>();
-
             var vacancyTitleDatahelper = _context.Get<VacancyTitleDatahelper>();
 
-            _context.Set(new RAAV2DataHelper(random, vacancyTitleDatahelper));             
+            _context.Set(new RAAV2DataHelper( vacancyTitleDatahelper));             
 
             _objectContext.SetApprenticeshipVacancyType();
         }

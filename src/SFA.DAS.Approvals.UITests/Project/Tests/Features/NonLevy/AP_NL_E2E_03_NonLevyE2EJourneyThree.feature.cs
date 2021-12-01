@@ -78,17 +78,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
             "")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void AP_NL_E2E_03ProviderApprovesAndThenTheNon_LevyEmployerApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
-                    "regression",
-                    "selectstandardcourse"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_03 Provider approves and then the non-levy Employer approves the cohort" +
                     "", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,14 +106,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
     testRunner.When("Provider creates a reservation and adds 2 apprentices and approves the cohort and" +
                         " sends to Employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

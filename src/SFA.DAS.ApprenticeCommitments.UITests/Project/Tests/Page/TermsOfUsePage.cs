@@ -9,13 +9,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Terms of use of service";
         protected override By ContinueButton => By.CssSelector("#main-content button.govuk-button");
 
-        public TermsOfUsePage(ScenarioContext context) : base(context) => _context = context;
+        public TermsOfUsePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            AssertTopNavigationLinksNotToBePresent();
+        }
 
-        public ApprenticeHomePage AcceptTermsAndCondition(bool IsConfirmYourApprenticeLinkDisplayed)
+        public ApprenticeHomePage AcceptTermsAndConditionForPositiveMatch(bool IsConfirmYourApprenticeLinkDisplayed)
         {
             Continue();
             return new ApprenticeHomePage(_context, IsConfirmYourApprenticeLinkDisplayed);
         }
 
+        public ApprenticeHomePageNegativeMatch AcceptTermsAndConditionForNegativeMatch()
+        {
+            Continue();
+            return new ApprenticeHomePageNegativeMatch(_context);
+        }
     }
 }

@@ -74,13 +74,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteorganisationcontact")]
         [NUnit.Framework.CategoryAttribute("deleteorganisationstandards")]
-        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContactAndStandards()
+        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContact()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
@@ -89,7 +89,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
                     "deleteorganisationcontact",
                     "deleteorganisationstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,12 +115,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.And("the admin can add contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("the admin can add standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.And("the admin can update organisation standards status to be live", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -22,10 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By Publish => By.CssSelector(".govuk-button.save-button");
 
-        public EditVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public EditVacancyPage(ScenarioContext context) : base(context) => _context = context;
 
         public EditVacancyDatesPage EditVacancyCloseDate()
         {

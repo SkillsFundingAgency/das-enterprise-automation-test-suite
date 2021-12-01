@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected (string firstName, string lastName) EnterInValidApprenticeDetails()
         {
             var firstName = GetFirstName(); var lastName = GetLastName(); var dob = GetDateOfBirth();
-            EnterApprenticeDetails(UpdatedInvalidFirstName(), UpdatedInvalidLastName(), dob.Month, dob.Month, dob.Year);
+            EnterApprenticeDetails(UpdatedInvalidFirstName(), UpdatedInvalidLastName(), dob.Day, dob.Month, dob.Year);
             return (firstName, lastName);
         }
 
@@ -40,13 +40,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.EnterText(LastName, lastname);
 
             if (day != null)
-                formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 0);
+                formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 1);
 
             if (month != null)
-                formCompletionHelper.EnterText(DateOfBirth_Month, month ?? 0);
+                formCompletionHelper.EnterText(DateOfBirth_Month, month ?? 1);
 
             if (year != null)
-                formCompletionHelper.EnterText(DateOfBirth_Year, year ?? 0);
+                formCompletionHelper.EnterText(DateOfBirth_Year, year ?? 1991);
 
             Continue();
         }

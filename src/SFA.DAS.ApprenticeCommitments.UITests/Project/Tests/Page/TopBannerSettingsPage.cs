@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -11,13 +10,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");
         protected By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
         protected override string PageTitle => string.Empty;
-        protected readonly FormCompletionHelper formCompletionHelper;
 
-        public TopBannerSettingsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;;
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
+        public TopBannerSettingsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
         {

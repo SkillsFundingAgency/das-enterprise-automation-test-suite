@@ -2,18 +2,18 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class EditedApprenticeDataHelper : RandomElementHelper
+    public class EditedApprenticeDataHelper
     {
-        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper apprenticeDataHelper) : base(randomDataGenerator)
+        public EditedApprenticeDataHelper(ApprenticeDataHelper apprenticeDataHelper)
         {
             ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
-            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
-            EmployerReference = randomDataGenerator.GenerateRandomAlphanumericString(10);
-            ProviderRefernce = randomDataGenerator.GenerateRandomAlphanumericString(10);
-            TrainingPrice = "2" + randomDataGenerator.GenerateRandomNumber(3);
+            DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
+            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
+            ProviderRefernce = RandomDataGenerator.GenerateRandomAlphanumericString(10);
+            TrainingPrice = "2" + RandomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int DateOfBirthDay { get; }
@@ -32,13 +32,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string SetCurrentApprenticeEditedFirstname()
         {
-            ApprenticeEditedFirstname = randomDataGenerator.GenerateRandomAlphabeticString(8);
+            ApprenticeEditedFirstname = RandomDataGenerator.GenerateRandomAlphabeticString(8);
             return ApprenticeEditedFirstname;
         }
 
         public string SetCurrentApprenticeEditedLastname()
         {
-            ApprenticeEditedLastname = randomDataGenerator.GenerateRandomAlphabeticString(12);
+            ApprenticeEditedLastname = RandomDataGenerator.GenerateRandomAlphabeticString(12);
             return ApprenticeEditedLastname;
         }
 
@@ -51,6 +51,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeEditedFirstname = firstName;
             ApprenticeEditedLastname = lastName;
         }
-
     }
 }

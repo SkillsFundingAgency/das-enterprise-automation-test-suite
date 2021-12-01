@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -12,7 +9,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search for an apprenticeship.";
         private readonly ScenarioContext _context;
-        private readonly JavaScriptHelper _javaScriptHelper;
 
         #region Locators
         private By EmployerName => By.Id("employerName");
@@ -33,12 +29,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(3)");
         #endregion
 
-        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
-        {
-            _context = context;
-            _javaScriptHelper = _context.Get<JavaScriptHelper>();
-        } 
-
+        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) => _context = context;
         public SearchForApprenticeshipPage EnterEmployerName(string employerName)
         {
             formCompletionHelper.EnterText(EmployerName, employerName);
@@ -108,7 +99,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public PauseApprenticeshipsPage ClickPauseButton()
         {
             pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
-            _javaScriptHelper.ScrollToTheBottom();            
+            javaScriptHelper.ScrollToTheBottom();            
             formCompletionHelper.Click(PauseButton);
             return new PauseApprenticeshipsPage(_context);
         }

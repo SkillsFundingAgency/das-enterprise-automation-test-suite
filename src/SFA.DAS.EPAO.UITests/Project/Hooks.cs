@@ -37,15 +37,13 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _context.Set(_ePAOAdminSqlDataHelper);
 
-            var r = _context.Get<RandomDataGenerator>();
+            _context.Set(new EPAOAssesmentServiceDataHelper());
 
-            _context.Set(new EPAOAssesmentServiceDataHelper(r));
+            _context.Set(new EPAOApplyDataHelper());
 
-            _context.Set(new EPAOApplyDataHelper(r));
+            _context.Set(new EPAOApplyStandardDataHelper());
 
-            _context.Set(new EPAOApplyStandardDataHelper(r));
-
-            _ePAOAdminDataHelper = new EPAOAdminDataHelper(r);
+            _ePAOAdminDataHelper = new EPAOAdminDataHelper();
 
             _context.Set(_ePAOAdminDataHelper);
 
@@ -63,6 +61,10 @@ namespace SFA.DAS.EPAO.UITests.Project
         [BeforeScenario(Order = 35)]
         [Scope(Tag = "standardwithdrawal")]
         public void DeleteStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.DeleteStandardWithdrawalApplication(_context.GetUser<EPAOWithdrawalUser>().Username);
+
+        [BeforeScenario(Order = 36)]
+        [Scope(Tag = "deleteorganisationstandardversion")]
+        public void ClearOrgganisationStandardVersion() => _ePAOApplySqlDataHelper.DeleteOrganisationStandardVersion();
 
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]

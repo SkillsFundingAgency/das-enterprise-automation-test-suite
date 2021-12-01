@@ -34,8 +34,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
         public void UpdateOrgStatusToNew(string epaoid) => UpdateOrgStatus("New", epaoid);
 
-        public void UpdateOrgStandardStatusToNew(string epaoid, string standardcode) => ExecuteSqlCommand($"Update OrganisationStandard Set Status = 'New' where EndPointAssessorOrganisationId = '{epaoid}' AND StandardCode = '{standardcode}'");
-
         public void UpdateOrgStatusToLive(string epaoid) => UpdateOrgStatus("Live", epaoid);
 
         private void UpdateOrgStatus(string status, string epaoid) => ExecuteSqlCommand($"Update Organisations Set Status = '{status}' Where EndPointAssessorOrganisationId = '{epaoid}'");

@@ -50,8 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
-        public bool VerifyOrgAlreadyAddedMessage() =>
-            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
+        public bool VerifyOrgAlreadyAddedMessage() => pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
 
         private IWebElement SearchLinkUrl(string searchText)
         {

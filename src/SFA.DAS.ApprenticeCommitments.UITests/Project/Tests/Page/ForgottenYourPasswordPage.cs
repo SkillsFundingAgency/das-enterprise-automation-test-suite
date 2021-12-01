@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By Message => By.CssSelector("#main-content .govuk-body");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyServiceHeader: false) => _context = context;
+        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyserviceheader: false) => _context = context;
 
         public ForgottenYourPasswordPage RequestToUpdatePassword()
         {
