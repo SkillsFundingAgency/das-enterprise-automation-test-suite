@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsPage GotoSelectJourneyPage()
         {
-            _formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            formCompletionHelper.ClickElement(AddNewApprenticesLink);
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
