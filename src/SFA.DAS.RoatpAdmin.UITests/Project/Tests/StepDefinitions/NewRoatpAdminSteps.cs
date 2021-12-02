@@ -36,6 +36,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
             _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDate();
         }
 
+        [Then(@"verify the provider Application determined date is not updated")]
+        public void ThenVerifyTheProviderApplicationDeterminedDateIsNotUpdated()
+        {
+            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDateNotUpdated();
+        }
+
         [Then(@"the admin can download list of apprenticeship training providers")]
         public void ThenTheAdminCanDownloadListOfApprenticeshipTrainingProviders() => _staffDashboardPage = new StaffDashboardPage(_context).DownloadTrainingProvider();
 

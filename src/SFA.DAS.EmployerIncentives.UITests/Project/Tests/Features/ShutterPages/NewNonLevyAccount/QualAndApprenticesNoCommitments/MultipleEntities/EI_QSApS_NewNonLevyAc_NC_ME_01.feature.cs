@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "th Two legal entities and No Commitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         public virtual void EI_QSApS_NewNonLevyAc_NC_ME_01_ValidateShutterPagesForNewNonLevyAccountWithTwoLegalEntitiesAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addnonlevyfunds",
-                    "employerincentives"};
+                    "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewNonLevyAc_NC_ME_01_Validate Shutter pages for New Non Levy Account wi" +
                     "th Two legal entities and No Commitments", null, tagsOfScenario, argumentsOfScenario);

@@ -138,12 +138,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                    new KeyValuePair<string, string>(ukprnkey, "10067908"),
             });//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadoutcomeappeals01",
-       new List<KeyValuePair<string, string>>
-       {
+            new List<KeyValuePair<string, string>>
+            {
                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadoutcomeappeals01@digital.education.gov.uk"),
                    new KeyValuePair<string, string>(providernamekey, "COUNTY BUSINESS SCHOOL LIMITED"),
                    new KeyValuePair<string, string>(ukprnkey, "10067972"),
-       });//rpe2e01, rpadgw01, rpadas01, rpadmod01
+            });//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadallowlist01",
            new List<KeyValuePair<string, string>>
            {
@@ -151,6 +151,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                    new KeyValuePair<string, string>(providernamekey, "TEST"),
                    new KeyValuePair<string, string>(ukprnkey, "10001234"),
            });
+            _data.Add("rpadgatewayfailappeals01",
+             new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GatewayFailAppeal@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "DONCASTER ROVERS FOOTBALL CLUB LIMITED"),
+                    new KeyValuePair<string, string>(ukprnkey, "10030581"),
+            });//rpe2e01 ,rpadgw04
+            _data.Add("rpadgatewayrejectreapplications01",
+            new List<KeyValuePair<string, string>>
+           {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GatewayRejectReapplication@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(providernamekey, "DORSET COUNTY FOOTBALL ASSOCIATION LIMITED"),
+                    new KeyValuePair<string, string>(ukprnkey, "10030587"),
+           });//rpe2e01 ,rpadgw05
         }
     }
 }

@@ -76,7 +76,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_E2E_03_ExistingLevyAcApplyWithVRFAndAmendVRF")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
@@ -84,7 +84,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives",
+                    "employerincentivesphase3",
                     "eie2ejourney",
                     "deleteincentiveapplication",
                     "vrfservice"};
@@ -114,33 +114,29 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("View EI applications shutter page is diplayed to the Employer when navigating to " +
-                        "View EI applications page with no applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("EI Start page is displayed on clicking on Apply for the payment link on View EI a" +
+                        "pplications shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.And("EI Start page is displayed on clicking on Apply for the payment link on View EI a" +
-                        "pplications shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("the Employer is able to submit the EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 13
  testRunner.When("the Employer Initiates EI Application journey for Single entity account again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 15
  testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
  testRunner.When("the Application Case details are changed to completed status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 17
  testRunner.Then("the Employer is able to Amend bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

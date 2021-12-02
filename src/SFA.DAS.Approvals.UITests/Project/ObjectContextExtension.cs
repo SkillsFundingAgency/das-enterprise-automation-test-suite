@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         public int StartMonth;
         public int StartYear;
-        public string AgeCategoryAsOfAug2020;
+        public string AgeCategoryAsOfAug2021;
     }
 
     public static class ObjectContextExtension
@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
         private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
-        private const string EIAgeCategoryAsOfAug2020 = "EIAgeCategoryAsOfAug2020";
+        private const string EIAgeCategoryAsOfAug2021 = "EIAgeCategoryAsOfAug2021";
         private const string EIStartMonth = "EIStartMonth";
         private const string EIStartYear = "EIStartYear";
         private const string EIJourney = "IsEIJourney";
@@ -50,12 +50,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var eIApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
 
-            eIApprenticeDetailList.Add(new EIApprenticeDetail {StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2020 = eIAgeCategory });
+            eIApprenticeDetailList.Add(new EIApprenticeDetail {StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2021 = eIAgeCategory });
         }
 
         internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
 
-        internal static void SetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2020, value);
+        internal static void SetEIAgeCategoryAsOfAug2021(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2021, value);
 
         internal static void SetEIStartMonth(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartMonth, value);
 
@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
 
-        public static string GetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2020);
+        public static string GetEIAgeCategoryAsOfAug2021(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2021);
 
         public static int GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get<int>(EIStartMonth);
 
