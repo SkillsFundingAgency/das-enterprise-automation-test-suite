@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -9,35 +8,42 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
-        private By ApplyLink => By.LinkText("Hire a new apprentice payment");
-        private By ViewApplicationsLink => By.LinkText("View applications");
-        private By ChangeBankDetailsLink => By.LinkText("Change organisation and finance details");
         #endregion
 
         public EIHubPage(ScenarioContext context) : base(context) => _context = context;
 
         public EIApplyPage ClickApplyLinkOnEIHubPage()
         {
-            formCompletionHelper.Click(ApplyLink);
+            HireANewApprenticePayment();
             return new EIApplyPage(_context);
+        }
+
+        public EIApplicationOpenOn11JanPage NavigateToApplicationsOpenOn22JanPage()
+        {
+            HireANewApprenticePayment();
+            return new EIApplicationOpenOn11JanPage(_context);
         }
 
         public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {
-            formCompletionHelper.Click(ViewApplicationsLink);
+            ViewApplications();
             return new ViewApplicationsPage(_context);
         }
 
         public ViewApplicationsShutterPage NavigateToEIViewApplicationsShutterPage()
         {
-            formCompletionHelper.Click(ViewApplicationsLink);
+            ViewApplications();
             return new ViewApplicationsShutterPage(_context);
         }
 
         public ChangeBankDetailsPage NavigateToChangeBankDetailsPage()
         {
-            formCompletionHelper.Click(ChangeBankDetailsLink);
+            formCompletionHelper.ClickLinkByText("Change organisation and finance details");
             return new ChangeBankDetailsPage(_context);
         }
+
+        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Hire a new apprentice payment");
+
+        private void ViewApplications() => formCompletionHelper.ClickLinkByText("View applications");
     }
 }

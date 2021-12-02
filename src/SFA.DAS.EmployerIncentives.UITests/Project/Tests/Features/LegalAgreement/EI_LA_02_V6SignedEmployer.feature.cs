@@ -77,12 +77,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         [NUnit.Framework.DescriptionAttribute("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
             "arting APR2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         public virtual void EI_LA_02_V6SignedEmployer_V6SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives"};
+                    "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_02_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
                     "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
@@ -110,8 +110,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing Version6AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 4 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2021 with start date as Mon" +
+                        "th 11 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
