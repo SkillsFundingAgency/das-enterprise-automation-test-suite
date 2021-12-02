@@ -103,7 +103,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             var startMonth = _objectContext.GetEIStartMonth();
             var startYear = _objectContext.GetEIStartYear();
-            var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2020();
+            var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2021();
             _eISqlHelper.VerifyEarningData(_email, startMonth, startYear, ageCategory);
         }
 

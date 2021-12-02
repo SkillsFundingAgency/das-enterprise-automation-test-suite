@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Navigation
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_NAV_02_ApplicationsClosed.feature"
+#line 1 "EI_NAV_02_ApplicationsOpenOnJan.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
