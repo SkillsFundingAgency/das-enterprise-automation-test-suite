@@ -24,10 +24,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public ConfirmDetailsPage EnterDob()
         {
-            var dob = DateTime.Now.AddYears(-45);
-            formCompletionHelper.EnterText(Day, dob.Day);
-            formCompletionHelper.EnterText(Month, dob.Month);
-            formCompletionHelper.EnterText(Year, dob.Year);
+            formCompletionHelper.EnterText(Day, 30);
+            formCompletionHelper.EnterText(Month, 11);
+            formCompletionHelper.EnterText(Year, 1980);
             Continue();
             return new ConfirmDetailsPage(_context);
         }

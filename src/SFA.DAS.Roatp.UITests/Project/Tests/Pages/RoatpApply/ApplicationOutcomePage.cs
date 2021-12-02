@@ -35,5 +35,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             Continue();
             return new MakeAnAppealPage(_context);
         }
+
+        public InvitationRequestedPage RequestNewInvitation()
+        {
+            Continue();
+            return new InvitationRequestedPage(_context);
+        }
     }
 }
