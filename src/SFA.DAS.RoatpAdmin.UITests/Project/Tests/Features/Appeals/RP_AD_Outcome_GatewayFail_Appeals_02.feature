@@ -1,6 +1,5 @@
 ﻿Feature: RP_Outcome_GateWayFail_Appeals_02
 
-
 @roatp
 @rpadgatewayfailappeals01
 @roatpadmin

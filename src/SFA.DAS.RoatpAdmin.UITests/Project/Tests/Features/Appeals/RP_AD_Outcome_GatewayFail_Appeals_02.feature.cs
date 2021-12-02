@@ -98,7 +98,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Appeals
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01A Existing provider Complete Outcome of a Com" +
                     "pany type Application via Main provider route Appeal_Successful_Already_Active J" +
                     "ourney", null, tagsOfScenario, argumentsOfScenario);
-#line 11
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -118,43 +118,43 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 11
 testRunner.Given("the Main provider is already on the RoATP register as Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 12
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 13
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 14
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 15
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
+#line 16
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 17
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 18
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 19
 testRunner.And("the appeal manager approves the appeal as SUCCESSFUl Already Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 20
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 21
 testRunner.And("verify the provider Application determined date is not updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 22
 testRunner.And("verify the Appeal successful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -184,7 +184,7 @@ testRunner.And("verify the Appeal successful page is displayed in Appeals tab", 
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01B Existing provider Complete Outcome of a Com" +
                     "pany type Application via Main provider route Appeal_Unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario);
-#line 32
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -204,46 +204,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
+#line 32
 testRunner.Given("the Main provider is already on the RoATP register as Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 34
+#line 33
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 35
+#line 34
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 35
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 36
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 37
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
+#line 38
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 40
+#line 39
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 41
+#line 40
 testRunner.And("the appeal manager approves the appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 42
+#line 41
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 43
+#line 42
 testRunner.And("verify the provider Application determined date is not updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 44
+#line 43
 testRunner.And("verify the Appeal unsuccessful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 45
+#line 44
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -275,7 +275,7 @@ testRunner.And("verify the Application unsuccessful page is displayed for Appeal
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01C Existing provider Complete Outcome of a Com" +
                     "pany type Application via Main provider route Appeal_InProgress_UnSuccessful Jou" +
                     "rney", null, tagsOfScenario, argumentsOfScenario);
-#line 54
+#line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -295,62 +295,62 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 55
+#line 54
 testRunner.Given("the Main provider is already on the RoATP register as Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 56
+#line 55
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 57
+#line 56
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 58
+#line 57
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 59
+#line 58
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 60
+#line 59
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 61
+#line 60
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 62
+#line 61
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
+#line 62
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 64
+#line 63
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 65
+#line 64
 testRunner.And("verify the Appeal in progress page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 66
+#line 65
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 67
+#line 66
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 68
+#line 67
 testRunner.And("the appeal manager approves the in progress appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 68
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 70
+#line 69
 testRunner.And("verify the provider Application determined date is not updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 70
 testRunner.And("verify the Appeal unsuccessful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 72
+#line 71
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -382,7 +382,7 @@ testRunner.And("verify the Application unsuccessful page is displayed for Appeal
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01D Existing provider Complete Outcome of a Com" +
                     "pany type Application via Main provider route Appeal_InProgress_Successful_Fitne" +
                     "ssForFunding\tJourney", null, tagsOfScenario, argumentsOfScenario);
-#line 81
+#line 80
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -402,60 +402,60 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 82
+#line 81
 testRunner.Given("the Main provider is already on the RoATP register as Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 83
+#line 82
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 84
+#line 83
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 85
+#line 84
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 86
+#line 85
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 87
+#line 86
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 88
+#line 87
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 89
+#line 88
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 90
+#line 89
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 91
+#line 90
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 92
+#line 91
 testRunner.And("verify the Appeal in progress page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 93
+#line 92
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 94
+#line 93
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 95
+#line 94
 testRunner.And("the appeal manager approves the in progress appeal as SUCCESSFUl Fitness For Fund" +
                         "ing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 96
+#line 95
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 97
+#line 96
 testRunner.And("verify the provider Application determined date is not updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 98
+#line 97
 testRunner.And("verify the Appeal successful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -483,7 +483,7 @@ testRunner.And("verify the Appeal successful page is displayed in Appeals tab", 
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01E New Provider Complete Outcome of a Company " +
                     "type Application via Main provider route Appeals_Unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario);
-#line 106
+#line 105
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -503,46 +503,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 107
+#line 106
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 108
+#line 107
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 109
+#line 108
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 110
+#line 109
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 111
+#line 110
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 112
+#line 111
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 113
+#line 112
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 114
+#line 113
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 115
+#line 114
 testRunner.And("the appeal manager approves the appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 116
+#line 115
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 117
+#line 116
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 118
+#line 117
 testRunner.And("verify the Appeal unsuccessful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 119
+#line 118
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -570,7 +570,7 @@ testRunner.And("verify the Application unsuccessful page is displayed for Appeal
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01F New Provider Complete Outcome of a Company " +
                     "type Application via Main provider route Appeals_Successful Journey", null, tagsOfScenario, argumentsOfScenario);
-#line 127
+#line 126
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -590,43 +590,43 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 128
+#line 127
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 129
+#line 128
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 130
+#line 129
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 131
+#line 130
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 132
+#line 131
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 133
+#line 132
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 134
+#line 133
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 135
+#line 134
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 136
+#line 135
 testRunner.And("the appeal manager approves the appeal as SUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 137
+#line 136
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 138
+#line 137
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 139
+#line 138
 testRunner.And("verify the Appeal successful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -654,7 +654,7 @@ testRunner.And("verify the Appeal successful page is displayed in Appeals tab", 
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01G New Provider Complete Outcome of a Company " +
                     "type Application via Main provider route Appeals_Inprogress_Successful Journey", null, tagsOfScenario, argumentsOfScenario);
-#line 147
+#line 146
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -674,59 +674,59 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 148
+#line 147
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 149
+#line 148
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 150
+#line 149
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 151
+#line 150
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 152
+#line 151
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 153
+#line 152
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 154
+#line 153
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 155
+#line 154
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 156
+#line 155
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 157
+#line 156
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 158
+#line 157
 testRunner.And("verify the Appeal in progress page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 159
+#line 158
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 160
+#line 159
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 161
+#line 160
 testRunner.And("the appeal manager approves the in progress appeal as SUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 162
+#line 161
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 163
+#line 162
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 164
+#line 163
 testRunner.And("verify the Appeal successful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -756,7 +756,7 @@ testRunner.And("verify the Appeal successful page is displayed in Appeals tab", 
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_GateWayFail_Appeals_01H New Provider Complete Outcome of a Company " +
                     "type Application via Main provider route Appeals_Inprogress_UnSuccessful Journey" +
                     "", null, tagsOfScenario, argumentsOfScenario);
-#line 172
+#line 171
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -776,62 +776,62 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 173
+#line 172
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 174
+#line 173
 testRunner.And("the application with FAIL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 175
+#line 174
 testRunner.And("verify that the admin can send the application outcome as UNSUCCESSFUL to the app" +
                         "licant", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 176
+#line 175
 testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 177
+#line 176
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 178
+#line 177
 testRunner.And("verify the Application unsuccessful page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 179
+#line 178
 testRunner.And("verify Appeal submitted page is displayed once provider submits the APPEAL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 180
+#line 179
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 181
+#line 180
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 182
+#line 181
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 183
+#line 182
 testRunner.And("verify the Appeal in progress page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 184
+#line 183
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 185
+#line 184
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 186
+#line 185
 testRunner.And("the appeal manager approves the in progress appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 187
+#line 186
 testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 188
+#line 187
 testRunner.And("verify the provider is not added to the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 189
+#line 188
 testRunner.And("verify the Appeal unsuccessful page is displayed in Appeals tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 190
+#line 189
 testRunner.And("verify the Application unsuccessful page is displayed for Appealead Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

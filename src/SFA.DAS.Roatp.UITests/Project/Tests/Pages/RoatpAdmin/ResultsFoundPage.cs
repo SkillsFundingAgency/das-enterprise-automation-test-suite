@@ -28,7 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private string SupportingStatus => "ACTIVE";
 
-        private string ApplicationDetermineDate => "30 Nov 1976";
+        private string ApplicationDetermineDate => "30 Nov 1980";
 
         public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
 
