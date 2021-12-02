@@ -42,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new ChangeBankDetailsPage(_context);
         }
 
-        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Hire a new apprentice payment");
+        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Apply for the hire a new apprentice payment");
 
         private void ViewApplications() => formCompletionHelper.ClickLinkByText("View applications");
     }
