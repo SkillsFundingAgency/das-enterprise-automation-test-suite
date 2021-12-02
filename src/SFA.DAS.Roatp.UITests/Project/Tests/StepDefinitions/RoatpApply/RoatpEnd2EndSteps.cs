@@ -44,6 +44,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         }
 
+        [Then(@"the provider initates an application as (Main Provider Route For Existing Provider)")]
         [Given(@"the provider initates an application as (Main Provider Route For Existing Provider)")]
         public void GivenTheProviderInitatesAnApplicationAsMainProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
         {
@@ -72,13 +73,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
         }
 
+        [Then(@"the provider naviagate to Apply")]
         [Given(@"the provider naviagate to Apply")]
         public void GivenTheProviderNaviagateToApply()
         {
             _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
         }
 
-
+        [When(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         public void VerifyTheApplicationOutcome(string expectedPage, string externalComments)
         {
@@ -98,6 +100,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
             new AppealSubmittedPage(_context).VerifyAppealOutcomePage(expectedPage);
+        }
+
+        [Then(@"verify provider able to request new invitation to Reapply")]
+        public void ThenVerifyProviderAbleToRequestNewInvitationToReapply()
+        {
+            new ApplicationOutcomePage(_context).RequestNewInvitation();
+
+            RestartRoatpApply("apply");
         }
 
         [Then(@"verify the (Application successful|Application unsuccessful) page is displayed for Appealead Application")]
@@ -131,6 +141,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider initates an application as Supporting Provider Route")]
         public void GivenTheProviderInitatesAnApplicationAsSupportingRoute() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
 
+        [Then(@"the provider completes Your organisation section")]
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
 

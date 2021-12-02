@@ -21,20 +21,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public void OversightReviewClearDownFromApply() => _roatpApplyClearDownDataHelpers.OversightReviewClearDownFromApply(GetUkprn());
 
         [BeforeScenario(Order = 34)]
-        public void ClearDownTrainingProvider()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("rpadoutcome01"))
-            {
-                DeleteTrainingProvider();
-            }
-        }
-        [BeforeScenario(Order = 35)]
         public void ClearDownTrainingProviderFromRegister()
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadoutcomeappeals01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadoutcomeappeals01") ||
+                (_context.ScenarioInfo.Tags.Contains("rpadgatewayfailappeals01")) ||
+                (_context.ScenarioInfo.Tags.Contains("rpadoutcome01")))
             {
                 DeleteTrainingProvider();
             }
         }
-    }
+      
+    } 
 }

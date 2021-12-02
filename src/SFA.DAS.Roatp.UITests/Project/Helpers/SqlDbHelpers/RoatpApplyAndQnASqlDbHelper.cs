@@ -90,5 +90,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
             return applicationId;
         }
+        public int OversightReviewClearDownFromQnA_ReApplyRecord(string ukprn)
+        {
+            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
+            var deleteDataFromQnaQuery =
+                $"DELETE FROM ApplicationSections WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM ApplicationSequences WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM Applications WHERE Id = '{applicationId}'; ";
+
+            return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
+        }
+        public int OversightReviewClearDownFromApply_ReapplyRecord(string ukprn)
+        {
+            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
+            var deleteDataFromApplyQuery =
+                $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; ";
+            return applicationId == Emptyguid ? 0 : ExecuteSqlCommand(deleteDataFromApplyQuery);
+        }
     }
 }

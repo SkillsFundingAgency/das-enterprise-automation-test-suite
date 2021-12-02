@@ -28,6 +28,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private string SupportingStatus => "ACTIVE";
 
+        private string ApplicationDetermineDate => "30 Nov 1980";
+
         public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
 
         public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
@@ -35,6 +37,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public void VerifyOrganisationType() => pageInteractionHelper.VerifyText(OrganisationType, objectContext.GetOrganisationType());
 
         public void VerifyApplicationDeterminedDate() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
+
+        public void VerifyApplicationDeterminedDateNotUpdated() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, ApplicationDetermineDate);
 
         public SearchPage GoToSearchPage()
         {
