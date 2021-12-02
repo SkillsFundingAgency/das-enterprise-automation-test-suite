@@ -20,6 +20,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             SetCaseDetailsToNull(accountId);
         }
 
+        internal void SetSignedAgreementVersion(string accountId) => ExecuteSqlCommand($"Update dbo.Accounts set SignedAgreementVersion = 7 where id = {accountId}");
+
         public void ResetPeriodEndInProgress()
         {
             query = "UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0";

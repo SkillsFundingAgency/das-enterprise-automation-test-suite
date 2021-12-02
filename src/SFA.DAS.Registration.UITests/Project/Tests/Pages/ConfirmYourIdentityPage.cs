@@ -22,8 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {
-            EnterAccessCode()
-                   .Continue();
+            EnterAccessCode().Continue();
             return new AddAPAYESchemePage(_context);
         }
 
