@@ -27,6 +27,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         private readonly RoatpAdminLoginStepsHelper _roatpAdminLoginStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
+        private GWApplicationOverviewPage _gwApplicationOverviewPage;
 
         private ApplicationRoute _applicationRoute;
 
@@ -55,6 +56,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             gwApplicationOverviewPage = CompleteAllSectionsWithPass(gwApplicationOverviewPage);
 
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
+        }
+
+        [When(@"the GateWay user assess the application by confirming Gateway outcome as Fail")]
+        public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsFail()
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
+
+            var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
+
+            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+
+            _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsFail(gwApplicationOverviewPage);
+        }
+        [When(@"the GateWay user assess the application by confirming Gateway outcome as Reject")]
+        public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsReject()
+        {
+            var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("GatewayAdmin");
+
+            var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
+
+            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+
+            _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(gwApplicationOverviewPage);
         }
 
         [When(@"the Financial user assess the application by confirming Finance outcome as (outstanding|inadequate)")]
