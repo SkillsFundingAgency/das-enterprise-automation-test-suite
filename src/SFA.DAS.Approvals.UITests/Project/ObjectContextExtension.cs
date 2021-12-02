@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
         private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
-        private const string EIAgeCategoryAsOfAug2021 = "EIAgeCategoryAsOfAug2020";
+        private const string EIAgeCategoryAsOfAug2021 = "EIAgeCategoryAsOfAug2021";
         private const string EIStartMonth = "EIStartMonth";
         private const string EIStartYear = "EIStartYear";
         private const string EIJourney = "IsEIJourney";
