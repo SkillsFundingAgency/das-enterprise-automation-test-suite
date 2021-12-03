@@ -75,11 +75,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-            "al entity having Commitments with start date prior to APR 2021")]
+            "al entity having Commitments with start date prior to APR 2022")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
-        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2021()
+        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2022()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
                     "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-                    "al entity having Commitments with start date prior to APR 2021", null, tagsOfScenario, argumentsOfScenario);
+                    "al entity having Commitments with start date prior to APR 2022", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,6 +111,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Age",
                             "StartMonth",
@@ -123,31 +126,31 @@ this.ScenarioInitialize(scenarioInfo);
                             "AgedAbove25",
                             "12",
                             "2022"});
-#line 8
+#line 9
  testRunner.When("the Employer adds following apprentices", ((string)(null)), table1, "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
                         "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
                         "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
  testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 18
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 18
+#line 19
  testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
                         "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

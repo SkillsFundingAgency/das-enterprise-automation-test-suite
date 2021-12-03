@@ -6,7 +6,8 @@
 @deleteincentiveapplication
 @vrfservice
 Scenario: EI_E2E_03_ExistingLevyAcApplyWithVRFAndAmendVRF
-	When the Employer logins using existing EI Levy Account
+	Given the Employer logins using existing EI Levy Account
+	And the employer signs the agreement version 7
 	Then EI Start page is displayed on clicking on Apply for the payment link on View EI applications shutter page
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application

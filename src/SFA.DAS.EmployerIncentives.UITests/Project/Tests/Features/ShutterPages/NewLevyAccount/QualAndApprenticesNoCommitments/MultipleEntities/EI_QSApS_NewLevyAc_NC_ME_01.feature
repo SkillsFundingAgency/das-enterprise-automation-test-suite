@@ -5,6 +5,7 @@
 @addlevyfunds
 Scenario: EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two legal entities and No Commitments
 	Given an Employer creates a Levy Account and Signs the Agreement
+	And the employer signs the agreement version 7
 	And the Employer adds another legal entity
 	When the Employer Initiates EI Application journey for Multiple entity account
 	Then Qualification question shutter page is displayed for selecting No option in Qualification page
