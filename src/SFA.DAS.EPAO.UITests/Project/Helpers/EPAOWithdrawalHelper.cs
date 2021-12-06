@@ -119,7 +119,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
         }
 
-        public void VerifyApplicationMovedFromNewToFeedback()
+       /* public void VerifyApplicationMovedFromNewToFeedback()
         {
             new AD_WithdrawalApplicationsPage(_context)
                 .VerifyAnApplicationHasMovedFromNewTab()
@@ -137,6 +137,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .VerifyAnApplicationAddedToApprovedTab()
                 .VerifyApprovedTabContainsRegisterWithdrawal();
         }
+       */
 
         public void AmmendWithdrawalApplication()
         {

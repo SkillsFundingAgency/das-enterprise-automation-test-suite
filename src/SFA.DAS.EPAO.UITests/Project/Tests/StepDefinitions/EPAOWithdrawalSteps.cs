@@ -46,7 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         [Then(@"the admin user logs in and adds feedback to an application")]
         public void ThenTheAdminUserAddsFeedbackToAnApplication() => _ePAOWithdrawalHelper.AddFeedbackToARegisterWithdrawalApplication(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
-        [Then(@"verify application has moved from new to feedback tab")]
+        /*[Then(@"verify application has moved from new to feedback tab")]
         public void VerifyApplicationMovedFromNewToFeedbackTab() => _ePAOWithdrawalHelper.VerifyApplicationMovedFromNewToFeedback();
 
         [Then(@"the application is added to the feedback tab")]
@@ -54,6 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
 
         [Then(@"Verify the application is moved to Approved tab")]
         public void VerifyApplicationIsMovedToApprovedTab() => _ePAOWithdrawalHelper.VerifyApplicationIsMovedToApprovedTab();
+        */
 
         [Then(@"the withdrawal user returns to dashboard")]
         [Then(@"the assessor user returns to dashboard")]
