@@ -1,5 +1,4 @@
-﻿using System;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -32,7 +31,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                     var webDriver = _context.GetWebDriver();
                     var directory = _objectContext.GetDirectory();
 
-                    ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle);
+                    ScreenshotHelper.TakeFullPageScreenShot(webDriver, directory, scenarioTitle);
                 });
             }
         }
