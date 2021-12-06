@@ -126,6 +126,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.And("the admin user returns to view withdrawal notifications table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 14
+ testRunner.And("Verify the application is moved to Approved tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -180,6 +183,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 26
  testRunner.And("the admin user logs in and adds feedback to an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 27
+ testRunner.And("verify application has moved from new to feedback tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 28
  testRunner.And("the withdrawal user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -191,6 +197,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 31
  testRunner.Then("verify withdrawal from register approved and return to withdrawal applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+ testRunner.Then("Verify the application is moved to Approved tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
