@@ -26,9 +26,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
             foreach (var apprentice in apprentices)
             {
-                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), eIDataHelper.JoiningDay);
-                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), eIDataHelper.JoiningMonth);
-                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), "2021");
+                var joiningDate = eIDataHelper.JoiningDate;
+                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), joiningDate.Day);
+                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), joiningDate.Month);
+                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), joiningDate.Year);
             }
 
             Continue();
