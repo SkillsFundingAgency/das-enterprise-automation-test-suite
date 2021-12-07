@@ -125,8 +125,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("the Employer is able to submit the EI Application without submitting bank details" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is able to submit the EI Application without VRF", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.And("Earnings data is populated for the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -141,16 +140,18 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
         public virtual void EI_EC_01_ApplyForIncentiveForANewAccountWithStartDateAsMoreThan3MonthsInPastAndVerifyEarnings()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentivesphase3",
-                    "addlevyfunds"};
+                    "addlevyfunds",
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_EC_01_Apply for Incentive for a New Account with start date as more than 3 mon" +
                     "ths in past and verify Earnings", null, tagsOfScenario, argumentsOfScenario);
-#line 19
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -170,27 +171,27 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 22
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 21
+#line 23
  testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 24
  testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2021 with start date more t" +
                         "han 3 month in past", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 25
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 26
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 27
  testRunner.Then("the Employer is able to submit the EI Application without submitting bank details" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 28
  testRunner.And("Earnings data is populated for the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -75,11 +75,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-            "al entity having Commitments with start date prior to APR 2022")]
+            "al entity having Commitments with start date prior to OCT 2021")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
-        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2022()
+        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToOCT2021()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
                     "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-                    "al entity having Commitments with start date prior to APR 2022", null, tagsOfScenario, argumentsOfScenario);
+                    "al entity having Commitments with start date prior to OCT 2021", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -120,11 +120,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartYear"});
                 table1.AddRow(new string[] {
                             "Aged16to24",
-                            "3",
-                            "2022"});
+                            "9",
+                            "2021"});
                 table1.AddRow(new string[] {
                             "AgedAbove25",
-                            "12",
+                            "3",
                             "2022"});
 #line 9
  testRunner.When("the Employer adds following apprentices", ((string)(null)), table1, "When ");
