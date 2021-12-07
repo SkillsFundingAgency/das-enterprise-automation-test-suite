@@ -76,10 +76,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByText("No, decline the funding and withdraw the application");
 
-            Continue();
-
-            VerifyConfirmError();
-
+         
             ConfirmWithdrawal();
 
 
