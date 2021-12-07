@@ -54,6 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
 
         [Then(@"Verify the application is moved to Approved tab")]
         public void VerifyApplicationIsMovedToApprovedTab() => _ePAOWithdrawalHelper.VerifyApplicationIsMovedToApprovedTab();
+        
 
         [Then(@"the withdrawal user returns to dashboard")]
         [Then(@"the assessor user returns to dashboard")]
