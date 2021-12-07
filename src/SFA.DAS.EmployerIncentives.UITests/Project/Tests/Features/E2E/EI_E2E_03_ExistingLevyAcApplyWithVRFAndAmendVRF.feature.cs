@@ -117,29 +117,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("EI Start page is displayed on clicking on Apply for the payment link on View EI a" +
-                        "pplications shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 12
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("the Employer is able to submit the EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 13
  testRunner.When("the Employer Initiates EI Application journey for Single entity account again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 15
  testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
  testRunner.When("the Application Case details are changed to completed status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 17
  testRunner.Then("the Employer is able to Amend bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
