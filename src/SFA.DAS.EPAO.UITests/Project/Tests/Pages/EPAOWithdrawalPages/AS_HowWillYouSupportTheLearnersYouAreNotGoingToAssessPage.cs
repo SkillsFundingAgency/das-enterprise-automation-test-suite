@@ -6,7 +6,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_BasePage
     {
         protected override string PageTitle => "How will you support the learners you are not going to assess?";
-        
+        protected override By PageHeader => By.XPath("//*[@class='govuk-label govuk-label--xl']");
+
         private readonly ScenarioContext _context;
 
         #region Locators

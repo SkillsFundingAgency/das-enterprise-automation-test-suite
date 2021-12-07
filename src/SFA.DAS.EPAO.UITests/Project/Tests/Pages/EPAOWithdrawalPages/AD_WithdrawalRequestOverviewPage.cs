@@ -19,10 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage();
         }
 
-        public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
+        public AD_WithdrawalRequestQuestionsPage GoToWithdrawalRequestQuestionsPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate withdrawal application");
-            return new AD_WithdrawalNotificationQuestionsPage(_context);
+            return new AD_WithdrawalRequestQuestionsPage(_context);
         }
 
         public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplicationsPage()
