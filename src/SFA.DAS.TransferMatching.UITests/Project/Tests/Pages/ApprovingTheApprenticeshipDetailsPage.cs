@@ -6,7 +6,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class ApprovingTheApprenticeshipDetailsPage : TransferMatchingBasePage
     {
-        protected override string PageTitle => objectContext.GetOrganisationName();
+        protected override string PageTitle => "Approving the apprenticeship details";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
