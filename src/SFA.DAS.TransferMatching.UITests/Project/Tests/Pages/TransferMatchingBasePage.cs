@@ -1,9 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -13,11 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
         protected readonly TMDataHelper tMDataHelper;
-        protected readonly TableRowHelper tableRowHelper;
         protected readonly ApprenticeDataHelper datahelper;
         #endregion
 
@@ -30,11 +24,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
             _context = context;
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
             tMDataHelper = context.Get<TMDataHelper>();
-            tableRowHelper = context.Get<TableRowHelper>();
             datahelper = context.Get<ApprenticeDataHelper>();
             if (verifyPage) VerifyPage();
         }

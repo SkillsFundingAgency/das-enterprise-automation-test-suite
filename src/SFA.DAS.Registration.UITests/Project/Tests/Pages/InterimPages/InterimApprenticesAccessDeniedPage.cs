@@ -7,11 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         protected override string PageTitle => "Access denied";
         private string HomePageLinkText => "Go back to the service home page";
 
-        public InterimApprenticesAccessDeniedPage(ScenarioContext context) : base(context, true) { }
+        public InterimApprenticesAccessDeniedPage(ScenarioContext context) : base(context, false) { }
 
-        public void GoBackToTheEASServiceHomePage()
-        {
-            formCompletionHelper.ClickLinkByText(HomePageLinkText);
-        }
+        public void GoBackToTheEASServiceHomePage() => formCompletionHelper.ClickLinkByText(HomePageLinkText);
     }
 }

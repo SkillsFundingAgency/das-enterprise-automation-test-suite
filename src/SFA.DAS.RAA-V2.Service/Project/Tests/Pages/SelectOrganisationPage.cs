@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 
@@ -10,19 +9,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation is this vacancy for?";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         #endregion
         
-        public SelectOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public SelectOrganisationPage(ScenarioContext context) : base(context) => _context = context;
 
         public WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation()
         {
-            formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }

@@ -18,17 +18,17 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         protected Navigate(ScenarioContext context, Action navigate, string url) : base(context, url) => NavigateTo(navigate);
 
-        private void NavigateTo(Action navigate) => navigate.Invoke();
+        private void NavigateTo(Action navigate) => navigate.Invoke(); 
 
         private void NavigateTo(bool navigate)
         {
             if (navigate)
             {
-                if (pageInteractionHelper.IsElementDisplayed(MoreLink)) 
-                    formCompletionHelper.Click(MoreLink); 
+                if (pageInteractionHelper.IsElementDisplayed(MoreLink))
+                    formCompletionHelper.Click(MoreLink);
 
                 var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
-                
+
                 formCompletionHelper.ClickElement(link);
             }
         }

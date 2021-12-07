@@ -3,9 +3,9 @@ using System;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
-    public class RoatpApplyDataHelpers : RandomElementHelper
+    public class RoatpApplyDataHelpers
     {
-        public RoatpApplyDataHelpers() : base()
+        public RoatpApplyDataHelpers()
         {
             CompanyNumber = RandomDataGenerator.GenerateRandomNumber(8);
             CompanyName = $"{CompanyNumber}EnterpriseTestDemo";

@@ -10,8 +10,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly RAAV1ManagedataHelper _managedataHelper;
         #endregion
 
@@ -22,8 +20,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_EnterBasicVacancyDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _managedataHelper = context.Get<RAAV1ManagedataHelper>();
         }
 
@@ -41,10 +37,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private void AddTitleComments()
         {
-            _formCompletionHelper.Click(TitleComments);
-            _pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
-            _formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
-            _formCompletionHelper.ClickButtonByText("Save");
+            formCompletionHelper.Click(TitleComments);
+            pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
+            formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
+            formCompletionHelper.ClickButtonByText("Save");
         }
     }
 }

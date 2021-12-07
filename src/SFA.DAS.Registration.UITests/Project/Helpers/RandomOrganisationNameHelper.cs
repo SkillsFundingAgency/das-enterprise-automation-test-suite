@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -13,29 +14,23 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public RandomOrganisationNameHelper(string[] tags) => _tags = tags;
 
-        public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company);
+        public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company, null);
 
-        public string GetCompanyTypeOrganisationName(string existingOrgName) => GetOrgName(OrgType.Company2, existingOrgName);
+        public string GetCompanyTypeOrgName(string existingOrgName) => GetOrgName(OrgType.Company2, existingOrgName);
 
-        public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector);
+        public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector, null);
 
-        public CharityTypeOrg GetCharityTypeOrg() => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity));
+        public CharityTypeOrg GetCharityTypeOrg() => GetCharityOrg(OrgType.Charity, null);
 
-        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetOrgName(OrgType.Charity2, existingCharityTypeOrg?.Name));
+        public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetCharityOrg(OrgType.Charity2, existingCharityTypeOrg);
 
-        private string GetOrgName(OrgType orgType)
-            => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) :
-            orgType == OrgType.Company ? GetRandomOrgName(ListOfCompanyTypeOrganisation()) :
-            orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation()) :
-            GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Select(x => x.Name).ToList());
+        private CharityTypeOrg GetCharityOrg(OrgType orgType, CharityTypeOrg existingCharityTypeOrg) => DoNotUseRandomOrgname() ? GetCharityScenarioSpecificOrgName(orgType) 
+            : GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg?.Name).ToList());
+
+        private CharityTypeOrg GetCharityScenarioSpecificOrgName(OrgType orgType) => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetScenarioSpecificOrgName(orgType));
 
         private string GetOrgName(OrgType orgType, string existingOrgName)
-            => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) :
-            orgType == OrgType.Company2 ? GetRandomOrgName(ListOfCompanyTypeOrganisation().Where(x => x != existingOrgName).ToList()) :
-            orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation().Where(x => x != existingOrgName).ToList()) :
-            GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingOrgName).ToList())?.Name;
-
-        private bool DoNotUseRandomOrgname() => _tags.Contains("donotuserandomorgname");
+            => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) : orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation(), existingOrgName) : GetRandomOrgName(ListOfCompanyTypeOrganisation(), existingOrgName);
 
         private string GetScenarioSpecificOrgName(OrgType expOrgType)
         {
@@ -50,12 +45,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return orgName;
         }
 
-        private static T GetRandomOrgName<T>(List<T> listoforg)
-        {
-            int randomvalue = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, listoforg.Count);
+        private static string GetRandomOrgName(List<string> listoforg, string existingOrgName) => GetRandomOrgName(listoforg.Where(x => x != existingOrgName).ToList());
 
-            return listoforg[randomvalue];
-        }
+        private static T GetRandomOrgName<T>(List<T> listoforg) => RandomDataGenerator.GetRandomElementFromListOfElements(listoforg);
+        
+        private bool DoNotUseRandomOrgname() => _tags.Contains("donotuserandomorgname");
 
         private static Dictionary<string, Dictionary<OrgType, string>> ListofScenarioSpecificOrg()
         {
@@ -69,8 +63,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             new CharityTypeOrg {Number = "200895", Name = "ALLHALLOWS CHARITY", Address = "WBW Solicitors, 118 High Street, Honiton, EX14 1JP"},
             new CharityTypeOrg {Number = "202918", Name = "OXFAM", Address = "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY"},
-            new CharityTypeOrg {Number = "219348", Name = "CITY HOSPITAL NHS TRUST", Address = "LIFFORD HALL TUNNEL LANE KINGS NORTON BIRMINGHAM B30 3JN"},
-            new CharityTypeOrg {Number = "509965", Name = "Friends of Nottingham University Hospitals NHS Trust", Address = "NOTTINGHAM NG9 6AS"},
+            new CharityTypeOrg {Number = "219348", Name = "CITY HOSPITAL NHS TRUST", Address = "LIFFORD HALL, TUNNEL LANE, KINGS NORTON, BIRMINGHAM, B30 3JN"},
+            new CharityTypeOrg {Number = "509965", Name = "Friends of Nottingham University Hospitals NHS Trust", Address = "NOTTINGHAM, NG9 6AS"},
         };
 
         private static List<string> ListOfPublicSectorTypeOrganisation() => new List<string>

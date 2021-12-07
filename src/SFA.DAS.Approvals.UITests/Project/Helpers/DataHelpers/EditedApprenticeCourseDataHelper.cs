@@ -7,6 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public class EditedApprenticeCourseDataHelper
     {
         private readonly ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
+
         private readonly RandomCourseDataHelper _randomCourseHelper;
 
         public EditedApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)
@@ -15,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             _apprenticeCourseDataHelper = apprenticeCourseDataHelper;
 
-            EditedCourse = _randomCourseHelper.AvailableCourses.Where(x => x != _apprenticeCourseDataHelper.Course).FirstOrDefault();
+            EditedCourse = _randomCourseHelper.RandomCourse(_apprenticeCourseDataHelper.Course).Course.larsCode;
         }
 
         public string EditedCourse { get; private set; }
@@ -26,9 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
 
-            var randomNumber = _randomCourseHelper.GetRandomNumber(0, availableCourses.Count);
-
-            EditedCourse = availableCourses.ElementAt(randomNumber);
+            EditedCourse = RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
     }
 }

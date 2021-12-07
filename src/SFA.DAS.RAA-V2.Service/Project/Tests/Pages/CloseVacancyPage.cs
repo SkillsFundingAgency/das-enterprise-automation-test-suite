@@ -15,10 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-        public CloseVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public CloseVacancyPage(ScenarioContext context) : base(context) => _context = context;
 
         public ManageCloseVacancyPage YesCloseThisVacancy()
         {

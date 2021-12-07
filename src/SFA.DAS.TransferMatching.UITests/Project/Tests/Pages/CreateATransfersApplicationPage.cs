@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -44,7 +45,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new AddContactDetailsPage(_context);
         }
 
-        private string GetRandomLink(List<string> list) => tMDataHelper.GetRandomElementFromListOfElements(list);
+        private string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
 
         private List<string> AppTraining => new List<string>() { "Job role", "Number of apprentices", "Start by", "Have you found a training provider?" };
 

@@ -62,7 +62,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 PregDbConnectionString = GetConnectionString(_dbDevConfig.PregDbName),
                 TPRDbConnectionString = GetConnectionString(_dbDevConfig.TPRDbName),
                 UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
-                TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName)
+                TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName),
+                CRSDbConnectionString = GetConnectionString(_dbDevConfig.CrsDbName)
             };
         }
 

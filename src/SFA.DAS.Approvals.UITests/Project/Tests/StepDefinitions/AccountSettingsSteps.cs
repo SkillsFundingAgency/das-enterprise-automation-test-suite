@@ -32,38 +32,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage = new ApprenticesHomePage(_context);
         }
 
         [Then(@"Employer should be able to navigate to help page")]
-        public void EmployerShouldBeAbleToNavigateToHelpPage()
-        {
-            _apprenticesHomePage.GoToHelpPage();
-        }
+        public void EmployerShouldBeAbleToNavigateToHelpPage() => _apprenticesHomePage.GoToHelpPage();
 
         [Then(@"Employer should be able to navigate to Rename account page")]
-        public void EmployerShouldBeAbleToNavigateToRenameAccountPage()
-        {
-            _apprenticesHomePage.GoToRenameAccountPage();
-        }
+        public void EmployerShouldBeAbleToNavigateToRenameAccountPage() => _apprenticesHomePage.GoToRenameAccountPage();
 
         [Then(@"Employer should be able to navigate to Change your password page")]
-        public void EmployerShouldBeAbleToNavigateToChangeYourPasswordPage()
-        {
-            _apprenticesHomePage.GoToChangeYourPasswordPage();
-        }
+        public void EmployerShouldBeAbleToNavigateToChangeYourPasswordPage() => _apprenticesHomePage.GoToChangeYourPasswordPage();
 
         [Then(@"Employer should be able to navigate to Change your email address page")]
-        public void EmployerShouldBeAbleToNavigateToChangeYourEmailAddressPage()
-        {
-            _apprenticesHomePage.GoToChangeYourEmailAddressPage();
-        }
+        public void EmployerShouldBeAbleToNavigateToChangeYourEmailAddressPage() => _apprenticesHomePage.GoToChangeYourEmailAddressPage();
 
         [When(@"Employer navigates to notification settings page")]
-        public void EmployerNavigatesToNotificationSettingsPage()
-        {
-            _employerNotification = _apprenticesHomePage.GoToNotificationSettingsPage();
-        }
+        public void EmployerNavigatesToNotificationSettingsPage() => _employerNotification = _apprenticesHomePage.GoToNotificationSettingsPage();
 
         [Then(@"Employer is able to choose to receive notification emails")]
         public void EmployerIsAbleToChooseToReceiveNotificationEmails()
@@ -82,11 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider navigates to notification settings page")]
-        public void ProviderNavigatesToNotificationSettingsPage()
-        {
-            _providerNotification = _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderNotificationSettingsPage();
-        }
+        public void ProviderNavigatesToNotificationSettingsPage() => _providerNotification = _providerStepsHelper.GoToProviderHomePage().GoToProviderNotificationSettingsPage();
 
         [Then(@"Provider is able to choose to receive notification emails")]
         public void ProviderIsAbleToChooseToReceiveNotificationEmails()

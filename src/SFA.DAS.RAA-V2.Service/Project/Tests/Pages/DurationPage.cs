@@ -18,10 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By WeeklyHours => By.Id("WeeklyHours");
 
-        public DurationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public DurationPage(ScenarioContext context) : base(context) => _context = context;
 
         public WageTypePage EnterDuration()
         {

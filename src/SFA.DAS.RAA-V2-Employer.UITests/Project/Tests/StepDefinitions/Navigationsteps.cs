@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             new InterimYourApprenticeshipAdvertsHomePage(_context, true);
 
-            new InterimApprenticesHomePage(_context, true);
+            new InterimApprenticesHomePage(_context, false);
         }
 
         [Then(@"the employer can navigate to your team page")]

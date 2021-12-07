@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -11,6 +12,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private const string Numbers = "0123456789";
         private const string WholeNumbers = "123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
+
+        public static T GetRandomElementFromListOfElements<T>(List<T> elements)
+        {
+            var randomNumber = GenerateRandomNumberBetweenTwoValues(0, elements.Count);
+
+            return elements[randomNumber];
+        }
 
         public static string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 

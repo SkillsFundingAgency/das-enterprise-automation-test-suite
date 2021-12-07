@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -10,7 +9,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By Notes => By.CssSelector("#Notes");
@@ -19,11 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By CandidateFeedback => By.CssSelector("#candidate-feedback");
 
-        public RAA_ApplicationPreviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public RAA_ApplicationPreviewPage(ScenarioContext context) : base(context) => _context = context;
 
         public RAA_VacancySummaryPage ChangeStatus(string newstatus)
         {
@@ -56,7 +50,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             if (newstatus == "Successful")
             {
                 formCompletionHelper.ClickButtonByText("Confirm and send");
-                _pageInteractionHelper.WaitforURLToChange("confirmsuccessfuldecision");
+                pageInteractionHelper.WaitforURLToChange("confirmsuccessfuldecision");
                 formCompletionHelper.ClickButtonByText("Return to vacancy applications");
             }
 

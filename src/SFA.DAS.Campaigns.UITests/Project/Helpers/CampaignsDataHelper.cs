@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
-    public class CampaignsDataHelper : RandomElementHelper
+    public class CampaignsDataHelper
     {
-        public CampaignsDataHelper() : base()
+        public CampaignsDataHelper()
         {
             Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
             Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);

@@ -59,10 +59,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .AcceptAndSubmitWithHowWillYouSuportQuestion();
         }
 
-        public void VerifyStandardSubmitted()
-        {
-            new AS_WithdrawalApplicationSubmittedPage(_context).StandardSubmissionVerification();
-        }
+        public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
 
         public void VerifyTheInProgressStatus()
         {
@@ -82,7 +79,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return staffDashboardPage
                 .GoToNewWithdrawalApplications()
                 .GoToStandardWithdrawlApplicationOverivewPage()
-                .GoToWithdrawalNotificationQuestionsPage()
+                .GoToWithdrawalRequestQuestionsPage()
                 .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
                 .ContinueWithWithdrawalRequest()
@@ -95,7 +92,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToNewWithdrawalApplications()
                 .StoreCurrentTabValues()
                 .GoToRegisterWithdrawlApplicationOverviewPage()
-                .GoToWithdrawalNotificationQuestionsPage()
+                .GoToWithdrawalRequestQuestionsPage()
                 .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
                 .ContinueWithWithdrawalRequest()
@@ -108,7 +105,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToNewWithdrawalApplications()
                 .StoreCurrentTabValues()
                 .GoToRegisterWithdrawlApplicationOverviewPage()
-                .GoToWithdrawalNotificationQuestionsPage()
+                .GoToWithdrawalRequestQuestionsPage()
                 .ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
                 .AddFeedbackMessage()
                 .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
@@ -140,6 +137,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .VerifyAnApplicationAddedToApprovedTab()
                 .VerifyApprovedTabContainsRegisterWithdrawal();
         }
+       
 
         public void AmmendWithdrawalApplication()
         {
@@ -160,7 +158,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .StoreCurrentTabValues()
                 .GoToAmmendedWithdrawalApplicationOverviewPage()
                 .VerifyAnswerUpdatedTag()
-                .GoToWithdrawalNotificationQuestionsPage()
+                .GoToWithdrawalRequestQuestionsPage()
                 .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
                 .ClickCompleteReview()
                 .ContinueWithWithdrawalRequest()

@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -17,8 +19,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public YouHaveAcceptedTheEmployerAgreementPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
-            VerifyPage(DownloadYourAcceptedAgreementLink);
+
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(),
+                () => VerifyPage(DownloadYourAcceptedAgreementLink)
+            });
         }
 
         public HomePage ClickOnViewYourAccountButton()

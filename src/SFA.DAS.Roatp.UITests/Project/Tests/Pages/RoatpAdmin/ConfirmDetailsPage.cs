@@ -13,10 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Confirm and add organisation']");
 
-        public ConfirmDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ConfirmDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public SearchPage ConfirmOrganisationsDetails()
         {

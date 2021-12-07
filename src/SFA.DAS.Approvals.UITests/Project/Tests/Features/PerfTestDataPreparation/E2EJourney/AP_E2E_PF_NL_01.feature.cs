@@ -77,7 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         {
             string[] @__tags = new string[] {
                     "addnonlevyfunds",
-                    "selectstandardcourse",
                     "perftest",
                     "donottakescreenshot",
                     "liveapprentice"};
@@ -90,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
                     " the cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,14 +109,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
  testRunner.When("the Employer uses the reservation to create and approve 1 cohort and sends to pro" +
                         "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -128,13 +127,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 1")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_1()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("1", ((string[])(null)));
 #line hidden
         }
@@ -143,13 +141,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 2")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_2()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("2", ((string[])(null)));
 #line hidden
         }
@@ -158,13 +155,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 3")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_3()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("3", ((string[])(null)));
 #line hidden
         }
@@ -173,13 +169,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 4")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_4()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("4", ((string[])(null)));
 #line hidden
         }
@@ -188,13 +183,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 5")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_5()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("5", ((string[])(null)));
 #line hidden
         }
@@ -203,13 +197,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 6")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_6()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("6", ((string[])(null)));
 #line hidden
         }
@@ -218,13 +211,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 7")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_7()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("7", ((string[])(null)));
 #line hidden
         }
@@ -233,13 +225,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 8")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_8()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("8", ((string[])(null)));
 #line hidden
         }
@@ -248,13 +239,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 9")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_9()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("9", ((string[])(null)));
 #line hidden
         }
@@ -263,13 +253,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 10")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_10()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("10", ((string[])(null)));
 #line hidden
         }
@@ -278,13 +267,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 11")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_11()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("11", ((string[])(null)));
 #line hidden
         }
@@ -293,13 +281,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 12")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_12()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("12", ((string[])(null)));
 #line hidden
         }
@@ -308,13 +295,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 13")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_13()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("13", ((string[])(null)));
 #line hidden
         }
@@ -323,13 +309,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 14")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_14()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("14", ((string[])(null)));
 #line hidden
         }
@@ -338,13 +323,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 15")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_15()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("15", ((string[])(null)));
 #line hidden
         }
@@ -353,13 +337,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 16")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_16()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("16", ((string[])(null)));
 #line hidden
         }
@@ -368,13 +351,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 17")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_17()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("17", ((string[])(null)));
 #line hidden
         }
@@ -383,13 +365,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 18")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_18()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("18", ((string[])(null)));
 #line hidden
         }
@@ -398,13 +379,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 19")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_19()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("19", ((string[])(null)));
 #line hidden
         }
@@ -413,13 +393,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 20")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_20()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("20", ((string[])(null)));
 #line hidden
         }
@@ -428,13 +407,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 21")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_21()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("21", ((string[])(null)));
 #line hidden
         }
@@ -443,13 +421,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 22")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_22()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("22", ((string[])(null)));
 #line hidden
         }
@@ -458,13 +435,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 23")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_23()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("23", ((string[])(null)));
 #line hidden
         }
@@ -473,13 +449,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 24")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_24()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("24", ((string[])(null)));
 #line hidden
         }
@@ -488,13 +463,12 @@ this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheC
         [NUnit.Framework.DescriptionAttribute("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
             " the cohort: 25")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_25()
         {
-#line 8
+#line 7
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("25", ((string[])(null)));
 #line hidden
         }

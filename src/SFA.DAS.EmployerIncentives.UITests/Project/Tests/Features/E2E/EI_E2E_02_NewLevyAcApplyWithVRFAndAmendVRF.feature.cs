@@ -78,14 +78,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
             "bank details for a New Levy Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
         public virtual void EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_ApplyForIncentiveSubmitAndAmendBankDetailsForANewLevyAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
-                    "employerincentives",
+                    "employerincentivesphase3",
                     "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
@@ -114,8 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 7 and Year 2021", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds an apprentice Aged16to24 as of 01AUG2021 with start date as Mon" +
+                        "th 1 and Year 2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
