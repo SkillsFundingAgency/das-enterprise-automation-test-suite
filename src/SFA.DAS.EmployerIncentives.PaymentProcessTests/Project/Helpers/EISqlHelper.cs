@@ -161,6 +161,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(sql);
         }
-        
+
+        public async Task SetEmploymentCheckResult(Guid id, bool result)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.UpdateEmploymentCheckResult, new { id, result });
+        }
     }
 }
