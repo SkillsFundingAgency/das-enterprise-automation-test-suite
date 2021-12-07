@@ -30,9 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _context.Get<EISqlHelper>().SetSignedAgreementVersion(accountId);
         }
 
-        [When(@"the Employer Initiates EI Application journey for version 4 legal agreement account")]
-        [When(@"the Employer Initiates EI Application journey for version 5 legal agreement account")]
-
+        [When(@"the Employer Initiates EI Application journey for version 4|5|6 legal agreement account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount() =>
             _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
 
