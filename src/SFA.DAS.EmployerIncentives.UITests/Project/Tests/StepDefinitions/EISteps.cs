@@ -135,8 +135,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenQualificationQuestionShutterPageIsDisplayedForSelectingNoOptionInQualificationPage() =>
             _qualificationQuestionShutterPage = _qualificationQuestionPage.SelectNoAndContinue();
 
-        [Then(@"Approvals home page is displayed on clicking on Add apprentices link on Select apprentices shutter page")]
-        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLinkOnSelectApprenticesShutterPage() => _selectApprenticesShutterPage.ClickOnAddApprenticesLink();
+        [Then(@"Employer Home page is displayed on clicking on Return to Account Home button on Select apprentices shutter page")]
+        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLinkOnSelectApprenticesShutterPage() => _selectApprenticesShutterPage.ClickOnReturnToAccountHomeLink();
 
         [Then(@"Employer Home page is displayed on clicking on Return to Account Home button on Qualification shutter page")]
         public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeButtonOnQualificatioShutterPage() => _qualificationQuestionShutterPage.ClickOnReturnToAccountHomeLink();
