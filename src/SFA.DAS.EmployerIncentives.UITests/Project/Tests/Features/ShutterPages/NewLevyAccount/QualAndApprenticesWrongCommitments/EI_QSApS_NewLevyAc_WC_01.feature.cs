@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2021"});
                 table1.AddRow(new string[] {
                             "AgedAbove25",
-                            "3",
+                            "4",
                             "2022"});
 #line 9
  testRunner.When("the Employer adds following apprentices", ((string)(null)), table1, "When ");

@@ -9,7 +9,7 @@ Scenario: EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account w
 	When the Employer adds following apprentices
 	| Age         | StartMonth | StartYear |
 	| Aged16to24  | 9          | 2021      |
-	| AgedAbove25 | 3          | 2022      |
+	| AgedAbove25 | 4          | 2022      |
 	And the Provider approves the apprenticeship request
 	When the Employer Initiates EI Application journey for Single entity account
 	Then Qualification question shutter page is displayed for selecting No option in Qualification page

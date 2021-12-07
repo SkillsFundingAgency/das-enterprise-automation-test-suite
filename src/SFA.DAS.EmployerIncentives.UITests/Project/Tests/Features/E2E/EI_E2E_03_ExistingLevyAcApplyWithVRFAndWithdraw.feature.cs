@@ -20,8 +20,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw")]
-    public partial class EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdrawFeature
+    [NUnit.Framework.DescriptionAttribute("EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw")]
+    public partial class EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdrawFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,13 +74,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw")]
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
-        public virtual void EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw()
+        public virtual void EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -89,7 +89,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
                     "deleteincentiveapplication",
                     "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_04_ExistingLevyAcApplyWithVRFAndWithdraw", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw", null, tagsOfScenario, argumentsOfScenario);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

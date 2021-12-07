@@ -20,8 +20,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF")]
-    public partial class EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRFFeature
+    [NUnit.Framework.DescriptionAttribute("EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF")]
+    public partial class EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRFFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,13 +74,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
             "bank details for a New Levy Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
-        public virtual void EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_ApplyForIncentiveSubmitAndAmendBankDetailsForANewLevyAccount()
+        public virtual void EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF_ApplyForIncentiveSubmitAndAmendBankDetailsForANewLevyAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -88,7 +88,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
                     "employerincentivesphase3",
                     "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_02_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend " +
                     "bank details for a New Levy Account", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
