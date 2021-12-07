@@ -8,24 +8,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class ScreenshotHelper
     {
-        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle)
-        {
-            var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
-            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
-
-            try
-            {
-                ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
-                Screenshot screenshot = screenshotHandler.GetScreenshot();
-                screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                TestContext.AddTestAttachment(screenshotPath, imageName);
-            }
-            catch (Exception exception)
-            {
-                TestContext.Progress.WriteLine($"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
-            }
-        }
-
         public static void TakeFullPageScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle)
         {
             var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
@@ -42,7 +24,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 js.ExecuteScript(generateScreenshotJS);
 
                 var pngContent = Policy
-                    .Handle<Exception>()
+                    .Handle<WebDriverException>()
                     .OrResult<string>(r => string.IsNullOrEmpty(r))
                     .WaitAndRetry(Logging.DefaultTimeout())
                     .Execute(() => (string)js.ExecuteScript("return canvasImgContentDecoded;"));
@@ -51,6 +33,23 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 File.WriteAllBytes(screenshotPath, Convert.FromBase64String(pngContent));
 
+                TestContext.AddTestAttachment(screenshotPath, imageName);
+            }
+            catch (Exception exception)
+            {
+                TestContext.Progress.WriteLine($"Exception occurred while taking full screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
+
+                TakeScreenShot(webDriver, imageName, screenshotPath);
+            }
+        }
+
+        private static void TakeScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
+        {
+            try
+            {
+                ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
+                Screenshot screenshot = screenshotHandler.GetScreenshot();
+                screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
                 TestContext.AddTestAttachment(screenshotPath, imageName);
             }
             catch (Exception exception)
