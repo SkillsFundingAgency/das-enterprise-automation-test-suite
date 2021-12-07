@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -9,16 +8,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By Title => By.CssSelector("#Title");
 
-        public BaseVacancyTitlePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public BaseVacancyTitlePage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -42,7 +36,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(Title, $"{rAAV2DataHelper.VacancyTitle}");
             Continue();
-            _objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
+            objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly ScenarioContext _context;
         private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
         private ApprenticeHomePage _apprenticeHomePage;
+        private ApprenticeHomePageNegativeMatch _apprenticeHomePagNegativeMatch;
         private (string firstName, string lastName) _name;
 
         public CreateAccountSteps(ScenarioContext context) : base(context) => _context = context;
@@ -25,14 +26,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenAnErrorIsShownForEnteringInvalidIdentityData()
         {
             var (page, name) = _createMyApprenticeshipAccountPage.EnterInValidApprenticeDetails();
-            _apprenticeHomePage = page.AcceptTermsAndCondition(false);
+            _apprenticeHomePagNegativeMatch = page.AcceptTermsAndConditionForNegativeMatch();
             _name = name;
         }
 
         [Then(@"a positive match is shown after entering valid data")]
         public void ThenAPositiveMatchIsShownAfterEnteringValidData()
         {
-            _apprenticeHomePage = new ApprenticeHomePage(_context, false).GoToChangeYourPersonalDetailsPage().EnterValidApprenticeDetails(_name.firstName, _name.lastName).VerifySucessNotification();
+            _apprenticeHomePage = _apprenticeHomePagNegativeMatch.GoToChangeYourPersonalDetailsPage().EnterValidApprenticeDetails(_name.firstName, _name.lastName).VerifySucessNotification();
             _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
             Assert.IsFalse(_apprenticeHomePage.VerifyNotificationBannerIsNotDisplayed(), "Notification Banner is displayed");
         }
@@ -47,7 +48,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             foreach (var d in invalidData)
             {
-                _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
+                _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.EnterInvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
                 _createMyApprenticeshipAccountPage.VerifyErrorSummary();
             }
         }

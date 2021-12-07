@@ -96,11 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to view saved cohort from Draft")]
-        public void ThenEmployerIsAbleToViewSavedCohortFromDraft()
-        {
-            _apprenticeRequestsPage.GoToDrafts()
-                .SelectViewCurrentCohortDetails();
-        }
+        public void ThenEmployerIsAbleToViewSavedCohortFromDraft() => _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
 
         [Then(@"Employer is able to delete all apprentices before approval")]
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
@@ -166,14 +162,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, shouldConfirmOnlyStandardCoursesSelectable);
 
-            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview()
-                .CohortReference();
+            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
         [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
+        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId(_context.ScenarioInfo.Title));
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]
@@ -199,9 +194,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             TheEmployerApprovesCohortAndSendsToProvider(table.RowCount);
         }
 
-        [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
-        [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
-        [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
+        [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
+        [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
         public void EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
         {
             var table = new Table("Age", "StartMonth", "StartYear");
@@ -214,18 +209,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ThenTheEmployerAddsFollowingApprentices(table);
         }
 
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
         public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
             EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
 
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date in previous month")]
+        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date in previous month")]
         public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDate(string eIAgeCategoryAsOfAug2020)
         {
             var startdate = DateTime.Now.AddMonths(-1);
             EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, startdate.Month, startdate.Year);
         }
 
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2020 with start date more than 3 month in past")]
+        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date more than 3 month in past")]
         public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDateMoreThanMonthInPast(string eIAgeCategoryAsOfAug2020)
         {
             var startdate = DateTime.Now.AddMonths(-4);
@@ -233,6 +228,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context, true).AddAnApprentice();
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
     }
 }

@@ -3,6 +3,6 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_02_Check Hiring an Apprentice Page Details
-	Given the user navigates to hiring an apprentice page
-	Then the links are not broken
+Scenario: CA_EMP_02 Check that Levy Paying Employer Selected appropriate content displayed 
+	Given the user navigates to the funding an apprenticeship page
+	Then Employer selects Levy Paying and continues

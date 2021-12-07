@@ -98,8 +98,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
                 .MakeApplicationInProgress_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
-        [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
-        [Then(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL) outcome is ready to be assessed")]
+        [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) outcome is ready to be assessed")]
+        [Then(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) outcome is ready to be assessed")]
         public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
         [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL|IN PROGRESS) status")]
@@ -108,6 +108,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"Verify the application is transitioned to Appeal Outcome tab with (SUCCESSFUL|IN PROGRESS|UNSUCCESSFUL) status")]
         public void ThenVerifyTheApplicationIsTransitionedToAppealOutcomeTab(string expectedStatus) => VerifyAppealOverallOutcomeStatus(expectedStatus);
 
+        [Given(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
         [Then(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
         public void ThenVerifyThatTheAdminCanSendTheOutcome(string expectedStatus)
         {
@@ -133,6 +134,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         }
 
         [When(@"the oversight user selects the overall application outcome as Unsuccessful")]
+        [Given(@"the oversight user selects the overall application outcome as Unsuccessful")]
         public void WhenTheOversightUserSelectsTheOverallApplicationOutcomeAsUnsuccessful()
         {
             ConfirmApplicationOutcome(_applicationSummaryPage.MakeApplicationUnSuccessful());

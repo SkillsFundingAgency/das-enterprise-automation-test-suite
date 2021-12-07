@@ -15,13 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
             VerifyPage();
         }

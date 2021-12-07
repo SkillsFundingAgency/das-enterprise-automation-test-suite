@@ -25,7 +25,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             if (employmentStartDate == null)
             {
-                employmentStartDate = new DateTime(2021, eIDataHelper.JoiningMonth, eIDataHelper.JoiningDay);
+                employmentStartDate = new DateTime(2021, Convert.ToInt32(eIDataHelper.JoiningMonth), Convert.ToInt32(eIDataHelper.JoiningDay));
             }
 
             var apprentices = pageInteractionHelper.FindElements(DateGroup);

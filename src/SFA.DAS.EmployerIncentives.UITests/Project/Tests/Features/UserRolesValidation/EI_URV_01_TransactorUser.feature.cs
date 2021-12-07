@@ -76,12 +76,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.UserRolesVal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_URV_01_Verify EI for Existing Transactor user")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         public virtual void EI_URV_01_VerifyEIForExistingTransactorUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives"};
+                    "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_URV_01_Verify EI for Existing Transactor user", null, tagsOfScenario, argumentsOfScenario);
 #line 5

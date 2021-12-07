@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
@@ -15,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public ManageFundingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             VerifyPage();
@@ -23,15 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
-            if (pageInteractionHelper.IsElementPresent(ReserveFundingLink))
-            {
-                base.formCompletionHelper.ClickElement(ReserveFundingLink);
-            }
+            if (pageInteractionHelper.IsElementPresent(ReserveFundingLink)) formCompletionHelper.ClickElement(ReserveFundingLink);
             
-            if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink))
-            {
-                base.formCompletionHelper.ClickElement(ReserveMoreFundingLink);
-            }
+            if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink)) formCompletionHelper.ClickElement(ReserveMoreFundingLink);
+
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
 
@@ -46,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
-            base.formCompletionHelper.ClickElement(ReserveFundingLink);
+            formCompletionHelper.ClickElement(ReserveFundingLink);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 

@@ -5,8 +5,8 @@
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio (2017 with V15.9 or higher). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 3.1' version matching Visual Studio version. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+1. Visual Studio (2019 with V16.11 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
+2. Download appropriate 'Dot Net Core 5.0.403' version matching Visual Studio version. And make sure the sysytem has only one instance of Dotnet core. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
 3. Browsers (Chrome, Firefox, IE)
 
 ## Set Up (UI):
@@ -14,6 +14,11 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This UI framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
+## Set Up (DB connection using Azure Manage Identity):
+In Visual Studio navigate to ```Tools -> Options -> Azure Service Authentication -> Account Selection (choose your FCS account- <firstname>.<lastname>@fcsazuresfabisgov.onmicrosoft.com for PP or your CDS account - <firstname>.<lastname>@citizenazuresfabisgov.onmicrosoft.com for AT, TEST, TEST2 and DEMO.)``` Please add them if you don't have them already. (ask devops for help if you are blocked)
+
+You should also use ```Azure Active Directory - Universal with MFA support``` to connect to SQL DB when you are using Azure Data Studio or SQL Management Studio or Visual Studio Code
+	
 ## Steps to add a new UI test project:
 
 1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
@@ -216,7 +221,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
 2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
 	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot``` (in registration)
-	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse``` (in approvals)
+	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardwithmultipleoptions``` (in approvals)
 	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
 3. Optional tags / requirement specific tags
 	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 

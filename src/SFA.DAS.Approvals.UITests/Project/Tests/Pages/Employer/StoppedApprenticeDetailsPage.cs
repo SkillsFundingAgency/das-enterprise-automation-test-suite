@@ -17,10 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private readonly ApprenticeDataHelper _dataHelper;
 
-        public StoppedApprenticeDetailsPage(ScenarioContext context) : base(context) 
-        {
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-        }
+        public StoppedApprenticeDetailsPage(ScenarioContext context) : base(context) => _dataHelper = context.Get<ApprenticeDataHelper>();
 
         public StoppedApprenticeDetailsPage ValidateEditLinkIsNoLongerVisible()
         {

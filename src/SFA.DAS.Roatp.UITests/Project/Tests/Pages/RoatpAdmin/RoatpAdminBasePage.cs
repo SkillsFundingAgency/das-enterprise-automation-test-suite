@@ -1,23 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public abstract class RoatpAdminBasePage : RoatpBasePage
     {
-        #region Helpers and Context
-        protected readonly RoatpAdminDataHelpers admindataHelpers;
-        #endregion
-
         protected By RadioInputs => By.CssSelector(".govuk-radios__input");
 
-        public RoatpAdminBasePage(ScenarioContext context) : base(context)
-        {
-            admindataHelpers = context.GetValue<RoatpAdminDataHelpers>();
-            VerifyPage();
-        }
+        public RoatpAdminBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         protected void Back() => formCompletionHelper.ClickLinkByText("Back");
     }

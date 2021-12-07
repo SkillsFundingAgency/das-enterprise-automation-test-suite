@@ -39,7 +39,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
             RetryGetRegistrationId(() =>
             {
-                var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email).ToList();
+                var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email);
+                Assert.IsTrue(registrationIds.All(x => !string.IsNullOrEmpty(x)), $"Registration Id can not be found for email {email}");
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
             });
 
@@ -82,7 +83,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
-        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndCondition(true);
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionForPositiveMatch(true);
 
         private StartPage OpenInvitation(string registrationId)
         {
@@ -91,7 +92,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new StartPage(_context);
         }
 
-        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action);
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }

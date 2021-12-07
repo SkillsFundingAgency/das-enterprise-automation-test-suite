@@ -49,6 +49,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _eISqlHelper = _context.Get<EISqlHelper>();
         }
 
+        [Then(@"the Applications open on 11 Jan 2022 page is shown when the Employer applies for a new apprentice payment")]
+        public void TheApplicationsOpenOnJanPageIsShownWhenTheEmployerAppliesForANewApprenticePayment() => new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().NavigateToApplicationsOpenOn22JanPage().ReturnToAccountHomePage();
+
         [Then(@"the Employer can withdraw the application")]
         public void ThenTheEmployerCanWithdrawTheApplication() => _viewApplicationsPage = _viewApplicationsPage.CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
 
@@ -91,12 +94,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void TheEmployeIsAbleToNavigateToEIApplicationSelectApprenticesPage() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();
 
         [Then(@"the Employer is able to submit the EI Application without VRF")]
-        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF()
-        {
-            SubmitEiApplicationPastDeclarationPage()
-                .ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage()
-                .NavigateToViewApplicationsPage();
-        }
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF() => SubmitEiApplicationPastDeclarationPage().ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage().NavigateToViewApplicationsPage();
 
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
@@ -109,7 +107,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             var startMonth = _objectContext.GetEIStartMonth();
             var startYear = _objectContext.GetEIStartYear();
-            var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2020();
+            var ageCategory = _objectContext.GetEIAgeCategoryAsOfAug2021();
             _eISqlHelper.VerifyEarningData(_email, startMonth, startYear, ageCategory);
         }
 
@@ -117,6 +115,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToViwEIApplications()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
+
             new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().NavigateToEIViewApplicationsPage();
         }
 
@@ -233,7 +232,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ReturnToEasApplicationCompletePage()
                 .NavigateToViewApplicationsPage();
         }
-
     }
 }
 

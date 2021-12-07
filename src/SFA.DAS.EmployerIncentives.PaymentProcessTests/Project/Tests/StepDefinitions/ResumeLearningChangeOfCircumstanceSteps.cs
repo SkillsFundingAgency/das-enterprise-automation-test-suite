@@ -226,7 +226,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"the earnings are recalculated")]
-        public async Task WhenTheEarningsAreRecalculated()
+        public void WhenTheEarningsAreRecalculated()
         {
         }
 

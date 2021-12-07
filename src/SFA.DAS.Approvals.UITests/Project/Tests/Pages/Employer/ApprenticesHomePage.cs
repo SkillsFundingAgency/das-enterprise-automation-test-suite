@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public ApprenticesHomePage(ScenarioContext context) : base(context, false) { _context = context; }
 
         public AddAnApprenitcePage AddAnApprentice()
         {
@@ -63,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ReportPublicSectorApprenticeshipTargetPage(_context);
         }
 
-        public void ValidateFooter()
+        public ApprenticesHomePage ValidateFooter()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Help), "Validate Help link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Feedback), "Validate Feedback link on the footer of the page");
@@ -71,18 +71,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Cookies), "Validate Cookies link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(BuiltBy), "Validate BuiltBy link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CrownCopyright), "Validate CrownCopyright link on the footer of the page");
+
+            return this;
         }
 
-        public void ValidateCookiesBanner()
+        public ApprenticesHomePage ValidateCookiesBanner()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesAcceptButton), "Validate accept cookies button on cookies banner");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesSettingsButton), "Validate cookie settings button on cookies banner");
+            return this;
         }
 
-        public void ValidateHelpWidget()
+        public ApprenticesHomePage ValidateHelpWidget()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript1), "Validate help widget button in the bottom right");
             Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript2), "Validate help widget button in the bottom right");
+            return this;
         }
     }
 }

@@ -14,10 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public ConfirmApplicantUnsucessfulPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ConfirmApplicantUnsucessfulPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApplicationUnsuccessfulPage NotifyApplicant()
         {

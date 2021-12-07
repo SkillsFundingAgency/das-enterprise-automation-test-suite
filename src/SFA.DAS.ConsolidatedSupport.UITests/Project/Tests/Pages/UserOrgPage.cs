@@ -14,10 +14,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By ModelButtons => By.CssSelector(".modal-footer .btn");
 
-        public UserOrgPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public UserOrgPage(ScenarioContext context) : base(context) => _context = context;
 
         public HomePage DeleteUser()
         {

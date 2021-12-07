@@ -31,7 +31,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.EnterText(Town, eIDataHelper.Town);
                 formCompletionHelper.EnterText(Postcode, eIDataHelper.Poscode);
                 formCompletionHelper.EnterText(ContactEmail, email);
-                formCompletionHelper.EnterText(FullName, registrationConfig.RE_OrganisationName);
+                formCompletionHelper.EnterText(FullName, registrationDataHelper.CompanyTypeOrg);
                 formCompletionHelper.EnterText(Fc_email, email);
                 Continue();
             });

@@ -11,10 +11,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public ManageYourAdvertEmailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ManageYourAdvertEmailsPage(ScenarioContext context) : base(context) => _context = context;
 
     }
 }
