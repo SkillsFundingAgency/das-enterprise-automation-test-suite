@@ -89,6 +89,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId &&
                              x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
 
+            employmentCheck.CorrelationId.Should().NotBe(Guid.Empty);
             employmentCheck.MaximumDate.Should().Be(maximumDate);
             employmentCheck.MinimumDate.Should().Be(minimumDate);
             employmentCheck.Result.Should().BeNull();
@@ -100,6 +101,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
 
+            employmentCheck.CorrelationId.Should().NotBe(Guid.Empty);
             employmentCheck.MaximumDate.Should().Be(_startDate.AddDays(42));
             employmentCheck.MinimumDate.Should().Be(_startDate);
             employmentCheck.Result.Should().BeNull();
