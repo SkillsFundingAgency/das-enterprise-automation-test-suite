@@ -120,6 +120,30 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             throw new Exception("Earnings not found!");
         }
 
+        public async Task WaitUntilCorrelationIdsSet(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            using var cts = new CancellationTokenSource();
+            if (timeout != null)
+            {
+                cts.CancelAfter(timeout.Value);
+            }
+
+            await using var dbConnection = new SqlConnection(connectionString);
+
+            while (!cts.Token.IsCancellationRequested)
+            {
+                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId = @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty });
+                if (count == 0)
+                {
+                    return;
+                }
+
+                await Task.Delay(TimeSpan.FromMilliseconds(100), cts.Token);
+            }
+
+            throw new Exception("Correlation ids not updated!");
+        }
+
         public async Task CleanUpAccount(long accountId)
         {
             await using var dbConnection = new SqlConnection(connectionString);

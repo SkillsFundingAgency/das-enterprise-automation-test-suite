@@ -66,6 +66,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"an ILR submission is received for that learner")]
         public async Task WhenTheLearnerMatchIsRun()
         {
+            await Helper.EmploymentCheckApiHelper.SetupPut();
             await SetupSubmission();
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
             await Helper.LearnerMatchOrchestratorHelper.Run();
@@ -74,17 +75,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting")]
         public async Task ThenANewNotEmployedBeforePhase1EmploymentCheckIsCreated()
         {
-            VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2020, 07, 31), new DateTime(2020, 08, 01).AddMonths(-6));
+            await VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2020, 07, 31), new DateTime(2020, 08, 01).AddMonths(-6));
         }
 
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting")]
         public async Task ThenANewNotEmployedBeforePhase2EmploymentCheckIsCreated()
         {
-            VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2021, 03, 31), new DateTime(2021, 04, 01).AddMonths(-6));
+            await VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2021, 03, 31), new DateTime(2021, 04, 01).AddMonths(-6));
         }
 
-        private void VerifyNotEmployedBeforePhaseEmploymentCheck(DateTime maximumDate, DateTime minimumDate)
+        private async Task VerifyNotEmployedBeforePhaseEmploymentCheck(DateTime maximumDate, DateTime minimumDate)
         {
+            await Helper.EISqlHelper.WaitUntilEarningsExist(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
+
             var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId &&
                              x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
@@ -98,6 +101,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date")]
         public async Task ThenANewEmployedAfterStartDateEmploymentCheckIsCreated()
         {
+            await Helper.EISqlHelper.WaitUntilEarningsExist(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
+
             var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
 
