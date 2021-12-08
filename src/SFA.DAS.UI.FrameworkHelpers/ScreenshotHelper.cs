@@ -26,7 +26,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 var pngContent = Policy
                     .Handle<WebDriverException>()
                     .OrResult<string>(r => string.IsNullOrEmpty(r))
-                    .WaitAndRetry(Logging.ScreenshotTimeout(), 
+                    .WaitAndRetry(5, x => TimeSpan.FromMilliseconds(100 * x), 
                         (result, timespan, retryCount, context) => { Report(retryCount, screenshotPath, imageName, result); })
                     .Execute(() => (string)js.ExecuteScript("return canvasImgContentDecoded;"));
 
