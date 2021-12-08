@@ -1,6 +1,5 @@
 ﻿Feature: PC_03_AddSpecificLevyPaye
 
-@payecreation
 Scenario Outline: PC_03_AddSpecificLevyPaye
 	Given I add levy declarations
 	| EmpRef   | Duration   | LevyPerMonth   | NoOfLevy |

@@ -75,17 +75,11 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         
         public virtual void PC_04_AddSpecificNonLevyPaye(string empRef, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "payecreation"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EmpRef", empRef);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_04_AddSpecificNonLevyPaye", null, tagsOfScenario, argumentsOfScenario);
-#line 4
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             string.Format("{0}", empRef),
                             "1"});
-#line 5
+#line 4
  testRunner.Given("I add non levy declarations", ((string)(null)), table2, "Given ");
 #line hidden
             }
@@ -120,10 +114,9 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PC_04_AddSpecificNonLevyPaye: 198/QEVYVMUYLR")]
-        [NUnit.Framework.CategoryAttribute("payecreation")]
         public virtual void PC_04_AddSpecificNonLevyPaye_198QEVYVMUYLR()
         {
-#line 4
+#line 3
 this.PC_04_AddSpecificNonLevyPaye("198/QEVYVMUYLR", ((string[])(null)));
 #line hidden
         }

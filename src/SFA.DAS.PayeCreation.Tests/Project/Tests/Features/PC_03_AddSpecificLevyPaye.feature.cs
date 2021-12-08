@@ -75,19 +75,13 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         
         public virtual void PC_03_AddSpecificLevyPaye(string empRef, string duration, string levyPerMonth, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "payecreation"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EmpRef", empRef);
             argumentsOfScenario.Add("Duration", duration);
             argumentsOfScenario.Add("LevyPerMonth", levyPerMonth);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_03_AddSpecificLevyPaye", null, tagsOfScenario, argumentsOfScenario);
-#line 4
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -117,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", duration),
                             string.Format("{0}", levyPerMonth),
                             "1"});
-#line 5
+#line 4
  testRunner.Given("I add levy declarations", ((string)(null)), table1, "Given ");
 #line hidden
             }
@@ -126,10 +120,9 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PC_03_AddSpecificLevyPaye: 198/QEVYVMUYLQ")]
-        [NUnit.Framework.CategoryAttribute("payecreation")]
         public virtual void PC_03_AddSpecificLevyPaye_198QEVYVMUYLQ()
         {
-#line 4
+#line 3
 this.PC_03_AddSpecificLevyPaye("198/QEVYVMUYLQ", "15", "1000", ((string[])(null)));
 #line hidden
         }
