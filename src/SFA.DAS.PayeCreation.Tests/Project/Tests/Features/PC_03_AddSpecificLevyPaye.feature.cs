@@ -20,22 +20,22 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PC_01_AddLevyPaye")]
-    public partial class PC_01_AddLevyPayeFeature
+    [NUnit.Framework.DescriptionAttribute("PC_03_AddSpecificLevyPaye")]
+    public partial class PC_03_AddSpecificLevyPayeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "PC_01_AddLevyPaye.feature"
+#line 1 "PC_03_AddSpecificLevyPaye.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PC_01_AddLevyPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PC_03_AddSpecificLevyPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,16 +73,21 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PC_01_AddLevyPaye")]
-        [NUnit.Framework.CategoryAttribute("payecreation")]
-        public virtual void PC_01_AddLevyPaye()
+        public virtual void PC_03_AddSpecificLevyPaye(string empRef, string duration, string levyPerMonth, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "payecreation"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_01_AddLevyPaye", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+            argumentsOfScenario.Add("EmpRef", empRef);
+            argumentsOfScenario.Add("Duration", duration);
+            argumentsOfScenario.Add("LevyPerMonth", levyPerMonth);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_03_AddSpecificLevyPaye", null, tagsOfScenario, argumentsOfScenario);
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,11 +107,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("I add levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EmpRef",
+                            "Duration",
+                            "LevyPerMonth",
+                            "NoOfLevy"});
+                table1.AddRow(new string[] {
+                            string.Format("{0}", empRef),
+                            string.Format("{0}", duration),
+                            string.Format("{0}", levyPerMonth),
+                            "1"});
+#line 5
+ testRunner.Given("I add levy declarations", ((string)(null)), table1, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("PC_03_AddSpecificLevyPaye: 198/QEVYVMUYLQ")]
+        [NUnit.Framework.CategoryAttribute("payecreation")]
+        public virtual void PC_03_AddSpecificLevyPaye_198QEVYVMUYLQ()
+        {
+#line 4
+this.PC_03_AddSpecificLevyPaye("198/QEVYVMUYLQ", "15", "1000", ((string[])(null)));
+#line hidden
         }
     }
 }

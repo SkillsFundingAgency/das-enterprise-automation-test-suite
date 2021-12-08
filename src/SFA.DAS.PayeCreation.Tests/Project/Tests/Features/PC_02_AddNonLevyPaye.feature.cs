@@ -28,7 +28,7 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "PC_02_AddLNonLevyPaye.feature"
+#line 1 "PC_02_AddNonLevyPaye.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -76,15 +76,13 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PC_02_AddNonLevyPaye")]
         [NUnit.Framework.CategoryAttribute("payecreation")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void PC_02_AddNonLevyPaye()
         {
             string[] tagsOfScenario = new string[] {
-                    "payecreation",
-                    "addnonlevyfunds"};
+                    "payecreation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_02_AddNonLevyPaye", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("I add non levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }

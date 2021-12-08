@@ -37,12 +37,12 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         public SpecificPayeCreationSteps(ScenarioContext context) => _context = context;
 
-        [Given(@"I add declarations")]
-        public void GivenIAddDeclarations(Table table)
-        {
-            var payedetails = table.CreateInstance<PayeDetails>();
+        [Given(@"I add levy declarations")]
+        public void GivenIAddLevyDeclarations(Table table) => GetPayeCreationStepshelper(table).AddLevyPaye();
+        
+        [Given(@"I add non levy declarations")]
+        public void GivenIAddNonLevyDeclarations(Table table) => GetPayeCreationStepshelper(table).AddNonLevyPaye();
 
-            new PayeCreationStepshelper(_context, payedetails);
-        }
+        private PayeCreationStepshelper GetPayeCreationStepshelper(Table table) => new PayeCreationStepshelper(_context, table.CreateInstance<PayeDetails>());
     }
 }
