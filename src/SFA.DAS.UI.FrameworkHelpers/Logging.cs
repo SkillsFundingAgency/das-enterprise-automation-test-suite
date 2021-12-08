@@ -19,6 +19,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
+        internal static TimeSpan[] ScreenshotTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1) };
+
         internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
     }
 }
