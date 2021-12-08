@@ -8,15 +8,9 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         private readonly List<dynamic> _declarations;
 
-        public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : base(helper)
-        {
-            _declarations = declaration;
-        }
+        public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : base(helper) => _declarations = declaration;
 
-        public string CollectionName()
-        {
-            return "declarations";
-        }
+        public string CollectionName() => "declarations";
 
         public BsonDocument[] Data()
         {

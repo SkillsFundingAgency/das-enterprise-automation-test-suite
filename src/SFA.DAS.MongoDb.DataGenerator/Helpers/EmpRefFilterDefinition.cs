@@ -7,14 +7,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         protected readonly MongoDbDataHelper mongoDbDatahelper;
 
-        public EmpRefFilterDefinition(MongoDbDataHelper helper)
-        {
-            mongoDbDatahelper = helper;
-        }
+        public EmpRefFilterDefinition(MongoDbDataHelper helper) => mongoDbDatahelper = helper;
 
-        public FilterDefinition<BsonDocument> FilterDefinition()
-        {
-            return Builders<BsonDocument>.Filter.Eq("empref", mongoDbDatahelper.EmpRef);
-        }
+        public FilterDefinition<BsonDocument> FilterDefinition() => Builders<BsonDocument>.Filter.Eq("empref", mongoDbDatahelper.EmpRef);
     }
 }
