@@ -33,8 +33,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 var pngContent = Policy
                     .Handle<WebDriverException>()
                     .OrResult<string>(r => string.IsNullOrEmpty(r))
-                    .WaitAndRetry(10, x => TimeSpan.FromMilliseconds(200), 
-                        (result, timespan, retryCount, context) => { Report(retryCount, screenshotPath, imageName, result); })
+                    .WaitAndRetry(10, x => TimeSpan.FromMilliseconds(250))
                     .Execute(() => (string)js.ExecuteScript("return canvasImgContentDecoded;"));
 
                 pngContent = pngContent.Replace("data:image/png;base64,", string.Empty);
@@ -49,13 +48,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 TakeNormalScreenShot(webDriver, imageName, screenshotPath);
             }
-        }
-
-        private static void Report(int retryCount, string screenshotPath, string imageName, DelegateResult<string> result)
-        {
-            TestContext.Progress.WriteLine($"Exception or no result occurred on retry while taking full screenshot - {Environment.NewLine}" +
-                $"RetryCount '{retryCount}' - Path - '{screenshotPath}', ImageName - '{imageName}'{Environment.NewLine}" +
-                $"with exception - {result?.Exception?.Message}");
         }
 
         private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
