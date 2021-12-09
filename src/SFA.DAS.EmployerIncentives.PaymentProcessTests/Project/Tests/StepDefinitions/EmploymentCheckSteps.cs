@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     public class EmploymentCheckSteps : StepsBase
     {
         private DateTime _startDate;
-
+        
         protected EmploymentCheckSteps(ScenarioContext context) : base(context)
         {
         }
@@ -39,7 +39,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private async Task CreateIncentive(Phase phase, DateTime startDate)
         {
             _startDate = startDate;
-
+            
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -64,11 +64,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"an ILR submission is received for that learner")]
-        public async Task WhenTheLearnerMatchIsRun()
+        public async Task WhenAnIlrSubmissionIsReceived()
         {
             await Helper.EmploymentCheckApiHelper.SetupPut();
             await SetupSubmission();
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
+        }
+
+        [When(@"a Start Date Change of Circumstance has been identified in that ILR submission")]
+        public async Task WhenAStartDateCoCOccurs()
+        {
+            _startDate = _startDate.AddDays(10);
+            await SetupSubmission();
+        }
+
+        [When(@"the learner match is run")]
+        public async Task WhenTheLearnerMatchIsRun()
+        {
             await Helper.LearnerMatchOrchestratorHelper.Run();
         }
 
@@ -86,7 +98,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         private async Task VerifyNotEmployedBeforePhaseEmploymentCheck(DateTime maximumDate, DateTime minimumDate)
         {
-            await Helper.EISqlHelper.WaitUntilEarningsExist(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
 
             var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId &&
@@ -101,7 +113,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date")]
         public async Task ThenANewEmployedAfterStartDateEmploymentCheckIsCreated()
         {
-            await Helper.EISqlHelper.WaitUntilEarningsExist(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
 
             var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);

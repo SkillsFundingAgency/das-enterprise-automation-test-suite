@@ -4,8 +4,9 @@ Feature: EmploymentCheck
 Scenario: New Employment Check - First Submission - Phase 1
 	Given an apprenticeship incentive has been submitted in phase 1
 	When we have not previously requested an employment check for the learner
-	And 6 weeks has elapsed since the start date of the apprenticeship
 	And an ILR submission is received for that learner
+	And 6 weeks has elapsed since the start date of the apprenticeship
+	And the learner match is run
 	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting
 	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
 
@@ -14,6 +15,7 @@ Scenario: New Employment Check - First Submission - Phase 2
 	When an ILR submission is received for that learner
 	And we have not previously requested an employment check for the learner
 	And 6 weeks has elapsed since the start date of the apprenticeship
+	And the learner match is run
 	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
 	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
 
@@ -21,4 +23,40 @@ Scenario: New Employment Check - First Submission - 6 weeks not elapsed
 	Given an apprenticeship incentive has been submitted less than 6 weeks ago
 	When an ILR submission is received for that learner
 	And we have not previously requested an employment check for the learner
+	And the learner match is run
+	Then a new employment check is not requested
+
+Scenario: New Employment Check - First Submission and Start Date CoC
+	Given an apprenticeship incentive has been submitted in phase 2
+	When an ILR submission is received for that learner
+	And a Start Date Change of Circumstance has been identified in that ILR submission
+	And we have not previously requested an employment check for the learner
+	And 6 weeks has elapsed since the start date of the apprenticeship
+	And the learner match is run
+	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
+	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
+
+Scenario: New Employment Check - Start Date CoC - Phase 1
+	Given an apprenticeship incentive has been submitted in phase 1
+	When an ILR submission is received for that learner
+	And a Start Date Change of Circumstance has been identified in that ILR submission
+	And 6 weeks has elapsed since the start date of the apprenticeship
+	And the learner match is run
+	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting
+	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
+
+Scenario: New Employment Check - Start Date CoC - Phase 2
+	Given an apprenticeship incentive has been submitted in phase 2
+	When an ILR submission is received for that learner
+	And a Start Date Change of Circumstance has been identified in that ILR submission
+	And 6 weeks has elapsed since the start date of the apprenticeship
+	And the learner match is run
+	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
+	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
+
+Scenario: New Employment Check - Start Date CoC - 6 weeks not elapsed
+	Given an apprenticeship incentive has been submitted less than 6 weeks ago
+	When an ILR submission is received for that learner
+	And a Start Date Change of Circumstance has been identified in that ILR submission
+	And the learner match is run
 	Then a new employment check is not requested

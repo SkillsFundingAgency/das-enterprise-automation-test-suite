@@ -132,8 +132,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             while (!cts.Token.IsCancellationRequested)
             {
-                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId = @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty });
-                if (count == 0)
+                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId <> @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty });
+                if (count == 2)
                 {
                     return;
                 }
