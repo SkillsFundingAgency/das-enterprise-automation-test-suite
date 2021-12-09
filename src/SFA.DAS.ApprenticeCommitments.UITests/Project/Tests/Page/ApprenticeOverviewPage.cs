@@ -17,7 +17,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and support']");
-        private By HelpAndSupportLink => By.LinkText("help and support section");
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
@@ -99,12 +98,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(_context);
-        }
-
-        public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage()
-        {
-            formCompletionHelper.Click(HelpAndSupportLink);
-            return new HelpAndSupportPage(_context);
         }
 
         public void VerifyPageAfterApprenticeshipConfirm()
