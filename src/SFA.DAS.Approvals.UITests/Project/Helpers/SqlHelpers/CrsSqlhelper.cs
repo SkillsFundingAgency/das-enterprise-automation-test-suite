@@ -24,7 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 return $"VersionEarliestStartDate < CONVERT(datetime, '{a.Year}-{a.Month}-{a.Day}')";
             }
 
-            var query = $"select top 5 LarsCode, Title, VersionEarliestStartDate, ProposedTypicalDuration, ProposedMaxFunding from [Standard] where {optionsPredicate} and VersionLatestStartDate is null and VersionLatestEndDate is null and {VersionEarliestStartDatePredicate()} order by NEWID();";
+            var query = $"select top 5 s.LarsCode, Title, VersionEarliestStartDate, ProposedTypicalDuration, ProposedMaxFunding from [Standard] s join LarsStandard ls on ls.LarsCode = s.LarsCode " +
+                $"where {optionsPredicate} and VersionLatestStartDate is null and VersionLatestEndDate is null and {VersionEarliestStartDatePredicate()} and ls.LastDateStarts is null order by NEWID();";
 
             var result = GetMultipleData(query);
 
