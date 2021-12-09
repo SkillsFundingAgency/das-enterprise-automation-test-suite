@@ -14,11 +14,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) => _context = context;
 
-        internal ReviewYourCohortPage ConfirmDeleteAndSubmit()
+        internal ApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {
             SelectRadioOptionByForAttribute("confirmDelete-true");
             Continue();
-            return new ReviewYourCohortPage(_context);
+            return new ApproveApprenticeDetailsPage(_context);
         }
     }
 }

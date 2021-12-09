@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
-        private ReviewYourCohortPage _reviewYourCohortPage;
+        private ApproveApprenticeDetailsPage _reviewYourCohortPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
         private readonly PublishPaymentEvent _publishPaymentEvent;
 

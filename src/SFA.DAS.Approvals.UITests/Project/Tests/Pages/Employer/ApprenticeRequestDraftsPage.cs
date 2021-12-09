@@ -14,10 +14,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeRequestDraftsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ReviewYourCohortPage SelectViewCurrentCohortDetails()
+        public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
-            return new ReviewYourCohortPage(_context);
+            return new ApproveApprenticeDetailsPage(_context);
         }
     }
 }

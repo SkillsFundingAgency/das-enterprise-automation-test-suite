@@ -123,9 +123,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool CanCaptureUrl() => (frameworkConfig.CanCaptureUrl && CaptureUrl);
 
-        private bool VeriFyPage(Func<bool> func) { var result = func(); TakeScreenShotMethod(); return result; }
+        private bool VeriFyPage(Func<bool> func) { var result = func(); TakeScreenShot(); return result; }
 
-        private void TakeScreenShotMethod()
+        private void TakeScreenShot()
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}", TakeFullScreenShot);

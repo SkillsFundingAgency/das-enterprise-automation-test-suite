@@ -6,6 +6,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignAgreementPage : RegistrationBasePage
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
+
+        protected override bool TakeFullScreenShot => false;
+
         private readonly ScenarioContext _context;
 
         #region Locators

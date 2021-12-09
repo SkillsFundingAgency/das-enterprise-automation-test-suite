@@ -18,7 +18,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
             _transfersUser = _context.GetUser<TransfersUser>();
         }
 
-        public ReviewYourCohortPage OpenRejectedCohort() =>
+        public ApproveApprenticeDetailsPage OpenRejectedCohort() =>
          GoToEmployerApprenticesHomePage()
          .ClickApprenticeRequestsLink()
          .GoToReadyToReview()
