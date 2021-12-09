@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Choose a Reservation";
 
+        protected override bool TakeFullScreenShot => false;
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

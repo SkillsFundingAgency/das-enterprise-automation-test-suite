@@ -8,10 +8,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class ScreenshotHelper
     {
-        public static void TakeFullPageScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle)
+        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage)
         {
             var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
             var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+
+            if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath);
+            else TakeNormalScreenShot(webDriver, imageName, screenshotPath);
+        }
+
+        private static void TakeFullPageScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
+        {
             var html2canvasJs = File.ReadAllText($"{Path.Combine(FileHelper.GetAssemblyDirectory(), "html2canvas.js")}");
             var generateScreenshotJS = @"function genScreenshot () { var canvasImgContentDecoded; html2canvas(document.body).then(function(canvas) { window.canvasImgContentDecoded = canvas.toDataURL(""image/png""); }); } genScreenshot();";
 
@@ -26,7 +33,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 var pngContent = Policy
                     .Handle<WebDriverException>()
                     .OrResult<string>(r => string.IsNullOrEmpty(r))
-                    .WaitAndRetry(5, x => TimeSpan.FromMilliseconds(100 * x), 
+                    .WaitAndRetry(10, x => TimeSpan.FromMilliseconds(200), 
                         (result, timespan, retryCount, context) => { Report(retryCount, screenshotPath, imageName, result); })
                     .Execute(() => (string)js.ExecuteScript("return canvasImgContentDecoded;"));
 
@@ -40,7 +47,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 TestContext.Progress.WriteLine($"Exception occurred while taking full screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
 
-                TakeScreenShot(webDriver, imageName, screenshotPath);
+                TakeNormalScreenShot(webDriver, imageName, screenshotPath);
             }
         }
 
@@ -51,7 +58,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 $"with exception - {result?.Exception?.Message}");
         }
 
-        private static void TakeScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
+        private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
         {
             try
             {

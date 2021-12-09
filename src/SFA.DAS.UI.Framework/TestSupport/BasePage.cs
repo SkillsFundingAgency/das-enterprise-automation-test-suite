@@ -40,6 +40,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual bool CaptureUrl => true;
 
+        protected virtual bool TakeFullScreenShot => true;
+
         protected BasePage(ScenarioContext context)
         {
             objectContext = context.Get<ObjectContext>();
@@ -126,7 +128,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private void TakeScreenShotMethod()
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
-                ScreenshotHelper.TakeFullPageScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}", TakeFullScreenShot);
         }
     }
 }

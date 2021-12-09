@@ -7,8 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Choose a cohort";
 
-        private By CohortsTable => By.CssSelector(".govuk-table__row");
+        protected override bool TakeFullScreenShot => false;
 
+        private By CohortsTable => By.CssSelector(".govuk-table__row");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
