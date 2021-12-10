@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             if (_loginHelper.IsIndexPageDisplayed())
             {
-                new IndexPage(_context).ClickSignInLinkOnIndexPage();
+                new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage();
             }
             
             if (_loginHelper.IsSignInPageDisplayed())

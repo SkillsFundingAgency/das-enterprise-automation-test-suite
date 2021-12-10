@@ -69,8 +69,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
-            VerifyPage(); // To take screenshot with all apprentice details 
-
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
