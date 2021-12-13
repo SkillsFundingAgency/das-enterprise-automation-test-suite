@@ -25,13 +25,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public ViewAllVacancyPage GoToViewAllVacancyPage()
         {
             formCompletionHelper.Click(ViewAllVacancy);
-            return new ViewAllVacancyPage(_context);
+            return new ViewAllVacancyPage(context);
         }
 
         public SelectEmployersPage CreateVacancy()
         {
             formCompletionHelper.Click(CreateVacancyLink);
-            return new SelectEmployersPage(_context);
+            return new SelectEmployersPage(context);
         }
 
         public ManageRecruitPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();

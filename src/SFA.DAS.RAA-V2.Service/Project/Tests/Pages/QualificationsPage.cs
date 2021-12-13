@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(Grade, rAAV2DataHelper.DesiredQualificationsGrade);
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
-            return new ConfirmQualificationsPage(_context);
+            return new ConfirmQualificationsPage(context);
         }
 
     }

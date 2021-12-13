@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             ClosingDate(rAAV2DataHelper.EditedVacancyClosing);
             StartDate(rAAV2DataHelper.EditedVacancyStart);
             Continue();
-            return new EditVacancyPage(_context);
+            return new EditVacancyPage(context);
         }
 
         public EditVacancyPage EnterPossibleStartDate()
@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             // Vacancy dates are edited.
             StartDate(rAAV2DataHelper.EditedVacancyStart);
             formCompletionHelper.ClickLinkByText("Cancel");
-            return new EditVacancyPage(_context);
+            return new EditVacancyPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(EnterCodeTextBox, config.RE_ConfirmCode);
             Continue();
-            return new ChangePasswordPage(_context);
+            return new ChangePasswordPage(context);
         }
     }
 }

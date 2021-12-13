@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             AcceptCookies();
             formCompletionHelper.Click(CreateAnAdvertButton);
-            return new CreateAnAdvertPage(_context);
+            return new CreateAnAdvertPage(context);
         }
 
         public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(AdvertNotificationLink);
-            return new ManageYourAdvertEmailsPage(_context);
+            return new ManageYourAdvertEmailsPage(context);
         }
 
         private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));

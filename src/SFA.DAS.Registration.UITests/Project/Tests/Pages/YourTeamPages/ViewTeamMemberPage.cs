@@ -18,19 +18,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public YourTeamPage ClickResendInvitationButton()
         {
             formCompletionHelper.Click(ResendInvitationButton);
-            return new YourTeamPage(_context);
+            return new YourTeamPage(context);
         }
 
         public CancelInvitationPage ClickCancelInvitationLink()
         {
             formCompletionHelper.Click(CancelInvitationLink);
-            return new CancelInvitationPage(_context);
+            return new CancelInvitationPage(context);
         }
 
         public RemoveTeamMemberPage ClickRemoveTeamMemberButton()
         {
             formCompletionHelper.Click(RemoveTeamMemberButton);
-            return new RemoveTeamMemberPage(_context);
+            return new RemoveTeamMemberPage(context);
         }
     }
 }

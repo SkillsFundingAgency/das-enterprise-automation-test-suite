@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
-            return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
+            return new WhichEmployerNameDoYouWantOnYourAdvertPage(context);
         }
     }
 }

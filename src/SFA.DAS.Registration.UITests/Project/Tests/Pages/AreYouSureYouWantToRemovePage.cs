@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByLocator(YesRadioButton);
             Continue();          
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         public CheckDetailsPage NavigateToCheckDetailsPage()
         {
             Continue();
-            return new CheckDetailsPage(_context);
+            return new CheckDetailsPage(context);
         }
     }
 }

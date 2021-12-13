@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(NewAccountNameTextBox, newOrgName);
             objectContext.UpdateOrganisationName(newOrgName);
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

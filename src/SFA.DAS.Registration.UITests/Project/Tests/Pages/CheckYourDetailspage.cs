@@ -25,19 +25,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public WhenDoYouWantToViewEmpAgreementPage ContinueToAboutYourAgreementPage()
         {
             Continue();
-            return new WhenDoYouWantToViewEmpAgreementPage(_context);
+            return new WhenDoYouWantToViewEmpAgreementPage(context);
         }
 
         public OrganisationHasBeenAddedPage ClickYesContinueButton()
         {
             javaScriptHelper.ClickElement(YesContinueButton);
-            return new OrganisationHasBeenAddedPage(_context);
+            return new OrganisationHasBeenAddedPage(context);
         }
 
         public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(YesContinueButton);
-            return new AccessDeniedPage(_context);
+            return new AccessDeniedPage(context);
         }
 
         public string GetOrganisationName() => pageInteractionHelper.GetText(OrganisationName);
@@ -51,25 +51,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public WhenDoYouWantToViewEmpAgreementPage ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
         {
             Continue();
-            return new WhenDoYouWantToViewEmpAgreementPage(_context);
+            return new WhenDoYouWantToViewEmpAgreementPage(context);
         }
 
         public SearchForYourOrganisationPage ClickOrganisationChangeLink()
         {
             formCompletionHelper.Click(OrganisationChangeLink);
-            return new SearchForYourOrganisationPage(_context);
+            return new SearchForYourOrganisationPage(context);
         }
 
         public EnterYourPAYESchemeDetailsPage ClickAornChangeLink()
         {
             formCompletionHelper.Click(AornChangeLink);
-            return new EnterYourPAYESchemeDetailsPage(_context);
+            return new EnterYourPAYESchemeDetailsPage(context);
         }
 
         public AddAPAYESchemePage ClickPayeSchemeChangeLink()
         {
             formCompletionHelper.Click(PayeSchemeChangeLink);
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(GoToHomePageRadioButton));
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

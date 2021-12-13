@@ -13,19 +13,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {
             ChangeVacancyTitle();
-            return new ApprenticeshipTrainingPage(_context);
+            return new ApprenticeshipTrainingPage(context);
         }
 
         public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstVacancy()
         {
             ChangeVacancyTitle();
-            return new HaveYouAlreadyFoundTrainingPage(_context);
+            return new HaveYouAlreadyFoundTrainingPage(context);
         }
 
         public VacancyPreviewPart2Page UpdateVacancyTitle()
         {
             ChangeVacancyTitle();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
 
         private void ChangeVacancyTitle()

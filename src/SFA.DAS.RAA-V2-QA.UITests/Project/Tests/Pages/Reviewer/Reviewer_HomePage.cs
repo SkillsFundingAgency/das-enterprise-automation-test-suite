@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
         {
             formCompletionHelper.Click(ReviewVacancyButton);
-            return new Reviewer_AnyVacancyPreviewPage(_context);
+            return new Reviewer_AnyVacancyPreviewPage(context);
         }
 
         public Reviewer_VacancyPreviewPage ReviewVacancy()
@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             formCompletionHelper.EnterText(SearchTerm, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchVacancy);
             formCompletionHelper.ClickLinkByText("Review");
-            return new Reviewer_VacancyPreviewPage(_context);
+            return new Reviewer_VacancyPreviewPage(context);
         }
     }
 }

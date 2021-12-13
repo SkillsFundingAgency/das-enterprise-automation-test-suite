@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             EnterAccessCode()
                    .Continue();
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
 
         public ConfirmYourIdentityPage EnterAccessCode()
@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public InvitationsPage ContinueToInvitationsPage()
         {
             Continue();
-            return new InvitationsPage(_context);
+            return new InvitationsPage(context);
         }
     }
 }

@@ -14,19 +14,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public CloneVacancyDatesPage CloneAdvert()
         {
             formCompletionHelper.ClickLinkByText("Clone advert");
-            return new CloneVacancyDatesPage(_context);
+            return new CloneVacancyDatesPage(context);
         }
 
         public EditVacancyPage EditAdvert()
         {
             formCompletionHelper.ClickLinkByText("Edit advert");
-            return new EditVacancyPage(_context);
+            return new EditVacancyPage(context);
         }
 
         public CloseVacancyPage CloseAdvert()
         {
             formCompletionHelper.ClickLinkByText("Close advert");
-            return new CloseVacancyPage(_context);
+            return new CloseVacancyPage(context);
         }
 
         public ViewVacancyPage NavigateToViewAdvertPage()
@@ -34,13 +34,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
             tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
 
-            return new ViewVacancyPage(_context);
+            return new ViewVacancyPage(context);
         }
 
         public ManageApplicantPage NavigateToManageApplicant()
         {
             formCompletionHelper.Click(Applicant);
-            return new ManageApplicantPage(_context);
+            return new ManageApplicantPage(context);
         }
     }
 }

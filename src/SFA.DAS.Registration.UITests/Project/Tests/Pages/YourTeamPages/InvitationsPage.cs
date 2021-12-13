@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public HomePage ClickAcceptInviteLink()
         {
             formCompletionHelper.Click(AcceptInviteLink);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

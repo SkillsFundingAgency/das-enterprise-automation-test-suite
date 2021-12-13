@@ -14,13 +14,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
             DraftVacancy();
-            return new ApprenticeshipTrainingPage(_context);
+            return new ApprenticeshipTrainingPage(context);
         }
 
         public VacancyPreviewPart2Page GoToVacancyPreviewPart2Page()
         {
             DraftVacancy();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

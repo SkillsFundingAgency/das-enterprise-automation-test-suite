@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public AddAPAYESchemePage AddYourPAYEScheme()
         {
             formCompletionHelper.Click(AddYourPAYESchemeLink);
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

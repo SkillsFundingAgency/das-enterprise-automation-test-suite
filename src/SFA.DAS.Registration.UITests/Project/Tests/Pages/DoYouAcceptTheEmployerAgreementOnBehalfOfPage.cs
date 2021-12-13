@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByText("Yes, I accept the agreement");
             formCompletionHelper.Click(ContinueButton);
-            return new AccessDeniedPage (_context);
+            return new AccessDeniedPage (context);
         }
     }
 }

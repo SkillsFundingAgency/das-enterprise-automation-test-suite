@@ -20,19 +20,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         public UsingYourGovtGatewayDetailsPage ClickAddNewSchemeButton()
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
 
         public AccessDeniedPage ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
-            return new AccessDeniedPage(_context);
+            return new AccessDeniedPage(context);
         }
 
         public PAYESchemeDetailsPage ClickNewlyAddedPayeDetailsLink()
         {
             formCompletionHelper.Click(PayeDetailsLink);
-            return new PAYESchemeDetailsPage(_context);
+            return new PAYESchemeDetailsPage(context);
         }
 
         public PAYESchemesPage VerifyPayeSchemeRemovedInfoMessage()

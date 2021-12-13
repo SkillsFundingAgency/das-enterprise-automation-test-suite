@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public GgSignInPage ContinueToGGSignIn()
         {
             Continue();
-            return new GgSignInPage(_context);
+            return new GgSignInPage(context);
         }
     }
 }

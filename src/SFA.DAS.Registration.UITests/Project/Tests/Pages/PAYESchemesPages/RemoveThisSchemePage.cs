@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(YesRemoveSchemeRadioButton));
             Continue();
-            return new PAYESchemesPage(_context);
+            return new PAYESchemesPage(context);
         }
     }
 }

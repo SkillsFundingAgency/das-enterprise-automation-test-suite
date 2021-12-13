@@ -63,7 +63,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             javaScriptHelper.ClickElement(by);
             Continue();
-            return new ConfirmTrainingProviderPermissionsPage(_context);
+            return new ConfirmTrainingProviderPermissionsPage(context);
         }
     }
 }

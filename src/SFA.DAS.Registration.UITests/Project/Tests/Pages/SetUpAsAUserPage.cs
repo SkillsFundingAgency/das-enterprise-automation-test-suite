@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterPassword().EnterPasswordConfirm().SetMeUp();
 
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public ConfirmYourIdentityPage Register(string email = null)
@@ -43,7 +43,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterRegistrationDetailsAndContinue(email);
 
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
@@ -57,13 +57,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage SignIn()
         {
             formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
 
         public TermsAndConditionsPage ClickTermsAndConditionsLink()
         {
             tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
-            return new TermsAndConditionsPage(_context);
+            return new TermsAndConditionsPage(context);
         }
 
         private SetUpAsAUserPage EnterFirstName()

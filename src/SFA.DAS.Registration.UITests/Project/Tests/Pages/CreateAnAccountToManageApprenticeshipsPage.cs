@@ -19,13 +19,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage ClickSignInLinkOnIndexPage()
         {
             formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
 
         public SetUpAsAUserPage CreateAccount()
         {
             formCompletionHelper.ClickElement(CreateAccountLink);
-            return new SetUpAsAUserPage(_context);
+            return new SetUpAsAUserPage(context);
         }
     }
 }

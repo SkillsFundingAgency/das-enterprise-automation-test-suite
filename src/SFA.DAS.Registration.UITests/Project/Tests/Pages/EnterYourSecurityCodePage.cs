@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(EnterYourSecurityCodeTextBox, config.RE_ConfirmCode);
             formCompletionHelper.EnterText(PasswordTextBox, registrationDataHelper.Password);
             Continue();
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

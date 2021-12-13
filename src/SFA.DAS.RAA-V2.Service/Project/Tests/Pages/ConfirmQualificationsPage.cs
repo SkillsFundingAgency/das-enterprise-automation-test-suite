@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public VacancyPreviewPart2Page ConfirmQualifications()
         {
             formCompletionHelper.Click(Preview);
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

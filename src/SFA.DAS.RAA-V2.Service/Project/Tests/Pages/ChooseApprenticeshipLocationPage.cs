@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             pageInteractionHelper.WaitforURLToChange("dates");
 
-            return new ImportantDatesPage(_context);
+            return new ImportantDatesPage(context);
         }
 
         private void DifferentLocation()

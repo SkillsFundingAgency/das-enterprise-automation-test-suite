@@ -20,14 +20,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("delete-yes");
             Continue();
-            return new EmployerVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(context);
         }
 
         public VacancyPreviewPart2Page NoDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-no");
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

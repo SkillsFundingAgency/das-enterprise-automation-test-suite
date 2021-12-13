@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public WhatDoYouWantToCallThisAdvertPage UpdateTitle()
         {
             formCompletionHelper.Click(ChangeTitle);
-            return new WhatDoYouWantToCallThisAdvertPage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(context);
         }
     }
 }

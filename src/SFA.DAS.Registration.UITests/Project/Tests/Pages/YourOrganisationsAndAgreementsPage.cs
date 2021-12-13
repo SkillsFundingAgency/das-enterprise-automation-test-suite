@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
             formCompletionHelper.ClickButtonByText(AddNewOrganisationButton, "Add an organisation");
-            return new SearchForYourOrganisationPage(_context);
+            return new SearchForYourOrganisationPage(context);
         }
 
         public YourOrganisationsAndAgreementsPage VerifyNewlyAddedOrgIsPresent()
@@ -60,19 +60,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             action.Invoke();
 
-            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context, action);
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(context, action);
         }
 
         public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()
         {
             tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
-            return new AreYouSureYouWantToRemovePage(_context);
+            return new AreYouSureYouWantToRemovePage(context);
         }
 
         public AccessDeniedPage ClickToRemoveAnOrg()
         {
             tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
-            return new AccessDeniedPage(_context);
+            return new AccessDeniedPage(context);
         }
 
         public bool IsRemoveLinkBesideNewlyAddedOrg() => pageInteractionHelper.IsElementDisplayed(RemoveLinkBesideNewlyAddedOrg);

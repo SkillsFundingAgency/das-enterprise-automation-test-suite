@@ -17,13 +17,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public YourTeamPage ClickYesCancelInvitationButtonButton()
         {
             formCompletionHelper.Click(YesCancelInvitationButton);
-            return new YourTeamPage(_context);
+            return new YourTeamPage(context);
         }
 
         public YourTeamPage ClickNoDontCancelInvitationLink()
         {
             formCompletionHelper.Click(NoDontCancelInvitationLink);
-            return new YourTeamPage(_context);
+            return new YourTeamPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("close-yes");
             Continue();
-            return new ManageCloseVacancyPage(_context);
+            return new ManageCloseVacancyPage(context);
         }
     }
 }

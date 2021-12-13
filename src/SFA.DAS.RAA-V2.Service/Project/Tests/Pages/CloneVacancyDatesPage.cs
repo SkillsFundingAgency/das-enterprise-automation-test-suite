@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("change-dates-yes");
             Continue();
-            return new ConfimCloneVacancyDatePage(_context);
+            return new ConfimCloneVacancyDatePage(context);
         }
     }
 }

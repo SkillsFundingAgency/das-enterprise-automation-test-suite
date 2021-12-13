@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public VacancyPreviewPart2Page PreviewVacancy()
         {
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

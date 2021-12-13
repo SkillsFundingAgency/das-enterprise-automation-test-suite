@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
 
-            return new AreYouSureYouWantToSubmitPage(_context);
+            return new AreYouSureYouWantToSubmitPage(context);
         }
 
         public AreYouSureYouWantToRejectPage RejectAdvert()
@@ -36,13 +36,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
 
-            return new AreYouSureYouWantToRejectPage(_context);
+            return new AreYouSureYouWantToRejectPage(context);
         }
 
         public VacancyReferencePage ResubmitVacancyToEmployer()
         {
             formCompletionHelper.Click(ResubmitVacancyToEmployerButton);
-            return new VacancyReferencePage(_context);
+            return new VacancyReferencePage(context);
         }
 
         public string GetNotificationBanner() => pageInteractionHelper.GetText(NotificationBanner);

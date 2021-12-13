@@ -19,14 +19,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewItNowRadionButton, "view-it-now");
             Continue();
-            return new SignAgreementPage(_context);
+            return new SignAgreementPage(context);
         }
 
         public HomePage SelectViewItLaterAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewItNowRadionButton, "view-it-later");
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

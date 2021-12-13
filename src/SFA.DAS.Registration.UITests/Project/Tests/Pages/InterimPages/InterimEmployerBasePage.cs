@@ -42,60 +42,60 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         private static string GoToUrl(bool gotourl) => gotourl ? UrlConfig.EmployerApprenticeshipService_BaseUrl : string.Empty;
 
-        public HomePage GoToHomePage() => new HomePage(_context, true);
+        public HomePage GoToHomePage() => new HomePage(context, true);
 
-        public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage() => new YourOrganisationsAndAgreementsPage(_context, true);
+        public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage() => new YourOrganisationsAndAgreementsPage(context, true);
 
         public YourAccountsPage GoToYourAccountsPage()
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(YourAccountsLink);
-            return new YourAccountsPage(_context);
+            return new YourAccountsPage(context);
         }
 
         public EmployerHelpPage GoToHelpPage()
         {
             tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
-            return new EmployerHelpPage(_context);
+            return new EmployerHelpPage(context);
         }
 
         public RenameAccountPage GoToRenameAccountPage()
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(RenameAccountLink);
-            return new RenameAccountPage(_context);
+            return new RenameAccountPage(context);
         }
 
         public ChangeYourPasswordPage GoToChangeYourPasswordPage()
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangeYourPasswordPage(_context);
+            return new ChangeYourPasswordPage(context);
         }
 
         public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(ChangeEmailAddressLink);
-            return new ChangeYourEmailAddressPage(_context);
+            return new ChangeYourEmailAddressPage(context);
         }
 
         public NotificationSettingsPage GoToNotificationSettingsPage()
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(NotificationSettingsLink);
-            return new NotificationSettingsPage(_context);
+            return new NotificationSettingsPage(context);
         }
 
         public YouveLoggedOutPage SignOut()
         {
             formCompletionHelper.Click(SignOutLink);
-            return new YouveLoggedOutPage(_context);
+            return new YouveLoggedOutPage(context);
         }
 
-        public YourTeamPage GotoYourTeamPage() => new YourTeamPage(_context, true);
+        public YourTeamPage GotoYourTeamPage() => new YourTeamPage(context, true);
 
-        public PAYESchemesPage GotoPAYESchemesPage() => new PAYESchemesPage(_context, true);
+        public PAYESchemesPage GotoPAYESchemesPage() => new PAYESchemesPage(context, true);
 
         private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));
     }

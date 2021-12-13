@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(CreateNewPasswordTextBox, newPassword);
             formCompletionHelper.EnterText(ReTypePasswordTextBox, newPassword);
             Continue();
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

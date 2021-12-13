@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public CreateAnAccountToManageApprenticeshipsPage CickContinueInYouveLoggedOutPage()
         {
             Continue();
-            return new CreateAnAccountToManageApprenticeshipsPage(_context);
+            return new CreateAnAccountToManageApprenticeshipsPage(context);
         }
     }
 }

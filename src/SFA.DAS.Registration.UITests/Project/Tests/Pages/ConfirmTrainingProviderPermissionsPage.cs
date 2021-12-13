@@ -14,20 +14,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public PermissionsUpdatedPage ConfirmTrainingProviderPermissions()
         {
             Continue();
-            return new PermissionsUpdatedPage(_context);
+            return new PermissionsUpdatedPage(context);
         }
 
         public PermissionsUpdatedPage ConfirmYesTrainingProviderPermissions()
         {
             javaScriptHelper.ClickElement(SelectYesConfirmChange);
             Continue();
-            return new PermissionsUpdatedPage(_context);
+            return new PermissionsUpdatedPage(context);
         }
 
         public HomePage ConfirmProviderLeadRegistrationPermissions()
         {
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(CreateNewPasswordTextField, newPassword);
             formCompletionHelper.EnterText(ConfirmNewPasswordTextField, newPassword);
             Continue();
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
     }
 }

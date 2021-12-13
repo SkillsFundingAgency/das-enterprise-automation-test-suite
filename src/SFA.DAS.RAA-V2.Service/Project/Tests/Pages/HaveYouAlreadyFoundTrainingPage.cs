@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             Continue();
 
-            return new ApprenticeshipTrainingPage(_context);
+            return new ApprenticeshipTrainingPage(context);
         }
     }
 }

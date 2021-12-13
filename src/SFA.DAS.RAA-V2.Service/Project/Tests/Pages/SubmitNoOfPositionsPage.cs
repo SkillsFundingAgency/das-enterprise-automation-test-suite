@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public SelectOrganisationPage SubmitNoOfPositionsAndNavigateToSelectOrganisationPage()
         {
             EnterNumberOfPositionsAndContinue();
-            return new SelectOrganisationPage(_context);
+            return new SelectOrganisationPage(context);
         }
 
         public void EnterNumberOfPositionsAndContinue()

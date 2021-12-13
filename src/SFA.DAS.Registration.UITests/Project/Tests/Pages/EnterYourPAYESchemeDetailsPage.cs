@@ -32,19 +32,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new CheckYourDetailsPage(_context);
+            return new CheckYourDetailsPage(context);
         }
 
         public TheseDetailsAreAlreadyInUsePage ReEnterTheSameAornDetailsAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new TheseDetailsAreAlreadyInUsePage(_context);
+            return new TheseDetailsAreAlreadyInUsePage(context);
         }
 
         public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new ChooseAnOrganisationPage(_context);
+            return new ChooseAnOrganisationPage(context);
         }
 
         new public EnterYourPAYESchemeDetailsPage Continue()
@@ -71,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public MyAccountWithOutPayePage ClickSkipThisStepForNowLink()
         {
             formCompletionHelper.Click(SkipThisStepForNowLink);
-            return new MyAccountWithOutPayePage(_context);
+            return new MyAccountWithOutPayePage(context);
         }
     }
 }

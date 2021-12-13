@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public EmailAddressPage EnterEmailToReset()
         {
             Continue();
-            return new EmailAddressPage(_context);
+            return new EmailAddressPage(context);
         }
     }
 }

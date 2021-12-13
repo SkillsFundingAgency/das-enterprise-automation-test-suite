@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new VacancyReferencePage(_context);
+            return new VacancyReferencePage(context);
         }
     }
 }

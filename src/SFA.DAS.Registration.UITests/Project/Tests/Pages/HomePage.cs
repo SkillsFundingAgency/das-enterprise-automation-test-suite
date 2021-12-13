@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {
             formCompletionHelper.Click(AcceptYourAgreementLink);
-            return new AboutYourAgreementPage(_context);
+            return new AboutYourAgreementPage(context);
         }
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);

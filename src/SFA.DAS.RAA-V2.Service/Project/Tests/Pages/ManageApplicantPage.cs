@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("outcome-successful");
             formCompletionHelper.Click(SaveStatus);
-            return new ConfirmApplicantSucessfulPage(_context);
+            return new ConfirmApplicantSucessfulPage(context);
         }
 
         public ConfirmApplicantUnsucessfulPage MakeApplicantUnsucessful()
@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
             formCompletionHelper.EnterText(CandidateFeedback, rAAV2DataHelper.OptionalMessage);
             formCompletionHelper.Click(SaveStatus);
-            return new ConfirmApplicantUnsucessfulPage(_context);
+            return new ConfirmApplicantUnsucessfulPage(context);
         }
     }
 }

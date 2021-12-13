@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewerAccessRadioButton));
             formCompletionHelper.Click(SendInvitationButton);
-            return new InvitationSentPage(_context);
+            return new InvitationSentPage(context);
         }
     }
 }

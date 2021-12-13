@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(EmailTextBox, email);
             formCompletionHelper.EnterText(UnlockCodeTextBox, config.RE_ConfirmCode);
             formCompletionHelper.ClickElement(UnlockAccountButton);
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
     }
 }

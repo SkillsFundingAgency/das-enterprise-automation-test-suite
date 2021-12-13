@@ -16,13 +16,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         public EmployerAccountIsReadyPage InviteEmployer()
         {
             Continue();
-            return new EmployerAccountIsReadyPage(_context);
+            return new EmployerAccountIsReadyPage(context);
         }
 
         public EnterTheEmployerDetailsPage ChangeDetails()
         {
             formCompletionHelper.ClickElement(ChangeDetailsLink);
-            return new EnterTheEmployerDetailsPage(_context);
+            return new EnterTheEmployerDetailsPage(context);
         }
     }
 }

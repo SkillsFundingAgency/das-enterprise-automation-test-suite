@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByText(objectContext.GetOrganisationName());
             Continue();
-            return new CheckYourDetailsPage(_context);
+            return new CheckYourDetailsPage(context);
         }
     }
 }

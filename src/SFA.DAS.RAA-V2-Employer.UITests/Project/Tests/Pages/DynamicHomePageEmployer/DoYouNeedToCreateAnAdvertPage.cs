@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmp
         {
             formCompletionHelper.ClickElement(YesRadioButtonOption);
             Continue();
-            return new CreateAnAdvertHomePage(_context);
+            return new CreateAnAdvertHomePage(context);
         }
     }
 }

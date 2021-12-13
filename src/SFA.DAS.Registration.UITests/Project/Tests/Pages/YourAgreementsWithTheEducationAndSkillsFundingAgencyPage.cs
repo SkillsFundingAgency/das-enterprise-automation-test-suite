@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 formCompletionHelper.Click(ExpandAgreementLink);
             
             formCompletionHelper.Click(UpdateTheseDetailsLink);
-            return new ReviewYourDetailsPage(_context);
+            return new ReviewYourDetailsPage(context);
         }
 
         public void SetAgreementId()

@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             objectContext.UpdateOrganisationName(orgName);
             formCompletionHelper.ClickLinkByText(HomePageLinkText);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

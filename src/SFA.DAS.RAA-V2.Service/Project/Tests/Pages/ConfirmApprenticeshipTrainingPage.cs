@@ -15,13 +15,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
         {
             Continue();
-            return new ChooseTrainingProviderPage(_context);
+            return new ChooseTrainingProviderPage(context);
         }
 
         public SubmitNoOfPositionsPage ConfirmAndNavigateToNoOfPositionsPage()
         {
             Continue(); 
-            return new SubmitNoOfPositionsPage(_context);
+            return new SubmitNoOfPositionsPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public new HomePage GoToHomePage()
         {
             formCompletionHelper.ClickElement(HomeLink);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

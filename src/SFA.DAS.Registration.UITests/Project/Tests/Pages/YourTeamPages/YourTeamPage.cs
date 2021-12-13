@@ -17,19 +17,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public CreateInvitationPage ClickInviteANewMemberButton()
         {
             formCompletionHelper.Click(InviteANewMemberButton);
-            return new CreateInvitationPage(_context);
+            return new CreateInvitationPage(context);
         }
 
         public AccessDeniedPage ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(InviteANewMemberButton);
-            return new AccessDeniedPage(_context);
+            return new AccessDeniedPage(context);
         }
 
         public ViewTeamMemberPage ClickViewMemberLink(string email)
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));
-            return new ViewTeamMemberPage(_context);
+            return new ViewTeamMemberPage(context);
         }
 
         public YourTeamPage VerifyInvitationResentHeaderInfoMessage()

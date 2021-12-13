@@ -22,31 +22,31 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage Login(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {
             EnterLoginDetailsAndClickSignIn(userName, password);
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new MyAccountWithOutPayePage(_context);
+            return new MyAccountWithOutPayePage(context);
         }
 
         public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new YourAccountsPage(_context);
+            return new YourAccountsPage(context);
         }
 
         public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new MyAccountTransferFundingPage(_context);
+            return new MyAccountTransferFundingPage(context);
         }
 
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)
@@ -65,13 +65,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public PasswordResetCodePage ClickForgottenYourPasswordLink()
         {
             formCompletionHelper.Click(ForgottenYourPasswordLink);
-            return new PasswordResetCodePage(_context);
+            return new PasswordResetCodePage(context);
         }
 
         public AddAPAYESchemePage LoginWithResetPassword(string userName, string password)
         {
             EnterLoginDetailsAndClickSignIn(userName,password);
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

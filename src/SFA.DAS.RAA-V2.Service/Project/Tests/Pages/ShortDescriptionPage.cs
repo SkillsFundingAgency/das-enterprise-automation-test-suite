@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ShortDescription, rAAV2DataHelper.VacancyBriefOverview);
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

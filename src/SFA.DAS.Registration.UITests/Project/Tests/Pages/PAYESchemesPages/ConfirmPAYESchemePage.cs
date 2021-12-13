@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         public PAYESchemeAddedPage ClickContinueInConfirmPAYESchemePage()
         {
             Continue();
-            return new PAYESchemeAddedPage(_context);
+            return new PAYESchemeAddedPage(context);
         }
     }
 }

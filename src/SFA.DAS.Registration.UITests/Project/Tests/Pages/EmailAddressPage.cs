@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(EmailAddressTextField, objectContext.GetRegisteredEmail());
             Continue();
-            return new EnterYourResetCodePage(_context);
+            return new EnterYourResetCodePage(context);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("update");
             Continue();
-            return new DetailsUpdatedPage(_context);
+            return new DetailsUpdatedPage(context);
         }
     }
 }

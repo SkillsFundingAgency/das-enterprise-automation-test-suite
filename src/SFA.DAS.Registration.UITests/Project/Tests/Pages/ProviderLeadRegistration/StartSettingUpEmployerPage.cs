@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         public EnterTheEmployerDetailsPage Start()
         {
             Continue();
-            return new EnterTheEmployerDetailsPage(_context);
+            return new EnterTheEmployerDetailsPage(context);
         }
     }
 }

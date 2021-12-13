@@ -22,13 +22,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SearchForYourOrganisationPage SignInTo(int index)
         {
             EnterGateWayCredentialsAndSignIn(index);
-            return new SearchForYourOrganisationPage(_context);
+            return new SearchForYourOrganisationPage(context);
         }
 
         public ConfirmPAYESchemePage EnterPayeDetailsAndContinue(int index)
         {
             EnterGateWayCredentialsAndSignIn(index);
-            return new ConfirmPAYESchemePage(_context);
+            return new ConfirmPAYESchemePage(context);
         }
 
         public GgSignInPage SignInWithInvalidDetails()

@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public YourTeamPage ClickYesRemoveNowButton()
         {
             formCompletionHelper.Click(YesRemoveNowButton);
-            return new YourTeamPage(_context);
+            return new YourTeamPage(context);
         }
     }
 }

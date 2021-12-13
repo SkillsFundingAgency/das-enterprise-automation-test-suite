@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public SubmitNoOfPositionsPage ConfirmTrainingProviderAndContinue()
         {
             Continue();
-            return new SubmitNoOfPositionsPage(_context);
+            return new SubmitNoOfPositionsPage(context);
         }
     }
 }

@@ -27,13 +27,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage ClickOnViewYourAccountButton()
         {
             formCompletionHelper.Click(ContinueButton);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public YourOrganisationsAndAgreementsPage ClickOnReviewAndAcceptYourOtherAgreementsLink()
         {
             formCompletionHelper.Click(ReviewAndAcceptYourOtherAgreementsLink);
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
     }
 }

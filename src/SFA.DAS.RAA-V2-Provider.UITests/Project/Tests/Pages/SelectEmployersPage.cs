@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new VacancyTitlePage(_context);
+            return new VacancyTitlePage(context);
         }
     }
 }

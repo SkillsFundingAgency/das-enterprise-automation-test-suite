@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(WeeklyHours, rAAV2DataHelper.WeeklyHours);
             Continue();
             pageInteractionHelper.WaitforURLToChange("wage");
-            return new WageTypePage(_context);
+            return new WageTypePage(context);
         }
     }
 }

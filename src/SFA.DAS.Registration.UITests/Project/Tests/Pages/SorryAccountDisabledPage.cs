@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public UsingYourGovtGatewayDetailsPage ClickAddViaGGLink()
         {
             formCompletionHelper.Click(AddViaGGLink);
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
     }
 }

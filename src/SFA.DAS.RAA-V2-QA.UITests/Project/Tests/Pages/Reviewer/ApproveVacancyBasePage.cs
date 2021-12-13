@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
             formCompletionHelper.Click(SubmitButton);
 
-            return new QAReviewsPage(_context);
+            return new QAReviewsPage(context);
         }
 
         public void Refer()

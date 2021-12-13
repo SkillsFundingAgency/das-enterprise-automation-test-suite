@@ -19,26 +19,26 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public AddAPAYESchemePage AddNewAccount()
         {
             formCompletionHelper.ClickElement(AddNewAccountButton);
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
 
         public HomePage GoToHomePage(string organisationName)
         {
             NavigateTo(organisationName);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public HomePage ClickAccountLink(string orgName)
         {
             formCompletionHelper.Click(AccountLink(orgName));
             objectContext.UpdateOrganisationName(orgName);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public HomePage OpenAccount()
         {
             formCompletionHelper.Click(OpenLink());
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         private void NavigateTo(string organisationName) => formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));

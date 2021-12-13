@@ -20,21 +20,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             SelectAddPaye().Continue();
 
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
 
         public EnterYourPAYESchemeDetailsPage AddAORN()
         {
             SelectAORN().Continue();
 
-            return new EnterYourPAYESchemeDetailsPage(_context);
+            return new EnterYourPAYESchemeDetailsPage(context);
         }
 
         public MyAccountWithOutPayePage DoNotAddPaye()
         {
             SelectDoNotAddPaye().Continue();
 
-            return new MyAccountWithOutPayePage(_context);
+            return new MyAccountWithOutPayePage(context);
         }
 
         private AddAPAYESchemePage SelectAddPaye()

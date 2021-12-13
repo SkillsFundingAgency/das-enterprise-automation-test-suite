@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(NewEmailAddressTextBox, newEmail);
             formCompletionHelper.EnterText(ReTypeEmailAddressTextBox, newEmail);
             Continue();
-            return new EnterYourSecurityCodePage(_context);
+            return new EnterYourSecurityCodePage(context);
         }
     }
 }

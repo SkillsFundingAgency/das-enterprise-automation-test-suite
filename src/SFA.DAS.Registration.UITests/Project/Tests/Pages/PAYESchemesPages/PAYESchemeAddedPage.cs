@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ContinueAccountSetupRadioButton));
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

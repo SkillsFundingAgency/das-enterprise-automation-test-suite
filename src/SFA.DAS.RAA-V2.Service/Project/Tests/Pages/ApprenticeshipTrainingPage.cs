@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             EnterTrainingTitleAction();
 
-            return new ConfirmApprenticeshipTrainingPage(_context, EnterTrainingTitleAction);
+            return new ConfirmApprenticeshipTrainingPage(context, EnterTrainingTitleAction);
         }
 
         private void EnterTrainingTitleAction()
@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public EmployerVacancySearchResultPage CancelVacancy()
         {
             formCompletionHelper.Click(CancelLink);
-            return new EmployerVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(context);
         }
     }
 }

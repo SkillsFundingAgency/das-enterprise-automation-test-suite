@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("notify-candidate-yes");
             Continue();
-            return new ApplicationSuccessfulPage(_context);
+            return new ApplicationSuccessfulPage(context);
         }
     }    
 }

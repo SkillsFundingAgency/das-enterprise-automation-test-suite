@@ -14,13 +14,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignAgreementPage ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
         {
             Continue();
-            return new SignAgreementPage(_context);
+            return new SignAgreementPage(context);
         }
 
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
         {
             Continue();
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (_context);
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (context);
         }
     }
 }

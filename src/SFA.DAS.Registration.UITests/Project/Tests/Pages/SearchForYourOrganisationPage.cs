@@ -40,14 +40,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             }
 
             Search();
-            return new SelectYourOrganisationPage(_context);
+            return new SelectYourOrganisationPage(context);
         }
 
         public SelectYourOrganisationPage SearchForAnOrganisation(string orgName)
         {
             EnterAndSetOrgName(orgName);
             Search();
-            return new SelectYourOrganisationPage(_context);
+            return new SelectYourOrganisationPage(context);
         }
 
         private SearchForYourOrganisationPage Search()

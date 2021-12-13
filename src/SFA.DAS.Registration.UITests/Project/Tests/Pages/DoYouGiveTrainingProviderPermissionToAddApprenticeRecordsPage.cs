@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, option);
             Continue();
-            return new DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(_context);
+            return new DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(context);
         }
     }
 }

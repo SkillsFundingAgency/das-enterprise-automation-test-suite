@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(WageAdditionalInformation, rAAV2DataHelper.OptionalMessage);
             Continue();
             pageInteractionHelper.WaitforURLToChange("part1-complete");
-            return new PreviewYourVacancyPage(_context);
+            return new PreviewYourVacancyPage(context);
         }
     }
 }

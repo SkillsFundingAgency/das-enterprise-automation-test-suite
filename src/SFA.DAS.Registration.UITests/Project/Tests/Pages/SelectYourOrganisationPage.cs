@@ -40,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                     break;
             }
 
-            return new CheckYourDetailsPage(_context);
+            return new CheckYourDetailsPage(context);
         }
 
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);

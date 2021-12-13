@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {
             formCompletionHelper.Click(StartNow);
-            return new WhatDoYouWantToCallThisAdvertPage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(context);
         }
     }  
 }

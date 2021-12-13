@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         public Reviewer_HomePage SubmitReviewerLoginDetails()
         {
             SubmitValidLoginDetails(_config.RAAV2QAUserName, _config.RAAV2QAPassword);
-            return new Reviewer_HomePage(_context);
+            return new Reviewer_HomePage(context);
         }
     }
 }

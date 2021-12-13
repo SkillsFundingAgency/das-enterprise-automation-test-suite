@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
             formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
 
         private By ContactName() => objectContext.IsRAAV2Employer() ? EmployerContactName : ProviderContactName;

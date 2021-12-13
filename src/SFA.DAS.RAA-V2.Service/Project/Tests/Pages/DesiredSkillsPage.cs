@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             formCompletionHelper.Click(SaveAndContinue);
 
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

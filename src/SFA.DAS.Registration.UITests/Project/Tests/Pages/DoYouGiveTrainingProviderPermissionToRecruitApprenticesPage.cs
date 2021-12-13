@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, option);
             Continue();
-            return new ConfirmTrainingProviderPermissionsPage(_context);
+            return new ConfirmTrainingProviderPermissionsPage(context);
         }
     }
 }

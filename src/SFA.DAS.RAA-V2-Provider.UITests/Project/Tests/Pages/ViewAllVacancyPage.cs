@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public SelectEmployersPage CreateVacancy()
         {
             formCompletionHelper.Click(CreateVacancyLink);
-            return new SelectEmployersPage(_context);
+            return new SelectEmployersPage(context);
         }
     }
 }

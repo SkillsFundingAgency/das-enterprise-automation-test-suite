@@ -20,19 +20,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public EditVacancyDatesPage EditVacancyCloseDate()
         {
             formCompletionHelper.Click(EditClosingDate);
-            return new EditVacancyDatesPage(_context);
+            return new EditVacancyDatesPage(context);
         }
 
         public EditVacancyDatesPage EditVacancyStartDate()
         {
             formCompletionHelper.Click(EditStartDate);
-            return new EditVacancyDatesPage(_context);
+            return new EditVacancyDatesPage(context);
         }
 
         public EditVacancyConfirmationPage PublishVacancy()
         {
             formCompletionHelper.Click(Publish);
-            return new EditVacancyConfirmationPage(_context);
+            return new EditVacancyConfirmationPage(context);
         }
     }
 }

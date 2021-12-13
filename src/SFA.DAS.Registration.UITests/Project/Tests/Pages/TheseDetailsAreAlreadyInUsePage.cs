@@ -16,13 +16,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public AddAPAYESchemePage CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage()
         {
             Continue();
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
 
         public AddAPAYESchemePage CickBackLinkInTheseDetailsAreAlreadyInUsePage()
         {
             NavigateBack();
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }
