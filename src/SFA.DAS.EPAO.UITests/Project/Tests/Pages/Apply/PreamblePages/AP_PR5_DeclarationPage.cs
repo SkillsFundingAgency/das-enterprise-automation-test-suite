@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         public AP_ApplicationOverviewPage ClickAcceptAndContinueInDeclarationPage()
         {
             Continue();
-            return new AP_ApplicationOverviewPage(_context);
+            return new AP_ApplicationOverviewPage(context);
         }
     }
 }

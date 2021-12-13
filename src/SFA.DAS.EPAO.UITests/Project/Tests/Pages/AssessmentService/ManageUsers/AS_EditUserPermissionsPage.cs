@@ -25,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_UserDetailsPage ClickSaveButton()
         {
             Continue();
-            return new AS_UserDetailsPage(_context);
+            return new AS_UserDetailsPage(context);
         }
 
         public AS_EditUserPermissionsPage UnSelectChangeOrganisationDetailsCheckBox()

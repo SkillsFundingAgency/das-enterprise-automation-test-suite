@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         {
             SelectRadioOptionByForAttribute("CD-16");
             Continue();
-            return new AP_OD9_CompanyNumberPage(_context);
+            return new AP_OD9_CompanyNumberPage(context);
         }
     }
 }

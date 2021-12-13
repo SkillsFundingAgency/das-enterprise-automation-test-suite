@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Send");
 
-            return new RAA_ShareApplicationPreviewPage(_context);
+            return new RAA_ShareApplicationPreviewPage(context);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_WhatAreYouWithdrawingFromPage ClickStartNewWithdrawalNotification()
         {
             formCompletionHelper.Click(StandardNameVerification);
-            return new AS_WhatAreYouWithdrawingFromPage(_context);
+            return new AS_WhatAreYouWithdrawingFromPage(context);
         }
 
         public void ValidateStatus(string status) => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Status(status)), $"Validate status:[{status}] exists on the page");
@@ -27,13 +27,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_WithdrawalRequestOverviewPage ClickOnViewLinkForInProgressApplication()
         {
             tableRowHelper.SelectRowFromTable("View", "In progress");
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
 
         public AS_FeedbackOnYourWithdrawalNotificationStartPage ClickViewOnRegisterWithdrawalWithFeedbackAdded()
         {
             formCompletionHelper.Click(ViewRegisterWithdrawalFeedbackLink);
-            return new AS_FeedbackOnYourWithdrawalNotificationStartPage(_context);
+            return new AS_FeedbackOnYourWithdrawalNotificationStartPage(context);
         }
 
     }

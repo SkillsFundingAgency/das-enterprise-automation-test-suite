@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public StaffDashboardPage ClickReturnToDashboard()
         {
             formCompletionHelper.ClickElement(ReturnToStaffDashBoard);
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
     }
 }

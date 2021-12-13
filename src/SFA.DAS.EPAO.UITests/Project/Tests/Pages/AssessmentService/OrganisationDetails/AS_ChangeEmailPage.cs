@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         {
             formCompletionHelper.EnterText(EmailTextBox, ePAOAssesmentServiceDataHelper.RandomEmail);
             Continue();
-            return new AS_ConfirmEmailAddressPage(_context);
+            return new AS_ConfirmEmailAddressPage(context);
         }
     }
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_EmailAddressUpdatedPage ClickConfirmButtonInConfirmEmailAddressPage()
         {
             Continue();
-            return new AS_EmailAddressUpdatedPage(_context);
+            return new AS_EmailAddressUpdatedPage(context);
         }
     }
 

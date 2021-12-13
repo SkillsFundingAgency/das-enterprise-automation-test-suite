@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public FinancePage NavigateToFinancePage()
         {
             formCompletionHelper.Click(YourFinancesLink);
-            return new FinancePage(_context);
+            return new FinancePage(context);
         }
     }
 }

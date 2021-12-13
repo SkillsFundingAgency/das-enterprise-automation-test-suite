@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("title"));
 
-            return new Manage_EnterBasicVacancyDetailsPage(_context);
+            return new Manage_EnterBasicVacancyDetailsPage(context);
         }
 
     }

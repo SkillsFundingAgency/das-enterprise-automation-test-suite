@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public ConfirmOptInForAssociateProjectManagerPage ClickOnAssociateProjectManagerOptInLinkForVersion1_1()
         {
             formCompletionHelper.ClickElement(AssociateProjectManagerOptInLinkForVersion1_1);
-            return new ConfirmOptInForAssociateProjectManagerPage(_context);
+            return new ConfirmOptInForAssociateProjectManagerPage(context);
         }
     }
 }

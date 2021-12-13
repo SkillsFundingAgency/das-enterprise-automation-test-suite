@@ -29,13 +29,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_SearchCandidatesPage SearchCandidates()
         {
             formCompletionHelper.ClickLinkByText("Search candidates");
-            return new RAA_SearchCandidatesPage(_context);
+            return new RAA_SearchCandidatesPage(context);
         }
 
         public RAA_AdministratorFunctionsPage AdministratorFunctions()
         {
             NavigateToAdmin();
-            return new RAA_AdministratorFunctionsPage(_context);
+            return new RAA_AdministratorFunctionsPage(context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
@@ -50,25 +50,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.RetryClickOnException(element);
 
-            return new RAA_EmployerInformationPage(_context);
+            return new RAA_EmployerInformationPage(context);
         }
 
         public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
-            return new RAA_EmployerSelectionPage(_context);
+            return new RAA_EmployerSelectionPage(context);
         }
 
         public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
         {
             SearchByReferenceNumber();
-            return new RAA_ClosedVacancyPreviewPage(_context);
+            return new RAA_ClosedVacancyPreviewPage(context);
         }
 
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
             SearchByReferenceNumber();
-            return new RAA_VacancySummaryPage(_context);
+            return new RAA_VacancySummaryPage(context);
         }
 
         public RAA_PreviewBasePage SearchLiveVacancyWithNoApplications()
@@ -76,9 +76,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (objectContext.IsApprenticeshipVacancyType())
-                return new RAA_VacancyPreviewPage(_context);
+                return new RAA_VacancyPreviewPage(context);
             else
-                return new RAA_OppurtunityPreviewPage(_context);
+                return new RAA_OppurtunityPreviewPage(context);
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
@@ -86,9 +86,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (objectContext.IsApprenticeshipVacancyType())
-                return new RAA_VacancyPreviewPage(_context);
+                return new RAA_VacancyPreviewPage(context);
             else
-                return new RAA_OppurtunityPreviewPage(_context);
+                return new RAA_OppurtunityPreviewPage(context);
         }
 
         private void SearchByReferenceNumber()

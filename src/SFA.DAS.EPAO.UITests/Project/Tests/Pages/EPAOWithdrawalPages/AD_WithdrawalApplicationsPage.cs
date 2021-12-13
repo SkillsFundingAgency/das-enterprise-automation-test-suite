@@ -23,15 +23,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Brewer");
-            return new AD_WithdrawalRequestOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(context);
         }
 
         public AD_WithdrawalApplicationsPage StoreCurrentTabValues()
         {
-            _context["NewApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(NewTab);
-            _context["InProgressApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(InProgressTab);
-            _context["FeedbackApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab);
-            _context["ApprovedApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab);
+            context["NewApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(NewTab);
+            context["InProgressApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(InProgressTab);
+            context["FeedbackApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab);
+            context["ApprovedApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab);
 
             return this;
         }
@@ -40,31 +40,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(context);
         }
 
         public AD_WithdrawalRequestOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(context);
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()
         {
-            Assert.AreEqual(int.Parse(_context["NewApplicationsCountBeforeApproval"].ToString()) - 1, pageInteractionHelper.GetDataCountOfAnElement(NewTab));
+            Assert.AreEqual(int.Parse(context["NewApplicationsCountBeforeApproval"].ToString()) - 1, pageInteractionHelper.GetDataCountOfAnElement(NewTab));
             return this;
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToFeedbackTab()
         {
-            Assert.AreEqual(int.Parse(_context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab));
+            Assert.AreEqual(int.Parse(context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab));
             return this;
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToApprovedTab()
         {
-            Assert.AreEqual(int.Parse(_context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab));
+            Assert.AreEqual(int.Parse(context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab));
             return this;
         }
 

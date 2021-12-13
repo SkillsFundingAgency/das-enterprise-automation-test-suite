@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             EnterVacancyClosingDate()
             .EnterPossibleStartDate();
             formCompletionHelper.ClickButtonByText("Save and return");
-            return new RAA_ChangeVacancyDatePreviewPage(_context);
+            return new RAA_ChangeVacancyDatePreviewPage(context);
 
         }
         private new RAA_ChangeVacancyDatesPage EnterVacancyClosingDate()

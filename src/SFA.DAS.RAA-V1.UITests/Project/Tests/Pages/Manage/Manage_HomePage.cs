@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         {
             ChangeToHelpdeskAdviser();
 
-            return new Manage_HelpdeskAdviserPage(_context);
+            return new Manage_HelpdeskAdviserPage(context);
         }
 
         public Manage_VacancyPreviewPage ReviewAVacancy()
@@ -41,7 +41,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
             formCompletionHelper.Click(VacancyReviewLink());
 
-            return new Manage_VacancyPreviewPage(_context);
+            return new Manage_VacancyPreviewPage(context);
         }
 
         private void TodayVacancy()

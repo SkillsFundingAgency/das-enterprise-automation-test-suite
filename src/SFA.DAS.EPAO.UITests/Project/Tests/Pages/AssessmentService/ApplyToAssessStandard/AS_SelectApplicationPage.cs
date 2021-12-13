@@ -14,13 +14,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_ApplyForAStandardPage StartApplication()
         {
             formCompletionHelper.ClickElement(StartApplicationLink);
-            return new AS_ApplyForAStandardPage(_context);
+            return new AS_ApplyForAStandardPage(context);
         }
 
         public AS_ApplicationOverviewPage SelectApplication()
         {
             tableRowHelper.SelectRowFromTable("View", objectContext.GetApplyStandardName());
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
     }
 }

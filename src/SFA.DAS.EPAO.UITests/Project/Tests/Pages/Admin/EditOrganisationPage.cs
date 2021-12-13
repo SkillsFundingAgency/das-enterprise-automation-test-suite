@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public OrganisationDetailsPage MakeOrgLive()
         {
             formCompletionHelper.ClickElement(MakeLiveButton);
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
 
         public OrganisationDetailsPage EditDetails()
@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(CompanyNumberField, ePAOAdminDataHelper.CompanyNumber);
             formCompletionHelper.EnterText(CharityNumberField, ePAOAdminDataHelper.CharityNumber);
             Continue();
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
 
     }

@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_SelectApplicationPage SelectApplication()
         {
             formCompletionHelper.ClickElement(StartNow);
-            return new AS_SelectApplicationPage(_context);
+            return new AS_SelectApplicationPage(context);
         }
     }
 }

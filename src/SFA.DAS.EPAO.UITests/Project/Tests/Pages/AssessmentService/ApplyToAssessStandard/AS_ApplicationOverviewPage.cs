@@ -11,13 +11,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_ApplyToStandardPage GoToApplyToStandard()
         {
             formCompletionHelper.ClickLinkByText("Go to apply to assess a standard");
-            return new AS_ApplyToStandardPage(_context);
+            return new AS_ApplyToStandardPage(context);
         }
 
         public AS_ApplicationSubmittedPage Submit()
         {
             Continue();
-            return new AS_ApplicationSubmittedPage(_context);
+            return new AS_ApplicationSubmittedPage(context);
         }
     }
 }

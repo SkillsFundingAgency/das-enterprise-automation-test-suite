@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.SelectRadioOptionByLocator(ExternalQualityAssuranceProviderHasChanged);
             Continue();
-            return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage (_context);
+            return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage (context);
         }
     }
 }

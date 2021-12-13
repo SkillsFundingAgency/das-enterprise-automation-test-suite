@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             SelectRadioOptionByForAttribute("CD-15");
             formCompletionHelper.EnterText(OfqualRecognitionNumberTextbox, ePAOApplyDataHelper.GetRandomNumber(6));
             Continue();
-            return new AP_OD8_TradingStatusPage(_context);
+            return new AP_OD8_TradingStatusPage(context);
         }
     }
 }

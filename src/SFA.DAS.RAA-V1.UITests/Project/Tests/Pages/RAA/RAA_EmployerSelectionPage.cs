@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickElement(rAAV1DataHelper.Employers(links));
 
-            return new RAA_EmployerInformationPage(_context);
+            return new RAA_EmployerInformationPage(context);
         }
     }
 }

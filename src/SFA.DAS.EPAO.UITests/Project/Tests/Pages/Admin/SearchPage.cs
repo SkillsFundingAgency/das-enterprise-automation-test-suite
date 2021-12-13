@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.EnterText(LearnerSearchField, keyword);
             Continue();
-            return new SearchResultsPage(_context);
+            return new SearchResultsPage(context);
         }
     }
 }

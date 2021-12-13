@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_ModerationProcessesPage UploadMonitoringProcedure()
         {
             UploadFile();
-            return new AS_ModerationProcessesPage(_context);
+            return new AS_ModerationProcessesPage(context);
         }
 
     }

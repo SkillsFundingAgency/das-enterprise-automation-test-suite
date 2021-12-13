@@ -19,7 +19,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 			{
 				formCompletionHelper.ClickElement(PireanPreprodButton);
 			}
-			return new ProviderSiginPage(_context);
+			return new ProviderSiginPage(context);
 		}
     }
 }

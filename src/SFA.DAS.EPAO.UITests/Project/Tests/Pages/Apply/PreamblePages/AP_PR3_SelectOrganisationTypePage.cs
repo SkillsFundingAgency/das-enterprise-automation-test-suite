@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AwardingOrg));
             Continue();
-            return new AP_PR4_ConfirmOrganisationPage(_context);
+            return new AP_PR4_ConfirmOrganisationPage(context);
         }
     }
 }

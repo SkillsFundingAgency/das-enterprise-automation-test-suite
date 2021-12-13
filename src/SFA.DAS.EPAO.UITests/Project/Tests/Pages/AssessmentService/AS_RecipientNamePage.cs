@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(RecipientNameTextBox, "Mr Smith");
             formCompletionHelper.EnterText(DepartmentTextBox, "IT");
             Continue();
-            return new AS_CheckAndSubmitAssessmentPage(_context);
+            return new AS_CheckAndSubmitAssessmentPage(context);
         }
     }
 }

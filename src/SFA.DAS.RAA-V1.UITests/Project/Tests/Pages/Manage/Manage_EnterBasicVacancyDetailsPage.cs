@@ -21,13 +21,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_VacanacyPreviewPage AddApprenticeshipTitleComments()
         {
             AddTitleComments();
-            return new Manage_VacanacyPreviewPage(_context);
+            return new Manage_VacanacyPreviewPage(context);
         }
 
         public Manage_OpportunityPreviewPage AddTraineeshipTitleComments()
         {
             AddTitleComments();
-            return new Manage_OpportunityPreviewPage(_context);
+            return new Manage_OpportunityPreviewPage(context);
         }
 
         private void AddTitleComments()

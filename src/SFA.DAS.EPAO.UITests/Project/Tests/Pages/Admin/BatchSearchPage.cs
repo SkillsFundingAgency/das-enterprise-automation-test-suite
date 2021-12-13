@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.EnterText(BatchNumber, ePAOAdminDataHelper.BatchSearch);
             Continue();
-            return new BatchSearchResultsPage(_context);
+            return new BatchSearchResultsPage(context);
         }
     }
 }

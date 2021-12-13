@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
             Continue();
-            return new ContactDetailsPage(_context);
+            return new ContactDetailsPage(context);
         }
     }
 }

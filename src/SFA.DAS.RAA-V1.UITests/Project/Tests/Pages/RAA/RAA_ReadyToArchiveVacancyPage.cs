@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.ClickButtonByText("Respond to remaining candidates");
 
-            return new RAA_ResponceToCandidatePage(_context);
+            return new RAA_ResponceToCandidatePage(context);
         }
     }
 }

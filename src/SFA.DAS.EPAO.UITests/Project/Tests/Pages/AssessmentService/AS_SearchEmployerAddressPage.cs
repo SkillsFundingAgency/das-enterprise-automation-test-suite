@@ -21,13 +21,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_ConfirmAddressPage ClickContinueInSearchEmployerAddressPage()
         {
             Continue();
-            return new AS_ConfirmAddressPage(_context);
+            return new AS_ConfirmAddressPage(context);
         }
 
         public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
         {
             formCompletionHelper.Click(EnterAddressManuallyLink);
-            return new AS_AddEmployerAddress(_context);
+            return new AS_AddEmployerAddress(context);
         }
     }
 }

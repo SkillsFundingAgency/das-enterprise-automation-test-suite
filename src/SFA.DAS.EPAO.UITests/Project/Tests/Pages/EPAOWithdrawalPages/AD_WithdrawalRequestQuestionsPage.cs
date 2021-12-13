@@ -18,13 +18,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.SelectRadioOptionByText("Yes");
             formCompletionHelper.Click(SaveButton);
 
-            return new AD_WithdrawalRequestOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(context);
         }
 
         public AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
         {
             formCompletionHelper.Click(AddFeedbackHowWillYouSupportLearnersLink);
-            return new AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess(_context);
+            return new AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess(context);
         }
     }
 }

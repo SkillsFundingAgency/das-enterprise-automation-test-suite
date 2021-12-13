@@ -9,7 +9,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_CheckAndSubmitAssessmentPage ClickBackLink()
         {
             NavigateBack();
-            return new AS_CheckAndSubmitAssessmentPage(_context);
+            return new AS_CheckAndSubmitAssessmentPage(context);
         }
     }
 }

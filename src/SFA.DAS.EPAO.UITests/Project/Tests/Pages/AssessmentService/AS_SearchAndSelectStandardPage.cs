@@ -19,7 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.Click(StandardTextBox);
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AutoSuggestOptions));
             Continue();
-            return new AS_WhatGradePage(_context);
+            return new AS_WhatGradePage(context);
         }
     }
 }

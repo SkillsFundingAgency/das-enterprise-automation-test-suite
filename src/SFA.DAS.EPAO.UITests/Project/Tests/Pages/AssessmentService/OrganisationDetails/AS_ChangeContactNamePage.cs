@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(radioButtonToClick));
 
             Continue();
-            return new AS_ConfirmContactNamePage(_context);
+            return new AS_ConfirmContactNamePage(context);
         }
     }
 
@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ContactNameUpdatedPage ClickConfirmButtonInConfirmContactNamePage()
         {
             Continue();
-            return new AS_ContactNameUpdatedPage(_context);
+            return new AS_ContactNameUpdatedPage(context);
         }
     }
 

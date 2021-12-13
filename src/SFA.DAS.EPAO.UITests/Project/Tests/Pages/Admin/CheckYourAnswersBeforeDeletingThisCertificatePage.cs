@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public YouHaveSuccessfullyDeletedPage ClickDeleteCertificateButton()
         {
             formCompletionHelper.ClickElement(DeleteCertificate);
-            return new YouHaveSuccessfullyDeletedPage(_context);
+            return new YouHaveSuccessfullyDeletedPage(context);
         }
     }
 }

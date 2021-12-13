@@ -61,7 +61,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.ClickButtonByText("Return to vacancy applications");
             }
 
-            return new RAA_VacancySummaryPage(_context);
+            return new RAA_VacancySummaryPage(context);
         }
 
     }

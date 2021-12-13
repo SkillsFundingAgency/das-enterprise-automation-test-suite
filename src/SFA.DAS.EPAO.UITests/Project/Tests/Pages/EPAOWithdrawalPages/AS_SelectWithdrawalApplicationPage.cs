@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_WhatAreYouWithdrawingFromPage ClickStartSelectWithdrawalApplication()
         {
             formCompletionHelper.ClickElement(SelectWithdrawalApplicationStartButton);
-            return new AS_WhatAreYouWithdrawingFromPage(_context);
+            return new AS_WhatAreYouWithdrawingFromPage(context);
         }
     }
 }

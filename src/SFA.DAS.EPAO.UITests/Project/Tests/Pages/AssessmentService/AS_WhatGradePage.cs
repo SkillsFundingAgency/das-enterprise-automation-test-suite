@@ -33,13 +33,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private AS_ApprenticeFailedDatePage SelectGradeAsFail()
         {
             SelectGrade(FailRadioButton);
-            return new AS_ApprenticeFailedDatePage(_context);
+            return new AS_ApprenticeFailedDatePage(context);
         }
 
         private AS_AchievementDatePage SelectGradeAsPass(By by)
         {
             SelectGrade(by);
-            return new AS_AchievementDatePage(_context);
+            return new AS_AchievementDatePage(context);
         }
 
         private void SelectGrade(By by)

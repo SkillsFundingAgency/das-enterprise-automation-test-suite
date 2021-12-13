@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_ConflictOfinterestPolicyPage UploadPreventAgendaPolicy()
         {
             UploadFile();
-            return new AS_ConflictOfinterestPolicyPage(_context);
+            return new AS_ConflictOfinterestPolicyPage(context);
         }
     }
 }

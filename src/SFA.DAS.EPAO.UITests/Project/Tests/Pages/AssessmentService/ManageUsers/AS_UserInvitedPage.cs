@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_InviteUserPage ClickInviteSomeoneElseLink()
         {
             formCompletionHelper.Click(InviteSomeoneElseLink);
-            return new AS_InviteUserPage(_context);
+            return new AS_InviteUserPage(context);
         }
     }
 }

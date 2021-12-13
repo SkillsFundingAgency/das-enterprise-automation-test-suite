@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
             Continue();
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
 
         public AS_ApplicationOverviewPage ConfirmAndApplyWithVersion()
@@ -29,7 +29,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VersionCheckBox));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
             Continue();
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
     }
 }

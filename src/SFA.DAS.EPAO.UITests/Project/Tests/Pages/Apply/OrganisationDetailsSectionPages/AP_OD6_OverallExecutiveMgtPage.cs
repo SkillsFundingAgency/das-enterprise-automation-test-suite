@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             SelectRadioOptionByForAttribute("CD-14");
             formCompletionHelper.EnterText(PostitionDetailsTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(50));
             Continue();
-            return new AP_OD7_OfqualRecognitionNumberPage(_context);
+            return new AP_OD7_OfqualRecognitionNumberPage(context);
         }
     }
 }

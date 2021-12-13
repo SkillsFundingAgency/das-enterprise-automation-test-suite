@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_FairAccessPage UploadComplaintsPolicy()
         {
             UploadFile();
-            return new AS_FairAccessPage(_context);
+            return new AS_FairAccessPage(context);
         }
 
     }

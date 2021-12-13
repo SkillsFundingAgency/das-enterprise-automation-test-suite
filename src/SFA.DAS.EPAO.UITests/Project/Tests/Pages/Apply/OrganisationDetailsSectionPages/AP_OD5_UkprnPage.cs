@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             SelectRadioOptionByForAttribute("CD-12");
             formCompletionHelper.EnterText(UkprnTextbox, ePAOApplyDataHelper.GetRandomNumber(8));
             Continue();
-            return new AP_OD6_OverallExecutiveMgtPage(_context);
+            return new AP_OD6_OverallExecutiveMgtPage(context);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Send feedback");
 
-            return new RAA_InformTheCandidatePreviewPage(_context);
+            return new RAA_InformTheCandidatePreviewPage(context);
         }
     }
 }

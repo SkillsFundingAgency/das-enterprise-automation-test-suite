@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
         {
             SelectRadioOptionByForAttribute("M_DEL-10_1");
             Continue();
-            return new AP_DME_3_CounterTerrorismPage(_context);
+            return new AP_DME_3_CounterTerrorismPage(context);
         }
     }
 }

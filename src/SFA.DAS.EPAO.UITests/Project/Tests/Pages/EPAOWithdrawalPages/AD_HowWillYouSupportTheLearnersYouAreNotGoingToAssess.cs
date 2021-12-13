@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(FeedbackMessageTextArea);
             formCompletionHelper.EnterText(FeedbackMessageTextArea, ePAOAdminDataHelper.GetRandomAlphabeticString(200));
             formCompletionHelper.Click(AddFeedbackButton);
-            return new AD_WithdrawalRequestQuestionsPage(_context);
+            return new AD_WithdrawalRequestQuestionsPage(context);
         }
     }
 }

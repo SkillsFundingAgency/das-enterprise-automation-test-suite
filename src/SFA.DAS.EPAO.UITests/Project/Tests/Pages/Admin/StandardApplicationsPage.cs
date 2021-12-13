@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private StandardApplicationOverviewPage GoToStandardApplicationOverviewPage(By by)
         {
             GoToApplicationOverviewPage(by);
-            return new StandardApplicationOverviewPage(_context);
+            return new StandardApplicationOverviewPage(context);
         }
     }
 }

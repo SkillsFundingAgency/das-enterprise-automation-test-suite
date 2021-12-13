@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         {
             formCompletionHelper.EnterText(PhoneNumberTextBox, ePAOAssesmentServiceDataHelper.GetRandomNumber(10));
             Continue();
-            return new AS_ConfirmPhoneNumberPage(_context);
+            return new AS_ConfirmPhoneNumberPage(context);
         }
     }
 
@@ -35,7 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ContactPhoneNumberUpdatedPage ClickConfirmButtonInConfirmPhoneNumberPage()
         {
             Continue();
-            return new AS_ContactPhoneNumberUpdatedPage(_context);
+            return new AS_ContactPhoneNumberUpdatedPage(context);
         }
     }
 

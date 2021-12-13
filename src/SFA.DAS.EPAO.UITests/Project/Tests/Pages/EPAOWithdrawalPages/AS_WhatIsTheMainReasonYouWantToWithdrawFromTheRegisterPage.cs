@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.SelectRadioOptionByText("Assessment plan has changed");
             formCompletionHelper.EnterText(AssesmentPlanHasChangedTextArea, "Assessment plan has changed");
             Continue();
-            return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage(_context);
+            return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage(context);
         }
     }
 }

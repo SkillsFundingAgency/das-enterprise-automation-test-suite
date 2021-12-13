@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellatio
         {
             javaScriptHelper.ClickElement(ClickYesToCancelStandard);
             Continue();
-            return new AP_OSC02_YouHaveCancelledYourApplicationPage(_context);
+            return new AP_OSC02_YouHaveCancelledYourApplicationPage(context);
         }       
     }
 }

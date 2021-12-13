@@ -22,25 +22,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LoginPage GoToLoginPage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_LoginPage(_context);
+            return new AS_LoginPage(context);
         }
 
         public AS_ApplyForAStandardPage AlreadyLoginGoToApplyForAStandardPage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_ApplyForAStandardPage(_context);
+            return new AS_ApplyForAStandardPage(context);
         }
 
         public AS_CreateAnAccountPage GoToCreateAccountPage()
         {
             formCompletionHelper.Click(CreateAnAccountLink);
-            return new AS_CreateAnAccountPage(_context);
+            return new AS_CreateAnAccountPage(context);
         }
 
         public AS_LoggedInHomePage AlreadyLoginGoToLoggedInHomePage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_LoggedInHomePage(_context);
+            return new AS_LoggedInHomePage(context);
         }
     }
 }

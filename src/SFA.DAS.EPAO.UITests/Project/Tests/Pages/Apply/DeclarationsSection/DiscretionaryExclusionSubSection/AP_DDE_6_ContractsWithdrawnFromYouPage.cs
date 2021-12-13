@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
         {
             SelectRadioOptionByForAttribute("A_DEL-24_1");
             Continue();
-            return new AP_DDE_7_ContractsYouHaveWithdrawnFromPage(_context);
+            return new AP_DDE_7_ContractsYouHaveWithdrawnFromPage(context);
         }
     }
 }

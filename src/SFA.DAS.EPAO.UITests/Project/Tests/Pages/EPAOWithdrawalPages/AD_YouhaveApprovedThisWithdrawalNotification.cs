@@ -26,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplications()
         {
             formCompletionHelper.ClickElement(ReturnToApprovedWithdrawals);
-            return new AD_WithdrawalApplicationsPage(_context);
+            return new AD_WithdrawalApplicationsPage(context);
         }
     }
 }

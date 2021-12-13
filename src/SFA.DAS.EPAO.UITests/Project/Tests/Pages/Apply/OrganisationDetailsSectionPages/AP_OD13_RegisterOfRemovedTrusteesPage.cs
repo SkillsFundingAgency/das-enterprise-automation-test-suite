@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         {
             SelectRadioOptionByForAttribute("CD-27_1");
             Continue();
-            return new AP_OrganisationDetailsBasePage(_context);
+            return new AP_OrganisationDetailsBasePage(context);
         }
     }
 }

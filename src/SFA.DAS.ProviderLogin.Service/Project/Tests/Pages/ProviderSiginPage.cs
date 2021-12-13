@@ -21,7 +21,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
             EnterEmailAddress(login.UserId)
                     .EnterPassword(login.Password)
                     .SignIn();
-            return new ProviderHomePage(_context);
+            return new ProviderHomePage(context);
         }  
 
         private ProviderSiginPage EnterEmailAddress(string username)

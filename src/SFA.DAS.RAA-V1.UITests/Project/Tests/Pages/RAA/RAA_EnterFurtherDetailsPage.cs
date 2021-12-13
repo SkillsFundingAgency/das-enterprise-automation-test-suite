@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_RequirementsAndProspectsPage SaveAndContinue()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_RequirementsAndProspectsPage(_context);
+            return new RAA_RequirementsAndProspectsPage(context);
         }
 
         public RAA_EnterFurtherDetailsPage EnterWorkingInformation()

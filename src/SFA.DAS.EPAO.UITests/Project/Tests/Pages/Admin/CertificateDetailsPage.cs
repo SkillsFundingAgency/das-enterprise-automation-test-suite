@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public AreYouSureYouWantToDeletePage ClickDeleteCertificateLink()
         {
             formCompletionHelper.ClickElement(DeleteCertificateLink);
-            return new AreYouSureYouWantToDeletePage(_context);
+            return new AreYouSureYouWantToDeletePage(context);
         }
     }
 }

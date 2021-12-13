@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
         {
             SelectRadioOptionByForAttribute("D_DEL-14_1");
             Continue();
-            return new AP_DDE_3_CessationOfTradingPage(_context);
+            return new AP_DDE_3_CessationOfTradingPage(context);
         }
     }
 }

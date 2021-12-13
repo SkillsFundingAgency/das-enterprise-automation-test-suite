@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         {
             formCompletionHelper.EnterText(WebsiteAddressTextBox, ePAOAssesmentServiceDataHelper.RandomWebsiteAddress);
             Continue();
-            return new AS_ConfirmWebsiteAddressPage(_context);
+            return new AS_ConfirmWebsiteAddressPage(context);
         }
     }
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_WebsiteAddressUpdatedPage ClickConfirmButtonInConfirmWebsiteAddressPage()
         {
             Continue();
-            return new AS_WebsiteAddressUpdatedPage(_context);
+            return new AS_WebsiteAddressUpdatedPage(context);
         }
     }
 

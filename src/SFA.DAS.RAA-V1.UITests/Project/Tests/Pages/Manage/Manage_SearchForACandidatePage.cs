@@ -46,7 +46,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         {
             List<IWebElement> filteredRows = pageInteractionHelper.GetLinks("Select candidate");
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(filteredRows));
-            return new Manage_MyApplicationsPage(_context);
+            return new Manage_MyApplicationsPage(context);
         }
 
         public void VerifyUpdatedCandidateDetails()

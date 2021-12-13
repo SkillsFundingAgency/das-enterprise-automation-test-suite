@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_RecordAGradePage ClickRecordAnotherGradeLink()
         {
             formCompletionHelper.Click(RecordAnotherGradeLink);
-            return new AS_RecordAGradePage(_context);
+            return new AS_RecordAGradePage(context);
         }
     }
 }

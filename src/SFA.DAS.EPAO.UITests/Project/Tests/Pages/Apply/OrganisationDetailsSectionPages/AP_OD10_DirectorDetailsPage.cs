@@ -26,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(NumberOfSharesTextbox, ePAOApplyDataHelper.GetRandomNumber(3));
             formCompletionHelper.Click(SaveAndAddAnotherLink);
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new AP_OD11_DirectorsDataPage(_context);
+            return new AP_OD11_DirectorsDataPage(context);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         {
             SelectRadioOptionByForAttribute("CD-22_1");
             Continue();
-            return new AP_OD_12_RegisteredCharityPage(_context);
+            return new AP_OD_12_RegisteredCharityPage(context);
         }
     }
 }

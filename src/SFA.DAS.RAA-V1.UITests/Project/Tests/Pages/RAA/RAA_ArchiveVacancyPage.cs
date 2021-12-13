@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.ClickButtonByText("Confirm");
 
-            return new RAA_ArchivedVacancyPreviewPage(_context);
+            return new RAA_ArchivedVacancyPreviewPage(context);
         }
     }
 }

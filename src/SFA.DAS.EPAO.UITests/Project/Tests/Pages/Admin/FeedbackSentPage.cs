@@ -11,13 +11,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public OrganisationApplicationsPage ReturnToOrganisationApplications()
         {
             ReturnToApplications();
-            return new OrganisationApplicationsPage(_context);
+            return new OrganisationApplicationsPage(context);
         }
 
         public StandardApplicationsPage ReturnToStandardApplications()
         {
             ReturnToApplications();
-            return new StandardApplicationsPage(_context);
+            return new StandardApplicationsPage(context);
         }
 
         private void ReturnToApplications() => formCompletionHelper.ClickLinkByText("Return to applications");

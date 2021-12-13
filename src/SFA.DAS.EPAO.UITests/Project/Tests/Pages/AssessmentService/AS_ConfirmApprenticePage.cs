@@ -17,35 +17,35 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             SelectStandard(true);
 
-            return new AS_AssesmentAlreadyRecorded(_context);
+            return new AS_AssesmentAlreadyRecorded(context);
         }
 
         public AS_ConfirmApprenticePage ViewCertificateHistory() 
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewCertificateHistorySelector));
 
-            return new AS_ConfirmApprenticePage(_context);
+            return new AS_ConfirmApprenticePage(context);
         }
 
         public AS_WhichVersionPage GoToWhichVersionPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_WhichVersionPage(_context);
+            return new AS_WhichVersionPage(context);
         }
 
         public AS_WhichLearningOptionPage GoToWhichLearningOptionPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_WhichLearningOptionPage(_context);
+            return new AS_WhichLearningOptionPage(context);
         }
 
         public AS_DeclarationPage GoToDeclarationPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_DeclarationPage(_context);
+            return new AS_DeclarationPage(context);
         }
 
         private void SelectStandard(bool hasMultiStandards)

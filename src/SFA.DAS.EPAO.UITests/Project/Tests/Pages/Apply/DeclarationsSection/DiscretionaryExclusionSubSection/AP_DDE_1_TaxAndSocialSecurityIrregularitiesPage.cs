@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
         {
             SelectRadioOptionByForAttribute("D_DEL-13_1");
             Continue();
-            return new AP_DDE_2_BankruptcyAndInsolvencyPage(_context);
+            return new AP_DDE_2_BankruptcyAndInsolvencyPage(context);
         }
     }
 }

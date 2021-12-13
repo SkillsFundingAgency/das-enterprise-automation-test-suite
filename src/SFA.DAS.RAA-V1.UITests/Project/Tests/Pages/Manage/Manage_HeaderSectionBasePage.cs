@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_AdminFunctionsPage NavigateToAdminFuntionsPage()
         {
             formCompletionHelper.Click(AdminLink);
-            return new Manage_AdminFunctionsPage(_context);
+            return new Manage_AdminFunctionsPage(context);
         }
     }
 }

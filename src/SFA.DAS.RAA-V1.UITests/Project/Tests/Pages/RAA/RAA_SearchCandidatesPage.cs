@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             var links = pageInteractionHelper.GetLinks(SelectCandidateLinks, "Select candidate");
             formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(links));
-            return new RAA_CandidateApplicationPage(_context);
+            return new RAA_CandidateApplicationPage(context);
         }
     }
 }

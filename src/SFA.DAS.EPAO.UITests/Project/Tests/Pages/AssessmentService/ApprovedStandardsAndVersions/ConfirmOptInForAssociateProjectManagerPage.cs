@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public OptInConfirmationPage ConfirmOptIn()
         {
             Continue();
-            return new OptInConfirmationPage(_context);
+            return new OptInConfirmationPage(context);
         }
     }
 }

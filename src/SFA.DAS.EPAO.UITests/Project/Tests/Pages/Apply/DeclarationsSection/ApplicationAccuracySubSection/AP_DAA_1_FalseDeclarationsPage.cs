@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.App
         {
             SelectRadioOptionByForAttribute("A_DEL-28");
             Continue();
-            return new AP_DAA_2_AccurateRepresentationPage(_context);
+            return new AP_DAA_2_AccurateRepresentationPage(context);
         }
     }
 }

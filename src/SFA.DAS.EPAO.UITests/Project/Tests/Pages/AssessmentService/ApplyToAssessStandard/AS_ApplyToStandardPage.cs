@@ -73,13 +73,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_InformationCommissionerPage AccessYourPolicies_01()
         {
             formCompletionHelper.ClickLinkByText(YourPolicies_01);
-            return new AS_InformationCommissionerPage(_context);
+            return new AS_InformationCommissionerPage(context);
         }
 
         public AS_ApplicationOverviewPage ReturnToApplicationOverview()
         {
             formCompletionHelper.ClickLinkByText("Return to application overview");
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
     }
 }

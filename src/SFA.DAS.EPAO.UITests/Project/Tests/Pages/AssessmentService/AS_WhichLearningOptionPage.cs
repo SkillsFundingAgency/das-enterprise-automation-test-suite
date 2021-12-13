@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
             Continue();
-            return new AS_DeclarationPage(_context);
+            return new AS_DeclarationPage(context);
         }
     }
 }

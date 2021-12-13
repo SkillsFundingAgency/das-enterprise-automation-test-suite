@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(TownOrCityField, ePAOAdminDataHelper.TownName);
             formCompletionHelper.EnterText(PostCodeField, ePAOAdminDataHelper.PostCode);
             Continue();
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
     }
 }

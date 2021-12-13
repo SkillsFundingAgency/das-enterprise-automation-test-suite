@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             SelectRadioOptionByForAttribute("CD-26");
             formCompletionHelper.EnterText(CharityNumberTextbox, ePAOApplyDataHelper.GetRandomNumber(8));
             Continue();
-            return new AP_OD13_RegisterOfRemovedTrusteesPage(_context);
+            return new AP_OD13_RegisterOfRemovedTrusteesPage(context);
         }
     }
 }

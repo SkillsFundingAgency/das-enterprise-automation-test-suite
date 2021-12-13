@@ -19,14 +19,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.SelectRadioOptionByLocator(AssessingASpecificStandardRaidoButton);
             Continue();
-            return new AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(_context);
+            return new AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(context);
         }
 
         public AS_CheckWithdrawalRequestPage ClickWithdrawFromRegister()
         {
             formCompletionHelper.SelectRadioOptionByLocator(TheRegisterOfEPAOrganisationsRaidoButton);
             Continue();
-            return new AS_CheckWithdrawalRequestPage(_context);
+            return new AS_CheckWithdrawalRequestPage(context);
         }
     }
 }

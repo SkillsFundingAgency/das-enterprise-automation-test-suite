@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public FeedbackSentPage ApproveApplication()
         {
             Continue();
-            return new FeedbackSentPage(_context);
+            return new FeedbackSentPage(context);
         }
     }
 }

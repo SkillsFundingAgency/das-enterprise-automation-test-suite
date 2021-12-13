@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_SearchForACandidatePage SearchForACandidate()
         {
             formCompletionHelper.ClickButtonByText("Search for candidate");
-            return new Manage_SearchForACandidatePage(_context);
+            return new Manage_SearchForACandidatePage(context);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_UserRemovedPage ClickRemoveUserButtonInRemoveUserPage()
         {
             Continue();
-            return new AS_UserRemovedPage(_context);
+            return new AS_UserRemovedPage(context);
         }
     }
 }

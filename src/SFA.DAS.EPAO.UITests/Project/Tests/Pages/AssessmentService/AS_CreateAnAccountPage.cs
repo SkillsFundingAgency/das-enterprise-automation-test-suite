@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(FamilyNameTextbox, ePAOAssesmentServiceDataHelper.GetRandomAlphabeticString(10));
             formCompletionHelper.EnterText(EmailAddressTextbox, ePAOAssesmentServiceDataHelper.RandomEmail);
             Continue();
-            return new AS_ConfirmYourIdentityPage(_context);
+            return new AS_ConfirmYourIdentityPage(context);
         }
     }
 }

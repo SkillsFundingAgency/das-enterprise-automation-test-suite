@@ -56,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Save and return");
 
-            return new RAA_IncreaseVacancyWagePreviewPage(_context);
+            return new RAA_IncreaseVacancyWagePreviewPage(context);
         }
     }
 }

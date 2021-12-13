@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(SupportInfoTextArea);
             formCompletionHelper.EnterText(SupportInfoTextArea, standardDataHelper.GenerateRandomAlphanumericString(250));
             Continue();
-            return new AS_WhenDoYouWantToWithdrawFromTheStandardPage(_context);
+            return new AS_WhenDoYouWantToWithdrawFromTheStandardPage(context);
         }
 
         public AS_WhenDoYouWantToWithdrawFromTheRegisterPage EnterSupportingInformationForRegisterWithdrawal()
@@ -26,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(SupportInfoTextArea);
             formCompletionHelper.EnterText(SupportInfoTextArea, standardDataHelper.GenerateRandomAlphanumericString(250));
             Continue();
-            return new AS_WhenDoYouWantToWithdrawFromTheRegisterPage(_context);
+            return new AS_WhenDoYouWantToWithdrawFromTheRegisterPage(context);
         }
     }
 }

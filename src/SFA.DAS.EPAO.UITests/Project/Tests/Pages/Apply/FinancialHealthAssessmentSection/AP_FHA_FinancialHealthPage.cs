@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessme
         public AP_FHABasePage UploadFileAndContinueInFinancialHealthPage()
         {
             UploadFile();
-            return new AP_FHABasePage(_context);
+            return new AP_FHABasePage(context);
         }
     }
 }

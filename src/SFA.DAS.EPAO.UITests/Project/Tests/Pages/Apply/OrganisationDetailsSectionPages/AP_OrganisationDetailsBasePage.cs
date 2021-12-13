@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsBasePage()
         {
             formCompletionHelper.Click(TradingNameLink);
-            return new AP_OD1_TradingNamePage(_context);
+            return new AP_OD1_TradingNamePage(context);
         }
     }
 }

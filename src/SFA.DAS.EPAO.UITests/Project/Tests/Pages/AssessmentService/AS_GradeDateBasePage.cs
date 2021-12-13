@@ -22,13 +22,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_SearchEmployerAddressPage EnterApprenticshipStartDateAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_SearchEmployerAddressPage(_context);
+            return new AS_SearchEmployerAddressPage(context);
         }
 
         public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_SearchEmployerAddressPage(_context);
+            return new AS_SearchEmployerAddressPage(context);
         }
 
         public void EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(int year)

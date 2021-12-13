@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Confirm and continue");
 
-            return new RAA_InformTheSelectedCandidatePage(_context);
+            return new RAA_InformTheSelectedCandidatePage(context);
         }
     }
 }

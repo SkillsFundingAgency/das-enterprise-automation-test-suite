@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         {
             formCompletionHelper.EnterText(InputNumber, standardDataHelper.GenerateRandomWholeNumber(1));
             Continue();
-            return new AS_VolumeEndPointAssessmentPage(_context);
+            return new AS_VolumeEndPointAssessmentPage(context);
         }
     }
 }

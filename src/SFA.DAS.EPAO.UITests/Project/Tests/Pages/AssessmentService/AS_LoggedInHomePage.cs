@@ -29,25 +29,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_ApplyToAssessStandardPage ApplyToAssessStandard()
         {
             formCompletionHelper.Click(ApplyToAssessStandardLink);
-            return new AS_ApplyToAssessStandardPage(_context);
+            return new AS_ApplyToAssessStandardPage(context);
         }
 
         public ApprovedStandardsAndVersionsLandingPage ApprovedStandardAndVersions()
         {
             formCompletionHelper.Click(ApprovedStandardsAndVersions);
-            return new ApprovedStandardsAndVersionsLandingPage(_context);
+            return new ApprovedStandardsAndVersionsLandingPage(context);
         }
 
         public AS_RecordAGradePage GoToRecordAGradePage()
         {
             formCompletionHelper.Click(RecordAGradeLink);
-            return new AS_RecordAGradePage(_context);
+            return new AS_RecordAGradePage(context);
         }
 
         public AS_CompletedAssessmentsPage ClickCompletedAssessmentsLink()
         {
             formCompletionHelper.Click(CompletedAssessmentsTopMenuLink);
-            return new AS_CompletedAssessmentsPage(_context);
+            return new AS_CompletedAssessmentsPage(context);
         }
 
         public void ClickOrganisationDetailsTopMenuLink()
@@ -58,7 +58,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_UsersPage ClickManageUsersLink()
         {
             formCompletionHelper.Click(ManageUsersLink);
-            return new AS_UsersPage(_context);
+            return new AS_UsersPage(context);
         }
 
         public AS_LoggedInHomePage ClickHomeTopMenuLink()
@@ -72,18 +72,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_SignedOutPage ClickSignOutLink()
         {
             formCompletionHelper.Click(SignOutLink);
-            return new AS_SignedOutPage(_context);
+            return new AS_SignedOutPage(context);
         }
         public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromAStandardLink()
         {
             formCompletionHelper.Click(WithdrawFromAStandardLink);
-            return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
+            return new AS_WithdrawFromAStandardOrTheRegisterPage(context);
         }
 
         public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromTheRegisterLink()
         {
             formCompletionHelper.Click(WithdrawFromTheRegisterLink);
-            return new AS_WithdrawFromAStandardOrTheRegisterPage(_context);
+            return new AS_WithdrawFromAStandardOrTheRegisterPage(context);
         }
     }
 }

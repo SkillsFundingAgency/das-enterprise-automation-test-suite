@@ -29,13 +29,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_OrganisationDetailsBasePage ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToOrganisationDetailsLink);
-            return new AP_OrganisationDetailsBasePage(_context);
+            return new AP_OrganisationDetailsBasePage(context);
         }
 
         public AP_DeclarationsBasePage ClickGoToDeclarationsLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToDeclarationsLink);
-            return new AP_DeclarationsBasePage(_context);
+            return new AP_DeclarationsBasePage(context);
         }
 
         public bool GoToFinancialHealthAssessmentLinkExists() => pageInteractionHelper.IsElementDisplayed(GoToFinancialHealthAssessmentLink);
@@ -43,13 +43,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
-            return new AP_FHABasePage(_context);
+            return new AP_FHABasePage(context);
         }
 
         public AP_ApplicationSubmittedPage ClickSubmitInApplicationOverviewPage()
         {
             Continue();
-            return new AP_ApplicationSubmittedPage(_context);
+            return new AP_ApplicationSubmittedPage(context);
         }
 
         public AP_ApplicationOverviewPage VerifyOrganisationDetailsSectionCompletedText()
@@ -73,7 +73,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_OSC01_AreYouSureYouWantToCancelThisStandardPage ClickToCancelYourStandardApplication()
         {
             formCompletionHelper.Click(CancelAStandardLink);
-            return new AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(_context);
+            return new AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(context);
         }
     }
 }

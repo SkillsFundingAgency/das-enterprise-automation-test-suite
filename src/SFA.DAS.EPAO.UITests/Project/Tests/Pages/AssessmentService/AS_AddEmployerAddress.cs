@@ -27,7 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             Continue();
-            return new AS_ConfirmAddressPage(_context);
+            return new AS_ConfirmAddressPage(context);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
             Continue();
-            return new OrganisationSearchResultsPage(_context);
+            return new OrganisationSearchResultsPage(context);
         }
     } 
 }

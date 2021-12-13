@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new StandardApplicationOverviewPage(_context);
+            return new StandardApplicationOverviewPage(context);
         }
     }
 }

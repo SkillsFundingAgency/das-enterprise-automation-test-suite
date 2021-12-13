@@ -24,13 +24,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             VerifyPage(StandardNameVerification, "ST0580 Brewer");
             formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-            return new AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage (_context);
+            return new AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage (context);
         }
 
         public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
         {
             formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-            return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(_context);
+            return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(context);
         }
 
         public AS_WithdrawalRequestOverviewPage VerifyAndReturnToApplicationOverviewPage()
@@ -40,7 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage(CommunicatingMarketExitCompletedVerification, "COMPLETED");
             VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
 
         public AS_WithdrawalRequestOverviewPage VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
@@ -51,7 +51,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
             VerifyPage(SupportingLearnersVerification, "COMPLETED");
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
     }
 }

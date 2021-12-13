@@ -25,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_EditUserPermissionsPage ClickEditUserPermissionLink()
         {
             formCompletionHelper.Click(EditUserPermissionLink);
-            return new AS_EditUserPermissionsPage(_context);
+            return new AS_EditUserPermissionsPage(context);
         }
 
         public bool IsViewDashboardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ViewDashboardPermission);
@@ -45,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_RemoveUserPage ClicRemoveThisUserLinkInUserDetailPage()
         {
             formCompletionHelper.Click(RemoveThisUserLink);
-            return new AS_RemoveUserPage(_context);
+            return new AS_RemoveUserPage(context);
         }
     }
 }

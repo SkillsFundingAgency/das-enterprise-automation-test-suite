@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
             formCompletionHelper.EnterText(TelephoneTextbox, ePAOApplyDataHelper.GetRandomNumber(10));
             Continue();
-            return new AP_OD5_UkprnPage(_context);
+            return new AP_OD5_UkprnPage(context);
         }
     }
 }

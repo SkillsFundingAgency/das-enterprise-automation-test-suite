@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.EnterText(MonthText, date.ToString("MM"));
             formCompletionHelper.EnterText(YearText, date.ToString("yyyy"));
             Continue();
-            return new AS_WithdrawalRequestQuestionsPage(_context);
+            return new AS_WithdrawalRequestQuestionsPage(context);
         }
     }
 }

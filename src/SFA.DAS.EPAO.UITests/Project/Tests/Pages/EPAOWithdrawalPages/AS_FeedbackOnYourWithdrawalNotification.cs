@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AS_WithdrawalRequestOverviewPage ClickContinueButton()
         {
             Continue();
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
     }
 }

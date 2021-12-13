@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_OrganisationDetailsPage ClickViewOrganisationDetailsLink()
         {
             formCompletionHelper.Click(ViewOrganisationDetailsLink);
-            return new AS_OrganisationDetailsPage(_context);
+            return new AS_OrganisationDetailsPage(context);
         }
     }
 }

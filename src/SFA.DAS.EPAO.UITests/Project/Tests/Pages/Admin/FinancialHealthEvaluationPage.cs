@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(FindInputElement(MonthLabel), duedate.Month.ToString());
             formCompletionHelper.EnterText(FindInputElement(YearLabel), duedate.Year.ToString());
             Continue();
-            return new EvaluationSubmittedPage(_context);
+            return new EvaluationSubmittedPage(context);
         }
 
         private IWebElement FindInputElement(By @by) => pageInteractionHelper.FindElement(@by).FindElement(ParentElement).FindElement(InputElement);

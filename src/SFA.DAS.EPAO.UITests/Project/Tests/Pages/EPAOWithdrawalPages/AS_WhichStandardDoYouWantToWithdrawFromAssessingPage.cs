@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
             Continue();
 
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
     }
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             tableRowHelper.SelectRowFromTable("Select", "Brewer (Level 4)");
 
-            return new AS_CheckWithdrawalRequestPage(_context);
+            return new AS_CheckWithdrawalRequestPage(context);
         }
     }
 }

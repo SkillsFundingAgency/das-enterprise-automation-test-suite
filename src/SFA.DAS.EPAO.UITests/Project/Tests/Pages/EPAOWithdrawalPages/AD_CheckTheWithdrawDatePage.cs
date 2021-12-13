@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(YesInput));
             Continue();
-            return new AD_CompleteReview(_context);
+            return new AD_CompleteReview(context);
         }
     }
 }

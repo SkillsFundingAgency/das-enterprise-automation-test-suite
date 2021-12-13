@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public SignedOutPage SignOut()
         {
             formCompletionHelper.ClickElement(SignOutLink);
-            return new SignedOutPage(_context);
+            return new SignedOutPage(context);
         }
 
         protected IWebElement GetData(string headerName)
@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         protected StaffDashboardPage ReturnToDashboard()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ReturnToDashboardlink));
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
 
     }

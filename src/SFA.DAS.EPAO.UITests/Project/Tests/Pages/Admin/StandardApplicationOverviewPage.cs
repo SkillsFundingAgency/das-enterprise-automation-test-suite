@@ -11,19 +11,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public ApplyToAssessAStandardPage GoToApplyToAssessAStandardPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate apply to assess a standard");
-            return new ApplyToAssessAStandardPage(_context);
+            return new ApplyToAssessAStandardPage(context);
         }
 
         public StandardApplicationsPage ReturnToOrganisationApplicationsPage()
         {
             formCompletionHelper.ClickLinkByText("Return to applications");
-            return new StandardApplicationsPage(_context);
+            return new StandardApplicationsPage(context);
         }
 
         public AssessmentSummaryPage CompleteReview()
         {
             Continue();
-            return new AssessmentSummaryPage(_context);
+            return new AssessmentSummaryPage(context);
         }
     }
 }

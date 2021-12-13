@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_VacancyReferencePage ClickSubmitForApprovalButton()
         {
             formCompletionHelper.ClickButtonByText("Submit for approval");
-            return new RAA_VacancyReferencePage(_context);
+            return new RAA_VacancyReferencePage(context);
         }
     }
 }

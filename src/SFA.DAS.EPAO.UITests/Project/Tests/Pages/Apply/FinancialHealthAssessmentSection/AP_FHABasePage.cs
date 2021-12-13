@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessme
         public AP_FHA_FinancialHealthPage ClickFHALinkInFHABasePage()
         {
             formCompletionHelper.Click(FHALink);
-            return new AP_FHA_FinancialHealthPage(_context);
+            return new AP_FHA_FinancialHealthPage(context);
         }
     }
 }

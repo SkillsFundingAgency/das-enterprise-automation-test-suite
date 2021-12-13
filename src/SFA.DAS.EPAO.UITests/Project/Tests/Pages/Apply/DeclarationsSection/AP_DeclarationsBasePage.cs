@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection
         public AP_DAD_1_AuthoriserDetailsPage ClickNameAndJobTitleLinkInDeclarationsBasePage()
         {
             formCompletionHelper.Click(NameAndJobTitleLink);
-            return new AP_DAD_1_AuthoriserDetailsPage(_context);
+            return new AP_DAD_1_AuthoriserDetailsPage(context);
         }
     }
 }

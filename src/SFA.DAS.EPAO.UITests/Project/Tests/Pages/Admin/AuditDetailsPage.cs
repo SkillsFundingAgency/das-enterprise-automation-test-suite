@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(ReasonToDeleteCertificate, "EAPO Entered incorrect details");
             formCompletionHelper.EnterText(IncidentNumberToDeleteCertificate, "INC-014589527");
             Continue();
-            return new CheckYourAnswersBeforeDeletingThisCertificatePage(_context);
+            return new CheckYourAnswersBeforeDeletingThisCertificatePage(context);
         }
     }
 }

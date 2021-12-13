@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_RecipientNamePage ClickContinueInConfirmEmployerAddressPage()
         {
             Continue();
-            return new AS_RecipientNamePage(_context);
+            return new AS_RecipientNamePage(context);
         }
     }
 }

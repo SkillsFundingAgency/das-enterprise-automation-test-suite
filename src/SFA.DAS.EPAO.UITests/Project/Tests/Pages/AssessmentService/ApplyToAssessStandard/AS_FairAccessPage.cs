@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_ConsistencyAssurancePage UploadFairAccess()
         {
             UploadFile();
-            return new AS_ConsistencyAssurancePage(_context);
+            return new AS_ConsistencyAssurancePage(context);
         }
 
     }

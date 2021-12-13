@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public BatchSearchResultsPage VerifyingBatchDetails()
         {
             VerifyPage(BatchDetailsHeader, "Batch details");
-            return new BatchSearchResultsPage(_context);
+            return new BatchSearchResultsPage(context);
         }
     }
 

@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public EditOrganisationPage EditOrganisation()
         {
             formCompletionHelper.ClickElement(EditOrganisationLink);
-            return new EditOrganisationPage(_context);
+            return new EditOrganisationPage(context);
         }
 
         public OrganisationDetailsPage VerifyOrganisationStatus(string status) => VerifyOrganisationDetails("Organisation status", status);
@@ -34,20 +34,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public AddContactPage AddNewContact()
         {
             formCompletionHelper.ClickElement(AddContactLink);
-            return new AddContactPage(_context);
+            return new AddContactPage(context);
         }
         
         public ContactDetailsPage SelectContact()
         {
             VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
             formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
-            return new ContactDetailsPage(_context);
+            return new ContactDetailsPage(context);
         }
         
         private OrganisationDetailsPage VerifyOrganisationDetails(string headerName, string value)
         {
             pageInteractionHelper.VerifyText(GetData(headerName).Text, value);
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
     }
 }

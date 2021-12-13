@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public FinancialHealthEvaluationPage GoToNewApplicationOverviewPage()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetApplyOrganisationName());
-            return new FinancialHealthEvaluationPage(_context);
+            return new FinancialHealthEvaluationPage(context);
         }
 
         public new StaffDashboardPage ReturnToDashboard() => base.ReturnToDashboard();

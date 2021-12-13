@@ -37,7 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             Continue();
-            return new AS_ConfirmContactAddressPage(_context);
+            return new AS_ConfirmContactAddressPage(context);
         }
     }
 
@@ -55,7 +55,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ContactAddressUpdatedPage ClickConfirmAddressButtonInConfirmContactAddressPage()
         {
             Continue();
-            return new AS_ContactAddressUpdatedPage(_context);
+            return new AS_ContactAddressUpdatedPage(context);
         }
     }
 

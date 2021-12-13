@@ -10,7 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
         {
             Continue();
-            return new AP_ApplicationOverviewPage(_context);
+            return new AP_ApplicationOverviewPage(context);
         }
     }
 }

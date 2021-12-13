@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         public AP_PR3_SelectOrganisationTypePage ClickOrgLinkFromSearchResultsForPage()
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, objectContext.GetApplyOrganisationName());
-            return new AP_PR3_SelectOrganisationTypePage(_context);
+            return new AP_PR3_SelectOrganisationTypePage(context);
         }
 
         public AP_PR2_SearchResultsForPage VerifyInvalidSearchResultText()

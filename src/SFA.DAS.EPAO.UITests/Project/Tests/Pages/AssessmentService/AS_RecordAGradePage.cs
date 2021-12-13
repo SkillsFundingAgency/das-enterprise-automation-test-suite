@@ -28,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {
             EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
-            return new AS_AssesmentAlreadyRecorded(_context);
+            return new AS_AssesmentAlreadyRecorded(context);
         }
 
         public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate)
@@ -40,7 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
             EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
 
-            return new AS_ConfirmApprenticePage(_context);
+            return new AS_ConfirmApprenticePage(context);
         }
 
         public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
@@ -73,7 +73,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.LastName);
             formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
             Continue();
-            return new AS_CannotFindApprenticePage(_context);
+            return new AS_CannotFindApprenticePage(context);
         }
     }
 }

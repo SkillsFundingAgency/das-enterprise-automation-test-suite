@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public CertificateDetailsPage SelectACertificate()
         {
             formCompletionHelper.ClickElement(ViewLearner);
-            return new CertificateDetailsPage(_context);
+            return new CertificateDetailsPage(context);
         }
     }
 }

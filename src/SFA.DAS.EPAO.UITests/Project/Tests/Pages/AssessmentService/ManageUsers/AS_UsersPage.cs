@@ -19,25 +19,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         public AS_UserDetailsPage ClickManageUserNameLink()
         {
             formCompletionHelper.Click(ManageUserNameLink);
-            return new AS_UserDetailsPage(_context);
+            return new AS_UserDetailsPage(context);
         }
 
         public AS_UserDetailsPage ClickPermissionsEditUserLink()
         {
             formCompletionHelper.Click(PermissionsEditUserLink);
-            return new AS_UserDetailsPage(_context);
+            return new AS_UserDetailsPage(context);
         }
 
         public AS_InviteUserPage ClickInviteNewUserButton()
         {
             formCompletionHelper.Click(InviteNewUSerButton);
-            return new AS_InviteUserPage(_context);
+            return new AS_InviteUserPage(context);
         }
 
         public AS_UserDetailsPage ClickOnNewlyAddedUserLink(string userEmail)
         {
             formCompletionHelper.Click(By.XPath($"//span[text()='{userEmail}']/..//a"));
-            return new AS_UserDetailsPage(_context);
+            return new AS_UserDetailsPage(context);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public StandardDetailsForAssociateProjectManagerPage ClickOnAssociateProjectManagerLink()
         {
             formCompletionHelper.ClickElement(AssociateProjectManagerLink);
-            return new StandardDetailsForAssociateProjectManagerPage(_context);
+            return new StandardDetailsForAssociateProjectManagerPage(context);
         }
     }
 }

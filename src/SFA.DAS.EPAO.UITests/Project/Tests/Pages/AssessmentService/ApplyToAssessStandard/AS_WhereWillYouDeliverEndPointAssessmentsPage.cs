@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         {
             ClickRandomElement(DeliveryAreas);
             Continue();
-            return new AS_ChooseDayPage(_context);
+            return new AS_ChooseDayPage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_PreventAgendaPolicyPage UploadSafeguardingPolicy()
         {
             UploadFile();
-            return new AS_PreventAgendaPolicyPage(_context);
+            return new AS_PreventAgendaPolicyPage(context);
         }
     }
 }

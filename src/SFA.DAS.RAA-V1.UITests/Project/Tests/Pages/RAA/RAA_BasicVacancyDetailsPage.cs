@@ -53,7 +53,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterTrainingDetailsPage ClickSaveAndContinueButton()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_EnterTrainingDetailsPage(_context);
+            return new RAA_EnterTrainingDetailsPage(context);
         }
 
         public RAA_BasicVacancyDetailsPage ApplicationMethod(string onlineoffline)

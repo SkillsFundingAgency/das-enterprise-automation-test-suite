@@ -83,13 +83,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterFurtherDetailsPage GotoFurtherDetailsPage()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_EnterFurtherDetailsPage(_context);
+            return new RAA_EnterFurtherDetailsPage(context);
         }
 
         public RAA_EnterOpportunityDetailsPage GotoOpportunityDetailsPage()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_EnterOpportunityDetailsPage(_context);
+            return new RAA_EnterOpportunityDetailsPage(context);
         }
     }
 }

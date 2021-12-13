@@ -13,7 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         protected OrganisationDetailsPage ReturnToOrganisationDetailsPage(Action action)
         {
             action();
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
     }
 }

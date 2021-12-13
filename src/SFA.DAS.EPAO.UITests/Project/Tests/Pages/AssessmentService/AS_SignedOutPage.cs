@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LandingPage ClickSignBackInLink()
         {
             formCompletionHelper.Click(SignBackInLink);
-            return new AS_LandingPage(_context);
+            return new AS_LandingPage(context);
         }
     }
 }

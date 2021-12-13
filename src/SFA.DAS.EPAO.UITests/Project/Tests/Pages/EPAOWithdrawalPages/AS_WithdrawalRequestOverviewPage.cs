@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage(StandardNameVerification, "ST0580 Brewer");
             VerifyPage(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
             formCompletionHelper.Click(StartStandardWithdrawalQuestions);
-            return new AS_WithdrawalRequestQuestionsPage(_context);
+            return new AS_WithdrawalRequestQuestionsPage(context);
         }
 
         public AS_WithdrawalRequestQuestionsPage ClickGoToRegisterWithdrawalQuestions()
@@ -32,13 +32,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             VerifyPage(PageCaptionXl, "Withdrawing from register");
             VerifyPage(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
             formCompletionHelper.Click(StartOrganisationWithdrawalQuestions);
-            return new AS_WithdrawalRequestQuestionsPage(_context);
+            return new AS_WithdrawalRequestQuestionsPage(context);
         }
 
         public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage ClickSupportingCurrentLearnersFeedback()
         {
             formCompletionHelper.Click(AmmedSupportingCurrentLearnersAnswer);
-            return new AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(_context);
+            return new AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(context);
         }
 
         public void AcceptAndSubmit()

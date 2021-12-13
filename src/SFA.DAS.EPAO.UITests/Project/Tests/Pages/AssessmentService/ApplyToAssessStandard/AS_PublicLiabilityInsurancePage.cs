@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_IndemnityInsurancePage UploadPublicLiabilityInsurance()
         {
             UploadFile();
-            return new AS_IndemnityInsurancePage(_context);
+            return new AS_IndemnityInsurancePage(context);
         }
     }
 }

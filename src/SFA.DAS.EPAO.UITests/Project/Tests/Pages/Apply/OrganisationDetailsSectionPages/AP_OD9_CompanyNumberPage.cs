@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             SelectRadioOptionByForAttribute("CD-17");
             formCompletionHelper.EnterText(CompanyNumberTextbox, ePAOApplyDataHelper.GetRandomNumber(8));
             Continue();
-            return new AP_OD10_DirectorDetailsPage(_context);
+            return new AP_OD10_DirectorDetailsPage(context);
         }
     }
 }

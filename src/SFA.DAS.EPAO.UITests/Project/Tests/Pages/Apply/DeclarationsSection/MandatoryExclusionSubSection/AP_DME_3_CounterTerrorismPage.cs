@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
         {
             SelectRadioOptionByForAttribute("M_DEL-11_1");
             Continue();
-            return new AP_DME_4_OtherCriminalConvictionsPage(_context);
+            return new AP_DME_4_OtherCriminalConvictionsPage(context);
         }
     }
 }

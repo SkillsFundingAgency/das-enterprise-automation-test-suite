@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_SafeguardingPolicyPage UploadEmployersLiabilityInsurance()
         {
             UploadFile();
-            return new AS_SafeguardingPolicyPage(_context);
+            return new AS_SafeguardingPolicyPage(context);
         }
     }
 }

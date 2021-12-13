@@ -18,14 +18,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         {
             formCompletionHelper.EnterText(SearchTextBox, objectContext.GetApplyOrganisationName());
             Continue();
-            return new AP_PR2_SearchResultsForPage(_context);
+            return new AP_PR2_SearchResultsForPage(context);
         }
 
         public AP_PR2_SearchResultsForPage EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(string searchTerm)
         {
             formCompletionHelper.EnterText(SearchTextBox, searchTerm);
             Continue();
-            return new AP_PR2_SearchResultsForPage(_context);
+            return new AP_PR2_SearchResultsForPage(context);
         }
     }
 }

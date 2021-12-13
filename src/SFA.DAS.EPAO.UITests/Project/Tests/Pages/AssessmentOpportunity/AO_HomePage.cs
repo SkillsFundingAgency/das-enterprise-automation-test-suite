@@ -35,7 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()
         {
             formCompletionHelper.Click(AbattoirWorkerApprovedStandardLink);
-            return new AO_ApprovedStandardDetailsPage(_context);
+            return new AO_ApprovedStandardDetailsPage(context);
         }
 
         public AO_HomePage ClickInDevelopmentTab()
@@ -47,7 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
         {
             formCompletionHelper.Click(JourneymanBookbinderInDevelopmentStandardLink);
-            return new AO_InDevelopmentStandardDetailsPage(_context);
+            return new AO_InDevelopmentStandardDetailsPage(context);
         }
 
         public AO_HomePage ClickInProposedTab()
@@ -59,7 +59,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
         {
             formCompletionHelper.Click(SurfaceFinisher);
-            return new AO_ProposedStandardDetailsPage(_context);
+            return new AO_ProposedStandardDetailsPage(context);
         }
     }
 }

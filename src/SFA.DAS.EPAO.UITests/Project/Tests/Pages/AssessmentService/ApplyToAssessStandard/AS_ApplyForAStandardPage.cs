@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         public AS_WhatStandardPage Start()
         {
             formCompletionHelper.ClickLinkByText("Start");
-            return new AS_WhatStandardPage(_context);
+            return new AS_WhatStandardPage(context);
         }
     }
 }
