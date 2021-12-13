@@ -9,6 +9,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Helpers and Context
         protected readonly ScenarioContext _context;
+        protected readonly ScenarioContext context;
         protected readonly string[] tags;
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
@@ -38,6 +39,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public BasePage(ScenarioContext context)
         {
             _context = context;
+            this.context = context;
             objectContext = context.Get<ObjectContext>();
             tags = context.ScenarioInfo.Tags;
             frameworkConfig = context.Get<FrameworkConfig>();
