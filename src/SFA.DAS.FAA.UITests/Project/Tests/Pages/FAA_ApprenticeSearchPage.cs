@@ -10,10 +10,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Find an apprenticeship";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SearchField => By.Id("SearchField");
         protected By KeyWord => By.Id("Keywords");
         private By Location => By.Id("Location");
@@ -28,7 +24,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
         private By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
 
-        public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context) { }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string locationPostCode, string searchCriteriaOrDistanceDropDownValue, string apprenticeshipLevel, string disabilityConfident)
         {

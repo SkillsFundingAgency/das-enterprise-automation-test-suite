@@ -6,13 +6,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class BaseVacancyTitlePage : RAAV2CSSBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Title => By.CssSelector("#Title");
 
-        public BaseVacancyTitlePage(ScenarioContext context) : base(context) => _context = context;
+        public BaseVacancyTitlePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {

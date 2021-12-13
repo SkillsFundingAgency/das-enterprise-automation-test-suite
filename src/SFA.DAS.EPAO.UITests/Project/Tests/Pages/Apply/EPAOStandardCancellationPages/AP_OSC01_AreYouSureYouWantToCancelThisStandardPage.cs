@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellationPages
 {
@@ -7,17 +6,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellatio
     {
         protected override string PageTitle => "Are you sure you want to cancel your application to assess this standard?";
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By ClickYesToCancelStandard => By.Id("AreYouSure");
         #endregion
 
-        public AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OSC02_YouHaveCancelledYourApplicationPage SelectYesToCancelStandardApplication()
         {

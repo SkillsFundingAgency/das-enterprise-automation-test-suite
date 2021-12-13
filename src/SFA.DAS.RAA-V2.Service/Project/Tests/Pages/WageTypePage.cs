@@ -8,15 +8,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "How much would you like to pay the apprentice?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
 
         private By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
 
-        public WageTypePage(ScenarioContext context) : base(context) => _context = context;
+        public WageTypePage(ScenarioContext context) : base(context) { }
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {

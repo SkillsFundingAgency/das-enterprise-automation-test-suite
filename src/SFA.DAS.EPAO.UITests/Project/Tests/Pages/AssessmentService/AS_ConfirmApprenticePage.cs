@@ -7,17 +7,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Confirm this is the correct apprentice";
         
-        private readonly ScenarioContext _context;
-
         protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='standard']");
 
         private By ViewCertificateHistorySelector => By.CssSelector(".govuk-details__summary-text");
 
-        public AS_ConfirmApprenticePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ConfirmApprenticePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {

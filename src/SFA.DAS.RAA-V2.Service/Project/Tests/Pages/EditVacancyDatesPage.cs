@@ -6,11 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? "Edit advert dates" : "Edit vacancy dates";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EditVacancyDatesPage(ScenarioContext context) : base(context) => _context = context;
+        public EditVacancyDatesPage(ScenarioContext context) : base(context) { }
 
         public EditVacancyPage EnterVacancyDates()
         {

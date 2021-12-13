@@ -6,15 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Declarations";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public NewOrgDeclarationsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public NewOrgDeclarationsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrganisationApplicationOverviewPage SelectYesAndContinue()
         {

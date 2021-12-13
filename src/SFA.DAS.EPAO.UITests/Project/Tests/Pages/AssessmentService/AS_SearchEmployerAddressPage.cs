@@ -7,7 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Search for the address that you’d like us to send the certificate to";
         protected override By PageHeader => By.CssSelector(".js-search-address-heading");
-        private readonly ScenarioContext _context;
+        
 
         #region Locators
         private By AddressSearchTextBox => By.Id("postcode-search");
@@ -16,11 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By EnterAddressManuallyLink => By.Id("enterAddressManually");
         #endregion
 
-        public AS_SearchEmployerAddressPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_SearchEmployerAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ConfirmAddressPage ClickContinueInSearchEmployerAddressPage()
         {

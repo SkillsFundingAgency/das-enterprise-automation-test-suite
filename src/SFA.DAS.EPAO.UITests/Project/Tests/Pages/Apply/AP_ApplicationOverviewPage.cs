@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         private string _organisationDetailsSectionCompletedText => "13 of 13 questions completed";
         private string _declarationsSectionCompletedText => "20 of 20 questions completed";
         private string _fHASectionCompletedText => "1 of 1 questions completed";
-        private readonly ScenarioContext _context;
+        
 
         #region Locators
         private By GoToOrganisationDetailsLink => By.LinkText("Go to organisation details");
@@ -24,11 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         private By CancelAStandardLink => By.XPath("(//p[@class='govuk-body'])[4]");
         #endregion
 
-        public AP_ApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_ApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OrganisationDetailsBasePage ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
         {

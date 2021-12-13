@@ -7,17 +7,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Withdrawal application overview";
-
-        private readonly ScenarioContext _context;
-
         private By CompleteReviewButton => By.CssSelector("button.govuk-button");
         private By Tag => By.CssSelector("div.govuk-tag");
 
-        public AD_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_WithdrawalRequestQuestionsPage GoToWithdrawalRequestQuestionsPage()
         {

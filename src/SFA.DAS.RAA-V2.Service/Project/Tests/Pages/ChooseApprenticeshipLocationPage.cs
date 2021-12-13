@@ -7,15 +7,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Where will the apprentice work?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AddressLine1 => By.Id("AddressLine1");
         
         private By MenuItems => By.CssSelector(".ui-menu-item");
 
-        public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context) => _context = context;
+        public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context) { }
 
         public ImportantDatesPage ChooseAddress(bool isEmployerAddress)
         {

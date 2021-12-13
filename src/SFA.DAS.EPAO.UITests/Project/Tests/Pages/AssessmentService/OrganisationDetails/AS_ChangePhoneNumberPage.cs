@@ -6,17 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ChangePhoneNumberPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change phone number";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By PhoneNumberTextBox => By.CssSelector(".govuk-input");
         #endregion
 
-        public AS_ChangePhoneNumberPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangePhoneNumberPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ConfirmPhoneNumberPage EnterRandomPhoneNumberAndClickUpdate()
         {
@@ -29,11 +24,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ConfirmPhoneNumberPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm phone number";
-        private readonly ScenarioContext _context;
+        
 
         public AS_ConfirmPhoneNumberPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             VerifyPage();
         }
 

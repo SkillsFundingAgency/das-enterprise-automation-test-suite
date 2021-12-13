@@ -9,8 +9,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         protected override string PageTitle => "";
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
-        private readonly ScenarioContext _context;
-        public AEDIndexPage(ScenarioContext context) : base(context) => _context = context;
+        public AEDIndexPage(ScenarioContext context) : base(context)  { }
 
         #region Locators
         private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");

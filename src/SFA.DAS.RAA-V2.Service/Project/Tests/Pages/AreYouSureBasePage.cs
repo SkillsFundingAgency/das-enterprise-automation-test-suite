@@ -7,9 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        private readonly ScenarioContext _context;
-
-        public AreYouSureBasePage(ScenarioContext context) : base(context) => _context = context;
+        public AreYouSureBasePage(ScenarioContext context) : base(context) { }
 
         public VacancyReferencePage SelectYes()
         {

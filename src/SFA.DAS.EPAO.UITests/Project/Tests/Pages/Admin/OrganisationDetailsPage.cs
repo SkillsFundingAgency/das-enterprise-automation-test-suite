@@ -11,10 +11,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By EditOrganisationLink => By.CssSelector("[href*='edit-organisation']");
 
         private By ContactEmail => By.CssSelector(".govuk-table__cell[data-label='Email']");
@@ -25,11 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By StandardPagination => By.CssSelector("#PaginationViewModel_ItemsPerPage");
 
-        public OrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EditOrganisationPage EditOrganisation()
         {

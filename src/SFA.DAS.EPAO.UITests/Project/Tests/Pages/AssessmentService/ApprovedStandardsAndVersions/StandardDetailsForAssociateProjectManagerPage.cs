@@ -7,17 +7,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Associate project manager";
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By AssociateProjectManagerOptInLinkForVersion1_1 => By.LinkText("Opt into standard version");
         #endregion
 
-        public StandardDetailsForAssociateProjectManagerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public StandardDetailsForAssociateProjectManagerPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmOptInForAssociateProjectManagerPage ClickOnAssociateProjectManagerOptInLinkForVersion1_1()
         {

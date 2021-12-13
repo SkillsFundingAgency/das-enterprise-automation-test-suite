@@ -6,8 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Withdrawal request overview";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By StandardNameVerification => By.XPath("//*[contains(text(),'ST0580 Brewer')]");
         private By InitialQuestionsCompletedVerification => By.XPath("//*[contains(text(),'0 of 4 questions completed')]");
@@ -18,11 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
       
         private By AmmedSupportingCurrentLearnersAnswer => By.XPath("//strong/../span/a[contains(text(), 'Supporting current learners')]");
         #endregion
-        public AS_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WithdrawalRequestQuestionsPage ClickGoToStandardWithdrawalQuestions()
         {

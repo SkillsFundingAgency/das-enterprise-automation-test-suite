@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "How do you recruit and train assessors?";
 
-        private readonly ScenarioContext _context;
-
-        public AS_HowRecruitAndTrainAssessorsPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_HowRecruitAndTrainAssessorsPage(ScenarioContext context) : base(context) { }
 
         public AS_ExperiencePage EnterHowRecruitAndTrainAssessors()
         {

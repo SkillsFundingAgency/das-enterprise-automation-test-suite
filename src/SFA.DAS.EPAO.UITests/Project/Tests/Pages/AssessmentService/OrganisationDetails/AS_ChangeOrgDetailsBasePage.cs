@@ -5,14 +5,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 {
     public abstract class AS_ChangeOrgDetailsBasePage : EPAO_BasePage
     {
-        private readonly ScenarioContext _context;
-
         private By ViewOrganisationDetailsLink => By.LinkText("View organisation details");
 
-        public AS_ChangeOrgDetailsBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public AS_ChangeOrgDetailsBasePage(ScenarioContext context) : base(context) { }
 
         public AS_OrganisationDetailsPage ClickViewOrganisationDetailsLink()
         {

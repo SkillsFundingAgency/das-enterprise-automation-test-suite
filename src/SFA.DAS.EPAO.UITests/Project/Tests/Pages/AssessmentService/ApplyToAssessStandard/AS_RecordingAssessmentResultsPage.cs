@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Recording assessment results";
 
-        private readonly ScenarioContext _context;
-
-        public AS_RecordingAssessmentResultsPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_RecordingAssessmentResultsPage(ScenarioContext context) : base(context) { }
 
         public AS_EnterYourWebAddressPage EnterAssessmentResutls()
         {

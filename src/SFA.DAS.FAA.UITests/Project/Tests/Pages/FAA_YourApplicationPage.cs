@@ -7,13 +7,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your application";
          
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Status => By.CssSelector(".inl-block");
 
-        public FAA_YourApplicationPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_YourApplicationPage(ScenarioContext context) : base(context) { }
 
         public FAA_WithDrawConfirmationPage Withdraw()
         {

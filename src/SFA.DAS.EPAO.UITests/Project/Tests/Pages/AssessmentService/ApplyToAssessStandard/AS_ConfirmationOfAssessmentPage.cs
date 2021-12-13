@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Collation and confirmation of assessment outcomes";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ConfirmationOfAssessmentPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ConfirmationOfAssessmentPage(ScenarioContext context) : base(context) { } 
 
         public AS_RecordingAssessmentResultsPage EnterCollationOutcome()
         {

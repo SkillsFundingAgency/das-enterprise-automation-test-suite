@@ -6,18 +6,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class ApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
         protected override string PageTitle => "What training will the apprentice take?";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
         private By CancelLink => By.LinkText("Cancel");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
-        public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {

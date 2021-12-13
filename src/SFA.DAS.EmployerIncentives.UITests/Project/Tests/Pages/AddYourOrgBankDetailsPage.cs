@@ -8,11 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Add {ObjectContextExtension.GetOrganisationName(objectContext)}'s organisation and finance details";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) { }
 
         public VRFIntroductionTabPage ContinueToVRFIntroductionTab1Page()
         {

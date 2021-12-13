@@ -9,7 +9,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_LoggedInHomePage : EPAO_BasePage
     {
         protected override string PageTitle => ""; //There is NO Title on this page
-        private readonly ScenarioContext _context;
+
         #region Locators
         private By RecordAGradeLink => By.Id("Record a grade");
         private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By ApprovedStandardsAndVersions => By.CssSelector("a[href='/OrganisationStandards']");
         #endregion
 
-        public AS_LoggedInHomePage(ScenarioContext context) : base(context) => _context = context;
+        public AS_LoggedInHomePage(ScenarioContext context) : base(context) { }
 
         public AS_ApplyToAssessStandardPage ApplyToAssessStandard()
         {

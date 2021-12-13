@@ -9,11 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {

@@ -7,7 +7,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_YourWithdrawalRequestsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Your withdrawal requests";
-        private readonly ScenarioContext _context;
         
         #region Locators
         private By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal request')]");
@@ -15,11 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By ViewRegisterWithdrawalFeedbackLink => By.XPath("//tr/td[contains(text(),'Register')]/../td[contains(text(), 'Not applicable')]/../td[contains(text(),'Feedback added')]/../td/a");
         #endregion
 
-        public AS_YourWithdrawalRequestsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_YourWithdrawalRequestsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WhatAreYouWithdrawingFromPage ClickStartNewWithdrawalNotification()
         {

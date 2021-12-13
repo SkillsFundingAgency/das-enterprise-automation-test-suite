@@ -14,15 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DeleteVacancyQuestionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(SubHeader, SubTitle);
-        }
+        public DeleteVacancyQuestionPage(ScenarioContext context) : base(context) => VerifyPage(SubHeader, SubTitle);
 
         public EmployerVacancySearchResultPage YesDeleteVacancy()
         {

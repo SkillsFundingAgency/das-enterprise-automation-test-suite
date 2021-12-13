@@ -8,21 +8,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "Withdrawal applications";
 
-        private readonly ScenarioContext _context;
-
         private readonly string NewTableSelector = "#new-organisation-applications > table:first-of-type";
         private readonly string FeedbackTableSelector = "#feedback-organisation-applications > table:first-of-type";
         private readonly string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
+
         private By NewTab => By.Id("tab_new");
         private By InProgressTab => By.Id("tab_in-progress");
         private By FeedbackTab => By.Id("tab_feedback");
         private By ApprovedTab => By.Id("tab_approved");
 
-        public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_WithdrawalRequestOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {

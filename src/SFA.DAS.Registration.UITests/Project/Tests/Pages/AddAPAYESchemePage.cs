@@ -6,7 +6,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class AddAPAYESchemePage : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE Scheme";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
@@ -15,30 +14,26 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
         #endregion
 
-        public AddAPAYESchemePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AddAPAYESchemePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public UsingYourGovtGatewayDetailsPage AddPaye()
         {
-            SelectAddPaye().
-                Continue();
+            SelectAddPaye().Continue();
+
             return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         public EnterYourPAYESchemeDetailsPage AddAORN()
         {
-            SelectAORN().
-                Continue();
+            SelectAORN().Continue();
+
             return new EnterYourPAYESchemeDetailsPage(_context);
         }
 
         public MyAccountWithOutPayePage DoNotAddPaye()
         {
-            SelectDoNotAddPaye().
-                Continue();
+            SelectDoNotAddPaye().Continue();
+
             return new MyAccountWithOutPayePage(_context);
         }
 

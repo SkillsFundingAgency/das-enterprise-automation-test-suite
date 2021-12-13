@@ -17,9 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By RejectedReason => By.CssSelector("textarea#RejectedReason");
 
-        private readonly ScenarioContext _context;
-
-        public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) => _context = context;
+        public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) { }
      
         public AreYouSureYouWantToSubmitPage SubmitAdvert()
         {

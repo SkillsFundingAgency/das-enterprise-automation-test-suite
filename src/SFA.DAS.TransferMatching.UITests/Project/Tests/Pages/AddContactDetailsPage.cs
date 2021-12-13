@@ -7,8 +7,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add contact details";
 
-        private readonly ScenarioContext _context;
-
         private By FirstNameSelector => By.CssSelector("#FirstName");
         private By LastNameSelector => By.CssSelector("#LastName");
         private By EmailAddressSelector => By.CssSelector("#EmailAddress");
@@ -16,11 +14,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#application-contact-details");
 
-        public AddContactDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public AddContactDetailsPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage EnterContactDetailsAndContinue()
-        {
-            
+        {   
             formCompletionHelper.EnterText(FirstNameSelector, datahelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameSelector, datahelper.ApprenticeLastname);
             formCompletionHelper.EnterText(EmailAddressSelector, datahelper.ApprenticeEmail);

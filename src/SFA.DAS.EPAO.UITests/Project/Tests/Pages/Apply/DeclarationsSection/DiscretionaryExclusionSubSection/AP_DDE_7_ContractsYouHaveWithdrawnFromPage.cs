@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
     public class AP_DDE_7_ContractsYouHaveWithdrawnFromPage : EPAO_BasePage
     {
         protected override string PageTitle => "Contracts you have withdrawn from";
-        private readonly ScenarioContext _context;
-
-        public AP_DDE_7_ContractsYouHaveWithdrawnFromPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AP_DDE_7_ContractsYouHaveWithdrawnFromPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_DDE_8_OrganisationRemovalFromRegistersPage SelectNoOptionAndContinueInContractsYouHaveWithdrawnFromPage()
         {

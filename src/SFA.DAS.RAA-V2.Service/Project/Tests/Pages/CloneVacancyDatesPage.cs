@@ -10,11 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public CloneVacancyDatesPage(ScenarioContext context) : base(context) => _context = context;
+        public CloneVacancyDatesPage(ScenarioContext context) : base(context) { }
 
         public ConfimCloneVacancyDatePage SelectYes()
         {

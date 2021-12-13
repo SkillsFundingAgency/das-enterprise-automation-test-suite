@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Information commissioner's office (ICO) registration number";
 
-        private readonly ScenarioContext _context;
-
-        public AS_InformationCommissionerPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_InformationCommissionerPage(ScenarioContext context) : base(context) { }
 
         public AS_InternalAuditPage EnterRegNumber()
         {

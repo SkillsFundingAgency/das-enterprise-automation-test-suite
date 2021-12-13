@@ -8,10 +8,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
 
-        #region Helpers and Context        
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
         private By FindTraineeshipLink => By.Id("find-traineeship-link");
@@ -34,7 +30,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
 
-        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context) { }
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {

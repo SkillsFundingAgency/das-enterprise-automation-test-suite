@@ -8,13 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "Check withdrawal request";
 
-        private readonly ScenarioContext _context;
-
-        public AS_CheckWithdrawalRequestPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_CheckWithdrawalRequestPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WithdrawalRequestOverviewPage ContinueWithWithdrawalRequest()
         {
@@ -30,13 +24,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_WhichStandardDoYouWantToWithdrawFromAssessingPage : EPAO_BasePage
     {
         protected override string PageTitle => "Which standard do you want to withdraw from assessing?";
-        private readonly ScenarioContext _context;
 
-        public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_CheckWithdrawalRequestPage ClickASpecificStandardToWithdraw()
         {

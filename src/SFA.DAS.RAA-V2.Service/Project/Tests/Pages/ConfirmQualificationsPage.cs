@@ -1,5 +1,4 @@
-﻿
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -10,11 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By Preview => By.PartialLinkText("Preview");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConfirmQualificationsPage(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 
         public VacancyPreviewPart2Page ConfirmQualifications()
         {

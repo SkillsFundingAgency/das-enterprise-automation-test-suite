@@ -9,10 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Question Links
         private static string OrganisationName => "Your organisation's name";
 
@@ -28,8 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private static string Review => "Review and submit answers";
         #endregion
 
-
-        public ReportYourProgressPage(ScenarioContext context) : base(context) => _context = context;
+        public ReportYourProgressPage(ScenarioContext context) : base(context) { }
 
         public YourOrganisationNamePage GoToYourOrganisationNamePage()
         {

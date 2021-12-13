@@ -7,11 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Standard applications";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public StandardApplicationsPage(ScenarioContext context) : base(context) => _context = context;
+        public StandardApplicationsPage(ScenarioContext context) : base(context) { }
 
         public StandardApplicationOverviewPage GoToNewStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(NewTab);
 

@@ -1,16 +1,11 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 {
     public abstract class FATBasePage : VerifyBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
         #region Locators
         protected override By BackLink => By.CssSelector("a.link-back");
@@ -19,7 +14,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected virtual By FirstResultLink => By.CssSelector("h2.result-title a");
         #endregion
 
-        protected FATBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected FATBasePage(ScenarioContext context) : base(context) { }
 
         public void SearchApprenticeship(string searchTerm)
         {

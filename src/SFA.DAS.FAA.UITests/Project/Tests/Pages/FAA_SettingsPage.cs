@@ -18,11 +18,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ChangeEmailIdLink => By.Id("settings-change-username");
         private By UpdateDetailsButton => By.Id("update-details-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-    
-        public FAA_SettingsPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_SettingsPage(ScenarioContext context) : base(context) { }
 
         public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faaDataHelper.SuccessfulPhoneVerificationText);
 

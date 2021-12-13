@@ -6,13 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     {
         protected override string PageTitle => "Organisation details";
 
-        private readonly ScenarioContext _context;
-
-        public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_OrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
@@ -51,13 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     {
         protected override string PageTitle => "Change organisation details";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ChangeOrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangeOrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_OrganisationDetailsPage ClickAccessButton()
         {

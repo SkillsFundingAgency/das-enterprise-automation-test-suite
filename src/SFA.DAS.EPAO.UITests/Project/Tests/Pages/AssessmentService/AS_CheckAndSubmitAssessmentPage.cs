@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_CheckAndSubmitAssessmentPage : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Check and submit the assessment details";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By GradeChangeLink => By.XPath("//a[@href='/certificate/grade?redirecttocheck=true']");
@@ -18,11 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By AddressChangeLink => By.XPath("//dt[contains(text(), 'Address')]/../dd/a");
         #endregion
 
-        public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_AssessmentRecordedPage ClickContinueInCheckAndSubmitAssessmentPage()
         {

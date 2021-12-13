@@ -7,8 +7,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
     {
         protected override string PageTitle => "";
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        private readonly ScenarioContext _context;
-        public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context) => _context = context;
+
+        public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context)  { }
 
         #region Locators
         private By FirstEmployerCheckbox => By.ClassName("govuk-checkboxes__input");

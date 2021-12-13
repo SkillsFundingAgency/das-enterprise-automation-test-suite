@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
     public class AP_DDE_2_BankruptcyAndInsolvencyPage : EPAO_BasePage
     {
         protected override string PageTitle => "Bankruptcy and insolvency";
-        private readonly ScenarioContext _context;
 
-        public AP_DDE_2_BankruptcyAndInsolvencyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_DDE_2_BankruptcyAndInsolvencyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_DDE_3_CessationOfTradingPage SelectNoOptionAndContinueInBankruptcyAndInsolvencyPage()
         {

@@ -7,11 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Organisation applications";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OrganisationApplicationsPage(ScenarioContext context) : base(context) => _context = context;
+        public OrganisationApplicationsPage(ScenarioContext context) : base(context) { }
 
         public OrganisationApplicationOverviewPage GoToNewOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(NewTab);
 

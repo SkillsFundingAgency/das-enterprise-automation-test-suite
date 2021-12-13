@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
     public class AP_DDE_11_PublicbodyFundsAndContractsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Public body funds and contracts";
-        private readonly ScenarioContext _context;
-
-        public AP_DDE_11_PublicbodyFundsAndContractsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AP_DDE_11_PublicbodyFundsAndContractsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_DDE_12_LegalDisputePage SelectNoOptionAndContinueInPublicbodyFundsAndContractsPage()
         {

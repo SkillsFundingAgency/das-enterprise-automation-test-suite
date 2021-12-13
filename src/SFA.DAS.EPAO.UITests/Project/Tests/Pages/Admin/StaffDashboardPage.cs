@@ -8,10 +8,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Staff dashboard";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NewOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#new']");
         private By InProgressOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#in-progress']");
         private By ApprovedOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#approved']");
@@ -34,11 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By Financial => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By Applications => By.CssSelector("a.govuk-link[href='/Applications/Midpoint']");
 
-        public StaffDashboardPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public StaffDashboardPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchPage Search()
         {

@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Application overview";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ApplicationOverviewPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ApplicationOverviewPage(ScenarioContext context) : base(context) { }
 
         public AS_ApplyToStandardPage GoToApplyToStandard()
         {

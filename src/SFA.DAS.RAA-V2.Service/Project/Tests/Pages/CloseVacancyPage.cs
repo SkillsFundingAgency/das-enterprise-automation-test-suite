@@ -12,10 +12,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        public CloseVacancyPage(ScenarioContext context) : base(context) => _context = context;
+        public CloseVacancyPage(ScenarioContext context) : base(context) { }
 
         public ManageCloseVacancyPage YesCloseThisVacancy()
         {

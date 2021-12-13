@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD8_TradingStatusPage : EPAO_BasePage
     {
         protected override string PageTitle => "What's your trading status?";
-        private readonly ScenarioContext _context;
 
-        public AP_OD8_TradingStatusPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_OD8_TradingStatusPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OD9_CompanyNumberPage SelectPubliLimitedCompanyOptionAndContinueInTradingStatusPage()
         {

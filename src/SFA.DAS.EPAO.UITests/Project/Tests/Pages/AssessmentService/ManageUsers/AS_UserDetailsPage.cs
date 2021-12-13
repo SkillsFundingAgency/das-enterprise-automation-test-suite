@@ -7,8 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
     {
         protected override string PageTitle => "User details";
         protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By EditUserPermissionLink => By.LinkText("Edit user permissions");
         private By ViewDashboardPermission => By.XPath("//li[contains(text(),'View dashboard')]");
@@ -21,11 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         private By RemoveThisUserLink => By.LinkText("Remove this user");
         #endregion
 
-        public AS_UserDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_UserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_EditUserPermissionsPage ClickEditUserPermissionLink()
         {

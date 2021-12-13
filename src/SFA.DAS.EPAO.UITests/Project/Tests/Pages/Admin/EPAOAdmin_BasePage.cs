@@ -7,17 +7,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SignOutLink => By.CssSelector(".govuk-link[href*='SignOut']");
         private By TRows => By.CssSelector(".govuk-summary-list__row");
         private By THeader => By.CssSelector(".govuk-summary-list__key");
         private By TData => By.CssSelector(".govuk-summary-list__value");
         private By ReturnToDashboardlink => By.CssSelector("a[href='/Dashboard']");
 
-        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) => _context = context;
+        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
 
         public SignedOutPage SignOut()
         {

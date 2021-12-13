@@ -22,13 +22,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By SaveButton => By.CssSelector("#save");
 
-        private readonly ScenarioContext _context;
-
-        public AddApprenticeshipsToEstimateCostPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AddApprenticeshipsToEstimateCostPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EstimatedCostsPage Add()
         {

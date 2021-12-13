@@ -7,15 +7,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Choose the option for";
 
-        private readonly ScenarioContext _context;
-
         protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='options']");
 
-        public AS_WhichLearningOptionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WhichLearningOptionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_DeclarationPage SelectLearningOptionAndContinue()
         {

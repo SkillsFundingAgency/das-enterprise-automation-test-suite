@@ -9,11 +9,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
-        private readonly ScenarioContext _context;
-
         protected By DeliveryAreas => By.CssSelector(".govuk-checkboxes__input");
 
-        public AS_WhereWillYouDeliverEndPointAssessmentsPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_WhereWillYouDeliverEndPointAssessmentsPage(ScenarioContext context) : base(context) { }
 
         public AS_ChooseDayPage ChooseLocation()
         {

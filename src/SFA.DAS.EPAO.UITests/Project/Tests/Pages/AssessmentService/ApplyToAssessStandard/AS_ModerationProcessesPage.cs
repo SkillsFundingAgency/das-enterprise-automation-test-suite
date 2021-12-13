@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Moderation processes";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ModerationProcessesPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ModerationProcessesPage(ScenarioContext context) : base(context) { }
 
         public AS_ComplaintsAndAppealsPolicyPage UploadModerationProcesses()
         {

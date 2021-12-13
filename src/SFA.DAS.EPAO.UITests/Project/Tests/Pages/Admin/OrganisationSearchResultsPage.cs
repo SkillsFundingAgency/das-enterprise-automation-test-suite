@@ -7,19 +7,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Organisation search results";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Id => By.CssSelector("[data-label='ID']");
 
         private By ViewOrg(string text) => By.CssSelector($".govuk-link[href*='{text}']");
 
-        public OrganisationSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrganisationDetailsPage SelectAnOrganisation()
         {

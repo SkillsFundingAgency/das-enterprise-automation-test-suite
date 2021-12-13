@@ -6,17 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ChangeWebsitePage : EPAO_BasePage
     {
         protected override string PageTitle => "Change website address";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By WebsiteAddressTextBox => By.Id("WebsiteLink");
         #endregion
 
-        public AS_ChangeWebsitePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangeWebsitePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ConfirmWebsiteAddressPage EnterRandomWebsiteAddressAndClickUpdate()
         {
@@ -29,13 +24,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ConfirmWebsiteAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm website address";
-        private readonly ScenarioContext _context;
-
-        public AS_ConfirmWebsiteAddressPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AS_ConfirmWebsiteAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WebsiteAddressUpdatedPage ClickConfirmButtonInConfirmWebsiteAddressPage()
         {

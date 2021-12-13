@@ -9,17 +9,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By BatchDetailsHeader => By.CssSelector(".govuk-heading-l");
 
-        public BatchSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public BatchSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public BatchSearchResultsPage VerifyingBatchDetails()
         {

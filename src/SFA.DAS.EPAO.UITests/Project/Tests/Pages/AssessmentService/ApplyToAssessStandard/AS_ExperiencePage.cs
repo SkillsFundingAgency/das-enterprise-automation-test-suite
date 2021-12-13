@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "What experience, skills and qualifications will your assessors have?";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ExperiencePage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ExperiencePage(ScenarioContext context) : base(context) { }
 
         public AS_OccupationalExpertisePage EnterExperience()
         {

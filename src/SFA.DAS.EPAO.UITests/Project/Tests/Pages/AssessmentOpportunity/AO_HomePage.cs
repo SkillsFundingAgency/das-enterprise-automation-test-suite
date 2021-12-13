@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
     public class AO_HomePage : EPAO_BasePage
     {
         protected override string PageTitle => "Find an assessment opportunity";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By ApprovedTab => By.Id("tab_approved");
@@ -20,15 +19,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_HomePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             VerifyPage();
             AcceptCookies();
         }
 
         public void VerifyApprovedTab()
         {
-            VerifyPage(ApprovedTab);
-            VerifyPage(TabHeader, "Approved Standards");
+            MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
+            {
+                () => VerifyPage(ApprovedTab),
+                () => VerifyPage(TabHeader, "Approved Standards")
+            });
         }
 
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()

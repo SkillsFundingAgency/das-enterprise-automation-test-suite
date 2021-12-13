@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD13_RegisterOfRemovedTrusteesPage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Register of removed trustees";
-        private readonly ScenarioContext _context;
-
-        public AP_OD13_RegisterOfRemovedTrusteesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AP_OD13_RegisterOfRemovedTrusteesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OrganisationDetailsBasePage SelectNoOptionAndContinueInRegisterOfRemovedTrusteesPage()
         {

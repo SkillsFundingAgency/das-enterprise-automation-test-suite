@@ -9,13 +9,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected override By PageHeader => By.CssSelector(".govuk-label--xl");
 
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         private By StandardName => By.CssSelector("#standard-name");
 
-        public AS_WhatStandardPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_WhatStandardPage(ScenarioContext context) : base(context) { }
 
         public AS_StandardSearchResultsPage EnterStandardName()
         {

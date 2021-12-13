@@ -6,13 +6,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
     public class AP_DME_4_OtherCriminalConvictionsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Other criminal convictions";
-        private readonly ScenarioContext _context;
-
-        public AP_DME_4_OtherCriminalConvictionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AP_DME_4_OtherCriminalConvictionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_DDE_1_TaxAndSocialSecurityIrregularitiesPage SelectNoOptionAndContinueInOtherCriminalConvictionsPage()
         {

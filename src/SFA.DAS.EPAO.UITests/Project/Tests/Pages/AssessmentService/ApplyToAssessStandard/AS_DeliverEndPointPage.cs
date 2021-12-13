@@ -6,9 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "How will you deliver an end-point assessment for this standard?";
 
-        private readonly ScenarioContext _context;
-
-        public AS_DeliverEndPointPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_DeliverEndPointPage(ScenarioContext context) : base(context) { }
 
         public AS_IntendToOutsourcePage EnterDeliverEndPoint()
         {

@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Was your organisation's total annual turnover over £75 million for the latest reported financial year?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public AnnualTurnoverPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AnnualTurnoverPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FundingFromEsfaPage SelectYesOnAnnualTurnOverAndContinue()
         {

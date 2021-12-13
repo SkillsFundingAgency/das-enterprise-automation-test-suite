@@ -9,15 +9,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
 
-        private readonly ScenarioContext _context;
-
         private By YesInput => By.CssSelector("#dateApproved-yes");
 
-        public AD_CheckTheWithdrawDatePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_CheckTheWithdrawDatePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_CompleteReview ContinueWithWithdrawalRequest()
         {

@@ -5,13 +5,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD11_DirectorsDataPage : EPAO_BasePage
     {
         protected override string PageTitle => "Directors data";
-        private readonly ScenarioContext _context;
-
-        public AP_OD11_DirectorsDataPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AP_OD11_DirectorsDataPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OD_12_RegisteredCharityPage SelectNoOptionAndContinueInDirectorsDataPage()
         {

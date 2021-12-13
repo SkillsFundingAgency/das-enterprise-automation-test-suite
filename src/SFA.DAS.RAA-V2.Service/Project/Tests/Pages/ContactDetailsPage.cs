@@ -9,10 +9,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Add contact information";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
         protected By EmployerContactPhone => By.CssSelector("#EmployerContactPhone");
@@ -21,7 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected By ProviderContactEmail => By.CssSelector("#ProviderContactEmail");
         protected By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
 
-        public ContactDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
         public VacancyPreviewPart2Page EnterContactDetails()
         {

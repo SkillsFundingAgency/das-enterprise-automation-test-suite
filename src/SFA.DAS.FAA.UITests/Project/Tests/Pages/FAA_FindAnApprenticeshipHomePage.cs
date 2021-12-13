@@ -6,11 +6,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Find an apprenticeship";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FAA_FindAnApprenticeshipHomePage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_FindAnApprenticeshipHomePage(ScenarioContext context) : base(context) { }
 
         public FAA_MyApplicationsHomePage MyApplications()
         {

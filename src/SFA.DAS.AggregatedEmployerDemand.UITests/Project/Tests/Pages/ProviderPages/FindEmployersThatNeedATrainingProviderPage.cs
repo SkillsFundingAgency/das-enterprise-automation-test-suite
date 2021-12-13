@@ -6,8 +6,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
     public class FindEmployersThatNeedATrainingProviderPage : AEDBasePage
     {
         protected override string PageTitle => "Find employers that need a training provider";
-        private readonly ScenarioContext _context;
-        public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
+
+        public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context)  { }
 
         private By FindEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
 

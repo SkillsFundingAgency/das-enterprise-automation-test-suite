@@ -12,11 +12,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected By VacancyActionSelector => By.CssSelector(".dashboard-action");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public VacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
+        public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 
         public void VerifyAdvertStatus(string expected)
         {

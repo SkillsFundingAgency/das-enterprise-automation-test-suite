@@ -6,7 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
     public class AS_UsersPage : EPAO_BasePage
     {
         protected override string PageTitle => "Users";
-        private readonly ScenarioContext _context;
+        
 
         #region Locators
         private By ManageUserNameLink => By.LinkText("Mr Preprod Epao0007");
@@ -14,11 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         private By InviteNewUSerButton => By.LinkText("Invite new user");
         #endregion
 
-        public AS_UsersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_UsersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_UserDetailsPage ClickManageUserNameLink()
         {

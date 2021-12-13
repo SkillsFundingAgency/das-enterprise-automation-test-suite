@@ -7,7 +7,6 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Get help with finding a training provider";
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By NumberOfApprenticesTextBox => By.Id("NumberOfApprentices");
@@ -16,7 +15,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         private By OrganisationEmailAddressTextBox => By.Id("ContactEmailAddress");
         #endregion
 
-        public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
+        public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context)  { }
 
         public GetHelpWithFindingATrainingProviderPage EnterApprenticeshipLocation(string location)
         {

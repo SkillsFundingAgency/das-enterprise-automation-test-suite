@@ -7,10 +7,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class EmployerNameBasePage : RAAV2CSSBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
         private By NewTradingName => By.CssSelector("#NewTradingName");
@@ -19,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By EmployerReason => By.CssSelector("#AnonymousReason");
 
-        public EmployerNameBasePage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerNameBasePage(ScenarioContext context) : base(context) { }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {

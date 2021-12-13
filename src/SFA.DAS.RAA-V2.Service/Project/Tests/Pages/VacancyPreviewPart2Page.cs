@@ -7,11 +7,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
         protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
         private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
@@ -27,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private By ApplicationWebAddress => By.Id("ApplicationUrl");
 
-        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) => _context = context;
+        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) { }
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {

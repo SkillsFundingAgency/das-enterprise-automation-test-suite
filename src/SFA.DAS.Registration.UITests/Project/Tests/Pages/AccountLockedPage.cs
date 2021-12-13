@@ -7,7 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Account locked";
         protected override By PageHeader => By.CssSelector(".bold-large");
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By EmailTextBox => By.Id("Email");
@@ -15,11 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By UnlockAccountButton => By.CssSelector("button[name='command']");
         #endregion
 
-        public AccountLockedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AccountLockedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SignInPage EnterDetailsAndClickUnlockButton(string email)
         {
