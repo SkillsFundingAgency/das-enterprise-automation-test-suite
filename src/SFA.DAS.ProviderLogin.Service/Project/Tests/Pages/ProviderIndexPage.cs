@@ -7,14 +7,10 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override string PageTitle => "Manage apprenticeships on behalf of employers";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By StartNowButton => By.CssSelector(".button-start");
 		private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
 
-		public ProviderIndexPage(ScenarioContext context):base(context) => _context = context;
+		public ProviderIndexPage(ScenarioContext context) : base(context) { }
 
         public ProviderSiginPage StartNow()
         {

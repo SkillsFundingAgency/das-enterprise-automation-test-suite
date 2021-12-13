@@ -11,7 +11,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         private readonly By __levyPayingEmployer= By.Id("levyPayerYes");
         private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
-        private readonly By _notSure = By.Id("levyPayerDontKnow");
         private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
         
         #endregion

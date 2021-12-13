@@ -7,7 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Confirm changes";
         private By ConfirmChangesRadio => By.CssSelector("#ConfirmChanges");
-        private By ConfirmChangesCancelRadio => By.CssSelector("#ConfirmChanges-no");
         private By FinishButton => By.CssSelector("#submit-confirm-change");
 
         public ConfirmChangesPage(ScenarioContext context) : base(context)  { }

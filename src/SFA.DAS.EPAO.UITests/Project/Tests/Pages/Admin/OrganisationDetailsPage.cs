@@ -17,10 +17,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By AddContactLink => By.CssSelector(".govuk-link[href*='add-contact']");
 
-        private By AddStandardLink => By.CssSelector(".govuk-link[href*='search-standards']");
-
-        private By StandardPagination => By.CssSelector("#PaginationViewModel_ItemsPerPage");
-
         public OrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EditOrganisationPage EditOrganisation()

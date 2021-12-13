@@ -7,19 +7,13 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Mailinator";
         protected override By PageHeader => By.CssSelector(".gel-heading-title");
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By EmailTextBox => By.CssSelector("#search");
         private By GoButton => By.CssSelector("#site-header button");
         #endregion
 
-        internal MailinatorLandingPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-
-            VerifyPage(() => pageInteractionHelper.FindElements(PageHeader));
-        }
+        internal MailinatorLandingPage(ScenarioContext context) : base(context, false) => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader));
 
         internal MailinatorInboxPage EnterEmailAndClickOnGoButton(string organisationEmailAddress)
         {

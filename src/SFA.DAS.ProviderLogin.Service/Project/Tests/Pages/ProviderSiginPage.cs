@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -11,11 +10,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderSiginPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderSiginPage(ScenarioContext context) : base(context) { }
 
         private By UsernameField => By.Id("username");
         private By PasswordField => By.Id("password");

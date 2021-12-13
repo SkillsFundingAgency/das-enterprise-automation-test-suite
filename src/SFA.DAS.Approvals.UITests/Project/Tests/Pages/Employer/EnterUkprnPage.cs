@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Enter the new training provider's name or reference number (UKPRN)";
         protected override By ContinueButton => By.Id("Ukprn-button");
 
-        private By InvalidProivderErrorMessage = By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
+        private By InvalidProivderErrorMessage => By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
 
         #region Helpers and Context
         

@@ -10,7 +10,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         #region Locators
         private By SearchTextBox => By.Id("SearchString");
-        private By InvalidSearchResultText => By.CssSelector(".govuk-heading-l");
         #endregion
 
         public AP_PR1_SearchForYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApproveMessage => By.CssSelector("#approve-details");
 		private By ReviewMessage => By.CssSelector("#send-details");
 		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
-        private By AddAnotherApprenticeLink = By.LinkText("Add another apprentice");
+        private By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
 
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)

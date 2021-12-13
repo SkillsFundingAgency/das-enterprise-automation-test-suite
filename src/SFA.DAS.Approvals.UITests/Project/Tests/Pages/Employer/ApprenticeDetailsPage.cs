@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
         private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
         private By CompletionDate => By.Id("completionDate");
-        private By changeTrainingProviderLink => By.Id("change-training-provider-link");
+        private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
 
@@ -64,13 +64,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
-        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
+        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeTrainingProviderLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
         public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
 
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
-            formCompletionHelper.ClickElement(changeTrainingProviderLink);
+            formCompletionHelper.ClickElement(ChangeTrainingProviderLink);
             return new ChangingTrainingProviderPage(_context);
         }
 

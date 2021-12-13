@@ -9,9 +9,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
     public class AP_ApplicationOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Application overview";
-        private string _organisationDetailsSectionCompletedText => "13 of 13 questions completed";
-        private string _declarationsSectionCompletedText => "20 of 20 questions completed";
-        private string _fHASectionCompletedText => "1 of 1 questions completed";
+        private string OrganisationDetailsSectionCompletedText => "13 of 13 questions completed";
+        private string DeclarationsSectionCompletedText => "20 of 20 questions completed";
+        private string FHASectionCompletedText => "1 of 1 questions completed";
         
 
         #region Locators
@@ -54,19 +54,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
 
         public AP_ApplicationOverviewPage VerifyOrganisationDetailsSectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(OrganisationDetailsSectionCompletedTextLabel, _organisationDetailsSectionCompletedText);
+            pageInteractionHelper.VerifyText(OrganisationDetailsSectionCompletedTextLabel, OrganisationDetailsSectionCompletedText);
             return this;
         }
 
         public AP_ApplicationOverviewPage VerifyDeclarationsSectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(DeclarationsSectionCompletedTextLabel, _declarationsSectionCompletedText);
+            pageInteractionHelper.VerifyText(DeclarationsSectionCompletedTextLabel, DeclarationsSectionCompletedText);
             return this;
         }
 
         public AP_ApplicationOverviewPage VerifyFHASectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(FHASectionCompletedTextLabel, _fHASectionCompletedText);
+            pageInteractionHelper.VerifyText(FHASectionCompletedTextLabel, FHASectionCompletedText);
             return this;
         }
 

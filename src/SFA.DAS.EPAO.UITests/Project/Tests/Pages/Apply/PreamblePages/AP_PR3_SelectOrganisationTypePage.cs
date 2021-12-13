@@ -8,7 +8,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         protected override string PageTitle => "Select organisation type";
 
         #region Locators
-        private By TrainingProviderRadioButton => By.Id("Training_Provider");
         private By AwardingOrg => By.CssSelector("#Awarding_Organisations");
         #endregion
 
