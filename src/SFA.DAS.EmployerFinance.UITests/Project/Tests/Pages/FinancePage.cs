@@ -76,7 +76,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         {
             DateTime dt = DateTime.Now;
             int previousYear = dt.Year - 1;
-            return $"Funds spent since {dt.ToString("MMM")} {previousYear}";
+            return $"Funds spent since {dt:MMM} {previousYear}";
         }
 
         public string GetCurrentFundsLabel() => pageInteractionHelper.GetText(CurrentFundsLabel);

@@ -105,7 +105,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private void SearchByVacancyTitleContains(string filter)
         {
-            string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
+            static string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
             NavigateToHome();
             ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");

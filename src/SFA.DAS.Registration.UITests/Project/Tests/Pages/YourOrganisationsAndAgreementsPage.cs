@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             var accountLegalEntityPublicHashedId = _registrationSqlDataHelper.GetAccountLegalEntityPublicHashedId(objectContext.GetDBAccountId(), orgName);
 
-            Action action = () => formCompletionHelper.ClickElement(() =>
+            void action() => formCompletionHelper.ClickElement(() =>
             {
                 var elements = pageInteractionHelper.FindElements(ViewAgreementLink(accountLegalEntityPublicHashedId));
 

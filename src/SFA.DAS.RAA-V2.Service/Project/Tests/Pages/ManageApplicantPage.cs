@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "About you";
 
-        private By SaveStatus = By.CssSelector("button[type='submit'][class='govuk-button']");
+        private By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
         private By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 

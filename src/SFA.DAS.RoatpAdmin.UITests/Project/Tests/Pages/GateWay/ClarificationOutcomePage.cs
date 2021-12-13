@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "Application action saved";
 
-        private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP gateway applications");
+        private By GoToRoATPGatewayApplicationsLink => By.LinkText("Go to RoATP gateway applications");
 
         public ClarificationOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 

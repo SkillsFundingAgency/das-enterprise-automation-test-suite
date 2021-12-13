@@ -9,11 +9,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.Id("q3-continue");
 
-        private By ExcellentOption => By.CssSelector("label[for='Excellent']");
-
         private By GoodOption => By.CssSelector("label[for='Good']");
-
-        private By PoorOption => By.CssSelector("label[for='Poor']");
 
         private By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
 

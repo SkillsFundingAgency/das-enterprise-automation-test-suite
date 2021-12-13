@@ -11,7 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By InformationSelector => By.CssSelector("#TruthfulInformation");
 
-        private By ComplyWithRulesSelector = By.CssSelector("#ComplyWithRules");
+        private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
         private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 

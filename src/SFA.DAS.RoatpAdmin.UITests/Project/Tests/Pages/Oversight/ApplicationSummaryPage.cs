@@ -23,9 +23,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private By UnSuccessfulExternalText => By.Id("UnsuccessfulExternalText");
         private By InProgressInternalText => By.Id("InProgressInternalText");
         private By InProgressExternalText => By.Id("InProgressExternalText");
-        private By AppealOversightSuccessfulAlreadyActive = By.CssSelector("label[for= 'AppealStatus']");
-        private By AppealOversightSuccessfulAlreadyActiveTextBox = By.Id("SuccessfulAlreadyActiveText");
-        private By AppealOversightSuccessful = By.CssSelector("label[for= 'AppealStatus']");
+        private By AppealOversightSuccessfulAlreadyActive => By.CssSelector("label[for= 'AppealStatus']");
+        private By AppealOversightSuccessfulAlreadyActiveTextBox => By.Id("SuccessfulAlreadyActiveText");
+        private By AppealOversightSuccessful => By.CssSelector("label[for= 'AppealStatus']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
 

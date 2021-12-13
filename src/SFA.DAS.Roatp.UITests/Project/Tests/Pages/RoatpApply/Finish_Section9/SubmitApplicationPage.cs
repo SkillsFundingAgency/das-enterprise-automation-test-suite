@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
         private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication");
         private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
-        private By ConfirmFurtherCommunicationSubmitApplication = By.Id("ConfirmFurtherCommunicationSubmitApplication");
+        private By ConfirmFurtherCommunicationSubmitApplication => By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
         public SubmitApplicationPage(ScenarioContext context) : base(context) => VerifyPage();
 
