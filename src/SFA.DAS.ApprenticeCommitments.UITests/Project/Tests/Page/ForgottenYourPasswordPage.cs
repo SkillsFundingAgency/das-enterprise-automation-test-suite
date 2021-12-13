@@ -6,13 +6,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ForgottenYourPasswordPage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Forgotten password";
         private By NewEmailAddress => By.CssSelector("#Email");
         private By Message => By.CssSelector("#main-content .govuk-body");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyserviceheader: false) => _context = context;
+        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyserviceheader: false)  { }
 
         public ForgottenYourPasswordPage RequestToUpdatePassword()
         {

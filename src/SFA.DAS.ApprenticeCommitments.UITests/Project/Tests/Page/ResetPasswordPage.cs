@@ -5,12 +5,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ResetPasswordPage : CreatePasswordBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Reset password";
 
         public ResetPasswordPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             validPassword = $"{validPassword}!%&";
             objectContext.UpdateApprenticePassword(validPassword);
         }

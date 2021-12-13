@@ -9,13 +9,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Create login details";
         private By EmailAddress => By.Id("Email");
         private By ConfirmEmail => By.Id("ConfirmEmail");
-        private readonly ScenarioContext _context;
-
-        public CreateLoginDetailsPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage(PrivacyLinkInTheBody);
-            _context = context;
-        }
+        
+        public CreateLoginDetailsPage(ScenarioContext context) : base(context) => VerifyPage(PrivacyLinkInTheBody);
 
         public CreateMyApprenticeshipAccountPage EnterDetailsOnCreateLoginDetailsPageAndContinue()
         {

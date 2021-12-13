@@ -6,7 +6,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ConfirmYourDetailsPage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         private By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
         private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
         private By EstimatedDurationInfo => By.XPath("//th[text()='Estimated duration']/following-sibling::td");
@@ -17,11 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
         protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
 
-        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
-        }
+        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
         public ApprenticeOverviewPage SelectYes()
         {

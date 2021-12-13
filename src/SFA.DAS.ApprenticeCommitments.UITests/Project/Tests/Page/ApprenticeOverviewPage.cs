@@ -9,7 +9,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
@@ -21,8 +20,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
-            _context = context;
-
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),

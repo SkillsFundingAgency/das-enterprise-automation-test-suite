@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ApprenticeHomePageNegativeMatch : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => $"Check your details";
         private By InsetText => By.CssSelector(".govuk-inset-text");
         private By FirstName => By.XPath("(//td[@class='govuk-table__cell'])[1]");
@@ -17,8 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePageNegativeMatch(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}"),

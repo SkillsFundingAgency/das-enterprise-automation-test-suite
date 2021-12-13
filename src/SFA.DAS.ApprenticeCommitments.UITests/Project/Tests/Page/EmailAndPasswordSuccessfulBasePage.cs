@@ -5,10 +5,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class EmailAndPasswordSuccessfulBasePage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         private By PostLogoutRedirectUri => By.CssSelector(".PostLogoutRedirectUri");
 
-        public EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : base(context, verifyserviceheader: false) => _context = context;
+        public EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : base(context, verifyserviceheader: false)  { }
 
         public ApprenticeOverviewPage ReturnToMyApprenticeship()
         {

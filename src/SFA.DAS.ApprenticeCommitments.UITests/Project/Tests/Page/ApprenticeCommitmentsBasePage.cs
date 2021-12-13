@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         #region Helpers and Context
         protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
-        private readonly ScenarioContext _context;
+        
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
@@ -45,8 +45,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
-
-            _context = context;
+            
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();

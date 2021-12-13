@@ -4,14 +4,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ConfirmRolesAndResponsibilitiesPage1of3 : ConfirmYourRolesAbstractPage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Your responsibilities as an apprentice";
 
-        public ConfirmRolesAndResponsibilitiesPage1of3(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmRolesAndResponsibilitiesPage1of3(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmRolesAndResponsibilitiesPage2of3 ConfirmYourRolesAndContinue()
         {

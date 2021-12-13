@@ -5,11 +5,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ChangeYourPersonalDetailsPage : PersonalDetailsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => $"Change your personal details";
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
-        public ChangeYourPersonalDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeYourPersonalDetailsPage(ScenarioContext context) : base(context)  { }
 
         public new ApprenticeHomePage UpdateApprenticeName()
         {

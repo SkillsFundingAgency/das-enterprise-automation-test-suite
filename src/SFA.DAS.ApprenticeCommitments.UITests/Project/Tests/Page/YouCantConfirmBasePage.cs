@@ -5,9 +5,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class YouCantConfirmBasePage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         private By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
-        public YouCantConfirmBasePage(ScenarioContext context) : base(context) => _context = context;
+
+        public YouCantConfirmBasePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeOverviewPage ReturnToApprenticeOverviewPage()
         {
