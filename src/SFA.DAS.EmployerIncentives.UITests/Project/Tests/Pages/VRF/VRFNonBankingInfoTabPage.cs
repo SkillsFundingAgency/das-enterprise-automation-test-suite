@@ -8,7 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Address details";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By AddressLine1 => By.CssSelector("#address1_vr");
         private By Town => By.CssSelector("#town_vr");
         private By Postcode => By.CssSelector("#postcode_vr");
@@ -16,11 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private By Fc_email => By.CssSelector("#fc_email");
         #endregion
 
-        public VRFNonBankingInfoTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFNonBankingInfoTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFBankDetailsTabPage SubmitAddressDetails(string email)
         {

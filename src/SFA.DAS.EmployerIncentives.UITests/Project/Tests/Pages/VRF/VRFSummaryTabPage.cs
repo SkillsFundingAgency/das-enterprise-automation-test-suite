@@ -8,15 +8,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Organisation details";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         protected override By ContinueButton => By.CssSelector(".submitbutton");
         #endregion
 
-        public VRFSummaryTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFSummaryTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFReceivedDetailsConfirmPage AcknowledgeSummaryDetails()
         {

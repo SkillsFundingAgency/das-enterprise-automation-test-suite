@@ -7,13 +7,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which apprentices do you want to apply for?";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Apprentices => CheckBoxLabels;
 
-        public SelectTheApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public SelectTheApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public WhenDidApprenticeJoinTheOrgPage SubmitApprentices()
         {

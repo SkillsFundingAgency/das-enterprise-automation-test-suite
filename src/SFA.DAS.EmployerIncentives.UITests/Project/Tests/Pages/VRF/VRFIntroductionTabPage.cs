@@ -10,14 +10,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Provide organisation information about your banking and payments to DfE";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By VRFCookieCloseButton => By.Id("close-cookie-message");
         protected override By PageHeader => By.CssSelector("h1");
         #endregion
 
         public VRFIntroductionTabPage(ScenarioContext context) : base(context, false)
-        { 
-            _context = context;
+        {  
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(frameHelper.Iframe),

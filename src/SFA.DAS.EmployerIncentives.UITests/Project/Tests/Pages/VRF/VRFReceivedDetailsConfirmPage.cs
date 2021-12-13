@@ -10,16 +10,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override By PageHeader => By.XPath("//h1[text()='We have received your details']");
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By CaseIdSummary => By.CssSelector(".panel-gds p");
         private By ReturnToEasLink => By.CssSelector(".submission-message a");
         #endregion
 
-        public VRFReceivedDetailsConfirmPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFReceivedDetailsConfirmPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public ApplicationCompletePage ReturnToEasApplicationCompletePage()
         {

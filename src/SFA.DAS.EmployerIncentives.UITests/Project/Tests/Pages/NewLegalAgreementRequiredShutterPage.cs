@@ -9,11 +9,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"{ObjectContextExtension.GetOrganisationName(objectContext)} needs to accept a new employer agreement";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public NewLegalAgreementRequiredShutterPage(ScenarioContext context) : base(context) => _context = context;
+        public NewLegalAgreementRequiredShutterPage(ScenarioContext context) : base(context)  { }
 
         public By ViewAgreement => By.ClassName("govuk-button");
 

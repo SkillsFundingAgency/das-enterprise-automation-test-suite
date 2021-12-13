@@ -8,10 +8,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override string PageTitle => "Applications open on 11 January 2022";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public EIApplicationOpenOn11JanPage(ScenarioContext context) : base(context) => _context = context;
+        public EIApplicationOpenOn11JanPage(ScenarioContext context) : base(context)  { }
 
         public HomePage ReturnToAccountHomePage()
         {

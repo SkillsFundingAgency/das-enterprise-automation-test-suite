@@ -7,11 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Eligible apprentices at {ObjectContextExtension.GetOrganisationName(objectContext)}";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public QualificationQuestionPage(ScenarioContext context) : base(context) => _context = context;
+        public QualificationQuestionPage(ScenarioContext context) : base(context)  { }
 
         public SelectTheApprenticesPage SelectYesAndContinueForEligibleApprenticesScenario()
         {
