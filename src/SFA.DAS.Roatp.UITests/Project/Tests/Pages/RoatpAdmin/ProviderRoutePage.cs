@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             SelectRadioOptionByText(providerType);
             Continue();
-            return new TypeOrganisationsPage(_context);
+            return new TypeOrganisationsPage(context);
         }
     }
 }

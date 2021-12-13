@@ -11,25 +11,25 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public InitialTeacherTrainingPage SelectYesForFundedbyOFSAndContinue()
         {
             SelectYesAndContinue();
-            return new InitialTeacherTrainingPage(_context);
+            return new InitialTeacherTrainingPage(context);
         }
 
         public ApprenticeshipTrainingAsSubcontractorPage SelectYesForFundedbyOFSAndContinueForSupportingRoute()
         {
             SelectYesAndContinue();
-            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+            return new ApprenticeshipTrainingAsSubcontractorPage(context);
         }
 
         public InitialTeacherTrainingPage SelectNoForFundedbyOFSAndContinue()
         {
             SelectNoAndContinue();
-            return new InitialTeacherTrainingPage(_context);
+            return new InitialTeacherTrainingPage(context);
         }
 
         public ApprenticeshipTrainingAsSubcontractorPage SelectNoForFundedbyOFSAndContinueForSupportingRoute()
         {
             SelectNoAndContinue();
-            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+            return new ApprenticeshipTrainingAsSubcontractorPage(context);
         }
     }
 }

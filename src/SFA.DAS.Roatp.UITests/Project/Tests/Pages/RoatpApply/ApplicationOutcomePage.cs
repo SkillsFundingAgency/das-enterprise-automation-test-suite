@@ -25,13 +25,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public MakeAnAppealPage StartAppeal ()
         {
             Continue();
-            return new MakeAnAppealPage(_context);
+            return new MakeAnAppealPage(context);
         }
 
         public InvitationRequestedPage RequestNewInvitation()
         {
             Continue();
-            return new InvitationRequestedPage(_context);
+            return new InvitationRequestedPage(context);
         }
     }
 }

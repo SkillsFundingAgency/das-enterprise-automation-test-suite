@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterText(AppealOnEvidenceSubmittedTextBox, "Appeal on evidence test");
             UploadFile();
             formCompletionHelper.ClickButtonByText(ContinueButton, "Submit your appeal");
-            return new AppealSubmittedPage(_context);
+            return new AppealSubmittedPage(context);
         }
 
     }

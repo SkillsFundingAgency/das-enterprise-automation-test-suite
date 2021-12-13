@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
         public OverallResponsibilityForHealthAndSafetyPage HealthAndSafetyPolicyFileUploadAndContinue()
         {
             UploadFile();
-            return new OverallResponsibilityForHealthAndSafetyPage(_context);
+            return new OverallResponsibilityForHealthAndSafetyPage(context);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         public ApplicationOverviewPage EnterTextForEngageAndWorkWithAwardingBodies()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithAwardingBodies);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

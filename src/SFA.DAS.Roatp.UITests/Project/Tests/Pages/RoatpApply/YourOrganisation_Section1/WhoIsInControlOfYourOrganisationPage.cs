@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.EnterText(MonthField, dobcalc.Month);
             formCompletionHelper.EnterText(YearField, dobcalc.Year);
             Continue();
-            return new ConfrimWhosInControlPage(_context);
+            return new ConfrimWhosInControlPage(context);
         }
 
     }

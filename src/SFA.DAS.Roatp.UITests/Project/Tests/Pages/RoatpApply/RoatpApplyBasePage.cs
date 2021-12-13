@@ -65,7 +65,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ApplicationOverviewPage ReturnToApplicationOverview()
         {
             formCompletionHelper.ClickLinkByText("Application overview");
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public ApplicationOverviewPage EnterDateOfBirth()
@@ -85,7 +85,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             }
 
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

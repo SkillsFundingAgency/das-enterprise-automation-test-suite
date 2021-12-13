@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OneTrainerBetween10OrLessAoorenticesRadio));
             Continue();
-            return new LevleOfSupportProvidedPage(_context);
+            return new LevleOfSupportProvidedPage(context);
         }
     }
 }

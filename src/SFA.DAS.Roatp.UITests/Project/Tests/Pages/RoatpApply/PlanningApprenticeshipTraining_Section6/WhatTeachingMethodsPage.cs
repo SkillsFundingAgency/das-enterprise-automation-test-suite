@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(LearningSupportAndWrittenAssignmentsChekbox));
             Continue();
-            return new OfftheJobTrainingIsRelevantPage(_context);
+            return new OfftheJobTrainingIsRelevantPage(context);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.UnspentCriminalConvictions);
-            return new WhosInControlFailedToPayBackFundsPage(_context);
+            return new WhosInControlFailedToPayBackFundsPage(context);
         }
     }
 }

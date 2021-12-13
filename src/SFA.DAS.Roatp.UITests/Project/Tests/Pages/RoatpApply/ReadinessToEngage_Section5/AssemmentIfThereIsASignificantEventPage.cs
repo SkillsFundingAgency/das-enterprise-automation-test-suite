@@ -13,7 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         public ApplicationOverviewPage EnterTextForSignificantEventAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.SignificantEventText);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

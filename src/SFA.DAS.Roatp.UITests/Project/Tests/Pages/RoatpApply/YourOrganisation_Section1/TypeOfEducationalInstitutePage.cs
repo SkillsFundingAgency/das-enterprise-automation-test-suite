@@ -12,21 +12,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("Higher Education Institute");
             Continue();
-            return new OrgMonitoredSupportedByOFSPage(_context);
+            return new OrgMonitoredSupportedByOFSPage(context);
         }
 
         public AlreadyRegisteredWithEsfaPage SelectSixthFormCollegeAndContinue()
         {
             SelectRadioOptionByText("Sixth Form College");
             Continue();
-            return new AlreadyRegisteredWithEsfaPage(_context);
+            return new AlreadyRegisteredWithEsfaPage(context);
         }
 
         public AlreadyRegisteredWithEsfaPage SelectAcademyAndContinue()
         {
             SelectRadioOptionByText("Academy");
             Continue();
-            return new AlreadyRegisteredWithEsfaPage(_context);
+            return new AlreadyRegisteredWithEsfaPage(context);
         }
     }
 }

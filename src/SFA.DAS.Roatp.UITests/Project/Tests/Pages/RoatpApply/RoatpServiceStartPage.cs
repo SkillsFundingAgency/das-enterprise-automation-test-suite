@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public UsedThisServiceBeforePage ClickApplyNow()
         {
             formCompletionHelper.ClickElement(ApplyNow);
-            return new UsedThisServiceBeforePage(_context);
+            return new UsedThisServiceBeforePage(context);
         }
     }
 }

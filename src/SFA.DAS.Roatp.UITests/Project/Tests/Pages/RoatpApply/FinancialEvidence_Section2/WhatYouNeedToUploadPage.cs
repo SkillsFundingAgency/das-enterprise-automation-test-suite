@@ -11,19 +11,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         public UploadOrganisationsFinancialPage ContinueOnWhatYouNeedToUploadForFinancialStatementsAndManagementAccounts()
         {
             Continue();
-            return new UploadOrganisationsFinancialPage(_context);
+            return new UploadOrganisationsFinancialPage(context);
         }
 
         public UploadOrganisationsManagementAccountsPage ContinueOnWhatYouNeedToUploadForManagementAccounts()
         {
             Continue();
-            return new UploadOrganisationsManagementAccountsPage(_context);
+            return new UploadOrganisationsManagementAccountsPage(context);
         }
 
         public UploadManagementAccountsCoveringThreeMonths ContinueOnWhatYouNeedToUploadForManagementAccountsCoveringThreeMonths()
         {
             Continue();
-            return new UploadManagementAccountsCoveringThreeMonths(_context);
+            return new UploadManagementAccountsCoveringThreeMonths(context);
         }
     }
 }

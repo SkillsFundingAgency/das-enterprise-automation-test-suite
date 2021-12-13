@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
             }
 
             Continue();
-            return new LatestFullFinancialForTwelveMonthsPage(_context);
+            return new LatestFullFinancialForTwelveMonthsPage(context);
         }
     }
 }

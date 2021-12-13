@@ -16,14 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         public FullManagementAccountsPage SelectNoForFinancialStatementsCoveringAnyPeriod_SupportingAndContinue()
         {
             SelectNoAndContinue();
-            return new FullManagementAccountsPage(_context);
+            return new FullManagementAccountsPage(context);
         }
 
         private WhatYouNeedToUploadPage FinancialStatementsCoveringAnyPeriodAndContinue(string option)
         {
             SelectRadioOptionByText(option);
             Continue();
-            return new WhatYouNeedToUploadPage(_context);
+            return new WhatYouNeedToUploadPage(context);
         }
     }
 }

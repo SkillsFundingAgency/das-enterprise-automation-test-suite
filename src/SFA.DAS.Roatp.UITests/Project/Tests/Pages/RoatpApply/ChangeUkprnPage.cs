@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public EnterUkprnPage SelectYesToChangeUkprnAndContinue()
         {
             SelectYesAndContinue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
         public ApplicationOverviewPage SelectNoToChangeUkprnAndContinue()
         {
             SelectNoAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

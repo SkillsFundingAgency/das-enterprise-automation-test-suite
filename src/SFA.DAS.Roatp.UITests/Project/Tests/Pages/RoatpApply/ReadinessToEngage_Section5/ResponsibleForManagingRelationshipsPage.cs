@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
             formCompletionHelper.EnterText(Email, applydataHelpers.Email);
             formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             Continue();
-            return new PromoteApprentcieshipsToEmployersPage(_context);
+            return new PromoteApprentcieshipsToEmployersPage(context);
         }
     }
 }

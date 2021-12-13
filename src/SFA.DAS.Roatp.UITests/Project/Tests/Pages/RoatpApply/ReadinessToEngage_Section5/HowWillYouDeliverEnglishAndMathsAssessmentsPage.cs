@@ -13,7 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         {
             SelectRadioOptionByText("Digitally");
             Continue();
-            return new WherWillYouDeliverTheEnglishAndMathsAssessmentsPage(_context);
+            return new WherWillYouDeliverTheEnglishAndMathsAssessmentsPage(context);
         }
     }
 }

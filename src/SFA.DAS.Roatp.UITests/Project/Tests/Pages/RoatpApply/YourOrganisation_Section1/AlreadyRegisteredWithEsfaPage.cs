@@ -11,17 +11,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectNoForOrgAlreadyRegisteredAndContinue()
         {
             SelectNoAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
     }
 }

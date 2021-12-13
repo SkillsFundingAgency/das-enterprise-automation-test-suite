@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new WithinTheLast18MonthsPage(_context);
+            return new WithinTheLast18MonthsPage(context);
         }
     }
 }

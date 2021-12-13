@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new TermsConditionsMakingApplicationPage(_context);
+            return new TermsConditionsMakingApplicationPage(context);
         }
     }
 }

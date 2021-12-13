@@ -24,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.EnterText(CountyTextBox, applydataHelpers.County);
             formCompletionHelper.EnterText(PostcodeTextBox, applydataHelpers.Postcode);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

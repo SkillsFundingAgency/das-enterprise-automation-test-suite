@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         public FundingRemovedFromEducationBodiesPage SelectNoForWithdrawnFromAContractWithRoTo()
         {
             SelectNoAndContinue();
-            return new FundingRemovedFromEducationBodiesPage(_context);
+            return new FundingRemovedFromEducationBodiesPage(context);
         }
     }
 }

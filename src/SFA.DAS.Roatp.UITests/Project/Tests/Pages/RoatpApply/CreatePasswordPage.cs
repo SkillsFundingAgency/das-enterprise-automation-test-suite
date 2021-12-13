@@ -40,7 +40,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterText(Password, pasword);
             formCompletionHelper.EnterText(ConfirmPassword, pasword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
-            return new SigUpCompletePage(_context);
+            return new SigUpCompletePage(context);
         }
     }
 }

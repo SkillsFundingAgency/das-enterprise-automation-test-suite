@@ -12,14 +12,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             SelectRadioOptionByForAttribute("FirstTimeSignin");
             Continue();
-            return new SignInToRegisterPage(_context);
+            return new SignInToRegisterPage(context);
         }
 
         public CreateAnAccountPage SelectNoCreateAccountAndContinue()
         {
             SelectRadioOptionByForAttribute("FirstTimeSignin-Yes");
             Continue();
-            return new CreateAnAccountPage(_context);
+            return new CreateAnAccountPage(context);
         }
     }
 }

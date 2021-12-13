@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public WhoIsResposibleToMaintainExpectationsPage EnterTextForHowExpectationsAreMonitored()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowExpectationsAreMonitored);
-            return new WhoIsResposibleToMaintainExpectationsPage(_context);
+            return new WhoIsResposibleToMaintainExpectationsPage(context);
         }
     }
 }

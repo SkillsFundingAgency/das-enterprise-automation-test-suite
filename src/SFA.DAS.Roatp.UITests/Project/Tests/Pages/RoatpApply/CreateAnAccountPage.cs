@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterText(FamilyNameTextbox, applyCreateUserDataHelpers.FamilyName);
             formCompletionHelper.EnterText(EmailAddressTextbox, applyCreateUserDataHelpers.CreateAccountEmail);
             Continue();
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
     }
 }

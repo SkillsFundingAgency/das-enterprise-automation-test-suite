@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectYesForRegisteredAndReceivedFundingAndContinue()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
         public ReviewProcessForEvaluatingTheQualityOfTrainingPage YesAndContinue()
         {
             SelectYesAndContinue();
-            return new ReviewProcessForEvaluatingTheQualityOfTrainingPage(_context);
+            return new ReviewProcessForEvaluatingTheQualityOfTrainingPage(context);
         }
     }
 }

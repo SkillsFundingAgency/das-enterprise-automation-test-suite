@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", applydataHelpers.Email);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

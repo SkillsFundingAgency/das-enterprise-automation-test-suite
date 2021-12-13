@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public GiveAnExampleToImproveEmployeesPage UploadOrganisationPolicyAndContinue()
         {
             UploadFile();
-            return new GiveAnExampleToImproveEmployeesPage(_context);
+            return new GiveAnExampleToImproveEmployeesPage(context);
         }
     }
 }

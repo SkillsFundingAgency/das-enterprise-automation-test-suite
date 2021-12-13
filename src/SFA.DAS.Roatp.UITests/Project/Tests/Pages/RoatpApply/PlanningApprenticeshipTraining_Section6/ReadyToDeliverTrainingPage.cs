@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         public EndPointAssesmentOrganisationsPage EnterTextRegardingReadyToDeliverTrainingAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ReadytoDeliverTraining);
-            return new EndPointAssesmentOrganisationsPage(_context);
+            return new EndPointAssesmentOrganisationsPage(context);
         }
     }
 }

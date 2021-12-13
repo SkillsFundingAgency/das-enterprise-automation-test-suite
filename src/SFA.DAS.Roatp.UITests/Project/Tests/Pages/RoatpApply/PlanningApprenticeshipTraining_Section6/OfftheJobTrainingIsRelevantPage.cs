@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         public ApplicationOverviewPage EnterTextForOffTheJobTrainingIsRelevantAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.OffTheJobTraining);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 

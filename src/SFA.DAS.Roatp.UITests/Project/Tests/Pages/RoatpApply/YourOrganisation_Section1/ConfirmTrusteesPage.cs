@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public TrusteesDOBPage ConfirmTrusteesAndContinue()
         {
             Continue();
-            return new TrusteesDOBPage(_context);
+            return new TrusteesDOBPage(context);
         }
     }
 }

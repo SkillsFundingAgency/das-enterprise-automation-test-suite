@@ -17,12 +17,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PublicServiceMutualRadio));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ShelteredWorkshopRadio));
             Continue();
-            return new TradingPeriodPage(_context);
+            return new TradingPeriodPage(context);
         }
         public TradingPeriodPage ClickContinueForDescribeYourOrgDetailsSelected()
         {
             Continue();
-            return new TradingPeriodPage(_context);
+            return new TradingPeriodPage(context);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
         public ApplicationOverviewPage EnterTextRegardingOrganisationReviewAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ReviewProcessForEvaluatingTheQualityOfTraining);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

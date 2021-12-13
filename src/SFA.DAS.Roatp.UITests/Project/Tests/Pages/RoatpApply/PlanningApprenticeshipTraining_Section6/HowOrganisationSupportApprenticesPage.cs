@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ThroughAMentorCheckBox));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OtherCheckbox));
             Continue();
-            return new OtherWaysToSupportApprenticesPage(_context);
+            return new OtherWaysToSupportApprenticesPage(context);
         }
     }
 }

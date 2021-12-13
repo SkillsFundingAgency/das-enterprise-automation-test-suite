@@ -29,12 +29,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.EnterText(ProviderSearch, text);
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
         public RoatpAdminHomePage ReturnToDahsboard()
         {
             formCompletionHelper.ClickLinkByText("Dashboard");
-            return new RoatpAdminHomePage(_context);
+            return new RoatpAdminHomePage(context);
         }
     }
 }

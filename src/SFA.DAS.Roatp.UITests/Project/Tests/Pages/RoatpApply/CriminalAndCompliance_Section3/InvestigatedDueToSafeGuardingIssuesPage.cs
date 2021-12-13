@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.InvestigatedDueToSafeGuardingIssues);
-            return new SubjectToInvestigationByESFAorPublicBodyPage(_context);
+            return new SubjectToInvestigationByESFAorPublicBodyPage(context);
         }
     }
 }

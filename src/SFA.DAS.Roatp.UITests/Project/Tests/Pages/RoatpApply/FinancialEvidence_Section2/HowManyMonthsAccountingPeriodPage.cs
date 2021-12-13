@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         {
             formCompletionHelper.EnterText(MonthBox, applydataHelpers.NumberBetween1And23);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

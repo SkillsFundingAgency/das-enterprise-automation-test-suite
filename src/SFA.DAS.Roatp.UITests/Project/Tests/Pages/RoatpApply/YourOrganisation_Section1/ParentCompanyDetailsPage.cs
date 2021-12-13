@@ -18,12 +18,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.EnterText(CompanyNumberField, applydataHelpers.CompanyNumber);
             formCompletionHelper.EnterText(CompanyNameField, applydataHelpers.CompanyName);
             Continue();
-            return new IcoRegistrationNumberPage(_context);
+            return new IcoRegistrationNumberPage(context);
         }
         public IcoRegistrationNumberPage ClickContinueForParentCompanyDetails()
         {
             Continue();
-            return new IcoRegistrationNumberPage(_context);
+            return new IcoRegistrationNumberPage(context);
         }
     }
 }

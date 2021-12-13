@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(DigitalWorkPlaceAssessmentRadio));
             Continue();
-            return new AssemmentIfThereIsASignificantEventPage(_context);
+            return new AssemmentIfThereIsASignificantEventPage(context);
         }
     }
 }

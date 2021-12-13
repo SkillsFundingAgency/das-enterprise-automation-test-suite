@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         public ResponsibleForManagingRelationshipsPage EnterTextForManagingRelationshipWithEmployersAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ManagingRelationshipWithEmployers);
-            return new ResponsibleForManagingRelationshipsPage(_context);
+            return new ResponsibleForManagingRelationshipsPage(context);
         }
     }
 }

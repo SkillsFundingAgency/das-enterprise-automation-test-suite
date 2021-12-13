@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
         public OverallResponsibilityForSafeguardingPage SafeguardingPolicyFileUploadAndContinue()
         {
             UploadFile();
-            return new OverallResponsibilityForSafeguardingPage(_context);
+            return new OverallResponsibilityForSafeguardingPage(context);
         }
     }
 }

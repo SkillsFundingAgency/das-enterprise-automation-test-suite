@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.EnterText(UkprnField, objectContext.GetUkprn());
             Continue();
-            return new OrganisationsDetailsPage(_context);
+            return new OrganisationsDetailsPage(context);
         }
 
     }

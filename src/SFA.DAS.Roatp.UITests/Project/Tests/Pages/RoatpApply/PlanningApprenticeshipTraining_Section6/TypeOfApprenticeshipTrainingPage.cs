@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(StandardsCheckBox));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
             Continue();
-            return new ReadyToDeliverTrainingPage(_context);
+            return new ReadyToDeliverTrainingPage(context);
         }
 
         public OfferingApprenticeshipFrameworksPage SelectFrameworksOnlyAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
             Continue();
-            return new OfferingApprenticeshipFrameworksPage(_context);
+            return new OfferingApprenticeshipFrameworksPage(context);
         }
         public ApplicationOverviewPage SelectFunctionalSkillsAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FunctionalSkills));
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

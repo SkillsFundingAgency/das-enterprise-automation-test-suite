@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlContractTerminatedByPublicBody);
-            return new WhosInControlContractWithdrawnWithPublicBodyPage(_context);
+            return new WhosInControlContractWithdrawnWithPublicBodyPage(context);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs)));
             Continue();
-            return new ApplicationDateDeterminedPage(_context);
+            return new ApplicationDateDeterminedPage(context);
         }
     }
 }

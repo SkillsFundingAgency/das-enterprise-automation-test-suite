@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public MaintainedTheGradeInOfsteadInspectionPage SelectYesForShortOFstedInspectionWithinThreeYearsAndContinue()
         {
             SelectYesAndContinue();
-            return new MaintainedTheGradeInOfsteadInspectionPage(_context);
+            return new MaintainedTheGradeInOfsteadInspectionPage(context);
         }
     }
 }

@@ -14,12 +14,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectNoForOrgSupportedandMonitoredByOFSAndContinue()
         {
             SelectNoAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
     }
 }

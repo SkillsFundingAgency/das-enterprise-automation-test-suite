@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
         public ApplicationOverviewPage EqualityAndDiversityPolicyFileUploadAndContinue()
         {
             UploadFile();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

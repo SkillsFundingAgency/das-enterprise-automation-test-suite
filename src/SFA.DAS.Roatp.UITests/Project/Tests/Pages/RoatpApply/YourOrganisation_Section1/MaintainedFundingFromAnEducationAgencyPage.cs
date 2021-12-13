@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public ApplicationOverviewPage SelectYesForGradeMaintainedFromEducationAgencyAndContinue()
         {
             SelectYesAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

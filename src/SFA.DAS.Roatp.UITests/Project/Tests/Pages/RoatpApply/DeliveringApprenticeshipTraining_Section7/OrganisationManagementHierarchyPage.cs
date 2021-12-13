@@ -31,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             formCompletionHelper.EnterText(Email, applydataHelpers.Email);
             formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             SelectNoAndContinue();
-            return new ConfirmOrganisationManagementHierarchy(_context);
+            return new ConfirmOrganisationManagementHierarchy(context);
         }
     }
 }

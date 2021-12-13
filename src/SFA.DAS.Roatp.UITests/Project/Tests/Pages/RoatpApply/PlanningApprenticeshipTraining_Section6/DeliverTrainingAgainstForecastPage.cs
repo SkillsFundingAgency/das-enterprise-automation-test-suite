@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithinFirstThreeMonthsRadio));
             Continue();
-            return new RecruitNewStaffPage(_context);
+            return new RecruitNewStaffPage(context);
         }
     }
 

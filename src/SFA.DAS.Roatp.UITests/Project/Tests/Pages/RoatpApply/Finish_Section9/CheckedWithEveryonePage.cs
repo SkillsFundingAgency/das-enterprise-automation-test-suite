@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         public PermissionFromOrganisationPage SelectYesCheckedWithEveryoneAndContinue()
         {
             SelectYesAndContinue();
-            return new PermissionFromOrganisationPage(_context);
+            return new PermissionFromOrganisationPage(context);
         }
 
         public FinishSectionShutterPage SelectNoCheckedWithEveryoneAndContinue()
         {
             SelectNoAndContinue();
-            return new FinishSectionShutterPage(_context);
+            return new FinishSectionShutterPage(context);
         }
     }
 }

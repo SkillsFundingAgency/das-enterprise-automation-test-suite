@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new CarryOutDueDiligencePage(_context);
+            return new CarryOutDueDiligencePage(context);
         }
     }
 }

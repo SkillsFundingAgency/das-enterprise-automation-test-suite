@@ -16,13 +16,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public EnterUkprnPage SubmitValidUserDetailsEnterUkprnPage()
         {
             SubmitValidUserDetails();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
         public ApplicationOverviewPage SubmitValidUserDetailsApplicationOverviewPage()
         {
             SubmitValidUserDetails();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public void  SubmitValidUserDetails()

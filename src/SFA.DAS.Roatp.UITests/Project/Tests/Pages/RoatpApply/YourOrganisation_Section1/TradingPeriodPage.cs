@@ -16,20 +16,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).LastOrDefault());
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public NotEligiblePage SelectMinimumTradingPeriodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
             Continue();
-            return new NotEligiblePage(_context);
+            return new NotEligiblePage(context);
         }
         public ApplicationOverviewPage SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

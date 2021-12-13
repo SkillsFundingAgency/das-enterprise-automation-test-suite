@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public HowManyStartsDoesYourOrgForecastPage EnterTextForWhatStandardsToDeliver()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.StandardIntendToDeliver);
-            return new HowManyStartsDoesYourOrgForecastPage(_context);
+            return new HowManyStartsDoesYourOrgForecastPage(context);
         }
     }
 }

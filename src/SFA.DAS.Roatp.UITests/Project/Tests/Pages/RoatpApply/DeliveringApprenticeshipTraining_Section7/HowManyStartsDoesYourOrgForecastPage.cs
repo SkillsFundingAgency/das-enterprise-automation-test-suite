@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         {
             formCompletionHelper.EnterText(NumberOfStart, "1234");
             Continue();
-            return new HowManyEmployeesWillDeliverTrainingPage(_context);
+            return new HowManyEmployeesWillDeliverTrainingPage(context);
         }
     }
 }

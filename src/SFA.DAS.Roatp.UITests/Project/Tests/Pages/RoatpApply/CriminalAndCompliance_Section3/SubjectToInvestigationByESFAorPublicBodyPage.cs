@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.InvestigatedDueToWhistleBlowingIssues);
-            return new InsolvencyOrWindingUpProceedingsPage(_context);
+            return new InsolvencyOrWindingUpProceedingsPage(context);
         }
     }
 }

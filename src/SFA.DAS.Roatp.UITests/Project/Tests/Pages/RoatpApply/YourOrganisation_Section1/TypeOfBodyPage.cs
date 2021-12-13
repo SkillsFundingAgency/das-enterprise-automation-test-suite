@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("Government department");
             Continue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
     }
 }

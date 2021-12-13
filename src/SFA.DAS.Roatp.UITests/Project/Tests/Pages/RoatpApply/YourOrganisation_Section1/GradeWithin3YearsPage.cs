@@ -11,17 +11,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public ShortOfstedInspectionPage SelectNoForGradeWithinThreeYearsAndContinue()
         {
             SelectNoAndContinue();
-            return new ShortOfstedInspectionPage(_context);
+            return new ShortOfstedInspectionPage(context);
         }
         public MaintainedFundingFromAnEducationAgencyPage SelectYesForGradeWithinThreeYearsAndContinue()
         {
             SelectYesAndContinue();
-            return new MaintainedFundingFromAnEducationAgencyPage(_context);
+            return new MaintainedFundingFromAnEducationAgencyPage(context);
         }
         public NotEligiblePage SelectYesForInadequateGradeWithinThreeYearsAndContinue()
         {
             SelectYesAndContinue();
-            return new NotEligiblePage(_context);
+            return new NotEligiblePage(context);
         }
     }
 }

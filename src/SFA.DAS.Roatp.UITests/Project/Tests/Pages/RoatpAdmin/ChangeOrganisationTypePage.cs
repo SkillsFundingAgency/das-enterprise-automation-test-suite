@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
                 return randomElement;
             });
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
     }
 }

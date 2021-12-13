@@ -26,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterTextByLabel(LabelCssSelector,"Contact number", applydataHelpers.ContactNumber);
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.NamesOfAllOrganisations);
-            return new ExperienceInTheSectorPage(_context);
+            return new ExperienceInTheSectorPage(context);
         }
     }
 }

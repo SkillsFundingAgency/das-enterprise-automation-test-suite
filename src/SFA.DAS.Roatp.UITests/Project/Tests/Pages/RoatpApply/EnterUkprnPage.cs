@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             formCompletionHelper.EnterText(pageInteractionHelper.FindElement(UkprnField), ukprn);
             Continue();
-            return new ConfirmOrganisationsDetailsPage(_context);
+            return new ConfirmOrganisationsDetailsPage(context);
         }
     }
 }

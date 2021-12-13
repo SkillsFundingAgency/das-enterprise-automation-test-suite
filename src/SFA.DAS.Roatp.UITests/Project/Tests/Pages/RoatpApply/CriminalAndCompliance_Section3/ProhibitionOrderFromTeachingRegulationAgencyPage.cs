@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.ProhibitionOrderFromTeachingRegulationAgency);
-            return new BanFromManagementOrGovernanceOfSchoolsPage(_context);
+            return new BanFromManagementOrGovernanceOfSchoolsPage(context);
         }
     }
 }

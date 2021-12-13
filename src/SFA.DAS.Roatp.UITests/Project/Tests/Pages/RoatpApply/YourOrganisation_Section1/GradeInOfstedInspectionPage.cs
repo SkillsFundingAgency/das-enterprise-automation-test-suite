@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public WhatGradeInOfstedInspectionPage SelectYesForGradeInFullOfstedInspectionAndContinue()
         {
             SelectYesAndContinue();
-            return new WhatGradeInOfstedInspectionPage(_context);
+            return new WhatGradeInOfstedInspectionPage(context);
         }
 
         public WhatGradeInOfstedInspectionOverallEffectivenessPage SelectNoForGradeInFullOfstedInspectionAndContinue()
         {
             SelectNoAndContinue();
-            return new WhatGradeInOfstedInspectionOverallEffectivenessPage(_context);
+            return new WhatGradeInOfstedInspectionOverallEffectivenessPage(context);
         }
     }
 }

@@ -16,14 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             SelectRadioOptionByText("Employer provider");
             formCompletionHelper.SelectFromDropDownByValue(OrganisationTypeIdEmployer, "20");
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
 
         public ResultsFoundPage ConfirmNewProviderTypeAsMain()
         {
             SelectRadioOptionByText("Main provider");
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
     }
 }

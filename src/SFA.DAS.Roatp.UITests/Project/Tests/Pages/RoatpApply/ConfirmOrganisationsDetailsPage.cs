@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ChooseProviderRoutePage ClickConfirmAndContinue()
         {
             Continue();
-            return new ChooseProviderRoutePage(_context);
+            return new ChooseProviderRoutePage(context);
         }
 
         public AlreadyOnRoatpPage ClickConfirmAndContinueForProviderOnRoatp()
         {
             Continue();
-            return new AlreadyOnRoatpPage(_context);
+            return new AlreadyOnRoatpPage(context);
         }
     }
 }

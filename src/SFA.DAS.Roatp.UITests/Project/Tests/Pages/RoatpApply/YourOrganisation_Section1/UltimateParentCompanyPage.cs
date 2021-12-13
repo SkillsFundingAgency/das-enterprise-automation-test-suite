@@ -12,12 +12,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByForAttribute("YO-20");
             Continue();
-            return new ParentCompanyDetailsPage(_context);
+            return new ParentCompanyDetailsPage(context);
         }
         public ParentCompanyDetailsPage ClickContinueParentCompanyOption()
         {
             Continue();
-            return new ParentCompanyDetailsPage(_context);
+            return new ParentCompanyDetailsPage(context);
         }
 
     }

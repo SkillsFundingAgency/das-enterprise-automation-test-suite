@@ -14,12 +14,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         public HowOrganisationSupportApprenticesPage EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowApprenticesAreSupported);
-            return new HowOrganisationSupportApprenticesPage(_context);
+            return new HowOrganisationSupportApprenticesPage(context);
         }
         public ApplicationOverviewPage EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue_MainRoute()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowApprenticesAreSupported);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

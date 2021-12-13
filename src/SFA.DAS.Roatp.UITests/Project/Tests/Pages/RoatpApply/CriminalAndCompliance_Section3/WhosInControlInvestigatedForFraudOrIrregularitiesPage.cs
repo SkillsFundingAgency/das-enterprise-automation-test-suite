@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlInvestigatedForFraudorIrregularities);
-            return new WhosInControlOngoingInvestigationsForFraudPage(_context);
+            return new WhosInControlOngoingInvestigationsForFraudPage(context);
         }
     }
 }

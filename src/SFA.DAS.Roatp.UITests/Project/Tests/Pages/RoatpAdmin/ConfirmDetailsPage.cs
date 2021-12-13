@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public SearchPage ConfirmOrganisationsDetails()
         {
             Continue();
-            return new SearchPage(_context);
+            return new SearchPage(context);
         }
     }
 }

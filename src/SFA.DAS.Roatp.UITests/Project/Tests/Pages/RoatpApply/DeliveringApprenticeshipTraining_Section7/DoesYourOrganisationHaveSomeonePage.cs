@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public ApplicationOverviewPage SelectNo()
         {
             SelectNoAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public WhoHasThePersonWorkedPage SelectYes()
         {
             SelectYesAndContinue();
-            return new WhoHasThePersonWorkedPage(_context);
+            return new WhoHasThePersonWorkedPage(context);
         }
     }
 }

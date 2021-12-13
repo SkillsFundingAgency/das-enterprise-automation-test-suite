@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public ApplicationOverviewPage ConfirmAndContinue()
         {
             Continue();
-            return new ApplicationOverviewPage(_context); 
+            return new ApplicationOverviewPage(context); 
         }
 
         public OrganisationPartnersPage AddAnotherPartner()
         {
             formCompletionHelper.ClickLinkByText("Add another partner");
-            return new OrganisationPartnersPage(_context);
+            return new OrganisationPartnersPage(context);
         }
 
     }

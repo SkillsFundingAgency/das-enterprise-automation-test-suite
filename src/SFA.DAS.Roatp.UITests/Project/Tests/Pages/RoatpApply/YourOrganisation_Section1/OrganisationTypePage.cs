@@ -12,21 +12,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("Sole trader");
             Continue();
-            return new SoleTraderDOBPage(_context);
+            return new SoleTraderDOBPage(context);
         }
 
         public OrganisationPartnersPage SelectPartnershipAndContinue()
         {
             SelectRadioOptionByText("Partnership");
             Continue();
-            return new OrganisationPartnersPage(_context);
+            return new OrganisationPartnersPage(context);
         }
 
         public ConfirmPartnerShipDetailsPage SelectIndividualForPartnershipContinue()
         {
             SelectRadioOptionByText("Partnership");
             Continue();
-            return new ConfirmPartnerShipDetailsPage(_context);
+            return new ConfirmPartnerShipDetailsPage(context);
         }
     }
 }

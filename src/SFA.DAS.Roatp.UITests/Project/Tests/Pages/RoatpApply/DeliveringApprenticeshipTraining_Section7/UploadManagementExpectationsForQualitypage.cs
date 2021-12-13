@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public HowExpectationsAreMonitoredPage UploadManagementExpectationsForQuality()
         {
             UploadFile();
-            return new HowExpectationsAreMonitoredPage(_context);
+            return new HowExpectationsAreMonitoredPage(context);
         }
 
     }

@@ -12,13 +12,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         public ApplicationOverviewPage SelectYesToCompletesAllPostApplicationTasksAndContinue()
         {
             SelectYesAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public FinishSectionShutterPage SelectNoToCompletesAllPostApplicationTasksAndContinue()
         {
             SelectNoAndContinue();
-            return new FinishSectionShutterPage(_context);
+            return new FinishSectionShutterPage(context);
         }
     }
 }

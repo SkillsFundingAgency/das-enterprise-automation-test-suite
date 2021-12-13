@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             formCompletionHelper.EnterText(OrganisationDetails, applydataHelpers.FullName);
             Continue();
-            return new ConfirmPartnerShipDetailsPage(_context);
+            return new ConfirmPartnerShipDetailsPage(context);
         }
     }
 }

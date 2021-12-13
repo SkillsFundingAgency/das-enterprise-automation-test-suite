@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.FundingRemovedFromEducationBodies);
-            return new RemovedFromProfessionalOrTradeRegistersPage(_context);
+            return new RemovedFromProfessionalOrTradeRegistersPage(context);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         public EnterWebsiteLinkPage CompliantsPolicyFileUploadAndContinue()
         {
             UploadFile();
-            return new EnterWebsiteLinkPage(_context);
+            return new EnterWebsiteLinkPage(context);
         }
     }
 }

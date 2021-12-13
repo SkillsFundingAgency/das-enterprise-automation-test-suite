@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBankruptInLastThreeYears);
-            return new ProhibitionOrderFromTeachingRegulationAgencyPage(_context);
+            return new ProhibitionOrderFromTeachingRegulationAgencyPage(context);
         }
     }
 }

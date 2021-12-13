@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public MonitoringVisitPage SelectNoForFullOfstedInspectionAndContinue()
         {
             SelectNoAndContinue();
-            return new MonitoringVisitPage(_context);
+            return new MonitoringVisitPage(context);
         }
 
         public GradeInOfstedInspectionPage SelectYesForFullOfstedInspectionAndContinue()
         {
             SelectYesAndContinue();
-            return new GradeInOfstedInspectionPage(_context);
+            return new GradeInOfstedInspectionPage(context);
         }
     }
 }

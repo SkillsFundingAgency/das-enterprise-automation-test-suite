@@ -16,14 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
             SelectRadioOptionByText("Over 18 months");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public ApplicationOverviewPage EnterDetailsOfTheManagerPerson()
         {
             formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
             SelectYesAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

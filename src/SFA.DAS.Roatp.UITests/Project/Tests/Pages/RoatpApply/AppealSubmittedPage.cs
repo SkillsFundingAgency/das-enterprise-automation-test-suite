@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ApplicationOutcomePage AccessApplicationOverviewPage()
         {
             formCompletionHelper.ClickLinkByText("Application overview");
-            return new ApplicationOutcomePage(_context);
+            return new ApplicationOutcomePage(context);
         }
 
     }

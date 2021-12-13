@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public WhoHasTheTeamWorkedPage SelectYes()
         {
             SelectYesAndContinue();
-            return new WhoHasTheTeamWorkedPage(_context);
+            return new WhoHasTheTeamWorkedPage(context);
         }
 
         public DoesYourOrganisationHaveSomeonePage SelectNo()
         {
             SelectNoAndContinue();
-            return new DoesYourOrganisationHaveSomeonePage(_context);
+            return new DoesYourOrganisationHaveSomeonePage(context);
         }
     }
 }

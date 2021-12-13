@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             SelectRadioOptionByText("No experience");
             SelectRadioOptionByText("No training delivered");
             Continue();
-            return new YourSectorsAndEmployeesPage(_context);
+            return new YourSectorsAndEmployeesPage(context);
         }
     }
 }

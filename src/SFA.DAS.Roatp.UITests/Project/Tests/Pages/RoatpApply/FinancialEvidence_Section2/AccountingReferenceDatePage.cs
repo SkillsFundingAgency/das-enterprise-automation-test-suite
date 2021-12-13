@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
             formCompletionHelper.EnterText(AccountingReferenceMonth, dobcalc.Month);
             formCompletionHelper.EnterText(AccountingReferenceYear, dobcalc.Year);
             Continue();
-            return new HowManyMonthsAccountingPeriodPage(_context);
+            return new HowManyMonthsAccountingPeriodPage(context);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.ClickElement(by);
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
     }
 }

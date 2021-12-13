@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         public WhosInControlBankruptInLastThreeYearsPage SelectNo()
         {
             SelectNoAndContinue();
-            return new WhosInControlBankruptInLastThreeYearsPage(_context);
+            return new WhosInControlBankruptInLastThreeYearsPage(context);
         }
     }
 }

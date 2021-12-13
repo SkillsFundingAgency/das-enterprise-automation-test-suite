@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         {
             SelectRadioOptionByText("Employers - to deliver training to their employees");
             Continue();
-            return new HowHasThisPersonWorkedPage(_context);
+            return new HowHasThisPersonWorkedPage(context);
         }
     }
 }

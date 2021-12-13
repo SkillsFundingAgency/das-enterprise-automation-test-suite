@@ -12,14 +12,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         {
             SelectRadioOptionByText("Both other organisations and employers");
             Continue();
-            return new HowHasTheTeamWorkedWithBothPage(_context);
+            return new HowHasTheTeamWorkedWithBothPage(context);
         }
 
         public HowHasTheTeamWorkedWithOrganisationsPage SelectOrganisations()
         {
             SelectRadioOptionByText("Other Organisations");
             Continue();
-            return new HowHasTheTeamWorkedWithOrganisationsPage(_context);
+            return new HowHasTheTeamWorkedWithOrganisationsPage(context);
         }
     }
 }

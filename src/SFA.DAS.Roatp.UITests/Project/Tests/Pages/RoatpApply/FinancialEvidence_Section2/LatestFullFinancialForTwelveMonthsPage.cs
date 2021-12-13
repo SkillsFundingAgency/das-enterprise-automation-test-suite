@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         {
             SelectRadioOptionByText("No");
             Continue();
-            return new FinanicialStatementsCoveringAnyPeriodPage(_context);
+            return new FinanicialStatementsCoveringAnyPeriodPage(context);
         }
     }
 }

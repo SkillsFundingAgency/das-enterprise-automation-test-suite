@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
             formCompletionHelper.EnterText(Email, applydataHelpers.Email);
             formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             Continue();
-            return new PreventDutyPage(_context);
+            return new PreventDutyPage(context);
         }
     }
 }

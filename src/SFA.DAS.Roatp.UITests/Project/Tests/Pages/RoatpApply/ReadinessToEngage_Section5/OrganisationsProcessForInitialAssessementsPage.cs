@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         public ToAssessEnglishAndMathsPage EnterTextRegardingOrganisationProcessForInitialTraningAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.OrganisationProcessForInitialTraning);
-            return new ToAssessEnglishAndMathsPage(_context);
+            return new ToAssessEnglishAndMathsPage(context);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OneTo49CheckRadio));
             Continue();
-            return new DeliverTrainingAgainstForecastPage(_context);
+            return new DeliverTrainingAgainstForecastPage(context);
         }
     }
 }

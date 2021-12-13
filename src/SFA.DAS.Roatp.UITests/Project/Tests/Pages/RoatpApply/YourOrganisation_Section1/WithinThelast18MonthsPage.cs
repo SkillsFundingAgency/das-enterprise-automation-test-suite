@@ -12,13 +12,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new NotEligiblePage(_context);
+            return new NotEligiblePage(context);
         }
         public ApplicationOverviewPage SelectNoForMonitoringVisitInLast18MonthsAndContinue()
         {
             SelectRadioOptionByText("No");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

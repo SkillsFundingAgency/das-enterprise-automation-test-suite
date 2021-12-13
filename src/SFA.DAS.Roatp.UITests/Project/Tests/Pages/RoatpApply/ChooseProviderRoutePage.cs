@@ -14,21 +14,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             SelectRadioOptionByForAttribute("route-1");
             Continue();
-            return new TermsConditionsMakingApplicationPage(_context);
+            return new TermsConditionsMakingApplicationPage(context);
         }
 
         public LevyPayingEmployerPage SelectApplicationRouteAsEmployer()
         {
             SelectRadioOptionByForAttribute("route-2");
             Continue();
-            return new LevyPayingEmployerPage(_context);
+            return new LevyPayingEmployerPage(context);
         }
 
         public TermsConditionsMakingApplicationPage SelectApplicationRouteAsSupporting()
         {
             SelectRadioOptionByForAttribute("route-3");
             Continue();
-            return new TermsConditionsMakingApplicationPage(_context);
+            return new TermsConditionsMakingApplicationPage(context);
         }
     }
 }

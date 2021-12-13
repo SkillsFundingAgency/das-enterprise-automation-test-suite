@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public ApplicationOverviewPage EnterHowAreTheyCommunicatedToEmployees()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowAreTheyCommunicatedToEmployees);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

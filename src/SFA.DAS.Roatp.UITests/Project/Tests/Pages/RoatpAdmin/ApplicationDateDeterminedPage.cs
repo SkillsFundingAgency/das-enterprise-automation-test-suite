@@ -24,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             formCompletionHelper.EnterText(Month, 11);
             formCompletionHelper.EnterText(Year, 1980);
             Continue();
-            return new ConfirmDetailsPage(_context);
+            return new ConfirmDetailsPage(context);
         }
 
     }

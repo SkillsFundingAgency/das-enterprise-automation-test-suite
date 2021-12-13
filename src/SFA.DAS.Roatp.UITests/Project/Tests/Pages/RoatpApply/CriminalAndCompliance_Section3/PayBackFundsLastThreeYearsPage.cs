@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.PayBackFundsLastThreeYears);
-            return new ContractTerminatedByPublicBodyPage(_context);
+            return new ContractTerminatedByPublicBodyPage(context);
         }
     }
 }

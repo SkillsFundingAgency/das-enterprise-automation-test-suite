@@ -14,19 +14,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public OrganisationUkprnPage AddANewTrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Add a new apprenticeship training provider");
-            return new OrganisationUkprnPage(_context);
+            return new OrganisationUkprnPage(context);
         }
 
         public RoatpAdminHomePage DownloadRegister()
         {
             formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
-            return new RoatpAdminHomePage(_context);
+            return new RoatpAdminHomePage(context);
         }
 
         public SearchPage SearchForTrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
-            return new SearchPage(_context);
+            return new SearchPage(context);
         }
     }
 }

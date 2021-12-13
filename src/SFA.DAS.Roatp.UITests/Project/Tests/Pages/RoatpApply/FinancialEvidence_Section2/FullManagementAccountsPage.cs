@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         public WhatYouNeedToUploadPage SelectNoForManagementAccountsSupportingRouteAndContinue()
         {
             SelectNoAndContinue();
-            return new WhatYouNeedToUploadPage(_context);
+            return new WhatYouNeedToUploadPage(context);
         }
     }
 }

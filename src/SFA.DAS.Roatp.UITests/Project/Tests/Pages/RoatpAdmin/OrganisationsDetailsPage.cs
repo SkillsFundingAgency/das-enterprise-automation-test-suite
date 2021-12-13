@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public ProviderRoutePage ConfirmOrganisationsDetails()
         {
             Continue();
-            return new ProviderRoutePage(_context);
+            return new ProviderRoutePage(context);
         }
     }
 }

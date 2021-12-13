@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new FundingFromEsfaPage(_context);
+            return new FundingFromEsfaPage(context);
         }
     }
 }

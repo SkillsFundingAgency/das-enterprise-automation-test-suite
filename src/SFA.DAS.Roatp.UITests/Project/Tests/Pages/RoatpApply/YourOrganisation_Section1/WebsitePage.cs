@@ -16,12 +16,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectRadioOptionByForAttribute("YO-40");
             formCompletionHelper.EnterText(MainWebsiteField, applydataHelpers.Website);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
         public ApplicationOverviewPage ClickContinueForWebsiteEntered()
         {
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

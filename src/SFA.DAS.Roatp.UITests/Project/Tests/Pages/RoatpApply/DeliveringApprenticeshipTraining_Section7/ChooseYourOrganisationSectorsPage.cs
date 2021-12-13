@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         {
             SelectCheckBoxByText(sector);
             Continue();
-            return new YourSectorsAndEmployeesPage(_context);
+            return new YourSectorsAndEmployeesPage(context);
         }
     }
 }

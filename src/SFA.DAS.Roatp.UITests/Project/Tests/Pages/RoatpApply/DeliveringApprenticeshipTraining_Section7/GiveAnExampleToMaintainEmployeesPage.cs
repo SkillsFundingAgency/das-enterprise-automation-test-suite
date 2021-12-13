@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public ApplicationOverviewPage EnterAnExampleToMaintainEmployee()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ExampleToMaintainEmployees);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

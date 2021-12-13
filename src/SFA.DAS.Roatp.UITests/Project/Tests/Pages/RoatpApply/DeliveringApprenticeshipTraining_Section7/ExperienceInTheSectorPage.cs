@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
                 formCompletionHelper.ClickElement(item);
             }
             Continue();
-            return new WhatTypeOfTrainingDeliveredPage(_context);
+            return new WhatTypeOfTrainingDeliveredPage(context);
         }
 
     }

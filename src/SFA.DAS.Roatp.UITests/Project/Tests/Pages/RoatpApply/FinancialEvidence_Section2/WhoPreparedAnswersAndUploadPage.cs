@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AnEmployeeInYourOrganisationCheckbox));
             Continue();
-            return new AccountingReferenceDatePage(_context);
+            return new AccountingReferenceDatePage(context);
         }
     }
 }

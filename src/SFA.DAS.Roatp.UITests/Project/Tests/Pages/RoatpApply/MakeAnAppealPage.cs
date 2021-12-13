@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.SelectCheckbox(AppealOnPolicyOrProcessesRadio);
             formCompletionHelper.SelectCheckbox(AppealOnEvidenceSubmittedRadio);
             Continue();
-            return new GroundForAppealPage(_context);
+            return new GroundForAppealPage(context);
         }
 
     }

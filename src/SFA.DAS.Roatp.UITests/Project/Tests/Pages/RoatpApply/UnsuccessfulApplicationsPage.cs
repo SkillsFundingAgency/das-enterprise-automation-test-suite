@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public EnterUkprnPage SelectNoFor2ApplicaitonsAndContinue()
         {
             SelectNoAndContinue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
     }
 }

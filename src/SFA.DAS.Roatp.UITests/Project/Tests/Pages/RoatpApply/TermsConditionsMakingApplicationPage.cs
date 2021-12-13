@@ -15,14 +15,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             SelectRadioOptionByForAttribute("ConditionsAccepted-Yes");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public NotAcceptTermsConditionsPage DoNotAcceptTermsConditions()
         {
             SelectRadioOptionByForAttribute("ConditionsAccepted-No");
             Continue();
-            return new NotAcceptTermsConditionsPage(_context);
+            return new NotAcceptTermsConditionsPage(context);
         }
 
         public void ClickSignout()

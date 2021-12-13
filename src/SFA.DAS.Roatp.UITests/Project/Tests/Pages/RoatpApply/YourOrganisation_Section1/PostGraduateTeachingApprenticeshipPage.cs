@@ -11,12 +11,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public FullOfstedInspectionPage SelectNoForPGTAAndContinue()
         {
             SelectNoAndContinue();
-            return new FullOfstedInspectionPage(_context);
+            return new FullOfstedInspectionPage(context);
         }
         public ApplicationOverviewPage SelectYesForPGTAAndContinue()
         {
             SelectYesAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new TypicalRatioOfStaffPage(_context);
+            return new TypicalRatioOfStaffPage(context);
         }
     }
 }

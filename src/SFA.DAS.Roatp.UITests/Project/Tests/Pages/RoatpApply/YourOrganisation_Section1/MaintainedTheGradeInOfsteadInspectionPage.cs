@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public MaintainedFundingFromAnEducationAgencyPage SelectYesForGradeMaintainedAndContinue()
         {
             SelectYesAndContinue();
-            return new MaintainedFundingFromAnEducationAgencyPage(_context);
+            return new MaintainedFundingFromAnEducationAgencyPage(context);
         }
     }
 }

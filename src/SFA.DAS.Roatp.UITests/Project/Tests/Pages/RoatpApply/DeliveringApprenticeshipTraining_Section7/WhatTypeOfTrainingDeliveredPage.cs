@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         {
             SelectRadioOptionByText("Apprenticeship frameworks");
             Continue();
-            return new HowHaveTheyDeliveredTrainingToApprenticesPage(_context);
+            return new HowHaveTheyDeliveredTrainingToApprenticesPage(context);
         }
 
     }

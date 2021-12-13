@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         {
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBreachTaxSocialSecurity);
-            return new IsAnyOneControlOfRemovedTrusteePage(_context);
+            return new IsAnyOneControlOfRemovedTrusteePage(context);
         }
     }
 }

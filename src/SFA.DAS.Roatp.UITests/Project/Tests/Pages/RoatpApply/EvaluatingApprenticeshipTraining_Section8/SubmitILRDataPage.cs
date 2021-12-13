@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new IndividualAccountableForILRPage(_context);
+            return new IndividualAccountableForILRPage(context);
         }
     }
 }

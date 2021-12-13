@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         public WhoPreparedAnswersAndUploadPage UploadManagementAccountsFileAndContinue()
         {
             UploadMultipleFiles(2);
-            return new WhoPreparedAnswersAndUploadPage(_context);
+            return new WhoPreparedAnswersAndUploadPage(context);
         }
     }
 }

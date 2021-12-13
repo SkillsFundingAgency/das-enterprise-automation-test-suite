@@ -12,14 +12,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             SelectRadioOptionByText("An organisation");
             Continue();
-            return new EnterOrganisationsDetailsPage(_context);
+            return new EnterOrganisationsDetailsPage(context);
         }
 
         public EnterIndividualsDetailsPage SelectIndividualAndContinue()
         {
             SelectRadioOptionByText("An individual");
             Continue();
-            return new EnterIndividualsDetailsPage(_context);
+            return new EnterIndividualsDetailsPage(context);
         }
     }
 }
