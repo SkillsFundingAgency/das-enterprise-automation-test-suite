@@ -8,11 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApprenticeRequestDraftsPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeRequestDraftsPage(ScenarioContext context) : base(context)  { }
 
         public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {

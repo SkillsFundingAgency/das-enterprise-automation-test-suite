@@ -11,16 +11,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => $"Has {apprenticeDataHelper.ApprenticeFullName} been made redundant?";
         
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         #endregion
+
         protected override By ContinueButton => By.Id("submit");
 
-        public HasTheApprenticeBeenMadeRedundantPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-        }
+        public HasTheApprenticeBeenMadeRedundantPage(ScenarioContext context) : base(context) => _dataHelper = context.Get<ApprenticeDataHelper>();
 
         public StopApprenticeshipPage ClickARadioButtonAndContinue()
         {

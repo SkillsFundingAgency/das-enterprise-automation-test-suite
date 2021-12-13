@@ -12,9 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EndDateYear => By.Name("EndYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
-        private readonly ScenarioContext _context;
-
-        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context)  { }
 
         public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
         {

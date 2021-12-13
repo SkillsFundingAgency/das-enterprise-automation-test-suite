@@ -10,11 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Apprenticeship record stopped";
         protected override By ContinueButton => By.Id("continue-button");
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
-        public ApprenticeshipRecordStoppedPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeshipRecordStoppedPage(ScenarioContext context) : base(context)  { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

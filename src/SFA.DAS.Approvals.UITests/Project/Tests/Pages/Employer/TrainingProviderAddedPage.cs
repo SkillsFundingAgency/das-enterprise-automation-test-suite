@@ -7,12 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "You've successfully added";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public TrainingProviderAddedPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingProviderAddedPage(ScenarioContext context) : base(context)  { }
 
         public YourTrainingProvidersPage SelectContinueInEmployerTrainingProviderAddedPage()
         { 

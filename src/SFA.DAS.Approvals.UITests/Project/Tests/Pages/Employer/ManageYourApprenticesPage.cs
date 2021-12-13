@@ -21,10 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApprenticeSearchField => By.Id("searchTerm");
         private By SearchButton => By.ClassName("das-search-form__button");
         private By SelectFilterDropdown => By.Id("selectedStatus");
@@ -34,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
         private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
-        public ManageYourApprenticesPage(ScenarioContext context): base(context) => _context = context;
+        public ManageYourApprenticesPage(ScenarioContext context): base(context)  { }
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {

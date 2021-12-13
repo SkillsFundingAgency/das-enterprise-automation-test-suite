@@ -9,11 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
         public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
         {

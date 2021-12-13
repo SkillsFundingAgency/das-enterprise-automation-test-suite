@@ -7,10 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
@@ -29,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public ApprenticesHomePage(ScenarioContext context) : base(context, false) { _context = context; }
+        public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
 
         public AddAnApprenitcePage AddAnApprentice()
         {

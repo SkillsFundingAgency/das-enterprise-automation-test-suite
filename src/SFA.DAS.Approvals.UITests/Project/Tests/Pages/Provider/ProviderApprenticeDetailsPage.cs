@@ -8,11 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
@@ -29,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
 
-        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public ProviderReviewChangesPage ClickReviewChanges()
         {

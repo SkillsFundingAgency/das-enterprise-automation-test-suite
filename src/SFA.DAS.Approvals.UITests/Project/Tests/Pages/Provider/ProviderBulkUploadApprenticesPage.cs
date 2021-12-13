@@ -19,15 +19,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TableCells => By.ClassName("govuk-table__row");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;
         #endregion
 
-        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _bulkUploadDataHelper = new BulkUploadDataHelper();
-        }
+        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) => _bulkUploadDataHelper = new BulkUploadDataHelper();
 
         public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {

@@ -8,11 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
@@ -27,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
 
-        public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 

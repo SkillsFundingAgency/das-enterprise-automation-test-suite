@@ -7,10 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
     public class DynamicHomePages : HomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private string VerifyDraftStatusMessage => "DRAFT";
         private string VerifyWithTrainingProviderStatusMessage => "WITH TRAINING PROVIDER";
         private string VerifyReadyToReviewStatusMessage => "READY TO REVIEW";
@@ -24,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private By VerifyViewApprenticeDetailsLink => By.LinkText("View apprentice details");
         private By DynamicHomeContinueButton => By.LinkText("Continue");
 
-        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public DoYouKnowWhichCourseYourApprenticeWillTakePage StartNowToReserveFunding()
         {

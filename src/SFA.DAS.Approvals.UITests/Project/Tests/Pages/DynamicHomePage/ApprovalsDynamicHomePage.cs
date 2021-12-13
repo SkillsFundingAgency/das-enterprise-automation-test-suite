@@ -6,11 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
     public class ApprovalsDynamicHomePage : HomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApprovalsDynamicHomePage(ScenarioContext context) : base(context) => _context = context;
+        public ApprovalsDynamicHomePage(ScenarioContext context) : base(context)  { }
         
         public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
         {

@@ -5,11 +5,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ChangeOfEmployerConfirmNewEmployerPage : ApprovalsBasePage
     {
-        private ScenarioContext _context;
         protected override string PageTitle => "Confirm new employer";
         protected override By ContinueButton => By.Id("saveBtn");
 
-        public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context)  { }
         
         public ChangeOfEmployerStartDatePage ConfirmNewEmployer()
         {

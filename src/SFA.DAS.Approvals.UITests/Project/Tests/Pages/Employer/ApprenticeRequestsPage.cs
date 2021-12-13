@@ -10,15 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NumberofApprenticeRequestsReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
         private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-one .bold-xxlarge");
         private By NumberOfDrafts => By.CssSelector("a[href*='draft'] span[class*='das-tabs-boxes__figure']");
 
-        public ApprenticeRequestsPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeRequestsReadyToReview GoToReadyToReview()
         {

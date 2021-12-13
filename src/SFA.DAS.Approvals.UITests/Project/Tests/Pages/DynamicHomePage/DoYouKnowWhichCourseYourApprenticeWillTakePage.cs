@@ -7,13 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         protected override string PageTitle => "Do you know which course your apprentice will take?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ClickYesContinue => By.Id("which-course-your-apprentice-will-take-button");
 
-        public DoYouKnowWhichCourseYourApprenticeWillTakePage (ScenarioContext context) : base(context) => _context = context;
+        public DoYouKnowWhichCourseYourApprenticeWillTakePage (ScenarioContext context) : base(context)  { }
 
         public HaveYouChosenATrainingProviderToDeliverTheApprenticeshipTrainingPage YesToCourse()
         {

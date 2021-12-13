@@ -12,11 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By InputBox => By.TagName("input");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal ProvideViewApprenticesDetailsPage SelectReturnToCohortView()
         {

@@ -9,9 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Choose a new employer";
 
-        private readonly ScenarioContext _context;
-
-        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context)  { }
 
         public ChangeOfEmployerConfirmNewEmployerPage SelectNewEmployer()
         {

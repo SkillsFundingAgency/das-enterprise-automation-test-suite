@@ -10,16 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private By DeleteLink => By.LinkText("Delete");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => VerifyPage();
 
-        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
-    
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
             if (pageInteractionHelper.IsElementPresent(ReserveFundingLink)) formCompletionHelper.ClickElement(ReserveFundingLink);

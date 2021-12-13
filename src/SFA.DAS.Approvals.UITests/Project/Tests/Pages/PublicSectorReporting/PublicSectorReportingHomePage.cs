@@ -6,15 +6,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class PublicSectorReportingHomePage : InterimPublicSectorReportingHomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By RadioLabels => By.CssSelector("label");
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        public PublicSectorReportingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public PublicSectorReportingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
         public PublicSectorTargetDatePage CreateNewReport()
         {

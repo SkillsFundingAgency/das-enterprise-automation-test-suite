@@ -8,11 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override string PageTitle => "When will the apprentice start their apprenticeship training?";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
         {

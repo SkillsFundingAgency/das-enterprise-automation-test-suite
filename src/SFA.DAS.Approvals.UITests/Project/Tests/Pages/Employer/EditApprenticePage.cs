@@ -10,11 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public EditApprenticePage(ScenarioContext context) : base(context)  { }
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
         private By EditDateOfBirthDay => By.Id("BirthDay");

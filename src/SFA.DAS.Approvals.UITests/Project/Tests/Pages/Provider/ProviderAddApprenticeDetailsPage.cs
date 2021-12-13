@@ -12,10 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
         private By EmailField => By.Id("Email");
@@ -32,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EmployerReference => By.Id("Reference");
         private By AddButton => By.CssSelector("#addApprenticeship > button");
 
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {

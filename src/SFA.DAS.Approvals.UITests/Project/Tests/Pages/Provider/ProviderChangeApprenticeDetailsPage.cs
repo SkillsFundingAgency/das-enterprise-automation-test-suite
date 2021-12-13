@@ -7,13 +7,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Change apprentice details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         private By DoYouWantToRequestChangesOptions => By.XPath("(//input[@class='govuk-radios__input'])[1]");
         private By FinishButton => By.XPath("(//button[@type='submit'])[2]");
 
-        public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderApprenticeDetailsPage ConfirmRequestToFixILRMismatch()
         {

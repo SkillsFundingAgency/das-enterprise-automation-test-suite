@@ -9,13 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         protected override string PageTitle => "Set up an apprenticeship for an existing employee";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ClickReserveFunding => By.Id("reserve-funding");
 
-        public SetUpAnApprenticeshipForAnExistingEmployeePage(ScenarioContext context) : base(context) => _context = context;
+        public SetUpAnApprenticeshipForAnExistingEmployeePage(ScenarioContext context) : base(context)  { }
 
         public ReserveFundingToTrainAndAssessAnApprenticePage YesContinueToReserveFunding()
         {

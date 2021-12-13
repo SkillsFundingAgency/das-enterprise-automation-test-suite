@@ -7,9 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Resume apprenticeship";
 
-        private readonly ScenarioContext _context;
-
-        public ResumeApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public ResumeApprenticePage(ScenarioContext context) : base(context)  { }
 
         public new ApprenticeDetailsPage SelectYesAndConfirm()
         {

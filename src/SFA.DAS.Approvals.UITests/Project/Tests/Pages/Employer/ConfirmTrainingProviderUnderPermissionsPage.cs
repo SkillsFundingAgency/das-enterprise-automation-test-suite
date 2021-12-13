@@ -7,13 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Confirm training provider";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SelectYesConfirm => By.XPath("//fieldset[@class='govuk-fieldset']//input[@automation-id='choice-1']");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        public ConfirmTrainingProviderUnderPermissionsPage(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmTrainingProviderUnderPermissionsPage(ScenarioContext context) : base(context)  { }
 
         internal TrainingProviderAddedPage ConfirmTrainingProvider()
         {

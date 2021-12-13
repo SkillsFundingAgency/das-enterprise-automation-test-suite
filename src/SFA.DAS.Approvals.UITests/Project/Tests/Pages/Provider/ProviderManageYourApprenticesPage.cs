@@ -13,13 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string Linktext => "Manage your apprentices";
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
+        {            
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
             VerifyPage();
         }

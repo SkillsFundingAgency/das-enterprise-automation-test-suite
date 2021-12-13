@@ -14,11 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChooseAReservationPage(ScenarioContext context) : base(context) => _context = context;
+        public ChooseAReservationPage(ScenarioContext context) : base(context)  { }
 
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {

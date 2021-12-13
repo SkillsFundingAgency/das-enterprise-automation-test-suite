@@ -7,11 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Pause apprenticeship";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PauseApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public PauseApprenticePage(ScenarioContext context) : base(context)  { }
 
         public new ApprenticeDetailsPage SelectYesAndConfirm()
         {

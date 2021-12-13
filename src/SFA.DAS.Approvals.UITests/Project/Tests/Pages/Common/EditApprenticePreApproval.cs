@@ -5,9 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class EditApprenticePreApproval : EditAppretinceNameDobAndReference
     {
-        private readonly ScenarioContext _context;
-
-        protected EditApprenticePreApproval(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
+        protected EditApprenticePreApproval(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {

@@ -6,11 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class YourTrainingProvidersLinkHomePage : HomePage
     {
-        private readonly ScenarioContext _context;
-
         private By YourTrainingProvidersLink => By.LinkText("Your training providers");
 
-        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context) => _context = context;
+        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context)  { }
 
         public YourTrainingProvidersPage OpenProviderPermissions()
         {

@@ -10,14 +10,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"What is the agreed price of completing the training with {changeOfPartyConfig.NewProviderName}?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NewPriceInput => By.Id("input-newprice");
         private By ContinueBtn => By.Id("continue-button");
 
-        public WhatIsTheNewPricePage(ScenarioContext context) : base(context) => _context = context; 
+        public WhatIsTheNewPricePage(ScenarioContext context) : base(context)  { } 
 
         public WhatIsTheNewPricePage EnterInvalidPrice()
         {

@@ -8,14 +8,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     public class ProviderMakingChangesPage : ReservationIdBasePage
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
-		
-		#region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
-        private By ContinueButtonTo = By.XPath("//button[contains(text(),'Continue')]");
+        private By ContinueButtonTo => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderMakingChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderMakingChangesPage(ScenarioContext context) : base(context)  { }
 
         internal ApprovalsProviderHomePage GoToHomePage()
         {

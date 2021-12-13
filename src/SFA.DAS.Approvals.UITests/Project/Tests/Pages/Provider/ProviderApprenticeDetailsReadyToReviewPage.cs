@@ -8,12 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderApprenticeDetailsReadyToReviewPage(ScenarioContext context) : base(context) => _context = context;
-
+        public ProviderApprenticeDetailsReadyToReviewPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {

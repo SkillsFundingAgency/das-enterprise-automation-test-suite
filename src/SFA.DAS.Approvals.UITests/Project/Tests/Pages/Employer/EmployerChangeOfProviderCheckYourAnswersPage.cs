@@ -10,16 +10,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"Confirm details and send request to {changeOfPartyConfig.NewProviderName}";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ChangeStartDateLink => By.Id("change-start-date-link");
         private By ChangeEndDateLink => By.Id("change-end-date-link");
         private By ChangePriceLink => By.Id("change-price-link");
         private By ConfirmBtn => By.Id("confirm-and-send-button");
 
-        public EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : base(context) => _context = context; 
+        public EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : base(context)  { } 
         
         public WhatIsTheNewStartDatePage ClickChangeStartDate()
         {

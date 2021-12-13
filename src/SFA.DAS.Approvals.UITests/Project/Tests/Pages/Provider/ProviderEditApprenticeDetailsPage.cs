@@ -29,11 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {

@@ -12,13 +12,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Choose an employer";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By EmployersAvailable => By.CssSelector("table tbody tr");
 
-        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployer(string employerType)
         {

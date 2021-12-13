@@ -12,7 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly string _pageTitle;
         #endregion
 
@@ -24,7 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
-            _context = context;
             var noOfApprentice = TotalNoOfApprentices();
 	        _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();

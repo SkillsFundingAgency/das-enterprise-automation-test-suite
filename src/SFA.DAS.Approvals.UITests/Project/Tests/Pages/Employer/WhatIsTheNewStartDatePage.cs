@@ -10,15 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"What is the start date with {changeOfPartyConfig.NewProviderName}?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NewStartMonthInput => By.Id("new-start-month");
         private By NewStartYearInput => By.Id("new-start-year");
         private By ContinueBtn => By.Id("continue-button");
 
-        public WhatIsTheNewStartDatePage(ScenarioContext context) : base(context) => _context = context;
+        public WhatIsTheNewStartDatePage(ScenarioContext context) : base(context)  { }
 
         public WhatIsTheNewStartDatePage EnterInvalidNewStartDate()
         {

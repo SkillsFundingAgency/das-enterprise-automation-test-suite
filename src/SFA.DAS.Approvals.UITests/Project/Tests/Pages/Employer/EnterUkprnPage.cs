@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By InvalidProivderErrorMessage = By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly ChangeOfPartyConfig _changeOfPartyConfig;
         private readonly ProviderConfig _providerConfig;
         #endregion
@@ -24,8 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
 
         public EnterUkprnPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
+        {  
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
         }

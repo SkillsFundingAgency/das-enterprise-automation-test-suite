@@ -9,11 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Start adding apprentices";
         protected override By ContinueButton => By.Id("continue-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public StartAddingApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public StartAddingApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
