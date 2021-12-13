@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.EnterText(Price, "1002");
             Continue();
-            return new ChangeOfEmployerSummaryPage(_context);
+            return new ChangeOfEmployerSummaryPage(context);
         }
     }
 }

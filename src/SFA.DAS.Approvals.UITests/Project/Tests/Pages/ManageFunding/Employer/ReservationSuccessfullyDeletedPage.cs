@@ -14,13 +14,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public ReservationSuccessfullyDeletedPage ChooseReturnToManageReservationRadioButton()
         {
             SelectRadioOptionByForAttribute("Manage");
-            return new ReservationSuccessfullyDeletedPage(_context);
+            return new ReservationSuccessfullyDeletedPage(context);
         }
 
         public ManageFundingHomePage ClickConfirmButton()
         {
             Continue();
-            return new ManageFundingHomePage(_context, false);
+            return new ManageFundingHomePage(context, false);
         }
     }
 }

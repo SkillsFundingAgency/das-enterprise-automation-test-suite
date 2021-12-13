@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {            
             Continue(_changeOfPartyConfig.Ukprn);
 
-            return new WhoWillEnterTheNewCourseDatesAndPrice(_context);
+            return new WhoWillEnterTheNewCourseDatesAndPrice(context);
         }
 
         internal EnterUkprnPage ChooseInvalidProvider()
@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             ClearUKPRN();
 
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
         private void Continue(string ukprn) 

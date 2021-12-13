@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByLocator(ConfirmChangesRadio);
             formCompletionHelper.ClickElement(FinishButton);
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

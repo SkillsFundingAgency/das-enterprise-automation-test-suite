@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         public ReportYourProgressPage Start()
         {
             Continue();
-            return new ReportYourProgressPage(_context);
+            return new ReportYourProgressPage(context);
         }
     }
 }

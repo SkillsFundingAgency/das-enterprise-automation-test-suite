@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProvideViewApprenticesDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProvideViewApprenticesDetailsPage(_context);
+            return new ProvideViewApprenticesDetailsPage(context);
         }
     }
 }

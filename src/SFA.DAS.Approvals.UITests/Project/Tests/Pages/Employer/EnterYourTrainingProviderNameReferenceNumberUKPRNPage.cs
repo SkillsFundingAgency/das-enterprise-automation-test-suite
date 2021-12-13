@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn);
             Continue();
-            return new ConfirmTrainingProviderUnderPermissionsPage(_context);
+            return new ConfirmTrainingProviderUnderPermissionsPage(context);
         }
     }
 }

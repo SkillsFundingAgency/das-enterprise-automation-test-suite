@@ -29,25 +29,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditApprenticePage ClickEditApprenticeDetailsLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
-            return new EditApprenticePage(_context);
+            return new EditApprenticePage(context);
         }
 
         public ReviewChangesPage ClickReviewChanges()
         {
             formCompletionHelper.ClickElement(ReviewChangesLink);
-            return new ReviewChangesPage(_context);
+            return new ReviewChangesPage(context);
         }
 
         public ChangeApprenticeStatusPage ClickEditStatusLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeStatusLink);
-            return new ChangeApprenticeStatusPage(_context);
+            return new ChangeApprenticeStatusPage(context);
         }
 
         public ThisApprenticeshipTrainingStopPage ClickEditStopDateLink()
         {
             formCompletionHelper.ClickElement(EditStopDateLink);
-            return new ThisApprenticeshipTrainingStopPage(_context);
+            return new ThisApprenticeshipTrainingStopPage(context);
         }
 
         public bool VerifyIfChangeRequestWasApproved()
@@ -71,19 +71,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
             formCompletionHelper.ClickElement(ChangeTrainingProviderLink);
-            return new ChangingTrainingProviderPage(_context);
+            return new ChangingTrainingProviderPage(context);
         }
 
         public ViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChangesLink);
-            return new ViewChangesPage(_context);
+            return new ViewChangesPage(context);
         }
 
         public ViewChangesPage ClickReviewChangesLink()
         {
             formCompletionHelper.Click(ReviewCopChangesLink);
-            return new ViewChangesPage(_context);
+            return new ViewChangesPage(context);
         }
 
         public ApprenticeDetailsPage ValidateFlashMessage(string expectedMsg)

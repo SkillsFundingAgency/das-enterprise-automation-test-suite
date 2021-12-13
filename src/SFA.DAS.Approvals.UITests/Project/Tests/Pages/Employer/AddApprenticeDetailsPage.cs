@@ -66,9 +66,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new YouCantApproveThisApprenticeRequestUntilPage(_context);
+            return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()

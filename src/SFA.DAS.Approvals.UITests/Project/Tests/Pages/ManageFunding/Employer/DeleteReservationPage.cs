@@ -13,13 +13,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public DeleteReservationPage ChooseDeleteReservationRadioButton()
         {
             SelectRadioOptionByForAttribute("Delete");
-            return new DeleteReservationPage(_context);
+            return new DeleteReservationPage(context);
         }
 
         public ReservationSuccessfullyDeletedPage ClickConfirmButton()
         {
             Continue();
-            return new ReservationSuccessfullyDeletedPage(_context);
+            return new ReservationSuccessfullyDeletedPage(context);
         }
     }
 }

@@ -46,16 +46,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Approve apprentices details' page");
             }
             
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         private ApprenticeDetails SetApprenticeDetails(int courseCode)
         {
-            var employerUser = _context.GetUser<LevyUser>();
+            var employerUser = context.GetUser<LevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             
             return new ApprenticeDetails(courseCode)
             {

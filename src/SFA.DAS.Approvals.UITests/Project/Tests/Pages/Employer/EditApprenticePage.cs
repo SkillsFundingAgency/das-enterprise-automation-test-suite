@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            base.formCompletionHelper.ClickElement(DeleteButton);
-            return new ConfirmApprenticeDeletionPage(_context);
+            return new ConfirmApprenticeDeletionPage(context);
         }
 
         public ConfirmChangesPage EditCostCourseAndReference()
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
-            return new AfterEditApproveApprenticeDetailsPage(_context);
+            return new AfterEditApproveApprenticeDetailsPage(context);
         }
 
         public ConfirmChangesPage ContinueToAddValidEmailDetails()
@@ -93,6 +93,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
+        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(context);
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         public ConfirmationPage GoToConfirmationPage()
         {
             Continue();
-            return new ConfirmationPage(_context);
+            return new ConfirmationPage(context);
         }
     }
 }

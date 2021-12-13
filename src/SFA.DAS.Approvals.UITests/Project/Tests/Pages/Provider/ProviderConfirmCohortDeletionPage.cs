@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             Continue();
-            return new ProviderApprenticeRequestsPage(_context);
+            return new ProviderApprenticeRequestsPage(context);
         }
     }
 }

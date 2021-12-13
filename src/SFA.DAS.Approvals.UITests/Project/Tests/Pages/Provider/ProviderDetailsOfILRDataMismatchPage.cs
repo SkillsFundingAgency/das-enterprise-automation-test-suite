@@ -19,21 +19,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             javaScriptHelper.ClickElement(FixILRMismatchOptions);
             Continue();
-            return new ProviderChangeApprenticeDetailsPage(_context);
+            return new ProviderChangeApprenticeDetailsPage(context);
         }
 
         internal ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-Confirm");
             Continue();            
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal ProviderApprenticeDetailsPage ClickLeaveForNow()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-None");
             Continue();
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         public ProviderDetailsOfILRDataMismatchPage SelectILRDataMismatchOptions()

@@ -15,20 +15,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public new StoppedApprenticeDetailsPage SelectYesAndConfirm()
         {
             ConfirmChangesAndContinue();
-            return new StoppedApprenticeDetailsPage(_context);
+            return new StoppedApprenticeDetailsPage(context);
         }
 
         public ApprenticeshipRecordStoppedPage ValidateWarningSelectYesAndConfirm(string expectedWarningMsg)
         {
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(WarningMessage), expectedWarningMsg);
             ConfirmChangesAndContinue();
-            return new ApprenticeshipRecordStoppedPage(_context);
+            return new ApprenticeshipRecordStoppedPage(context);
         }
 
         public StopApprenticeshipPage SelectYesandConfirmForANonStartedApprentice()
         {
             ConfirmChangesAndContinue();
-            return new StopApprenticeshipPage(_context);
+            return new StopApprenticeshipPage(context);
         }
         
         private StopApprenticeshipPage ConfirmChangesAndContinue()

@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new ProviderChooseAReservationPage(_context);
+            return new ProviderChooseAReservationPage(context);
         }
 
         internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }
-            return new ProviderAddApprenticeDetailsPage(_context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public List<IWebElement> ApprenticeUlns()
@@ -65,19 +65,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }
-            return new ProviderEditApprenticeDetailsPage(_context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
         {
             formCompletionHelper.ClickElement(DeleteThisCohortLink);
-            return new ProviderConfirmCohortDeletionPage(_context);
+            return new ProviderConfirmCohortDeletionPage(context);
         }
 
         public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()
         {
             formCompletionHelper.ClickElement(BulkUploadLink);
-            return new ProviderBulkUploadApprenticesPage(_context);
+            return new ProviderBulkUploadApprenticesPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage IsAddApprenticeLinkDisplayed()
@@ -107,49 +107,49 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderAccessDeniedPage SelectEditApprenticeGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(EditApprenticeLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal ProviderAccessDeniedPage SelectAddAnApprenticeGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(DeleteThisCohortLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderAccessDeniedPage SelectBulkUploadApprenticesGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(BulkUploadLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderCohortSentForReviewPage SubmitSendToEmployerToReview()
         {
             SelectOption("radio-send");
-            return new ProviderCohortSentForReviewPage(_context);
+            return new ProviderCohortSentForReviewPage(context);
         }
 
         public ProviderCohortApprovedPage SubmitApprove()
         {
             SelectOption("radio-approve", false);
-            return new ProviderCohortApprovedPage(_context);
+            return new ProviderCohortApprovedPage(context);
         }
 
         public ProviderCohortSentForReviewPage SubmitApproveAndSendToEmployerForApproval()
         {
             SelectOption("send-details");
-            return new ProviderCohortSentForReviewPage(_context);
+            return new ProviderCohortSentForReviewPage(context);
         }
 
         public ProviderApprenticeRequestsPage SubmitSaveButDontSendToEmployer()
         {
             formCompletionHelper.ClickElement(SaveAndExitCohort);
-            return new ProviderApprenticeRequestsPage(_context);
+            return new ProviderApprenticeRequestsPage(context);
         }
 
         public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);

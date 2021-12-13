@@ -19,19 +19,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationRadioButton, "CreateNew");
-            return new ChooseAReservationPage(_context);
+            return new ChooseAReservationPage(context);
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickSaveAndContinueButton()
         {
             Continue();
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
         public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
             formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public DynamicHomePages ClickHome()
         {
             formCompletionHelper.ClickElement(ClickDynamicHomeLink);
-            return new DynamicHomePages(_context);
+            return new DynamicHomePages(context);
         }
     }
 }

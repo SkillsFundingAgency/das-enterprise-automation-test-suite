@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             javaScriptHelper.ClickElement(AcceptChangesOptions);
             formCompletionHelper.ClickElement(FinishButton);
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
     }

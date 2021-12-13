@@ -16,14 +16,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         {
             SelectRadioOptionByText("Create a new report");
             Continue();
-            return new PublicSectorTargetDatePage(_context);
+            return new PublicSectorTargetDatePage(context);
         }
 
         public SubmittedReportspage ViewSubmittedReport()
         {
             SelectRadioOptionByText("View a submitted report");
             Continue();
-            return new SubmittedReportspage(_context);
+            return new SubmittedReportspage(context);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute("confirmDelete-true");
             Continue();
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
     }
 }

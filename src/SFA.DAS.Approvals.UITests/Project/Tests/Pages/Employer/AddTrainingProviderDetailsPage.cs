@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             EnterUkprn();
             Continue();
-            return new ConfirmTrainingProviderPage(_context);
+            return new ConfirmTrainingProviderPage(context);
         }
 
         private AddTrainingProviderDetailsPage EnterUkprn()

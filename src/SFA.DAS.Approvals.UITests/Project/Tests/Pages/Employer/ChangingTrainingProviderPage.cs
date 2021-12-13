@@ -17,14 +17,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EnterUkprnPage ClickOnContinueButton()
         {
             Continue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
         public ThisApprenticeshipTrainingStopPage ValidateWarningAndClickOnContinueButton(string expectedText)
         {
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(WarningText), expectedText);
             Continue();
-            return new ThisApprenticeshipTrainingStopPage(_context);
+            return new ThisApprenticeshipTrainingStopPage(context);
         }
     }
 }

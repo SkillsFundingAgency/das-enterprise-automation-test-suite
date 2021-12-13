@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         {
             formCompletionHelper.ClickElement(NoRadioButtonOption);
             Continue();
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
     }
 }

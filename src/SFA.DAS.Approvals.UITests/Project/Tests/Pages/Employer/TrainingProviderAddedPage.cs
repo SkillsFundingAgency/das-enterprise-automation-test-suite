@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public YourTrainingProvidersPage SelectContinueInEmployerTrainingProviderAddedPage()
         { 
             Continue();
-            return new YourTrainingProvidersPage(_context);
+            return new YourTrainingProvidersPage(context);
         }
     }
 }

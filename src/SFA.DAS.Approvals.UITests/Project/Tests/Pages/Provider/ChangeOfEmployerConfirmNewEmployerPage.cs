@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             SelectRadioOptionByForAttribute("confirm-true");
             Continue();
-            return new ChangeOfEmployerStartDatePage(_context);
+            return new ChangeOfEmployerStartDatePage(context);
         }
     }
 }

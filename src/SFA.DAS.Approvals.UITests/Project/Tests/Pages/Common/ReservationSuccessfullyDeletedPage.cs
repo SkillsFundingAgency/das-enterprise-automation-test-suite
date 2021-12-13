@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             SelectRadioOptionByText("Go to homepage");
             Continue();
-            return new ApprovalsProviderHomePage(_context);
+            return new ApprovalsProviderHomePage(context);
         }
     }
 }

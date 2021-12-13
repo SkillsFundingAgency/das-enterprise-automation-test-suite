@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerReadyForReviewCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberofApprenticeRequestsReadyForReview);
-                return new ApprenticeRequestsReadyToReview(_context);
+                return new ApprenticeRequestsReadyToReview(context);
             }
 
             throw new Exception("No cohorts available for review");
@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerDraftCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfDrafts);
-                return new ApprenticeRequestDraftsPage(_context);
+                return new ApprenticeRequestDraftsPage(context);
             }
 
             throw new Exception("No cohorts available in Draft");
@@ -45,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerRejectedTransferRequests > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfTransferRejectedCohorts);
-                return new RejectedTransferRequestsPage(_context);
+                return new RejectedTransferRequestsPage(context);
             }
             throw new Exception("No cohorts available with Employer in Rejected Transfers Request Status");
         }

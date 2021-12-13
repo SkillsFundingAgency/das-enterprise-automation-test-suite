@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _dataHelper.MadeRedundant = RadioButtonList[new Random().Next(RadioButtonList.Count)];
             formCompletionHelper.SelectRadioOptionByText(_dataHelper.MadeRedundant);
             Continue();
-            return new StopApprenticeshipPage(_context);
+            return new StopApprenticeshipPage(context);
         }
     }
 }

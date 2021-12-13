@@ -17,20 +17,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
         {
             formCompletionHelper.ClickElement(YesRadioButton);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
             formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
             formCompletionHelper.ClickElement(StandardCourseOption);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(_context);
+            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
         }
     }
 }

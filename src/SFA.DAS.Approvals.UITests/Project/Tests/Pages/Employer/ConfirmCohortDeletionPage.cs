@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute("confirm-yes");
             Continue();
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
     }
 }

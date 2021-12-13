@@ -18,14 +18,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             javaScriptHelper.ClickElement(AddToAnExistingCohortRadio);
             Continue();
-            return new ProviderChooseACohortPage(_context);
+            return new ProviderChooseACohortPage(context);
         }
 
         public ProviderChooseAnEmployerNonLevyPage SelectOptionCreateNewCohort()
         {
             javaScriptHelper.ClickElement(CreateANewCohort);
             Continue();
-            return new ProviderChooseAnEmployerNonLevyPage(_context);
+            return new ProviderChooseAnEmployerNonLevyPage(context);
         }
     }
 }

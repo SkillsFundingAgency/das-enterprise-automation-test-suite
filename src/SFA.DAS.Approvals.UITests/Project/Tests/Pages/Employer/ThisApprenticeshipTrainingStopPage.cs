@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             EnterTheStopDate();
             Continue();
-            return new HasTheApprenticeBeenMadeRedundantPage(_context);
+            return new HasTheApprenticeBeenMadeRedundantPage(context);
         }
 
         public ApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit()
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewStopDate_Month, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(NewStopDate_Year, apprenticeCourseDataHelper.CourseStartDate.Year);
             formCompletionHelper.Click(ContinueButton);
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
 
         private void EnterTheStopDate()

@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             IList<IWebElement> viewApprenticeLinks = pageInteractionHelper.FindElements(ViewApprenticeLink);
             formCompletionHelper.ClickElement(viewApprenticeLinks[apprenticeNumber]);
-            return new ProviderViewApprenticeDetailsPage(_context);
+            return new ProviderViewApprenticeDetailsPage(context);
         }
     }
 }

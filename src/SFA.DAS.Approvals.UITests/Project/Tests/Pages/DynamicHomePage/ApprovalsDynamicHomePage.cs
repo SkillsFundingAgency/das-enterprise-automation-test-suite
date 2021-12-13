@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
         {
             formCompletionHelper.ClickElement(StartNowButton);
-            return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
+            return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
         }
     }
 }

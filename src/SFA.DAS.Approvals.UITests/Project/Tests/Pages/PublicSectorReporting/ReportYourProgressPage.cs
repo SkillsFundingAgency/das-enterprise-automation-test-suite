@@ -29,48 +29,48 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         public YourOrganisationNamePage GoToYourOrganisationNamePage()
         {
             formCompletionHelper.ClickLinkByText(OrganisationName);
-            return new YourOrganisationNamePage(_context);
+            return new YourOrganisationNamePage(context);
         }
 
         public YourEmployeesPage GoToYourEmployeesPage()
         {
             formCompletionHelper.ClickLinkByText(Employees);
-            return new YourEmployeesPage(_context);
+            return new YourEmployeesPage(context);
         }
         public YourApprenticesPage GoToYourApprenticesPage()
         {
             formCompletionHelper.ClickLinkByText(Apprentices);
-            return new YourApprenticesPage(_context);
+            return new YourApprenticesPage(context);
         }
         public YourFullTimeEquivalentsPage GoToYourFullTimeEquivalentsPage()
         {
             formCompletionHelper.ClickLinkByText(FullTime);
-            return new YourFullTimeEquivalentsPage(_context);
+            return new YourFullTimeEquivalentsPage(context);
         }
         public WhatActionsHaveYouTakenPage GoToWhatActionsHaveYouTakenPage()
         {
             formCompletionHelper.ClickLinkByText(Actions);
-            return new WhatActionsHaveYouTakenPage(_context);
+            return new WhatActionsHaveYouTakenPage(context);
         }
         public WhatChallengesHaveYouFacedPage GoToWhatChallengesHaveYouFacedPage()
         {
             formCompletionHelper.ClickLinkByText(Challenges);
-            return new WhatChallengesHaveYouFacedPage(_context);
+            return new WhatChallengesHaveYouFacedPage(context);
         }
         public HowAreYouPlanningToMeetTheTargetPage GoToHowAreYouPlanningToMeetTheTargetPage()
         {
             formCompletionHelper.ClickLinkByText(Planning);
-            return new HowAreYouPlanningToMeetTheTargetPage(_context);
+            return new HowAreYouPlanningToMeetTheTargetPage(context);
         }
         public DoYouHaveAnythingToTellUsPage GoToDoYouHaveAnythingToTellUsPage()
         {
             formCompletionHelper.ClickLinkByText(AnythingElse);
-            return new DoYouHaveAnythingToTellUsPage(_context);
+            return new DoYouHaveAnythingToTellUsPage(context);
         }
         public ReviewDetailsPage GoToReviewPage()
         {
             formCompletionHelper.ClickLinkByText(Review);
-            return new ReviewDetailsPage(_context);
+            return new ReviewDetailsPage(context);
         }
     }
 }

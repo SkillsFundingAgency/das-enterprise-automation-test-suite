@@ -17,14 +17,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             formCompletionHelper.ClickElement(ContinueButtonTo);
-            return new ApprovalsProviderHomePage(_context);
+            return new ApprovalsProviderHomePage(context);
         }
 
         internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-add");
             formCompletionHelper.ClickElement(ContinueButtonTo);
-            return new ProviderAddApprenticeDetailsPage(_context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public new ProviderMakingChangesPage VerifySucessMessage()

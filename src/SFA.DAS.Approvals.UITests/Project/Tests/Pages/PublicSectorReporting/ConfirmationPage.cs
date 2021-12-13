@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         public ReportSubmittedPage Confirm()
         {
             Continue();
-            return new ReportSubmittedPage(_context);
+            return new ReportSubmittedPage(context);
         }
     }
 }

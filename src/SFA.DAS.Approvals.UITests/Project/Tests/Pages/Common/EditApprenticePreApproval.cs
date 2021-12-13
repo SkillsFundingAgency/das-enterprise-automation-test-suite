@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {
             EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EnterUkprnPage ClickOnContinueButton()
         {
             Continue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
     }

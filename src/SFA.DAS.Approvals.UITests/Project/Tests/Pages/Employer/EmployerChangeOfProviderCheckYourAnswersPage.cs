@@ -21,27 +21,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.Click(ChangeStartDateLink);
 
-            return new WhatIsTheNewStartDatePage(_context);
+            return new WhatIsTheNewStartDatePage(context);
         }
 
         public WhatIsTheNewEndDatePage ClickChangeEndDate()
         {
             formCompletionHelper.Click(ChangeEndDateLink);
 
-            return new WhatIsTheNewEndDatePage(_context);
+            return new WhatIsTheNewEndDatePage(context);
         }
 
         public WhatIsTheNewPricePage ClickChangePrice()
         {
             formCompletionHelper.Click(ChangePriceLink);
 
-            return new WhatIsTheNewPricePage(_context);
+            return new WhatIsTheNewPricePage(context);
         }
         
         public ChangeOfTrainingProviderRequestedPage ClickConfirmAndSend()
         {
             formCompletionHelper.Click(ConfirmBtn);
-            return new ChangeOfTrainingProviderRequestedPage(_context);
+            return new ChangeOfTrainingProviderRequestedPage(context);
         }
     }
 }

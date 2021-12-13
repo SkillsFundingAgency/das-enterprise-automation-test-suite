@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         public ProviderMakingChangesPage ConfirmReserveFunding()
         {
             formCompletionHelper.ClickElement(ConfirmButton);
-            return new ProviderMakingChangesPage(_context);
+            return new ProviderMakingChangesPage(context);
         }
 
     }

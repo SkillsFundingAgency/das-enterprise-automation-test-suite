@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             Continue();
 
-            return new ChangeOfEmployerRequestedPage(_context);
+            return new ChangeOfEmployerRequestedPage(context);
         }
 
         private string FormatDateIntoMMYYYY(DateTime date)

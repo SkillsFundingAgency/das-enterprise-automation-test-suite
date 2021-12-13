@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
                     {
                         formCompletionHelper.ClickElement(detailsLinks);
-                        return new ProviderApprenticeDetailsPage(_context);
+                        return new ProviderApprenticeDetailsPage(context);
                     }
                     i++;
                 }

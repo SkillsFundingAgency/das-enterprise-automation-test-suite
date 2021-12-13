@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ChangeOfEmployerSelectEmployerPage SelectChangeTheEmployer()
         {
             formCompletionHelper.Click(ChangeTheEmployerButton);
-            return new ChangeOfEmployerSelectEmployerPage(_context);
+            return new ChangeOfEmployerSelectEmployerPage(context);
         }
     }
 }

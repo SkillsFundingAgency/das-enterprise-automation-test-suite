@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, $"Yes, I will use transfer funds from {organisationName}");
             Continue();
-            return new AddTrainingProviderDetailsPage(_context);
+            return new AddTrainingProviderDetailsPage(context);
         }
     }
 }

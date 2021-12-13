@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ViewApprenticeDetailsPage ClickViewApprenticeLink()
         {
             formCompletionHelper.ClickElement(ViewApprenticeLink);
-            return new ViewApprenticeDetailsPage(_context);
+            return new ViewApprenticeDetailsPage(context);
         }
     }
 }

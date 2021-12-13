@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToProvider);
             formCompletionHelper.ClickElement(SendButton);
-            return new CohortSentYourTrainingProviderPage(_context);
+            return new CohortSentYourTrainingProviderPage(context);
         }
     }
 }

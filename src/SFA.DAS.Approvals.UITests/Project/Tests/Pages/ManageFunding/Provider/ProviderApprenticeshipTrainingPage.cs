@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new ProviderCheckYourInformationPage(_context);
+            return new ProviderCheckYourInformationPage(context);
         }
 
         private void SetCourseDate(string startDate)

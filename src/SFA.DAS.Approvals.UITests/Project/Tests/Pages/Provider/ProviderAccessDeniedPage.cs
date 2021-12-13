@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         public ApprovalsProviderHomePage GoBackToTheServiceHomePage()
         {
             formCompletionHelper.ClickElement(SecureFundingGoBackToHomePage);
-            return new ApprovalsProviderHomePage(_context);
+            return new ApprovalsProviderHomePage(context);
         }
     }
 }

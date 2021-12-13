@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             formCompletionHelper.Click(ClickYesContinue);
-            return new WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage(_context);
+            return new WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage(context);
         }
     }
 }

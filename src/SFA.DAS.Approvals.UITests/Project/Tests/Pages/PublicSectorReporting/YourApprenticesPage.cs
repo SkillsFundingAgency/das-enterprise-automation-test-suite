@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
             formCompletionHelper.EnterText(NoOfApprentices2020, publicSectorReportingDataHelper.NoofApprentices2020);
             formCompletionHelper.EnterText(NoOfApprentices, publicSectorReportingDataHelper.NoofNewApprentices);
             Continue();
-            return new ReportYourProgressPage(_context);
+            return new ReportYourProgressPage(context);
         }
     }
 }

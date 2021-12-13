@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             AcceptCookies();
             formCompletionHelper.ClickElement(ReserveFundingButton);
-            return new ProviderChooseAnEmployerNonLevyPage(_context);
+            return new ProviderChooseAnEmployerNonLevyPage(context);
         }
     }
 }

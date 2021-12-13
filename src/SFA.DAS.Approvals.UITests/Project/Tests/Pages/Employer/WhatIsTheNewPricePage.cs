@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewPriceInput, 1000);
             formCompletionHelper.Click(ContinueBtn);
 
-            return new EmployerChangeOfProviderCheckYourAnswersPage(_context);
+            return new EmployerChangeOfProviderCheckYourAnswersPage(context);
         }
 
         public EmployerChangeOfProviderCheckYourAnswersPage EnterUpdatedNewPrice()
@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewPriceInput, 2000);
             formCompletionHelper.Click(ContinueBtn);
 
-            return new EmployerChangeOfProviderCheckYourAnswersPage(_context);
+            return new EmployerChangeOfProviderCheckYourAnswersPage(context);
         }
     }
 }

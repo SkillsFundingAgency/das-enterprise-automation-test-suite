@@ -15,14 +15,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText($"{changeOfPartyConfig.NewProviderName} will add them later");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
-            return new ConfirmRequestForChangeOfProviderPage(_context);
+            return new ConfirmRequestForChangeOfProviderPage(context);
         }
 
         public WhatIsTheNewStartDatePage SelectIWillAddThemNow()
         {
             formCompletionHelper.SelectRadioOptionByText("I'll add them now");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
-            return new WhatIsTheNewStartDatePage(_context);
+            return new WhatIsTheNewStartDatePage(context);
         }
     }
 }

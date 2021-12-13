@@ -32,25 +32,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-			return new EditApprenticePage(_context);
+			return new EditApprenticePage(context);
         }
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
             AddAnApprentice();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
 
         public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
             AddAnApprentice();
-            return new ChooseAReservationPage(_context);
+            return new ChooseAReservationPage(context);
         }
 
         public ApprenticeRequestsPage SaveAndExit()
         {
             formCompletionHelper.ClickLinkByText("Save and exit");
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
 
 		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
@@ -58,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 			SelectRadioOptionByForAttribute("radio-approve");
 			formCompletionHelper.EnterText(ApproveMessage, apprenticeDataHelper.MessageToProvider);
 			formCompletionHelper.Click(SaveSubmit);
-			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
+			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(context);
 		}
 
 		public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
@@ -66,20 +66,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             SelectRadioOptionByForAttribute("radio-send");
 			formCompletionHelper.EnterText(ReviewMessage, apprenticeDataHelper.MessageToProvider);
             formCompletionHelper.Click(SaveSubmit);
-            return new NotificationSentToTrainingProviderPage(_context);
+            return new NotificationSentToTrainingProviderPage(context);
         }
 
 		public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
         {
             SelectRadioOptionByForAttribute("radio-approve");
             formCompletionHelper.Click(SaveSubmit);
-            return new ApprenticeDetailsApprovedPage(_context);
+            return new ApprenticeDetailsApprovedPage(context);
         }
 
         public ConfirmCohortDeletionPage SelectDeleteThisGroup()
         {
             formCompletionHelper.ClickLinkByText("Delete this group");
-            return new ConfirmCohortDeletionPage(_context);
+            return new ConfirmCohortDeletionPage(context);
         }
 
         private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");

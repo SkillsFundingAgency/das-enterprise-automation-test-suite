@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
             formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
             Continue();
-            return new ChangeOfEmployerPricePage(_context);
+            return new ChangeOfEmployerPricePage(context);
         }
     }
 }

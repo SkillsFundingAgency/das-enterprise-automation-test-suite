@@ -19,21 +19,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             formCompletionHelper.ClickElement(ContinueButton);
-            return new DynamicHomePages(_context);
+            return new DynamicHomePages(context);
         }
 
         internal AddAnApprenitcePage AddApprentice()
         {
             ChooseToAddApprenticeRadioButton();
             Continue();
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
 
         internal AddApprenticeDetailsPage AddAnotherApprentice()
         {
             ChooseToAddApprenticeRadioButton();
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
 
         private void ChooseToAddApprenticeRadioButton() => formCompletionHelper.ClickElement(AddApprenticeRadioButton);

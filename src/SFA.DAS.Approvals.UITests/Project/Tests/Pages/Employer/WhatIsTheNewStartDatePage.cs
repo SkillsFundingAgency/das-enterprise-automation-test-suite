@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewStartYearInput, DateTime.Now.Year.ToString());
             formCompletionHelper.Click(ContinueBtn); 
 
-            return new WhatIsTheNewEndDatePage(_context);
+            return new WhatIsTheNewEndDatePage(context);
         }
 
         public EmployerChangeOfProviderCheckYourAnswersPage EnterUpdatedNewStartDate()
@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewStartYearInput, DateTime.Now.AddMonths(1).Year.ToString());
             formCompletionHelper.Click(ContinueBtn);
 
-            return new EmployerChangeOfProviderCheckYourAnswersPage(_context);
+            return new EmployerChangeOfProviderCheckYourAnswersPage(context);
         }
 
     }

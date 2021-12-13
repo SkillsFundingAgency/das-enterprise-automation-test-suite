@@ -30,33 +30,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddAnApprenitcePage AddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
 
         public ApprenticeRequestsPage ClickApprenticeRequestsLink()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
 
         public ManageYourApprenticesPage ClickManageYourApprenticesLink()
         {
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
-            return new ManageYourApprenticesPage(_context);
+            return new ManageYourApprenticesPage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(_context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {
             formCompletionHelper.ClickElement(SetPaymentOrder);
-            return new SetpaymentOrderPage(_context);
+            return new SetpaymentOrderPage(context);
         }
 
         public ReportPublicSectorApprenticeshipTargetPage ClickReportPublicSectorApprenticeshipTargetLink()
         {
             formCompletionHelper.ClickElement(ReportPublicSectorApprenticeshipTarget);
-            return new ReportPublicSectorApprenticeshipTargetPage(_context);
+            return new ReportPublicSectorApprenticeshipTargetPage(context);
         }
 
         public ApprenticesHomePage ValidateFooter()

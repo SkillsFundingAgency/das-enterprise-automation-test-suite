@@ -16,26 +16,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProvideViewApprenticesDetailsPage ClickOnReviewNewDetailsLink()
         {
             formCompletionHelper.Click(ReviewNewDetails);
-            return new ProvideViewApprenticesDetailsPage(_context);
+            return new ProvideViewApprenticesDetailsPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage ClickOnReviewNewDetailsToUpdateLink()
         {
             formCompletionHelper.Click(ReviewNewDetailsToUpdate);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             Continue();
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal ProviderApprenticeDetailsPage ClickLeaveTheseChanges()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewChangesOptions, "undo-changes-false");
             Continue();
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         internal ProviderViewChangesPage SelectViewChangesOptions()

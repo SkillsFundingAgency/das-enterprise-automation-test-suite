@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public new ApprenticeDetailsPage SelectYesAndConfirm()
         {
             base.SelectYesAndConfirm();
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

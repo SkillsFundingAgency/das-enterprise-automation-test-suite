@@ -14,13 +14,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
         {
             StartNow();
-            return new AddTrainingProviderDetailsPage(_context);
+            return new AddTrainingProviderDetailsPage(context);
         }
 
         public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()
         {
             StartNow();
-            return new DoYouWantToUseTransferFundsPage(_context);
+            return new DoYouWantToUseTransferFundsPage(context);
         }
 
         private void StartNow() => formCompletionHelper.ClickElement(StartNowButton);

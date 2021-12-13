@@ -20,13 +20,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ViewApprenticePage ClickProviderReviewingTheRequestLink()
         {
             formCompletionHelper.ClickElement(ProviderReviewingTheRequestLink);
-            return new ViewApprenticePage(_context);
+            return new ViewApprenticePage(context);
         }
 
         public ApproveApprenticeDetailsPage ClickReviewTheApprenticeDetailsToUpdateLink()
         {
             formCompletionHelper.ClickElement(ReviewRequestedChangesLink);
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
 
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(UndoChangesSelector));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueUndoChangesSelector));
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

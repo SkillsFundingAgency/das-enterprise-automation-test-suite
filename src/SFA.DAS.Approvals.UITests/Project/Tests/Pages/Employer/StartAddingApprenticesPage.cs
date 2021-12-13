@@ -15,14 +15,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
 
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
         {
             EmployerSendsToProviderToAdd();
             Continue();
-            return new MessageForYourTrainingProviderPage(_context);
+            return new MessageForYourTrainingProviderPage(context);
         }
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
@@ -41,13 +41,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new ChooseAReservationPage(_context);
+            return new ChooseAReservationPage(context);
         }
     }
 }

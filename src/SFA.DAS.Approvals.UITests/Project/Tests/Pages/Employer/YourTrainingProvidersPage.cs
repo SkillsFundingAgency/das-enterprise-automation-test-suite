@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddANewTrainingProvider()
         {
             formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
-            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(_context);
+            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
@@ -27,13 +27,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             else
                 tableRowHelper.SelectRowFromTable("Set permissions", orgName);
 
-            return new SetPermissionsForTrainingProviderPage(_context);
+            return new SetPermissionsForTrainingProviderPage(context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectChangePermissions()
         {
             formCompletionHelper.ClickElement(ChangePermissionsLink);
-            return new SetPermissionsForTrainingProviderPage(_context);
+            return new SetPermissionsForTrainingProviderPage(context);
         }
     }
 }

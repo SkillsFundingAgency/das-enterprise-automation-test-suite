@@ -13,13 +13,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
         {
             formCompletionHelper.ClickElement(RadioLabels);
-            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(_context);
+            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
         }
 
         public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickSaveAndContinueButton()
         {
             Continue();
-            return new ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(_context);
+            return new ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(context);
         }
     }
 }

@@ -18,11 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployer(string employerType)
         {
-            var employerUser = employerType == "Levy" ? _context.GetUser<LevyUser>() : (EasAccountUser)_context.GetUser<NonLevyUser>();
+            var employerUser = employerType == "Levy" ? context.GetUser<LevyUser>() : (EasAccountUser)context.GetUser<NonLevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             tableRowHelper.SelectRowFromTable("Select", agreementId);
-            return new ProviderConfirmEmployerNonLevyPage(_context);
+            return new ProviderConfirmEmployerNonLevyPage(context);
         }
 
         internal bool CanChooseAnEmployer()

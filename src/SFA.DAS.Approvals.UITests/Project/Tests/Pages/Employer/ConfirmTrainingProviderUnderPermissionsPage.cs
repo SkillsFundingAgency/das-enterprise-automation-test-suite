@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByLocator(SelectYesConfirm);
             Continue();
-            return new TrainingProviderAddedPage(_context);
+            return new TrainingProviderAddedPage(context);
         }
     }
 }

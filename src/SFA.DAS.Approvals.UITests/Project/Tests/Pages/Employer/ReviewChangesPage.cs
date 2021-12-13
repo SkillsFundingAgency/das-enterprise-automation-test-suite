@@ -15,14 +15,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             Continue();
-            return new EditedApprenticeDetailsPage(_context);
+            return new EditedApprenticeDetailsPage(context);
         }
 
         public ApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, "No");
             Continue();
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

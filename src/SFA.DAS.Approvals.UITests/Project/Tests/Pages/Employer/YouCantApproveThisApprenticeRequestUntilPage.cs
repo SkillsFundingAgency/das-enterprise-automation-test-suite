@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(DraftSaveAndSubmit);
 
-            return new DynamicHomePages(_context);
+            return new DynamicHomePages(context);
         }
         
     }

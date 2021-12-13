@@ -19,20 +19,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             SelectOption(ApproveSelector);
             
-            return new ProviderEditedApprenticeDetailsPage(_context);
+            return new ProviderEditedApprenticeDetailsPage(context);
         }
 
         public ProviderApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
             SelectOption(RejectSelector);
 
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             Continue();
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderReviewChangesPage SelectReviewChangesOptions()

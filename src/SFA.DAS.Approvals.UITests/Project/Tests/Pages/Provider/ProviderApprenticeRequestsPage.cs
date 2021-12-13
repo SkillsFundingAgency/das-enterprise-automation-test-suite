@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerReadyForReviewCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsForReview);
-                return new ProviderApprenticeDetailsReadyToReviewPage(_context);
+                return new ProviderApprenticeDetailsReadyToReviewPage(context);
             }
 
             throw new Exception("No cohorts available for review");
@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithEmployerCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
-                return new ProviderApprenticeDetailsWithEmployersPage(_context);
+                return new ProviderApprenticeDetailsWithEmployersPage(context);
             }
 
             throw new Exception("No cohorts available with employers");
@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithDraftCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfDraftCohorts);
-                return new ProviderDraftApprenticeDetailsPage(_context);
+                return new ProviderDraftApprenticeDetailsPage(context);
             }
 
             throw new Exception("No draft cohorts are available");
@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithTransferSendingEmployerCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithTransferSendingEmployers);
-                return new ProviderApprenticeDetailsWithTransferSendingEmployersPage(_context);
+                return new ProviderApprenticeDetailsWithTransferSendingEmployersPage(context);
             }
 
             throw new Exception("No cohorts available with employers");
@@ -69,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

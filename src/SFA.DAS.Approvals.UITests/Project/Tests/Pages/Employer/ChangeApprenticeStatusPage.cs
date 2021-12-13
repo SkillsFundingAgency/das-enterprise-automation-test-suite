@@ -15,28 +15,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText("Pause this apprenticeship");
             Continue();
-            return new PauseApprenticePage(_context);
+            return new PauseApprenticePage(context);
         }
 
         public ResumeApprenticePage SelectResumeAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByText("Resume this apprenticeship");
             Continue();
-            return new ResumeApprenticePage(_context);
+            return new ResumeApprenticePage(context);
         }
 
         internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
-            return new ThisApprenticeshipTrainingStopPage(_context);
+            return new ThisApprenticeshipTrainingStopPage(context);
         }
 
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
-            return new HasTheApprenticeBeenMadeRedundantPage(_context);
+            return new HasTheApprenticeBeenMadeRedundantPage(context);
         }
     }
 }

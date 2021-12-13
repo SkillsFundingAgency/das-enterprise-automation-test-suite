@@ -16,14 +16,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute("radio-send");
             formCompletionHelper.ClickElement(ApproveApprenticeSaveAndSubmit);
-            return new NotificationSentToTrainingProviderPage(_context);
+            return new NotificationSentToTrainingProviderPage(context);
         }
 
         public ApprenticeDetailsApprovedPage ApproveAndNotifyTrainingProvider()
         {
             SelectRadioOptionByForAttribute("radio-approve");
             Continue();
-            return new ApprenticeDetailsApprovedPage(_context);
+            return new ApprenticeDetailsApprovedPage(context);
         }
     }
 }

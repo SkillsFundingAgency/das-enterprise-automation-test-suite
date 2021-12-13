@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProvideViewApprenticesDetailsPage SelectReturnToCohortView()
         {
             formCompletionHelper.ClickElement(ReturnToCohortViewLink);
-            return new ProvideViewApprenticesDetailsPage(_context);
+            return new ProvideViewApprenticesDetailsPage(context);
         }
 
         internal List<IWebElement> GetAllEditBoxes()

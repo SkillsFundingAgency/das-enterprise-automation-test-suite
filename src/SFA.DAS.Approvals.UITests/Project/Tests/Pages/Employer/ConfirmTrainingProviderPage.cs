@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute("UseThisProvider");
             Continue();
-            return new StartAddingApprenticesPage(_context);
+            return new StartAddingApprenticesPage(context);
         }
     }
 }

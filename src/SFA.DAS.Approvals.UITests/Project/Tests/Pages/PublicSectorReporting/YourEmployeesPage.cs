@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
             formCompletionHelper.EnterText(NoOfEmployees2020, publicSectorReportingDataHelper.NoofEmployees2020);
             formCompletionHelper.EnterText(NoOfEmployees, publicSectorReportingDataHelper.NoofNewEmployees);
             Continue();
-            return new ReportYourProgressPage(_context);
+            return new ReportYourProgressPage(context);
         }
     }
 }

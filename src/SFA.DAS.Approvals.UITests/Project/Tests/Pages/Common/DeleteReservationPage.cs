@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             SelectRadioOptionByForAttribute("Delete");
             Continue();
-            return new ReservationSuccessfullyDeletedPage(_context);
+            return new ReservationSuccessfullyDeletedPage(context);
         }
     }
 }
