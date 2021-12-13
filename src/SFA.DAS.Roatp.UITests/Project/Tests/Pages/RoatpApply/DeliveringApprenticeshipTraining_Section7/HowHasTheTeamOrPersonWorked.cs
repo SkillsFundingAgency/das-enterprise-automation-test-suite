@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         public TellUsWhoIsTheManagerPage EnterHowHasTheTeamOrPersonWorked()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowHasTheTeamOrPersonWorked);
-            return new TellUsWhoIsTheManagerPage(_context);
+            return new TellUsWhoIsTheManagerPage(context);
         }
     }
 }

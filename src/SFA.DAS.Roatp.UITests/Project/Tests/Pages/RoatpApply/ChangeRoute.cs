@@ -11,13 +11,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ChooseProviderRoutePage SelectYesToChangeRouteAndContinue()
         {
             SelectYesAndContinue();
-            return new ChooseProviderRoutePage(_context);
+            return new ChooseProviderRoutePage(context);
         }
 
         public ApplicationOverviewPage SelectNoToChangeRouteAndContinue()
         {
             SelectNoAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

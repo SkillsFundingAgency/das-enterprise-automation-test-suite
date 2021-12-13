@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
     [Binding]
     public class Hooks
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly DbConfig _dbConfig;
         private readonly TryCatchExceptionHelper _tryCatch;
@@ -16,7 +16,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
 
         public Hooks(ScenarioContext context)
         {
-            context = context;
+            _context = context;
             _dbConfig = context.Get<DbConfig>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             _objectContext = context.Get<ObjectContext>();
@@ -25,11 +25,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            context.Set(new TMDataHelper());
+            _context.Set(new TMDataHelper());
 
             _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_dbConfig);
 
-            context.Set(_transferMatchingSqlDataHelper);
+            _context.Set(_transferMatchingSqlDataHelper);
 
             _objectContext.SetPledgeDetailList();
         }
@@ -37,7 +37,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [AfterScenario(Order = 31)]
         public void DeletePledge() 
         {
-            if (context.TestError == null)
+            if (_context.TestError == null)
                 _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeDetailList()));
         }
     }

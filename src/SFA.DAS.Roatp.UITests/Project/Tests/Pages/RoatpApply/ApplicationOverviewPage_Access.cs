@@ -24,33 +24,33 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ChangeUkprnPage Access_ChangeUkprn()
         {
             formCompletionHelper.ClickElement(ChangeUkprn);
-            return new ChangeUkprnPage(_context);
+            return new ChangeUkprnPage(context);
         }
         public ChangeRoutePage Access_ChangeRoute()
         {
             formCompletionHelper.ClickElement(ChangeRoute);
-            return new ChangeRoutePage(_context);
+            return new ChangeRoutePage(context);
         }
 
         public PermissionsFromEveryoneNamedPage Access_Section9_ApplicationPermissionChecks()
         {
             NavigateToTask(Finish, Finish_1);
-            return new PermissionsFromEveryoneNamedPage(_context);
+            return new PermissionsFromEveryoneNamedPage(context);
         }
         public InLineWithInstituteForApprenticeshipPage Access_Section9_QualityStatement()
         {
             NavigateToTask(Finish, Finish_2);
-            return new InLineWithInstituteForApprenticeshipPage(_context);
+            return new InLineWithInstituteForApprenticeshipPage(context);
         }
         public CompletesAllPostApplicationTasksPage Access_Section9_PostApplicationTasks()
         {
             NavigateToTask(Finish, Finish_3);
-            return new CompletesAllPostApplicationTasksPage(_context);
+            return new CompletesAllPostApplicationTasksPage(context);
         }
         public SubmitApplicationPage Access_Section9_SubmitApplication()
         {
             NavigateToTask(Finish, Finish_4);
-            return new SubmitApplicationPage(_context);
+            return new SubmitApplicationPage(context);
         }
 
         #endregion
@@ -60,22 +60,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public EvaluatingApprenticeshipTrainingPage Access_Section8_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_1);
-            return new EvaluatingApprenticeshipTrainingPage(_context);
+            return new EvaluatingApprenticeshipTrainingPage(context);
         }
         public ProcessOfEvaluatingTheQualityOfTrainingDeliveredPage Access_Section8_ProcessForEvaluatingTheQualityOfTrainingDelivered()
         {
             NavigateToTask(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_2);
-            return new ProcessOfEvaluatingTheQualityOfTrainingDeliveredPage(_context);
+            return new ProcessOfEvaluatingTheQualityOfTrainingDeliveredPage(context);
         }
         public ProcessOfEvaluatingTheQualityOfApprenticshipTrainingPage Access_Section8_ProcessForEvaluatingTheQualityOfApprenticeshipTraining()
         {
             NavigateToTask(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_3);
-            return new ProcessOfEvaluatingTheQualityOfApprenticshipTrainingPage(_context);
+            return new ProcessOfEvaluatingTheQualityOfApprenticshipTrainingPage(context);
         }
         public SystemsAndProcessesToCollectApprenticeshipDataPage Access_Section8_SystemsAndProcessesToCollectApprenticeshipDataForMainAndEmpoyerRoute()
         {
             NavigateToTask(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_4);
-            return new SystemsAndProcessesToCollectApprenticeshipDataPage(_context);
+            return new SystemsAndProcessesToCollectApprenticeshipDataPage(context);
         }
 
         #endregion
@@ -85,45 +85,45 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public DeliveringApprenticeshipTrainingPage Access_Section7_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_1);
-            return new DeliveringApprenticeshipTrainingPage(_context);
+            return new DeliveringApprenticeshipTrainingPage(context);
         }
 
         public TellUsWhoHasOverallAccountabilityPage Access_Section7_OverallAccountability()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_2);
-            return new TellUsWhoHasOverallAccountabilityPage(_context);
+            return new TellUsWhoHasOverallAccountabilityPage(context);
         }
 
         public OrganisationManagementHierarchyPage Access_Section7_ManagementHierarchy()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_3);
-            return new OrganisationManagementHierarchyPage(_context);
+            return new OrganisationManagementHierarchyPage(context);
         }
 
         public UploadManagementExpectationsForQualitypage Access_Section7_QualityAndHighStandards()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_4);
-            return new UploadManagementExpectationsForQualitypage(_context);
+            return new UploadManagementExpectationsForQualitypage(context);
         }
         public DoesYourOrganisationHaveATeamPage  Access_Section7_DevelopingAndDelivering()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5);
-            return new DoesYourOrganisationHaveATeamPage(_context);
+            return new DoesYourOrganisationHaveATeamPage(context);
         }
         public DoesYourOrganisationHaveSomeonePage Access_Section7_DevelopingAndDelivering_Support()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5);
-            return new DoesYourOrganisationHaveSomeonePage(_context);
+            return new DoesYourOrganisationHaveSomeonePage(context);
         }
         public YourSectorsAndEmployeesPage Access_Section7_YourSectorsAndEmployees()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6);
-            return new YourSectorsAndEmployeesPage(_context);
+            return new YourSectorsAndEmployeesPage(context);
         }
         public UploadOrganisationPolicyPage Access_Section7_PolicyForProfessionalDevelopment()
         {
             NavigateToTask(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_7);
-            return new UploadOrganisationPolicyPage(_context);
+            return new UploadOrganisationPolicyPage(context);
         }
         
 
@@ -134,47 +134,47 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public PlanningApprenticeshipTrainingPage Access_Section6_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_1);
-            return new PlanningApprenticeshipTrainingPage(_context);
+            return new PlanningApprenticeshipTrainingPage(context);
         }
 
         public TypeOfApprenticeshipTrainingPage Access_Section6_TypeOfApprenticeshipTraining()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_2);
-            return new TypeOfApprenticeshipTrainingPage(_context);
+            return new TypeOfApprenticeshipTrainingPage(context);
         }
 
         public ReadyToDeliverTrainingPage Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_2);
-            return new ReadyToDeliverTrainingPage(_context);
+            return new ReadyToDeliverTrainingPage(context);
         }
 
         public TrainApprenticesPage Access_Section6_TrainingApprentices()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3);
-            return new TrainApprenticesPage(_context);
+            return new TrainApprenticesPage(context);
         } 
 
         public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4);
-            return new EnsureApprenticesSupportedPage(_context);
+            return new EnsureApprenticesSupportedPage(context);
         }
       
         public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5);
-            return new ForecastInFirst12MonthsPage(_context);
+            return new ForecastInFirst12MonthsPage(context);
         }
         public WhatTeachingMethodsPage Access_Section6_OffTheJobTraining()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6);
-            return new WhatTeachingMethodsPage(_context);
+            return new WhatTeachingMethodsPage(context);
         }
         public WhereWillApprenticesBeTrainedPage Access_Section6_WhereWillYourApprenticesBeTrained()
         {
             NavigateToTask(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_7);
-            return new WhereWillApprenticesBeTrainedPage(_context);
+            return new WhereWillApprenticesBeTrainedPage(context);
         }
         #endregion
 
@@ -183,42 +183,42 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ReadinessToEngagePage Access_Section5_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_1);
-            return new ReadinessToEngagePage(_context);
+            return new ReadinessToEngagePage(context);
         }
         public OrganisationEngagedWithEmployersToDeliverApprenticeshipPage Access_Section5_EngagingWithEmployers()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_2);
-            return new OrganisationEngagedWithEmployersToDeliverApprenticeshipPage(_context);
+            return new OrganisationEngagedWithEmployersToDeliverApprenticeshipPage(context);
         }
         public UploadCompliantsPolicyPage Access_section5_ComplaintsPolicy()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_3);
-            return new UploadCompliantsPolicyPage(_context);
+            return new UploadCompliantsPolicyPage(context);
         }
         public UploadContractForServiceTemplatePage Access_Section5_ContractForservicesTemplate()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_4);
-            return new UploadContractForServiceTemplatePage(_context);
+            return new UploadContractForServiceTemplatePage(context);
         }
         public CommitmentStatementTemplatePage Access_Section5_CommitmentStatementTemplate()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_5);
-            return new CommitmentStatementTemplatePage(_context);
+            return new CommitmentStatementTemplatePage(context);
         }
         public OrganisationsProcessForInitialAssessementsPage Access_Section5_PriorLearningOfApprentices()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_6);
-            return new OrganisationsProcessForInitialAssessementsPage(_context);
+            return new OrganisationsProcessForInitialAssessementsPage(context);
         }
         public HowWillYouDeliverEnglishAndMathsAssessmentsPage Access_Section5_EnglishAndMathsAssessments()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_7);
-            return new HowWillYouDeliverEnglishAndMathsAssessmentsPage(_context);
+            return new HowWillYouDeliverEnglishAndMathsAssessmentsPage(context);
         }
         public OrganisationExpectToUseSubcontractorsPage Access_Section5_WorkingWithSubContractors()
         {
             NavigateToTask(ReadinessToEngage, ReadinessToEngage_8);
-            return new OrganisationExpectToUseSubcontractorsPage(_context);
+            return new OrganisationExpectToUseSubcontractorsPage(context);
         }
         #endregion
 
@@ -227,32 +227,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ProtectingYourApprenticesPage Access_Section4_IntroductionWhatYouWillNeed()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_1);
-            return new ProtectingYourApprenticesPage(_context);
+            return new ProtectingYourApprenticesPage(context);
         }
         public ContinuityPlanForApprenticeshipTrainingPage Access_Section4_ContinuityPlanForApprenticeshipTraining()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_2);
-            return new ContinuityPlanForApprenticeshipTrainingPage(_context);
+            return new ContinuityPlanForApprenticeshipTrainingPage(context);
         }
         public EqualityAndDiversityPolicyPage Access_Section4_EqualityAndDiversityPolicy()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_3);
-            return new EqualityAndDiversityPolicyPage(_context);
+            return new EqualityAndDiversityPolicyPage(context);
         }
         public SafeguardingPolicyPage Access_Section4_SafeguardingPolicy()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_4);
-            return new SafeguardingPolicyPage(_context);
+            return new SafeguardingPolicyPage(context);
         }
         public HealthAndSafetyPolicyPage Access_Section4_HealthAndSafetyPolicy()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_5);
-            return new HealthAndSafetyPolicyPage(_context);
+            return new HealthAndSafetyPolicyPage(context);
         }
         public ActingAsASubContractorPage Access_Section4_ActingAsASubContractor()
         {
             NavigateToTask(ProtectingYourApprentices, ProtectingYourApprentices_6);
-            return new ActingAsASubContractorPage(_context);
+            return new ActingAsASubContractorPage(context);
         }
         #endregion
 
@@ -261,23 +261,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public CriminalAndComplianceChecksPage Access_Section3_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_1);
-            return new CriminalAndComplianceChecksPage(_context);
+            return new CriminalAndComplianceChecksPage(context);
         }
 
         public CompositionWithCreditorsPage Access_Section3_ChecksOnYourOrganisation()
         {
             NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_2);
-            return new CompositionWithCreditorsPage(_context);
+            return new CompositionWithCreditorsPage(context);
         }
         public WhosInControlCriminalAndComplianceChecksPage Access_Section3_IntroductionWhatYouWillNeedStatusWhosInControl()
         {
             NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_3, 1);
-            return new WhosInControlCriminalAndComplianceChecksPage(_context);
+            return new WhosInControlCriminalAndComplianceChecksPage(context);
         }
         public WhosInControlUnspentCriminalConvictionsPage Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
         {
             NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_4);
-            return new WhosInControlUnspentCriminalConvictionsPage(_context);
+            return new WhosInControlUnspentCriminalConvictionsPage(context);
         }
 
         #endregion
@@ -287,19 +287,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public FinancialHealthAssessmentPage Access_Section2_IntroductionWhatYouwillNeed()
         {
             NavigateToTask(FinancialEvidence, FinancialEvidence_1);
-            return new FinancialHealthAssessmentPage(_context);
+            return new FinancialHealthAssessmentPage(context);
         }
 
         public AnnualTurnoverPage Access_Section2_YourOrganisationsFinancialEvidence()
         {
             NavigateToTask(FinancialEvidence, FinancialEvidence_2);
-            return new AnnualTurnoverPage(_context);
+            return new AnnualTurnoverPage(context);
         }
 
         public ConsolidatedFinancialStatementsPage Access_Section2_YourUkUltimateParentCompanyFinancialEvidence()
         {
             NavigateToTask(FinancialEvidence, FinancialEvidence_3);
-            return new ConsolidatedFinancialStatementsPage(_context);
+            return new ConsolidatedFinancialStatementsPage(context);
         }
 
         #endregion
@@ -309,58 +309,58 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public YourOrganisationPage AccessIntroductionWhatYouWillNeedSection()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_1);
-            return new YourOrganisationPage(_context);
+            return new YourOrganisationPage(context);
         }
 
         public UltimateParentCompanyPage AccessYourOrganisationSectionForOrgTypeCompany()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_2);
-            return new UltimateParentCompanyPage(_context);
+            return new UltimateParentCompanyPage(context);
         }
         public IcoRegistrationNumberPage AccessYourOrganisationSectionForOrgTypeNotACompany()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_2);
-            return new IcoRegistrationNumberPage(_context);
+            return new IcoRegistrationNumberPage(context);
         }
         public ConfrimWhosInControlPage AccessTellUSWhosInControlSection()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_3);
-            return new ConfrimWhosInControlPage(_context);
+            return new ConfrimWhosInControlPage(context);
         }
         public WhoIsInControlOfYourOrganisationPage AccessTellUsWhosInControlSectionForCHManualEntryTrue()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_3);
-            return new WhoIsInControlOfYourOrganisationPage(_context);
+            return new WhoIsInControlOfYourOrganisationPage(context);
         }
         public ConfirmTrusteesPage AccessTellUSWhosInControlSectionForOrgTypeCharity()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_3);
-            return new ConfirmTrusteesPage(_context);
+            return new ConfirmTrusteesPage(context);
         }
         public OrganisationTypePage AccessTellUsWhosInControlSectionForSoleTrader()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_3);
-            return new OrganisationTypePage(_context);
+            return new OrganisationTypePage(context);
         }
         public WhatIsYourOrganisationPage AccessDescribeYourOrganisationsForOrgTypeCharity()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_4);
-            return new WhatIsYourOrganisationPage(_context);
+            return new WhatIsYourOrganisationPage(context);
         }
         public FundedByTheOfficeForStudentsPage AccessExperienceAndAccreditationsSectionForMainRoute()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_5);
-            return new FundedByTheOfficeForStudentsPage(_context);
+            return new FundedByTheOfficeForStudentsPage(context);
         }
         public InitialTeacherTrainingPage AccessExperienceAndAccreditationsSectionForEmployerRoute()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_5);
-            return new InitialTeacherTrainingPage(_context);
+            return new InitialTeacherTrainingPage(context);
         }
         public ApprenticeshipTrainingAsSubcontractorPage AccessExperienceAndAccreditationsSectionForSupportingRoute()
         {
             NavigateToTask(Yourorganisation, YourOrganisation_5);
-            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+            return new ApprenticeshipTrainingAsSubcontractorPage(context);
         }
         #endregion
     }

@@ -9,12 +9,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
     public class TransfersEmployerStepsHelper : EmployerStepsHelper
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
         private readonly TransfersUser _transfersUser;
 
         public TransfersEmployerStepsHelper(ScenarioContext context) : base(context)
         {
-            context = context;
+            _context = context;
             _transfersUser = context.GetUser<TransfersUser>();
         }
 
@@ -36,7 +36,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {
             GoToEmployerApprenticesHomePage();
-            return new FinancePage(context, true)
+            return new FinancePage(_context, true)
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
         }

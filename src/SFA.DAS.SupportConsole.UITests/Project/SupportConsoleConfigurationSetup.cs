@@ -9,25 +9,25 @@ namespace SFA.DAS.SupportConsole.UITests.Project
     [Binding]
     public class SupportConsoleConfigurationSetup
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
 
         public SupportConsoleConfigurationSetup(ScenarioContext context)
         {
-            context = context;
+            _context = context;
             _configSection = context.Get<IConfigSection>();
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpSupportConsoleProjectConfiguration()
         {
-            context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
+            _context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
 
-            context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
 
-            context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
 
-            context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsUser>());
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsUser>());
             
         }
     }

@@ -7,19 +7,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
     [Binding]
     public class RoatpAdminSteps
     {
-        private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
         private SearchPage _searchPage;
         private ResultsFoundPage _resultsFoundPage;
         private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
 
-        public RoatpAdminSteps(ScenarioContext context)
-        {
-            _context = context;
-            _roatpAdminStepsHelper = new OldRoatpAdminStepsHelper(_context);
-        }
-
+        public RoatpAdminSteps(ScenarioContext context) => _roatpAdminStepsHelper = new OldRoatpAdminStepsHelper(context);
 
         [When(@"the admin searches for a provider by partial provider name")]
         public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProvider("PEOPLE");

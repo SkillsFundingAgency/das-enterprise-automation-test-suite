@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_TransferVacanciesPage TransferVacancies()
         {
             formCompletionHelper.ClickLinkByText("Transfer Vacancies");
-            return new RAA_TransferVacanciesPage(ontext);
+            return new RAA_TransferVacanciesPage(context);
         }
 
         public RAA_SetVacancyHoursAndWageTypePage SetVacancyHoursAndWageType()

@@ -15,42 +15,29 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class SupportToolsSteps
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
         private readonly StepsHelper _stepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
         public SupportToolsSteps(ScenarioContext context)
         {
-            context = context;
+            _context = context;
             _stepsHelper = new StepsHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
 
         [Given(@"the User is logged into Support Tools")]
-        public void GivenTheUserIsLoggedIntoSupportTools()
-        {
-            _stepsHelper.ValidUserLogsinToSupportTools();
-
-        }
+        public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools();
        
         [Given(@"Opens the Pause Utility")]
         [When(@"user opens Pause Utility")]
-        public void WhenUserOpensPauseUtility()
-        {
-            new ToolSupportHomePage(context).ClickPauseApprenticeshipsLink();
-        }
+        public void WhenUserOpensPauseUtility() => new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
 
         [Given(@"Opens the Resume Utility")]
-        public void GivenOpensTheResumeUtility()
-        {
-            new ToolSupportHomePage(context).ClickResumeApprenticeshipsLink();
-        }
+        public void GivenOpensTheResumeUtility() => new ToolSupportHomePage(_context).ClickResumeApprenticeshipsLink();
 
         [Given(@"Opens the Stop Utility")]
-        public void GivenOpensTheStopUtility()
-        {
-            new ToolSupportHomePage(context).ClickStopApprenticeshipsLink();
-        }
+        public void GivenOpensTheStopUtility() => new ToolSupportHomePage(_context).ClickStopApprenticeshipsLink();
 
 
         [Given(@"Search for Apprentices using following criteria")]
@@ -62,7 +49,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
             foreach (var item in filters)
             {
-                new SearchForApprenticeshipPage(context, false)
+                new SearchForApprenticeshipPage(_context, false)
                        .EnterEmployerName(item.EmployerName)
                        .EnterProviderName(item.ProviderName)
                        .EnterUkprn(item.Ukprn)
@@ -71,7 +58,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                        .SelectStatus(item.Status)
                        .ClickSubmitButton();
 
-                var actualRecord = new SearchForApprenticeshipPage(context, false).GetNumberOfRecordsFound();
+                var actualRecord = new SearchForApprenticeshipPage(_context, false).GetNumberOfRecordsFound();
                 Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected recordson row: {row}");
                 row++;
             }       
@@ -81,7 +68,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"User selects all records and click on Pause Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnPauseApprenticeshipButton()
         {
-            UpdateStatusInDb(new SearchForApprenticeshipPage(context, false).GetULNsFromApprenticeshipTable())
+            UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
                     .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickPauseButton();  
@@ -90,7 +77,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"User selects all records and click on Resume Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnResumeApprenticeshipButton()
         {
-           UpdateStatusInDb(new SearchForApprenticeshipPage(context, false).GetULNsFromApprenticeshipTable())
+           UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
                     .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickResumeButton();  
@@ -99,7 +86,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"User selects all records and click on Stop Apprenticeship button")]
         public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton()
         {
-            UpdateStatusInDb(new SearchForApprenticeshipPage(context, false).GetULNsFromApprenticeshipTable())
+            UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
                     .ClickSubmitButton()
                     .SelectAllRecords()
                     .ClickStopButton();
@@ -108,7 +95,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"User should be able to stop all the records")]
         public void ThenUserShouldBeAbleToStopAllTheRecords()
         {
-            var ststusList = new StopApprenticeshipsPage(context)
+            var ststusList = new StopApprenticeshipsPage(_context)
                                     .ClickStopBtn()
                                     .ValidateErrorMessage()
                                     .EnterStopDateAndClickSetbutton()
@@ -123,7 +110,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"User should be able to pause all the live records")]
         public void ThenUserShouldBeAbleToPauseAllTheLiveRecords()
         {
-            var ststusList = new PauseApprenticeshipsPage(context)
+            var ststusList = new PauseApprenticeshipsPage(_context)
                                 .ClickPauseBtn()
                                 .GetStatusColumn();
 
@@ -133,7 +120,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"User should be able to resume all the paused records")]
         public void ThenUserShouldBeAbleToResumeAllThePausedRecords()
         {
-            var ststusList = new ResumeApprenticeshipsPage(context)
+            var ststusList = new ResumeApprenticeshipsPage(_context)
                                .ClickResumeBtn()
                                .GetStatusColumn();
 
@@ -157,7 +144,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                 i++;
             }
 
-            return new SearchForApprenticeshipPage(context, false);
+            return new SearchForApprenticeshipPage(_context, false);
         }
 
         private void ValidatePausedSuccessful(List<IWebElement> StatusList)

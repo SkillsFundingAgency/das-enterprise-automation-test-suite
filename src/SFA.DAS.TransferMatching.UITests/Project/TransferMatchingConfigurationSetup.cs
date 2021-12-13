@@ -9,19 +9,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project
     [Binding]
     public class TransferMatchingConfigurationSetup
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
 
         public TransferMatchingConfigurationSetup(ScenarioContext context)
         {
-            context = context;
+            _context = context;
             _configSection = context.Get<IConfigSection>();
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpTransferMatchingConfiguration()
         {
-            context.SetEasLoginUser(new List<EasAccountUser>()
+            _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<TransferMatchingUser>(),
                 _configSection.GetConfigSection<TransfersUserNoFunds>(),

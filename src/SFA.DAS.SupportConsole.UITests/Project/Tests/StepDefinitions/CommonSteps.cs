@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.SupportConsole.UITests.Project.Helpers;
-using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
@@ -7,14 +6,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class CommonSteps
     {
-        private readonly ScenarioContext context;
         private readonly StepsHelper _stepsHelper;
 
-        public CommonSteps(ScenarioContext context)
-        {
-            context = context;
-            _stepsHelper = new StepsHelper(context);
-        }
+        public CommonSteps(ScenarioContext context) => _stepsHelper = new StepsHelper(context);
 
         [Given(@"the Tier 1 User is logged into Support Console")]
         public void GivenTheTierUserIsLoggedIntoSupportConsole() => _stepsHelper.Tier1LoginToSupportConsole();
