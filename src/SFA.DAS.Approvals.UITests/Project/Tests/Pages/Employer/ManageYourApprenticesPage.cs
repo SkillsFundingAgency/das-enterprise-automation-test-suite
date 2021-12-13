@@ -5,9 +5,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
+    public class FilteredManageYourApprenticesPage : ManageYourApprenticesPage
+    {
+        protected override string PageTitle => "Manage your apprentices";
+
+        protected override bool TakeFullScreenShot => true;
+
+        public FilteredManageYourApprenticesPage(ScenarioContext context) : base(context) { }
+
+    }
+
     public class ManageYourApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Manage your apprentices";
+
+        protected override bool TakeFullScreenShot => false;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -53,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(_context);
         }
 
-        public ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             // Search bar will not be displayed if there are less than 10 apprentice in the table
             if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
@@ -62,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 formCompletionHelper.ClickElement(SearchButton);
             }
 
-            return new ManageYourApprenticesPage(_context);
+            return new FilteredManageYourApprenticesPage(_context);
         }
 
         public void VerifyApprenticeExists()

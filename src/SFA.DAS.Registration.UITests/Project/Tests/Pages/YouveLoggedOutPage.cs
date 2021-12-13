@@ -18,10 +18,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public IndexPage CickContinueInYouveLoggedOutPage()
+        public CreateAnAccountToManageApprenticeshipsPage CickContinueInYouveLoggedOutPage()
         {
             Continue();
-            return new IndexPage(_context);
+            return new CreateAnAccountToManageApprenticeshipsPage(_context);
         }
     }
 }

@@ -7,6 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class ChooseAReservationPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Choose a Reservation";
+
+        protected override bool TakeFullScreenShot => false;
+
         private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");

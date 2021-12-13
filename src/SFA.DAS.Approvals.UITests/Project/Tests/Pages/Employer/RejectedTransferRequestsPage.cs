@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public RejectedTransferRequestsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ReviewYourCohortPage OpenRejectedCohort()
+        public ApproveApprenticeDetailsPage OpenRejectedCohort()
         {
             var cohortRows = pageInteractionHelper.FindElements(CohortInfoRow);
             var cohortEditLinks = pageInteractionHelper.FindElements(CohortEditLink);
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 }
                 i++;
             }
-            return new ReviewYourCohortPage(_context);
+            return new ApproveApprenticeDetailsPage(_context);
         }
     }
 }

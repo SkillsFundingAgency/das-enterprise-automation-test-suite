@@ -11,6 +11,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Transfers";
 
+        protected override bool TakeFullScreenShot => false;
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

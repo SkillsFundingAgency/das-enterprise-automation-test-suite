@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Apprentice requests";
 
+        protected override bool TakeFullScreenShot => false;
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

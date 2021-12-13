@@ -6,6 +6,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Apprentice details ready for review";
 
+        protected override bool TakeFullScreenShot => false;
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
