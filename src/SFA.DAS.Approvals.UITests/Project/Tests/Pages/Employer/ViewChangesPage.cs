@@ -29,7 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApproveApprenticeDetailsPage(context);
         }
 
-
         public ApprenticeDetailsPage UndoChanges()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(UndoChangesSelector));

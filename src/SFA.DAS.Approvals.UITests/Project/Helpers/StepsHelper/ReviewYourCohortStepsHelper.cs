@@ -7,10 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     internal class ReviewYourCohortStepsHelper
     {
         private readonly RetryAssertHelper _assertHelper;
-        internal ReviewYourCohortStepsHelper(RetryAssertHelper assertHelper)
-        {
-            _assertHelper = assertHelper;
-        }
+
+        internal ReviewYourCohortStepsHelper(RetryAssertHelper assertHelper) => _assertHelper = assertHelper;
 
         internal string ApprenticeTotalCost(ReviewYourCohort reviewYourCohortPage)
         {

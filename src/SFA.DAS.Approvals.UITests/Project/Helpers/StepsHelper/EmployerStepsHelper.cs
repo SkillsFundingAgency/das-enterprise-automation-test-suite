@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     public class EmployerStepsHelper
     {
-        private ApproveApprenticeDetailsPage _reviewYourCohortPage;
+        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
@@ -140,9 +140,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             {
                 addApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
             }
-            _reviewYourCohortPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
-            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_reviewYourCohortPage);
-            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_reviewYourCohortPage, count);
+            _approveApprenticeDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_approveApprenticeDetailsPage);
+            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_approveApprenticeDetailsPage, count);
             _objectContext.SetNoOfApprentices(noOfApprentice);
             _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
             return new ApproveApprenticeDetailsPage(_context);
