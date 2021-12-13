@@ -5,9 +5,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_YourFinance : HomePageFinancesSection
     {
-        private readonly ScenarioContext _context;
-
-        public HomePageFinancesSection_YourFinance(ScenarioContext context) : base(context) => _context = context;
+        public HomePageFinancesSection_YourFinance(ScenarioContext context) : base(context) { }
 
         public FinancePage NavigateToFinancePage()
         {

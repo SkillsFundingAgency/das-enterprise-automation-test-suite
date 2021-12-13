@@ -8,13 +8,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
     public abstract class UserOrgPage : ConsolidatedSupportBasePage
     {
-        private readonly ScenarioContext _context;
-
         private By OptionsButton => By.CssSelector(".ember-view .object_options > .object_options_btn");
 
         private By ModelButtons => By.CssSelector(".modal-footer .btn");
 
-        public UserOrgPage(ScenarioContext context) : base(context) => _context = context;
+        public UserOrgPage(ScenarioContext context) : base(context) { }
 
         public HomePage DeleteUser()
         {

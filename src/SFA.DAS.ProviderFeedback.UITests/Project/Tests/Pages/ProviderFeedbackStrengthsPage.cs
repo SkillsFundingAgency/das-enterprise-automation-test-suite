@@ -7,11 +7,9 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "strengths";
         
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.Id("q1-continue");
 
-        public ProviderFeedbackStrengthsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackStrengthsPage(ScenarioContext context) : base(context) { } 
 
         public ProviderFeedbackImprovePage ContinueToQuestion2()
         {

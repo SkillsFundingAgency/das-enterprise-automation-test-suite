@@ -7,7 +7,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public abstract class SupportConsoleBasePage : VerifyBasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         protected readonly SupportConsoleConfig config;
         #endregion
 
@@ -17,11 +16,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         protected By TeamMembersLink => By.LinkText("Team members");
         private By Heading => By.Id("no-logo");
 
-        public SupportConsoleBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-        }
+        public SupportConsoleBasePage(ScenarioContext context) : base(context) => config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
 
         public void ClickFinanceMenuLink() => formCompletionHelper.Click(FinanceLink);
         

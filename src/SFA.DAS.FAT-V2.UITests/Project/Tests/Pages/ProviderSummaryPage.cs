@@ -6,7 +6,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     public class ProviderSummaryPage : FATV2BasePage
     {
         protected override string PageTitle => objectContext.GetProviderName();
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By LocationTextBox => By.Id("search-location");
@@ -15,7 +14,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By NoProviderAtLocationErrorText => By.Id("course_provider_not_available");
         #endregion
 
-        public ProviderSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderSummaryPage(ScenarioContext context) : base(context) { }
         
         public bool VerifyNoTrainingProviderAtLocationErrorText() => pageInteractionHelper.IsElementDisplayed(NoProviderAtLocationErrorText);
 

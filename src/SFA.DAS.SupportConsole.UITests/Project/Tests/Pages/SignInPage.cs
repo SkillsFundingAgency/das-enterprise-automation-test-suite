@@ -6,11 +6,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class SignInPage : EsfaSignInPage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SignInPage(ScenarioContext context) : base(context) => _context = context;          
+        public SignInPage(ScenarioContext context) : base(context) { }
 
         public SearchHomePage SignInWithValidDetails(LoginUser usercreds)
         {

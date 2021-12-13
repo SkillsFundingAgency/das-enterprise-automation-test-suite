@@ -8,10 +8,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "DAS Tools Support";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Locators
         private By HomeHeading => By.LinkText("support");
         protected By PauseApprenticeshipsLink => By.Id("pauseApprenticeship");
@@ -19,7 +15,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         protected By StopApprenticeshipsLink => By.Id("stopApprenticeship");
         #endregion
 
-        public ToolSupportHomePage(ScenarioContext context) : base(context) => _context = context;
+        public ToolSupportHomePage(ScenarioContext context) : base(context) { }
 
         public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
         {

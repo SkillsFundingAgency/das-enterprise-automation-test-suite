@@ -6,7 +6,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     public class TrainingCourseSummaryPage : FATV2BasePage
     {
         protected override string PageTitle => objectContext.GetTrainingCourseName();
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By LocationTextBox => By.Id("search-location");
@@ -15,7 +14,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         #endregion
 
-        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) { }
 
         public FATV2IndexPage NavigateBackToHompage()
         {

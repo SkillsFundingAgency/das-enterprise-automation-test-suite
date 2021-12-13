@@ -7,15 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Manage transfers";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
 
         private By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
 
-        public ManageTransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
+        public ManageTransferMatchingPage(ScenarioContext context) : base(context) { }
 
         public PledgeAndTransferYourLevyFundsPage GotoCreateTransfersPledgePage()
         {

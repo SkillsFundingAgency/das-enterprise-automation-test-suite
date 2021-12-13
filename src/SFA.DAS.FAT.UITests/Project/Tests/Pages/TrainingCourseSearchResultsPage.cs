@@ -7,7 +7,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class TrainingCourseSearchResultsPage : FATBasePage
     {
         protected override string PageTitle => "Search results";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By FilterResultsPanel => By.CssSelector(".filters.filters-accordion");
@@ -19,11 +18,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         private By LevelInfoText => By.ClassName("level");
         #endregion
 
-        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public TrainingCourseSearchResultsPage VerifyFilterAndSortByFields()
         {

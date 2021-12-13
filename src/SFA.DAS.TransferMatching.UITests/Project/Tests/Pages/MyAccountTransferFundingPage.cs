@@ -6,9 +6,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My accounts";
 
-        private readonly ScenarioContext _context;
-
-        public MyAccountTransferFundingPage(ScenarioContext context) : base(context) => _context = context;
+        public MyAccountTransferFundingPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage GoToCreateATransfersApplicationPage(string orgName)
         {

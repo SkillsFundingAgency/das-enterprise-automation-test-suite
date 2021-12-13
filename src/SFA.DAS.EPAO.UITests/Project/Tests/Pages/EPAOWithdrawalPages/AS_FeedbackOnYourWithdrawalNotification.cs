@@ -6,13 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "Feedback on your withdrawal request";
 
-        private readonly ScenarioContext _context;
-
-        public AS_FeedbackOnYourWithdrawalNotificationStartPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_FeedbackOnYourWithdrawalNotificationStartPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WithdrawalRequestOverviewPage ClickContinueButton()
         {

@@ -9,17 +9,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Pledge amount and option to hide organisation name";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AvailablePledgeAmount => By.CssSelector(".app-highlight__figure");
 
         private By AmountCssSelector => By.CssSelector("#Amount");
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
-        public PledgeAmountAndOptionToHideOrganisastionNamePage(ScenarioContext context) : base(context) => _context = context;
+        public PledgeAmountAndOptionToHideOrganisastionNamePage(ScenarioContext context) : base(context) { }
 
         public PledgeAmountAndOptionToHideOrganisastionNamePage CaptureAvailablePledgeAmount()
         {

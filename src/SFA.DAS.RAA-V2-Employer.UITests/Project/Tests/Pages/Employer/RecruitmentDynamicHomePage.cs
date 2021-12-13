@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
         private readonly RAAV2DataHelper _raaV2DataHelper;
         #endregion
@@ -25,7 +24,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
-            _context = context;
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }

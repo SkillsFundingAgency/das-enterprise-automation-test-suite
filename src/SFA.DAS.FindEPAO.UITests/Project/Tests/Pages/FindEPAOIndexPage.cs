@@ -6,13 +6,12 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class FindEPAOIndexPage : FindEPAOBasePage
     {
         protected override string PageTitle => "Find an end-point assessment organisation for your apprentice";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By StartButton => By.LinkText("Start now");
         #endregion
 
-        public FindEPAOIndexPage(ScenarioContext context) : base(context) => _context = context;
+        public FindEPAOIndexPage(ScenarioContext context) : base(context) { }
 
         public SearchApprenticeshipTrainingCoursePage ClickStartButton()
         {

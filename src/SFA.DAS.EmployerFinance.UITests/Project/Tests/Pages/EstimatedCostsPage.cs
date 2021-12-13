@@ -7,8 +7,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Estimated costs";
 
-        private readonly ScenarioContext _context;
-
         private By ApprenticeshipAddedTab => By.CssSelector("a[href='#apprenticeships-added']");
 
         private By AccountFundsTab => By.CssSelector("a[href='#account-funds']");
@@ -21,11 +19,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By AccountFundsTable => By.CssSelector("#account-funds table tbody tr");
 
-        public EstimatedCostsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EstimatedCostsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EstimatedCostsPage VerifyTabs()
         {

@@ -8,7 +8,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public class SearchForApprenticeshipPage : ToolSupportBasePage
     {
         protected override string PageTitle => "Search for an apprenticeship.";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By EmployerName => By.Id("employerName");
@@ -29,7 +28,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(3)");
         #endregion
 
-        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) => _context = context;
+        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) { }
+
         public SearchForApprenticeshipPage EnterEmployerName(string employerName)
         {
             formCompletionHelper.EnterText(EmployerName, employerName);

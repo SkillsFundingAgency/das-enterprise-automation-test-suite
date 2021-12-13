@@ -6,11 +6,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmp
 {
     class DoYouNeedToCreateAnAdvertPage: DoYouNeedToCreateAnAdvertBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context) => _context = context;
+        public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context) { }
 
         public CreateAnAdvertHomePage ClickYesRadioButtonTakesToRecruitment()
         {

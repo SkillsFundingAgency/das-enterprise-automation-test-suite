@@ -10,17 +10,13 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected override string PageTitle => "Review Vacancy";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ReviewVacancyButton => By.CssSelector(".govuk-button[type='submit']");
 
         private By SearchTerm => By.Id("SearchTerm");
 
         private By SearchVacancy => By.CssSelector(".search-submit button");
 
-        public Reviewer_HomePage(ScenarioContext context) : base(context) => _context = context;
+        public Reviewer_HomePage(ScenarioContext context) : base(context) { }
 
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
         {

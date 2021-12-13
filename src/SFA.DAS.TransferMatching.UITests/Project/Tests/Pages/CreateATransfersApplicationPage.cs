@@ -9,11 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Create a transfers application";
 
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.CssSelector("#opportunity-apply-submit");
 
-        public CreateATransfersApplicationPage(ScenarioContext context) : base(context) => _context = context;
+        public CreateATransfersApplicationPage(ScenarioContext context) : base(context) { }
 
         public ApplicationSubmittedPage SubmitApplication()
         {

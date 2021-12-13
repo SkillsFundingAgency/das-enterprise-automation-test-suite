@@ -7,15 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My transfer pledges";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
         private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
 
-        public MyTransferPledgesPage(ScenarioContext context) : base(context) => _context = context;
+        public MyTransferPledgesPage(ScenarioContext context) : base(context) { }
 
         public TransferPledgePage GoToTransferPledgePage()
         {

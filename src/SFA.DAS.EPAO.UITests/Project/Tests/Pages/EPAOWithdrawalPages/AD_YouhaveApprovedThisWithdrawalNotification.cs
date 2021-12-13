@@ -11,17 +11,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     {
         protected override string PageTitle => "You've approved this withdrawal application";
        
-        private readonly ScenarioContext _context;
-
         private By ReturnToApprovedWithdrawals => By.CssSelector("a[href='/WithdrawalApplication/WithdrawalApplications#approved']");
 
         private By WithdrawlFromRegisterApprovedMessage => By.XPath("//p[contains(text(), \"to withdraw from the register of end-point assessment organisations.\")]");
         
-        public AD_YouhaveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_YouhaveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_YouhaveApprovedThisWithdrawalNotification VerifyRegisterWithdrawalBodyText()
         {

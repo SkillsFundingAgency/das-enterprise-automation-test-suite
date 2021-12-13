@@ -10,9 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-        private readonly ScenarioContext _context;
-
-        public ApplicationSubmittedPage(ScenarioContext context) : base(context) => _context = context;
+        public ApplicationSubmittedPage(ScenarioContext context) : base(context) { }
 
         public HomePage ContinueToMyAccount()
         {

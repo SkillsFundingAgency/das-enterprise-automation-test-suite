@@ -10,14 +10,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Staff dashboard";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public StaffDashboardPage(ScenarioContext context, bool navigate = false) : base(context, !navigate)
         {
-            _context = context; 
-
             if (navigate) { ClickReturnToStaffDashBoard(); VerifyPage(); }
         }
 

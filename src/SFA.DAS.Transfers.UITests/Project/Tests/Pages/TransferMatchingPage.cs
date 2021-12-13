@@ -6,12 +6,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Transfers";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TransferMatchingPage(ScenarioContext context) : base(context) => _context = context;
-
+        public TransferMatchingPage(ScenarioContext context) : base(context) { }
 
     }
 }

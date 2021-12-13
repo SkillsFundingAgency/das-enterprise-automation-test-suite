@@ -7,15 +7,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Funding projection";
 
-        private readonly ScenarioContext _context;
-
         private By EstimateButton => By.CssSelector("a[href*='forecasting/estimations/start']");
 
-        public FundingProjectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FundingProjectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EstimateFundingProjectionPage GoToEstimateFundingProjectionPage()
         {

@@ -7,15 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add the locations you'd like to fund";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected By Location => By.CssSelector("#Locations_0_");
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
-        public AddtheLocationPage(ScenarioContext context) : base(context) => _context = context;
+        public AddtheLocationPage(ScenarioContext context) : base(context) { }
 
         public CreateATransferPledgePage EnterLocation()
         {

@@ -7,8 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class EPAOOrganisationDetailsPage : FindEPAOBasePage
     {
         protected override string PageTitle => objectContext.GetEPAOOrganisationName();
-        private readonly ScenarioContext _context;
-        public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By BackButton => By.ClassName("govuk-back-link");

@@ -7,8 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class SearchApprenticeshipTrainingCoursePage : FindEPAOBasePage
     {
         protected override string PageTitle => "What is the apprenticeship training course?";
-        private readonly ScenarioContext _context;
-        public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) => _context = context;
+
+        public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) { } 
 
         #region Locators
         private By BackButton => By.ClassName("govuk-back-link");

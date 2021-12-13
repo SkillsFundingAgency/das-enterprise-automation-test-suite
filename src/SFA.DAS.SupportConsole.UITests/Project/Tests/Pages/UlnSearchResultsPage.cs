@@ -6,15 +6,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "View ULN";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public UlnSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public UlnSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public UlnDetailsPage SelectULN()
         {

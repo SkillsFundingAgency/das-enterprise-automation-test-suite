@@ -7,11 +7,9 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Give feedback";
 
-        private readonly ScenarioContext _context;
-
         private By StartButton => By.Id("service-start");
 
-        public ProviderFeedbackHomePage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackHomePage(ScenarioContext context) : base(context) { } 
 
         public ProviderFeedbackStrengthsPage StartNow()
         {

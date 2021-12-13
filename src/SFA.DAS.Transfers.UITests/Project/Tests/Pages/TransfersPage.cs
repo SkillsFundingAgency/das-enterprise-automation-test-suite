@@ -13,15 +13,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ConnectToReceivingEmployer => By.LinkText("Connect to a receiving employer");
         private By YourTransferConnectionsRows => By.CssSelector("tbody tr");
         private By DetailsLink => By.LinkText("Details");
 
-        public TransfersPage(ScenarioContext context) : base(context) => _context = context;
+        public TransfersPage(ScenarioContext context) : base(context) { }
 
         public ConnectWithReceivingEmployerPage ConnectWithReceivingEmployer()
         {

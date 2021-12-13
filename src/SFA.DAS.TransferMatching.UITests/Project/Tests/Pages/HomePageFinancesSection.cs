@@ -5,9 +5,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_YourTransfers : HomePageFinancesSection
     {
-        private readonly ScenarioContext _context;
-
-        public HomePageFinancesSection_YourTransfers(ScenarioContext context) : base(context) => _context = context;
+        public HomePageFinancesSection_YourTransfers(ScenarioContext context) : base(context) { }
 
         public ManageTransferMatchingPage NavigateToTransferMatchingPage()
         {

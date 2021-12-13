@@ -10,8 +10,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
         private By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
@@ -19,7 +17,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By RemoveLocation => By.LinkText("Clear");
         #endregion
 
-        public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public ProviderSummaryPage SelectFirstProviderInTheList()
         {

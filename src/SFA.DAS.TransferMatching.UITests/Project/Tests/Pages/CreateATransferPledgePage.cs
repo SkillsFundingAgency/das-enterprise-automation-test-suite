@@ -8,10 +8,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Create a transfer pledge";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector("#pledge-create-submit");
 
         private By ColumnIdentifier => By.CssSelector(".das-task-list__task-tag");
@@ -25,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public string TypeOfJobRoleLink => "Type of job role";
         public string LevelLink => "Level";
 
-        public CreateATransferPledgePage(ScenarioContext context) : base(context) => _context = context;
+        public CreateATransferPledgePage(ScenarioContext context) : base(context) { }
 
         public PledgeAmountAndOptionToHideOrganisastionNamePage GoToPledgeAmountAndOptionPage()
         {

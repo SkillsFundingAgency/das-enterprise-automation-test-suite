@@ -11,15 +11,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         private By TeamMembersTable => By.CssSelector("table.responsive");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public TeamMembersPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-            VerifyPage();
-            VerifyPage(TeamMembersTable);
+            MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
+            {
+                () => VerifyPage(),
+                () => VerifyPage(TeamMembersTable)
+            });
         }
 
         public UserInformationOverviewPage GoToUserInformationOverviewPage()

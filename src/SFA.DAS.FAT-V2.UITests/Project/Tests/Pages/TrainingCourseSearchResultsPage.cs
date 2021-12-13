@@ -7,7 +7,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     public class TrainingCourseSearchResultsPage : FATV2BasePage
     {
         protected override string PageTitle => "Apprenticeship training courses";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By UpdateResultsButton => By.Id("filters-submit");
@@ -17,7 +16,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By SortByInfoText => By.Id("sort-by-relevance");
         #endregion
 
-        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
         {

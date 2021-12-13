@@ -7,8 +7,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Overall rating";
 
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.Id("q3-continue");
 
         private By ExcellentOption => By.CssSelector("label[for='Excellent']");
@@ -19,7 +17,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
 
-        public ProviderFeedbackOverallRatingPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackOverallRatingPage(ScenarioContext context) : base(context) { }
 
         public ProviderFeedbackCheckYourAnswersPage SelectVPoorAndContinue()
         {
