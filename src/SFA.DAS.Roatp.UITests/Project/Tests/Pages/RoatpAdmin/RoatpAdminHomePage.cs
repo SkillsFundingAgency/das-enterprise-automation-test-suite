@@ -9,11 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RoatpAdminHomePage(ScenarioContext context) : base(context) => _context = context;
+        public RoatpAdminHomePage(ScenarioContext context) : base(context) { }
 
         public OrganisationUkprnPage AddANewTrainingProvider()
         {

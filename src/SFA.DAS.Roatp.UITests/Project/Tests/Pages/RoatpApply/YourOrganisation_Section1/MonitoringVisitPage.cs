@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Has your organisation had a monitoring visit for apprenticeships in further education and skills?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public MonitoringVisitPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public MonitoringVisitPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage SelectNoForMonitoringVisitAndContinue()
         {

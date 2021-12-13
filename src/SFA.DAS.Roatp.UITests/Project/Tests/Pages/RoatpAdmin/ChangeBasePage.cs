@@ -4,11 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public abstract class ChangeBasePage : RoatpAdminBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChangeBasePage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeBasePage(ScenarioContext context) : base(context) { }
 
         public ResultsFoundPage ClickBackLink()
         {

@@ -7,17 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Do you accept the conditions of acceptance to join the Register?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SignOutButton => By.LinkText("Sign out");
 
-        public TermsConditionsMakingApplicationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TermsConditionsMakingApplicationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage AcceptTermAndConditionsAndContinue()
         {

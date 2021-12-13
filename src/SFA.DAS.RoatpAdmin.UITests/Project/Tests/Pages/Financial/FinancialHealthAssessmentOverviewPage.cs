@@ -19,15 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         private By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
         private By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FinancialHealthAssessmentOverviewPage(ScenarioContext context) : base(context)
-        {
-           _context = context;
-           VerifyPage();
-        }
+        public FinancialHealthAssessmentOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialHealthAssesmentCompletedPage ConfirmFHAReview(string expectedoutcome)
         {

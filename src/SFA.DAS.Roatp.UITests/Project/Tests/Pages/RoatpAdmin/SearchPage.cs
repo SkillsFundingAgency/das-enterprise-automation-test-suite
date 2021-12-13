@@ -9,19 +9,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Confirmation => By.CssSelector(".govuk-panel--confirmation");
 
         private By ProviderSearch => By.Id("SearchTerm");
 
-        public SearchPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SearchPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchPage VerifyNewProviderHasBeenAdded()
         {

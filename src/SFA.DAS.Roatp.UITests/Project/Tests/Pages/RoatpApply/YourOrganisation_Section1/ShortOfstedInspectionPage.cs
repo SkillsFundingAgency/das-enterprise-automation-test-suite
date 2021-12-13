@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Has your organisation had a short Ofsted inspection within the last 3 years?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ShortOfstedInspectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ShortOfstedInspectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public MaintainedTheGradeInOfsteadInspectionPage SelectYesForShortOFstedInspectionWithinThreeYearsAndContinue()
         {

@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "What type of public body is your organisation?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TypeOfBodyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TypeOfBodyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public DescribeYourOrganisationPage SelectGovernmentDepartmentAndContinue()
         {

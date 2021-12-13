@@ -7,16 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => "Organisation's details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-        public OrganisationsDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public OrganisationsDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderRoutePage ConfirmOrganisationsDetails()
         {

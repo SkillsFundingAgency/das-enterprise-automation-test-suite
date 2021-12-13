@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "What grade did your organisation get for overall effectiveness in this full Ofsted inspection?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WhatGradeInOfstedInspectionOverallEffectivenessPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhatGradeInOfstedInspectionOverallEffectivenessPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
         {

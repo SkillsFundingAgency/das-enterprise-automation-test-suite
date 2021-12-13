@@ -9,17 +9,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By WebsiteField => By.Id("RTE-31");
 
-        public EnterWebsiteLinkPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EnterWebsiteLinkPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterWebsitelinkandContinue()
         {

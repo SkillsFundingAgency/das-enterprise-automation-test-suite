@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3
 {
@@ -7,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
     {
         protected override string PageTitle => "Has your organisation had funding removed from any education bodies in the last 3 years?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FundingRemovedFromEducationBodiesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FundingRemovedFromEducationBodiesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public RemovedFromProfessionalOrTradeRegistersPage SelectYesEnterInformationForFundingRemovedFromEducationBodiesAndContinue()
         {

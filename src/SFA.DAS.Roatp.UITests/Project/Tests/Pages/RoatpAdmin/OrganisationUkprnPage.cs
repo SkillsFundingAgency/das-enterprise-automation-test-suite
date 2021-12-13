@@ -7,16 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => "What is the organisation's UKPRN?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By UkprnField => By.Id("UKPRN");
 
-        public OrganisationUkprnPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public OrganisationUkprnPage(ScenarioContext context) : base(context) { }
 
         public OrganisationsDetailsPage EnterUkprn()
         {

@@ -9,11 +9,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     public partial class ApplicationOverviewPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Application overview";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApplicationDetailsSelector => By.CssSelector(".govuk-summary-list__row");
 
         private By TaskLists => By.CssSelector(".app-task-list > li");
@@ -26,11 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By TaskStatus => By.CssSelector(".app-task-list__task-completed, .app-task-list__task-notrequired, .app-task-list__task-next, .app-task-list__task-inprogress");
 
-        public ApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void VerifyApplicationDetails()
         {

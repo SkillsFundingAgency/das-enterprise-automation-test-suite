@@ -7,17 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "When will your organisation be ready to deliver training against this forecast?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By WithinFirstThreeMonthsRadio => By.Id("PAT-651");
 
-        public DeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public DeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public RecruitNewStaffPage SelectWithinTheFirstThreeMonthAndContinue()
         {

@@ -7,17 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "What is the typical ratio of the staff who deliver training to the apprentices?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By OneTrainerBetween10OrLessAoorenticesRadio => By.Id("PAT-653");
 
-        public TypicalRatioOfStaffPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TypicalRatioOfStaffPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public LevleOfSupportProvidedPage SelectOneTrainerBetween10OrLessApprenticesAndContinue()
         {

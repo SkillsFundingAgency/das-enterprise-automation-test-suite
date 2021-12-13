@@ -7,17 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Does your organisation have a website?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By MainWebsiteField => By.Id("YO-41");
 
-        public WebsitePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WebsitePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EneterWebsiteAndContinue()
         {

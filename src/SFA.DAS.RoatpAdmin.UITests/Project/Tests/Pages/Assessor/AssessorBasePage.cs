@@ -1,16 +1,11 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
     public abstract class AssessorBasePage : RoatpNewAdminBasePage
     {
-        private readonly ScenarioContext _context;
-        
-        protected AssessorBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected AssessorBasePage(ScenarioContext context) : base(context) { } 
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinue()
         {

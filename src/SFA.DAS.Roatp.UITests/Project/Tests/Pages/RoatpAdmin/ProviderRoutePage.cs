@@ -7,13 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Choose a provider route for {objectContext.GetProviderName()}";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-        public ProviderRoutePage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderRoutePage(ScenarioContext context) : base(context) { }
 
         public TypeOrganisationsPage SubmitProviderType(string providerType)
         {

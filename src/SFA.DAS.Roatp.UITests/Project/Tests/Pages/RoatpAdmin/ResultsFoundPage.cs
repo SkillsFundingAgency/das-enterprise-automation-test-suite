@@ -8,10 +8,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"found for";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
 
         private By ActiveStatus => By.XPath("//span[text()='Active']");
@@ -30,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private string ApplicationDetermineDate => "30 Nov 1980";
 
-        public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
+        public ResultsFoundPage(ScenarioContext context) : base(context) { }
 
         public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
 

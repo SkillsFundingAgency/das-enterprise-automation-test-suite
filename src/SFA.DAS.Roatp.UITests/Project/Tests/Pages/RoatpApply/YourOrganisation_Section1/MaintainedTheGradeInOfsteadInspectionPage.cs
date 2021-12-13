@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Has your organisation maintained the grade it got in its full Ofsted inspection in its short Ofsted inspection?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public MaintainedTheGradeInOfsteadInspectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public MaintainedTheGradeInOfsteadInspectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public MaintainedFundingFromAnEducationAgencyPage SelectYesForGradeMaintainedAndContinue()
         {

@@ -8,16 +8,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         protected override string PageTitle => "How are these expectations for quality and high standards in apprenticeship training communicated to employees?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         
-        public HowAreTheyCommunicatedToEmployeesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public HowAreTheyCommunicatedToEmployeesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterHowAreTheyCommunicatedToEmployees()
         {

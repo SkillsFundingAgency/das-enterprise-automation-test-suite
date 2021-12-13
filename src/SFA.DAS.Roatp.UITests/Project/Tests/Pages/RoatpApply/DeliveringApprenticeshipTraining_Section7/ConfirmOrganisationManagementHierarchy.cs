@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Confirm your organisation's management hierarchy for apprenticeships";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConfirmOrganisationManagementHierarchy(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmOrganisationManagementHierarchy(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage ContinueToApplicationOverview()
         {

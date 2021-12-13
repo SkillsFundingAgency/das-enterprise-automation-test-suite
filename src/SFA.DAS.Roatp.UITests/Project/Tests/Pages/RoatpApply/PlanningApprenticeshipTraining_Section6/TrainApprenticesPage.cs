@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "How will your organisation train its apprentices?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TrainApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrainApprenticesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage SelectInYourOrganisationAndContinue()
         {

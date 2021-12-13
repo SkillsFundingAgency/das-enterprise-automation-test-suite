@@ -9,15 +9,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
     {
         protected override string PageTitle => "Before you submit your application";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public FinishSectionShutterPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public FinishSectionShutterPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
     }
 }
    

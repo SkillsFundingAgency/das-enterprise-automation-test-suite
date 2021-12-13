@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Was the most recent monitoring visit within the last 18 months?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WithinTheLast18MonthsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WithinTheLast18MonthsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public NotEligiblePage SelectYesMonitoringVisitInLast18MonthsAndContinue()
         {

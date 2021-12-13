@@ -7,13 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Change provider type for {objectContext.GetProviderName()}";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By OrganisationTypeIdEmployer => By.Id("OrganisationTypeIdEmployer");
 
-        public ChangeProviderTypePage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeProviderTypePage(ScenarioContext context) : base(context) { }
 
         public ResultsFoundPage ConfirmNewProviderTypeAsEmloyer()
         {

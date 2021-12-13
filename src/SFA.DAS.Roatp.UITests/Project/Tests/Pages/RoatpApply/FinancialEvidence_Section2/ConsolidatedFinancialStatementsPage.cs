@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Does your UK ultimate parent company have consolidated financial statements?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConsolidatedFinancialStatementsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConsolidatedFinancialStatementsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OtherSubsidiaryCompaniesPage ClickNoOnConsolidatedFinancialStatements()
         {

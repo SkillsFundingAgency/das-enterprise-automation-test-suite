@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Has your organisation had a full Ofsted inspection in further education and skills?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FullOfstedInspectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FullOfstedInspectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public MonitoringVisitPage SelectNoForFullOfstedInspectionAndContinue()
         {

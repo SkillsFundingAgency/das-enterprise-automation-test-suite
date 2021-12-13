@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
     {
         protected override string PageTitle => "Does your organisation have systems and processes in place to collect apprenticeship data?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SystemsAndProcessesToCollectApprenticeshipDataPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SystemsAndProcessesToCollectApprenticeshipDataPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SubmitILRDataPage SelectYesAndContinueOnCollectingDataPage()
         {

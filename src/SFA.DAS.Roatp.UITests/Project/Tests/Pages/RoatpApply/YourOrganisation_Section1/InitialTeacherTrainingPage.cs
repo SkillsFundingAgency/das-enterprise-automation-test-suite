@@ -7,15 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Does your organisation offer initial teacher training?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public InitialTeacherTrainingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public InitialTeacherTrainingPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FullOfstedInspectionPage SelectNoForITTAndContinue()
         {

@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Confirm your organisation's details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConfirmOrganisationsDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmOrganisationsDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ChooseProviderRoutePage ClickConfirmAndContinue()
         {

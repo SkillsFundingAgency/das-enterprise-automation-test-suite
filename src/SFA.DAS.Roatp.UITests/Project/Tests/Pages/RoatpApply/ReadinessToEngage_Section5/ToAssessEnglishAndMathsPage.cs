@@ -9,15 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ToAssessEnglishAndMathsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ToAssessEnglishAndMathsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterTextRegardingProcessToAssessEnglishAndMathsAndContinue()
         {

@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Sectors and employee experience";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ChooseYourOrganisationSectorsPage NavigateToChooseYourOrganisationSectors()
         {

@@ -9,14 +9,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "Has your organisation failed to pay back funds in the last 3 years?";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public PayBackFundsLastThreeYearsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PayBackFundsLastThreeYearsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ContractTerminatedByPublicBodyPage SelectYesEnterInformationForFailedToPayFundsAndContinue()
         {

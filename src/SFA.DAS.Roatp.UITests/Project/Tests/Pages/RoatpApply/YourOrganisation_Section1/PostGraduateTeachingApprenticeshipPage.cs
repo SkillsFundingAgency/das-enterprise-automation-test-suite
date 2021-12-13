@@ -6,15 +6,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Is the postgraduate teaching apprenticeship the only apprenticeship your organisation intends to deliver?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public PostGraduateTeachingApprenticeshipPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public PostGraduateTeachingApprenticeshipPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public FullOfstedInspectionPage SelectNoForPGTAAndContinue()
         {
             SelectNoAndContinue();

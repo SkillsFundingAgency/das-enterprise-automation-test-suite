@@ -8,10 +8,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => "What is the application determined date for this organisation?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
         private By Day => By.CssSelector("#Day");
@@ -20,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By Year => By.CssSelector("#Year");
 
-        public ApplicationDateDeterminedPage(ScenarioContext context) : base(context) => _context = context;
+        public ApplicationDateDeterminedPage(ScenarioContext context) : base(context) { }
 
         public ConfirmDetailsPage EnterDob()
         {

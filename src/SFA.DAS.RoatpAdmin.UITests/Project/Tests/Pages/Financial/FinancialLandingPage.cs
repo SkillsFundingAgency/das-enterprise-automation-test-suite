@@ -8,19 +8,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
     {
         protected override string PageTitle => "RoATP financial applications";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         protected By CurrentApplicationsTab => By.CssSelector("a[href='/Roatp/Financial/Current']");
         protected override By ClarificationTab => By.CssSelector("a[href='/Roatp/Financial/Clarification']");
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Financial/Outcome']");
        
 
-        public FinancialLandingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancialLandingPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialLandingPage DownloadAllCurrentApplications()
         {

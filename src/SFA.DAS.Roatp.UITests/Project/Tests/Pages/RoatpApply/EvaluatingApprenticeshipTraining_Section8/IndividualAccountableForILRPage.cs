@@ -8,15 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
         protected override string PageTitle => "Who is the individual accountable for submitting ILR data for your organisation?";
         protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public IndividualAccountableForILRPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public IndividualAccountableForILRPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterDetailsForIndividualAccountable()
         {

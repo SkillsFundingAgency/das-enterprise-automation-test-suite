@@ -7,11 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Change organisation type for {objectContext.GetProviderName()}";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChangeOrganisationTypePage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOrganisationTypePage(ScenarioContext context) : base(context) { }
 
         public ResultsFoundPage ConfirmNewOrganisationType()
         {

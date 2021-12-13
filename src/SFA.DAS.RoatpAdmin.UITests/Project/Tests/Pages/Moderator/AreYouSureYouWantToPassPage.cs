@@ -6,9 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     {
         protected override string PageTitle => "Are you sure you want to pass this application?";
 
-        private readonly ScenarioContext _context;
-
-        public AreYouSureYouWantToPassPage(ScenarioContext context) : base(context) => _context = context;
+        public AreYouSureYouWantToPassPage(ScenarioContext context) : base(context) { }
 
         public ModerationAssessmentPassCompletePage SelectYesPassAndContinueOutcomePage()
         {

@@ -8,17 +8,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Financial evidence";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By InputNumbers => By.CssSelector(".govuk-input[type='number']");
 
-        public FinancialEvidencePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancialEvidencePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public LatestFullFinancialForTwelveMonthsPage EnterInputsForFinancialEvidenceAndContinue()
         {

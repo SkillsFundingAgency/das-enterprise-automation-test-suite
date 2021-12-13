@@ -8,15 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Choose your organisation's provider route";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChooseProviderRoutePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ChooseProviderRoutePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public TermsConditionsMakingApplicationPage SelectApplicationRouteAsMain()
         {

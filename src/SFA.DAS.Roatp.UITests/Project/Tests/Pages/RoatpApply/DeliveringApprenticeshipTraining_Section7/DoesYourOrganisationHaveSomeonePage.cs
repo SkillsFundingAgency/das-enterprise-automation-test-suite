@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Does your organisation have someone responsible for developing and delivering training?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DoesYourOrganisationHaveSomeonePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public DoesYourOrganisationHaveSomeonePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage SelectNo()
         {

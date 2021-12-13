@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence_Section2
 {
@@ -8,16 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Upload your organisation's full management accounts for the last 12 months";
 
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public UploadOrganisationsManagementAccountsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public UploadOrganisationsManagementAccountsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhoPreparedAnswersAndUploadPage UploadManagementAccountsFileAndContinue()
         {

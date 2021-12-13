@@ -29,11 +29,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApplicationSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public ApplicationSummaryPage(ScenarioContext context) : base(context) { }
 
         public AreYouSureSuccessfullPage MakeApplicationSuccessful()
         {

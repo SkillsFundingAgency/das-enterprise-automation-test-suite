@@ -15,15 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
         private By InternalRejectComments => By.Id("OptionRejectedText");
         private By ExternalRejectComments => By.Id("OptionExternalRejectedText");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConfirmGatewayOutcomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmGatewayOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinalConfirmationPassPage PassThisApplicationAndContinue()
         {

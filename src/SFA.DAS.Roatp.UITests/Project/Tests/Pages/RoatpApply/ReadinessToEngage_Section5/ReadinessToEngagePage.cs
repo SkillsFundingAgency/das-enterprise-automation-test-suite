@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
     {
         protected override string PageTitle => "Readiness to engage";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ReadinessToEngagePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ReadinessToEngagePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage ClickSaveAndContinue()
         {

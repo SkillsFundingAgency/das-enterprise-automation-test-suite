@@ -11,15 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private By AppealOnPolicyOrProcessesTextBox = By.Id("HowFailedOnPolicyOrProcesses");
         private By AppealOnEvidenceSubmittedTextBox = By.Id("HowFailedOnEvidenceSubmitted");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GroundForAppealPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GroundForAppealPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AppealSubmittedPage EnterText_UploadFileForAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
         {

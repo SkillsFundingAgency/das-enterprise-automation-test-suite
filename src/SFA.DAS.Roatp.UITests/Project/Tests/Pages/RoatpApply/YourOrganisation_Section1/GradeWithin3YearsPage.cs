@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Did your organisation get this grade within the last 3 years?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GradeWithin3YearsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GradeWithin3YearsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ShortOfstedInspectionPage SelectNoForGradeWithinThreeYearsAndContinue()
         {

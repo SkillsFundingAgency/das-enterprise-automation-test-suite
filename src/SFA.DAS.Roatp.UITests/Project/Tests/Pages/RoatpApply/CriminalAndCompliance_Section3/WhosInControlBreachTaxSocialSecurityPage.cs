@@ -8,14 +8,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "breached tax payments or social security contributions in the last 3 years?";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public WhosInControlBreachTaxSocialSecurityPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhosInControlBreachTaxSocialSecurityPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public IsAnyOneControlOfRemovedTrusteePage SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
         {

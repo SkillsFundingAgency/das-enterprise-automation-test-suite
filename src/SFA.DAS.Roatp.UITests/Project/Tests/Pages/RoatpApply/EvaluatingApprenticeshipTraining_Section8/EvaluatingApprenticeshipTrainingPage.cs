@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.EvaluatingApprent
     {
         protected override string PageTitle => "Evaluating apprenticeship training";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EvaluatingApprenticeshipTrainingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EvaluatingApprenticeshipTrainingPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage ClickSaveAndContinue()
         {

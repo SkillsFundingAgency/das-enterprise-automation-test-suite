@@ -9,16 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         private By DigitalWorkPlaceAssessmentRadio => By.CssSelector("input[type='checkbox'][value='Digital workplace assessment']");
 
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WherWillYouDeliverTheEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WherWillYouDeliverTheEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AssemmentIfThereIsASignificantEventPage SelectDigitalWorkplacAssessmentAndContinue()
         {

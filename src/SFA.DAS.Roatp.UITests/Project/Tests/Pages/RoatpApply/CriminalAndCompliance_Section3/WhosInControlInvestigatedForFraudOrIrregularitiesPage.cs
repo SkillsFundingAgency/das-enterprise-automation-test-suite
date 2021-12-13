@@ -8,14 +8,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "investigated for fraud or irregularities in the last 3 years?";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public WhosInControlInvestigatedForFraudOrIrregularitiesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhosInControlInvestigatedForFraudOrIrregularitiesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhosInControlOngoingInvestigationsForFraudPage SelectYesEnterInformationForFraudOrIrregularities()
         {

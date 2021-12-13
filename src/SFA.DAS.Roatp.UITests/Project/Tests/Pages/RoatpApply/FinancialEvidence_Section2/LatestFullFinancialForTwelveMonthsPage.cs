@@ -6,15 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Has your organisation produced its latest full financial statements covering a minimum of 12 months?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public LatestFullFinancialForTwelveMonthsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public LatestFullFinancialForTwelveMonthsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinanicialStatementsCoveringAnyPeriodPage SelectNoForLatestFullFinancialForTwelveMonthsAndContinue()
         {
