@@ -16,11 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EmployerHubPage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerHubPage(ScenarioContext context) : base(context)  { }
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 

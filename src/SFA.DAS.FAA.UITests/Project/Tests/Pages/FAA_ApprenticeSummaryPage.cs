@@ -10,10 +10,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApplyButton => By.Id("apply-button");
 
         private By ViewApplicationLink => By.Id("view-application-link");
@@ -30,7 +26,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             if (!objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
 

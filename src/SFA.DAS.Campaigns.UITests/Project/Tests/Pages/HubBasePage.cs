@@ -21,11 +21,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By FiuLink => By.CssSelector(".fiu-card__link");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public HubBasePage(ScenarioContext context) : base(context) => _context = context;
+        public HubBasePage(ScenarioContext context) : base(context)  { }
 
         protected T VerifyFiuCards<T>(Func<T> func)
         {

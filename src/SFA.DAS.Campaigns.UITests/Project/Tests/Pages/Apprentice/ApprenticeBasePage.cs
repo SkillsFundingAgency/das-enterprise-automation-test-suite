@@ -16,10 +16,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        protected ApprenticeBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected ApprenticeBasePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
         {

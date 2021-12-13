@@ -6,8 +6,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class BrowseApprenticeshipPage : ApprenticeBasePage
     {
-        private readonly ScenarioContext _context;
-
         protected override string PageTitle => "Browse apprenticeships before you apply";
 
         private By Route => By.CssSelector("#Route");
@@ -16,7 +14,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#search-apprenticeship");
 
-        public BrowseApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public BrowseApprenticeshipPage(ScenarioContext context) : base(context)  { }
 
         public ResultsPage SearchForAnApprenticeship()
         {

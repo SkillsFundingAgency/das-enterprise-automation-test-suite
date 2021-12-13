@@ -14,11 +14,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By VerifyEmailButton => By.Id("verify-email-button");
         private By VerifyPassword => By.Id("VerifyPassword");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FAA_ChangeYourEmailAddressPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_ChangeYourEmailAddressPage(ScenarioContext context) : base(context) { }
 
         public FAA_SignInPage ChangeEmailAddress()
         {

@@ -6,11 +6,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_SignInPage : FAABasePage
     {
         protected override string PageTitle => "Sign in";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By UsernameField => By.CssSelector("#EmailAddress");
 
         private By PasswordField => By.CssSelector("#Password");
@@ -21,12 +16,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By ChangeSettingsInfo => By.Id("SuccessMessageText");
         
-
-        public FAA_SignInPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            VerifyPage(UsernameField);
-        }
+        public FAA_SignInPage(ScenarioContext context) : base(context, false) => VerifyPage(UsernameField);
 
         public FAA_MyApplicationsHomePage SubmitValidLoginDetails(string emailId, string password)
         {

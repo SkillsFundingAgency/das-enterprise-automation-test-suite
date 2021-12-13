@@ -13,10 +13,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
         private readonly By _notSure = By.Id("levyPayerDontKnow");
         private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)  { }
 
         public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
         {

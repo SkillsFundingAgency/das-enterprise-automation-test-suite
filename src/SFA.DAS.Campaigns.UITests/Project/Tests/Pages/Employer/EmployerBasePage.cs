@@ -13,11 +13,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        protected EmployerBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected EmployerBasePage(ScenarioContext context) : base(context)  { }
 
         public EmployerAreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
         {

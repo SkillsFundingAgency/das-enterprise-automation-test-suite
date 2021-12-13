@@ -9,16 +9,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".fiu-header");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CookieButton => By.Id("fiu-cb-button-accept");
 
         private By CloseCookieButton => By.Id("fiu-cb-close");
 
 
-        public CampaingnsHomePage(ScenarioContext context) : base(context) => _context = context;
+        public CampaingnsHomePage(ScenarioContext context) : base(context)  { }
         
         public CampaingnsHomePage AcceptCookieAndAlert()
         {

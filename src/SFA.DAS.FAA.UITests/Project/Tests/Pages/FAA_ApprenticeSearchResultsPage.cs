@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
@@ -10,16 +9,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search results";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
         private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
         private By SearchAgainLink => By.Id("start-again-link");
 
-        public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public void CheckSortOrderAndDistance()
         {
