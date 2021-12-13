@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
-    public abstract class EmployerFinanceBasePage : BasePage
+    public abstract class EmployerFinanceBasePage : VerifyBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;

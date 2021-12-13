@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public abstract class RegistrationBasePage : BasePage
+    public abstract class RegistrationBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly RegistrationConfig config;

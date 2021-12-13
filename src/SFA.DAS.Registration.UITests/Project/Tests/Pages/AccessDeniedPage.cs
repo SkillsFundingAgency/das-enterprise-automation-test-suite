@@ -6,15 +6,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Access denied";
 
-        private readonly ScenarioContext _context;
-
         protected virtual string HomePageLinkText => "Go back to the service home page";
 
-        public AccessDeniedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AccessDeniedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HomePage GoBackToTheServiceHomePage() => GoBackToTheServiceHomePage(registrationDataHelper.CompanyTypeOrg);
 

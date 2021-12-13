@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
 {
-    public abstract class EPAO_BasePage : BasePage
+    public abstract class EPAO_BasePage : VerifyBasePage
     {
         protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
         protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;

@@ -7,13 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Provide more detail about your apprenticeship";
 
-        private readonly ScenarioContext _context;
-
         private By MoreDetailsSelector => By.CssSelector("#more-detail");
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public AboutYourApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public AboutYourApprenticeshipPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage EnterMoreDetailsAndContinue()
         {

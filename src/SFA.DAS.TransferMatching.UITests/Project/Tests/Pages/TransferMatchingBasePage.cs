@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public abstract class TransferMatchingBasePage : BasePage
+    public abstract class TransferMatchingBasePage : VerifyBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;

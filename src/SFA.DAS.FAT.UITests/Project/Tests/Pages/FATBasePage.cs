@@ -6,7 +6,7 @@ using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 {
-    public abstract class FATBasePage : BasePage
+    public abstract class FATBasePage : VerifyBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;

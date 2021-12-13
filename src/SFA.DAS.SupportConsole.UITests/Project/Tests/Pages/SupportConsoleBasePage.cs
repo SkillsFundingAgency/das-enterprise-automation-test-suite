@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public abstract class SupportConsoleBasePage : BasePage
+    public abstract class SupportConsoleBasePage : VerifyBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;

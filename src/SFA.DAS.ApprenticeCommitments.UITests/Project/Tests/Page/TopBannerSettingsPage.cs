@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class TopBannerSettingsPage : BasePage
+    public class TopBannerSettingsPage : VerifyBasePage
     {
         private readonly ScenarioContext _context;
         private By NavigationLink => By.CssSelector(".app-user-header a.das-user-navigation__link");

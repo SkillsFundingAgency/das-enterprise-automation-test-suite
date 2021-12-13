@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SignInPage : BasePage
+    public class SignInPage : VerifyBasePage
     {
         protected override string PageTitle => "Sign in";
         private readonly ScenarioContext _context;
