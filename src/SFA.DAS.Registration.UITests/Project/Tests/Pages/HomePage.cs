@@ -7,8 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : InterimHomeBasePage
     {
-        private readonly ScenarioContext _context;
-
         #region Locators
         protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
@@ -25,11 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
-        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
-        {
-            _context = context;
-            base.AcceptCookies();
-        }
+        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 

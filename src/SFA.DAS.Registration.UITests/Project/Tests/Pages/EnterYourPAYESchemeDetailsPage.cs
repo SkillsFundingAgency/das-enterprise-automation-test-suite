@@ -7,7 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class EnterYourPAYESchemeDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Enter your PAYE scheme details";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By AornTextBox => By.Id("aorn");
@@ -28,11 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
 
-        public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue()
         {

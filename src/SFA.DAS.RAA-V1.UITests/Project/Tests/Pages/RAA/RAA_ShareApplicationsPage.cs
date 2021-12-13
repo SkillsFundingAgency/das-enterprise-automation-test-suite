@@ -7,10 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Select the applications you would like to share";
 
-        #region Helpers and Context
-        
-        #endregion
-
         private By ApplicationCheckbox => By.CssSelector("input[type=checkbox]");
 
         private By RecipientEmailAddress => By.CssSelector("#RecipientEmailAddress");
@@ -18,10 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By OptionalMessage => By.CssSelector("#OptionalMessage");
 
         
-        public RAA_ShareApplicationsPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_ShareApplicationsPage(ScenarioContext context) : base(context) { }
 
         public RAA_ShareApplicationPreviewPage Send()
         {

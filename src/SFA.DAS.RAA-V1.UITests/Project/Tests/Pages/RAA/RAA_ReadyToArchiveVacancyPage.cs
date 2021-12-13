@@ -6,14 +6,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Are you ready to archive this vacancy?";
 
-        #region Helpers and Context
-        
-        #endregion
-
-        public RAA_ReadyToArchiveVacancyPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_ReadyToArchiveVacancyPage(ScenarioContext context) : base(context) { }
 
         public RAA_ResponceToCandidatePage RespondToRemainingCandidates()
         {

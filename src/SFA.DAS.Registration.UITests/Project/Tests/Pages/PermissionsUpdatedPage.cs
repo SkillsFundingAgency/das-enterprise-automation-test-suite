@@ -10,15 +10,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By HomeLink => By.XPath("(//li[@class='das-navigation__list-item'])[1]");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public PermissionsUpdatedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-             
+        public PermissionsUpdatedPage(ScenarioContext context) : base(context) => VerifyPage();
+
         public new HomePage GoToHomePage()
         {
             formCompletionHelper.ClickElement(HomeLink);

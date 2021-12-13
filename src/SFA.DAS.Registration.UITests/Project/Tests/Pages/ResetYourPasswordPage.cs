@@ -6,18 +6,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class ResetYourPasswordPage : RegistrationBasePage
     {
         protected override string PageTitle => "Reset your password";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         protected override By ContinueButton => By.Id("forgottenpassword-button");
         private By EmailTextBox => By.Id("Email");
         #endregion
 
-        public ResetYourPasswordPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ResetYourPasswordPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EnterYourResetCodePage EnterEmailToBeReset()
         {

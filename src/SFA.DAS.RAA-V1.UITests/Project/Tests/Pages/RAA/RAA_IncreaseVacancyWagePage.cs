@@ -9,10 +9,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Increase vacancy wage";
 
-        #region Helpers and Context
-        
+        #region Helpers and Context       
         private readonly FAADataHelper _faaDataHelper;
-
         #endregion
 
         private By CurrentWage => By.CssSelector("#vacancy-wage");
@@ -22,11 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By CustomWageLabel => By.CssSelector("#custom-wage-label");
 
 
-        public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
-        {
-            
-            _faaDataHelper = context.Get<FAADataHelper>();
-        }
+        public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context) => _faaDataHelper = context.Get<FAADataHelper>();
 
         public RAA_IncreaseVacancyWagePreviewPage SaveAndReturn()
         {

@@ -6,18 +6,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     public class CancelInvitationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Cancel invitation";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By YesCancelInvitationButton => By.Id("cancel_invitation");
         private By NoDontCancelInvitationLink => By.LinkText("No, don't cancel invitation");
         #endregion
 
-        public CancelInvitationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CancelInvitationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public YourTeamPage ClickYesCancelInvitationButtonButton()
         {

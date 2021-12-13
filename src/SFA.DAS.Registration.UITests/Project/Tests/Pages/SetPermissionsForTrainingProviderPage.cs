@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
    public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
     {
-
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
         protected override string PageTitle => "Set permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -30,14 +29,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By RecruitDoNotAllowRadioOption => By.Id("operation-1-no");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public SetPermissionsForTrainingProviderPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SetPermissionsForTrainingProviderPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SetPermissionsForTrainingProviderPage ClickAddApprentice(AddApprenticePermissions permission)
         {

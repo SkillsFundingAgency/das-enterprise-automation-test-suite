@@ -7,10 +7,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
     public class ProviderLeadRegistrationHomePage : ProviderHomePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) { _context = context; }
+        public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) {  }
 
         public IdamsPage SetupEmployerAccount()
         {

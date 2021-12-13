@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
     {
-        private readonly ScenarioContext _context;
+        
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
@@ -22,11 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
-        }
+        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
 
         public bool VerifyTransfersStatus(string expected) => VerifyPage(() => pageInteractionHelper.FindElements(TransferStatus), $"Transfers status:  {expected}");
 

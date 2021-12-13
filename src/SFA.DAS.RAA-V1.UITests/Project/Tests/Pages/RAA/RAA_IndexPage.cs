@@ -8,17 +8,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Recruit an apprentice";
 
-        #region Helpers and Context
-        
-        #endregion
-
         private By SignInButton => By.LinkText("Sign in");
         protected override By AcceptCookieButton => By.XPath("//button[contains(text(),'Accept all cookies')]");
 
-        public RAA_IndexPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_IndexPage(ScenarioContext context) : base(context) { }
 
         public IdamsPage ClickOnSignInButton()
         {

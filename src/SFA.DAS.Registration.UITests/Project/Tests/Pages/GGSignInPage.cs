@@ -10,8 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Sign in";
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By UserIdInput => By.Id("userId");
         private By PasswordInput => By.Id("password");
@@ -19,11 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ErrorMessageText => By.Id("errors");
         #endregion
 
-        public GgSignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GgSignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchForYourOrganisationPage SignInTo(int index)
         {

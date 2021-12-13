@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Helpers and Context
         protected readonly RegistrationConfig config;
         protected readonly RegistrationDataHelper registrationDataHelper;
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         #region Locators
@@ -21,8 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         protected RegistrationBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
+        {   
             config = context.GetRegistrationConfig<RegistrationConfig>();
             registrationDataHelper = context.Get<RegistrationDataHelper>();
         }

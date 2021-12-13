@@ -8,11 +8,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     public class Manage_HomePage : Manage_HeaderSectionBasePage
     {
         protected override string PageTitle => "Agency home";
-
-        #region Helpers and Context
-        
-        #endregion
-
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
 
         private By ChangeRole => By.CssSelector("#select2-chosen-1");

@@ -6,13 +6,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Opportunity preview";
 
-        #region Helpers and Context
-        
-        #endregion
-
-        public RAA_OppurtunityPreviewPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_OppurtunityPreviewPage(ScenarioContext context) : base(context) { }
     }
 }

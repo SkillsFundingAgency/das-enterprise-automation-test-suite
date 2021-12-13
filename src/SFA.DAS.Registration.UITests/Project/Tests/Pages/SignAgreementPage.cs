@@ -9,8 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
         private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
@@ -18,11 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
         #endregion
 
-        public SignAgreementPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(WantToSignRadioButton);
-        }
+        public SignAgreementPage(ScenarioContext context) : base(context) => VerifyPage(WantToSignRadioButton);
 
         public YouHaveAcceptedTheEmployerAgreementPage SignAgreement()
         {

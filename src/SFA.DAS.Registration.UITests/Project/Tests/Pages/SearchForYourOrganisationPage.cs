@@ -7,18 +7,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SearchForYourOrganisationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Search for your organisation";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By SearchInput => By.Id("searchTerm");
         private By SearchButton => By.CssSelector("input.govuk-button");
         #endregion
 
-        public SearchForYourOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SearchForYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SelectYourOrganisationPage SearchForAnOrganisation(OrgType orgType = OrgType.Default)
         {

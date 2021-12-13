@@ -7,11 +7,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
     {
         protected override string PageTitle => "Start setting up an account for an employer";
 
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.CssSelector(".govuk-button--start");
 
-        public StartSettingUpEmployerPage(ScenarioContext context) : base(context) => _context = context;
+        public StartSettingUpEmployerPage(ScenarioContext context) : base(context) { }
 
         public EnterTheEmployerDetailsPage Start()
         {

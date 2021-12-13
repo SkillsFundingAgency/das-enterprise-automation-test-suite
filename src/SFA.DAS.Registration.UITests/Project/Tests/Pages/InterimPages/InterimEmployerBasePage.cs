@@ -12,7 +12,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
     public abstract class InterimEmployerBasePage : Navigate
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         protected readonly RegistrationConfig config;
         #endregion
 
@@ -31,14 +30,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {
-            _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
 
         protected InterimEmployerBasePage(ScenarioContext context, Action navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
-        {
-            _context = context;
+        {            
             config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }

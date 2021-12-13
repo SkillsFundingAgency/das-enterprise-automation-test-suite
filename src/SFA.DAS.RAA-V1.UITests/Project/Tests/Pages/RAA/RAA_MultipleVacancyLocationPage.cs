@@ -7,10 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Vacancy location";
 
-        #region Helpers and Context
-        
-        #endregion
-
         private By EnterVacancyLocation => By.Id("postcode-search");
         private By AddressResults => By.CssSelector("li.ui-menu-item");
         private By NumberOfVacancy => By.Id("addresses_0__numberofpositions");

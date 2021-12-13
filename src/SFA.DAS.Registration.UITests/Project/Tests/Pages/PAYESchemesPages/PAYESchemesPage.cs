@@ -7,8 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 {
     public class PAYESchemesPage : InterimPAYESchemesPage
     {
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By AddNewSchemeButton => By.Id("addNewPaye");
         private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
@@ -16,11 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         private string SecondPaye => objectContext.GetGatewayPaye(1);
         #endregion
 
-        public PAYESchemesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PAYESchemesPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
 
         public UsingYourGovtGatewayDetailsPage ClickAddNewSchemeButton()
         {

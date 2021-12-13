@@ -7,20 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YourAgreementsWithTheEducationAndSkillsFundingAgencyPage : RegistrationBasePage
     {
         protected override string PageTitle => "Your agreements with the Education and Skills Funding Agency";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By UpdateTheseDetailsLink => By.LinkText("Update these details");
         private By ExpandAgreementLink => By.ClassName("govuk-accordion__icon");
         private By AgreementId => By.CssSelector("h3.govuk-heading-l");
         #endregion
 
-        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context)
-        {
-            _context = context;
-
-            VerifyPage(PageHeader, PageTitle, action);
-        }
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context) => VerifyPage(PageHeader, PageTitle, action);
 
         public ReviewYourDetailsPage ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
         {

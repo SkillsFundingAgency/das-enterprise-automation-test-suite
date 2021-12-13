@@ -9,18 +9,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By SigninLink => By.LinkText("sign in");
         private By CreateAccountLink => By.Id("service-start");
         #endregion
 
-        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SignInPage ClickSignInLinkOnIndexPage()
         {

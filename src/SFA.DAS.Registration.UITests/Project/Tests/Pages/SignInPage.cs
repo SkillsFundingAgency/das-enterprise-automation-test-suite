@@ -8,8 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignInPage : VerifyBasePage
     {
         protected override string PageTitle => "Sign in";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
         private By PasswordInput => By.Id("Password");
@@ -18,11 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
         #endregion
 
-        public SignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HomePage Login(LoginUser loginUser)
         {

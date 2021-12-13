@@ -10,10 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         
         #endregion
 
-        public RAA_ChangeVacancyDatesPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_ChangeVacancyDatesPage(ScenarioContext context) : base(context) { }
 
         public RAA_ChangeVacancyDatePreviewPage SaveAndContinue()
         {
@@ -34,6 +31,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             base.EnterPossibleStartDate();
             return this;
         }
-
     }
 }

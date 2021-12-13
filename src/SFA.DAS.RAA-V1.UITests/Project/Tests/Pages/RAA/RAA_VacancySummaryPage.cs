@@ -9,10 +9,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => vacancyTitledataHelper.VacancyTitle;
 
-        #region Helpers and Context
-        
-        #endregion
-
         private By VacancyStatus => By.CssSelector("#applicationTable .applicant span");
 
         public RAA_VacancySummaryPage(ScenarioContext context) : base(context) { }

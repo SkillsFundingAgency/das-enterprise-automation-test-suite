@@ -6,19 +6,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     public class ViewTeamMemberPage : RegistrationBasePage
     {
         protected override string PageTitle => registrationDataHelper.FullName;
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By ResendInvitationButton => By.Id("resend_invitation");
         private By CancelInvitationLink => By.LinkText("Cancel Invitation");
         private By RemoveTeamMemberButton => By.Id("delete_user");
         #endregion
 
-        public ViewTeamMemberPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ViewTeamMemberPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public YourTeamPage ClickResendInvitationButton()
         {

@@ -8,15 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Confirm permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         protected By SelectYesConfirmChange => By.Id("confirmation-yes");
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
-        public ConfirmTrainingProviderPermissionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmTrainingProviderPermissionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public PermissionsUpdatedPage ConfirmTrainingProviderPermissions()
         {

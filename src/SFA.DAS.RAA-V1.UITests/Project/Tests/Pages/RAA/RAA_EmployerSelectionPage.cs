@@ -7,10 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Select an employer for your vacancy";
 
-        #region Helpers and Context
-        
-        #endregion
-
         private By SelectEmployerLinks => By.CssSelector("a");
 
         public RAA_EmployerSelectionPage(ScenarioContext context) : base(context) { }

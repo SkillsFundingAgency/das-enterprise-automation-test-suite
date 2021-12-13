@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -7,11 +6,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public class RAA_EnterTrainingDetailsPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Enter training details";
-
-        #region Helpers and Context
-        
-        private readonly IWebDriver _webDriver;
-        #endregion
 
         private By StandardsDropDownMenu => By.Id("StandardId");
         private By FrameworkDropDown => By.Id("s2id_FrameworkCodeName");
@@ -24,11 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By TrainingBody => By.XPath("//body");
         public string TrainingStandard => "Accountancy or taxation professional";
 
-        public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context)
-        {
-            
-            _webDriver = context.GetWebDriver();
-        }
+        public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
         public RAA_EnterTrainingDetailsPage SelectApprenticeshipType(string frameworkOrStanndard)
         {

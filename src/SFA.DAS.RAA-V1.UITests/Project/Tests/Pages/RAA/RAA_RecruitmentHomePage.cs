@@ -10,11 +10,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public class RAA_RecruitmentHomePage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Recruitment home";
-
-        #region Helpers and Context
-        
-        #endregion
-
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
         private By VacancySearchMode => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchMode");
         private By VacancySearchText => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchString");

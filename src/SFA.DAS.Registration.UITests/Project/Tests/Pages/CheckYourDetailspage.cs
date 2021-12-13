@@ -7,8 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class CheckYourDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Check your details";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         protected override By ContinueButton => By.Id("continue");
         private By YesContinueButton => By.CssSelector("input.button");
@@ -21,11 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");
         #endregion
 
-        public CheckYourDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CheckYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhenDoYouWantToViewEmpAgreementPage ContinueToAboutYourAgreementPage()
         {

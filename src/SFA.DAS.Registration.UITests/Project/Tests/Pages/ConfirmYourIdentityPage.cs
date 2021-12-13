@@ -7,18 +7,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class ConfirmYourIdentityPage : RegistrationBasePage
     {
         protected override string PageTitle => "Confirm your identity";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By AccessCodeInput => By.Id("AccessCode");
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmYourIdentityPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {

@@ -10,9 +10,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         
         #endregion
 
-        public RAA_VacancyPreviewPage(ScenarioContext context) : base(context)
-        {
-            
-        }
+        public RAA_VacancyPreviewPage(ScenarioContext context) : base(context) { }
     }
 }

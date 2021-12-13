@@ -6,8 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YourAccountsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Your accounts";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By AddNewAccountButton => By.Id("add_new_account");
         private By OpenLink() => By.CssSelector("table a");
@@ -15,11 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #endregion
 
-        public YourAccountsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YourAccountsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AddAPAYESchemePage AddNewAccount()
         {
