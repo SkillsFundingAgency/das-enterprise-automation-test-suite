@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ChangeYourPersonalDetailsPage GoToChangeYourPersonalDetailsPage()
         {
             formCompletionHelper.ClickLinkByText("update your details");
-            return new ChangeYourPersonalDetailsPage(_context);
+            return new ChangeYourPersonalDetailsPage(context);
         }
 
         private void AssertNotificationBanner()

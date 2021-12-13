@@ -13,13 +13,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage AcceptTermsAndConditionForPositiveMatch(bool IsConfirmYourApprenticeLinkDisplayed)
         {
             Continue();
-            return new ApprenticeHomePage(_context, IsConfirmYourApprenticeLinkDisplayed);
+            return new ApprenticeHomePage(context, IsConfirmYourApprenticeLinkDisplayed);
         }
 
         public ApprenticeHomePageNegativeMatch AcceptTermsAndConditionForNegativeMatch()
         {
             Continue();
-            return new ApprenticeHomePageNegativeMatch(_context);
+            return new ApprenticeHomePageNegativeMatch(context);
         }
     }
 }

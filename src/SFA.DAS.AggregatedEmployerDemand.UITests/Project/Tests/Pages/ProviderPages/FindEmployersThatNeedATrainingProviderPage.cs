@@ -14,7 +14,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public FindEmployersThatNeedATrainingProviderPage ViewFindEmployersThatNeedATrainingProvider()
         {
             formCompletionHelper.ClickElement(FindEmployersThatNeedATrainingProviderLink);
-            return new FindEmployersThatNeedATrainingProviderPage(_context);
+            return new FindEmployersThatNeedATrainingProviderPage(context);
         }
 
         public WhichEmployersAreYouInterestedInPage ViewWhichEmployerNeedsATrainingProvider()
@@ -22,7 +22,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             /*Select the First ViewEmployers Link*/
             formCompletionHelper.ClickLinkByText("View employers");
 
-            return new WhichEmployersAreYouInterestedInPage(_context);
+            return new WhichEmployersAreYouInterestedInPage(context);
         }
     }
 }

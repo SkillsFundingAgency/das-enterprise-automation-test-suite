@@ -67,25 +67,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
             Continue();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
 
         public ApprenticeHomePage NavigateToHomePageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HomeTopNavigationLink);
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HelpTopNavigationLink);
-            return new HelpAndSupportPage(_context);
+            return new HelpAndSupportPage(context);
         }
 
         private void VerifyFooterLinks()
@@ -98,7 +98,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public SignedOutPage SignOutFromTheService()
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
-            return new SignedOutPage(_context);
+            return new SignedOutPage(context);
         }
 
         protected void AssertTopNavigationLinksNotToBePresent()

@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.EnterText(Password, validPassword);
             formCompletionHelper.EnterText(ConfirmPassword, validPassword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Save and continue");
-            return new CreateMyApprenticeshipAccountPage(_context);
+            return new CreateMyApprenticeshipAccountPage(context);
         }
 
         public CreateLoginDetailsPage EnterEmailAndConfirmEmail()

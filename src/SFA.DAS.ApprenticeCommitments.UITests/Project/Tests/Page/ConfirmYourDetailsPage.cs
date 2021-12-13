@@ -21,25 +21,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage SelectYes()
         {
             SelectYesRadioOption();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
 
         public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployer()
         {
             SelectNoRadioOption();
-            return new YouCantConfirmYourEmployerPage(_context);
+            return new YouCantConfirmYourEmployerPage(context);
         }
 
         public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProvider()
         {
             SelectNoRadioOption();
-            return new YouCantConfirmYourTrainingProviderPage(_context);
+            return new YouCantConfirmYourTrainingProviderPage(context);
         }
 
         public YouCantConfirmYourDetailsPage SelectNoConfirmYourDetails()
         {
             SelectNoRadioOption();
-            return new YouCantConfirmYourDetailsPage(_context);
+            return new YouCantConfirmYourDetailsPage(context);
         }
 
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);

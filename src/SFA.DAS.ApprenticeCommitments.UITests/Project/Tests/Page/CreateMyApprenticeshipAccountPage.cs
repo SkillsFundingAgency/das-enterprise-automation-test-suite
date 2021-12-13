@@ -17,13 +17,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new CreateMyApprenticeshipAccountPage NavigateToChangeYourPersonalDetails()
         {
             NavigateToSettings("Change your personal details");
-            return new CreateMyApprenticeshipAccountPage(_context);
+            return new CreateMyApprenticeshipAccountPage(context);
         }
 
         public TermsOfUsePage ConfirmIdentityAndGoToTermsOfUsePage()
         {
             EnterValidApprenticeDetails();
-            return new TermsOfUsePage(_context);
+            return new TermsOfUsePage(context);
         }
 
         public CreateMyApprenticeshipAccountPage EnterInvalidData(string firstname, string lastname, int? day, int? month, int? year)
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new(TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails()
         {
             var name = base.EnterInValidApprenticeDetails();
-            return (new TermsOfUsePage(_context), name);
+            return (new TermsOfUsePage(context), name);
         }
 
         public void VerifyErrorSummary()

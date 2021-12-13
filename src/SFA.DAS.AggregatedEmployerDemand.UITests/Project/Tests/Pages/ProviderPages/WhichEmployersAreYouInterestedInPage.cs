@@ -18,18 +18,18 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         {
             formCompletionHelper.SelectCheckbox(FirstEmployerCheckbox);
             ContinueToNextPage();
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
         public FindEmployersThatNeedATrainingProviderPage BackToFindEmployersThatNeedATrainingProviderPage()
         {
             formCompletionHelper.Click(BackLink);
-            return new FindEmployersThatNeedATrainingProviderPage(_context);
+            return new FindEmployersThatNeedATrainingProviderPage(context);
         }
         public ConfirmProvidersContactDetailsPage CheckAndContinueWithfirstEmployerCheckboxAfterChange()
         {
             formCompletionHelper.SelectCheckbox(FirstEmployerCheckbox);
             ContinueToNextPage();
-            return new ConfirmProvidersContactDetailsPage(_context);
+            return new ConfirmProvidersContactDetailsPage(context);
         }
     }
 }

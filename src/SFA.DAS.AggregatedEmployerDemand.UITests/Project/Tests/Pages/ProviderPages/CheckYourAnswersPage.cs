@@ -16,25 +16,25 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public WeveSharedYourContactDetailsWithEmployersPage ContinueToWeveSharedYourContactDetailsWithEmployersPage()
         {
             ContinueToNextPage();
-            return new WeveSharedYourContactDetailsWithEmployersPage(_context);
+            return new WeveSharedYourContactDetailsWithEmployersPage(context);
         }
 
         public EditProvidersContactDetailsPage ChangeProviderContactDetails()
         {
             formCompletionHelper.Click(ChangeEmail);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
 
         public ConfirmProvidersContactDetailsPage BackToProvidersContactDetailsPage()
         {
             formCompletionHelper.Click(BackLink);
-            return new ConfirmProvidersContactDetailsPage(_context);
+            return new ConfirmProvidersContactDetailsPage(context);
         }
 
         public WhichEmployersAreYouInterestedInPage ChangeProviderLocationDetails()
         {
             formCompletionHelper.Click(ChangeLocation);
-            return new WhichEmployersAreYouInterestedInPage(_context);
+            return new WhichEmployersAreYouInterestedInPage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ConfirmRolesAndResponsibilitiesPage3of3 ConfirmEmployerRolesAndContinue()
         {
             SelectCheckBoxAndContinue();
-            return new ConfirmRolesAndResponsibilitiesPage3of3(_context);
+            return new ConfirmRolesAndResponsibilitiesPage3of3(context);
         }
     }
 }

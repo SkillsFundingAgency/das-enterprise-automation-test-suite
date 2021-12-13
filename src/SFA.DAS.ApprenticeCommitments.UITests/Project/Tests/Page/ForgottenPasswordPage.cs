@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.EnterText(Email, objectContext.GetApprenticeEmail());
             formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
-            return new ForgottenPasswordConfirmPage(_context);
+            return new ForgottenPasswordConfirmPage(context);
         }
     }
 }

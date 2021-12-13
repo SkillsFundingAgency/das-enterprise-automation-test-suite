@@ -12,13 +12,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage ReturnToMyApprenticeship()
         {
             ClickMyApprenticeship();
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public CreateMyApprenticeshipAccountPage ReturnToCreateMyApprenticeshipAccountPage()
         {
             ClickMyApprenticeship();
-            return new CreateMyApprenticeshipAccountPage(_context);
+            return new CreateMyApprenticeshipAccountPage(context);
         }
 
         private void ClickMyApprenticeship() => formCompletionHelper.ClickLinkByText(PostLogoutRedirectUri, "My apprenticeship");

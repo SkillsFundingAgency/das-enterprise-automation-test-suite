@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public SignIntoMyApprenticeshipPage CTAOnStartPageToSignIn()
         {
             formCompletionHelper.ClickButtonByText(StartNowButton, "Start now");
-            return new SignIntoMyApprenticeshipPage(_context);
+            return new SignIntoMyApprenticeshipPage(context);
         }
     }
 }

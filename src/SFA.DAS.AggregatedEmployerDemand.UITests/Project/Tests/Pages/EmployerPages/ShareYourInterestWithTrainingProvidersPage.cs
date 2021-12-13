@@ -15,7 +15,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
         {
             formCompletionHelper.ClickButtonByText(StartNowButton, "Start now");
 
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
     }
 }

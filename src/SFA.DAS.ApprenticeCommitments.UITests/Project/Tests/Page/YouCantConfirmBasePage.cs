@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage ReturnToApprenticeOverviewPage()
         {
             formCompletionHelper.ClickButtonByText(ReturnToApprenticeshipButton, $"{ServiceName} details");
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
     }
 }

@@ -20,34 +20,34 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         public GetHelpWithFindingATrainingProviderPage EnterApprenticeshipLocation(string location)
         {
             formCompletionHelper.EnterText(ApprenticeshipLocationTextBox, location);
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
 
         public GetHelpWithFindingATrainingProviderPage EnterNumberOfApprentices(string noOfApprentices)
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(NumberOfApprenticesTextBox, noOfApprentices);
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
         public GetHelpWithFindingATrainingProviderPage EnterOrganisationName(string organisationName)
         {
             formCompletionHelper.EnterText(OrganisationNameTextBox, organisationName);
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
         public GetHelpWithFindingATrainingProviderPage EnterOrganisationEmailAddress(string organisationEmailAddress)
         {
             formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, organisationEmailAddress);
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
         public CheckYourAnswersPage ContinueToCheckYourAnswersPage()
         {
             ContinueToNextPage();
-            return new CheckYourAnswersPage(_context);
+            return new CheckYourAnswersPage(context);
         }
         public GetHelpWithFindingATrainingProviderPage SelectNoApprentices()
         {
             formCompletionHelper.SelectRadioOptionByText("No");
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
     }
 }

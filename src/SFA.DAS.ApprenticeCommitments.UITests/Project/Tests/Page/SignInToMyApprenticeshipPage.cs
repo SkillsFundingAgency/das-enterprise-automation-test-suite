@@ -17,25 +17,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyPage(PrivacyLinkInTheBody);
             SignIn();
-            return new CreateMyApprenticeshipAccountPage(_context);
+            return new CreateMyApprenticeshipAccountPage(context);
         }
 
         public ApprenticeHomePage GoToApprenticeHomePage()
         {
             SignIn();
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(context);
         }
 
         public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
 
         public ForgottenPasswordPage ClickForgottenMyPasswordLinkOnSignInPage()
         {
             formCompletionHelper.ClickLinkByText("I have forgotten my password");
-            return new ForgottenPasswordPage(_context);
+            return new ForgottenPasswordPage(context);
         }
 
         private void SignIn()
@@ -48,7 +48,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public CreateLoginDetailsPage ClickCreateAnAccountLinkOnSignInPage()
         {
             formCompletionHelper.ClickLinkByText("create an account");
-            return new CreateLoginDetailsPage(_context);
+            return new CreateLoginDetailsPage(context);
         }
     }
 }

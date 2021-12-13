@@ -13,13 +13,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new ApprenticeHomePage UpdateApprenticeName()
         {
             base.UpdateApprenticeName();
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
 
         public new ApprenticeHomePage EnterValidApprenticeDetails(string firstName, string lastName)
         {
             base.EnterValidApprenticeDetails(firstName, lastName);
-            return new ApprenticeHomePage(_context);
+            return new ApprenticeHomePage(context);
         }
     }
 }

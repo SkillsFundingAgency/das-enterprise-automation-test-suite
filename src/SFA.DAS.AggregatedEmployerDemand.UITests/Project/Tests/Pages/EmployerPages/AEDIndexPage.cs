@@ -21,13 +21,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(GetHelpWithFindingATrainingProviderLink);
 
-            return new ShareYourInterestWithTrainingProvidersPage(_context);
+            return new ShareYourInterestWithTrainingProvidersPage(context);
         }
         public ShareYourInterestWithTrainingProvidersPage ClickShareInterestButton()
         {
             formCompletionHelper.Click(ShareInterestButton);
 
-            return new ShareYourInterestWithTrainingProvidersPage(_context);
+            return new ShareYourInterestWithTrainingProvidersPage(context);
         }
     }
 }

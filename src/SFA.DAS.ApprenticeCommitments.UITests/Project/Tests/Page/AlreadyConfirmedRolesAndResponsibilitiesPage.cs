@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage NavigateBackToCMADOverviewPage()
         {
             NavigateBack();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
     }
 }

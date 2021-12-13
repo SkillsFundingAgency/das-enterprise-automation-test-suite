@@ -13,12 +13,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public CheckYourAnswersPage ContinueToProviderCheckYourAnswersPage()
         {
             ContinueToNextPage();
-            return new CheckYourAnswersPage(_context);
+            return new CheckYourAnswersPage(context);
         }
         public EditProvidersContactDetailsPage BackToEditProvidersContactDetailsPage()
         {
             formCompletionHelper.Click(BackLink);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
     }
 }

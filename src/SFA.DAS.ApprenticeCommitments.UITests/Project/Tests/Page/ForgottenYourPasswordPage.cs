@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.EnterText(NewEmailAddress, objectContext.GetApprenticeEmail());
             Continue();
             VerifyPage(Message, "we have sent an email with instructions to reset your password.");
-            return new ForgottenYourPasswordPage(_context);
+            return new ForgottenYourPasswordPage(context);
         }
     }
 }

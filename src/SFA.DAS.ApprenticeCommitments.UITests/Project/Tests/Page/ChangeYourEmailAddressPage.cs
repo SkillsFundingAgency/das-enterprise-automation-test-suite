@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
             Continue();
-            return new YouHaveUpdatedYourEmailAddressPage(_context);
+            return new YouHaveUpdatedYourEmailAddressPage(context);
         }
 
         public WeHaveSentYouAnEmailPage RequestToUpdateEmailAddress()
@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.EnterText(NewEmailAddress, newEmail);
             formCompletionHelper.EnterText(ConfirmEmailAddress, newEmail);
             Continue();
-            return new WeHaveSentYouAnEmailPage(_context);
+            return new WeHaveSentYouAnEmailPage(context);
         }
     }
 }

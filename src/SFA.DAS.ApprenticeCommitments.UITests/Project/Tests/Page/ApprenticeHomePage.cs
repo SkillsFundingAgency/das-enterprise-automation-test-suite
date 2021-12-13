@@ -36,13 +36,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {
             formCompletionHelper.Click(ConfirmYourApprenticeshipNowLink);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnHomePage()
         {
             formCompletionHelper.Click(HelpAndSupportSectionLink);
-            return new HelpAndSupportPage(_context);
+            return new HelpAndSupportPage(context);
         }
 
         public ApprenticeHomePage VerifyCompleteTag() { VerifyPage(CompleteStatusSelector); return this; }

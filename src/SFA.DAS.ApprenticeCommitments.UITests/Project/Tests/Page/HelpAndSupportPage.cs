@@ -13,19 +13,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage NavigateToHomePageWithGoBackToTheDashboardButton()
         {
             formCompletionHelper.Click(ReturnToHomePageButton);
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageWithBackLink()
         {
             NavigateBack();
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public ApprenticeHomePage NavigateToHomePageWithBackLink()
         {
             NavigateBack();
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         public EmailVerificationPage ConfirmYourAnswers()
         {
             formCompletionHelper.Click(Confirm);
-            return new EmailVerificationPage(_context);
+            return new EmailVerificationPage(context);
         }
     }
 }

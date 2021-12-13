@@ -17,7 +17,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }
-            return new FindEmployersThatNeedATrainingProviderPage(_context);
+            return new FindEmployersThatNeedATrainingProviderPage(context);
         }
     }
 }
