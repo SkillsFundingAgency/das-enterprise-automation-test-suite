@@ -7,12 +7,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Change vacancy dates";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         public RAA_ChangeVacancyDatesPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
         }
 
         public RAA_ChangeVacancyDatePreviewPage SaveAndContinue()

@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected override string PageTitle => "Search for a candidate";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly FAADataHelper _faaDataHelper;
         #endregion
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_SearchForACandidatePage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             _faaDataHelper = context.Get<FAADataHelper>();
         }
 

@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Recruit an apprentice";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By SignInButton => By.LinkText("Sign in");
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_IndexPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
         }
 
         public IdamsPage ClickOnSignInButton()

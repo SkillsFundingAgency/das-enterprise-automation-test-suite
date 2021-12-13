@@ -9,6 +9,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"{ObjectContextExtension.GetOrganisationName(objectContext)} cannot apply for this payment";
 
+        #region Locators
+        private By AddApprenticesLink => By.LinkText("add them to their apprenticeship service account.");
+        #endregion
+
         public SelectApprenticesShutterPage(ScenarioContext context) : base(context)  { }
 
         public AddAnApprenitcePage ClickOnAddApprenticesLink()

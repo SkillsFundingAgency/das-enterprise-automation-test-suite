@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Enter further details";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
         
         private By WorkingWeek => By.Id("WorkingWeek");
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterFurtherDetailsPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
         }
 
         public RAA_RequirementsAndProspectsPage SaveAndContinue()

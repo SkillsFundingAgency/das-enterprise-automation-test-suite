@@ -7,11 +7,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     {
         protected override string PageTitle => "Administrator functions";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public Manage_AdminFunctionsPage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_AdminFunctionsPage(ScenarioContext context) : base(context) { }
             
         public Manage_AdminManageProvidersPage ClickManageProvidersLink()
         {

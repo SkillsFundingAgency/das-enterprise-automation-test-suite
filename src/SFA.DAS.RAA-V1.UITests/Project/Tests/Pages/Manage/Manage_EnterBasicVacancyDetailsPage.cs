@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     public class Manage_EnterBasicVacancyDetailsPage : RAA_BasicVacancyDetailsPage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly RAAV1ManagedataHelper _managedataHelper;
         #endregion
 
@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_EnterBasicVacancyDetailsPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             _managedataHelper = context.Get<RAAV1ManagedataHelper>();
         }
 

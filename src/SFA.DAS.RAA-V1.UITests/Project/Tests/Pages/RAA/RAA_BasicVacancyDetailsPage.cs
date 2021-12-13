@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Enter basic vacancy details";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By OfflineApplicationProcess => By.Id("apprenticheship-offline-application-instructions");
@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyShortDescription => By.CssSelector("#ShortDescription");
         private By VacancyTitle => By.CssSelector("#Title");
 
-        public RAA_BasicVacancyDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public RAA_BasicVacancyDetailsPage(ScenarioContext context) : base(context) { }
 
         public RAA_BasicVacancyDetailsPage EnterVacancyTitle()
         {

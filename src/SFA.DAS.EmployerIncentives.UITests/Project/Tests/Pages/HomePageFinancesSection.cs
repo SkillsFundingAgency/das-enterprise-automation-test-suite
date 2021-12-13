@@ -5,9 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_EI : HomePage
     {
-        private readonly ScenarioContext _context;
-
-        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) => _context = context;
+        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 
         public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
         {

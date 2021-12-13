@@ -6,13 +6,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public abstract class RAA_VacancyLinkBasePage : RAA_PreviewBasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
         private By RespondToCandidateLink => By.LinkText("Respond to candidates");
 
         public RAA_VacancyLinkBasePage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
         }
 
         public RAA_CloseVacancyPage CloseVacancy()

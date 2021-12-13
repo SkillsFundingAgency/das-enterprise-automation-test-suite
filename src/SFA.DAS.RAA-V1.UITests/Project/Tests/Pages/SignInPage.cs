@@ -9,15 +9,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
     public class SignInPage : SignInBasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly RAAV1Config _config;
         #endregion
 
-        public SignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _config = context.GetRAAV1Config<RAAV1Config>();
-        }
+        public SignInPage(ScenarioContext context) : base(context) => _config = context.GetRAAV1Config<RAAV1Config>();
 
         public Manage_HomePage SubmitManageLoginDetails()
         {

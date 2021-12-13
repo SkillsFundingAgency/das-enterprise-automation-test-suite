@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected override string PageTitle => "Agency home";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={objectContext.GetVacancyReference()}']");
 
-        public Manage_HomePage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_HomePage(ScenarioContext context) : base(context) { }
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {

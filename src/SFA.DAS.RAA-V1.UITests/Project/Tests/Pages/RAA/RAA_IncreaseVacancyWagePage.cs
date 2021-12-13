@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Increase vacancy wage";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly FAADataHelper _faaDataHelper;
 
         #endregion
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             _faaDataHelper = context.Get<FAADataHelper>();
         }
 

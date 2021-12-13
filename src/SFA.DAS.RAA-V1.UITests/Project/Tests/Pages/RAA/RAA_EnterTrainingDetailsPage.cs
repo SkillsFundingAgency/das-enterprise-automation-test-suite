@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Enter training details";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly IWebDriver _webDriver;
         #endregion
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             _webDriver = context.GetWebDriver();
         }
 

@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Recruitment home";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By ExpectedVacancyTitle => By.PartialLinkText(vacancyTitledataHelper.VacancyTitle);
         private By ReferenceNumberSearchResetCircleSymbol => By.CssSelector(".fa.fa-times-circle");
 
-        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => _context = context;
+        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) { }
 
         public RAA_SearchCandidatesPage SearchCandidates()
         {

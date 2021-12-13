@@ -9,13 +9,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         protected override By PageHeader => By.CssSelector("#vacancy-title");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApproveAndContinue => By.Name("VacancyQAAction");
 
-        public Manage_VacancyPreviewPage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_VacancyPreviewPage(ScenarioContext context) : base(context) { }
 
         public void ApproveAVacancy()
         {

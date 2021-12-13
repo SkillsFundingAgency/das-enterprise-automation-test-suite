@@ -10,12 +10,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => vacancyTitledataHelper.VacancyTitle;
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By VacancyStatus => By.CssSelector("#applicationTable .applicant span");
 
-        public RAA_VacancySummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public RAA_VacancySummaryPage(ScenarioContext context) : base(context) { }
 
         public string GetVacancyStatus() => pageInteractionHelper.GetText(VacancyStatus);
 

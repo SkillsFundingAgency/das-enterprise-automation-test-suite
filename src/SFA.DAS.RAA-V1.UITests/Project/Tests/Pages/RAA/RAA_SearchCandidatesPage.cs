@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By NoCandidateInfo => By.ClassName("info-summary");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         private readonly ObjectContext _objectcontext;
         #endregion
 
@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         
         public RAA_SearchCandidatesPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             _objectcontext = context.Get<ObjectContext>();
         }
 

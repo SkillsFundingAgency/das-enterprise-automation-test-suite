@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Vacancy location";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By EnterVacancyLocation => By.Id("postcode-search");
@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SaveAndContinueButton => By.Name("AddLocations");
         private By AddAnotherLocation => By.CssSelector("#add-new-location");
 
-        public RAA_MultipleVacancyLocationPage(ScenarioContext context) : base(context) => _context = context;
+        public RAA_MultipleVacancyLocationPage(ScenarioContext context) : base(context) { }
 
         public RAA_MultipleVacancyLocationPage AddLocation(string text)
         {

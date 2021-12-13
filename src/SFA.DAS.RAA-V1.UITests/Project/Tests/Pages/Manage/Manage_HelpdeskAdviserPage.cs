@@ -9,11 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         protected override By PageHeader => By.CssSelector(".heading-medium");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public Manage_HelpdeskAdviserPage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_HelpdeskAdviserPage(ScenarioContext context) : base(context) { }
 
         public Manage_SearchForACandidatePage SearchForACandidate()
         {
