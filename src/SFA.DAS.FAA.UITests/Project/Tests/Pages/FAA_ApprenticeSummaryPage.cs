@@ -32,13 +32,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_YourApplicationPage View()
         {
             formCompletionHelper.Click(ViewApplicationLink);
-            return new FAA_YourApplicationPage(_context);
+            return new FAA_YourApplicationPage(context);
         }
 
         public FAA_ApplicationFormPage Apply()
         {
             formCompletionHelper.Click(ApplyButton);
-            return new FAA_ApplicationFormPage(_context);
+            return new FAA_ApplicationFormPage(context);
         }
 
         private void VerifyEmployerDetails()

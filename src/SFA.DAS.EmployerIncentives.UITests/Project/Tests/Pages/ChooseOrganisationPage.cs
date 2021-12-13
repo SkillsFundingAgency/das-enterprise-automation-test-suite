@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(objectContext.GetOrganisationName());
             formCompletionHelper.Click(ContinueButton);
-            return new EIHubPage(_context);
+            return new EIHubPage(context);
         }
     }
 }

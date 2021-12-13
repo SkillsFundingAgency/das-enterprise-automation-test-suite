@@ -11,13 +11,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_MyApplicationsHomePage MyApplications()
         {
             formCompletionHelper.ClickLinkByText("My applications");
-            return new FAA_MyApplicationsHomePage(_context);
+            return new FAA_MyApplicationsHomePage(context);
         }
 
         public FAA_SettingsPage Settings()
         {
             formCompletionHelper.ClickLinkByText("Settings");
-            return new FAA_SettingsPage(_context);
+            return new FAA_SettingsPage(context);
         }
     }
 }

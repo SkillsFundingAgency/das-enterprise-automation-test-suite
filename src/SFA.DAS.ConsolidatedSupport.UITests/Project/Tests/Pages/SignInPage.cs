@@ -23,7 +23,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.EnterText(UserPassword, config.Password);
                 formCompletionHelper.ClickElement(SignInButton);
             });
-            return new HomePage(_context, true);
+            return new HomePage(context, true);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
             formCompletionHelper.Click(CreateAccountButton);
             pageInteractionHelper.WaitforURLToChange("activation");
-            return new FAA_ActivateYourAccountPage(_context);
+            return new FAA_ActivateYourAccountPage(context);
         }
 
         public void SelectAddress()

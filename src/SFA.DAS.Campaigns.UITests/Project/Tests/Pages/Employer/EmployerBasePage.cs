@@ -18,19 +18,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public EmployerAreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
         {
             formCompletionHelper.ClickElement(AreTheyRightForYou);
-            return new EmployerAreTheyRightForYouPage(_context);
+            return new EmployerAreTheyRightForYouPage(context);
         }
 
         public EmployerHowDoTheyWorkPage ClickHowDoTheyWorkLink()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new EmployerHowDoTheyWorkPage(_context);
+            return new EmployerHowDoTheyWorkPage(context);
         }
 
         public SettingItUpPage ClickSettingUpLink()
         {
             formCompletionHelper.ClickElement(SettingItUp);
-            return new SettingItUpPage(_context);
+            return new SettingItUpPage(context);
         }
     }
 }

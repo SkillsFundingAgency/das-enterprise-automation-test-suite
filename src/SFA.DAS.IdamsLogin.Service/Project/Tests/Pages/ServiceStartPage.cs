@@ -14,7 +14,7 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
         public IdamsPage StartNow()
         {
             ClickStartNowButton();
-            return new IdamsPage(_context);
+            return new IdamsPage(context);
         }
 
         public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowCssSelector);

@@ -18,13 +18,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(ActivationCode, faaDataHelper.ActivationCode);
             formCompletionHelper.Click(ActivateAccount);
             pageInteractionHelper.WaitforURLToChange("tellusmore");
-            return new FAA_ActivateYourAccountPage2(_context);
+            return new FAA_ActivateYourAccountPage2(context);
         }
 
         public FAA_SignInPage ClickSignOut()
         {
             formCompletionHelper.Click(SignOut);
-            return new FAA_SignInPage(_context);
+            return new FAA_SignInPage(context);
         }
     }
 }

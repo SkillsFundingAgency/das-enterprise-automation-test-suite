@@ -21,13 +21,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_MyApplicationsHomePage SubmitValidLoginDetails(string emailId, string password)
         {
             FAASignIn(emailId, password);
-            return new FAA_MyApplicationsHomePage(_context);
+            return new FAA_MyApplicationsHomePage(context);
         }
 
         public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails(string emailId,string password)
         {
             FAASignIn(emailId, password);
-            return new FAA_ActivateYourAccountPage(_context);
+            return new FAA_ActivateYourAccountPage(context);
         }
 
         private void FAASignIn(string emailId, string password)
@@ -40,7 +40,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()
         {
             formCompletionHelper.Click(CreateAnAccountLink);
-            return new FAA_CreateAnAccountPage(_context);
+            return new FAA_CreateAnAccountPage(context);
         }
 
         public void ConfirmAccountDeletion() => pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 

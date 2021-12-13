@@ -50,15 +50,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
             });
 
-            return new TicketPage(_context);
+            return new TicketPage(context);
         }
 
         public AdminPage NavigateToAdminPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
-            return new AdminPage(_context);
+            return new AdminPage(context);
         }
 
-        protected HomePage NavigateToHomePage() => new HomePage(_context, true);
+        protected HomePage NavigateToHomePage() => new HomePage(context, true);
     }
 }

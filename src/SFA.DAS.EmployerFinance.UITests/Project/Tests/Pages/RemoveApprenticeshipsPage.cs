@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(RemoveLabel);
             formCompletionHelper.Click(SaveButton);
-            return new EstimatedCostsPage(_context);
+            return new EstimatedCostsPage(context);
         }
     }
 }

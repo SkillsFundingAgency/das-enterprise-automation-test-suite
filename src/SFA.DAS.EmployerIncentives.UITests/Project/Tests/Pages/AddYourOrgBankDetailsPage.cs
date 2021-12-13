@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public VRFIntroductionTabPage ContinueToVRFIntroductionTab1Page()
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
-            return new VRFIntroductionTabPage(_context);
+            return new VRFIntroductionTabPage(context);
         }
     }
 }

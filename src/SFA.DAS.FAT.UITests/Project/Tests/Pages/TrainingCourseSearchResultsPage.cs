@@ -52,7 +52,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
             objectContext.SetTrainingCourseName(firstLinkText);
             formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new TrainingCourseSummaryPage(_context);
+            return new TrainingCourseSummaryPage(context);
         }
 
         public void SelectAscendingOrderSort() => SelectDropDownValue("Level (low to high)");
@@ -64,7 +64,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindApprenticeshipTrainingSearchPage NavigateBackFromTrainingCourseSearchResultsPage()
         {
             NavigateBack();
-            return new FindApprenticeshipTrainingSearchPage(_context);
+            return new FindApprenticeshipTrainingSearchPage(context);
         }
 
         private void ClickLevelCheckBox(string level) => formCompletionHelper.Click(LevelCheckBox(level));

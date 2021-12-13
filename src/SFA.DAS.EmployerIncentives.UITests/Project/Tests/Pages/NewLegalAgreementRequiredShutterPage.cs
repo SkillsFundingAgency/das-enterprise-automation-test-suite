@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public YourOrganisationsAndAgreementsPage ViewLegalAgreement()
         {
             formCompletionHelper.ClickButtonByText(ViewAgreement, "View agreement");
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
     }
 }

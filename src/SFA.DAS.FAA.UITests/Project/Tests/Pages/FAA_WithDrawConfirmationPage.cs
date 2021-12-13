@@ -12,7 +12,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText("Yes, withdraw");
             formCompletionHelper.ClickButtonByText("Continue");
-            return new FAA_WithdrawSuccessfulPage(_context);
+            return new FAA_WithdrawSuccessfulPage(context);
         }
     } 
 }

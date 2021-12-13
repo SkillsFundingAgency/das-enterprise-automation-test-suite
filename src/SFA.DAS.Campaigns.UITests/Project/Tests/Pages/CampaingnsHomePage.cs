@@ -23,7 +23,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 formCompletionHelper.ClickElement(CookieButton);
                 formCompletionHelper.ClickElement(CloseCookieButton);
             }
-            return new CampaingnsHomePage(_context);
+            return new CampaingnsHomePage(context);
         }
     }
 }

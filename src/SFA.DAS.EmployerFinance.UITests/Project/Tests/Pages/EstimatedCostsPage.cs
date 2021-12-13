@@ -32,19 +32,19 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public AddApprenticeshipsToEstimateCostPage AddApprenticeships()
         {
             formCompletionHelper.ClickElement(AddApprenticeshipsLink);
-            return new AddApprenticeshipsToEstimateCostPage(_context);
+            return new AddApprenticeshipsToEstimateCostPage(context);
         }
 
         public EditApprenticeshipsPage EditApprenticeships()
         {
             formCompletionHelper.ClickElement(EditApprenticeshipsLink);
-            return new EditApprenticeshipsPage(_context);
+            return new EditApprenticeshipsPage(context);
         }
 
         public RemoveApprenticeshipsPage RemoveApprenticeships()
         {
             formCompletionHelper.Click(RemoveApprenticeshipLink);
-            return new RemoveApprenticeshipsPage(_context);
+            return new RemoveApprenticeshipsPage(context);
         }
 
         public int ExistingApprenticeships() => pageInteractionHelper.FindElements(RemoveApprenticeshipLink).Count;

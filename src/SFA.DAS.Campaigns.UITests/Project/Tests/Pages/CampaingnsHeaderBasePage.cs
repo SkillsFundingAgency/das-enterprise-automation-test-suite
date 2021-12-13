@@ -21,25 +21,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         public ApprenticeHubPage NavigateToApprenticeshipHubPage()
         {
             formCompletionHelper.ClickElement(Apprentice);
-            return new ApprenticeHubPage(_context);
+            return new ApprenticeHubPage(context);
         }
 
         public EmployerHubPage NavigateToEmployerHubPage()
         {
             formCompletionHelper.ClickElement(Employer);
-            return new EmployerHubPage(_context);
+            return new EmployerHubPage(context);
         }
 
         public InfluencersHubPage NavigateToInfluencersHubPage()
         {
             formCompletionHelper.ClickElement(Influencers);
-            return new InfluencersHubPage(_context);
+            return new InfluencersHubPage(context);
         }
 
         public SiteMapPage NavigateToSiteMapPage()
         {
             formCompletionHelper.ClickElement(SiteMap);
-            return new SiteMapPage(_context);
+            return new SiteMapPage(context);
         }
     }
 }

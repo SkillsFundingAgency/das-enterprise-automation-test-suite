@@ -18,30 +18,30 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
             var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
             objectContext.SetEPAOOrganisationName(firstLinkText);
             formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new EPAOOrganisationDetailsPage(_context);
+            return new EPAOOrganisationDetailsPage(context);
         }
         
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromEPAOOrganisationsPageToSearchApprenticeshipTrainingPage()
         {
             NavigateBackToSearchApprenticeshipTraining();
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
 
         public SearchApprenticeshipTrainingCoursePage NavigateBackToSearchApprenticeshipTraining()
         {
             formCompletionHelper.Click(BackButton);
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
 
         public EPAOOrganisationDetailsPage NavigateBackFromEPAOOrgansationPageToDetailsPage()
         {
             NavigateBackToEPAOOrgansationDetailsPage();
-            return new EPAOOrganisationDetailsPage(_context);
+            return new EPAOOrganisationDetailsPage(context);
         }
         public EPAOOrganisationDetailsPage NavigateBackToEPAOOrgansationDetailsPage()
         {
             formCompletionHelper.Click(BackButton);
-            return new EPAOOrganisationDetailsPage(_context);
+            return new EPAOOrganisationDetailsPage(context);
         }
     }
 }

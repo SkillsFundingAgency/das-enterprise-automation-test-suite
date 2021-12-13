@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public ApplicationCancelledPage ConfirmCancelApplications()
         {
             Continue();
-            return new ApplicationCancelledPage(_context);
+            return new ApplicationCancelledPage(context);
         }
 
     }

@@ -20,13 +20,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         public ApplicationCompletePage ReturnToEasApplicationCompletePage()
         {
             ReturnToEAS();
-            return new ApplicationCompletePage(_context);
+            return new ApplicationCompletePage(context);
         }
 
         public EIHubPage ReturnToEIHubPage()
         {
             ReturnToEAS();
-            return new EIHubPage(_context);
+            return new EIHubPage(context);
         }
 
         private void ReturnToEAS()

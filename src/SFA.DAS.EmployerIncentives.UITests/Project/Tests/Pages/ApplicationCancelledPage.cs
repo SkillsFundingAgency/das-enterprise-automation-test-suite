@@ -15,7 +15,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(ViewApplicationsSelector);
 
-            return new ViewApplicationsPage(_context);
+            return new ViewApplicationsPage(context);
         }
     }
 }

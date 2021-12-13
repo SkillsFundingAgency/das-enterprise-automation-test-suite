@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             formCompletionHelper.EnterText(Username, eIConfig.EI_DfeUatUsername);
             formCompletionHelper.EnterText(Password, eIConfig.EI_DfeUatPassword);
             formCompletionHelper.Click(SignInButton);
-            return new VRFHomePage(_context);
+            return new VRFHomePage(context);
         }
     }
 }

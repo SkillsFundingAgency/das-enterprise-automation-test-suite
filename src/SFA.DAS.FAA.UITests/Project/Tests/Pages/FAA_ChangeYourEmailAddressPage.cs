@@ -24,7 +24,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(VerificationCode, faaDataHelper.ActivationCode);
             formCompletionHelper.EnterText(VerifyPassword, faaDataHelper.Password);
             formCompletionHelper.Click(VerifyEmailButton);
-            return new FAA_SignInPage(_context);
+            return new FAA_SignInPage(context);
         }
     }
 }

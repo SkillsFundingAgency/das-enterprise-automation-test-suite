@@ -27,7 +27,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(EnterCode, faaDataHelper.PhoneNumberVerificationCode);
             formCompletionHelper.Click(VerifyNumber);
             pageInteractionHelper.WaitforURLToChange("settings");
-            return new FAA_SettingsPage(_context);
+            return new FAA_SettingsPage(context);
         }
     }
 }

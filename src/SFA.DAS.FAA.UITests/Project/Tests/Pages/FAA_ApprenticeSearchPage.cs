@@ -62,7 +62,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                     break;
             }
 
-            return new FAA_ApprenticeSearchResultsPage(_context);
+            return new FAA_ApprenticeSearchResultsPage(context);
         }
 
         private void SearchByKeyword(string searchCriteriaOrDistanceDropDownValue, string keywordsTextFieldValue, string urlTextToCheck)
@@ -80,13 +80,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             SearchVacancyInFAA();
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         public FAA_ApprenticeshipNotAvailablePage SearchClosedVacancy()
         {
             SearchVacancyInFAA();
-            return new FAA_ApprenticeshipNotAvailablePage(_context);
+            return new FAA_ApprenticeshipNotAvailablePage(context);
         }
 
         private void SearchVacancyInFAA()
@@ -111,7 +111,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyText(VerifyPhoneNumberText, faaDataHelper.PhoneNumberVerificationText);
             formCompletionHelper.ClickElement(VerifyMobile);
-            return new FAA_PhoneNumberVerificationPage(_context);
+            return new FAA_PhoneNumberVerificationPage(context);
         }
 
         public FAA_ApprenticeSearchResultsPage BrowseVacancy()
@@ -123,7 +123,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.SelectFromDropDownByText(Distance, "England");
             formCompletionHelper.Click(BrowseButton);
             pageInteractionHelper.WaitforURLToChange("ApprenticeshipLevel");
-            return new FAA_ApprenticeSearchResultsPage(_context);
+            return new FAA_ApprenticeSearchResultsPage(context);
         }
     }
 }

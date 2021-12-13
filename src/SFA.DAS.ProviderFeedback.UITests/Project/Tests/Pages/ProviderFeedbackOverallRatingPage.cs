@@ -19,14 +19,14 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VeryPoorOption));
             Continue();
-            return new ProviderFeedbackCheckYourAnswersPage(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(context);
         }
 
         public ProviderFeedbackCheckYourAnswersPage SelectGoodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(GoodOption));
             Continue();
-            return new ProviderFeedbackCheckYourAnswersPage(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(context);
         }
     }
 }

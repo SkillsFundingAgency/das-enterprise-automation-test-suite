@@ -31,7 +31,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindApprenticeshipTrainingSearchPage NavigateBackFromFindATrainingProviderByNamePage()
         {
             NavigateBack();
-            return new FindApprenticeshipTrainingSearchPage(_context);
+            return new FindApprenticeshipTrainingSearchPage(context);
         }
     }
 }

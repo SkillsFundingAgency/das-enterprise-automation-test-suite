@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
                 formCompletionHelper.ClickElement(apprentice);
 
             Continue();
-            return new WhenDidApprenticeJoinTheOrgPage(_context);
+            return new WhenDidApprenticeJoinTheOrgPage(context);
         }
     }
 }

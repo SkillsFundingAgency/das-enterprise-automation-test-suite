@@ -21,21 +21,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
             formCompletionHelper.ClickElement(_continueButton);
-            return new NonLevyPayingEmployerPage(_context);
+            return new NonLevyPayingEmployerPage(context);
         }
 
         public LevyingPayingEmployerPage NavigateToLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(__levyPayingEmployer);
             formCompletionHelper.ClickElement(_continueButton);
-            return new LevyingPayingEmployerPage(_context);
+            return new LevyingPayingEmployerPage(context);
         }
         
         public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
             formCompletionHelper.ClickElement(_continueButton);
-            return new NotSureLevyPayingEmployerPage(_context);
+            return new NotSureLevyPayingEmployerPage(context);
         }
     }
 }

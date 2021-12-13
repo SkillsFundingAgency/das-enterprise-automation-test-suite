@@ -39,7 +39,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public YourTransactionsPage GoToViewTransactionsPage()
         {
             formCompletionHelper.Click(ViewTransactionsLink());
-            return new YourTransactionsPage(_context);
+            return new YourTransactionsPage(context);
         }
 
         public FinancePage IsDownloadTransactionsLinkPresent()
@@ -51,7 +51,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public DownloadTransactionsPage GoToDownloadTransactionsPage()
         {
             formCompletionHelper.Click(DownloadTransactionsLink());
-            return new DownloadTransactionsPage(_context);
+            return new DownloadTransactionsPage(context);
         }
 
         public FinancePage IsTransfersLinkPresent()
@@ -63,13 +63,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public TransfersPage GoToTransfersPage()
         {
             formCompletionHelper.Click(TransfersLink());
-            return new TransfersPage(_context);
+            return new TransfersPage(context);
         }
 
         public FundingProjectionPage GoToFundingProjectionPage()
         {
             formCompletionHelper.Click(FundingProjectionLink());
-            return new FundingProjectionPage(_context);
+            return new FundingProjectionPage(context);
         }
 
         public string ExpectedFundsSpentLabelConstant()

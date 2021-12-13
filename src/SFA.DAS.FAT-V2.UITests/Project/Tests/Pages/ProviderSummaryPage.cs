@@ -22,22 +22,22 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(LocationTextBox, location);
             formCompletionHelper.SendKeys(LocationTextBox, Keys.Enter);
-            return new ProviderSummaryPage(_context);
+            return new ProviderSummaryPage(context);
         }
         public ProviderSearchResultsPage SelectViewOtherTrainingProviders()
         {
             formCompletionHelper.Click(ViewOtherTrainingProvidersButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage NavigateBackFromProviderSummaryPage()
         {
             NavigateBackToTrainingProviders();
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage NavigateBackToTrainingProviders()
         {
             formCompletionHelper.Click(BackToTrainingProviders);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
     }
 }

@@ -14,19 +14,19 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         public ProviderFeedbackImprovePage ContinueToQuestion2()
         {
             SelectOptionAndContinue();
-            return new ProviderFeedbackImprovePage(_context);
+            return new ProviderFeedbackImprovePage(context);
         }
 
         public ProviderFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
         {
             SelectOptionAndContinue();
-            return new ProviderFeedbackCheckYourAnswersPage(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(context);
         }
 
         public ProviderFeedbackImprovePage SkipQuestion1()
         {
             formCompletionHelper.ClickLinkByText("Skip this question");
-            return new ProviderFeedbackImprovePage(_context);
+            return new ProviderFeedbackImprovePage(context);
         }
     }
 }

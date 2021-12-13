@@ -11,13 +11,13 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public ProviderSearchResultsPage NavigateBackFromProviderSummaryPage()
         {
             NavigateBack();
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
 
         public FindATrainingProviderByNamePage NavigateBackFromProviderSummaryPageForProviderOnlySearch()
         {
             NavigateBack();
-            return new FindATrainingProviderByNamePage(_context);
+            return new FindATrainingProviderByNamePage(context);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(NoOfApprentice, 2);
             formCompletionHelper.Click(TotalFundingCost);
             formCompletionHelper.Click(SaveButton);
-            return new EstimatedCostsPage(_context);
+            return new EstimatedCostsPage(context);
         }
     }
 }

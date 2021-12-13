@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public FinancePage GoToFinancePage()
         {
             formCompletionHelper.ClickElement(FinanceLink);
-            return new FinancePage(_context);
+            return new FinancePage(context);
         }
     }
 }

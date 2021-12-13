@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public EstimateFundingProjectionPage GoToEstimateFundingProjectionPage()
         {
             formCompletionHelper.Click(EstimateButton);
-            return new EstimateFundingProjectionPage(_context);
+            return new EstimateFundingProjectionPage(context);
         }
     }
 }

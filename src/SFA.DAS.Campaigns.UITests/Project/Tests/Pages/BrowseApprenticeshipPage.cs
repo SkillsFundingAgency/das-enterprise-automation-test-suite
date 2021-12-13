@@ -21,7 +21,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             formCompletionHelper.SelectFromDropDownByText(Route, "Digital");
             formCompletionHelper.EnterText(Postcode, "CV1 2WT");
             Continue();
-            return new ResultsPage(_context);
+            return new ResultsPage(context);
         }
     }
 }

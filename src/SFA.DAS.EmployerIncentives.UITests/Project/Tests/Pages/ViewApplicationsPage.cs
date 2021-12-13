@@ -15,14 +15,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("Back");
 
-            return new EIHubPage(_context);
+            return new EIHubPage(context);
         }
 
         public WhichApprenticeToCancelPage CancelAnApplication()
         {
             formCompletionHelper.ClickLinkByText(Links, "Cancel an application");
 
-            return new WhichApprenticeToCancelPage(_context);
+            return new WhichApprenticeToCancelPage(context);
         }
     }
 }

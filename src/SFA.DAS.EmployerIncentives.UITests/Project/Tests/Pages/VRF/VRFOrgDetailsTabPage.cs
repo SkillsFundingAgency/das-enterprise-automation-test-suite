@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         public VRFOrgDetailsTabPage(ScenarioContext context) : base(context, false)
         { 
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
-            _eISqlHelper = _context.Get<EISqlHelper>();
+            _eISqlHelper = context.Get<EISqlHelper>();
         }
 
         public VRFNonBankingInfoTabPage SubmitOrgDetails()
@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 AddOtherOrgDetails();
             });
 
-            return new VRFNonBankingInfoTabPage(_context);
+            return new VRFNonBankingInfoTabPage(context);
         }
 
         public VRFAmendmentsTabPage SubmitOrgDetailsForAmendJourney(string email)
@@ -42,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 AddOtherOrgDetails();
             });
 
-            return new VRFAmendmentsTabPage(_context);
+            return new VRFAmendmentsTabPage(context);
         }
 
         private void AddOtherOrgDetails()

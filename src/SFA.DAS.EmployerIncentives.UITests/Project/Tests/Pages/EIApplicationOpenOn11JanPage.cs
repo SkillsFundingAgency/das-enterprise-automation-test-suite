@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public HomePage ReturnToAccountHomePage()
         {
             formCompletionHelper.ClickLinkByText("Return to account home");
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

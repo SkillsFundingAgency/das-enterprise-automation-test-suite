@@ -21,7 +21,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 
             formCompletionHelper.ClickButtonByText(GoButton, "GO");
 
-            return new MailinatorInboxPage(_context);
+            return new MailinatorInboxPage(context);
         }
     }
 }

@@ -23,19 +23,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(FundingAnApprenticeship);
-            return new FundingAnApprenticeshipPage(_context);
+            return new FundingAnApprenticeshipPage(context);
         }
 
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(SearchForAnApprenticeship);
-            return new SearchForAnApprenticeshipPage(_context);
+            return new SearchForAnApprenticeshipPage(context);
         }
 
         public RegisterInterestPage NavigateToRegisterInterestPage()
         {
             formCompletionHelper.ClickElement(RegisterInterest);
-            return new RegisterInterestPage(_context);
+            return new RegisterInterestPage(context);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFAmendNonBankingInfoTabPage(_context, Continue);
+            return new VRFAmendNonBankingInfoTabPage(context, Continue);
         }
     }
 }

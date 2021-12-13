@@ -16,7 +16,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindApprenticeshipTrainingSearchPage ClickStartButton()
         {
             formCompletionHelper.Click(StartButton);
-            return new FindApprenticeshipTrainingSearchPage(_context);
+            return new FindApprenticeshipTrainingSearchPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public SetUpServicePage NavigateToSetUpServiceAccountPage()
         {
             formCompletionHelper.ClickElement(SetUpService);
-            return new SetUpServicePage(_context);
+            return new SetUpServicePage(context);
         }
     }
 }

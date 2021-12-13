@@ -18,7 +18,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public AddAnApprenitcePage ClickOnAddApprenticesLink()
         {
             formCompletionHelper.Click(AddApprenticesLink);
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
             formCompletionHelper.SelectCheckbox(IncludeInUserResearch);
             formCompletionHelper.ClickElement(Signup);
-            return new ThanksForSubscribingPage(_context);
+            return new ThanksForSubscribingPage(context);
         }
     }
 }

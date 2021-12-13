@@ -14,7 +14,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         public ProviderFeedbackStrengthsPage StartNow()
         {
             formCompletionHelper.ClickElement(StartButton);
-            return new ProviderFeedbackStrengthsPage(_context);
+            return new ProviderFeedbackStrengthsPage(context);
         }
     }
 }

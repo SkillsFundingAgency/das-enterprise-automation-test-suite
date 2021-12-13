@@ -29,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFSummaryTabPage(_context);
+            return new VRFSummaryTabPage(context);
         }
     }
 }

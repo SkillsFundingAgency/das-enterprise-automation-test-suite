@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public ViewApplicationsPage NavigateToViewApplicationsPage()
         {
             formCompletionHelper.ClickLinkByText("View applications");
-            return new ViewApplicationsPage(_context);
+            return new ViewApplicationsPage(context);
         }
     }
 }

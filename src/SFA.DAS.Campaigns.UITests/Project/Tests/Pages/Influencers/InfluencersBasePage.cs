@@ -18,25 +18,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
         public InfluencersHowTheyWorkPage NavigateToHowDoTheyWorkPage()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new InfluencersHowTheyWorkPage(_context);
+            return new InfluencersHowTheyWorkPage(context);
         }
 
         public InfluencersRequestSupportPage NavigateToRequestSupportPage()
         {
             formCompletionHelper.ClickElement(RequestSupport);
-            return new InfluencersRequestSupportPage(_context);
+            return new InfluencersRequestSupportPage(context);
         }
 
         public InfluencersResourceHubPage NavigateToResourceHubPage()
         {
             formCompletionHelper.ClickElement(ResourceHub);
-            return new InfluencersResourceHubPage(_context);
+            return new InfluencersResourceHubPage(context);
         }
 
         public InfluencersBecomeAnAmbassadorPage NavigateToBecomeAnAmbassadorPage()
         {
             formCompletionHelper.ClickElement(BecomeAnAmbassador);
-            return new InfluencersBecomeAnAmbassadorPage(_context);
+            return new InfluencersBecomeAnAmbassadorPage(context);
         }
     }
 }

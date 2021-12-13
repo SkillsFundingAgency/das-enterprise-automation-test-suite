@@ -16,19 +16,19 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
         {
             SearchApprenticeship(searchTerm);
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
 
         public FATIndexPage NavigateBackFromFindApprenticeshipTrainingSearchPage()
         {
             NavigateBack();
-            return new FATIndexPage(_context);
+            return new FATIndexPage(context);
         }
 
         public FindATrainingProviderByNamePage ClickSearchTrainingProviderLink()
         {
             formCompletionHelper.Click(SearchTrainingProviderLink);
-            return new FindATrainingProviderByNamePage(_context);
+            return new FindATrainingProviderByNamePage(context);
         }
     }
 }

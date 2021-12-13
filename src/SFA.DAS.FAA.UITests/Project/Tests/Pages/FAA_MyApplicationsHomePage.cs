@@ -35,19 +35,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {
             formCompletionHelper.Click(FindAnApprenticeshipLink);
-            return new FAA_ApprenticeSearchPage(_context);
+            return new FAA_ApprenticeSearchPage(context);
         }
 
         public FAA_TraineeshipSearchPage FindATraineeship()
         {
             formCompletionHelper.Click(FindTraineeshipLink);
-            return new FAA_TraineeshipSearchPage(_context);
+            return new FAA_TraineeshipSearchPage(context);
         }
 
         public FAA_SettingsPage GoToSettings()
         {
             formCompletionHelper.Click(Settings);
-            return new FAA_SettingsPage(_context);
+            return new FAA_SettingsPage(context);
         }
 
         private void VerifyVacancySuccessfulNotification()
@@ -76,7 +76,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_YourFeedbackPage ReadFeedback()
         {
             formCompletionHelper.Click(ReadFeedbackLink);
-            return new FAA_YourFeedbackPage(_context);
+            return new FAA_YourFeedbackPage(context);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
@@ -85,7 +85,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             DeleteDraft();
             pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + vacancyTitleDataHelper.VacancyTitle + " apprenticeship");
             formCompletionHelper.Click(VacancyDeletedLink);
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         private void DeleteDraft()

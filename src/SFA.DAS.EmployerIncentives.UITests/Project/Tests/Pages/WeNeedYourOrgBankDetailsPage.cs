@@ -13,14 +13,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("CanProvideBankDetails");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
-            return new AddYourOrgBankDetailsPage(_context);
+            return new AddYourOrgBankDetailsPage(context);
         }
 
         public ApplicationSavedPage ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage()
         {
             SelectRadioOptionByForAttribute("CanProvideBankDetails-2");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
-            return new ApplicationSavedPage(_context);
+            return new ApplicationSavedPage(context);
         }
     }
 }

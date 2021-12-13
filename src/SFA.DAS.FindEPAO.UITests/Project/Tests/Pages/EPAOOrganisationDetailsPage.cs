@@ -19,28 +19,28 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromSingleEPAOOrganisationDetailsPage()
         {
             NavigateBackToSearchApprenticeshipTraining();
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
         public SearchApprenticeshipTrainingCoursePage NavigateBackToSearchApprenticeshipTraining()
         {
             formCompletionHelper.Click(BackButton);
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
         public EPAOOrganisationsPage SelectViewOtherEndPointOrganisations()
         {
             formCompletionHelper.Click(ViewOtherEndPointOrganisations);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
 
         public EPAOOrganisationsPage NavigateBackFromEPAOOrgansationDetailsPageToOrganisationPage()
         {
             NavigateBackToEPAOOrgansationPage();
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
         public EPAOOrganisationsPage NavigateBackToEPAOOrgansationPage()
         {
             formCompletionHelper.Click(BackButton);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
     }
 }

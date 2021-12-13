@@ -34,7 +34,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(StartDateMonth, date.Month);
             formCompletionHelper.EnterText(StartDateYear, date.Year);
             formCompletionHelper.Click(SaveButton);
-            return new EstimatedCostsPage(_context);
+            return new EstimatedCostsPage(context);
         }
     }
 }

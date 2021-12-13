@@ -38,7 +38,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private new HomePage CloseAllTickets()
         {
             base.CloseAllTickets();
-            return new HomePage(_context, true);
+            return new HomePage(context, true);
         }
 
         private HomePage DeleteEntity()

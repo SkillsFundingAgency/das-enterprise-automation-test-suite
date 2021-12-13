@@ -18,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
         public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(BrowseApprentice);
-            return new BrowseApprenticeshipPage(_context);
+            return new BrowseApprenticeshipPage(context);
         }
     }
 }

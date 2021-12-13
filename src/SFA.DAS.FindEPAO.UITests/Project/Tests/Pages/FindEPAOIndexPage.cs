@@ -16,7 +16,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public SearchApprenticeshipTrainingCoursePage ClickStartButton()
         {
             formCompletionHelper.Click(StartButton);
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
     }
 }

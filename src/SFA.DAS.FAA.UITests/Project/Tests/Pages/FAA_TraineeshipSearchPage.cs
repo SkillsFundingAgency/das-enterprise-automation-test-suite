@@ -15,13 +15,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             SearchVacancyInFAA();
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         public FAA_TraineeshipNotAvailablePage SearchClosedVacancy()
         {
             SearchVacancyInFAA();
-            return new FAA_TraineeshipNotAvailablePage(_context);
+            return new FAA_TraineeshipNotAvailablePage(context);
         }
 
         private void SearchVacancyInFAA()
@@ -42,7 +42,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             EnterPostCode(location);
             pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
-            return new FAA_TraineeshipSearchResultsPage(_context);
+            return new FAA_TraineeshipSearchResultsPage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
         {
             SearchApprenticeship(searchTerm);
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new ConfirmApprenticeCancelPage(_context);
+            return new ConfirmApprenticeCancelPage(context);
         }
     }
 }

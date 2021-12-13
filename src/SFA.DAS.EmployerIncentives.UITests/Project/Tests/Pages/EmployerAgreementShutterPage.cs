@@ -18,13 +18,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public YourOrganisationsAndAgreementsPage ClickOnViewAgreementButton()
         {
             formCompletionHelper.Click(ViewAgreementButton);
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
 
         public HomePage ClickOnReturnToAccountHomeLink()
         {
             formCompletionHelper.Click(ReturnToAccountHomeCTA);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

@@ -24,32 +24,32 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             var firstProviderLinkText = pageInteractionHelper.GetText(FirstProviderResultLink);
             objectContext.SetProviderName(firstProviderLinkText);
             formCompletionHelper.ClickLinkByText(firstProviderLinkText);
-            return new ProviderSummaryPage(_context);
+            return new ProviderSummaryPage(context);
         }
         public TrainingCourseSummaryPage NavigateBackFromTrainingProvidersPage()
         {
             NavigateBackToTrainingProviders();
-            return new TrainingCourseSummaryPage(_context);
+            return new TrainingCourseSummaryPage(context);
         }
         public TrainingCourseSummaryPage NavigateBackToTrainingProviders()
         {
             formCompletionHelper.Click(BackToCourseSummaryPage);
-            return new TrainingCourseSummaryPage(_context);
+            return new TrainingCourseSummaryPage(context);
         }
         public ProviderSearchResultsPage ShortlistAProviderFromProviderList()
         {
             formCompletionHelper.Click(AddToShortlist);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage RemoveLocationOnProviderListPage()
         {
             formCompletionHelper.Click(RemoveLocation);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderShortlistPage NavigateToProviderShortlistPage()
         {
             NavigateToShortlistPage();
-            return new ProviderShortlistPage(_context);
+            return new ProviderShortlistPage(context);
         }
         public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
     }

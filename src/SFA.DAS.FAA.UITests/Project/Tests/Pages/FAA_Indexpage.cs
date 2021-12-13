@@ -16,7 +16,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_SignInPage GoToSignInPage()
         {
             formCompletionHelper.Click(SignIn);
-            return new FAA_SignInPage(_context);
+            return new FAA_SignInPage(context);
         }
 
         private new FAA_Indexpage AcceptCookies()

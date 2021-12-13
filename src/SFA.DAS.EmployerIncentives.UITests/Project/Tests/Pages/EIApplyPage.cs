@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public QualificationQuestionPage ClickStartNowButtonInEIApplyPage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new QualificationQuestionPage(_context);
+            return new QualificationQuestionPage(context);
         }
     }
 }

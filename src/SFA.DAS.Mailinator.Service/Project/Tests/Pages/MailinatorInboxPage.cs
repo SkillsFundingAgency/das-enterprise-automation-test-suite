@@ -18,7 +18,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         internal MailinatorEmailPage OpenEmail()
         {
             formCompletionHelper.Click(EmailSubjectField);
-            return new MailinatorEmailPage(_context);
+            return new MailinatorEmailPage(context);
         }
     }
 }

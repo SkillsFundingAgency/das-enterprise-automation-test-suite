@@ -50,7 +50,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             ChangeSortOrderToRecentlyAdded();
             ChangeSortResultsTo50Vacancies();
             formCompletionHelper.Click(VacancyLink);
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         public FAA_ApprenticeSearchResultsPage CheckVacancyIsDisplayedBasedOnSearchCriteria(string locationPostCode, string searchCriteriaOrDistance)
@@ -81,7 +81,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSearchPage ClickOnSearchAgainLink()
         {
             formCompletionHelper.Click(SearchAgainLink);
-            return new FAA_ApprenticeSearchPage(_context);
+            return new FAA_ApprenticeSearchPage(context);
         }
 
         private void ChangeSortResultsTo50Vacancies()

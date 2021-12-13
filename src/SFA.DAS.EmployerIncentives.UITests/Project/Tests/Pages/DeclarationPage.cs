@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public WeNeedYourOrgBankDetailsPage SubmitDeclaration()
         {
             formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm and submit");
-            return new WeNeedYourOrgBankDetailsPage(_context);
+            return new WeNeedYourOrgBankDetailsPage(context);
         }
     }
 }

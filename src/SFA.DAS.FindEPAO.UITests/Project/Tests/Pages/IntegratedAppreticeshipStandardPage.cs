@@ -14,12 +14,12 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromIntegratedApprenticeshipsPage()
         {
             NavigateBackToSearchApprenticeshipTraining();
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
         public SearchApprenticeshipTrainingCoursePage NavigateBackToSearchApprenticeshipTraining()
         {
             formCompletionHelper.Click(BackToSearchApprenticeshipTraining);
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
     }
 }

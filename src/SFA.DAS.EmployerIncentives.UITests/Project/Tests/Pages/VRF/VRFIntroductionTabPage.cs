@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.Click(VRFCookieCloseButton);
 
             frameHelper.SwitchFrameAndAction(() => Continue());
-            return new VRFOrgDetailsTabPage(_context);
+            return new VRFOrgDetailsTabPage(context);
         }
     }
 }

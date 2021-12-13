@@ -19,29 +19,29 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         public FATV2IndexPage NavigateBackToHompage()
         {
             NavigateToHomepage();
-            return new FATV2IndexPage(_context);
+            return new FATV2IndexPage(context);
         }
         public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
         {
             formCompletionHelper.EnterText(LocationTextBox, location);
             formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
         {
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
         {
             NavigateBackToCourseSummary();
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
         public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
         {
             formCompletionHelper.Click(BackToCourseSearchPage);
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
 
     }

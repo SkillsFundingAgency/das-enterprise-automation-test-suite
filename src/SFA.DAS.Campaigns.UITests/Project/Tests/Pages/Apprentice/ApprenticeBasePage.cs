@@ -24,25 +24,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
         {
             formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
-            return new ApprenticeAreTheyRightForYouPage(_context);
+            return new ApprenticeAreTheyRightForYouPage(context);
         }
 
         public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new ApprenticeHowDoTheyWorkPage(_context);
+            return new ApprenticeHowDoTheyWorkPage(context);
         }
 
         public GettingStartedPage NavigateToGettingStarted()
         {
             formCompletionHelper.ClickElement(GettingStarted);
-            return new GettingStartedPage(_context);
+            return new GettingStartedPage(context);
         }
 
         public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(BrowseApprenticeship);
-            return new BrowseApprenticeshipPage(_context);
+            return new BrowseApprenticeshipPage(context);
         }
     }
 }

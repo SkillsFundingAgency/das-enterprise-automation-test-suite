@@ -41,12 +41,12 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
             objectContext.SetTrainingCourseName(firstLinkText);
             formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new TrainingCourseSummaryPage(_context);
+            return new TrainingCourseSummaryPage(context);
         }
         public FATV2IndexPage NavigateBackToHompage()
         {
             NavigateToHomepage();
-            return new FATV2IndexPage(_context);
+            return new FATV2IndexPage(context);
         }
         public void SelectNameOrderSort() => SelectSortByValue("Name");
         public void SelectRelevanceOrderSort() => SelectSortByValue("Relevance");

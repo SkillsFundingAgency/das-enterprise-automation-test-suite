@@ -39,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
                     formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
 
-                    new CampaingnsDynamicFiuPage(_context, fiuCardHeading);
+                    new CampaingnsDynamicFiuPage(context, fiuCardHeading);
                 }
                 catch (Exception ex)
                 {

@@ -19,13 +19,13 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         public ProviderShortlistPage RemoveShortlistedProvider()
         {
             formCompletionHelper.Click(RemoveShortlist);
-            return new ProviderShortlistPage(_context);
+            return new ProviderShortlistPage(context);
         }
 
         public TrainingCourseSearchResultsPage ReturnToTrainingCourseSearchResultsPage()
         {
             formCompletionHelper.Click(ReturnToTrainingCoursePage);
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
     }
 }

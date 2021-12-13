@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         public EIApplyPage ClickOnApplyButton()
         {
             formCompletionHelper.Click(ApplyButton);
-            return new EIApplyPage(_context);
+            return new EIApplyPage(context);
         }
     }
 }

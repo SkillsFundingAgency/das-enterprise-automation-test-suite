@@ -28,7 +28,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         public UserPage NavigateToUserPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PeopleLink));
-            return new UserPage(_context);
+            return new UserPage(context);
         }
 
         public int NoOfOrganisation()
@@ -62,7 +62,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 InvokeAction(() => formCompletionHelper.ClickLinkByText(NewOrgLink, dataHelper.NewOrgName));
             });
 
-            return new OrgPage(_context);
+            return new OrgPage(context);
         }
 
         private void VerifySearchHeaders()
