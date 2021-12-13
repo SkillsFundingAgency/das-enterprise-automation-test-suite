@@ -74,7 +74,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
 
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_12_SenderRejectApplication")]
+        [NUnit.Framework.DescriptionAttribute("TM_12_Sender Can Reject Application")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
         public virtual void TM_12_SenderRejectApplication()
@@ -83,7 +83,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
                     "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_12_SenderRejectApplication", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_12_Sender Can Reject Application", null, tagsOfScenario, argumentsOfScenario);
 #line 5
             this.ScenarioInitialize(scenarioInfo);
 #line hidden

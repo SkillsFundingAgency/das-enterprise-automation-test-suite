@@ -2,7 +2,7 @@
 
 @regression
 @transfermatching
-Scenario: TM_12_SenderRejectApplication
+Scenario: TM_12_Sender Can Reject Application
   Given the levy employer logins using existing transfer matching account
   And the levy employer can create pledge using default criteria
   When the levy employer can view pledges from verification page
