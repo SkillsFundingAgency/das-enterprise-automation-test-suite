@@ -17,6 +17,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private bool _takescreenshot;
         #endregion
 
+        protected virtual bool CaptureUrl => true;
+
+        protected virtual bool TakeFullScreenShot => true;
+
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;

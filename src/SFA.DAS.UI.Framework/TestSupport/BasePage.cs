@@ -31,10 +31,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual By AcceptCookieButton { get; }
 
-        protected virtual bool CaptureUrl => true;
-
-        protected virtual bool TakeFullScreenShot => true;
-
         public BasePage(ScenarioContext context)
         {
             this.context = context;
