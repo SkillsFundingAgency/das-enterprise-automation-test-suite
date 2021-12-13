@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
         public SignificantEventEnglishAndMathsAssessmentsPage SelectPassAndContinueForWhereWillYouDeliverEnglishAndMathsAssessments()
         {
             SelectPassAndContinueToSubSection();
-            return new SignificantEventEnglishAndMathsAssessmentsPage(_context);
+            return new SignificantEventEnglishAndMathsAssessmentsPage(context);
         }
     }
 }

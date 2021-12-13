@@ -24,28 +24,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ModerationTab));
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
 
         public ClarificationApplicationAssessmentOverviewPage ClarificationSelectsAssignToMe()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab));
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ClarificationApplicationAssessmentOverviewPage(_context);
+            return new ClarificationApplicationAssessmentOverviewPage(context);
         }
 
         public ModerationApplicationAssessmentOverviewPage SelectFromOutcomeTab()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab));
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
         public IWebElement GetApplication() => GetApplication(Assessor1Link);
 
         private ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe(By columnIdentifier)
         {
             formCompletionHelper.ClickElement(() => GetApplication(columnIdentifier));
-            return new ApplicationAssessmentOverviewPage(_context);
+            return new ApplicationAssessmentOverviewPage(context);
         }
 
         private  IWebElement GetApplication(By columnIdentifier)
@@ -56,13 +56,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public new RoatpAssessorApplicationsHomePage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
-            return new RoatpAssessorApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(context);
         }
 
         public RoatpAssessorApplicationsHomePage VerifyClarificationStatus()
         {
             VerifyClarificationStatus(UkprnStatus, objectContext.GetUkprn());
-            return new RoatpAssessorApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(context);
         }
 
         public RoatpAssessorApplicationsHomePage ClearSearchResult_AssessorOutcomeTab()

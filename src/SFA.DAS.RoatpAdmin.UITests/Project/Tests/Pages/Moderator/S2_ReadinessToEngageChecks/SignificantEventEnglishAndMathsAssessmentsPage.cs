@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
         public ModerationApplicationAssessmentOverviewPage SelectPassAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()
         {
             SelectPassAndContinueToSubSection();
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
         public ModerationApplicationAssessmentOverviewPage SelectFailAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()
         {
             SelectFailAndContinueToSubSection();
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
     }
 }

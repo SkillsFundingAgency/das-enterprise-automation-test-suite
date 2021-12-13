@@ -42,7 +42,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public RemovePage RemoveUkprnFromAllowlist()
         {
             tableRowHelper.SelectRowFromTable("Remove", objectContext.GetUkprn());
-            return new RemovePage(_context);
+            return new RemovePage(context);
 
         }
     }

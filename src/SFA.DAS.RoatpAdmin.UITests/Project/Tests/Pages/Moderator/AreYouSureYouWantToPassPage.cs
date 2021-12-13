@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         public ModerationAssessmentPassCompletePage SelectYesPassAndContinueOutcomePage()
         {
             SelectYesAndContinue();
-            return new ModerationAssessmentPassCompletePage(_context);
+            return new ModerationAssessmentPassCompletePage(context);
         }
     }
 }

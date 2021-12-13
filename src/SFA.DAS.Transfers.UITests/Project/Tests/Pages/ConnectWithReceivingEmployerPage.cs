@@ -15,7 +15,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public WhichEmployerAreYouConnectingWithPage ContinueToConnectWithReceiver()
         {
             formCompletionHelper.ClickElement(ContinueToConnect);
-            return new WhichEmployerAreYouConnectingWithPage(_context);
+            return new WhichEmployerAreYouConnectingWithPage(context);
         }
     }
 }

@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
         public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(_context);
+            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(context);
         }
 
         public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
         {
             SelectFailAndContinueToSubSection();
-            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(_context);
+            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(context);
         }
     }
 }

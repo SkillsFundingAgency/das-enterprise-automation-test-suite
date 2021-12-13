@@ -12,7 +12,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText(orgName);
 
-            return new CreateATransfersApplicationPage(_context);
+            return new CreateATransfersApplicationPage(context);
         }
     }
 }

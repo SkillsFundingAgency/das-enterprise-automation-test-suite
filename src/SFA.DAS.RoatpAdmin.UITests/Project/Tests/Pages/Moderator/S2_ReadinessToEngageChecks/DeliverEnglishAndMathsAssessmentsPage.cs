@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
         public SignificantEventEnglishAndMathsAssessmentsPage SelectPassAndContinueForWhereWillYouDeliverEnglishAndMathsAssessments()
         {
             SelectPassAndContinueToSubSection();
-            return new SignificantEventEnglishAndMathsAssessmentsPage(_context);
+            return new SignificantEventEnglishAndMathsAssessmentsPage(context);
         }
         public SignificantEventEnglishAndMathsAssessmentsPage SelectFailAndContinueForWhereWillYouDeliverEnglishAndMathsAssessments()
         {
             SelectFailAndContinueToSubSection();
-            return new SignificantEventEnglishAndMathsAssessmentsPage(_context);
+            return new SignificantEventEnglishAndMathsAssessmentsPage(context);
         }
     }
 }

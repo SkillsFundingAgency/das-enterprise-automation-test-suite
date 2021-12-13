@@ -22,7 +22,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public ConnectWithReceivingEmployerPage ConnectWithReceivingEmployer()
         {
             formCompletionHelper.ClickElement(ConnectToReceivingEmployer);
-            return new ConnectWithReceivingEmployerPage(_context);
+            return new ConnectWithReceivingEmployerPage(context);
         }
 
         public TransferConnectionRequestDetailsPage ViewTransferConnectionRequestDetails(string sender)
@@ -36,7 +36,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                 if (transferRequestRow.Text.Contains($"{sender.ToUpper()} Pending"))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
-                    return new TransferConnectionRequestDetailsPage(_context);
+                    return new TransferConnectionRequestDetailsPage(context);
                 }
                 i++;
             }
@@ -78,7 +78,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                     && transferRequestRow.Text.Contains(cohortTotalCost))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
-                    return new TransferRequestDetailsPage(_context);
+                    return new TransferRequestDetailsPage(context);
                 }
                 i--;
             }

@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S5_EvaluatingA
         public IndividualAccountableForILRDataPage SelectPassAndContinueForILRDataPage()
         {
             SelectPassAndContinueToSubSection();
-            return new IndividualAccountableForILRDataPage(_context);
+            return new IndividualAccountableForILRDataPage(context);
         }
     }
 }

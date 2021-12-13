@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public AnExampleOfHowThePolicyToImprovePage SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToImprovePage(_context);
+            return new AnExampleOfHowThePolicyToImprovePage(context);
         }
 
         public AnExampleOfHowThePolicyToImprovePage SelectFailAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
         {
             SelectFailAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToImprovePage(_context);
+            return new AnExampleOfHowThePolicyToImprovePage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
 		public OtherWaysOfSupportingApprenticesPage SelectPassAndContinueInWaysOfSupportingApprenticesPage()
 		{
 			SelectPassAndContinueToSubSection();
-			return new OtherWaysOfSupportingApprenticesPage(_context);
+			return new OtherWaysOfSupportingApprenticesPage(context);
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public HomePage ContinueToMyAccount()
         {
             formCompletionHelper.ClickLinkByText("Continue to my account");
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

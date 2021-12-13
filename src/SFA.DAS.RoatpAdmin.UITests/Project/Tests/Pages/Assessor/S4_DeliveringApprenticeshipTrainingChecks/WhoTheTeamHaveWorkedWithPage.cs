@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public HowTheTeamWorkedWithPage SelectPassAndContinueInWhoTheTeamHaveWorkedWithPage()
         {
             SelectPassAndContinueToSubSection();
-            return new HowTheTeamWorkedWithPage(_context);
+            return new HowTheTeamWorkedWithPage(context);
         }
     }
 }

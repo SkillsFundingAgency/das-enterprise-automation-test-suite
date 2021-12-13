@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
         public PromoteApprenticeshipsToEmployersPage SelectPassAndContinueInOverallResponsibilityForManagingRelationshipsWithEmployersPage()
         {
             SelectPassAndContinueToSubSection();
-            return new PromoteApprenticeshipsToEmployersPage(_context);
+            return new PromoteApprenticeshipsToEmployersPage(context);
         }
     }
 }

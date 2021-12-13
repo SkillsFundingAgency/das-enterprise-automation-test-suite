@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public WhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage SelectPassAndContinueInSomeoneResponsibleForDevelopingAndDeliveringTrainingPage()
         {
             SelectPassAndContinueToSubSection();
-            return new WhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage(_context);
+            return new WhoThePersonHasWorkedWithToDevelopAndDeliverTrainingPage(context);
         }
     }
 }

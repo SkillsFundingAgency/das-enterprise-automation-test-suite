@@ -36,7 +36,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
         private DueDiligenceOnSubcontractorsPage SelectActionAndContinue(Action action)
         {
             action.Invoke();
-            return new DueDiligenceOnSubcontractorsPage(_context);
+            return new DueDiligenceOnSubcontractorsPage(context);
         }
     }
 }

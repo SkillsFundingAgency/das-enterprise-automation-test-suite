@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S5_Evaluating
         public ReviewProcessForEvaluatingPage SelectPassAndContinueInProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage()
         {
             SelectPassAndContinueToSubSection();
-            return new ReviewProcessForEvaluatingPage(_context);
+            return new ReviewProcessForEvaluatingPage(context);
         }
 
         public ReviewProcessForEvaluatingPage SelectFailAndContinueInProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage()
         {
             SelectFailAndContinueToSubSection();
-            return new ReviewProcessForEvaluatingPage(_context);
+            return new ReviewProcessForEvaluatingPage(context);
         }
     }
 }

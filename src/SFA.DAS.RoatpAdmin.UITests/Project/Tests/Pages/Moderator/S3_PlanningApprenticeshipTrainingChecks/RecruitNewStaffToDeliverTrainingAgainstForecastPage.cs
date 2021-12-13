@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
         public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(_context);
+            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(context);
         }
 
         public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage SelectFailAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
         {
             SelectFailAndContinueToSubSection();
-            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(_context);
+            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(context);
         }
     }
 }

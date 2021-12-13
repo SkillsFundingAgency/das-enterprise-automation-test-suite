@@ -15,13 +15,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()
         {
             formCompletionHelper.Click(DigitalLink);
-            return new DeliveringTrainingInDigitalSectorPage(_context);
+            return new DeliveringTrainingInDigitalSectorPage(context);
         }
 
         public ApplicationAssessmentOverviewPage NavigateToAssessmentOverviewPage()
         {
             formCompletionHelper.Click(GoToApplicationAssessmentOverviewLink);
-            return new ApplicationAssessmentOverviewPage(_context);
+            return new ApplicationAssessmentOverviewPage(context);
         }
     }
 }

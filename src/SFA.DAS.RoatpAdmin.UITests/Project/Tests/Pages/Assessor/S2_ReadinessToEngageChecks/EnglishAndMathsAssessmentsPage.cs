@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
         public DeliverEnglishAndMathsAssessmentsPage SelectPassAndContinueForEnglishAndMathsAssessment()
         {
             SelectPassAndContinueToSubSection();
-            return new DeliverEnglishAndMathsAssessmentsPage(_context);
+            return new DeliverEnglishAndMathsAssessmentsPage(context);
         }
     }
 }

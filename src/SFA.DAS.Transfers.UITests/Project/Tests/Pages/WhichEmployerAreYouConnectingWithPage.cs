@@ -16,7 +16,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ReceivingEmployer, receiverAccountId);
             Continue();
-            return new ConfirmConnectionDetailsPage(_context);
+            return new ConfirmConnectionDetailsPage(context);
         }
     }
 }

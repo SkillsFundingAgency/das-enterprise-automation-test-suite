@@ -50,7 +50,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             SelectUlnSearchTypeRadioButton();
             EnterTextInSearchBox(config.Uln);
             ClickSearchButton();
-            return new UlnSearchResultsPage(_context);
+            return new UlnSearchResultsPage(context);
         }
 
         public void SearchWithInvalidULN()
@@ -70,7 +70,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             SelectCohortRefSearchTypeRadioButton();
             EnterTextInSearchBox(config.CohortRef);
             ClickSearchButton();
-            return new CohortSummaryPage(_context);
+            return new CohortSummaryPage(context);
         }
 
         public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()

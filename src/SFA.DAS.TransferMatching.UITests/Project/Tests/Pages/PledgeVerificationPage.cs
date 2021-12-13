@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("View your pledges");
 
-            return new MyTransferPledgesPage(_context);
+            return new MyTransferPledgesPage(context);
         }
     }
 }

@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
         public AssessorOverallResponsibilityForSafeguardingPage SelectPassAndContinueInSafeguardingAndPreventDutyPolicyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AssessorOverallResponsibilityForSafeguardingPage(_context);
+            return new AssessorOverallResponsibilityForSafeguardingPage(context);
         }
         public AssessorOverallResponsibilityForSafeguardingPage SelectFailAndContinueInSafeguardingAndPreventDutyPolicyPage()
         {
             SelectFailAndContinueToSubSection();
-            return new AssessorOverallResponsibilityForSafeguardingPage(_context);
+            return new AssessorOverallResponsibilityForSafeguardingPage(context);
         }
     }
 }

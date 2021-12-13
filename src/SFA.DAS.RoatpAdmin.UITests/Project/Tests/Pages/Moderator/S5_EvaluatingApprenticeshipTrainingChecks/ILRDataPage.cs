@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S5_Evaluating
         public IndividualAccountableForILRDataPage SelectPassAndContinueForILRDataPage()
         {
             SelectPassAndContinueToSubSection();
-            return new IndividualAccountableForILRDataPage(_context);
+            return new IndividualAccountableForILRDataPage(context);
         }
 
         public IndividualAccountableForILRDataPage SelectFailAndContinueForILRDataPage()
         {
             SelectFailAndContinueToSubSection();
-            return new IndividualAccountableForILRDataPage(_context);
+            return new IndividualAccountableForILRDataPage(context);
         }
     }
 }

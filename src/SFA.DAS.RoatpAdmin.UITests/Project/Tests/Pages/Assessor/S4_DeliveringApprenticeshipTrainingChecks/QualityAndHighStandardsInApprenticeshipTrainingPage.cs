@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public HowExpectationsForQualityPage SelectPassAndContinueInQualityAndHighStandardsInApprenticeshipTrainingPage()
         {
             SelectPassAndContinueToSubSection();
-            return new HowExpectationsForQualityPage(_context);
+            return new HowExpectationsForQualityPage(context);
         }
     }
 }

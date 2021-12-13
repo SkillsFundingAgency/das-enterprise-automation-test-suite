@@ -41,7 +41,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new CreateATransferPledgePage(_context);
+            return new CreateATransferPledgePage(context);
         }
 
         protected void SelectRandomCheckbox()

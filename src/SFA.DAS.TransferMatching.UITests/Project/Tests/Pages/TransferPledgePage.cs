@@ -15,7 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public ApproveAppliationPage GoToApproveAppliationPage()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetOrganisationName());
-            return new ApproveAppliationPage(_context);
+            return new ApproveAppliationPage(context);
         }
     }
 }

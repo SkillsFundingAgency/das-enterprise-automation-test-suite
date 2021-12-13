@@ -18,27 +18,27 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         public FinancialLandingPage DownloadAllCurrentApplications()
         {
             formCompletionHelper.ClickLinkByText("Download all current applications");
-            return new FinancialLandingPage(_context);
+            return new FinancialLandingPage(context);
         }
 
         public FinancialHealthAssessmentOverviewPage SelectNewApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(CurrentApplicationsTab));
             formCompletionHelper.ClickLinkByText( objectContext.GetProviderName());
-            return new FinancialHealthAssessmentOverviewPage(_context);
+            return new FinancialHealthAssessmentOverviewPage(context);
         }
 
         public FinancialHealthAssessmentOverviewPage SelectClarificationApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab));
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new FinancialHealthAssessmentOverviewPage(_context);
+            return new FinancialHealthAssessmentOverviewPage(context);
         }
 
         public new FinancialLandingPage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
-            return new FinancialLandingPage(_context);
+            return new FinancialLandingPage(context);
         }
         public FinancialLandingPage ConfirmFinanceSearchByName()
         {

@@ -23,7 +23,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
             if (objectContext.GetApplicationRoute() == ApplicationRoute.SupportingProviderRoute ||
                 objectContext.GetApplicationRoute() == ApplicationRoute.SupportingProviderRouteForExistingProvider) SelectRadioOptionByText("100k");
             Continue();
-            return new FinalConfirmationPassPage(_context);
+            return new FinalConfirmationPassPage(context);
         }
         public FinalConfirmationFailPage FailThisApplicationAndContinue()
         {
@@ -31,7 +31,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
             formCompletionHelper.EnterText(InternalFailComments, "Internal Fail comments");
             formCompletionHelper.EnterText(ExternalFailComments, "External Fail comments");
             Continue();
-            return new FinalConfirmationFailPage(_context);
+            return new FinalConfirmationFailPage(context);
         }
         public FinalConfirmationRejectPage RejectThisApplicationAndContinue()
         {
@@ -39,7 +39,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
             formCompletionHelper.EnterText(InternalRejectComments, "Internal Reject Comments");
             formCompletionHelper.EnterText(ExternalRejectComments, "External Reject Comments");
             Continue();
-            return new FinalConfirmationRejectPage(_context);
+            return new FinalConfirmationRejectPage(context);
         }
     }
 }

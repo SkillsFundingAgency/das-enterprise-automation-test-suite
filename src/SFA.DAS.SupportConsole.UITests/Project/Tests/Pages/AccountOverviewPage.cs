@@ -27,13 +27,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public TeamMembersPage ClickTeamMembersLink()
         {
             formCompletionHelper.Click(TeamMembersLink);
-            return new TeamMembersPage(_context);
+            return new TeamMembersPage(context);
         }
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
             formCompletionHelper.Click(CommitmentsMenuLink);
-            return new CommitmentsSearchPage(_context);
+            return new CommitmentsSearchPage(context);
         }
 
         private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);

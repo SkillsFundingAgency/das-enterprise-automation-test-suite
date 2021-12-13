@@ -13,7 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         public FinancialLandingPage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPFinancialApplicationsLink);
-            return new FinancialLandingPage(_context);
+            return new FinancialLandingPage(context);
         }
     }
 }

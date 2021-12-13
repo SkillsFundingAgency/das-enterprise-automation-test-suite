@@ -16,13 +16,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public TransferPledgePage GoToTransferPledgePage()
         {
             formCompletionHelper.Click(PledgeSelector);
-            return new TransferPledgePage(_context);
+            return new TransferPledgePage(context);
         }
 
         public PledgeAndTransferYourLevyFundsPage CreatePledge()
         {
             formCompletionHelper.Click(CreatePledgesSelector);
-            return new PledgeAndTransferYourLevyFundsPage(_context);
+            return new PledgeAndTransferYourLevyFundsPage(context);
         }
 
         public void VerifyPledge() => VerifyPage(PledgeSelector);

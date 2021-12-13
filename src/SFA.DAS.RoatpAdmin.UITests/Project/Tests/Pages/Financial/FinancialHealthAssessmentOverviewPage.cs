@@ -38,7 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
                 formCompletionHelper.EnterText(YearOutStandingField, "2022");
                 Continue();
             }
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         public FinancialHealthAssesmentCompletedPage ConfirmNeedsClarification()
@@ -46,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             SelectRadioOptionByForAttribute("clarification");
             formCompletionHelper.EnterText(ClarificationCommentBox, "PMO Clarification Internal Comments");
             Continue();
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         public FinancialHealthAssesmentCompletedPage EnterClarificationResponse()
@@ -59,7 +59,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             formCompletionHelper.EnterText(InadequateCommentBox, "PMO Clarification Internal Comments for Inadequate");
             formCompletionHelper.EnterText(InadequateExternalCommentsBox, "PMO Clarification External Comments for Inadequate");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Save outcome");
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         private FinancialHealthAssessmentOverviewPage UploadFile()

@@ -17,7 +17,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CohortDetailsPage ClickViewThisCohortButton()
         {
             formCompletionHelper.Click(ViewThisCohortButton);
-            return new CohortDetailsPage(_context);
+            return new CohortDetailsPage(context);
         }
 
         public string GetCohortRefNumber()

@@ -36,7 +36,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new CreateATransfersApplicationPage(_context);
+            return new CreateATransfersApplicationPage(context);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         {
             SelectRadioOptionByText("Pass");
             Continue();
-            return new AreYouSureYouWantToPassPage(_context);
+            return new AreYouSureYouWantToPassPage(context);
         }
 
         public AreYouSureYouWantToFailPage SelectFailAndContinueAreYouSurePage()
@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             SelectRadioOptionByText("Fail");
             EnterFailInternalComments();
             Continue();
-            return new AreYouSureYouWantToFailPage(_context);
+            return new AreYouSureYouWantToFailPage(context);
         }
 
         public AreYouSureYouWantToAskPage SelectAskForClarificationAndContinueAreYouSurePage()
@@ -28,7 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             SelectRadioOptionByText("Ask for clarification");
             EnterAskForClarificationInternalComments();
             Continue();
-            return new AreYouSureYouWantToAskPage(_context);
+            return new AreYouSureYouWantToAskPage(context);
         }
     }
 }

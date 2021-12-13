@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public ExpectationsForQualityAndHighStandardsPage SelectPassAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
         {
             SelectPassAndContinueToSubSection();
-            return new ExpectationsForQualityAndHighStandardsPage(_context);
+            return new ExpectationsForQualityAndHighStandardsPage(context);
         }
 
         public ExpectationsForQualityAndHighStandardsPage SelectFailAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
         {
             SelectFailAndContinueToSubSection();
-            return new ExpectationsForQualityAndHighStandardsPage(_context);
+            return new ExpectationsForQualityAndHighStandardsPage(context);
         }
     }
 }

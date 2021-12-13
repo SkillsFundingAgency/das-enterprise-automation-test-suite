@@ -16,7 +16,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(DoYouWishToConnectToThisEmpoyerOptions, "Yes, I want to approve the connection request");
             Continue();
-            return new ConnectionConfirmedPage(_context);
+            return new ConnectionConfirmedPage(context);
         }
     }
 }

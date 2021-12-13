@@ -55,7 +55,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             if (pageInteractionHelper.IsElementDisplayed(ReturnToDashBoard))
                 formCompletionHelper.ClickElement(ReturnToDashBoard);
             
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
 
         public bool VerifyApplication() => pageInteractionHelper.IsElementDisplayed(ProviderLink);

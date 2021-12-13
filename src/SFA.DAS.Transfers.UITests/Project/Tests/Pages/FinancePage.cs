@@ -13,7 +13,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public TransfersPage OpenTransfers()
         {
             formCompletionHelper.ClickElement(TransferLink);
-            return new TransfersPage(_context);
+            return new TransfersPage(context);
         }
     }
 }

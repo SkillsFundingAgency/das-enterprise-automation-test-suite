@@ -40,7 +40,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
-            return new AccountOverviewPage(_context);
+            return new AccountOverviewPage(context);
         }
 
         private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
@@ -50,7 +50,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
-            return new UserInformationOverviewPage(_context);
+            return new UserInformationOverviewPage(context);
         }
     }
 }

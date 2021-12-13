@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S5_Evaluating
         public ILRDataPage SelectPassAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
         {
             SelectPassAndContinueToSubSection();
-            return new ILRDataPage(_context);
+            return new ILRDataPage(context);
         }
 
         public ILRDataPage SelectFailAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
         {
             SelectFailAndContinueToSubSection();
-            return new ILRDataPage(_context);
+            return new ILRDataPage(context);
         }
     }
 }

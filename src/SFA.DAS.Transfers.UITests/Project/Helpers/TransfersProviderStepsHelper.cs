@@ -5,10 +5,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
     public class TransfersProviderStepsHelper : ProviderStepsHelper
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         public TransfersProviderStepsHelper(ScenarioContext context) : base(context)
         {
-            _context = context;
+            context = context;
         }
 
         public void ApprovesTheCohortsAndSendsToEmployer()

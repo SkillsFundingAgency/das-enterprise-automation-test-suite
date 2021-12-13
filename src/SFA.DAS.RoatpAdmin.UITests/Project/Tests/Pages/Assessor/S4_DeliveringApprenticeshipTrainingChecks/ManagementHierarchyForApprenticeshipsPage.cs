@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public AnnualTurnOverFTEPage SelectPassAndContinueInManagementHierarchyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnnualTurnOverFTEPage(_context);
+            return new AnnualTurnOverFTEPage(context);
         }
     }
 }

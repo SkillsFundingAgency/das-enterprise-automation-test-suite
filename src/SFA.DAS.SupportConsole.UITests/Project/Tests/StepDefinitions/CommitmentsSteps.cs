@@ -9,14 +9,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class CommitmentsSteps
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         private readonly StepsHelper _stepsHelper;
         private readonly SupportConsoleConfig _config;
 
         public CommitmentsSteps(ScenarioContext context)
         {
-            _context = context;
-            _stepsHelper = new StepsHelper(_context);
+            context = context;
+            _stepsHelper = new StepsHelper(context);
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
         }
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"the ULN details are displayed")]
         public void ThenTheULNDetailsAreDisplayed()
         {
-            var ulnSearchResultsPage = new UlnSearchResultsPage(_context);
+            var ulnSearchResultsPage = new UlnSearchResultsPage(context);
 
             ulnSearchResultsPage.SelectULN()
                 .VerifyUlnDetailsPageHeaders();
@@ -41,7 +41,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"appropriate ULN error message is shown to the user")]
         public void ThenAppropriateUlnErrorMessageIsShownToTheUser()
         {
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            var commitmentsSearchPage = new CommitmentsSearchPage(context);
             Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), commitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
         }
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"the User clicks on 'View this cohort' button")]
         public void WhenTheUserClicksOnButton()
         {
-            var cohortSummaryPage = new CohortSummaryPage(_context);
+            var cohortSummaryPage = new CohortSummaryPage(context);
             Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
             cohortSummaryPage.ClickViewThisCohortButton();
         }
@@ -59,13 +59,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"the user chooses to view Uln of the Cohort")]
         public void WhenTheUserChoosesToViewUlnOfTheCohort()
         {
-            var cohortDetailsPage = new CohortDetailsPage(_context);
+            var cohortDetailsPage = new CohortDetailsPage(context);
             Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortDetailsPage");
             cohortDetailsPage.ClickViewUlnLink();
         }
 
         [Then(@"the ULN details page is displayed")]
-        public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(_context).VerifyUlnDetailsPageHeaders();
+        public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(context).VerifyUlnDetailsPageHeaders();
 
         [When(@"the User searches with a invalid Cohort Ref")]
         public void WhenTheUserSearchesWithAInvalidCohortRef() => _stepsHelper.SearchWithInvalidCohort(false);
@@ -73,7 +73,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"appropriate Cohort error message is shown to the user")]
         public void ThenAppropriateCohortErrorMessageIsShownToTheUser()
         {
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            var commitmentsSearchPage = new CommitmentsSearchPage(context);
             Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), commitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
         }
 
@@ -86,7 +86,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [Then(@"unauthorised Cohort access error message is shown to the user")]
         public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser()
         {
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            var commitmentsSearchPage = new CommitmentsSearchPage(context);
             Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), commitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
         }
     }

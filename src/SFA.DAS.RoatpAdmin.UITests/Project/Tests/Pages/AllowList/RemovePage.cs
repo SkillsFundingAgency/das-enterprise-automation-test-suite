@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.AllowList
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new ConfirmationPage(_context);
+            return new ConfirmationPage(context);
         }
     }
 }

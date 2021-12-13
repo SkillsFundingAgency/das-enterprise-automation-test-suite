@@ -20,7 +20,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go back to the homepage");
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

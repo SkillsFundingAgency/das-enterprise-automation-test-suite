@@ -16,31 +16,31 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public ApplicationSubmittedPage SubmitApplication()
         {
             Continue();
-            return new ApplicationSubmittedPage(_context);
+            return new ApplicationSubmittedPage(context);
         }
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
             formCompletionHelper.ClickLinkByText(GetRandomLink(AppTraining));
-            return new ApprenticeshipTrainingPage(_context);
+            return new ApprenticeshipTrainingPage(context);
         }
 
         public AddYourBusinessDetailsPage GoToYourBusinessDetailsPage()
         {
             formCompletionHelper.ClickLinkByText(GetRandomLink(BusinessDetails));
-            return new AddYourBusinessDetailsPage(_context);
+            return new AddYourBusinessDetailsPage(context);
         }
 
         public AboutYourApprenticeshipPage GoToAboutYourApprenticeshipPage()
         {
             formCompletionHelper.ClickLinkByText("More detail");
-            return new AboutYourApprenticeshipPage(_context);
+            return new AboutYourApprenticeshipPage(context);
         }
 
         public AddContactDetailsPage GoToContactDetailsPage()
         {
             formCompletionHelper.ClickLinkByText(GetRandomLink(ContactDetails));
-            return new AddContactDetailsPage(_context);
+            return new AddContactDetailsPage(context);
         }
 
         private string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);

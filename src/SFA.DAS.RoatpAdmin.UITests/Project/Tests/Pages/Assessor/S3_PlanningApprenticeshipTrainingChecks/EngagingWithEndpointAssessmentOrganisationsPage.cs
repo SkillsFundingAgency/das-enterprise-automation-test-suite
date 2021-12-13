@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public EngagingAndWorkWithAwardingBodiesPage SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
         {
             SelectPassAndContinueToSubSection();
-            return new EngagingAndWorkWithAwardingBodiesPage(_context);
+            return new EngagingAndWorkWithAwardingBodiesPage(context);
         }
         public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(_context);
+            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(context);
         }
     }
 }

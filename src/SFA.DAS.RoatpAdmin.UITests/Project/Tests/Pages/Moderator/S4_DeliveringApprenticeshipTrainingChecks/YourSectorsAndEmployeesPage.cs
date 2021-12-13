@@ -15,14 +15,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()
         {
             formCompletionHelper.Click(DigitalLink);
-            return new DeliveringTrainingInDigitalSectorPage(_context);
+            return new DeliveringTrainingInDigitalSectorPage(context);
         }
 
         public ModerationApplicationAssessmentOverviewPage NavigateToAssessmentOverviewPage()
         {
             formCompletionHelper.Click(GoToApplicationAssessmentOverviewLink);
 
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
     }
 }

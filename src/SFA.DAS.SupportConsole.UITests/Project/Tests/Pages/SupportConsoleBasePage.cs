@@ -23,7 +23,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public SearchHomePage GoToSearchHomePage()
         {
             formCompletionHelper.ClickElement(Heading);
-            return new SearchHomePage(_context);
+            return new SearchHomePage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public OffTheJobTrainingRelevantToApprenticeshipBeingDeliveredPage SelectPassAndContinueInOffTheJobTrainingPage()
         {
             SelectPassAndContinueToSubSection();
-            return new OffTheJobTrainingRelevantToApprenticeshipBeingDeliveredPage(_context);
+            return new OffTheJobTrainingRelevantToApprenticeshipBeingDeliveredPage(context);
         }
     }
 }

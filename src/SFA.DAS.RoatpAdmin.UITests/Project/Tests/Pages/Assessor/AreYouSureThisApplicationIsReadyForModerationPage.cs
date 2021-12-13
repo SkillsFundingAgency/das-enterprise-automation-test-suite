@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             SelectRadioOptionByForAttribute("OptionYes");
             Continue();
-            return new BlindAssessmentCompletePage(_context);
+            return new BlindAssessmentCompletePage(context);
         }
     }
 }

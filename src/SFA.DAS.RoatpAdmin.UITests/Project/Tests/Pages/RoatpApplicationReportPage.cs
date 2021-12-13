@@ -18,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             formCompletionHelper.SendKeys(FromDate, DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd"));
             formCompletionHelper.SendKeys(ToDate, DateTime.Now.ToString("yyyy-MM-dd"));
             Continue();
-            return new RoatpApplicationReportPage(_context);
+            return new RoatpApplicationReportPage(context);
         }
 
     }

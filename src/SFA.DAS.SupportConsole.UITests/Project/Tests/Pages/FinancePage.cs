@@ -28,7 +28,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             
             tableRowHelper.SelectRowFromTable("view", obscurepaye);
             
-            return new LevyDeclarationsPage(_context);
+            return new LevyDeclarationsPage(context);
         }
 
         public void ViewTransactions()

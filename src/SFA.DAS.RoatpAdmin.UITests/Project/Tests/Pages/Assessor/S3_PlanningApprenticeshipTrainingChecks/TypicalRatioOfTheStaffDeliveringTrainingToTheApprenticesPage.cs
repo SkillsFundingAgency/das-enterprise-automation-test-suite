@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public HowSupportIsAgreedBetweenEmployerApprenticePage SelectPassAndContinueInTypicalRatioOfStaffDeliveringTraining()
         {
             SelectPassAndContinueToSubSection();
-            return new HowSupportIsAgreedBetweenEmployerApprenticePage(_context);
+            return new HowSupportIsAgreedBetweenEmployerApprenticePage(context);
         }
     }
 }

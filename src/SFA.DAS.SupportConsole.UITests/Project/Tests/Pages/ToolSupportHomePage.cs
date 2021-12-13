@@ -20,25 +20,25 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
         {
             formCompletionHelper.Click(PauseApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(_context);
+            return new SearchForApprenticeshipPage(context);
         }
 
         public SearchForApprenticeshipPage ClickResumeApprenticeshipsLink()
         {
             formCompletionHelper.Click(ResumeApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(_context);
+            return new SearchForApprenticeshipPage(context);
         }
 
         public SearchForApprenticeshipPage ClickStopApprenticeshipsLink()
         {
             formCompletionHelper.Click(StopApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(_context);
+            return new SearchForApprenticeshipPage(context);
         }
 
         public SearchHomePage GoToHomePage()
         {
             formCompletionHelper.ClickElement(HomeHeading);
-            return new SearchHomePage(_context);
+            return new SearchHomePage(context);
         }
 
     }

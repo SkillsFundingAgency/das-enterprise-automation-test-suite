@@ -32,14 +32,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             EnterAmountAndOrgName(true, true);
 
-            return new PledgeAmountAndOptionToHideOrganisastionNamePage(_context);
+            return new PledgeAmountAndOptionToHideOrganisastionNamePage(context);
         }
 
         public CreateATransferPledgePage EnterValidAmountAndOrgName(bool showOrg)
         {
             EnterAmountAndOrgName(showOrg, false);
 
-            return new CreateATransferPledgePage(_context);
+            return new CreateATransferPledgePage(context);
         }
 
         private void EnterAmountAndOrgName(bool showOrg, bool exceedMaxFunding)

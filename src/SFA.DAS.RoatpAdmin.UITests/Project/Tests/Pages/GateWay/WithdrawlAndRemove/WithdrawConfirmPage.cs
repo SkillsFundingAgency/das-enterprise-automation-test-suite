@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(InternalComments, "Withdraw Application Comments");
             Continue();
-            return new WithDrawOutcomePage(_context);
+            return new WithDrawOutcomePage(context);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OversightSuccessful);
             formCompletionHelper.EnterText(SuccessfulText, "Optional Successful Internal comments ");
             Continue();
-            return new AreYouSureSuccessfullPage(_context);
+            return new AreYouSureSuccessfullPage(context);
         }
 
         public AreYouSureSuccessfullPage MakeApplicationSuccessfulAlreadyActive()
@@ -48,7 +48,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OversightSuccessfulAlreadyActive);
             formCompletionHelper.EnterText(SuccessfulAlreadyActiveText, "Optional Successful Already Active Internal comments ");
             Continue();
-            return new AreYouSureSuccessfullPage(_context);
+            return new AreYouSureSuccessfullPage(context);
         }
 
         public AreYouSureSuccessfullPage MakeApplicationSuccessfulFitnessForFunding()
@@ -58,26 +58,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OversightSuccessfullFitnessForFunding);
             formCompletionHelper.EnterText(SuccessfullFitnessForFundingText, "Optional Successful Fitness For Funding Internal comments ");
             Continue();
-            return new AreYouSureSuccessfullPage(_context);
+            return new AreYouSureSuccessfullPage(context);
         }
 
         public OversightAssessmentCompletePage SendOutcomeToTheApplicant(string expectedStatus)
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, "Send outcome");
-            return new OversightAssessmentCompletePage(_context, expectedStatus);
+            return new OversightAssessmentCompletePage(context, expectedStatus);
         }
 
         public ApplicationSummaryPage OverTurnThisApplication()
         {
             formCompletionHelper.ClickElement(OverturnGatewayOutcome);
             formCompletionHelper.ClickElement(OverturnModerationOutcome);
-            return new ApplicationSummaryPage(_context);
+            return new ApplicationSummaryPage(context);
         }
         public ApplicationSummaryPage ApproveGatewayAndModerationOutcomes()
         {
             formCompletionHelper.ClickElement(ApproveGatewayOutcome);
             formCompletionHelper.ClickElement(ApproveModertionOutcome);
-            return new ApplicationSummaryPage(_context);
+            return new ApplicationSummaryPage(context);
         }
 
         public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful()
@@ -86,14 +86,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments ");
             formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments ");
             Continue();
-            return new AreYouSureUnSuccessfullPage(_context);
+            return new AreYouSureUnSuccessfullPage(context);
         }
         public AreYouSureUnSuccessfullPage MakeApplicationUnSuccessful_ApprovedGatewayModerationOutcomes_Unsuccessful()
         {
             formCompletionHelper.ClickElement(OversightUnSuccessful);
             formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments for approving Gateway and Moderation outcome");
             Continue();
-            return new AreYouSureUnSuccessfullPage(_context);
+            return new AreYouSureUnSuccessfullPage(context);
         }
         public AreYouSureInProgressPage MakeApplicationInProgress()
         {
@@ -101,21 +101,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.EnterText(InProgressInternalText, "In Progress Internal comments ");
             formCompletionHelper.EnterText(InProgressExternalText, "In Progress External comments ");
             Continue();
-            return new AreYouSureInProgressPage(_context);
+            return new AreYouSureInProgressPage(context);
         }
         public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessful_Appeal()
         {
             formCompletionHelper.ClickElement(AppealOversightSuccessful);
             formCompletionHelper.EnterText(SuccessfulText, "Optional Successful Internal comments for Appeal");
             Continue();
-            return new AreYouSureSuccessfullForAppealPage(_context);
+            return new AreYouSureSuccessfullForAppealPage(context);
         }
         public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessfulAlreadyActive_Appeal()
         {
             formCompletionHelper.ClickElement(AppealOversightSuccessfulAlreadyActive);
             formCompletionHelper.EnterText(AppealOversightSuccessfulAlreadyActiveTextBox, "Optional Successful Already Active Internal comments for Appeal ");
             Continue();
-            return new AreYouSureSuccessfullForAppealPage(_context);
+            return new AreYouSureSuccessfullForAppealPage(context);
         }
 
         public AreYouSureSuccessfullForAppealPage MakeApplicationSuccessfulFitnessForFunding_Appeal()
@@ -123,7 +123,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.ClickElement(OversightSuccessfullFitnessForFunding);
             formCompletionHelper.EnterText(SuccessfullFitnessForFundingText, "Optional Successful Fitness For Funding Internal comments for Appeal ");
             Continue();
-            return new AreYouSureSuccessfullForAppealPage(_context);
+            return new AreYouSureSuccessfullForAppealPage(context);
         }
         public AreYouSureUnSuccessfullForAppealPage MakeApplicationUnSuccessful_Appeal()
         {
@@ -131,7 +131,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.EnterText(UnSuccessfulInternalText, "UnSuccessful Internal comments ");
             formCompletionHelper.EnterText(UnSuccessfulExternalText, "UnSuccessful External comments ");
             Continue();
-            return new AreYouSureUnSuccessfullForAppealPage(_context);
+            return new AreYouSureUnSuccessfullForAppealPage(context);
         }
         public AreYouSureInProgressForAppealPage MakeApplicationInProgress_Appeal()
         {
@@ -139,7 +139,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
             formCompletionHelper.EnterText(InProgressInternalText, "In Progress Internal comments ");
             formCompletionHelper.EnterText(InProgressExternalText, "In Progress External comments ");
             Continue();
-            return new AreYouSureInProgressForAppealPage(_context);
+            return new AreYouSureInProgressForAppealPage(context);
         }
     }
 }

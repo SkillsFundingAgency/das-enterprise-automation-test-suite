@@ -40,21 +40,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
 
-            return new ApplicationSummaryPage(_context);
+            return new ApplicationSummaryPage(context);
         }
 
         public ApplicationSummaryPage SelectApplication_AppealTab()
         {
             formCompletionHelper.ClickElement(AppealsTab);
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ApplicationSummaryPage(_context);
+            return new ApplicationSummaryPage(context);
         }
 
         public ApplicationSummaryPage SelectApplication_AppealOutcomeTab()
         {
             formCompletionHelper.ClickElement(AppealOutcomesTab);
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ApplicationSummaryPage(_context);
+            return new ApplicationSummaryPage(context);
         }
     }
 }

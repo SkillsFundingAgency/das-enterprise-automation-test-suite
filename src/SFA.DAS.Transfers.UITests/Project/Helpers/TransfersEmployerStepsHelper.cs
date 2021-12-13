@@ -9,13 +9,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
     public class TransfersEmployerStepsHelper : EmployerStepsHelper
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         private readonly TransfersUser _transfersUser;
 
         public TransfersEmployerStepsHelper(ScenarioContext context) : base(context)
         {
-            _context = context;
-            _transfersUser = _context.GetUser<TransfersUser>();
+            context = context;
+            _transfersUser = context.GetUser<TransfersUser>();
         }
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort() =>
@@ -36,7 +36,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {
             GoToEmployerApprenticesHomePage();
-            return new FinancePage(_context, true)
+            return new FinancePage(context, true)
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
         }

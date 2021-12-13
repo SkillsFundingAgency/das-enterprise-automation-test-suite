@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
         public ProcessToAssessEnglishAndMathsPage SelectPassAndContinueInPriorLearningOfApprenticesPage()
         {
             SelectPassAndContinueToSubSection();
-            return new ProcessToAssessEnglishAndMathsPage(_context);
+            return new ProcessToAssessEnglishAndMathsPage(context);
         }
 
         public ProcessToAssessEnglishAndMathsPage SelectFailAndContinueInPriorLearningOfApprenticesPage()
         {
             SelectFailAndContinueToSubSection();
-            return new ProcessToAssessEnglishAndMathsPage(_context);
+            return new ProcessToAssessEnglishAndMathsPage(context);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus)
         {
             formCompletionHelper.ClickLinkByText(GetPledgeId());
-            return new ApplicationsDetailsPage(_context, expectedStatus);
+            return new ApplicationsDetailsPage(context, expectedStatus);
         }
     }
 }

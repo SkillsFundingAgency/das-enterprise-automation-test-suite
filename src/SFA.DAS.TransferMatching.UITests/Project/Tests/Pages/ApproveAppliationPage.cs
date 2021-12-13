@@ -16,7 +16,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByText("Approve the application");
             Continue();
-            return new AppliationApprovedPage(_context);
+            return new AppliationApprovedPage(context);
         }
     }
 }

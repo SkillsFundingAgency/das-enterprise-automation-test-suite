@@ -12,14 +12,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
 
-            return new SearchHomePage(_context);
+            return new SearchHomePage(context);
         }
 
         public ToolSupportHomePage SignIntoToolSupportWithValidDetails(LoginUser usercreds)
         {
             SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
 
-            return new ToolSupportHomePage(_context);
+            return new ToolSupportHomePage(context);
         }
     }
 }

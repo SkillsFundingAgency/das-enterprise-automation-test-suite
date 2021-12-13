@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public AnExampleOfHowThePolicyToImprovePage SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToImprovePage(_context);
+            return new AnExampleOfHowThePolicyToImprovePage(context);
         }
     }
 }

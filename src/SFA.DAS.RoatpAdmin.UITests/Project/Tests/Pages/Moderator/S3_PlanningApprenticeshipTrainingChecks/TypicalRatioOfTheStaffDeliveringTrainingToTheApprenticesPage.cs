@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
         public HowSupportIsAgreedBetweenEmployerApprenticePage SelectPassAndContinueInTypicalRatioOfStaffDeliveringTraining()
         {
             SelectPassAndContinueToSubSection();
-            return new HowSupportIsAgreedBetweenEmployerApprenticePage(_context);
+            return new HowSupportIsAgreedBetweenEmployerApprenticePage(context);
         }
         public HowSupportIsAgreedBetweenEmployerApprenticePage SelectFailAndContinueInTypicalRatioOfStaffDeliveringTraining()
         {
             SelectFailAndContinueToSubSection();
-            return new HowSupportIsAgreedBetweenEmployerApprenticePage(_context);
+            return new HowSupportIsAgreedBetweenEmployerApprenticePage(context);
         }
     }
 }

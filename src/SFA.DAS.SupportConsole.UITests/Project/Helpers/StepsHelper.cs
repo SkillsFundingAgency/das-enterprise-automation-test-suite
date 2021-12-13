@@ -11,28 +11,28 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
     public class StepsHelper
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         private readonly TabHelper _tabHelper;
 
         public StepsHelper(ScenarioContext context)
         {
-            _context = context;
-            _tabHelper = _context.Get<TabHelper>();
+            context = context;
+            _tabHelper = context.Get<TabHelper>();
         }
 
-        public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
+        public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(context.GetUser<SupportConsoleTier1User>());
         
-        public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
+        public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(context.GetUser<SupportConsoleTier2User>());
 
-        public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(_context.GetUser<SupportToolsUser>());
+        public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(context.GetUser<SupportToolsUser>());
 
-        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
+        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(context).SearchByPublicAccountIdAndViewAccount();
 
-        public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
+        public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(context).ClickCommitmentsMenuLink().SearchForULN();
 
         public void SearchWithInvalidUln(bool WithSpecialChars)
         {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
+            var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
             Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
@@ -44,7 +44,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public void SearchWithInvalidCohort(bool WithSpecialChars)
         {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+            var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
             VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
@@ -56,30 +56,30 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public void SearchWithUnauthorisedCohortAccess()
         {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+            var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
             VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
             
             commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
         }
 
-        public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
+        public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(context).ClickCommitmentsMenuLink().SearchForCohort();
 
         void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
         private SearchHomePage LoginToSupportConsole(LoginUser loginUser)
         {
-            new IdamsPage(_context).LoginToAccess1Staff();
+            new IdamsPage(context).LoginToAccess1Staff();
 
-            return new SignInPage(_context).SignInWithValidDetails(loginUser);
+            return new SignInPage(context).SignInWithValidDetails(loginUser);
         }
 
         private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
         {
             _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
-            new IdamsPage(_context).LoginToAccess1Staff();
+            new IdamsPage(context).LoginToAccess1Staff();
 
-            return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
+            return new SignInPage(context).SignIntoToolSupportWithValidDetails(loginUser);
         }
 
        

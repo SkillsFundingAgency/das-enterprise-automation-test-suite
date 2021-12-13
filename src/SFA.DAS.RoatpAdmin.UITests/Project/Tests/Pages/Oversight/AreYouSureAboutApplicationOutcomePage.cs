@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         {
             SelectRadioOptionByForAttribute("Confirm");
             Continue();
-            return new OversightAssessmentCompletePage(_context, OversightAssessmentMessage);
+            return new OversightAssessmentCompletePage(context, OversightAssessmentMessage);
         }
     }
 }

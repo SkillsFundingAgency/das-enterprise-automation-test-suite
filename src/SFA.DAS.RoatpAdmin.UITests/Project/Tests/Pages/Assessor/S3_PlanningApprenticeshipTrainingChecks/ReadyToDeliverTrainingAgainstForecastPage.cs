@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public RecruitNewStaffToDeliverTrainingAgainstForecastPage SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
         {
             SelectPassAndContinueToSubSection();
-            return new RecruitNewStaffToDeliverTrainingAgainstForecastPage(_context);
+            return new RecruitNewStaffToDeliverTrainingAgainstForecastPage(context);
         }
     }
 }

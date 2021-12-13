@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public AnExampleOfHowThePolicyToMaintainPage SelectPassAndContinueInAnExampleOfHowThePolicyToImprovePage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToMaintainPage(_context);
+            return new AnExampleOfHowThePolicyToMaintainPage(context);
         }
     }
 }

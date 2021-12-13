@@ -11,19 +11,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public OverallResponsibilityForMaintainingExpectationsPage SelectPassAndContinueInHowExpectationsForQualityPage()
         {
             SelectPassAndContinueToSubSection();
-            return new OverallResponsibilityForMaintainingExpectationsPage(_context);
+            return new OverallResponsibilityForMaintainingExpectationsPage(context);
         }
 
         public OverallResponsibilityForMaintainingExpectationsPage SelectFailAndContinueInHowExpectationsForQualityPage()
         {
             SelectFailAndContinueToSubSection();
-            return new OverallResponsibilityForMaintainingExpectationsPage(_context);
+            return new OverallResponsibilityForMaintainingExpectationsPage(context);
         }
 
         public OverallResponsibilityForMaintainingExpectationsPage SelectContinueInHowExpectationsForQualityPage()
         {
             Continue();
-            return new OverallResponsibilityForMaintainingExpectationsPage(_context);
+            return new OverallResponsibilityForMaintainingExpectationsPage(context);
         }
     }
 }

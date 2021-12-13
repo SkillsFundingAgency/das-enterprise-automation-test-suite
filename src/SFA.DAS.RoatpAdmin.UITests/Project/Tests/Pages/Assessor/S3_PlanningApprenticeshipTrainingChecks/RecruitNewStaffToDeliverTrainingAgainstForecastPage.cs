@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(_context);
+            return new TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(context);
         }
     }
 }

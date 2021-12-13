@@ -14,7 +14,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public CreateATransferPledgePage StartCreatePledge()
         {
             formCompletionHelper.Click(StartCreatePledgesSelector);
-            return new CreateATransferPledgePage(_context);
+            return new CreateATransferPledgePage(context);
         }
     }
 }

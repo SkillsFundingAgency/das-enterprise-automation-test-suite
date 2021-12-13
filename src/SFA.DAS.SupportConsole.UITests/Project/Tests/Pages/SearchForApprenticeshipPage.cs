@@ -93,7 +93,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public SearchForApprenticeshipPage ClickSubmitButton()
         {
             formCompletionHelper.Click(SubmitButton);
-            return new SearchForApprenticeshipPage(_context);
+            return new SearchForApprenticeshipPage(context);
         }
 
         public PauseApprenticeshipsPage ClickPauseButton()
@@ -101,19 +101,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
             javaScriptHelper.ScrollToTheBottom();            
             formCompletionHelper.Click(PauseButton);
-            return new PauseApprenticeshipsPage(_context);
+            return new PauseApprenticeshipsPage(context);
         }
 
         public ResumeApprenticeshipsPage ClickResumeButton()
         {
             formCompletionHelper.Click(ResumeButton);
-            return new ResumeApprenticeshipsPage(_context);
+            return new ResumeApprenticeshipsPage(context);
         }
 
         public StopApprenticeshipsPage ClickStopButton()
         {
             formCompletionHelper.Click(StopButton);
-            return new StopApprenticeshipsPage(_context);
+            return new StopApprenticeshipsPage(context);
         }
 
         public int GetNumberOfRecordsFound()

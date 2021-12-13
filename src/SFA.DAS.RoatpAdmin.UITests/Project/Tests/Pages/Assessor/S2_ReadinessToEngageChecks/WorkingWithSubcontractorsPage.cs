@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
         public DueDiligenceOnSubcontractorsPage SelectPassAndContinueInWorkingWithSubcontractorsPage()
         {
             SelectPassAndContinueToSubSection();
-            return new DueDiligenceOnSubcontractorsPage(_context);
+            return new DueDiligenceOnSubcontractorsPage(context);
         }
     }
 }

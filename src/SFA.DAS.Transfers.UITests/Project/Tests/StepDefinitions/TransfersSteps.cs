@@ -12,7 +12,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class TransfersSteps
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ObjectContext _objectContext;
@@ -26,7 +26,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         public TransfersSteps(ScenarioContext context)
         {
-            _context = context;
+            context = context;
             _transfersUser = context.GetUser<TransfersUser>();
             _sender = _transfersUser.OrganisationName;
             _receiver = _transfersUser.SecondOrganisationName;
@@ -43,7 +43,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Given(@"We have a Sender with sufficient levy funds without signing an agreement")]
         public void GivenWeHaveASenderWithSufficientLevyFundsWithoutSigningAnAgreement()
         {
-            _homePage = _employerPortalLoginHelper.Login(_context.GetUser<AgreementNotSignedTransfersUser>(), true);
+            _homePage = _employerPortalLoginHelper.Login(context.GetUser<AgreementNotSignedTransfersUser>(), true);
         }
 
         [Then(@"the sender transfer status is (disabled|enabled)")]

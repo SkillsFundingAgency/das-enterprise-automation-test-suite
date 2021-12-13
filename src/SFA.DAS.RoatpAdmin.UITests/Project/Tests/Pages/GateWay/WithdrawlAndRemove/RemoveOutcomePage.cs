@@ -18,7 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
         public GatewayLandingPage GoToRoATPGatewayApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPGatewayApplicationsLink);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
     }
 }

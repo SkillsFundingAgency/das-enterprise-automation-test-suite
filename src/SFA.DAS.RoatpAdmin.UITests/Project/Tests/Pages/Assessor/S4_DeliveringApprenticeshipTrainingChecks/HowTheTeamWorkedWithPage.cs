@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
         public OverallManagerForTheTeamPage SelectPassAndContinueInHowTheTeamWorkedWithPage()
         {
             SelectPassAndContinueToSubSection();
-            return new OverallManagerForTheTeamPage(_context);
+            return new OverallManagerForTheTeamPage(context);
         }
     }
 }

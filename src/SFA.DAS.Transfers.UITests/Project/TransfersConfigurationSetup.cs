@@ -9,19 +9,19 @@ namespace SFA.DAS.Transfers.UITests.Project
     [Binding]
     public class TransfersConfigurationSetup
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
         private readonly IConfigSection _configSection;
 
         public TransfersConfigurationSetup(ScenarioContext context)
         {
-            _context = context;
+            context = context;
             _configSection = context.Get<IConfigSection>();
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpTransfersConfiguration()
         {
-            _context.SetEasLoginUser(new List<EasAccountUser>() 
+            context.SetEasLoginUser(new List<EasAccountUser>() 
             {
                 _configSection.GetConfigSection<AgreementNotSignedTransfersUser>(),
                 _configSection.GetConfigSection<TransfersUser>()

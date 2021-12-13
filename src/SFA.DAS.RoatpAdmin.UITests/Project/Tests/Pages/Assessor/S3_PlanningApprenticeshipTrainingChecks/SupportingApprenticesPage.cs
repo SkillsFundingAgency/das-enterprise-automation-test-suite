@@ -11,12 +11,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
         public WaysOfSupportingApprenticesPage SelectPassAndContinueInSupportingApprenticesPage()
         {
             SelectPassAndContinueToSubSection();
-            return new WaysOfSupportingApprenticesPage(_context);
+            return new WaysOfSupportingApprenticesPage(context);
         }
         public ApplicationAssessmentOverviewPage SelectPassAndContinueInSupportingApprenticesPage_MainRoute()
         {
             SelectPassAndContinueToSubSection();
-            return new ApplicationAssessmentOverviewPage(_context);
+            return new ApplicationAssessmentOverviewPage(context);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public ManageTransferMatchingPage NavigateToTransferMatchingPage()
         {
             formCompletionHelper.Click(YourTransfersLink);
-            return new ManageTransferMatchingPage(_context);
+            return new ManageTransferMatchingPage(context);
         }
     }
 }

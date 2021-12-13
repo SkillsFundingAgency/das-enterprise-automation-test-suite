@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
         public OverallResponsibilityForHealthAndSafetyPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new OverallResponsibilityForHealthAndSafetyPage(_context);
+            return new OverallResponsibilityForHealthAndSafetyPage(context);
         }
 
         public OverallResponsibilityForHealthAndSafetyPage SelectFailAndContinueInHealthAndSafetyPolicyPage()
         {
             SelectFailAndContinueToSubSection();
-            return new OverallResponsibilityForHealthAndSafetyPage(_context);
+            return new OverallResponsibilityForHealthAndSafetyPage(context);
         }
     }
 }

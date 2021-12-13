@@ -15,7 +15,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
     {
         private readonly ApprovalsStepsHelper _approvalsStepsHelper;
         private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
 
         private HomePage _homePage;
         private string _senderAccountId;
@@ -26,7 +26,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         public CreateAccountTransfersSteps(ScenarioContext context)
         {
-            _context = context;
+            context = context;
             _objectContext = context.Get<ObjectContext>();
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
             _senderAccountId = null;
@@ -57,7 +57,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _homePage.GoToYourAccountsPage()
               .GoToHomePage(_sender);
 
-            _homePage = new FinancePage(_context, true)
+            _homePage = new FinancePage(context, true)
                 .OpenTransfers()
                 .ConnectWithReceivingEmployer()
                 .ContinueToConnectWithReceiver()
@@ -70,7 +70,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _homePage.GoToYourAccountsPage()
                  .GoToHomePage(_receiver);
 
-            _homePage = new FinancePage(_context, true)
+            _homePage = new FinancePage(context, true)
                 .OpenTransfers()
                 .ViewTransferConnectionRequestDetails(_sender)
                 .AcceptTransferConnectionRequest()
@@ -84,7 +84,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _homePage.GoToYourAccountsPage()
                 .GoToHomePage(_sender);
 
-            bool senderAssertion = new FinancePage(_context, true)
+            bool senderAssertion = new FinancePage(context, true)
                .OpenTransfers()
                .CheckTransferConnectionStatus(_receiver);
 
@@ -92,7 +92,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _homePage.GoToYourAccountsPage()
                 .GoToHomePage(_receiver);
 
-            bool receiverAssertion = new FinancePage(_context, true)
+            bool receiverAssertion = new FinancePage(context, true)
                .OpenTransfers()
                .CheckTransferConnectionStatus(_sender);
 

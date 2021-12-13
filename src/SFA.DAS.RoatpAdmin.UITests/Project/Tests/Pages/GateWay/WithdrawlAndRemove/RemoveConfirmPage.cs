@@ -22,7 +22,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
             formCompletionHelper.EnterText(InternalComments, "Withdraw Application Internal Comments");
             formCompletionHelper.EnterText(ExternalComments, "Withdraw Application External Comments");
             Continue();
-            return new RemoveOutcomePage(_context);
+            return new RemoveOutcomePage(context);
         }
     }
 }

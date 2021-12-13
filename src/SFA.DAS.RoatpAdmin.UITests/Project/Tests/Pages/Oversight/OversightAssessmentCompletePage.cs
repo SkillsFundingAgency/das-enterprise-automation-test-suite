@@ -19,7 +19,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         public OversightLandingPage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPApplicationOutcomeLink);
-            return new OversightLandingPage(_context);
+            return new OversightLandingPage(context);
         }
     }
 }

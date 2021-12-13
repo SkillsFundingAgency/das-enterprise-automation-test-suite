@@ -16,14 +16,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ApprovalRadioButton, "ApprovalConfirmed");
             Continue();
-            return new TransferRequestApprovedPage(_context);
+            return new TransferRequestApprovedPage(context);
         }
 
         public TransferRequestRejectedPage RejectTransferRequest()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ApprovalRadioButton, "ApprovalConfirmed-no");
             Continue();
-            return new TransferRequestRejectedPage(_context);
+            return new TransferRequestRejectedPage(context);
         }
     }
 }

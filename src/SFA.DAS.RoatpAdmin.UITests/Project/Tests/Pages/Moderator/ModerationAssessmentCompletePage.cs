@@ -16,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         public RoatpAssessorApplicationsHomePage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPAssessorApplicationsLink);
-            return new RoatpAssessorApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(context);
         }
     }
 }

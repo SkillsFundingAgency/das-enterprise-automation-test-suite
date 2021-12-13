@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
         public EngagingWithEndpointAssessmentOrganisationsPage SelectPassAndContinueInDeliveringTraining()
         {
             SelectPassAndContinueToSubSection();
-            return new EngagingWithEndpointAssessmentOrganisationsPage(_context);
+            return new EngagingWithEndpointAssessmentOrganisationsPage(context);
         }
 
         public EngagingWithEndpointAssessmentOrganisationsPage SelectFailAndContinueInDeliveringTraining()
         {
             SelectFailAndContinueToSubSection();
-            return new EngagingWithEndpointAssessmentOrganisationsPage(_context);
+            return new EngagingWithEndpointAssessmentOrganisationsPage(context);
         }
 
     }

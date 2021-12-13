@@ -11,25 +11,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public WhoTheTeamHaveWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {
             SelectPassAndContinueToSubSection();
-            return new WhoTheTeamHaveWorkedWithPage(_context);
+            return new WhoTheTeamHaveWorkedWithPage(context);
         }
 
         public WhoTheTeamHaveWorkedWithPage SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {
             SelectFailAndContinueToSubSection();
-            return new WhoTheTeamHaveWorkedWithPage(_context);
+            return new WhoTheTeamHaveWorkedWithPage(context);
         }
 
         public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()
         {
             SelectPassAndContinueToSubSection();
-            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(_context);
+            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(context);
         }
 
         public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_EP()
         {
             SelectFailAndContinueToSubSection();
-            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(_context);
+            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(context);
         }
     }
 }

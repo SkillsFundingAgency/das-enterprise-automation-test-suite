@@ -11,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
         public YourSectorsAndEmployeesPage SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage()
         {
             SelectPassAndContinueToSubSection();
-            return new YourSectorsAndEmployeesPage(_context);
+            return new YourSectorsAndEmployeesPage(context);
         }
 
         public YourSectorsAndEmployeesPage SelectFailAndContinueInDeliveringTrainingInDigitalSectorPage()
         {
             SelectFailAndContinueToSubSection();
-            return new YourSectorsAndEmployeesPage(_context);
+            return new YourSectorsAndEmployeesPage(context);
         }
     }
 }

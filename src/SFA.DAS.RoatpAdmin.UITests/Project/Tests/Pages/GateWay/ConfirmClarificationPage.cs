@@ -16,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new ClarificationOutcomePage(_context);
+            return new ClarificationOutcomePage(context);
         }
     }
 }
