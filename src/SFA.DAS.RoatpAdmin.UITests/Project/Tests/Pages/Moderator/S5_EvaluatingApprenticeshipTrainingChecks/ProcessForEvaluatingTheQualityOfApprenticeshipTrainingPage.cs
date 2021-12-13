@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S5_Evaluating
     public class ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage : ModeratorBasePage
     {
         protected override string PageTitle => "Process for evaluating the quality of training delivered include apprenticeship training";
-        private readonly ScenarioContext _context;
-
-        public ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public ReviewProcessForEvaluatingPage SelectPassAndContinueInProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage()
         {

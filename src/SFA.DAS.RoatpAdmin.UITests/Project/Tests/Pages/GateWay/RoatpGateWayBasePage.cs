@@ -8,14 +8,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public abstract class RoatpGateWayBasePage : RoatpNewAdminBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        private By ApplicationActions => By.CssSelector(".govuk-link--no-visited-state");
 
-        private By ApplicationActions = By.CssSelector(".govuk-link--no-visited-state");
+        private By ClarificationText => By.Id("OptionClarificationText");
 
-        private By ClarificationText = By.Id("OptionClarificationText");
-        protected RoatpGateWayBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected RoatpGateWayBasePage(ScenarioContext context) : base(context) { }
 
         public GWApplicationOverviewPage SelectFailAndContinue()
         {

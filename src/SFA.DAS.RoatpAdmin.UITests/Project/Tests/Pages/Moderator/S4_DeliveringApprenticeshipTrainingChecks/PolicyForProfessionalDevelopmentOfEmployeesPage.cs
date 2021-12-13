@@ -5,13 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     public class PolicyForProfessionalDevelopmentOfEmployeesPage : ModeratorBasePage
     {
         protected override string PageTitle => "Policy for professional development of employees";
-        private readonly ScenarioContext _context;
-
-        public PolicyForProfessionalDevelopmentOfEmployeesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            objectContext.SetIsUploadFile();
-        }
+        
+        public PolicyForProfessionalDevelopmentOfEmployeesPage(ScenarioContext context) : base(context) => objectContext.SetIsUploadFile();
 
         public AnExampleOfHowThePolicyToImprovePage SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
         {

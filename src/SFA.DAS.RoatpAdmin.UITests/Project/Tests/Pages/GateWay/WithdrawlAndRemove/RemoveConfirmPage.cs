@@ -14,14 +14,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
         private By InternalComments => By.Id("OptionYesText");
         private By ExternalComments => By.Id("OptionYesTextExternal");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        public RemoveConfirmPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RemoveConfirmPage(ScenarioContext context) : base(context) => VerifyPage();
+
         public RemoveOutcomePage YesSureRemoveThisApplication()
         {
             SelectRadioOptionByText("Yes");

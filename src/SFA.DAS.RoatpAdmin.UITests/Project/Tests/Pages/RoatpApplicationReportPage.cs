@@ -11,15 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By FromDate => By.Id("FromDate");
         private By ToDate => By.Id("ToDate");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RoatpApplicationReportPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RoatpApplicationReportPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public RoatpApplicationReportPage DownloadReport()
         {

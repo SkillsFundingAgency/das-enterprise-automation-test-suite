@@ -12,10 +12,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "Application assessment overview";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By TaskLists => By.CssSelector(".das-task-list > li");
 
         private By TaskSection => By.CssSelector(".das-task-list__section");
@@ -26,11 +22,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         private By TaskStatus => By.CssSelector(".das-task-list__task-tag");
 
-        public GWApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GWApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);
 

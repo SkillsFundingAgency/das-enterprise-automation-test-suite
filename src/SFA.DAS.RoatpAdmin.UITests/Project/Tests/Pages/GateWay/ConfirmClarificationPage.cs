@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,15 +10,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "Are you sure you want to ask for clarification?";
 
+        public ConfirmClarificationPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        public ConfirmClarificationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public ClarificationOutcomePage YesClarificationRequired()
         {
             SelectRadioOptionByText("Yes");

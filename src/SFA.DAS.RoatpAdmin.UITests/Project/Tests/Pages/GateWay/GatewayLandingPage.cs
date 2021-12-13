@@ -12,13 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Gateway/Closed']");
         private By InProgressTab => By.CssSelector("a[href='/Roatp/Gateway/InProgress']");
 
-      
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GatewayLandingPage(ScenarioContext context) : base(context) => _context = context;
+        public GatewayLandingPage(ScenarioContext context) : base(context) { }
 
         public GWApplicationOverviewPage SelectApplication()
         {

@@ -14,12 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         protected By AppealOutcomesTab => By.Id("tab_appealsoutcome");
         protected By AppealsTab => By.Id("tab_appeals");
         protected override By OutcomeStatus => By.CssSelector("[data-label='Overall outcome']");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OversightLandingPage(ScenarioContext context) : base(context) => _context = context;
+        public OversightLandingPage(ScenarioContext context) : base(context) { }
 
         public OversightLandingPage VerifyApplicationsOutcomeStatus(string expectedStatus)
         {

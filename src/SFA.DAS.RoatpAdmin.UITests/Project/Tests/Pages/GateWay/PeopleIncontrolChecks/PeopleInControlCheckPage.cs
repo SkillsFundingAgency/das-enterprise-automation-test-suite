@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleIncontrol
     {
         protected override string PageTitle => "People in control check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PeopleInControlCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PeopleInControlCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

@@ -6,12 +6,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class YourSectorsAndEmployeesPage : AssessorBasePage
     {
         protected override string PageTitle => "Sectors and employee experience";
-        private readonly ScenarioContext _context;
         public string DigitalLinkText => "Digital";
         private By DigitalLink => By.LinkText($"{DigitalLinkText}");
         private By GoToApplicationAssessmentOverviewLink => By.LinkText("Go to application assessment overview");
 
-        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) => _context = context;
+        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) { }
 
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()
         {

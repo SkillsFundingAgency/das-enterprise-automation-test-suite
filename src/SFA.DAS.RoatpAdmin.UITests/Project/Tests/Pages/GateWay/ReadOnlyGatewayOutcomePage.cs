@@ -11,16 +11,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "Gateway outcome";
 
-        private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
+        private By GoToRoATPGatewayApplicationsLink => By.LinkText("Go to RoATP applications");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ReadOnlyGatewayOutcomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ReadOnlyGatewayOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

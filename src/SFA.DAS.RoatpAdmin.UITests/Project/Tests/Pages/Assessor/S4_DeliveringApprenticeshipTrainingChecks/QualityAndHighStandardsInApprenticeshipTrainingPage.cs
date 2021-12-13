@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class QualityAndHighStandardsInApprenticeshipTrainingPage : AssessorBasePage
     {
         protected override string PageTitle => "Management hierarchy's expectations for quality and high standards in apprenticeship training";
-        private readonly ScenarioContext _context;
-
-        public QualityAndHighStandardsInApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public QualityAndHighStandardsInApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public HowExpectationsForQualityPage SelectPassAndContinueInQualityAndHighStandardsInApprenticeshipTrainingPage()
         {

@@ -13,15 +13,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP gateway applications");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public ClarificationOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public ClarificationOutcomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public GatewayLandingPage GoToRoATPGatewayApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPGatewayApplicationsLink);

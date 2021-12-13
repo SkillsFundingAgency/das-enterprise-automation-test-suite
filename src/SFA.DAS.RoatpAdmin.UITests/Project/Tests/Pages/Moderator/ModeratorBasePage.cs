@@ -4,9 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
     public abstract class ModeratorBasePage : RoatpNewAdminBasePage
     {
-        private readonly ScenarioContext _context;
-
-        protected ModeratorBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected ModeratorBasePage(ScenarioContext context) : base(context) { }
 
         public ModerationApplicationAssessmentOverviewPage SelectPassAndContinue()
         {

@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class DevelopingAndDeliveringTrainingPage : AssessorBasePage
     {
         protected override string PageTitle => "Team responsible for developing and delivering training";
-        private readonly ScenarioContext _context;
-
-        public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) { }
 
         public WhoTheTeamHaveWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {

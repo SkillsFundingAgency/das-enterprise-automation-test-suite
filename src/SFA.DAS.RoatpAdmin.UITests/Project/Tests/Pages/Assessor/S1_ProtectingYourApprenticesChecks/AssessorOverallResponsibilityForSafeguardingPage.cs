@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S1_ProtectingY
     public class AssessorOverallResponsibilityForSafeguardingPage : AssessorBasePage
     {
         protected override string PageTitle => "Overall responsibility for safeguarding";
-        private readonly ScenarioContext _context;
 
-        public AssessorOverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) => _context = context;
+        public AssessorOverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) { }
 
         public SafeguardingPolicyIncludePreventDutyPolicyPage SelectPassAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
         {

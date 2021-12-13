@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
     public class ComplaintsPolicyPage : AssessorBasePage
     {
         protected override string PageTitle => "Complaints policy";
-        private readonly ScenarioContext _context;
-
-        public ComplaintsPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ComplaintsPolicyPage(ScenarioContext context) : base(context) { }
 
         public WebsiteLinkForTheCompliantsPolicyPage SelectPassAndContinueInComplaintsPolicyPage()
         {

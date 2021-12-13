@@ -11,12 +11,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         private By GoToRoATPApplicationOutcomeLink => By.LinkText("Go to RoATP application outcomes");
 
-        private readonly ScenarioContext _context;
-
         public OversightAssessmentCompletePage(ScenarioContext context, string outcome) : base(context)
         {
-            _context = context;
-
             pageInteractionHelper.InvokeAction(() => pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(ConfirmationMessage).ToUpper(), outcome.ToUpper()));
         }
 

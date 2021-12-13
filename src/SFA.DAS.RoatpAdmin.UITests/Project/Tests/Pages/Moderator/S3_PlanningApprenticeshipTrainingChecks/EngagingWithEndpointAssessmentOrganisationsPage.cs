@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
     public class EngagingWithEndpointAssessmentOrganisationsPage : ModeratorBasePage
     {
         protected override string PageTitle => "Engaging with end-point assessment organisations (EPAOs)";
-        private readonly ScenarioContext _context;
-
-        public EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : base(context) { }
 
         public EngagingAndWorkWithAwardingBodiesPage SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
         {

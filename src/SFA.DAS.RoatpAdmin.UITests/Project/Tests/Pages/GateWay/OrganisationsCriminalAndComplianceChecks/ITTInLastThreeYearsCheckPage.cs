@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
     {
         protected override string PageTitle => "Involuntary withdrawal from Initial Teacher Training accreditation in the last 3 years check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ITTInLastThreeYearsCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ITTInLastThreeYearsCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

@@ -8,8 +8,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public abstract class RoatpNewAdminBasePage : RoatpBasePage
     {
-        private readonly ScenarioContext _context;
-
         protected virtual By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
 
         protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
@@ -34,8 +32,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
-            _context = context;
-
             if (verifyPage) VerifyPage();
         }
 

@@ -11,12 +11,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "RoATP assessor applications";
 
-        private readonly ScenarioContext _context;
-
         private By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
         private By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
 
-        public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
+        public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) { }
 
         public ApplicationAssessmentOverviewPage Assessor1SelectsAssignToMe() => AssessorSelectsAssignToMe(Assessor1Link);
 

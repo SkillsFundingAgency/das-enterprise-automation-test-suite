@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
     public class PriorLearningOfApprenticesPage : AssessorBasePage
     {
         protected override string PageTitle => "Process for initial assessments to recognise prior learning";
-        private readonly ScenarioContext _context;
-
-        public PriorLearningOfApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public PriorLearningOfApprenticesPage(ScenarioContext context) : base(context) { }
 
         public ProcessToAssessEnglishAndMathsPage SelectPassAndContinueInPriorLearningOfApprenticesPage()
         {

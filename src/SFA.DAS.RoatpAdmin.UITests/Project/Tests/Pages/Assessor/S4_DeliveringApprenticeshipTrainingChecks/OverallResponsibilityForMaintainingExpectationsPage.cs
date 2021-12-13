@@ -5,9 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class OverallResponsibilityForMaintainingExpectationsPage : AssessorBasePage
     {
         protected override string PageTitle => "Overall responsibility for maintaining expectations for quality and high standards in apprenticeship training";
-        private readonly ScenarioContext _context;
-
-        public OverallResponsibilityForMaintainingExpectationsPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public OverallResponsibilityForMaintainingExpectationsPage(ScenarioContext context) : base(context) { }
 
         public ExpectationsForQualityAndHighStandardsPage SelectPassAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
         {
