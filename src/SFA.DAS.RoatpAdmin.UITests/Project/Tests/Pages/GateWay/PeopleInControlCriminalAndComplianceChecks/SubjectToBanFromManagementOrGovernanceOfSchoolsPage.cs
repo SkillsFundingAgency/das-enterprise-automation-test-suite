@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleInControl
     {
         protected override string PageTitle => "Subject to a ban from management or governance of schools";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SubjectToBanFromManagementOrGovernanceOfSchoolsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SubjectToBanFromManagementOrGovernanceOfSchoolsPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

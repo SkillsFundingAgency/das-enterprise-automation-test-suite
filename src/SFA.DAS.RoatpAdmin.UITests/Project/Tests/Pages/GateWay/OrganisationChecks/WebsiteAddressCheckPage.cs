@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
     {
         protected override string PageTitle => "Website address check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WebsiteAddressCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WebsiteAddressCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

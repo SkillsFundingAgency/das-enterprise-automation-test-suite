@@ -6,20 +6,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
     {
         protected override string PageTitle => "Register of Removed Trustees?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public IsAnyOneControlOfRemovedTrusteePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public IsAnyOneControlOfRemovedTrusteePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhosInControlBankruptInLastThreeYearsPage SelectNo()
         {
             SelectNoAndContinue();
-            return new WhosInControlBankruptInLastThreeYearsPage(_context);
+            return new WhosInControlBankruptInLastThreeYearsPage(context);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
      
         public AccountSignOutHelper(ScenarioContext context) => _context = context;
     
-        public IndexPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
+        public CreateAnAccountToManageApprenticeshipsPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
     }
 }

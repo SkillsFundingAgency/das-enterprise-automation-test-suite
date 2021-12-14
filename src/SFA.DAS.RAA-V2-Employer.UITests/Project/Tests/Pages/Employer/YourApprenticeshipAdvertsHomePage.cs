@@ -11,7 +11,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Your apprenticeship adverts";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
         #endregion
 
@@ -20,17 +19,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private By SettingsLink => By.LinkText("Settings");
         private By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
 
-        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl)
-        {
-            _context = context;
-            _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-        }
+        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 
         public CreateAnAdvertPage CreateAnAdvert()
         {
             AcceptCookies();
             formCompletionHelper.Click(CreateAnAdvertButton);
-            return new CreateAnAdvertPage(_context);
+            return new CreateAnAdvertPage(context);
         }
 
         public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
@@ -43,7 +38,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             NavigateToSettings();
             formCompletionHelper.ClickElement(AdvertNotificationLink);
-            return new ManageYourAdvertEmailsPage(_context);
+            return new ManageYourAdvertEmailsPage(context);
         }
 
         private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));

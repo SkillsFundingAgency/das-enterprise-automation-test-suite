@@ -7,11 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Choose a Reservation";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
-        public ProviderChooseAReservationPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderChooseAReservationPage(ScenarioContext context) : base(context)  { }
 
         private By CreateANewReservationButton => By.CssSelector(".govuk-label--s");
         private By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
@@ -20,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationButton, "CreateNew");
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ProviderApprenticeshipTrainingPage(_context);
+            return new ProviderApprenticeshipTrainingPage(context);
         }
     }
 }

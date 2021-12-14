@@ -6,8 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     public class AS_ConfirmAndApplyPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm you want to offer the standard";
-        private readonly ScenarioContext _context;
-
+        
         protected override By PageHeader => By.CssSelector(".govuk-caption-l");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
@@ -16,13 +15,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         private By VersionCheckBox => By.Name("SelectedVersions");
 
-        public AS_ConfirmAndApplyPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ConfirmAndApplyPage(ScenarioContext context) : base(context) { }
 
         public AS_ApplicationOverviewPage ConfirmAndApply()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
             Continue();
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
 
         public AS_ApplicationOverviewPage ConfirmAndApplyWithVersion()
@@ -30,7 +29,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VersionCheckBox));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
             Continue();
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
     }
 }

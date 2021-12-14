@@ -5,22 +5,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class TwoConsecutiveMonitoringVisitsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Has your organisation had 2 consecutive monitoring visits with the grade 'insufficient progress'?";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TwoConsecutiveMonitoringVisitsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TwoConsecutiveMonitoringVisitsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WithinTheLast18MonthsPage SelectYesForTwoConsecutiveMonitoringVisitAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new WithinTheLast18MonthsPage(_context);
+            return new WithinTheLast18MonthsPage(context);
         }
     }
 }

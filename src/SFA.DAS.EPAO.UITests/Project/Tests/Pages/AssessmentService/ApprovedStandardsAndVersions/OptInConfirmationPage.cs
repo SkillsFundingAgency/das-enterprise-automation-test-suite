@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -7,12 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "You have opted into Version";
 
-        private readonly ScenarioContext _context;
-
-        public OptInConfirmationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OptInConfirmationPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

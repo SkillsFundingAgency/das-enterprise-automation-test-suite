@@ -10,29 +10,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Sign in to Apprenticeship assessment service";
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");
         private By PasswordTextBox => By.Id("Password");
         #endregion
 
-        public AS_LoginPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_LoginPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
         {
             EnterLoginDetails(loginUser);
-            return new AS_LoggedInHomePage(_context);
+            return new AS_LoggedInHomePage(context);
         }
 
         public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
         {
             EnterLoginDetails(loginUser);
-            return new AP_PR1_SearchForYourOrganisationPage(_context);
+            return new AP_PR1_SearchForYourOrganisationPage(context);
         }
 
         private void EnterLoginDetails(LoginUser loginUser)
@@ -46,7 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_ApplyForAStandardPage SignInStandardAsApplyUser(LoginUser loginUser)
         {
             EnterLoginDetails(loginUser);
-            return new AS_ApplyForAStandardPage(_context);
+            return new AS_ApplyForAStandardPage(context);
         }
     }
 }

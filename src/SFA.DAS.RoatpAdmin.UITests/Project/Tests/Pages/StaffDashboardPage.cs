@@ -10,63 +10,57 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Staff dashboard";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public StaffDashboardPage(ScenarioContext context, bool navigate = false) : base(context, !navigate)
         {
-            _context = context; 
-
             if (navigate) { ClickReturnToStaffDashBoard(); VerifyPage(); }
         }
 
         public GatewayLandingPage AccessGatewayApplications()
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP gateway applications");
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
 
         public FinancialLandingPage AccessFinancialApplications()
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP financial applications");
-            return new FinancialLandingPage(_context);
+            return new FinancialLandingPage(context);
         }
 
         public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications() 
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
-            return new RoatpAssessorApplicationsHomePage(_context);
+            return new RoatpAssessorApplicationsHomePage(context);
         }
 
         public OversightLandingPage AccessOversightApplications() 
         {
             formCompletionHelper.ClickLinkByText("Go to RoATP application outcomes");
-            return new OversightLandingPage(_context);
+            return new OversightLandingPage(context);
         }
 
         public SearchPage SearchForATrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
-            return new SearchPage(_context);
+            return new SearchPage(context);
         }
 
         public StaffDashboardPage DownloadTrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
 
         public RoatpApplicationReportPage DownloadApplicationData()
         {
             formCompletionHelper.ClickLinkByText("Download application data");
-            return new RoatpApplicationReportPage(_context);
+            return new RoatpApplicationReportPage(context);
         }
 
         public AllowListPage Add_UKPRN_Allowlist()
         {
             formCompletionHelper.ClickLinkByText("Add UKPRNs to the allow list");
-            return new AllowListPage(_context);
+            return new AllowListPage(context);
         }
     }
 }

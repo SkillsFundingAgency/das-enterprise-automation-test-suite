@@ -6,24 +6,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     public class YourSectorsAndEmployeesPage : ModeratorBasePage
     {
         protected override string PageTitle => "Sectors and employee experience";
-        private readonly ScenarioContext _context;
         public string DigitalLinkText => "Digital";
         private By DigitalLink => By.LinkText($"{DigitalLinkText}");
         private By GoToApplicationAssessmentOverviewLink => By.LinkText("Go to application assessment overview");
 
-        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) => _context = context;
+        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) { }
 
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()
         {
             formCompletionHelper.Click(DigitalLink);
-            return new DeliveringTrainingInDigitalSectorPage(_context);
+            return new DeliveringTrainingInDigitalSectorPage(context);
         }
 
         public ModerationApplicationAssessmentOverviewPage NavigateToAssessmentOverviewPage()
         {
             formCompletionHelper.Click(GoToApplicationAssessmentOverviewLink);
 
-            return new ModerationApplicationAssessmentOverviewPage(_context);
+            return new ModerationApplicationAssessmentOverviewPage(context);
         }
     }
 }

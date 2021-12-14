@@ -14,28 +14,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DeleteVacancyQuestionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(SubHeader, SubTitle);
-        }
+        public DeleteVacancyQuestionPage(ScenarioContext context) : base(context) => VerifyPage(SubHeader, SubTitle);
 
         public EmployerVacancySearchResultPage YesDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-yes");
             Continue();
-            return new EmployerVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(context);
         }
 
         public VacancyPreviewPart2Page NoDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-no");
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

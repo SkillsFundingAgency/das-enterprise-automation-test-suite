@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public abstract class ToolSupportBasePage : BasePage
+    public abstract class ToolSupportBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly SupportConsoleConfig config;

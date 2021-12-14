@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleInControl
     {
         protected override string PageTitle => "Register of Removed Trustees check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RegisterOfRemovedTrusteesCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RegisterOfRemovedTrusteesCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

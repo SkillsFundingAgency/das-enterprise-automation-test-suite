@@ -8,8 +8,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         protected override string PageTitle => "";
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
-        private readonly ScenarioContext _context;
-        public EditProvidersContactDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public EditProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
 
         #region Locators
         private By EmailAddressTextBox => By.Id("EmailAddress");
@@ -24,40 +23,40 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public EditProvidersContactDetailsPage EnterProviderEmailAddressDetails(string emailAddress)
         {
             formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
         public EditProvidersContactDetailsPage EnterProviderTelephoneNumberDetails(string telephoneNumber)
         {
             formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
         public EditProvidersContactDetailsPage EnterProviderWebsiteDetails(string website)
         {
             formCompletionHelper.EnterText(WebsiteTextBox, website);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
 
         public ConfirmProvidersContactDetailsPage ContinueToConfirmProviderContactDetailsPage()
         {
             ContinueToNextPage();
-            return new ConfirmProvidersContactDetailsPage(_context);
+            return new ConfirmProvidersContactDetailsPage(context);
         }
         public WhichEmployersAreYouInterestedInPage BackToWhichEmployersAreYouInterestedInPage()
         {
             formCompletionHelper.Click(BackLink);
-            return new WhichEmployersAreYouInterestedInPage(_context);
+            return new WhichEmployersAreYouInterestedInPage(context);
         }
         public EditProvidersContactDetailsPage ReEnterProviderTelephoneNumberDetails(string telephoneNumber)
         {
             formCompletionHelper.Click(TelephoneNumberErrorText);
             formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
         public EditProvidersContactDetailsPage ReEnterProviderEmailAddressDetails(string emailAddress)
         {
             formCompletionHelper.Click(EmailAddressErrorText);
             formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
     }
 }

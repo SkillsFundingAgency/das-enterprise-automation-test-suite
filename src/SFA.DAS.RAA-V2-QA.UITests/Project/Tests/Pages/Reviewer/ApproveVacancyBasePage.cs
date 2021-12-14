@@ -8,8 +8,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
     public abstract class ApproveVacancyBasePage : VerifyDetailsBasePage
     {
-        private readonly ScenarioContext _context;
-
         private By ErrorsCheckboxes => By.Name("SelectedAutomatedQaResults");
 
         private By ReviewerComment => By.CssSelector("#ReviewerComment");
@@ -20,7 +18,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         private By VacancyQALink => By.LinkText("Vacancy QA");
 
-        public ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
+        public ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
         
         public QAReviewsPage Approve()
         {
@@ -33,7 +31,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
             formCompletionHelper.Click(SubmitButton);
 
-            return new QAReviewsPage(_context);
+            return new QAReviewsPage(context);
         }
 
         public void Refer()

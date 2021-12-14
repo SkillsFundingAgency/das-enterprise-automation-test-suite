@@ -9,22 +9,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        private readonly ScenarioContext _context;
-
         private By ChangeDetailsLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
 
-        public CheckDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public CheckDetailsPage(ScenarioContext context) : base(context) { }
 
         public EmployerAccountIsReadyPage InviteEmployer()
         {
             Continue();
-            return new EmployerAccountIsReadyPage(_context);
+            return new EmployerAccountIsReadyPage(context);
         }
 
         public EnterTheEmployerDetailsPage ChangeDetails()
         {
             formCompletionHelper.ClickElement(ChangeDetailsLink);
-            return new EnterTheEmployerDetailsPage(_context);
+            return new EnterTheEmployerDetailsPage(context);
         }
     }
 }

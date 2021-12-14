@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD4_ContractNoticeToPage : EPAO_BasePage
     {
         protected override string PageTitle => "Who should we send the contract notice to?";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By GivenNameTextbox => By.Id("CD-07");
@@ -20,11 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private By TelephoneTextbox => By.Id("CD-11");
         #endregion
 
-        public AP_OD4_ContractNoticeToPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_OD4_ContractNoticeToPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OD5_UkprnPage EnterContactDetailsAndContinueInContractNoticeToPage()
         {
@@ -38,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
             formCompletionHelper.EnterText(TelephoneTextbox, ePAOApplyDataHelper.GetRandomNumber(10));
             Continue();
-            return new AP_OD5_UkprnPage(_context);
+            return new AP_OD5_UkprnPage(context);
         }
     }
 }

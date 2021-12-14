@@ -6,20 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "New assessments";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FinancialAssesmentPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancialAssesmentPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialHealthEvaluationPage GoToNewApplicationOverviewPage()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetApplyOrganisationName());
-            return new FinancialHealthEvaluationPage(_context);
+            return new FinancialHealthEvaluationPage(context);
         }
 
         public new StaffDashboardPage ReturnToDashboard() => base.ReturnToDashboard();

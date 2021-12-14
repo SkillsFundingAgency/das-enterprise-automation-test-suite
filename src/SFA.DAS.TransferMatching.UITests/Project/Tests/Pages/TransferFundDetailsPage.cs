@@ -9,18 +9,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => string.Empty;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By DasHighlight => By.CssSelector(".das-highlight");
 
         protected override By ContinueButton => By.CssSelector("#apply-application-continue");
 
         public TransferFundDetailsPage(ScenarioContext context, bool isAnonymousPledge = false) : base(context)
         {
-            _context = context;
-
             var pledgeid = GetPledgeId();
 
             if (isAnonymousPledge)
@@ -42,7 +36,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
     }
 }

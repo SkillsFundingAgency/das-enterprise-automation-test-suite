@@ -9,20 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector("h2.govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ManageRelationshipWithEmployerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ManageRelationshipWithEmployerPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ResponsibleForManagingRelationshipsPage EnterTextForManagingRelationshipWithEmployersAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ManagingRelationshipWithEmployers);
-            return new ResponsibleForManagingRelationshipsPage(_context);
+            return new ResponsibleForManagingRelationshipsPage(context);
         }
     }
 }

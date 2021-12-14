@@ -5,15 +5,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     public class WhatIsTheOutcomeForThisApplicationPage : ModeratorBasePage
     {
         protected override string PageTitle => "What is the outcome for this application?";
-        private readonly ScenarioContext _context;
-
-        public WhatIsTheOutcomeForThisApplicationPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public WhatIsTheOutcomeForThisApplicationPage(ScenarioContext context) : base(context) { }
 
         public AreYouSureYouWantToPassPage SelectPassAndContinueAreYouSurePage()
         {
             SelectRadioOptionByText("Pass");
             Continue();
-            return new AreYouSureYouWantToPassPage(_context);
+            return new AreYouSureYouWantToPassPage(context);
         }
 
         public AreYouSureYouWantToFailPage SelectFailAndContinueAreYouSurePage()
@@ -21,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             SelectRadioOptionByText("Fail");
             EnterFailInternalComments();
             Continue();
-            return new AreYouSureYouWantToFailPage(_context);
+            return new AreYouSureYouWantToFailPage(context);
         }
 
         public AreYouSureYouWantToAskPage SelectAskForClarificationAndContinueAreYouSurePage()
@@ -29,7 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             SelectRadioOptionByText("Ask for clarification");
             EnterAskForClarificationInternalComments();
             Continue();
-            return new AreYouSureYouWantToAskPage(_context);
+            return new AreYouSureYouWantToAskPage(context);
         }
     }
 }

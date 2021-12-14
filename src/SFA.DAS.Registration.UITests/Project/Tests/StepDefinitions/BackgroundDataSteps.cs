@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
-            _levyDeclarationHelper = new MongoDbDataGenerator(_context);
+            _levyDeclarationHelper = new MongoDbDataGenerator(_context, string.Empty);
         }
 
         [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]

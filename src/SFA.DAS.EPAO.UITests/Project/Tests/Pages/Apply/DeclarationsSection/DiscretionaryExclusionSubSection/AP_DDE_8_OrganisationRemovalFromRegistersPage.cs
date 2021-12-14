@@ -5,19 +5,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
     public class AP_DDE_8_OrganisationRemovalFromRegistersPage : EPAO_BasePage
     {
         protected override string PageTitle => "Organisation removal from registers";
-        private readonly ScenarioContext _context;
 
-        public AP_DDE_8_OrganisationRemovalFromRegistersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_DDE_8_OrganisationRemovalFromRegistersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_DDE_9_DirectionAndSanctionsPage SelectNoOptionAndContinueInOrganisationRemovalFromRegistersPage()
         {
             SelectRadioOptionByForAttribute("A_DEL-26_1");
             Continue();
-            return new AP_DDE_9_DirectionAndSanctionsPage(_context);
+            return new AP_DDE_9_DirectionAndSanctionsPage(context);
         }
     }
 }
