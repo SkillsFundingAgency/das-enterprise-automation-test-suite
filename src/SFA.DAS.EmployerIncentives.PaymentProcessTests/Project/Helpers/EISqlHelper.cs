@@ -98,29 +98,20 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task WaitUntilEarningsExist(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
         {
-            using var cts = new CancellationTokenSource();
-            if (timeout != null)
-            {
-                cts.CancelAfter(timeout.Value);
-            }
-
-            await using var dbConnection = new SqlConnection(connectionString);
-
-            while (!cts.Token.IsCancellationRequested)
-            {
-                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
-                if (count == 2)
-                {
-                    return;
-                }
-
-                await Task.Delay(TimeSpan.FromMilliseconds(100), cts.Token);
-            }
-
-            throw new Exception("Earnings not found!");
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId }, 2, timeout);
         }
 
         public async Task WaitUntilCorrelationIdsSet(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId <> @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty }, 2, timeout);
+        }
+
+        public async Task WaitUntilEmploymentCheckResultIsSet(Guid apprenticeshipIncentiveId, bool expectedResult, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND Result = @expectedResult", new { apprenticeshipIncentiveId, expectedResult }, 2, timeout);
+        }
+
+        private async Task WaitUntil(string query, object parameters, int expectedResults, TimeSpan? timeout)
         {
             using var cts = new CancellationTokenSource();
             if (timeout != null)
@@ -132,8 +123,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             while (!cts.Token.IsCancellationRequested)
             {
-                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId <> @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty });
-                if (count == 2)
+                var count = await dbConnection.ExecuteScalarAsync<int>(query, parameters);
+                if (count == expectedResults)
                 {
                     return;
                 }
@@ -141,7 +132,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 await Task.Delay(TimeSpan.FromMilliseconds(100), cts.Token);
             }
 
-            throw new Exception("Correlation ids not updated!");
+            throw new Exception("Employment Check results not updated!");
         }
 
         public async Task CleanUpAccount(long accountId)

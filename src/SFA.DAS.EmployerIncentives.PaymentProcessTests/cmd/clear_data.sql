@@ -10,8 +10,8 @@ DELETE incentives.ClawbackPayment
 DELETE archive.Payment
 DELETE archive.PendingPaymentValidationResult
 DELETE archive.PendingPayment
+DELETE archive.EmploymentCheck
 
-DELETE incentives.EmploymentCheckArchive
 DELETE incentives.EmploymentCheck
 DELETE incentives.Payment
 DELETE incentives.PendingPaymentValidationResult

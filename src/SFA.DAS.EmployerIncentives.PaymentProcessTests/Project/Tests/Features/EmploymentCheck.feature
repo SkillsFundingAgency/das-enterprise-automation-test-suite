@@ -60,3 +60,23 @@ Scenario: New Employment Check - Start Date CoC - 6 weeks not elapsed
 	And a Start Date Change of Circumstance has been identified in that ILR submission
 	And the learner match is run
 	Then a new employment check is not requested
+
+Scenario: Employment check result stored
+	Given an employment check has been requested
+	And the employment check request has not been superseded
+	And we have not previously received a result from the Employment Check service
+	When the check has been completed by the Employment Check service
+	Then the result is stored
+
+Scenario: Employment check result updated
+	Given an employment check has been requested
+	And the employment check request has not been superseded
+	And we have previously received a result from the Employment Check service
+	When the check has been completed by the Employment Check service
+	Then the result is updated
+
+Scenario: Employment check superseded
+	Given an employment check has been requested
+	And the employment check has been superseded
+	When the check has been completed by the Employment Check service
+	Then the result is discarded
