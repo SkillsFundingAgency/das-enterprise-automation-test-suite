@@ -73,7 +73,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new SuccessfullyWithdrawnPage(_context);
+            return new SuccessfullyWithdrawnPage(context);
         }
 
         private void VerifyTermsError() => VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");

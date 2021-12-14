@@ -16,14 +16,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRadioOptionByText("Approve the application");
             Continue();
-            return new ApprovingTheApprenticeshipDetailsPage(_context);
+            return new ApprovingTheApprenticeshipDetailsPage(context);
         }
 
         public TransferPledgePage RejectApplication()
         {
             SelectRadioOptionByText("Reject the application");
             Continue();
-            return new TransferPledgePage(_context);
+            return new TransferPledgePage(context);
         }
     }
 }
