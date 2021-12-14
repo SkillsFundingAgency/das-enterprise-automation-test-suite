@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-fieldset__heading");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
