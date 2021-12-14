@@ -29,14 +29,14 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
         private MongoDbHelper _addempRefLinksData;
 
-        public MongoDbDataGenerator(ScenarioContext context)
+        public MongoDbDataGenerator(ScenarioContext context, string empref)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             var mongoDbConfig = _context.GetMongoDbConfig();
             var dataHelper = _objectContext.GetDataHelper();
             _mongodbConnectionHelper = new MongoDbConnectionHelper(mongoDbConfig);
-            _mongoDbDataHelper = new MongoDbDataHelper(dataHelper);
+            _mongoDbDataHelper = new MongoDbDataHelper(dataHelper, empref);
             _gatewayId = _mongoDbDataHelper.GatewayId;
             EmpRef = _mongoDbDataHelper.EmpRef;
             _mongoDbDatabase = mongoDbConfig.Database;

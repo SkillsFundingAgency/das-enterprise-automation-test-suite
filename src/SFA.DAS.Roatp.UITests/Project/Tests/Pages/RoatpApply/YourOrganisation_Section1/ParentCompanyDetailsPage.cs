@@ -7,31 +7,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Enter your organisation's UK ultimate parent company details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CompanyNumberField => By.Id("YO-21");
 
         private By CompanyNameField => By.Id("YO-22");
 
-        public ParentCompanyDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ParentCompanyDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public IcoRegistrationNumberPage EnterParentCompanyDetailsAndContinue()
         {
             formCompletionHelper.EnterText(CompanyNumberField, applydataHelpers.CompanyNumber);
             formCompletionHelper.EnterText(CompanyNameField, applydataHelpers.CompanyName);
             Continue();
-            return new IcoRegistrationNumberPage(_context);
+            return new IcoRegistrationNumberPage(context);
         }
         public IcoRegistrationNumberPage ClickContinueForParentCompanyDetails()
         {
             Continue();
-            return new IcoRegistrationNumberPage(_context);
+            return new IcoRegistrationNumberPage(context);
         }
     }
 }

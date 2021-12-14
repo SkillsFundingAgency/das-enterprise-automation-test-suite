@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public abstract class RAAV1BasePage : BasePage
+    public abstract class RAAV1BasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;

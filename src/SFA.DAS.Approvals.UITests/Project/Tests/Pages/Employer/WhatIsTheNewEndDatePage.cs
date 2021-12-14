@@ -10,14 +10,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"What is the new planned training end date with {changeOfPartyConfig.NewProviderName}?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NewEndMonthInput => By.CssSelector(".govuk-input--width-2");
         private By NewEndYearInput => By.CssSelector(".govuk-input--width-4");
         private By ContinueBtn => By.XPath("//button[@class='govuk-button']");
-        public WhatIsTheNewEndDatePage(ScenarioContext context) : base(context) => _context = context;
+        public WhatIsTheNewEndDatePage(ScenarioContext context) : base(context)  { }
 
         public WhatIsTheNewEndDatePage EnterInvalidEndDate()
         {
@@ -32,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewEndYearInput, DateTime.Now.AddYears(2).Year.ToString());
             formCompletionHelper.Click(ContinueBtn);
 
-            return new WhatIsTheNewPricePage(_context);
+            return new WhatIsTheNewPricePage(context);
         }
 
         public EmployerChangeOfProviderCheckYourAnswersPage EnterUpdatedNewEndDate()
@@ -41,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(NewEndYearInput, DateTime.Now.AddYears(2).AddMonths(1).Year.ToString());
             formCompletionHelper.ClickElement(ContinueBtn);
 
-            return new EmployerChangeOfProviderCheckYourAnswersPage(_context);
+            return new EmployerChangeOfProviderCheckYourAnswersPage(context);
         }
     }
 }

@@ -8,17 +8,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Duration and working hours";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Duration => By.Id("Duration");
 
         private By WorkingWeekDescription => By.Id("WorkingWeekDescription");
 
         private By WeeklyHours => By.Id("WeeklyHours");
 
-        public DurationPage(ScenarioContext context) : base(context) => _context = context;
+        public DurationPage(ScenarioContext context) : base(context) { }
 
         public WageTypePage EnterDuration()
         {
@@ -28,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(WeeklyHours, rAAV2DataHelper.WeeklyHours);
             Continue();
             pageInteractionHelper.WaitforURLToChange("wage");
-            return new WageTypePage(_context);
+            return new WageTypePage(context);
         }
     }
 }

@@ -6,15 +6,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     {
         protected override string PageTitle => "Are you sure you want to ask for clarification?";
 
-        private readonly ScenarioContext _context;
-
-        public AreYouSureYouWantToAskPage(ScenarioContext context) : base(context) => _context = context;
-
+        public AreYouSureYouWantToAskPage(ScenarioContext context) : base(context) { }
 
         public ModerationAssessmentClarificationCompletePage SelectYesAskAndContinueOutcomePage()
         {
             SelectYesAndContinue();
-            return new ModerationAssessmentClarificationCompletePage(_context);
+            return new ModerationAssessmentClarificationCompletePage(context);
         }
 
     }

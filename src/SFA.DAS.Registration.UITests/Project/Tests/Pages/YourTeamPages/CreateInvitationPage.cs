@@ -6,7 +6,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     public class CreateInvitationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Create invitation";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By SendInvitationButton => By.Id("send_invitation");
@@ -15,11 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         private By ViewerAccessRadioButton => By.Id("radio1");
         #endregion
 
-        public CreateInvitationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CreateInvitationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CreateInvitationPage EnterEmailAndFullName(string email)
         {
@@ -32,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewerAccessRadioButton));
             formCompletionHelper.Click(SendInvitationButton);
-            return new InvitationSentPage(_context);
+            return new InvitationSentPage(context);
         }
     }
 }

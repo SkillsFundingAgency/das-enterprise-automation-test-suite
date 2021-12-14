@@ -12,15 +12,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected By VacancyActionSelector => By.CssSelector(".dashboard-action");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public VacancySearchResultPage(ScenarioContext context) : base(context) => _context = context;
+        public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 
         public void VerifyAdvertStatus(string expected)
         {
-            VerifyElement(() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyStatusSelector), expected, () => new SearchVacancyPageHelper(_context).SearchEmployerProviderPermissionVacancy());
+            VerifyElement(() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyStatusSelector), expected, () => new SearchVacancyPageHelper(context).SearchEmployerProviderPermissionVacancy());
         }
 
         protected void DraftVacancy()
@@ -34,7 +30,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyActionSelector));
 
-            return new VacancyCompletedAllSectionsPage(_context);
+            return new VacancyCompletedAllSectionsPage(context);
         }
     }
 }

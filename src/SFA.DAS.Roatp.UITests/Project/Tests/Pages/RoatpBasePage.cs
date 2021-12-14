@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
-    public abstract class RoatpBasePage : BasePage
+    public abstract class RoatpBasePage : VerifyBasePage
     {
         protected override By PageHeader => By.TagName("h1");
 

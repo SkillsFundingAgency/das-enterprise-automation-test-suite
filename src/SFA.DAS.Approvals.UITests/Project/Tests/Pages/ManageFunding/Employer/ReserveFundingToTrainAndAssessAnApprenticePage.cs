@@ -8,16 +8,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override string PageTitle => "Reserve funding to train and assess an apprentice";
         private By ReserveFundingButton => By.LinkText("Reserve funding");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ReserveFundingToTrainAndAssessAnApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public ReserveFundingToTrainAndAssessAnApprenticePage(ScenarioContext context) : base(context)  { }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveFundingButton()
         {
             formCompletionHelper.ClickElement(ReserveFundingButton);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
     }
 }

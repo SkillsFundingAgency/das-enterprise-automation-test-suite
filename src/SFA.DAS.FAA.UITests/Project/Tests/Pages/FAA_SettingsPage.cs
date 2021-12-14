@@ -18,11 +18,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ChangeEmailIdLink => By.Id("settings-change-username");
         private By UpdateDetailsButton => By.Id("update-details-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-    
-        public FAA_SettingsPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_SettingsPage(ScenarioContext context) : base(context) { }
 
         public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faaDataHelper.SuccessfulPhoneVerificationText);
 
@@ -33,7 +29,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(UsernameField, username);
             formCompletionHelper.EnterText(PasswordField, password);
             formCompletionHelper.Click(DeleteAccountButton);
-            return new FAA_ConfirmAccountDeletionPage(_context);
+            return new FAA_ConfirmAccountDeletionPage(context);
         }
 
         public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
@@ -41,14 +37,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(Postcode_Address, faaDataHelper.NewPostCode);
             formCompletionHelper.Click(UpdateDetailsButton);
             formCompletionHelper.Click(ChangeEmailIdLink);
-            return new FAA_ChangeYourEmailAddressPage(_context);
+            return new FAA_ChangeYourEmailAddressPage(context);
         }
 
         public FAA_PhoneNumberVerificationPage ChangePhoneNumberSettings()
         {
             formCompletionHelper.EnterText(PhoneNumberField, faaDataHelper.NewPhoneNumber);
             formCompletionHelper.Click(UpdateDetailsButton);
-            return new FAA_PhoneNumberVerificationPage(_context);
+            return new FAA_PhoneNumberVerificationPage(context);
         }
     }
 }

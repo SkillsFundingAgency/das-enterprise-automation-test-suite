@@ -12,6 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-fieldset__heading");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -31,7 +33,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By AddButton => By.CssSelector("#addApprenticeship > button");
-
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -58,9 +59,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()

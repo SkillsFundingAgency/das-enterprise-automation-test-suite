@@ -16,30 +16,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EmployerHubPage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerHubPage(ScenarioContext context) : base(context)  { }
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(FundingAnApprenticeship);
-            return new FundingAnApprenticeshipPage(_context);
+            return new FundingAnApprenticeshipPage(context);
         }
 
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(SearchForAnApprenticeship);
-            return new SearchForAnApprenticeshipPage(_context);
+            return new SearchForAnApprenticeshipPage(context);
         }
 
         public RegisterInterestPage NavigateToRegisterInterestPage()
         {
             formCompletionHelper.ClickElement(RegisterInterest);
-            return new RegisterInterestPage(_context);
+            return new RegisterInterestPage(context);
         }
     }
 }

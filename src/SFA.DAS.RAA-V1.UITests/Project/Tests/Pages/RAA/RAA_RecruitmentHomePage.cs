@@ -10,11 +10,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public class RAA_RecruitmentHomePage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Recruitment home";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
         private By VacancySearchMode => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchMode");
         private By VacancySearchText => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchString");
@@ -29,18 +24,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By ExpectedVacancyTitle => By.PartialLinkText(vacancyTitledataHelper.VacancyTitle);
         private By ReferenceNumberSearchResetCircleSymbol => By.CssSelector(".fa.fa-times-circle");
 
-        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => _context = context;
+        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) { }
 
         public RAA_SearchCandidatesPage SearchCandidates()
         {
             formCompletionHelper.ClickLinkByText("Search candidates");
-            return new RAA_SearchCandidatesPage(_context);
+            return new RAA_SearchCandidatesPage(context);
         }
 
         public RAA_AdministratorFunctionsPage AdministratorFunctions()
         {
             NavigateToAdmin();
-            return new RAA_AdministratorFunctionsPage(_context);
+            return new RAA_AdministratorFunctionsPage(context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
@@ -55,25 +50,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.RetryClickOnException(element);
 
-            return new RAA_EmployerInformationPage(_context);
+            return new RAA_EmployerInformationPage(context);
         }
 
         public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
-            return new RAA_EmployerSelectionPage(_context);
+            return new RAA_EmployerSelectionPage(context);
         }
 
         public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
         {
             SearchByReferenceNumber();
-            return new RAA_ClosedVacancyPreviewPage(_context);
+            return new RAA_ClosedVacancyPreviewPage(context);
         }
 
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
             SearchByReferenceNumber();
-            return new RAA_VacancySummaryPage(_context);
+            return new RAA_VacancySummaryPage(context);
         }
 
         public RAA_PreviewBasePage SearchLiveVacancyWithNoApplications()
@@ -81,9 +76,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (objectContext.IsApprenticeshipVacancyType())
-                return new RAA_VacancyPreviewPage(_context);
+                return new RAA_VacancyPreviewPage(context);
             else
-                return new RAA_OppurtunityPreviewPage(_context);
+                return new RAA_OppurtunityPreviewPage(context);
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
@@ -91,9 +86,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (objectContext.IsApprenticeshipVacancyType())
-                return new RAA_VacancyPreviewPage(_context);
+                return new RAA_VacancyPreviewPage(context);
             else
-                return new RAA_OppurtunityPreviewPage(_context);
+                return new RAA_OppurtunityPreviewPage(context);
         }
 
         private void SearchByReferenceNumber()
@@ -110,7 +105,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private void SearchByVacancyTitleContains(string filter)
         {
-            string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
+            static string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
             NavigateToHome();
             ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");

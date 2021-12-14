@@ -7,7 +7,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class TrainingCourseSearchResultsPage : FATBasePage
     {
         protected override string PageTitle => "Search results";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By FilterResultsPanel => By.CssSelector(".filters.filters-accordion");
@@ -19,11 +18,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         private By LevelInfoText => By.ClassName("level");
         #endregion
 
-        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public TrainingCourseSearchResultsPage VerifyFilterAndSortByFields()
         {
@@ -57,7 +52,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
             objectContext.SetTrainingCourseName(firstLinkText);
             formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new TrainingCourseSummaryPage(_context);
+            return new TrainingCourseSummaryPage(context);
         }
 
         public void SelectAscendingOrderSort() => SelectDropDownValue("Level (low to high)");
@@ -69,7 +64,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindApprenticeshipTrainingSearchPage NavigateBackFromTrainingCourseSearchResultsPage()
         {
             NavigateBack();
-            return new FindApprenticeshipTrainingSearchPage(_context);
+            return new FindApprenticeshipTrainingSearchPage(context);
         }
 
         private void ClickLevelCheckBox(string level) => formCompletionHelper.Click(LevelCheckBox(level));

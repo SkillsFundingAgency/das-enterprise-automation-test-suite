@@ -6,16 +6,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     public class AS_StandardSearchResultsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Standard search results";
-        private readonly ScenarioContext _context;
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        public AS_StandardSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_StandardSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public AS_ConfirmAndApplyPage Apply()
         {
             tableRowHelper.SelectRowFromTable("Apply for standard", objectContext.GetApplyStandardName());
-            return new AS_ConfirmAndApplyPage(_context);
+            return new AS_ConfirmAndApplyPage(context);
         }
     }
 }

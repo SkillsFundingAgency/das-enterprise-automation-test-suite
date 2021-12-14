@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.ExperienceAndAc
     {
         protected override string PageTitle => "Office for Students (OfS) check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OfficeForStudentCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OfficeForStudentCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

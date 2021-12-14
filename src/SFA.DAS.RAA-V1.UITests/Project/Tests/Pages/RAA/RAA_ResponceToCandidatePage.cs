@@ -7,16 +7,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Select the candidates";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApplicationCheckbox => By.CssSelector("input[type=checkbox]");
 
-        public RAA_ResponceToCandidatePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public RAA_ResponceToCandidatePage(ScenarioContext context) : base(context) { }
 
         public RAA_InformTheSelectedCandidatePage ConfirmAndContinue()
         {
@@ -24,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Confirm and continue");
 
-            return new RAA_InformTheSelectedCandidatePage(_context);
+            return new RAA_InformTheSelectedCandidatePage(context);
         }
     }
 }

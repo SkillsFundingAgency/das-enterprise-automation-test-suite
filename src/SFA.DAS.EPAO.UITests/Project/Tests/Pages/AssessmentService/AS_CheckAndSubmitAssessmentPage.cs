@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_CheckAndSubmitAssessmentPage : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Check and submit the assessment details";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By GradeChangeLink => By.XPath("//a[@href='/certificate/grade?redirecttocheck=true']");
@@ -18,58 +17,54 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By AddressChangeLink => By.XPath("//dt[contains(text(), 'Address')]/../dd/a");
         #endregion
 
-        public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_AssessmentRecordedPage ClickContinueInCheckAndSubmitAssessmentPage()
         {
             Continue();
-            return new AS_AssessmentRecordedPage(_context);
+            return new AS_AssessmentRecordedPage(context);
         }
 
         public AS_WhatGradePage ClickGradeChangeLink()
         {
             formCompletionHelper.ClickElement(GradeChangeLink);
-            return new AS_WhatGradePage(_context);
+            return new AS_WhatGradePage(context);
         }
 
         public AS_WhichLearningOptionPage ClickOptionChangeLink()
         {
             formCompletionHelper.ClickElement(OptionChangeLink);
-            return new AS_WhichLearningOptionPage(_context);
+            return new AS_WhichLearningOptionPage(context);
         }
 
         public AS_AchievementDatePage ClickAchievementDateChangeLink()
         {
             formCompletionHelper.ClickElement(AchievementDateChangeLink);
-            return new AS_AchievementDatePage(_context);
+            return new AS_AchievementDatePage(context);
         }
 
         public AS_RecipientNamePage ClickNameChangeLink()
         {
             formCompletionHelper.ClickElement(NameChangeLink);
-            return new AS_RecipientNamePage(_context);
+            return new AS_RecipientNamePage(context);
         }
 
         public AS_RecipientNamePage ClickDepartmentChangeLink()
         {
             formCompletionHelper.ClickElement(DepartmentChangeLink);
-            return new AS_RecipientNamePage(_context);
+            return new AS_RecipientNamePage(context);
         }
 
         public AS_EditEmployerAddress ClickOrganisationChangeLink()
         {
             formCompletionHelper.ClickElement(OrganisationChangeLink);
-            return new AS_EditEmployerAddress(_context);
+            return new AS_EditEmployerAddress(context);
         }
 
         public AS_EditEmployerAddress ClickCertificateAddressChangeLink()
         {
             formCompletionHelper.ClickElement(AddressChangeLink);
-            return new AS_EditEmployerAddress(_context);
+            return new AS_EditEmployerAddress(context);
         }
     }
 }
