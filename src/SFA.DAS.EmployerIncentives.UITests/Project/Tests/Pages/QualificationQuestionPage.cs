@@ -7,34 +7,30 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Eligible apprentices at {ObjectContextExtension.GetOrganisationName(objectContext)}";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public QualificationQuestionPage(ScenarioContext context) : base(context) => _context = context;
+        public QualificationQuestionPage(ScenarioContext context) : base(context)  { }
 
         public SelectTheApprenticesPage SelectYesAndContinueForEligibleApprenticesScenario()
         {
             SelectYes();
-            return new SelectTheApprenticesPage(_context);
+            return new SelectTheApprenticesPage(context);
         }
 
         public SelectApprenticesShutterPage SelectYesAndContinueForNoEligibleApprenticesScenario()
         {
             SelectYes();
-            return new SelectApprenticesShutterPage(_context);
+            return new SelectApprenticesShutterPage(context);
         }
 
         public EmployerAgreementShutterPage SelectYesAndContinueForUnSignedAgreementScenario()
         {
             SelectYes();
-            return new EmployerAgreementShutterPage(_context);
+            return new EmployerAgreementShutterPage(context);
         }
 
         public QualificationQuestionShutterPage SelectNoAndContinue()
         {
             SelectNo();
-            return new QualificationQuestionShutterPage(_context);
+            return new QualificationQuestionShutterPage(context);
         }
 
         private void SelectYes()

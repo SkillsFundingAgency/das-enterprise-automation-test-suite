@@ -6,26 +6,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Change UKPRN";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChangeUkprnPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ChangeUkprnPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EnterUkprnPage SelectYesToChangeUkprnAndContinue()
         {
             SelectYesAndContinue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
 
         public ApplicationOverviewPage SelectNoToChangeUkprnAndContinue()
         {
             SelectNoAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

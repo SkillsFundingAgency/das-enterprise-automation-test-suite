@@ -12,43 +12,37 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Gateway/Closed']");
         private By InProgressTab => By.CssSelector("a[href='/Roatp/Gateway/InProgress']");
 
-      
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GatewayLandingPage(ScenarioContext context) : base(context) => _context = context;
+        public GatewayLandingPage(ScenarioContext context) : base(context) { }
 
         public GWApplicationOverviewPage SelectApplication()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new GWApplicationOverviewPage(_context);
+            return new GWApplicationOverviewPage(context);
         }
         public new GatewayLandingPage VerifyOutcomeStatus(string expectedStatus)
         {
             base.VerifyOutcomeStatus(expectedStatus);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
         public GatewayLandingPage SelectInProgressTab()
         {
             formCompletionHelper.ClickElement(InProgressTab);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
         public GatewayLandingPage SelectInOutcomeTab_Gateway()
         {
             formCompletionHelper.ClickElement(OutcomeTab);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
         public GatewayLandingPage ClearSearchResult_OutcomeTab()
         {
             formCompletionHelper.ClickElement(OutcomeTab);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
         public ReadOnlyGatewayOutcomePage SelectApplicationFromOutcomeTab()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new ReadOnlyGatewayOutcomePage(_context);
+            return new ReadOnlyGatewayOutcomePage(context);
         }
         public GatewayLandingPage ConfirmGatewaySearchByName()
         {

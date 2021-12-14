@@ -8,17 +8,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Provide amendments";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By RemittanceEmailCheckBox => By.Id("c_rem_email");
         private By RemittanceEmailCheckBoxSelectionStatus => By.XPath("//fieldset[@id='c_rem_email']/following-sibling::i[@title='Field is valid']");
         private By ChangeBankDetailsRadioSelectionStatus => By.XPath("//fieldset[@id='change_bank']/following-sibling::i[@title='Field is valid']");
         #endregion
 
-        public VRFAmendmentsTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFAmendmentsTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFAmendNonBankingInfoTabPage SelectChangeNonBankingInfoOptionAndContinue()
         {
@@ -33,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFAmendNonBankingInfoTabPage(_context, Continue);
+            return new VRFAmendNonBankingInfoTabPage(context, Continue);
         }
     }
 }

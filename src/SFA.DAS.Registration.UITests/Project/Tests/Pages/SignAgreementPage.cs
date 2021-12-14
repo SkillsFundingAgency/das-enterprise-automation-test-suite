@@ -6,7 +6,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignAgreementPage : RegistrationBasePage
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
-        private readonly ScenarioContext _context;
+
+        protected override bool TakeFullScreenShot => false;
 
         #region Locators
         private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
@@ -15,28 +16,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
         #endregion
 
-        public SignAgreementPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(WantToSignRadioButton);
-        }
+        public SignAgreementPage(ScenarioContext context) : base(context) => VerifyPage(WantToSignRadioButton);
 
         public YouHaveAcceptedTheEmployerAgreementPage SignAgreement()
         {
             Sign();
-            return new YouHaveAcceptedTheEmployerAgreementPage(_context);
+            return new YouHaveAcceptedTheEmployerAgreementPage(context);
         }
 
         public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
         {
             Sign();
-            return new SetPermissionsForTrainingProviderPage(_context);
+            return new SetPermissionsForTrainingProviderPage(context);
         }
 
         public HomePage DoNotSignAgreement()
         {
             DoNotSign();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         private void Sign() => Continue(WantToSignRadioButton);
@@ -51,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(ContinueToYourAgreementButton);
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (_context);
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (context);
         }
     }
 }

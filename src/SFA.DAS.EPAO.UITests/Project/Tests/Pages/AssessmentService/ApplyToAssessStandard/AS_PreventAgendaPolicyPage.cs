@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Prevent agenda policy";
 
-        private readonly ScenarioContext _context;
-
-        public AS_PreventAgendaPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_PreventAgendaPolicyPage(ScenarioContext context) : base(context) { }
 
         public AS_ConflictOfinterestPolicyPage UploadPreventAgendaPolicy()
         {
             UploadFile();
-            return new AS_ConflictOfinterestPolicyPage(_context);
+            return new AS_ConflictOfinterestPolicyPage(context);
         }
     }
 }

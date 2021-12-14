@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public abstract class TransferMatchingBasePage : BasePage
+    public abstract class TransferMatchingBasePage : VerifyBasePage
     {
         protected TransferMatchingBasePage(ScenarioContext context) : base(context) => VerifyPage();
     }

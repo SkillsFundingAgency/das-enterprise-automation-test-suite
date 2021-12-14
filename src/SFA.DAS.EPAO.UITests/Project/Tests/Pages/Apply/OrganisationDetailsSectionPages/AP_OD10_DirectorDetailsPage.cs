@@ -6,8 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD10_DirectorDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Director details";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By FullNameTextbox => By.Id("CD-19");
         private By MonthTextbox => By.Id("CD-20_Month");
@@ -17,11 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private By SaveAndContinueButton => By.XPath("//button[text()='Save and continue']");
         #endregion
 
-        public AP_OD10_DirectorDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_OD10_DirectorDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OD11_DirectorsDataPage EnterNumberAndContinueInDirectoDetailsPage()
         {
@@ -31,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(NumberOfSharesTextbox, ePAOApplyDataHelper.GetRandomNumber(3));
             formCompletionHelper.Click(SaveAndAddAnotherLink);
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new AP_OD11_DirectorsDataPage(_context);
+            return new AP_OD11_DirectorsDataPage(context);
         }
     }
 }

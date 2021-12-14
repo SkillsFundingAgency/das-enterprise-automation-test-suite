@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
         private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
         private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
@@ -17,7 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmYourApprenticeLink = true) : base(context)
         {
-            _context = context;
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}"),
@@ -38,13 +36,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
         {
             formCompletionHelper.Click(ConfirmYourApprenticeshipNowLink);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnHomePage()
         {
             formCompletionHelper.Click(HelpAndSupportSectionLink);
-            return new HelpAndSupportPage(_context);
+            return new HelpAndSupportPage(context);
         }
 
         public ApprenticeHomePage VerifyCompleteTag() { VerifyPage(CompleteStatusSelector); return this; }

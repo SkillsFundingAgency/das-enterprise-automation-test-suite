@@ -6,8 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Apply to assess a standard";
 
-        private readonly ScenarioContext _context;
-
         #region Links 
 
         #region Your policies and procedures
@@ -70,18 +68,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         #endregion
 
-        public AS_ApplyToStandardPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ApplyToStandardPage(ScenarioContext context) : base(context) { }
 
         public AS_InformationCommissionerPage AccessYourPolicies_01()
         {
             formCompletionHelper.ClickLinkByText(YourPolicies_01);
-            return new AS_InformationCommissionerPage(_context);
+            return new AS_InformationCommissionerPage(context);
         }
 
         public AS_ApplicationOverviewPage ReturnToApplicationOverview()
         {
             formCompletionHelper.ClickLinkByText("Return to application overview");
-            return new AS_ApplicationOverviewPage(_context);
+            return new AS_ApplicationOverviewPage(context);
         }
     }
 }

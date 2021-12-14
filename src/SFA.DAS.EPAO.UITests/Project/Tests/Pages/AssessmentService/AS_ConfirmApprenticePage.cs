@@ -7,51 +7,45 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Confirm this is the correct apprentice";
         
-        private readonly ScenarioContext _context;
-
         protected override By RadioLabels => By.CssSelector(".govuk-radios__label[for*='standard']");
 
         private By ViewCertificateHistorySelector => By.CssSelector(".govuk-details__summary-text");
 
-        public AS_ConfirmApprenticePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ConfirmApprenticePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {
             SelectStandard(true);
 
-            return new AS_AssesmentAlreadyRecorded(_context);
+            return new AS_AssesmentAlreadyRecorded(context);
         }
 
         public AS_ConfirmApprenticePage ViewCertificateHistory() 
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewCertificateHistorySelector));
 
-            return new AS_ConfirmApprenticePage(_context);
+            return new AS_ConfirmApprenticePage(context);
         }
 
         public AS_WhichVersionPage GoToWhichVersionPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_WhichVersionPage(_context);
+            return new AS_WhichVersionPage(context);
         }
 
         public AS_WhichLearningOptionPage GoToWhichLearningOptionPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_WhichLearningOptionPage(_context);
+            return new AS_WhichLearningOptionPage(context);
         }
 
         public AS_DeclarationPage GoToDeclarationPage(bool hasMultiStandards)
         {
             SelectStandard(hasMultiStandards);
 
-            return new AS_DeclarationPage(_context);
+            return new AS_DeclarationPage(context);
         }
 
         private void SelectStandard(bool hasMultiStandards)

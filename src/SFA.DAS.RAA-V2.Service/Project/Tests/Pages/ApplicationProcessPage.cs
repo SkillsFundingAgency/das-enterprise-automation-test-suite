@@ -3,14 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-
     public class ApplicationProcessPage : RAAV2CSSBasePage
     {
         protected override string PageTitle => "How would you like to receive applications?";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
         private By Yes => By.CssSelector("#application-method-faa");
 
@@ -18,7 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By ApplicationInstructions => By.CssSelector("#ApplicationInstructions");
 
-        public ApplicationProcessPage(ScenarioContext context) : base(context) => _context = context;
+        public ApplicationProcessPage(ScenarioContext context) : base(context) { }
 
         public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) => isFAA ? ApplicationMethodFAA() : ApplicationMethodExternal();
 
@@ -39,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private VacancyPreviewPart2Page SaveAndContinue()
         {
             Continue();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

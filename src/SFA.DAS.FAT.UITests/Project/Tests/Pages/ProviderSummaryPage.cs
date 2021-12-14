@@ -5,24 +5,19 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class ProviderSummaryPage : FATBasePage
     {
         protected override string PageTitle => objectContext.GetProviderName();
-        private readonly ScenarioContext _context;
 
-        public ProviderSummaryPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ProviderSummaryPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ProviderSearchResultsPage NavigateBackFromProviderSummaryPage()
         {
             NavigateBack();
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
 
         public FindATrainingProviderByNamePage NavigateBackFromProviderSummaryPageForProviderOnlySearch()
         {
             NavigateBack();
-            return new FindATrainingProviderByNamePage(_context);
+            return new FindATrainingProviderByNamePage(context);
         }
     }
 }

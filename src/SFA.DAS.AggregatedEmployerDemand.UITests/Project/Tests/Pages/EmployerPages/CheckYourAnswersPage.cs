@@ -7,15 +7,15 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     public class CheckYourAnswersPage : AEDBasePage
     {
         protected override string PageTitle => "Check your answers";
-        private readonly ScenarioContext _context;
-        public CheckYourAnswersPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
 
         private By Confirm => By.Id("submit-demand");
 
         public EmailVerificationPage ConfirmYourAnswers()
         {
             formCompletionHelper.Click(Confirm);
-            return new EmailVerificationPage(_context);
+            return new EmailVerificationPage(context);
         }
     }
 }

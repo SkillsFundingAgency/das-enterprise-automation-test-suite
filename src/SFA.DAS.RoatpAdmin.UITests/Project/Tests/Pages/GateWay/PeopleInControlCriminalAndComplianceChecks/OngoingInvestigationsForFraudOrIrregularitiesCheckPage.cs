@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleInControl
     {
         protected override string PageTitle => "Ongoing investigations for fraud or irregularities check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OngoingInvestigationsForFraudOrIrregularitiesCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OngoingInvestigationsForFraudOrIrregularitiesCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

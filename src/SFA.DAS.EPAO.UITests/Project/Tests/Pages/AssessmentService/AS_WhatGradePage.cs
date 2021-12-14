@@ -7,7 +7,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "What grade did the apprentice achieve?";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By PassRadioButton => By.Id("Pass");
@@ -15,11 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By PassWithExcellenceRadioButton => By.Id("Pass_with_excellence"); 
         #endregion
 
-        public AS_WhatGradePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WhatGradePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void SelectGradeAndEnterDate(string grade) => SelectGrade(grade).EnterAchievementGradeDateAndContinue();
 
@@ -38,13 +33,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private AS_ApprenticeFailedDatePage SelectGradeAsFail()
         {
             SelectGrade(FailRadioButton);
-            return new AS_ApprenticeFailedDatePage(_context);
+            return new AS_ApprenticeFailedDatePage(context);
         }
 
         private AS_AchievementDatePage SelectGradeAsPass(By by)
         {
             SelectGrade(by);
-            return new AS_AchievementDatePage(_context);
+            return new AS_AchievementDatePage(context);
         }
 
         private void SelectGrade(By by)

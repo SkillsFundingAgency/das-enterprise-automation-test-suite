@@ -9,17 +9,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By CohortFundingOptions => By.CssSelector(".govuk-radios__item");
         protected override By ContinueButton => By.Id("submit-transfer-connection");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context) => _context = context;
+        public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context)  { }
 
         public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds(string organisationName)
         {
             formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, $"Yes, I will use transfer funds from {organisationName}");
             Continue();
-            return new AddTrainingProviderDetailsPage(_context);
+            return new AddTrainingProviderDetailsPage(context);
         }
     }
 }

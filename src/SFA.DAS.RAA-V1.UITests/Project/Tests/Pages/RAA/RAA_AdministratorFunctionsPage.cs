@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -8,43 +7,36 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Administrator functions";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RAA_AdministratorFunctionsPage(ScenarioContext context): base(context)
-        {
-            _context = context;
-        }
+        public RAA_AdministratorFunctionsPage(ScenarioContext context) : base(context) { }
 
         public RAA_ProviderUsersPage ProviderUsers()
         {
             formCompletionHelper.ClickLinkByText("Provider Users");
-            return new RAA_ProviderUsersPage(_context);
+            return new RAA_ProviderUsersPage(context);
         }
 
         public RAA_ChangeUkprnPage ChangeUkprn()
         {
             formCompletionHelper.ClickLinkByText("Change UKPRN");
-            return new RAA_ChangeUkprnPage(_context);
+            return new RAA_ChangeUkprnPage(context);
         }
 
         public RAA_ResetUkprnPage ResetUkprn()
         {
             formCompletionHelper.ClickLinkByText("Reset UKPRN");
-            return new RAA_ResetUkprnPage(_context);
+            return new RAA_ResetUkprnPage(context);
         }
 
         public RAA_TransferVacanciesPage TransferVacancies()
         {
             formCompletionHelper.ClickLinkByText("Transfer Vacancies");
-            return new RAA_TransferVacanciesPage(_context);
+            return new RAA_TransferVacanciesPage(context);
         }
 
         public RAA_SetVacancyHoursAndWageTypePage SetVacancyHoursAndWageType()
         {
             formCompletionHelper.ClickLinkByText("Set Vacancy Hours and Wage Type");
-            return new RAA_SetVacancyHoursAndWageTypePage(_context);
+            return new RAA_SetVacancyHoursAndWageTypePage(context);
         }
     }
 

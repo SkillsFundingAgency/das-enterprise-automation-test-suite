@@ -5,17 +5,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
     public class DoYouHaveAnythingToTellUsPage : PublicSectorReportingBasePage
     {
         protected override string PageTitle => "Do you have anything else you want to tell us?";
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
-        public DoYouHaveAnythingToTellUsPage(ScenarioContext context) : base(context) => _context = context;
+        public DoYouHaveAnythingToTellUsPage(ScenarioContext context) : base(context)  { }
 
         public ReportYourProgressPage EnterCommentsDetails()
         {
             formCompletionHelper.EnterText(Textarea, publicSectorReportingDataHelper.EmployerComments);
             Continue();
-            return new ReportYourProgressPage(_context);
+            return new ReportYourProgressPage(context);
         }
     }
 }

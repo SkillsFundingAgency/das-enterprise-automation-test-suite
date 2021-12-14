@@ -7,20 +7,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Confirm changes";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AcceptChangesOptions => By.Id("ConfirmChanges");
         private By FinishButton => By.Id("submit-confirm-change");
 
-        public ProviderConfirmChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderConfirmChangesPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApprenticeDetailsPage AcceptChangesAndSubmit()
         {
             javaScriptHelper.ClickElement(AcceptChangesOptions);
             formCompletionHelper.ClickElement(FinishButton);
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
     }

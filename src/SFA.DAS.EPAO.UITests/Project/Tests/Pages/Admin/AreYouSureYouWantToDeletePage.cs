@@ -10,19 +10,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public AreYouSureYouWantToDeletePage (ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AreYouSureYouWantToDeletePage (ScenarioContext context) : base(context) => VerifyPage();
+
         public AuditDetailsPage ClickYesAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new AuditDetailsPage(_context);
+            return new AuditDetailsPage(context);
         }
     }
 }

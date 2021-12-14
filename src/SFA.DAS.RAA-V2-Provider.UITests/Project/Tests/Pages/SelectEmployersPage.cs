@@ -8,11 +8,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SelectEmployersPage(ScenarioContext context) : base(context) => _context = context;
+        public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
         public VacancyTitlePage SelectEmployer(string empName)
         {
@@ -23,7 +19,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new VacancyTitlePage(_context);
+            return new VacancyTitlePage(context);
         }
     }
 }

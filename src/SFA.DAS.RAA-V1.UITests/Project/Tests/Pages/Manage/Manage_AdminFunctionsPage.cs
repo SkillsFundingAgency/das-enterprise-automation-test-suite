@@ -7,52 +7,48 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     {
         protected override string PageTitle => "Administrator functions";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public Manage_AdminFunctionsPage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_AdminFunctionsPage(ScenarioContext context) : base(context) { }
             
         public Manage_AdminManageProvidersPage ClickManageProvidersLink()
         {
             formCompletionHelper.ClickLinkByText("Manage Providers");
-            return new Manage_AdminManageProvidersPage(_context);
+            return new Manage_AdminManageProvidersPage(context);
         }
 
         public Manage_AdminManageProviderSitesPage ClickManageProviderSitesLink()
         {
             formCompletionHelper.ClickLinkByText("Manage Provider Sites");
-            return new Manage_AdminManageProviderSitesPage(_context);
+            return new Manage_AdminManageProviderSitesPage(context);
         }
 
         public Manage_AdminManageApiUsersPage ClickManageApiUsersLink()
         {
             formCompletionHelper.ClickLinkByText("Manage API Users");
-            return new Manage_AdminManageApiUsersPage(_context);
+            return new Manage_AdminManageApiUsersPage(context);
         }
 
         public Manage_AdminManageEmployersPage ClickManageEmployersLink()
         {
             formCompletionHelper.ClickLinkByText("Manage Employers");
-            return new Manage_AdminManageEmployersPage(_context);
+            return new Manage_AdminManageEmployersPage(context);
         }
 
         public Manage_AdminSectorsPage ClickSectorsLink()
         {
             formCompletionHelper.ClickLinkByText("Sectors");
-            return new Manage_AdminSectorsPage(_context);
+            return new Manage_AdminSectorsPage(context);
         }
 
         public Manage_AdminStandardsPage ClickStandardsLink()
         {
             formCompletionHelper.ClickLinkByText("Standards");
-            return new Manage_AdminStandardsPage(_context);
+            return new Manage_AdminStandardsPage(context);
         }
 
         public Manage_AdminFrameworksPage ClickFrameworksLink()
         {
             formCompletionHelper.ClickLinkByText("Frameworks");
-            return new Manage_AdminFrameworksPage(_context);
+            return new Manage_AdminFrameworksPage(context);
         }
 
         public class Manage_AdminManageProvidersPage : Manage_AdminFunctionsPage

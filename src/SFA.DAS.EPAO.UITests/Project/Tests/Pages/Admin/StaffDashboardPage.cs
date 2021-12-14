@@ -8,10 +8,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Staff dashboard";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NewOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#new']");
         private By InProgressOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#in-progress']");
         private By ApprovedOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#approved']");
@@ -34,82 +30,78 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By Financial => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By Applications => By.CssSelector("a.govuk-link[href='/Applications/Midpoint']");
 
-        public StaffDashboardPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public StaffDashboardPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchPage Search()
         {
             formCompletionHelper.ClickElement(SearchLink);
-            return new SearchPage(_context);
+            return new SearchPage(context);
         }
 
         public OrganisationSearchPage SearchEPAO()
         {
             formCompletionHelper.ClickElement(Register);
-            return new OrganisationSearchPage(_context);
+            return new OrganisationSearchPage(context);
         }
 
         public AddOrganisationPage AddOrganisation()
         {
             formCompletionHelper.ClickElement(AddOrganisationLink);
-            return new AddOrganisationPage(_context);
+            return new AddOrganisationPage(context);
         }
 
         public BatchSearchPage SearchEPAOBatch()
         {
             formCompletionHelper.ClickElement(BatchSearch);
-            return new BatchSearchPage(_context);
+            return new BatchSearchPage(context);
         }
 
         public OrganisationApplicationsPage GoToNewOrganisationApplications()
         {
             formCompletionHelper.ClickElement(NewOrganisationApplication);
-            return new OrganisationApplicationsPage(_context);
+            return new OrganisationApplicationsPage(context);
         }
 
         public OrganisationApplicationsPage GoToInProgressOrganisationApplication()
         {
             formCompletionHelper.ClickElement(InProgressOrganisationApplication);
-            return new OrganisationApplicationsPage(_context);
+            return new OrganisationApplicationsPage(context);
         }
 
         public OrganisationApplicationsPage GoToApprovedOrganisationApplication()
         {
             formCompletionHelper.ClickElement(ApprovedOrganisationApplication);
-            return new OrganisationApplicationsPage(_context);
+            return new OrganisationApplicationsPage(context);
         }
 
         public FinancialAssesmentPage GoToNewFinancialAssesmentPage()
         {
             formCompletionHelper.ClickElement(NewFinancialHeathAssesment);
-            return new FinancialAssesmentPage(_context);
+            return new FinancialAssesmentPage(context);
         }
 
         public StandardApplicationsPage GoToNewStandardApplications()
         {
             formCompletionHelper.ClickElement(NewStandardApplication);
-            return new StandardApplicationsPage(_context);
+            return new StandardApplicationsPage(context);
         }
 
         public StandardApplicationsPage GoToInProgressStandardApplication()
         {
             formCompletionHelper.ClickElement(InProgressStandardApplication);
-            return new StandardApplicationsPage(_context);
+            return new StandardApplicationsPage(context);
         }
 
         public AD_WithdrawalApplicationsPage GoToNewWithdrawalApplications()
         {
             formCompletionHelper.ClickElement(NewWithdrawalApplications);
-            return new AD_WithdrawalApplicationsPage(_context);
+            return new AD_WithdrawalApplicationsPage(context);
         }
 
         public AD_WithdrawalApplicationsPage GoToFeedbackWithdrawalApplications()
         {
             formCompletionHelper.ClickElement(FeedbackWithdrawalApplications);
-            return new AD_WithdrawalApplicationsPage(_context);
+            return new AD_WithdrawalApplicationsPage(context);
         }
     }
 }

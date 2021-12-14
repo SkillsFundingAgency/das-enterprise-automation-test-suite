@@ -8,22 +8,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override string PageTitle => "Delete Reservation";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DeleteReservationPage(ScenarioContext context) : base(context) => _context = context;
+        public DeleteReservationPage(ScenarioContext context) : base(context)  { }
 
         public DeleteReservationPage ChooseDeleteReservationRadioButton()
         {
             SelectRadioOptionByForAttribute("Delete");
-            return new DeleteReservationPage(_context);
+            return new DeleteReservationPage(context);
         }
 
         public ReservationSuccessfullyDeletedPage ClickConfirmButton()
         {
             Continue();
-            return new ReservationSuccessfullyDeletedPage(_context);
+            return new ReservationSuccessfullyDeletedPage(context);
         }
     }
 }

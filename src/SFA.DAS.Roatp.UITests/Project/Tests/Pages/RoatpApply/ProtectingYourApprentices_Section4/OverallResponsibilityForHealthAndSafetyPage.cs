@@ -7,21 +7,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
     {
         protected override string PageTitle => "Tell us who has overall responsibility for health and safety in your organisation";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FullName => By.Id("PYA-55");
 
         private By Email => By.Id("PYA-56");
 
         private By ContactNumber => By.Id("PYA-57");
 
-        public OverallResponsibilityForHealthAndSafetyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OverallResponsibilityForHealthAndSafetyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterDetailsOfHealthAndSafetyPerson()
         {
@@ -29,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
             formCompletionHelper.EnterText(Email, applydataHelpers.Email);
             formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
     }

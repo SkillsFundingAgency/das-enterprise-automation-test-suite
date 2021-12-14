@@ -8,10 +8,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
 
-        #region Helpers and Context        
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
         private By FindTraineeshipLink => By.Id("find-traineeship-link");
@@ -34,24 +30,24 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
 
-        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context) { }
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {
             formCompletionHelper.Click(FindAnApprenticeshipLink);
-            return new FAA_ApprenticeSearchPage(_context);
+            return new FAA_ApprenticeSearchPage(context);
         }
 
         public FAA_TraineeshipSearchPage FindATraineeship()
         {
             formCompletionHelper.Click(FindTraineeshipLink);
-            return new FAA_TraineeshipSearchPage(_context);
+            return new FAA_TraineeshipSearchPage(context);
         }
 
         public FAA_SettingsPage GoToSettings()
         {
             formCompletionHelper.Click(Settings);
-            return new FAA_SettingsPage(_context);
+            return new FAA_SettingsPage(context);
         }
 
         private void VerifyVacancySuccessfulNotification()
@@ -80,7 +76,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_YourFeedbackPage ReadFeedback()
         {
             formCompletionHelper.Click(ReadFeedbackLink);
-            return new FAA_YourFeedbackPage(_context);
+            return new FAA_YourFeedbackPage(context);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
@@ -89,7 +85,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             DeleteDraft();
             pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + vacancyTitleDataHelper.VacancyTitle + " apprenticeship");
             formCompletionHelper.Click(VacancyDeletedLink);
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         private void DeleteDraft()

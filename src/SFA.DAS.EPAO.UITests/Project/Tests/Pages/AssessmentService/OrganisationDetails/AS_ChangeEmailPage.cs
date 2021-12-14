@@ -6,41 +6,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ChangeEmailPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change email address";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By EmailTextBox => By.Id("Email");
         #endregion
 
-        public AS_ChangeEmailPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangeEmailPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ConfirmEmailAddressPage EnterRandomEmailAndClickChange()
         {
             formCompletionHelper.EnterText(EmailTextBox, ePAOAssesmentServiceDataHelper.RandomEmail);
             Continue();
-            return new AS_ConfirmEmailAddressPage(_context);
+            return new AS_ConfirmEmailAddressPage(context);
         }
     }
 
     public class AS_ConfirmEmailAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm email address";
-        private readonly ScenarioContext _context;
-
-        public AS_ConfirmEmailAddressPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        
+        public AS_ConfirmEmailAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_EmailAddressUpdatedPage ClickConfirmButtonInConfirmEmailAddressPage()
         {
             Continue();
-            return new AS_EmailAddressUpdatedPage(_context);
+            return new AS_EmailAddressUpdatedPage(context);
         }
     }
 
