@@ -80,3 +80,40 @@ Scenario: Employment check superseded
 	And the employment check has been superseded
 	When the check has been completed by the Employment Check service
 	Then the result is discarded
+
+Scenario: Payment validation - Employment check has not been completed
+	Given an employment check has been requested
+	And the employment check has not returned a result
+	And a payment is due for the apprenticeship
+	When the month end process is initiated
+	Then a payment is not created for the apprenticeship incentive
+
+Scenario: Payment validation - Apprentice was employment prior to scheme phase
+	Given an employment check has been requested
+	And the employment check returns that the apprentice was employed in the 6 months prior to the scheme phase starting
+	And a payment is due for the apprenticeship
+	When the month end process is initiated
+	Then a payment is not created for the apprenticeship incentive
+
+Scenario: Payment validation - Apprentice was not employment at apprenticeship start
+	Given an employment check has been requested
+	And the employment check returns that the apprentice was not employed in the 6 weeks after their start date
+	And a payment is due for the apprenticeship
+	When the month end process is initiated
+	Then a payment is not created for the apprenticeship incentive
+
+Scenario: Payment validation - Apprentice eligible for payment
+	Given an employment check has been requested
+	And the employment check returns that the apprentice was employed in the 6 weeks after their start date
+	And the employment check returns that the apprentice was not employed in the 6 months prior to the scheme starting
+	And a payment is due for the apprenticeship
+	When the month end process is initiated
+	And there are no other validation failures
+	Then a payment is created for the apprenticeship incentive
+
+Scenario: Payment validation - ILR not submitted
+	Given an apprenticeship incentive has been submitted in phase 2
+	And an ILR has not been submitted for the learner
+	And a payment is due for the apprenticeship
+	When the month end process is initiated
+	Then a payment is not created for the apprenticeship incentive

@@ -106,9 +106,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId <> @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty }, 2, timeout);
         }
 
-        public async Task WaitUntilEmploymentCheckResultIsSet(Guid apprenticeshipIncentiveId, bool expectedResult, TimeSpan? timeout)
+        public async Task WaitUntilEmploymentCheckResultIsSet(Guid apprenticeshipIncentiveId, EmploymentCheckType checkType, bool expectedResult, TimeSpan? timeout)
         {
-            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND Result = @expectedResult", new { apprenticeshipIncentiveId, expectedResult }, 2, timeout);
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND Result = @expectedResult AND CheckType = @checkType", new { apprenticeshipIncentiveId, expectedResult, checkType = checkType.ToString() }, 1, timeout);
         }
 
         private async Task WaitUntil(string query, object parameters, int expectedResults, TimeSpan? timeout)

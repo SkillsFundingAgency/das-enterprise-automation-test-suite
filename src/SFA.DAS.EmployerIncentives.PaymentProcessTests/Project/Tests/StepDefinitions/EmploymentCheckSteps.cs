@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Org.BouncyCastle.Crypto.Engines;
 using SFA.DAS.EmployerIncentives.Messages.Events;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
@@ -17,6 +18,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _startDate;
         private string _employmentCheckResult = "employed";
         private IEnumerable<EmploymentCheck> _employmentChecks;
+        private bool _expectedEmployedAtStartOfApprenticeshipValidationResult;
+        private bool _expectedEmployedBeforeSchemeStartedValidationResult;
 
         protected EmploymentCheckSteps(ScenarioContext context) : base(context)
         {
@@ -69,11 +72,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
         }
 
+        [Given(@"the employment check has not returned a result")]
+        public void GivenTheEmploymentCheckHasNotReturnedAResult()
+        {
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
+            _expectedEmployedBeforeSchemeStartedValidationResult = false;
+        }
+
+        [Given(@"a payment is due for the apprenticeship")]
+        public void GivenAPaymentIsDueForTheApprenticeship()
+        {
+        }
+
         private async Task CreateIncentive(Phase phase, DateTime startDate)
         {
             _startDate = startDate;
             
-            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
+            await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
@@ -120,10 +135,26 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"the check has been completed by the Employment Check service")]
         public async Task WhenTheEmploymentCheckIsComplete()
         {
-            foreach (var employmentCheck in _employmentChecks)
-            {
-                await Helper.EIServiceBusHelper.Publish(new EmploymentCheckCompletedEvent {CorrelationId = employmentCheck.CorrelationId, DateChecked = DateTime.Now, Result = _employmentCheckResult});
-            }
+            await WhenTheEmploymentCheckIsComplete(_employmentCheckResult, _employmentCheckResult);
+        }
+
+        public async Task WhenTheEmploymentCheckIsComplete(string statusBeforeScheme, string statusAtStart)
+        {
+            var employedBeforeSchemeCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
+            await Helper.EIServiceBusHelper.Publish(new EmploymentCheckCompletedEvent { CorrelationId = employedBeforeSchemeCheck.CorrelationId, DateChecked = DateTime.Now, Result = statusBeforeScheme });
+            var employedAtStartCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
+            await Helper.EIServiceBusHelper.Publish(new EmploymentCheckCompletedEvent { CorrelationId = employedAtStartCheck.CorrelationId, DateChecked = DateTime.Now, Result = statusAtStart });
+        }
+
+        [When(@"the month end process is initiated")]
+        public async Task WhenMonthEndIsRan()
+        {
+            await Helper.PaymentsOrchestratorHelper.Run();
+        }
+
+        [When(@"there are no other validation failures")]
+        public void WhenThereAreNoOtherValidationFailures()
+        {
         }
 
         [Given(@"we have previously received a result from the Employment Check service")]
@@ -131,6 +162,44 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await WhenTheEmploymentCheckIsComplete();
             _employmentCheckResult = "not employed";
+        }
+
+        [Given(@"the employment check returns that the apprentice was employed in the 6 months prior to the scheme phase starting")]
+        public async Task GivenTheApprenticeWasEmployedPriorToSchemeStart()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = false;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = true;
+            _employmentCheckResult = "employed";
+            await WhenTheEmploymentCheckIsComplete();
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, true, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"the employment check returns that the apprentice was not employed in the 6 weeks after their start date")]
+        public async Task GivenTheApprenticeWasNotEmployedAtApprenticeshipStart()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = true;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
+            _employmentCheckResult = "not employed";
+            await WhenTheEmploymentCheckIsComplete();
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, false, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"the employment check returns that the apprentice was employed in the 6 weeks after their start date")]
+        [Given(@"the employment check returns that the apprentice was not employed in the 6 months prior to the scheme starting")]
+        public async Task GivenTheApprenticeHasValidEmploymentChecks()
+        {
+            await WhenTheEmploymentCheckIsComplete("not employed", "employed");
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"an ILR has not been submitted for the learner")]
+        public void GivenAnIlrHasNotBeenSubmitted()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = false;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
         }
 
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting")]
@@ -185,23 +254,52 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the result is stored")]
         public async Task ThenTheResultIsStored()
         {
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, true, TimeSpan.FromMinutes(1));
         }
 
         [Then(@"the result is updated")]
         public async Task ThenTheResultIsUpdated()
         {
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, false, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, false, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
         }
 
         [Then(@"the result is discarded")]
-        public async Task ThenTheResultIsDiscarded()
+        public void ThenTheResultIsDiscarded()
         {
             var employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
             employmentChecks[0].Result.Should().BeNull();
             employmentChecks[1].Result.Should().BeNull();
+        }
+
+        [Then(@"a payment is not created for the apprenticeship incentive")]
+        public void ThenAPaymentIsNotCreatedForTheApprenticeshipIncentive()
+        {
+            var payments = Helper.EISqlHelper.GetAllFromDatabase<Payment>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
+
+            payments.Should().BeEmpty();
+
+            var pendingPayments = Helper.EISqlHelper.GetAllFromDatabase<PendingPayment>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
+
+            var validationResults = Helper.EISqlHelper.GetAllFromDatabase<PendingPaymentValidationResult>()
+                .Where(vr => pendingPayments.Any(pp => pp.Id == vr.PendingPaymentId));
+
+            validationResults.Single(x => x.Step == "EmployedAtStartOfApprenticeship").Result.Should().Be(_expectedEmployedAtStartOfApprenticeshipValidationResult);
+            validationResults.Single(x => x.Step == "EmployedBeforeSchemeStarted").Result.Should().Be(_expectedEmployedBeforeSchemeStartedValidationResult);
+        }
+
+        [Then(@"a payment is created for the apprenticeship incentive")]
+        public void ThenAPaymentIsCreatedForTheApprenticeshipIncentive()
+        {
+            var payments = Helper.EISqlHelper.GetAllFromDatabase<Payment>()
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
+
+            payments.Count().Should().Be(1);
         }
 
         private async Task SetupSubmission()
