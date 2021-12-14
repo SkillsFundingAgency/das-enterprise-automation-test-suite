@@ -8,7 +8,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
     {
         protected override string PageTitle => "Edit user permissions";
         protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By ChangeOrganisationDetailsCheckBox => By.Id(Getid("Change organisation details"));
@@ -19,18 +18,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         private By ChangeRecordGradesCheckBox => By.Id(Getid("Record grades and issue certificates"));
         #endregion
 
-        public AS_EditUserPermissionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_EditUserPermissionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public bool IsChangeOrganisationDetailsCheckBoxSelected() => pageInteractionHelper.GetElementSelectedStatus(ChangeOrganisationDetailsCheckBox);
 
         public AS_UserDetailsPage ClickSaveButton()
         {
             Continue();
-            return new AS_UserDetailsPage(_context);
+            return new AS_UserDetailsPage(context);
         }
 
         public AS_EditUserPermissionsPage UnSelectChangeOrganisationDetailsCheckBox()

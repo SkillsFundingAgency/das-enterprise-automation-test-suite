@@ -7,8 +7,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add your business details";
 
-        private readonly ScenarioContext _context;
-
         private By AdditionalLocationSelector => By.CssSelector("#AdditionalLocation");
 
         private By AdditionalLocationTextSelector => By.CssSelector("#AdditionalLocationText");
@@ -17,7 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public AddYourBusinessDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public AddYourBusinessDetailsPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage EnterBusinessDetailsAndContinue()
         {
@@ -38,7 +36,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new CreateATransfersApplicationPage(_context);
+            return new CreateATransfersApplicationPage(context);
         }
     }
 }

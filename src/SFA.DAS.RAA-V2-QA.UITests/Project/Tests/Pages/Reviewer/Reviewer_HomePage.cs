@@ -10,22 +10,18 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected override string PageTitle => "Review Vacancy";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ReviewVacancyButton => By.CssSelector(".govuk-button[type='submit']");
 
         private By SearchTerm => By.Id("SearchTerm");
 
         private By SearchVacancy => By.CssSelector(".search-submit button");
 
-        public Reviewer_HomePage(ScenarioContext context) : base(context) => _context = context;
+        public Reviewer_HomePage(ScenarioContext context) : base(context) { }
 
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
         {
             formCompletionHelper.Click(ReviewVacancyButton);
-            return new Reviewer_AnyVacancyPreviewPage(_context);
+            return new Reviewer_AnyVacancyPreviewPage(context);
         }
 
         public Reviewer_VacancyPreviewPage ReviewVacancy()
@@ -33,7 +29,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             formCompletionHelper.EnterText(SearchTerm, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchVacancy);
             formCompletionHelper.ClickLinkByText("Review");
-            return new Reviewer_VacancyPreviewPage(_context);
+            return new Reviewer_VacancyPreviewPage(context);
         }
     }
 }

@@ -7,10 +7,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class EmployerNameBasePage : RAAV2CSSBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
         private By NewTradingName => By.CssSelector("#NewTradingName");
@@ -19,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By EmployerReason => By.CssSelector("#AnonymousReason");
 
-        public EmployerNameBasePage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerNameBasePage(ScenarioContext context) : base(context) { }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
@@ -30,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
 
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
@@ -39,7 +35,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
             SetEmployerName(rAAV2DataHelper.EmployerTradingName);
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseAnonymous()
@@ -49,7 +45,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SetEmployerName(rAAV2DataHelper.EmployerDescription);
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
         private void SetEmployerName(string value) => objectContext.SetEmployerName(value);

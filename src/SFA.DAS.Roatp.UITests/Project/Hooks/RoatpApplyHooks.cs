@@ -7,7 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     public class RoatpApplyHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        public RoatpApplyHooks(ScenarioContext context) : base(context) { _context = context; }
+
+        public RoatpApplyHooks(ScenarioContext context) : base(context) => _context = context;
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpApplyDataHelpers();

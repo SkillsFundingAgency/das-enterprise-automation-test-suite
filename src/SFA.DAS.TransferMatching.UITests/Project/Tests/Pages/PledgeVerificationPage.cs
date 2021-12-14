@@ -11,11 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PledgeVerificationPage(ScenarioContext context) : base(context) => _context = context;
+        public PledgeVerificationPage(ScenarioContext context) : base(context) { }
 
         public PledgeVerificationPage SetPledgeDetail()
         {
@@ -30,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("View your pledges");
 
-            return new MyTransferPledgesPage(_context);
+            return new MyTransferPledgesPage(context);
         }
     }
 }

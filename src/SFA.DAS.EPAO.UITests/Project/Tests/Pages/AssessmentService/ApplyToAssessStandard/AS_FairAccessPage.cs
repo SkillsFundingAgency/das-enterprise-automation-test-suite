@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Fair access";
 
-        private readonly ScenarioContext _context;
-
-        public AS_FairAccessPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_FairAccessPage(ScenarioContext context) : base(context) { }
 
         public AS_ConsistencyAssurancePage UploadFairAccess()
         {
             UploadFile();
-            return new AS_ConsistencyAssurancePage(_context);
+            return new AS_ConsistencyAssurancePage(context);
         }
 
     }

@@ -8,36 +8,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "How long has your organisation been actively trading?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By TradingRadioInputs => By.CssSelector(".govuk-radios__input");
 
-        public TradingPeriodPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TradingPeriodPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage SelectMaximumTradingPeriodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).LastOrDefault());
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public NotEligiblePage SelectMinimumTradingPeriodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
             Continue();
-            return new NotEligiblePage(_context);
+            return new NotEligiblePage(context);
         }
         public ApplicationOverviewPage SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

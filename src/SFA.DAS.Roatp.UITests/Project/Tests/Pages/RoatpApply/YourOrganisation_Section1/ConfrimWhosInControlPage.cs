@@ -7,25 +7,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         protected override string PageTitle => "Confirm who's in control";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public ConfrimWhosInControlPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfrimWhosInControlPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage ConfirmWhosInContorlAndContinue()
         {
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public ConfirmTrusteesPage ConfirmWhosInContorlAndContinueToTrusteesPage()
         {
             Continue();
-            return new ConfirmTrusteesPage(_context);
+            return new ConfirmTrusteesPage(context);
         }
     }
 }

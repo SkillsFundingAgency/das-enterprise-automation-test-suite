@@ -5,32 +5,31 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     public class DevelopingAndDeliveringTrainingPage : ModeratorBasePage
     {
         protected override string PageTitle => "Team responsible for developing and delivering training";
-        private readonly ScenarioContext _context;
-
-        public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) { }
 
         public WhoTheTeamHaveWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {
             SelectPassAndContinueToSubSection();
-            return new WhoTheTeamHaveWorkedWithPage(_context);
+            return new WhoTheTeamHaveWorkedWithPage(context);
         }
 
         public WhoTheTeamHaveWorkedWithPage SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {
             SelectFailAndContinueToSubSection();
-            return new WhoTheTeamHaveWorkedWithPage(_context);
+            return new WhoTheTeamHaveWorkedWithPage(context);
         }
 
         public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()
         {
             SelectPassAndContinueToSubSection();
-            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(_context);
+            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(context);
         }
 
         public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage SelectFailAndContinueInDevelopingAndDeliveringTrainingPage_EP()
         {
             SelectFailAndContinueToSubSection();
-            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(_context);
+            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(context);
         }
     }
 }

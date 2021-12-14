@@ -7,20 +7,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
     {
         protected override string PageTitle => "Submit application on behalf of";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
         private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication");
         private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
-        private By ConfirmFurtherCommunicationSubmitApplication = By.Id("ConfirmFurtherCommunicationSubmitApplication");
+        private By ConfirmFurtherCommunicationSubmitApplication => By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
-        public SubmitApplicationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SubmitApplicationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationSubmittedPage ConfirmAllAnswersAndSubmitApplication()
         {
@@ -29,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherInfoSubmitApplication));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherCommunicationSubmitApplication));
             Continue();
-            return new ApplicationSubmittedPage(_context);
+            return new ApplicationSubmittedPage(context);
         }
     }
 }

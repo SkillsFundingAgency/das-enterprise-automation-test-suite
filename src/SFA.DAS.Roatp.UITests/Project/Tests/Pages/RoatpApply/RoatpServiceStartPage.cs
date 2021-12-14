@@ -7,22 +7,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Apply to join the register of apprenticeship training providers (RoATP)";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApplyNow => By.LinkText("Apply now");
 
-        public RoatpServiceStartPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RoatpServiceStartPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public UsedThisServiceBeforePage ClickApplyNow()
         {
             formCompletionHelper.ClickElement(ApplyNow);
-            return new UsedThisServiceBeforePage(_context);
+            return new UsedThisServiceBeforePage(context);
         }
     }
 }

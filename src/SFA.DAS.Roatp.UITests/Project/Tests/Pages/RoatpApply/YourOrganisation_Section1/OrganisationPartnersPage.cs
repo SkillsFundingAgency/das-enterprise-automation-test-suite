@@ -6,28 +6,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "What is your organisation's partner?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OrganisationPartnersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationPartnersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EnterOrganisationsDetailsPage SelectOrganisationAndContinue()
         {
             SelectRadioOptionByText("An organisation");
             Continue();
-            return new EnterOrganisationsDetailsPage(_context);
+            return new EnterOrganisationsDetailsPage(context);
         }
 
         public EnterIndividualsDetailsPage SelectIndividualAndContinue()
         {
             SelectRadioOptionByText("An individual");
             Continue();
-            return new EnterIndividualsDetailsPage(_context);
+            return new EnterIndividualsDetailsPage(context);
         }
     }
 }

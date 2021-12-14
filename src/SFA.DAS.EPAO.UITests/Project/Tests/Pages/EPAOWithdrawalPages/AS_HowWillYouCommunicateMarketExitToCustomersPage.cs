@@ -1,30 +1,24 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AS_HowWillYouCommunicateMarketExitToCustomersPage : EPAO_BasePage
     {
         protected override string PageTitle => "How will you communicate your market exit to customers?";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By SupportInfoTextArea => By.XPath("//div[@class='govuk-character-count']//textarea");
         #endregion
         
-        public AS_HowWillYouCommunicateMarketExitToCustomersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-        
+        public AS_HowWillYouCommunicateMarketExitToCustomersPage(ScenarioContext context) : base(context) => VerifyPage();
+
         public AS_WhenDoYouWantToWithdrawFromTheStandardPage EnterSupportingInformationForStandardWithdrawal()
         {
             formCompletionHelper.Click(SupportInfoTextArea);
             formCompletionHelper.EnterText(SupportInfoTextArea, standardDataHelper.GenerateRandomAlphanumericString(250));
             Continue();
-            return new AS_WhenDoYouWantToWithdrawFromTheStandardPage(_context);
+            return new AS_WhenDoYouWantToWithdrawFromTheStandardPage(context);
         }
 
         public AS_WhenDoYouWantToWithdrawFromTheRegisterPage EnterSupportingInformationForRegisterWithdrawal()
@@ -32,7 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(SupportInfoTextArea);
             formCompletionHelper.EnterText(SupportInfoTextArea, standardDataHelper.GenerateRandomAlphanumericString(250));
             Continue();
-            return new AS_WhenDoYouWantToWithdrawFromTheRegisterPage(_context);
+            return new AS_WhenDoYouWantToWithdrawFromTheRegisterPage(context);
         }
     }
 }

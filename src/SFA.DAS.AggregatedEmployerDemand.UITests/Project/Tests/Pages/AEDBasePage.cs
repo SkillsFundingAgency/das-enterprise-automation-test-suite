@@ -5,7 +5,7 @@ using SFA.DAS.ProviderLogin.Service;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 {
-    public abstract class AEDBasePage : BasePage
+    public abstract class AEDBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly ProviderConfig providerConfig;

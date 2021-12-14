@@ -10,17 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ConfirmDeleteOptions => By.Id("confirm-true");
         private By SaveAndContinueButton => By.Id("saveBtn");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

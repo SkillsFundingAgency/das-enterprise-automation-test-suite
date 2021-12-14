@@ -10,20 +10,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "Are you sure you want to fail this application?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public FinalConfirmationFailPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public FinalConfirmationFailPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public GateWayOutcomePage YesSureFailThisApplicationAndGoToGovernance()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new GateWayOutcomePage(_context);
+            return new GateWayOutcomePage(context);
         }
     }
 }

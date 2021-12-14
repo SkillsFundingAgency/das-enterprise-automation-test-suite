@@ -8,20 +8,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         protected override string PageTitle => "Financial health assessment completed";
         private By GoToRoATPFinancialApplicationsLink => By.LinkText("Back to RoATP financial applications");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FinancialHealthAssesmentCompletedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancialHealthAssesmentCompletedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialLandingPage GoToRoATPAssessorApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPFinancialApplicationsLink);
-            return new FinancialLandingPage(_context);
+            return new FinancialLandingPage(context);
         }
     }
 }

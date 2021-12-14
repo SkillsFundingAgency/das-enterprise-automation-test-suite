@@ -20,11 +20,9 @@ namespace SFA.DAS.PayeCreation.Project
         [BeforeScenario(Order = 2)]
         public void SetUpPayeCreationConfiguration()
         {
-            var payeCreationconfig = _configSection.GetConfigSection<PayeCreationConfig>();
-            _context.SetPayeCreationConfig(payeCreationconfig);
+            _context.SetPayeCreationConfig(_configSection.GetConfigSection<PayeCreationConfig>());
 
-            var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
-            _context.SetMongoDbConfig(mongoDbconfig);
+            _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
     }
 }

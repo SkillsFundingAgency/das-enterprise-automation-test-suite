@@ -7,27 +7,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Who will enter the new course dates and price?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
 
-
-        public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context): base(context) => _context = context;
+        public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context): base(context) { }
 
         public ConfirmRequestForChangeOfProviderPage NewTrainingProviderWillAddThemLater()
         {
             formCompletionHelper.SelectRadioOptionByText($"{changeOfPartyConfig.NewProviderName} will add them later");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
-            return new ConfirmRequestForChangeOfProviderPage(_context);
+            return new ConfirmRequestForChangeOfProviderPage(context);
         }
 
         public WhatIsTheNewStartDatePage SelectIWillAddThemNow()
         {
             formCompletionHelper.SelectRadioOptionByText("I'll add them now");
             formCompletionHelper.Click(WhoWillEnterTheNewCourseDatesAndPriceContinueBtn);
-            return new WhatIsTheNewStartDatePage(_context);
+            return new WhatIsTheNewStartDatePage(context);
         }
     }
 }

@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
     {
         protected override string PageTitle => "Subject to insolvency or winding up proceedings in the last 3 years check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SubjectToInsolvencyCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SubjectToInsolvencyCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

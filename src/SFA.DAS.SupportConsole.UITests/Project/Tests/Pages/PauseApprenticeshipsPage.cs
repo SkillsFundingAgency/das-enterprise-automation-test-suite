@@ -8,7 +8,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class PauseApprenticeshipsPage : ToolSupportBasePage       
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Pause apprenticeships";
 
         #region Locators
@@ -16,7 +15,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(11)");
         #endregion
 
-        public PauseApprenticeshipsPage(ScenarioContext context) : base(context) => _context = context;
+        public PauseApprenticeshipsPage(ScenarioContext context) : base(context) { }
 
         public PauseApprenticeshipsPage ClickPauseBtn()
         {

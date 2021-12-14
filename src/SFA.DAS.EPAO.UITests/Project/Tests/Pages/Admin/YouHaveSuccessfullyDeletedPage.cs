@@ -10,19 +10,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "You’ve successfully deleted";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         private By ReturnToStaffDashBoard => By.CssSelector(".govuk-button");
-        public YouHaveSuccessfullyDeletedPage (ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+
+        public YouHaveSuccessfullyDeletedPage (ScenarioContext context) : base(context) => VerifyPage();
+
         public StaffDashboardPage ClickReturnToDashboard()
         {
             formCompletionHelper.ClickElement(ReturnToStaffDashBoard);
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
     }
 }

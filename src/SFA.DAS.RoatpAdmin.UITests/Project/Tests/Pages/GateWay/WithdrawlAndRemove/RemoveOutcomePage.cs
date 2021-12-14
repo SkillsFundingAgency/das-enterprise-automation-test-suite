@@ -11,21 +11,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
     {
         protected override string PageTitle => "Application removed";
 
-        private By GoToRoATPGatewayApplicationsLink = By.LinkText("Go to RoATP applications");
+        private By GoToRoATPGatewayApplicationsLink => By.LinkText("Go to RoATP applications");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public RemoveOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public RemoveOutcomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public GatewayLandingPage GoToRoATPGatewayApplicationsPage()
         {
             formCompletionHelper.Click(GoToRoATPGatewayApplicationsLink);
-            return new GatewayLandingPage(_context);
+            return new GatewayLandingPage(context);
         }
     }
 }

@@ -7,15 +7,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Estimate apprenticeships you could fund";
 
-        private readonly ScenarioContext _context;
-
         private By StartButton => By.CssSelector("a[href*='forecasting/estimations/start-redirect']");
 
-        public EstimateFundingProjectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EstimateFundingProjectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void ClickStart() => formCompletionHelper.Click(StartButton);
     }

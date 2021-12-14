@@ -6,44 +6,36 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Application overview";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OrganisationApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public NewOrganisationDetailsPage GoToNewOrganisationDetailsPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate organisation details");
-            return new NewOrganisationDetailsPage(_context);
+            return new NewOrganisationDetailsPage(context);
         }
 
         public NewOrgDeclarationsPage GoToNewOrgDeclarationsPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate declarations");
-            return new NewOrgDeclarationsPage(_context);
+            return new NewOrgDeclarationsPage(context);
         }
 
         public NewOrgFinancialhealthAssesmentPage GoToFinancialhealthAssesmentPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate financial health assessment");
-            return new NewOrgFinancialhealthAssesmentPage(_context);
+            return new NewOrgFinancialhealthAssesmentPage(context);
         }
 
         public OrganisationApplicationsPage ReturnToOrganisationApplicationsPage()
         {
             formCompletionHelper.ClickLinkByText("Return to applications");
-            return new OrganisationApplicationsPage(_context);
+            return new OrganisationApplicationsPage(context);
         }
 
         public AssessmentSummaryPage CompleteReview()
         {
             Continue();
-            return new AssessmentSummaryPage(_context);
+            return new AssessmentSummaryPage(context);
         }
     }
 }
