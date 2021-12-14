@@ -66,6 +66,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _startDate = _startDate.AddDays(10);
             await SetupSubmission();
             await WhenTheLearnerMatchIsRun();
+            await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
         }
 
         private async Task CreateIncentive(Phase phase, DateTime startDate)
@@ -197,7 +198,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task ThenTheResultIsDiscarded()
         {
             var employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
-                .Where(x => x.CorrelationId == TestData.ApprenticeshipIncentiveId).ToList();
+                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
             employmentChecks[0].Result.Should().BeNull();
             employmentChecks[1].Result.Should().BeNull();
