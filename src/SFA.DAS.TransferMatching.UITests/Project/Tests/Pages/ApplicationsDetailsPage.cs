@@ -7,18 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public class ApplicationsDetailsPage : TransferMatchingBasePage
     {
         protected override string PageTitle => $"({GetPledgeId()}) application details";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-
-
         protected override By ContinueButton => By.CssSelector("#fund-transfer-accept");
 
         private By InformationSelector => By.CssSelector("#TruthfulInformation");
 
-        private By ComplyWithRulesSelector = By.CssSelector("#ComplyWithRules");
+        private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
         private By WithdrawalConfirmed = By.CssSelector("#IsDeclineConfirmed");
 
@@ -26,8 +19,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public ApplicationsDetailsPage(ScenarioContext context, string applicationStatus) : base(context, false)
         {
-            _context = context;
-
             VerifyApplicationStatus(applicationStatus);
 
             if (applicationStatus == "FUNDS AVAILABLE") VerifyPage(PageHeader, $"{GetPledgeId()}");
@@ -69,7 +60,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new AcceptedTransferPage(_context);
+            return new AcceptedTransferPage(context);
         }
 
         public SuccessfullyWithdrawnPage WithdrawFunding()

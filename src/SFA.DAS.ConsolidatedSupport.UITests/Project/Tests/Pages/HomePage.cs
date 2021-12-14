@@ -10,8 +10,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("#main_navigation");
         protected override string PageTitle { get; }
 
-        private readonly ScenarioContext _context;
-
         private By BrandingHeader => By.CssSelector("#branding_header");
 
         private By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
@@ -29,8 +27,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context, bool navigateTo) : base(context)
         {
             void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
-
-            _context = context;
 
             if (navigateTo) 
             {
@@ -54,15 +50,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
             });
 
-            return new TicketPage(_context);
+            return new TicketPage(context);
         }
 
         public AdminPage NavigateToAdminPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
-            return new AdminPage(_context);
+            return new AdminPage(context);
         }
 
-        protected HomePage NavigateToHomePage() => new HomePage(_context, true);
+        protected HomePage NavigateToHomePage() => new HomePage(context, true);
     }
 }

@@ -14,21 +14,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
         private By InternalComments => By.Id("OptionYesText");
         private By ExternalComments => By.Id("OptionYesTextExternal");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        public RemoveConfirmPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RemoveConfirmPage(ScenarioContext context) : base(context) => VerifyPage();
+
         public RemoveOutcomePage YesSureRemoveThisApplication()
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(InternalComments, "Withdraw Application Internal Comments");
             formCompletionHelper.EnterText(ExternalComments, "Withdraw Application External Comments");
             Continue();
-            return new RemoveOutcomePage(_context);
+            return new RemoveOutcomePage(context);
         }
     }
 }

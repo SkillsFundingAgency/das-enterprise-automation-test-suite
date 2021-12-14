@@ -11,17 +11,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderConfirmCohortDeletionPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderConfirmCohortDeletionPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApprenticeRequestsPage ConfirmDeleteAndSubmit()
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             Continue();
-            return new ProviderApprenticeRequestsPage(_context);
+            return new ProviderApprenticeRequestsPage(context);
         }
     }
 }

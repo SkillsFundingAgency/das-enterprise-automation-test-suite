@@ -11,33 +11,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By ContinueButton => By.CssSelector("#submit-undo-changes, #continue-button");
         private By ViewChangesOptions => By.CssSelector(".selection-button-radio");
 
-        private readonly ScenarioContext _context;
-
-        public ProviderViewChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderViewChangesPage(ScenarioContext context) : base(context)  { }
         
         public ProvideViewApprenticesDetailsPage ClickOnReviewNewDetailsLink()
         {
             formCompletionHelper.Click(ReviewNewDetails);
-            return new ProvideViewApprenticesDetailsPage(_context);
+            return new ProvideViewApprenticesDetailsPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage ClickOnReviewNewDetailsToUpdateLink()
         {
             formCompletionHelper.Click(ReviewNewDetailsToUpdate);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             Continue();
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal ProviderApprenticeDetailsPage ClickLeaveTheseChanges()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewChangesOptions, "undo-changes-false");
             Continue();
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         internal ProviderViewChangesPage SelectViewChangesOptions()

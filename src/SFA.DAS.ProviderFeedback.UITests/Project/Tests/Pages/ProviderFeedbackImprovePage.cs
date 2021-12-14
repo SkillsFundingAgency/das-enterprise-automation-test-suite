@@ -7,28 +7,26 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "improve";
 
-        private readonly ScenarioContext _context;
-
         protected override By ContinueButton => By.Id("q2-continue");
 
-        public ProviderFeedbackImprovePage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackImprovePage(ScenarioContext context) : base(context) { }
 
         public ProviderFeedbackOverallRatingPage ContinueToOverallRating()
         {
             SelectOptionAndContinue();
-            return new ProviderFeedbackOverallRatingPage(_context);
+            return new ProviderFeedbackOverallRatingPage(context);
         }
 
         public ProviderFeedbackOverallRatingPage SkipQuestion2()
         {
             formCompletionHelper.ClickLinkByText("Skip this question");
-            return new ProviderFeedbackOverallRatingPage(_context);
+            return new ProviderFeedbackOverallRatingPage(context);
         }
 
         public ProviderFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
         {
             SelectOptionAndContinue();
-            return new ProviderFeedbackCheckYourAnswersPage(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(context);
         }
     }
 }

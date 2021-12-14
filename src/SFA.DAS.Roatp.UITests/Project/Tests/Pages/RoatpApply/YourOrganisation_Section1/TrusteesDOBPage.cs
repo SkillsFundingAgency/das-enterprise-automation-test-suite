@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
@@ -8,16 +6,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Enter the date of birth for trustees";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TrusteesDOBPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrusteesDOBPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }
-
-

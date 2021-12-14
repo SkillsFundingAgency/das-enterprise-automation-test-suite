@@ -7,8 +7,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
     {
         protected override string PageTitle => "";
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        private readonly ScenarioContext _context;
-        public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context) => _context = context;
+
+        public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context)  { }
 
         #region Locators
         private By FirstEmployerCheckbox => By.ClassName("govuk-checkboxes__input");
@@ -18,18 +18,18 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         {
             formCompletionHelper.SelectCheckbox(FirstEmployerCheckbox);
             ContinueToNextPage();
-            return new EditProvidersContactDetailsPage(_context);
+            return new EditProvidersContactDetailsPage(context);
         }
         public FindEmployersThatNeedATrainingProviderPage BackToFindEmployersThatNeedATrainingProviderPage()
         {
             formCompletionHelper.Click(BackLink);
-            return new FindEmployersThatNeedATrainingProviderPage(_context);
+            return new FindEmployersThatNeedATrainingProviderPage(context);
         }
         public ConfirmProvidersContactDetailsPage CheckAndContinueWithfirstEmployerCheckboxAfterChange()
         {
             formCompletionHelper.SelectCheckbox(FirstEmployerCheckbox);
             ContinueToNextPage();
-            return new ConfirmProvidersContactDetailsPage(_context);
+            return new ConfirmProvidersContactDetailsPage(context);
         }
     }
 }

@@ -8,8 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YouHaveAcceptedTheEmployerAgreementPage : RegistrationBasePage
     {
         protected override string PageTitle => "You’ve accepted the employer agreement";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         protected override By ContinueButton => By.LinkText("View your account");
         private By DownloadYourAcceptedAgreementLink => By.LinkText("Download your accepted agreement");
@@ -18,8 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YouHaveAcceptedTheEmployerAgreementPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
@@ -30,13 +27,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage ClickOnViewYourAccountButton()
         {
             formCompletionHelper.Click(ContinueButton);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public YourOrganisationsAndAgreementsPage ClickOnReviewAndAcceptYourOtherAgreementsLink()
         {
             formCompletionHelper.Click(ReviewAndAcceptYourOtherAgreementsLink);
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
     }
 }

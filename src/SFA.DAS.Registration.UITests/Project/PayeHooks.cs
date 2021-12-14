@@ -50,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _isAddPayeDetails = true;
 
-            var mongoDbDataGenerator = new MongoDbDataGenerator(_context);
+            var mongoDbDataGenerator = new MongoDbDataGenerator(_context, string.Empty);
 
             mongoDbDataGenerator.AddGatewayUsers(0);
 
@@ -69,7 +69,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
-            var anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context);
+            var anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context, string.Empty);
 
             anotherMongoDbDataGenerator.AddGatewayUsers(1);
 

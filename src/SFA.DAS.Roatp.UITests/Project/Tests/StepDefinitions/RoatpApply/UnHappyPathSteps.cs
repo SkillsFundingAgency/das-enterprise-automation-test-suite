@@ -12,16 +12,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     public class UnHappyPathSteps
     {
         private readonly ScenarioContext _context;
-        private readonly YourOrganisation_Section1_Helper _yourOrganisation_Section1_Helper;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
-        private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private ApplicationOverviewPage _overviewPage;
         
         public UnHappyPathSteps(ScenarioContext context)
         {
             _context = context;
-            _yourOrganisation_Section1_Helper = new YourOrganisation_Section1_Helper();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
         }
 

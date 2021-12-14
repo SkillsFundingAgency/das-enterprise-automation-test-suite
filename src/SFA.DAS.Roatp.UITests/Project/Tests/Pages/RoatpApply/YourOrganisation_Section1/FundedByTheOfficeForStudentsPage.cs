@@ -6,38 +6,30 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Is your organisation funded by the Office for Students?";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FundedByTheOfficeForStudentsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FundedByTheOfficeForStudentsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public InitialTeacherTrainingPage SelectYesForFundedbyOFSAndContinue()
         {
             SelectYesAndContinue();
-            return new InitialTeacherTrainingPage(_context);
+            return new InitialTeacherTrainingPage(context);
         }
 
         public ApprenticeshipTrainingAsSubcontractorPage SelectYesForFundedbyOFSAndContinueForSupportingRoute()
         {
             SelectYesAndContinue();
-            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+            return new ApprenticeshipTrainingAsSubcontractorPage(context);
         }
 
         public InitialTeacherTrainingPage SelectNoForFundedbyOFSAndContinue()
         {
             SelectNoAndContinue();
-            return new InitialTeacherTrainingPage(_context);
+            return new InitialTeacherTrainingPage(context);
         }
 
         public ApprenticeshipTrainingAsSubcontractorPage SelectNoForFundedbyOFSAndContinueForSupportingRoute()
         {
             SelectNoAndContinue();
-            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+            return new ApprenticeshipTrainingAsSubcontractorPage(context);
         }
     }
 }

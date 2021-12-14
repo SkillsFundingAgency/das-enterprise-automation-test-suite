@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
     public class TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage : AssessorBasePage
     {
         protected override string PageTitle => "Typical ratio of the staff delivering training to the apprentices";
-        private readonly ScenarioContext _context;
-
-        public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage(ScenarioContext context) : base(context) { }
 
         public HowSupportIsAgreedBetweenEmployerApprenticePage SelectPassAndContinueInTypicalRatioOfStaffDeliveringTraining()
         {
             SelectPassAndContinueToSubSection();
-            return new HowSupportIsAgreedBetweenEmployerApprenticePage(_context);
+            return new HowSupportIsAgreedBetweenEmployerApprenticePage(context);
         }
     }
 }

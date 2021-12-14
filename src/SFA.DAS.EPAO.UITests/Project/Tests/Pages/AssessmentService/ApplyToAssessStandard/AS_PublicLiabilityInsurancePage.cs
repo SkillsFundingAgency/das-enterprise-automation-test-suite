@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Public liability insurance";
 
-        private readonly ScenarioContext _context;
-
-        public AS_PublicLiabilityInsurancePage(ScenarioContext context) : base(context) => _context = context;
+        public AS_PublicLiabilityInsurancePage(ScenarioContext context) : base(context) { }
 
         public AS_IndemnityInsurancePage UploadPublicLiabilityInsurance()
         {
             UploadFile();
-            return new AS_IndemnityInsurancePage(_context);
+            return new AS_IndemnityInsurancePage(context);
         }
     }
 }

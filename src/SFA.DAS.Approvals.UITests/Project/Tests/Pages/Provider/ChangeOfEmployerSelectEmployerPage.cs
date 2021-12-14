@@ -9,21 +9,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Choose a new employer";
 
-        private readonly ScenarioContext _context;
-
-        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context)  { }
 
         public ChangeOfEmployerConfirmNewEmployerPage SelectNewEmployer()
         {
-            var newEmployerUser = _context.GetUser<ChangeOfEmployerLevyUser>();
+            var newEmployerUser = context.GetUser<ChangeOfEmployerLevyUser>();
 
             var newEmployerName = newEmployerUser.SecondOrganisationName.Substring(0, 10) + "%";
             
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
+            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
 
             tableRowHelper.SelectRowFromTable("Select", agreementId);
             
-            return new ChangeOfEmployerConfirmNewEmployerPage(_context);
+            return new ChangeOfEmployerConfirmNewEmployerPage(context);
         }
     }
 }

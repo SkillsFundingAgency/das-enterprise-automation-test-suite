@@ -6,9 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     {
         protected override string PageTitle => "Application moderation overview";
 
-        private readonly ScenarioContext _context;
-
-        public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) => _context = context;
+        public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) { }
 
         #region Section-1
         private string Section1_Link1 => "Continuity plan for apprenticeship training";

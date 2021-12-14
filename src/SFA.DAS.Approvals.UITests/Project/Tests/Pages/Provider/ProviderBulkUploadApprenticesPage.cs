@@ -19,15 +19,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TableCells => By.ClassName("govuk-table__row");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;
         #endregion
 
-        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _bulkUploadDataHelper = new BulkUploadDataHelper();
-        }
+        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) => _bulkUploadDataHelper = new BulkUploadDataHelper();
 
         public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
@@ -51,16 +46,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Approve apprentices details' page");
             }
             
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         private ApprenticeDetails SetApprenticeDetails(int courseCode)
         {
-            var employerUser = _context.GetUser<LevyUser>();
+            var employerUser = context.GetUser<LevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             
             return new ApprenticeDetails(courseCode)
             {

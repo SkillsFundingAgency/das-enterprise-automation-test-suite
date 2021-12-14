@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class RAAV2CSSBasePage : BasePage
+    public abstract class RAAV2CSSBasePage : VerifyBasePage
     {
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;

@@ -35,7 +35,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _isAnonymousPledge = false;
-            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
+            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]

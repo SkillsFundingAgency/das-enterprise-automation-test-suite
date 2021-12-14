@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service.Project.Tests.Pages
 {
-    public abstract class CheckPage : BasePage
+    public abstract class CheckPage : VerifyBasePage
     {
         protected override string PageTitle { get; }
 

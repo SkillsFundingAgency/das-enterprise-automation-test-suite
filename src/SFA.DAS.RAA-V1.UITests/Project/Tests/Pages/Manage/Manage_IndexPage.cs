@@ -9,18 +9,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     {
         protected override string PageTitle => "Recruitment";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private readonly By AgencyButton = By.CssSelector(".button");
 
-        public Manage_IndexPage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_IndexPage(ScenarioContext context) : base(context) { }
 
         public IdamsPage ClickAgencyButton()
         {
             formCompletionHelper.Click(AgencyButton);
-            return new IdamsPage(_context);
+            return new IdamsPage(context);
         }
     }
 }

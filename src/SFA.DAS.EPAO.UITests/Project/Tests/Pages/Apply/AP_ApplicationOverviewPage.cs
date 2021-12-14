@@ -9,10 +9,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
     public class AP_ApplicationOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Application overview";
-        private string _organisationDetailsSectionCompletedText => "13 of 13 questions completed";
-        private string _declarationsSectionCompletedText => "20 of 20 questions completed";
-        private string _fHASectionCompletedText => "1 of 1 questions completed";
-        private readonly ScenarioContext _context;
+        private string OrganisationDetailsSectionCompletedText => "13 of 13 questions completed";
+        private string DeclarationsSectionCompletedText => "20 of 20 questions completed";
+        private string FHASectionCompletedText => "1 of 1 questions completed";
+        
 
         #region Locators
         private By GoToOrganisationDetailsLink => By.LinkText("Go to organisation details");
@@ -24,22 +24,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         private By CancelAStandardLink => By.XPath("(//p[@class='govuk-body'])[4]");
         #endregion
 
-        public AP_ApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AP_ApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AP_OrganisationDetailsBasePage ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToOrganisationDetailsLink);
-            return new AP_OrganisationDetailsBasePage(_context);
+            return new AP_OrganisationDetailsBasePage(context);
         }
 
         public AP_DeclarationsBasePage ClickGoToDeclarationsLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToDeclarationsLink);
-            return new AP_DeclarationsBasePage(_context);
+            return new AP_DeclarationsBasePage(context);
         }
 
         public bool GoToFinancialHealthAssessmentLinkExists() => pageInteractionHelper.IsElementDisplayed(GoToFinancialHealthAssessmentLink);
@@ -47,37 +43,37 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         public AP_FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
-            return new AP_FHABasePage(_context);
+            return new AP_FHABasePage(context);
         }
 
         public AP_ApplicationSubmittedPage ClickSubmitInApplicationOverviewPage()
         {
             Continue();
-            return new AP_ApplicationSubmittedPage(_context);
+            return new AP_ApplicationSubmittedPage(context);
         }
 
         public AP_ApplicationOverviewPage VerifyOrganisationDetailsSectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(OrganisationDetailsSectionCompletedTextLabel, _organisationDetailsSectionCompletedText);
+            pageInteractionHelper.VerifyText(OrganisationDetailsSectionCompletedTextLabel, OrganisationDetailsSectionCompletedText);
             return this;
         }
 
         public AP_ApplicationOverviewPage VerifyDeclarationsSectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(DeclarationsSectionCompletedTextLabel, _declarationsSectionCompletedText);
+            pageInteractionHelper.VerifyText(DeclarationsSectionCompletedTextLabel, DeclarationsSectionCompletedText);
             return this;
         }
 
         public AP_ApplicationOverviewPage VerifyFHASectionCompletedText()
         {
-            pageInteractionHelper.VerifyText(FHASectionCompletedTextLabel, _fHASectionCompletedText);
+            pageInteractionHelper.VerifyText(FHASectionCompletedTextLabel, FHASectionCompletedText);
             return this;
         }
 
         public AP_OSC01_AreYouSureYouWantToCancelThisStandardPage ClickToCancelYourStandardApplication()
         {
             formCompletionHelper.Click(CancelAStandardLink);
-            return new AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(_context);
+            return new AP_OSC01_AreYouSureYouWantToCancelThisStandardPage(context);
         }
     }
 }

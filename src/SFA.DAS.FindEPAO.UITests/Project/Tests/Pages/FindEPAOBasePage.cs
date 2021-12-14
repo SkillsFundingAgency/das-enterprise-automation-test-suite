@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 {
-    public abstract class FindEPAOBasePage : BasePage
+    public abstract class FindEPAOBasePage : VerifyBasePage
     {
         #region Locators
         protected override By BackLink => By.CssSelector("a.link-back");

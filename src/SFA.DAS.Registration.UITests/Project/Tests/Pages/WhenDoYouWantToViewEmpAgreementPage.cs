@@ -6,7 +6,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class WhenDoYouWantToViewEmpAgreementPage : RegistrationBasePage
     {
         protected override string PageTitle => "When do you want to view the employer agreement?";
-        private readonly ScenarioContext _context;
 
         #region Locators
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
@@ -14,24 +13,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ViewItNowRadionButton => By.CssSelector("label");
         #endregion
 
-        public WhenDoYouWantToViewEmpAgreementPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhenDoYouWantToViewEmpAgreementPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SignAgreementPage SelectViewAgreementNowAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewItNowRadionButton, "view-it-now");
             Continue();
-            return new SignAgreementPage(_context);
+            return new SignAgreementPage(context);
         }
 
         public HomePage SelectViewItLaterAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(ViewItNowRadionButton, "view-it-later");
             Continue();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
     }
 }

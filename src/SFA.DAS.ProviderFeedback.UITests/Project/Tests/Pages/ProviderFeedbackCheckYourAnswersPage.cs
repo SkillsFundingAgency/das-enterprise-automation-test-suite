@@ -7,8 +7,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Check your answers";
 
-        private readonly ScenarioContext _context;
-
         private By ChangeQuestionOneLink => By.CssSelector("a[href*='question-one']");
 
         private By ChangeQuestionTwoLink => By.CssSelector("a[href*='question-two']");
@@ -17,30 +15,30 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By SubmitAnswers => By.CssSelector("button[type='submit']");
 
-        public ProviderFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { } 
 
         public ProviderFeedbackStrengthsPage ChangeQuestionOne()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
-            return new ProviderFeedbackStrengthsPage(_context);
+            return new ProviderFeedbackStrengthsPage(context);
         }
 
         public ProviderFeedbackImprovePage ChangeQuestionTwo()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
-            return new ProviderFeedbackImprovePage(_context);
+            return new ProviderFeedbackImprovePage(context);
         }
 
         public ProviderFeedbackOverallRatingPage ChangeQuestionThree()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
-            return new ProviderFeedbackOverallRatingPage(_context);
+            return new ProviderFeedbackOverallRatingPage(context);
         }
 
         public ProviderFeedbackCompletePage SubmitAnswersNow()
         {
             formCompletionHelper.ClickElement(SubmitAnswers);
-            return new ProviderFeedbackCompletePage(_context);
+            return new ProviderFeedbackCompletePage(context);
         }
     }
 }

@@ -6,15 +6,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "How many end-point assessments will you be able to deliver annually?";
 
-        private readonly ScenarioContext _context;
-
-        public AS_HowManyEndPointAssessmentPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_HowManyEndPointAssessmentPage(ScenarioContext context) : base(context) { }
 
         public AS_VolumeEndPointAssessmentPage EnterHowManyEndPointAssessment()
         {
             formCompletionHelper.EnterText(InputNumber, standardDataHelper.GenerateRandomWholeNumber(1));
             Continue();
-            return new AS_VolumeEndPointAssessmentPage(_context);
+            return new AS_VolumeEndPointAssessmentPage(context);
         }
     }
 }

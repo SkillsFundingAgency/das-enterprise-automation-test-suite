@@ -6,21 +6,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Organisation details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public NewOrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public NewOrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrganisationApplicationOverviewPage SelectYesAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new OrganisationApplicationOverviewPage(_context);
+            return new OrganisationApplicationOverviewPage(context);
         }
     }
 }

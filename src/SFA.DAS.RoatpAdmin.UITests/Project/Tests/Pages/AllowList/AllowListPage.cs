@@ -18,15 +18,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private By ErrorText => By.CssSelector(".govuk-list.govuk-error-summary__list");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public AllowListPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AllowListPage(ScenarioContext context) : base(context) => VerifyPage();
 
         private void AddToAllowList()
         {
@@ -50,7 +42,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public RemovePage RemoveUkprnFromAllowlist()
         {
             tableRowHelper.SelectRowFromTable("Remove", objectContext.GetUkprn());
-            return new RemovePage(_context);
+            return new RemovePage(context);
 
         }
     }

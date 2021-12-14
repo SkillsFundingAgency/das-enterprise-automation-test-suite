@@ -7,8 +7,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Estimated costs";
 
-        private readonly ScenarioContext _context;
-
         private By ApprenticeshipAddedTab => By.CssSelector("a[href='#apprenticeships-added']");
 
         private By AccountFundsTab => By.CssSelector("a[href='#account-funds']");
@@ -21,11 +19,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By AccountFundsTable => By.CssSelector("#account-funds table tbody tr");
 
-        public EstimatedCostsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EstimatedCostsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EstimatedCostsPage VerifyTabs()
         {
@@ -38,19 +32,19 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public AddApprenticeshipsToEstimateCostPage AddApprenticeships()
         {
             formCompletionHelper.ClickElement(AddApprenticeshipsLink);
-            return new AddApprenticeshipsToEstimateCostPage(_context);
+            return new AddApprenticeshipsToEstimateCostPage(context);
         }
 
         public EditApprenticeshipsPage EditApprenticeships()
         {
             formCompletionHelper.ClickElement(EditApprenticeshipsLink);
-            return new EditApprenticeshipsPage(_context);
+            return new EditApprenticeshipsPage(context);
         }
 
         public RemoveApprenticeshipsPage RemoveApprenticeships()
         {
             formCompletionHelper.Click(RemoveApprenticeshipLink);
-            return new RemoveApprenticeshipsPage(_context);
+            return new RemoveApprenticeshipsPage(context);
         }
 
         public int ExistingApprenticeships() => pageInteractionHelper.FindElements(RemoveApprenticeshipLink).Count;

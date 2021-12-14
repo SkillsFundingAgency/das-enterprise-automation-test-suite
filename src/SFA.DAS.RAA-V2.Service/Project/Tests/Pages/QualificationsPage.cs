@@ -8,17 +8,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "What qualifications would you like the applicant to have?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By QualificationType => By.CssSelector("#QualificationType");
 
         private By Subject => By.CssSelector("#Subject");
 
         private By Grade => By.CssSelector("#Grade");
        
-        public QualificationsPage(ScenarioContext context) : base(context) => _context = context;
+        public QualificationsPage(ScenarioContext context) : base(context) { }
 
         public ConfirmQualificationsPage EnterQualifications()
         {
@@ -27,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(Grade, rAAV2DataHelper.DesiredQualificationsGrade);
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
-            return new ConfirmQualificationsPage(_context);
+            return new ConfirmQualificationsPage(context);
         }
 
     }
