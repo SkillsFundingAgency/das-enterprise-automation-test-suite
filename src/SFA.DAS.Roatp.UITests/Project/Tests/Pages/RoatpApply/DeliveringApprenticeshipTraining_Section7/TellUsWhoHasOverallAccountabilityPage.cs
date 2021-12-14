@@ -7,17 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Tell us who has overall accountability for apprenticeships in your organisation";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
 
-        public TellUsWhoHasOverallAccountabilityPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TellUsWhoHasOverallAccountabilityPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterDetails()
         {
@@ -26,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
             SelectRadioOptionByText("No");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
     }

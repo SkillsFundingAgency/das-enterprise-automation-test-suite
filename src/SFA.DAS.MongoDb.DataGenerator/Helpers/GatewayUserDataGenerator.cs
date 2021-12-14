@@ -23,9 +23,6 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return new BsonDocument[] { gatewayUser };
         }
 
-        public new FilterDefinition<BsonDocument> FilterDefinition()
-        {
-            return Builders<BsonDocument>.Filter.Eq("gatewayID", mongoDbDatahelper.GatewayId);
-        }
+        public new FilterDefinition<BsonDocument> FilterDefinition() => Builders<BsonDocument>.Filter.Eq("gatewayID", mongoDbDatahelper.GatewayId);
     }
 }

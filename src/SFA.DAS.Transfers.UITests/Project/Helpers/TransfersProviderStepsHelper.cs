@@ -5,15 +5,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
     public class TransfersProviderStepsHelper : ProviderStepsHelper
     {
-        private readonly ScenarioContext _context;
-        public TransfersProviderStepsHelper(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public TransfersProviderStepsHelper(ScenarioContext context) : base(context) { }
 
-        public void ApprovesTheCohortsAndSendsToEmployer()
-        {
-            EditApprentice().SubmitApprove();
-        }
+        public void ApprovesTheCohortsAndSendsToEmployer() => EditApprentice().SubmitApprove();
     }
 }

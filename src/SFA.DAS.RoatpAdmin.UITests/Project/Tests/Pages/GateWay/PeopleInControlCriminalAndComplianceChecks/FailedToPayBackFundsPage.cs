@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleInControl
     {
         protected override string PageTitle => "Failed to pay back funds in the last 3 years check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FailedToPayBackFundsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FailedToPayBackFundsPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

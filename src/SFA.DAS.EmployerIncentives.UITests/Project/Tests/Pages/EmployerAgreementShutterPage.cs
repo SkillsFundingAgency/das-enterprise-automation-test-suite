@@ -10,16 +10,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override string PageTitle => $"{ObjectContextExtension.GetOrganisationName(objectContext)} needs to accept the employer agreement";
 
         #region Locators
-        private readonly ScenarioContext _context;
         private By ViewAgreementButton => By.LinkText("View agreement");
         #endregion
 
-        public EmployerAgreementShutterPage(ScenarioContext context) : base(context) => _context = context;
+        public EmployerAgreementShutterPage(ScenarioContext context) : base(context)  { }
 
         public YourOrganisationsAndAgreementsPage ClickOnViewAgreementButton()
         {
             formCompletionHelper.Click(ViewAgreementButton);
-            return new YourOrganisationsAndAgreementsPage(_context);
+            return new YourOrganisationsAndAgreementsPage(context);
         }
     }
 }

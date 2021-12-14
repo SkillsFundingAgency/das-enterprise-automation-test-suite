@@ -4,7 +4,6 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -17,7 +16,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _config;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly PregSqlDataHelper _pregSqlDataHelper;
@@ -25,7 +23,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public ProviderRegistrationSteps(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
             _pregSqlDataHelper = context.Get<PregSqlDataHelper>();

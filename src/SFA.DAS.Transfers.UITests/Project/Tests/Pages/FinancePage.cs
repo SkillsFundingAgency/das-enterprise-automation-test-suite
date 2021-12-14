@@ -6,16 +6,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
     public class FinancePage : InterimFinanceHomePage
     {
-        private readonly ScenarioContext _context;
-
         private By TransferLink => By.LinkText("Transfers");
 
-        public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public TransfersPage OpenTransfers()
         {
             formCompletionHelper.ClickElement(TransferLink);
-            return new TransfersPage(_context);
+            return new TransfersPage(context);
         }
     }
 }

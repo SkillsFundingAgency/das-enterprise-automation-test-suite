@@ -7,24 +7,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Add an apprentice";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By StartNowButton => By.CssSelector(".govuk-button--start");
 
-        public AddAnApprenitcePage(ScenarioContext context) : base(context) => _context = context;
+        public AddAnApprenitcePage(ScenarioContext context) : base(context) { }
 
         public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
         {
             StartNow();
-            return new AddTrainingProviderDetailsPage(_context);
+            return new AddTrainingProviderDetailsPage(context);
         }
 
         public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()
         {
             StartNow();
-            return new DoYouWantToUseTransferFundsPage(_context);
+            return new DoYouWantToUseTransferFundsPage(context);
         }
 
         private void StartNow() => formCompletionHelper.ClickElement(StartNowButton);

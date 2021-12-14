@@ -5,20 +5,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S5_Evaluating
     public class ILRDataPage : ModeratorBasePage
     {
         protected override string PageTitle => "Individualised Learner Record (ILR) data";
-        private readonly ScenarioContext _context;
-
-        public ILRDataPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ILRDataPage(ScenarioContext context) : base(context) { }
 
         public IndividualAccountableForILRDataPage SelectPassAndContinueForILRDataPage()
         {
             SelectPassAndContinueToSubSection();
-            return new IndividualAccountableForILRDataPage(_context);
+            return new IndividualAccountableForILRDataPage(context);
         }
 
         public IndividualAccountableForILRDataPage SelectFailAndContinueForILRDataPage()
         {
             SelectFailAndContinueToSubSection();
-            return new IndividualAccountableForILRDataPage(_context);
+            return new IndividualAccountableForILRDataPage(context);
         }
     }
 }

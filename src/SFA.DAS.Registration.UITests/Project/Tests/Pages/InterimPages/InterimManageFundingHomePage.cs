@@ -8,6 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
     {
         protected override string PageTitle => "Your funding reservations";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override string Linktext => Link;
 
         private static string Link => "Your funding reservations";

@@ -8,10 +8,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Create a transfer pledge";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector("#pledge-create-submit");
 
         private By ColumnIdentifier => By.CssSelector(".das-task-list__task-tag");
@@ -25,36 +21,36 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public string TypeOfJobRoleLink => "Type of job role";
         public string LevelLink => "Level";
 
-        public CreateATransferPledgePage(ScenarioContext context) : base(context) => _context = context;
+        public CreateATransferPledgePage(ScenarioContext context) : base(context) { }
 
         public PledgeAmountAndOptionToHideOrganisastionNamePage GoToPledgeAmountAndOptionPage()
         {
             formCompletionHelper.ClickLinkByText("Amount you want to pledge");
-            return new PledgeAmountAndOptionToHideOrganisastionNamePage(_context);
+            return new PledgeAmountAndOptionToHideOrganisastionNamePage(context);
         }
 
         public AddtheLocationPage GoToAddtheLocationPage()
         {
             formCompletionHelper.ClickLinkByText(LocationLink);
-            return new AddtheLocationPage(_context);
+            return new AddtheLocationPage(context);
         }
 
         public ChoosetheSectorsPage GoToChoosetheSectorPage()
         {
             formCompletionHelper.ClickLinkByText(SectorLink);
-            return new ChoosetheSectorsPage(_context);
+            return new ChoosetheSectorsPage(context);
         }
 
         public ChooseTheTypesOfJobPage GoToChooseTheTypesOfJobPage()
         {
             formCompletionHelper.ClickLinkByText(TypeOfJobRoleLink);
-            return new ChooseTheTypesOfJobPage(_context);
+            return new ChooseTheTypesOfJobPage(context);
         }
 
         public ChooseTheLevelPage GoToChooseTheLevelPage()
         {
             formCompletionHelper.ClickLinkByText(LevelLink);
-            return new ChooseTheLevelPage(_context);
+            return new ChooseTheLevelPage(context);
         }
 
         public PledgeVerificationPage ContinueToPledgeVerificationPage()
@@ -63,7 +59,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new PledgeVerificationPage(_context);
+            return new PledgeVerificationPage(context);
         }
 
         public string GetAmount(string key) => GetValue(key, 0);

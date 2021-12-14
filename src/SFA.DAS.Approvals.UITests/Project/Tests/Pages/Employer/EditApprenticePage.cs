@@ -10,11 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EditApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public EditApprenticePage(ScenarioContext context) : base(context)  { }
 
         protected By CourseOption => By.CssSelector("#trainingCourse");
         private By EditDateOfBirthDay => By.Id("BirthDay");
@@ -38,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            base.formCompletionHelper.ClickElement(DeleteButton);
-            return new ConfirmApprenticeDeletionPage(_context);
+            return new ConfirmApprenticeDeletionPage(context);
         }
 
         public ConfirmChangesPage EditCostCourseAndReference()
@@ -68,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
-            return new AfterEditApproveApprenticeDetailsPage(_context);
+            return new AfterEditApproveApprenticeDetailsPage(context);
         }
 
         public ConfirmChangesPage ContinueToAddValidEmailDetails()
@@ -97,6 +93,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(_context);
+        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(context);
     }
 }

@@ -8,14 +8,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Add an organisation";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public AddOrganisationPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             // this is temp work aound as the redirection is not working correctly.
             VerifyPage(() => 
             {
@@ -42,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(TownOrCityField, ePAOAdminDataHelper.TownName);
             formCompletionHelper.EnterText(PostCodeField, ePAOAdminDataHelper.PostCode);
             Continue();
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
     }
 }

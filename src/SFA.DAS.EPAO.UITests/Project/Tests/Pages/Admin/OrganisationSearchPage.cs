@@ -7,23 +7,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Organisation search";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By OrganisationSearchField => By.Id("SearchString");
 
-        public OrganisationSearchPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationSearchPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrganisationSearchResultsPage SearchForAnOrganisation()
         {
             formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
             Continue();
-            return new OrganisationSearchResultsPage(_context);
+            return new OrganisationSearchResultsPage(context);
         }
     } 
 }

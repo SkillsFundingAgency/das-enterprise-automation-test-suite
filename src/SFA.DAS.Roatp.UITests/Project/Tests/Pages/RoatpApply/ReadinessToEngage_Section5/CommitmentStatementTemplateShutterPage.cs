@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage_Section5
 {
@@ -7,15 +6,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
     {
         protected override string PageTitle => "You do not agree to use ESFA's commitment statement template";
 
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public CommitmentStatementTemplateShutterPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CommitmentStatementTemplateShutterPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

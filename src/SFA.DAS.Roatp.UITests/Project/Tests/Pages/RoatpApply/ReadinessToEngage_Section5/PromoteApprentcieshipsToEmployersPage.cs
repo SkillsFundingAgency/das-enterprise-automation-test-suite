@@ -9,20 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PromoteApprentcieshipsToEmployersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PromoteApprentcieshipsToEmployersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.OrganisationPromoteApprenticeships);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

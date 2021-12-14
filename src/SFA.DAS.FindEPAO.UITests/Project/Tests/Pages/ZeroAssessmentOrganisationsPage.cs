@@ -7,8 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class ZeroAssessmentOrganisationsPage : FindEPAOBasePage
     {
         protected override string PageTitle => "0 end-point assessment organisations";
-        private readonly ScenarioContext _context;
-        public ZeroAssessmentOrganisationsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public ZeroAssessmentOrganisationsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By ContactESFAButton => By.LinkText("Contact ESFA");

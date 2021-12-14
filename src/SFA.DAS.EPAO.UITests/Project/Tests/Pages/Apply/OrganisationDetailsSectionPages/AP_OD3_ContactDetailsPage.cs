@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD3_ContactDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Enter contact details";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By GivenNameTextbox => By.Id("CD-02");
@@ -20,12 +19,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private By TelephoneTextbox => By.Id("CD-06");
         #endregion
 
-        public AP_OD3_ContactDetailsPage(ScenarioContext context) : base(context)
-        {   
-            _context = context;
-            VerifyPage();
-        }
-        
+        public AP_OD3_ContactDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+
         public AP_OD4_ContractNoticeToPage EnterContactDetailsAndContinueInContactDetailsPage()
         {
             formCompletionHelper.EnterText(GivenNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
@@ -38,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
             formCompletionHelper.EnterText(TelephoneTextbox, ePAOApplyDataHelper.GetRandomNumber(10));
             Continue();
-            return new AP_OD4_ContractNoticeToPage(_context);
+            return new AP_OD4_ContractNoticeToPage(context);
         }
     }
 }

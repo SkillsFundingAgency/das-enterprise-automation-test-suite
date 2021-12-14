@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class ManagementHierarchyForApprenticeshipsPage : AssessorBasePage
     {
         protected override string PageTitle => "Management hierarchy for apprenticeships";
-        private readonly ScenarioContext _context;
-
-        public ManagementHierarchyForApprenticeshipsPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ManagementHierarchyForApprenticeshipsPage(ScenarioContext context) : base(context) { }
 
         public AnnualTurnOverFTEPage SelectPassAndContinueInManagementHierarchyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnnualTurnOverFTEPage(_context);
+            return new AnnualTurnOverFTEPage(context);
         }
     }
 }

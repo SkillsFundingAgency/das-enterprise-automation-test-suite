@@ -5,20 +5,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
     public class AssessorOverallResponsibilityForSafeguardingPage : ModeratorBasePage
     {
         protected override string PageTitle => "Overall responsibility for safeguarding";
-        private readonly ScenarioContext _context;
-
-        public AssessorOverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public AssessorOverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) { }
 
         public SafeguardingPolicyIncludePreventDutyPolicyPage SelectPassAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
         {
             SelectPassAndContinueToSubSection();
-            return new SafeguardingPolicyIncludePreventDutyPolicyPage(_context);
+            return new SafeguardingPolicyIncludePreventDutyPolicyPage(context);
         }
 
         public SafeguardingPolicyIncludePreventDutyPolicyPage SelectFailAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
         {
             SelectFailAndContinueToSubSection();
-            return new SafeguardingPolicyIncludePreventDutyPolicyPage(_context);
+            return new SafeguardingPolicyIncludePreventDutyPolicyPage(context);
         }
     }
 }

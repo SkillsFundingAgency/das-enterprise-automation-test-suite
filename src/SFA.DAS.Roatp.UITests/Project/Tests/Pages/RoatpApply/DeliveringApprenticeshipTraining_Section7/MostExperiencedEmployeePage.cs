@@ -8,19 +8,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Who's the most experienced employee";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        
         protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
         protected By MontYearCssSelector => By.CssSelector(".govuk-form-group .govuk-form-group");
      
 
-        public MostExperiencedEmployeePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public MostExperiencedEmployeePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ExperienceInTheSectorPage EnterDetails()
         {
@@ -34,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterTextByLabel(LabelCssSelector,"Contact number", applydataHelpers.ContactNumber);
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.NamesOfAllOrganisations);
-            return new ExperienceInTheSectorPage(_context);
+            return new ExperienceInTheSectorPage(context);
         }
     }
 }

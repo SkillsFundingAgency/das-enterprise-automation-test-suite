@@ -7,26 +7,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_TraineeshipSearchPage : FAA_SearchVacancyBasePage
     {
         protected override string PageTitle => "Find a traineeship";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By Location => By.Id("Location");
         private By ReferenceNumber => By.Id("ReferenceNumber");
 
-        public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context) { }
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             SearchVacancyInFAA();
-            return new FAA_ApprenticeSummaryPage(_context);
+            return new FAA_ApprenticeSummaryPage(context);
         }
 
         public FAA_TraineeshipNotAvailablePage SearchClosedVacancy()
         {
             SearchVacancyInFAA();
-            return new FAA_TraineeshipNotAvailablePage(_context);
+            return new FAA_TraineeshipNotAvailablePage(context);
         }
 
         private void SearchVacancyInFAA()
@@ -47,7 +42,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             EnterPostCode(location);
             pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
-            return new FAA_TraineeshipSearchResultsPage(_context);
+            return new FAA_TraineeshipSearchResultsPage(context);
         }
     }
 }

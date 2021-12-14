@@ -7,7 +7,7 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public abstract class EIBasePage : BasePage
+    public abstract class EIBasePage : VerifyBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
