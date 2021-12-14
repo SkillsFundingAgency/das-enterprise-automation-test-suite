@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
@@ -17,16 +16,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             _collectionName = _dataGenerator.CollectionName();
         }
 
-        public async Task AsyncCreateData()
-        {
-            BsonDocument[] data = _dataGenerator.Data();
+        public async Task AsyncCreateData() => await _connectionHelper.AsyncCreateData(_collectionName, _dataGenerator.Data());
 
-            await _connectionHelper.AsyncCreateData(_collectionName, data);
-        }
-
-        public async Task AsyncDeleteData()
-        {
-            await _connectionHelper.AsyncDeleteData(_collectionName, _dataGenerator.FilterDefinition());
-        }
+        public async Task AsyncDeleteData() => await _connectionHelper.AsyncDeleteData(_collectionName, _dataGenerator.FilterDefinition());
     }
 }

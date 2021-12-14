@@ -7,15 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Has your organisation produced financial statements covering any period within the last 12 months?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FinanicialStatementsCoveringAnyPeriodPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinanicialStatementsCoveringAnyPeriodPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhatYouNeedToUploadPage ClickYesForFinancialStatementsCoveringAnyPeriodAndContinue() => FinancialStatementsCoveringAnyPeriodAndContinue("Yes");
 
@@ -24,14 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         public FullManagementAccountsPage SelectNoForFinancialStatementsCoveringAnyPeriod_SupportingAndContinue()
         {
             SelectNoAndContinue();
-            return new FullManagementAccountsPage(_context);
+            return new FullManagementAccountsPage(context);
         }
 
         private WhatYouNeedToUploadPage FinancialStatementsCoveringAnyPeriodAndContinue(string option)
         {
             SelectRadioOptionByText(option);
             Continue();
-            return new WhatYouNeedToUploadPage(_context);
+            return new WhatYouNeedToUploadPage(context);
         }
     }
 }

@@ -13,11 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Add apprentice details";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
         private By EmailField => By.Id("Email");
@@ -33,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EmployerReference => By.Id("Reference");
         private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         private void AddCourse()
         {
@@ -44,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
         }
 
-        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
 
@@ -71,9 +66,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
-            return new ReviewYourCohortPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
@@ -82,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new YouCantApproveThisApprenticeRequestUntilPage(_context);
+            return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()

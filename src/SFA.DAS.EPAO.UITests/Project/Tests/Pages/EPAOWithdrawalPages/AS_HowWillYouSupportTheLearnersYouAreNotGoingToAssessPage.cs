@@ -6,8 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_BasePage
     {
         protected override string PageTitle => "How will you support the learners you are not going to assess?";
-        
-        private readonly ScenarioContext _context;
+        protected override By PageHeader => By.XPath("//*[@class='govuk-label govuk-label--xl']");
 
         #region Locators
         private By HowWillYouSupportLearnersTextArea => By.Id("WR-03");
@@ -15,11 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By PageTitleLocator => By.XPath($"//label[contains(text(), '{PageTitle}')]");
         #endregion
 
-        public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_HowWillYouCommunicateMarketExitToCustomersPage EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
         {
@@ -28,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
             formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported");
             Continue();
-            return new AS_HowWillYouCommunicateMarketExitToCustomersPage(_context);
+            return new AS_HowWillYouCommunicateMarketExitToCustomersPage(context);
         }
 
         public AS_WithdrawalRequestOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
@@ -36,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
             formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported by another training provider");
             Continue();
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
     }
 }

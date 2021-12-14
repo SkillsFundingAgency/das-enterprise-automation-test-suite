@@ -7,19 +7,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
     {
         protected override string PageTitle => "Your full-time equivalents";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By NoOfFullTime => By.CssSelector("#z0__Answer");
 
-        public YourFullTimeEquivalentsPage(ScenarioContext context) : base(context) => _context = context;
+        public YourFullTimeEquivalentsPage(ScenarioContext context) : base(context)  { }
 
         public ReportYourProgressPage EnterFullTimeEmployeesDetails()
         {
             formCompletionHelper.EnterText(NoOfFullTime, publicSectorReportingDataHelper.NoofFullTimeEmployees);
             Continue();
-            return new ReportYourProgressPage(_context);
+            return new ReportYourProgressPage(context);
         }
     }
 }

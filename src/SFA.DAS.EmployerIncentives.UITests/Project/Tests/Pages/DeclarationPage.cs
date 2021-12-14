@@ -7,18 +7,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Declaration";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ConfirmButton => By.CssSelector(".govuk-button");
 
-        public DeclarationPage(ScenarioContext context) : base(context) => _context = context;
+        public DeclarationPage(ScenarioContext context) : base(context)  { }
 
         public WeNeedYourOrgBankDetailsPage SubmitDeclaration()
         {
             formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm and submit");
-            return new WeNeedYourOrgBankDetailsPage(_context);
+            return new WeNeedYourOrgBankDetailsPage(context);
         }
     }
 }

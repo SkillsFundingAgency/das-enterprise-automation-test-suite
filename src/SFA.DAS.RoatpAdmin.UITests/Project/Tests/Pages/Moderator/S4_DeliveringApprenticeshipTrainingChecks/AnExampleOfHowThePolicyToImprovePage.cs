@@ -6,26 +6,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     {
         protected override string PageTitle => "An example of how the policy is used to improve employee sector expertise";
 
-        private readonly ScenarioContext _context;
-        public AnExampleOfHowThePolicyToImprovePage(ScenarioContext context) : base(context) => _context = context;
+        public AnExampleOfHowThePolicyToImprovePage(ScenarioContext context) : base(context) { }
 
         public AnExampleOfHowThePolicyToMaintainPage SelectPassAndContinueInAnExampleOfHowThePolicyToImprovePage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToMaintainPage(_context);
+            return new AnExampleOfHowThePolicyToMaintainPage(context);
         }
 
         public AnExampleOfHowThePolicyToMaintainPage SelectFailAndContinueInAnExampleOfHowThePolicyToImprovePage()
         {
             SelectFailAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToMaintainPage(_context);
+            return new AnExampleOfHowThePolicyToMaintainPage(context);
         }
 
 
         public AnExampleOfHowThePolicyToMaintainPage SelectContinueInAnExampleOfHowThePolicyToImprovePage()
         {
             Continue();
-            return new AnExampleOfHowThePolicyToMaintainPage(_context);
+            return new AnExampleOfHowThePolicyToMaintainPage(context);
         }
     }
 }

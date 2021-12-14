@@ -9,20 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GiveAnExampleToImproveEmployeesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GiveAnExampleToImproveEmployeesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public GiveAnExampleToMaintainEmployeesPage EnterAnExampleToImproveEmployees()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.ExampleToImproveEmployees);
-            return new GiveAnExampleToMaintainEmployeesPage(_context);
+            return new GiveAnExampleToMaintainEmployeesPage(context);
         }
     }
 }

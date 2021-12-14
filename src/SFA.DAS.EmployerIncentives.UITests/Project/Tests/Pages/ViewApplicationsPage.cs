@@ -7,24 +7,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Hire a new apprentice payment applications";
 
-        private readonly ScenarioContext _context;
-
         private By Links => By.CssSelector("#main-content a");
 
-        public ViewApplicationsPage(ScenarioContext context) : base(context) => _context = context;
+        public ViewApplicationsPage(ScenarioContext context) : base(context)  { }
 
         public EIHubPage NavigateToEIHubPage()
         {
             formCompletionHelper.ClickLinkByText("Back");
 
-            return new EIHubPage(_context);
+            return new EIHubPage(context);
         }
 
         public WhichApprenticeToCancelPage CancelAnApplication()
         {
             formCompletionHelper.ClickLinkByText(Links, "Cancel an application");
 
-            return new WhichApprenticeToCancelPage(_context);
+            return new WhichApprenticeToCancelPage(context);
         }
     }
 }

@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public abstract class ProviderFeedbackBasePage : BasePage
+    public abstract class ProviderFeedbackBasePage : VerifyBasePage
     {
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 

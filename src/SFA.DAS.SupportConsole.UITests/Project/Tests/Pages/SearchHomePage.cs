@@ -7,10 +7,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Locators
         protected override By PageHeader => By.CssSelector(".heading-large");
         private By SearchOptionsLabels => By.CssSelector("label");
@@ -23,11 +19,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
         private string UserSearchHint => "Enter name or email address";
 
-        public SearchHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SearchHomePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
 
@@ -48,7 +40,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
-            return new AccountOverviewPage(_context);
+            return new AccountOverviewPage(context);
         }
 
         private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
@@ -58,7 +50,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
-            return new UserInformationOverviewPage(_context);
+            return new UserInformationOverviewPage(context);
         }
     }
 }

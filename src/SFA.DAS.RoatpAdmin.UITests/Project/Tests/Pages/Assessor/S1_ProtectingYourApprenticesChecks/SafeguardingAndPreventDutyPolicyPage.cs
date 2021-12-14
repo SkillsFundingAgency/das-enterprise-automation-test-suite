@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S1_ProtectingY
     public class SafeguardingAndPreventDutyPolicyPage : AssessorBasePage
     {
         protected override string PageTitle => "Safeguarding policy";
-        private readonly ScenarioContext _context;
 
-        public SafeguardingAndPreventDutyPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        public SafeguardingAndPreventDutyPolicyPage(ScenarioContext context) : base(context) { }
 
         public AssessorOverallResponsibilityForSafeguardingPage SelectPassAndContinueInSafeguardingAndPreventDutyPolicyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AssessorOverallResponsibilityForSafeguardingPage(_context);
+            return new AssessorOverallResponsibilityForSafeguardingPage(context);
         }
     }
 }

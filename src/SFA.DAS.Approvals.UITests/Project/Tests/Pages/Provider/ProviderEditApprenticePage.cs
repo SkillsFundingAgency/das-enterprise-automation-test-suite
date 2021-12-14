@@ -8,14 +8,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Edit apprentice";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CourseOption => By.CssSelector("#trainingCourse");
         private By FirstOption => By.CssSelector("#trainingCourse__option--0");
         
-        public ProviderEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderEditApprenticePage(ScenarioContext context) : base(context)  { }
 
         public ProviderConfirmChangesPage AddValidEmailAndContinue()
         {
@@ -41,6 +37,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(CourseOption, course); return pageInteractionHelper.FindElement(FirstOption); });
         }
 
-        private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(_context);
+        private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(context);
     }
 }

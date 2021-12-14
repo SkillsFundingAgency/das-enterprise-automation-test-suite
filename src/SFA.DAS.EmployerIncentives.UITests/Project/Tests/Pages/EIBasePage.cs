@@ -6,7 +6,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public abstract class EIBasePage : BasePage
+    public abstract class EIBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly EIDataHelper eIDataHelper;

@@ -5,8 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
     public class TrainingApprenticesPage : ModeratorBasePage
     {
         protected override string PageTitle => "How apprentices will be trained";
-        private readonly ScenarioContext _context;
-
-        public TrainingApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public TrainingApprenticesPage(ScenarioContext context) : base(context) { }
     }
 }

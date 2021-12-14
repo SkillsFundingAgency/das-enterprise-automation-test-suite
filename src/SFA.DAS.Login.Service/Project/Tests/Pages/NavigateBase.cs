@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service.Project.Tests.Pages
 {
-    public abstract class NavigateBase : BasePage
+    public abstract class NavigateBase : VerifyBasePage
     {
         protected NavigateBase(ScenarioContext context, string url) : base(context)
         {

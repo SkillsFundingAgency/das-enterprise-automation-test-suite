@@ -27,7 +27,6 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             int previousYear = currentYear - 1;
             int nextYear = currentYear + 1;
 
-
             if ((dateTime >= new DateTime(currentYear, 4, 6).Date) && (dateTime <= new DateTime(nextYear, 4, 5).Date))
             {
                 string duration = $"{TrimYear(previousYear)}-{TrimYear(currentYear)}";
@@ -47,6 +46,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             dateTime = dateTime == default(DateTime) ? DateTime.Now : dateTime;
 
             (DateTime englishFractioncalculatedAt, Table levyDeclarations) = GetlevyDeclarations(duration, levyPerMonth, dateTime);
+
             return (EnglishFraction, englishFractioncalculatedAt, levyDeclarations);
         }
 

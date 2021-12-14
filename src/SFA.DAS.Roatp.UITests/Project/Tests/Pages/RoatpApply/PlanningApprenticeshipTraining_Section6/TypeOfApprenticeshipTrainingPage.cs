@@ -7,39 +7,31 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "What type of apprenticeship training will your organisation offer?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By StandardsCheckBox => By.Id("option_0");
         private By FrameworksCheckBox => By.Id("option_1");
         private By FunctionalSkills => By.Id("option_2");
 
-        public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ReadyToDeliverTrainingPage SelectStandardsFrameworksAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(StandardsCheckBox));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
             Continue();
-            return new ReadyToDeliverTrainingPage(_context);
+            return new ReadyToDeliverTrainingPage(context);
         }
 
         public OfferingApprenticeshipFrameworksPage SelectFrameworksOnlyAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
             Continue();
-            return new OfferingApprenticeshipFrameworksPage(_context);
+            return new OfferingApprenticeshipFrameworksPage(context);
         }
         public ApplicationOverviewPage SelectFunctionalSkillsAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FunctionalSkills));
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

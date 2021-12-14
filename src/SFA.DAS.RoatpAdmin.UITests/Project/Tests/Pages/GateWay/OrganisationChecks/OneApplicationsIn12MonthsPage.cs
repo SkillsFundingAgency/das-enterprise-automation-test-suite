@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
     {
         protected override string PageTitle => "One application in 12 months check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OneApplicationsIn12MonthsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OneApplicationsIn12MonthsPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

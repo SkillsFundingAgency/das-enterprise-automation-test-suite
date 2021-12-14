@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
     {
         protected override string PageTitle => "Removed from any charity register check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RemovedFromAnyCharityRegisterCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RemovedFromAnyCharityRegisterCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

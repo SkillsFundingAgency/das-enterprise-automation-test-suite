@@ -7,24 +7,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Find an apprenticeship";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SignIn => By.CssSelector("#loginLink");
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
-        public FAA_Indexpage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            AcceptCookies();
-        }
+        public FAA_Indexpage(ScenarioContext context) : base(context) => AcceptCookies();
 
         public FAA_SignInPage GoToSignInPage()
         {
             formCompletionHelper.Click(SignIn);
-            return new FAA_SignInPage(_context);
+            return new FAA_SignInPage(context);
         }
 
         private new FAA_Indexpage AcceptCookies()
