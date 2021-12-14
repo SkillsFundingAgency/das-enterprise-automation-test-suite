@@ -7,10 +7,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Application form";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region
         private By Education => By.Id("Candidate_Education_NameOfMostRecentSchoolCollege");
         private By StartedYear => By.Id("Candidate_Education_FromYear");
@@ -52,7 +48,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Save => By.Id("save-button");
         #endregion
 
-        public FAA_ApplicationFormPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_ApplicationFormPage(ScenarioContext context) : base(context) { }
 
         public void EnterEducation() => formCompletionHelper.EnterText(Education, faaDataHelper.EducationSchoolOrCollege);
 
@@ -139,20 +135,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
         {
             formCompletionHelper.ClickButtonByText("Submit application");
-            return new FAA_ApprenticeshipApplicationSubmittedPage(_context);
+            return new FAA_ApprenticeshipApplicationSubmittedPage(context);
         }
 
         public FAA_TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
             formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
-            return new FAA_TraineeshipApplicationSubmittedPage(_context);
+            return new FAA_TraineeshipApplicationSubmittedPage(context);
         }
 
         public FAA_MyApplicationsHomePage ClickSave()
         {
             formCompletionHelper.Click(Save);
             formCompletionHelper.Click(MyApplications);
-            return new FAA_MyApplicationsHomePage(_context);
+            return new FAA_MyApplicationsHomePage(context);
         }
     }
 }

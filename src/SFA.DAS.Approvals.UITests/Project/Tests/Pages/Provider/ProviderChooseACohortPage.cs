@@ -11,11 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By CohortsTable => By.CssSelector(".govuk-table__row");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderChooseACohortPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderChooseACohortPage(ScenarioContext context) : base(context)  { }
 
         public int? GetDataRowsCount() => pageInteractionHelper.FindElements(CohortsTable).Count - 1;
 
@@ -23,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {            
             javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Select", cohortReference);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

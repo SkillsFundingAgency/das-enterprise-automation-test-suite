@@ -22,35 +22,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public SupportToolsSteps(ScenarioContext context)
         {
             _context = context;
-            _stepsHelper = new StepsHelper(_context);
+            _stepsHelper = new StepsHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
 
         [Given(@"the User is logged into Support Tools")]
-        public void GivenTheUserIsLoggedIntoSupportTools()
-        {
-            _stepsHelper.ValidUserLogsinToSupportTools();
-
-        }
+        public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools();
        
         [Given(@"Opens the Pause Utility")]
         [When(@"user opens Pause Utility")]
-        public void WhenUserOpensPauseUtility()
-        {
-            new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
-        }
+        public void WhenUserOpensPauseUtility() => new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
 
         [Given(@"Opens the Resume Utility")]
-        public void GivenOpensTheResumeUtility()
-        {
-            new ToolSupportHomePage(_context).ClickResumeApprenticeshipsLink();
-        }
+        public void GivenOpensTheResumeUtility() => new ToolSupportHomePage(_context).ClickResumeApprenticeshipsLink();
 
         [Given(@"Opens the Stop Utility")]
-        public void GivenOpensTheStopUtility()
-        {
-            new ToolSupportHomePage(_context).ClickStopApprenticeshipsLink();
-        }
+        public void GivenOpensTheStopUtility() => new ToolSupportHomePage(_context).ClickStopApprenticeshipsLink();
 
 
         [Given(@"Search for Apprentices using following criteria")]

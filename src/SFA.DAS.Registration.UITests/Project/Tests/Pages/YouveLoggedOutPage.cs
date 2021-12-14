@@ -6,22 +6,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YouveLoggedOutPage : RegistrationBasePage
     {
         protected override string PageTitle => "You've logged out";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         protected override By ContinueButton => By.LinkText("Continue");
         #endregion
 
-        public YouveLoggedOutPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YouveLoggedOutPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CreateAnAccountToManageApprenticeshipsPage CickContinueInYouveLoggedOutPage()
         {
             Continue();
-            return new CreateAnAccountToManageApprenticeshipsPage(_context);
+            return new CreateAnAccountToManageApprenticeshipsPage(context);
         }
     }
 }

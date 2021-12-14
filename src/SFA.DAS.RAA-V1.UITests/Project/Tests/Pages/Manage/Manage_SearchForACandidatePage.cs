@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected override string PageTitle => "Search for a candidate";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly FAADataHelper _faaDataHelper;
         #endregion
 
@@ -24,11 +23,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By CandidateAddress => By.CssSelector(".candidate-address");
 
-        public Manage_SearchForACandidatePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _faaDataHelper = context.Get<FAADataHelper>();
-        }
+        public Manage_SearchForACandidatePage(ScenarioContext context) : base(context) => _faaDataHelper = context.Get<FAADataHelper>();
 
         public Manage_SearchForACandidatePage Search()
         {
@@ -51,7 +46,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         {
             List<IWebElement> filteredRows = pageInteractionHelper.GetLinks("Select candidate");
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(filteredRows));
-            return new Manage_MyApplicationsPage(_context);
+            return new Manage_MyApplicationsPage(context);
         }
 
         public void VerifyUpdatedCandidateDetails()

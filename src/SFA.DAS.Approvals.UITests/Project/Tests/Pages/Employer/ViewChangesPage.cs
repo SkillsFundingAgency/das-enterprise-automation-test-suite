@@ -7,10 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "View changes";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
         
         private By ReviewRequestedChangesLink=> By.Id("review-requested-changes-link");
@@ -19,26 +15,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
 
-        public ViewChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ViewChangesPage(ScenarioContext context) : base(context)  { }
 
         public ViewApprenticePage ClickProviderReviewingTheRequestLink()
         {
             formCompletionHelper.ClickElement(ProviderReviewingTheRequestLink);
-            return new ViewApprenticePage(_context);
+            return new ViewApprenticePage(context);
         }
 
         public ApproveApprenticeDetailsPage ClickReviewTheApprenticeDetailsToUpdateLink()
         {
             formCompletionHelper.ClickElement(ReviewRequestedChangesLink);
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
-
 
         public ApprenticeDetailsPage UndoChanges()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(UndoChangesSelector));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueUndoChangesSelector));
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

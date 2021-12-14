@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
         private readonly RAAV2DataHelper _raaV2DataHelper;
         #endregion
@@ -25,7 +24,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
-            _context = context;
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
@@ -33,7 +31,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public VacancyPreviewPart2Page ReviewYourVacancy()
         {
             formCompletionHelper.ClickLinkByText("Review your advert");
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
 
         public RecruitmentDynamicHomePage ConfirmVacancyTitleAndStatus(string status)
@@ -46,19 +44,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public VacancyPreviewPart2Page ContinueCreatingYourAdvert()
         {
             formCompletionHelper.ClickLinkByText("Continue creating your advert");
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
 
         public YourApprenticeshipAdvertsHomePage GoToVacancyDashboard()
         {
             formCompletionHelper.ClickLinkByText("Go to your vacancy dashboard");
-            return new YourApprenticeshipAdvertsHomePage(_context);
+            return new YourApprenticeshipAdvertsHomePage(context);
         }
 
         public ManageRecruitPage GoToManageVacancyPage()
         {
             formCompletionHelper.ClickLinkByText("application");
-            return new ManageRecruitPage(_context);
+            return new ManageRecruitPage(context);
         }
         public RecruitmentDynamicHomePage ConfirmVacancyDetails(string status, DateTime dateTime)
         {

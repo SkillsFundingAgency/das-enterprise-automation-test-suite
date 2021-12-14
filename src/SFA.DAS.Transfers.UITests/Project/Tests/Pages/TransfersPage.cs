@@ -13,20 +13,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ConnectToReceivingEmployer => By.LinkText("Connect to a receiving employer");
         private By YourTransferConnectionsRows => By.CssSelector("tbody tr");
         private By DetailsLink => By.LinkText("Details");
 
-        public TransfersPage(ScenarioContext context) : base(context) => _context = context;
+        public TransfersPage(ScenarioContext context) : base(context) { }
 
         public ConnectWithReceivingEmployerPage ConnectWithReceivingEmployer()
         {
             formCompletionHelper.ClickElement(ConnectToReceivingEmployer);
-            return new ConnectWithReceivingEmployerPage(_context);
+            return new ConnectWithReceivingEmployerPage(context);
         }
 
         public TransferConnectionRequestDetailsPage ViewTransferConnectionRequestDetails(string sender)
@@ -40,7 +36,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                 if (transferRequestRow.Text.Contains($"{sender.ToUpper()} Pending"))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
-                    return new TransferConnectionRequestDetailsPage(_context);
+                    return new TransferConnectionRequestDetailsPage(context);
                 }
                 i++;
             }
@@ -82,7 +78,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                     && transferRequestRow.Text.Contains(cohortTotalCost))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
-                    return new TransferRequestDetailsPage(_context);
+                    return new TransferRequestDetailsPage(context);
                 }
                 i--;
             }

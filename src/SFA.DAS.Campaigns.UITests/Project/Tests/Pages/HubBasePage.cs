@@ -21,11 +21,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By FiuLink => By.CssSelector(".fiu-card__link");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public HubBasePage(ScenarioContext context) : base(context) => _context = context;
+        public HubBasePage(ScenarioContext context) : base(context)  { }
 
         protected T VerifyFiuCards<T>(Func<T> func)
         {
@@ -43,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
                     formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
 
-                    new CampaingnsDynamicFiuPage(_context, fiuCardHeading);
+                    new CampaingnsDynamicFiuPage(context, fiuCardHeading);
                 }
                 catch (Exception ex)
                 {

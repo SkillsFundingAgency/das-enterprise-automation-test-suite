@@ -10,29 +10,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private By DeleteLink => By.LinkText("Delete");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => VerifyPage();
 
-        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
-    
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
             if (pageInteractionHelper.IsElementPresent(ReserveFundingLink)) formCompletionHelper.ClickElement(ReserveFundingLink);
             
             if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink)) formCompletionHelper.ClickElement(ReserveMoreFundingLink);
 
-            return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
+            return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
         }
 
         public DeleteReservationPage DeleteUnusedFunding()
         {
             formCompletionHelper.ClickElement(DeleteLink);
-            return new DeleteReservationPage(_context);
+            return new DeleteReservationPage(context);
         }
 
         public bool CheckIfDeleteLinkIsPresent() => pageInteractionHelper.IsElementPresent(DeleteLink);
@@ -41,9 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         {
             ClickReserveFundingButton();
             formCompletionHelper.ClickElement(ReserveFundingLink);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(_context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
     }
 }

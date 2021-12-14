@@ -7,18 +7,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Pledge and transfer your levy funds";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By StartCreatePledgesSelector => By.CssSelector("[href*='/pledges/create?']");
 
-        public PledgeAndTransferYourLevyFundsPage(ScenarioContext context) : base(context) => _context = context;
+        public PledgeAndTransferYourLevyFundsPage(ScenarioContext context) : base(context) { }
 
         public CreateATransferPledgePage StartCreatePledge()
         {
             formCompletionHelper.Click(StartCreatePledgesSelector);
-            return new CreateATransferPledgePage(_context);
+            return new CreateATransferPledgePage(context);
         }
     }
 }

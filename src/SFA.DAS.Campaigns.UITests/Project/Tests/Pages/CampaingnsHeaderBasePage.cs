@@ -8,11 +8,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class CampaingnsHeaderBasePage : CampaingnsVerifyLinks
     {
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected By Apprentice => By.CssSelector("a[href*='apprentice']");
 
         protected By Employer => By.CssSelector("a[href*='employers']");
@@ -21,30 +16,30 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected By SiteMap => By.CssSelector("#link-footer-sitemap");
 
-        public CampaingnsHeaderBasePage(ScenarioContext context) : base(context) => _context = context;
+        public CampaingnsHeaderBasePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeHubPage NavigateToApprenticeshipHubPage()
         {
             formCompletionHelper.ClickElement(Apprentice);
-            return new ApprenticeHubPage(_context);
+            return new ApprenticeHubPage(context);
         }
 
         public EmployerHubPage NavigateToEmployerHubPage()
         {
             formCompletionHelper.ClickElement(Employer);
-            return new EmployerHubPage(_context);
+            return new EmployerHubPage(context);
         }
 
         public InfluencersHubPage NavigateToInfluencersHubPage()
         {
             formCompletionHelper.ClickElement(Influencers);
-            return new InfluencersHubPage(_context);
+            return new InfluencersHubPage(context);
         }
 
         public SiteMapPage NavigateToSiteMapPage()
         {
             formCompletionHelper.ClickElement(SiteMap);
-            return new SiteMapPage(_context);
+            return new SiteMapPage(context);
         }
     }
 }

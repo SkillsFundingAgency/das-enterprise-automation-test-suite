@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Complaints and appeals policy";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ComplaintsAndAppealsPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ComplaintsAndAppealsPolicyPage(ScenarioContext context) : base(context) { }
 
         public AS_FairAccessPage UploadComplaintsPolicy()
         {
             UploadFile();
-            return new AS_FairAccessPage(_context);
+            return new AS_FairAccessPage(context);
         }
 
     }

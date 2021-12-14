@@ -15,7 +15,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         public TransfersEmployerStepsHelper(ScenarioContext context) : base(context)
         {
             _context = context;
-            _transfersUser = _context.GetUser<TransfersUser>();
+            _transfersUser = context.GetUser<TransfersUser>();
         }
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort() =>

@@ -9,24 +9,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Start adding apprentices";
         protected override By ContinueButton => By.Id("continue-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public StartAddingApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public StartAddingApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
 
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
         {
             EmployerSendsToProviderToAdd();
             Continue();
-            return new MessageForYourTrainingProviderPage(_context);
+            return new MessageForYourTrainingProviderPage(context);
         }
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
@@ -45,13 +41,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new ChooseAReservationPage(_context);
+            return new ChooseAReservationPage(context);
         }
     }
 }

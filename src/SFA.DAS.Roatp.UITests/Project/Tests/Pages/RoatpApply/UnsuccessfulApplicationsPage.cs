@@ -9,17 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Have you submitted an application to join the RoATP in the last 12 months?";
 
-        private readonly ScenarioContext _context;
+        public UnsuccessfulApplicationsPage (ScenarioContext context) : base(context) => VerifyPage();
 
-        public UnsuccessfulApplicationsPage (ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();   
-        }
         public EnterUkprnPage SelectNoFor2ApplicaitonsAndContinue()
         {
             SelectNoAndContinue();
-            return new EnterUkprnPage(_context);
+            return new EnterUkprnPage(context);
         }
     }
 }

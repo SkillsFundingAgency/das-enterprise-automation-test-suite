@@ -7,13 +7,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which apprentices do you want to cancel an application for?";
 
-        private readonly ScenarioContext _context;
-
         private By CancelApprenticeshipSelector => By.CssSelector("input[id*='cancel-apprenticeships']");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context) => _context = context;
+        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context)  { }
 
         public ConfirmApprenticeCancelPage SelectApprenticeToCancel()
         {
@@ -26,7 +24,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new ConfirmApprenticeCancelPage(_context);
+            return new ConfirmApprenticeCancelPage(context);
         }
     }
 }

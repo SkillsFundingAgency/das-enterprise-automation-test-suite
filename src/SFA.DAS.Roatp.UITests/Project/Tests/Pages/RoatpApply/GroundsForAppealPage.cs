@@ -8,18 +8,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Tell us about the grounds for your appeal";
 
-        private By AppealOnPolicyOrProcessesTextBox = By.Id("HowFailedOnPolicyOrProcesses");
-        private By AppealOnEvidenceSubmittedTextBox = By.Id("HowFailedOnEvidenceSubmitted");
+        private By AppealOnPolicyOrProcessesTextBox => By.Id("HowFailedOnPolicyOrProcesses");
+        private By AppealOnEvidenceSubmittedTextBox => By.Id("HowFailedOnEvidenceSubmitted");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public GroundForAppealPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public GroundForAppealPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AppealSubmittedPage EnterText_UploadFileForAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
         {
@@ -27,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterText(AppealOnEvidenceSubmittedTextBox, "Appeal on evidence test");
             UploadFile();
             formCompletionHelper.ClickButtonByText(ContinueButton, "Submit your appeal");
-            return new AppealSubmittedPage(_context);
+            return new AppealSubmittedPage(context);
         }
 
     }

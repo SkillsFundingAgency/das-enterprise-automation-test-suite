@@ -14,28 +14,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChooseAReservationPage(ScenarioContext context) : base(context) => _context = context;
+        public ChooseAReservationPage(ScenarioContext context) : base(context)  { }
 
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationRadioButton, "CreateNew");
-            return new ChooseAReservationPage(_context);
+            return new ChooseAReservationPage(context);
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickSaveAndContinueButton()
         {
             Continue();
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
         public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
             formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
-            return new AddApprenticeDetailsPage(_context);
+            return new AddApprenticeDetailsPage(context);
         }
     }
 }

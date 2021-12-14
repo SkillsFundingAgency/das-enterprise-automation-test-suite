@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public abstract class FAABasePage : BasePage
+    public abstract class FAABasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly FAADataHelper faaDataHelper;

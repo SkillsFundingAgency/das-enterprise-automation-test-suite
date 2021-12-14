@@ -5,12 +5,12 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public abstract class RegistrationBasePage : BasePage
+    public abstract class RegistrationBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly RegistrationConfig config;
         protected readonly RegistrationDataHelper registrationDataHelper;
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         #region Locators
@@ -21,38 +21,37 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         protected RegistrationBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
+        {   
             config = context.GetRegistrationConfig<RegistrationConfig>();
             registrationDataHelper = context.Get<RegistrationDataHelper>();
         }
 
-        public HomePage GoToHomePage() => new HomePage(_context, true);
+        public HomePage GoToHomePage() => new HomePage(context, true);
 
         public HomePage ClickBackLink()
         {
             NavigateBack();
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public ChangeYourPasswordPage GoToChangeYourPasswordPage()
         {
             formCompletionHelper.ClickElement(SettingsLink);
             formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangeYourPasswordPage(_context);
+            return new ChangeYourPasswordPage(context);
         }
 
         public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
         {
             formCompletionHelper.ClickElement(SettingsLink);
             formCompletionHelper.ClickElement(ChangeEmailAddressLink);
-            return new ChangeYourEmailAddressPage(_context);
+            return new ChangeYourEmailAddressPage(context);
         }
 
         public YouveLoggedOutPage SignOut()
         {
             formCompletionHelper.Click(SignOutLink);
-            return new YouveLoggedOutPage(_context);
+            return new YouveLoggedOutPage(context);
         }
     }
 }

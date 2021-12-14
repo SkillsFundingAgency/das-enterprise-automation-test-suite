@@ -8,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SorryAccountDisabledPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sorry";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By AddViaGGLink => By.LinkText("Try adding your PAYE scheme via Government Gateway");
@@ -21,8 +20,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SorryAccountDisabledPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
@@ -33,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public UsingYourGovtGatewayDetailsPage ClickAddViaGGLink()
         {
             formCompletionHelper.Click(AddViaGGLink);
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
     }
 }

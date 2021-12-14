@@ -6,21 +6,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Does your organisation expect its funding from ESFA to be less than 5% of its total annual turnover?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FundingFromEsfaPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FundingFromEsfaPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialEvidencePage SelectNoOnFundingFromEsfaAndContinue()
         {
             SelectRadioOptionByText("No");
             Continue();
-            return new FinancialEvidencePage(_context);
+            return new FinancialEvidencePage(context);
         }
     }
 }

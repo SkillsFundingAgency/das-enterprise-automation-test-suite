@@ -9,9 +9,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-        private readonly ScenarioContext _context;
-
-        public AS_ApplicationSubmittedPage(ScenarioContext context) : base(context) => _context = context;
-
+        public AS_ApplicationSubmittedPage(ScenarioContext context) : base(context) { }
     }
 }

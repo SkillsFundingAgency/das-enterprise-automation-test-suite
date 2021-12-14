@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -7,10 +9,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => config.AccountName;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Locators
         protected override By PageHeader => By.CssSelector(".heading-large");
         private By PageHeaderWithAccountDetails => By.CssSelector(".heading-secondary");
@@ -18,22 +16,24 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public AccountOverviewPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             RefreshPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
-            VerifyPage();
-            VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails);
+            
+            MultipleVerifyPage(new List<Func<bool>> {
+                () => VerifyPage(),
+                () => VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails)
+            });
         }
 
         public TeamMembersPage ClickTeamMembersLink()
         {
             formCompletionHelper.Click(TeamMembersLink);
-            return new TeamMembersPage(_context);
+            return new TeamMembersPage(context);
         }
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
             formCompletionHelper.Click(CommitmentsMenuLink);
-            return new CommitmentsSearchPage(_context);
+            return new CommitmentsSearchPage(context);
         }
 
         private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);

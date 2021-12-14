@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
 {
-    public abstract class IdamsLoginBasePage : BasePage
+    public abstract class IdamsLoginBasePage : VerifyBasePage
     {
         
         protected IdamsLoginBasePage(ScenarioContext context, bool verifypage = true): base(context)

@@ -6,20 +6,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Your organisation is already on the RoATP as";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public AlreadyOnRoatpPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AlreadyOnRoatpPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ChooseProviderRoutePage SelectYesToChangeProviderRouteAndContinue()
         {
             SelectYesAndContinue();
-            return new ChooseProviderRoutePage(_context);
+            return new ChooseProviderRoutePage(context);
         }
     }
 }

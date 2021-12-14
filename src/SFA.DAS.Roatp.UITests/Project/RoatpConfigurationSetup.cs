@@ -17,10 +17,6 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpRoatpConfigConfiguration()
-        {
-            var config = _configSection.GetConfigSection<RoatpConfig>();
-            _context.SetRoatpConfig(config);
-        }
+        public void SetUpRoatpConfigConfiguration() => _context.SetRoatpConfig(_configSection.GetConfigSection<RoatpConfig>());
     }
 }
