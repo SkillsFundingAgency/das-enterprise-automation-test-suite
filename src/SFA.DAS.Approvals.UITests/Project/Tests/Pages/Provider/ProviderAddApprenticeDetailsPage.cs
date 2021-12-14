@@ -12,12 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-fieldset__heading");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
         private By EmailField => By.Id("Email");
@@ -68,13 +62,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             SelectRadioOptionByForAttribute("confirm-Manual");
             Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
         }
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectBulkUpload()
         {
             SelectRadioOptionByForAttribute("confirm-BulkCsv");
             Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
         }
         private void EnterApprenticeMandatoryValidDetails()
         {
