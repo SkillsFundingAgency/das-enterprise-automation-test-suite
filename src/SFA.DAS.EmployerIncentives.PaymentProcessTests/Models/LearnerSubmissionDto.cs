@@ -11,8 +11,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public int AcademicYear { get; set; }
         public long Ukprn { get; set; }
         public long Uln { get; set; }
-        public string RawJson { get; set; }
-
         public IList<TrainingDto> Training { get; set; }
     }
 }

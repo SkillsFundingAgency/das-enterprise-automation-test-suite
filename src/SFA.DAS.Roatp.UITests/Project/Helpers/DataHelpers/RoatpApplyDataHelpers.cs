@@ -3,64 +3,64 @@ using System;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
-    public class RoatpApplyDataHelpers : RandomElementHelper
+    public class RoatpApplyDataHelpers
     {
-        public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public RoatpApplyDataHelpers()
         {
-            CompanyNumber = randomDataGenerator.GenerateRandomNumber(8);
+            CompanyNumber = RandomDataGenerator.GenerateRandomNumber(8);
             CompanyName = $"{CompanyNumber}EnterpriseTestDemo";
-            IocNumber = randomDataGenerator.GenerateRandomAlphanumericString(8);
+            IocNumber = RandomDataGenerator.GenerateRandomAlphanumericString(8);
             Website = $"www.company.co.uk";
-            BuildingAndStreet = randomDataGenerator.GenerateRandomNumber(3);
-            TownOrCity = randomDataGenerator.GenerateRandomAlphabeticString(10);
-            County = randomDataGenerator.GenerateRandomAlphabeticString(5);
-            CompositionWithCreditots = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            PayBackFundsLastThreeYears = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ContractTerminatedByPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WithdrawnFromAContractWithPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            FundingRemovedFromEducationBodies = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            RemovedFromProfessionalOrTradeRegisters = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            InvoluntaryWithdrawlFromITTAccreditation = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            NamesOfAllOrganisations = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            RemovedFromCharityRegister = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            InvestigatedDueToSafeGuardingIssues = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            InvestigatedDueToWhistleBlowingIssues = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            InsolvencyOrWindingUpProceedings = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            UnspentCriminalConvictions = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlFailedToPayBackFunds = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlInvestigatedForFraudorIrregularities = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlOngoingInvestigationsForFraud = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlContractTerminatedByPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlContractWithdrawnWithPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlBreachTaxSocialSecurity = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhosInControlBankruptInLastThreeYears = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ManagingRelationshipWithEmployers = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            OrganisationPromoteApprenticeships = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            OrganisationProcessForInitialTraning = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ProcessToAssessEnglishAndMaths = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ReadytoDeliverTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EngageWithEPAO = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EngageWithAwardingBodies = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            OffTheJobTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            EvaluatingQualityOfTrainingDelivered = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ImprovementsUsingProcessForEvaluating = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ReviewProcessForEvaluatingTheQualityOfTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            TransitionFromFrameWorksToStandardsForEmployerRoute = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            TransitionFromFrameWorksToStandards = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            HowApprenticesAreSupported = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            OtherWaysToSupportApprentices = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            HowExpectationsAreMonitored = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            HowAreTheyCommunicatedToEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ExampleToImproveEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ExampleToMaintainEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            HowHasTheTeamOrPersonWorked = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            WhatLevelOfSupportProvided = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            NumberBetween1And23 = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 23);
-            SignificantEventText = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            StandardIntendToDeliver = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ProhibitionOrderFromTeachingRegulationAgency = randomDataGenerator.GenerateRandomAlphabeticString(100);
-            RandomMonth = randomDataGenerator.GenerateRandomMonth();
-            RandomYear = randomDataGenerator.GenerateRandomDobYear();
+            BuildingAndStreet = RandomDataGenerator.GenerateRandomNumber(3);
+            TownOrCity = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            County = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            CompositionWithCreditots = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            PayBackFundsLastThreeYears = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ContractTerminatedByPublicBody = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WithdrawnFromAContractWithPublicBody = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            FundingRemovedFromEducationBodies = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            RemovedFromProfessionalOrTradeRegisters = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            InvoluntaryWithdrawlFromITTAccreditation = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            NamesOfAllOrganisations = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            RemovedFromCharityRegister = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            InvestigatedDueToSafeGuardingIssues = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            InvestigatedDueToWhistleBlowingIssues = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            InsolvencyOrWindingUpProceedings = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            UnspentCriminalConvictions = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlFailedToPayBackFunds = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlInvestigatedForFraudorIrregularities = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlOngoingInvestigationsForFraud = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlContractTerminatedByPublicBody = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlContractWithdrawnWithPublicBody = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlBreachTaxSocialSecurity = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhosInControlBankruptInLastThreeYears = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ManagingRelationshipWithEmployers = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            OrganisationPromoteApprenticeships = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            OrganisationProcessForInitialTraning = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ProcessToAssessEnglishAndMaths = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ReadytoDeliverTraining = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EngageWithEPAO = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EngageWithAwardingBodies = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            OffTheJobTraining = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            EvaluatingQualityOfTrainingDelivered = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ImprovementsUsingProcessForEvaluating = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ReviewProcessForEvaluatingTheQualityOfTraining = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            TransitionFromFrameWorksToStandardsForEmployerRoute = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            TransitionFromFrameWorksToStandards = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowApprenticesAreSupported = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            OtherWaysToSupportApprentices = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowExpectationsAreMonitored = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowAreTheyCommunicatedToEmployees = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ExampleToImproveEmployees = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ExampleToMaintainEmployees = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowHasTheTeamOrPersonWorked = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            WhatLevelOfSupportProvided = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            NumberBetween1And23 = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 23);
+            SignificantEventText = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            StandardIntendToDeliver = RandomDataGenerator.GenerateRandomAlphabeticString(20);
+            ProhibitionOrderFromTeachingRegulationAgency = RandomDataGenerator.GenerateRandomAlphabeticString(100);
+            RandomMonth = RandomDataGenerator.GenerateRandomMonth();
+            RandomYear = RandomDataGenerator.GenerateRandomDobYear();
         }
 
         public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
@@ -122,7 +122,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string NamesOfAllOrganisations { get; }
         public string WhatLevelOfSupportProvided { get; }
         public string SignificantEventText { get; }
-        public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
+        public string GenerateRandomWholeNumber(int length) => RandomDataGenerator.GenerateRandomWholeNumber(length);
         public int NumberBetween1And23 { get; }
         public int RandomMonth { get; }
         public int RandomYear { get; }

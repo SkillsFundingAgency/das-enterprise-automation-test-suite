@@ -7,10 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
@@ -29,41 +25,41 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
 
         public AddAnApprenitcePage AddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
 
         public ApprenticeRequestsPage ClickApprenticeRequestsLink()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
 
         public ManageYourApprenticesPage ClickManageYourApprenticesLink()
         {
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
-            return new ManageYourApprenticesPage(_context);
+            return new ManageYourApprenticesPage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(_context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {
             formCompletionHelper.ClickElement(SetPaymentOrder);
-            return new SetpaymentOrderPage(_context);
+            return new SetpaymentOrderPage(context);
         }
 
         public ReportPublicSectorApprenticeshipTargetPage ClickReportPublicSectorApprenticeshipTargetLink()
         {
             formCompletionHelper.ClickElement(ReportPublicSectorApprenticeshipTarget);
-            return new ReportPublicSectorApprenticeshipTargetPage(_context);
+            return new ReportPublicSectorApprenticeshipTargetPage(context);
         }
 
-        public void ValidateFooter()
+        public ApprenticesHomePage ValidateFooter()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Help), "Validate Help link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Feedback), "Validate Feedback link on the footer of the page");
@@ -71,18 +67,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Cookies), "Validate Cookies link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(BuiltBy), "Validate BuiltBy link on the footer of the page");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CrownCopyright), "Validate CrownCopyright link on the footer of the page");
+
+            return this;
         }
 
-        public void ValidateCookiesBanner()
+        public ApprenticesHomePage ValidateCookiesBanner()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesAcceptButton), "Validate accept cookies button on cookies banner");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesSettingsButton), "Validate cookie settings button on cookies banner");
+            return this;
         }
 
-        public void ValidateHelpWidget()
+        public ApprenticesHomePage ValidateHelpWidget()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript1), "Validate help widget button in the bottom right");
             Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript2), "Validate help widget button in the bottom right");
+            return this;
         }
     }
 }

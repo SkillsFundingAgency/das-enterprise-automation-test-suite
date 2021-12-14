@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -10,10 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
@@ -31,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EmployerReference => By.Id("Reference");
         private By AddButton => By.CssSelector("#addApprenticeship > button");
 
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
@@ -55,7 +52,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
+
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         private void EnterApprenticeMandatoryValidDetails()
@@ -63,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
 
-            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+            if (tags.Contains("aslistedemployer")) return;
 
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }

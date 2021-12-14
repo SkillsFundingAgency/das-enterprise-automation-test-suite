@@ -15,12 +15,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             Dictionary<string, string> sqlParameters = new Dictionary<string, string> { { "@email", email }, { "@name", name } };
 
-            List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, connectionString, sqlParameters);
+            var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, connectionString, sqlParameters);
 
-            if (responseData.Count == 0)
+            if (data.Count == 0)
                 return null;
             else
-                return responseData[0][0].ToString();
+                return data[0][0].ToString();
         }
 
         public int GetEmployerAccountId(string email, string organisationName)

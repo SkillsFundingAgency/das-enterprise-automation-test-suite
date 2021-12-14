@@ -10,7 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         protected override string PageTitle => "Funding for non-levy employers";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly string _reservationId;
         #endregion
 
@@ -18,34 +17,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         protected By DeleteFundingLink => By.CssSelector($"table a[href*='{_reservationId}/delete']");
 
-        public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _reservationId = objectContext.GetReservationId();
-        }
+        public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context) => _reservationId = objectContext.GetReservationId();
 
         internal ProviderAddApprenticeDetailsPage AddApprenticeWithReservedFunding()
         {
             formCompletionHelper.ClickElement(AddApprenticeLink);
-            return new ProviderAddApprenticeDetailsPage(_context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage AddApprenticeWithReservedFundingGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(AddApprenticeLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal DeleteReservationPage DeleteTheReservedFunding()
         {
             formCompletionHelper.ClickElement(DeleteFundingLink);
-            return new DeleteReservationPage(_context);
+            return new DeleteReservationPage(context);
         }
 
         public ProviderAccessDeniedPage DeleteTheReservedFundingGoesToAccessDenied()
         {
             formCompletionHelper.ClickElement(DeleteFundingLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderFundingForNonLevyEmployersPage VerifyReservationExists()

@@ -6,35 +6,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "What type of educational institute is your organisation?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public TypeOfEducationalInstitutePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TypeOfEducationalInstitutePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrgMonitoredSupportedByOFSPage SelectHigherEducationInstituteAndContinue()
         {
             SelectRadioOptionByText("Higher Education Institute");
             Continue();
-            return new OrgMonitoredSupportedByOFSPage(_context);
+            return new OrgMonitoredSupportedByOFSPage(context);
         }
 
         public AlreadyRegisteredWithEsfaPage SelectSixthFormCollegeAndContinue()
         {
             SelectRadioOptionByText("Sixth Form College");
             Continue();
-            return new AlreadyRegisteredWithEsfaPage(_context);
+            return new AlreadyRegisteredWithEsfaPage(context);
         }
 
         public AlreadyRegisteredWithEsfaPage SelectAcademyAndContinue()
         {
             SelectRadioOptionByText("Academy");
             Continue();
-            return new AlreadyRegisteredWithEsfaPage(_context);
+            return new AlreadyRegisteredWithEsfaPage(context);
         }
     }
 }

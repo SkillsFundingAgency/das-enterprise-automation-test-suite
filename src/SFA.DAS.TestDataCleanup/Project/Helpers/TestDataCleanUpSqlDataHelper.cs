@@ -37,7 +37,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 $"and Email not like '%Oct2021%' " +
                 $"and Email not like '%Nov2021%' " +
                 $"and Email not like '%Dec2021%' " +
-                $"and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc", 1);
+                $"and Email not in ({TestDataCleanUpEmailsInUse.GetInUseEmails()}) order by NEWID() desc");
 
             if (IsNoDataFound(userEmailList)) return (usersdeleted, userswithconstraints);
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 {
                     _user = $"{_userEmail}";
 
-                    var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')", 1);
+                    var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')");
 
                     var noOfRowsDeleted = TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
 

@@ -9,16 +9,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override string PageTitle => "Submitted reports";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SubmittedReportspage(ScenarioContext context) : base(context) => _context = context;
+        public SubmittedReportspage(ScenarioContext context) : base(context) { }
 
         public SubmittedDetailsPage ViewReport()
         {
-            tableRowHelper.SelectRowFromTable("View", registrationConfig.RE_OrganisationName);
-            return new SubmittedDetailsPage(_context);
+            tableRowHelper.SelectRowFromTable("View", registrationDataHelper.CompanyTypeOrg);
+            return new SubmittedDetailsPage(context);
         }
     }
 }

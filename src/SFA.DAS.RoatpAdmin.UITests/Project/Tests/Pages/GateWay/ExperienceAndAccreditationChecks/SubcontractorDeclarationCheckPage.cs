@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.ExperienceAndAc
     {
         protected override string PageTitle => "Subcontractor declaration check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SubcontractorDeclarationCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SubcontractorDeclarationCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

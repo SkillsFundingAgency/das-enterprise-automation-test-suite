@@ -1,7 +1,7 @@
 ﻿Feature: EI_URV_01_TransactorUser
 
 @regression
-@employerincentives
+@employerincentivesphase3
 Scenario: EI_URV_01_Verify EI for Existing Transactor user
 	Given the Employer logins using existing transactor user account
 	When the Employer Initiates EI Application journey for Single entity account

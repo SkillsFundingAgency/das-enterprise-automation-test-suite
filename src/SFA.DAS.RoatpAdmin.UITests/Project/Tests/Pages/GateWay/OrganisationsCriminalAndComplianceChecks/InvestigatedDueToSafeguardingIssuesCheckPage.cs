@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
     {
         protected override string PageTitle => "Investigated due to safeguarding issues in the last 3 months check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public InvestigatedDuetoSafeguardingIssuesCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public InvestigatedDuetoSafeguardingIssuesCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

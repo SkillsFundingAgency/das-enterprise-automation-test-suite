@@ -2,6 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -11,11 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Add apprentice details";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
         private By EmailField => By.Id("Email");
@@ -31,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EmployerReference => By.Id("Reference");
         private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         private void AddCourse()
         {
@@ -42,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
         }
 
-        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
 
@@ -55,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             AddCourse();
 
             formCompletionHelper.ClickElement(StartDateMonth);
+
             if (isMF == false)
             {
                 formCompletionHelper.EnterText(StartDateMonth, courseStartDate.Month);
@@ -67,7 +65,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ReviewYourCohortPage(_context);
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
+
+            return new ApproveApprenticeDetailsPage(context);
         }
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
@@ -75,7 +76,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EnterApprenticeMandatoryValidDetails();
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new YouCantApproveThisApprenticeRequestUntilPage(_context);
+
+            return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
@@ -95,24 +97,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
                 var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
 
-                objectContext.SetEIAgeCategoryAsOfAug2020(eiApprenticeDetail.AgeCategoryAsOfAug2020);
+                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
                 objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
                 objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
 
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomLastName();
+                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
+                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
                 apprenticeDataHelper.TrainingPrice = "7500";
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
 
-            if (objectContext.IsSameApprentice())
-            {
-                apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
-            }
+            if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
+            
 
             return apprenticeCourseDataHelper.CourseStartDate;
         }
@@ -122,7 +122,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
 
-            if (_context.ScenarioInfo.Tags.Contains("aslistedemployer")) return;
+            if (tags.Contains("aslistedemployer")) return;
 
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
         }

@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -9,11 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public class RAA_EmployerInformationPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Check employer information";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ObjectContext _objectContext;
-        #endregion
 
         private By NumberOfVacancy => By.Id("NumberOfPositions");
 
@@ -33,11 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By EmployerName => By.CssSelector(".sfa-no-top-margin+p");
 
-        public RAA_EmployerInformationPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public RAA_EmployerInformationPage(ScenarioContext context) : base(context) { }
 
         public RAA_EmployerInformationPage UseTheMainEmployerAddress(string position)
         {
@@ -97,13 +86,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.ClickButtonByText("Save and continue");
             pageInteractionHelper.WaitforURLToChange("create?");
-            var heading = _pageInteractionHelper.GetText(VacancyLocationHeading);
+            var heading = pageInteractionHelper.GetText(VacancyLocationHeading);
             if (heading.Contains("Vacancy location(s)"))
             {
                 formCompletionHelper.Click(VacancyLocationPageSaveAndContinue);
             }
         }
 
-        private void SetEmployerName() => _objectContext.SetEmployerName(pageInteractionHelper.GetText(EmployerName));
+        private void SetEmployerName() => objectContext.SetEmployerName(pageInteractionHelper.GetText(EmployerName));
     }
 }

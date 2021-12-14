@@ -13,13 +13,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private By UserPassword => By.CssSelector("#user_password");
         private By SignInButton => By.CssSelector("#sign-in-submit-button");
 
-        private readonly ScenarioContext _context;
-        
-        public SignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public SignInPage(ScenarioContext context) : base(context) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public HomePage SignIntoApprenticeshipServiceSupport()
         {
@@ -29,7 +23,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.EnterText(UserPassword, config.Password);
                 formCompletionHelper.ClickElement(SignInButton);
             });
-            return new HomePage(_context, true);
+            return new HomePage(context, true);
         }
     }
 }

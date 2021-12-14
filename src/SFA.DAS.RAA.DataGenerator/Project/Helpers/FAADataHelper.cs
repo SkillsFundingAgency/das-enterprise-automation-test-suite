@@ -3,47 +3,47 @@ using System;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class FAADataHelper : RandomElementHelper
+    public class FAADataHelper
     {
-        public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public FAADataHelper()
         {            
             var datetime = DateTime.Now;            
-            EducationSchoolOrCollege = randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EducationSchoolOrCollege = RandomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
             QualificationYear = YearsAttended.Year.ToString();
-            QualificationSubject = randomDataGenerator.GenerateRandomAlphabeticString(5);
-            QualificationGrade = randomDataGenerator.GenerateRandomAlphabeticString(1);
-            WorkExperienceEmployer = randomDataGenerator.GenerateRandomAlphabeticString(8);
-            WorkExperienceJobTitle = randomDataGenerator.GenerateRandomAlphabeticString(15);
-            WorkExperienceMainDuties = randomDataGenerator.GenerateRandomAlphabeticString(29);
+            QualificationSubject = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            QualificationGrade = RandomDataGenerator.GenerateRandomAlphabeticString(1);
+            WorkExperienceEmployer = RandomDataGenerator.GenerateRandomAlphabeticString(8);
+            WorkExperienceJobTitle = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            WorkExperienceMainDuties = RandomDataGenerator.GenerateRandomAlphabeticString(29);
             WorkExperienceFinished = YearsAttended.AddMonths(-5);
             WorkExperienceStarted = WorkExperienceFinished.AddMonths(-5);
             TrainingCoursesProvider = WorkExperienceEmployer;
             TrainingCoursesCourseTitle = QualificationSubject;
             TrainingCoursesTo = WorkExperienceFinished;
             TrainingCoursesFrom = WorkExperienceStarted;
-            Strengths = randomDataGenerator.GenerateRandomAlphabeticString(99);
-            Skills = randomDataGenerator.GenerateRandomAlphabeticString(99);
-            HobbiesAndInterests = randomDataGenerator.GenerateRandomAlphabeticString(99);
-            AdditionalQuestions1 = randomDataGenerator.GenerateRandomAlphabeticString(59);
-            AdditionalQuestions2 = randomDataGenerator.GenerateRandomAlphabeticString(59);
-            InterviewSupport = randomDataGenerator.GenerateRandomAlphabeticString(22);
-            FirstName = randomDataGenerator.GenerateRandomAlphabeticString(5);
-            NewFirstName = randomDataGenerator.GenerateRandomAlphabeticString(5);
-            NewLastName = randomDataGenerator.GenerateRandomAlphabeticString(5);
-            LastName = randomDataGenerator.GenerateRandomAlphabeticString(10);
-            DOB_Day = randomDataGenerator.GenerateRandomDateOfMonth();
-            DOB_Month = randomDataGenerator.GenerateRandomMonth();
-            DOB_Year = randomDataGenerator.GenerateRandomDobYear();
-            EmailId = randomDataGenerator.GenerateRandomEmail();
-            ChangedEmailId = randomDataGenerator.GenerateRandomEmail();
-            PhoneNumber = randomDataGenerator.GenerateRandomNumber(10);
-            NewPhoneNumber = randomDataGenerator.GenerateRandomNumber(10);
-            Password = randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
+            Strengths = RandomDataGenerator.GenerateRandomAlphabeticString(99);
+            Skills = RandomDataGenerator.GenerateRandomAlphabeticString(99);
+            HobbiesAndInterests = RandomDataGenerator.GenerateRandomAlphabeticString(99);
+            AdditionalQuestions1 = RandomDataGenerator.GenerateRandomAlphabeticString(59);
+            AdditionalQuestions2 = RandomDataGenerator.GenerateRandomAlphabeticString(59);
+            InterviewSupport = RandomDataGenerator.GenerateRandomAlphabeticString(22);
+            FirstName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewFirstName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewLastName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            LastName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            DOB_Day = RandomDataGenerator.GenerateRandomDateOfMonth();
+            DOB_Month = RandomDataGenerator.GenerateRandomMonth();
+            DOB_Year = RandomDataGenerator.GenerateRandomDobYear();
+            EmailId = RandomDataGenerator.GenerateRandomEmail();
+            ChangedEmailId = RandomDataGenerator.GenerateRandomEmail();
+            PhoneNumber = RandomDataGenerator.GenerateRandomNumber(10);
+            NewPhoneNumber = RandomDataGenerator.GenerateRandomNumber(10);
+            Password = RandomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             NewVacancyClosing = VacancyClosing.AddDays(15);
             NewVacancyStart = NewVacancyClosing.AddDays(15);
-            OptionalMessage = randomDataGenerator.GenerateRandomAlphabeticString(30);
+            OptionalMessage = RandomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public DateTime NewVacancyClosing { get; }

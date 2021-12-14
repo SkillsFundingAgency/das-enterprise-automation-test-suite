@@ -2,6 +2,7 @@
 {
     public class RoatpApplyCreateUserDataHelpers
     {
+        // This parameterless constructor is used to create instance from a specflow table
         public RoatpApplyCreateUserDataHelpers()
         {
 

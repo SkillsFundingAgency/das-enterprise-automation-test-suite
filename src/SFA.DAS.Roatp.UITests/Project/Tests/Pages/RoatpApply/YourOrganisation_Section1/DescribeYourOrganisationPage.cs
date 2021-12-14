@@ -7,30 +7,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "How would you describe your organisation?";
          
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By PublicServiceMutualRadio => By.CssSelector("input[type='checkbox'][value='A public service mutual']");
         private By ShelteredWorkshopRadio => By.CssSelector("input[type='checkbox'][value='A sheltered workshop']");
 
-        public DescribeYourOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public DescribeYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public TradingPeriodPage SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PublicServiceMutualRadio));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ShelteredWorkshopRadio));
             Continue();
-            return new TradingPeriodPage(_context);
+            return new TradingPeriodPage(context);
         }
         public TradingPeriodPage ClickContinueForDescribeYourOrgDetailsSelected()
         {
             Continue();
-            return new TradingPeriodPage(_context);
+            return new TradingPeriodPage(context);
         }
     }
 }

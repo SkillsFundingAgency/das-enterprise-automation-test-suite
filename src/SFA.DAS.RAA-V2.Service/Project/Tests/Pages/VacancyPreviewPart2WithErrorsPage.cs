@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -10,19 +9,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-error-summary");
 
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
+        public VacancyPreviewPart2WithErrorsPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2WithErrorsPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
-
-        public string GetErrorMessages()
-        {
-            return _pageInteractionHelper.GetText(PageHeader);
-        }
+        public string GetErrorMessages() => pageInteractionHelper.GetText(PageHeader);
 
     }
 }

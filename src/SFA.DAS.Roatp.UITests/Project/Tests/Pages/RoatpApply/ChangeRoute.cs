@@ -6,26 +6,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Changing your provider route";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ChangeRoutePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ChangeRoutePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ChooseProviderRoutePage SelectYesToChangeRouteAndContinue()
         {
             SelectYesAndContinue();
-            return new ChooseProviderRoutePage(_context);
+            return new ChooseProviderRoutePage(context);
         }
 
         public ApplicationOverviewPage SelectNoToChangeRouteAndContinue()
         {
             SelectNoAndContinue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

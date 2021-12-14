@@ -5,26 +5,24 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_EI : HomePage
     {
-        private readonly ScenarioContext _context;
-
-        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) => _context = context;
+        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 
         public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
         {
             formCompletionHelper.Click(EIHubLink);
-            return new EIAccessDeniedPage(_context);
+            return new EIAccessDeniedPage(context);
         }
 
         public EIHubPage NavigateToEIHubPage()
         {
             formCompletionHelper.Click(EIHubLink);
-            return new EIHubPage(_context);
+            return new EIHubPage(context);
         }
 
         public ChooseOrganisationPage NavigateToChooseOrgPage()
         {
             formCompletionHelper.Click(EIHubLink);
-            return new ChooseOrganisationPage(_context);
+            return new ChooseOrganisationPage(context);
         }
     }
 }

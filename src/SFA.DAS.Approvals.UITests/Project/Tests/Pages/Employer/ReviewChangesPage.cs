@@ -7,11 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Review changes";
         
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ReviewChangesPage(ScenarioContext context) : base(context)  { }
 
         protected override By ContinueButton => By.Id("continue-button");
 
@@ -19,14 +15,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             Continue();
-            return new EditedApprenticeDetailsPage(_context);
+            return new EditedApprenticeDetailsPage(context);
         }
 
         public ApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, "No");
             Continue();
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
     }
 }

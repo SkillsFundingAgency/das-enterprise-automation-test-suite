@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -8,8 +10,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".admin .pane.left.section");
 
         protected override string PageTitle => "ADMIN HOME";
-
-        private readonly ScenarioContext _context;
 
         private By SearchHeader => By.CssSelector("h2");
 
@@ -23,19 +23,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By SearchButton => By.CssSelector("input[id='buttonsubmit']");
 
-        public AdminPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            VerifyPage();
-
-            VerifyPage(PeopleLink);
-        }
+        public AdminPage(ScenarioContext context) : base(context) => MultipleVerifyPage(new List<Func<bool>> { () => VerifyPage(), () => VerifyPage(PeopleLink) });
 
         public UserPage NavigateToUserPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PeopleLink));
-            return new UserPage(_context);
+            return new UserPage(context);
         }
 
         public int NoOfOrganisation()
@@ -69,7 +62,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 InvokeAction(() => formCompletionHelper.ClickLinkByText(NewOrgLink, dataHelper.NewOrgName));
             });
 
-            return new OrgPage(_context);
+            return new OrgPage(context);
         }
 
         private void VerifySearchHeaders()

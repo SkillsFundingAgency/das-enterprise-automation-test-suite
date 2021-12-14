@@ -7,7 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class EnterYourPAYESchemeDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Enter your PAYE scheme details";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By AornTextBox => By.Id("aorn");
@@ -28,28 +27,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
 
-        public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new CheckYourDetailsPage(_context);
+            return new CheckYourDetailsPage(context);
         }
 
         public TheseDetailsAreAlreadyInUsePage ReEnterTheSameAornDetailsAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new TheseDetailsAreAlreadyInUsePage(_context);
+            return new TheseDetailsAreAlreadyInUsePage(context);
         }
 
         public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
         {
             EnterAornAndPayeAndContinue();
-            return new ChooseAnOrganisationPage(_context);
+            return new ChooseAnOrganisationPage(context);
         }
 
         new public EnterYourPAYESchemeDetailsPage Continue()
@@ -76,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public MyAccountWithOutPayePage ClickSkipThisStepForNowLink()
         {
             formCompletionHelper.Click(SkipThisStepForNowLink);
-            return new MyAccountWithOutPayePage(_context);
+            return new MyAccountWithOutPayePage(context);
         }
     }
 }

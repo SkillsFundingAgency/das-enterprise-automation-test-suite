@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -7,8 +9,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector("#main_navigation");
         protected override string PageTitle { get; }
-
-        private readonly ScenarioContext _context;
 
         private By BrandingHeader => By.CssSelector("#branding_header");
 
@@ -28,15 +28,16 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
 
-            _context = context;
-
             if (navigateTo) 
             {
                 action();
-                VerifyPage(PageHeader, action);
-                VerifyPage(BrandingHeader, action);
-                VerifyPage(Indicators, action);
-                VerifyPage(TicketTable, action);
+                MultipleVerifyPage(new List<Func<bool>>
+                {
+                    () => VerifyPage(PageHeader, action),
+                    () => VerifyPage(BrandingHeader, action),
+                    () => VerifyPage(Indicators, action),
+                    () => VerifyPage(TicketTable, action)
+                });
             }
         }
 
@@ -49,15 +50,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
             });
 
-            return new TicketPage(_context);
+            return new TicketPage(context);
         }
 
         public AdminPage NavigateToAdminPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
-            return new AdminPage(_context);
+            return new AdminPage(context);
         }
 
-        protected HomePage NavigateToHomePage() => new HomePage(_context, true);
+        protected HomePage NavigateToHomePage() => new HomePage(context, true);
     }
 }

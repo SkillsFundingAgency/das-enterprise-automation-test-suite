@@ -18,19 +18,19 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public (string apprenticeId, string userIdentityid) GetApprenticeIdFromRegistrationTable(string email)
         {
-            var data = GetData($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'", 2);
+            var data = GetData($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'");
             return (data[0], data[1]);
         }
 
-        public string GetApprenticeId(string email) => GetData($"select Id from Apprentice where Email ='{email}'");
+        public string GetApprenticeId(string email) => GetDataAsString($"select Id from Apprentice where Email ='{email}'");
 
-        public string GetApprenticeshipId(string apprenticeId) => GetData($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
+        public string GetApprenticeshipId(string apprenticeId) => GetDataAsString($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
 
-        public string GetApprenticeEmail(string id) => GetData($"select Email from Apprentice where Id = '{id}'");
+        public string GetApprenticeEmail(string id) => GetDataAsString($"select Email from Apprentice where Id = '{id}'");
 
         public (string firstName, string lastName) GetApprenticeName(string email)
         {
-            var data = GetData($"select FirstName, LastName from Registration where email = '{email}'", 2);
+            var data = GetData($"select FirstName, LastName from Registration where email = '{email}'");
             return (data[0], data[1]);
         }
 
@@ -42,14 +42,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public void ConfirmApprenticeship(string email)
         {
-            ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesCorrect = 1, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
+            ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesConfirmations = 7, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
         }
 
         public string ConfirmCoCEventHasTriggered(string email, string scenarioTitle) => GetDetails($"SELECT ApprenticeshipDetailsCorrect from Revision WHERE ConfirmedOn is Null and ApprenticeshipId in {GetRevionTableSubQuery(email)}", scenarioTitle);
 
         public string GetRegistrationId(string email, string scenarioTitle) => GetDetails(GetRegistrationIdQuery(email), scenarioTitle);
 
-        public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email), 1).ListOfArrayToList(0);
+        public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email)).ListOfArrayToList(0);
 
         private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 

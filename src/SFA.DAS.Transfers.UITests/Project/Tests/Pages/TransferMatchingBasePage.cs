@@ -1,24 +1,10 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public abstract class TransferMatchingBasePage : BasePage
+    public abstract class TransferMatchingBasePage : VerifyBasePage
     {
-        #region Helpers and Context
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
-        #endregion
-
-        protected TransferMatchingBasePage(ScenarioContext context) : base(context)
-        {
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
-            VerifyPage();
-        }
+        protected TransferMatchingBasePage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _section1_Helper = new YourOrganisation_Section1_Helper();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
         }
@@ -88,6 +88,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Given(@"the provider initates an application as employer who is already on Roatp as employer")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerWhoIsAlreadyOnRoatpAsEmployer() => _alreadyOnRoatpPage = _selectRouteStepsHelper.CompleteProviderCharityRouteWhoisAlreayOnRoatp();
+
 
         [Then(@"the provider can change the route as main provider")]
         public void ThenTheProviderCanChangeTheRouteAsMainProvider() => _alreadyOnRoatpPage.SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsMain().AcceptTermAndConditionsAndContinue();

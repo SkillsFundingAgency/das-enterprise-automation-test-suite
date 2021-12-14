@@ -1,7 +1,7 @@
 ﻿Feature: EI_QSAgS_ELevyAc_01
 
 @regression
-@employerincentives
+@employerincentivesphase3
 Scenario: EI_QSAgS_ELevyAc_01_Validate Shutter page for an Existing Levy account with V4 Agreement Signed user
 	Given the Employer logins using existing Version4AgreementUser Account
 	When the Employer Initiates EI Application journey for Single entity account

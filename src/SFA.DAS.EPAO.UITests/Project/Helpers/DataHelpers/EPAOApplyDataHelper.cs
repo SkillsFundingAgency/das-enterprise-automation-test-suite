@@ -1,10 +1,8 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-
-namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
+﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
     public class EPAOApplyDataHelper : EPAODataHelper
     {
-        public EPAOApplyDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
+        public EPAOApplyDataHelper() : base() { }
 
         public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
         public string InvalidOrgNameWithNumbers => "54678900";

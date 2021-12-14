@@ -12,15 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected virtual By Reference => By.CssSelector("dd.das-definition-list__definition:nth-child(4)");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
 
         private By DraftSaveAndSubmit => By.Id("continue-button");
 
-        public YouCantApproveThisApprenticeRequestUntilPage (ScenarioContext context) : base(context) => _context = context;
+        public YouCantApproveThisApprenticeRequestUntilPage (ScenarioContext context) : base(context)  { }
         
         public DynamicHomePages DraftReturnToHomePage()
         {
@@ -32,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(DraftSaveAndSubmit);
 
-            return new DynamicHomePages(_context);
+            return new DynamicHomePages(context);
         }
         
     }

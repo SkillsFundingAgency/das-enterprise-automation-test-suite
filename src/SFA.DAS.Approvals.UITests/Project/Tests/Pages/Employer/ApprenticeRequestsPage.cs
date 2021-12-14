@@ -8,15 +8,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Apprentice requests";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
         private By NumberofApprenticeRequestsReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
         private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-one .bold-xxlarge");
         private By NumberOfDrafts => By.CssSelector("a[href*='draft'] span[class*='das-tabs-boxes__figure']");
 
-        public ApprenticeRequestsPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeRequestsReadyToReview GoToReadyToReview()
         {
@@ -24,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerReadyForReviewCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberofApprenticeRequestsReadyForReview);
-                return new ApprenticeRequestsReadyToReview(_context);
+                return new ApprenticeRequestsReadyToReview(context);
             }
 
             throw new Exception("No cohorts available for review");
@@ -35,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerDraftCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfDrafts);
-                return new ApprenticeRequestDraftsPage(_context);
+                return new ApprenticeRequestDraftsPage(context);
             }
 
             throw new Exception("No cohorts available in Draft");
@@ -47,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (employerRejectedTransferRequests > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfTransferRejectedCohorts);
-                return new RejectedTransferRequestsPage(_context);
+                return new RejectedTransferRequestsPage(context);
             }
             throw new Exception("No cohorts available with Employer in Rejected Transfers Request Status");
         }

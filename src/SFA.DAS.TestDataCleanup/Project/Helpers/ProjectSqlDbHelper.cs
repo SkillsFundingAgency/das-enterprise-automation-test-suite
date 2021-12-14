@@ -28,7 +28,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             return noOfRowsDeleted;
         }
 
-        protected List<string> GetAccountids(string query) => GetMultipleData(query, 1).ListOfArrayToList(0);
+        protected List<string> GetAccountids(string query) => GetMultipleData(query).ListOfArrayToList(0);
 
         protected (List<string>, List<string>) CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, int> deleteAccountidfunc)
         {

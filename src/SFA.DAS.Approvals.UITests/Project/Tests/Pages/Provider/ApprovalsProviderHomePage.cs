@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -10,69 +9,60 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
+        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
         public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
         {
-            _formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
-            return new ProviderManageYourApprenticesPage(_context);
+            formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
+            return new ProviderManageYourApprenticesPage(context);
         }
 
         public ProviderNotificationSettingsPage GoToProviderNotificationSettingsPage()
         {
-            _formCompletionHelper.ClickElement(NotificationSettingsLink);
-            return new ProviderNotificationSettingsPage(_context);
+            formCompletionHelper.ClickElement(NotificationSettingsLink);
+            return new ProviderNotificationSettingsPage(context);
         }
 
         public ProviderOrganisationsAndAgreementsPage GoToOrganisationsAndAgreementsPage()
         {
-            _formCompletionHelper.ClickElement(OrganisationsAndAgreementsLink);
-            return new ProviderOrganisationsAndAgreementsPage(_context);
+            formCompletionHelper.ClickElement(OrganisationsAndAgreementsLink);
+            return new ProviderOrganisationsAndAgreementsPage(context);
         }
 
         public ProviderAddApprenticeDetailsViaSelectJourneyPage GotoSelectJourneyPage()
         {
-            _formCompletionHelper.ClickElement(AddNewApprenticesLink);
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(_context);
+            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
         }
 
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
         {
-            _formCompletionHelper.ClickElement(GetFundingLink);
-            return new ProviderReserveFundingForNonLevyEmployersPage(_context);
+            formCompletionHelper.ClickElement(GetFundingLink);
+            return new ProviderReserveFundingForNonLevyEmployersPage(context);
         }
 
         public ProviderAccessDeniedPage GoToProviderGetFundingGoesToAccessDenied()
         {
-            _formCompletionHelper.ClickElement(GetFundingLink);
-            return new ProviderAccessDeniedPage(_context);
+            formCompletionHelper.ClickElement(GetFundingLink);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderFundingForNonLevyEmployersPage GoToManageYourFunding()
         {
-            _formCompletionHelper.ClickElement(ManageYourFundingLink);
-            return new ProviderFundingForNonLevyEmployersPage(_context);
+            formCompletionHelper.ClickElement(ManageYourFundingLink);
+            return new ProviderFundingForNonLevyEmployersPage(context);
         }
 
         public ProviderApprenticeRequestsPage GoToApprenticeRequestsPage()
         {
-            _formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ProviderApprenticeRequestsPage(_context);
+            formCompletionHelper.ClickElement(ApprenticeRequestsLink);
+            return new ProviderApprenticeRequestsPage(context);
         }
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()
         {
-            _formCompletionHelper.ClickElement(AddNewApprenticesLink);
-            return new ProviderAccessDeniedPage(_context);
+            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            return new ProviderAccessDeniedPage(context);
         }
     }
 }

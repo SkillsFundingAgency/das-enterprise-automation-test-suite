@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -7,37 +6,40 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Hire a new apprentice payment";
 
-        #region Locators
-        private readonly ScenarioContext _context;
-        private By ApplyLink => By.LinkText("Apply for the hire a new apprentice payment");
-        private By ViewApplicationsLink => By.LinkText("View applications");
-        private By ChangeBankDetailsLink => By.LinkText("Change organisation and finance details");
-        #endregion
-
-        public EIHubPage(ScenarioContext context) : base(context) => _context = context;
+        public EIHubPage(ScenarioContext context) : base(context)  { }
 
         public EIApplyPage ClickApplyLinkOnEIHubPage()
         {
-            formCompletionHelper.Click(ApplyLink);
-            return new EIApplyPage(_context);
+            HireANewApprenticePayment();
+            return new EIApplyPage(context);
+        }
+
+        public EIApplicationOpenOn11JanPage NavigateToApplicationsOpenOn22JanPage()
+        {
+            HireANewApprenticePayment();
+            return new EIApplicationOpenOn11JanPage(context);
         }
 
         public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {
-            formCompletionHelper.Click(ViewApplicationsLink);
-            return new ViewApplicationsPage(_context);
+            ViewApplications();
+            return new ViewApplicationsPage(context);
         }
 
         public ViewApplicationsShutterPage NavigateToEIViewApplicationsShutterPage()
         {
-            formCompletionHelper.Click(ViewApplicationsLink);
-            return new ViewApplicationsShutterPage(_context);
+            ViewApplications();
+            return new ViewApplicationsShutterPage(context);
         }
 
         public ChangeBankDetailsPage NavigateToChangeBankDetailsPage()
         {
-            formCompletionHelper.Click(ChangeBankDetailsLink);
-            return new ChangeBankDetailsPage(_context);
+            formCompletionHelper.ClickLinkByText("Change organisation and finance details");
+            return new ChangeBankDetailsPage(context);
         }
+
+        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Hire a new apprentice payment");
+
+        private void ViewApplications() => formCompletionHelper.ClickLinkByText("View applications");
     }
 }

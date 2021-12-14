@@ -6,20 +6,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Archive vacancy";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RAA_ArchiveVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public RAA_ArchiveVacancyPage(ScenarioContext context) : base(context) { }
 
         public RAA_ArchivedVacancyPreviewPage Confirm()
         {
             formCompletionHelper.ClickButtonByText("Confirm");
 
-            return new RAA_ArchivedVacancyPreviewPage(_context);
+            return new RAA_ArchivedVacancyPreviewPage(context);
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
@@ -9,29 +7,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public abstract class ProviderFeedbackBasePage : BasePage
+    public abstract class ProviderFeedbackBasePage : VerifyBasePage
     {
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
         protected By Labels => By.CssSelector(".multiple-choice label");
 
-        #region Helpers and Context
-        protected readonly TableRowHelper tableRowHelper;
-        protected readonly TabHelper tabHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
-        protected readonly ProviderFeedbackDataHelper providerFeedbackDatahelper;
-        #endregion
-
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            tableRowHelper = context.Get<TableRowHelper>();
-            tabHelper = context.Get<TabHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
-            providerFeedbackDatahelper = context.GetValue<ProviderFeedbackDataHelper>();
             if (verifypage) VerifyPage();
         }
 
@@ -41,7 +24,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
             for (int i = 0; i <= 2; i++)
             {
-                var randomoption = providerFeedbackDatahelper.GetRandomElementFromListOfElements(checkboxList);
+                var randomoption = RandomDataGenerator.GetRandomElementFromListOfElements(checkboxList);
                 formCompletionHelper.SelectCheckBoxByText(Labels, randomoption);
                 checkboxList.Remove(randomoption);
             }

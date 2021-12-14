@@ -7,16 +7,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_LandingPage : EPAO_BasePage
     {
         protected override string PageTitle => "Apprenticeship assessment service";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By StartNowButton => By.LinkText("Start now");
         private By CreateAnAccountLink => By.XPath("//a[@href='/Account/CreateAnAccount']");
         #endregion
 
-        public AS_LandingPage(ScenarioContext context) : base(context)
+        public AS_LandingPage(ScenarioContext context) : base(context) 
         {
-            _context = context;
             VerifyPage();
             AcceptCookies();
         }
@@ -24,25 +22,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LoginPage GoToLoginPage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_LoginPage(_context);
+            return new AS_LoginPage(context);
         }
 
         public AS_ApplyForAStandardPage AlreadyLoginGoToApplyForAStandardPage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_ApplyForAStandardPage(_context);
+            return new AS_ApplyForAStandardPage(context);
         }
 
         public AS_CreateAnAccountPage GoToCreateAccountPage()
         {
             formCompletionHelper.Click(CreateAnAccountLink);
-            return new AS_CreateAnAccountPage(_context);
+            return new AS_CreateAnAccountPage(context);
         }
 
         public AS_LoggedInHomePage AlreadyLoginGoToLoggedInHomePage()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AS_LoggedInHomePage(_context);
+            return new AS_LoggedInHomePage(context);
         }
     }
 }

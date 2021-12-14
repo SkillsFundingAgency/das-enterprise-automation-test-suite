@@ -8,15 +8,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Organisation details";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         protected override By ContinueButton => By.CssSelector(".submitbutton");
         #endregion
 
-        public VRFSummaryTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFSummaryTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFReceivedDetailsConfirmPage AcknowledgeSummaryDetails()
         {
@@ -27,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 SelectCheckBoxByText("declaration", "I understand that information submitted to intentionally deceive, mislead and/or commit acts of fraud can have legal and/or criminal ramifications, to which the DfE reserves the right to present evidence in a Court of Law.");
                 Continue();
             });
-            return new VRFReceivedDetailsConfirmPage(_context);
+            return new VRFReceivedDetailsConfirmPage(context);
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.TestDataExport;
-using System.Linq;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class BasePage
     {
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FrameworkConfig _frameworkConfig;
-        private readonly IWebDriver _webDriver;
-        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
-        private readonly string _directory;
+        protected readonly ScenarioContext context;
+        protected readonly string[] tags;
+        protected readonly ObjectContext objectContext;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly IFrameHelper frameHelper;
+        protected readonly JavaScriptHelper javaScriptHelper;
+        protected readonly TabHelper tabHelper;
+        protected readonly TableRowHelper tableRowHelper;
+        protected readonly FrameworkConfig frameworkConfig;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
@@ -31,66 +31,36 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual By AcceptCookieButton { get; }
 
-        protected virtual bool CaptureUrl => true;
-        
-        protected BasePage(ScenarioContext context)
+        public BasePage(ScenarioContext context)
         {
-            _frameworkConfig = context.Get<FrameworkConfig>();
-            _webDriver = context.GetWebDriver();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            var objectContext = context.Get<ObjectContext>();
-            _directory = objectContext.GetDirectory();
-
-            if (_frameworkConfig.IsVstsExecution && !context.ScenarioInfo.Tags.Contains("donottakescreenshot"))
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}");
-
-            if (CanCaptureUrl())  objectContext.SetAuthUrl(_webDriver.Url);
+            this.context = context;
+            objectContext = context.Get<ObjectContext>();
+            tags = context.ScenarioInfo.Tags;
+            frameworkConfig = context.Get<FrameworkConfig>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
+            frameHelper = context.Get<IFrameHelper>();
+            javaScriptHelper = context.Get<JavaScriptHelper>();
+            tabHelper = context.Get<TabHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
         }
 
-        protected string GetUrl() => _pageInteractionHelper.GetUrl();
+        protected string GetUrl() => pageInteractionHelper.GetUrl();
 
-        private bool CanCaptureUrl() => (_frameworkConfig.CanCaptureUrl && CaptureUrl);
+        protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
 
-        protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
+        protected void SelectRadioOptionByForAttribute(string value) => formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
 
-        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
+        protected void SelectRadioOptionByText(string value) => formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
 
-        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => _pageInteractionHelper.VerifyPage(func, expected);
+        protected void SelectCheckBoxByText(string value) => formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
-
-        protected bool VerifyPage(By locator) => _pageInteractionHelper.VerifyPage(locator);
-
-        protected bool VerifyPage(By locator, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, retryAction);
-
-        protected bool VerifyPage(Action retryAction) => _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction);
-
-        protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
-
-        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
-
-        protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
-
-        protected bool VerifyPage(By locator, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(locator, text, retryAction);
-
-        protected virtual void Continue() => _formCompletionHelper.Click(ContinueButton);
-
-        protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
-
-        protected void SelectRadioOptionByText(string value) => _formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
-
-        protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
-
-        protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
-
+        protected void NavigateBack() => formCompletionHelper.Click(BackLink);
+        
         protected void AcceptCookies()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-            {
-                _formCompletionHelper.Click(AcceptCookieButton);
-            }
+            if (pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+                formCompletionHelper.Click(AcceptCookieButton);
         }
     }
 }
