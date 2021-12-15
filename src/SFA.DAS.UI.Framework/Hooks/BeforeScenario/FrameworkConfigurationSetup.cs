@@ -43,8 +43,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = IsVstsExecution,
-                CanCaptureUrl = IsAnAdmin(captureUrlAdmin) && IsVstsExecution,
-                CanTakeFullScreenShot = IsAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot
+                CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
+                CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot
             };
 
             _context.Set(frameworkConfig);
@@ -58,6 +58,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
         }
 
-        private bool IsAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
+          private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
     }
 }
