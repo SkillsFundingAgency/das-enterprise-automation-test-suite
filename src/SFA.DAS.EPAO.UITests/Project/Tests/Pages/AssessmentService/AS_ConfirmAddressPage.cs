@@ -4,14 +4,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_ConfirmAddressPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Confirm the address where we are sending the certificate";
-        
+        protected override string PageTitle => "Confirm where we are sending the certificate for";
         public AS_ConfirmAddressPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_RecipientNamePage ClickContinueInConfirmEmployerAddressPage()
+        
+       /* public AS_RecipientNamePage ClickContinueInConfirmEmployerAddressPage()
         {
             Continue();
             return new AS_RecipientNamePage(context);
+        }
+       */
+
+        public AS_CheckAndSubmitAssessmentPage ClickContinueInConfirmEmployerAddressPage()
+        {
+            Continue();
+            return new AS_CheckAndSubmitAssessmentPage(context);
         }
     }
 }

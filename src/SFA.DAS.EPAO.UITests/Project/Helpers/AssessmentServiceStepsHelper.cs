@@ -54,7 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()
-                .EnterRecipientDetailsAndContinue()
+                //.EnterRecipientDetailsAndContinue()
                 .ClickContinueInCheckAndSubmitAssessmentPage();   
         }
 
@@ -143,17 +143,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             if (grade == "pass")
             {
-                return new AS_SearchEmployerAddressPage(_context)
+                //return new AS_SearchEmployerAddressPage(_context)
+                return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+                .ClickAprenticeRadioButton()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
-                .ClickContinueInConfirmEmployerAddressPage()
-                .EnterRecipientDetailsAndContinue();
+                .ClickContinueInConfirmEmployerAddressPage();
+                
+               // .EnterRecipientDetailsAndContinue();
             }
             else if (grade == "PassWithExcellence")
             {
-                return new AS_ConfirmAddressPage(_context)
-                    .ClickContinueInConfirmEmployerAddressPage()
-                    .EnterRecipientDetailsAndContinue();
+              //  return new AS_ConfirmAddressPage(_context)
+                //    .ClickContinueInConfirmEmployerAddressPage()
+                  //  .EnterRecipientDetailsAndContinue();
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
