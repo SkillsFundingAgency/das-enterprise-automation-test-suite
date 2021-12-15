@@ -117,3 +117,11 @@ Scenario: Payment validation - ILR not submitted
 	And a payment is due for the apprenticeship
 	When the month end process is initiated
 	Then a payment is not created for the apprenticeship incentive
+
+Scenario: New check requested by support user
+	Given an employment check has failed for an apprenticeship incentive
+	And the employer has requested the check be re-ran
+	And month end is not in progress
+	When the second line support user requests a recheck
+	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
+	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date

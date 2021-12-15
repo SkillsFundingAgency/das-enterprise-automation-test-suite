@@ -30,6 +30,7 @@ BEGIN
 
     DELETE incentives.ChangeOfCircumstance WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 
+    DELETE [audit].[EmploymentCheckAudit] WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
     DELETE archive.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
     DELETE incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId;
 

@@ -12,6 +12,8 @@ DELETE archive.PendingPaymentValidationResult
 DELETE archive.PendingPayment
 DELETE archive.EmploymentCheck
 
+DELETE [audit].[EmploymentCheckAudit]
+
 DELETE incentives.EmploymentCheck
 DELETE incentives.Payment
 DELETE incentives.PendingPaymentValidationResult

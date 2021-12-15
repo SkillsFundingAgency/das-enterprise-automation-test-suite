@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System.Net.Http;
 using System.Text;
@@ -30,11 +31,43 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task TriggerEmploymentCheck(long accountLegalEntityId, long uln)
+        {
+            var request = new EmploymentCheckRequest
+            {
+                ULN = uln,
+                AccountLegalEntityId = accountLegalEntityId,
+                ServiceRequest = new ServiceRequest
+                {
+                    DecisionReference = "ABC123",
+                    TaskCreatedDate = DateTime.Now,
+                    TaskId = "ZZZ999"
+                }
+            };
+
+            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
         public class WithdrawRequest
         {
             public WithdrawalType WithdrawalType { get; set; }
             public long AccountLegalEntityId { get; set; }
             public long ULN { get; set; }
+        }
+
+        public class EmploymentCheckRequest
+        {
+            public long AccountLegalEntityId { get; set; }
+            public long ULN { get; set; }
+            public ServiceRequest ServiceRequest { get; set; }
+        }
+
+        public class ServiceRequest
+        {
+            public string TaskId { get; set; }
+            public string DecisionReference { get; set; }
+            public DateTime? TaskCreatedDate { get; set; }
         }
     }
 }

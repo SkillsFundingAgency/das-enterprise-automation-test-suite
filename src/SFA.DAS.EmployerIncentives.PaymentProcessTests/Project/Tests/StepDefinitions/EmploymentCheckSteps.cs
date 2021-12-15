@@ -84,6 +84,69 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
         }
 
+        [Given(@"an employment check has failed for an apprenticeship incentive")]
+        public async Task GivenAnEmploymentCheckHasFailed()
+        {
+            await GivenAnEmploymentCheckHasBeenRequested();
+            await WhenTheEmploymentCheckIsComplete("employed", "not employed");
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, false, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"the employer has requested the check be re-ran")]
+        public void GivenTheEmployerHasRequestedTheCheckBeReRan()
+        {
+        }
+
+        [Given(@"month end is not in progress")]
+        public void GivenMonthEndIsNotInProgress()
+        {
+        }
+
+        [Given(@"we have previously received a result from the Employment Check service")]
+        public async Task GivenWeHavePreviouslyReceivedAResultFromTheEmploymentCheckService()
+        {
+            await WhenTheEmploymentCheckIsComplete();
+            _employmentCheckResult = "not employed";
+        }
+
+        [Given(@"the employment check returns that the apprentice was employed in the 6 months prior to the scheme phase starting")]
+        public async Task GivenTheApprenticeWasEmployedPriorToSchemeStart()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = false;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = true;
+            _employmentCheckResult = "employed";
+            await WhenTheEmploymentCheckIsComplete();
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, true, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"the employment check returns that the apprentice was not employed in the 6 weeks after their start date")]
+        public async Task GivenTheApprenticeWasNotEmployedAtApprenticeshipStart()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = true;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
+            _employmentCheckResult = "not employed";
+            await WhenTheEmploymentCheckIsComplete();
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, false, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"the employment check returns that the apprentice was employed in the 6 weeks after their start date")]
+        [Given(@"the employment check returns that the apprentice was not employed in the 6 months prior to the scheme starting")]
+        public async Task GivenTheApprenticeHasValidEmploymentChecks()
+        {
+            await WhenTheEmploymentCheckIsComplete("not employed", "employed");
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
+            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
+        }
+
+        [Given(@"an ILR has not been submitted for the learner")]
+        public void GivenAnIlrHasNotBeenSubmitted()
+        {
+            _expectedEmployedBeforeSchemeStartedValidationResult = false;
+            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
+        }
+
         private async Task CreateIncentive(Phase phase, DateTime startDate)
         {
             _startDate = startDate;
@@ -157,49 +220,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
         }
 
-        [Given(@"we have previously received a result from the Employment Check service")]
-        public async Task GivenWeHavePreviouslyReceivedAResultFromTheEmploymentCheckService()
+        [When(@"the second line support user requests a recheck")]
+        public async Task WhenARecheckIsRequested()
         {
-            await WhenTheEmploymentCheckIsComplete();
-            _employmentCheckResult = "not employed";
-        }
-
-        [Given(@"the employment check returns that the apprentice was employed in the 6 months prior to the scheme phase starting")]
-        public async Task GivenTheApprenticeWasEmployedPriorToSchemeStart()
-        {
-            _expectedEmployedBeforeSchemeStartedValidationResult = false;
-            _expectedEmployedAtStartOfApprenticeshipValidationResult = true;
-            _employmentCheckResult = "employed";
-            await WhenTheEmploymentCheckIsComplete();
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, true, TimeSpan.FromMinutes(1));
-        }
-
-        [Given(@"the employment check returns that the apprentice was not employed in the 6 weeks after their start date")]
-        public async Task GivenTheApprenticeWasNotEmployedAtApprenticeshipStart()
-        {
-            _expectedEmployedBeforeSchemeStartedValidationResult = true;
-            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
-            _employmentCheckResult = "not employed";
-            await WhenTheEmploymentCheckIsComplete();
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, false, TimeSpan.FromMinutes(1));
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
-        }
-
-        [Given(@"the employment check returns that the apprentice was employed in the 6 weeks after their start date")]
-        [Given(@"the employment check returns that the apprentice was not employed in the 6 months prior to the scheme starting")]
-        public async Task GivenTheApprenticeHasValidEmploymentChecks()
-        {
-            await WhenTheEmploymentCheckIsComplete("not employed", "employed");
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true, TimeSpan.FromMinutes(1));
-            await Helper.EISqlHelper.WaitUntilEmploymentCheckResultIsSet(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false, TimeSpan.FromMinutes(1));
-        }
-
-        [Given(@"an ILR has not been submitted for the learner")]
-        public void GivenAnIlrHasNotBeenSubmitted()
-        {
-            _expectedEmployedBeforeSchemeStartedValidationResult = false;
-            _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
+            await Helper.EIFunctionsHelper.TriggerEmploymentCheck(TestData.Account.AccountLegalEntityId, TestData.ULN);
         }
 
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting")]
