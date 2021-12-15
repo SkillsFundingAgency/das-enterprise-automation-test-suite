@@ -10,9 +10,11 @@ namespace SFA.DAS.UI.Framework
 
         public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
-        public bool IsVstsExecution { get; internal set; }
+        internal bool IsVstsExecution { get; set; }
 
-        public bool CanCaptureUrl { get; internal set; }
+        internal bool CanCaptureUrl { get; set; }
+
+        internal bool CanTakeFullScreenShot { get; set; }
 
         public string SampleFileName => "Sample.pdf";
     }
