@@ -75,17 +75,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_LA_03_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
-            "arting APR2021 or over")]
+            "arting OCT2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
-        public virtual void EI_LA_03_V6SignedEmployer_V6SignedEmployerAttemptsToApplyForCommitmentsStartingAPR2021OrOver()
+        public virtual void EI_LA_03_V6SignedEmployer_V6SignedEmployerAttemptsToApplyForCommitmentsStartingOCT2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentivesphase3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_03_V6SignedEmployer_V6 Signed Employer attempts to apply for Commitments st" +
-                    "arting APR2021 or over", null, tagsOfScenario, argumentsOfScenario);
+                    "arting OCT2021 or over", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

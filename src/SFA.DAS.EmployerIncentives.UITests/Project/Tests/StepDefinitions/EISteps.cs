@@ -124,7 +124,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = new HomePageFinancesSection_EI(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage(new HomePageFinancesSection_EI(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue());
         }
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
