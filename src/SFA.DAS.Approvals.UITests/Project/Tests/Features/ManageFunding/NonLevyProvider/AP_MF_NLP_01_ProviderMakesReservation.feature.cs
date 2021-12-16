@@ -116,6 +116,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.And("the Provider can access Manage Funding Page to reserve more funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

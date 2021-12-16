@@ -12,11 +12,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public ApproveAppliationPage(ScenarioContext context) : base(context) { }
 
-        public AppliationApprovedPage ApproveApplication()
+        public ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage()
         {
             SelectRadioOptionByText("Approve the application");
             Continue();
-            return new AppliationApprovedPage(context);
+            return new ApprovingTheApprenticeshipDetailsPage(context);
+        }
+
+        public TransferPledgePage RejectApplication()
+        {
+            SelectRadioOptionByText("Reject the application");
+            Continue();
+            return new TransferPledgePage(context);
         }
     }
 }
