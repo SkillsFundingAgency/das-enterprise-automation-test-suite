@@ -13,6 +13,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
+        private By WithdrawalConfirmed = By.CssSelector("#IsDeclineConfirmed");
+
         private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 
         public ApplicationsDetailsPage(ScenarioContext context, string applicationStatus) : base(context, false)
@@ -23,7 +25,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             else VerifyPage();
         }
 
-        public ApplicationsDetailsPage SetPledgeApplication() 
+        public ApplicationsDetailsPage SetPledgeApplication()
         {
             var applicationid = GetUrl().Split("/").ToList().LastOrDefault();
 
@@ -61,11 +63,30 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new AcceptedTransferPage(context);
         }
 
+        public SuccessfullyWithdrawnPage WithdrawFunding()
+        {
+            SelectRadioOptionByText("No, decline the funding and withdraw the application");
+
+         
+            ConfirmWithdrawal();
+
+
+            Continue();
+
+            return new SuccessfullyWithdrawnPage(context);
+        }
+
         private void VerifyTermsError() => VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
+
+        private void VerifyConfirmError() => VerifyPage(ErrorTitle, "You must confirm that you want to decline the funding and withdraw the application");
+
 
         private void AcceptInformationTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));
 
         private void AcceptComplyWithRulesTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ComplyWithRulesSelector));
+
+        private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmed));
+
 
     }
 }
