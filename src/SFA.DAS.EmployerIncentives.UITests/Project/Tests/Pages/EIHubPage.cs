@@ -8,10 +8,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public EIHubPage(ScenarioContext context) : base(context)  { }
 
-        public EIApplyPage ClickApplyLinkOnEIHubPage()
+        public EIBeforeYouStartPage ClickApplyLinkOnEIHubPage()
         {
             HireANewApprenticePayment();
-            return new EIApplyPage(context);
+            return new EIBeforeYouStartPage(context);
         }
 
         public EIApplicationOpenOn11JanPage NavigateToApplicationsOpenOn22JanPage()
