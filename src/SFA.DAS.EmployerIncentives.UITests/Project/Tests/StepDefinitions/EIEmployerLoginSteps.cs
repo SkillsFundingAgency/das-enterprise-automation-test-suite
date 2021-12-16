@@ -42,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version6AgreementUser>());
 
         [Given(@"the Employer logins using existing Version7AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion7AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version7AgreementUser>());
+        public void GivenTheEmployerLoginsUsingExistingVersion7AgreementUserAccount() => Login(_context.GetUser<Version7AgreementUser>());
 
         private void SetOrgAndLogin(EasAccountUser loginUser)
         {
