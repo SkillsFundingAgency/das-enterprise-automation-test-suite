@@ -1,23 +1,10 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class OneOrMoreApprenticeNotEligiblePage : EIBasePage
-    {
-        protected override string PageTitle => "One or more apprentices are not eligible for the payment";
-
-        private By CancelApplication => By.LinkText("Cancel application");
-
-        public OneOrMoreApprenticeNotEligiblePage(ScenarioContext context) : base(context)  { }
-
-        public EIHubPage CancelTheApplication()
-        {
-            formCompletionHelper.ClickElement(CancelApplication);
-
-            return new EIHubPage(context);
-        }
-    }
 
     public class WhenDidApprenticeJoinTheOrgPage : EIBasePage
     {
@@ -33,35 +20,67 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private By YearInputField => By.Name("EmploymentStartDateYears");
         #endregion
 
+        private enum JoiningDate { Valid, Invalid, ValidAndInvalid }
+
         public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context)  { }
 
         public ConfirmApprenticesPage EnterValidJoiningDateAndContinue()
         {
-            EnterJoiningDateAndContinue(true);
+            EnterJoiningDateAndContinue(JoiningDate.Valid);
 
             return new ConfirmApprenticesPage(context);
         }
 
         public OneOrMoreApprenticeNotEligiblePage EnterInValidJoiningDateAndContinue()
         {
-            EnterJoiningDateAndContinue(false);
+            EnterJoiningDateAndContinue(JoiningDate.Invalid);
 
             return new OneOrMoreApprenticeNotEligiblePage(context);
         }
 
-        private void EnterJoiningDateAndContinue(bool validstartDate)
+        public OneOrMoreApprenticeNotEligiblePage EnterValidAndInValidJoiningDateAndContinue()
+        {
+            EnterJoiningDateAndContinue(JoiningDate.ValidAndInvalid);
+
+            return new OneOrMoreApprenticeNotEligiblePage(context);
+        }
+
+        private void EnterJoiningDateAndContinue(JoiningDate joiningDate)
         {
             var apprentices = pageInteractionHelper.FindElements(DateGroup);
 
-            foreach (var apprentice in apprentices)
+            switch (joiningDate)
             {
-                var joiningDate = eIDataHelper.JoiningDate(validstartDate);
+                case JoiningDate.Valid:
+                    EnterJoiningDate(apprentices, true);
+                    break;
+                case JoiningDate.Invalid:
+                    EnterJoiningDate(apprentices, false);
+                    break;
+                case JoiningDate.ValidAndInvalid:
+                    var count = apprentices.Count / 2;
+                    EnterJoiningDate(apprentices, 0, count , true);
+                    EnterJoiningDate(apprentices, count, apprentices.Count, false);
+                    break;
+                default:
+                    break;
+            }
+
+            Continue();
+        }
+
+        private void EnterJoiningDate(List<IWebElement> apprentices, bool validStartDate) => EnterJoiningDate(apprentices, 0, apprentices.Count, validStartDate);
+
+        private void EnterJoiningDate(List<IWebElement> apprentices, int start, int length, bool validStartDate)
+        {
+            for (int i = start; i < length; i++)
+            {
+                var joiningDate = eIDataHelper.JoiningDate(validStartDate);
+                var apprentice = apprentices[i];
                 formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), joiningDate.Day);
                 formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), joiningDate.Month);
                 formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), joiningDate.Year);
             }
-
-            Continue();
         }
     }
 }

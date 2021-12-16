@@ -98,6 +98,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer has to cancel the application when an invalid employment start date is entered")]
         public void TheEmployerHasToCancelTheApplication() => NavigateToWhenDidApprenticeJoinTheOrgPage().EnterInValidJoiningDateAndContinue().CancelTheApplication().NavigateToHomePage();
 
+        [Then(@"the Employer has to continue the application when a valid and an invalid employment start date is entered")]
+        public void TheEmployerHasToContinueTheApplication() => SubmitApplication(NavigateToWhenDidApprenticeJoinTheOrgPage().EnterValidAndInValidJoiningDateAndContinue().ContinueTheApplication());
+
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
 
@@ -178,13 +181,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
         }
 
-        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
-        {
-            return NavigateToWhenDidApprenticeJoinTheOrgPage()
-                .EnterValidJoiningDateAndContinue()
-                .ConfirmApprentices()
-                .SubmitDeclaration();
-        }
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage() => SubmitApplication(NavigateToWhenDidApprenticeJoinTheOrgPage().EnterValidJoiningDateAndContinue());
+
+        private WeNeedYourOrgBankDetailsPage SubmitApplication(ConfirmApprenticesPage page) => page.ConfirmApprentices().SubmitDeclaration();
 
         private WhenDidApprenticeJoinTheOrgPage NavigateToWhenDidApprenticeJoinTheOrgPage()
         {
