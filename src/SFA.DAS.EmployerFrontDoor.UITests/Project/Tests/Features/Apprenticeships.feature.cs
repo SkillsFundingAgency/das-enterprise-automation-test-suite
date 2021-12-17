@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests
+namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CA_HomePage_01")]
-    public partial class CA_HomePage_01Feature
+    [NUnit.Framework.DescriptionAttribute("EFD_Apprenticeships_02")]
+    public partial class EFD_Apprenticeships_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CA_HomePage_01.feature"
+#line 1 "Apprenticeships.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_HomePage_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EFD_Apprenticeships_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +74,19 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_HomePage_01 Check Home Page")]
+        [NUnit.Framework.DescriptionAttribute("EmployerFrontDoor_Apprenticeships_02 Check link")]
         [NUnit.Framework.CategoryAttribute("employerfrontdoor")]
-        [NUnit.Framework.CategoryAttribute("apprentice")]
-        [NUnit.Framework.CategoryAttribute("employer")]
-        [NUnit.Framework.CategoryAttribute("influencers")]
+        [NUnit.Framework.CategoryAttribute("apprenticeships")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_HomePage_01CheckHomePage()
+        public virtual void EmployerFrontDoor_Apprenticeships_02CheckLink()
         {
             string[] tagsOfScenario = new string[] {
                     "employerfrontdoor",
-                    "apprentice",
-                    "employer",
-                    "influencers",
+                    "apprenticeships",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_HomePage_01 Check Home Page", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmployerFrontDoor_Apprenticeships_02 Check link", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,10 +106,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
- testRunner.Given("the user navigates to Home page and verifies the content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Given("the user navigates to employment schemes page and verifies the apprenticeships li" +
+                        "nk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
