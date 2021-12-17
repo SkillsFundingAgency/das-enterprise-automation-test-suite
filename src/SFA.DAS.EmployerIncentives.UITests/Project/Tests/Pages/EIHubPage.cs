@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -36,6 +37,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("Change organisation and finance details");
             return new ChangeBankDetailsPage(context);
+        }
+
+        public HomePage NavigateToHomePage()
+        {
+            ClickBackLink();
+
+            return new HomePage(context);
         }
 
         private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Apply for the hire a new apprentice payment");

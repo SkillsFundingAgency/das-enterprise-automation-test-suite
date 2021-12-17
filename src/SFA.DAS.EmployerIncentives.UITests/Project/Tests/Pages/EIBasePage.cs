@@ -36,5 +36,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             formCompletionHelper.Click(ReturnToAccountHomeCTA);
             return new HomePage(_context);
         }
+
+        protected void ClickBackLink() => formCompletionHelper.ClickLinkByText("Back");
     }
 }
