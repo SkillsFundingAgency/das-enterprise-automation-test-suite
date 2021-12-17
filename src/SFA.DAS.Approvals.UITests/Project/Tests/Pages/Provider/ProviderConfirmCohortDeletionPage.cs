@@ -19,5 +19,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderApprenticeRequestsPage(context);
         }
+
+        public bool ValidateDeleteOptionExists() => pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions); 
+
+
     }
 }
