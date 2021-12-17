@@ -8,7 +8,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     public class FinancePage : HomePage
     {
         protected override string PageTitle => "Finance";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By ViewTransactionsLink() => By.LinkText("View transactions");
@@ -29,11 +28,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public string ExpectedEstimatedPlannedSpendingLabel => "Estimated planned spending for the next 12 months";
         #endregion
 
-        public FinancePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancePage IsViewTransactionsLinkPresent()
         {
@@ -44,7 +39,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public YourTransactionsPage GoToViewTransactionsPage()
         {
             formCompletionHelper.Click(ViewTransactionsLink());
-            return new YourTransactionsPage(_context);
+            return new YourTransactionsPage(context);
         }
 
         public FinancePage IsDownloadTransactionsLinkPresent()
@@ -56,7 +51,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public DownloadTransactionsPage GoToDownloadTransactionsPage()
         {
             formCompletionHelper.Click(DownloadTransactionsLink());
-            return new DownloadTransactionsPage(_context);
+            return new DownloadTransactionsPage(context);
         }
 
         public FinancePage IsTransfersLinkPresent()
@@ -68,20 +63,20 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public TransfersPage GoToTransfersPage()
         {
             formCompletionHelper.Click(TransfersLink());
-            return new TransfersPage(_context);
+            return new TransfersPage(context);
         }
 
         public FundingProjectionPage GoToFundingProjectionPage()
         {
             formCompletionHelper.Click(FundingProjectionLink());
-            return new FundingProjectionPage(_context);
+            return new FundingProjectionPage(context);
         }
 
         public string ExpectedFundsSpentLabelConstant()
         {
             DateTime dt = DateTime.Now;
             int previousYear = dt.Year - 1;
-            return $"Funds spent since {dt.ToString("MMM")} {previousYear}";
+            return $"Funds spent since {dt:MMM} {previousYear}";
         }
 
         public string GetCurrentFundsLabel() => pageInteractionHelper.GetText(CurrentFundsLabel);

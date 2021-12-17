@@ -9,20 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public CommitmentStatementTemplatePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CommitmentStatementTemplatePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage YesForOrganisationsCommitmentStatementTemplateAndContinue()
         {
             UploadFile();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

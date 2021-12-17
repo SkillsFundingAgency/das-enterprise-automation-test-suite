@@ -8,28 +8,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         protected override string PageTitle => "Withdrawal request questions";
 
         private By SaveButton => By.CssSelector("button.govuk-button");
+
         private By AddFeedbackHowWillYouSupportLearnersLink => By.XPath("//dd/h3[contains(text(),\"How will you support the learners you are not going to assess?\")]/../following-sibling::dd/p/a");
         
-        private readonly ScenarioContext _context;
-
-        public AD_WithdrawalRequestQuestionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_WithdrawalRequestQuestionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_WithdrawalRequestOverviewPage MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             formCompletionHelper.Click(SaveButton);
 
-            return new AD_WithdrawalRequestOverviewPage(_context);
+            return new AD_WithdrawalRequestOverviewPage(context);
         }
 
         public AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
         {
             formCompletionHelper.Click(AddFeedbackHowWillYouSupportLearnersLink);
-            return new AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess(_context);
+            return new AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess(context);
         }
     }
 }

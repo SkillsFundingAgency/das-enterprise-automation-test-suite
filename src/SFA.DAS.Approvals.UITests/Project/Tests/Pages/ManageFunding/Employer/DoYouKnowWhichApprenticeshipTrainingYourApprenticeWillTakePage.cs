@@ -12,29 +12,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By StandardCourseOption => By.Id("SelectedCourseId__option--0");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context) => _context = context;
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context)  { }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
         {
             formCompletionHelper.ClickElement(YesRadioButton);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
             formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
             formCompletionHelper.ClickElement(StandardCourseOption);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(_context);
+            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
         }
     }
 }

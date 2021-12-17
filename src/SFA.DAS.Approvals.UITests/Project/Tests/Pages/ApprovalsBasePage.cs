@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
-    public abstract class ApprovalsBasePage : BasePage
+    public abstract class ApprovalsBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly LoginCredentialsHelper loginCredentialsHelper;

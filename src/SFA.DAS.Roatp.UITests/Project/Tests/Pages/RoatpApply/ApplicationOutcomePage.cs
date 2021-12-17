@@ -10,16 +10,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         protected By InternalComments => By.CssSelector("p.govuk-body.das-multiline-text");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public ApplicationOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public ApplicationOutcomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-    
         public void VerifyExternalComments(string internalComments) => pageInteractionHelper.VerifyText(InternalComments, internalComments);
 
         public ApplicationOutcomePage VerifyApplicationOutcomePage(string expectedPage, string externalComments)
@@ -33,13 +25,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public MakeAnAppealPage StartAppeal ()
         {
             Continue();
-            return new MakeAnAppealPage(_context);
+            return new MakeAnAppealPage(context);
         }
 
         public InvitationRequestedPage RequestNewInvitation()
         {
             Continue();
-            return new InvitationRequestedPage(_context);
+            return new InvitationRequestedPage(context);
         }
     }
 }

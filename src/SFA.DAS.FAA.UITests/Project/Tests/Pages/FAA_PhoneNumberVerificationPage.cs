@@ -8,17 +8,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_PhoneNumberVerificationPage : FAABasePage
     {
         protected override string PageTitle => "Verify your mobile number";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By EnterCode => By.Id("VerifyMobileCode");
         private By VerifyNumber => By.Id("verify-code-button");
 
         public FAA_PhoneNumberVerificationPage(ScenarioContext context) : base(context, false)
         {
-            _context = context;
             // this is temp work aound as the redirection is not working correctly.
             VerifyPage(() =>
             {
@@ -33,7 +27,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(EnterCode, faaDataHelper.PhoneNumberVerificationCode);
             formCompletionHelper.Click(VerifyNumber);
             pageInteractionHelper.WaitforURLToChange("settings");
-            return new FAA_SettingsPage(_context);
+            return new FAA_SettingsPage(context);
         }
     }
 }

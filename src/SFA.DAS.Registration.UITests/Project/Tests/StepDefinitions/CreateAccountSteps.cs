@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private SetUpAsAUserPage _setUpAsAUserPage;
-        private IndexPage _indexPage;
+        private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private SignInPage _signInPage;
         private string _loginEmail;
 
@@ -299,7 +299,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
         public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
@@ -426,7 +426,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .Login(_objectContext.GetLoginCredentials());
 
         [When(@"the User is on the 'Set up as a user' page")]
-        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount();
+        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount();
 
         [Then(@"the User is able to navigate to 'Terms and conditions' page")]
         public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
@@ -436,7 +436,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.RelaunchApplication();
 
-            new IndexPage(_context).ClickSignInLinkOnIndexPage()
+            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage()
                 .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
         }
 
@@ -461,7 +461,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.RelaunchApplication();
 
-            new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword()
+            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword()
                 .LoginWithResetPassword(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
         }
 

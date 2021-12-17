@@ -9,13 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     public abstract class RoatpApplyBasePage : RoatpBasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         protected readonly RoatpApplyDataHelpers applydataHelpers;
         protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
         #endregion
 
         private By Dob => By.CssSelector("#dob");
-
+        
         protected By Month => By.CssSelector("input[id*='Month']");
 
         protected By Year => By.CssSelector("input[id*='Year']");
@@ -24,7 +23,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public RoatpApplyBasePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
             applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
         }
@@ -67,7 +65,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public ApplicationOverviewPage ReturnToApplicationOverview()
         {
             formCompletionHelper.ClickLinkByText("Application overview");
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
 
         public ApplicationOverviewPage EnterDateOfBirth()
@@ -87,7 +85,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             }
 
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

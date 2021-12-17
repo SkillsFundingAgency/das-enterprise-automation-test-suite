@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Internal audit policy";
 
-        private readonly ScenarioContext _context;
-
-        public AS_InternalAuditPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_InternalAuditPage(ScenarioContext context) : base(context) { }
 
         public AS_PublicLiabilityInsurancePage UploadAuditPolicy()
         {
             UploadFile();
-            return new AS_PublicLiabilityInsurancePage(_context);
+            return new AS_PublicLiabilityInsurancePage(context);
         }
     }
 }

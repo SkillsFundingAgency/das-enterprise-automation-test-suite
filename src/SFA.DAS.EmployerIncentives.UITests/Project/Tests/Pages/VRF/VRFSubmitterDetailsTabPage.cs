@@ -8,18 +8,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Form submitter details";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By FirstName => By.CssSelector("#user_firstname");
         private By Surname => By.CssSelector("#user_surname");
         private By Email => By.CssSelector("#user_email_address");
         private By Telephone => By.CssSelector("#user_telephone");
         #endregion
 
-        public VRFSubmitterDetailsTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFSubmitterDetailsTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFSummaryTabPage SubmitSubmitterDetails(string email)
         {
@@ -33,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 Continue();
             });
 
-            return new VRFSummaryTabPage(_context);
+            return new VRFSummaryTabPage(context);
         }
     }
 }

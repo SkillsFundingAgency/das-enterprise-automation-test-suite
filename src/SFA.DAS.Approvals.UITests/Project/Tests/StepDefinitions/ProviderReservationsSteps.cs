@@ -85,5 +85,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .DeleteTheReservedFunding()
                 .YesDeleteThisReservation();
         }
+
+        [Then(@"the Provider can access Manage Funding Page to reserve more funding")]
+        public void ThenTheProviderCanAccessManageFundingPageToReserveMoreFunding()
+        {
+            _providerStepsHelper
+                .NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .ClickReserveMoreFundingLink();
+        }
+
     }
 }

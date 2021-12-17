@@ -10,15 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Apprenticeship training";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
 
-        private By SaveAndContinueButton = By.XPath("//button[contains(text(),'Save and continue')]");
+        private By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
-        public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderCheckYourInformationPage AddTrainingCourseAndDate()
         {
@@ -32,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new ProviderCheckYourInformationPage(_context);
+            return new ProviderCheckYourInformationPage(context);
         }
 
         private void SetCourseDate(string startDate)

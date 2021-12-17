@@ -9,7 +9,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class StopApprenticeshipsPage : ToolSupportBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Stop apprenticeships";
 
         #region Locators
@@ -21,7 +20,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By ErrorMessage => By.XPath("//li[contains(text(),'Not all Apprenticeship rows have been supplied wit')]");
         #endregion
 
-        public StopApprenticeshipsPage(ScenarioContext context) : base(context) => _context = context;
+        public StopApprenticeshipsPage(ScenarioContext context) : base(context) { }
 
         public StopApprenticeshipsPage ClickStopBtn()
         {

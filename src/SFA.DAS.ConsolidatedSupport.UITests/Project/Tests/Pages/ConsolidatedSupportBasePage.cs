@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public abstract class ConsolidatedSupportBasePage : BasePage
+    public abstract class ConsolidatedSupportBasePage : VerifyBasePage
     {
         protected readonly ConsolidatedSupportConfig config;
         protected readonly ConsolidateSupportDataHelper dataHelper;

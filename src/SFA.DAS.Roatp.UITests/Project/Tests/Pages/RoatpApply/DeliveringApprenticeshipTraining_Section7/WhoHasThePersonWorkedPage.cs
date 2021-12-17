@@ -6,21 +6,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Who has this person worked with to develop and deliver training?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WhoHasThePersonWorkedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhoHasThePersonWorkedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HowHasThisPersonWorkedPage SelectEmployersOptions()
         {
             SelectRadioOptionByText("Employers - to deliver training to their employees");
             Continue();
-            return new HowHasThisPersonWorkedPage(_context);
+            return new HowHasThisPersonWorkedPage(context);
         }
     }
 }

@@ -7,26 +7,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
     {
         protected override string PageTitle => "Do you have permission from everyone named in this application to use their details?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PermissionsFromEveryoneNamedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PermissionsFromEveryoneNamedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CheckedWithEveryonePage SelectYesForPermissionsAndContinue()
         {
             SelectYesAndContinue();
-            return new CheckedWithEveryonePage(_context);
+            return new CheckedWithEveryonePage(context);
         }
 
         public FinishSectionShutterPage SelectNoForPermissionsAndContinue()
         {
             SelectNoAndContinue();
-            return new FinishSectionShutterPage(_context);
+            return new FinishSectionShutterPage(context);
         }
     }
 }

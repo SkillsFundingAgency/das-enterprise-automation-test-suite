@@ -6,36 +6,30 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 {
     public class YourTeamPage : InterimYourTeamPage
     {
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By InviteANewMemberButton => By.Id("addNewUser");
         private By ViewMemberLink(string email) => By.XPath($"//div[text()='{email}']/../..//td[@class='link-right']/a");
         private By InvitationActionHeader => By.CssSelector(".bold-large");
         #endregion
 
-        public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
 
         public CreateInvitationPage ClickInviteANewMemberButton()
         {
             formCompletionHelper.Click(InviteANewMemberButton);
-            return new CreateInvitationPage(_context);
+            return new CreateInvitationPage(context);
         }
 
         public AccessDeniedPage ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(InviteANewMemberButton);
-            return new AccessDeniedPage(_context);
+            return new AccessDeniedPage(context);
         }
 
         public ViewTeamMemberPage ClickViewMemberLink(string email)
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));
-            return new ViewTeamMemberPage(_context);
+            return new ViewTeamMemberPage(context);
         }
 
         public YourTeamPage VerifyInvitationResentHeaderInfoMessage()

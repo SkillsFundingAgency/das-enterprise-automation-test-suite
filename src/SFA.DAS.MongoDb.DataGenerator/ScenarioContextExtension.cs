@@ -9,14 +9,8 @@ namespace SFA.DAS.MongoDb.DataGenerator
         private const string MongoDbConfigKey = "mongodbconfigkey";
         #endregion
 
-        public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)
-        {
-            context.Set(value, MongoDbConfigKey);
-        }
+        public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value) => context.Set(value, MongoDbConfigKey);
 
-        public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context)
-        {
-            return context.Get<MongoDbConfig>(MongoDbConfigKey);
-        }
+        public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context) => context.Get<MongoDbConfig>(MongoDbConfigKey);
     }
 }

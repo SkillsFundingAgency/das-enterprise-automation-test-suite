@@ -8,17 +8,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Confirm deletion";
         protected override By ContinueButton => By.Id("continue-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ConfirmCohortDeletionPage(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmCohortDeletionPage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeRequestsPage ConfirmDeleteAndSubmit()
         {
             SelectRadioOptionByForAttribute("confirm-yes");
             Continue();
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
     }
 }

@@ -6,29 +6,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
     {
         protected override string PageTitle => "Transitioning from apprenticeship frameworks to apprenticeship standards";
 
-        private readonly ScenarioContext _context;
-        public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(ScenarioContext context) : base(context) => _context = context;
+        public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(ScenarioContext context) : base(context) { }
 
         public EngagingWithEndpointAssessmentOrganisationsPage SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
         {
             SelectPassAndContinueToSubSection();
-            return new EngagingWithEndpointAssessmentOrganisationsPage(_context);
+            return new EngagingWithEndpointAssessmentOrganisationsPage(context);
         }
         public EngagingAndWorkWithAwardingBodiesPage SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_IncludesFrameworks()
         {
             SelectPassAndContinueToSubSection();
-            return new EngagingAndWorkWithAwardingBodiesPage(_context);
+            return new EngagingAndWorkWithAwardingBodiesPage(context);
         }
 
         public EngagingWithEndpointAssessmentOrganisationsPage SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
         {
             SelectFailAndContinueToSubSection();
-            return new EngagingWithEndpointAssessmentOrganisationsPage(_context);
+            return new EngagingWithEndpointAssessmentOrganisationsPage(context);
         }
         public EngagingAndWorkWithAwardingBodiesPage SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage_DeliveryIncludesFrameworks()
         {
             SelectFailAndContinueToSubSection();
-            return new EngagingAndWorkWithAwardingBodiesPage(_context);
+            return new EngagingAndWorkWithAwardingBodiesPage(context);
         }
     }
 }

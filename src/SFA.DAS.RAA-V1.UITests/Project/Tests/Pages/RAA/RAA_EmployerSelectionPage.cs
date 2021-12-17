@@ -7,13 +7,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Select an employer for your vacancy";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By SelectEmployerLinks => By.CssSelector("a");
 
-        public RAA_EmployerSelectionPage(ScenarioContext context) : base(context) => _context = context;
+        public RAA_EmployerSelectionPage(ScenarioContext context) : base(context) { }
 
         public RAA_EmployerInformationPage SelectAnEmployer()
         {
@@ -21,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickElement(rAAV1DataHelper.Employers(links));
 
-            return new RAA_EmployerInformationPage(_context);
+            return new RAA_EmployerInformationPage(context);
         }
     }
 }

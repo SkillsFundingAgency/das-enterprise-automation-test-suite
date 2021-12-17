@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
     public class WorkingWithSubcontractorsPage : AssessorBasePage
     {
         protected override string PageTitle => "Using subcontractors in the first 12 months of joining the RoATP";
-        private readonly ScenarioContext _context;
-
-        public WorkingWithSubcontractorsPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public WorkingWithSubcontractorsPage(ScenarioContext context) : base(context) { }
 
         public DueDiligenceOnSubcontractorsPage SelectPassAndContinueInWorkingWithSubcontractorsPage()
         {
             SelectPassAndContinueToSubSection();
-            return new DueDiligenceOnSubcontractorsPage(_context);
+            return new DueDiligenceOnSubcontractorsPage(context);
         }
     }
 }

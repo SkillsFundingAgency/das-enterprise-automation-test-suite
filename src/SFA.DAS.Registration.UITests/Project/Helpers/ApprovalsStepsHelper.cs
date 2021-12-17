@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage CreatesAccountAndSignAnAgreement()
         {
-            var page = new IndexPage(_context)
+            var page = new CreateAnAccountToManageApprenticeshipsPage(_context)
                  .CreateAccount()
                  .Register()
                  .ContinueToGetApprenticeshipFunding();

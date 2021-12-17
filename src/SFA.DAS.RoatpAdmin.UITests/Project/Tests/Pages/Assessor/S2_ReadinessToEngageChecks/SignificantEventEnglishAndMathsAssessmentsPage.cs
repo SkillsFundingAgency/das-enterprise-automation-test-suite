@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
     public class SignificantEventEnglishAndMathsAssessmentsPage : AssessorBasePage
     {
         protected override string PageTitle => "English and maths assessments";
-        private readonly ScenarioContext _context;
-
-        public SignificantEventEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public SignificantEventEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) { }
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()
         {
             SelectPassAndContinueToSubSection();
-            return new ApplicationAssessmentOverviewPage(_context);
+            return new ApplicationAssessmentOverviewPage(context);
         }
     }
 }

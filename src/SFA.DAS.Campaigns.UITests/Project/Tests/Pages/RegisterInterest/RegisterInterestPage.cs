@@ -7,10 +7,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
     {
         protected override string PageTitle => "Sign up to stay connected";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstNameField => By.Id("FirstName");
 
         private By LastNameField => By.Id("LastName");
@@ -21,7 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By Signup => By.CssSelector("#btn-register-interest-complete");
 
-        public RegisterInterestPage(ScenarioContext context) : base(context) => _context = context;
+        public RegisterInterestPage(ScenarioContext context) : base(context)  { }
 
         public ThanksForSubscribingPage RegisterInterest()
         {
@@ -30,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
             formCompletionHelper.SelectCheckbox(IncludeInUserResearch);
             formCompletionHelper.ClickElement(Signup);
-            return new ThanksForSubscribingPage(_context);
+            return new ThanksForSubscribingPage(context);
         }
     }
 }

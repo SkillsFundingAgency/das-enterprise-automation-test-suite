@@ -17,10 +17,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public string CohortSearchErrorMessage => "Please enter a 6-digit Cohort number";
         public string UnauthorisedCohortSearchErrorMessage => "Account is unauthorised to access this Cohort.";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Locators
         private By SearchSectionHeader => By.CssSelector(".searchfield h1");
         private By UlnRadioButton => By.CssSelector("label");
@@ -31,11 +27,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public By CommitmentsSearchPageErrorText => By.CssSelector(".error-message");
         #endregion
 
-        public CommitmentsSearchPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
-        }
+        public CommitmentsSearchPage(ScenarioContext context) : base(context) => VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
 
         private void EnterTextInSearchBox(string searchText)
         {
@@ -58,7 +50,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             SelectUlnSearchTypeRadioButton();
             EnterTextInSearchBox(config.Uln);
             ClickSearchButton();
-            return new UlnSearchResultsPage(_context);
+            return new UlnSearchResultsPage(context);
         }
 
         public void SearchWithInvalidULN()
@@ -78,7 +70,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             SelectCohortRefSearchTypeRadioButton();
             EnterTextInSearchBox(config.CohortRef);
             ClickSearchButton();
-            return new CohortSummaryPage(_context);
+            return new CohortSummaryPage(context);
         }
 
         public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()

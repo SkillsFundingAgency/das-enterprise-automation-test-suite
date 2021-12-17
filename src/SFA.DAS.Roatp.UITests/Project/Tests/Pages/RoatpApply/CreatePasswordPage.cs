@@ -2,7 +2,6 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
@@ -12,7 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         protected override string PageTitle => "Create password";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         #endregion
 
@@ -23,8 +21,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public CreatePasswordPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.Get<DbConfig>());
 
             VerifyPage(() =>
@@ -44,7 +40,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterText(Password, pasword);
             formCompletionHelper.EnterText(ConfirmPassword, pasword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
-            return new SigUpCompletePage(_context);
+            return new SigUpCompletePage(context);
         }
     }
 }
