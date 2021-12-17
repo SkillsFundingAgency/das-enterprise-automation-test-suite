@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -9,9 +9,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     public class WhenDidApprenticeJoinTheOrgPage : EIBasePage
     {
         //Title of the page is not being checked on this page since looping through multiple Apprentice names won't be feasible
-        //protected override string PageTitle => $"When did <fname> <lname> join {ObjectContextExtension.GetOrganisationName(objectContext)}?";
-
-        protected override string PageTitle => $"When did";
+        protected override string PageTitle => $"When did they join {objectContext.GetOrganisationName()}?";
 
         #region Locators
         private By DateGroup => By.CssSelector(".govuk-date-input");
