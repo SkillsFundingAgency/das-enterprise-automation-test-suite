@@ -8,9 +8,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_InDevelopmentStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public AO_InDevelopmentStandardDetailsPage IsInDevelopmentStandardDetailsPageDisplayed()
-        {
-            return this;
-        }
+        public AO_InDevelopmentStandardDetailsPage IsInDevelopmentStandardDetailsPageDisplayed() => this;
     }
 }

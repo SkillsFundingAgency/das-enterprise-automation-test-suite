@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -6,10 +7,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_CreateAnAccountPage : FAABasePage
     {
         protected override string PageTitle => "Create an account";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
 
         #region Locators
         private By FirstName => By.Id("Firstname");
@@ -27,10 +24,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By CreateAccountButton => By.Id("create-account-btn");
         private By RegisteredEmailErrorMessage => By.ClassName("error-summary-list");
 
-
         #endregion
 
-        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) { }
 
         public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
         {
@@ -47,14 +43,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
             formCompletionHelper.Click(CreateAccountButton);
             pageInteractionHelper.WaitforURLToChange("activation");
-            return new FAA_ActivateYourAccountPage(_context);
+            return new FAA_ActivateYourAccountPage(context);
         }
 
         public void SelectAddress()
         {
             formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
             pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
-            formCompletionHelper.ClickElement(() => faaDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
         public void SubmitAccountCreationDetailsWithRegisteredEmail()

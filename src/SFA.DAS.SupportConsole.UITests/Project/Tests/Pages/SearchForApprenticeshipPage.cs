@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -11,8 +8,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public class SearchForApprenticeshipPage : ToolSupportBasePage
     {
         protected override string PageTitle => "Search for an apprenticeship.";
-        private readonly ScenarioContext _context;
-        private readonly JavaScriptHelper _javaScriptHelper;
 
         #region Locators
         private By EmployerName => By.Id("employerName");
@@ -33,11 +28,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(3)");
         #endregion
 
-        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
-        {
-            _context = context;
-            _javaScriptHelper = _context.Get<JavaScriptHelper>();
-        } 
+        public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) { }
 
         public SearchForApprenticeshipPage EnterEmployerName(string employerName)
         {
@@ -102,27 +93,27 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public SearchForApprenticeshipPage ClickSubmitButton()
         {
             formCompletionHelper.Click(SubmitButton);
-            return new SearchForApprenticeshipPage(_context);
+            return new SearchForApprenticeshipPage(context);
         }
 
         public PauseApprenticeshipsPage ClickPauseButton()
         {
             pageInteractionHelper.WaitForElementToBeDisplayed(PaginationInfo);
-            _javaScriptHelper.ScrollToTheBottom();            
+            javaScriptHelper.ScrollToTheBottom();            
             formCompletionHelper.Click(PauseButton);
-            return new PauseApprenticeshipsPage(_context);
+            return new PauseApprenticeshipsPage(context);
         }
 
         public ResumeApprenticeshipsPage ClickResumeButton()
         {
             formCompletionHelper.Click(ResumeButton);
-            return new ResumeApprenticeshipsPage(_context);
+            return new ResumeApprenticeshipsPage(context);
         }
 
         public StopApprenticeshipsPage ClickStopButton()
         {
             formCompletionHelper.Click(StopButton);
-            return new StopApprenticeshipsPage(_context);
+            return new StopApprenticeshipsPage(context);
         }
 
         public int GetNumberOfRecordsFound()

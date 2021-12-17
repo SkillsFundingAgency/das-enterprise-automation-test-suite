@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
@@ -8,16 +10,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Provide organisation information about your banking and payments to DfE";
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By VRFCookieCloseButton => By.Id("close-cookie-message");
         protected override By PageHeader => By.CssSelector("h1");
         #endregion
 
         public VRFIntroductionTabPage(ScenarioContext context) : base(context, false)
-        { 
-            _context = context;
-            VerifyPage(frameHelper.Iframe);
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
+        {  
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(frameHelper.Iframe),
+                () => {frameHelper.SwitchFrameAndAction(() => VerifyPage()); return true; }
+            });
         }
 
         public VRFOrgDetailsTabPage ContinueToVRFOrgDetailsTab2Page()
@@ -26,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.Click(VRFCookieCloseButton);
 
             frameHelper.SwitchFrameAndAction(() => Continue());
-            return new VRFOrgDetailsTabPage(_context);
+            return new VRFOrgDetailsTabPage(context);
         }
     }
 }

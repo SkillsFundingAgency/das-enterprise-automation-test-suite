@@ -9,11 +9,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Increase vacancy wage";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
+        #region Helpers and Context       
         private readonly FAADataHelper _faaDataHelper;
-
         #endregion
 
         private By CurrentWage => By.CssSelector("#vacancy-wage");
@@ -23,24 +20,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By CustomWageLabel => By.CssSelector("#custom-wage-label");
 
 
-        public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _faaDataHelper = context.Get<FAADataHelper>();
-        }
+        public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context) => _faaDataHelper = context.Get<FAADataHelper>();
 
         public RAA_IncreaseVacancyWagePreviewPage SaveAndReturn()
         {
             string currentwage;
 
-            if (_pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
+            if (pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
             {
-                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(AmountLowerBound));
+                currentwage = RegexHelper.GetVacancyCurrentWage(pageInteractionHelper.GetText(AmountLowerBound));
             }
             else
             {
-                currentwage = RegexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
+                currentwage = RegexHelper.GetVacancyCurrentWage(pageInteractionHelper.GetText(CurrentWage));
                 
                 formCompletionHelper.SelectRadioOptionByText("Custom wage");
 
@@ -64,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickButtonByText("Save and return");
 
-            return new RAA_IncreaseVacancyWagePreviewPage(_context);
+            return new RAA_IncreaseVacancyWagePreviewPage(context);
         }
     }
 }

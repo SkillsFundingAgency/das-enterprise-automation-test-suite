@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
         private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
@@ -15,74 +16,75 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and support']");
-        private By HelpAndSupportLink => By.LinkText("help and support section");
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
-            _context = context;
-            VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
-            VerifyPage(HelpAndSupportSection);
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
+                () => VerifyPage(HelpAndSupportSection)
+            });
         }
 
         public ConfirmYourEmployerPage GoToConfirmYourEmployerPage()
         {
             ClickYourEmployerLink();
-            return new ConfirmYourEmployerPage(_context);
+            return new ConfirmYourEmployerPage(context);
         }
 
         public AlreadyConfirmedEmployerPage GoToAlreadyConfirmedEmployerPage()
         {
             ClickYourEmployerLink();
-            return new AlreadyConfirmedEmployerPage(_context);
+            return new AlreadyConfirmedEmployerPage(context);
         }
 
         public ConfirmYourTrainingProviderPage GoToConfirmYourTrainingProviderPage()
         {
             ClickYourProviderLink();
-            return new ConfirmYourTrainingProviderPage(_context);
+            return new ConfirmYourTrainingProviderPage(context);
         }
 
         public AlreadyConfirmedTrainingProviderPage GoToAlreadyConfirmedTrainingProviderPage()
         {
             ClickYourProviderLink();
-            return new AlreadyConfirmedTrainingProviderPage(_context);
+            return new AlreadyConfirmedTrainingProviderPage(context);
         }
 
         public ConfirmYourApprenticeshipDetailsPage GoToConfirmYourApprenticeshipDetailsPage()
         {
             ClickYourApprenticeshipDetailsLink();
-            return new ConfirmYourApprenticeshipDetailsPage(_context);
+            return new ConfirmYourApprenticeshipDetailsPage(context);
         }
 
         public AlreadyConfirmedApprenticeshipDetailsPage GoToAlreadyConfirmedApprenticeshipDetailsPage()
         {
             ClickYourApprenticeshipDetailsLink();
-            return new AlreadyConfirmedApprenticeshipDetailsPage(_context);
+            return new AlreadyConfirmedApprenticeshipDetailsPage(context);
         }
 
-        public ConfirmRolesAndResponsibilitiesPage GoToConfirmRolesAndResponsibilitiesPage()
+        public ConfirmRolesAndResponsibilitiesPage1of3 GoToConfirmRolesAndResponsibilitiesPage()
         {
             ClickRolesAndResponsibilitiesLink();
-            return new ConfirmRolesAndResponsibilitiesPage(_context);
+            return new ConfirmRolesAndResponsibilitiesPage1of3(context);
         }
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage GoToAlreadyConfirmedRolesAndResponsibilitiesPage()
         {
             ClickRolesAndResponsibilitiesLink();
-            return new AlreadyConfirmedRolesAndResponsibilitiesPage(_context);
+            return new AlreadyConfirmedRolesAndResponsibilitiesPage(context);
         }
 
         public ConfirmHowYourApprenticeshipWillBeDeliveredPage GoToConfirmHowYourApprenticeshipWillBeDeliveredPage()
         {
             ClickHowYourApprenticeshipWillBeDeliveredLink();
-            return new ConfirmHowYourApprenticeshipWillBeDeliveredPage(_context);
+            return new ConfirmHowYourApprenticeshipWillBeDeliveredPage(context);
         }
 
         public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage GoToAlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage()
         {
             ClickHowYourApprenticeshipWillBeDeliveredLink();
-            return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(_context);
+            return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(context);
         }
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
@@ -92,13 +94,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(AppreticeshipConfirmBannerHeader);
             VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
-            return new TransactionCompletePage(_context);
-        }
-
-        public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage()
-        {
-            formCompletionHelper.Click(HelpAndSupportLink);
-            return new HelpAndSupportPage(_context);
+            return new TransactionCompletePage(context);
         }
 
         public void VerifyPageAfterApprenticeshipConfirm()

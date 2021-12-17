@@ -22,6 +22,7 @@
         public string PregDbConnectionString { get; set; }
         public string TPRDbConnectionString { get; set; }
         public string TMDbConnectionString { get; set; }
+        public string CRSDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
@@ -50,5 +51,6 @@
         public string PregDbName { get; set; }
         public string TPRDbName { get; set; }
         public string TMDbName { get; set; }
+        public string CrsDbName { get; set; }
     }
 }

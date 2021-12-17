@@ -9,8 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        private readonly ScenarioContext _context;
-
         private By EmployerOrganisation(string value = null) => By.CssSelector($"#EmployerOrganisation{value}");
 
         private By EmployerFirstName(string value = null) => By.CssSelector($"#EmployerFirstName{value}");
@@ -26,8 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public EnterTheEmployerDetailsPage(ScenarioContext context): base(context)
         {
-            _context = context;
-            OrganisationName = config.RE_OrganisationName;
+            OrganisationName = registrationDataHelper.CompanyTypeOrg;
             FirstName = registrationDataHelper.FirstName;
             LastName = registrationDataHelper.LastName;
             Email = objectContext.GetRegisteredEmail();
@@ -54,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         public CheckDetailsPage NavigateToCheckDetailsPage()
         {
             Continue();
-            return new CheckDetailsPage(_context);
+            return new CheckDetailsPage(context);
         }
     }
 }

@@ -82,17 +82,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             "employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void AP_MF_NLP_01ProviderMakesReservationAddsAndDeletesApprenticeForNon_LevyEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "nonlevyproviderscenarios",
-                    "selectstandardcourse"};
+                    "nonlevyproviderscenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLP_01 Provider makes reservation adds and deletes apprentice for non-levy " +
                     "employer", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -112,11 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 10
  testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And("the Provider can access Manage Funding Page to reserve more funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

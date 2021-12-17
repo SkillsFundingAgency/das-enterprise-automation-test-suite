@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.ExperienceAndAc
     {
         protected override string PageTitle => "Initial teacher training (ITT) check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public InitialTeacherTrainingCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public InitialTeacherTrainingCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

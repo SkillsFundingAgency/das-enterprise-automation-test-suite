@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
@@ -11,9 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Sign in";
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-
         #region Locators
         private By UserIdInput => By.Id("userId");
         private By PasswordInput => By.Id("password");
@@ -21,23 +17,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ErrorMessageText => By.Id("errors");
         #endregion
 
-        public GgSignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-            VerifyPage();
-        }
+        public GgSignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchForYourOrganisationPage SignInTo(int index)
         {
             EnterGateWayCredentialsAndSignIn(index);
-            return new SearchForYourOrganisationPage(_context);
+            return new SearchForYourOrganisationPage(context);
         }
 
         public ConfirmPAYESchemePage EnterPayeDetailsAndContinue(int index)
         {
             EnterGateWayCredentialsAndSignIn(index);
-            return new ConfirmPAYESchemePage(_context);
+            return new ConfirmPAYESchemePage(context);
         }
 
         public GgSignInPage SignInWithInvalidDetails()
@@ -50,7 +41,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void EnterGateWayCredentialsAndSignIn(int index)
         {
-            var gatewaydetails = _objectContext.GetGatewayCreds(index);
+            var gatewaydetails = objectContext.GetGatewayCreds(index);
             SignInTo(gatewaydetails.GatewayId, gatewaydetails.GatewayPassword);
         }
 

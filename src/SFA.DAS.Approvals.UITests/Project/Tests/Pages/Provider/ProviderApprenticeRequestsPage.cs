@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -12,22 +11,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string Linktext => "Apprentice requests";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        #endregion
-
         private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
         private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-card-figure");
         private By NumberOfDraftCohorts => By.CssSelector("#Draft span.das-card-figure");
         private By NumberOfCohortsWithTransferSendingEmployers => By.CssSelector("#WithTransferSender span.das-card-figure");
 
-        public ProviderApprenticeRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            VerifyPage();
-        }
+        public ProviderApprenticeRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
 
         public ProviderApprenticeDetailsReadyToReviewPage GoToCohortsToReviewPage()
         {
@@ -35,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerReadyForReviewCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsForReview);
-                return new ProviderApprenticeDetailsReadyToReviewPage(_context);
+                return new ProviderApprenticeDetailsReadyToReviewPage(context);
             }
 
             throw new Exception("No cohorts available for review");
@@ -47,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithEmployerCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
-                return new ProviderApprenticeDetailsWithEmployersPage(_context);
+                return new ProviderApprenticeDetailsWithEmployersPage(context);
             }
 
             throw new Exception("No cohorts available with employers");
@@ -59,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithDraftCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfDraftCohorts);
-                return new ProviderDraftApprenticeDetailsPage(_context);
+                return new ProviderDraftApprenticeDetailsPage(context);
             }
 
             throw new Exception("No draft cohorts are available");
@@ -71,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (providerWithTransferSendingEmployerCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfCohortsWithTransferSendingEmployers);
-                return new ProviderApprenticeDetailsWithTransferSendingEmployersPage(_context);
+                return new ProviderApprenticeDetailsWithTransferSendingEmployersPage(context);
             }
 
             throw new Exception("No cohorts available with employers");
@@ -79,8 +68,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

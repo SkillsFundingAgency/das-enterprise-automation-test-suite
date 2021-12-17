@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
-        public ConfirmYourIdentityPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
+        public ConfirmYourIdentityPage RegisterUserAccount() => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register();
 
         public SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
         {
@@ -40,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN()
                 .ReEnterTheSameAornDetailsAndContinue();
 
-        public IndexPage SignOut() => _accountSignOutHelper.SignOut();
+        public CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
 
         public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
             searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);
@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(1);
 
-        public AddAPAYESchemePage CreateAnotherUserAccount(IndexPage indexPage) =>
+        public AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) =>
             indexPage.CreateAccount()
                 .Register(_registrationDataHelper.AnotherRandomEmail)
                 .EnterAccessCode()
@@ -95,15 +95,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private string GetOrgName(OrgType orgType)
         {
-            switch (orgType)
+            return orgType switch
             {
-                case OrgType.Company:
-                    return _registrationDataHelper.CompanyTypeOrg;
-                case OrgType.PublicSector:
-                    return _registrationDataHelper.PublicSectorTypeOrg;
-                default:
-                    return _registrationDataHelper.CharityTypeOrg1Name;
-            }
+                OrgType.Company => _registrationDataHelper.CompanyTypeOrg,
+                OrgType.PublicSector => _registrationDataHelper.PublicSectorTypeOrg,
+                _ => _registrationDataHelper.CharityTypeOrg1Name,
+            };
         }
     }
 }

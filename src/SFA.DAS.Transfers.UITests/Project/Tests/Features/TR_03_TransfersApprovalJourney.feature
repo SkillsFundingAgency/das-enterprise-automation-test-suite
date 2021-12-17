@@ -3,7 +3,6 @@
 Feature: TR_03_TransfersApprovalJourney
 
 @liveapprentice
-@selectstandardcourse
 Scenario: TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
 	Given Receiver sends an approved cohort to the provider
 	When Provider approves the cohort

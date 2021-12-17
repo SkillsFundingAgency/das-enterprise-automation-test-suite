@@ -6,42 +6,36 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     {
         protected override string PageTitle => "Organisation details";
 
-        private readonly ScenarioContext _context;
-
-        public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_OrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
             ClickLinkByHref("SelectOrChangeContactName");
-            return new AS_ChangeContactNamePage(_context);
+            return new AS_ChangeContactNamePage(context);
         }
 
         public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
         {
             ClickLinkByHref("ChangePhoneNumber");
-            return new AS_ChangePhoneNumberPage(_context);
+            return new AS_ChangePhoneNumberPage(context);
         }
 
         public AS_ChangeAddressPage ClickAddressChangeLink()
         {
             ClickLinkByHref("ChangeAddress");
-            return new AS_ChangeAddressPage(_context);
+            return new AS_ChangeAddressPage(context);
         }
 
         public AS_ChangeEmailPage ClickEmailChangeLink()
         {
             ClickLinkByHref("ChangeEmail");
-            return new AS_ChangeEmailPage(_context);
+            return new AS_ChangeEmailPage(context);
         }
 
         public AS_ChangeWebsitePage ClickWebsiteChangeLink()
         {
             ClickLinkByHref("ChangeWebsite");
-            return new AS_ChangeWebsitePage(_context);
+            return new AS_ChangeWebsitePage(context);
         }
 
         private void ClickLinkByHref(string href) => formCompletionHelper.ClickElement(pageInteractionHelper.GetLinkByHref(href));
@@ -51,18 +45,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     {
         protected override string PageTitle => "Change organisation details";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ChangeOrganisationDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangeOrganisationDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_OrganisationDetailsPage ClickAccessButton()
         {
             Continue();
-            return new AS_OrganisationDetailsPage(_context);
+            return new AS_OrganisationDetailsPage(context);
         }
     }
 }

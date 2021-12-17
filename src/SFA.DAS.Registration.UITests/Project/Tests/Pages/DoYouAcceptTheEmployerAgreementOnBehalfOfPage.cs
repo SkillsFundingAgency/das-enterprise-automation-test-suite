@@ -9,22 +9,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class DoYouAcceptTheEmployerAgreementOnBehalfOfPage : RegistrationBasePage
     {
         protected override string PageTitle => "Do you accept the employer agreement on behalf of";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         protected override By ContinueButton => By.XPath("//input[@class='govuk-button govuk-!-margin-top-6']");
         #endregion
 
-        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage (ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage (ScenarioContext context) : base(context) => VerifyPage();
+
         public AccessDeniedPage ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
         {
             SelectRadioOptionByText("Yes, I accept the agreement");
             formCompletionHelper.Click(ContinueButton);
-            return new AccessDeniedPage (_context);
+            return new AccessDeniedPage (context);
         }
     }
 }

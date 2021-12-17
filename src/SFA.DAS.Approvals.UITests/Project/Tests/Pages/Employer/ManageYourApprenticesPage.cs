@@ -5,13 +5,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
+    public class FilteredManageYourApprenticesPage : ManageYourApprenticesPage
+    {
+        protected override string PageTitle => "Manage your apprentices";
+
+        protected override bool TakeFullScreenShot => true;
+
+        public FilteredManageYourApprenticesPage(ScenarioContext context) : base(context) { }
+
+    }
+
     public class ManageYourApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Manage your apprentices";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
         private By ApprenticeSearchField => By.Id("searchTerm");
         private By SearchButton => By.ClassName("das-search-form__button");
@@ -22,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
         private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
-        public ManageYourApprenticesPage(ScenarioContext context): base(context) => _context = context;
+        public ManageYourApprenticesPage(ScenarioContext context): base(context)  { }
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
@@ -37,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
                 {
                     formCompletionHelper.ClickElement(detailsLinks);
-                    return new ApprenticeDetailsPage(_context);
+                    return new ApprenticeDetailsPage(context);
                 }
                 i++;
             }
@@ -50,10 +58,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Apprentice with - " + apprenticeDataHelper.ApprenticeFullName + " - name is not found");
             }
 
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
 
-        public ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             // Search bar will not be displayed if there are less than 10 apprentice in the table
             if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
@@ -62,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 formCompletionHelper.ClickElement(SearchButton);
             }
 
-            return new ManageYourApprenticesPage(_context);
+            return new FilteredManageYourApprenticesPage(context);
         }
 
         public void VerifyApprenticeExists()
@@ -77,14 +85,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
             formCompletionHelper.ClickElement(ApplyFilter);
-            return new ManageYourApprenticesPage(_context);
+            return new ManageYourApprenticesPage(context);
         }
 
         internal ApprenticeDetailsPage SelectApprentices(string status)
         {
             SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
             tableRowHelper.SelectRowFromTable(apprenticeDataHelper.ApprenticeFullName, status);
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);

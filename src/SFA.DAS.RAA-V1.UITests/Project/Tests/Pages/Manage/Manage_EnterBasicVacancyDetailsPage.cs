@@ -8,10 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
     public class Manage_EnterBasicVacancyDetailsPage : RAA_BasicVacancyDetailsPage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        #region Helpers and Context      
         private readonly RAAV1ManagedataHelper _managedataHelper;
         #endregion
 
@@ -19,32 +16,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By TitleCommentTextArea => By.CssSelector("#TitleComment");
 
-        public Manage_EnterBasicVacancyDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _managedataHelper = context.Get<RAAV1ManagedataHelper>();
-        }
+        public Manage_EnterBasicVacancyDetailsPage(ScenarioContext context) : base(context) => _managedataHelper = context.Get<RAAV1ManagedataHelper>();
 
         public Manage_VacanacyPreviewPage AddApprenticeshipTitleComments()
         {
             AddTitleComments();
-            return new Manage_VacanacyPreviewPage(_context);
+            return new Manage_VacanacyPreviewPage(context);
         }
 
         public Manage_OpportunityPreviewPage AddTraineeshipTitleComments()
         {
             AddTitleComments();
-            return new Manage_OpportunityPreviewPage(_context);
+            return new Manage_OpportunityPreviewPage(context);
         }
 
         private void AddTitleComments()
         {
-            _formCompletionHelper.Click(TitleComments);
-            _pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
-            _formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
-            _formCompletionHelper.ClickButtonByText("Save");
+            formCompletionHelper.Click(TitleComments);
+            pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
+            formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
+            formCompletionHelper.ClickButtonByText("Save");
         }
     }
 }

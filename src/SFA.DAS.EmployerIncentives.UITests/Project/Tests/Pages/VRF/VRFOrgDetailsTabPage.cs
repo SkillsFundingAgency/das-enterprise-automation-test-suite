@@ -10,17 +10,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private readonly EISqlHelper _eISqlHelper;
 
         #region Locators
-        private readonly ScenarioContext _context;
+        
         private By OrganisationName => By.CssSelector("#supplier_name");
         private By TelephoneNumber => By.CssSelector("#supplier_tel");
         private By VendorNumber => By.CssSelector("#vendor_number");
         #endregion
 
         public VRFOrgDetailsTabPage(ScenarioContext context) : base(context, false)
-        {
-            _context = context;
+        { 
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
-            _eISqlHelper = _context.Get<EISqlHelper>();
+            _eISqlHelper = context.Get<EISqlHelper>();
         }
 
         public VRFNonBankingInfoTabPage SubmitOrgDetails()
@@ -31,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 AddOtherOrgDetails();
             });
 
-            return new VRFNonBankingInfoTabPage(_context);
+            return new VRFNonBankingInfoTabPage(context);
         }
 
         public VRFAmendmentsTabPage SubmitOrgDetailsForAmendJourney(string email)
@@ -43,12 +42,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 AddOtherOrgDetails();
             });
 
-            return new VRFAmendmentsTabPage(_context);
+            return new VRFAmendmentsTabPage(context);
         }
 
         private void AddOtherOrgDetails()
         {
-            formCompletionHelper.EnterText(OrganisationName, registrationConfig.RE_OrganisationName);
+            formCompletionHelper.EnterText(OrganisationName, registrationDataHelper.CompanyTypeOrg);
             formCompletionHelper.EnterText(TelephoneNumber, eIDataHelper.TelephoneNumber);
             SelectOptionByText("provider_supplier_have_company_number", "No");
             SelectOptionByText("provider_supplier_have_vat_number", "No");

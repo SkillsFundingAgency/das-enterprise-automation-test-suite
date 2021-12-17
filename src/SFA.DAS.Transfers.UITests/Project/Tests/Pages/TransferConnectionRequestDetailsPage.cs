@@ -7,20 +7,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Connection request details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By DoYouWishToConnectToThisEmpoyerOptions => By.CssSelector(".selection-button-radio");
         protected override By ContinueButton => By.CssSelector(".button");
 
-        public TransferConnectionRequestDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public TransferConnectionRequestDetailsPage(ScenarioContext context) : base(context) { }
 
         public ConnectionConfirmedPage AcceptTransferConnectionRequest()
         {
             formCompletionHelper.SelectRadioOptionByText(DoYouWishToConnectToThisEmpoyerOptions, "Yes, I want to approve the connection request");
             Continue();
-            return new ConnectionConfirmedPage(_context);
+            return new ConnectionConfirmedPage(context);
         }
     }
 }

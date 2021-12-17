@@ -7,20 +7,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Change vacancy dates";
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        public RAA_ChangeVacancyDatesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public RAA_ChangeVacancyDatesPage(ScenarioContext context) : base(context) { }
 
         public RAA_ChangeVacancyDatePreviewPage SaveAndContinue()
         {
             EnterVacancyClosingDate()
             .EnterPossibleStartDate();
             formCompletionHelper.ClickButtonByText("Save and return");
-            return new RAA_ChangeVacancyDatePreviewPage(_context);
+            return new RAA_ChangeVacancyDatePreviewPage(context);
 
         }
         private new RAA_ChangeVacancyDatesPage EnterVacancyClosingDate()
@@ -34,6 +31,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             base.EnterPossibleStartDate();
             return this;
         }
-
     }
 }

@@ -17,7 +17,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         public StepsHelper(ScenarioContext context)
         {
             _context = context;
-            _tabHelper = _context.Get<TabHelper>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());

@@ -5,29 +5,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class CreateMyApprenticeshipAccountPage : PersonalDetailsBasePage
     {
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "Create My apprenticeship account";
         private By ErrorSummaryTitle => By.Id("error-summary-title");
-        private By LastNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[1]");
-        private By FirstNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[2]");
+        private By FirstNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[1]");
+        private By LastNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[2]");
         private By DOBError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[3]");
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
-        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) => _context = context;
+        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context)  { }
 
         public new CreateMyApprenticeshipAccountPage NavigateToChangeYourPersonalDetails()
         {
             NavigateToSettings("Change your personal details");
-            return new CreateMyApprenticeshipAccountPage(_context);
+            return new CreateMyApprenticeshipAccountPage(context);
         }
 
         public TermsOfUsePage ConfirmIdentityAndGoToTermsOfUsePage()
         {
             EnterValidApprenticeDetails();
-            return new TermsOfUsePage(_context);
+            return new TermsOfUsePage(context);
         }
 
-        public CreateMyApprenticeshipAccountPage InvalidData(string firstname, string lastname, int? day, int? month, int? year)
+        public CreateMyApprenticeshipAccountPage EnterInvalidData(string firstname, string lastname, int? day, int? month, int? year)
         {
             EnterApprenticeDetails(firstname, lastname, day, month, year);
             return this;
@@ -36,14 +35,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new(TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails()
         {
             var name = base.EnterInValidApprenticeDetails();
-            return (new TermsOfUsePage(_context), name);
+            return (new TermsOfUsePage(context), name);
         }
 
         public void VerifyErrorSummary()
         {
             pageInteractionHelper.VerifyText(ErrorSummaryTitle, "There is a problem");
-            pageInteractionHelper.VerifyText(LastNameError, "Enter your last name");
             pageInteractionHelper.VerifyText(FirstNameError, "Enter your first name");
+            pageInteractionHelper.VerifyText(LastNameError, "Enter your last name");
             pageInteractionHelper.VerifyText(DOBError, "Enter your date of birth");
         }
     }

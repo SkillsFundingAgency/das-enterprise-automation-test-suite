@@ -7,17 +7,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ActiveStatus => By.CssSelector("label[for='status-1']");
 
         private By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Change']");
 
-        public ChangeStatusPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeStatusPage(ScenarioContext context) : base(context) { }
 
         public ResultsFoundPage ChangeStatusToActive() => ChangeStatus(ActiveStatus);
 
@@ -27,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.ClickElement(by);
             Continue();
-            return new ResultsFoundPage(_context);
+            return new ResultsFoundPage(context);
         }
     }
 }

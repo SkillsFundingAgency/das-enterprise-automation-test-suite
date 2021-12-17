@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.ApprovedStandardsAndVersions
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PC_02_AddLNonLevyPaye")]
-    public partial class PC_02_AddLNonLevyPayeFeature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AS_OI_01")]
+    public partial class EPAO_AS_OI_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "PC_02_AddLNonLevyPaye.feature"
+#line 1 "EPAO_AS_OI_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PC_02_AddLNonLevyPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_OI_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,21 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PC_02_AddLNonLevyPaye")]
-        [NUnit.Framework.CategoryAttribute("payecreation")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void PC_02_AddLNonLevyPaye()
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_OI_01 - Apply Opt In Standard For New Version")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("deleteorganisationstandardversion")]
+        public virtual void EPAO_AS_OI_01_ApplyOptInStandardForNewVersion()
         {
             string[] tagsOfScenario = new string[] {
-                    "payecreation",
-                    "addnonlevyfunds"};
+                    "epao",
+                    "assessmentservice",
+                    "regression",
+                    "deleteorganisationstandardversion"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_02_AddLNonLevyPaye", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_OI_01 - Apply Opt In Standard For New Version", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,8 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("I add non levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("the User should be able to Opt In for the new version of the Standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

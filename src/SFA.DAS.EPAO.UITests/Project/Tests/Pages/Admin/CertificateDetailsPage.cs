@@ -9,26 +9,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        private By SearchButton => By.CssSelector("a.govuk-button[href*='/select']");
-
-        private By History => By.CssSelector("#history");
         private By DeleteCertificateLink => By.LinkText("Delete certificate");
 
-        public CertificateDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-
+        public CertificateDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AreYouSureYouWantToDeletePage ClickDeleteCertificateLink()
         {
             formCompletionHelper.ClickElement(DeleteCertificateLink);
-            return new AreYouSureYouWantToDeletePage(_context);
+            return new AreYouSureYouWantToDeletePage(context);
         }
     }
 }

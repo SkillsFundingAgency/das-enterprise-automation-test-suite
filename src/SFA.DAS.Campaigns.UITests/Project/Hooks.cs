@@ -20,7 +20,7 @@ namespace SFA.DAS.Campaigns.UITests.Project
         }
 
         [BeforeScenario(Order = 34)]
-        public void SetUpHelpers() => _context.Set(new CampaignsDataHelper(_context.Get<RandomDataGenerator>()));
+        public void SetUpHelpers() => _context.Set(new CampaignsDataHelper());
 
         [BeforeScenario(Order = 36)]
         public void NavigateToBaseUrl() => _webDriver.Navigate().GoToUrl(UrlConfig.CA_BaseUrl);

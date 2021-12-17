@@ -21,7 +21,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private PregSqlDataHelper _pregSqlDataHelper;
-        private FrameworkConfig _frameworkConfig;
 
         public Hooks(ScenarioContext context)
         {
@@ -31,7 +30,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _dbConfig = context.Get<DbConfig>();
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
-            _frameworkConfig = context.Get<FrameworkConfig>();
         }
 
         [BeforeScenario(Order = 21)]
@@ -47,15 +45,15 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com"; 
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com";
 
-            var registrationDatahelpers = new RegistrationDataHelper($"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword);
 
             _context.Set(registrationDatahelpers);
 
             _context.Set(new LoginCredentialsHelper(_objectContext));
 
-            _objectContext.SetOrganisationName(_config.RE_OrganisationName);
+            _objectContext.SetOrganisationName(registrationDatahelpers.CompanyTypeOrg);
 
             _context.Set(new RegistrationSqlDataHelper(_dbConfig));
 

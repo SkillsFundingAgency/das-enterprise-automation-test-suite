@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -9,16 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Important dates";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionhelper;
-        #endregion
-
-        public ImportantDatesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionhelper = context.Get<PageInteractionHelper>();
-        }
+        public ImportantDatesPage(ScenarioContext context) : base(context) { }
 
         public DurationPage EnterImportantDates(bool disabilityConfidence)
         {
@@ -27,12 +15,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             if (disabilityConfidence)
             {
-                formCompletionHelper.ClickElement(() => _pageInteractionhelper.FindElement(IsDisabilityConfident));
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
 
             Continue();
             pageInteractionHelper.WaitforURLToChange("duration");
-            return new DurationPage(_context);
+            return new DurationPage(context);
         }
     }
 }

@@ -6,7 +6,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     public class ProviderSummaryPage : FATV2BasePage
     {
         protected override string PageTitle => objectContext.GetProviderName();
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By LocationTextBox => By.Id("search-location");
@@ -15,7 +14,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By NoProviderAtLocationErrorText => By.Id("course_provider_not_available");
         #endregion
 
-        public ProviderSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderSummaryPage(ScenarioContext context) : base(context) { }
         
         public bool VerifyNoTrainingProviderAtLocationErrorText() => pageInteractionHelper.IsElementDisplayed(NoProviderAtLocationErrorText);
 
@@ -23,22 +22,22 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(LocationTextBox, location);
             formCompletionHelper.SendKeys(LocationTextBox, Keys.Enter);
-            return new ProviderSummaryPage(_context);
+            return new ProviderSummaryPage(context);
         }
         public ProviderSearchResultsPage SelectViewOtherTrainingProviders()
         {
             formCompletionHelper.Click(ViewOtherTrainingProvidersButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage NavigateBackFromProviderSummaryPage()
         {
             NavigateBackToTrainingProviders();
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
         public ProviderSearchResultsPage NavigateBackToTrainingProviders()
         {
             formCompletionHelper.Click(BackToTrainingProviders);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
     }
 }

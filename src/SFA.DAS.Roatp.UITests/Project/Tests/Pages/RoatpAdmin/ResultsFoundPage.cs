@@ -8,10 +8,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"found for";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
 
         private By ActiveStatus => By.XPath("//span[text()='Active']");
@@ -28,7 +24,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private string SupportingStatus => "ACTIVE";
 
-        public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
+        private string ApplicationDetermineDate => "30 Nov 1980";
+
+        public ResultsFoundPage(ScenarioContext context) : base(context) { }
 
         public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
 
@@ -36,64 +34,66 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public void VerifyApplicationDeterminedDate() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
 
+        public void VerifyApplicationDeterminedDateNotUpdated() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, ApplicationDetermineDate);
+
         public SearchPage GoToSearchPage()
         {
             Back();
-            return new SearchPage(_context);
+            return new SearchPage(context);
         }
 
         public ChangeLegalNamePage ClickChangeLegalNameLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-legal-name"));
-            return new ChangeLegalNamePage(_context);
+            return new ChangeLegalNamePage(context);
         }
 
         public ChangeUkprnPage ClickChangeUkprnLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-ukprn"));
-            return new ChangeUkprnPage(_context);
+            return new ChangeUkprnPage(context);
         }
 
         public ChangeStatusPage ClickChangeStatusLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-status"));
-            return new ChangeStatusPage(_context);
+            return new ChangeStatusPage(context);
         }
 
         public ChangeProviderTypePage ClickChangeProviderTypeLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-provider-type"));
-            return new ChangeProviderTypePage(_context);
+            return new ChangeProviderTypePage(context);
         }
 
         public ChangeOrganisationTypePage ClickChangeOrganisationTypeLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-organisation-type"));
-            return new ChangeOrganisationTypePage(_context);
+            return new ChangeOrganisationTypePage(context);
         }
 
         public ChangeTradingNamePage ClickChangeTradingNameLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-trading-name"));
-            return new ChangeTradingNamePage(_context);
+            return new ChangeTradingNamePage(context);
         }
 
         public ChangeCompanyNumberPage ClickChangeCompanyNumberLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-company-number"));
-            return new ChangeCompanyNumberPage(_context);
+            return new ChangeCompanyNumberPage(context);
         }
 
         public ChangeCharityRegistrationNumberPage ClickChangeCharityNumberLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-charity-registration-number"));
-            return new ChangeCharityRegistrationNumberPage(_context);
+            return new ChangeCharityRegistrationNumberPage(context);
         }
 
         public ChangeApplicationDateDeterminedPage ClickChangeApplicationDateDeterminedLink()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-application-date-determined"));
-            return new ChangeApplicationDateDeterminedPage(_context);
+            return new ChangeApplicationDateDeterminedPage(context);
         }
 
         public bool VerifyMultipleMatchingResults() => pageInteractionHelper.VerifyPage(RefineSearch);

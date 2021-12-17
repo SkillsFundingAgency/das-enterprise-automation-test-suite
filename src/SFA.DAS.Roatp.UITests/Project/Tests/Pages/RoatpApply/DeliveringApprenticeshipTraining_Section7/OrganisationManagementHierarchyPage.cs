@@ -7,10 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Who is in your organisation's management hierarchy for apprenticeships?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstName => By.CssSelector("#FirstName");
         private By LastName => By.CssSelector("#LastName");
         private By JobRole => By.CssSelector("#JobRole");
@@ -21,11 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         private By Email => By.CssSelector("#Email");
         public By ContactNumber => By.CssSelector("#ContactNumber");
 
-        public OrganisationManagementHierarchyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OrganisationManagementHierarchyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmOrganisationManagementHierarchy EnterDetails()
         {
@@ -39,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
             formCompletionHelper.EnterText(Email, applydataHelpers.Email);
             formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
             SelectNoAndContinue();
-            return new ConfirmOrganisationManagementHierarchy(_context);
+            return new ConfirmOrganisationManagementHierarchy(context);
         }
     }
 }

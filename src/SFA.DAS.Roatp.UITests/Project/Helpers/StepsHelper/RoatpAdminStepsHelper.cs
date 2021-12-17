@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         public RoatpAdminStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
+            _loginStepsHelper = new RoatpAdminLoginStepsHelper(context);
         }
 
         public SearchPage InitatesAnApplication(string providerType)

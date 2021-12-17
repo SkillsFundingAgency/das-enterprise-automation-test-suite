@@ -7,28 +7,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     {
         protected override string PageTitle => "Withdrawal application overview";
-
-        private readonly ScenarioContext _context;
-
         private By CompleteReviewButton => By.CssSelector("button.govuk-button");
         private By Tag => By.CssSelector("div.govuk-tag");
 
-        public AD_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AD_WithdrawalRequestOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public AD_WithdrawalNotificationQuestionsPage GoToWithdrawalNotificationQuestionsPage()
+        public AD_WithdrawalRequestQuestionsPage GoToWithdrawalRequestQuestionsPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate withdrawal application");
-            return new AD_WithdrawalNotificationQuestionsPage(_context);
+            return new AD_WithdrawalRequestQuestionsPage(context);
         }
 
         public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplicationsPage()
         {
             formCompletionHelper.ClickLinkByText("Return to withdrawal applications");
-            return new AD_WithdrawalApplicationsPage(_context);
+            return new AD_WithdrawalApplicationsPage(context);
         }
 
         public AD_WithdrawalRequestOverviewPage VerifyAnswerUpdatedTag()
@@ -40,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         public AD_CheckTheWithdrawDatePage ClickCompleteReview()
         {
             formCompletionHelper.Click(CompleteReviewButton);
-            return new AD_CheckTheWithdrawDatePage(_context);
+            return new AD_CheckTheWithdrawDatePage(context);
         }
     }
 }

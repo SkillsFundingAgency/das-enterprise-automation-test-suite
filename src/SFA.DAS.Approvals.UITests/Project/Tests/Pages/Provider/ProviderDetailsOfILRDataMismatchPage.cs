@@ -7,37 +7,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderDetailsOfILRDataMismatchPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Details of ILR data mismatch";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         private By FixILRMismatchOptions => By.XPath("//input[@value='Confirm']");
         protected override By ContinueButton => By.Id("fix-mismatch");
         private By PriceMismatchRow => By.XPath("//*[text() = 'training price']");
         private By CourseMismatchRow => By.XPath("//*[text() = 'training course']");
         private By CourseMismatchRow2 => By.CssSelector("#new-course-name");
 
-        public ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderChangeApprenticeDetailsPage RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
         {
             javaScriptHelper.ClickElement(FixILRMismatchOptions);
             Continue();
-            return new ProviderChangeApprenticeDetailsPage(_context);
+            return new ProviderChangeApprenticeDetailsPage(context);
         }
 
         internal ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-Confirm");
             Continue();            
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         internal ProviderApprenticeDetailsPage ClickLeaveForNow()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-None");
             Continue();
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         public ProviderDetailsOfILRDataMismatchPage SelectILRDataMismatchOptions()

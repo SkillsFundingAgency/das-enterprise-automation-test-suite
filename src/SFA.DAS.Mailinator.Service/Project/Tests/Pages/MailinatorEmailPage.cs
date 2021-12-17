@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages

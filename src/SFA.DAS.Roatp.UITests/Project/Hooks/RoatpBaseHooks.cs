@@ -45,9 +45,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void GoToUrl(string url) => _tabHelper.GoToUrl(url);
 
-        protected void SetUpAdminDataHelpers() => _context.Set(new RoatpAdminDataHelpers(_context.Get<RandomDataGenerator>()));
-
-        protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers(_context.Get<RandomDataGenerator>()));
+        protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
         protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers(config));
 
@@ -59,6 +57,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         }
 
         protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
+
+        protected void ClearDownApplyData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromApply_ReapplyRecord(ukprn);
+
+        protected void ClearDownQnAData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(ukprn);
 
         protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
 

@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public abstract class AS_GradeDateBasePage : EPAOAssesment_BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By DayTextBox => By.Id("Day");
@@ -15,28 +14,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By DateError => By.Id("Day-error");
         #endregion
 
-        public AS_GradeDateBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_GradeDateBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         /*PASS and FAIL scenarios return two different pages, so do NOT return any page for this method*/
-        public void EnterAchievementGradeDateAndContinue()
-        {
-            EnterDateFieldsAndContinue();
-        }
+        public void EnterAchievementGradeDateAndContinue() => EnterDateFieldsAndContinue();
 
         public AS_SearchEmployerAddressPage EnterApprenticshipStartDateAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_SearchEmployerAddressPage(_context);
+            return new AS_SearchEmployerAddressPage(context);
         }
 
         public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
         {
             EnterDateFieldsAndContinue();
-            return new AS_SearchEmployerAddressPage(_context);
+            return new AS_SearchEmployerAddressPage(context);
         }
 
         public void EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(int year)

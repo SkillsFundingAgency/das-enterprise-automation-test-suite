@@ -10,26 +10,28 @@ namespace SFA.DAS.TestDataExport.Helper
         private readonly string _apprenticeEmail;
         private readonly string[] _tags;
 
-        public ApprenticePPIDataHelper(RandomDataGenerator randomDataGenerator, string[] tags)
+        public ApprenticePPIDataHelper(string[] tags)
         {
             _tags = tags;
+
             bool isPerfTest = tags.Contains("perftest");
+
             _isApprenticeCommitments = tags.Contains("apprenticecommitments");
 
             var emailprefix = isPerfTest ? "Apprentice_PerfTest_" : "ApprenticeAccount_";
             var emaildomain = isPerfTest ? "email.com" : "mailinator.com";
 
-            var firstName = randomDataGenerator.GenerateRandomAlphabeticString(10);
-            var lastName = randomDataGenerator.GenerateRandomAlphabeticString(10);
+            var firstName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            var lastName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
             var nameprefix = _isApprenticeCommitments && _tags.Contains("aslistedemployer") ? $"CMAD_LE_" : _isApprenticeCommitments ? $"CMAD_" : string.Empty;
 
             ApprenticeFirstname = $"{nameprefix}F_{firstName}";
             ApprenticeLastname = $"{nameprefix}L_{lastName}";
 
-            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
+            DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
             
             _apprenticeEmail = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
         }

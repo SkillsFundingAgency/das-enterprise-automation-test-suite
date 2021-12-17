@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -6,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SorryAccountDisabledPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sorry";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By AddViaGGLink => By.LinkText("Try adding your PAYE scheme via Government Gateway");
@@ -19,15 +20,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SorryAccountDisabledPage(ScenarioContext context) : base(context)
         {
-            _context = context;
-            VerifyPage();
-            VerifyPage(AccountDisabledInfo, AccountDisabledInfoMessage);
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(),
+                () => VerifyPage(() => pageInteractionHelper.FindElements(AccountDisabledInfo), AccountDisabledInfoMessage)
+            });
         }
 
         public UsingYourGovtGatewayDetailsPage ClickAddViaGGLink()
         {
             formCompletionHelper.Click(AddViaGGLink);
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
     }
 }

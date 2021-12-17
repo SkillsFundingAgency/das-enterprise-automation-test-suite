@@ -27,12 +27,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeOverviewPage.VerifyPageAfterApprenticeshipConfirm();
         }
 
-        [Then(@"the apprentice is able to navigate to the Help and Support from the link on Overview page and Navigation menu link")]
-        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupport()
+        [Then(@"the apprentice is able to navigate to the Help and Support from the Overview page")]
+        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromTheOverviewPage()
         {
-            var apprenticeHomePage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToHomePageWithReturnToHomePageButton();
+            var apprenticeHomePage = _apprenticeOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
             _apprenticeOverviewPage = apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
-            _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpAndSupportPageWithTheLinkOnTheContentOfOverviewPage().NavigateToOverviewPageWithBackLink();
+            _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToOverviewPageWithBackLink();
         }
 
         [Then(@"the apprentice is able to navigate to Home page back and forth from Overview and Help pages")]

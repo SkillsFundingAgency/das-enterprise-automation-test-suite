@@ -16,7 +16,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public CommitmentsSteps(ScenarioContext context)
         {
             _context = context;
-            _stepsHelper = new StepsHelper(_context);
+            _stepsHelper = new StepsHelper(context);
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
         }
 

@@ -13,15 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string Linktext => "Manage your apprentices";
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        #endregion
-
         public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
+        {            
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
             VerifyPage();
         }
@@ -58,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
                     {
                         formCompletionHelper.ClickElement(detailsLinks);
-                        return new ProviderApprenticeDetailsPage(_context);
+                        return new ProviderApprenticeDetailsPage(context);
                     }
                     i++;
                 }

@@ -42,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public void ConfirmApprenticeship(string email)
         {
-            ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesCorrect = 1, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
+            ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesConfirmations = 7, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
         }
 
         public string ConfirmCoCEventHasTriggered(string email, string scenarioTitle) => GetDetails($"SELECT ApprenticeshipDetailsCorrect from Revision WHERE ConfirmedOn is Null and ApprenticeshipId in {GetRevionTableSubQuery(email)}", scenarioTitle);

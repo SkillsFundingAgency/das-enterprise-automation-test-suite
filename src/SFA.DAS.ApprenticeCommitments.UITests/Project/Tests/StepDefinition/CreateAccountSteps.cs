@@ -48,7 +48,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             foreach (var d in invalidData)
             {
-                _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.InvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
+                _createMyApprenticeshipAccountPage = _createMyApprenticeshipAccountPage.EnterInvalidData(d.Item1, d.Item2, d.Item3, d.Item4, d.Item5);
                 _createMyApprenticeshipAccountPage.VerifyErrorSummary();
             }
         }

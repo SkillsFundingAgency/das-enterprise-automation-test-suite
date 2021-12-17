@@ -2,9 +2,9 @@
 using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -13,10 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         #region Helpers and Context
         protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
-        protected readonly ObjectContext objectContext;
-        private readonly ScenarioContext _context;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly TableRowHelper tableRowHelper;
+        
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
@@ -43,48 +40,52 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string SignOutLinkText => "Sign out";
         protected By Password => By.CssSelector("#Password");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyServiceHeader = true) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
-            _context = context;
-            objectContext = context.Get<ObjectContext>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            tableRowHelper = context.Get<TableRowHelper>();
+            bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
+
+            bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
+            
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
-            if (verifypage) VerifyPage();
-            VerifyPage(CookieBanner);
-            VerifyPage(FeedbackLinkOnBetaBanner);
-            if (verifyServiceHeader) VerifyPage(ServiceHeader, ServiceName);
-            VerifyFooterLinks();
+
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => verifyPage(verifypage),
+                () => VerifyPage(CookieBanner),
+                () => VerifyPage(FeedbackLinkOnBetaBanner),
+                () => verifyServiceHeader(verifyserviceheader),
+                () => { VerifyFooterLinks(); return true; }
+            });
         }
 
         protected void VerifyNotificationBannerHeader(string expected) => VerifyPage(NotificationBannerHeader, expected);
 
         protected void VerifyNotificationBannerContent(string expected) => VerifyPage(NotificationBannerContent, expected);
 
-        public ApprenticeOverviewPage ContinueToHomePage()
+        public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
             Continue();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
 
         public ApprenticeHomePage NavigateToHomePageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HomeTopNavigationLink);
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HelpTopNavigationLink);
-            return new HelpAndSupportPage(_context);
+            return new HelpAndSupportPage(context);
         }
 
         private void VerifyFooterLinks()
@@ -97,7 +98,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public SignedOutPage SignOutFromTheService()
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
-            return new SignedOutPage(_context);
+            return new SignedOutPage(context);
         }
 
         protected void AssertTopNavigationLinksNotToBePresent()
@@ -106,5 +107,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CMADTopNavigationLink), "CMAD Top navigation link is present and it should not be on this page");
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(HelpTopNavigationLink), "Help Top navigation link is present and it should not be on this page");
         }
+
+        protected override void Continue() => formCompletionHelper.Click(ContinueButton);
     }
 }

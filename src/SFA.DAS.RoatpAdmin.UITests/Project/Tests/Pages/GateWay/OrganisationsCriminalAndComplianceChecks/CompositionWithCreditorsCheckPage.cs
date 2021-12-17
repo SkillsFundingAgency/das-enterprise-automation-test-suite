@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
     {
         protected override string PageTitle => "Composition with creditors check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public CompositionWithCreditorsCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CompositionWithCreditorsCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

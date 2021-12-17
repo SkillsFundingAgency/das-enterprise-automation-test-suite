@@ -9,26 +9,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {        
         protected override string PageTitle => "What skills and personal qualities would you like the applicant to have?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
         private By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
         private  By SaveAndContinue => By.CssSelector(".save-button[data-automation='btn-continue']");
 
-        public DesiredSkillsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public DesiredSkillsPage(ScenarioContext context) : base(context) { }
 
         public VacancyPreviewPart2Page SelectSkill()
         {
-            formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
+
             formCompletionHelper.Click(SaveAndContinue);
-            return new VacancyPreviewPart2Page(_context);
+
+            return new VacancyPreviewPart2Page(context);
         }
     }
 }

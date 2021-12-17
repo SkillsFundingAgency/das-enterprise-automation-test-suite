@@ -49,9 +49,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYes();
         
-        public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
-        
-        public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmRolesAndResponsibilitiesPage().ContinueToHomePage();
+        public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
+
+        public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(ApprenticeOverviewPage apprenticeOverviewPage) => VerifyAndConfirmRolesAndResponsibilities(apprenticeOverviewPage.GoToConfirmRolesAndResponsibilitiesPage());
 
         public ApprenticeOverviewPage ConfirmAllSections()
         {
@@ -100,7 +100,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection4Status(initialStatus);
 
-            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToHomePage();
+            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
             AssertSection4Status(StatusHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -108,7 +108,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(string initialStatus)
         {
             AssertSection5Status(initialStatus);
-            var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities().ContinueToHomePage();
+            var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities();
             AssertSection5Status(StatusHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -120,10 +120,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return page;
         }
 
-        private ConfirmRolesAndResponsibilitiesPage NavigateAndVerifyRolesAndResponsibilities()
+        private ApprenticeOverviewPage NavigateAndVerifyRolesAndResponsibilities()
         {
             var page = new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
-            return VerifyRolesAndResponsibilitiesPage(page);
+            return VerifyAndConfirmRolesAndResponsibilities(page);
         }
 
         public ApprenticeOverviewPage AssertSection1Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section1, expectedStatus);
@@ -163,19 +163,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertApprenticeshipDetails();
         }
 
-        public ConfirmRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesPage(ConfirmRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
+        public ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilities(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
         {
-            return confirmRolesAndResponsibilitiesPage.VerifyRolesYourResponsibilitiesTab()
-                .VerifyRolesYourEmployerTab()
-                .VerifyRolesYourTrainingProviderTab();
+            return confirmRolesAndResponsibilitiesPage1of3.ConfirmYourRolesAndContinue().ConfirmEmployerRolesAndContinue().ConfirmTrainingProviderRolesAndContinue();
         }
 
-        public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage confirmRolesAndResponsibilitiesPage)
-        {
-            return confirmRolesAndResponsibilitiesPage.VerifyRolesYourResponsibilitiesTab()
-                .VerifyRolesYourEmployerTab()
-                .VerifyRolesYourTrainingProviderTab();
-        }
+        public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage alreadyConfirmedRolesAndResponsibilitiesPage)
+            => alreadyConfirmedRolesAndResponsibilitiesPage.VerifySubSectionHeaders();
 
         private void PopulateExpectedApprenticeshipDetails()
         {

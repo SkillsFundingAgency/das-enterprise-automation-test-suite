@@ -1,48 +1,38 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class BaseVacancyTitlePage : RAAV2CSSBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        #endregion
-
         private By Title => By.CssSelector("#Title");
 
-        public BaseVacancyTitlePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public BaseVacancyTitlePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {
             ChangeVacancyTitle();
-            return new ApprenticeshipTrainingPage(_context);
+            return new ApprenticeshipTrainingPage(context);
         }
 
         public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstVacancy()
         {
             ChangeVacancyTitle();
-            return new HaveYouAlreadyFoundTrainingPage(_context);
+            return new HaveYouAlreadyFoundTrainingPage(context);
         }
 
         public VacancyPreviewPart2Page UpdateVacancyTitle()
         {
             ChangeVacancyTitle();
-            return new VacancyPreviewPart2Page(_context);
+            return new VacancyPreviewPart2Page(context);
         }
 
         private void ChangeVacancyTitle()
         {
             formCompletionHelper.EnterText(Title, $"{rAAV2DataHelper.VacancyTitle}");
             Continue();
-            _objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
+            objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
         }
     }
 }

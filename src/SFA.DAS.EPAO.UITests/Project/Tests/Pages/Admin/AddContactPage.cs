@@ -7,10 +7,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Add a contact";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FirstName => By.CssSelector("#FirstName");
 
         private By LastName => By.CssSelector("#LastName");
@@ -19,11 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By PhoneNumber => By.CssSelector("#PhoneNumber");
        
-        public AddContactPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AddContactPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ContactDetailsPage AddContact()
         {
@@ -32,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
             Continue();
-            return new ContactDetailsPage(_context);
+            return new ContactDetailsPage(context);
         }
     }
 }

@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
 {
-    public abstract class UnauthorisedAccessBasePage : BasePage
+    public abstract class UnauthorisedAccessBasePage : VerifyBasePage
     {
         protected override string PageTitle { get; }
 

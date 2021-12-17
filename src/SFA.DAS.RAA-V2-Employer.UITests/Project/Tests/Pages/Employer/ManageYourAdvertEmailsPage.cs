@@ -7,14 +7,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Manage your emails";
 
-        #region Helpers and Context      
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ManageYourAdvertEmailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ManageYourAdvertEmailsPage(ScenarioContext context) : base(context) { }
 
     }
 }

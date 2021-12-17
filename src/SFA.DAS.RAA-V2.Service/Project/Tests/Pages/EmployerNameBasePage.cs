@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -8,12 +7,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class EmployerNameBasePage : RAAV2CSSBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
         private By NewTradingName => By.CssSelector("#NewTradingName");
@@ -22,23 +15,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By EmployerReason => By.CssSelector("#AnonymousReason");
 
-        public EmployerNameBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public EmployerNameBasePage(ScenarioContext context) : base(context) { }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
             SelectRadioOptionByForAttribute("legal-entity-name");
 
-            var entityName = _pageInteractionHelper.GetText(LegalEntityName);
+            var entityName = pageInteractionHelper.GetText(LegalEntityName);
 
             SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
 
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
@@ -47,7 +35,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
             SetEmployerName(rAAV2DataHelper.EmployerTradingName);
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseAnonymous()
@@ -57,9 +45,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SetEmployerName(rAAV2DataHelper.EmployerDescription);
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
             Continue();
-            return new ChooseApprenticeshipLocationPage(_context);
+            return new ChooseApprenticeshipLocationPage(context);
         }
 
-        private void SetEmployerName(string value) => _objectContext.SetEmployerName(value);
+        private void SetEmployerName(string value) => objectContext.SetEmployerName(value);
     }
 }

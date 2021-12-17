@@ -15,24 +15,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         private By ClarificationResponseBox => By.Id("ClarificationResponse");
         private By InadequateCommentBox => By.Id("InadequateComments");
 
-        private By InadequateExternalCommentsBox = By.Id("InadequateExternalComments");
+        private By InadequateExternalCommentsBox => By.Id("InadequateExternalComments");
         private By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
         private By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FinancialHealthAssessmentOverviewPage(ScenarioContext context) : base(context)
-        {
-           _context = context;
-           VerifyPage();
-        }
+        public FinancialHealthAssessmentOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FinancialHealthAssesmentCompletedPage ConfirmFHAReview(string expectedoutcome)
         {
             SelectRadioOptionByForAttribute(expectedoutcome);
-            if (_context.ScenarioInfo.Tags.Contains("rpendtoend02apply"))
+            if (tags.Contains("rpendtoend02apply"))
             {
 
                 formCompletionHelper.EnterText(InadequateCommentBox, "PMO Internal Comments for Inadequate");
@@ -46,7 +38,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
                 formCompletionHelper.EnterText(YearOutStandingField, "2022");
                 Continue();
             }
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         public FinancialHealthAssesmentCompletedPage ConfirmNeedsClarification()
@@ -54,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             SelectRadioOptionByForAttribute("clarification");
             formCompletionHelper.EnterText(ClarificationCommentBox, "PMO Clarification Internal Comments");
             Continue();
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         public FinancialHealthAssesmentCompletedPage EnterClarificationResponse()
@@ -67,7 +59,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             formCompletionHelper.EnterText(InadequateCommentBox, "PMO Clarification Internal Comments for Inadequate");
             formCompletionHelper.EnterText(InadequateExternalCommentsBox, "PMO Clarification External Comments for Inadequate");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Save outcome");
-            return new FinancialHealthAssesmentCompletedPage(_context);
+            return new FinancialHealthAssesmentCompletedPage(context);
         }
 
         private FinancialHealthAssessmentOverviewPage UploadFile()

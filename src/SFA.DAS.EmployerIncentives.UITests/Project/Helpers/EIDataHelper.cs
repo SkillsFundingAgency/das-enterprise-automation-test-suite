@@ -5,30 +5,28 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
     public class EIDataHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
+        public EIDataHelper() { }
 
-        public EIDataHelper(RandomDataGenerator randomDataGenerator) => _randomDataGenerator = randomDataGenerator;
+        public string AddressLine1 => $"{RandomDataGenerator.GenerateRandomAlphabeticString(5)} {RandomDataGenerator.GenerateRandomAlphabeticString(5)}";
 
-        public string AddressLine1 => $"{_randomDataGenerator.GenerateRandomAlphabeticString(5)} {_randomDataGenerator.GenerateRandomAlphabeticString(5)}";
+        public string Town => RandomDataGenerator.GenerateRandomAlphabeticString(8);
 
-        public string Town => _randomDataGenerator.GenerateRandomAlphabeticString(8);
+        public string Poscode => $"CV{RandomDataGenerator.GenerateRandomNumber(1)} {RandomDataGenerator.GenerateRandomNumber(1)}WT";
 
-        public string Poscode => $"CV{_randomDataGenerator.GenerateRandomNumber(1)} {_randomDataGenerator.GenerateRandomNumber(1)}WT";
+        public string BankName => RandomDataGenerator.GenerateRandomAlphabeticString(5);
 
-        public string BankName => _randomDataGenerator.GenerateRandomAlphabeticString(5);
-
-        public string AccountNumber => $"2{_randomDataGenerator.GenerateRandomNumber(7)}";
+        public string AccountNumber => $"2{RandomDataGenerator.GenerateRandomNumber(7)}";
 
         public string Sortcode => "000002";
 
-        public string TelephoneNumber => $"012{_randomDataGenerator.GenerateRandomNumber(8)}";
+        public string TelephoneNumber => $"012{RandomDataGenerator.GenerateRandomNumber(8)}";
 
-        public string FirstName => _randomDataGenerator.GenerateRandomAlphabeticString(10);
+        public string FirstName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
-        public string SurName => _randomDataGenerator.GenerateRandomAlphabeticString(10);
+        public string SurName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
-        public string JoiningDay =>  new DateTime(2020,12,_randomDataGenerator.GenerateRandomDateOfMonth()).ToString("dd");
+        public string JoiningDay =>  new DateTime(2020,12,RandomDataGenerator.GenerateRandomDateOfMonth()).ToString("dd");
 
-        public string JoiningMonth => new DateTime(2020, _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(4, 10), 01).ToString("MM");
+        public string JoiningMonth => new DateTime(2020, RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(4, 10), 01).ToString("MM");
     }
 }

@@ -8,12 +8,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     [Binding, Scope(Tag = "roatpoutcome")]
     public class NewRoatpAdminRoatpOversightHooks : RoatpBaseHooks
     {
-        private readonly ScenarioContext _context;
+        private readonly string[] _tags;
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
         public NewRoatpAdminRoatpOversightHooks(ScenarioContext context) : base(context)
         {
-            _context = context;
+            _tags = context.ScenarioInfo.Tags;
             _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
         }
 
@@ -21,20 +21,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public void OversightReviewClearDownFromApply() => _roatpApplyClearDownDataHelpers.OversightReviewClearDownFromApply(GetUkprn());
 
         [BeforeScenario(Order = 34)]
-        public void ClearDownTrainingProvider()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("rpadoutcome01"))
-            {
-                DeleteTrainingProvider();
-            }
-        }
-        [BeforeScenario(Order = 35)]
         public void ClearDownTrainingProviderFromRegister()
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadoutcomeappeals01"))
+            if (_tags.Contains("rpadoutcomeappeals01") ||
+                (_tags.Contains("rpadgatewayfailappeals01")) ||
+                (_tags.Contains("rpadoutcome01")))
             {
                 DeleteTrainingProvider();
             }
         }
-    }
+    } 
 }

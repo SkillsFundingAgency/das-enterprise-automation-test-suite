@@ -8,11 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
@@ -23,36 +18,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
         private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
         private By CompletionDate => By.Id("completionDate");
-        private By changeTrainingProviderLink => By.Id("change-training-provider-link");
+        private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
 
-        public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
         public EditApprenticePage ClickEditApprenticeDetailsLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
-            return new EditApprenticePage(_context);
+            return new EditApprenticePage(context);
         }
 
         public ReviewChangesPage ClickReviewChanges()
         {
             formCompletionHelper.ClickElement(ReviewChangesLink);
-            return new ReviewChangesPage(_context);
+            return new ReviewChangesPage(context);
         }
 
         public ChangeApprenticeStatusPage ClickEditStatusLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeStatusLink);
-            return new ChangeApprenticeStatusPage(_context);
+            return new ChangeApprenticeStatusPage(context);
         }
 
         public ThisApprenticeshipTrainingStopPage ClickEditStopDateLink()
         {
             formCompletionHelper.ClickElement(EditStopDateLink);
-            return new ThisApprenticeshipTrainingStopPage(_context);
+            return new ThisApprenticeshipTrainingStopPage(context);
         }
 
         public bool VerifyIfChangeRequestWasApproved()
@@ -69,26 +64,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
-        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(changeTrainingProviderLink);
+        public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeTrainingProviderLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
         public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
 
         public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
         {
-            formCompletionHelper.ClickElement(changeTrainingProviderLink);
-            return new ChangingTrainingProviderPage(_context);
+            formCompletionHelper.ClickElement(ChangeTrainingProviderLink);
+            return new ChangingTrainingProviderPage(context);
         }
 
         public ViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChangesLink);
-            return new ViewChangesPage(_context);
+            return new ViewChangesPage(context);
         }
 
         public ViewChangesPage ClickReviewChangesLink()
         {
             formCompletionHelper.Click(ReviewCopChangesLink);
-            return new ViewChangesPage(_context);
+            return new ViewChangesPage(context);
         }
 
         public ApprenticeDetailsPage ValidateFlashMessage(string expectedMsg)

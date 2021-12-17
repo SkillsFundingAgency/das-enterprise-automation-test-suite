@@ -1,13 +1,11 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
-    public abstract class EPAODataHelper : RandomElementHelper
+    public abstract class EPAODataHelper
     {
-        public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public EPAODataHelper()
         {
             CurrentDay = DateTime.Now.Day;
             CurrentMonth = DateTime.Now.Month;
@@ -25,12 +23,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string CountyName => "Warwick";
         public string PostCode => "CV1 2WT";
 
-        public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
+        public string GetRandomNumber(int length) => RandomDataGenerator.GenerateRandomNumber(length);
 
-        public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
-        public string GetRandomAlphanumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(length);
-
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
+        public string GetRandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }

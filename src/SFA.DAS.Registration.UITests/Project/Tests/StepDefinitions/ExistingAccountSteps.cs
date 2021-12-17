@@ -12,7 +12,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
-
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private HomePage _homePage;
@@ -66,22 +65,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can not remove the organisation")]
-        public void ThenTheUserCanNotRemoveTheOrganisation()
-        {
-            _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage().ClickToRemoveAnOrg());
-        }
+        public void ThenTheUserCanNotRemoveTheOrganisation() => _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage().ClickToRemoveAnOrg());
 
         [Then(@"the user can not add Payee Scheme")]
-        public void ThenTheUserCanNotAddPayeeScheme()
-        {
-            _homePage = GoBackToTheServiceHomePage(_homePage.GotoPAYESchemesPage().ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage());
-        }
+        public void ThenTheUserCanNotAddPayeeScheme() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoPAYESchemesPage().ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage());
 
         [Then(@"the user can not invite a team members")]
-        public void ThenTheUserCanNotInviteATeamMembers()
-        {
-            _homePage = GoBackToTheServiceHomePage(_homePage.GotoYourTeamPage().ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage());
-        }
+        public void ThenTheUserCanNotInviteATeamMembers() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoYourTeamPage().ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage());
 
         [Then(@"the user can not accept agreement")]
         public void ThenTheUserCanNotAcceptAgreement()
@@ -100,6 +90,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private HomePage GoBackToTheServiceHomePage(AccessDeniedPage accessDeniedPage) => accessDeniedPage.GoBackToTheServiceHomePage(_employerPortalLoginHelper.GetLoginCredentials().OrganisationName);
-
     }
 }
