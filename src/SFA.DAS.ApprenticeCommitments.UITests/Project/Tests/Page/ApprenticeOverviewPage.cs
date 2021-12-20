@@ -92,18 +92,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
         {
             VerifyPage(AppreticeshipConfirmBannerHeader);
-            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
+            VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(context);
         }
 
         public void VerifyPageAfterApprenticeshipConfirm()
         {
-            VerifyPage(PageHeader, PageTitleAfterConfirmation);
-            VerifyPage(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
+            VerifyElement(PageHeader, PageTitleAfterConfirmation);
+            VerifyElement(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
         }
 
-        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
+        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
 
         private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
 

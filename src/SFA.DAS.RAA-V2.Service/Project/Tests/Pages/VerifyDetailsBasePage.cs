@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected void VerifyEmployerName()
         {
             var empName = objectContext.GetEmployerName();
-            VerifyPage(EmployerName, empName);
-            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            VerifyElement(EmployerName, empName);
+            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
 
         protected void VerifyDisabilityConfident() => VerifyPage(DisabilityConfident);

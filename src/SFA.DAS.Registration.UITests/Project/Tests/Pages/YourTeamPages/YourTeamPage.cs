@@ -50,6 +50,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
             return this;
         }
 
-        private void VerifyInvitationActionHeader(string message) => VerifyPage(InvitationActionHeader, message);
+        private void VerifyInvitationActionHeader(string message) => VerifyElement(InvitationActionHeader, message);
     }
 }

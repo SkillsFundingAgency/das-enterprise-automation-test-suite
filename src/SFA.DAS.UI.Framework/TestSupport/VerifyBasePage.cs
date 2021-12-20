@@ -50,6 +50,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             });
         }
 
+        #region VerifyPage
+        // VerifyPage methods are used to verify that the application landed on the expected page
+
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
@@ -58,13 +61,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => VerifyPage(() => VerifyElement(func, expected));
 
-        protected bool VerifyElement(Func<List<IWebElement>> func, string expected) => pageInteractionHelper.VerifyPage(func, expected);
-
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
-
         protected bool VerifyPage(By locator) => VerifyPage(() => VerifyElement(locator));
-
-        protected bool VerifyElement(By locator) => pageInteractionHelper.VerifyPage(locator);
 
         protected bool VerifyPage(By locator, Action retryAction) => VerifyPage(() => pageInteractionHelper.VerifyPage(locator, retryAction));
 
@@ -72,9 +69,26 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => VerifyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
 
-        protected bool VerifyPage(By locator, string text) => VerifyPage(() => pageInteractionHelper.VerifyPage(locator, text));
+        protected bool VerifyPage(By locator, string text) => VerifyPage(() => VerifyElement(locator, text));
 
-        protected bool VerifyPage(By locator, string text, Action retryAction) => VerifyPage(() => pageInteractionHelper.VerifyPage(locator, text, retryAction));
+        protected bool VerifyPage(By locator, string text, Action retryAction) => VerifyPage(() => VerifyElement(locator, text, retryAction));
+
+        #endregion
+
+        #region VerifyElement 
+        // VerifyElement method are used to verify an element with in a page after the page verification happened.
+
+        protected bool VerifyElement(By locator, string text) => pageInteractionHelper.VerifyPage(locator, text);
+
+        protected bool VerifyElement(By locator, string text, Action retryAction) => pageInteractionHelper.VerifyPage(locator, text, retryAction);
+
+        protected bool VerifyElement(Func<List<IWebElement>> func, string expected) => pageInteractionHelper.VerifyPage(func, expected);
+
+        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
+
+        protected bool VerifyElement(By locator) => pageInteractionHelper.VerifyPage(locator);
+
+        #endregion
 
         private bool CanCaptureUrl() => (frameworkConfig.CanCaptureUrl && CaptureUrl);
 

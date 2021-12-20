@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
         {
-            VerifyPage(HeaderInformationMessage, info);
+            VerifyElement(HeaderInformationMessage, info);
             return this;
         }
 
