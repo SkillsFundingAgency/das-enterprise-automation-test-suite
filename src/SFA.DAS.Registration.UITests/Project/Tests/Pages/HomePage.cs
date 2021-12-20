@@ -51,12 +51,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
-        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
+        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyElement(StartAddingApprenticesNowTaskLink);
 
         public void VerifySetupAnApprenticeshipSection()
         {
-            VerifyPage(SetUpAnApprenticeshipSectionHeader);
-            VerifyPage(StartNowButton);
+            VerifyElement(SetUpAnApprenticeshipSectionHeader);
+            VerifyElement(StartNowButton);
         }
     }
 }

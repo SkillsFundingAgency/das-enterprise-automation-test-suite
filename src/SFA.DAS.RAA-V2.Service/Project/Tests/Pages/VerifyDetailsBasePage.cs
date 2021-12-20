@@ -21,6 +21,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
 
-        protected void VerifyDisabilityConfident() => VerifyPage(DisabilityConfident);
+        protected void VerifyDisabilityConfident() => VerifyElement(DisabilityConfident);
     }
 }
