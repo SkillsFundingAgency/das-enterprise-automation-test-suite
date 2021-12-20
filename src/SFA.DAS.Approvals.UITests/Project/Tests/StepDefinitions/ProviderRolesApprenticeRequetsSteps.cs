@@ -167,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                         .GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectDeleteCohort()
-                                                        .ValidateDeleteOptionExists();
+                                                        .IsDeleteOptionDisplayed();
 
             if (!canDeleteCohort)
                 throw new Exception("unable to find option to delete cohort!");

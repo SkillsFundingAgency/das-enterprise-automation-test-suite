@@ -20,10 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeRequestsPage(context);
         }
 
-        public bool ValidateDeleteOptionExists()
-        {
-            return pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions);
-        }
+        public bool IsDeleteOptionDisplayed() => pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions);
 
 
     }
