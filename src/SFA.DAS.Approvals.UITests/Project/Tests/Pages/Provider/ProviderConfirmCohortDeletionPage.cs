@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Confirm cohort deletion";
 
-        private By ConfirmDeleteOptions => By.Id("confirm-true");
+        private By ConfirmDeleteOptions => By.XPath("//label[contains(text(),'Yes, delete cohort')]");
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
@@ -20,7 +20,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeRequestsPage(context);
         }
 
-        public bool ValidateDeleteOptionExists() => pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions); 
+        public bool ValidateDeleteOptionExists()
+        {
+            return pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions);
+        }
 
 
     }
