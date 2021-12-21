@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Org.BouncyCastle.Crypto.Engines;
 using SFA.DAS.EmployerIncentives.Messages.Events;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
@@ -147,6 +146,33 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _expectedEmployedAtStartOfApprenticeshipValidationResult = false;
         }
 
+        [Given(@"the apprenticeship incentive has been withdrawn")]
+        public async Task GivenTheApprenticeshipIncentiveHasBeenWithdrawn()
+        {
+            await Helper.EIFunctionsHelper.Withdraw(TestData.ULN, TestData.IncentiveApplication.AccountLegalEntityId, WithdrawalType.Compliance);
+            await Helper.EISqlHelper.WaitUntilIncentiveWithdrawn(TestData.ApprenticeshipIncentiveId, TimeSpan.FromSeconds(5));
+        }
+
+        [Given(@"month end is in progress")]
+        public async Task GivenMonthEndIsInProgress()
+        {
+            await Helper.PaymentsOrchestratorHelper.Run();
+        }
+
+        [Given(@"apprenticeship incentives have been submitted")]
+        public async Task GivenApprenticeshipIncentivesHaveBeenSubmitted()
+        {
+            await CreateIncentive(Phase.Phase2, new DateTime(2021, 04, 30));
+            await CreateIncentive(Phase.Phase2, new DateTime(2021, 05, 30));
+        }
+
+        [Given(@"an ILR submission has been received for that learner")]
+        public async Task GivenAnIlrSubmissionIsReceived()
+        {
+            await WhenAnIlrSubmissionIsReceived();
+            await WhenTheLearnerMatchIsRun();
+        }
+
         private async Task CreateIncentive(Phase phase, DateTime startDate)
         {
             _startDate = startDate;
@@ -224,6 +250,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenARecheckIsRequested()
         {
             await Helper.EIFunctionsHelper.TriggerEmploymentCheck(TestData.Account.AccountLegalEntityId, TestData.ULN);
+        }
+
+        [When(@"the refresh of all employment checks is requested")]
+        public async Task WhenTheRefreshOfAllEmploymentChecksIsRequested()
+        {
+            await Helper.EISqlHelper.DeleteEmploymentChecks(TestData.ApprenticeshipIncentiveId);
+            await Helper.EIFunctionsHelper.TriggerEmploymentChecks();
         }
 
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting")]

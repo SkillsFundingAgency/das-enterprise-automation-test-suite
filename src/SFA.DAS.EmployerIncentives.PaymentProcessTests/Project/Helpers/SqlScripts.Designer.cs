@@ -86,6 +86,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE Incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId.
+        /// </summary>
+        internal static string DeleteEmploymentChecks {
+            get {
+                return ResourceManager.GetString("DeleteEmploymentChecks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DECLARE @apprenticeshipIncentiveId UNIQUEIDENTIFIER
         ///DECLARE @apprenticeshipIncentiveIds TABLE (Id UNIQUEIDENTIFIER)
         ///INSERT INTO @apprenticeshipIncentiveIds SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId
@@ -115,7 +124,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE incentives.EmploymentCheck SET Result = @result WHERE CorrelationId = @correlationId.
+        ///   Looks up a localized string similar to UPDATE incentives.EmploymentCheck SET Result = @result WHERE Id = @id.
         /// </summary>
         internal static string UpdateEmploymentCheckResult {
             get {

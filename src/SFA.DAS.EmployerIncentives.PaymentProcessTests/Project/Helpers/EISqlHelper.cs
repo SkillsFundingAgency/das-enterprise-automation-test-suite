@@ -111,6 +111,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND Result = @expectedResult AND CheckType = @checkType", new { apprenticeshipIncentiveId, expectedResult, checkType = checkType.ToString() }, 1, timeout);
         }
 
+        public async Task WaitUntilIncentiveWithdrawn(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId AND Status = 'Withdrawn'", new { apprenticeshipIncentiveId }, 1, timeout);
+        }
+
         private async Task WaitUntil(string query, object parameters, int expectedResults, TimeSpan? timeout)
         {
             using var cts = new CancellationTokenSource();
@@ -181,6 +186,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(SqlScripts.UpdateEmploymentCheckResult, new { id, result });
+        }
+
+        public async Task DeleteEmploymentChecks(Guid apprenticeshipIncentiveId)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteEmploymentChecks, new { apprenticeshipIncentiveId });
         }
     }
 }

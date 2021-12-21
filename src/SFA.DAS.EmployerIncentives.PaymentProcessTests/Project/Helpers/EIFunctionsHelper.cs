@@ -49,6 +49,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task TriggerEmploymentChecks()
+        {
+            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpTriggerRefreshEmploymentChecks", null);
+            response.EnsureSuccessStatusCode();
+        }
+
         public class WithdrawRequest
         {
             public WithdrawalType WithdrawalType { get; set; }
