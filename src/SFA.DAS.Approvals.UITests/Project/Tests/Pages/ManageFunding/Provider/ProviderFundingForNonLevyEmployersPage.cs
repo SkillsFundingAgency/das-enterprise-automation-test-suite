@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         protected By AddApprenticeLink => By.CssSelector($"table a[href*='?reservationId={_reservationId}']");
 
         protected By DeleteFundingLink => By.CssSelector($"table a[href*='{_reservationId}/delete']");
+        protected By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
 
         public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context) => _reservationId = objectContext.GetReservationId();
 
@@ -47,6 +48,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             VerifyElement(() => pageInteractionHelper.FindElement(DeleteFundingLink), "Delete", null);
             return this;
+        }
+
+        public ProviderReserveFundingForNonLevyEmployersPage ClickReserveMoreFundingLink()
+        {
+            formCompletionHelper.ClickElement(ReserveMoreFundingLink);
+            return new ProviderReserveFundingForNonLevyEmployersPage(context);
         }
     }
 }
