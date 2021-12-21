@@ -6,7 +6,9 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
     public class CheckYourAnswersPage : AEDBasePage
     {
         protected override string PageTitle => "Check your answers";
-        
+
+        protected override bool TakeFullScreenShot => false;
+
         public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
 
         private By ChangeEmail => By.XPath("//body/div[2]/main[1]/div[1]/div[1]/dl[2]/div[1]/dd[2]/a[1]");

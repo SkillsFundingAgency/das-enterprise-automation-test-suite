@@ -6,6 +6,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Apprenticeship training courses";
 
+        protected override bool TakeFullScreenShot => false;
+
         public FindApprenticeshipTrainingSearchPage(ScenarioContext context) : base(context) { }
 
         public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
