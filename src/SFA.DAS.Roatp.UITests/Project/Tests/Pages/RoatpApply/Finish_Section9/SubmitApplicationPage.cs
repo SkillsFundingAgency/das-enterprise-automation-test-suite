@@ -8,7 +8,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         protected override string PageTitle => "Submit application on behalf of";
 
         private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
-        private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication");
+        private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication"); 
+        private By ConfirmOrganisationSpecific => By.Id("ConfirmOrganisationSpecificSubmitApplication");
         private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
         private By ConfirmFurtherCommunicationSubmitApplication => By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
@@ -17,6 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
         public ApplicationSubmittedPage ConfirmAllAnswersAndSubmitApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmSubmitApplication));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmOrganisationSpecific));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmChangeOfOwnership));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherInfoSubmitApplication));
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherCommunicationSubmitApplication));
