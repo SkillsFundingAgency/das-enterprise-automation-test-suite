@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "New training start date";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By StartDateMonth => By.Name("StartMonth");
         private By StartDateYear => By.Name("StartYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");

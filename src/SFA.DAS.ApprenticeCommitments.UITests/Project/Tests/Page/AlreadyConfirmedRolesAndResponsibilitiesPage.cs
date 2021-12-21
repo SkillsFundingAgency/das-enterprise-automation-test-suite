@@ -16,9 +16,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage VerifySubSectionHeaders()
         {
-            VerifyPage(SubHeader1);
-            VerifyPage(SubHeader2);
-            VerifyPage(SubHeader3);
+            VerifyElement(SubHeader1);
+            VerifyElement(SubHeader2);
+            VerifyElement(SubHeader3);
             return this;
         }
 

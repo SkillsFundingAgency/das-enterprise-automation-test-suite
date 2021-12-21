@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.FAT_V2.UITests.Project.Helpers;
 using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
@@ -33,17 +32,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the User chooses the first course from the Search Results page")]
         [When(@"the User chooses the first course from the Search Results page")]
-        public void WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage()
-        {
-            _trainingCourseSummaryPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult();
-        }
+        public void WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage() => _trainingCourseSummaryPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult();
 
         [Given(@"the User is able to find the Provider by location (.*) for the chosen training")]
         [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
-        public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode)
-        {
-            _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
-        }
+        public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode) => _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
 
         [Given(@"user navigates to provider details page")]
         public void GivenUserNavigatesToProviderDetailsPage()
@@ -96,17 +89,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"user shortlists with a location")]
-        public void WhenUserShortlistsWithALocation()
-        {
-            _providerSearchResultsPage.ShortlistAProviderFromProviderList();
-        }
+        public void WhenUserShortlistsWithALocation() => _providerSearchResultsPage.ShortlistAProviderFromProviderList();
 
         [Given(@"the the user navigates to shortlist page")]
         [When(@"the the user navigates to shortlist page")]
-        public void WhenTheTheUserNavigatesToShortlistPage()
-        {
-            _providerShortlistPage = _providerSearchResultsPage.NavigateToProviderShortlistPage();
-        }
+        public void WhenTheTheUserNavigatesToShortlistPage() => _providerShortlistPage = _providerSearchResultsPage.NavigateToProviderShortlistPage();
 
         [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
         public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
@@ -118,10 +105,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         public void ThenUserIsAbleToReturnToHomepage() => _trainingCourseSummaryPage.NavigateBackToHompage();
 
         [Then(@"the User is able to select the Provider for the chosen training")]
-        public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining()
-        {
-            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
-        }
+        public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining() => _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
 
         [Then(@"'(.*)' message is displayed")]
         public void ThenMessageIsDisplayed(string errorMessage) => Assert.IsTrue(_providerSummaryPage.VerifyNoTrainingProviderAtLocationErrorText(), errorMessage);
@@ -133,15 +117,9 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
             .NavigateBackToHompage();
 
         [Then(@"the user is able remove the shortlisted provider")]
-        public void ThenTheUserIsAbleRemoveTheShortlistedProvider()
-        {
-            _providerShortlistPage.RemoveShortlistedProvider();
-        }
+        public void ThenTheUserIsAbleRemoveTheShortlistedProvider() => _providerShortlistPage.RemoveShortlistedProvider();
 
         [Then(@"the user is able to return to course search page")]
-        public void ThenTheUserIsAbleToReturnToCourseSearchPage()
-        {
-            _providerShortlistPage.ReturnToTrainingCourseSearchResultsPage();
-        }
+        public void ThenTheUserIsAbleToReturnToCourseSearchPage() => _providerShortlistPage.ReturnToTrainingCourseSearchResultsPage();
     }
 }

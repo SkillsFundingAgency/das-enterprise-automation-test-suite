@@ -37,7 +37,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 
         public PAYESchemesPage VerifyPayeSchemeRemovedInfoMessage()
         {
-            VerifyPage(PAYERemovedHeaderInfo, $"You've removed {SecondPaye}");
+            VerifyElement(PAYERemovedHeaderInfo, $"You've removed {SecondPaye}");
             return this;
         }
     }

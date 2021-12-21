@@ -5,7 +5,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 {
     public class EditProvidersContactDetailsPage : AEDBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Edit";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
         public EditProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
@@ -23,17 +26,17 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         public EditProvidersContactDetailsPage EnterProviderEmailAddressDetails(string emailAddress)
         {
             formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
-            return new EditProvidersContactDetailsPage(context);
+            return this;
         }
         public EditProvidersContactDetailsPage EnterProviderTelephoneNumberDetails(string telephoneNumber)
         {
             formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
-            return new EditProvidersContactDetailsPage(context);
+            return this;
         }
         public EditProvidersContactDetailsPage EnterProviderWebsiteDetails(string website)
         {
             formCompletionHelper.EnterText(WebsiteTextBox, website);
-            return new EditProvidersContactDetailsPage(context);
+            return this;
         }
 
         public ConfirmProvidersContactDetailsPage ContinueToConfirmProviderContactDetailsPage()
@@ -50,13 +53,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         {
             formCompletionHelper.Click(TelephoneNumberErrorText);
             formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
-            return new EditProvidersContactDetailsPage(context);
+            return this;
         }
         public EditProvidersContactDetailsPage ReEnterProviderEmailAddressDetails(string emailAddress)
         {
             formCompletionHelper.Click(EmailAddressErrorText);
             formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
-            return new EditProvidersContactDetailsPage(context);
+            return this;
         }
     }
 }

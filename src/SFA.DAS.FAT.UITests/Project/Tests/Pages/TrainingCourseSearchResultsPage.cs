@@ -22,8 +22,8 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         public TrainingCourseSearchResultsPage VerifyFilterAndSortByFields()
         {
-            VerifyPage(FilterResultsPanel);
-            VerifyPage(SortByDropDownField);
+            VerifyElement(FilterResultsPanel);
+            VerifyElement(SortByDropDownField);
             return this;
         }
 

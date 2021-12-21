@@ -76,9 +76,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new SuccessfullyWithdrawnPage(context);
         }
 
-        private void VerifyTermsError() => VerifyPage(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
+        private void VerifyTermsError() => VerifyElement(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
 
-        private void VerifyConfirmError() => VerifyPage(ErrorTitle, "You must confirm that you want to decline the funding and withdraw the application");
+        private void VerifyConfirmError() => VerifyElement(ErrorTitle, "You must confirm that you want to decline the funding and withdraw the application");
 
 
         private void AcceptInformationTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(InformationSelector));

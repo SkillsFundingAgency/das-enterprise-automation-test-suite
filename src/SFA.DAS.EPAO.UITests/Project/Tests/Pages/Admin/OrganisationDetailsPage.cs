@@ -39,7 +39,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         
         public ContactDetailsPage SelectContact()
         {
-            VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
+            VerifyElement(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
             formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
             return new ContactDetailsPage(context);
         }

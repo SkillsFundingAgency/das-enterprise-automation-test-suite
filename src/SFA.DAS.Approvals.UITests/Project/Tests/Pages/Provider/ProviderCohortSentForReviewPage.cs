@@ -6,6 +6,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Cohort sent to employer for review";
 
+        protected override bool TakeFullScreenShot => false;
+
         public ProviderCohortSentForReviewPage(ScenarioContext context) : base(context) { }
     }
 }

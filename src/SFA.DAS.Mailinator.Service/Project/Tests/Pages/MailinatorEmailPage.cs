@@ -6,6 +6,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
     public class MailinatorEmailPage : MailinatorBasePage
     {
         protected override string PageTitle => "Received";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".sender-info");
 
         #region Locators

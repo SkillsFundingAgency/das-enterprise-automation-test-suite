@@ -2,8 +2,6 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
@@ -24,10 +22,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the provider navigates to Find employers that need a training provider")]
-        public void GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider()
-        {
-            _providerStepsHelper.GoToProviderHomePagePage(_login, true).FindEmployersThatNeedATrainingProvider();
-        }
+        public void GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider() => _providerStepsHelper.GoToProviderHomePagePage(_login, true).FindEmployersThatNeedATrainingProvider();
 
         [Given(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
         [When(@"the provider has entered their contact details '(.*)', '(.*)' and '(.*)'")]
@@ -55,58 +50,34 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the provider shows the which employers they are interested in")]
-        public void WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn()
-        {
-            _providerStepsHelper.GoToWhichEmployersAreYouInterestedInPage().CheckAndContinueWithfirstEmployerCheckbox();
-        }
+        public void WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn() => _providerStepsHelper.GoToWhichEmployersAreYouInterestedInPage().CheckAndContinueWithfirstEmployerCheckbox();
 
         [When(@"the provider is able to enter their details '(.*)', '(.*)' and '(.*)'")]
-        public void WhenTheProviderIsAbleToEnterTheirDetailsAnd(string emailAddress, string telephoneNumber, string website)
-        {
-            _providerStepsHelper.ConfirmAndShareProvidersDetailsWithEmployersContactDetails(emailAddress, telephoneNumber, website);
-        }
+        public void WhenTheProviderIsAbleToEnterTheirDetailsAnd(string emailAddress, string telephoneNumber, string website) 
+            => _providerStepsHelper.ConfirmAndShareProvidersDetailsWithEmployersContactDetails(emailAddress, telephoneNumber, website);
 
         [When(@"the provider selects the option to edit")]
-        public void WhenTheProviderSelectsTheOptionToEdit()
-        {
-            _providerStepsHelper.ChangeProviderContactDetails();
-        }
+        public void WhenTheProviderSelectsTheOptionToEdit() => _providerStepsHelper.ChangeProviderContactDetails();
 
         [When(@"the provider chooses to edit the contact details '(.*)', '(.*)' and '(.*)'")]
-        public void WhenTheProviderChoosesToEditTheContactDetailsAnd(string newEmailAddress, string newTelephoneNumber, string newWebsite)
-        {
+        public void WhenTheProviderChoosesToEditTheContactDetailsAnd(string newEmailAddress, string newTelephoneNumber, string newWebsite) => 
             _providerStepsHelper.ConfirmProviderContactDetailsHaveBeenEdited(newEmailAddress, newTelephoneNumber, newWebsite);
-        }
-
+        
         [When(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
         [Then(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
-        public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website)
-        {
+        public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website) => 
             _providerStepsHelper.ReEnterProviderContactDetailsBeforeResubmitting(emailAddress, telephoneNumber, website);
-        }
-
+        
         [When(@"the provider selects the option to edit the location")]
-        public void WhenTheProviderSelectsTheOptionToEditTheLocation()
-        {
-            _providerStepsHelper.ChangeProviderLocationDetails();
-        }
+        public void WhenTheProviderSelectsTheOptionToEditTheLocation() => _providerStepsHelper.ChangeProviderLocationDetails();
 
         [Then(@"the provider is able to submit the edited details")]
-        public void ThenTheProviderIsAbleToSubmitTheEditedDetails()
-        {
-            _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
-        }
+        public void ThenTheProviderIsAbleToSubmitTheEditedDetails() => _providerStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit();
 
         [Then(@"the provider is able to navigate to beginning of the journey using the back links")]
-        public void ThenTheProviderIsAbleToNavigateToBeginningOfTheJourneyUsingTheBackLinks()
-        {
-            _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
-        }
+        public void ThenTheProviderIsAbleToNavigateToBeginningOfTheJourneyUsingTheBackLinks() => _providerStepsHelper.NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage();
 
         [Then(@"the provider is able to submit their location details")]
-        public void TheProviderIsAbleToSubmitTheirLocationDetails()
-        {
-            _providerStepsHelper.ConfirmEditedProviderLocationDetailsAndSubmit();
-        }
+        public void TheProviderIsAbleToSubmitTheirLocationDetails() => _providerStepsHelper.ConfirmEditedProviderLocationDetailsAndSubmit();
     }
 }

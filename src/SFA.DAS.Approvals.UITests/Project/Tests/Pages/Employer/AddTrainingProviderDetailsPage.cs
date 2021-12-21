@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddTrainingProviderDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add training provider details";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By ContinueButton => By.Id("continue-button");
 
         private By UkprnField => By.CssSelector(".govuk-input");
