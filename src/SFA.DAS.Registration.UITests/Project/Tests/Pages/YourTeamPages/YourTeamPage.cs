@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         private By InvitationActionHeader => By.CssSelector(".bold-large");
         #endregion
 
-        public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
+        public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public CreateInvitationPage ClickInviteANewMemberButton()
         {
