@@ -9,6 +9,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Notification sent to training provider";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
         private By DynamicHomeLink => By.CssSelector(".das-navigation__list-item");
         

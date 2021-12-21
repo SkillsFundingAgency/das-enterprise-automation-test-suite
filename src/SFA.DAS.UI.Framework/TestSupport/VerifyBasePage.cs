@@ -53,7 +53,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region VerifyPage
         // VerifyPage methods are used to verify that the application landed on the expected page
 
-        protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
+        protected bool VerifyPage() => VerifyPage(() => VerifyElement());
 
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
@@ -77,6 +77,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #region VerifyElement 
         // VerifyElement method are used to verify an element with in a page after the page verification happened.
+
+        protected bool VerifyElement() => VerifyElement(PageHeader, PageTitle);
 
         protected bool VerifyElement(By locator, string text) => pageInteractionHelper.VerifyPage(locator, text);
 

@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Apprentice details approved and sent to training provider";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
         public ApprenticeDetailsApprovedAndSentToTrainingProviderPage(ScenarioContext context) : base(context) { }
