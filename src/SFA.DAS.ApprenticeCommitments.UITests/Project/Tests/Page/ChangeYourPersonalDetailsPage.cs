@@ -21,7 +21,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             base.EnterValidApprenticeDetails(firstName, lastName);
             objectContext.SetFirstName(firstName);
-            objectContext.SetFirstName(lastName);
+            objectContext.SetLastName(lastName);
             return new ApprenticeHomePage(context);
         }
     }

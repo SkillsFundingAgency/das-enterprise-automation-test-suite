@@ -34,10 +34,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return (firstName, lastName);
         }
 
-        protected void EnterApprenticeDetails(string firstname, string lastname, int? day, int? month, int? year)
+        protected void EnterApprenticeDetails(string firstName, string lastName, int? day, int? month, int? year)
         {
-            formCompletionHelper.EnterText(FirstName, firstname);
-            formCompletionHelper.EnterText(LastName, lastname);
+            formCompletionHelper.EnterText(FirstName, firstName);
+            objectContext.SetFirstName(firstName);
+            formCompletionHelper.EnterText(LastName, lastName);
+            objectContext.SetLastName(lastName);
 
             if (day != null)
                 formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 1);
@@ -57,7 +59,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private string UpdatedInvalidLastName() => SetLastName(UpdatedInvalidName(GetLastName()));
 
-        private string UpdatedInvalidName(string name) => $"Invalid_{name}";
+        private string UpdatedInvalidName(string name) => $"Invalid_String_{name}";
 
         private string SetFirstName(string name) { objectContext.SetFirstName(name); return name; }
 
