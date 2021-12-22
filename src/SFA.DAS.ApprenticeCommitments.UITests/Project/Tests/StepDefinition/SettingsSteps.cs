@@ -26,15 +26,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenAnApprenticeCanChangeTheirPersonalDetails()
         {
             var page = GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails();
-           
-            Assert.Multiple(() => 
-            {
-                var (isDayDisabled, isMonthDisabled, isYearDisabled) = page.IsDateOfBirthDisabled();
-                Assert.AreEqual("true", isDayDisabled, "Day field under Date of Birth is not disabled");
-                Assert.AreEqual("true", isMonthDisabled, "Month field under Date of Birth is not disabled");
-                Assert.AreEqual("true", isYearDisabled, "Year field under Date of Birth is not disabled");
-            });
-
             page.UpdateApprenticeName();
         }
 
