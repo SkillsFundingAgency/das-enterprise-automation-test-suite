@@ -51,17 +51,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
         }
 
-        private string UpdatedNewFirstName() => SetFirstName(UpdatedNewName(GetFirstName()));
-
-        private string UpdatedNewLastName() => SetLastName(UpdatedNewName(GetLastName()));
-
         private string UpdatedNewName(string name) => $"New{name}";
 
         private string UpdatedInvalidFirstName() => SetFirstName(UpdatedInvalidName(GetFirstName()));
 
         private string UpdatedInvalidLastName() => SetLastName(UpdatedInvalidName(GetLastName()));
 
-        private string UpdatedInvalidName(string name) => $"Invalid_{name}_TEST";
+        private string UpdatedInvalidName(string name) => $"Invalid_{name}";
 
         private string SetFirstName(string name) { objectContext.SetFirstName(name); return name; }
 
