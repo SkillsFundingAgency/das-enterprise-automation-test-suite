@@ -44,8 +44,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private void VerifyEmployerDetails()
         {
             var empName = objectContext.GetEmployerName();
-            VerifyPage(EmployerName, empName);
-            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            VerifyElement(EmployerName, empName);
+            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
 
         public void VerifyNewDates()

@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         private ApplicationOverviewPage VerifyIntroductionAndContinue(By selector)
         {
-            VerifyPage(selector);
+            VerifyElement(selector);
             Continue();
             return new ApplicationOverviewPage(context);
         }

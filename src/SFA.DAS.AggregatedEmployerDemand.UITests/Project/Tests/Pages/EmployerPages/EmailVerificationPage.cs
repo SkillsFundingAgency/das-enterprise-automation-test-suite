@@ -7,6 +7,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
     {
         protected override string PageTitle => "Click the link we've sent to";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
         
         public EmailVerificationPage(ScenarioContext context) : base(context) { }

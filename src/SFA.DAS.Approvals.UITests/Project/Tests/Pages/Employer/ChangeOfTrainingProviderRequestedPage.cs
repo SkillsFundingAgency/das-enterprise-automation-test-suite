@@ -7,7 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ChangeOfTrainingProviderRequestedPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Change of training provider requested";
-        
+
+        protected override bool TakeFullScreenShot => false;
+
         private string EmployerLedExpectedBodyText => $"We'll ask {changeOfPartyConfig.NewProviderName} to check the details of this change. If they make any changes, it will come back to you.";
         
         public ChangeOfTrainingProviderRequestedPage(ScenarioContext context) : base(context)  { }                 

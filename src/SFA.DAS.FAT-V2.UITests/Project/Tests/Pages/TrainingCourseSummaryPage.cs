@@ -21,6 +21,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             NavigateToHomepage();
             return new FATV2IndexPage(context);
         }
+
         public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
         {
             formCompletionHelper.EnterText(LocationTextBox, location);
@@ -28,21 +29,23 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
             return new ProviderSearchResultsPage(context);
         }
+
         public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
         {
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
             return new ProviderSearchResultsPage(context);
         }
+
         public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
         {
             NavigateBackToCourseSummary();
             return new TrainingCourseSearchResultsPage(context);
         }
+
         public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
         {
             formCompletionHelper.Click(BackToCourseSearchPage);
             return new TrainingCourseSearchResultsPage(context);
         }
-
     }
 }

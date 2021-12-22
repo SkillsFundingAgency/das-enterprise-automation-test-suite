@@ -11,6 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Manage your apprentices";
         protected override string Linktext => "Manage your apprentices";
+
+        protected override bool TakeFullScreenShot => false;
+
+
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
         public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)

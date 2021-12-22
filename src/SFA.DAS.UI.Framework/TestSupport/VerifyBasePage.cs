@@ -33,7 +33,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
         {
-            return VeriFyPage(() => 
+            return VerifyPage(() => 
             {
                 _takescreenshot = false;
 
@@ -50,33 +50,53 @@ namespace SFA.DAS.UI.Framework.TestSupport
             });
         }
 
-        protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
+        #region VerifyPage
+        // VerifyPage methods are used to verify that the application landed on the expected page
 
-        protected bool VerifyPageAfterRefresh(By locator) => VeriFyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
+        protected bool VerifyPage() => VerifyPage(() => VerifyElement());
+
+        protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
 
-        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, expected));
+        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => VerifyPage(() => VerifyElement(func, expected));
 
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
+        protected bool VerifyPage(By locator) => VerifyPage(() => VerifyElement(locator));
 
-        protected bool VerifyPage(By locator) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator));
+        protected bool VerifyPage(By locator, Action retryAction) => VerifyPage(() => pageInteractionHelper.VerifyPage(locator, retryAction));
 
-        protected bool VerifyPage(By locator, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, retryAction));
+        protected bool VerifyPage(Action retryAction) => VerifyPage(() => pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction));
 
-        protected bool VerifyPage(Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(PageHeader, PageTitle, retryAction));
+        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => VerifyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
 
-        protected bool VerifyPage(Func<IWebElement> func, List<string> text, Action retryAction = null) => VeriFyPage(() => pageInteractionHelper.VerifyPage(func, text, retryAction));
+        protected bool VerifyPage(By locator, string text) => VerifyPage(() => VerifyElement(locator, text));
 
-        protected bool VerifyPage(By locator, string text) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, text));
+        protected bool VerifyPage(By locator, string text, Action retryAction) => VerifyPage(() => VerifyElement(locator, text, retryAction));
 
-        protected bool VerifyPage(By locator, string text, Action retryAction) => VeriFyPage(() => pageInteractionHelper.VerifyPage(locator, text, retryAction));
+        #endregion
+
+        #region VerifyElement 
+        // VerifyElement method are used to verify an element with in a page after the page verification happened.
+
+        protected bool VerifyElement() => VerifyElement(PageHeader, PageTitle);
+
+        protected bool VerifyElement(By locator, string text) => pageInteractionHelper.VerifyPage(locator, text);
+
+        protected bool VerifyElement(By locator, string text, Action retryAction) => pageInteractionHelper.VerifyPage(locator, text, retryAction);
+
+        protected bool VerifyElement(Func<List<IWebElement>> func, string expected) => pageInteractionHelper.VerifyPage(func, expected);
+
+        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
+
+        protected bool VerifyElement(By locator) => pageInteractionHelper.VerifyPage(locator);
+
+        #endregion
 
         private bool CanCaptureUrl() => (frameworkConfig.CanCaptureUrl && CaptureUrl);
 
         private bool CanTakeFullScreenShot() => (frameworkConfig.CanTakeFullScreenShot && TakeFullScreenShot);
 
-        private bool VeriFyPage(Func<bool> func) { var result = func(); TakeScreenShot(); return result; }
+        private bool VerifyPage(Func<bool> func) { var result = func(); TakeScreenShot(); return result; }
 
         private void TakeScreenShot()
         {

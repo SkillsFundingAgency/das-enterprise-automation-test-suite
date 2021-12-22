@@ -27,6 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             Continue();
             return new OfferingApprenticeshipFrameworksPage(context);
         }
+
         public ApplicationOverviewPage SelectFunctionalSkillsAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FunctionalSkills));

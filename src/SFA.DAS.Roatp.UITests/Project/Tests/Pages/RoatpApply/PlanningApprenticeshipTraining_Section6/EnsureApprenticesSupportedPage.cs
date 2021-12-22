@@ -16,6 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             EnterLongTextAreaAndContinue(applydataHelpers.HowApprenticesAreSupported);
             return new HowOrganisationSupportApprenticesPage(context);
         }
+
         public ApplicationOverviewPage EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue_MainRoute()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.HowApprenticesAreSupported);

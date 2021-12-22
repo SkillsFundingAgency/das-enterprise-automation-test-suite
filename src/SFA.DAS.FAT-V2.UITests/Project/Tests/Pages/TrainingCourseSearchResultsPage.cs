@@ -24,6 +24,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(UpdateResultsButton);
             return this;
         }
+
         public TrainingCourseSearchResultsPage VerifyLevelInfoFromSearchResults(string level)
         {
             pageInteractionHelper.VerifyText(LevelText, level);
@@ -31,11 +32,13 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.Click(UpdateResultsButton);
             return this;
         }
+
         public TrainingCourseSearchResultsPage VerifySortByInfoFromSearchResults(string relevance)
         {
             pageInteractionHelper.VerifyText(SortByInfoText, relevance);
             return this;
         }
+
         public TrainingCourseSummaryPage SelectFirstTrainingResult()
         {
             var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
@@ -43,11 +46,13 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(firstLinkText);
             return new TrainingCourseSummaryPage(context);
         }
+
         public FATV2IndexPage NavigateBackToHompage()
         {
             NavigateToHomepage();
             return new FATV2IndexPage(context);
         }
+
         public void SelectNameOrderSort() => SelectSortByValue("Name");
         public void SelectRelevanceOrderSort() => SelectSortByValue("Relevance");
 

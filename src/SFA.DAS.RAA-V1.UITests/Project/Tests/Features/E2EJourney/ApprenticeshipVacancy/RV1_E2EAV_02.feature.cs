@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
                     "v1_e2e",
                     "regression",
                     "apprenticeshipvacancy",
-                    "FAALoginNewCredentials"};
+                    "faaloginwithnewcredentials"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
+        [NUnit.Framework.CategoryAttribute("faaloginwithnewcredentials")]
         public virtual void RV1_E2EAV_02_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItSuccessfulAndDeleteCandidateAccount_SetAsANationwideVacancy()
         {
 #line 8
