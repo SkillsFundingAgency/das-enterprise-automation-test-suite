@@ -8,6 +8,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override string PageTitle => "Sign in";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
         public ProviderSiginPage(ScenarioContext context) : base(context) { }

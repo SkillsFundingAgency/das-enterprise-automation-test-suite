@@ -8,14 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection VerifyYourFinancesSectionLinksForANonLevyUser()
         {
-            pageInteractionHelper.VerifyPage(YourFundingReservationsLink);
-            pageInteractionHelper.VerifyPage(YourFinancesLink);
+            VerifyElement(YourFundingReservationsLink);
+            VerifyElement(YourFinancesLink);
             return this;
         }
 
         public HomePageFinancesSection VerifyYourFinancesSectionLinksForALevyUser()
         {
-            pageInteractionHelper.VerifyPage(YourFinancesLink);
+            VerifyElement(YourFinancesLink);
             return this;
         }
     }

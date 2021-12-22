@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : ApprovalsBasePage
     {
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
+
+        protected override bool TakeFullScreenShot => false;
+
         private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
         private By TrainingCourseContainer => By.Id("SelectedCourseId");
 

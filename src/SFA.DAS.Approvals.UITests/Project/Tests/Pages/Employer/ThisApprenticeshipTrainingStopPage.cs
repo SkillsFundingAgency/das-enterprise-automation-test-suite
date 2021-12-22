@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "When did this apprenticeship training stop?";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By MonthField => By.Id("stop-month");
         private By YearField => By.Id("stop-year");
         protected override By ContinueButton => By.Id("continue-button");

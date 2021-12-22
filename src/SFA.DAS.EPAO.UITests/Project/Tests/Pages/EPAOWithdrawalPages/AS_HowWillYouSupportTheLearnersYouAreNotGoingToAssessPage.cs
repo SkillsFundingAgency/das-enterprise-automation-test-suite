@@ -18,7 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AS_HowWillYouCommunicateMarketExitToCustomersPage EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
         {
-            VerifyPage(PageTitleLocator, PageTitle);
+            VerifyElement(PageTitleLocator, PageTitle);
 
             formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
             formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported");

@@ -25,11 +25,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public void VerifyApprovedTab()
         {
-            MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
-            {
-                () => VerifyPage(ApprovedTab),
-                () => VerifyPage(TabHeader, "Approved Standards")
-            });
+            VerifyElement(ApprovedTab);
+            VerifyElement(TabHeader, "Approved Standards");
         }
 
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()

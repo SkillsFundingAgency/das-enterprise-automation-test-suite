@@ -19,14 +19,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             if (isAnonymousPledge)
             {
-                VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})");
-                VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training");
+                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>> 
+                {
+                    () => VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})"),
+                    () => VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training")
+                });
             }
             else
             {
                 var orgName = objectContext.GetOrganisationName();
-                VerifyPage(PageHeader, $"Transfer fund details for {orgName} ({pledgeid})");
-                VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund apprenticeship training");
+
+                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
+                {
+                    () => VerifyPage(PageHeader, $"Transfer fund details for {orgName} ({pledgeid})"),
+                    () => VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund apprenticeship training")
+                });
             }
         }
 
