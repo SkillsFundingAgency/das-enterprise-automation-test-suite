@@ -7,6 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "end-point assessment organisations";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         public EPAOOrganisationsPage(ScenarioContext context) : base(context) { }
@@ -38,6 +40,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
             NavigateBackToEPAOOrgansationDetailsPage();
             return new EPAOOrganisationDetailsPage(context);
         }
+
         public EPAOOrganisationDetailsPage NavigateBackToEPAOOrgansationDetailsPage()
         {
             formCompletionHelper.Click(BackButton);

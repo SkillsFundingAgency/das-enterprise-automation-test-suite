@@ -13,11 +13,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
+
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
             SelectYesAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
+
         public DescribeYourOrganisationPage SelectNoForOrgAlreadyRegisteredAndContinue()
         {
             SelectNoAndContinue();

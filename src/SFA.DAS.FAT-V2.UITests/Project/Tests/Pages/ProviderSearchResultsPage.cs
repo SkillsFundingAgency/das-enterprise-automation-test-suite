@@ -8,6 +8,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Training providers for";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
         #region Locators
@@ -51,6 +53,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             NavigateToShortlistPage();
             return new ProviderShortlistPage(context);
         }
+
         public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
     }
 }

@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage : ApprovalsBasePage
     {
         protected override string PageTitle => "Apprenticeship funding is available to train and assess your apprentice";
+
+        protected override bool TakeFullScreenShot => false;
+
         private By YesReserveFundingNowRadioButton => By.CssSelector("label[for=Reserve]");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 

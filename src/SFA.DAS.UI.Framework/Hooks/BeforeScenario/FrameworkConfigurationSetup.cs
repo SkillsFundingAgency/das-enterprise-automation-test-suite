@@ -4,6 +4,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
@@ -28,7 +29,11 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
-            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.Split(",").ToList().Select(x => x.Trim()).ToList();
+            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.ToList(",");
+
+            var fullscreenshotAdmin = testExecutionConfig.FullScreenShotAdmins.ToList(",");
+
+            bool.TryParse(testExecutionConfig.CanTakeFullScreenShot, out bool canTakeFullScreenShot);
 
             bool IsVstsExecution = Configurator.IsVstsExecution;
 
@@ -38,7 +43,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = IsVstsExecution,
-                CanCaptureUrl = captureUrlAdmin.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x)) && IsVstsExecution
+                CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
+                CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot
             };
 
             _context.Set(frameworkConfig);
@@ -51,5 +57,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
         }
+
+          private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
     }
 }

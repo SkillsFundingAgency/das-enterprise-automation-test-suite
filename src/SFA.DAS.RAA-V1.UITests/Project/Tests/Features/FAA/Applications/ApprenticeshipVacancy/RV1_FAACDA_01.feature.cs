@@ -79,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
         [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
+        [NUnit.Framework.CategoryAttribute("faaloginwithnewcredentials")]
         public virtual void RV1_FAACDA_01_CreatingDraftApplicationAndDeletingItInFAA()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
                     "faa",
                     "regression",
                     "apprenticeshipvacancy",
-                    "FAALoginNewCredentials"};
+                    "faaloginwithnewcredentials"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAACDA_01 - creating draft application and deleting it in FAA", null, tagsOfScenario, argumentsOfScenario);
 #line 8

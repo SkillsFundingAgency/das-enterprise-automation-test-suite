@@ -50,7 +50,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             Continue();
         }
 
-        public void VerifyErrorMessage(string pageTitle) => VerifyPage(PageHeader, pageTitle);
+        public void VerifyErrorMessage(string pageTitle) => VerifyElement(PageHeader, pageTitle);
 
         public bool VerifyFamilyNameMissingErrorText() => pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
 

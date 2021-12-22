@@ -24,7 +24,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public EstimatedCostsPage VerifyTabs()
         {
             formCompletionHelper.Click(AccountFundsTab);
-            VerifyPage(AccountFundsTable);
+            VerifyElement(AccountFundsTable);
             formCompletionHelper.Click(ApprenticeshipAddedTab);
             return this;
         }

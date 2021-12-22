@@ -21,16 +21,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public AS_WithdrawalRequestQuestionsPage ClickGoToStandardWithdrawalQuestions()
         {
-            VerifyPage(StandardNameVerification, "ST0580 Brewer");
-            VerifyPage(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
+            VerifyElement(StandardNameVerification, "ST0580 Brewer");
+            VerifyElement(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
             formCompletionHelper.Click(StartStandardWithdrawalQuestions);
             return new AS_WithdrawalRequestQuestionsPage(context);
         }
 
         public AS_WithdrawalRequestQuestionsPage ClickGoToRegisterWithdrawalQuestions()
         {
-            VerifyPage(PageCaptionXl, "Withdrawing from register");
-            VerifyPage(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
+            VerifyElement(PageCaptionXl, "Withdrawing from register");
+            VerifyElement(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
             formCompletionHelper.Click(StartOrganisationWithdrawalQuestions);
             return new AS_WithdrawalRequestQuestionsPage(context);
         }
@@ -43,18 +43,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 
         public void AcceptAndSubmit()
         {
-            VerifyPage(TotalQuestionsCompletedVerification, "4 of 4 questions completed");
+            VerifyElement(TotalQuestionsCompletedVerification, "4 of 4 questions completed");
             Continue();
         }
 
-        public void SubmitUpdatedAnswers()
-        {
-            Continue();
-        }
+        public void SubmitUpdatedAnswers() => Continue();
 
         public void AcceptAndSubmitWithHowWillYouSuportQuestion()
         {
-            VerifyPage(TotalQuestionsWithAdditionalHowWillYouSupportLearnersCompletedVerification, "5 of 5 questions completed");
+            VerifyElement(TotalQuestionsWithAdditionalHowWillYouSupportLearnersCompletedVerification, "5 of 5 questions completed");
             Continue();
         }
     }
