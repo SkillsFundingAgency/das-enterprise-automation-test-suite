@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
-        public SetUpAsAUserPage(ScenarioContext context) : base(context) { }
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {

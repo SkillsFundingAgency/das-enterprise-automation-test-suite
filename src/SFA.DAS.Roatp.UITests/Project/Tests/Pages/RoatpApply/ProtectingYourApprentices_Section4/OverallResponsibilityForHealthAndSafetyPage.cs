@@ -23,6 +23,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
             Continue();
             return new ApplicationOverviewPage(context);
         }
-
     }
 }

@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ConfirmTrainingProviderPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Confirm training provider";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By ContinueButton => By.Id("continue-button");
 
         public ConfirmTrainingProviderPage(ScenarioContext context): base(context)  { }

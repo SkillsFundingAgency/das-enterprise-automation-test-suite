@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Add an apprentice";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By StartNowButton => By.CssSelector(".govuk-button--start");
 
         public AddAnApprenitcePage(ScenarioContext context) : base(context) { }

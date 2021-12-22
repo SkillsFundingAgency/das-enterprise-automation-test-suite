@@ -7,6 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Start adding apprentices";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By ContinueButton => By.Id("continue-button");
 
         public StartAddingApprenticesPage(ScenarioContext context) : base(context)  { }

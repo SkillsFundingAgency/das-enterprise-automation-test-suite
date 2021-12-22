@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ChangeOfEmployerConfirmNewEmployerPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Confirm new employer";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By ContinueButton => By.Id("saveBtn");
 
         public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context)  { }

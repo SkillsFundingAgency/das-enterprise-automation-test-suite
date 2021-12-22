@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "What's the new agreed apprenticeship price";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By Price => By.Id("Price");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 

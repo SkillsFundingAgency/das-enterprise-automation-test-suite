@@ -39,7 +39,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             
             frameHelper.SwitchFrameAndAction(() => 
             {
-                InvokeAction(() => VerifyPage(SearchOrganisationsLink));
+                InvokeAction(() => VerifyElement(SearchOrganisationsLink));
 
                 InvokeAction(() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchOrganisationsLink)));
                 VerifySearchHeaders();
@@ -67,8 +67,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private void VerifySearchHeaders()
         {
-            InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(SearchHeader), "People"));
-            InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(SearchHeader), "Organisations"));
+            InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(SearchHeader), "People"));
+            InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(SearchHeader), "Organisations"));
         }
     }
 }

@@ -7,7 +7,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class ConfirmYourIdentityPage : RegistrationBasePage
     {
         protected override string PageTitle => "Confirm your identity";
-        
+
+        protected override bool TakeFullScreenShot => false;
+
         #region Locators
         private By AccessCodeInput => By.Id("AccessCode");
         protected override By ContinueButton => By.CssSelector("input.button");
@@ -17,8 +19,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {
-            EnterAccessCode()
-                   .Continue();
+            EnterAccessCode().Continue();
+
             return new AddAPAYESchemePage(context);
         }
 

@@ -7,6 +7,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
     {
         protected override string PageTitle => "Share your interest with training providers";
 
+        protected override bool TakeFullScreenShot => false;
+
         public ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 
         private By StartNowButton => By.ClassName("govuk-button");

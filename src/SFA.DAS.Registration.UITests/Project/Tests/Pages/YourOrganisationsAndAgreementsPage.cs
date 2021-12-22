@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
 
-        public bool VerifyTransfersStatus(string expected) => VerifyPage(() => pageInteractionHelper.FindElements(TransferStatus), $"Transfers status:  {expected}");
+        public bool VerifyTransfersStatus(string expected) => VerifyElement(() => pageInteractionHelper.FindElements(TransferStatus), $"Transfers status:  {expected}");
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {

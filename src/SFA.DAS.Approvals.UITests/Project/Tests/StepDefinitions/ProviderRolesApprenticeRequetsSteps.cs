@@ -163,10 +163,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanDeleteACohort()
         {
            
-            new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
+            bool canDeleteCohort = new ProviderApprenticeRequestsPage(_context, true)
+                                                        .GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectDeleteCohort()
-                                                        .ConfirmDeleteAndSubmit();            
+                                                        .IsDeleteOptionDisplayed();
+
+            if (!canDeleteCohort)
+                throw new Exception("unable to find option to delete cohort!");
+            
         }
 
         [Then(@"the user can delete an apprentice in a cohort")]
