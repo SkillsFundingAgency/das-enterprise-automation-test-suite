@@ -41,16 +41,10 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
 
         [When(@"the user selects an EPAO from the list")]
         [Then(@"the user selects an EPAO from the list")]
-        public void WhenTheUserSelectsAnEPAOFromTheList()
-        {
-            _ePAOOrganisationDetailsPage = _ePAOOrganisationsPage.SelectFirstEPAOOrganisationFromList();
-        }
+        public void WhenTheUserSelectsAnEPAOFromTheList() => _ePAOOrganisationDetailsPage = _ePAOOrganisationsPage.SelectFirstEPAOOrganisationFromList();
 
         [Then(@"the user is able to contact ESFA")]
-        public void ThenTheUserIsAbleToContactESFA()
-        {
-            Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactESFAButtonDisplayed());
-        }
+        public void ThenTheUserIsAbleToContactESFA() => Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactESFAButtonDisplayed());
 
         [Then(@"the user is able to click back to homepage")]
         public void ThenTheUserIsAbleToClickBackToHomepage() => _ePAOOrganisationsPage.NavigateBackFromEPAOOrgansationPageToDetailsPage()
