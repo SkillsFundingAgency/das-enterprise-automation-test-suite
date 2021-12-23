@@ -16,9 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
 
-        public (string isDayDisabled, string isMonthDisabled, string isYearDisabled) IsDateOfBirthDisabled()
-            => (IsDateOfBirthDisabled(DateOfBirth_Day), IsDateOfBirthDisabled(DateOfBirth_Month), IsDateOfBirthDisabled(DateOfBirth_Year));
-
         protected void UpdateApprenticeName() => EnterApprenticeDetails(UpdatedNewName(GetFirstName()), UpdatedNewName(GetLastName()), null, null, null);
 
         protected void EnterValidApprenticeDetails()
@@ -70,7 +67,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string GetLastName() => objectContext.GetLastName();
 
         private DateTime GetDateOfBirth() => objectContext.GetDateOfBirth();
-
-        private string IsDateOfBirthDisabled(By by) => pageInteractionHelper.FindElement(by).GetAttribute(AttributeHelper.Disabled);
     }
 }

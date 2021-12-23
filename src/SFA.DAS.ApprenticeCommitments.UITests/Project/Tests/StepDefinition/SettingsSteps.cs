@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Mailinator.Service.Project.Helpers;
 using TechTalk.SpecFlow;
@@ -25,8 +24,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an apprentice can change their personal details")]
         public void ThenAnApprenticeCanChangeTheirPersonalDetails()
         {
-            var page = GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails();
-            page.UpdateApprenticeName();
+            var page = GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
+            // DOB fields were disabled after a successful match before, but in Sprint28 AccoutsWeb rework, DOB field is made Editable.
         }
 
         [Then(@"an apprentice can change their password")]
