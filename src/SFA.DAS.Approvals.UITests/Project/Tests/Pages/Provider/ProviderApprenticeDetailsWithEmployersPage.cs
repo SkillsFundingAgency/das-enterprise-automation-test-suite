@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -7,8 +9,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Apprentice requests";
 
         protected override bool TakeFullScreenShot => false;
+        private By SortByDateReceivedLink => By.PartialLinkText("Date sent to employer");
 
-        public ProviderApprenticeDetailsWithEmployersPage(ScenarioContext context) : base(context)  { }
+        public ProviderApprenticeDetailsWithEmployersPage(ScenarioContext context) : base(context)  
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(SortByDateReceivedLink), "Validate SortByDateSentToEmployer link on 'With employers' page");
+        }
 
         internal ProvideViewApprenticesDetailsPage SelectViewCurrentCohortDetails()
         {
