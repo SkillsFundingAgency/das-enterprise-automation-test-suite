@@ -4,7 +4,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderApprenticeDetailsReadyToReviewPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Apprentice details ready for review";
+        protected override string PageTitle => "Apprentice requests";
 
         protected override bool TakeFullScreenShot => false;
 

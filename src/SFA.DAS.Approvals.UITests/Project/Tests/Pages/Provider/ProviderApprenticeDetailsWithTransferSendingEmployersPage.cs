@@ -4,7 +4,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderApprenticeDetailsWithTransferSendingEmployersPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Apprentice details with transfer sending employers";
+        protected override string PageTitle => "Apprentice requests";
 
         protected override bool TakeFullScreenShot => false;
 
