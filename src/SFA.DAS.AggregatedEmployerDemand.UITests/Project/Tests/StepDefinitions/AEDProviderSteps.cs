@@ -30,7 +30,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
         {
             GivenTheProviderNavigatesToFindEmployersThatNeedATrainingProvider();
             WhenTheProviderShowsTheWhichEmployersTheyAreInterestedIn();
-            _providerStepsHelper.ConfirmProviderContactDetailsBeforeSubmitting(emailAddress, telephoneNumber, website);
+            _providerStepsHelper.ProvidersCheckYourAnswers(emailAddress, telephoneNumber, website);
         }
 
         [Given(@"the provider has entered their email contact details incorrectly '(.*)', '(.*)' and '(.*)'")]
@@ -61,12 +61,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 
         [When(@"the provider chooses to edit the contact details '(.*)', '(.*)' and '(.*)'")]
         public void WhenTheProviderChoosesToEditTheContactDetailsAnd(string newEmailAddress, string newTelephoneNumber, string newWebsite) => 
-            _providerStepsHelper.ConfirmProviderContactDetailsHaveBeenEdited(newEmailAddress, newTelephoneNumber, newWebsite);
+            _providerStepsHelper.ConfirmProvidersContactDetails(newEmailAddress, newTelephoneNumber, newWebsite);
         
         [When(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
         [Then(@"the provider is presented with the validation error message before entering the correct details '(.*)', '(.*)' and '(.*)'")]
         public void WhenTheProviderIsPresentedWithTheValidationErrorMessageBeforeEnteringTheCorrectDetailsAnd(string emailAddress, string telephoneNumber, string website) => 
-            _providerStepsHelper.ReEnterProviderContactDetailsBeforeResubmitting(emailAddress, telephoneNumber, website);
+            _providerStepsHelper.ConfirmProvidersContactDetails(emailAddress, telephoneNumber, website);
         
         [When(@"the provider selects the option to edit the location")]
         public void WhenTheProviderSelectsTheOptionToEditTheLocation() => _providerStepsHelper.ChangeProviderLocationDetails();
