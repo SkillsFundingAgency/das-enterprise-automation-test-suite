@@ -16,9 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
 
-        public (string isDayDisabled, string isMonthDisabled, string isYearDisabled) IsDateOfBirthDisabled()
-            => (IsDateOfBirthDisabled(DateOfBirth_Day), IsDateOfBirthDisabled(DateOfBirth_Month), IsDateOfBirthDisabled(DateOfBirth_Year));
-
         protected void UpdateApprenticeName() => EnterApprenticeDetails(UpdatedNewName(GetFirstName()), UpdatedNewName(GetLastName()), null, null, null);
 
         protected void EnterValidApprenticeDetails()
@@ -34,10 +31,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return (firstName, lastName);
         }
 
-        protected void EnterApprenticeDetails(string firstname, string lastname, int? day, int? month, int? year)
+        protected void EnterApprenticeDetails(string firstName, string lastName, int? day, int? month, int? year)
         {
-            formCompletionHelper.EnterText(FirstName, firstname);
-            formCompletionHelper.EnterText(LastName, lastname);
+            formCompletionHelper.EnterText(FirstName, firstName);
+            objectContext.SetFirstName(firstName);
+            formCompletionHelper.EnterText(LastName, lastName);
+            objectContext.SetLastName(lastName);
 
             if (day != null)
                 formCompletionHelper.EnterText(DateOfBirth_Day, day ?? 1);
@@ -51,17 +50,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
         }
 
-        private string UpdatedNewFirstName() => SetFirstName(UpdatedNewName(GetFirstName()));
-
-        private string UpdatedNewLastName() => SetLastName(UpdatedNewName(GetLastName()));
-
         private string UpdatedNewName(string name) => $"New{name}";
 
         private string UpdatedInvalidFirstName() => SetFirstName(UpdatedInvalidName(GetFirstName()));
 
         private string UpdatedInvalidLastName() => SetLastName(UpdatedInvalidName(GetLastName()));
 
-        private string UpdatedInvalidName(string name) => $"Invalid_{name}_TEST";
+        private string UpdatedInvalidName(string name) => $"Invalid_String_{name}";
 
         private string SetFirstName(string name) { objectContext.SetFirstName(name); return name; }
 
@@ -72,7 +67,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string GetLastName() => objectContext.GetLastName();
 
         private DateTime GetDateOfBirth() => objectContext.GetDateOfBirth();
-
-        private string IsDateOfBirthDisabled(By by) => pageInteractionHelper.FindElement(by).GetAttribute(AttributeHelper.Disabled);
     }
 }
