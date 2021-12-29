@@ -11,10 +11,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
     {
         protected HttpClient httpClient;
         protected string baseUrl;
+        public string AuthenticationCode { get; set; }
 
         public EIFunctionsHelper(EIPaymentProcessConfig config)
         {
             baseUrl = config.EI_FunctionsBaseUrl;
+            AuthenticationCode = config.EI_FunctionsAppCode;
             httpClient = new HttpClient();
         }
 
@@ -27,7 +29,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 AccountLegalEntityId = accountLegalEntityId
             };
 
-            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
 
@@ -45,13 +47,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 }
             };
 
-            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
 
         public async Task TriggerEmploymentChecks()
         {
-            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpTriggerRefreshEmploymentChecks", null);
+            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpTriggerRefreshEmploymentChecks?code={AuthenticationCode}", null);
             response.EnsureSuccessStatusCode();
         }
 
