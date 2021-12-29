@@ -78,14 +78,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.EPAOWith
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("standardwithdrawal")]
+        [NUnit.Framework.CategoryAttribute("deletestandardwithdrawal")]
         public virtual void EPAO_AS_SWD_01A_StandardWithdrawl()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "regression",
-                    "standardwithdrawal"};
+                    "deletestandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01A - Standard Withdrawl", null, tagsOfScenario, argumentsOfScenario);
 #line 7
@@ -132,14 +132,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("standardwithdrawal")]
+        [NUnit.Framework.CategoryAttribute("deletestandardwithdrawal")]
         public virtual void EPAO_AS_SWD_01B_YourWithdrawlStatusNotificationsCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "regression",
-                    "standardwithdrawal"};
+                    "deletestandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01B - Your Withdrawl status notifications check", null, tagsOfScenario, argumentsOfScenario);
 #line 19

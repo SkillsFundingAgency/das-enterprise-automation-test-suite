@@ -1,13 +1,10 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
-    public class TrainingCourseSearchResultsPage : FATV2BasePage
+    public class TrainingCourseSearchResultsPage : ApprenticeshipTrainingCourseBasePage
     {
-        protected override string PageTitle => "Apprenticeship training courses";
-
         #region Locators
         private By UpdateResultsButton => By.Id("filters-submit");
         private By LevelCheckBox(string level) => By.Id($"level-{level}");
@@ -55,8 +52,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         public void SelectNameOrderSort() => SelectSortByValue("Name");
         public void SelectRelevanceOrderSort() => SelectSortByValue("Relevance");
-
-
         private void SelectLevelCheckBox(string level) => formCompletionHelper.SelectCheckbox(LevelCheckBox(level));
         private void UnselectLevelCheckBox(string level) => formCompletionHelper.UnSelectCheckbox(LevelCheckBox(level));
         private void SelectSortByValue(string value) => formCompletionHelper.ClickLinkByText(SortByOption, value);

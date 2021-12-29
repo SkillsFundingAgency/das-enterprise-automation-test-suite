@@ -43,6 +43,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
             NavigateBackToHomePage();
             return new FindEPAOIndexPage(context);
         }
+
         public FindEPAOIndexPage NavigateBackToHomePage()
         {
             formCompletionHelper.Click(BackButton);

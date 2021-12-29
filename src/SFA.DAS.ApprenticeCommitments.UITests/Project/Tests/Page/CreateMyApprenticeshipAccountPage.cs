@@ -7,9 +7,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Create My apprenticeship account";
         private By ErrorSummaryTitle => By.Id("error-summary-title");
-        private By FirstNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[1]");
-        private By LastNameError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[2]");
-        private By DOBError => By.XPath("(//div[@class='govuk-error-message']/ul/li)[3]");
+        private By FirstNameError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[1]");
+        private By LastNameError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[2]");
+        private By DOBError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[3]");
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
         public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context)  { }

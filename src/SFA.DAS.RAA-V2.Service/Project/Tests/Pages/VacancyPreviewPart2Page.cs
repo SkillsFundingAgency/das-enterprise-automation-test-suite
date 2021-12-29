@@ -7,6 +7,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
         protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
+
+        protected override bool TakeFullScreenShot => false;
+
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
         private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
@@ -106,14 +109,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ApplicationProcessPage UpdateApplicationProcess()
         {
-            if (pageInteractionHelper.IsElementPresent(ApplicationWebAddress))
-            {
-                formCompletionHelper.Click(ChangeApplicationProcess);                
-            }
-            else
-            {
-                formCompletionHelper.Click(ApplicationProcess);
-            }
+            if (pageInteractionHelper.IsElementPresent(ApplicationWebAddress)) formCompletionHelper.Click(ChangeApplicationProcess);                
+            else formCompletionHelper.Click(ApplicationProcess);
+            
             return new ApplicationProcessPage(context);
         }
     }
