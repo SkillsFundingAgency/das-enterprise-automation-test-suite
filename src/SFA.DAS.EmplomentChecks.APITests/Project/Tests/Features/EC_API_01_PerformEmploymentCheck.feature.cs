@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_01_PerformEmploymentCheck(string uLN, string accountId, string minDate, string maxDate, string employed, string[] exampleTags)
+        public virtual void EC_API_01_PerformEmploymentCheck(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -85,11 +85,12 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("ULN", uLN);
-            argumentsOfScenario.Add("AccountId", accountId);
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Employed", employed);
+            argumentsOfScenario.Add("ReturnCode", returnCode);
+            argumentsOfScenario.Add("ReturnMessage", returnMessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_01_PerformEmploymentCheck", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -111,35 +112,56 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\', \'" +
-                            "{3}\'", uLN, accountId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
- testRunner.And("HMRC check is performed for the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And(string.Format("employment check database is updated with the result \'{0}\'", employed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And(string.Format("employment check database is updated with the result from HMRC \'{0}\', \'{1}\', \'{2}" +
+                            "\'", employed, returnCode, returnMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck: 9000000601")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck: 1")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheck")]
-        public virtual void EC_API_01_PerformEmploymentCheck_9000000601()
+        public virtual void EC_API_01_PerformEmploymentCheck_1()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck("9000000601", "1997", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "true", ((string[])(null)));
+this.EC_API_01_PerformEmploymentCheck("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "true", "200 (OK)", "", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck: 2")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheck")]
+        public virtual void EC_API_01_PerformEmploymentCheck_2()
+        {
+#line 6
+this.EC_API_01_PerformEmploymentCheck("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "false", "200 (OK)", "", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck: 3")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheck")]
+        public virtual void EC_API_01_PerformEmploymentCheck_3()
+        {
+#line 6
+this.EC_API_01_PerformEmploymentCheck("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "NationalInsuranceNumber is null", ((string[])(null)));
 #line hidden
         }
     }

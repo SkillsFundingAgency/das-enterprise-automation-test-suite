@@ -21,7 +21,6 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
         public void SetUpHelpers()
         {
             _context.Set(new EmploymentChecksSqlDbHelper(_dbConfig));
-
         }
 
 
