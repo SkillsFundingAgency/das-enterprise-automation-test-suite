@@ -90,6 +90,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (screenshotPath, imageName);
         }
 
-        private static string Combine(string screenshotsDirectory, string imageName) => Path.Combine(screenshotsDirectory, imageName);
+        private static string Combine(string screenshotsDirectory, string imageName)
+        {
+            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+
+            return Path.GetFullPath(screenshotPath);
+        }
     }
 } 
