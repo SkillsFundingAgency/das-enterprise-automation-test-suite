@@ -33,7 +33,7 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
 
         private string GetDirectoryPath()
         {
-            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../", "../", "Project", "Screenshots", $"{DateTime.Now:dd-MM-yyyy}", $"{EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)}");
+            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Screenshots", $"{DateTime.Now:dd-MM-yyyy}", $"{EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)}");
 
             return Path.GetFullPath(directory);
         }

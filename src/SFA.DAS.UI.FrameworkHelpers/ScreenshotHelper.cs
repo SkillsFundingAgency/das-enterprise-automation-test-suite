@@ -80,7 +80,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             if (noOfChar > limitedWinChar)
             {
-                int excessChar = noOfChar - limitedWinChar - 4;
+                int excessChar = noOfChar - (limitedWinChar - 4);
 
                 imageName = $"{imageName.Substring(0, imageName.Length - excessChar)}.png";
 
