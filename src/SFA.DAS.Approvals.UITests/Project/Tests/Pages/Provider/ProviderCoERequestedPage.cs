@@ -2,14 +2,14 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerRequestedPage : ApprovalsBasePage
+    public class ProviderCoERequestedPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Change of employer requested";
 
         protected override bool TakeFullScreenShot => false;
 
-        public ChangeOfEmployerRequestedPage(ScenarioContext context) : base(context) { }
+        public ProviderCoERequestedPage(ScenarioContext context) : base(context) { }
 
-        public ChangeOfEmployerRequestedPage VerifyChangeOfEmployerHasBeenRequested() => this;
+        public ProviderCoERequestedPage VerifyChangeOfEmployerHasBeenRequested() => this;
     }
 }
