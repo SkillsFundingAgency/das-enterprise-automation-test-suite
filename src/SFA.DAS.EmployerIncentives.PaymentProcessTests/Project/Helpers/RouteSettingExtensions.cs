@@ -9,7 +9,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public static void AddRouting(this RoutingSettings routingSettings)
         {
             routingSettings.RouteToEndpoint(typeof(CreateIncentiveCommand), "SFA.DAS.EmployerIncentives.CreateIncentive");
-            routingSettings.RouteToEndpoint(typeof(EmploymentCheckCompletedEvent), "SFA.DAS.EmployerIncentives.EmploymentCheckCompleted");
+            routingSettings.RouteToEndpoint(typeof(EmploymentCheckCompletedEvent), "SFA.DAS.EmployerIncentives.EmpCheckCompleted");
         }
     }
 }
