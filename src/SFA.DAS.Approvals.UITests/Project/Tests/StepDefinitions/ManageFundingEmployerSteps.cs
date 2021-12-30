@@ -25,5 +25,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"all the unused funding are successfully deleted")]
         public void ThenAllTheUnusedFundingAreSuccessfullyDeleted() => Assert.IsFalse(_yourFundingReservationsPage.CheckIfDeleteLinkIsPresent(), $"Delete link is present in the Manage Reservations page");
+
+        [Then(@"The NonLevyEmployer reserves funding should able to see pause message")]
+        public void ThenTheNonLevyEmployerReservesFundingShouldAbleToSeePauseMessage() => _reservationStepsHelper.PauseReservationMessage();
     }
 }

@@ -65,6 +65,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return yourFundingReservationsPage;
         }
 
+        public void PauseReservationMessage()
+        {
+             GoToDynamicHomePage()
+            .StartNowToReserveFunding()
+            .YesToCourse()
+            .YesToTrainingProviderToDeliver()
+            .YesWillTrainingStartInSixMonths()
+            .YesSetupForExistingEmployee()
+            .YesContinueToSeePauseReserveFundingMessage();         
+        }
+
         private ManageFundingHomePage GoToManageFundingHomePage() => new ManageFundingHomePage(_context, true);
 
         private DynamicHomePages GoToDynamicHomePage() => new DynamicHomePages(_context);

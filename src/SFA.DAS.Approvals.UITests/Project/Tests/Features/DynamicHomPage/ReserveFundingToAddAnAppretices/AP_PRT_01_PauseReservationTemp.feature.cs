@@ -20,26 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DH_01_ReservesFundingToAddAnApprentice")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_DH_01_ReservesFundingToAddAnApprenticeFeature
+    [NUnit.Framework.DescriptionAttribute("AP_PRT_01_PauseReservationTemp")]
+    public partial class AP_PRT_01_PauseReservationTempFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_DH_01_ReserveFundingToAddAnApprentices.feature"
+#line 1 "AP_PRT_01_PauseReservationTemp.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_DH_01_ReservesFundingToAddAnApprentice", "As a NonLevy Employer, I want to add an apprentice after funding is reserved from" +
-                    " dynamic homepage", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PRT_01_PauseReservationTemp", "\tAs a NonLevy Employer, I can\'t able to reserve funding due to temporary pause ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,22 +74,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DH_01 NonLevyEmployer reserves funding to add an apprentice from dynamic homep" +
-            "age journey")]
-        [NUnit.Framework.CategoryAttribute("ignore")]
+        [NUnit.Framework.DescriptionAttribute("AP_PRT_01 Pause Reservation Temporary")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("dynamichomepage")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void AP_DH_01NonLevyEmployerReservesFundingToAddAnApprenticeFromDynamicHomepageJourney()
+        [NUnit.Framework.CategoryAttribute("pausereservation")]
+        public virtual void AP_PRT_01PauseReservationTemporary()
         {
             string[] tagsOfScenario = new string[] {
-                    "ignore",
                     "regression",
                     "dynamichomepage",
-                    "addnonlevyfunds"};
+                    "addnonlevyfunds",
+                    "pausereservation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DH_01 NonLevyEmployer reserves funding to add an apprentice from dynamic homep" +
-                    "age journey", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PRT_01 Pause Reservation Temporary", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -118,17 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.When("The NonLevyEmployer reserves funding for an apprenticeship course from reserved p" +
-                        "anel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("The nonlevyemployer continues to add an apprentice for reserved funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 13
- testRunner.And("The TrainingProvider approves apprentice by adding further details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("The NonLevyEmployer Reviews and Approves the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("The NonLevyEmployer reserves funding should able to see pause message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

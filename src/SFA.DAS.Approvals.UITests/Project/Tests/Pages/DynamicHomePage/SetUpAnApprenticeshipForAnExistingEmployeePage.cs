@@ -18,5 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             formCompletionHelper.Click(ClickReserveFunding);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
         }
+
+        public PauseReservationMessagePage YesContinueToSeePauseReserveFundingMessage()
+        {
+            formCompletionHelper.Click(ClickReserveFunding);
+            return new PauseReservationMessagePage(context);
+        }
+
     }
 }

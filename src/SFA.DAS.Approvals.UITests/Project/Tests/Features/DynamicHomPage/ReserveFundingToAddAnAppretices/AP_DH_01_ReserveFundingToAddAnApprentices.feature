@@ -2,6 +2,7 @@
 Feature: AP_DH_01_ReservesFundingToAddAnApprentice
 As a NonLevy Employer, I want to add an apprentice after funding is reserved from dynamic homepage
 
+@ignore
 @regression
 @dynamichomepage
 @addnonlevyfunds
