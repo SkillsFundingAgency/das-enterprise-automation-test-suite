@@ -72,7 +72,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             int limitedWinChar = 255;
             
-            var imageName = $"{DateTime.Now:HHmmss}_{scenarioTitle}.png".RemoveSpace();
+            var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
 
             var screenshotPath = Combine(screenshotsDirectory, imageName);
 
