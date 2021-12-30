@@ -1,4 +1,5 @@
-﻿Feature: AP_PRT_01_PauseReservationTemp
+﻿@approvals
+Feature: AP_PRT_01_PauseReservationTemp // This test is going to be stay until 31st March 2022
 	As a NonLevy Employer, I can't able to reserve funding due to temporary pause 
 
 
