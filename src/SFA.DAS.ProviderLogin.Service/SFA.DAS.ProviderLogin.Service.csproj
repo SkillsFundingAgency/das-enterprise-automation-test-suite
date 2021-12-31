@@ -12,7 +12,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.40" />
 	</ItemGroup>
 
   <ItemGroup>
