@@ -300,7 +300,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"a new employment check is not requested")]
-        public async Task ThenANewEmploymentCheckIsNotRequested()
+        public void ThenANewEmploymentCheckIsNotRequested()
         {
             var employmentCheckCount = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
                 .Count(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
