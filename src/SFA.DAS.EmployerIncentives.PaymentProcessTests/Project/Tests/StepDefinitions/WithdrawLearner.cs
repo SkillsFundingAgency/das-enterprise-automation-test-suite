@@ -195,7 +195,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task TheLearnerWithdrawRequestIsProcessed()
         {
             await Helper.EIFunctionsHelper.Withdraw(TestData.ULN, TestData.IncentiveApplication.AccountLegalEntityId, WithdrawalType.Compliance);
-            Thread.Sleep(5000); // The earnings don't get deleted straight away
+            await Helper.EISqlHelper.WaitUntilIncentiveWithdrawn(TestData.ApprenticeshipIncentiveId, TimeSpan.FromSeconds(5));
         }
 
         [Then(@"the first earnings should have been removed")]

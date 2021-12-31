@@ -52,6 +52,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
             if (_testData.Account != default) await _helper.IncentiveApplicationHelper.DeleteAccount(_testData.Account);
             await _helper.LearnerMatchApiHelper.DeleteMapping(_testData.ULN, _testData.UKPRN);
             await _helper.CollectionCalendarHelper.Reset();
+            await _helper.EmploymentCheckApiHelper.DeleteMapping();
         }
     }
 }

@@ -4,6 +4,7 @@ using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -18,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialEndDate;
         private DateTime _breakStart;
         private PriceEpisodeDto _priceEpisodeWithBreakInLearning;
-
+        
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
         }
@@ -67,7 +68,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, submissionDto);
             await Helper.LearnerMatchOrchestratorHelper.Run();
-
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true);
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false);
             await Helper.BusinessCentralApiHelper.AcceptAllPayments();
             await Helper.PaymentsOrchestratorHelper.Run();
             await Helper.PaymentsOrchestratorHelper.Approve();
