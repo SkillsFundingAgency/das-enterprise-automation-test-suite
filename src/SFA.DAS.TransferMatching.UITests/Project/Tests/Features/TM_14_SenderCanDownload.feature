@@ -1,5 +1,4 @@
 ﻿Feature: TM_14_SenderCanDownload
-	Simple calculator for adding two numbers
 
 @regression
 @transfermatching
