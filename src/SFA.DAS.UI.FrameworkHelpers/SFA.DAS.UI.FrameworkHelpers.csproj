@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+	  <NoWarn>CS8032</NoWarn>
       <PackageId>SFA.DAS.UI.FrameworkHelpers</PackageId>
       <Title>Specflow DotNet Core UI framework helpers</Title>
       <Configurations>Debug;Release;Development</Configurations>
