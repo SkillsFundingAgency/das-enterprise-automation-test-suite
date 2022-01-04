@@ -27,13 +27,6 @@ pool:
 steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
 
-- task: UseDotNet@2
-  displayName: 'Use .NET Core 5.0 runtime'
-  inputs:
-    packageType: runtime
-    version: 5.0.13
-    installationPath: $(Agent.ToolsDirectory)/dotnet
-    
 - task: DotNetCoreCLI@2
   displayName: dotnet restore
   inputs:
