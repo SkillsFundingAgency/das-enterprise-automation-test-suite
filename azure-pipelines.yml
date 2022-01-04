@@ -22,7 +22,7 @@ resources:
 
 pool:
   name: DAS - Continuous Integration Agents
-  demands: LATEST_DOTNET_VERSION -equals 3.1
+  demands: LATEST_DOTNET_VERSION -equals 5.0
 
 steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
