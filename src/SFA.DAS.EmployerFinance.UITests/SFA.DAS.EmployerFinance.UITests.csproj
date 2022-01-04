@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <NoWarn>CS8032</NoWarn>
     <RootNameSpace>SFA.DAS.EmployerFinance.UITests</RootNameSpace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
