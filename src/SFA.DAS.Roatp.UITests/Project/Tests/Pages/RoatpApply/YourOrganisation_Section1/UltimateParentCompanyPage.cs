@@ -6,26 +6,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Does your organisation have an ultimate parent company in the UK?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public UltimateParentCompanyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public UltimateParentCompanyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ParentCompanyDetailsPage SelectYesForUltimateParentCompanyAndContinue()
         {
             SelectRadioOptionByForAttribute("YO-20");
             Continue();
-            return new ParentCompanyDetailsPage(_context);
+            return new ParentCompanyDetailsPage(context);
         }
+
         public ParentCompanyDetailsPage ClickContinueParentCompanyOption()
         {
             Continue();
-            return new ParentCompanyDetailsPage(_context);
+            return new ParentCompanyDetailsPage(context);
         }
 
     }

@@ -9,9 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     {
         protected override string PageTitle => "Agency home";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
 
@@ -31,13 +29,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={objectContext.GetVacancyReference()}']");
 
-        public Manage_HomePage(ScenarioContext context) : base(context) => _context = context;
+        public Manage_HomePage(ScenarioContext context) : base(context) { }
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
             ChangeToHelpdeskAdviser();
 
-            return new Manage_HelpdeskAdviserPage(_context);
+            return new Manage_HelpdeskAdviserPage(context);
         }
 
         public Manage_VacancyPreviewPage ReviewAVacancy()
@@ -46,7 +44,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
             formCompletionHelper.Click(VacancyReviewLink());
 
-            return new Manage_VacancyPreviewPage(_context);
+            return new Manage_VacancyPreviewPage(context);
         }
 
         private void TodayVacancy()

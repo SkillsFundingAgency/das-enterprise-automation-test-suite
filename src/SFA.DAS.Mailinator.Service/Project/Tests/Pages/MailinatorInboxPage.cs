@@ -7,20 +7,20 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Public Messages";
 
-        protected override By PageHeader => By.CssSelector("#inbox_pane");
+        protected override bool TakeFullScreenShot => false;
 
-        private readonly ScenarioContext _context;
+        protected override By PageHeader => By.CssSelector("#inbox_pane");
 
         #region Locators
         private By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
         #endregion
 
-        internal MailinatorInboxPage(ScenarioContext context) : base(context) => _context = context;
+        internal MailinatorInboxPage(ScenarioContext context) : base(context) { }
 
         internal MailinatorEmailPage OpenEmail()
         {
             formCompletionHelper.Click(EmailSubjectField);
-            return new MailinatorEmailPage(_context);
+            return new MailinatorEmailPage(context);
         }
     }
 }

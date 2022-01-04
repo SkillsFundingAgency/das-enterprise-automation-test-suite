@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
                     break;
             };
 
-            VerifyPage(WageType, wageAmount);
+            VerifyElement(WageType, wageAmount);
         }
 
         public new ViewVacancyPage VerifyEmployerName()

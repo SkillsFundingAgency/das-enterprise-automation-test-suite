@@ -46,6 +46,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await excel.TakeDataSnapshot(dbConnection.GetAll<ArchivedPendingPayment>());
             await excel.TakeDataSnapshot(dbConnection.GetAll<ArchivedPayment>());
             await excel.TakeDataSnapshot(dbConnection.GetAll<ArchivedPendingPaymentValidationResult>());
+            await excel.TakeDataSnapshot(dbConnection.GetAll<EmploymentCheck>());
+            await excel.TakeDataSnapshot(dbConnection.GetAll<EmploymentCheckArchive>());
         }
 
         public static IEIDataSnapper Create(DbConfig dbConfig)

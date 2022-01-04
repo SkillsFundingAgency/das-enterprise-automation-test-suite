@@ -7,20 +7,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Who is in control of your organisation?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By FullNameField => By.Id("PersonInControlName");
 
         private By MonthField => By.CssSelector("#PersonInControlDobMonth");
         private By YearField => By.CssSelector("#PersonInControlDobYear");
 
-        public WhoIsInControlOfYourOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhoIsInControlOfYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfrimWhosInControlPage EnterWhoIsInControlDetailsAndContinue()
         {
@@ -29,10 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             formCompletionHelper.EnterText(MonthField, dobcalc.Month);
             formCompletionHelper.EnterText(YearField, dobcalc.Year);
             Continue();
-            return new ConfrimWhosInControlPage(_context);
+            return new ConfrimWhosInControlPage(context);
         }
-
     }
 }
-
-

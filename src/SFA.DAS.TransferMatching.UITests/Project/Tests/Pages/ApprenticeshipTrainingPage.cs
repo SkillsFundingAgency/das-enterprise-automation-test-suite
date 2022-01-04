@@ -8,8 +8,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Apprenticeship training";
 
-        private readonly ScenarioContext _context;
-
         private By JobRoleSelector => By.CssSelector("#SelectedStandardId");
 
         private By NoOfApprenticeSelector => By.CssSelector("#opportunity-application-apprentices");
@@ -24,13 +22,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage EnterAppTrainingDetailsAndContinue()
         {
             EnterDetails(); Continue(); 
 
-            return new CreateATransfersApplicationPage(_context);
+            return new CreateATransfersApplicationPage(context);
         }
 
         public ApprenticeshipTrainingPage EnterAmountMoreThanAvailableFunding()
@@ -77,7 +75,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             RetryAction();
 
-            VerifyPage(PanelEstimateSelector, "your apprenticeship training will cost:", RetryAction);
+            VerifyElement(PanelEstimateSelector, "your apprenticeship training will cost:", RetryAction);
         }
     }
 }

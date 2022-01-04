@@ -9,30 +9,31 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => string.Empty;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By DasHighlight => By.CssSelector(".das-highlight");
 
         protected override By ContinueButton => By.CssSelector("#apply-application-continue");
 
         public TransferFundDetailsPage(ScenarioContext context, bool isAnonymousPledge = false) : base(context)
         {
-            _context = context;
-
             var pledgeid = GetPledgeId();
 
             if (isAnonymousPledge)
             {
-                VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})");
-                VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training");
+                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>> 
+                {
+                    () => VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})"),
+                    () => VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training")
+                });
             }
             else
             {
                 var orgName = objectContext.GetOrganisationName();
-                VerifyPage(PageHeader, $"Transfer fund details for {orgName} ({pledgeid})");
-                VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund apprenticeship training");
+
+                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
+                {
+                    () => VerifyPage(PageHeader, $"Transfer fund details for {orgName} ({pledgeid})"),
+                    () => VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund apprenticeship training")
+                });
             }
         }
 
@@ -42,7 +43,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
     }
 }

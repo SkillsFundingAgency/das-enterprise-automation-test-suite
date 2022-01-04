@@ -8,11 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
@@ -29,42 +24,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
 
-        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public ProviderReviewChangesPage ClickReviewChanges()
         {
             formCompletionHelper.ClickElement(ReviewChangesLink);
-            return new ProviderReviewChangesPage(_context);
+            return new ProviderReviewChangesPage(context);
         }
 
         public ProviderEditApprenticePage ClickEditApprenticeDetailsLink()
         {
             EditApprentice();
-            return new ProviderEditApprenticePage(_context);
+            return new ProviderEditApprenticePage(context);
         }
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
             EditApprentice();
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderDetailsOfILRDataMismatchPage ClickViewIlrMismatchDetails()
         {
             formCompletionHelper.ClickElement(ViewIlrMismatchDetailsLink);
-            return new ProviderDetailsOfILRDataMismatchPage(_context);
+            return new ProviderDetailsOfILRDataMismatchPage(context);
         }
 
         public ProviderInformPage ClickChangeEmployerLink()
         {
             formCompletionHelper.Click(ChangeEmployerLink);
-            return new ProviderInformPage(_context);
+            return new ProviderInformPage(context);
         }
 
         public ProviderAccessDeniedPage ClickChangeEmployerLinkGoesToAccessDenied()
         {
             formCompletionHelper.Click(ChangeEmployerLink);
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public void ConfirmChangeRequestPendingMessage()
@@ -89,22 +84,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChanges);
-            return new ProviderViewChangesPage(_context);
+            return new ProviderViewChangesPage(context);
         }        
 
         public ProviderViewChangesPage ClickViewChanges()
         {
             formCompletionHelper.ClickElement(ViewChangesLink);
-            return new ProviderViewChangesPage(_context);
+            return new ProviderViewChangesPage(context);
         }
 
         public ProviderDetailsOfILRDataMismatchPage ClickViewDetails()
         {
             formCompletionHelper.ClickElement(ViewDetailsLink);
-            return new ProviderDetailsOfILRDataMismatchPage(_context);
+            return new ProviderDetailsOfILRDataMismatchPage(context);
         }      
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
+
         public string GetCoPBanner() => pageInteractionHelper.GetText(ChangeOfPartyBanner);
 
         public bool IsPricemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkUpdateLink);

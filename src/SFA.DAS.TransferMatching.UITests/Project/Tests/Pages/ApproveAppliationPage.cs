@@ -8,19 +8,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public ApproveAppliationPage(ScenarioContext context) : base(context) => _context = context;
+        public ApproveAppliationPage(ScenarioContext context) : base(context) { }
 
-        public AppliationApprovedPage ApproveApplication()
+        public ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage()
         {
             SelectRadioOptionByText("Approve the application");
             Continue();
-            return new AppliationApprovedPage(_context);
+            return new ApprovingTheApprenticeshipDetailsPage(context);
+        }
+
+        public TransferPledgePage RejectApplication()
+        {
+            SelectRadioOptionByText("Reject the application");
+            Continue();
+            return new TransferPledgePage(context);
         }
     }
 }

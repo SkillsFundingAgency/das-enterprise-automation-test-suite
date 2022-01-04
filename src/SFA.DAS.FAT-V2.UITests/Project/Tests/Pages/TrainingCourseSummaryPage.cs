@@ -6,7 +6,6 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     public class TrainingCourseSummaryPage : FATV2BasePage
     {
         protected override string PageTitle => objectContext.GetTrainingCourseName();
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By LocationTextBox => By.Id("search-location");
@@ -15,35 +14,38 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 
         #endregion
 
-        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) { }
 
         public FATV2IndexPage NavigateBackToHompage()
         {
             NavigateToHomepage();
-            return new FATV2IndexPage(_context);
+            return new FATV2IndexPage(context);
         }
+
         public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
         {
             formCompletionHelper.EnterText(LocationTextBox, location);
             formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
+
         public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
         {
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(_context);
+            return new ProviderSearchResultsPage(context);
         }
+
         public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
         {
             NavigateBackToCourseSummary();
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
+
         public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
         {
             formCompletionHelper.Click(BackToCourseSearchPage);
-            return new TrainingCourseSearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(context);
         }
-
     }
 }

@@ -29,11 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
@@ -41,9 +37,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).ContinueWithAlreadySelectedStandardOption();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetails()
@@ -71,9 +67,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(_context).SelectAStandardOption();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage EditCopApprenticeDetails()
@@ -88,13 +84,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
         {
             formCompletionHelper.ClickElement(DeleteButton);
-            return new ProviderConfirmApprenticeDeletionPage(_context);
+            return new ProviderConfirmApprenticeDeletionPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()

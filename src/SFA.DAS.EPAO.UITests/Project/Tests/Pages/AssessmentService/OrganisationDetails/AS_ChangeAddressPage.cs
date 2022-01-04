@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_ChangeAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change address";
-        private readonly ScenarioContext _context;
 
         #region Locators
         private By SearchForANewAddressLink => By.Id("searchAgain");
@@ -17,11 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         private By PostCodeTextBox => By.Id("Postcode");
         #endregion
 
-        public AS_ChangeAddressPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_ChangeAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ChangeAddressPage ClickSearchForANewAddressLink()
         {
@@ -42,25 +37,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             Continue();
-            return new AS_ConfirmContactAddressPage(_context);
+            return new AS_ConfirmContactAddressPage(context);
         }
     }
 
     public class AS_ConfirmContactAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm contact address";
-        private readonly ScenarioContext _context;
+        
 
         public AS_ConfirmContactAddressPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             VerifyPage();
         }
 
         public AS_ContactAddressUpdatedPage ClickConfirmAddressButtonInConfirmContactAddressPage()
         {
             Continue();
-            return new AS_ContactAddressUpdatedPage(_context);
+            return new AS_ContactAddressUpdatedPage(context);
         }
     }
 

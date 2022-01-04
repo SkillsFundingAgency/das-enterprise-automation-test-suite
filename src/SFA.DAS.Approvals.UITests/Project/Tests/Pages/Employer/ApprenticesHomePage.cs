@@ -7,10 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
@@ -29,38 +25,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public ApprenticesHomePage(ScenarioContext context) : base(context, false) { _context = context; }
+        public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
 
         public AddAnApprenitcePage AddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
-            return new AddAnApprenitcePage(_context);
+            return new AddAnApprenitcePage(context);
         }
 
         public ApprenticeRequestsPage ClickApprenticeRequestsLink()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ApprenticeRequestsPage(_context);
+            return new ApprenticeRequestsPage(context);
         }
 
         public ManageYourApprenticesPage ClickManageYourApprenticesLink()
         {
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
-            return new ManageYourApprenticesPage(_context);
+            return new ManageYourApprenticesPage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(_context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {
             formCompletionHelper.ClickElement(SetPaymentOrder);
-            return new SetpaymentOrderPage(_context);
+            return new SetpaymentOrderPage(context);
         }
 
         public ReportPublicSectorApprenticeshipTargetPage ClickReportPublicSectorApprenticeshipTargetLink()
         {
             formCompletionHelper.ClickElement(ReportPublicSectorApprenticeshipTarget);
-            return new ReportPublicSectorApprenticeshipTargetPage(_context);
+            return new ReportPublicSectorApprenticeshipTargetPage(context);
         }
 
         public ApprenticesHomePage ValidateFooter()

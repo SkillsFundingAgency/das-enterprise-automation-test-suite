@@ -9,13 +9,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         protected override By FirstResultLink => By.CssSelector("#provider-results a");
 
-        private readonly ScenarioContext _context;
-
-        public ProviderSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ProviderSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         #region Locators
         private By EmployerSatisfactionPercentageInfo => By.CssSelector("dd.employer-satisfaction");
@@ -32,7 +26,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindATrainingProviderPage NavigateBackFromProviderSearchResultsPage()
         {
             NavigateBack();
-            return new FindATrainingProviderPage(_context);
+            return new FindATrainingProviderPage(context);
         }
     }
 }

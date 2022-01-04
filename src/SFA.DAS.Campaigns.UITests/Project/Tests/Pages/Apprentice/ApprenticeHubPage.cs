@@ -11,18 +11,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By SetUpService => By.CssSelector("a[href*='create-account']"); 
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ApprenticeHubPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeHubPage(ScenarioContext context) : base(context)  { }
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToApprenticeshipHubPage());
 
         public SetUpServicePage NavigateToSetUpServiceAccountPage()
         {
             formCompletionHelper.ClickElement(SetUpService);
-            return new SetUpServicePage(_context);
+            return new SetUpServicePage(context);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _section1_Helper = new YourOrganisation_Section1_Helper();
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
         }

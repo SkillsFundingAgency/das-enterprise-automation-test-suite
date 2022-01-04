@@ -7,10 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "Where will your apprentices be trained?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By BuildingAndStreetTextBox => By.Id("PAT-670");
 
         private By TownOrCityTextBox => By.Id("PAT-671");
@@ -19,11 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 
         private By PostcodeTextBox => By.Id("PAT-673");
 
-        public WhereWillApprenticesBeTrainedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhereWillApprenticesBeTrainedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterTrainingLocationDetailsAndContinue()
         {
@@ -32,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.EnterText(CountyTextBox, applydataHelpers.County);
             formCompletionHelper.EnterText(PostcodeTextBox, applydataHelpers.Postcode);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

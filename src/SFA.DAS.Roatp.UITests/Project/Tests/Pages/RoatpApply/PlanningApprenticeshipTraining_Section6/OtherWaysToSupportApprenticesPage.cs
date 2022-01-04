@@ -9,22 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public OtherWaysToSupportApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public OtherWaysToSupportApprenticesPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplicationOverviewPage EnterTextForOtherWaysToSupportApprenticesAndContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.OtherWaysToSupportApprentices);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }
-
-

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -7,9 +6,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SetUpAsAUserPage : RegistrationBasePage
     {
         protected override string PageTitle => "Set up as a user";
-
-        private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
 
         #region constants
         private const string ExpectedEmailErrorText = "Email already registered.";
@@ -28,12 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
-        public SetUpAsAUserPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            VerifyPage();
-        }
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {
@@ -43,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterPassword().EnterPasswordConfirm().SetMeUp();
 
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public ConfirmYourIdentityPage Register(string email = null)
@@ -52,7 +43,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterRegistrationDetailsAndContinue(email);
 
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
@@ -66,13 +57,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage SignIn()
         {
             formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(_context);
+            return new SignInPage(context);
         }
 
         public TermsAndConditionsPage ClickTermsAndConditionsLink()
         {
-            _tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
-            return new TermsAndConditionsPage(_context);
+            tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
+            return new TermsAndConditionsPage(context);
         }
 
         private SetUpAsAUserPage EnterFirstName()

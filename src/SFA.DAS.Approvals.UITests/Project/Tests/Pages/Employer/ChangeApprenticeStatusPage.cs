@@ -7,11 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Which status change would you like to make?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
-        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context)  { }
       
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
@@ -19,28 +17,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectRadioOptionByText("Pause this apprenticeship");
             Continue();
-            return new PauseApprenticePage(_context);
+            return new PauseApprenticePage(context);
         }
 
         public ResumeApprenticePage SelectResumeAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByText("Resume this apprenticeship");
             Continue();
-            return new ResumeApprenticePage(_context);
+            return new ResumeApprenticePage(context);
         }
 
         internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
-            return new ThisApprenticeshipTrainingStopPage(_context);
+            return new ThisApprenticeshipTrainingStopPage(context);
         }
 
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
-            return new HasTheApprenticeBeenMadeRedundantPage(_context);
+            return new HasTheApprenticeBeenMadeRedundantPage(context);
         }
     }
 }

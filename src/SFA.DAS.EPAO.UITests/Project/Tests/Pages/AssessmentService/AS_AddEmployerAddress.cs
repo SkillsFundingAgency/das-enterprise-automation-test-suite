@@ -7,8 +7,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Add the address that you’d like us to send the certificate to";
 
-        private readonly ScenarioContext _context;
-
         #region Locators
         private By CompanyNameTextBox => By.Id("Employer");
         private By AddressLine1TextBox => By.Id("AddressLine1");
@@ -18,11 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By PostCodeTextBox => By.Id("Postcode");
         #endregion
 
-        public AS_AddEmployerAddress(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_AddEmployerAddress(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_ConfirmAddressPage EnterEmployerAddressAndContinue()
         {
@@ -33,7 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             Continue();
-            return new AS_ConfirmAddressPage(_context);
+            return new AS_ConfirmAddressPage(context);
         }
     }
 }

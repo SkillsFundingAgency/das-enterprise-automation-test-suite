@@ -6,9 +6,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 {
     public class AedProviderHomePage : ProviderHomePage
     {
-        private readonly ScenarioContext _context;
-
-        public AedProviderHomePage(ScenarioContext context) : base(context) => _context = context;
+        public AedProviderHomePage(ScenarioContext context) : base(context) => VerifyPage();
 
         private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
 
@@ -19,7 +17,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }
-            return new FindEmployersThatNeedATrainingProviderPage(_context);
+            return new FindEmployersThatNeedATrainingProviderPage(context);
         }
     }
 }

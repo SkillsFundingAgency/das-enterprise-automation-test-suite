@@ -12,12 +12,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            
             VerifyPage();
         }
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.SelectRadioOptionByText(RadioLabels, option);
             Continue();
-            return new DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(_context);
+            return new DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(context);
         }
     }
 }

@@ -9,22 +9,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By MakeLiveButton => By.CssSelector(".govuk-button[value='MakeLive']");
 
-        public EditOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EditOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OrganisationDetailsPage MakeOrgLive()
         {
             formCompletionHelper.ClickElement(MakeLiveButton);
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
 
         public OrganisationDetailsPage EditDetails()
@@ -32,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.EnterText(CompanyNumberField, ePAOAdminDataHelper.CompanyNumber);
             formCompletionHelper.EnterText(CharityNumberField, ePAOAdminDataHelper.CharityNumber);
             Continue();
-            return new OrganisationDetailsPage(_context);
+            return new OrganisationDetailsPage(context);
         }
 
     }

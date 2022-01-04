@@ -98,6 +98,26 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task WaitUntilEarningsExist(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
         {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId }, 2, timeout);
+        }
+
+        public async Task WaitUntilCorrelationIdsSet(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND CorrelationId <> @defaultCorrelationId", new { apprenticeshipIncentiveId, defaultCorrelationId = Guid.Empty }, 2, timeout);
+        }
+
+        public async Task WaitUntilEmploymentCheckResultIsSet(Guid apprenticeshipIncentiveId, EmploymentCheckType checkType, bool expectedResult, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId AND Result = @expectedResult AND CheckType = @checkType", new { apprenticeshipIncentiveId, expectedResult, checkType = checkType.ToString() }, 1, timeout);
+        }
+
+        public async Task WaitUntilIncentiveWithdrawn(Guid apprenticeshipIncentiveId, TimeSpan? timeout)
+        {
+            await WaitUntil($"SELECT COUNT(1) FROM incentives.ApprenticeshipIncentive WHERE Id = @apprenticeshipIncentiveId AND Status = 'Withdrawn'", new { apprenticeshipIncentiveId }, 1, timeout);
+        }
+
+        private async Task WaitUntil(string query, object parameters, int expectedResults, TimeSpan? timeout)
+        {
             using var cts = new CancellationTokenSource();
             if (timeout != null)
             {
@@ -108,8 +128,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             while (!cts.Token.IsCancellationRequested)
             {
-                var count = await dbConnection.ExecuteScalarAsync<int>($"SELECT COUNT(1) FROM incentives.PendingPayment WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId", new { apprenticeshipIncentiveId });
-                if (count == 2)
+                var count = await dbConnection.ExecuteScalarAsync<int>(query, parameters);
+                if (count == expectedResults)
                 {
                     return;
                 }
@@ -117,7 +137,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 await Task.Delay(TimeSpan.FromMilliseconds(100), cts.Token);
             }
 
-            throw new Exception("Earnings not found!");
+            throw new Exception("Employment Check results not updated!");
         }
                 
 
@@ -162,6 +182,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(sql);
         }
-        
+
+        public async Task SetEmploymentCheckResult(Guid id, bool result)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.UpdateEmploymentCheckResult, new { id, result });
+        }
+
+        public async Task DeleteEmploymentChecks(Guid apprenticeshipIncentiveId)
+        {
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.ExecuteAsync(SqlScripts.DeleteEmploymentChecks, new { apprenticeshipIncentiveId });
+        }
     }
 }

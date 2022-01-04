@@ -57,15 +57,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
-        [Given(@"Receiver sends an approved cohort to the provider")]
-        public void GivenReceiverSendsAnApprovedCohortToTheProvider()
+        [Given(@"Receiver sends an approved cohort with (.*) apprentices to the provider")]
+        public void GivenReceiverSendsAnApprovedCohortWithApprenticesToTheProvider(int numberOfApprentices)
         {
             LoginAsReceiver();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
+
 
         [When(@"Provider approves the cohort")]
         public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();

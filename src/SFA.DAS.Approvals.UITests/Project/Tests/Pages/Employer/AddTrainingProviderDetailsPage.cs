@@ -6,21 +6,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddTrainingProviderDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add training provider details";
-        protected override By ContinueButton => By.Id("continue-button");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
+
+        protected override By ContinueButton => By.Id("continue-button");
 
         private By UkprnField => By.CssSelector(".govuk-input");
 
-        public AddTrainingProviderDetailsPage(ScenarioContext context): base(context) => _context = context;
+        public AddTrainingProviderDetailsPage(ScenarioContext context) : base(context) { }
 
         public ConfirmTrainingProviderPage SubmitValidUkprn()
         {
             EnterUkprn();
             Continue();
-            return new ConfirmTrainingProviderPage(_context);
+            return new ConfirmTrainingProviderPage(context);
         }
 
         private AddTrainingProviderDetailsPage EnterUkprn()

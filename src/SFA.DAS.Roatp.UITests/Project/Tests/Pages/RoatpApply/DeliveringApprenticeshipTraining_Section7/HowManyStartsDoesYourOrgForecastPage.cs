@@ -10,21 +10,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
         private By NumberOfStart => By.CssSelector(".govuk-input");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public HowManyStartsDoesYourOrgForecastPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public HowManyStartsDoesYourOrgForecastPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HowManyEmployeesWillDeliverTrainingPage EnterNumberOfStartsAndContinue()
         {
             formCompletionHelper.EnterText(NumberOfStart, "1234");
             Continue();
-            return new HowManyEmployeesWillDeliverTrainingPage(_context);
+            return new HowManyEmployeesWillDeliverTrainingPage(context);
         }
     }
 }

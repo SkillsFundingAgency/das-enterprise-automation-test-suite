@@ -7,19 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SelectYourOrganisationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Select your organisation";
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By OrganisationLink => By.CssSelector("button[type=submit]");
         private By SearchResultsText => By.Id("inline-search-hint");
         private By TextBelowOrgNameInResults(string orgName) => By.XPath($"//p[text()='{orgName}']/following-sibling::p");
         #endregion
 
-        public SelectYourOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SelectYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CheckYourDetailsPage SelectYourOrganisation(OrgType orgType = OrgType.Default)
         {
@@ -45,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                     break;
             }
 
-            return new CheckYourDetailsPage(_context);
+            return new CheckYourDetailsPage(context);
         }
 
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);

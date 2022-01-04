@@ -8,17 +8,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation is this vacancy for?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-        
-        public SelectOrganisationPage(ScenarioContext context) : base(context) => _context = context;
+        public SelectOrganisationPage(ScenarioContext context) : base(context) { }
 
         public WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation()
         {
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
-            return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
+            return new WhichEmployerNameDoYouWantOnYourAdvertPage(context);
         }
     }
 }

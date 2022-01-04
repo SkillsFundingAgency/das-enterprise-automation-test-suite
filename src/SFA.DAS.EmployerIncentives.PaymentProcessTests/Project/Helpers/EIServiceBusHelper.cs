@@ -38,9 +38,14 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
         }
 
-        public async Task Publish<T>(T message) where T : class
+        public async Task Send<T>(T message) where T : class
         {
             await _endpoint.Send(message);
+        }
+
+        public async Task Publish<T>(T message) where T : class
+        {
+            await _endpoint.Publish(message);
         }
     }
 }

@@ -11,15 +11,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override string PageTitle => $"When did <fname> <lname> join {ObjectContextExtension.GetOrganisationName(objectContext)}?";
 
         #region Locators
-        private readonly ScenarioContext _context;
-
         private By DateGroup => By.CssSelector(".govuk-date-input");
         private By DayInputField => By.Name("EmploymentStartDateDays");
         private By MonthInputField => By.Name("EmploymentStartDateMonths");
         private By YearInputField => By.Name("EmploymentStartDateYears");
         #endregion
 
-        public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false) => _context = context;
+        public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false)  { }
 
         public ConfirmApprenticesPage EnterJoiningDateAndContinue(DateTime? employmentStartDate)
         {
@@ -39,7 +37,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new ConfirmApprenticesPage(_context);
+            return new ConfirmApprenticesPage(context);
         }
 
         public WhenDidApprenticeJoinTheOrgPage EnterJoiningDate(int apprenticeshipIndex, DateTime employmentStartDate)

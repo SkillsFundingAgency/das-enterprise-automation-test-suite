@@ -8,20 +8,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "New training end date";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By EndDateMonth => By.Name("EndMonth");
         private By EndDateYear => By.Name("EndYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
-        private readonly ScenarioContext _context;
-
-        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context)  { }
 
         public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
         {
             formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
             formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
             Continue();
-            return new ChangeOfEmployerPricePage(_context);
+            return new ChangeOfEmployerPricePage(context);
         }
     }
 }

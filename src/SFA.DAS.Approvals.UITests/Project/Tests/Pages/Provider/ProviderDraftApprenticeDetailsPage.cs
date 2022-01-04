@@ -6,16 +6,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {   
         protected override string PageTitle => "Draft apprentice details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
-        public ProviderDraftApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderDraftApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
-            return new ProviderApproveApprenticeDetailsPage(_context);
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

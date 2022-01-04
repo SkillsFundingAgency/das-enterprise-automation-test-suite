@@ -7,9 +7,9 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
     {
         protected override string PageTitle => "Share your interest with training providers";
 
-        private readonly ScenarioContext _context;
+        protected override bool TakeFullScreenShot => false;
 
-        public ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : base(context) => _context = context;
+        public ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 
         private By StartNowButton => By.ClassName("govuk-button");
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
         {
             formCompletionHelper.ClickButtonByText(StartNowButton, "Start now");
 
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+            return new GetHelpWithFindingATrainingProviderPage(context);
         }
     }
 }

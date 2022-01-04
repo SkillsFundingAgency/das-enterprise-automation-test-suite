@@ -8,20 +8,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Your training providers";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
         private By SetPermissionsLink => By.LinkText("Set permissions");
         private By ChangePermissionsLink => By.LinkText("Change permissions");
 
-        public YourTrainingProvidersPage(ScenarioContext context) : base(context) => _context = context;
+        public YourTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddANewTrainingProvider()
         {
             formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
-            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(_context);
+            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
@@ -31,13 +27,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             else
                 tableRowHelper.SelectRowFromTable("Set permissions", orgName);
 
-            return new SetPermissionsForTrainingProviderPage(_context);
+            return new SetPermissionsForTrainingProviderPage(context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectChangePermissions()
         {
             formCompletionHelper.ClickElement(ChangePermissionsLink);
-            return new SetPermissionsForTrainingProviderPage(_context);
+            return new SetPermissionsForTrainingProviderPage(context);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => vacancyTitledataHelper.VacancyTitle;
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
         private By Notes => By.CssSelector("#Notes");
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By CandidateFeedback => By.CssSelector("#candidate-feedback");
 
-        public RAA_ApplicationPreviewPage(ScenarioContext context) : base(context) => _context = context;
+        public RAA_ApplicationPreviewPage(ScenarioContext context) : base(context) { }
 
         public RAA_VacancySummaryPage ChangeStatus(string newstatus)
         {
@@ -61,7 +61,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.ClickButtonByText("Return to vacancy applications");
             }
 
-            return new RAA_VacancySummaryPage(_context);
+            return new RAA_VacancySummaryPage(context);
         }
 
     }

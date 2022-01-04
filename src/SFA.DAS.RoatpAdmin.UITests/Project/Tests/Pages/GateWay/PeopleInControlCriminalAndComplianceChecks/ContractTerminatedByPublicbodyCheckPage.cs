@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.PeopleInControl
     {
         protected override string PageTitle => "Contract terminated by a public body in the last 3 years check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ContractTerminatedByPublicBodyCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ContractTerminatedByPublicBodyCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

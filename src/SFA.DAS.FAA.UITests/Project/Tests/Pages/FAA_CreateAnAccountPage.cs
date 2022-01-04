@@ -8,10 +8,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Create an account";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         #region Locators
         private By FirstName => By.Id("Firstname");
         private By LastName => By.Id("Lastname");
@@ -28,10 +24,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By CreateAccountButton => By.Id("create-account-btn");
         private By RegisteredEmailErrorMessage => By.ClassName("error-summary-list");
 
-
         #endregion
 
-        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) => _context = context;
+        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) { }
 
         public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
         {
@@ -48,7 +43,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
             formCompletionHelper.Click(CreateAccountButton);
             pageInteractionHelper.WaitforURLToChange("activation");
-            return new FAA_ActivateYourAccountPage(_context);
+            return new FAA_ActivateYourAccountPage(context);
         }
 
         public void SelectAddress()

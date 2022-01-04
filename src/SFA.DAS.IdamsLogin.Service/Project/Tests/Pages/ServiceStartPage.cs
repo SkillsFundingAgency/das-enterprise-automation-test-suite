@@ -7,18 +7,14 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "ESFA admin services";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By StartNowCssSelector => By.CssSelector(".govuk-button--start");
 
-        public ServiceStartPage(ScenarioContext context) : base(context) => _context = context;
+        public ServiceStartPage(ScenarioContext context) : base(context) { }
 
         public IdamsPage StartNow()
         {
             ClickStartNowButton();
-            return new IdamsPage(_context);
+            return new IdamsPage(context);
         }
 
         public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowCssSelector);

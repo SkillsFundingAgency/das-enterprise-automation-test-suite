@@ -6,11 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Important dates";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ImportantDatesPage(ScenarioContext context) : base(context) => _context = context;
+        public ImportantDatesPage(ScenarioContext context) : base(context) { }
 
         public DurationPage EnterImportantDates(bool disabilityConfidence)
         {
@@ -24,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             Continue();
             pageInteractionHelper.WaitforURLToChange("duration");
-            return new DurationPage(_context);
+            return new DurationPage(context);
         }
     }
 }

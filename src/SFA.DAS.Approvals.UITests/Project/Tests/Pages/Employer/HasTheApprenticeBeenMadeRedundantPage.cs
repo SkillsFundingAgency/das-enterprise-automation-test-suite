@@ -9,18 +9,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class HasTheApprenticeBeenMadeRedundantPage : ApprovalsBasePage
     {
         protected override string PageTitle => $"Has {apprenticeDataHelper.ApprenticeFullName} been made redundant?";
-        
+
+        protected override bool TakeFullScreenShot => false;
+
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         #endregion
+
         protected override By ContinueButton => By.Id("submit");
 
-        public HasTheApprenticeBeenMadeRedundantPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-        }
+        public HasTheApprenticeBeenMadeRedundantPage(ScenarioContext context) : base(context) => _dataHelper = context.Get<ApprenticeDataHelper>();
 
         public StopApprenticeshipPage ClickARadioButtonAndContinue()
         {
@@ -28,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _dataHelper.MadeRedundant = RadioButtonList[new Random().Next(RadioButtonList.Count)];
             formCompletionHelper.SelectRadioOptionByText(_dataHelper.MadeRedundant);
             Continue();
-            return new StopApprenticeshipPage(_context);
+            return new StopApprenticeshipPage(context);
         }
     }
 }
