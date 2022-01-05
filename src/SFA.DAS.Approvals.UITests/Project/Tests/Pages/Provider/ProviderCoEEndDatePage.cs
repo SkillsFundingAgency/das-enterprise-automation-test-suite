@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerEndDatePage : ApprovalsBasePage
+    public class ProviderCoEEndDatePage : ApprovalsBasePage
     {
         protected override string PageTitle => "New training end date";
 
@@ -14,14 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EndDateYear => By.Name("EndYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
-        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context)  { }
+        public ProviderCoEEndDatePage(ScenarioContext context) : base(context)  { }
 
-        public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
+        public ProviderCoEPricePage EnterNewEndDateAndContinue()
         {
             formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
             formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
             Continue();
-            return new ChangeOfEmployerPricePage(context);
+            return new ProviderCoEPricePage(context);
         }
     }
 }
