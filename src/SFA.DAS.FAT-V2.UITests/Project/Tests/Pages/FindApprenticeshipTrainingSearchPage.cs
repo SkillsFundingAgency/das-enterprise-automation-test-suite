@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
-    public class FindApprenticeshipTrainingSearchPage : FATV2BasePage
+    public class FindApprenticeshipTrainingSearchPage : ApprenticeshipTrainingCourseBasePage
     {
-        protected override string PageTitle => "Apprenticeship training courses";
-
         public FindApprenticeshipTrainingSearchPage(ScenarioContext context) : base(context) { }
 
         public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)

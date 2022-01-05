@@ -25,6 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new NotEligiblePage(context);
         }
+
         public ApplicationOverviewPage SelectMinimumTradingPeriodAndContinue_ForExemptOrganisations()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).FirstOrDefault());

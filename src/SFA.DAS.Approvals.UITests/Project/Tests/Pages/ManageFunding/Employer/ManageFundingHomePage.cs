@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private By DeleteLink => By.LinkText("Delete");
 
-        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => VerifyPage();
+        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate) { }
 
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {

@@ -9,6 +9,8 @@ PRINT 'delete from ClawbackPayment'
 delete from incentives.ClawbackPayment where AccountId in (select id from #accountids)
 PRINT 'delete from ChangeOfCircumstance'
 delete from incentives.ChangeOfCircumstance where ApprenticeshipIncentiveId in (select id from #apprenticeshipincentiveids)
+PRINT 'delete from EmploymentCheck'
+delete from incentives.EmploymentCheck where ApprenticeshipIncentiveId in (select id from #apprenticeshipincentiveids)
 PRINT 'delete from PendingPaymentValidationResult'
 delete from incentives.PendingPaymentValidationResult where PendingPaymentId in (select id from #pendingpaymentids)
 PRINT 'delete from PendingPayment'

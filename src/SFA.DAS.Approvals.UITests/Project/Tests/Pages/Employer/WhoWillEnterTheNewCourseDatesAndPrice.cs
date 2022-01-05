@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Who will enter the new course dates and price?";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
 
         public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context): base(context) { }

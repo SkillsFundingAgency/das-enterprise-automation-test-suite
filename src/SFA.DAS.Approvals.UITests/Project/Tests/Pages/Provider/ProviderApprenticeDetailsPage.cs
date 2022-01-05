@@ -100,6 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }      
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
+
         public string GetCoPBanner() => pageInteractionHelper.GetText(ChangeOfPartyBanner);
 
         public bool IsPricemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkUpdateLink);

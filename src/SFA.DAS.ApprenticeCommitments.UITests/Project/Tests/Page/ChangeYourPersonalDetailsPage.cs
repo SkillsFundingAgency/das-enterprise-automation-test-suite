@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -19,6 +20,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new ApprenticeHomePage EnterValidApprenticeDetails(string firstName, string lastName)
         {
             base.EnterValidApprenticeDetails(firstName, lastName);
+            objectContext.SetFirstName(firstName);
+            objectContext.SetLastName(lastName);
             return new ApprenticeHomePage(context);
         }
     }

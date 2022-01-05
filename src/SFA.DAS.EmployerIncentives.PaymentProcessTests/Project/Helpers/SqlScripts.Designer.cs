@@ -86,14 +86,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  DECLARE @ApprenticeshipIncentiveId UNIQUEIDENTIFIER
-        /// SET @ApprenticeshipIncentiveId=(SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId)
+        ///   Looks up a localized string similar to DELETE Incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId.
+        /// </summary>
+        internal static string DeleteEmploymentChecks {
+            get {
+                return ResourceManager.GetString("DeleteEmploymentChecks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DECLARE @apprenticeshipIncentiveId UNIQUEIDENTIFIER
+        ///DECLARE @apprenticeshipIncentiveIds TABLE (Id UNIQUEIDENTIFIER)
+        ///INSERT INTO @apprenticeshipIncentiveIds SELECT Id FROM incentives.ApprenticeshipIncentive WHERE AccountId=@accountId AND ApprenticeshipId=@apprenticeshipId
         /// 
-        /// DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// DELETE archive.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// DELETE incentives.Payment WHERE ApprenticeshipIncentiveId = @ApprenticeshipIncentiveId;
-        /// 
-        ///DELETE x FROM archive.Pend [rest of string was truncated]&quot;;.
+        ///WHILE EXISTS (SELECT 1 FROM @apprenticeshipIncentiveIds)
+        ///BEGIN
+        ///    SET @apprenticeshipIncentiveId = (SELECT TOP 1 Id FROM @apprenticeshipIncentiveIds)
+        ///    DELETE incentives.ClawbackPayment WHERE ApprenticeshipIncentiveId = @apprent [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DeleteIncentiveData {
             get {
@@ -111,6 +120,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers {
         internal static string ResetCalendar {
             get {
                 return ResourceManager.GetString("ResetCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE incentives.EmploymentCheck SET Result = @result WHERE Id = @id.
+        /// </summary>
+        internal static string UpdateEmploymentCheckResult {
+            get {
+                return ResourceManager.GetString("UpdateEmploymentCheckResult", resourceCulture);
             }
         }
         

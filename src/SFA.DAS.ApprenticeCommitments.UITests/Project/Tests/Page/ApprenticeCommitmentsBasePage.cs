@@ -60,9 +60,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             });
         }
 
-        protected void VerifyNotificationBannerHeader(string expected) => VerifyPage(NotificationBannerHeader, expected);
+        protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
 
-        protected void VerifyNotificationBannerContent(string expected) => VerifyPage(NotificationBannerContent, expected);
+        protected void VerifyNotificationBannerContent(string expected) => VerifyElement(NotificationBannerContent, expected);
 
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
@@ -90,9 +90,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private void VerifyFooterLinks()
         {
-            VerifyPage(PrivacyFooterLink);
-            VerifyPage(CookiesFooterLink);
-            VerifyPage(TermsOfUseFooterLink);
+            VerifyElement(PrivacyFooterLink);
+            VerifyElement(CookiesFooterLink);
+            VerifyElement(TermsOfUseFooterLink);
         }
 
         public SignedOutPage SignOutFromTheService()
