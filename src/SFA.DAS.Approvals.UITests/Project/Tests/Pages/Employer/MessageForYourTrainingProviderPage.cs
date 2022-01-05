@@ -7,20 +7,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Message for your training provider";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override bool TakeFullScreenShot => false;
 
         private By MessageBox => By.Id("Message");
         private By SendButton => By.Id("continue-button");
 
-        public MessageForYourTrainingProviderPage(ScenarioContext context) : base(context) => _context = context;
+        public MessageForYourTrainingProviderPage(ScenarioContext context) : base(context)  { }
 
         public CohortSentYourTrainingProviderPage SendInstructionsToProviderForEmptyCohort()
         {
             formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToProvider);
             formCompletionHelper.ClickElement(SendButton);
-            return new CohortSentYourTrainingProviderPage(_context);
+            return new CohortSentYourTrainingProviderPage(context);
         }
     }
 }

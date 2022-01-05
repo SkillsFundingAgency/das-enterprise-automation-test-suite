@@ -6,20 +6,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Has your organisation produced full management accounts covering the last 12 months?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public FullManagementAccountsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FullManagementAccountsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhatYouNeedToUploadPage SelectNoForManagementAccountsSupportingRouteAndContinue()
         {
             SelectNoAndContinue();
-            return new WhatYouNeedToUploadPage(_context);
+            return new WhatYouNeedToUploadPage(context);
         }
     }
 }

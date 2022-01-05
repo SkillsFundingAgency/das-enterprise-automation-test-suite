@@ -16,33 +16,33 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        
         #endregion
 
-        protected ApprenticeBasePage(ScenarioContext context) : base(context) => _context = context;
+        protected ApprenticeBasePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
         {
             formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
-            return new ApprenticeAreTheyRightForYouPage(_context);
+            return new ApprenticeAreTheyRightForYouPage(context);
         }
 
         public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new ApprenticeHowDoTheyWorkPage(_context);
+            return new ApprenticeHowDoTheyWorkPage(context);
         }
 
         public GettingStartedPage NavigateToGettingStarted()
         {
             formCompletionHelper.ClickElement(GettingStarted);
-            return new GettingStartedPage(_context);
+            return new GettingStartedPage(context);
         }
 
         public BrowseApprenticeshipPage NavigateToBrowseApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(BrowseApprenticeship);
-            return new BrowseApprenticeshipPage(_context);
+            return new BrowseApprenticeshipPage(context);
         }
     }
 }

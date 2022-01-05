@@ -7,36 +7,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Review changes";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApproveSelector => By.CssSelector("#ApproveChanges");
 
         private By RejectSelector => By.CssSelector("#ApproveChanges-no");
 
         protected override By ContinueButton => By.CssSelector("#continue-button");        
 
-        public ProviderReviewChangesPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderReviewChangesPage(ScenarioContext context) : base(context)  { }
 
         public ProviderEditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
             SelectOption(ApproveSelector);
             
-            return new ProviderEditedApprenticeDetailsPage(_context);
+            return new ProviderEditedApprenticeDetailsPage(context);
         }
 
         public ProviderApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
             SelectOption(RejectSelector);
 
-            return new ProviderApprenticeDetailsPage(_context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             Continue();
-            return new ProviderAccessDeniedPage(_context);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderReviewChangesPage SelectReviewChangesOptions()

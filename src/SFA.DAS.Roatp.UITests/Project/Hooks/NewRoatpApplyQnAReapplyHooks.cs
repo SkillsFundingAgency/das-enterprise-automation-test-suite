@@ -8,14 +8,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     [Binding, Scope(Tag = "rpadgatewayrejectreapplications01")]
     public class NewRoatpApplyQnAReapplyHooks : RoatpBaseHooks
     {
-        private readonly ScenarioContext _context;
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
-        public NewRoatpApplyQnAReapplyHooks (ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
-        }
+        public NewRoatpApplyQnAReapplyHooks (ScenarioContext context) : base(context) => _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
 
         [BeforeScenario(Order = 33)]
         public void OversightReviewClearDownFromApply() => _roatpApplyClearDownDataHelpers.OversightReviewClearDownFromApply_GatewayReject(GetUkprn());

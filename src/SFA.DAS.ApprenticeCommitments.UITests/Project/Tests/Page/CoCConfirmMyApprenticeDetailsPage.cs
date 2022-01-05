@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string AppStatusTableIdentifier => ".govuk-list.app-status-list";
         private string AppStatusRowIdentifier => ".app-status-list__list-item";
 
-        public ApprenticeOverviewPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeOverviewPage(ScenarioContext context) : base(context)  { }
 
         public (string sectionName, string sectionStatus) GetConfirmYourEmployerStatus() => (SectionHelper.Section1, GetConfirmationStatus(SectionHelper.Section1));
 
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public bool IsCoCNotificationDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
 
-        private ApprenticeOverviewPage VerifyCocNotification(string expected) { VerifyPage(NotificationBanner, expected); return this; }
+        private ApprenticeOverviewPage VerifyCocNotification(string expected) { VerifyElement(NotificationBanner, expected); return this; }
 
         private string GetConfirmationStatus(string section) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(section, Status, AppStatusTableIdentifier, AppStatusRowIdentifier));
     }

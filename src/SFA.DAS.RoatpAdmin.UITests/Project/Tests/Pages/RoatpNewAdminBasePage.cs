@@ -8,11 +8,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public abstract class RoatpNewAdminBasePage : RoatpBasePage
     {
-        private readonly ScenarioContext _context;
-
         protected virtual By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
 
         protected virtual By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
+
+        protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         private By ProviderLink => By.LinkText(objectContext.GetProviderName());
 
@@ -27,15 +27,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         private By SearchField => By.CssSelector("#SearchTerm");
-        protected virtual By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
-
+        
         protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
+
         private By SearchButton => By.CssSelector(".app-search-form__button-wrap");
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
-            _context = context;
-
             if (verifyPage) VerifyPage();
         }
 
@@ -59,7 +57,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             if (pageInteractionHelper.IsElementDisplayed(ReturnToDashBoard))
                 formCompletionHelper.ClickElement(ReturnToDashBoard);
             
-            return new StaffDashboardPage(_context);
+            return new StaffDashboardPage(context);
         }
 
         public bool VerifyApplication() => pageInteractionHelper.IsElementDisplayed(ProviderLink);
@@ -77,23 +75,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(SearchField, searchText);
             formCompletionHelper.ClickElement(SearchButton);
-
         }
 
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
                     VerifyElement(() => pageInteractionHelper.FindElement(StatusTextLocator(linkText)), expectedStatus, null);
 
-        protected void VerifyOutcomeStatus(string expectedStatus) => VerifyOutcomeStatus(OutcomeTab, OutcomeStatus, expectedStatus);
+        protected void VerifyOutcomeStatus(string expectedStatus) => 
+            VerifyOutcomeStatus(OutcomeTab, OutcomeStatus, expectedStatus);
 
-        protected void VerifyOutcomeStatus(By outcomeTab, By outcomeStatus, string expectedStatus)
-        {
+        protected void VerifyOutcomeStatus(By outcomeTab, By outcomeStatus, string expectedStatus) => 
             VerifyApplicationStatus(outcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(outcomeTab)));
-        }
+        
 
-        protected void VerifyClarificationStatus(By statusSelector, string expectedStatus)
-        {
+        protected void VerifyClarificationStatus(By statusSelector, string expectedStatus) => 
             VerifyApplicationStatus(statusSelector, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab)));
-        }
 
         protected void VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
         {

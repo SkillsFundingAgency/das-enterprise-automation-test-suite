@@ -6,29 +6,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Is your organisation";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        public AlreadyRegisteredWithEsfaPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public AlreadyRegisteredWithEsfaPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
+
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
             SelectYesAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
+
         public DescribeYourOrganisationPage SelectNoForOrgAlreadyRegisteredAndContinue()
         {
             SelectNoAndContinue();
-            return new DescribeYourOrganisationPage(_context);
+            return new DescribeYourOrganisationPage(context);
         }
     }
 }

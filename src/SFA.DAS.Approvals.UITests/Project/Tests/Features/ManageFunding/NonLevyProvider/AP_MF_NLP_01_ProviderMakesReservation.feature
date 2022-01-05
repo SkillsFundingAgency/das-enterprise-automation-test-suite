@@ -9,3 +9,4 @@ Feature: AP_MF_NLP_01_ProviderMakesReservation
 Scenario: AP_MF_NLP_01 Provider makes reservation adds and deletes apprentice for non-levy employer
 	Given An Employer has given create reservation permission to a provider
 	Then Provider can make a reservation
+	And the Provider can access Manage Funding Page to reserve more funding

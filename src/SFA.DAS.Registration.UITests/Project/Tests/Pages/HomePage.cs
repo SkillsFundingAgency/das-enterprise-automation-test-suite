@@ -7,8 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : InterimHomeBasePage
     {
-        private readonly ScenarioContext _context;
-
         #region Locators
         protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
@@ -25,11 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
-        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
-        {
-            _context = context;
-            base.AcceptCookies();
-        }
+        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 
@@ -52,17 +46,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {
             formCompletionHelper.Click(AcceptYourAgreementLink);
-            return new AboutYourAgreementPage(_context);
+            return new AboutYourAgreementPage(context);
         }
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
-        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
+        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyElement(StartAddingApprenticesNowTaskLink);
 
         public void VerifySetupAnApprenticeshipSection()
         {
-            VerifyPage(SetUpAnApprenticeshipSectionHeader);
-            VerifyPage(StartNowButton);
+            VerifyElement(SetUpAnApprenticeshipSectionHeader);
+            VerifyElement(StartNowButton);
         }
     }
 }

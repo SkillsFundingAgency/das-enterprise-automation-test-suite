@@ -6,21 +6,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "What grade did your organisation get for apprenticeships in this full Ofsted inspection?";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public WhatGradeInOfstedInspectionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhatGradeInOfstedInspectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhatGradeInOfstedInspectionOverallEffectivenessPage SelecRequiresImprovementAndContinue()
         {
             SelectRadioOptionByText("Requires improvement");
             Continue();
-            return new WhatGradeInOfstedInspectionOverallEffectivenessPage(_context);
+            return new WhatGradeInOfstedInspectionOverallEffectivenessPage(context);
         }
 
         public GradeWithin3YearsPage SelecOutstandingAndContinue()
@@ -28,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             
             SelectRadioOptionByText("Outstanding");
             Continue();
-            return new GradeWithin3YearsPage(_context);
+            return new GradeWithin3YearsPage(context);
         }
 
         public GradeWithin3YearsPage SelecInadequateAndContinue()
@@ -36,7 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
             SelectRadioOptionByText("Inadequate");
             Continue();
-            return new GradeWithin3YearsPage(_context);
+            return new GradeWithin3YearsPage(context);
         }
     }
 }

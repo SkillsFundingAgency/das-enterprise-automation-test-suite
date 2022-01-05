@@ -10,14 +10,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
     {
         protected override string PageTitle => "Information Commissioner's Office (ICO) registration number check";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ICONumberCheckPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ICONumberCheckPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

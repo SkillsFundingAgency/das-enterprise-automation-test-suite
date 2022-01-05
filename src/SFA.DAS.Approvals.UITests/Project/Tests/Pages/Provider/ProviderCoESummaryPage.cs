@@ -5,16 +5,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerSummaryPage : ApprovalsBasePage
+    public class ProviderCoESummaryPage : ApprovalsBasePage
     {
-        private readonly ScenarioContext _context;
         
         protected override string PageTitle => "Confirm the information before sending your request";
         protected override By ContinueButton => By.Id("confirm-button");
 
-        public ChangeOfEmployerSummaryPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderCoESummaryPage(ScenarioContext context) : base(context)  { }
 
-        public ChangeOfEmployerRequestedPage VerifyAndSubmitChangeOfEmployerRequest()
+        public ProviderCoERequestedPage VerifyAndSubmitChangeOfEmployerRequest()
         {  
             var newStartDate = pageInteractionHelper.FindElement(By.Name("NewStartDate")).GetAttribute("value");
             var newEndDate = pageInteractionHelper.FindElement(By.Name("NewEndDate")).GetAttribute("value");
@@ -26,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             Continue();
 
-            return new ChangeOfEmployerRequestedPage(_context);
+            return new ProviderCoERequestedPage(context);
         }
 
         private string FormatDateIntoMMYYYY(DateTime date)

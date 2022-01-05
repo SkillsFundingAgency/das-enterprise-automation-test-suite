@@ -7,10 +7,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public abstract class TransferMatchingBasePage : BasePage
+    public abstract class TransferMatchingBasePage : VerifyBasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         protected readonly TMDataHelper tMDataHelper;
         protected readonly ApprenticeDataHelper datahelper;
         #endregion
@@ -23,7 +22,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
-            _context = context;
             tMDataHelper = context.Get<TMDataHelper>();
             datahelper = context.Get<ApprenticeDataHelper>();
             if (verifyPage) VerifyPage();
@@ -31,7 +29,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
-        protected void VerifyApplicationStatus(string expectedStatus) => VerifyPage(ApplicaitonStatusSelector, expectedStatus);
+        protected void VerifyApplicationStatus(string expectedStatus) => VerifyElement(ApplicaitonStatusSelector, expectedStatus);
 
         protected Pledge GetPledgeDetail() => objectContext.GetPledgeDetail();
 
@@ -43,7 +41,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new CreateATransferPledgePage(_context);
+            return new CreateATransferPledgePage(context);
         }
 
         protected void SelectRandomCheckbox()

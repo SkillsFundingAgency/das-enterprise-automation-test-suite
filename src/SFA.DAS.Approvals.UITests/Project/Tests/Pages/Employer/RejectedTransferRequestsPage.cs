@@ -7,16 +7,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Rejected transfer requests";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By CohortInfoRow => By.CssSelector("tbody tr");
         private By CohortEditLink => By.LinkText("Edit");
 
-        public RejectedTransferRequestsPage(ScenarioContext context) : base(context) => _context = context;
+        public RejectedTransferRequestsPage(ScenarioContext context) : base(context)  { }
 
-        public ReviewYourCohortPage OpenRejectedCohort()
+        public ApproveApprenticeDetailsPage OpenRejectedCohort()
         {
             var cohortRows = pageInteractionHelper.FindElements(CohortInfoRow);
             var cohortEditLinks = pageInteractionHelper.FindElements(CohortEditLink);
@@ -31,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 }
                 i++;
             }
-            return new ReviewYourCohortPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
     }
 }

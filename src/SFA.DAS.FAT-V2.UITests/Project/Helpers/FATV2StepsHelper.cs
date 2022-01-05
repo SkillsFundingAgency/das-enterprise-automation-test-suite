@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
@@ -9,37 +7,31 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public FATV2StepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
-        public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "")
-        {
-            new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
-            return new TrainingCourseSearchResultsPage(_context);
-        }
+        public FATV2StepsHelper(ScenarioContext context) => _context = context;
+
+        public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "") => new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
+
         public ProviderSummaryPage SelectASpecificProvider(string provider = "")
         {
             new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
+
             return new ProviderSummaryPage(_context);
         }
+
         public ProviderSearchResultsPage SelectTrainingCourseAndNavigateToProviderListPage(string course = "")
         {
-            new FATV2IndexPage(_context).ClickStartButton()
-                .SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course)
+            return SearchForTrainingCourse(course)
                 .SelectFirstTrainingResult()
                 .ClickViewProvidersForThisCourse();
-            return new ProviderSearchResultsPage(_context);
         }
+
         public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage(string course = "")
         {
-            new FATV2IndexPage(_context).ClickStartButton()
-                .SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course)
+           return SearchForTrainingCourse(course)
                 .SelectFirstTrainingResult()
                 .ClickViewProvidersForThisCourse()
                 .ShortlistAProviderFromProviderList()
                 .NavigateToProviderShortlistPage();
-            return new ProviderShortlistPage(_context);
         }
     }
 }

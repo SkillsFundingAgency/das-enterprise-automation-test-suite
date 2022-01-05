@@ -5,20 +5,19 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
     public class ManagingRelationshipWithEmployersPage : ModeratorBasePage
     {
         protected override string PageTitle => "Managing relationship with employers";
-        private readonly ScenarioContext _context;
-
-        public ManagingRelationshipWithEmployersPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ManagingRelationshipWithEmployersPage(ScenarioContext context) : base(context) { }
 
         public OverallResponsibilityForManagingRelationshipsWithEmployersPage SelectPassAndContinueInManagingRelationshipWithEmployersPage()
         {
             SelectPassAndContinueToSubSection();
-            return new OverallResponsibilityForManagingRelationshipsWithEmployersPage(_context);
+            return new OverallResponsibilityForManagingRelationshipsWithEmployersPage(context);
         }
 
         public OverallResponsibilityForManagingRelationshipsWithEmployersPage SelectFailAndContinueInManagingRelationshipWithEmployersPage()
         {
             SelectFailAndContinueToSubSection();
-            return new OverallResponsibilityForManagingRelationshipsWithEmployersPage(_context);
+            return new OverallResponsibilityForManagingRelationshipsWithEmployersPage(context);
         }
     }
 }

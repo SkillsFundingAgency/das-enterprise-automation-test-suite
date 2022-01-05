@@ -7,8 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class SearchApprenticeshipTrainingCoursePage : FindEPAOBasePage
     {
         protected override string PageTitle => "What is the apprenticeship training course?";
-        private readonly ScenarioContext _context;
-        public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) => _context = context;
+
+        public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) { } 
 
         #region Locators
         private By BackButton => By.ClassName("govuk-back-link");
@@ -17,36 +17,37 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public EPAOOrganisationsPage SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
 
         public ZeroAssessmentOrganisationsPage SearchForApprenticeshipStandardWithNoEPAO(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
-            return new ZeroAssessmentOrganisationsPage(_context);
+            return new ZeroAssessmentOrganisationsPage(context);
         }
 
         public EPAOOrganisationDetailsPage SearchForApprenticeshipStandardWithSingleEPAO(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
-            return new EPAOOrganisationDetailsPage(_context);
+            return new EPAOOrganisationDetailsPage(context);
         }
 
         public EPAOOrganisationsPage SearchForAnIntegratedApprenticeshipStandard(string searchTerm)
         {
             SearchApprenticeshipStandard(searchTerm);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
 
         public FindEPAOIndexPage NavigateBackFromSearchApprenticeshipPageToHomePage()
         {
             NavigateBackToHomePage();
-            return new FindEPAOIndexPage(_context);
+            return new FindEPAOIndexPage(context);
         }
+
         public FindEPAOIndexPage NavigateBackToHomePage()
         {
             formCompletionHelper.Click(BackButton);
-            return new FindEPAOIndexPage(_context);
+            return new FindEPAOIndexPage(context);
         }
     }
 }

@@ -6,32 +6,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Application overview";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public StandardApplicationOverviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public StandardApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApplyToAssessAStandardPage GoToApplyToAssessAStandardPage()
         {
             formCompletionHelper.ClickLinkByText("Evaluate apply to assess a standard");
-            return new ApplyToAssessAStandardPage(_context);
+            return new ApplyToAssessAStandardPage(context);
         }
 
         public StandardApplicationsPage ReturnToOrganisationApplicationsPage()
         {
             formCompletionHelper.ClickLinkByText("Return to applications");
-            return new StandardApplicationsPage(_context);
+            return new StandardApplicationsPage(context);
         }
 
         public AssessmentSummaryPage CompleteReview()
         {
             Continue();
-            return new AssessmentSummaryPage(_context);
+            return new AssessmentSummaryPage(context);
         }
     }
 }

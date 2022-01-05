@@ -5,10 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SignInPage : BasePage
+    public class SignInPage : VerifyBasePage
     {
         protected override string PageTitle => "Sign in";
-        private readonly ScenarioContext _context;
+
+        protected override bool TakeFullScreenShot => false;
 
         #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
@@ -18,40 +19,36 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
         #endregion
 
-        public SignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HomePage Login(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new HomePage(_context);
+            return new HomePage(context);
         }
 
         public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {
             EnterLoginDetailsAndClickSignIn(userName, password);
-            return new ConfirmYourIdentityPage(_context);
+            return new ConfirmYourIdentityPage(context);
         }
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new MyAccountWithOutPayePage(_context);
+            return new MyAccountWithOutPayePage(context);
         }
 
         public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new YourAccountsPage(_context);
+            return new YourAccountsPage(context);
         }
 
         public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
-            return new MyAccountTransferFundingPage(_context);
+            return new MyAccountTransferFundingPage(context);
         }
 
         public void EnterLoginDetailsAndClickSignIn(string userName, string password)
@@ -63,20 +60,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
         {
-            VerifyPage(HeaderInformationMessage, info);
+            VerifyElement(HeaderInformationMessage, info);
             return this;
         }
 
         public PasswordResetCodePage ClickForgottenYourPasswordLink()
         {
             formCompletionHelper.Click(ForgottenYourPasswordLink);
-            return new PasswordResetCodePage(_context);
+            return new PasswordResetCodePage(context);
         }
 
         public AddAPAYESchemePage LoginWithResetPassword(string userName, string password)
         {
             EnterLoginDetailsAndClickSignIn(userName,password);
-            return new AddAPAYESchemePage(_context);
+            return new AddAPAYESchemePage(context);
         }
     }
 }

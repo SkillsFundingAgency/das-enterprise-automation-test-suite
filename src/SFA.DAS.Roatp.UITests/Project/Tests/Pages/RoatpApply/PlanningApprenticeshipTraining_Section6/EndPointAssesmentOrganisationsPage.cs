@@ -9,30 +9,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public EndPointAssesmentOrganisationsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public EndPointAssesmentOrganisationsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public TransitionFromFrameworksToStandardPage EnterTextRegardingEngageWithEPAOandContinue()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
-            return new TransitionFromFrameworksToStandardPage(_context);
+            return new TransitionFromFrameworksToStandardPage(context);
         }
+
         public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
-            return new AwardingBodiesPage(_context);
+            return new AwardingBodiesPage(context);
         }
+
         public ApplicationOverviewPage EnterTextRegardingEngageWithEPAOandContinue_Main_Employer_NewProviders()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
     }
 }

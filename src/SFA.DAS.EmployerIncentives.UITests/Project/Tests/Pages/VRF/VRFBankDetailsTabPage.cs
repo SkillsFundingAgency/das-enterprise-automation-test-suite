@@ -8,7 +8,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Bank details";
 
         #region Locators
-        private readonly ScenarioContext _context;
         private By NameOfTheBank => By.CssSelector("#Name_of_bank");
         private By AccountName => By.CssSelector("#Bank_account_name");
         private By AccountNumber => By.CssSelector("#Account_number");
@@ -17,11 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private By BankDetailsAcceptedMessage => By.CssSelector(".fieldContent strong");
         #endregion
 
-        public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false)
-        { 
-            _context = context;
-            frameHelper.SwitchFrameAndAction(() => VerifyPage());
-        }
+        public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
 
         public VRFSubmitterDetailsTabPage SubmitBankDetails()
         {
@@ -33,11 +28,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.EnterText(AccountNumber, eIDataHelper.AccountNumber);
                 formCompletionHelper.EnterText(SortCode, eIDataHelper.Sortcode);
                 formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
-                VerifyPage(BankDetailsAcceptedMessage);
+                VerifyElement(BankDetailsAcceptedMessage);
                 Continue();
             });
 
-            return new VRFSubmitterDetailsTabPage(_context);
+            return new VRFSubmitterDetailsTabPage(context);
         }
     }
 }

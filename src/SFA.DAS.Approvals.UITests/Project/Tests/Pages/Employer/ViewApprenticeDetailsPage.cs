@@ -10,12 +10,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "View apprentice details";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
         private By InputBox => By.TagName("input");
 
-        public ViewApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ViewApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
     }

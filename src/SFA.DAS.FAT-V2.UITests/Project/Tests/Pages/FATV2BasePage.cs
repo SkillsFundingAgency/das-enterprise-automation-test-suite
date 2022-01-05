@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
-    public abstract class FATV2BasePage : BasePage
+    public abstract class FATV2BasePage : VerifyBasePage
     {
         #region Locators
         protected override By BackLink => By.CssSelector("a.link-back");

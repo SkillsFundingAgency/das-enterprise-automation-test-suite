@@ -10,10 +10,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By ApplyButton => By.Id("apply-button");
 
         private By ViewApplicationLink => By.Id("view-application-link");
@@ -30,27 +26,26 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             if (!objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
 
         public FAA_YourApplicationPage View()
         {
             formCompletionHelper.Click(ViewApplicationLink);
-            return new FAA_YourApplicationPage(_context);
+            return new FAA_YourApplicationPage(context);
         }
 
         public FAA_ApplicationFormPage Apply()
         {
             formCompletionHelper.Click(ApplyButton);
-            return new FAA_ApplicationFormPage(_context);
+            return new FAA_ApplicationFormPage(context);
         }
 
         private void VerifyEmployerDetails()
         {
             var empName = objectContext.GetEmployerName();
-            VerifyPage(EmployerName, empName);
-            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            VerifyElement(EmployerName, empName);
+            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
 
         public void VerifyNewDates()

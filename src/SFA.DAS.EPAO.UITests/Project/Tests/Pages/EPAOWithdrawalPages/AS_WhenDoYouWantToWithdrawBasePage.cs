@@ -6,19 +6,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public abstract class AS_WhenDoYouWantToWithdrawBasePage : EPAO_BasePage
     {
-        private readonly ScenarioContext _context;
-
+        
         #region Locators
         private By DayText => By.XPath("//label[contains(text(), 'Day')]/following-sibling::input");
         private By MonthText => By.XPath("//label[contains(text(), 'Month')]/following-sibling::input");
         private By YearText => By.XPath("//label[contains(text(), 'Year')]/following-sibling::input");
         #endregion
 
-        public AS_WhenDoYouWantToWithdrawBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WhenDoYouWantToWithdrawBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WithdrawalRequestQuestionsPage EnterDateToWithdraw()
         {
@@ -28,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
             formCompletionHelper.EnterText(MonthText, date.ToString("MM"));
             formCompletionHelper.EnterText(YearText, date.ToString("yyyy"));
             Continue();
-            return new AS_WithdrawalRequestQuestionsPage(_context);
+            return new AS_WithdrawalRequestQuestionsPage(context);
         }
     }
 }

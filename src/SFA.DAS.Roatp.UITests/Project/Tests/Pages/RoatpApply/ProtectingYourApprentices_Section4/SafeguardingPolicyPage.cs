@@ -9,20 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public SafeguardingPolicyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public SafeguardingPolicyPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public OverallResponsibilityForSafeguardingPage SafeguardingPolicyFileUploadAndContinue()
         {
             UploadFile();
-            return new OverallResponsibilityForSafeguardingPage(_context);
+            return new OverallResponsibilityForSafeguardingPage(context);
         }
     }
 }

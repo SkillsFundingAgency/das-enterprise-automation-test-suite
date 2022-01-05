@@ -7,8 +7,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class EPAOOrganisationDetailsPage : FindEPAOBasePage
     {
         protected override string PageTitle => objectContext.GetEPAOOrganisationName();
-        private readonly ScenarioContext _context;
-        public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By BackButton => By.ClassName("govuk-back-link");
@@ -19,28 +19,28 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromSingleEPAOOrganisationDetailsPage()
         {
             NavigateBackToSearchApprenticeshipTraining();
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
         public SearchApprenticeshipTrainingCoursePage NavigateBackToSearchApprenticeshipTraining()
         {
             formCompletionHelper.Click(BackButton);
-            return new SearchApprenticeshipTrainingCoursePage(_context);
+            return new SearchApprenticeshipTrainingCoursePage(context);
         }
         public EPAOOrganisationsPage SelectViewOtherEndPointOrganisations()
         {
             formCompletionHelper.Click(ViewOtherEndPointOrganisations);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
 
         public EPAOOrganisationsPage NavigateBackFromEPAOOrgansationDetailsPageToOrganisationPage()
         {
             NavigateBackToEPAOOrgansationPage();
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
         public EPAOOrganisationsPage NavigateBackToEPAOOrgansationPage()
         {
             formCompletionHelper.Click(BackButton);
-            return new EPAOOrganisationsPage(_context);
+            return new EPAOOrganisationsPage(context);
         }
     }
 }

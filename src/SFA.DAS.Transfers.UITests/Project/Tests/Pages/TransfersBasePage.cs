@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public abstract class TransfersBasePage : BasePage
+    public abstract class TransfersBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly TransfersUser transfersUser;

@@ -1,25 +1,22 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderInformPage : ApprovalsBasePage
     {
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override string PageTitle => "What you'll need";
+
+        protected override bool TakeFullScreenShot => false;
 
         private By ChangeTheEmployerButton => By.Id("change-the-employer-button");
 
-        public ProviderInformPage(ScenarioContext context) : base(context) => _context = context;
+        public ProviderInformPage(ScenarioContext context) : base(context)  { }
 
-        protected override string PageTitle => "What you'll need";
-
-        public ChangeOfEmployerSelectEmployerPage SelectChangeTheEmployer()
+        public ProviderCoESelectEmployerPage SelectChangeTheEmployer()
         {
             formCompletionHelper.Click(ChangeTheEmployerButton);
-            return new ChangeOfEmployerSelectEmployerPage(_context);
+            return new ProviderCoESelectEmployerPage(context);
         }
     }
 }

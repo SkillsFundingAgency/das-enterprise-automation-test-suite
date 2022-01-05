@@ -71,6 +71,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.LearnerMatchOrchestratorHelper.Run();
 
             await Helper.BusinessCentralApiHelper.AcceptAllPayments();
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true);
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false);
             await Helper.PaymentsOrchestratorHelper.Run();
             await Helper.PaymentsOrchestratorHelper.Approve();
 
@@ -231,6 +233,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenThePaymentRunOccurs()
         {
             await Helper.LearnerMatchOrchestratorHelper.Run();
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedAtStartOfApprenticeship, true);
+            await Helper.EmploymentCheckHelper.CompleteEmploymentCheck(TestData.ApprenticeshipIncentiveId, EmploymentCheckType.EmployedBeforeSchemeStarted, false);
             await Helper.PaymentsOrchestratorHelper.Run();
             await Helper.CollectionCalendarHelper.Reset();
         }

@@ -12,17 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public ReservationSuccessfullyDeletedPage(ScenarioContext context) : base(context) => _context = context;
+        public ReservationSuccessfullyDeletedPage(ScenarioContext context) : base(context)  { }
 
         internal ApprovalsProviderHomePage GoToHomePage()
         {
             SelectRadioOptionByText("Go to homepage");
             Continue();
-            return new ApprovalsProviderHomePage(_context);
+            return new ApprovalsProviderHomePage(context);
         }
     }
 }

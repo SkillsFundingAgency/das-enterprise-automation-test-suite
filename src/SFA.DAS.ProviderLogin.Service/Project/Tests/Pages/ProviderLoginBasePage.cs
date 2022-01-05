@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
-    public abstract class ProviderLoginBasePage : BasePage
+    public abstract class ProviderLoginBasePage : VerifyBasePage
     {
         public ProviderLoginBasePage(ScenarioContext context) : base(context) => VerifyPage();
     }

@@ -9,35 +9,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         private By IcoNumberField => By.Id("YO-30");
 
-        public IcoRegistrationNumberPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public IcoRegistrationNumberPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WebsitePage EnterIcoRegistrationNumberAndContinue()
         {
             formCompletionHelper.EnterText(IcoNumberField, applydataHelpers.IocNumber);
             Continue();
-            return new WebsitePage(_context);
+            return new WebsitePage(context);
         }
 
         public ApplicationOverviewPage EnterIcoRegistrationNumber_WebsiteAndContinue()
         {
             formCompletionHelper.EnterText(IcoNumberField, applydataHelpers.IocNumber);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationOverviewPage(context);
         }
+
         public WebsitePage ClickContinueForIcoRegistrationNumber()
         {
             Continue();
-            return new WebsitePage(_context);
+            return new WebsitePage(context);
         }
     }
 }

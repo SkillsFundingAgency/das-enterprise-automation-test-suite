@@ -6,7 +6,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
     public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Withdrawal request questions";
-        private readonly ScenarioContext _context;
+
+        private string CompletedStatus => "COMPLETED";
 
         #region Locators
         private By StandardNameVerification => By.XPath("//*[contains(text(),'ST0580 Brewer')]");
@@ -19,44 +20,40 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private By ReturnToApplicationOverviewButton => By.LinkText("Return to application overview");
         #endregion
 
-        public AS_WithdrawalRequestQuestionsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public AS_WithdrawalRequestQuestionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage ClickGoToReasonForWithdrawingQuestionLink()
         {
-            VerifyPage(StandardNameVerification, "ST0580 Brewer");
+            VerifyElement(StandardNameVerification, "ST0580 Brewer");
             formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-            return new AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage (_context);
+            return new AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage (context);
         }
 
         public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
         {
             formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-            return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(_context);
+            return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(context);
         }
 
         public AS_WithdrawalRequestOverviewPage VerifyAndReturnToApplicationOverviewPage()
         {
-            VerifyPage(ReaasonForWithdrawingCompletedVerification, "COMPLETED");
-            VerifyPage(CompletingAssessmentsForLearnersCompletedVerification, "COMPLETED");
-            VerifyPage(CommunicatingMarketExitCompletedVerification, "COMPLETED");
-            VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
+            VerifyElement(ReaasonForWithdrawingCompletedVerification, CompletedStatus);
+            VerifyElement(CompletingAssessmentsForLearnersCompletedVerification, CompletedStatus);
+            VerifyElement(CommunicatingMarketExitCompletedVerification, CompletedStatus);
+            VerifyElement(WithdrawalDateCompletedVerification, CompletedStatus);
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
 
         public AS_WithdrawalRequestOverviewPage VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
         {
-            VerifyPage(ReaasonForWithdrawingCompletedVerification, "COMPLETED");
-            VerifyPage(CompletingAssessmentsForLearnersCompletedVerification, "COMPLETED");
-            VerifyPage(CommunicatingMarketExitCompletedVerification, "COMPLETED");
-            VerifyPage(WithdrawalDateCompletedVerification, "COMPLETED");
-            VerifyPage(SupportingLearnersVerification, "COMPLETED");
+            VerifyElement(ReaasonForWithdrawingCompletedVerification, CompletedStatus);
+            VerifyElement(CompletingAssessmentsForLearnersCompletedVerification, CompletedStatus);
+            VerifyElement(CommunicatingMarketExitCompletedVerification, CompletedStatus);
+            VerifyElement(WithdrawalDateCompletedVerification, CompletedStatus);
+            VerifyElement(SupportingLearnersVerification, CompletedStatus);
             formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-            return new AS_WithdrawalRequestOverviewPage(_context);
+            return new AS_WithdrawalRequestOverviewPage(context);
         }
     }
 }

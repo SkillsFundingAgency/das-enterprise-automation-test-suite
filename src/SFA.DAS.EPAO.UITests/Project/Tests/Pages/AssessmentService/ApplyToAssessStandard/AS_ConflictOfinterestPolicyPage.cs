@@ -6,14 +6,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Conflict of interest policy";
 
-        private readonly ScenarioContext _context;
-
-        public AS_ConflictOfinterestPolicyPage(ScenarioContext context) : base(context) => _context = context;
+        public AS_ConflictOfinterestPolicyPage(ScenarioContext context) : base(context) { }
 
         public AS_MonitoringProceduresPage UploadConflictOfinterestPolicy()
         {
             UploadFile();
-            return new AS_MonitoringProceduresPage(_context);
+            return new AS_MonitoringProceduresPage(context);
         }
     }
 }

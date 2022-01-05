@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class PolicyForProfessionalDevelopmentOfEmployeesPage : AssessorBasePage
     {
         protected override string PageTitle => "Policy for professional development of employees";
-        private readonly ScenarioContext _context;
-
-        public PolicyForProfessionalDevelopmentOfEmployeesPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public PolicyForProfessionalDevelopmentOfEmployeesPage(ScenarioContext context) : base(context) { }
 
         public AnExampleOfHowThePolicyToImprovePage SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
         {
             SelectPassAndContinueToSubSection();
-            return new AnExampleOfHowThePolicyToImprovePage(_context);
+            return new AnExampleOfHowThePolicyToImprovePage(context);
         }
     }
 }

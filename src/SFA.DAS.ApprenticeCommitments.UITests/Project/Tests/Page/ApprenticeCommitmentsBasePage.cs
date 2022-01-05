@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         #region Helpers and Context
         protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
-        private readonly ScenarioContext _context;
+        
         protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
         protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
         #endregion
@@ -45,8 +45,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
-
-            _context = context;
+            
             loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
             apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
@@ -61,45 +60,45 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             });
         }
 
-        protected void VerifyNotificationBannerHeader(string expected) => VerifyPage(NotificationBannerHeader, expected);
+        protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
 
-        protected void VerifyNotificationBannerContent(string expected) => VerifyPage(NotificationBannerContent, expected);
+        protected void VerifyNotificationBannerContent(string expected) => VerifyElement(NotificationBannerContent, expected);
 
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
             Continue();
-            return new ApprenticeOverviewPage(_context);
+            return new ApprenticeOverviewPage(context);
         }
 
         public ApprenticeHomePage NavigateToHomePageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HomeTopNavigationLink);
-            return new ApprenticeHomePage(_context, false);
+            return new ApprenticeHomePage(context, false);
         }
 
         public ApprenticeOverviewPage NavigateToOverviewPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
-            return new ApprenticeOverviewPage(_context, false);
+            return new ApprenticeOverviewPage(context, false);
         }
 
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HelpTopNavigationLink);
-            return new HelpAndSupportPage(_context);
+            return new HelpAndSupportPage(context);
         }
 
         private void VerifyFooterLinks()
         {
-            VerifyPage(PrivacyFooterLink);
-            VerifyPage(CookiesFooterLink);
-            VerifyPage(TermsOfUseFooterLink);
+            VerifyElement(PrivacyFooterLink);
+            VerifyElement(CookiesFooterLink);
+            VerifyElement(TermsOfUseFooterLink);
         }
 
         public SignedOutPage SignOutFromTheService()
         {
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
-            return new SignedOutPage(_context);
+            return new SignedOutPage(context);
         }
 
         protected void AssertTopNavigationLinksNotToBePresent()

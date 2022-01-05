@@ -32,14 +32,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"The nonlevyemployer continues to add an apprentice for reserved funding")]
         public void ThenTheNonLevyEmployerContinueToAddAnApprenticesForReservedFunding()
         {
-            _reservationStepsHelper.GoToAddAnApprentices();
-            _employerStepsHelper.DynamicHomePageStartToAddApprentice();
+            var addAnApprenitcePage = _reservationStepsHelper.GoToAddAnApprentices();
+
+            _employerStepsHelper.DynamicHomePageStartToAddApprentice(addAnApprenitcePage);
         }
 
         [Then(@"The TrainingProvider approves apprentice by adding further details")]
         public void ThenTheTrainingProviderApprovesApprenticeByAddingFurtherDetails()
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_login, true);
+
             _providerStepsHelper.DynamicHomePageProviderApproval();
         }
 
@@ -47,6 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheNonLevyEmployerReviewsandApprovesTheApprentice()
         {
             _employerStepsHelper.GotoEmployerHomePage();
+
             _employerStepsHelper.DynamicHomePageFinishToAddApprenticeJourney();
         }
     }

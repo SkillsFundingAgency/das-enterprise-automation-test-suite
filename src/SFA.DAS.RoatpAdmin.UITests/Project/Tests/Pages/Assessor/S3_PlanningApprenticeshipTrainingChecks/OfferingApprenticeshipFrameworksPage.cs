@@ -5,14 +5,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
     public class OfferingApprenticeshipFrameworksPage : AssessorBasePage
     {
         protected override string PageTitle => "Offering apprenticeship frameworks";
-        private readonly ScenarioContext _context;
-
-        public OfferingApprenticeshipFrameworksPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public OfferingApprenticeshipFrameworksPage(ScenarioContext context) : base(context) { }
 
         public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(_context);
+            return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(context);
         }
     }
 }

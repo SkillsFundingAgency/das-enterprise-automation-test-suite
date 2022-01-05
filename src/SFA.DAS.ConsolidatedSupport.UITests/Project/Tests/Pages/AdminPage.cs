@@ -11,8 +11,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "ADMIN HOME";
 
-        private readonly ScenarioContext _context;
-
         private By SearchHeader => By.CssSelector("h2");
 
         private By PeopleLink => By.CssSelector("a[href='/agent/admin/people']");
@@ -25,17 +23,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By SearchButton => By.CssSelector("input[id='buttonsubmit']");
 
-        public AdminPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-
-            MultipleVerifyPage(new List<Func<bool>> { () => VerifyPage(), () => VerifyPage(PeopleLink) });
-        }
+        public AdminPage(ScenarioContext context) : base(context) => MultipleVerifyPage(new List<Func<bool>> { () => VerifyPage(), () => VerifyPage(PeopleLink) });
 
         public UserPage NavigateToUserPage()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PeopleLink));
-            return new UserPage(_context);
+            return new UserPage(context);
         }
 
         public int NoOfOrganisation()
@@ -46,7 +39,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             
             frameHelper.SwitchFrameAndAction(() => 
             {
-                InvokeAction(() => VerifyPage(SearchOrganisationsLink));
+                InvokeAction(() => VerifyElement(SearchOrganisationsLink));
 
                 InvokeAction(() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchOrganisationsLink)));
                 VerifySearchHeaders();
@@ -69,13 +62,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 InvokeAction(() => formCompletionHelper.ClickLinkByText(NewOrgLink, dataHelper.NewOrgName));
             });
 
-            return new OrgPage(_context);
+            return new OrgPage(context);
         }
 
         private void VerifySearchHeaders()
         {
-            InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(SearchHeader), "People"));
-            InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(SearchHeader), "Organisations"));
+            InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(SearchHeader), "People"));
+            InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(SearchHeader), "Organisations"));
         }
     }
 }
