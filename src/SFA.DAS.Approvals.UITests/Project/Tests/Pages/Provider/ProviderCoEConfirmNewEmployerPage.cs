@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerConfirmNewEmployerPage : ApprovalsBasePage
+    public class ProviderCoEConfirmNewEmployerPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Confirm new employer";
 
@@ -11,13 +11,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.Id("saveBtn");
 
-        public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context)  { }
+        public ProviderCoEConfirmNewEmployerPage(ScenarioContext context) : base(context)  { }
         
-        public ChangeOfEmployerStartDatePage ConfirmNewEmployer()
+        public ProviderCoEStartDatePage ConfirmNewEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-true");
             Continue();
-            return new ChangeOfEmployerStartDatePage(context);
+            return new ProviderCoEStartDatePage(context);
         }
     }
 }

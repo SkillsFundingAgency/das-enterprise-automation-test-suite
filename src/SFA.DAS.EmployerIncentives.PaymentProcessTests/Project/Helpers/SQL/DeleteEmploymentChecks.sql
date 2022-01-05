@@ -1,0 +1,1 @@
+DELETE Incentives.EmploymentCheck WHERE ApprenticeshipIncentiveId = @apprenticeshipIncentiveId

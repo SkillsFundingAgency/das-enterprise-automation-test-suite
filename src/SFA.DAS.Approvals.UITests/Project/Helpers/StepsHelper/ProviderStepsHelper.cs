@@ -248,7 +248,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
-        public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
+        public ProviderCoERequestedPage StartChangeOfEmployerJourney()
         {
             return GoToProviderHomePage()
                     .GoToProviderManageYourApprenticePage()
