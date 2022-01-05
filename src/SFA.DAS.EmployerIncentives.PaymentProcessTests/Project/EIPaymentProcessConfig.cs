@@ -12,5 +12,6 @@
         public string LearningTransportStorageDirectory { get; set; }
 
         public string EI_FunctionsBaseUrl { get; set; }
+        public string EI_FunctionsAppCode { get; set; }
     }
 }

@@ -7,6 +7,8 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Public Messages";
 
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector("#inbox_pane");
 
         #region Locators

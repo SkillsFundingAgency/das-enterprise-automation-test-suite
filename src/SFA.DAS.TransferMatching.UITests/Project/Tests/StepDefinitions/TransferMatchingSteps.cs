@@ -70,7 +70,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
-        public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding() 
+        public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
 
         [Then(@"the levy employer can approve the application")]
@@ -86,7 +86,57 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _objectContext.UpdateOrganisationName(_receiver);
 
-            GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().ApproveApplication();
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
+        }
+
+        [Then(@"the levy employer can reject the application")]
+        public void ThenTheLevyEmployerCanRejectTheApplication()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().RejectApplication();
+        }
+
+        [Then(@"the levy employer can see the download link")]
+
+        public void TheLevyEmployerCanSeeTheDownloadLink()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().DownloadExcel();
+        }
+
+        [Then(@"the non levy employer can withdraw funding")]
+        public void ThenTheNonLevyEmployerCanWithdrawFunding()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _accountSignOutHelper.SignOut();
+
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            NavigateToTransferMatchingPage()
+                .ViewApplicationsIhaveSubmitted()
+                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
+                .WithdrawFunding()
+                .ViewMyApplications()
+                .OpenPledgeApplication("WITHDRAWN");
         }
 
         [Then(@"the non levy employer can accept funding")]
@@ -147,12 +197,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _isAnonymousPledge = true;
 
-           _pledgeVerificationPage = CreateATransferPledge(false)
-                .GoToAddtheLocationPage().EnterLocation()
-                .GoToChoosetheSectorPage().SelectSetorAndContinue()
-                .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
-                .GoToChooseTheLevelPage().SelectLevelAndContinue()
-                .ContinueToPledgeVerificationPage();
+            _pledgeVerificationPage = CreateATransferPledge(false)
+                 .GoToAddtheLocationPage().EnterLocation()
+                 .GoToChoosetheSectorPage().SelectSetorAndContinue()
+                 .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
+                 .ContinueToPledgeVerificationPage();
 
             SetPledgeDetail();
         }

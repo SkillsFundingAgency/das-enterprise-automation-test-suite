@@ -9,5 +9,3 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public SoleTraderDOBPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }
-
-

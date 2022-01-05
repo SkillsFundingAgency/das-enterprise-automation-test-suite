@@ -6,6 +6,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Cohort approved";
 
+        protected override bool TakeFullScreenShot => false;
+
         public ProviderCohortApprovedPage(ScenarioContext context) : base(context) { }       
     }
 }

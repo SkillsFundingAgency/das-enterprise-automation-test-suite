@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
                 formCompletionHelper.EnterText(AccountNumber, eIDataHelper.AccountNumber);
                 formCompletionHelper.EnterText(SortCode, eIDataHelper.Sortcode);
                 formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
-                VerifyPage(BankDetailsAcceptedMessage);
+                VerifyElement(BankDetailsAcceptedMessage);
                 Continue();
             });
 

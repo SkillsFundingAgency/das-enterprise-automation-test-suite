@@ -19,6 +19,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public LearnerMatchApiHelper LearnerMatchApiHelper => _context.Get<LearnerMatchApiHelper>();
         public LearnerDataHelper LearnerDataHelper => _context.Get<LearnerDataHelper>();
         public EIFunctionsHelper EIFunctionsHelper => _context.Get<EIFunctionsHelper>();
+        public EmploymentCheckHelper EmploymentCheckHelper => _context.Get<EmploymentCheckHelper>();
+        public EmploymentCheckApiHelper EmploymentCheckApiHelper => _context.Get<EmploymentCheckApiHelper>();
 
         private readonly ScenarioContext _context;
 
@@ -41,7 +43,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             context.Set(new BusinessCentralApiHelper(context));
             context.Set(new LearnerMatchApiHelper(context));
             context.Set(new LearnerDataHelper(context));
-            context.Set(new EIFunctionsHelper(eiConfig));     
+            context.Set(new EIFunctionsHelper(eiConfig));
+            context.Set(new EmploymentCheckHelper(context));
+            context.Set(new EmploymentCheckApiHelper(context));
         }
     }
 }

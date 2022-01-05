@@ -16,11 +16,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
             return new TransitionFromFrameworksToStandardPage(context);
         }
+
         public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue_FrameworksOnly()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
             return new AwardingBodiesPage(context);
         }
+
         public ApplicationOverviewPage EnterTextRegardingEngageWithEPAOandContinue_Main_Employer_NewProviders()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);

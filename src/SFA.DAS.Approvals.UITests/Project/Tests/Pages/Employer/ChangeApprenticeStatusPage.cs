@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Which status change would you like to make?";
 
+        protected override bool TakeFullScreenShot => false;
+
         public ChangeApprenticeStatusPage(ScenarioContext context) : base(context)  { }
       
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");

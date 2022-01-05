@@ -32,7 +32,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public FinancePage IsViewTransactionsLinkPresent()
         {
-            VerifyPage(ViewTransactionsLink());
+            VerifyElement(ViewTransactionsLink());
             return this;
         }
 
@@ -44,7 +44,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public FinancePage IsDownloadTransactionsLinkPresent()
         {
-            VerifyPage(DownloadTransactionsLink());
+            VerifyElement(DownloadTransactionsLink());
             return this;
         }
 
@@ -56,7 +56,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public FinancePage IsTransfersLinkPresent()
         {
-            VerifyPage(TransfersLink());
+            VerifyElement(TransfersLink());
             return this;
         }
 

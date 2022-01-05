@@ -96,7 +96,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             return new ChangeApplicationDateDeterminedPage(context);
         }
 
-        public bool VerifyMultipleMatchingResults() => pageInteractionHelper.VerifyPage(RefineSearch);
+        public bool VerifyMultipleMatchingResults() => VerifyElement(RefineSearch);
 
         public void VerifyOneProviderNameResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetProviderName()}'");
 

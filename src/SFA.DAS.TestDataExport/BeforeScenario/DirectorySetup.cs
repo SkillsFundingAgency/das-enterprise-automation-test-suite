@@ -22,20 +22,20 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
         [BeforeScenario(Order = 4)]
         public void SetUpDirectory()
         {
-            string directory = AppDomain.CurrentDomain.BaseDirectory
-             + "../../"
-             + "Project\\Screenshots\\"
-             + DateTime.Now.ToString("dd-MM-yyyy")
-             + "\\"
-             + EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)
-             + "\\";
+            string directory = GetDirectoryPath();
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
             _objectContext.SetDirectory(directory);
 
             _objectContext.SetTestDataList();
+        }
+
+        private string GetDirectoryPath()
+        {
+            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Screenshots", $"{DateTime.Now:dd-MM-yyyy}", $"{EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)}");
+
+            return Path.GetFullPath(directory);
         }
     }
 }

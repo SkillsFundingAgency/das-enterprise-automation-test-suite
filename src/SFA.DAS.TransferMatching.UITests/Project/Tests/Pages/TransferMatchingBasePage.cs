@@ -29,7 +29,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
-        protected void VerifyApplicationStatus(string expectedStatus) => VerifyPage(ApplicaitonStatusSelector, expectedStatus);
+        protected void VerifyApplicationStatus(string expectedStatus) => VerifyElement(ApplicaitonStatusSelector, expectedStatus);
 
         protected Pledge GetPledgeDetail() => objectContext.GetPledgeDetail();
 

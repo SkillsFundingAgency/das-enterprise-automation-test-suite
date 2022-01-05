@@ -6,6 +6,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
     internal class MailinatorLandingPage : MailinatorBasePage
     {
         protected override string PageTitle => "Mailinator";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".gel-heading-title");
         
         #region Locators

@@ -5,13 +5,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerSelectEmployerPage : ApprovalsBasePage
+    public class ProviderCoESelectEmployerPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Choose a new employer";
 
-        public ChangeOfEmployerSelectEmployerPage(ScenarioContext context) : base(context)  { }
+        protected override bool TakeFullScreenShot => false;
 
-        public ChangeOfEmployerConfirmNewEmployerPage SelectNewEmployer()
+        public ProviderCoESelectEmployerPage(ScenarioContext context) : base(context)  { }
+
+        public ProviderCoEConfirmNewEmployerPage SelectNewEmployer()
         {
             var newEmployerUser = context.GetUser<ChangeOfEmployerLevyUser>();
 
@@ -21,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             tableRowHelper.SelectRowFromTable("Select", agreementId);
             
-            return new ChangeOfEmployerConfirmNewEmployerPage(context);
+            return new ProviderCoEConfirmNewEmployerPage(context);
         }
     }
 }

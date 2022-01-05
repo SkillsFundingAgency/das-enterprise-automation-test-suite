@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "View changes";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
         
         private By ReviewRequestedChangesLink=> By.Id("review-requested-changes-link");
