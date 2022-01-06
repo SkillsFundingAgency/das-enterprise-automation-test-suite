@@ -20,13 +20,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PRT_01_PauseReservationTemp")]
-    public partial class AP_PRT_01_PauseReservationTempFeature
+    [NUnit.Framework.DescriptionAttribute("AP_PRT_01_PauseReservationTemp // This test is going to be stay until 31st March " +
+        "2022")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_PRT_01_PauseReservationTempThisTestIsGoingToBeStayUntil31StMarch2022Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "approvals"};
         
 #line 1 "AP_PRT_01_PauseReservationTemp.feature"
 #line hidden
@@ -35,7 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PRT_01_PauseReservationTemp", "\tAs a NonLevy Employer, I can\'t able to reserve funding due to temporary pause ", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_PRT_01_PauseReservationTemp // This test is going to be stay until 31st March " +
+                    "2022", "\tAs a NonLevy Employer, I can\'t able to reserve funding due to temporary pause ", ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -88,7 +93,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DynamicHomPage.Reserv
                     "pausereservation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PRT_01 Pause Reservation Temporary", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,10 +113,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("The NonLevyEmployer reserves funding should able to see pause message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
