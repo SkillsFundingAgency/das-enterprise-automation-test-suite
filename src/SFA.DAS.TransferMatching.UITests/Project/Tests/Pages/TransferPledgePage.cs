@@ -15,8 +15,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferPledgePage DownloadExcel()
         {
-            VerifyElement(DownloadLink);
-            return DownloadExcel();
+            formCompletionHelper.ClickLinkByText("Download applications - excel");
+            return new TransferPledgePage(context);
          }
 
         public ApproveAppliationPage GoToApproveAppliationPage()

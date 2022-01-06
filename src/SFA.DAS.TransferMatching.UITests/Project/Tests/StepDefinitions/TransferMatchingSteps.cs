@@ -89,6 +89,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
         }
 
+        [Then(@"the levy employer can auto approve the application")]
+        public void ThenTheLevyEmployerCanAutoApproveTheApplication()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
+        }
+
         [Then(@"the levy employer can reject the application")]
         public void ThenTheLevyEmployerCanRejectTheApplication()
         {
