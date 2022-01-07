@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         public Outer_ApprenticeCommitmentsApiRestClient(Outer_ApiAuthTokenConfig config) : base(config) { }
 
-        protected override string ApiName => "/apprenticecommitments";
+        protected override string ApiName => "/approvals";
 
         public IRestResponse CreateApprenticeshipViaApi(CreateApprenticeshipViaApi payload, HttpStatusCode expectedResponse)
         {
