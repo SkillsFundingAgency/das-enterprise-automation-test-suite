@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCoEConfirmNewEmployerPage SelectNewEmployer()
         {
-            var newEmployerUser = context.GetUser<ChangeOfEmployerLevyUser>();
+            var newEmployerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
 
             var newEmployerName = newEmployerUser.SecondOrganisationName.Substring(0, 10) + "%";
             

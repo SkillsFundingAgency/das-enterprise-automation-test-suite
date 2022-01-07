@@ -163,11 +163,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             if (leanerCriteria.HasMultipleVersions)
             {
-                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+                if (leanerCriteria.VersionConfirmed)
+                    return confirmApprenticePage.ConfirmAndContinue();
 
-                if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+                else
+                {
+                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
 
-                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+                    if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
+                    else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+                }
             }
             else
             {
