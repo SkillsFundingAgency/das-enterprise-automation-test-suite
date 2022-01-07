@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly ChangeOfEmployerLevyUser _changeOfEmployerLevyUser;
+        private readonly EmployerWithMultipleAccountsUser _changeOfEmployerLevyUser;
 
         private readonly string _oldEmployerName;
         private readonly string _newEmployerName;
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _changeOfEmployerLevyUser = context.GetUser<ChangeOfEmployerLevyUser>();
+            _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _oldEmployerName = _changeOfEmployerLevyUser.OrganisationName;
             _newEmployerName = _changeOfEmployerLevyUser.SecondOrganisationName;
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);

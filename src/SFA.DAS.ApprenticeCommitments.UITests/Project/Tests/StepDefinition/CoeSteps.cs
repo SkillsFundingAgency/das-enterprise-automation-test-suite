@@ -15,14 +15,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly ChangeOfEmployerLevyUser _changeOfEmployerLevyUser;
+        private readonly EmployerWithMultipleAccountsUser _changeOfEmployerLevyUser;
 
         public CoeSteps(ScenarioContext context) : base(context)
         {
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _changeOfEmployerLevyUser = context.GetUser<ChangeOfEmployerLevyUser>();
+            _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
         }
 
