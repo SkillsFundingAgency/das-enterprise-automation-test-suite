@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class JsonHelper
     {

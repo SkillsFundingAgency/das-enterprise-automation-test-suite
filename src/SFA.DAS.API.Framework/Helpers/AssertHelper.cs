@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
 using System.Net;

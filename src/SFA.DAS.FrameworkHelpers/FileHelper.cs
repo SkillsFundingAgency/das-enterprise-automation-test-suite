@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
@@ -15,7 +15,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return sqlScript;
         }
 
-        internal static string GetAssemblyDirectory() => AppDomain.CurrentDomain.BaseDirectory;
+        public static string GetAssemblyDirectory() => AppDomain.CurrentDomain.BaseDirectory;
         
     }
 }

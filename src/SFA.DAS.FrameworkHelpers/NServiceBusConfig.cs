@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.UI.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public class NServiceBusConfig
     {
