@@ -74,15 +74,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
         }
 
-        public (bool hasBeenChecked, string? isEmployed, string? returnCode, string returnMessage) GetEmploymentCheckResults()
+        public (bool hasBeenChecked, bool? isEmployed, string? returnCode, string returnMessage) GetEmploymentCheckResults()
         {
             string query = $"SELECT HasBeenChecked, IsEmployed, ReturnCode, ReturnMessage FROM [dbo].[EmploymentChecks] WHERE Id = {employmentCheckId}";
 
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
+            bool parsedEmploymentStatus;
+            bool? employed = null;
 
-            return ((bool)result[0][0], result[0][1].ToString() == "" ? null : result[0][1].ToString(), 
-                result[0][2].ToString() == "" ? null : result[0][2].ToString(), result[0][3].ToString());
+            if (Boolean.TryParse(result[0][1].ToString(), out parsedEmploymentStatus))
+            {
+
+                employed = parsedEmploymentStatus is bool ? parsedEmploymentStatus : (bool?)null;
+            }
+            return ((bool)result[0][0], employed,
+              result[0][2].ToString() == "" ? null : result[0][2].ToString(), result[0][3].ToString());
 
         }
     }

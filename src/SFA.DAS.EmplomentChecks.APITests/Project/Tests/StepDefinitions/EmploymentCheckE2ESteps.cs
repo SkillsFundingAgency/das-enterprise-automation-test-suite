@@ -44,8 +44,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {enrichedData.nino} and PayeScheme: {enrichedData.payeScheme}");
 
-            Assert.AreEqual(enrichedData.nino, _testData.NationalInsuranceNumber);
-            Assert.AreEqual(enrichedData.payeScheme, _testData.PayeScheme);
+            Assert.AreEqual(_testData.NationalInsuranceNumber, enrichedData.nino);
+            Assert.AreEqual(_testData.PayeScheme, enrichedData.payeScheme);
         }
 
         [Then(@"employment check database is updated with the result from HMRC '(.*)', '(.*)', '(.*)'")]
@@ -53,10 +53,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         {
             var employmentCheckResults = _employmentChecksSqlDbHelper.GetEmploymentCheckResults();
 
-            Assert.AreEqual(employmentCheckResults.hasBeenChecked, true);
-            Assert.AreEqual(employmentCheckResults.isEmployed, employed);
-            Assert.AreEqual(employmentCheckResults.returnCode, returnCode == "null" ? null : returnCode);
-            Assert.AreEqual(employmentCheckResults.returnMessage, returnMessage);
+            Assert.AreEqual(true, employmentCheckResults.hasBeenChecked);
+            Assert.AreEqual(employed, employmentCheckResults.isEmployed);
+            Assert.AreEqual(returnCode == "null" ? null : returnCode, employmentCheckResults.returnCode);
+            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage);
         }
 
     }
