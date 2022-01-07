@@ -53,7 +53,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 TrainingProviderId = providerId
             };
 
-            return _outerApiRestClient.CreateApprenticeshipViaApi(createApprenticeship, HttpStatusCode.Accepted);
+            return _outerApiRestClient.CreateApprenticeshipViaApi(createApprenticeship, HttpStatusCode.OK);
         }
 
         protected IRestResponse CreateApprenticeshipViaCommitmentsJob()
