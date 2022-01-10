@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;

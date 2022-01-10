@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Payments.ProviderPayments.Messages;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 
 

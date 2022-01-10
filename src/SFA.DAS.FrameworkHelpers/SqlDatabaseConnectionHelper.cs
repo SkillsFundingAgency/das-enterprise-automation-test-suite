@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {

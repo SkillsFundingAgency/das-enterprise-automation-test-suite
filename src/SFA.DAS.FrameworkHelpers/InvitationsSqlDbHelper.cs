@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.UI.FrameworkHelpers
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.FrameworkHelpers
 {
     public abstract class InvitationsSqlDbHelper : SqlDbHelper
     {
