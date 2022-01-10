@@ -1,13 +1,12 @@
 ﻿Feature: EI_E2E_02_ExistingLevyAcApplyWithVRFAndAmendVRF
 
 @regression
-@employerincentivesphase3
+@employerincentives
 @eie2ejourney
 @deleteincentiveapplication
 @vrfservice
 Scenario: EI_E2E_02_ExistingLevyAcApplyWithVRFAndAmendVRF
 	Given the Employer logins using existing EI Levy Account
-	And the employer signs the agreement version 7
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to submit the EI Application
 	When the Employer Initiates EI Application journey for Single entity account again
