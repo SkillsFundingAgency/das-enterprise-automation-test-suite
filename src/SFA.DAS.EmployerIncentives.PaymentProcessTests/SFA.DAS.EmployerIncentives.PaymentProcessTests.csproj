@@ -10,7 +10,7 @@
     <PackageReference Include="ExcelMapper" Version="5.2.314" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.9" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.22" />
     <PackageReference Include="NServiceBus.UniformSession" Version="2.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.0">
       <PrivateAssets>all</PrivateAssets>
