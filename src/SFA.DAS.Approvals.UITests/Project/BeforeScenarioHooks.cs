@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -7,6 +6,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -17,11 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
         private readonly DbConfig _dbConfig;
+        private readonly FrameworkConfig _frameworkconfig;
         private readonly string[] _tags;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
+            _frameworkconfig = context.Get<FrameworkConfig>();
             _objectcontext = context.Get<ObjectContext>();
             _dbConfig = context.Get<DbConfig>();
             _tags = context.ScenarioInfo.Tags;
@@ -63,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
-            var nServiceBusHelper = _context.Get<NServiceBusHelper>();
+            var nServiceBusHelper = new NServiceBusHelper(_frameworkconfig.NServiceBusConfig.ServiceBusConnectionString);
 
             _context.Set(new PublishPaymentEvent(nServiceBusHelper));
         }

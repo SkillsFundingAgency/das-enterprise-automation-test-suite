@@ -6,7 +6,7 @@ using SFA.DAS.Payments.ProviderPayments.Messages;
 using System;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
 {
     public class NServiceBusHelper
     {

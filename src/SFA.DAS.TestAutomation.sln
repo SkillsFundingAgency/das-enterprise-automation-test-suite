@@ -111,7 +111,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TransferMatching.UI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2.APITests", "SFA.DAS.RAA-V2.APITests\SFA.DAS.RAA-V2.APITests.csproj", "{9C39EE4C-65D6-4848-892A-FAAF201D34BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FrameworkHelpers", "SFA.DAS.FrameworkHelpers\SFA.DAS.FrameworkHelpers.csproj", "{6A30F7E3-9D50-44C6-9255-ED11A4A6CEF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FrameworkHelpers", "SFA.DAS.FrameworkHelpers\SFA.DAS.FrameworkHelpers.csproj", "{6A30F7E3-9D50-44C6-9255-ED11A4A6CEF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
