@@ -95,6 +95,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to submit the EI Application without VRF")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutVRF() => SubmitEiApplicationPastDeclarationPage().ChooseNoAndContinueInWeNeedYourOrgBankDetailsPage().NavigateToViewApplicationsPage();
 
+        [Then(@"the Employer has to cancel the application when an invalid employment start date is entered")]
+        public void TheEmployerHasToCancelTheApplication() => NavigateToWhenDidApprenticeJoinTheOrgPage().EnterInValidJoiningDateAndContinue().CancelTheApplication().NavigateToHomePage();
+
+        [Then(@"the Employer has to continue the application when a valid and an invalid employment start date is entered")]
+        public void TheEmployerHasToContinueTheApplication() => SubmitApplication(NavigateToWhenDidApprenticeJoinTheOrgPage().EnterValidAndInValidJoiningDateAndContinue().ContinueTheApplication());
+
         [Then(@"the Employer is able to submit the EI Application without submitting bank details")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplicationWithoutSubmittingBankDetails() => SubmitEiApplicationPastDeclarationPage();
 
@@ -124,7 +130,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = new HomePageFinancesSection_EI(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue().ClickApplyLinkOnEIHubPage().ClickStartNowButtonInEIApplyPage();
+                _qualificationQuestionPage = _eINavigationHelper.NavigateToEISelectApprenticesPage(new HomePageFinancesSection_EI(_context).NavigateToChooseOrgPage().SelectFirstEntityInChooseOrgPageAndContinue());
         }
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
@@ -135,8 +141,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenQualificationQuestionShutterPageIsDisplayedForSelectingNoOptionInQualificationPage() =>
             _qualificationQuestionShutterPage = _qualificationQuestionPage.SelectNoAndContinue();
 
-        [Then(@"Approvals home page is displayed on clicking on Add apprentices link on Select apprentices shutter page")]
-        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLinkOnSelectApprenticesShutterPage() => _selectApprenticesShutterPage.ClickOnAddApprenticesLink();
+        [Then(@"Employer Home page is displayed on clicking on Return to Account Home button on Select apprentices shutter page")]
+        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLinkOnSelectApprenticesShutterPage() => _selectApprenticesShutterPage.ClickOnReturnToAccountHomeLink();
 
         [Then(@"Employer Home page is displayed on clicking on Return to Account Home button on Qualification shutter page")]
         public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeButtonOnQualificatioShutterPage() => _qualificationQuestionShutterPage.ClickOnReturnToAccountHomeLink();
@@ -175,18 +181,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
         }
 
-        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage()
+        private WeNeedYourOrgBankDetailsPage SubmitEiApplicationPastDeclarationPage() => SubmitApplication(NavigateToWhenDidApprenticeJoinTheOrgPage().EnterValidJoiningDateAndContinue());
+
+        private WeNeedYourOrgBankDetailsPage SubmitApplication(ConfirmApprenticesPage page) => page.ConfirmApprentices().SubmitDeclaration();
+
+        private WhenDidApprenticeJoinTheOrgPage NavigateToWhenDidApprenticeJoinTheOrgPage()
         {
             _email = _loginCredentialsHelper.GetLoginCredentials().Username;
 
             _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
 
-            return _qualificationQuestionPage
-                .SelectYesAndContinueForEligibleApprenticesScenario()
-                .SubmitApprentices()
-                .EnterJoiningDateAndContinue()
-                .ConfirmApprentices()
-                .SubmitDeclaration();
+            return _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario().SubmitApprentices();
         }
 
         [When(@"the Application Case details are changed to completed status")]

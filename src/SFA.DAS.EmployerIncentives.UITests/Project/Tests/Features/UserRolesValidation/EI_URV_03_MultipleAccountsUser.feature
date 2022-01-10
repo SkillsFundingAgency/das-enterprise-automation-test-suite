@@ -4,6 +4,7 @@
 @employerincentivesphase3
 Scenario: EI_URV_03_Verify EI for Multiple Accounts user
 	Given the Employer logins using existing multiple account user
+	And the employer signs the agreement version 7
 	When the Employer Initiates EI Application journey for Single entity account
 	Then the Employer is able to navigate to EI application Select apprentices page
 	And the Employer is able to view EI applications

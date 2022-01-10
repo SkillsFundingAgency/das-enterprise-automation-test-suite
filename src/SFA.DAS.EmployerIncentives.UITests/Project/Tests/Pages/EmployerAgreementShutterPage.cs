@@ -20,11 +20,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             formCompletionHelper.Click(ViewAgreementButton);
             return new YourOrganisationsAndAgreementsPage(context);
         }
-
-        public HomePage ClickOnReturnToAccountHomeLink()
-        {
-            formCompletionHelper.Click(ReturnToAccountHomeCTA);
-            return new HomePage(context);
-        }
     }
 }
