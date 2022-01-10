@@ -76,12 +76,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.UserRolesVal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_URV_01_Verify EI for Existing Transactor user")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_URV_01_VerifyEIForExistingTransactorUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_URV_01_Verify EI for Existing Transactor user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
@@ -108,15 +108,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing transactor user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 8
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("the Employer is able to navigate to EI application Select apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 9
  testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
