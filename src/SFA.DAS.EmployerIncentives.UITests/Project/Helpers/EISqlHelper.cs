@@ -101,7 +101,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             {
                 var currentDate = DateTime.Now;
 
-                if (startDate > new DateTime(currentDate.Year, currentDate.Month - 3, 01)) expectedDueDate = expectedDueDate.AddDays(89);
+                if (startDate > new DateTime(currentDate.Year, currentDate.Month, 01).AddMonths(-3)) expectedDueDate = expectedDueDate.AddDays(89);
                 else expectedDueDate = currentDate.AddDays(21);
             }
             else expectedDueDate = expectedDueDate.AddDays(364);
