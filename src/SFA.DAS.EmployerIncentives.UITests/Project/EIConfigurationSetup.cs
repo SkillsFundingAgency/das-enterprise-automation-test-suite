@@ -34,6 +34,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                 _configSection.GetConfigSection<Version4AgreementUser>(),
                 _configSection.GetConfigSection<Version5AgreementUser>(),
                 _configSection.GetConfigSection<Version6AgreementUser>(),
+                _configSection.GetConfigSection<Version7AgreementUser>(),
                 _configSection.GetConfigSection<EINonLevyUnsignedUser>()
             });
         }

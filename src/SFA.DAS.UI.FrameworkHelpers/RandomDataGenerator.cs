@@ -20,6 +20,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return elements[randomNumber];
         }
 
+        public static DateTime GenerateRandomDate(DateTime startDate, DateTime endDate)
+        {
+            var noOfdays = (endDate.Date - startDate.Date).TotalDays;
+
+            var addDays = GenerateRandomNumberBetweenTwoValues(1, (int)noOfdays + 1);
+
+            return startDate.AddDays(addDays);
+        }
+
         public static string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 
         public static string GenerateRandomNumber(int length) => GenerateRandomString(Numbers, length);
@@ -56,15 +65,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static string GenerateRandomUln()
         {
-            String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString()
-                + DateTime.Now.ToString("ssffffff");
+            String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString() + DateTime.Now.ToString("ssffffff");
 
             for (int i = 1; i < 30; i++)
             {
-                if (IsValidCheckSum(randomUln))
-                {
-                    return randomUln;
-                }
+                if (IsValidCheckSum(randomUln)) return randomUln;
+
                 randomUln = (long.Parse(randomUln) + 1).ToString();
             }
             throw new Exception("Unable to generate ULN");
@@ -105,11 +111,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return checkSumValue % 11 == 10;
         }
 
-        private static string GenerateRandomString(string characters, int length)
-        {
-            var random = new Random();
-            return new string(Enumerable.Repeat(characters, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        private static string GenerateRandomString(string characters, int length) => new string(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
     }
 }

@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -8,10 +9,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public EIHubPage(ScenarioContext context) : base(context)  { }
 
-        public EIApplyPage ClickApplyLinkOnEIHubPage()
+        public EIBeforeYouStartPage ClickApplyLinkOnEIHubPage()
         {
             HireANewApprenticePayment();
-            return new EIApplyPage(context);
+            return new EIBeforeYouStartPage(context);
         }
 
         public EIApplicationOpenOn11JanPage NavigateToApplicationsOpenOn22JanPage()
@@ -38,7 +39,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new ChangeBankDetailsPage(context);
         }
 
-        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Hire a new apprentice payment");
+        public HomePage NavigateToHomePage()
+        {
+            ClickBackLink();
+
+            return new HomePage(context);
+        }
+
+        private void HireANewApprenticePayment() => formCompletionHelper.ClickLinkByText("Apply for the hire a new apprentice payment");
 
         private void ViewApplications() => formCompletionHelper.ClickLinkByText("View applications");
     }

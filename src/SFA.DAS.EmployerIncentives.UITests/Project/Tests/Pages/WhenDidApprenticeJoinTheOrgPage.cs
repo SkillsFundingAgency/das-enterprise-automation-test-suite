@@ -1,14 +1,14 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
+
     public class WhenDidApprenticeJoinTheOrgPage : EIBasePage
     {
-        //Title of the page is not being checked on this page since looping through multiple Apprentice names won't be feasible
-        protected override string PageTitle => $"When did <fname> <lname> join {ObjectContextExtension.GetOrganisationName(objectContext)}?";
+        protected override string PageTitle => $"{(pageInteractionHelper.FindElements(DateGroup).Count == 1 ? string.Empty : "When did they")} join {objectContext.GetOrganisationName()}?";
 
         #region Locators
         private By DateGroup => By.CssSelector(".govuk-date-input");
@@ -17,41 +17,67 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private By YearInputField => By.Name("EmploymentStartDateYears");
         #endregion
 
-        public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context, false)  { }
+        private enum JoiningDate { Valid, Invalid, ValidAndInvalid }
 
-        public ConfirmApprenticesPage EnterJoiningDateAndContinue(DateTime? employmentStartDate)
+        public WhenDidApprenticeJoinTheOrgPage(ScenarioContext context) : base(context)  { }
+
+        public ConfirmApprenticesPage EnterValidJoiningDateAndContinue()
         {
-            if (employmentStartDate == null)
-            {
-                employmentStartDate = new DateTime(2021, Convert.ToInt32(eIDataHelper.JoiningMonth), Convert.ToInt32(eIDataHelper.JoiningDay));
-            }
-
-            var apprentices = pageInteractionHelper.FindElements(DateGroup);
-
-            foreach (var apprentice in apprentices)
-            {
-                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), employmentStartDate.Value.Day);
-                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), employmentStartDate.Value.Month);
-                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), employmentStartDate.Value.Year);
-            }
-
-            Continue();
+            EnterJoiningDateAndContinue(JoiningDate.Valid);
 
             return new ConfirmApprenticesPage(context);
         }
 
-        public WhenDidApprenticeJoinTheOrgPage EnterJoiningDate(int apprenticeshipIndex, DateTime employmentStartDate)
+        public OneOrMoreApprenticeNotEligiblePage EnterInValidJoiningDateAndContinue()
         {
-            var apprentices = pageInteractionHelper.FindElements(DateGroup);
-            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(DayInputField), employmentStartDate.Day);
-            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(MonthInputField), employmentStartDate.Month);
-            formCompletionHelper.EnterText(apprentices[apprenticeshipIndex].FindElement(YearInputField), employmentStartDate.Year);
-            return this;
+            EnterJoiningDateAndContinue(JoiningDate.Invalid);
+
+            return new OneOrMoreApprenticeNotEligiblePage(context);
         }
 
-        public new void Continue()
+        public OneOrMoreApprenticeNotEligiblePage EnterValidAndInValidJoiningDateAndContinue()
         {
-            base.Continue();
+            EnterJoiningDateAndContinue(JoiningDate.ValidAndInvalid);
+
+            return new OneOrMoreApprenticeNotEligiblePage(context);
+        }
+
+        private void EnterJoiningDateAndContinue(JoiningDate joiningDate)
+        {
+            var apprentices = pageInteractionHelper.FindElements(DateGroup);
+
+            switch (joiningDate)
+            {
+                case JoiningDate.Valid:
+                    EnterJoiningDate(apprentices, true);
+                    break;
+                case JoiningDate.Invalid:
+                    EnterJoiningDate(apprentices, false);
+                    break;
+                case JoiningDate.ValidAndInvalid:
+                    var count = apprentices.Count / 2;
+                    EnterJoiningDate(apprentices, 0, count , true);
+                    EnterJoiningDate(apprentices, count, apprentices.Count, false);
+                    break;
+                default:
+                    break;
+            }
+
+            Continue();
+        }
+
+        private void EnterJoiningDate(List<IWebElement> apprentices, bool validStartDate) => EnterJoiningDate(apprentices, 0, apprentices.Count, validStartDate);
+
+        private void EnterJoiningDate(List<IWebElement> apprentices, int start, int length, bool validStartDate)
+        {
+            for (int i = start; i < length; i++)
+            {
+                var joiningDate = eIDataHelper.JoiningDate(validStartDate);
+                var apprentice = apprentices[i];
+                formCompletionHelper.EnterText(apprentice.FindElement(DayInputField), joiningDate.Day);
+                formCompletionHelper.EnterText(apprentice.FindElement(MonthInputField), joiningDate.Month);
+                formCompletionHelper.EnterText(apprentice.FindElement(YearInputField), joiningDate.Year);
+            }
         }
     }
 }
