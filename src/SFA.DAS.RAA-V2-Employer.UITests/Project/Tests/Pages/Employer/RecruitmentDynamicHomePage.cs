@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;

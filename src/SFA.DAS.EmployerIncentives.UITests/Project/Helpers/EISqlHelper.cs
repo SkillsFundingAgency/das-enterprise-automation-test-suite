@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -19,6 +19,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
             SetCaseDetailsToNull(accountId);
         }
+
+        internal void SetSignedAgreementVersion(string accountId) => ExecuteSqlCommand($"Update dbo.Accounts set SignedAgreementVersion = 7 where id in ({accountId})");
 
         public void ResetPeriodEndInProgress()
         {
@@ -99,7 +101,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             {
                 var currentDate = DateTime.Now;
 
-                if (startDate > new DateTime(currentDate.Year, currentDate.Month - 3, 01)) expectedDueDate = expectedDueDate.AddDays(89);
+                if (startDate > new DateTime(currentDate.Year, currentDate.Month, 01).AddMonths(-3)) expectedDueDate = expectedDueDate.AddDays(89);
                 else expectedDueDate = currentDate.AddDays(21);
             }
             else expectedDueDate = expectedDueDate.AddDays(364);
