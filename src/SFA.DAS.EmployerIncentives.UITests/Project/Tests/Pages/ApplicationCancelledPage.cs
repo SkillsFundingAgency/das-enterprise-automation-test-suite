@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -7,9 +8,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "applications cancelled";
 
+        private string ExpectedPageTitle => "One application cancelled";
+
+        private List<string> ExpectedPageTitles => new List<string> { PageTitle, ExpectedPageTitle };
+
         protected By ViewApplicationsSelector => By.CssSelector("#main-content .govuk-button");
 
-        public ApplicationCancelledPage(ScenarioContext context) : base(context)  { }
+        public ApplicationCancelledPage(ScenarioContext context) : base(context, false) => VerifyPage(() => pageInteractionHelper.FindElement(PageHeader), ExpectedPageTitles);
 
         public ViewApplicationsPage ViewApplications()
         {

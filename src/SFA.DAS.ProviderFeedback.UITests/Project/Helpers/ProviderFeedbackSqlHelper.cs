@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
 {

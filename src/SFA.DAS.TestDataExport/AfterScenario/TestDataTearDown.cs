@@ -7,7 +7,7 @@ using NUnit.Framework;
 using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using System.Globalization;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
