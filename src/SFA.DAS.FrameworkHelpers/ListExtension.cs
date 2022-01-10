@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class ListExtension
     {

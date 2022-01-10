@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public class HttpClientRequestHelper
     {

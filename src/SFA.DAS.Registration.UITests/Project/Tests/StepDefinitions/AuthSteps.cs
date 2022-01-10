@@ -10,6 +10,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {

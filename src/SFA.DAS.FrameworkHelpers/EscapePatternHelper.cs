@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class EscapePatternHelper
     {

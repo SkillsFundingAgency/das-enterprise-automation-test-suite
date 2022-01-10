@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.TestDataCleanup.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions

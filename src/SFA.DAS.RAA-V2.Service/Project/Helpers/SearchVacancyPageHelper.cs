@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;

@@ -3,7 +3,7 @@ using Polly;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public class RetryAssertHelper
     {
