@@ -48,6 +48,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_DeclarationPage(context);
         }
 
+        public AS_DeclarationPage ConfirmAndContinue()
+        {
+            Continue();
+            return new AS_DeclarationPage(context);
+        }
+
         private void SelectStandard(bool hasMultiStandards)
         {
             if (hasMultiStandards)
