@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Polly;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.IO;
 

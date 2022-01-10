@@ -1,7 +1,7 @@
 ﻿using Polly;
 using System;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public abstract class SqlDbRetryHelper
     {

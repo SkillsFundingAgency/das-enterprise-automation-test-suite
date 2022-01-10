@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {

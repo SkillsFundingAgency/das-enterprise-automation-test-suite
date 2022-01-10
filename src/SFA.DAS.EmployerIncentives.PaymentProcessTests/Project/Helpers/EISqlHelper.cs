@@ -2,7 +2,7 @@
 using Dapper.Contrib.Extensions;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
 using System.Collections.Generic;

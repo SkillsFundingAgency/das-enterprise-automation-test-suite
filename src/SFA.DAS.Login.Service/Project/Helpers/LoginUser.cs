@@ -69,7 +69,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class ChangeOfEmployerLevyUser : MultipleEasAccountUser { }
+    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser { }
 
     #endregion
 
