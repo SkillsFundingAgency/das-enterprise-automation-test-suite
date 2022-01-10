@@ -66,7 +66,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             Continue();
         }
 
-        private void EnterJoiningDate(List<IWebElement> apprentices, bool validStartDate) => EnterJoiningDate(apprentices, 0, apprentices.Count, validStartDate);
+        public void EnterJoiningDate(List<IWebElement> apprentices, bool validStartDate) => EnterJoiningDate(apprentices, 0, apprentices.Count, validStartDate);
 
         private void EnterJoiningDate(List<IWebElement> apprentices, int start, int length, bool validStartDate)
         {
