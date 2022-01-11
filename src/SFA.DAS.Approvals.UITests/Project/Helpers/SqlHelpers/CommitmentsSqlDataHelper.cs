@@ -64,5 +64,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             return Convert.ToString(GetDataAsObject(query)).Trim();
         }
+    
     }
 }

@@ -66,4 +66,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\DataFiles\" />
+  </ItemGroup>
+
 </Project>
