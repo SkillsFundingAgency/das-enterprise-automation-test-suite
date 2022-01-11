@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 

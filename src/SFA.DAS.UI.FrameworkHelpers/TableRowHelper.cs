@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
 

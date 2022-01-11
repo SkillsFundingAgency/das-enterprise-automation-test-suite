@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;

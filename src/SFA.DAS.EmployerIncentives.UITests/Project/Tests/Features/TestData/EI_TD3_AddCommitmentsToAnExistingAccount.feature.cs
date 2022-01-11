@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 5
  testRunner.Then("the Employer adds 1 apprentices Aged16to24 as of 01AUG2021 with start date as Mon" +
-                        "th 2 and Year 2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "th 1 and Year 2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 6
  testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

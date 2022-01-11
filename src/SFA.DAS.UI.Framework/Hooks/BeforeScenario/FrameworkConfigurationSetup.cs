@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
