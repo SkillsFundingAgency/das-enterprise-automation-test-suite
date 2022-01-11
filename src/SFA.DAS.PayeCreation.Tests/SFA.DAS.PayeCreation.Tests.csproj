@@ -12,7 +12,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	<PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
 	<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.0">

@@ -23,10 +23,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />
   </ItemGroup>
