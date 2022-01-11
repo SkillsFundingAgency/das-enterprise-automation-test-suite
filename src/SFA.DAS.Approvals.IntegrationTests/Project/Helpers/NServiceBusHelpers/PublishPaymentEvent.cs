@@ -2,7 +2,7 @@
 using System;
 
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
+namespace SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers
 {
     public class PublishPaymentEvent
     {
@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
         private readonly NServiceBusHelper _nServiceBusHelper;
 
         public PublishPaymentEvent(NServiceBusHelper nServiceBusHelper) => _nServiceBusHelper = nServiceBusHelper;
-        
+
         public void PublishRecordedAct1CompletionPaymentEvent(int apprenticeshipId) => _nServiceBusHelper.Publish(EndpointName, new RecordedAct1CompletionPayment { ApprenticeshipId = apprenticeshipId, EventTime = DateTimeOffset.UtcNow }).Wait();
 
     }

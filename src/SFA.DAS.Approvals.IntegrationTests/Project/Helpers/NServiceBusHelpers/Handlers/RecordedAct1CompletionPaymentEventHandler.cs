@@ -3,7 +3,7 @@ using SFA.DAS.Payments.ProviderPayments.Messages;
 using System;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers.Handlers
+namespace SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers.Handlers
 {
     public class RecordedAct1CompletionPaymentEventHandler : IHandleMessages<RecordedAct1CompletionPayment>
     {
