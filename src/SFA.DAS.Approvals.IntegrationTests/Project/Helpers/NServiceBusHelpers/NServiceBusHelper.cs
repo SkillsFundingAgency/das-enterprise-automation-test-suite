@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NUnit.Framework;
 using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
@@ -36,7 +37,8 @@ namespace SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers
             var endpoint = await Endpoint.Start(endpointConfiguration);
 
             await endpoint.Publish(eventName);
-            Console.WriteLine($"Published {nameof(eventName)}");
+
+            TestContext.Progress.WriteLine($"Published {nameof(eventName)}");
 
             await endpoint.Stop();
         }
