@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         public IRestResponse VerifyIdentity(VerifyIdentityRegistrationCommand payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/registrations", payload, expectedResponse);
+            return Execute(Method.POST, $"/approvals", payload, expectedResponse);
         }
 
         public IRestResponse ChangeApprenticeEmailAddress(string apprenticeId, ApprenticeEmailAddressRequest payload, HttpStatusCode expectedResponse)
