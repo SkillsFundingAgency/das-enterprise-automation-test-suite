@@ -16,8 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-        private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsDataHelper _dataHelper;
         private readonly ObjectContext _objectContext;
         protected readonly FrameworkHelpers.RetryAssertHelper _assertHelper;
 
@@ -30,8 +28,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
         public IRestResponse Ping() => _outerHealthApiRestClient.Ping(HttpStatusCode.OK);
@@ -74,35 +70,18 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             return _apprenticeCommitmentsJobs_CreateApprenticeshipClient.CreateApprenticeshipViaCommitmentsJob(createApprenticeship, HttpStatusCode.Accepted);
         }
 
-        public IRestResponse VerifyIdentity()
+        public IRestResponse CreateApprentice()
         {
-            (string apprenticeId, _)  = _aComtSqlDbHelper.GetApprenticeIdFromRegistrationTable(GetApprenticeEmail());
-
-            var verifyIdentity = new VerifyIdentityRegistrationCommand
+            var verifyIdentity = new Apprentice
             {
-                ApprenticeId = apprenticeId,
-                UserIdentityId = apprenticeId,
+                ApprenticeId = Guid.NewGuid(),
+                DateOfBirth = _objectContext.GetDateOfBirth(),
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
-                Email = GetApprenticeEmail(),
-                DateOfBirth = _objectContext.GetDateOfBirth(),
+                Email = GetApprenticeEmail()
             };
 
-            return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
-        }
-
-        public IRestResponse ChangeApprenticeEmailAddress()
-        {
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
-
-            _objectContext.SetApprenticeId(apprenticeId);
-
-            var changeEmailRequest = new ApprenticeEmailAddressRequest
-            {
-                Email = _dataHelper.NewEmail
-            };
-
-            return _outerApiRestClient.ChangeApprenticeEmailAddress(apprenticeId, changeEmailRequest, HttpStatusCode.OK);
+            return _outerApiRestClient.CreateApprentice(verifyIdentity, HttpStatusCode.OK);
         }
 
         public IRestResponse GetApprenticeships()
@@ -123,31 +102,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetApprenticeId(apprenticeId);
 
             return _outerApiRestClient.GetApprenticeship(apprenticeId, commitmentsApprenticeshipId, HttpStatusCode.OK);
-        }
-
-        internal void AssertApprenticeEmailUpdated()
-        {
-            _assertHelper.RetryOnNUnitException(() =>
-            {
-                var email = _aComtSqlDbHelper.GetApprenticeEmail(_objectContext.GetApprenticeId());
-
-                Assert.AreEqual(_dataHelper.NewEmail, email, $"Apprentice new email did not match");
-            });
-        }
-
-        internal void AssertApprenticeLoginData()
-        {
-            _assertHelper.RetryOnNUnitException(() => 
-            {
-                var (firstname, lastname) = _apprenticeLoginSqlDbHelper.GetApprenticeLoginData(_objectContext.GetApprenticeEmail());
-
-                Assert.Multiple(() =>
-                {
-                    Assert.AreEqual(_objectContext.GetFirstName(), firstname, $"Apprentice first name did not match");
-
-                    Assert.AreEqual(_objectContext.GetLastName(), lastname, $"Apprentice last name did not match");
-                });
-            });
         }
 
         private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()

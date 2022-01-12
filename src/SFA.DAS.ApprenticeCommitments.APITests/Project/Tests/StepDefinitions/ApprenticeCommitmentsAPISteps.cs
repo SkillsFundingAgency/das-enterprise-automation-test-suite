@@ -36,14 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         public void GivenAnApprenticeHasCreatedAnAccount()
         {
             _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaApi();
-            _apprenticeCommitmentsApiHelper.VerifyIdentity();
-        }
-
-        [Then(@"the apprentice can change their email address")]
-        public void ThenTheApprenticeCanChangeTheirEmailAddress()
-        {
-            _apprenticeCommitmentsApiHelper.ChangeApprenticeEmailAddress();
-            _apprenticeCommitmentsApiHelper.AssertApprenticeEmailUpdated();
+            _apprenticeCommitmentsApiHelper.CreateApprentice();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
@@ -55,8 +48,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 
         [When(@"an apprenticeship is posted")]
         public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaApi();
-
-        [Then(@"the apprentice details are updated in the login db")]
-        public void ThenTheApprenticeDetailsAreUpdatedInTheLoginDb() => _apprenticeCommitmentsApiHelper.AssertApprenticeLoginData();
     }
 }
