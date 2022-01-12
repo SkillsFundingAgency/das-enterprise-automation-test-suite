@@ -1,8 +1,8 @@
-﻿using SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers;
+﻿using SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.IntegrationTests.Project.Tests.StepDefinitions
+namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class NServiceBusSteps

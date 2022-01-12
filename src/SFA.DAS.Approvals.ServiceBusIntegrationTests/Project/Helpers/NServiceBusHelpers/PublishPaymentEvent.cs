@@ -2,7 +2,7 @@
 using System;
 
 
-namespace SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers
+namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceBusHelpers
 {
     public class PublishPaymentEvent
     {

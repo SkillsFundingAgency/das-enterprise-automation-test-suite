@@ -1,8 +1,8 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers;
+using SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceBusHelpers;
 
-namespace SFA.DAS.Approvals.IntegrationTests.Project
+namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project
 {
     [Binding]
     public class BeforeScenarioHooks
