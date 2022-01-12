@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.Approvals.IntegrationTests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.IntegrationTests.Project.Tests.StepDefinitions
