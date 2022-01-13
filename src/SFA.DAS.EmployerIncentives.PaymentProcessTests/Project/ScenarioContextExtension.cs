@@ -1,5 +1,5 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
 {

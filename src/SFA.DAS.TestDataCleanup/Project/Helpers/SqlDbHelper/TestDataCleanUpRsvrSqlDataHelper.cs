@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public class TestDataCleanUpRsvrSqlDataHelper : ProjectSqlDbHelper
     {

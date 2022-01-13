@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public abstract class ProjectSqlDbHelper : SqlDbHelper
+    public abstract class ProjectSqlDbHelper : FrameworkHelpers.SqlDbHelper
     {
         protected string _user, _userEmail, _accountId, _sqlFileName;
 
@@ -53,7 +53,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             {
                 var accountIdNotDeletedindb = getAccountidfunc.Invoke();
 
-                if (!(IsNoDataFound(accountIdNotDeletedindb))) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
+                if (!IsNoDataFound(accountIdNotDeletedindb)) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
             }
 
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);

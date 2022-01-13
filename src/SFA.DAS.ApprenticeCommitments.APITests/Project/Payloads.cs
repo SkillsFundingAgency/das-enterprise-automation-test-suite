@@ -13,7 +13,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public long TrainingProviderId { get; set; }
     }
 
-
     public class CreateApprenticeshipViaCommitmentsJob
     {
         public long AccountId { get; set; }

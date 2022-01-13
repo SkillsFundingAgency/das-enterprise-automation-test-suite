@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataExport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -15,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ConfirmYourIdentityPage(ScenarioContext context, string email) : base(context) { VerifyPage(); objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email); }
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {

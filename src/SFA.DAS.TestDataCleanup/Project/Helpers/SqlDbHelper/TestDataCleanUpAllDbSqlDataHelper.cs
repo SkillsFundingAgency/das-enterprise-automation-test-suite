@@ -3,15 +3,15 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpAllDbSqlDataHelper : ProjectSqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
-        public TestDataCleanUpSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) => _dbConfig = dbConfig;
+        public TestDataCleanUpAllDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) => _dbConfig = dbConfig;
 
-        public (List<string>, List<string>) CleanUpTestData(string email)
+        public (List<string>, List<string>) CleanUpAllDbTestData(string email)
         {
             List<string> usersdeleted = new List<string>();
 

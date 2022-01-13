@@ -11,8 +11,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
-     [Binding]
-    public class TestDataTearDown
+    [Binding]
+    public class TestDataCollection
     {
         private readonly ObjectContext _objectContext;
         private readonly string _scenarioTitle;
@@ -20,7 +20,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         private static string _directory;
         private static List<string> _urls;
 
-        public TestDataTearDown(ScenarioContext context)
+        public TestDataCollection(ScenarioContext context)
         {
             _context = context;
             _scenarioTitle = context.ScenarioInfo.Title;
@@ -133,6 +133,5 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         }
 
         private string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
-
     }
 }

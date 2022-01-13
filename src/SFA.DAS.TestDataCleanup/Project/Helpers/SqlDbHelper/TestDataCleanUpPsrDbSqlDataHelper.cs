@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public class TestDataCleanUpPsrDbSqlDataHelper : ProjectSqlDbHelper
     {

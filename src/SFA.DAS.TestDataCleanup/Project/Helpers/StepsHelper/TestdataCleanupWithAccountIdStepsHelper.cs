@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
 {
     public class TestdataCleanupWithAccountIdStepsHelper
     {

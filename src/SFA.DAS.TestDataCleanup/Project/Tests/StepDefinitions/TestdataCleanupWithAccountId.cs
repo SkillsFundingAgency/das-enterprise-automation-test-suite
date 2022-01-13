@@ -1,42 +1,36 @@
-﻿using SFA.DAS.TestDataCleanup.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class TestdataCleanupWithAccountId : TestdataCleanupBaseSteps
+    public class TestdataCleanupWithAccountId : TestdataCleanupStepsHelperBase
     {
-        public TestdataCleanupWithAccountId(ScenarioContext context) : base(context) { }
+        private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
+
+        public TestdataCleanupWithAccountId(ScenarioContext context) : base(context) => _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context);
 
         [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData());
-        
+        public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpComtTestData(greaterThan, lessThan);
+
         [Then(@"the test data are cleaned up in prel db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInPrelDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPrelTestData());
+        public void TestDataAreCleanedUpInPrelDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpPrelTestData(greaterThan, lessThan);
 
         [Then(@"the test data are cleaned up in pfbe db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInPfbeDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPfbeTestData());
+        public void TestDataAreCleanedUpInPfbeDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpPfbeTestData(greaterThan, lessThan);
 
         [Then(@"the test data are cleaned up in fcast db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInFcastDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFcastTestData());
+        public void TestDataAreCleanedUpInFcastDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpFcastTestData(greaterThan, lessThan);
 
         [Then(@"the test data are cleaned up in fin db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInFinDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFinTestData());
+        public void TestDataAreCleanedUpInFinDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpFinTestData(greaterThan, lessThan);
         
         [Then(@"the test data are cleaned up in rsvr db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInRsvrDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpRsvrTestData());
+        public void TestDataAreCleanedUpInRsvrDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpRsvrTestData(greaterThan, lessThan);
         
         [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
-        public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => CleanUpTestData(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpIncTestData());
+        public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpIncTestData(greaterThan, lessThan);
 
-        private TestdataCleanupWithAccountIdStepsHelper GetCleanUpHelper(int greaterThan, int lessThan)
-        {
-            var easAccountIds = new EasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
-
-            var easAccountsNotToDelete =  easAccountIds.ListOfArrayToList(0);
-
-            return new TestdataCleanupWithAccountIdStepsHelper(_dbConfig, greaterThan, lessThan, easAccountsNotToDelete);
-        }
     }
 }
