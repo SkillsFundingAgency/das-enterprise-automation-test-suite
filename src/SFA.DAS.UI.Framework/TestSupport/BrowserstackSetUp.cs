@@ -56,6 +56,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         }
 
         private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue) =>
-            chromeOptions.AddAdditionalCapability(capabilityName, capabilityValue, true);
+            chromeOptions.AddAdditionalChromeOption(capabilityName, capabilityValue);
     }
 }
