@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingUserAccount
+namespace SFA.DAS.Approvals.IntegrationTests.Project.Tests.E2EJourneys
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingU
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_05_ExistingUserAccount")]
+    [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_01_VerifyPaymentEvent")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_E2E_EUA_05_ExistingUserAccountFeature
+    public partial class AP_E2E_EUA_01_VerifyPaymentEventFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingU
         private string[] _featureTags = new string[] {
                 "approvals"};
         
-#line 1 "AP_E2E_EUA_05_ExistingUserAccount.feature"
+#line 1 "AP_E2E_EUA_01_VerifyPaymentEvent.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExistingUserAccount", "AP_E2E_EUA_05_ExistingUserAccount", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/E2EJourneys", "AP_E2E_EUA_01_VerifyPaymentEvent", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,12 +77,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingU
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_05 Payment Completion event marks the apprenticeship as Complete")]
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_01_Verify Payment Completion event marks the apprenticeship as Complet" +
+            "e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         [NUnit.Framework.CategoryAttribute("onemonthbeforecurrentacademicyearstartdate")]
         [NUnit.Framework.CategoryAttribute("paymentCompletion")]
-        public virtual void AP_E2E_EUA_05PaymentCompletionEventMarksTheApprenticeshipAsComplete()
+        public virtual void AP_E2E_EUA_01_VerifyPaymentCompletionEventMarksTheApprenticeshipAsComplete()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -90,7 +91,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingU
                     "onemonthbeforecurrentacademicyearstartdate",
                     "paymentCompletion"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_EUA_05 Payment Completion event marks the apprenticeship as Complete", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_EUA_01_Verify Payment Completion event marks the apprenticeship as Complet" +
+                    "e", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
