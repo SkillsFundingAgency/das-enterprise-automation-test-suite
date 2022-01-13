@@ -35,18 +35,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Given(@"an apprentice has created an account")]
         public void GivenAnApprenticeHasCreatedAnAccount()
         {
-            _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaApi();
+            _apprenticeCommitmentsApiHelper.CreateApprovalsCreatedEvent();
             _apprenticeCommitmentsApiHelper.CreateApprentice();
+            _apprenticeCommitmentsApiHelper.CreateApprenticeship();
         }
 
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {
             var (_, apprenticeshipid, _, _, _, _, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+
             _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }
-
-        [When(@"an apprenticeship is posted")]
-        public void WhenAnApprenticeshipIsPosted() => _apprenticeCommitmentsApiHelper.CreateApprenticeshipViaApi();
     }
 }

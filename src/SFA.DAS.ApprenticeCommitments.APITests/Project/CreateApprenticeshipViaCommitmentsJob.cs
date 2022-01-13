@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class CreateApprenticeshipViaApi
+    public class ApprovalsCreated
     {
         public long EmployerAccountId { get; set; }
         public long CommitmentsApprenticeshipId { get; set; }
@@ -36,7 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
     public class CreateApprenticeshipFromRegistration 
     {
-        public Guid RegistrationId { get; set; }
-        public Guid ApprenticeId { get; set; }
+        public string RegistrationId { get; set; }
+        public string ApprenticeId { get; set; }
     }
 }
