@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using System.Collections.Generic;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
+using System.Linq;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -16,7 +17,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 100)]
         public void CleanUpTestData()
         {
-            if (_context.TestError != null)
+            if (_context.TestError != null && _context.ScenarioInfo.Tags.Contains("regression"))
             {
                 var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
 

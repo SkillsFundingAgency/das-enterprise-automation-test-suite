@@ -5,11 +5,11 @@ using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class TestdataCleanupWithAccountId : TestdataCleanupStepsHelperBase
+    public class TestdataCleanupWithAccountId
     {
         private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
 
-        public TestdataCleanupWithAccountId(ScenarioContext context) : base(context) => _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context);
+        public TestdataCleanupWithAccountId(ScenarioContext context) => _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context);
 
         [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
         public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpComtTestData(greaterThan, lessThan);
