@@ -78,7 +78,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
         }
 
-        public void CreateApprenticeshipViaApiRequest() => appreticeCommitmentsApiHelper.CreateApprenticeshipViaApi();
+        public void CreateApprenticeshipViaApiRequest() => appreticeCommitmentsApiHelper.CreateApprovalsCreatedEvent();
 
         public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
 
