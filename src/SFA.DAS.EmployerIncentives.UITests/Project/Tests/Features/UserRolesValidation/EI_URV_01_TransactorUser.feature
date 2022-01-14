@@ -1,7 +1,7 @@
 ﻿Feature: EI_URV_01_TransactorUser
 
 @regression
-@employerincentivesphase3
+@employerincentives
 Scenario: EI_URV_01_Verify EI for Existing Transactor user
 	Given the Employer logins using existing transactor user account
 	And the employer signs the agreement version 7

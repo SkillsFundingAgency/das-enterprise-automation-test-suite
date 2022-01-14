@@ -76,7 +76,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
@@ -84,7 +84,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3",
+                    "employerincentives",
                     "eie2ejourney",
                     "deleteincentiveapplication",
                     "vrfservice"};

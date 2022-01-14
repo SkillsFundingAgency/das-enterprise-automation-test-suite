@@ -2,7 +2,7 @@
 
 @regression
 @addnonlevyfunds
-@employerincentivesphase3
+@employerincentives
 Scenario: EI_QSApS_NewNonLevyAc_NC_SE_01_Validate Shutter pages for New Non Levy Account with One legal entity and No Commitments
 	Given an Employer creates a Non Levy Account and Signs the Agreement
 	And the employer signs the agreement version 7

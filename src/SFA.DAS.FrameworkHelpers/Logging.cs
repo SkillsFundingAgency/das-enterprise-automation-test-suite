@@ -1,0 +1,24 @@
+﻿using NUnit.Framework;
+using System;
+
+
+namespace SFA.DAS.FrameworkHelpers
+{
+    public static class Logging
+    {
+        public static void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null)
+        {
+            TestContext.Progress.WriteLine($"{Environment.NewLine}" +
+                $"Retry Count : {retryCount}{Environment.NewLine}" +
+                $"Scenario Title : {scenarioTitle}{Environment.NewLine}" +
+                $"Exception : {exception.Message}{Environment.NewLine}" +
+                $"Retry Action : {retryAction == null}");
+        }
+
+        public static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(13) };
+
+        public static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
+
+        public static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
+    }
+}

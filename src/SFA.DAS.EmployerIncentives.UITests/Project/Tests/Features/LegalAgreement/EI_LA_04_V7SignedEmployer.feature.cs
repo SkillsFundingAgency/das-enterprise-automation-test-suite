@@ -77,13 +77,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         [NUnit.Framework.DescriptionAttribute("EI_LA_04_V7SignedEmployer_V7 Signed Employer attempts to apply for Commitments st" +
             "arting OCT2021 or over")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         public virtual void EI_LA_04_V7SignedEmployer_V7SignedEmployerAttemptsToApplyForCommitmentsStartingOCT2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3",
+                    "employerincentives",
                     "deleteincentiveapplication"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Signed Employer attempts to apply for Commitments st" +
@@ -125,13 +125,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_LA_04_V7SignedEmployer_V7 Enters An Invalid Employment Start Date")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         public virtual void EI_LA_04_V7SignedEmployer_V7EntersAnInvalidEmploymentStartDate()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3",
+                    "employerincentives",
                     "deleteincentiveapplication"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Enters An Invalid Employment Start Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -172,13 +172,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_LA_04_V7SignedEmployer_V7 Enters A Valid and An Invalid Employment Start Date")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         public virtual void EI_LA_04_V7SignedEmployer_V7EntersAValidAndAnInvalidEmploymentStartDate()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3",
+                    "employerincentives",
                     "deleteincentiveapplication"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Enters A Valid and An Invalid Employment Start Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

@@ -1,7 +1,7 @@
 ﻿Feature: EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw
 
 @regression
-@employerincentivesphase3
+@employerincentives
 @eie2ejourney
 @deleteincentiveapplication
 @vrfservice

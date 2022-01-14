@@ -9,14 +9,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public static void Replace<T>(this Dictionary<string, object> dictionary, string key, T value)
         {
-            if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] = value;
-            }
-            else
-            { 
-                dictionary.Add(key, value);
-            }
+            if (dictionary.ContainsKey(key)) dictionary[key] = value;
+
+            else dictionary.Add(key, value);
         }
 
         public static T GetValue<T>(this SpecFlowContext context) => context.TryGetValue<T>(out var value) ? value : default;

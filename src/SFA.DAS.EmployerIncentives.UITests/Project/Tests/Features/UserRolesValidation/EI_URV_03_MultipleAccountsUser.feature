@@ -1,7 +1,7 @@
 ﻿Feature: EI_URV_03_MultipleAccountsUser
 
 @regression
-@employerincentivesphase3
+@employerincentives
 Scenario: EI_URV_03_Verify EI for Multiple Accounts user
 	Given the Employer logins using existing multiple account user
 	And the employer signs the agreement version 7
