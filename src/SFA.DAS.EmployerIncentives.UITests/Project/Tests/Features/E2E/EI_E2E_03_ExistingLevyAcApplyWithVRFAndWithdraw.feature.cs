@@ -114,12 +114,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing EI Levy Account to withdraw application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
  testRunner.And("the Employer submits an EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the Employer can withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
