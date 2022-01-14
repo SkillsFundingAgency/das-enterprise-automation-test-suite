@@ -102,6 +102,13 @@ namespace SFA.DAS.FrameworkHelpers
             return connection.Execute(queryToExecute);
         }
 
-        private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : new AzureServiceTokenProvider().GetAccessTokenAsync(AzureResource).Result };
+        private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
+        { 
+            ConnectionString = connectionString, 
+            AccessToken = connectionString.Contains("User ID=") 
+                ? null 
+                : new AzureServiceTokenProvider().
+                    GetAccessTokenAsync(AzureResource).Result 
+        };
     }
 }

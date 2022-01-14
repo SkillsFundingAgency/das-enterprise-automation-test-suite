@@ -18,10 +18,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
 
         private HomePage _homePage;
-        private string _senderAccountId;
-        private string _recieverAccountId;
-        private readonly string _sender;
-        private readonly string _receiver;
+        private string _firstAccountId;
+        private string _secondAccountId;
+        private string _thirdAccountId;
+        private readonly string _firstOrganisationName;
+        private readonly string _secondOrganisationName;
+        private readonly string _thirdOrganisationName;
 
 
         public CreateAccountTransfersSteps(ScenarioContext context)
@@ -29,76 +31,159 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
-            _senderAccountId = null;
-            _recieverAccountId = null;
-            _sender = context.Get<RegistrationDataHelper>().CompanyTypeOrg;
-            _receiver = context.GetUser<TransfersUser>().SecondOrganisationName;
+            _firstAccountId = null;
+            _secondAccountId = null;
+            _thirdAccountId = null;
+            _firstOrganisationName = context.Get<RegistrationDataHelper>().CompanyTypeOrg;
+            _secondOrganisationName = context.GetUser<TransfersUser>().SecondOrganisationName;
+            _thirdOrganisationName = context.GetUser<TransfersUser>().ThirdOrganisationName;
         }
 
-        [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
-        public void GivenWeHaveANewSenderWithSufficientLevyFundsAndANewReceiverAccountsSetup()
+        [Given(@"We have (one|two|three) Employer accounts where none are a Transfer sender or Transfer Receiver")]
+        public void GivenWehaveTwoEmployerAccountsWhereNeitherIsATransferSenderOrTransferReceiver(string number)
         {
-            _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
-
-            _senderAccountId = _objectContext.GetAccountId();
-
-            _objectContext.UpdateOrganisationName(_receiver);
-
-            _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
-
-            _recieverAccountId = _objectContext.GetReceiverAccountId();
+            AccountsAreCreated(number);
         }
 
-        [When(@"Sender connects to Receiver")]
-        public void WhenSenderConnectsToReceiver()
+        private void AccountsAreCreated(string number)
+        {            
+            if (number == "one" || number == "two" || number == "three")
+            {
+                _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
+
+                _firstAccountId = _objectContext.GetHashedAccountId();
+            }
+
+            if (number == "two" || number == "three")
+            {
+                _objectContext.UpdateOrganisationName(_secondOrganisationName);
+
+                _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
+
+                _secondAccountId = _objectContext.GetSecondHashedAccountId();
+            }
+
+            if (number == "three")
+            {
+                _objectContext.UpdateOrganisationName(_thirdOrganisationName);
+
+                _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 2);
+
+                _thirdAccountId = _objectContext.GetThirdHashedAccountId();
+            }
+        }
+
+        [Given(@"We have (one|two|three) Employer accounts where the first is a Transfer sender and the second is a Transfer Receiver")]
+        public void GivenWeHaveTwoEmployerAccountsWhereTheFirstIsATransferSenderAndTheSecondIsATransferReceiver(string number)
         {
-            //Sender connects to receiver 
-            _objectContext.UpdateOrganisationName(_sender);
+            AccountsAreCreated(number);
+            SenderConnectsToReceiver(_firstOrganisationName, _secondOrganisationName, _objectContext.GetPublicSecondHashedAccountId());
+        }
+
+        [Given(@"We have (one|two|three) Employer accounts")]
+        public void GivenWeHaveEmployerAccounts(string number)
+        {
+            AccountsAreCreated(number);
+        }
+
+        [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
+        public void GivenSenderIsConnectedToReceiver(string sender, string receiver)
+        {
+            SenderConnectsToReceiver(_firstOrganisationName, _secondOrganisationName, _objectContext.GetPublicSecondHashedAccountId());
+        }
+
+        [When(@"(First|Second|Third) account creates transfer request to (First|Second|Third) account and (First|Second|Third) account accepts the request")]
+        public void WhenFirstAccountCreatesConnectionRequestToSecondAccountAndSecondAccountAcceptsTheRequest(string sender, string receiver, string acceptor)
+        {
+            if (receiver != acceptor)
+                throw new ArgumentException("The acceptor must be the same as the reciever");
+
+            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
+            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+
+            SenderConnectsToReceiver(senderOrganisationName, receiverOrganisationName, receiverPublicAccountId);
+        }
+
+        private void GetAccountDetails(string account, out string organisationName, out string accountId, out string publicAccountId)
+        {
+            switch (account)
+            {
+                case "First":
+                    organisationName = _firstOrganisationName;
+                    accountId = _firstAccountId;
+                    publicAccountId = _objectContext.GetPublicHashedAccountId();
+                    break;
+                case "Second":
+                    organisationName = _secondOrganisationName;
+                    accountId = _secondAccountId;
+                    publicAccountId = _objectContext.GetPublicSecondHashedAccountId();
+                    break;
+                case "Third":
+                    organisationName = _thirdOrganisationName;
+                    accountId = _thirdAccountId;
+                    publicAccountId = _objectContext.GetPublicThirdHashedAccountId();
+                    break;
+
+                default:
+                    organisationName = string.Empty;
+                    accountId = string.Empty;
+                    publicAccountId = string.Empty;
+                    break;
+            }
+        }
+
+        private void SenderConnectsToReceiver(string senderOrganisationName, string receiverOrganiationName, string publicReceiverAccountId)
+        {
+            // Sender connects to receiver 
+            _objectContext.UpdateOrganisationName(senderOrganisationName);
             _homePage.GoToYourAccountsPage()
-              .GoToHomePage(_sender);
+              .GoToHomePage(senderOrganisationName);
 
             _homePage = new FinancePage(_context, true)
                 .OpenTransfers()
                 .ConnectWithReceivingEmployer()
                 .ContinueToConnectWithReceiver()
-                .ConnectWithReceivingEmployer(_objectContext.GetPublicReceiverAccountId())
+                .ConnectWithReceivingEmployer(publicReceiverAccountId)
                 .SendTransferConnectionRequest()
                 .GoToHomePage();
 
-            //Receiver accepts the conneciton
-            _objectContext.UpdateOrganisationName(_receiver);
+            // Receiver accepts the conneciton
+            _objectContext.UpdateOrganisationName(receiverOrganiationName);
             _homePage.GoToYourAccountsPage()
-                 .GoToHomePage(_receiver);
+                 .GoToHomePage(receiverOrganiationName);
 
             _homePage = new FinancePage(_context, true)
                 .OpenTransfers()
-                .ViewTransferConnectionRequestDetails(_sender)
+                .ViewTransferConnectionRequestDetails(senderOrganisationName)
                 .AcceptTransferConnectionRequest()
                 .GoToHomePage();
         }
 
-        [Then(@"A transfer connection is established successfully")]
-        public void ThenATransferConnectionIsEstablishedSuccessfully()
+        [Then(@"A transfer connection is established successfully between (First|Second|Third) account as Sender and (First|Second|Third) account as Receiver")]
+        public void ThenATransferConnectionIsEstablishedSuccessfullyBetweenFirstAccountAsSenderAndSecondAccountAsReceiver(string sender, string receiver)
         {
-            _objectContext.UpdateOrganisationName(_sender);
+            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
+            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+
+            _objectContext.UpdateOrganisationName(senderOrganisationName);
             _homePage.GoToYourAccountsPage()
-                .GoToHomePage(_sender);
+                .GoToHomePage(senderOrganisationName);
 
             bool senderAssertion = new FinancePage(_context, true)
                .OpenTransfers()
-               .CheckTransferConnectionStatus(_receiver);
+               .CheckTransferConnectionStatus(receiverOrganisationName);
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            _objectContext.UpdateOrganisationName(receiverOrganisationName);
             _homePage.GoToYourAccountsPage()
-                .GoToHomePage(_receiver);
+                .GoToHomePage(receiverOrganisationName);
 
             bool receiverAssertion = new FinancePage(_context, true)
                .OpenTransfers()
-               .CheckTransferConnectionStatus(_sender);
+               .CheckTransferConnectionStatus(senderOrganisationName);
 
             if (!senderAssertion)
                 if (!receiverAssertion)
-                    throw new Exception($"We don't have an approved transfers connection between {_sender}({_senderAccountId}) and {_receiver}({_recieverAccountId})");
+                    throw new Exception($"We don't have an approved transfers connection between {senderOrganisationName}({senderAccountId}) and {receiverOrganisationName}({receiverAccountId})");
         }
     }
 }
