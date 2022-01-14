@@ -6,7 +6,6 @@
 @vrfservice
 Scenario: EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF_Apply for Incentive, Submit and Amend bank details for a New Levy Account
 	Given an Employer creates a Levy Account and Signs the Agreement
-	And the employer signs the agreement version 7
 	And the Employer adds an apprentice Aged16to24 as of 01AUG2021 with start date as Month 1 and Year 2022
 	And the Provider approves the apprenticeship request
 	When the Employer Initiates EI Application journey for Single entity account
