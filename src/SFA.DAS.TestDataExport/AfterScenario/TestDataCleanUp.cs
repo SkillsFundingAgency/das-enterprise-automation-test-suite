@@ -17,7 +17,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 100)]
         public void CleanUpTestData()
         {
-            if (_context.TestError != null && _context.ScenarioInfo.Tags.Contains("regression"))
+            if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))
             {
                 var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
 
