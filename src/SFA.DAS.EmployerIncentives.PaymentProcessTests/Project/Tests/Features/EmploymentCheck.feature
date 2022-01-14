@@ -19,7 +19,7 @@ Scenario: New Employment Check - First Submission - Phase 2
 	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
 	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
 
-	Scenario: New Employment Check - First Submission - Phase 3
+Scenario: New Employment Check - First Submission - Phase 3
 	Given an apprenticeship incentive has been submitted in phase 3
 	When an ILR submission is received for that learner
 	And we have not previously requested an employment check for the learner
