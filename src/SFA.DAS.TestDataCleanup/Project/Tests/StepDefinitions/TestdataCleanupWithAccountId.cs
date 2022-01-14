@@ -1,6 +1,9 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using SFA.DAS.ConfigurationBuilder;
+using System.Linq;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
@@ -8,8 +11,9 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
     public class TestdataCleanupWithAccountId
     {
         private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
+        private readonly DbConfig _dbConfig;
 
-        public TestdataCleanupWithAccountId(ScenarioContext context) => _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context);
+        public TestdataCleanupWithAccountId(ScenarioContext context) { _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context); _dbConfig = context.Get<DbConfig>(); }
 
         [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
         public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpComtTestData(greaterThan, lessThan);
@@ -32,5 +36,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
         [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
         public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpIncTestData(greaterThan, lessThan);
 
+        [Then(@"the test data are cleaned up in acomt db for accounts (.*)")]
+        public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete.Split(",").ToList());
     }
 }

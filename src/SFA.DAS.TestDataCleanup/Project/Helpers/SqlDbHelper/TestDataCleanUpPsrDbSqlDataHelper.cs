@@ -14,6 +14,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
         {
             var easaccounthashedids = new EasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
 
+            if (IsNoDataFound(easaccounthashedids)) return 0;
+
             return CleanUpTestData(easaccounthashedids.ListOfArrayToList(0), (x) => $"Insert into #accounthashedids values ('{x}')", "create table #accounthashedids (id nvarchar(255))", "EasPsrTestDataCleanUp");
         }
     }

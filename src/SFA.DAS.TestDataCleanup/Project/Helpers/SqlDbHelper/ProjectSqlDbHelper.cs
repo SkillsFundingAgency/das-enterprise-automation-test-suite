@@ -59,5 +59,13 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);
         }
 
+        protected List<string[]> GetMultipleAccountData(string sqlQuery)
+        {
+            var id = GetMultipleData(sqlQuery);
+
+            if (IsNoDataFound(id)) id[0][0] = "0";
+
+            return id;
+        }
     }
 }

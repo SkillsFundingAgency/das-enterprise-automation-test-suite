@@ -14,17 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
         internal List<string[]> GetAccountHashedIds(List<string> accountIdToDelete)
         {
-            return GetMultipleAccountData($"select HashedId from employer_account.Account where id in ({string.Join(",", accountIdToDelete)})");
+            return GetMultipleData($"select HashedId from employer_account.Account where id in ({string.Join(",", accountIdToDelete)})");
         }
-
-        private List<string[]> GetMultipleAccountData(string sqlQuery)
-        {
-            var id = GetMultipleData(sqlQuery);
-
-            if (IsNoDataFound(id)) id[0][0] = "0";
-
-            return id;
-        }
-
     }
 }
