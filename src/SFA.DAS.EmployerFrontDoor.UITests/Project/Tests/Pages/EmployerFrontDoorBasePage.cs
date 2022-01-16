@@ -8,7 +8,7 @@ using System;
 
 namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
 {
-   public abstract class EmployerFrontDoorBasePage : BasePage
+   public abstract class EmployerFrontDoorBasePage : VerifyBasePage
     {
         #region Helpers and Context
         protected readonly ObjectContext objectContext;

@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project
         }
 
         [BeforeScenario(Order = 34)]
-        public void SetUpHelpers() => _context.Set(new EmployerFrontDoorDataHelper(_context.Get<RandomDataGenerator>()));
+        public void SetUpHelpers() => _context.Set(new EmployerFrontDoorDataHelper());
 
         [BeforeScenario(Order = 36)]
         public void NavigateToBaseUrl() => _webDriver.Navigate().GoToUrl(UrlConfig.EmpFrontDoor_BaseUrl);

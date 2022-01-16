@@ -2,12 +2,12 @@
 
 namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Helpers
 {
-    public class EmployerFrontDoorDataHelper : RandomElementHelper
+    public class EmployerFrontDoorDataHelper
     {
-        public EmployerFrontDoorDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public EmployerFrontDoorDataHelper()
         {
-            Firstname = randomDataGenerator.GenerateRandomAlphabeticString(6);
-            Lastname = randomDataGenerator.GenerateRandomAlphabeticString(9);
+            Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
+            Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
             Email = $"{Firstname}.{Lastname}@example.com";
         }

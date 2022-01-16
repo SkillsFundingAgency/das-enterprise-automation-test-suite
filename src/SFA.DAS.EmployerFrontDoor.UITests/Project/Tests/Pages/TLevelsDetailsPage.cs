@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
        // protected override string PageTitle => "TLevels: industry placements";
         //protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
-        private By TLevelssLink => By.Id("scheme-header-t-levels-industry-placements");
+        private By TLevelsLink => By.Id("scheme-header-t-levels-industry-placements");
 
         public TLevelsDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
         {
             // if (ApprenticeshipsDetailsPage.WaitUntilAnyElements(ApprenticeshipsLink))
             {
-                formCompletionHelper.ClickElement(TLevelssLink);
+                formCompletionHelper.ClickElement(TLevelsLink);
             }
             return new TLevelsDetailsPage(_context);
         }

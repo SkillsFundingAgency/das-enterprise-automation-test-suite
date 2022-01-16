@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -19,15 +20,23 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Helpers
 
         public ApprenticeshipsDetailsPage GoToApprenticeshipsDetailsPage()
         {
-            
+
             ApprenticeshipsDetailsPage apprenticeshipsPage = new ApprenticeshipsDetailsPage(_context);
-          
-          /*  WebDriverWait wait = new WebDriverWait(driver, 100);
-            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("submit"))); */
-            
+
+            /*  WebDriverWait wait = new WebDriverWait(driver, 100);
+              WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("submit"))); */
+
             apprenticeshipsPage.ApprenticeshipsScheme();
-            
+
             return apprenticeshipsPage;
+        }
+
+        public TraineeshipsDetailsPage GotoTraineeshipsDetailsPage()
+        {
+            TraineeshipsDetailsPage traineeshipsPage = new TraineeshipsDetailsPage(_context);
+            traineeshipsPage.TraineeshipsScheme();
+            Thread.Sleep(3000);
+            return traineeshipsPage;
         }
 
         public TLevelsDetailsPage GoToTLevelsDetailsPage()
@@ -53,6 +62,46 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Helpers
             SkillsBootcampsDetailsPage bootCampsPage = new SkillsBootcampsDetailsPage(_context);
             bootCampsPage.SkillsBootcampsScheme();
             return bootCampsPage;
+        }
+
+        public SupportedInternshipsDetailsPage GoToSupportedInternshipsDetailsPage()
+        {
+            SupportedInternshipsDetailsPage internShipsPage = new SupportedInternshipsDetailsPage(_context);
+            internShipsPage.SupportedInternshipsScheme();
+            Thread.Sleep(3000);
+            return internShipsPage;
+        }
+
+        public CareLeaverDetailsPage GoToCareLeaverDetailsPage()
+        {
+            CareLeaverDetailsPage careLeaverPage = new CareLeaverDetailsPage(_context);
+            careLeaverPage.CareLeaverScheme();
+            Thread.Sleep(3000);
+            return careLeaverPage;
+        }
+
+        public EmpPrisonersDetailsPage GoToEmpPrisonersDetailsPage()
+        {
+            EmpPrisonersDetailsPage empPrisonersPage = new EmpPrisonersDetailsPage(_context);
+            empPrisonersPage.EmpPrisonersScheme();
+            Thread.Sleep(3000);
+            return empPrisonersPage;
+        }
+
+        public HTQsDetailsPage GoToHTQsDetailsPage()
+        {
+           HTQsDetailsPage HTQsPage = new HTQsDetailsPage(_context);
+            HTQsPage.HTQsScheme();
+            return HTQsPage;
+
+        }
+
+        public TrainingOutsideDetailsPage GoToTrainingOutsideDetailsPage()
+        {
+            TrainingOutsideDetailsPage trainingOutsidePage = new TrainingOutsideDetailsPage(_context);
+            trainingOutsidePage.TrainingOutsideScheme();
+            return trainingOutsidePage;
+
         }
 
 
