@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages

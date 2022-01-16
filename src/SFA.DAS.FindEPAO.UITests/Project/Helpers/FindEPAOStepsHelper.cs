@@ -7,32 +7,16 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public FindEPAOStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
-        public EPAOOrganisationsPage SearchForApprenticeshipStandard(string standard = "")
-        {
-            new FindEPAOIndexPage(_context).ClickStartButton().SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(standard);
-            return new EPAOOrganisationsPage(_context);
-        }
+        public FindEPAOStepsHelper(ScenarioContext context) => _context = context;
 
-        public ZeroAssessmentOrganisationsPage SearchForApprenticeshipStandardWithNoEPAO(string standard = "")
-        {
-            new FindEPAOIndexPage(_context).ClickStartButton().SearchForApprenticeshipStandardWithNoEPAO(standard);
-            return new ZeroAssessmentOrganisationsPage(_context);
-        }
+        public EPAOOrganisationsPage SearchForApprenticeshipStandard(string standard = "") => FindEPAO().SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(standard);
 
-        public EPAOOrganisationDetailsPage SearchForApprenticeshipStandardWithSingleEPAO(string standard = "")
-        {
-            new FindEPAOIndexPage(_context).ClickStartButton().SearchForApprenticeshipStandardWithSingleEPAO(standard);
-            return new EPAOOrganisationDetailsPage(_context);
-        }
+        public ZeroAssessmentOrganisationsPage SearchForApprenticeshipStandardWithNoEPAO(string standard = "") => FindEPAO().SearchForApprenticeshipStandardWithNoEPAO(standard);
 
-        public EPAOOrganisationsPage SearchForIntegratedApprenticeshipStandard(string standard = "")
-        {
-            new FindEPAOIndexPage(_context).ClickStartButton().SearchForAnIntegratedApprenticeshipStandard(standard);
-            return new EPAOOrganisationsPage(_context);
-        }
+        public EPAOOrganisationDetailsPage SearchForApprenticeshipStandardWithSingleEPAO(string standard = "") => FindEPAO().SearchForApprenticeshipStandardWithSingleEPAO(standard);
+
+        public EPAOOrganisationsPage SearchForIntegratedApprenticeshipStandard(string standard = "") => FindEPAO().SearchForAnIntegratedApprenticeshipStandard(standard);
+
+        private SearchApprenticeshipTrainingCoursePage FindEPAO() => new FindEPAOIndexPage(_context).ClickStartButton();
     }
 }

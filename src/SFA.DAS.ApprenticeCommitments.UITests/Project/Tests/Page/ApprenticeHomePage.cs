@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyNotificationBannerHeader("Success");
             VerifyNotificationBannerContent("You have created an account and we have found your apprenticeship.");
-            VerifyPage(ConfirmYourApprenticeshipNowLink);
+            VerifyElement(ConfirmYourApprenticeshipNowLink);
             return this;
         }
 
@@ -45,8 +45,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new HelpAndSupportPage(context);
         }
 
-        public ApprenticeHomePage VerifyCompleteTag() { VerifyPage(CompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyCompleteTag() { VerifyElement(CompleteStatusSelector); return this; }
 
-        public ApprenticeHomePage VerifyInCompleteTag() { VerifyPage(InCompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyInCompleteTag() { VerifyElement(InCompleteStatusSelector); return this; }
     }
 }

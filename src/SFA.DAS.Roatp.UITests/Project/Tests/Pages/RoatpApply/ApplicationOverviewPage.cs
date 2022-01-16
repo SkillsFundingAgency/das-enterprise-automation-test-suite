@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public void VerifyApplicationDetails()
         {
-            VerifyPage(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetProviderName());
-            VerifyPage(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetUkprn());
+            VerifyElement(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetProviderName());
+            VerifyElement(() => pageInteractionHelper.FindElements(ApplicationDetailsSelector), objectContext.GetUkprn());
         }
 
         private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);

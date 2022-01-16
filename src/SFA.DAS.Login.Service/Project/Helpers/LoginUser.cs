@@ -49,6 +49,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class Version6AgreementUser : EasAccountUser { }
 
+    public class Version7AgreementUser : EasAccountUser { }
+
     public class ASListedLevyUser : EasAccountUser { }
 
     #endregion
@@ -67,7 +69,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class ChangeOfEmployerLevyUser : MultipleEasAccountUser { }
+    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser { }
 
     #endregion
 

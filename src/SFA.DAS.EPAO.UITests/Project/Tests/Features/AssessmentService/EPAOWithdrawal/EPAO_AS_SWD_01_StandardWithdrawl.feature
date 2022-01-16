@@ -3,7 +3,7 @@
 @epao
 @assessmentservice
 @regression
-@standardwithdrawal
+@deletestandardwithdrawal
 Scenario: EPAO_AS_SWD_01A - Standard Withdrawl 
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
 	And   starts the journey to withdraw a standard
@@ -15,7 +15,7 @@ Scenario: EPAO_AS_SWD_01A - Standard Withdrawl
 @epao
 @assessmentservice
 @regression
-@standardwithdrawal
+@deletestandardwithdrawal
 Scenario: EPAO_AS_SWD_01B - Your Withdrawl status notifications check
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
 	And   starts the journey to withdraw a standard

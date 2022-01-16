@@ -5,7 +5,10 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 {
     public class ConfirmProvidersContactDetailsPage : AEDBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Confirm";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
         public ConfirmProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
@@ -15,6 +18,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
             ContinueToNextPage();
             return new CheckYourAnswersPage(context);
         }
+
         public EditProvidersContactDetailsPage BackToEditProvidersContactDetailsPage()
         {
             formCompletionHelper.Click(BackLink);

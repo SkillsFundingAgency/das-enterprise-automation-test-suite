@@ -6,6 +6,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     public class GetHelpWithFindingATrainingProviderPage : AEDBasePage
     {
         protected override string PageTitle => "Get help with finding a training provider";
+
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
         #region Locators
@@ -20,34 +21,38 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         public GetHelpWithFindingATrainingProviderPage EnterApprenticeshipLocation(string location)
         {
             formCompletionHelper.EnterText(ApprenticeshipLocationTextBox, location);
-            return new GetHelpWithFindingATrainingProviderPage(context);
+            return this;
         }
 
         public GetHelpWithFindingATrainingProviderPage EnterNumberOfApprentices(string noOfApprentices)
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(NumberOfApprenticesTextBox, noOfApprentices);
-            return new GetHelpWithFindingATrainingProviderPage(context);
+            return this;
         }
+
         public GetHelpWithFindingATrainingProviderPage EnterOrganisationName(string organisationName)
         {
             formCompletionHelper.EnterText(OrganisationNameTextBox, organisationName);
-            return new GetHelpWithFindingATrainingProviderPage(context);
+            return this;
         }
+
         public GetHelpWithFindingATrainingProviderPage EnterOrganisationEmailAddress(string organisationEmailAddress)
         {
             formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, organisationEmailAddress);
-            return new GetHelpWithFindingATrainingProviderPage(context);
+            return this;
         }
+
         public CheckYourAnswersPage ContinueToCheckYourAnswersPage()
         {
             ContinueToNextPage();
             return new CheckYourAnswersPage(context);
         }
+
         public GetHelpWithFindingATrainingProviderPage SelectNoApprentices()
         {
             formCompletionHelper.SelectRadioOptionByText("No");
-            return new GetHelpWithFindingATrainingProviderPage(context);
+            return this;
         }
     }
 }

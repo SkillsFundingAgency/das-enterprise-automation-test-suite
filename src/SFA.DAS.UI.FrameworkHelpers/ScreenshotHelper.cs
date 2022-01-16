@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Polly;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.IO;
 
@@ -10,8 +11,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage)
         {
-            var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
-            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+            string screenshotPath, imageName;
+
+            (screenshotPath, imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
 
             if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath);
             else TakeNormalScreenShot(webDriver, imageName, screenshotPath);
@@ -40,7 +42,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 File.WriteAllBytes(screenshotPath, Convert.FromBase64String(pngContent));
 
-                TestContext.AddTestAttachment(screenshotPath, imageName);
+                AddTestAttachment(screenshotPath, imageName);
             }
             catch (Exception exception)
             {
@@ -57,12 +59,43 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
                 Screenshot screenshot = screenshotHandler.GetScreenshot();
                 screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                TestContext.AddTestAttachment(screenshotPath, imageName);
+                AddTestAttachment(screenshotPath, imageName);
             }
             catch (Exception exception)
             {
                 TestContext.Progress.WriteLine($"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
             }
         }
+
+        private static void AddTestAttachment(string screenshotPath, string imageName) => TestContext.AddTestAttachment(screenshotPath, imageName);
+
+        private static (string screenshotPath, string imageName) GetScreenShotDetails(string screenshotsDirectory, string scenarioTitle)
+        {
+            int limitedWinChar = 255;
+            
+            var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
+
+            var screenshotPath = Combine(screenshotsDirectory, imageName);
+
+            var noOfChar = screenshotPath.Length;
+
+            if (noOfChar > limitedWinChar)
+            {
+                int excessChar = noOfChar - (limitedWinChar - 4);
+
+                imageName = $"{imageName.Substring(0, imageName.Length - excessChar)}.png";
+
+                screenshotPath = Combine(screenshotsDirectory, imageName);
+            }
+
+            return (screenshotPath, imageName);
+        }
+
+        private static string Combine(string screenshotsDirectory, string imageName)
+        {
+            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+
+            return Path.GetFullPath(screenshotPath);
+        }
     }
-}
+} 

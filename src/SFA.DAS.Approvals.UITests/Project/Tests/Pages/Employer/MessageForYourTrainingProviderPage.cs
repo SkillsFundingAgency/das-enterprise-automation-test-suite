@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Message for your training provider";
 
+        protected override bool TakeFullScreenShot => false;
+
         private By MessageBox => By.Id("Message");
         private By SendButton => By.Id("continue-button");
 

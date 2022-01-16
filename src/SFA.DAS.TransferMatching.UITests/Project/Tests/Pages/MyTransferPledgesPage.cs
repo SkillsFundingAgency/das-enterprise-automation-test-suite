@@ -25,6 +25,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new PledgeAndTransferYourLevyFundsPage(context);
         }
 
-        public void VerifyPledge() => VerifyPage(PledgeSelector);
+        public void VerifyPledge() => VerifyElement(PledgeSelector);
     }
 }

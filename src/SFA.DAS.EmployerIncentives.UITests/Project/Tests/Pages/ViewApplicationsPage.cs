@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public EIHubPage NavigateToEIHubPage()
         {
-            formCompletionHelper.ClickLinkByText("Back");
+            ClickBackLink();
 
             return new EIHubPage(context);
         }

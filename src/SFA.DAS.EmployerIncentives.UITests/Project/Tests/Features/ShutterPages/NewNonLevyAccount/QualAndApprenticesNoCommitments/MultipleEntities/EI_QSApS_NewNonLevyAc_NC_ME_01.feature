@@ -2,7 +2,7 @@
 
 @regression
 @addnonlevyfunds
-@employerincentivesphase3
+@employerincentives
 Scenario: EI_QSApS_NewNonLevyAc_NC_ME_01_Validate Shutter pages for New Non Levy Account with Two legal entities and No Commitments
 	Given an Employer creates a Non Levy Account and Signs the Agreement
 	And the Employer adds another legal entity
@@ -11,4 +11,4 @@ Scenario: EI_QSApS_NewNonLevyAc_NC_ME_01_Validate Shutter pages for New Non Levy
 	And Employer Home page is displayed on clicking on Return to Account Home button on Qualification shutter page
 	When the Employer navigates back to Qualification page for Multiple entity account
 	Then Select apprentices shutter page is displayed for selecting Yes option in Qualification page
-	And Approvals home page is displayed on clicking on Add apprentices link on Select apprentices shutter page
+	And Employer Home page is displayed on clicking on Return to Account Home button on Select apprentices shutter page

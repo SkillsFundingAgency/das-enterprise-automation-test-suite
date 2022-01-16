@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -56,11 +57,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             });
         }
 
-        public void VerifyTicketStatus(string expectedstatus) => VerifyPage(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
+        public void VerifyTicketStatus(string expectedstatus) => VerifyElement(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
 
         public void VerifyDraftComments(string comments) => VerifyElement(() => CommentEditor(), comments, null);
 
-        public void VerifySubmittedComments(string comments) => VerifyPage(() => pageInteractionHelper.FindElements(CommentsSections), comments);
+        public void VerifySubmittedComments(string comments) => VerifyElement(() => pageInteractionHelper.FindElements(CommentsSections), comments);
 
         public void SelectOptions(string question, string answer)
         {

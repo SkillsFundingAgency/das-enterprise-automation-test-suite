@@ -8,6 +8,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Create an advert";
 
+        protected override bool TakeFullScreenShot => false;
+
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
 
         public CreateAnAdvertHomePage(ScenarioContext context) : base(context) { }

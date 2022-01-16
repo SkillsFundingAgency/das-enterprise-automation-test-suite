@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -126,9 +126,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .CohortReference();
         }
 
-        public AddApprenticeDetailsPage NonLevyEmployerAddsProviderDetails()
+        public AddApprenticeDetailsPage NonLevyEmployerAddsProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
-            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+            return addAnApprenitcePage.StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .NonLevyEmployerAddsApprentices();
@@ -152,9 +152,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
 
-            _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+            var addAnApprenitcePage =  _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
                 .AddApprentice();
-            var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
+            var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails(addAnApprenitcePage);
+
             for (int i = 1; i <= numberOfApprentices; i++)
             {
                 var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, i, shouldConfirmOnlyStandardCoursesSelectable);
@@ -171,9 +172,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             return new ApproveApprenticeDetailsPage(_context);
         }
-        public DynamicHomePages DynamicHomePageStartToAddApprentice()
+
+        public DynamicHomePages DynamicHomePageStartToAddApprentice(AddAnApprenitcePage addAnApprenitcePage)
         {
-            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+            return addAnApprenitcePage.StartNowToAddTrainingProvider()
                  .SubmitValidUkprn()
                  .ConfirmProviderDetailsAreCorrect()
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
@@ -194,6 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickHome()
                 .VerifyYourFundingReservationsLink();
         }
+
         internal void ValidateStatusOnManageYourApprenticesPage(string expectedStatus)
         {
             var actualStatus = 
@@ -237,10 +240,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectYesAndContinue();
         }
 
-        protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
-        {
-            return addAnApprenitcePage.StartNowToAddTrainingProvider();
-        }
+        protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage) 
+            => addAnApprenitcePage.StartNowToAddTrainingProvider();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {

@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
-        private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
@@ -91,19 +91,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
         {
-            VerifyPage(AppreticeshipConfirmBannerHeader);
-            VerifyPage(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
+            VerifyElement(AppreticeshipConfirmBannerHeader);
+            VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
             return new TransactionCompletePage(context);
         }
 
         public void VerifyPageAfterApprenticeshipConfirm()
         {
-            VerifyPage(PageHeader, PageTitleAfterConfirmation);
-            VerifyPage(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
+            VerifyElement(PageHeader, PageTitleAfterConfirmation);
+            VerifyElement(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
         }
 
-        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyPage(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
+        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
 
         private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
 

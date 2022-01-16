@@ -8,6 +8,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class GgSignInPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sign in";
+
+        protected override bool TakeFullScreenShot => false;
+
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
         #region Locators

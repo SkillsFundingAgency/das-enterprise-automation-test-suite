@@ -8,7 +8,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignInPage : VerifyBasePage
     {
         protected override string PageTitle => "Sign in";
-        
+
+        protected override bool TakeFullScreenShot => false;
+
         #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
         private By PasswordInput => By.Id("Password");
@@ -58,7 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
         {
-            VerifyPage(HeaderInformationMessage, info);
+            VerifyElement(HeaderInformationMessage, info);
             return this;
         }
 

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,9 +55,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(OrganisationButtons).Single(x => x.Text == "Save"));
         }
 
-        public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyPage(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
+        public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
     
-        public HomePage VerifyOrganisationDomain() => InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower()), true);
+        public HomePage VerifyOrganisationDomain() => InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower()), true);
 
         public HomePage VerifyUserDetails(string question, string answer, bool IsOrganisation = false)
         {
@@ -116,7 +117,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private List<IWebElement> FindElements(string question)
         {
-            VerifyPage(() => pageInteractionHelper.FindElements(CustomerRecordFields), question);
+            VerifyElement(() => pageInteractionHelper.FindElements(CustomerRecordFields), question);
 
             return pageInteractionHelper.FindElements(CustomerRecordFields).Where(x => x.Text.ContainsCompareCaseInsensitive(question)).ToList();
         }
