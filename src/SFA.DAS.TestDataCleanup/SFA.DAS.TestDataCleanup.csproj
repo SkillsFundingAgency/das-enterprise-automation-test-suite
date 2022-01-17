@@ -64,6 +64,9 @@
 	  <None Update="Project\Helpers\SqlScripts\EasAComtTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Project\Helpers\SqlScripts\EasLtmTestDataCleanUp.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Project\Helpers\SqlScripts\EmpIncTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

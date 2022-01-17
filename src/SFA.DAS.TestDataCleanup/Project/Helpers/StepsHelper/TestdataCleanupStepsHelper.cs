@@ -22,5 +22,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
         public void CleanUpRsvrTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpRsvrTestData());
 
         public void CleanUpEmpIncTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpIncTestData());
+
+        public void CleanUpEasLtmTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEasLtmTestData());
     }
 }

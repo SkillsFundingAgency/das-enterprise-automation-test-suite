@@ -36,6 +36,9 @@ namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
         [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
         public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpIncTestData(greaterThan, lessThan);
 
+        [Then(@"the test data are cleaned up in ltm db for accounts between '(\d*)' and '(\d*)'")]
+        public void ThenTheTestDataAreCleanedUpInLtmDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEasLtmTestData(greaterThan, lessThan);
+
         [Then(@"the test data are cleaned up in acomt db for accounts (.*)")]
         public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete.Split(",").ToList());
     }

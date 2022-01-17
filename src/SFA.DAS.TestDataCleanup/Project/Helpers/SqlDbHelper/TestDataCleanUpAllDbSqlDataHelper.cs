@@ -69,6 +69,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
                         noOfRowsDeleted += new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(accountidsTodelete);
                         noOfRowsDeleted += new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
                         noOfRowsDeleted += new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete);
+                        noOfRowsDeleted += new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig).CleanUpEasLtmTestData(accountidsTodelete);
                         noOfRowsDeleted += new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
                     }
 

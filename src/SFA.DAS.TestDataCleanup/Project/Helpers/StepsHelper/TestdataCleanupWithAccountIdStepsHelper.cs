@@ -55,6 +55,11 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
             return AddDbName(new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "empinc");
         }
 
+        internal (List<string> usersdeleted, List<string> userswithconstraints) CleanUpEasLtmTestData()
+        {
+            return AddDbName(new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig).CleanUpEasLtmTestData(_greaterThan, _lessThan, _easaccountidsnottodelete), "easltm");
+        }
+
         private (List<string> usersdeleted, List<string> userswithconstraints) AddDbName((List<string>, List<string>) users, string dbname)
         {
             List<string> x(List<string> users, string dbname) => users.Select(x => $"{x},{dbname}").ToList();
