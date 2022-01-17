@@ -24,7 +24,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             _directory = _objectContext.GetDirectory();
         }
 
-        public void CollectTestData()
+        public void ReportTestData()
         {
             string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 

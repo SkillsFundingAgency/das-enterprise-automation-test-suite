@@ -11,6 +11,6 @@ namespace SFA.DAS.TestDataCleanup.Project.AfterScenario
         public TestDataCollection(ScenarioContext context) => _context = context;
 
         [AfterScenario(Order = 10)]
-        public void CollectTestData() => new TestDataCollectionHelper(_context).CollectTestData();
+        public void AfterScenario_ReportTestData() => new TestDataCollectionHelper(_context).ReportTestData();
     }
 }

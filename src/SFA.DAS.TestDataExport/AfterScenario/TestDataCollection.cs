@@ -32,7 +32,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         public static void BeforeTestRun() => _urls = new List<string>();
 
         [AfterTestRun]
-        public static void AfterTestRun()
+        public static void AfterTestRun_ReportUrlData()
         {
             if (_urls.Count == 0) return;
 
@@ -54,10 +54,10 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         }
 
         [AfterScenario(Order = 99)]
-        public void CollectTestData() => _testDataCollectionHelper.CollectTestData();
+        public void AfterScenario_ReportTestData() => _testDataCollectionHelper.ReportTestData();
         
         [AfterScenario(Order = 99)]
-        public void CollectUrlData()
+        public void AfterScenario_ReportUrlData()
         {
             string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.json";
 
