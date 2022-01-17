@@ -3,6 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
@@ -38,10 +39,14 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
 
         private void TestCleanUpReport(List<string> usersdeleted, List<string> userswithconstraints)
         {
-            int x = usersdeleted.Count;
+            if (usersdeleted.Count > 0)
+            {
+                int x = usersdeleted.Where(a => a.Contains("total rows deleted")).ToList().Count;
 
-            if (x > 0) _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted", $"{x} account{(x == 1 ? string.Empty : "s")} deleted { Environment.NewLine}{ string.Join(Environment.NewLine, usersdeleted)}");
-
+                _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted",
+                    $"{x} account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
+            }
+            
             if (userswithconstraints.Count > 0) throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
         }
     }

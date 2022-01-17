@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.TestDataExport
+namespace SFA.DAS.ConfigurationBuilder
 {
     public static class ObjectContextExtension
     {
@@ -15,18 +14,18 @@ namespace SFA.DAS.TestDataExport
         #endregion
 
         public static string GetDirectory(this ObjectContext objectContext) => objectContext.Get(DirectoryKey);
-        
+
         public static void SetDbNameToTearDown(this ObjectContext objectContext, string dbName, string value)
         {
             var dictionary = objectContext.GetDbNameToTearDown();
 
-            if (!(dictionary.ContainsKey(dbName))) dictionary.Add(dbName, new HashSet<string> { });
+            if (!dictionary.ContainsKey(dbName)) dictionary.Add(dbName, new HashSet<string> { });
 
             dictionary[dbName].Add(value);
         }
 
         public static void SetAfterScenarioException(this ObjectContext objectContext, Exception value) => objectContext.GetAfterScenarioExceptions().Add(value);
-        
+
         public static FrameworkList<Exception> GetAfterScenarioExceptions(this ObjectContext objectContext) => objectContext.Get<FrameworkList<Exception>>(AfterScenarioExceptions);
 
         internal static void SetDirectory(this ObjectContext objectContext, string value) => objectContext.Set(DirectoryKey, value);
@@ -38,12 +37,12 @@ namespace SFA.DAS.TestDataExport
             objectContext.Set(AfterScenarioTestDataTearDown, new Dictionary<string, HashSet<string>>());
         }
 
-        internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
+        public static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
-        internal static Dictionary<string, HashSet<string>> GetDbNameToTearDown(this ObjectContext objectContext) => objectContext.Get<Dictionary<string, HashSet<string>>>(AfterScenarioTestDataTearDown);
+        public static Dictionary<string, HashSet<string>> GetDbNameToTearDown(this ObjectContext objectContext) => objectContext.Get<Dictionary<string, HashSet<string>>>(AfterScenarioTestDataTearDown);
 
         private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
 
-        
+
     }
 }

@@ -1,12 +1,10 @@
-﻿using CsvHelper;
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
 using SFA.DAS.ConfigurationBuilder;
-using System.Globalization;
 using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
@@ -19,6 +17,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         private readonly ScenarioContext _context;
         private static string _directory;
         private static List<string> _urls;
+        private readonly TestDataCollectionHelper _testDataCollectionHelper;
 
         public TestDataCollection(ScenarioContext context)
         {
@@ -26,6 +25,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
             _directory = _objectContext.GetDirectory();
+            _testDataCollectionHelper = new TestDataCollectionHelper(context);
         }
 
         [BeforeTestRun]
@@ -45,7 +45,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             TestContext.AddTestAttachment(filePath, fileName);
         }
 
-
         [AfterStep(Order = 10)]
         public void AfterStep()
         {
@@ -55,29 +54,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         }
 
         [AfterScenario(Order = 99)]
-        public void CollectTestData()
-        {
-            string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
-
-            List<TestData> records = new List<TestData>();
-
-            var testdataset = _objectContext.GetAll();
-
-            TestContext.Progress.WriteLine($"{testdataset.Count} test data set are available for {_scenarioTitle}");
-
-            testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
-
-            WriteRecords(fileName, (x) =>
-            {
-                using (var writer = new StreamWriter(x))
-                {
-                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                    csv.WriteRecords(records);
-                    writer?.Flush();
-                };
-            });
-        }
-
+        public void CollectTestData() => _testDataCollectionHelper.CollectTestData();
+        
         [AfterScenario(Order = 99)]
         public void CollectUrlData()
         {
@@ -104,7 +82,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             string strJson = JsonHelper.Serialize(records);
 
-            WriteRecords(fileName, (x) =>
+            _testDataCollectionHelper.WriteRecords(fileName, (x) =>
             {
                 using (var writer = new StreamWriter(x))
                 {
@@ -112,24 +90,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
                     writer?.Flush();
                 }
             });
-        }
-
-        private void WriteRecords(string fileName, Action<string> action)
-        {
-            string filePath = Path.Combine(_directory, fileName);
-
-            try
-            {
-                action(filePath);
-
-                TestContext.AddTestAttachment(filePath, fileName);
-            }
-            catch (Exception ex)
-            {
-                TestContext.Progress.WriteLine($"Exception occurred while writing data - {filePath}" + ex);
-
-                _objectContext.SetAfterScenarioException(ex);
-            }
         }
 
         private string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";

@@ -14,7 +14,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         public TestDataCleanUp(ScenarioContext context) => _context = context;
 
-        [AfterScenario(Order = 100)]
+        [AfterScenario(Order = 98)]
         public void CleanUpTestData()
         {
             if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))

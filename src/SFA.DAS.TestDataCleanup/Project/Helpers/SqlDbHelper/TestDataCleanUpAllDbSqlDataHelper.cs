@@ -22,7 +22,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
                 $"and Email like '___Test__________________________@%' " +
                 $"and Email not like '%perftest.com' " +
                 $"and Email not like '%PerfTest%' " +
-                $"and Email not like '%Oct2020%' " +
                 $"and Email not like '%Nov2020%' " +
                 $"and Email not like '%Dec2020%' " +
                 $"and Email not like '%Jan2021%' " +
@@ -53,31 +52,60 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
                     var accountids = GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where email = '{_userEmail}')");
 
-                    var noOfRowsDeleted = TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
+                    var noOfRowsDeletedinEasUsers = TryExecuteSqlCommand(GetSql("EasUsersTestDataCleanUp"), _dbConfig.UsersDbConnectionString, GetEmail());
 
-                    noOfRowsDeleted += TryExecuteSqlCommand(GetSql("EasPregTestDataCleanUp"), _dbConfig.PregDbConnectionString, GetEmail());
+                    _user = $"{noOfRowsDeletedinEasUsers} rows deleted in EasUsers db"; usersdeleted.Add(_user);
+
+                    var noOfRowsDeletedinEasPreg = TryExecuteSqlCommand(GetSql("EasPregTestDataCleanUp"), _dbConfig.PregDbConnectionString, GetEmail());
+
+                    _user = $"{noOfRowsDeletedinEasPreg} rows deleted in EasPreg db"; usersdeleted.Add(_user);
+
+                    var noOfRowsDeleted = noOfRowsDeletedinEasUsers + noOfRowsDeletedinEasPreg;
 
                     var accountidsTodelete = accountids.ListOfArrayToList(0);
 
                     if (!string.IsNullOrEmpty(accountidsTodelete[0]))
                     {
-                        noOfRowsDeleted += new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig).CleanUpEasLtmTestData(accountidsTodelete);
-                        noOfRowsDeleted += new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
+                        var noOfRowsDeletedinEasRsrv = new TestDataCleanUpRsvrSqlDataHelper(_dbConfig).CleanUpRsvrTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasRsrv} rows deleted in EasRsrv db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasPrel = new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig).CleanUpPrelTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasPrel} rows deleted in EasPrel db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasPsr = new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig).CleanUpPsrTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasPsr} rows deleted in EasPsr db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasPfbe = new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig).CleanUpPfbeTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasPfbe} rows deleted in EasPref db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasFcast = new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig).CleanUpEmpFcastTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasFcast} rows deleted in EasEmpFact db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasFin = new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig).CleanUpEmpFinTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasFin} rows deleted in EasEmpFin db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasInc = new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig).CleanUpEmpIncTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasInc} rows deleted in EasEmpInc db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinAComt = new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinAComt} rows deleted in EasAComt db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasLtm = new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig).CleanUpEasLtmTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasLtm} rows deleted in EasLtm db"; usersdeleted.Add(_user);
+
+                        var noOfRowsDeletedinEasComt = new TestDataCleanupComtSqlDataHelper(_dbConfig).CleanUpComtTestData(accountidsTodelete);
+                        _user = $"{noOfRowsDeletedinEasComt} rows deleted in EasComt db"; usersdeleted.Add(_user);
+
+                        noOfRowsDeleted += noOfRowsDeletedinEasRsrv + noOfRowsDeletedinEasPrel + noOfRowsDeletedinEasPsr + noOfRowsDeletedinEasPfbe + noOfRowsDeletedinEasFcast + 
+                                          noOfRowsDeletedinEasFin + noOfRowsDeletedinEasInc + noOfRowsDeletedinAComt + noOfRowsDeletedinEasLtm + noOfRowsDeletedinEasComt;
                     }
 
-                    noOfRowsDeleted += TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
+                    var noOfRowsDeletedEasAcc = TryExecuteSqlCommand(GetSql("EasAccTestDataCleanUp"), connectionString, GetEmail());
+                    _user = $"{noOfRowsDeletedEasAcc} rows deleted in EasAcc db"; usersdeleted.Add(_user);
 
-                    _user = $"{_userEmail},{accountidsTodelete.ToString(",")},{noOfRowsDeleted} rows deleted";
+                    noOfRowsDeleted += noOfRowsDeletedEasAcc;
 
-                    usersdeleted.Add(_user);
+                    _user = $"{_userEmail},{accountidsTodelete.ToString(",")},{noOfRowsDeleted} total rows deleted across the dbs"; usersdeleted.Add(_user);
                 }
                 catch (Exception ex)
                 {
