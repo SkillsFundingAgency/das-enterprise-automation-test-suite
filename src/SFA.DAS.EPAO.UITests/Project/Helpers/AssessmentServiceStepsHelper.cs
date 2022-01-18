@@ -54,8 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
-                .ClickContinueInConfirmEmployerAddressPage()
-                //.EnterRecipientDetailsAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage()                
                 .ClickContinueInCheckAndSubmitAssessmentPage();   
         }
 
@@ -143,17 +142,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
             if (grade == "pass")
-            {
-                //return new AS_SearchEmployerAddressPage(_context)
+            {                
                 return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
                 .ClickAprenticeRadioButton()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage();
                 
-               // .EnterRecipientDetailsAndContinue();
+               // .EnterRecipientDetailsAndContinue(); // TODO : Employer journey
             }
-            else if (grade == "PassWithExcellence")
+            else if (grade == "PassWithExcellence") // TODO : Check how the code works for Employer Journey and make the decision
             {
               //  return new AS_ConfirmAddressPage(_context)
                 //    .ClickContinueInConfirmEmployerAddressPage()

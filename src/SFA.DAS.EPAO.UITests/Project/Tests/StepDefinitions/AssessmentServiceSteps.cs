@@ -168,13 +168,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
-            //checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateReceiverLink().ClickBackLink();
-           // checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();
-            //checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOrganisationChangeLink().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLink().ClickBackLink();
         }
-
+      
         [When(@"the User navigates to the Completed assessments tab")]
         public void WhenTheUserNavigatesToTheCompletedAssessmentsTab() => loggedInHomePage.ClickCompletedAssessmentsLink();
 

@@ -11,12 +11,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By GradeChangeLink => By.XPath("//a[@href='/certificate/grade?redirecttocheck=true']");
         private By OptionChangeLink => By.XPath("//a[@href='/certificate/option?redirecttocheck=true']");
         private By AchievementDateChangeLink => By.XPath("//a[@href='/certificate/date?redirecttocheck=true']");
-        //private By NameChangeLink => By.XPath("//dt[contains(text(), 'Name')]/../dd/a");
+        private By NameChangeLink => By.XPath("//a[@href='/certificate/sendto?redirecttocheck=true']");
         private By CertificateReceiverLink => By.XPath("//a[@href='/certificate/sendto?redirecttocheck=true']");
         private By DepartmentChangeLink => By.XPath("//dt[contains(text(), 'Department')]/../dd/a");
         private By OrganisationChangeLink => By.XPath("//dt[contains(text(), 'Organisation')]/../dd/a");
-        //private By AddressChangeLink => By.XPath("//dt[contains(text(), 'Address')]/../dd/a");
-        private By AddressChangeLink => By.XPath("//a[@href='/certificate/address/enter?redirecttocheck=true&edit=true']");
+        private By AddressChangeLink => By.XPath("//a[@href='/certificate/address/enter?redirecttocheck=true']");
         #endregion
 
         public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -44,14 +43,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.ClickElement(AchievementDateChangeLink);
             return new AS_AchievementDatePage(context);
         }
-
-        /*
+        
         public AS_RecipientNamePage ClickNameChangeLink()
         {
             formCompletionHelper.ClickElement(NameChangeLink);
             return new AS_RecipientNamePage(context);
-        }
-        */
+        }        
 
         public AS_WhoWouldYouLikeUsToSendTheCertificateToPage ClickCertificateReceiverLink()
         {
