@@ -152,7 +152,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             else if (grade == "PassWithExcellence") 
             {
                 return new AS_ConfirmAddressPage(_context)
-                    .ClickContinueInConfirmEmployerAddressPage()                    
+                    .ClickContinueInConfirmEmployerAddressPage();                  
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
