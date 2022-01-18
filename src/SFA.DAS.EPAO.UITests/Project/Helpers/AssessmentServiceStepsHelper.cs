@@ -148,14 +148,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage();
-                
-               // .EnterRecipientDetailsAndContinue(); // TODO : Employer journey
             }
-            else if (grade == "PassWithExcellence") // TODO : Check how the code works for Employer Journey and make the decision
+            else if (grade == "PassWithExcellence") 
             {
-              //  return new AS_ConfirmAddressPage(_context)
-                //    .ClickContinueInConfirmEmployerAddressPage()
-                  //  .EnterRecipientDetailsAndContinue();
+                return new AS_ConfirmAddressPage(_context)
+                    .ClickContinueInConfirmEmployerAddressPage()                    
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
