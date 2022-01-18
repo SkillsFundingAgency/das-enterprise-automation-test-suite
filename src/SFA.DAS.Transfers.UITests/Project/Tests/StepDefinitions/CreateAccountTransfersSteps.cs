@@ -73,11 +73,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        [Given(@"We have (one|two|three) Employer accounts where the first is a Transfer sender and the second is a Transfer Receiver")]
-        public void GivenWeHaveTwoEmployerAccountsWhereTheFirstIsATransferSenderAndTheSecondIsATransferReceiver(string number)
+        [Given(@"We have (one|two|three) Employer accounts where the (First|Second|Third) is a Transfer sender and the (First|Second|Third) is a Transfer Receiver")]
+        public void GivenWeHaveTwoEmployerAccountsWhereTheFirstIsATransferSenderAndTheSecondIsATransferReceiver(string number, string sender, string receiver)
         {
             AccountsAreCreated(number);
-            SenderConnectsToReceiver(_firstOrganisationName, _secondOrganisationName, _objectContext.GetPublicSecondHashedAccountId());
+
+            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
+            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+
+            SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
+            ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
         }
 
         [Given(@"We have (one|two|three) Employer accounts")]
@@ -89,7 +94,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
         public void GivenSenderIsConnectedToReceiver(string sender, string receiver)
         {
-            SenderConnectsToReceiver(_firstOrganisationName, _secondOrganisationName, _objectContext.GetPublicSecondHashedAccountId());
+            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
+            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+
+            SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
+            ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
         }
 
         [When(@"(First|Second|Third) account creates transfer request to (First|Second|Third) account and (First|Second|Third) account accepts the request")]
@@ -101,7 +110,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
             GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
 
-            SenderConnectsToReceiver(senderOrganisationName, receiverOrganisationName, receiverPublicAccountId);
+            SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
+            ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
         }
 
         private void GetAccountDetails(string account, out string organisationName, out string accountId, out string publicAccountId)
@@ -132,7 +142,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private void SenderConnectsToReceiver(string senderOrganisationName, string receiverOrganiationName, string publicReceiverAccountId)
+        private void SenderConnectsToReceiver(string senderOrganisationName, string publicReceiverAccountId)
         {
             // Sender connects to receiver 
             _objectContext.UpdateOrganisationName(senderOrganisationName);
@@ -146,8 +156,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
                 .ConnectWithReceivingEmployer(publicReceiverAccountId)
                 .SendTransferConnectionRequest()
                 .GoToHomePage();
+        }
 
-            // Receiver accepts the conneciton
+        private void ReceiverAcceptsConnection(string senderOrganisationName, string receiverOrganiationName)
+        {
             _objectContext.UpdateOrganisationName(receiverOrganiationName);
             _homePage.GoToYourAccountsPage()
                  .GoToHomePage(receiverOrganiationName);

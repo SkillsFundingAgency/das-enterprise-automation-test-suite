@@ -80,12 +80,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_04_03 Transfers - Sucessfully create Transfer Request from Receiver to Sender")]
+        [NUnit.Framework.DescriptionAttribute("TR_04_03 Transfers - Sucessfully create Transfer Request from Receiver to another" +
+            " Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addthirdlevyfunds")]
-        public virtual void TR_04_03Transfers_SucessfullyCreateTransferRequestFromReceiverToSender()
+        public virtual void TR_04_03Transfers_SucessfullyCreateTransferRequestFromReceiverToAnotherAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -93,7 +94,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
                     "addsecondlevyfunds",
                     "addthirdlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_03 Transfers - Sucessfully create Transfer Request from Receiver to Sender", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_03 Transfers - Sucessfully create Transfer Request from Receiver to another" +
+                    " Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,18 +117,18 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 11
- testRunner.Given("We have two Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("We have three Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
  testRunner.And("First is a Sender connected to Second as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.When("Second account creates transfer request to First account and First account accept" +
+ testRunner.When("Second account creates transfer request to Third account and Third account accept" +
                         "s the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
  testRunner.Then("A transfer connection is established successfully between Second account as Sende" +
-                        "r and First account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "r and Third account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

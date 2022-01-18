@@ -7,8 +7,8 @@ Feature: TR_04_04_TransfersConnectionJourney
 @addsecondlevyfunds
 @addthirdlevyfunds
 
-Scenario: TR_04_04 Transfers - Sucessfully create Transfer Request from Account to Receiver
-	Given We have three Employer accounts
+Scenario: TR_04_04 Transfers - Sucessfully create Transfer Request from Receiver to Sender
+	Given We have two Employer accounts
 	And First is a Sender connected to Second as a Receiver
-	When Third account creates transfer request to Second account and Second account accepts the request
-	Then A transfer connection is established successfully between Third account as Sender and Second account as Receiver
+	When Second account creates transfer request to First account and First account accepts the request
+	Then A transfer connection is established successfully between Second account as Sender and First account as Receiver
