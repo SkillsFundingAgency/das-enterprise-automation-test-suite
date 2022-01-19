@@ -11,9 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        public void GetApprenticeship(long app, HttpStatusCode expectedResponse)
-        {
-            Execute(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
-        }
+        public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
     }
 }

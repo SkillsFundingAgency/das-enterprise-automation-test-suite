@@ -11,18 +11,18 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class Outer_ApprenticeCommitmentsApiHelper
     {
+        private readonly ScenarioContext _context;
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
         private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-        private readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsDataHelper _dataHelper;
         private readonly ObjectContext _objectContext;
         protected readonly FrameworkHelpers.RetryAssertHelper _assertHelper;
 
         internal Outer_ApprenticeCommitmentsApiHelper(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
             _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
@@ -30,19 +30,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _dataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
         }
 
         public IRestResponse Ping() => _outerHealthApiRestClient.Ping(HttpStatusCode.OK);
 
         public IRestResponse CheckHealth() => _outerHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
 
-        protected IRestResponse CreateApprenticeshipViaApi()
+        protected IRestResponse CreateApprovalsCreatedEvent()
         {
             var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, startDate, _, _) = GetEmployerData();
 
-            var createApprenticeship = new CreateApprenticeshipViaApi
+            var createApprenticeship = new ApprovalsCreated
             {
                 EmployerAccountId = accountid,
                 CommitmentsApprenticeshipId = apprenticeshipid,
@@ -53,7 +51,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 TrainingProviderId = providerId
             };
 
-            return _outerApiRestClient.CreateApprenticeshipViaApi(createApprenticeship, HttpStatusCode.OK);
+            return _outerApiRestClient.CreateApprovalsCreatedEvent(createApprenticeship, HttpStatusCode.OK);
         }
 
         protected IRestResponse CreateApprenticeshipViaCommitmentsJob()
@@ -74,80 +72,48 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             return _apprenticeCommitmentsJobs_CreateApprenticeshipClient.CreateApprenticeshipViaCommitmentsJob(createApprenticeship, HttpStatusCode.Accepted);
         }
 
-        public IRestResponse VerifyIdentity()
+        public IRestResponse CreateApprentice()
         {
-            (string apprenticeId, _)  = _aComtSqlDbHelper.GetApprenticeIdFromRegistrationTable(GetApprenticeEmail());
-
-            var verifyIdentity = new VerifyIdentityRegistrationCommand
+            var createApprentice = new Apprentice
             {
-                ApprenticeId = apprenticeId,
-                UserIdentityId = apprenticeId,
+                ApprenticeId = Guid.NewGuid(),
+                DateOfBirth = _objectContext.GetDateOfBirth(),
                 FirstName = _objectContext.GetFirstName(),
                 LastName = _objectContext.GetLastName(),
-                Email = GetApprenticeEmail(),
-                DateOfBirth = _objectContext.GetDateOfBirth(),
+                Email = GetApprenticeEmail()
             };
 
-            return _outerApiRestClient.VerifyIdentity(verifyIdentity, HttpStatusCode.OK);
+            return _outerApiRestClient.CreateApprentice(createApprentice, HttpStatusCode.OK);
         }
 
-        public IRestResponse ChangeApprenticeEmailAddress()
+        public IRestResponse CreateApprenticeship()
         {
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
+            var email = GetApprenticeEmail();
+
+            var regId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
+                
+            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(email);
 
             _objectContext.SetApprenticeId(apprenticeId);
 
-            var changeEmailRequest = new ApprenticeEmailAddressRequest
+            var createApprenticeship = new CreateApprenticeshipFromRegistration
             {
-                Email = _dataHelper.NewEmail
+                RegistrationId = regId,
+                ApprenticeId = apprenticeId
             };
 
-            return _outerApiRestClient.ChangeApprenticeEmailAddress(apprenticeId, changeEmailRequest, HttpStatusCode.OK);
+            return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetApprenticeships()
-        {
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
-
-            _objectContext.SetApprenticeId(apprenticeId);
-
-            return _outerApiRestClient.GetApprenticeships(apprenticeId, HttpStatusCode.OK);
-        }
+        public IRestResponse GetApprenticeships() => _outerApiRestClient.GetApprenticeships(_objectContext.GetApprenticeId(), HttpStatusCode.OK);
 
         public IRestResponse GetApprenticeship()
         {
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(GetApprenticeEmail());
+            var apprenticeId = _objectContext.GetApprenticeId();
 
             var commitmentsApprenticeshipId = _aComtSqlDbHelper.GetApprenticeshipId(apprenticeId);
 
-            _objectContext.SetApprenticeId(apprenticeId);
-
             return _outerApiRestClient.GetApprenticeship(apprenticeId, commitmentsApprenticeshipId, HttpStatusCode.OK);
-        }
-
-        internal void AssertApprenticeEmailUpdated()
-        {
-            _assertHelper.RetryOnNUnitException(() =>
-            {
-                var email = _aComtSqlDbHelper.GetApprenticeEmail(_objectContext.GetApprenticeId());
-
-                Assert.AreEqual(_dataHelper.NewEmail, email, $"Apprentice new email did not match");
-            });
-        }
-
-        internal void AssertApprenticeLoginData()
-        {
-            _assertHelper.RetryOnNUnitException(() => 
-            {
-                var (firstname, lastname) = _apprenticeLoginSqlDbHelper.GetApprenticeLoginData(_objectContext.GetApprenticeEmail());
-
-                Assert.Multiple(() =>
-                {
-                    Assert.AreEqual(_objectContext.GetFirstName(), firstname, $"Apprentice first name did not match");
-
-                    Assert.AreEqual(_objectContext.GetLastName(), lastname, $"Apprentice last name did not match");
-                });
-            });
         }
 
         private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()

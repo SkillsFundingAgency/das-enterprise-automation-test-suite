@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
-        private By SectionStatus(string sectionName) => By.XPath($"//h3[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
