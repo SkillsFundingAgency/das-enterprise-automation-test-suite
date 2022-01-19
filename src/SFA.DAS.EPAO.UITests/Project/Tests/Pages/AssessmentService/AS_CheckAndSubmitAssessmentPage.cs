@@ -61,6 +61,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_RecipientNamePage(context);
         }
 
+        public AS_AddRecipientsDetailsPage ClickDepartmentChangeLinkForEmployerJourney()
+        {
+            formCompletionHelper.ClickElement(DepartmentChangeLink);
+            return new AS_AddRecipientsDetailsPage(context);
+        }
+
         public AS_EditEmployerAddress ClickOrganisationChangeLink()
         {
             formCompletionHelper.ClickElement(OrganisationChangeLink);
@@ -71,6 +77,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.ClickElement(AddressChangeLink);
             return new AS_EditEmployerAddress(context);
+        }
+
+        public AS_SearchEmployerAddressPage ClickCertificateAddressChangeLinkvForApprenticeJourney()
+        {
+            formCompletionHelper.ClickElement(AddressChangeLink);
+            return new AS_SearchEmployerAddressPage(context);
+        }
+
+        public AS_SearchEmployerOrAddressPage ClickCertificateAddressChangeLinkForEmployerJourney()
+        {
+            formCompletionHelper.ClickElement(AddressChangeLink);
+            return new AS_SearchEmployerOrAddressPage(context);
         }
     }
 }

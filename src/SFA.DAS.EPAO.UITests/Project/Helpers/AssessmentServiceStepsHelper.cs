@@ -39,15 +39,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             Assert.AreEqual(true, gradeValidation, $"Apprentice grade is not recorded as {grade}");
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate)
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LeanerCriteria leanerCriteria, bool deleteCertificate)
         {
             var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
 
             AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
 
-            return SelectGrade(decPage, grade);
+            return SelectGrade(decPage, grade, route);
         }
-   
+
+        /*public AS_CheckAndSubmitAssessmentPage CertifyApprenticeEmployerRoute(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate)
+        {
+            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
+
+            AS_DeclarationPage decPage = CertifyApprenticeEmployerRoute(confirmApprenticePage, leanerCriteria);
+
+            return SelectGradeV1(decPage, grade);
+        }*/
+
         public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
         {
             return CertifyPrivatelyFundedApprentice()
@@ -135,18 +144,39 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
 
-        private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade)
+        private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade, string route)
         {
             decpage.ClickConfirmInDeclarationPage();
 
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
+            if (route == "employer")
+            {
+                if (grade == "pass")
+                {
+                    return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+                    .ClickEmployerRadioButton()
+                    .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                    .EnterEmployerNameAndAddressAndContinue()
+                    .AddRecipientAndContinue()
+                    .ClickContinueInConfirmEmployerAddressPage();
+                }
+                else if (grade == "PassWithExcellence")
+                {
+                    return new AS_ConfirmAddressPage(_context)
+                        .ClickContinueInConfirmEmployerAddressPage();
+                }
+
+                return new AS_CheckAndSubmitAssessmentPage(_context);
+            }
+            
+            
             if (grade == "pass")
             {                
                 return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
-                .ClickAprenticeRadioButton()
+                .ClickAprenticeRadioButton()                
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                .EnterEmployerAddressAndContinue()
+                .EnterEmployerAddressAndContinue()                
                 .ClickContinueInConfirmEmployerAddressPage();
             }
             else if (grade == "PassWithExcellence") 
@@ -158,7 +188,55 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_CheckAndSubmitAssessmentPage(_context);
         }
 
+        /*private AS_CheckAndSubmitAssessmentPage SelectGradeV1(AS_DeclarationPage decpage, string grade)
+        {
+            decpage.ClickConfirmInDeclarationPage();
+
+            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);          
+
+            if (grade == "pass")
+            {
+                return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+                .ClickEmployerRadioButton()
+                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                .EnterEmployerAddressAndContinueV1()
+                .AddRecipientAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage();
+            }
+            else if (grade == "PassWithExcellence")
+            {
+                return new AS_ConfirmAddressPage(_context)
+                    .ClickContinueInConfirmEmployerAddressPage();
+            }            
+
+            return new AS_CheckAndSubmitAssessmentPage(_context);
+        }*/
+
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
+        {
+            if (leanerCriteria.HasMultipleVersions)
+            {
+                if (leanerCriteria.VersionConfirmed)
+                    return confirmApprenticePage.ConfirmAndContinue();
+
+                else
+                {
+                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+
+                    if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
+                    else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+                }
+            }
+            else
+            {
+                if (leanerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(leanerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
+
+                else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
+            }
+        }
+
+        private AS_DeclarationPage CertifyApprenticeEmployerRoute(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
         {
             if (leanerCriteria.HasMultipleVersions)
             {

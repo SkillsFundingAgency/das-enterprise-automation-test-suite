@@ -11,5 +11,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             NavigateBack();
             return new AS_CheckAndSubmitAssessmentPage(context);
         }
+
+        public AS_CheckAndSubmitAssessmentPage ClickApprenticeBackLink()
+        {
+            NavigateBack();
+            return new AS_CheckAndSubmitAssessmentPage(context);
+        }
     }
 }

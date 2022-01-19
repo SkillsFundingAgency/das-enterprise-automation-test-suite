@@ -79,7 +79,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca2standard2version1option")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
         public virtual void EPAO_AS_CA_02B_VerifyChangeLinksOnTheConfirmAssessmentPage()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,7 +87,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca2standard2version1option"};
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
@@ -114,7 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("the User certifies an Apprentice as \'pass\' and lands on Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies an Apprentice as \'pass\' with \'apprentice\' route and lands on C" +
+                        "onfirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
  testRunner.Then("the Change links navigate to the respective pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -129,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca2standard2version1option")]
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
         public virtual void EPAO_AS_CA_02C_VerifyEmployerChangeLinksOnTheConfirmAssessmentPage()
         {
             string[] tagsOfScenario = new string[] {
@@ -137,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca2standard2version1option"};
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02C - Verify Employer Change links on the Confirm Assessment Page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 18
@@ -164,7 +165,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 20
- testRunner.When("the User certifies an Apprentice as \'pass\' and lands on Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies an Apprentice as \'pass\' with \'employer\' route and lands on Con" +
+                        "firm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
  testRunner.Then("the Change links navigate to employer pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

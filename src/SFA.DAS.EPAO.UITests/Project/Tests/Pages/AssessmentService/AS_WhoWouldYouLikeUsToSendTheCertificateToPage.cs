@@ -16,11 +16,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
              return new AS_SearchEmployerAddressPage(context);
          }
 
-         public AS_SearchEmployerAddressPage ClickEmployerRadioButton()
+         public AS_SearchEmployerOrAddressPage ClickEmployerRadioButton()
          {
             SelectRadioOptionByText("Employer");
             Continue();
-             return new AS_SearchEmployerAddressPage(context);
+             return new AS_SearchEmployerOrAddressPage(context);
          }        
     }
 }

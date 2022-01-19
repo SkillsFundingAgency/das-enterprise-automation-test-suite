@@ -8,6 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         protected override string PageTitle => "Add the address that you’d like us to send the certificate to";
 
         #region Locators
+        private By EmployerNameTextBox => By.Id("Employer");
         private By AddressLine1TextBox => By.Id("AddressLine1");
         private By AddressLine2TextBox => By.Id("AddressLine2");
         private By AddressLine3TextBox => By.Id("AddressLine3");
@@ -26,6 +27,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             SaveAndContinue();
             return new AS_ConfirmAddressPage(context);
+        }
+
+        public AS_AddRecipientsDetailsPage EnterEmployerNameAndAddressAndContinue()
+        {
+            formCompletionHelper.EnterText(EmployerNameTextBox, "Nasdaq");
+            formCompletionHelper.EnterText(AddressLine1TextBox, "5");
+            formCompletionHelper.EnterText(AddressLine2TextBox, "QuintonRoad");
+            formCompletionHelper.EnterText(AddressLine3TextBox, "C House");
+            formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
+            formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
+            SaveAndContinue();
+            return new AS_AddRecipientsDetailsPage(context);
         }
     }
 }
