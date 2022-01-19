@@ -6,8 +6,9 @@
 Scenario: EC_API_03_PerformEmploymentCheck_PayeIsNull
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	When apprentice employment check is triggered
-	Then data is enriched with results from DC and Accounts
-	And employment check database is updated with the result from HMRC '<Employed>', '<ReturnCode>', '<ReturnMessage>'
+	And data is enriched with results from DC and Accounts
+	And Paye/Scheme is not found
+	Then do not create an Employment Check request
 
 	Examples:
 		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode | ReturnMessage      |

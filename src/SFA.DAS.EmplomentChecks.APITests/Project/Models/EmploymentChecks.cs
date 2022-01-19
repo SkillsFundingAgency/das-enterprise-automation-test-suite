@@ -4,16 +4,16 @@ using System;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 {
-    [Table("EmploymentChecks")]
+    [Table("Business.EmploymentCheck")]
     public class EmploymentChecksDb
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
-        public long ULN { get; set; }
+        public Guid CorrelationId {get; set;}
 
-        public string NationalInsuranceNumber { get; set; }
+        public string CheckType { get; set; }
 
-        public long UKPRN { get; set; }
+        public long Uln { get; set; }
 
         public long ApprenticeshipId { get; set; }
 
@@ -23,14 +23,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 
         public DateTime MaxDate { get; set; }
 
-        public string CheckType { get; set; }
+        public bool? Employed { get; set; }
 
-        public bool? IsEmployed { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
-        public DateTime? LastUpdated { get; set; }
-
-        public DateTime? CreatedDate { get; set; }
-
-        public bool HasBeenChecked { get; set; }
+        public DateTime? LastUpdatedOn { get; set; }
     }
 }

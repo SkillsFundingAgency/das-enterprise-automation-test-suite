@@ -9,7 +9,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
     public class SetupScenarioTestData
     {
 
-        private string environment = EnvironmentConfig.EnvironmentName;
+        private readonly string environment = EnvironmentConfig.EnvironmentName;
 
         public TestData SetData(int scenarioId)
         {

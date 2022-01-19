@@ -137,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void EC_API_05_PerformEmploymentCheck_HMRC400BadRequests_6()
         {
 #line 6
-this.EC_API_05_PerformEmploymentCheck_HMRC400BadRequests("6", "2014-03-06T00:00:00", "2013-03-06T00:00:00", "", "400 (Bad Request)", "{\"code\":\"BAD_REQUEST\",\"message\":\"From date was after to date\"}", ((string[])(null)));
+this.EC_API_05_PerformEmploymentCheck_HMRC400BadRequests("6", "2014-03-06T00:00:00", "2013-03-06T00:00:00", "", "400", "{\"code\":\"BAD_REQUEST\",\"message\":\"From date was after to date\"}", ((string[])(null)));
 #line hidden
         }
     }

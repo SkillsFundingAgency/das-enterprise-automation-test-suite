@@ -137,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_1()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "true", "200 (OK)", "", ((string[])(null)));
+this.EC_API_01_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "true", "200", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -149,7 +149,7 @@ this.EC_API_01_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "201
         public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_2()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "false", "200 (OK)", "", ((string[])(null)));
+this.EC_API_01_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "false", "200", "OK", ((string[])(null)));
 #line hidden
         }
     }

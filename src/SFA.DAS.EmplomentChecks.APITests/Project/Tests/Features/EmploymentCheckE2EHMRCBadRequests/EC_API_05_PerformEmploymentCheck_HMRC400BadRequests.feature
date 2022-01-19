@@ -10,5 +10,5 @@ Scenario: EC_API_05_PerformEmploymentCheck_HMRC400BadRequests
 	And employment check database is updated with the result from HMRC '<Employed>', '<ReturnCode>', '<ReturnMessage>'
 
 	Examples:
-		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode        | ReturnMessage                                                  |
-		| 6          | 2014-03-06T00:00:00 | 2013-03-06T00:00:00 |          | 400 (Bad Request) | {"code":"BAD_REQUEST","message":"From date was after to date"} |
+		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode | ReturnMessage                                                  |
+		| 6          | 2014-03-06T00:00:00 | 2013-03-06T00:00:00 |          | 400        | {"code":"BAD_REQUEST","message":"From date was after to date"} |

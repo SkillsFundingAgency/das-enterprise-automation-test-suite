@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
+using NUnit.Framework;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 {
@@ -27,17 +28,16 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
             var check = new EmploymentChecksDb
             {
-                ULN = uln,
+                CorrelationId = Guid.NewGuid(),
+                CheckType = "EC_API",
+                Uln = uln,
                 ApprenticeshipId = 100012,
-                UKPRN = 100000001,
                 AccountId = accountId,
                 MinDate = minDate,
                 MaxDate = maxDate,
-                CheckType = "EC_API",
-                IsEmployed = null,
-                HasBeenChecked = false,
-                CreatedDate = now,
-                LastUpdated = now
+                Employed = null,
+                CreatedOn = now,
+                LastUpdatedOn = now
             };
 
             employmentCheckId = await SqlDatabaseConnectionHelper.Insert(check, _dbConfig.EmploymentCheckDbConnectionString);
@@ -48,15 +48,24 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
         public void DeleteEmploymentCheck(long uln, long accountId)
         {
             string query =
-                $"DELETE FROM [dbo].[EmploymentChecks] WHERE ULN = {uln} AND AccountId = {accountId} AND CheckType = 'EC_API'" +
-                $"DELETE FROM [dbo].[ApprenticeEmploymentCheckMessageQueueHistory] WHERE [Uln] = {uln}";
+                $"DECLARE @Id bigint;" +
+                $"SELECT top 1 @Id = [Id] FROM[Business].[EmploymentCheck]" +
+                $"WHERE CheckType = 'EC_API' AND Uln = {uln} AND AccountId = {accountId};" +
+
+                $"DELETE FROM [Business].[EmploymentCheck] WHERE Id = @Id;" +
+                $"DELETE FROM [Cache].[AccountsResponse] WHERE ApprenticeEmploymentCheckId = @Id;" +
+                $"DELETE FROM [Cache].[DataCollectionsResponse] WHERE ApprenticeEmploymentCheckId = @Id;" +
+                $"DELETE FROM [Cache].[EmploymentCheckCacheRequest] WHERE ApprenticeEmploymentCheckId = @Id;" +
+                $"DELETE FROM [Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = @Id;";
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
         }
 
         public (string? nino, string? payeScheme) GetEnrichmentData()
         {
-            string query = $"SELECT NationalInsuranceNumber, PayeScheme FROM [dbo].[ApprenticeEmploymentCheckMessageQueueHistory] WHERE EmploymentCheckId = {employmentCheckId}";
+            string query = $"SELECT ar.PayeSchemes, dcr.NiNumber FROM [Cache].[AccountsResponse] ar " +
+                $"INNER JOIN [Cache].[DataCollectionsResponse] dcr ON dcr.ApprenticeEmploymentCheckId = ar.ApprenticeEmploymentCheckId " +
+                $"WHERE ar.ApprenticeEmploymentCheckId = {employmentCheckId}";
 
             List<object[]> enrichedData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
@@ -67,29 +76,45 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 enrichedData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
 
-            var nino = enrichedData[0][0].ToString() == "" ? null : enrichedData[0][0].ToString();
-            var paye = enrichedData[0][1].ToString() == "" ? null : enrichedData[0][1].ToString();
+            var paye = enrichedData[0][0].ToString() == "" ? null : enrichedData[0][0].ToString().Trim(' ');
+            var nino = enrichedData[0][1].ToString() == "" ? null : enrichedData[0][1].ToString().Trim(' ');
 
             return (nino, paye);
 
         }
 
-        public (bool hasBeenChecked, bool? isEmployed, string? returnCode, string returnMessage) GetEmploymentCheckResults()
+        internal int GetNumberOfEmploymentCheckRequests()
         {
-            string query = $"SELECT HasBeenChecked, IsEmployed, ReturnCode, ReturnMessage FROM [dbo].[EmploymentChecks] WHERE Id = {employmentCheckId}";
+            string query = $"SELECT * FROM [Cache].[EmploymentCheckCacheRequest] WHERE ApprenticeEmploymentCheckId = {employmentCheckId}";
+
+            var result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            return result.Count;
+        }
+
+        public (bool? isEmployed, string? returnCode, string returnMessage) GetEmploymentCheckResults()
+        {
+            string query = $"SELECT Employed, HttpStatusCode, HttpResponse FROM [Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = {employmentCheckId}";
 
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            while (result.Count == 0)
+            {
+                Thread.Sleep(2000);
+
+                result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
 
             bool parsedEmploymentStatus;
             bool? employed = null;
 
-            if (Boolean.TryParse(result[0][1].ToString(), out parsedEmploymentStatus))
+            if (Boolean.TryParse(result[0][0].ToString(), out parsedEmploymentStatus))
             {
 
                 employed = parsedEmploymentStatus is bool ? parsedEmploymentStatus : (bool?)null;
             }
-            return ((bool)result[0][0], employed,
-              result[0][2].ToString() == "" ? null : result[0][2].ToString(), result[0][3].ToString());
+
+            return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
 
         }
     }

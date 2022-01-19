@@ -20,14 +20,14 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
             _setupScenarioTestData = new SetupScenarioTestData();
             _testData = new TestData();
-            
+
         }
 
         [Given(@"employment check has been requested for an apprentice with '(.*)', '(.*)', '(.*)'")]
         public async Task GivenEmploymentCheckHasBeenRequestedForAnApprenticeWith(int scenarioId, DateTime minDate, DateTime maxDate)
         {
             _testData = _setupScenarioTestData.SetData(scenarioId);
-            _employmentCheckId =  await _employmentChecksSqlDbHelper.InsertData(_testData.ULN, _testData.AccountId, minDate, maxDate);
+            _employmentCheckId = await _employmentChecksSqlDbHelper.InsertData(_testData.ULN, _testData.AccountId, minDate, maxDate);
         }
 
         [When(@"apprentice employment check is triggered")]
@@ -37,6 +37,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             // If it is not then start it
         }
 
+        [When(@"data is enriched with results from DC and Accounts")]
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
         {
@@ -48,12 +49,41 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             Assert.AreEqual(_testData.PayeScheme, enrichedData.payeScheme);
         }
 
+        [When(@"Nino is not found")]
+        public void WhenNinoIsNotFound()
+        {
+            // Verified in step definition = (@"data is enriched with results from DC and Accounts")
+        }
+
+        [When(@"Paye/Scheme is not found")]
+        public void WhenPayeSchemeIsNotFound()
+        {
+            // Verified in step definition = (@"data is enriched with results from DC and Accounts")
+        }
+
+
+
+        [When(@"Nino and Paye/Scheme are not found")]
+        public void WhenNinoAndPayeSchemeAreNotFound()
+        {
+            // Verified in step definition = (@"data is enriched with results from DC and Accounts")
+        }
+
+        [Then(@"do not create an Employment Check request")]
+        public void ThenDoNotCreateAnEmploymentCheckRequest()
+        {
+            int numOfRequests = _employmentChecksSqlDbHelper.GetNumberOfEmploymentCheckRequests();
+
+            Assert.AreEqual(0, numOfRequests);
+        }
+
+
+
         [Then(@"employment check database is updated with the result from HMRC '(.*)', '(.*)', '(.*)'")]
         public void ThenEmploymentCheckDatabaseIsUpdatedWithTheResult(bool? employed, string returnCode, string returnMessage)
         {
             var employmentCheckResults = _employmentChecksSqlDbHelper.GetEmploymentCheckResults();
 
-            Assert.AreEqual(true, employmentCheckResults.hasBeenChecked);
             Assert.AreEqual(employed, employmentCheckResults.isEmployed);
             Assert.AreEqual(returnCode == "null" ? null : returnCode, employmentCheckResults.returnCode);
             Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage);

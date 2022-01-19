@@ -11,5 +11,5 @@ Scenario: EC_API_01_PerformEmploymentCheck_HappyPath
 
 	Examples:
 		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode | ReturnMessage |
-		| 1          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 | true     | 200 (OK)   |               |
-		| 2          | 2016-05-01T00:00:00 | 2016-11-01T00:00:00 | false    | 200 (OK)   |               |
+		| 1          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 | true     | 200        | OK            |
+		| 2          | 2016-05-01T00:00:00 | 2016-11-01T00:00:00 | false    | 200        | OK            |

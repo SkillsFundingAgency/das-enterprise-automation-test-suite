@@ -119,11 +119,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And(string.Format("employment check database is updated with the result from HMRC \'{0}\', \'{1}\', \'{2}" +
-                            "\'", employed, returnCode, returnMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Nino and Paye/Scheme are not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

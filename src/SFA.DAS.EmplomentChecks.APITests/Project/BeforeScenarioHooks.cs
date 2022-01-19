@@ -18,11 +18,6 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            _context.Set(new EmploymentChecksSqlDbHelper(_dbConfig));
-        }
-
-
+        public void SetUpHelpers() => _context.Set(new EmploymentChecksSqlDbHelper(_dbConfig));
     }
 }
