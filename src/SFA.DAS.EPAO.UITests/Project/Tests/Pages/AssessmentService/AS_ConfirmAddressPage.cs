@@ -11,6 +11,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             Continue();
             return new AS_CheckAndSubmitAssessmentPage(context);
-        }   
+        }
     }
 }

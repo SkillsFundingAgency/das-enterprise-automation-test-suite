@@ -47,7 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             return SelectGrade(decPage, grade, route);
         }
-       
+
         public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
         {
             return CertifyPrivatelyFundedApprentice()
@@ -143,25 +143,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             if (route == "employer")
             {
-                if (grade == "pass")
-                {
-                    return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
-                    .ClickEmployerRadioButton()
-                    .ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                    .EnterEmployerNameAndAddressAndContinue()
-                    .AddRecipientAndContinue()
-                    .ClickContinueInConfirmEmployerAddressPage();
-                }
-                else if (grade == "PassWithExcellence")
-                {
-                    return new AS_ConfirmAddressPage(_context)
-                        .ClickContinueInConfirmEmployerAddressPage();
-                }
-
-                return new AS_CheckAndSubmitAssessmentPage(_context);
+                return SelectGradeEmployerRoute(grade);
             }
-            
-            
+
             if (grade == "pass")
             {                
                 return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
@@ -170,14 +154,34 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .EnterEmployerAddressAndContinue()                
                 .ClickContinueInConfirmEmployerAddressPage();
             }
-            else if (grade == "PassWithExcellence") 
+            else if (grade == "PassWithExcellence")
             {
                 return new AS_ConfirmAddressPage(_context)
                     .ClickContinueInConfirmEmployerAddressPage();                  
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
-        }        
+        }
+
+        private AS_CheckAndSubmitAssessmentPage SelectGradeEmployerRoute(string grade)
+        {
+            if (grade == "pass")
+            {
+                return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+                .ClickEmployerRadioButton()
+                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                .EnterEmployerNameAndAddressAndContinue()
+                .AddRecipientAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage();
+            }
+            else if (grade == "PassWithExcellence")
+            {
+                return new AS_ConfirmAddressPage(_context)
+                    .ClickContinueInConfirmEmployerAddressPage();
+            }
+
+            return new AS_CheckAndSubmitAssessmentPage(_context);
+        }
 
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
         {

@@ -28,6 +28,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.Click(EnterAddressManuallyLink);
             return new AS_AddEmployerAddress(context);
-        }        
+        }
     }
 }

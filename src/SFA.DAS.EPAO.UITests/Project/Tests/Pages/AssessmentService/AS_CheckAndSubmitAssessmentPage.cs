@@ -43,12 +43,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             formCompletionHelper.ClickElement(AchievementDateChangeLink);
             return new AS_AchievementDatePage(context);
         }
-        
+
         public AS_RecipientNamePage ClickNameChangeLink()
         {
             formCompletionHelper.ClickElement(NameChangeLink);
             return new AS_RecipientNamePage(context);
-        }        
+        }
 
         public AS_WhoWouldYouLikeUsToSendTheCertificateToPage ClickCertificateReceiverLink()
         {
