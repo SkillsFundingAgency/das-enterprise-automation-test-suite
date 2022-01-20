@@ -8,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "MY ACCOUNT";
 
         #region Locators
-        //private By AddYourPAYESchemeLink => By.CssSelector(".das-panel__link");
         private By AddYourPAYESchemeLink => By.LinkText("Add your PAYE scheme");
         #endregion
 
