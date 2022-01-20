@@ -11,56 +11,26 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
-     [Binding]
-    public class TestDataTearDown
+    [Binding]
+    public class TestDataReporting
     {
         private readonly ObjectContext _objectContext;
         private readonly string _scenarioTitle;
         private readonly ScenarioContext _context;
         private static List<string> _urls;
 
-        public TestDataTearDown(ScenarioContext context)
+        public TestDataReporting(ScenarioContext context)
         {
             _context = context;
             _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [BeforeTestRun]
-        public static void BeforeTestRun() => _urls = new List<string>();
+        [BeforeTestRun(Order = 10)]
+        public static void InitVariable() => _urls = new List<string>();
 
-        [AfterTestRun]
-        public static void AfterTestRun()
-        {
-            if (_urls.Count == 0) return;
-
-            List<string> distinctUrls = _urls.ToHashSet().ToList();
-
-            string fileName = $"UrlCollection_{DateTime.Now:HH-mm-ss-fffff}.txt";
-
-            string filePath = Path.Combine($"{Configurator.GetAgentTempDir()}", fileName);
-
-            TestContext.Progress.WriteLine($"filePath - {filePath}");
-
-            TestContext.Progress.WriteLine($"{distinctUrls.Count} url data set are available for the test suite execution");
-
-            for (int i = 0; i < distinctUrls.Count; i++)
-            {
-                TestContext.Progress.WriteLine($"{i + 1} - {distinctUrls[i]}");
-            }
-
-            try
-            {
-                File.WriteAllLines(filePath, distinctUrls);
-
-                TestContext.AddTestAttachment(filePath, fileName);
-            }
-            catch (Exception ex)
-            {
-                TestContext.Progress.WriteLine($"Exception occurred while writing UrlCollection data in AfterTestRun - {filePath}" + ex);
-            }
-        }
-
+        [AfterTestRun(Order = 10)]
+        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, "UrlCollection");
 
         [AfterStep(Order = 10)]
         public void AfterStep()
@@ -99,8 +69,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            List<TestData> records = new List<TestData>();
-
             var urldataset = _objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
             if (urldataset == null || urldataset?.Count == 0) return;
@@ -116,10 +84,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             _urls.AddRange(distinctUrls);
 
-            WriteRecords(fileName, (x) =>
-            {
-                File.WriteAllLines(x, distinctUrls);
-            });
+            WriteRecords(fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
         }
 
         private void WriteRecords(string fileName, Action<string> action)
