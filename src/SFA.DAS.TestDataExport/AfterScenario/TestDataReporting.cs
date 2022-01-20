@@ -15,14 +15,12 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     public class TestDataReporting
     {
         private readonly ObjectContext _objectContext;
-        private readonly string _scenarioTitle;
         private readonly ScenarioContext _context;
         private static List<string> _urls;
 
         public TestDataReporting(ScenarioContext context)
         {
             _context = context;
-            _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -49,8 +47,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             var testdataset = _objectContext.GetAll();
 
-            TestContext.Progress.WriteLine($"{testdataset.Count} test data set are available for {_scenarioTitle}");
-
             testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
 
             WriteRecords(fileName, (x) =>
@@ -74,13 +70,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             if (urldataset == null || urldataset?.Count == 0) return;
 
             List<string> distinctUrls = urldataset.ToHashSet().ToList();
-
-            TestContext.Progress.WriteLine($"{distinctUrls?.Count} url data set are available for {_scenarioTitle}");
-
-            for (int i = 0; i < distinctUrls.Count; i++)
-            {
-                TestContext.Progress.WriteLine($"{i + 1} - {distinctUrls[i]}");
-            }
 
             _urls.AddRange(distinctUrls);
 

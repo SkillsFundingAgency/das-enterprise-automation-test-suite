@@ -24,10 +24,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             TestContext.Progress.WriteLine($"{distinctList.Count} data are available in {fileName} from the test suite execution");
 
-            for (int i = 0; i < distinctList.Count; i++)
-            {
-                TestContext.Progress.WriteLine($"{i + 1} - {distinctList[i]}");
-            }
+            for (int i = 0; i < distinctList.Count; i++) TestContext.Progress.WriteLine($"{i + 1} - {distinctList[i]}");
 
             try
             {

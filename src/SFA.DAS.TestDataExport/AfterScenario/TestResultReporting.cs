@@ -7,14 +7,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     public class TestResultReporting
     {
         private readonly ScenarioContext _context;
-        private readonly string _scenarioTitle;
         private static List<string> _scenarioTitles;
 
-        public TestResultReporting(ScenarioContext context)
-        {
-            _context = context;
-            _scenarioTitle = context.ScenarioInfo.Title;
-        }
+        public TestResultReporting(ScenarioContext context) => _context = context;
 
         [BeforeTestRun(Order = 11)]
         public static void InitVariable() => _scenarioTitles = new List<string>();
@@ -25,8 +20,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 99)]
         public void CaptureScenarioTitle()
         {
-            if (_context.TestError != null) _scenarioTitles.Add(_scenarioTitle);
+            if (_context.TestError != null) _scenarioTitles.Add(_context.ScenarioInfo.Title);
         }
-
     }
 }
