@@ -29,7 +29,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
             //acomt db
             _aComtSqlDbHelper.DeleteApprentice(email);
-            _aComtSqlDbHelper.DeleteApprentice(_apprenticeCommitmentsDataHelper.NewEmail);
 
             //alogin db
             _aLoginSqlDbHelper.DeleteUser(email);

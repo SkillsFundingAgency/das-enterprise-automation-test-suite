@@ -8,13 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public ApprenticeLoginSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentLoginDbConnectionString) { }
 
         public void DeleteResetPasswordRequests(string email) => ExecuteSqlCommand($"DELETE FROM LoginService.ResetPasswordRequests where email = '{email}'");
-
-        public (string firstname, string lastname) GetApprenticeLoginData(string email)
-        {
-            var data = GetData($"select GivenName, FamilyName from LoginService.Invitations where email = '{email}'");
-
-            return (data[0], data[1]);
-        }
             
         public (string clientId, string requestId) GetApprenticeResetLoginData(string email)
         {

@@ -43,18 +43,13 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         protected void AddCapabilities(IWebDriver webDriver)
         {
-            var wb = webDriver as RemoteWebDriver;
-            var cap = wb.Capabilities;
+            var cap = (webDriver as WebDriver).Capabilities;
 
             objectContext.SetBrowserName(cap["browserName"]);
+
             objectContext.SetBrowserVersion(cap["browserVersion"]);
 
-            var chromecap = cap["chrome"] as Dictionary<string, object>;
-
-            foreach (var item in chromecap)
-            {
-                objectContext.Replace(item.Key, item.Value);
-            }
+            foreach (var item in cap["chrome"] as Dictionary<string, object>) objectContext.Replace(item.Key, item.Value);
         }
 
         protected bool IsCloudExecution() => objectContext.GetBrowser().IsCloudExecution();

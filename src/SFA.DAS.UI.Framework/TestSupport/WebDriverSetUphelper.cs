@@ -98,6 +98,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var chromeOptions = new ChromeOptions();
             arguments.ForEach((x) => chromeOptions.AddArgument(x));
             chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+            chromeOptions.PageLoadStrategy = PageLoadStrategy.Eager;
             return chromeOptions;
         }
     }
