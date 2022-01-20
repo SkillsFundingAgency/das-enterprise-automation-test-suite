@@ -10,9 +10,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 
         public long AccountId { get; set; }
 
-        public string? NationalInsuranceNumber { get; set; }
+        public string NationalInsuranceNumber { get; set; }
 
-        public string? PayeScheme { get; set; }
+        public string PayeScheme { get; set; }
 
     }
 }

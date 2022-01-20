@@ -3,6 +3,7 @@ using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -163,11 +164,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         {
             if (leanerCriteria.HasMultipleVersions)
             {
-                var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+                if (leanerCriteria.VersionConfirmed)
+                    return confirmApprenticePage.ConfirmAndContinue();
 
-                if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+                else
+                {
+                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
 
-                else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+                    if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+
+                    else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
+                }
             }
             else
             {

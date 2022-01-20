@@ -76,12 +76,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.UserRolesVal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_URV_03_Verify EI for Multiple Accounts user")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_URV_03_VerifyEIForMultipleAccountsUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_URV_03_Verify EI for Multiple Accounts user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5

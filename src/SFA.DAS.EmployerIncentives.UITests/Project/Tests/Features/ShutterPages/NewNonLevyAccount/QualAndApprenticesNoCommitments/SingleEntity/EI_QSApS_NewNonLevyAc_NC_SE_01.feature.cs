@@ -79,13 +79,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "th One legal entity and No Commitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_QSApS_NewNonLevyAc_NC_SE_01_ValidateShutterPagesForNewNonLevyAccountWithOneLegalEntityAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addnonlevyfunds",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewNonLevyAc_NC_SE_01_Validate Shutter pages for New Non Levy Account wi" +
                     "th One legal entity and No Commitments", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -131,8 +131,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
-                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on S" +
+                        "elect apprentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

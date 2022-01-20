@@ -76,19 +76,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-            "al entity having Commitments with start date prior to APR 2021")]
+            "al entity having Commitments with start date prior to OCT 2021")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
-        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAPR2021()
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        public virtual void EI_QSApS_NewLevyAc_WC_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToOCT2021()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One leg" +
-                    "al entity having Commitments with start date prior to APR 2021", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "al entity having Commitments with start date prior to OCT 2021", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -118,11 +118,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartYear"});
                 table1.AddRow(new string[] {
                             "Aged16to24",
-                            "3",
-                            "2022"});
+                            "9",
+                            "2021"});
                 table1.AddRow(new string[] {
                             "AgedAbove25",
-                            "12",
+                            "4",
                             "2022"});
 #line 8
  testRunner.When("the Employer adds following apprentices", ((string)(null)), table1, "When ");
@@ -149,8 +149,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
-                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on S" +
+                        "elect apprentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

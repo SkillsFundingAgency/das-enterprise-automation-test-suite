@@ -1,11 +1,10 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
+using SFA.DAS.FrameworkHelpers;
 using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
-using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 {
@@ -61,7 +60,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
         }
 
-        public (string? nino, string? payeScheme) GetEnrichmentData()
+        public (string nino, string payeScheme) GetEnrichmentData()
         {
             string query = $"SELECT ar.PayeSchemes, dcr.NiNumber FROM [Cache].[AccountsResponse] ar " +
                 $"INNER JOIN [Cache].[DataCollectionsResponse] dcr ON dcr.ApprenticeEmploymentCheckId = ar.ApprenticeEmploymentCheckId " +
@@ -92,7 +91,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return result.Count;
         }
 
-        public (bool? isEmployed, string? returnCode, string returnMessage) GetEmploymentCheckResults()
+        public (bool? isEmployed, string returnCode, string returnMessage) GetEmploymentCheckResults()
         {
             string query = $"SELECT Employed, HttpStatusCode, HttpResponse FROM [Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = {employmentCheckId}";
 
@@ -108,10 +107,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             bool parsedEmploymentStatus;
             bool? employed = null;
 
-            if (Boolean.TryParse(result[0][0].ToString(), out parsedEmploymentStatus))
+            if (bool.TryParse(result[0][0].ToString(), out parsedEmploymentStatus))
             {
 
-                employed = parsedEmploymentStatus is bool ? parsedEmploymentStatus : (bool?)null;
+                employed = parsedEmploymentStatus;
             }
 
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());

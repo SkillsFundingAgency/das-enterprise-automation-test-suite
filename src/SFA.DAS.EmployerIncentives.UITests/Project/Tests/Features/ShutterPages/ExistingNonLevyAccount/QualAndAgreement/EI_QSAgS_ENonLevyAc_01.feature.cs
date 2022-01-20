@@ -77,12 +77,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         [NUnit.Framework.DescriptionAttribute("EI_QSAgS_ENonLevyAc_01_Validate Shutter page for an Existing Non Levy account wit" +
             "h unsigned V4 Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_QSAgS_ENonLevyAc_01_ValidateShutterPageForAnExistingNonLevyAccountWithUnsignedV4Agreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSAgS_ENonLevyAc_01_Validate Shutter page for an Existing Non Levy account wit" +
                     "h unsigned V4 Agreement", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

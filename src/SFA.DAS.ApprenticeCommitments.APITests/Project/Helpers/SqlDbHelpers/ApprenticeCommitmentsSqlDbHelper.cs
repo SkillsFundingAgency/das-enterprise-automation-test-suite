@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -16,17 +16,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             $"DELETE FROM Apprentice WHERE Email = '{email}'" +
             $"DELETE FROM Registration WHERE Email = '{email}'");
 
-        public (string apprenticeId, string userIdentityid) GetApprenticeIdFromRegistrationTable(string email)
-        {
-            var data = GetData($"select ApprenticeId, UserIdentityId from Registration where Email = '{email}'");
-            return (data[0], data[1]);
-        }
-
         public string GetApprenticeId(string email) => GetDataAsString($"select Id from Apprentice where Email ='{email}'");
 
         public string GetApprenticeshipId(string apprenticeId) => GetDataAsString($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
-
-        public string GetApprenticeEmail(string id) => GetDataAsString($"select Email from Apprentice where Id = '{id}'");
 
         public (string firstName, string lastName) GetApprenticeName(string email)
         {

@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         public ApprenticeCommitmentsDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper)
         {
             ApprenticeEmail = apprenticePPIDataHelper.ApprenticeEmail;
-            NewEmail = $"New{ApprenticeEmail}";
             ApprenticeFirstname = apprenticePPIDataHelper.ApprenticeFirstname;
             ApprenticeLastname = apprenticePPIDataHelper.ApprenticeLastname;
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
@@ -17,8 +16,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         }
 
         public string ApprenticeEmail { get; }
-
-        public string NewEmail { get; }
 
         public string ApprenticeFirstname { get; }
 
