@@ -45,7 +45,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an apprenticeship incentive has been submitted less than 6 weeks ago")]
         public async Task GivenAnIncentiveSubmittedLessThan6WeeksAgo()
         {
-            await CreateIncentive(Phase.Phase2, DateTime.Now.AddDays(-41));
+            await CreateIncentive(Phase.Phase3, DateTime.Now.AddDays(-41));
         }
 
         [Given(@"an employment check has been requested")]

@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourTransfersLink => By.LinkText("Your transfers");
-        private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
+        private By PublicAccountIdLocator => By.CssSelector(".das-definition-list__definition");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
