@@ -6,7 +6,7 @@ using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.TestDataExport.AfterScenario
+namespace SFA.DAS.TestDataExport.Helper
 {
     public class AfterTestRunReportHelper
     {

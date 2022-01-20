@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.FrameworkHelpers
 {
-    public partial class RegexHelper
+    public class RegexHelper
     {
-        public static string ReplaceMultipleSpace(string value) => Regex.Replace(value, @"\s+", " ");
+        public static string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
     }
 }

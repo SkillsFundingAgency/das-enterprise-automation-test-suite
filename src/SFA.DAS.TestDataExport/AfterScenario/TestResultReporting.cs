@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataExport.Helper;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
@@ -21,7 +23,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             if (_scenarioTitles.Count == 0) return;
 
-            var x = string.Join("|", _scenarioTitles);
+            var list = _scenarioTitles.Select(x => $"{x}|");
+
+            var x = string.Join("|", list);
 
             x = string.Join("FullyQualifiedName~", x);
 
@@ -36,7 +40,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         private string GetScenarioTitle()
         {
-            var x = RegexHelper.ReplaceMultipleSpace(_context.ScenarioInfo.Title);
+            var x = RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title);
 
             x = Regex.Replace(x, @"-", "_");
 
