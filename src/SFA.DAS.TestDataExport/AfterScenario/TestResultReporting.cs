@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
@@ -15,12 +17,30 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         public static void InitVariable() => _scenarioTitles = new List<string>();
 
         [AfterTestRun(Order = 10)]
-        public static void ReportTestResult() => AfterTestRunReportHelper.ReportAfterTestRun(_scenarioTitles, "ScenarioTitle");
+        public static void ReportTestResult()
+        {
+            if (_scenarioTitles.Count == 0) return;
+
+            var x = string.Join("|", _scenarioTitles);
+
+            x = string.Join("FullyQualifiedName~", x);
+
+            AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { x }, "ScenarioTitle");
+        }
 
         [AfterScenario(Order = 99)]
         public void CaptureScenarioTitle()
         {
-            if (_context.TestError != null) _scenarioTitles.Add(_context.ScenarioInfo.Title);
+            if (_context.TestError != null) _scenarioTitles.Add(GetScenarioTitle());
+        }
+
+        private string GetScenarioTitle()
+        {
+            var x = RegexHelper.ReplaceMultipleSpace(_context.ScenarioInfo.Title);
+
+            x = Regex.Replace(x, @"-", "_");
+
+            return (x.Length <= 20) ? x : x.Substring(0, 20);
         }
     }
 }

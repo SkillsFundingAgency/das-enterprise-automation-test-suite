@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class RegexHelper
+    public partial class RegexHelper
     {
         public static string ReplaceMultipleSpace(string value) => Regex.Replace(value, @"\s+", " ");
 

@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
