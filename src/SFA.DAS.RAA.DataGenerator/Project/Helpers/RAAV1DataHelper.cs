@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using RegexHelper = SFA.DAS.UI.FrameworkHelpers.RegexHelper;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
