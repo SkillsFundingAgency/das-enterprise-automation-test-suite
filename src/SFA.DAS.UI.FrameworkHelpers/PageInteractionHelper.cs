@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -247,18 +248,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
 
-        public bool ElementExists(By locator)
-        {
-            try
-            {
-                _webDriver.FindElement(locator);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
         public string GetUrl() => _webDriver.Url;
 
         private Func<bool> Func(By locator)

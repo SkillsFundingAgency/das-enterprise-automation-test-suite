@@ -15,12 +15,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new EIBeforeYouStartPage(context);
         }
 
-        public EIApplicationOpenOn11JanPage NavigateToApplicationsOpenOn22JanPage()
-        {
-            HireANewApprenticePayment();
-            return new EIApplicationOpenOn11JanPage(context);
-        }
-
         public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {
             ViewApplications();

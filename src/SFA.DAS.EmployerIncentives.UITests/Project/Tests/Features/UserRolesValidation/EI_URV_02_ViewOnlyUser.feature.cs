@@ -77,16 +77,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.UserRolesVal
         [NUnit.Framework.DescriptionAttribute("EI_URV_02_Verify EI for Existing View user")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
         public virtual void EI_URV_02_VerifyEIForExistingViewUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_URV_02_Verify EI for Existing View user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,10 +104,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.When("the Employer logins using existing view user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("Access to EI Hub is denied to the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

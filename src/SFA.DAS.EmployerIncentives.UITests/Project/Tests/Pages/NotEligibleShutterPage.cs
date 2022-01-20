@@ -24,8 +24,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         }
 
         public int NumberOfIneligibleApprenticeships => pageInteractionHelper.FindElements(IneligibleApprenticesList).Count;
-        public bool CancelApplicationButtonExists => pageInteractionHelper.ElementExists(CancelApplicationButton);
-        public bool ContinueApplicationButtonExists => pageInteractionHelper.ElementExists(ContinueApplicationButton);
+        public bool CancelApplicationButtonExists => pageInteractionHelper.IsElementPresent(CancelApplicationButton);
+        public bool ContinueApplicationButtonExists => pageInteractionHelper.IsElementPresent(ContinueApplicationButton);
 
         public List<DateTime> EmploymentStartDates
         {

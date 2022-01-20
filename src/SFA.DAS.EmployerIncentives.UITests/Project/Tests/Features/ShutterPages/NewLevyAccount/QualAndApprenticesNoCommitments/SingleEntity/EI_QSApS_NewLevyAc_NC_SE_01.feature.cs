@@ -79,13 +79,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "legal entity and No Commitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("employerincentivesphase3")]
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_QSApS_NewLevyAc_NC_SE_01_ValidateShutterPagesForNewLevyAccountWithOneLegalEntityAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
-                    "employerincentivesphase3"};
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_NC_SE_01_Validate Shutter pages for New Levy Account with One " +
                     "legal entity and No Commitments", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -113,27 +113,24 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the employer signs the agreement version 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
                         "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
                         "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 13
  testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on S" +
                         "elect apprentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

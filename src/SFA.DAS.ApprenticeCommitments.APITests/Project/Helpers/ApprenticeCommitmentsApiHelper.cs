@@ -6,6 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         public ApprenticeCommitmentsApiHelper(ScenarioContext context) : base(context) { }
 
+        // This call can be used in TEST and TEST2 but can't be used in PP.
         public void CreateApprenticeshipViaCommitmentsJobApiRequest()
         {
             _assertHelper.RetryOnNUnitException(() => 
@@ -14,11 +15,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             });
         }
 
-        public new void CreateApprenticeshipViaApi()
+        public new void CreateApprovalsCreatedEvent()
         {
             _assertHelper.RetryOnNUnitException(() =>
             {
-                base.CreateApprenticeshipViaApi();
+                base.CreateApprovalsCreatedEvent();
             });
         }
     }

@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Net;
 
@@ -30,21 +30,16 @@ namespace SFA.DAS.API.Framework.RestClients
 
             AddAuthHeaders();
 
-            if (!string.IsNullOrEmpty(payload))
-            {
-                if (payload.EndsWith(".json")) { restRequest.AddJsonBody(JsonHelper.ReadAllText(payload)); }
-               
-                else { restRequest.AddJsonBody(payload); }
-            }
+            AddPayload(payload);
         }
 
         public IRestResponse Execute(HttpStatusCode expectedResponse)
         {
-            var _restResponse = restClient.Execute(restRequest);
+            var restResponse = restClient.Execute(restRequest);
 
-            AssertHelper.AssertResponse(expectedResponse, _restResponse);
+            AssertHelper.AssertResponse(expectedResponse, restResponse);
 
-            return _restResponse;
+            return restResponse;
         }
 
         protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
@@ -60,9 +55,16 @@ namespace SFA.DAS.API.Framework.RestClients
 
         protected void Addheaders(Dictionary<string, string> dictionary)
         {
-            foreach (var item in dictionary)
+            foreach (var item in dictionary) Addheader(item.Key, item.Value);
+        }
+
+        private void AddPayload(string payload)
+        {
+            if (string.IsNullOrEmpty(payload)) restRequest.Body = null;
+            else
             {
-                Addheader(item.Key, item.Value);
+                if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
+                else restRequest.AddJsonBody(payload);
             }
         }
     }
