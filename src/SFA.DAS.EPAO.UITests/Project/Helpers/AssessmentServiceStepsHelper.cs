@@ -47,16 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             return SelectGrade(decPage, grade, route);
         }
-
-        /*public AS_CheckAndSubmitAssessmentPage CertifyApprenticeEmployerRoute(string grade, LeanerCriteria leanerCriteria, bool deleteCertificate)
-        {
-            var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
-
-            AS_DeclarationPage decPage = CertifyApprenticeEmployerRoute(confirmApprenticePage, leanerCriteria);
-
-            return SelectGradeV1(decPage, grade);
-        }*/
-
+       
         public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
         {
             return CertifyPrivatelyFundedApprentice()
@@ -186,31 +177,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             }
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
-        }
-
-        /*private AS_CheckAndSubmitAssessmentPage SelectGradeV1(AS_DeclarationPage decpage, string grade)
-        {
-            decpage.ClickConfirmInDeclarationPage();
-
-            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);          
-
-            if (grade == "pass")
-            {
-                return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
-                .ClickEmployerRadioButton()
-                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                .EnterEmployerAddressAndContinueV1()
-                .AddRecipientAndContinue()
-                .ClickContinueInConfirmEmployerAddressPage();
-            }
-            else if (grade == "PassWithExcellence")
-            {
-                return new AS_ConfirmAddressPage(_context)
-                    .ClickContinueInConfirmEmployerAddressPage();
-            }            
-
-            return new AS_CheckAndSubmitAssessmentPage(_context);
-        }*/
+        }        
 
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
         {
@@ -234,30 +201,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
                 else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
             }
-        }
-
-        private AS_DeclarationPage CertifyApprenticeEmployerRoute(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
-        {
-            if (leanerCriteria.HasMultipleVersions)
-            {
-                if (leanerCriteria.VersionConfirmed)
-                    return confirmApprenticePage.ConfirmAndContinue();
-
-                else
-                {
-                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
-
-                    if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
-
-                    else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
-                }
-            }
-            else
-            {
-                if (leanerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(leanerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
-
-                else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
-            }
-        }
+        }       
     }
 }
