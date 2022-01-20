@@ -18,7 +18,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             string fileName = $"{fileNamePrefix}_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            string filePath = Path.Combine($"{Configurator.GetAgentTempDir()}", fileName);
+            string filePath = Path.Combine(Configurator.GetAgentTempDir(), "TestResults", fileName);
 
             TestContext.Progress.WriteLine($"filePath - {filePath}");
 
