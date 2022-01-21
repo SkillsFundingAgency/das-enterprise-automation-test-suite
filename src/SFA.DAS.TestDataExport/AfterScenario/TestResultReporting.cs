@@ -18,27 +18,27 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [BeforeTestRun(Order = 11)]
         public static void InitVariable() => _scenarioTitles = new List<string>();
 
-        [AfterTestRun(Order = 10)]
+        [AfterScenario(Order = 97)]
+        public void CaptureScenarioTitle()
+        {
+            if (_context.TestError != null)
+            {
+                int requiredLength = 20;
+
+                var x = EscapePatternHelper.ScenarioTitleEscapePattern(Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_"));
+
+                lock (_scenarioTitles) { _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength)); }
+            }
+        }
+
+        [AfterTestRun(Order = 11)]
         public static void ReportTestResult()
         {
             if (_scenarioTitles.Count == 0) return;
             
             var list = _scenarioTitles.Select(x => $"FullyQualifiedName~{x}|").ToList().ToString("").TrimEnd('|');
 
-            AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { list }, "ScenarioTitle");
-        }
-
-        [AfterScenario(Order = 99)]
-        public void CaptureScenarioTitle()
-        {
-            if (_context.TestError != null) 
-            {
-                int requiredLength = 20;
-
-                var x = EscapePatternHelper.ScenarioTitleEscapePattern(Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_"));
-
-                _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength));
-            }
+            TestRunReportHelper.ReportAfterTestRun(new List<string> { list }, "ScenarioTitle");
         }
     }
 }
