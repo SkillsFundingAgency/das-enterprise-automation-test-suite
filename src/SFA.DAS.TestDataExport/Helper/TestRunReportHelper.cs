@@ -36,7 +36,7 @@ namespace SFA.DAS.TestDataExport.Helper
 
             string filePath = Path.Combine(Configurator.GetAgentTempDir(), "TestResults", fileName);
 
-            TestContext.Progress.WriteLine($"{distinctList.Count} data is/are available in {filePath}");
+            TestContext.Progress.WriteLine($"***************{distinctList.Count} data available in {filePath}***************");
 
             for (int i = 0; i < distinctList.Count; i++) TestContext.Progress.WriteLine($"{i + 1} - {distinctList[i]}");
 
