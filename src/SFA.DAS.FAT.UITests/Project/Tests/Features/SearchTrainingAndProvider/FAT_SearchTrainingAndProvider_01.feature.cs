@@ -77,16 +77,14 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.SearchTrainingAndProvider
         [NUnit.Framework.DescriptionAttribute("FAT_STAP_01_Search for a Training and Provider")]
         [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("captureurl")]
         public virtual void FAT_STAP_01_SearchForATrainingAndProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "fat",
-                    "regression",
-                    "captureurl"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_STAP_01_Search for a Training and Provider", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,13 +104,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.When("the User searches with account term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("the User is able to choose the first training from the results displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the User is able to find the Provider by location CV1 5FB for the chosen training" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

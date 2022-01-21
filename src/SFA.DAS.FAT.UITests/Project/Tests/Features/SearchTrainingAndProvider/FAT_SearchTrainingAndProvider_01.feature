@@ -2,7 +2,6 @@
 
 @fat
 @regression
-@captureurl
 Scenario: FAT_STAP_01_Search for a Training and Provider
 	When the User searches with account term
 	Then the User is able to choose the first training from the results displayed
