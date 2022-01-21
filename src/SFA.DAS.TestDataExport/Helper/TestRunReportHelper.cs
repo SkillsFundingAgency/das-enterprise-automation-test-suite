@@ -10,14 +10,14 @@ namespace SFA.DAS.TestDataExport.Helper
 {
     public class TestRunReportHelper
     {
-        internal static void WriteRecords(ObjectContext objetContext, string fileName, Action<string> action)
+        public static void WriteRecords(ObjectContext objetContext, string fileName, Action<string> action)
         {
             string filePath = Path.Combine(objetContext.GetDirectory(), fileName);
 
             WriteRecords(filePath, fileName, action);
         }
 
-        internal static void ReportAfterTestRun(List<string> list, string fileNamePrefix)
+        public static void ReportAfterTestRun(List<string> list, string fileNamePrefix)
         {
             if (list.Count == 0) return;
 

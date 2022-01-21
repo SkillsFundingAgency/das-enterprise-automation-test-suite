@@ -7,7 +7,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 
-namespace SFA.DAS.TestDataExport.AfterScenario
+namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
     [Binding]
     public class UrlDataReporting
@@ -25,7 +25,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             var objectContext = _context.Get<ObjectContext>();
 
-            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
             {
                 string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
