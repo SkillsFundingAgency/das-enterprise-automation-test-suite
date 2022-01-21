@@ -20,22 +20,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_16_SenderCanSeeTheDownloadLink")]
-    public partial class TM_16_SenderCanSeeTheDownloadLinkFeature
+    [NUnit.Framework.DescriptionAttribute("TM_14_SenderCanViewTask")]
+    public partial class TM_14_SenderCanViewTaskFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TM_16_SenderCanSeeTheDownloadLink.feature"
+#line 1 "TM_14_SenderCanViewTask.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_16_SenderCanSeeTheDownloadLink", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_14_SenderCanViewTask", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_16_Sender can see download link on pledges page")]
+        [NUnit.Framework.DescriptionAttribute("TM_14_Sender can view a task on home page")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public virtual void TM_16_SenderCanSeeDownloadLinkOnPledgesPage()
+        public virtual void TM_14_SenderCanViewATaskOnHomePage()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_16_Sender can see download link on pledges page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_14_Sender can view a task on home page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the receiver levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the levy employer can see the download link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the levy employer can view the task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
