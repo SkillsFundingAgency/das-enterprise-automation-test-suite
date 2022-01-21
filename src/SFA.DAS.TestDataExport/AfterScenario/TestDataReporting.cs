@@ -14,29 +14,36 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     [Binding]
     public class TestDataReporting
     {
-        private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
 
-        public TestDataReporting(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
+        public TestDataReporting(ScenarioContext context) => _context = context;
 
         [AfterScenario(Order = 99)]
         public void CollectTestData()
         {
-            string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
+            var objectContext = _context.Get<ObjectContext>();
 
-            List<TestData> records = new List<TestData>();
-
-            var testdataset = _objectContext.GetAll();
-
-            testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
-
-            TestRunReportHelper.WriteRecords(_objectContext, fileName, (x) =>
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
             {
-                using (var writer = new StreamWriter(x))
+                string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
+
+                List<TestData> records = new List<TestData>();
+
+                var testdataset = objectContext.GetAll();
+
+                testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
+
+                TestRunReportHelper.WriteRecords(objectContext, fileName, (x) =>
                 {
-                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                    csv.WriteRecords(records);
-                    writer?.Flush();
-                };
+                    using (var writer = new StreamWriter(x))
+                    {
+                        using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+
+                        csv.WriteRecords(records);
+
+                        writer?.Flush();
+                    };
+                });
             });
         }
     }

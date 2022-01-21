@@ -2,18 +2,18 @@
 using SFA.DAS.TestDataExport.Helper;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
+using NUnit.Framework;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
     [Binding]
-    public class TestResultReporting
+    public class FailedTestReporting
     {
         private readonly ScenarioContext _context;
         private static List<string> _scenarioTitles;
 
-        public TestResultReporting(ScenarioContext context) => _context = context;
+        public FailedTestReporting(ScenarioContext context) => _context = context;
 
         [BeforeTestRun(Order = 11)]
         public static void InitVariable() => _scenarioTitles = new List<string>();
@@ -23,11 +23,14 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             if (_context.TestError != null)
             {
-                int requiredLength = 20;
+                _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+                {
+                    int requiredLength = 20;
 
-                var x = EscapePatternHelper.ScenarioTitleEscapePattern(Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_"));
+                    var x = TestContext.CurrentContext.Test.Name;
 
-                lock (_scenarioTitles) { _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength)); }
+                    lock (_scenarioTitles) { _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength)); }
+                });
             }
         }
 

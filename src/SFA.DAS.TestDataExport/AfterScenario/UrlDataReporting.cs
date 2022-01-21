@@ -12,10 +12,10 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     [Binding]
     public class UrlDataReporting
     {
-        private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
         private static List<string> _urls;
 
-        public UrlDataReporting(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
+        public UrlDataReporting(ScenarioContext context) => _context = context;
 
         [BeforeTestRun(Order = 10)]
         public static void InitVariable() => _urls = new List<string>();
@@ -23,21 +23,25 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 98)]
         public void CollectUrlData()
         {
-            string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
+            var objectContext = _context.Get<ObjectContext>();
 
-            var urldataset = _objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+            {
+                string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            if (urldataset == null || urldataset?.Count == 0) return;
+                var urldataset = objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
-            List<string> distinctUrls = urldataset.ToHashSet().ToList();
+                if (urldataset == null || urldataset?.Count == 0) return;
 
-            lock (_urls) { _urls.AddRange(distinctUrls); }
+                List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
-            TestRunReportHelper.WriteRecords(_objectContext, fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
+                lock (_urls) { _urls.AddRange(distinctUrls); }
+
+                TestRunReportHelper.WriteRecords(objectContext, fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
+            });
         }
 
         [AfterTestRun(Order = 10)]
         public static void ReportUrlCollection() => TestRunReportHelper.ReportAfterTestRun(_urls, "UrlCollection");
-
     }
 }

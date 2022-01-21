@@ -14,16 +14,7 @@ namespace SFA.DAS.TestDataExport.Helper
         {
             string filePath = Path.Combine(objetContext.GetDirectory(), fileName);
 
-            try
-            {
-                WriteRecords(filePath, fileName, action);
-            }
-            catch (Exception ex)
-            {
-                TestContext.Progress.WriteLine($"Exception occurred while writing data - {filePath}" + ex);
-
-                objetContext.SetAfterScenarioException(ex);
-            }
+            WriteRecords(filePath, fileName, action);
         }
 
         internal static void ReportAfterTestRun(List<string> list, string fileNamePrefix)
