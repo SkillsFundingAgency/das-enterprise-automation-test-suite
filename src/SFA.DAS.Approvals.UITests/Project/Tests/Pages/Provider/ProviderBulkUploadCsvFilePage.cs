@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.TestDataExport.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -83,21 +84,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private ApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
-            DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
-            string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
+            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
             string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
 
             return new ApprenticeDetails(courseCode)
             {
                 CohortRef = cohortRef,
-                ULN = apprenticeDataHelper.Uln(),
-                FamilyName = apprenticeDataHelper.ApprenticeLastname,
-                GivenNames = apprenticeDataHelper.ApprenticeFirstname,
+                ULN = datahelper.Uln(),
+                FamilyName = datahelper.ApprenticeLastname,
+                GivenNames = datahelper.ApprenticeFirstname,
                 DateOfBirth = dateOfBirth,
                 StartDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseStartDate),
                 EndDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseEndDate),
-                TotalPrice = apprenticeDataHelper.TrainingPrice,
-                ProviderRef = apprenticeDataHelper.EmployerReference,
+                TotalPrice = datahelper.TrainingPrice,
+                ProviderRef = datahelper.EmployerReference,
                 EmailAddress = emailAddress,
                 AgreementId = agreementId
             };
