@@ -22,29 +22,23 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         public static void ReportTestResult()
         {
             if (_scenarioTitles.Count == 0) return;
+            
+            var list = _scenarioTitles.Select(x => $"FullyQualifiedName~{x}|").ToList().ToString("").TrimEnd('|');
 
-            var list = _scenarioTitles.Select(x => $"{x}|");
-
-            var x = string.Join("|", list);
-
-            x = string.Join("FullyQualifiedName~", x);
-
-            AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { x }, "ScenarioTitle");
+            AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { list }, "ScenarioTitle");
         }
 
         [AfterScenario(Order = 99)]
         public void CaptureScenarioTitle()
         {
-            if (_context.TestError != null) _scenarioTitles.Add(GetScenarioTitle());
-        }
+            if (_context.TestError != null) 
+            {
+                int requiredLength = 20;
 
-        private string GetScenarioTitle()
-        {
-            var x = RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title);
+                var x = Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_");
 
-            x = Regex.Replace(x, @"-", "_");
-
-            return (x.Length <= 20) ? x : x.Substring(0, 20);
+                _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength));
+            }
         }
     }
 }
