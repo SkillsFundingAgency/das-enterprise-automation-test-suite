@@ -47,6 +47,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can apply for transfer opportunities")]
         public void ThenTheLevyEmployerCanApplyForTransferOpportunities() => NavigateToTransferMatchingPage().GoToFindABusinessPage();
 
+        [Then(@"the levy employer can view the task")]
+        public void ThenTheLevyEmployerCanViewTheTask()
+
+        {
+            _accountSignOutHelper.SignOut();
+            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+            NavigateToTransferMatchingPage().GoToAccountHomePage().ClickTask();
+            
+
+        }
+
 
         [Given(@"the another levy employer creates a pledge")]
         public void GivenTheAnotherLevyEmployerCreatesAPledge()
@@ -325,6 +336,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
         }
 
+    
+        
+
         private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
             string actualErrorMessage = page.GetErrorMessage();
@@ -343,6 +357,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
+
+
 
         private void LoginAsReceiver(EasAccountUser login, bool isLevy)
         {
