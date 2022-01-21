@@ -7,6 +7,8 @@ namespace SFA.DAS.FrameworkHelpers
     {
         private static readonly string[] chars = new string[] { ".", "^", "$", "?", "(", ")", "[", "]", "{", "}", "\\", "|" };
 
+        public static string ScenarioTitleEscapePattern(string value) => Regex.Replace(value, @"‘", string.Empty);
+
         public static string DirectoryEscapePattern(string value) => Regex.Replace(value, @"<|>|:", string.Empty);
 
         public static string StringEscapePattern(string value, string pattern) => Regex.Replace(value, StringEscapePattern(pattern), string.Empty);
@@ -14,14 +16,14 @@ namespace SFA.DAS.FrameworkHelpers
         private static string StringEscapePattern(string pattern)
         {
             string escapedPattern = pattern;
+
             foreach (char x in pattern)
             {
                 var y = x.ToString();
-                if (chars.Any(c => c == y))
-                {
-                    escapedPattern = escapedPattern.Replace(y, $"\\{x}");
-                }
+
+                if (chars.Any(c => c == y)) escapedPattern = escapedPattern.Replace(y, $"\\{x}");
             }
+
             return escapedPattern;
         }
     }

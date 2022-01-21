@@ -35,7 +35,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             {
                 int requiredLength = 20;
 
-                var x = Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_");
+                var x = EscapePatternHelper.ScenarioTitleEscapePattern(Regex.Replace(RegexHelper.TrimAnySpace(_context.ScenarioInfo.Title), @"-", "_"));
 
                 _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength));
             }
