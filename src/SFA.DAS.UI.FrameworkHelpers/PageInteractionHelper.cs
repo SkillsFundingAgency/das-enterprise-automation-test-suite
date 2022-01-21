@@ -70,7 +70,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 var actual = GetText(element, retryAction);
 
-                if (expected.Any(x=> x.Contains(actual))) return true;
+                if (expected.Any(x => actual.Contains(x))) return true;
 
                 throw new Exception("Page verification failed:"
                 + "\n Expected: " + string.Join(" OR ", expected) + " page"
