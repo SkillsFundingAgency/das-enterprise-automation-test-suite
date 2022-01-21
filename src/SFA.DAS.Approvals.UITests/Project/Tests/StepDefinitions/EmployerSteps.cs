@@ -3,6 +3,10 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -16,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ApprenticeDataHelper _dataHelper;
+        private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
@@ -28,6 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _employerWithMultipleAccountsUser);
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _publishPaymentEvent = context.Get<PublishPaymentEvent>();
         }
@@ -95,6 +103,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeRequestsPage = _approveApprenticeDetailsPage.SaveAndExit();
         }
 
+        
+
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft() => _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
 
@@ -133,6 +143,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
 
+        [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
+        [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts)
+        {
+            _employerStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts);
+        }
+
+        [Given(@"the Employer2 creates (\d) cohorts and sends them to provider to add apprentices")]
+        public void Employer2AddsApprenticesToCurrentCohort(int numberOfCohorts)
+        {
+            _employerStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts, true);
+        }
+
+        [Given(@"the Employer1 logins using existing Levy Account")]
+        public void ThenEmployer1LogIns()
+        {
+            _multipleAccountsLoginHelper.Login(_employerWithMultipleAccountsUser, true);
+        }
+
+        [Given(@"the Employer2 logins")]
+        public void ThenEmployer2LogIns()
+        {
+            _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.SecondOrganisationName);
+            _employerStepsHelper.GoToEmployerApprenticesHomePage();
+        }
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
@@ -229,5 +264,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the user can add an apprentices")]
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
+
+       
     }
 }

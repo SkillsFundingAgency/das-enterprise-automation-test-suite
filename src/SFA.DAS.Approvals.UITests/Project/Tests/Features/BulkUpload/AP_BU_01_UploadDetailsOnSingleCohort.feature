@@ -2,6 +2,6 @@
 
 @mytag
 Scenario: AP_BU_01_Upload Details On Single Cohort
-	Given the provider has an editable cohort
-	When provider uses bulk upload to add multiple apprentices into that cohort
-	Then the apprentice details are uploaded correctly
+	Given the Employer logins using existing Levy Account
+	And the Employer create a cohort and send to provider to add apprentices
+	When Provider add 2 apprentice details using bulkupload and sends to employer for approval

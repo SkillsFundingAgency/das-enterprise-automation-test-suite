@@ -7,7 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class AgreementIdSqlHelper : SqlDbHelper
     {
-        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        DbConfig _dbConfig;
+        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
     
         public string GetAgreementId(string email, string name)
         {
@@ -16,6 +17,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             Dictionary<string, string> sqlParameters = new Dictionary<string, string> { { "@email", email }, { "@name", name } };
 
             var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, connectionString, sqlParameters);
+
+            if (data.Count == 0)
+                return null;
+            else
+                return data[0][0].ToString();
+        }
+
+        public string GetAgreementIdByCohortRef(string cohortRef)
+        {
+            string sqlQueryFromFile = @$"Select PublicHashedId from [AccountLegalEntities] ALE
+            Inner Join Commitment C on C.AccountLegalEntityId = ALE.Id
+             Where C.Reference = '{cohortRef}'";
+
+            var data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, _dbConfig.CommitmentsDbConnectionString);
 
             if (data.Count == 0)
                 return null;

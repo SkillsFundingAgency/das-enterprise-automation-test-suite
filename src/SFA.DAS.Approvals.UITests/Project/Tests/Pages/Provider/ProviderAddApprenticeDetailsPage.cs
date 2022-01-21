@@ -68,12 +68,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
         }
+
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectBulkUpload()
         {
             SelectRadioOptionByForAttribute("confirm-BulkCsv");
             Continue();
             return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
         }
+
+        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUploadV2()
+        {
+            SelectRadioOptionByForAttribute("confirm-BulkCsv");
+            Continue();
+            return new ProviderBeforeYouStartBulkUploadPage(context);
+        }
+
         private void EnterApprenticeMandatoryValidDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\BulkUpload\AP_BU_02_UploadDetailsOnMultipleCohorts - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -68,6 +72,19 @@
 
   <ItemGroup>
     <Folder Include="Project\DataFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature.cs">
+      <DependentUpon>AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\BulkUpload\AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

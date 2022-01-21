@@ -25,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIJourney = "IsEIJourney";
         private const string SameApprentice = "IsSameApprentice";
         private const string EIApprenticeDetailList = "eiapprenticedetaillist";
+        private const string CohortReferenceList = "cohortreferencelist";
         #endregion
 
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
@@ -35,6 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static void SetApprenticeTotalCost(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeTotalCost, value);
 
         public static void SetCohortReference(this ObjectContext objectContext, string value) => objectContext.Set(CohortReference, value);
+        public static void SetCohortReferenceList(this ObjectContext objectContext, List<string> value) => objectContext.Replace(CohortReferenceList, value);
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
 
@@ -71,6 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static int GetNoOfApprentices(this ObjectContext objectContext) => objectContext.Get<int>(NoOfApprentices);
 
         internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
+        internal static List<string> GetCohortReferenceList(this ObjectContext objectContext) => objectContext.Get<List<string>>(CohortReferenceList);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
 

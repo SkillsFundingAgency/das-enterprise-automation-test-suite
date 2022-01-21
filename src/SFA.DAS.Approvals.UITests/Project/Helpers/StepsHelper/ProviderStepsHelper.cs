@@ -136,6 +136,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SubmitApprove();
         }
 
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2(int numberOfApprenticesPerCohort)
+        {
+            return
+                GoToProviderHomePage(false)
+                .GotoSelectJourneyPage()
+                .SelectBulkUploadV2()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFile(numberOfApprenticesPerCohort)
+                .UploadFile();
+        }
+
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
             GoToProviderHomePage();
@@ -275,7 +286,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return GoToProviderHomePage(false)
                     .GotoSelectJourneyPage()
-                    .SelectAddManually()
+                    .SelectBulkUpload()
                     .SelectOptionAddToAnExistingCohort();
         }
     }
