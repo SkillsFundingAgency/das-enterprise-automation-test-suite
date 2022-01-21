@@ -15,11 +15,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             });
         }
 
-        public new void CreateApprenticeshipViaApi()
+        public new void CreateApprovalsCreatedEvent()
         {
             _assertHelper.RetryOnNUnitException(() =>
             {
-                base.CreateApprenticeshipViaApi();
+                base.CreateApprovalsCreatedEvent();
             });
         }
     }

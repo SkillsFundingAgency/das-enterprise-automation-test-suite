@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenQA.Selenium.Remote;
+using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -24,15 +24,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             if (_context.TestError != null)
             {
-                var browser = _objectContext.GetBrowser();
-                var errorMessage = _context.TestError.Message;
-
                 switch (true)
                 {
-                    case bool _ when browser.IsCloudExecution():
+                    case bool _ when IsCloudExecution():
                         try
                         {
-                            _browserStackReport.MarkTestAsFailed(GetSessionId(), errorMessage);
+                            _browserStackReport.MarkTestAsFailed(GetSessionId(), _context.TestError.Message);
                         }
                         catch (Exception ex)
                         {
@@ -44,17 +41,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
         }
 
-        public void UpdateTestName(string name)
-        {
-            _browserStackReport.UpdateTestName(GetSessionId(), name);
-        }
+        public void UpdateTestName(string name) { if (IsCloudExecution()) _browserStackReport.UpdateTestName(GetSessionId(), name); }
 
-        private string GetSessionId()
-        {
-            var webDriver = _context.GetWebDriver();
-            RemoteWebDriver remoteWebDriver = (RemoteWebDriver)webDriver;
-            return remoteWebDriver.SessionId.ToString();
-        }
+        private string GetSessionId() => (_context.GetWebDriver() as WebDriver).SessionId.ToString();
+
+        private bool IsCloudExecution() => _objectContext.GetBrowser().IsCloudExecution();
     }
 }
 
