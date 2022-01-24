@@ -78,7 +78,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "employmentcheck"};
+                    "employmentcheckapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -135,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("EC_API_04_PerformEmploymentCheck_NinoAndPayeAreNull: 5")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employmentcheck")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
         public virtual void EC_API_04_PerformEmploymentCheck_NinoAndPayeAreNull_5()
         {
 #line 6
