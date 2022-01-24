@@ -45,8 +45,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {enrichedData.nino} and PayeScheme: {enrichedData.payeScheme}");
 
-            Assert.AreEqual(_testData.NationalInsuranceNumber, enrichedData.nino);
-            Assert.AreEqual(_testData.PayeScheme, enrichedData.payeScheme);
+            Assert.AreEqual(_testData.NationalInsuranceNumber, enrichedData.nino, $"Expected Nino is {_testData.NationalInsuranceNumber}, actual Nino is {enrichedData.nino}");
+            Assert.AreEqual(_testData.PayeScheme, enrichedData.payeScheme, $"Expected PayeScheme is {_testData.PayeScheme}, actual PayeScheme is {enrichedData.payeScheme}");
         }
 
         [When(@"Nino is not found")]
@@ -74,7 +74,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         {
             int numOfRequests = _employmentChecksSqlDbHelper.GetNumberOfEmploymentCheckRequests();
 
-            Assert.AreEqual(0, numOfRequests);
+            Assert.AreEqual(0, numOfRequests, $"Expected number of Employment Checks to be 0 but was {numOfRequests}");
         }
 
 
@@ -84,9 +84,11 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         {
             var employmentCheckResults = _employmentChecksSqlDbHelper.GetEmploymentCheckResults();
 
-            Assert.AreEqual(employed, employmentCheckResults.isEmployed);
-            Assert.AreEqual(returnCode == "null" ? null : returnCode, employmentCheckResults.returnCode);
-            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage);
+            returnCode = returnCode == "null" ? null : returnCode;
+  
+            Assert.AreEqual(employed, employmentCheckResults.isEmployed, $"Expected Employment Status is {employed}, Actual Employment Status is {employmentCheckResults.isEmployed}");
+            Assert.AreEqual(returnCode, employmentCheckResults.returnCode, $"Expected Return Code is {returnCode}, Actual Return Code is {employmentCheckResults.returnCode}" );
+            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, $"Expected Return Message is {returnMessage}, actual Return Message is {employmentCheckResults.returnMessage}");
         }
 
     }
