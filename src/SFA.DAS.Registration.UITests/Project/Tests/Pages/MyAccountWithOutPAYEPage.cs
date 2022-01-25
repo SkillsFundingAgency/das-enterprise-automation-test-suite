@@ -7,15 +7,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "MY ACCOUNT";
 
-        #region Locators
-        private By AddYourPAYESchemeLink => By.CssSelector(".das-panel__link");
-        #endregion
-
         public MyAccountWithOutPayePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AddAPAYESchemePage AddYourPAYEScheme()
         {
-            formCompletionHelper.Click(AddYourPAYESchemeLink);
+            formCompletionHelper.ClickLinkByText("Add your PAYE scheme");
             return new AddAPAYESchemePage(context);
         }
     }
