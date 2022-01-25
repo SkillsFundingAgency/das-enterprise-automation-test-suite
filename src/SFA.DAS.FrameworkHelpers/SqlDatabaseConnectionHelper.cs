@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Azure.Services.AppAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.FrameworkHelpers
 {
@@ -100,6 +102,12 @@ namespace SFA.DAS.FrameworkHelpers
         {
             using var connection = GetSqlConnection(connectionString);
             return connection.Execute(queryToExecute);
+        }
+
+        public static async Task<int> Insert<T>(T entity, string connectionString) where T : class
+        {
+            await using var dbConnection = GetSqlConnection(connectionString);
+            return await dbConnection.InsertAsync(entity);
         }
 
         private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
