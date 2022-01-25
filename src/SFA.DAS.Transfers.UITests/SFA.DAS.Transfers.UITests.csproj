@@ -31,21 +31,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\TR_04_03_TransfersConnectionJourney.feature.cs">
-	    <DependentUpon>TR_04_03_TransfersConnectionJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_04_05_TransfersConnectionJourney.feature.cs">
-	    <DependentUpon>TR_04_05_TransfersConnectionJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_04_02_TransfersConnectionJourney.feature.cs">
-	    <DependentUpon>TR_04_02_TransfersConnectionJourney.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\TR_04_04_TransfersConnectionJourney.feature.cs">
-	    <DependentUpon>TR_04_04_TransfersConnectionJourney.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-  
-	<ItemGroup>
 		<None Update="SFA.DAS.Transfers.UITests.runtimeconfig.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -61,25 +46,6 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_03_TransfersConnectionJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_05_TransfersConnectionJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_02_TransfersConnectionJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_04_TransfersConnectionJourney.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>
