@@ -132,23 +132,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().RejectApplication();
         }
 
-        [Then(@"the levy employer can see the download link")]
-
-        public void TheLevyEmployerCanSeeTheDownloadLink()
-        {
-            _accountSignOutHelper.SignOut();
-
-            _objectContext.UpdateOrganisationName(_sender);
-
-            _multipleAccountsLoginHelper.ReLogin();
-
-            NavigateToTransferMatchingPage();
-
-            _objectContext.UpdateOrganisationName(_receiver);
-
-            GoToViewMyTransferPledgePage().GoToTransferPledgePage().DownloadExcel();
-        }
-
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding()
         {
@@ -337,8 +320,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         }
 
     
-        
-
         private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
             string actualErrorMessage = page.GetErrorMessage();

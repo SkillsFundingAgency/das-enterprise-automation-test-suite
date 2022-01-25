@@ -9,12 +9,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class AccountHomePage : HomePage
-
     {
-        protected override string PageTitle => objectContext.GetOrganisationName();
+       protected override string PageTitle => objectContext.GetOrganisationName();
         public AccountHomePage(ScenarioContext context) : base(context) { }
-
-
 
         public MyTransferPledgesPage ClickTask()
         {
@@ -22,8 +19,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new MyTransferPledgesPage(context);
         }
     }
-
-
-
 }
 
