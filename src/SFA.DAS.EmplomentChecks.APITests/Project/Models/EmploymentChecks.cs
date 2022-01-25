@@ -1,7 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 using System;
 
-
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 {
     [Table("Business.EmploymentCheck")]

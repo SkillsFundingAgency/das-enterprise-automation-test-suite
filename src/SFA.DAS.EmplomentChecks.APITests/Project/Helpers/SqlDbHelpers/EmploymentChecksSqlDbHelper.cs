@@ -106,7 +106,6 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             if (bool.TryParse(result[0][0].ToString(), out bool parsedEmploymentStatus)) employed = parsedEmploymentStatus;
 
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
-
         }
     }
 }

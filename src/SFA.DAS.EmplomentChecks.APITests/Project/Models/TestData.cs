@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
+﻿namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 {
     public class TestData
     {
