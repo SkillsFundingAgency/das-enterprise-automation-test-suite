@@ -77,10 +77,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 enrichedData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
 
-            if (enrichedData.Count == 0)
-            {
-                return (null, null);
-            }
+            if (enrichedData.Count == 0) return (null, null);
 
             var paye = enrichedData[0][0].ToString() == "" ? null : enrichedData[0][0].ToString().Trim(' ');
             var nino = enrichedData[0][1].ToString() == "" ? null : enrichedData[0][1].ToString().Trim(' ');
@@ -114,10 +111,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
 
-            if (result.Count == 0)
-            {
-                return (null, null, null);
-            }
+            if (result.Count == 0) return (null, null, null);
 
             bool? employed = null;
 

@@ -102,9 +102,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             for (int i = 0; i < payeSchemes.Count; i++)
             {
                 Assert.AreEqual(String.Concat(payeSchemes[i].Where(c => !Char.IsWhiteSpace(c))), requests[i][0], "Incorrect PayeScheme displayed in EmploymentCheckCacheRequest table");
-
             }
         }
-
     }
 }
