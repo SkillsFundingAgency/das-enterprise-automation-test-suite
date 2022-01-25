@@ -43,8 +43,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {nino} and PayeScheme: {payeScheme}");
 
-            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, $"Expected Nino is {_testData.NationalInsuranceNumber}, actual Nino is {nino}");
-            Assert.AreEqual(_testData.PayeScheme, payeScheme, $"Expected PayeScheme is {_testData.PayeScheme}, actual PayeScheme is {payeScheme}");
+            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
+            Assert.AreEqual(_testData.PayeScheme, payeScheme, "Unexpected Paye Scheme(s) returned");
         }
 
         [When(@"Nino is not found")]
@@ -80,9 +80,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             returnCode = returnCode == "null" ? null : returnCode;
   
-            Assert.AreEqual(employed, employmentCheckResults.isEmployed, $"Expected Employment Status is {employed}, Actual Employment Status is {employmentCheckResults.isEmployed}");
-            Assert.AreEqual(returnCode, employmentCheckResults.returnCode, $"Expected Return Code is {returnCode}, Actual Return Code is {employmentCheckResults.returnCode}" );
-            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, $"Expected Return Message is {returnMessage}, actual Return Message is {employmentCheckResults.returnMessage}");
+            Assert.AreEqual(employed, employmentCheckResults.isEmployed, "Unexpected Employement Status returned.");
+            Assert.AreEqual(returnCode, employmentCheckResults.returnCode, "Unexpected Return Code is returned." );
+            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, "Unexpected Return Message returned.");
         }
     }
 }
