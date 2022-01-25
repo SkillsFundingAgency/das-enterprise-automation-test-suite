@@ -47,7 +47,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public CreateLoginDetailsPage ClickCreateAnAccountLinkOnSignInPage()
         {
-            formCompletionHelper.ClickLinkByText("create an account");
+            formCompletionHelper.ClickLinkByText("Create an account");
             return new CreateLoginDetailsPage(context);
         }
     }
