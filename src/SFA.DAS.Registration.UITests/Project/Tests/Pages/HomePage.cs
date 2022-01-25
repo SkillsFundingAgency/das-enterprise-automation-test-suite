@@ -12,10 +12,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourTransfersLink => By.LinkText("Your transfers");
         private By PublicAccountIdLocator => By.CssSelector(".das-definition-list__definition");
-        private By SucessSummary => By.CssSelector(".success-summary");
+        private By SucessSummary => By.CssSelector(".das-notification");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
-        private By AccountNameText => By.CssSelector("p.heading-xlarge");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         protected By EIHubLink => By.LinkText("Your hire a new apprentice payments");
@@ -35,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage VerifyAccountName(string name)
         {
-            pageInteractionHelper.VerifyText(AccountNameText, name);
+            pageInteractionHelper.VerifyText(PageHeader, name);
             return this;
         }
 
