@@ -29,7 +29,7 @@
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SFA.DAS.EmploymentChecks.APITests.json">
+    <None Update="SFA.DAS.EmploymentChecks.APITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">

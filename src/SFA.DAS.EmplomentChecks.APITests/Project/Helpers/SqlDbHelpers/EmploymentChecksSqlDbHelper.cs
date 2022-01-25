@@ -17,12 +17,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
         public async Task<int> InsertData(long uln, long accountId, DateTime minDate, DateTime maxDate)
         {
-
             // 1. Delete any historic record created from previous runs
             DeleteEmploymentCheck(uln, accountId);
 
             // 2. Insert a new EmploymentCheck record in DB and get its Id
-
             var now = DateTime.Now; 
 
             var check = new EmploymentChecksDb
@@ -79,7 +77,6 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             var nino = enrichedData[0][1].ToString() == "" ? null : enrichedData[0][1].ToString().Trim(' ');
 
             return (nino, paye);
-
         }
 
         internal int GetNumberOfEmploymentCheckRequests()
@@ -104,14 +101,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
 
-            bool parsedEmploymentStatus;
             bool? employed = null;
 
-            if (bool.TryParse(result[0][0].ToString(), out parsedEmploymentStatus))
-            {
-
-                employed = parsedEmploymentStatus;
-            }
+            if (bool.TryParse(result[0][0].ToString(), out bool parsedEmploymentStatus)) employed = parsedEmploymentStatus;
 
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
 

@@ -6,7 +6,6 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
     [Table("ApprenticeEmploymentCheckMessageQueue")]
     public class ApprenticeEmploymentCheckMessageQueue
     {
-
         public Guid MessageId { get; set; }
 
         public DateTime MessageCreatedDateTime { get; set; }
