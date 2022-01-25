@@ -74,18 +74,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAcc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_S_RA_01_Create adn Rename Employer Account")]
+        [NUnit.Framework.DescriptionAttribute("RE_S_RA_01_Create and Rename Employer Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void RE_S_RA_01_CreateAdnRenameEmployerAccount()
+        public virtual void RE_S_RA_01_CreateAndRenameEmployerAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
                     "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_S_RA_01_Create adn Rename Employer Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_S_RA_01_Create and Rename Employer Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
