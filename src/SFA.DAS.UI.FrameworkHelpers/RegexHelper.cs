@@ -99,8 +99,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static bool CheckForPercentageValueMatch(string str) => Regex.Match(str, "[0-9]{1,2}%").Success;
 
-        private static string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
-
         private static Match CohortMatch(string url, string action) => Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
+
+        private static string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
     }
 }
