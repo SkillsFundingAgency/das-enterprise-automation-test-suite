@@ -125,5 +125,25 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
         }
+
+        internal List<object[]> getEmploymentCheckCacheRequestRows()
+        {
+            int count = 0;
+
+            string query = $"SELECT PayeScheme from [Cache].[EmploymentCheckCacheRequest] where ApprenticeEmploymentCheckId = {employmentCheckId}";
+
+            List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            // count variable is added to stop the infinite loop incase CreateEmploymentCheckCacheRequestsOrchestrator has crashed
+            while (result.Count == 0 && count < 15)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
+
+            return result;
+        }
     }
 }
