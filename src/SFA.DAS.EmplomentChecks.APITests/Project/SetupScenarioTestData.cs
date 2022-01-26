@@ -34,7 +34,13 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
 
                 { new Tuple<int, string>(6, "TEST"), new TestData() { ULN = 1000203602, AccountId = 48876, NationalInsuranceNumber = "PR555555A", PayeScheme = "923/EZ00059" } },
                 { new Tuple<int, string>(6, "TEST2"), new TestData() { ULN = 1000203602, AccountId = 17703, NationalInsuranceNumber = "PR555555A", PayeScheme = "923/EZ00059" } },
-                { new Tuple<int, string>(6, "PP"), new TestData() { ULN = 8048127198, AccountId = 230093, NationalInsuranceNumber = "LJ000000A", PayeScheme = "923/EZ00059" } }
+                { new Tuple<int, string>(6, "PP"), new TestData() { ULN = 8048127198, AccountId = 230093, NationalInsuranceNumber = "LJ000000A", PayeScheme = "923/EZ00059" } },
+
+                { new Tuple<int, string>(7, "TEST"), new TestData() { ULN = 5000000063, AccountId = 10211, NationalInsuranceNumber = "AA789012C", PayeScheme = "001/MP00176, 001/MP00200, 001/MP00231" } },
+                { new Tuple<int, string>(7, "TEST2"), new TestData() { ULN = 5000000063, AccountId = 5030, NationalInsuranceNumber = "AA789012C", PayeScheme = "100/RAAUSER193, 100/RAAUSER401, 100/RAAUSER402" } },
+                { new Tuple<int, string>(7, "PP"), new TestData() { ULN = 5805421088, AccountId = 49044, NationalInsuranceNumber = "LJ000000A", PayeScheme = "001/NK0005, 101/LE35388" } },
+
+
             };
 
             var data = new Tuple<int, string>(scenarioId, EnvironmentConfig.EnvironmentName);

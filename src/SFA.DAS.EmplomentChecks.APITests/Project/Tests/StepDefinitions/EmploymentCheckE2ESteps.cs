@@ -4,6 +4,8 @@ using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 {
@@ -13,6 +15,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
         private readonly SetupScenarioTestData _setupScenarioTestData;
         private TestData _testData;
+        private List<string> payeSchemes = new List<string>();
 
         public EmploymentCheckE2ESteps(ScenarioContext context)
         {
@@ -35,6 +38,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             // If it is not then start it
         }
 
+        [When(@"multiple paye schemes are found on account")]
         [When(@"data is enriched with results from DC and Accounts")]
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
@@ -43,9 +47,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {nino} and PayeScheme: {payeScheme}");
 
-            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, $"Expected Nino is {_testData.NationalInsuranceNumber}, actual Nino is {nino}");
-            Assert.AreEqual(_testData.PayeScheme, payeScheme, $"Expected PayeScheme is {_testData.PayeScheme}, actual PayeScheme is {payeScheme}");
+            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
+            Assert.AreEqual(_testData.PayeScheme, payeScheme, "Unexpected Paye Scheme(s) returned");
         }
+
 
         [When(@"Nino is not found")]
         public void WhenNinoIsNotFound()
@@ -80,9 +85,24 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             returnCode = returnCode == "null" ? null : returnCode;
   
-            Assert.AreEqual(employed, employmentCheckResults.isEmployed, $"Expected Employment Status is {employed}, Actual Employment Status is {employmentCheckResults.isEmployed}");
-            Assert.AreEqual(returnCode, employmentCheckResults.returnCode, $"Expected Return Code is {returnCode}, Actual Return Code is {employmentCheckResults.returnCode}" );
-            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, $"Expected Return Message is {returnMessage}, actual Return Message is {employmentCheckResults.returnMessage}");
+            Assert.AreEqual(employed, employmentCheckResults.isEmployed, "Unexpected Employement Status returned.");
+            Assert.AreEqual(returnCode, employmentCheckResults.returnCode, "Unexpected Return Code is returned." );
+            Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, "Unexpected Return Message returned.");
+        }
+
+        [Then(@"an employment check request is created for each unique Nino and paye scheme combination")]
+        public void ThenAnEmploymentCheckRequestIsCreatedForEachUniqueNinoAndPayeSchemeCombination()
+        {
+            payeSchemes = _testData.PayeScheme.Split(',').ToList();
+
+            var requests = _employmentChecksSqlDbHelper.getEmploymentCheckCacheRequestRows();
+
+            Assert.AreEqual(payeSchemes.Count, requests.Count, $"Incorrect number of EmploymentCheckCacheRequest returned.");
+
+            for (int i = 0; i < payeSchemes.Count; i++)
+            {
+                Assert.AreEqual(String.Concat(payeSchemes[i].Where(c => !Char.IsWhiteSpace(c))), requests[i][0], "Incorrect PayeScheme displayed in EmploymentCheckCacheRequest table");
+            }
         }
     }
 }
