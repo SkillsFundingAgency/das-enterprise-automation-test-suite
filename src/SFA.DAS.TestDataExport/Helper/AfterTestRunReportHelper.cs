@@ -19,7 +19,7 @@ namespace SFA.DAS.TestDataExport.Helper
 
             string parentdirectoryPath = Directory.GetParent(directoryPath).FullName;
 
-            TestContext.Progress.WriteLine($"***************{distinctList.Count} data should be available in {parentdirectoryPath}/{fileName}***************");
+            TestContext.Progress.WriteLine($"***************{distinctList.Count} data should be available in {parentdirectoryPath}\\{fileName}***************");
 
             for (int i = 0; i < distinctList.Count; i++) TestContext.Progress.WriteLine($"{i + 1} - {distinctList[i]}");
 
