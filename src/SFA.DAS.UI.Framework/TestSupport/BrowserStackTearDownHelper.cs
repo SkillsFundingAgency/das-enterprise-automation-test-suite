@@ -17,7 +17,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _browserStackReport = context.Get<BrowserStackReportingService>();
+            context.TryGetValue(out _browserStackReport);
         }
 
         public void InformBrowserStackOnFailure()

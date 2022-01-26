@@ -1,10 +1,9 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.TestDataExport.BeforeScenario
+namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 {
     [Binding]
     public class DirectorySetup
@@ -26,8 +25,6 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
             if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
             _objectContext.SetDirectory(directory);
-
-            _objectContext.SetTestDataList();
         }
 
         private string GetDirectoryPath()

@@ -16,16 +16,16 @@ namespace SFA.DAS.TestDataExport
 
         public static FrameworkList<Exception> GetAfterScenarioExceptions(this ObjectContext objectContext) => objectContext.Get<FrameworkList<Exception>>(AfterScenarioExceptions);
 
-        public static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
+        internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
-        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
-
-        public static void SetTestDataList(this ObjectContext objectContext)
+        internal static void SetTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
         }
+
+        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
 
         private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
