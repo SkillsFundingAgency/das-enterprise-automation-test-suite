@@ -26,9 +26,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
             var dbConfig = _configSection.GetConfigSection<DbConfig>();
 
-            var isLocalhost = !Configurator.IsVstsExecution;
-
-            if (isLocalhost) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>()).GetLocalHostDbConfig();
+            if (!Configurator.IsVstsExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>()).GetLocalHostDbConfig();
 
             _context.Set(dbConfig);
         }
