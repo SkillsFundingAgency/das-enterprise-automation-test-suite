@@ -34,7 +34,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
                 if (transferRequestRow.Text.ToUpper().Contains($"{sender.ToUpper()}")
-                    && transferRequestRow.Text.Contains("Receiver")
+                    //&& transferRequestRow.Text.Contains("Receiver")
                     && transferRequestRow.Text.Contains("Pending"))
                 {
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
