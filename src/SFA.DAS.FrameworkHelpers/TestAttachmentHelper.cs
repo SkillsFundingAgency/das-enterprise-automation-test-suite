@@ -40,6 +40,8 @@ namespace SFA.DAS.FrameworkHelpers
             action(filePath);
 
             TestContext.AddTestAttachment(filePath, fileName);
+
+            TestContext.Progress.WriteLine($"***************{filePath} sucessfully created***************");
         }
     }
 }
