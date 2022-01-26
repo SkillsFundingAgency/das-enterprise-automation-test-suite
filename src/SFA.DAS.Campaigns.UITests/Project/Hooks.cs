@@ -1,8 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project
@@ -11,18 +10,20 @@ namespace SFA.DAS.Campaigns.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
 
-        public Hooks(ScenarioContext context)
-        {
-            _context = context;
-            _webDriver = context.GetWebDriver();
-        }
+        public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 34)]
         public void SetUpHelpers() => _context.Set(new CampaignsDataHelper());
 
         [BeforeScenario(Order = 36)]
-        public void NavigateToBaseUrl() => _webDriver.Navigate().GoToUrl(UrlConfig.CA_BaseUrl);
+        public void NavigateToBaseUrl()
+        {
+            var webDriver = _context.GetWebDriver();
+
+            TestContext.Progress.WriteLine($"***************Is webDriver null = '{webDriver == null}' ***************");
+
+            webDriver.Navigate().GoToUrl(UrlConfig.CA_BaseUrl);
+        }
     }
 }
