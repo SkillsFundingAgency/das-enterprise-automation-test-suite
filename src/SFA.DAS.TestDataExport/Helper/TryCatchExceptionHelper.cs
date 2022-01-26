@@ -1,14 +1,14 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.TestDataExport.Helper
 {
     public class TryCatchExceptionHelper
     {
         private readonly ObjectContext _objectContext;
 
         public TryCatchExceptionHelper(ObjectContext objectContext) => _objectContext = objectContext;
-
+        
         public void AfterScenarioException(Action action)
         {
             try

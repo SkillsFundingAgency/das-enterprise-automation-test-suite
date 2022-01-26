@@ -1,4 +1,5 @@
 ﻿@employerincentivesPaymentsProcess
+@createIncentive
 Feature: CreateIncentive
 	When an application has been submitted
 	Then an apprenticeship incentive is created for each apprentiveship in the applicaiton

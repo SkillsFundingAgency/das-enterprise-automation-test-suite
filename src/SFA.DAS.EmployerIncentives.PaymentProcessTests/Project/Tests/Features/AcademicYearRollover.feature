@@ -1,4 +1,5 @@
 ﻿@employerincentivesPaymentsProcess
+@academicYearRollover
 Feature: AcademicYearRollover
 https://skillsfundingagency.atlassian.net/browse/EI-1317
 RO&MAYs - revisit Learning stopped trigger for multiple academic years
