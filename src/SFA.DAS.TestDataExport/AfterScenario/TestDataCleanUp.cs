@@ -15,7 +15,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         public TestDataCleanUp(ScenarioContext context) => _context = context;
 
-        [AfterScenario(Order = 98)]
+        //Can test this once all the pipelines have access to all db's
+        //[AfterScenario(Order = 98)]
         public void CleanUpTestData()
         {
             if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))
