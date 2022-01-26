@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
 using TechTalk.SpecFlow;

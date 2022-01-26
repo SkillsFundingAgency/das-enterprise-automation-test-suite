@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {

@@ -6,6 +6,7 @@ using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {

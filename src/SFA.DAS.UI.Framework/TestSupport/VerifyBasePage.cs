@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.TestDataExport;
 using System.Linq;
 using SFA.DAS.ConfigurationBuilder;
 

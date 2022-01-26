@@ -8,6 +8,7 @@ using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using System.Globalization;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataCleanup;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
