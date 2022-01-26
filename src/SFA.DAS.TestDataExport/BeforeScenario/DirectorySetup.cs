@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
@@ -12,17 +11,12 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
     {
         private readonly ObjectContext _objectContext;
         private readonly FeatureContext _featureContext;
-        private readonly ScenarioContext _context;
 
         public DirectorySetup(ScenarioContext context, FeatureContext featureContext)
         {
-            _context = context;
             _featureContext = featureContext;
             _objectContext = context.Get<ObjectContext>();
         }
-
-        [BeforeScenario(Order = 1)]
-        public void SetUpHelpers() => _context.Set(new TryCatchExceptionHelper(_objectContext));
 
         [BeforeScenario(Order = 4)]
         public void SetUpDirectory()

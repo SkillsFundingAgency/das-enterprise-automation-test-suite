@@ -4,6 +4,7 @@ using SFA.DAS.TestDataCleanup.Project.Helpers;
 using System.Collections.Generic;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 using System.Linq;
+using SFA.DAS.TestDataCleanup;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {

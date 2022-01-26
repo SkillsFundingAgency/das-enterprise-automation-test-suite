@@ -8,15 +8,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.Helper
 {
-    public class TestRunReportHelper
+    public class AfterTestRunReportHelper
     {
-        public static void WriteRecords(ObjectContext objetContext, string fileName, Action<string> action)
-        {
-            string filePath = Path.Combine(objetContext.GetDirectory(), fileName);
-
-            WriteRecords(filePath, fileName, action);
-        }
-
         public static void ReportAfterTestRun(List<string> list, string fileNamePrefix)
         {
             if (list.Count == 0) return;
@@ -25,7 +18,7 @@ namespace SFA.DAS.TestDataExport.Helper
 
             string fileName = $"{fileNamePrefix}_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            string filePath = Path.Combine(Configurator.GetAgentTempDir(), "TestResults", fileName);
+            string filePath = Path.Combine(Configurator.GetAgentTempDir(), "TestResults");
 
             TestContext.Progress.WriteLine($"***************{distinctList.Count} data available in {filePath}***************");
 
@@ -33,19 +26,12 @@ namespace SFA.DAS.TestDataExport.Helper
 
             try
             {
-                WriteRecords(filePath, fileName, (x) => File.WriteAllLines(x, distinctList));
+                TestAttachmentHelper.AddTestAttachment(filePath, fileName, (x) => File.WriteAllLines(x, distinctList));
             }
             catch (Exception ex)
             {
                 TestContext.Progress.WriteLine($"Exception occurred while writing data in AfterTestRun - {filePath}" + ex);
             }
-        }
-        
-        private static void WriteRecords(string filePath, string fileName, Action<string> action)
-        {
-            action(filePath);
-
-            TestContext.AddTestAttachment(filePath, fileName);
         }
     }
 }

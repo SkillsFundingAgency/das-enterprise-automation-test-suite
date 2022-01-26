@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class UrlKeyHelper
     {

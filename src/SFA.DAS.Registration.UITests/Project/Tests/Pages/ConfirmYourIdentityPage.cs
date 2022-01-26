@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+using SFA.DAS.TestDataCleanup;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
 using TechTalk.SpecFlow;
 

@@ -1,15 +1,7 @@
-﻿using CsvHelper;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
-using System.IO;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
-using System.Globalization;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
-using SFA.DAS.TestDataCleanup;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -25,28 +17,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             var objectContext = _context.Get<ObjectContext>();
 
-            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
-            {
-                string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
-
-                List<TestData> records = new List<TestData>();
-
-                var testdataset = objectContext.GetAll();
-
-                testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
-
-                TestRunReportHelper.WriteRecords(objectContext, fileName, (x) =>
-                {
-                    using (var writer = new StreamWriter(x))
-                    {
-                        using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-                        csv.WriteRecords(records);
-
-                        writer?.Flush();
-                    };
-                });
-            });
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => new ReportTestDataHelper().ReportTestData(objectContext.GetDirectory(), objectContext.GetAll()));
         }
     }
 }

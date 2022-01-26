@@ -3,7 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using System.Linq;
 using TechTalk.SpecFlow;
 

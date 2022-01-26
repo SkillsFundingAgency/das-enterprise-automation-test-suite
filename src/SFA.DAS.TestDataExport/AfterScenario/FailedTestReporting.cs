@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -42,7 +41,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             
             var list = _scenarioTitles.Select(x => $"FullyQualifiedName~{x}|").ToList().ToString("").TrimEnd('|');
 
-            TestRunReportHelper.ReportAfterTestRun(new List<string> { list }, "ScenarioTitle");
+            AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { list }, "ScenarioTitle");
         }
     }
 }

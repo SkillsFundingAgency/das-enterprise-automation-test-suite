@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers
+namespace SFA.DAS.TestDataExport.Helper
 {
     public class TryCatchExceptionHelper
     {

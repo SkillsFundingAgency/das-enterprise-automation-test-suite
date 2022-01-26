@@ -3,7 +3,7 @@ using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project

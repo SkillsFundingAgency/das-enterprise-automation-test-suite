@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace SFA.DAS.TestDataCleanup
+namespace SFA.DAS.FrameworkHelpers
 {
     public class TestData
     {

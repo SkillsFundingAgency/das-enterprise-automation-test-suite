@@ -6,7 +6,8 @@ using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
@@ -38,11 +39,11 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
                 lock (_urls) { _urls.AddRange(distinctUrls); }
 
-                TestRunReportHelper.WriteRecords(objectContext, fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
+                TestAttachmentHelper.AddTestAttachment(objectContext.GetDirectory(), fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
             });
         }
 
         [AfterTestRun(Order = 10)]
-        public static void ReportUrlCollection() => TestRunReportHelper.ReportAfterTestRun(_urls, "UrlCollection");
+        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, "UrlCollection");
     }
 }
