@@ -6,7 +6,6 @@ using System.IO;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
@@ -16,10 +15,11 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
     {
         private readonly ScenarioContext _context;
         private static List<string> _urls;
+        private static string _directoryPath;
 
-        public UrlDataReporting(ScenarioContext context) => _context = context;
+        public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
 
-        [BeforeTestRun(Order = 10)]
+            [BeforeTestRun(Order = 10)]
         public static void InitVariable() => _urls = new List<string>();
 
         [AfterScenario(Order = 98)]
@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
             _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
             {
-                string fileName = $"Urldata_{DateTime.Now:HH-mm-ss-fffff}.txt";
+                string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
                 var urldataset = objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
@@ -44,6 +44,6 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         }
 
         [AfterTestRun(Order = 10)]
-        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, "UrlCollection");
+        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, _directoryPath, "UrlCollection");
     }
 }
