@@ -7,6 +7,7 @@ using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
+using NUnit.Framework;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -36,6 +37,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 case bool _ when browser.IsChrome():
                     WebDriver = ChromeDriver(new List<string>());
+                    TestContext.Progress.WriteLine($"***************Setting up Chrome driver' DONE***************");
                     break;
 
                 case bool _ when browser.IsIe():
@@ -66,6 +68,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             _context.SetWebDriver(WebDriver);
 
+            TestContext.Progress.WriteLine($"***************WebDriver = null? '{WebDriver == null}' sucessfully created***************");
+
             return WebDriver;
         }
 
@@ -86,6 +90,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private ChromeDriver ChromeDriver(List<string> arguments)
         {
+            TestContext.Progress.WriteLine($"***************Setting up Chrome driver'***************");
             arguments.Add("no-sandbox");
             arguments.Add("ignore-certificate-errors");
             return new ChromeDriver(_objectContext.GetChromeDriverLocation(),
