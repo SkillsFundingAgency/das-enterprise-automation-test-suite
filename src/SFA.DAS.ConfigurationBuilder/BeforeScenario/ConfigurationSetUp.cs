@@ -31,7 +31,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
             _context.Set(dbConfig);
 
-            TestContext.Progress.WriteLine($"***************'Setting up [BeforeScenario (Order = 1)]' DONE***************");
+            TestContext.Progress.WriteLine($"***************'Setting up Config Setting [BeforeScenario (Order = 1)]' DONE***************");
         }
     }
 }

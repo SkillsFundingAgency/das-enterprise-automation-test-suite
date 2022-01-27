@@ -51,6 +51,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(frameworkConfig);
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
+            
+            TestContext.Progress.WriteLine($"***************'Configurator.ChromeWebDriver located in {Configurator.ChromeWebDriver}' DONE***************");
 
             var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
 
