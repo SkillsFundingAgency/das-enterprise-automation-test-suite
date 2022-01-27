@@ -12,10 +12,12 @@ namespace SFA.DAS.Campaigns.UITests.Project
 
         public Hooks(ScenarioContext context) => _context = context;
 
-        [BeforeScenario(Order = 34)]
-        public void SetUpHelpers() => _context.Set(new CampaignsDataHelper());
+        [BeforeScenario(Order = 30)]
+        public void SetUpHelpers()
+        {
+            _context.Set(new CampaignsDataHelper());
 
-        [BeforeScenario(Order = 36)]
-        public void NavigateToBaseUrl() => _context.GetWebDriver().Navigate().GoToUrl(UrlConfig.CA_BaseUrl);
+            _context.GetWebDriver().Navigate().GoToUrl(UrlConfig.CA_BaseUrl);
+        }
     }
 }

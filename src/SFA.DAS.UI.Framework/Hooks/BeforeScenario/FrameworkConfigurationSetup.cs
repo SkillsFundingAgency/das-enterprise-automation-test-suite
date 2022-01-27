@@ -57,6 +57,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(driverLocationConfig);
 
             if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
+
+            TestContext.Progress.WriteLine($"***************'Setting up [BeforeScenario (Order = 2)]' DONE***************");
         }
 
           private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));

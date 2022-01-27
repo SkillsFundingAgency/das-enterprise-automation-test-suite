@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using NUnit.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -24,6 +25,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _helpersSetup.SetupUIFrameworkHelpers();
 
             _context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
+
+            TestContext.Progress.WriteLine($"***************'Setting up [BeforeScenario (Order = 4]' DONE***************");
         }
     }
 }
