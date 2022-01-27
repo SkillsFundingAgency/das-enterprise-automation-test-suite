@@ -28,6 +28,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 2)]
         public void SetUpFrameworkConfiguration()
         {
+            _context.Set(true, "SetUpFrameworkConfiguration");
+
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.ToList(",");
