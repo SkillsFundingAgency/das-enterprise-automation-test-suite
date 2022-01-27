@@ -60,18 +60,24 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
         public (string nino, string payeScheme) GetEnrichmentData()
         {
+            int count = 0;
+
             string query = $"SELECT ar.PayeSchemes, dcr.NiNumber FROM [Cache].[AccountsResponse] ar " +
                 $"INNER JOIN [Cache].[DataCollectionsResponse] dcr ON dcr.ApprenticeEmploymentCheckId = ar.ApprenticeEmploymentCheckId " +
                 $"WHERE ar.ApprenticeEmploymentCheckId = {employmentCheckId}";
 
             List<object[]> enrichedData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
-            while (enrichedData.Count == 0)
+            // count variable is added to stop the infinite loop incase CreateEmploymentCheckCacheRequestsOrchestrator has crashed
+            while (enrichedData.Count == 0 && count < 15)
             {
                 Thread.Sleep(2000);
+                count++;
 
                 enrichedData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
+
+            if (enrichedData.Count == 0) return (null, null);
 
             var paye = enrichedData[0][0].ToString() == "" ? null : enrichedData[0][0].ToString().Trim(' ');
             var nino = enrichedData[0][1].ToString() == "" ? null : enrichedData[0][1].ToString().Trim(' ');
@@ -90,22 +96,48 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
         public (bool? isEmployed, string returnCode, string returnMessage) GetEmploymentCheckResults()
         {
+            int count = 0;
+
             string query = $"SELECT Employed, HttpStatusCode, HttpResponse FROM [Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = {employmentCheckId}";
 
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
-            while (result.Count == 0)
+            // count variable is added to stop the infinite loop incase ProcessEmploymentCheckRequestsWithRateLimiterOrchestrator has crashed
+            while (result.Count == 0 && count < 15)
             {
                 Thread.Sleep(2000);
+                count++;
 
                 result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
             }
+
+            if (result.Count == 0) return (null, null, null);
 
             bool? employed = null;
 
             if (bool.TryParse(result[0][0].ToString(), out bool parsedEmploymentStatus)) employed = parsedEmploymentStatus;
 
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
+        }
+
+        internal List<object[]> getEmploymentCheckCacheRequestRows()
+        {
+            int count = 0;
+
+            string query = $"SELECT PayeScheme from [Cache].[EmploymentCheckCacheRequest] where ApprenticeEmploymentCheckId = {employmentCheckId}";
+
+            List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            // count variable is added to stop the infinite loop incase CreateEmploymentCheckCacheRequestsOrchestrator has crashed
+            while (result.Count == 0 && count < 15)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
+
+            return result;
         }
     }
 }
