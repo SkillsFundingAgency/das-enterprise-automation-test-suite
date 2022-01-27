@@ -6,14 +6,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.TestDataExport.BeforeScenario
 {
     [Binding]
-    public class HelpersSetup
+    public class FrameworkHelpersSetup
     {
         private readonly ScenarioContext _context;
 
-        public HelpersSetup(ScenarioContext context) => _context = context;
+        public FrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 1)]
-        public void FrameworkSetUpHelpers()
+        public void SetUpFrameworkHelpers()
         {
             var objectContext = _context.Get<ObjectContext>();
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
 
             objectContext.SetTestDataList();
 
-            TestContext.Progress.WriteLine($"***************'Setting up FrameworkSetUpHelpers [BeforeScenario (Order = 1)]' DONE***************");
+            TestContext.Progress.WriteLine($"***************'Setting up SetUpUIFrameworkHelpers [BeforeScenario (Order = 1)]' DONE***************");
         }
 
         [BeforeScenario(Order = 12)]

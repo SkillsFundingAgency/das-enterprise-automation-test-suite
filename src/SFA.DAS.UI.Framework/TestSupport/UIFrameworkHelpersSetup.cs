@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class FrameworkHelpersSetup
+    public class UIFrameworkHelpersSetup
     {
         private readonly ScenarioContext _context;
         
-        public FrameworkHelpersSetup(ScenarioContext context) => _context = context;
+        public UIFrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
         public void SetupUIFrameworkHelpers()
         {

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using NUnit.Framework;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
@@ -25,6 +26,8 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
             if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
             _objectContext.SetDirectory(directory);
+
+            TestContext.Progress.WriteLine($"***************'Setting up SetUpDirectory [BeforeScenario (Order = 4)]' DONE***************");
         }
 
         private string GetDirectoryPath()
