@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
@@ -30,8 +29,6 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
             if (!Configurator.IsVstsExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>()).GetLocalHostDbConfig();
 
             _context.Set(dbConfig);
-
-            TestContext.Progress.WriteLine($"***************'Setting up Config Setting [BeforeScenario (Order = 1)]' DONE***************");
         }
     }
 }

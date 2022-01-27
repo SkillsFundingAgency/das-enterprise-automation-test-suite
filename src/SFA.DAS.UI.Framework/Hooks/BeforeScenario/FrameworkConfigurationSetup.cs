@@ -3,7 +3,6 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
-using NUnit.Framework;
 using System.Collections.Generic;
 using SFA.DAS.FrameworkHelpers;
 
@@ -28,8 +27,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 2)]
         public void SetUpFrameworkConfiguration()
         {
-            _context.Set(true, "SetUpFrameworkConfiguration");
-
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.ToList(",");
@@ -54,15 +51,11 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
             
-            TestContext.Progress.WriteLine($"***************'Configurator.ChromeWebDriver located in {Configurator.ChromeWebDriver}' DONE***************");
-
             var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
 
             _context.Set(driverLocationConfig);
 
             if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
-
-            TestContext.Progress.WriteLine($"***************'Setting up [BeforeScenario (Order = 2)]' DONE***************");
         }
 
           private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));

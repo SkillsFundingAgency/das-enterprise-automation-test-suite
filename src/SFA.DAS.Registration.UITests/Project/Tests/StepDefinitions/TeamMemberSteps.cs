@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
@@ -41,8 +40,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to resend an invite")]
         public void ThenEmployerIsAbleToResendAnInvite()
         {
-            TestContext.Progress.WriteLine($"Invited team member's email id: {_invitedMemberEmailId}");
-
             _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickResendInvitationButton()
                 .VerifyInvitationResentHeaderInfoMessage();

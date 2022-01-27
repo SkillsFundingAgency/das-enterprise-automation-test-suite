@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
@@ -21,8 +20,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var webDriver = webDriverSetupHelper.SetupWebDriver();
 
             if (!IsCloudExecution()) AddCapabilities(webDriver);
-
-            TestContext.Progress.WriteLine($"***************'Setting up [BeforeScenario (Order = 3)]' DONE***************");
         }
     }
 }

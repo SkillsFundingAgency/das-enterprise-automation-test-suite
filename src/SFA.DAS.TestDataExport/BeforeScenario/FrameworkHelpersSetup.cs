@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
@@ -20,8 +19,6 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
             _context.Set(new TryCatchExceptionHelper(objectContext));
 
             objectContext.SetTestDataList();
-
-            TestContext.Progress.WriteLine($"***************'Setting up SetUpUIFrameworkHelpers [BeforeScenario (Order = 1)]' DONE***************");
         }
 
         [BeforeScenario(Order = 12)]

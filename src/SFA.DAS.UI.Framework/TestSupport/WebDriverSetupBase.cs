@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class WebDriverSetupBase
     {
@@ -66,8 +65,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             return true switch
             {
-                bool _ when (executableName == FirefoxDriverServiceName) => _driverLocationConfig.GeckoWebDriver,
-                bool _ when (executableName == InternetExplorerDriverServiceName) => _driverLocationConfig.IEWebDriver,
+                bool _ when executableName == FirefoxDriverServiceName => _driverLocationConfig.GeckoWebDriver,
+                bool _ when executableName == InternetExplorerDriverServiceName => _driverLocationConfig.IEWebDriver,
                 _ => _driverLocationConfig.ChromeWebDriver,
             };
         }
