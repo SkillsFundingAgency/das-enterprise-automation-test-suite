@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
         protected By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
-        protected By ConfirmingEntityNamePageHeader => By.CssSelector(".govuk-heading-m");
+        protected By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
         protected By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
         protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
         protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
