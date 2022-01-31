@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAccount
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2EMultiplePayeSchemes
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAcc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_S_RA_01")]
-    public partial class RE_S_RA_01Feature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EMultiplePayeSchemes")]
+    public partial class EmploymentCheckE2EMultiplePayeSchemesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RE_S_RA_01.feature"
+#line 1 "EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings/RenameAccount", "RE_S_RA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EMultiplePayeSchemes", "EmploymentCheckE2EMultiplePayeSchemes", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,19 +73,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAcc
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_S_RA_01_Create and Rename Employer Account")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void RE_S_RA_01_CreateAndRenameEmployerAccount()
+        public virtual void EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes(string testCaseId, string minDate, string maxDate, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
+                    "api",
                     "regression",
-                    "registration",
-                    "addnonlevyfunds"};
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_S_RA_01_Create and Rename Employer Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("MinDate", minDate);
+            argumentsOfScenario.Add("MaxDate", maxDate);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,13 +110,32 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the Employer is able to rename the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
+ testRunner.And("multiple paye schemes are found on account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("an employment check request is created for each unique Nino and paye scheme combi" +
+                        "nation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes: 7")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes_7()
+        {
+#line 6
+this.EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes("7", "2014-03-06T00:00:00", "2013-03-06T00:00:00", ((string[])(null)));
+#line hidden
         }
     }
 }

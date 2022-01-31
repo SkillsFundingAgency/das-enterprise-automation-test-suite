@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAccount
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAcc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_S_RA_01")]
-    public partial class RE_S_RA_01Feature
+    [NUnit.Framework.DescriptionAttribute("TM_15_NLCanAutoApprove")]
+    public partial class TM_15_NLCanAutoApproveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RE_S_RA_01.feature"
+#line 1 "TM15_NLCanAutoApprove.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings/RenameAccount", "RE_S_RA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_15_NLCanAutoApprove", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Settings.RenameAcc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_S_RA_01_Create and Rename Employer Account")]
+        [NUnit.Framework.DescriptionAttribute("TM_15_NL Can auto approve application when shown options")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void RE_S_RA_01_CreateAndRenameEmployerAccount()
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        public virtual void TM_15_NLCanAutoApproveApplicationWhenShownOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "registration",
-                    "addnonlevyfunds"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_S_RA_01_Create and Rename Employer Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_15_NL Can auto approve application when shown options", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +104,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
- testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
- testRunner.Then("the Employer is able to rename the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.When("the non levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("the levy employer can auto approve the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
