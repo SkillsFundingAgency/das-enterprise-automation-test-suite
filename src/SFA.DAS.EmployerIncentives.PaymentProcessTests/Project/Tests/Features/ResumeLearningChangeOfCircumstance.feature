@@ -1,4 +1,6 @@
 ﻿@employerincentivesPaymentsProcess
+@resumeLearningChangeOfCircumstance
+@startResumeCOC
 Feature: ResumeLearningChangeOfCircumstance
     Learnering resumes after a pause
 

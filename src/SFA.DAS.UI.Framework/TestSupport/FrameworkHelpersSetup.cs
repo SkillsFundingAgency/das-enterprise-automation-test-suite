@@ -11,7 +11,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         
         public FrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
-        public void SetupFrameworkHelpers()
+        public void SetupUIFrameworkHelpers()
         {
             var webDriver = _context.GetWebDriver();
 
@@ -38,9 +38,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
 
             _context.Replace(new ScreenShotTitleGenerator(0));
-
-            var objectContext = _context.Get<ObjectContext>();
-            _context.Replace(new TryCatchExceptionHelper(objectContext));
         }
     }
 }
