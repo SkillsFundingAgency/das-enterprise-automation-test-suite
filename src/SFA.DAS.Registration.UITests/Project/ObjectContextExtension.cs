@@ -9,12 +9,15 @@ namespace SFA.DAS.Registration.UITests.Project
         #region Constants
         private static string UserCredsKey(int index) => $"usercreds_{index}";
         private const string HashedAccountIdKey = "hashedaccountid";
+        private const string PublicHashedAccountIdKey = "publichashedaccountid";
         private const string DbAccountIdKey = "dbaccountid";
         private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
-        private const string ReceiverAccountIdkey = "receiveraccountidkey";
-        private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
+        private const string SecondHashedAccountIdkey = "secondhashedaccountid";
+        private const string PublicSecondHashedAccountIdkey = "publicsecondhashedaccountid";
+        private const string ThirdHashedAccountIdkey = "thirdhashedaccountid";
+        private const string PublicThirdHashedAccountIdkey = "publicthirdhashedaccountid";
         private const string RegisteredEmailAddress = "registeredemailaddress";
         private const string FirstAccountOrganisationNameKey = "firstaccountorganisationkamekey";
         private const string SecondAccountOrganisationNameKey = "secondaccountorganisationkamekey";
@@ -28,16 +31,19 @@ namespace SFA.DAS.Registration.UITests.Project
             objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
         }
 
-        internal static void SetHashedAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(HashedAccountIdKey, accountid);
-        internal static void SetDBAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(DbAccountIdKey, accountid);
+        internal static void SetHashedAccountId(this ObjectContext objectContext, string accountId) => objectContext.Replace(HashedAccountIdKey, accountId);
+        internal static void SetPublicHashedAccountId(this ObjectContext objectContext, string publicAccountId) => objectContext.Replace(PublicHashedAccountIdKey, publicAccountId);
+        internal static void SetDBAccountId(this ObjectContext objectContext, string accountId) => objectContext.Replace(DbAccountIdKey, accountId);
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetFirstAccountOrganisationName(this ObjectContext objectContext, string firstAccountOrganisationName) => objectContext.Set(FirstAccountOrganisationNameKey, firstAccountOrganisationName);
         public static void SetSecondAccountOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName) => objectContext.Set(SecondAccountOrganisationNameKey, secondAccountOrganisationName);
-        internal static void SetReceiverAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverAccountIdkey, value);
-        internal static void SetReceiverPublicAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverPublicAccountIdkey, value);
+        internal static void SetSecondAccountId(this ObjectContext objectContext, string value) => objectContext.Set(SecondHashedAccountIdkey, value);
+        internal static void SetPublicSecondAccountId(this ObjectContext objectContext, string value) => objectContext.Set(PublicSecondHashedAccountIdkey, value);
+        internal static void SetThirdAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ThirdHashedAccountIdkey, value);
+        internal static void SetPublicThirdAccountId(this ObjectContext objectContext, string value) => objectContext.Set(PublicThirdHashedAccountIdkey, value);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
         internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
             objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
@@ -49,15 +55,18 @@ namespace SFA.DAS.Registration.UITests.Project
             usercreds.HashedAccountid = hashedaccountid;
         }
 
+        public static string GetHashedAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
+        public static string GetPublicHashedAccountId(this ObjectContext objectContext) => objectContext.Get(PublicHashedAccountIdKey);
         public static string GetDBAccountId(this ObjectContext objectContext) => objectContext.Get(DbAccountIdKey);
-        public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
-        public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
+        public static string GetSecondHashedAccountId(this ObjectContext objectContext) => objectContext.Get(SecondHashedAccountIdkey);
+        public static string GetPublicSecondHashedAccountId(this ObjectContext objectContext) => objectContext.Get(PublicSecondHashedAccountIdkey);
+        public static string GetThirdHashedAccountId(this ObjectContext objectContext) => objectContext.Get(ThirdHashedAccountIdkey);
+        public static string GetPublicThirdHashedAccountId(this ObjectContext objectContext) => objectContext.Get(PublicThirdHashedAccountIdkey);
         public static string GetOrganisationName(this ObjectContext objectContext) => objectContext.Get(OrganisationNameKey);
         public static string GetAdditionalOrganisationAddedName(this ObjectContext objectContext) => objectContext.Get(AdditionalOrganisationAddedNameKey);
         public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
-        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
         internal static LoggedInAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoggedInAccountUser>(LoggedInUserObject);
         public static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);
     }
