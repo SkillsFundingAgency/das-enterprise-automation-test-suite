@@ -24,8 +24,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             
             var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
 
-            var accountid = homePage.AccountId();
-            _objectContext.SetHashedAccountId(accountid);
+            var accountId = homePage.AccountId();
+            _objectContext.SetHashedAccountId(accountId);
+
+            var publicAccountId = homePage.PublicAccountId();
+            _objectContext.SetPublicHashedAccountId(publicAccountId);
 
             return homePage;
         }
@@ -36,11 +39,19 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             homePage = AddPayeAndOrgDetailsAndSignAgreement(page, index);
                  
-            var accountid = homePage.AccountId();
-            _objectContext.SetReceiverAccountId(accountid);
+            var accountId = homePage.AccountId();
+            var publicAccountId = homePage.PublicAccountId();
 
-            var publicAccountid = homePage.PublicAccountId();
-            _objectContext.SetReceiverPublicAccountId(publicAccountid);
+            if (index == 1)
+            {
+                _objectContext.SetSecondAccountId(accountId);
+                _objectContext.SetPublicSecondAccountId(publicAccountId);
+            }
+            else if(index == 2)
+            {
+                _objectContext.SetThirdAccountId(accountId);
+                _objectContext.SetPublicThirdAccountId(publicAccountId);
+            }
 
             return homePage;
         }
