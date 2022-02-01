@@ -54,7 +54,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _accountSignOutHelper.SignOut();
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
             NavigateToTransferMatchingPage().GoToAccountHomePage().ClickTask();
-            
 
         }
 
