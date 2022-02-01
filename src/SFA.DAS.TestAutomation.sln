@@ -115,6 +115,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FrameworkHelpers", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Approvals.ServiceBusIntegrationTests", "SFA.DAS.Approvals.ServiceBusIntegrationTests\SFA.DAS.Approvals.ServiceBusIntegrationTests.csproj", "{F7523569-0DD9-45CA-9013-62E3CECF7851}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFrontDoor.UITests", "SFA.DAS.EmployerFrontDoor.UITests\SFA.DAS.EmployerFrontDoor.UITests.csproj", "{22BB829E-DF89-4684-94BF-8938A395CDAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -392,6 +394,12 @@ Global
 		{F7523569-0DD9-45CA-9013-62E3CECF7851}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{F7523569-0DD9-45CA-9013-62E3CECF7851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7523569-0DD9-45CA-9013-62E3CECF7851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BB829E-DF89-4684-94BF-8938A395CDAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
