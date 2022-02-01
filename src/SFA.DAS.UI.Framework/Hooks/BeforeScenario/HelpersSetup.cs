@@ -1,5 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -22,7 +21,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
-            _helpersSetup.SetupFrameworkHelpers();
+            _helpersSetup.SetupUIFrameworkHelpers();
 
             _context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
         }

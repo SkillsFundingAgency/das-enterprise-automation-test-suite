@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             _objectcontext = context.Get<ObjectContext>();
-            _datahelper = context.Get<ApprenticeDataHelper>();
+            context.TryGetValue(out _datahelper);
         }
 
         [AfterScenario(Order = 10)]

@@ -23,6 +23,7 @@
         public string TPRDbConnectionString { get; set; }
         public string TMDbConnectionString { get; set; }
         public string CRSDbConnectionString { get; set; }
+        public string EmploymentCheckDbConnectionString { get; set; }
     }
 
     public class DbDevConfig
@@ -52,5 +53,6 @@
         public string TPRDbName { get; set; }
         public string TMDbName { get; set; }
         public string CrsDbName { get; set; }
+        public string EmploymentCheckDbName { get; set; }
     }
 }

@@ -36,6 +36,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await CreateIncentive(Phase.Phase2, new DateTime(2021, 04, 30));
         }
 
+        [Given(@"an apprenticeship incentive has been submitted in phase 3")]
+        public async Task GivenAnExistingPhase3ApprenticeshipIncentive()
+        {
+            await CreateIncentive(Phase.Phase3, new DateTime(2021, 10, 30));
+        }
+
         [Given(@"an apprenticeship incentive has been submitted less than 6 weeks ago")]
         public async Task GivenAnIncentiveSubmittedLessThan6WeeksAgo()
         {
@@ -176,7 +182,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private async Task CreateIncentive(Phase phase, DateTime startDate)
         {
             _startDate = startDate;
-            
+
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(12, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
@@ -269,6 +275,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task ThenANewNotEmployedBeforePhase2EmploymentCheckIsCreated()
         {
             await VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2021, 03, 31), new DateTime(2021, 04, 01).AddMonths(-6));
+        }
+
+        [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 3 starting")]
+        public async Task ThenANewNotEmployedBeforePhase3EmploymentCheckIsCreated()
+        {
+            await VerifyNotEmployedBeforePhaseEmploymentCheck(new DateTime(2021, 09, 30), new DateTime(2021, 10, 01).AddMonths(-6));
         }
 
         private async Task VerifyNotEmployedBeforePhaseEmploymentCheck(DateTime maximumDate, DateTime minimumDate)
