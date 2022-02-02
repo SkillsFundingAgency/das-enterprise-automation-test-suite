@@ -70,10 +70,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\DataFiles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature.cs">
       <DependentUpon>AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature</DependentUpon>
     </Compile>

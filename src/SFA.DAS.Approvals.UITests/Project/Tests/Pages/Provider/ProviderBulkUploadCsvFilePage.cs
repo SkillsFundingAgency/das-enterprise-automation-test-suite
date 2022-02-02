@@ -43,6 +43,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 case "AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers":
                     fileName = "BulkUpload_3.csv";
                     break;
+                case "AP_BU_07_Upload Details then Cancel":
+                    fileName = "BulkUpload_7.csv";
+                    break;
+
             }
 
             fileLocation = Path.GetFullPath(@"..\..\..\") + "\\Project\\DataFiles\\" + fileName;
@@ -58,6 +62,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     ApprenticeList.Add(SetApprenticeDetails(counter * 17, cohortRef));
                 }
             }
+
+            objectContext.Replace("BulkuploadApprentices", ApprenticeList);
             _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
             return this;
         }

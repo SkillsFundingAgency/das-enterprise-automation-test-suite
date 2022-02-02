@@ -106,13 +106,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
         }
 
-        [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
-        public void WhenProviderAddApprenticeDetailsUsingV2BulkUploadAndSendsToEmployerForApproval(int numberOfApprentices)
-        {
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
-        }
+       
 
-        [Given(@"the Provider has some apprentices in ready to review and draft status")]
+       [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus()
         {
             var _expectedCohorts = _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(Convert.ToInt32(_providerConfig.Ukprn));

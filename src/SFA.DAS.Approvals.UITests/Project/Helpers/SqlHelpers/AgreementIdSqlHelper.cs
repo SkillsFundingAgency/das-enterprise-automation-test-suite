@@ -38,6 +38,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 return data[0][0].ToString();
         }
 
+        public string GetEmployerNameByAgreementId(string agreementId)
+        {
+            string sqlQueryFromFile = @$"  Select Ac.Name from AccountLegalEntities ale 
+                  inner join Accounts Ac on ale.AccountId = ac.Id
+                  where ale.PublicHashedId = '{agreementId}'";
+
+            var data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, _dbConfig.CommitmentsDbConnectionString);
+
+            if (data.Count == 0)
+                return null;
+            else
+                return data[0][0].ToString();
+        }
+
         public int GetEmployerAccountId(string email, string organisationName)
         {
             string query = @$"SELECT TOP 1 acc.Id
