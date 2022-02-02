@@ -44,13 +44,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             if (index == 1)
             {
-                _objectContext.SetSecondAccountId(accountId);
-                _objectContext.SetPublicSecondAccountId(publicAccountId);
+                _objectContext.SetSecondAccountHashedId(accountId);
+                _objectContext.SetSecondAccountPublicHashedId(publicAccountId);
             }
             else if(index == 2)
             {
-                _objectContext.SetThirdAccountId(accountId);
-                _objectContext.SetPublicThirdAccountId(publicAccountId);
+                _objectContext.SetThirdAccountHashedId(accountId);
+                _objectContext.SetThirdAccountPublicHashedId(publicAccountId);
             }
 
             return homePage;
@@ -69,5 +69,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SignAgreement()
                  .ClickOnViewYourAccountButton();
         }
+
+        private (string, string) GetAccountDetails(HomePage homePage) => (homePage.AccountId(), homePage.PublicAccountId());
     }
 }

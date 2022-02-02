@@ -21,16 +21,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_01_TransfersApprovalJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    [NUnit.Framework.CategoryAttribute("transfers")]
     public partial class TR_01_TransfersApprovalJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals",
-                "transfers"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "TR_01_TransfersApprovalJourney.feature"
 #line hidden
@@ -39,9 +35,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals",
-                        "transfers"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,11 +76,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TR_01 Transfers - Creating a Cohort and Approve by all 3 parties")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void TR_01Transfers_CreatingACohortAndApproveByAll3Parties()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
+                    "approvals",
+                    "transfers",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_01 Transfers - Creating a Cohort and Approve by all 3 parties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
