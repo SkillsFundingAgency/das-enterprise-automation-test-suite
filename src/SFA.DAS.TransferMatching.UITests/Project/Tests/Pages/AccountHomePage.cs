@@ -20,7 +20,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public MyTransferPledgesPage ClickTask()
         {
 
-            pageInteractionHelper.FindElement(TaskSelector);
             formCompletionHelper.Click(TaskSelector);
             
             return new MyTransferPledgesPage(context);
