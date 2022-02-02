@@ -70,20 +70,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
             var query = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; " +
                 $"DELETE FROM Appeal WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM [dbo].[OversightReview] where ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.OversightReview where ApplicationId = '{applicationId}'; " +
                 $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.SubmittedApplicationAnswers WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.ExtractedApplications WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM [dbo].[FinancialReviewClarificationFile] where ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM Financialreview where ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.FinancialReviewClarificationFile where ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.Financialreview where ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.FinancialData WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.Audit WHERE UpdatedState like '%{applicationId}%'; " +
                 $"DELETE FROM dbo.GatewayAnswer WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM [dbo].[AppealFile] where ApplicationId ='{applicationId}'; " +
+                $"DELETE FROM dbo.AppealFile where ApplicationId ='{applicationId}'; " +
                 $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = '{email}';" +
+                $"DELETE FROM dbo.OrganisationAddresses WHERE OrganisationId = @OrganisationID;" +
+                $"DELETE FROM dbo.OrganisationManagement WHERE OrganisationId = @OrganisationID;" +
+                $"DELETE FROM dbo.OrganisationPersonnel WHERE OrganisationId = @OrganisationID;" +
+                $"DELETE FROM dbo.OrganisationSectorExpertDeliveredTrainingTypes WHERE OrganisationSectorExpertId IN (SELECT Id FROM dbo.OrganisationSectorExperts WHERE organisationSectorId IN (SELECT Id FROM dbo.OrganisationSectors WHERE OrganisationID = @OrganisationID));" +
+                $"DELETE FROM dbo.OrganisationSectorExperts WHERE organisationSectorId IN (SELECT Id FROM dbo.OrganisationSectors WHERE OrganisationID = @organisationId);" +
+                $"DELETE FROM dbo.OrganisationSectors WHERE OrganisationId = @OrganisationID;" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID;";
 
             ExecuteSqlCommand(query);
