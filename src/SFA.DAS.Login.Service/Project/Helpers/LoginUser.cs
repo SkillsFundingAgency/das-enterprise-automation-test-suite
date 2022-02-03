@@ -59,6 +59,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public abstract class MultipleEasAccountUser : EasAccountUser
     {
         public string SecondOrganisationName { get; set; }
+        public string ThirdOrganisationName { get; set; }
     }
 
     public class EIMultipleAccountUser : MultipleEasAccountUser { }
