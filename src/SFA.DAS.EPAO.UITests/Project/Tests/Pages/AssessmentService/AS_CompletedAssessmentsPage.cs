@@ -9,11 +9,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         protected override string PageTitle => "Completed assessments";
 
         #region Locators
-        private By ApprenticeColumnLabel => By.XPath("//th[contains(text(),'Apprentice')]");
+        private By ApprenticeColumnLabel => By.LinkText("Apprentice");
         private By ULNColumnLabel => By.XPath("//th[contains(text(),'ULN')]");
-        private By EmployerColumnLabel => By.XPath("//th[contains(text(),'Employer')]");
-        private By TrainingProviderColumnLabel => By.XPath("//th[contains(text(),'Training provider')]");
-        private By DateRequestedColumnLabel => By.XPath("//th[contains(text(),'Date requested')]");
+        private By EmployerColumnLabel => By.LinkText("Employer");
+        private By TrainingProviderColumnLabel => By.LinkText("Training provider");
+        private By DateRequestedColumnLabel => By.LinkText("Date requested");
         #endregion
 
         public AS_CompletedAssessmentsPage(ScenarioContext context) : base(context) => VerifyPage();
