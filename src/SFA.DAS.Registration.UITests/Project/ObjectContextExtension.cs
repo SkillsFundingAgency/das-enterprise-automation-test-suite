@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string ThirdAccountHashedIdKey = "thirdhashedaccountid";
         private const string ThirdAccountPublicHashedIdKey = "publicthirdhashedaccountid";
         private const string RegisteredEmailAddress = "registeredemailaddress";
-        private const string FirstAccountOrganisationNameKey = "firstaccountorganisationkamekey";
         private const string SecondAccountOrganisationNameKey = "secondaccountorganisationkamekey";
         private const string AdditionalOrganisationAddedNameKey = "additionalorganisationaddednamekey";
         #endregion
@@ -38,7 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
-        public static void SetFirstAccountOrganisationName(this ObjectContext objectContext, string firstAccountOrganisationName) => objectContext.Set(FirstAccountOrganisationNameKey, firstAccountOrganisationName);
         public static void SetSecondAccountOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName) => objectContext.Set(SecondAccountOrganisationNameKey, secondAccountOrganisationName);
         internal static void SetSecondAccountHashedId(this ObjectContext objectContext, string value) => objectContext.Set(SecondAccountHashedIdKey, value);
         internal static void SetSecondAccountPublicHashedId(this ObjectContext objectContext, string value) => objectContext.Set(SecondAccountPublicHashedIdKey, value);
@@ -67,7 +65,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetThirdAccountPublicHashedId(this ObjectContext objectContext) => objectContext.Get(ThirdAccountPublicHashedIdKey);
         public static string GetOrganisationName(this ObjectContext objectContext) => objectContext.Get(OrganisationNameKey);
         public static string GetAdditionalOrganisationAddedName(this ObjectContext objectContext) => objectContext.Get(AdditionalOrganisationAddedNameKey);
-        public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
         internal static LoggedInAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoggedInAccountUser>(LoggedInUserObject);
         public static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);

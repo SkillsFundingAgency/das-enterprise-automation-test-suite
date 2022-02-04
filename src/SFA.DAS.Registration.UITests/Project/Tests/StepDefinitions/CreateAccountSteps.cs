@@ -404,7 +404,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to switch between the Accounts")]
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()
         {
-            OpenAccount(_objectContext.GetFirstAccountOrganisationName());
+            OpenAccount(_objectContext.GetOrganisationName());
             OpenAccount(_objectContext.GetSecondAccountOrganisationName());
         }
 
