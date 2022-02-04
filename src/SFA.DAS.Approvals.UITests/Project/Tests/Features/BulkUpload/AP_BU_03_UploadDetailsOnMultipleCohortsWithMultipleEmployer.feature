@@ -1,6 +1,8 @@
-﻿Feature: AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer
+﻿@approvals
+Feature: AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer
 
-@mytag
+@regression
+@newBUJourney
 Scenario: AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers
 	Given the Employer1 logins using existing Levy Account
 	And the Employer creates 2 cohorts and sends them to provider to add apprentices

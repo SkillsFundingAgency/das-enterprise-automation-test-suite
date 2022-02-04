@@ -1,6 +1,8 @@
-﻿Feature: AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohorts
+﻿@approvals
+Feature: AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohorts
 
-@mytag
+#@regression
+@newBUJourney
 Scenario: AP_BU_04_Do Not Allow Bulk Upload On Non Editable  Cohorts
 	Given the provider has permission to create new cohort
 	And the provider has a cohort which is with employer
