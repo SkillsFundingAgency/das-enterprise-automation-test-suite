@@ -81,10 +81,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"We have (one|two|three) Employer accounts")]
-        public void GivenWeHaveEmployerAccounts(string number)
-        {
-            AccountsAreCreated(number);
-        }
+        public void GivenWeHaveEmployerAccounts(string number) => AccountsAreCreated(number);
 
         [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
         public void GivenSenderIsConnectedToReceiver(string sender, string receiver)

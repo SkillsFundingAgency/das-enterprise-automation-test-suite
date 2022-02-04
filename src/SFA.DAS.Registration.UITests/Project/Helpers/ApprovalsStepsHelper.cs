@@ -7,13 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class ApprovalsStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
 
-        public ApprovalsStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-        }
+        public ApprovalsStepsHelper(ScenarioContext context) => _context = context;
 
         public HomePage CreatesAccountAndSignAnAgreement()
         {
@@ -24,11 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             
             var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
 
-            var accountId = homePage.AccountId();
-            _objectContext.SetHashedAccountId(accountId);
-
-            var publicAccountId = homePage.PublicAccountId();
-            _objectContext.SetPublicHashedAccountId(publicAccountId);
+            SetAccountDetails(homePage, 0);
 
             return homePage;
         }
@@ -38,20 +29,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             var page = homePage.GoToYourAccountsPage().AddNewAccount();
 
             homePage = AddPayeAndOrgDetailsAndSignAgreement(page, index);
-                 
-            var accountId = homePage.AccountId();
-            var publicAccountId = homePage.PublicAccountId();
 
-            if (index == 1)
-            {
-                _objectContext.SetSecondAccountHashedId(accountId);
-                _objectContext.SetSecondAccountPublicHashedId(publicAccountId);
-            }
-            else if(index == 2)
-            {
-                _objectContext.SetThirdAccountHashedId(accountId);
-                _objectContext.SetThirdAccountPublicHashedId(publicAccountId);
-            }
+            SetAccountDetails(homePage, index);
 
             return homePage;
         }
@@ -68,6 +47,29 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SelectViewAgreementNowAndContinue()
                  .SignAgreement()
                  .ClickOnViewYourAccountButton();
+        }
+
+        private void SetAccountDetails(HomePage homePage, int index)
+        {
+            var objectContext = _context.Get<ObjectContext>();
+
+            (string accountId, string publicAccountId) = GetAccountDetails(homePage);
+
+            if (index == 0)
+            {
+                objectContext.SetHashedAccountId(accountId);
+                objectContext.SetPublicHashedAccountId(publicAccountId);
+            }
+            else if (index == 1)
+            {
+                objectContext.SetSecondAccountHashedId(accountId);
+                objectContext.SetSecondAccountPublicHashedId(publicAccountId);
+            }
+            else if (index == 2)
+            {
+                objectContext.SetThirdAccountHashedId(accountId);
+                objectContext.SetThirdAccountPublicHashedId(publicAccountId);
+            }
         }
 
         private (string, string) GetAccountDetails(HomePage homePage) => (homePage.AccountId(), homePage.PublicAccountId());

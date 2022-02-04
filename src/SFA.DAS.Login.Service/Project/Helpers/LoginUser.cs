@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SFA.DAS.Login.Service.Project.Helpers
 {
-    public class LoggedInAccountUser : EasAccountUser { }
+    public class LoggedInAccountUser : EasAccountUser { public new string OrganisationName { get; set; } }
 
     public abstract class LoginUser
     {
