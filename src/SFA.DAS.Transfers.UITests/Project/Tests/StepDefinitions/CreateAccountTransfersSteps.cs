@@ -5,6 +5,7 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using SFA.DAS.ConfigurationBuilder;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
@@ -16,28 +17,22 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
 
         private HomePage _homePage;
-        private string _firstAccountId;
-        private string _secondAccountId;
-        private string _thirdAccountId;
-        private readonly string _firstOrganisationName;
-        private readonly string _secondOrganisationName;
-        private readonly string _thirdOrganisationName;
+        private readonly RegistrationDataHelper _registrationDataHelper;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+
+        private Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
 
         public CreateAccountTransfersSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
-            _firstAccountId = null;
-            _secondAccountId = null;
-            _thirdAccountId = null;
-            var datahelper = context.Get<RegistrationDataHelper>();
-            _firstOrganisationName = datahelper.CompanyTypeOrg;
-            _secondOrganisationName = datahelper.CompanyTypeOrg2;
-            _thirdOrganisationName = datahelper.CompanyTypeOrg3;
+            _registrationDataHelper = context.Get<RegistrationDataHelper>();
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
         }
 
-        [Given(@"We have (one|two|three) Employer accounts")]
+        [Given(@"We have (two|three) Employer accounts")]
         public void GivenWeHaveEmployerAccounts(string number) => AccountsAreCreated(number);
 
         [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
@@ -70,44 +65,35 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
                     throw new Exception($"We don't have an approved transfers connection between {senderOrganisationName}({senderAccountId}) and {receiverOrganisationName}({receiverAccountId})");
         }
 
-        private void AccountsAreCreated(string number)
+        private void AccountsAreCreated(string noOfAccounts)
         {
-            if (number == "one" || number == "two" || number == "three")
-            {
-                _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
+            _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
 
-                _firstAccountId = _objectContext.GetHashedAccountId();
-            }
+            _homePage = AddNewAccountAndSignAnAgreement(_registrationDataHelper.CompanyTypeOrg2, 1);
 
-            if (number == "two" || number == "three")
-            {
-                UpdateOrganisationName(_secondOrganisationName);
+            if (noOfAccounts == "three") _homePage = AddNewAccountAndSignAnAgreement(_registrationDataHelper.CompanyTypeOrg3, 2);
 
-                _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
-
-                _secondAccountId = _objectContext.GetSecondAccountHashedId();
-            }
-
-            if (number == "three")
-            {
-                UpdateOrganisationName(_thirdOrganisationName);
-
-                _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 2);
-
-                _thirdAccountId = _objectContext.GetThirdAccountHashedId();
-            }
+            SetAccountDetails(noOfAccounts);
         }
 
-        private (string, string, string) GetAccountDetails(string account)
+        private HomePage AddNewAccountAndSignAnAgreement(string orgName, int index)
         {
-            return true switch
-            {
-                bool _ when (account == "First") => (_firstOrganisationName, _firstAccountId, _objectContext.GetPublicHashedAccountId()),
-                bool _ when (account == "Second") => (_secondOrganisationName, _secondAccountId, _objectContext.GetSecondAccountPublicHashedId()),
-                bool _ when (account == "Third") => (_thirdOrganisationName, _thirdAccountId, _objectContext.GetThirdAccountPublicHashedId()),
-                _ => (string.Empty, string.Empty, string.Empty),
-            };
+            UpdateOrganisationName(orgName);
+
+            return _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, index);
         }
+
+        private void SetAccountDetails(string noOfAccounts)
+        {
+            var accountDetails = _registrationSqlDataHelper.CollectAccountDetailsAsList(_objectContext.GetRegisteredEmail());
+
+            _accountDetails.Add("First", (accountDetails[0].orgName, accountDetails[0].hashedId, accountDetails[0].publicHashedId));
+            _accountDetails.Add("Second", (accountDetails[1].orgName, accountDetails[1].hashedId, accountDetails[1].publicHashedId));
+
+            if (noOfAccounts == "three") _accountDetails.Add("Third", (accountDetails[2].orgName, accountDetails[2].hashedId, accountDetails[2].publicHashedId));
+        }
+
+        private (string orgName, string hashedAccountId, string publicHashedAccountId) GetAccountDetails(string account) => _accountDetails.GetValueOrDefault(account);
 
         private void SenderConnectsToReceiverAndReceiverAccepts(string sender, string receiver)
         {
@@ -150,6 +136,5 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private TransfersPage OpenTransfers() => new FinancePage(_context, true).OpenTransfers();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
-
     }
 }
