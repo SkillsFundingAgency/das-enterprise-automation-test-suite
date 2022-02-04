@@ -16,7 +16,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public abstract class EasAccountUser : LoginUser
     {
-        public string OrganisationName => LegalEntities.FirstOrDefault();
+        public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
     }
@@ -60,7 +60,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     #region MultipleAccountUser
     public abstract class MultipleEasAccountUser : EasAccountUser
     {
-        public string SecondOrganisationName => LegalEntities.ElementAtOrDefault(1);
+        public string SecondOrganisationName => LegalEntities?.ElementAtOrDefault(1);
     }
 
     public class EIMultipleAccountUser : MultipleEasAccountUser { }
