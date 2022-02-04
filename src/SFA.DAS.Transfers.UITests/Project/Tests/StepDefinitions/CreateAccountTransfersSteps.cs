@@ -23,7 +23,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly string _secondOrganisationName;
         private readonly string _thirdOrganisationName;
 
-
         public CreateAccountTransfersSteps(ScenarioContext context)
         {
             _context = context;
