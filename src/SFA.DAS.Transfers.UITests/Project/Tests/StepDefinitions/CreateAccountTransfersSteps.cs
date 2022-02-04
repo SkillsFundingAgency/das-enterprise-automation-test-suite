@@ -5,8 +5,6 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
@@ -34,16 +32,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _firstAccountId = null;
             _secondAccountId = null;
             _thirdAccountId = null;
-            _firstOrganisationName = context.Get<RegistrationDataHelper>().CompanyTypeOrg;
-            _secondOrganisationName = context.GetUser<TransfersUser>().SecondOrganisationName;
-            _thirdOrganisationName = context.GetUser<TransfersUser>().ThirdOrganisationName;
+            var datahelper = context.Get<RegistrationDataHelper>();
+            _firstOrganisationName = datahelper.CompanyTypeOrg;
+            _secondOrganisationName = datahelper.CompanyTypeOrg2;
+            _thirdOrganisationName = datahelper.CompanyTypeOrg3;
         }
 
         [Given(@"We have (one|two|three) Employer accounts where none are a Transfer sender or Transfer Receiver")]
-        public void GivenWehaveTwoEmployerAccountsWhereNeitherIsATransferSenderOrTransferReceiver(string number)
-        {
-            AccountsAreCreated(number);
-        }
+        public void GivenWehaveTwoEmployerAccountsWhereNeitherIsATransferSenderOrTransferReceiver(string number) => AccountsAreCreated(number);
 
         private void AccountsAreCreated(string number)
         {            
@@ -60,7 +56,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
                 _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
 
-                _secondAccountId = _objectContext.GetSecondHashedAccountId();
+                _secondAccountId = _objectContext.GetSecondAccountHashedId();
             }
 
             if (number == "three")
@@ -69,7 +65,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
                 _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 2);
 
-                _thirdAccountId = _objectContext.GetThirdHashedAccountId();
+                _thirdAccountId = _objectContext.GetThirdAccountHashedId();
             }
         }
 
@@ -78,8 +74,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             AccountsAreCreated(number);
 
-            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
-            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+            (string senderOrganisationName, string senderAccountId, string senderPublicAccountId) = GetAccountDetails(sender);
+            (string receiverOrganisationName, string receiverAccountId, string receiverPublicAccountId) = GetAccountDetails(receiver);
 
             SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
             ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
@@ -94,8 +90,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
         public void GivenSenderIsConnectedToReceiver(string sender, string receiver)
         {
-            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
-            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+            (string senderOrganisationName, string senderAccountId, string senderPublicAccountId) = GetAccountDetails(sender);
+            (string receiverOrganisationName, string receiverAccountId, string receiverPublicAccountId) = GetAccountDetails(receiver);
 
             SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
             ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
@@ -104,42 +100,24 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"(First|Second|Third) account creates transfer request to (First|Second|Third) account and (First|Second|Third) account accepts the request")]
         public void WhenFirstAccountCreatesConnectionRequestToSecondAccountAndSecondAccountAcceptsTheRequest(string sender, string receiver, string acceptor)
         {
-            if (receiver != acceptor)
-                throw new ArgumentException("The acceptor must be the same as the reciever");
+            if (receiver != acceptor) throw new ArgumentException("The acceptor must be the same as the reciever");
 
-            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
-            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+            (string senderOrganisationName, string senderAccountId, string senderPublicAccountId) = GetAccountDetails(sender);
+            (string receiverOrganisationName, string receiverAccountId, string receiverPublicAccountId) = GetAccountDetails(receiver);
 
             SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
             ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
         }
 
-        private void GetAccountDetails(string account, out string organisationName, out string accountId, out string publicAccountId)
+        private (string, string, string) GetAccountDetails(string account)
         {
-            switch (account)
+            return true switch
             {
-                case "First":
-                    organisationName = _firstOrganisationName;
-                    accountId = _firstAccountId;
-                    publicAccountId = _objectContext.GetPublicHashedAccountId();
-                    break;
-                case "Second":
-                    organisationName = _secondOrganisationName;
-                    accountId = _secondAccountId;
-                    publicAccountId = _objectContext.GetPublicSecondHashedAccountId();
-                    break;
-                case "Third":
-                    organisationName = _thirdOrganisationName;
-                    accountId = _thirdAccountId;
-                    publicAccountId = _objectContext.GetPublicThirdHashedAccountId();
-                    break;
-
-                default:
-                    organisationName = string.Empty;
-                    accountId = string.Empty;
-                    publicAccountId = string.Empty;
-                    break;
-            }
+                bool _ when (account == "First") => (_firstOrganisationName, _firstAccountId, _objectContext.GetPublicHashedAccountId()),
+                bool _ when (account == "Second") => (_secondOrganisationName, _secondAccountId, _objectContext.GetSecondAccountPublicHashedId()),
+                bool _ when (account == "Third") => (_thirdOrganisationName, _thirdAccountId, _objectContext.GetThirdAccountPublicHashedId()),
+                _ => (string.Empty, string.Empty, string.Empty),
+            };
         }
 
         private void SenderConnectsToReceiver(string senderOrganisationName, string publicReceiverAccountId)
@@ -174,8 +152,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Then(@"A transfer connection is established successfully between (First|Second|Third) account as Sender and (First|Second|Third) account as Receiver")]
         public void ThenATransferConnectionIsEstablishedSuccessfullyBetweenFirstAccountAsSenderAndSecondAccountAsReceiver(string sender, string receiver)
         {
-            GetAccountDetails(sender, out string senderOrganisationName, out string senderAccountId, out string senderPublicAccountId);
-            GetAccountDetails(receiver, out string receiverOrganisationName, out string receiverAccountId, out string receiverPublicAccountId);
+            (string senderOrganisationName, string senderAccountId, string senderPublicAccountId) = GetAccountDetails(sender);
+            (string receiverOrganisationName, string receiverAccountId, string receiverPublicAccountId) = GetAccountDetails(receiver);
 
             _objectContext.UpdateOrganisationName(senderOrganisationName);
             _homePage.GoToYourAccountsPage()
