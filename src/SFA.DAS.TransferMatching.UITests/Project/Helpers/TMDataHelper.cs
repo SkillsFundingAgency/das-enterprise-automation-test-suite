@@ -12,8 +12,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             Course = randomCourse.Course;
             Cost = randomCourse.Cost;
             NoOfApprentice = 1;
-            CourseStartDate = DateTime.Now.AddMonths(2);
+            CourseStartDate = DateTime.Now;
         }
+
 
         public string ApprenticeshipMoreDetails => RandomDataGenerator.GenerateRandomAlphabeticString(25);
 
@@ -27,13 +28,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
         public string Course { get; }
 
-        public int Cost { get; set;  }
+        public int Cost { get; set; }
 
         public int NoOfApprentice { get; set; }
 
         public int MinAmount => Cost * NoOfApprentice;
 
-        public DateTime CourseStartDate { get; set; } 
+        public DateTime CourseStartDate { get; set; }
 
         private static int Func(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
@@ -50,11 +51,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             "Worcester, Worcestershire"
         };
 
-        private List<(string Course, int Cost)> Courses => new List<(string,int)>()
+        private List<(string Course, int Cost)> Courses => new List<(string, int)>()
         {
             ("Abattoir worker" ,1500),
             ("Software tester" ,3000),
             ("Software developer",3000)
         };
     }
+
 }
+
