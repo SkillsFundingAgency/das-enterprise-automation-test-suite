@@ -15,12 +15,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly ApprovalsStepsHelper _approvalsStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-
-        private HomePage _homePage;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private HomePage _homePage;
 
-        private Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
+        private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
 
         public CreateAccountTransfersSteps(ScenarioContext context)
         {
