@@ -158,7 +158,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"a Levy Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
-            _accountCreationStepsHelper.SetFirstAccountOrganisationName(orgType);
+            _accountCreationStepsHelper.UpdateOrganisationName(orgType);
             CreateUserAccountAndAddOrg(orgType);
             SignTheAgreement();
         }

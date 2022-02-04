@@ -8,41 +8,37 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         public RegistrationSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
-        public string GetAccountApprenticeshipEmployerType(string email)
+        public string GetAccountApprenticeshipEmployerType(string email) => GetDataAsString($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] WHERE Id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
+
+        public void UpdateLegalEntityName(string email) => ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] SET [Name] = 'Changed Org Name' WHERE AccountId IN {GetAccountIdQuery(email)}");
+
+        public string GetAccountLegalEntityPublicHashedId(string accountid, string orgname) => GetDataAsString($"select PublicHashedId from [employer_account].[AccountLegalEntity] where AccountId = {accountid} and [Name] = '{orgname}'");
+
+        public string GetAccountId(string email) => GetDataAsString(GetAccountIdQuery(email));
+
+        public (string accountId, string hashedId, string orgName, string publicHashedId) CollectAccountDetails(string email)
         {
-            var userId = GetDataAsString($"SELECT Id from [employer_account].[User] where Email = '{email}'");
-            var id = GetDataAsString($"SELECT AccountId FROM[employer_account].[Membership] where UserId = {userId}");
-            return GetDataAsString($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] where Id = {id}");
-        }
+            static string Join(List<string> list) => string.Join(",", list);
 
-        public void UpdateLegalEntityName(string email)
-        {
-            var id = GetDataAsString($"SELECT Id from [employer_account].[User] where Email = '{email}'");
-            var accountId = GetDataAsString($"SELECT AccountId FROM [employer_account].[Membership] where UserId = {id}");
-            ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
-        }
+            var id = GetMultipleData($"SELECT id, HashedId, [Name], PublicHashedId FROM [employer_account].[Account] WHERE id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 
-        public string GetAccountLegalEntityPublicHashedId(string accountid, string orgname) => 
-            GetDataAsString($"select PublicHashedId from employer_account.AccountLegalEntity where AccountId = {accountid} and [Name] = '{orgname}'");
-        
-
-        public (string accountId, string hashedAccountId) GetAccountIds(string email)
-        {
-            var id = GetMultipleData($"select id,HashedId from employer_account.Account where id in " +
-                $"(SELECT AccountId FROM[employer_account].[Membership] where UserId = " +
-                $"(SELECT Id from [employer_account].[User] where Email = '{email}'))");
-
-            List<string> accountId = new List<string>();
-
-            List<string> hashedAccountId = new List<string>();
+            var list = new List<string>();
+            List<string> accountId = list;
+            List<string> hashedId = list;
+            List<string> orgName = list;
+            List<string> publicHashedId = list;
 
             for (int i = 0; i < id.Count; i++)
             {
                 accountId.Add(id[i][0]);
-                hashedAccountId.Add(id[i][1]);
+                hashedId.Add(id[i][1]);
+                orgName.Add(id[i][2]);
+                publicHashedId.Add(id[i][3]);
             }
 
-            return (string.Join(",", accountId), string.Join(",", hashedAccountId));
+            return (Join(accountId), Join(hashedId), Join(orgName), Join(publicHashedId));
         }
+
+        private string GetAccountIdQuery(string email) => $"(SELECT AccountId FROM [employer_account].[Membership] m JOIN [employer_account].[User] u ON u.Id = m.UserId AND u.Email = '{email}')";
     }
 }

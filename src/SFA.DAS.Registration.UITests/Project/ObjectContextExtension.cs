@@ -48,11 +48,13 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
             objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
 
-        internal static void UpdateUserCreds(this ObjectContext objectContext, string accountid, string hashedaccountid, int index)
+        internal static void UpdateUserCreds(this ObjectContext objectContext, (string accountId, string hashedId, string orgName, string publicHashedId) accDetails, int index)
         {
             var usercreds = objectContext.Get<UserCreds>(UserCredsKey(index));
-            usercreds.Accountid = accountid;
-            usercreds.HashedAccountid = hashedaccountid;
+            usercreds.AccountId = accDetails.accountId;
+            usercreds.HashedId = accDetails.hashedId;
+            usercreds.OrgName = accDetails.orgName;
+            usercreds.PublicHashedid = accDetails.publicHashedId;
         }
 
         public static string GetHashedAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
