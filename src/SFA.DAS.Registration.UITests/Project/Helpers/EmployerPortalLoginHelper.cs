@@ -50,6 +50,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
 
-        public EasAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
+        public LoggedInAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }

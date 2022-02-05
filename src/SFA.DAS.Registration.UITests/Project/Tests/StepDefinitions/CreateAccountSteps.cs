@@ -399,7 +399,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer is able to add another Account with (Company|PublicSector|Charity) Type Org to the same user login")]
         public void ThenTheEmployerIsAbleToAddAnotherAccountToTheSameUserLogin(OrgType orgType) =>
-            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, orgType, 1);
+            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, 1, orgType);
 
         [Then(@"the Employer is able to switch between the Accounts")]
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()

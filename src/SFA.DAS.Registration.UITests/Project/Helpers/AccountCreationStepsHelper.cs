@@ -71,23 +71,21 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .SelectYesRadioButtonAndContinue()
                 .VerifyPayeSchemeRemovedInfoMessage();
 
-        internal HomePage AddNewAccount(HomePage homePage, OrgType orgType, int index)
+        internal HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
             _objectContext.SetSecondAccountOrganisationName(GetOrgName(orgType));
 
-            return AddNewAccount(homePage, index);
+            return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
-        internal HomePage AddNewAccount(HomePage homePage, int index) => AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index);
-
-        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index)
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default)
         {
             return addAPAYESchemePage
                  .AddPaye()
                  .ContinueToGGSignIn()
                  .SignInTo(index)
-                 .SearchForAnOrganisation()
-                 .SelectYourOrganisation()
+                 .SearchForAnOrganisation(orgType)
+                 .SelectYourOrganisation(orgType)
                  .ContinueToAboutYourAgreementPage()
                  .SelectViewAgreementNowAndContinue()
                  .SignAgreement()
