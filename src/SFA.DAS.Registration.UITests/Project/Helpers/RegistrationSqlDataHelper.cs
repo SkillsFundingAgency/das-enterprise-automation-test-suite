@@ -22,11 +22,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var ids = CollectAccountDetailsAsList(email);
 
-            var list = new List<string>();
-            List<string> accountId = list;
-            List<string> hashedId = list;
-            List<string> orgName = list;
-            List<string> publicHashedId = list;
+            List<string> accountId = new List<string>();
+            List<string> hashedId = new List<string>();
+            List<string> orgName = new List<string>();
+            List<string> publicHashedId = new List<string>();
 
             foreach ((string accountId, string hashedId, string orgName, string publicHashedId) id in ids)
             {
