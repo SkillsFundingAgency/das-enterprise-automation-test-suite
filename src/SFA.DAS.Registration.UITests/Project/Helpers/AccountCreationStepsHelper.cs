@@ -73,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
-            _objectContext.SetSecondAccountOrganisationName(GetOrgName(orgType));
+            _objectContext.SetAdditionalAccount(GetOrgName(orgType), index);
 
             return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }

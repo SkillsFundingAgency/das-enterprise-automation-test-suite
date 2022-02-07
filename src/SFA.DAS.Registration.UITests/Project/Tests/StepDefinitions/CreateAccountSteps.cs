@@ -405,7 +405,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()
         {
             OpenAccount(_objectContext.GetOrganisationName());
-            OpenAccount(_objectContext.GetSecondAccountOrganisationName());
+            OpenAccount(_objectContext.GetAdditionalAccount(1));
         }
 
         [Then(@"the Employer Account is locked with 3 incorrect password attempts")]
