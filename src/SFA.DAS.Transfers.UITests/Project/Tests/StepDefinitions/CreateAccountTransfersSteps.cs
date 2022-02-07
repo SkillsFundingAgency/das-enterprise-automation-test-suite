@@ -84,7 +84,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private void SetAccountDetails(string noOfAccounts)
         {
-            var accountDetails = _registrationSqlDataHelper.CollectAccountDetailsAsList(_objectContext.GetRegisteredEmail());
+            var accountDetails = _registrationSqlDataHelper.CollectAccountDetails(_objectContext.GetRegisteredEmail());
 
             _accountDetails.Add("First", (accountDetails[0].orgName, accountDetails[0].hashedId, accountDetails[0].publicHashedId));
             _accountDetails.Add("Second", (accountDetails[1].orgName, accountDetails[1].hashedId, accountDetails[1].publicHashedId));

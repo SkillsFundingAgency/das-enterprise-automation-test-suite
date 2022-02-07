@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
@@ -34,16 +35,27 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void SetAdditionalAccount(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalAccount(index), secondAccountOrganisationName);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
         internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
-            objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
+            objectContext.Replace(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
 
-        internal static void UpdateUserCreds(this ObjectContext objectContext, (string accountId, string hashedId, string orgName, string publicHashedId) accDetails, int index)
+        internal static void UpdateUserCreds(this ObjectContext objectContext, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails, int index)
         {
-            var usercreds = objectContext.Get<UserCreds>(UserCredsKey(index));
-            usercreds.AccountId = accDetails.accountId;
-            usercreds.HashedId = accDetails.hashedId;
-            usercreds.OrgName = accDetails.orgName;
-            usercreds.PublicHashedid = accDetails.publicHashedId;
+            var usercreds = objectContext.GetUserCreds(index);
+
+            for (int i = 0; i < accDetails.Count; i++)
+            {
+                var (accountId, hashedId, orgName, publicHashedId) = accDetails[i];
+
+                usercreds.AccountDetails.Add(new AccountDetails
+                {
+                    AccountId = accountId,
+                    HashedId = hashedId,
+                    OrgName = orgName,
+                    PublicHashedid = publicHashedId
+                });
+            }
         }
+
+        public static UserCreds GetUserCreds(this ObjectContext objectContext, int index) => objectContext.Get<UserCreds>(UserCredsKey(index));
 
         public static string GetHashedAccountId(this ObjectContext objectContext) => objectContext.Get(HashedAccountIdKey);
         public static string GetDBAccountId(this ObjectContext objectContext) => objectContext.Get(DbAccountIdKey);
