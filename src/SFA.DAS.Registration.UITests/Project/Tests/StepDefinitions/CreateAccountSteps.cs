@@ -158,7 +158,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"a Levy Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
-            _accountCreationStepsHelper.SetFirstAccountOrganisationName(orgType);
+            _accountCreationStepsHelper.UpdateOrganisationName(orgType);
             CreateUserAccountAndAddOrg(orgType);
             SignTheAgreement();
         }
@@ -399,13 +399,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer is able to add another Account with (Company|PublicSector|Charity) Type Org to the same user login")]
         public void ThenTheEmployerIsAbleToAddAnotherAccountToTheSameUserLogin(OrgType orgType) =>
-            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, orgType, 1);
+            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, 1, orgType);
 
         [Then(@"the Employer is able to switch between the Accounts")]
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()
         {
-            OpenAccount(_objectContext.GetFirstAccountOrganisationName());
-            OpenAccount(_objectContext.GetSecondAccountOrganisationName());
+            OpenAccount(_objectContext.GetOrganisationName());
+            OpenAccount(_objectContext.GetAdditionalAccount(1));
         }
 
         [Then(@"the Employer Account is locked with 3 incorrect password attempts")]

@@ -92,19 +92,9 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [AfterScenario(Order = 20)]
-        public void SetAccountId()
+        public void CollectAccountDetails()
         {
-            if (!_isAddPayeDetails) { return; }
-
-            _tryCatch.AfterScenarioException(() =>
-            {
-                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
-
-                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
-
-                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
-            });
-
+            if (_isAddPayeDetails) _tryCatch.AfterScenarioException(() => _objectContext.UpdateUserCreds(_context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(_objectContext.GetRegisteredEmail()), 0));
         }
 
         [AfterScenario(Order = 21)]
