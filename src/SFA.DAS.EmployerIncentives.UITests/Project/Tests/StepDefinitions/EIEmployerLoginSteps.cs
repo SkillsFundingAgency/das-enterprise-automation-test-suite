@@ -47,6 +47,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private void SetOrgAndLogin(EasAccountUser loginUser)
         {
             _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
+
             _employerPortalLoginHelper.Login(loginUser, true);
         }
 
@@ -60,7 +61,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void RemoveExistingApplications(EasAccountUser user)
         {
             if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
-                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountId(user.Username));
         }
 
     }
