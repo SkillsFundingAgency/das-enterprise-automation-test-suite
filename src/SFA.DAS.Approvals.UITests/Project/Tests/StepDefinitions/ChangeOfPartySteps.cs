@@ -85,7 +85,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new employer approves the cohort")]
         public void ThenNewEmployerApprovesTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_newEmployerName);
+            UpdateOrganisationName(_newEmployerName);
             _employerStepsHelper.Approve();
         }
 
@@ -95,7 +95,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_newEmployerName);
+            UpdateOrganisationName(_newEmployerName);
             _employerStepsHelper.Reject();
         }
 
@@ -271,14 +271,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void EmployerAndProviderApprove(bool IsChangeOfEmployer)
         {
-            if (IsChangeOfEmployer)
-            {
-                _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
-            }
-            else
-            {
-                _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-            }
+            if (IsChangeOfEmployer) _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
+
+            else _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
             _employerStepsHelper.SetCohortReference(cohortReference);
@@ -287,5 +282,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void UpdateNewCohortReference() => _employerStepsHelper.UpdateNewCohortReference();
 
+        private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }
 }
