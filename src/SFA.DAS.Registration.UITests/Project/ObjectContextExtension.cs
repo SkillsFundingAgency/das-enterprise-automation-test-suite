@@ -54,13 +54,11 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var usercreds = objectContext.GetUserCreds(index);
 
-            for (int i = 0; i < accDetails.Count; i++)
+            foreach (var (accountId, hashedId, orgName, publicHashedId) in accDetails)
             {
-                var (accountId, hashedId, orgName, publicHashedId) = accDetails[i];
-
                 var userAccountDetails = usercreds.AccountDetails;
 
-                if (userAccountDetails.Any(x => x.AccountId != accountId))
+                if (userAccountDetails.Any(x => x.AccountId == accountId)) continue;
 
                 usercreds.AccountDetails.Add(new AccountDetails
                 {
