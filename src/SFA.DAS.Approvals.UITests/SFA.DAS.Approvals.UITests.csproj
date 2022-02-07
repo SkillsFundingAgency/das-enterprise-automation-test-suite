@@ -34,6 +34,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Project\DataFiles\BulkUpload_1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\DataFiles\BulkUpload_2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\DataFiles\BulkUpload_3.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\Helpers\SqlScripts\GetAgreementId.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
