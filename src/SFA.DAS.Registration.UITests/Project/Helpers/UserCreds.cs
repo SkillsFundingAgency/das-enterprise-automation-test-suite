@@ -15,17 +15,16 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
     public class UserCreds
     {
-        internal UserCreds(string emailaddress, string password, string orgName, int userIndex)
+        internal UserCreds(string emailaddress, string password, int userIndex)
         {
             EmailAddress = emailaddress;
             Password = password;
-            OrgName = orgName;
             UserIndex = userIndex;
+            AccountDetails = new List<AccountDetails>();
         }
 
         public string EmailAddress { get; private set; }
         public string Password { get; private set; }
-        public string OrgName { get; internal set; }
         internal int UserIndex { get; private set; }
 
         public List<AccountDetails> AccountDetails { get; private set; }

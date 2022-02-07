@@ -34,8 +34,15 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetAdditionalAccount(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalAccount(index), secondAccountOrganisationName);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
-        internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
-            objectContext.Replace(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
+        internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, int index) =>
+            objectContext.Replace(UserCredsKey(index), new UserCreds(emailaddress, password, index));
+
+        internal static void UpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails, int index)
+        {
+            if (objectContext.GetUserCreds(index) is null) objectContext.SetUserCreds(emailaddress, password, index);
+            
+            objectContext.UpdateUserCreds(accDetails, index);
+        }
 
         internal static void UpdateUserCreds(this ObjectContext objectContext, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails, int index)
         {
