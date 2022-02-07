@@ -14,14 +14,14 @@ namespace SFA.DAS.FrameworkHelpers
         private static string StringEscapePattern(string pattern)
         {
             string escapedPattern = pattern;
+
             foreach (char x in pattern)
             {
                 var y = x.ToString();
-                if (chars.Any(c => c == y))
-                {
-                    escapedPattern = escapedPattern.Replace(y, $"\\{x}");
-                }
+
+                if (chars.Any(c => c == y)) escapedPattern = escapedPattern.Replace(y, $"\\{x}");
             }
+
             return escapedPattern;
         }
     }

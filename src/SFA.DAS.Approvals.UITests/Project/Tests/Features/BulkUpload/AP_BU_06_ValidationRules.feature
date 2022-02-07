@@ -1,6 +1,8 @@
-﻿Feature: AP_BU_05_ValidationRules
+﻿@approvals
+Feature: AP_BU_05_ValidationRules
 
-@mytag
+#@regression
+@newBUJourney
 Scenario: AP_BU_05_Validation Rules
 	Given the first number is 50
 	And the second number is 70

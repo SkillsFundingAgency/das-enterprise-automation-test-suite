@@ -1,6 +1,8 @@
-﻿Feature: AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts
+﻿@approvals
+Feature: AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts
 
-@mytag
+#@regression
+@newBUJourney
 Scenario: AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts
 	Given the provider has multiple editable cohorts
 	And the provider has permission to create new cohort

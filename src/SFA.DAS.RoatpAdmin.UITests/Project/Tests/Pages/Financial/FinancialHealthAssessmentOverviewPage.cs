@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             {
                 formCompletionHelper.EnterText(DayOutStandingField, "1");
                 formCompletionHelper.EnterText(MonthOutStandingField, "2");
-                formCompletionHelper.EnterText(YearOutStandingField, "2022");
+                formCompletionHelper.EnterText(YearOutStandingField, "2025");
                 Continue();
             }
             return new FinancialHealthAssesmentCompletedPage(context);
