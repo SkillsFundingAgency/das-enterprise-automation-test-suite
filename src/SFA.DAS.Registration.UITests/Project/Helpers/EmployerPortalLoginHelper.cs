@@ -41,12 +41,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             objectContext.UpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username), 0);
 
-            var usercreds = objectContext.GetUserCreds(0);
-
-            objectContext.SetHashedAccountId(usercreds.AccountDetails[0].HashedId);
-
-            objectContext.SetDBAccountId(usercreds.AccountDetails[0].AccountId);
-
             return homePage;
         }
 

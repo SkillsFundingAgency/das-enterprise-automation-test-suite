@@ -25,21 +25,29 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
-        internal ConfirmYourIdentityPage RegisterUserAccount() => RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
+        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount().ContinueToGetApprenticeshipFunding(), 0);
 
-        internal ConfirmYourIdentityPage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => indexPage.CreateAccount().Register(email);
-
-        internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
+        public HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
-            return homepage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(orgType);
+            _objectContext.SetAdditionalOrganisationName(GetOrgName(orgType), index);
+
+            return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
+
+        internal ConfirmYourIdentityPage RegisterUserAccount() => 
+            RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
+
+        internal ConfirmYourIdentityPage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
+            indexPage.CreateAccount().Register(email);
+
+        internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
+            homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
 
         internal CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
-        internal TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
+        internal TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => 
+            addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
 
         internal CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
 
@@ -51,46 +59,37 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) => CreateUserAccount(indexPage, _registrationDataHelper.AnotherRandomEmail);
 
-        internal HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount().ContinueToGetApprenticeshipFunding(), 0);
-
         internal AddAPAYESchemePage CreateUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterUserAccount(indexPage, email).ContinueToGetApprenticeshipFunding();
 
         internal HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
-            homePage.GotoPAYESchemesPage()
-                .ClickAddNewSchemeButton()
-                .ContinueToGGSignIn()
-                .EnterPayeDetailsAndContinue(1)
-                .ClickContinueInConfirmPAYESchemePage()
-                .SelectContinueAccountSetupInPAYESchemeAddedPage();
+            homePage
+            .GotoPAYESchemesPage()
+            .ClickAddNewSchemeButton()
+            .ContinueToGGSignIn()
+            .EnterPayeDetailsAndContinue(1)
+            .ClickContinueInConfirmPAYESchemePage()
+            .SelectContinueAccountSetupInPAYESchemeAddedPage();
 
         internal PAYESchemesPage RemovePayeSchemeFromTheAccount(HomePage homePage) =>
-            homePage.GotoPAYESchemesPage()
-                .ClickNewlyAddedPayeDetailsLink()
-                .ClickRemovePAYESchemeButton()
-                .SelectYesRadioButtonAndContinue()
-                .VerifyPayeSchemeRemovedInfoMessage();
+            homePage
+            .GotoPAYESchemesPage()
+            .ClickNewlyAddedPayeDetailsLink()
+            .ClickRemovePAYESchemeButton()
+            .SelectYesRadioButtonAndContinue()
+            .VerifyPayeSchemeRemovedInfoMessage();
 
-        internal HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
-        {
-            _objectContext.SetAdditionalAccount(GetOrgName(orgType), index);
-
-            return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
-        }
-
-        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default)
-        {
-            return addAPAYESchemePage
-                 .AddPaye()
-                 .ContinueToGGSignIn()
-                 .SignInTo(index)
-                 .SearchForAnOrganisation(orgType)
-                 .SelectYourOrganisation(orgType)
-                 .ContinueToAboutYourAgreementPage()
-                 .SelectViewAgreementNowAndContinue()
-                 .SignAgreement()
-                 .ClickOnViewYourAccountButton();
-        }
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) => 
+            addAPAYESchemePage
+            .AddPaye()
+            .ContinueToGGSignIn()
+            .SignInTo(index)
+            .SearchForAnOrganisation(orgType)
+            .SelectYourOrganisation(orgType)
+            .ContinueToAboutYourAgreementPage()
+            .SelectViewAgreementNowAndContinue()
+            .SignAgreement()
+            .ClickOnViewYourAccountButton();
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
             homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
