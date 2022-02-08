@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2EPayeIsNull
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2E_StopWhenLearnerFoundOnPaye
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EPayeIsNull")]
-    public partial class EmploymentCheckE2EPayeIsNullFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EStopWhenLearnerFoundOnPaye")]
+    public partial class EmploymentCheckE2EStopWhenLearnerFoundOnPayeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EC_API_03_PerformEmploymentCheck_PayeIsNull.feature"
+#line 1 "EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EPayeIsNull", "EmploymentCheckE2EPayeIsNull", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2E_StopWhenLearnerFoundOnPaye", "EmploymentCheckE2EStopWhenLearnerFoundOnPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_03_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string employed, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,9 +89,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Employed", employed);
-            argumentsOfScenario.Add("ReturnCode", returnCode);
-            argumentsOfScenario.Add("ReturnMessage", returnMessage);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_03_PerformEmploymentCheck_PayeIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -116,30 +114,31 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("multiple paye schemes are found on account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("an employment check request is created for each unique Nino and paye scheme combi" +
+                        "nation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("Paye/Scheme is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Learner is found to be \'{0}\' on one of the paye schemes", employed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("abandon all the remaining paye schemes for the check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_03_PerformEmploymentCheck_PayeIsNull: 4")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_03_PerformEmploymentCheck_PayeIsNull_4()
+        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound_8()
         {
 #line 6
-this.EC_API_03_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "PayeScheme is null", ((string[])(null)));
+this.EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "true", ((string[])(null)));
 #line hidden
         }
     }

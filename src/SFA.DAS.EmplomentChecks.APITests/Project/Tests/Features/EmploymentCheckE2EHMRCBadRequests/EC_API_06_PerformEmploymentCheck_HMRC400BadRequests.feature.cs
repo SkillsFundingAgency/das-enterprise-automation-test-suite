@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2ENinoIsNull
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2EHMRCBadRequests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2ENinoIsNull")]
-    public partial class EmploymentCheckE2ENinoIsNullFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EHMRCBadRequests")]
+    public partial class EmploymentCheckE2EHMRCBadRequestsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EC_API_02_PerformEmploymentCheck_NinoIsNull.feature"
+#line 1 "EC_API_06_PerformEmploymentCheck_HMRC400BadRequests.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2ENinoIsNull", "EmploymentCheckE2ENinoIsNull", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EHMRCBadRequests", "EmploymentCheckE2EHMRCBadRequests", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_02_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        public virtual void EC_API_06_PerformEmploymentCheck_HMRC400BadRequests(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -91,7 +91,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("Employed", employed);
             argumentsOfScenario.Add("ReturnCode", returnCode);
             argumentsOfScenario.Add("ReturnMessage", returnMessage);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_02_PerformEmploymentCheck_NinoIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_06_PerformEmploymentCheck_HMRC400BadRequests", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,27 +119,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.And("Nino is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And(string.Format("employment check database is updated with the result from HMRC \'{0}\', \'{1}\', \'{2}" +
+                            "\'", employed, returnCode, returnMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_02_PerformEmploymentCheck_NinoIsNull: 3")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_06_PerformEmploymentCheck_HMRC400BadRequests: 6")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_02_PerformEmploymentCheck_NinoIsNull_3()
+        public virtual void EC_API_06_PerformEmploymentCheck_HMRC400BadRequests_6()
         {
 #line 6
-this.EC_API_02_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "NationalInsuranceNumber is null", ((string[])(null)));
+this.EC_API_06_PerformEmploymentCheck_HMRC400BadRequests("6", "2014-03-06T00:00:00", "2013-03-06T00:00:00", "", "400", "{\"code\":\"BAD_REQUEST\",\"message\":\"From date was after to date\"}", ((string[])(null)));
 #line hidden
         }
     }
