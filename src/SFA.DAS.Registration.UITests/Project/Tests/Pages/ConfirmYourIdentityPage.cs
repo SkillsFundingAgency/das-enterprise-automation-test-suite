@@ -19,21 +19,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {
-            EnterAccessCode().Continue();
+            EnterAccessCodeAndContinue();
 
             return new AddAPAYESchemePage(context);
         }
 
-        public ConfirmYourIdentityPage EnterAccessCode()
-        {
-            formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode);
-            return this;
-        }
-
         public InvitationsPage ContinueToInvitationsPage()
         {
-            Continue();
+            EnterAccessCodeAndContinue();
+
             return new InvitationsPage(context);
         }
+
+        private void EnterAccessCodeAndContinue() { formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode); Continue(); }
     }
 }

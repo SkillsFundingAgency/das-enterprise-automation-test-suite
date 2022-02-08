@@ -6,57 +6,20 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class ApprovalsStepsHelper
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly AccountCreationStepsHelper accountCreationStepsHelper;
 
-        public ApprovalsStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-        }
+        public ApprovalsStepsHelper(ScenarioContext context) { _objectContext = context.Get<ObjectContext>(); accountCreationStepsHelper = new AccountCreationStepsHelper(context); }
 
         public HomePage CreatesAccountAndSignAnAgreement()
         {
-            var page = new CreateAnAccountToManageApprenticeshipsPage(_context)
-                 .CreateAccount()
-                 .Register()
-                 .ContinueToGetApprenticeshipFunding();
-            
-            var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
+            var homePage = accountCreationStepsHelper.CreateUserAccount();
 
-            var accountid = homePage.AccountId();
-            _objectContext.SetHashedAccountId(accountid);
+            _objectContext.SetHashedAccountId(homePage.AccountId());
 
             return homePage;
         }
 
-        public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage, int index)
-        {
-            var page = homePage.GoToYourAccountsPage().AddNewAccount();
-
-            homePage = AddPayeAndOrgDetailsAndSignAgreement(page, index);
-                 
-            var accountid = homePage.AccountId();
-            _objectContext.SetReceiverAccountId(accountid);
-
-            var publicAccountid = homePage.PublicAccountId();
-            _objectContext.SetReceiverPublicAccountId(publicAccountid);
-
-            return homePage;
-        }
-
-        private HomePage AddPayeAndOrgDetailsAndSignAgreement(AddAPAYESchemePage addAPAYESchemePage, int index)
-        {
-            return addAPAYESchemePage
-                 .AddPaye()
-                 .ContinueToGGSignIn()
-                 .SignInTo(index)
-                 .SearchForAnOrganisation()
-                 .SelectYourOrganisation()
-                 .ContinueToAboutYourAgreementPage()
-                 .SelectViewAgreementNowAndContinue()
-                 .SignAgreement()
-                 .ClickOnViewYourAccountButton();
-        }
+        public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage, int index) => accountCreationStepsHelper.AddNewAccount(homePage, index);
     }
 }

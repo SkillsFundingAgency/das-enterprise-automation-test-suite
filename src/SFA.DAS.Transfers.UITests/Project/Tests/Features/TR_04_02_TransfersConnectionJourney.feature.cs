@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2EPayeIsNull
+namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EPayeIsNull")]
-    public partial class EmploymentCheckE2EPayeIsNullFeature
+    [NUnit.Framework.DescriptionAttribute("TR_04_02_TransfersConnectionJourney")]
+    public partial class TR_04_02_TransfersConnectionJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EC_API_03_PerformEmploymentCheck_PayeIsNull.feature"
+#line 1 "TR_04_02_TransfersConnectionJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EPayeIsNull", "EmploymentCheckE2EPayeIsNull", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_04_02_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,26 +73,28 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_03_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TR_04_02 Transfers - Sucessfully create Transfer Request from Receiver to another" +
+            " Account")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("transfers")]
+        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
+        [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
+        [NUnit.Framework.CategoryAttribute("addthirdlevyfunds")]
+        public virtual void TR_04_02Transfers_SucessfullyCreateTransferRequestFromReceiverToAnotherAccount()
         {
-            string[] @__tags = new string[] {
-                    "api",
+            string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employmentcheckapi"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+                    "approvals",
+                    "transfers",
+                    "addtransferslevyfunds",
+                    "addsecondlevyfunds",
+                    "addthirdlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
-            argumentsOfScenario.Add("MinDate", minDate);
-            argumentsOfScenario.Add("MaxDate", maxDate);
-            argumentsOfScenario.Add("Employed", employed);
-            argumentsOfScenario.Add("ReturnCode", returnCode);
-            argumentsOfScenario.Add("ReturnMessage", returnMessage);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_03_PerformEmploymentCheck_PayeIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_02 Transfers - Sucessfully create Transfer Request from Receiver to another" +
+                    " Account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -112,35 +114,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 10
- testRunner.And("Paye/Scheme is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("We have three Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("First is a Sender connected to Second as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("Third is a Sender connected to First as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.When("Second account creates transfer request to Third account and Third account accept" +
+                        "s the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("A transfer connection is established successfully between Second account as Sende" +
+                        "r and Third account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_03_PerformEmploymentCheck_PayeIsNull: 4")]
-        [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_03_PerformEmploymentCheck_PayeIsNull_4()
-        {
-#line 6
-this.EC_API_03_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "PayeScheme is null", ((string[])(null)));
-#line hidden
         }
     }
 }

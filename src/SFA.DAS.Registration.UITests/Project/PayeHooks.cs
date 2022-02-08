@@ -40,11 +40,15 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 26)]
         [Scope(Tag = "addanothernonlevypayedetails")]
-        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(FundType.NonLevyFund);
+        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(FundType.NonLevyFund, 1);
 
         [BeforeScenario(Order = 27)]
-        [Scope(Tag = "addanotherlevyfunds")]
-        public void SetUpAnotherLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund);
+        [Scope(Tag = "addsecondlevyfunds")]
+        public void SetUpSecondLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 1);
+
+        [BeforeScenario(Order = 27)]
+        [Scope(Tag = "addthirdlevyfunds")]
+        public void SetUpThirdLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 2);
 
         private void AddPayeDetails(FundType fundType)
         {
@@ -65,13 +69,13 @@ namespace SFA.DAS.Registration.UITests.Project
             AddFunds(mongoDbDataGenerator, fundType);
         }
 
-        private void AddAnotherPayeDetails(FundType fundType)
+        private void AddAnotherPayeDetails(FundType fundType, int index)
         {
             _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
             var anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context, string.Empty);
 
-            anotherMongoDbDataGenerator.AddGatewayUsers(1);
+            anotherMongoDbDataGenerator.AddGatewayUsers(index);
 
             AddFunds(anotherMongoDbDataGenerator, fundType);
         }
@@ -88,19 +92,9 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [AfterScenario(Order = 20)]
-        public void SetAccountId()
+        public void CollectAccountDetails()
         {
-            if (!_isAddPayeDetails) { return; }
-
-            _tryCatch.AfterScenarioException(() =>
-            {
-                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
-
-                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
-
-                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
-            });
-
+            if (_isAddPayeDetails) _tryCatch.AfterScenarioException(() => _objectContext.UpdateUserCreds(_context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(_objectContext.GetRegisteredEmail()), 0));
         }
 
         [AfterScenario(Order = 21)]

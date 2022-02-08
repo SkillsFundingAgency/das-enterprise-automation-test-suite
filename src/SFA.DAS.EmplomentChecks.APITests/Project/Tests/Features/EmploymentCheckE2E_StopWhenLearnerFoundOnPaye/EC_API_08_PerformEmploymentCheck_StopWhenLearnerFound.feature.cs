@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2E_StopWhenLearnerFoundOnPaye
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,28 +20,22 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TR_04_TransfersConnectionJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    [NUnit.Framework.CategoryAttribute("transfers")]
-    public partial class TR_04_TransfersConnectionJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EStopWhenLearnerFoundOnPaye")]
+    public partial class EmploymentCheckE2EStopWhenLearnerFoundOnPayeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals",
-                "transfers"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "TR_04_TransfersConnectionJourney.feature"
+#line 1 "EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_04_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals",
-                        "transfers"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2E_StopWhenLearnerFoundOnPaye", "EmploymentCheckE2EStopWhenLearnerFoundOnPaye", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,20 +73,24 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_04 Transfers - Creating Transfer Connection between Sender and Receiver")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
-        [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
-        public virtual void TR_04Transfers_CreatingTransferConnectionBetweenSenderAndReceiver()
+        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string employed, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
+                    "api",
                     "regression",
-                    "addtransferslevyfunds",
-                    "addanothernonlevypayedetails"};
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04 Transfers - Creating Transfer Connection between Sender and Receiver", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("MinDate", minDate);
+            argumentsOfScenario.Add("MaxDate", maxDate);
+            argumentsOfScenario.Add("Employed", employed);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -112,18 +110,36 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+ testRunner.When("multiple paye schemes are found on account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 9
- testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("an employment check request is created for each unique Nino and paye scheme combi" +
+                        "nation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("Learner is found to be \'{0}\' on one of the paye schemes", employed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("abandon all the remaining paye schemes for the check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound_8()
+        {
+#line 6
+this.EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "true", ((string[])(null)));
+#line hidden
         }
     }
 }

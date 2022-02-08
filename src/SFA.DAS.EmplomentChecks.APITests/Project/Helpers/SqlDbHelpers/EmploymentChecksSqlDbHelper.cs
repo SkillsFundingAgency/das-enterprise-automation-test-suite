@@ -42,6 +42,63 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return employmentCheckId;
         }
 
+        internal int GetEmploymentCheckCacheRequestId(int employmentStatus)
+        {
+            string query = $" select top(1) Id from [Cache].[EmploymentCheckCacheRequest] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Employed = {employmentStatus}";
+
+            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            return Convert.ToInt16(queryResult[0][0]);
+        }
+
+        internal List<object[]> getRequestCompletionStatuses(int Id)
+        {
+            string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id > {Id}";
+
+            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            return queryResult;
+        }
+
+        internal int getNumberOfHmrcCallsAfterId(int EmploymentCheckCacheRequestId)
+        {
+            string query = $" select COUNT(*) from[Cache].[EmploymentCheckCacheResponse] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} and EmploymentCheckCacheRequestId > {EmploymentCheckCacheRequestId} ";
+
+            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            return Convert.ToInt16(queryResult[0][0]);
+        }
+
+        internal bool? VerifyEmploymentStatusAgainstPayeScheme(int numberOfPayeScheme)
+        {
+            int count = 0;
+            bool? employed = null;
+
+            string query = $"select top 1 * from " +
+                $" (select top({numberOfPayeScheme}) employed from [Cache].[EmploymentCheckCacheResponse]" +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} " +
+                $" order by Id desc) z";
+
+            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            while (queryResult.Count == 0 && count < 15)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
+
+            if (queryResult.Count == 0) return (null);
+
+            if (bool.TryParse(queryResult[0][0].ToString(), out bool parsedEmploymentStatus)) employed = parsedEmploymentStatus;
+
+            return employed;
+        }
+
         public void DeleteEmploymentCheck(long uln, long accountId)
         {
             string query =

@@ -24,10 +24,6 @@ namespace SFA.DAS.Login.Service
             {
                 notNullUsers[i].LegalEntities = legalentities[i];
 
-                notNullUsers[i].OrganisationName = notNullUsers[i].LegalEntities.FirstOrDefault();
-
-                if (notNullUsers[i] is MultipleEasAccountUser) { ((MultipleEasAccountUser)notNullUsers[i]).SecondOrganisationName = notNullUsers[i].LegalEntities[1]; }
-
                 SetUser(context, notNullUsers[i]);
             }
         }

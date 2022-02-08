@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can create a new report")]
         public void ThenTheEmployerCanCreateANewReport()
         {
-            _publicSectorReportingSqlDataHelper.RemovePublicSectorReporting(_objectContext.GetAccountId());
+            _publicSectorReportingSqlDataHelper.RemovePublicSectorReporting(_objectContext.GetHashedAccountId());
 
             var reportYourProgressPage = new PublicSectorReportingHomePage(_context, true)
                 .CreateNewReport()

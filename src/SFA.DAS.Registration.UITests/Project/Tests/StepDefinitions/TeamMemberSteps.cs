@@ -70,10 +70,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
 
-            _accountSignOutHelper.SignOut()
+            SignOut()
                 .CreateAccount()
                 .Register(_invitedMemberEmailId)
-                .EnterAccessCode()
                 .ContinueToInvitationsPage()
                 .ClickAcceptInviteLink();
         }
@@ -81,7 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Remove the team member from the account")]
         public void ThenEmployerIsAbleToRemoveTheTeamMemberFromTheAccount()
         {
-            _accountSignOutHelper.SignOut()
+            SignOut()
                 .ClickSignInLinkOnIndexPage()
                 .Login(_objectContext.GetLoginCredentials())
                 .GotoYourTeamPage()
@@ -90,5 +89,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickYesRemoveNowButton()
                 .VerifyTeamMemberRemovedHeaderInfoMessage();
         }
+
+        private CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
     }
 }
