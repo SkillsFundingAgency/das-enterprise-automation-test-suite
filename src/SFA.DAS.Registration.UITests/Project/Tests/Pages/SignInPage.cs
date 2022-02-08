@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {
             EnterLoginDetailsAndClickSignIn(userName, password);
-            return new ConfirmYourIdentityPage(context, userName);
+            return new ConfirmYourIdentityPage(context, userName, password);
         }
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)

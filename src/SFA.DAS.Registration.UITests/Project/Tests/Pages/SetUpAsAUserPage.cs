@@ -9,6 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region constants
         private const string ExpectedEmailErrorText = "Email already registered.";
+        private readonly string _password;
         #endregion
 
         #region Locators
@@ -24,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
-        public SetUpAsAUserPage(ScenarioContext context) : base(context) => VerifyPage();
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {
@@ -87,18 +88,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private SetUpAsAUserPage EnterPassword()
         {
-            formCompletionHelper.EnterText(PasswordInput, registrationDataHelper.Password);
+            formCompletionHelper.EnterText(PasswordInput, _password);
             return this;
         }
 
         private SetUpAsAUserPage EnterPasswordConfirm()
         {
-            formCompletionHelper.EnterText(PasswordConfirmInput, registrationDataHelper.Password);
+            formCompletionHelper.EnterText(PasswordConfirmInput, _password);
             return this;
         }
 
         private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
 
-        private ConfirmYourIdentityPage GoToConfirmYourIdentityPage(string email) => new ConfirmYourIdentityPage(context, email);
+        private ConfirmYourIdentityPage GoToConfirmYourIdentityPage(string email) => new ConfirmYourIdentityPage(context, email, _password);
     }
 }

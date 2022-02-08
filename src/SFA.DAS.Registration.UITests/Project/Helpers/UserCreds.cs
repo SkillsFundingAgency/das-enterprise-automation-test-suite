@@ -42,6 +42,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public override string ToString() => $"Email address:'{EmailAddress}', Password:'{Password}'{GetAccountDetails()}";
 
-        private string GetAccountDetails() => AccountDetails.Count == 0 ? "\"" : $",{Environment.NewLine}{string.Join(Environment.NewLine, AccountDetails.Select(a => a.ToString()))}";
+        private string GetAccountDetails() => AccountDetails.Count == 0 ? string.Empty : $",{Environment.NewLine}{string.Join(Environment.NewLine, AccountDetails.Select(a => a.ToString()))}";
     }
 }
