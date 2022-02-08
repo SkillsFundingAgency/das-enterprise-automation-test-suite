@@ -21,13 +21,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public void VerifyApprenticeGrade(string grade, LeanerCriteria leanerCriteria)
+        public void VerifyApprenticeGrade(string grade, LearnerCriteria learnerCriteria)
         {
             bool gradeValidation;
 
             var recordAGradePage = GoToRecordAGradePage();
 
-            if (leanerCriteria.HasMultiStandards)
+            if (learnerCriteria.HasMultiStandards)
                 gradeValidation = recordAGradePage.SearchApprentice(false).ViewCertificateHistory().VerifyGrade(grade);
             else
             {
@@ -39,11 +39,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             Assert.AreEqual(true, gradeValidation, $"Apprentice grade is not recorded as {grade}");
         }
 
-        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LeanerCriteria leanerCriteria, bool deleteCertificate)
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LearnerCriteria learnerCriteria, bool deleteCertificate)
         {
             var confirmApprenticePage = GoToRecordAGradePage().SearchApprentice(deleteCertificate);
 
-            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, leanerCriteria);
+            AS_DeclarationPage decPage = CertifyApprentice(confirmApprenticePage, learnerCriteria);
 
             return SelectGrade(decPage, grade, route);
         }
@@ -183,27 +183,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_CheckAndSubmitAssessmentPage(_context);
         }
 
-        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LeanerCriteria leanerCriteria)
+        private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LearnerCriteria learnerCriteria)
         {
-            if (leanerCriteria.HasMultipleVersions)
+            if (learnerCriteria.HasMultipleVersions)
             {
-                if (leanerCriteria.VersionConfirmed)
+                if (learnerCriteria.VersionConfirmed)
                     return confirmApprenticePage.ConfirmAndContinue();
 
                 else
                 {
-                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(leanerCriteria.HasMultiStandards);
+                    var whichVersionPage = confirmApprenticePage.GoToWhichVersionPage(learnerCriteria.HasMultiStandards);
 
-                    if (leanerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
+                    if (learnerCriteria.WithOptions) return whichVersionPage.ClickConfirmInConfirmVersionPage().SelectLearningOptionAndContinue();
 
                     else return whichVersionPage.ClickConfirmInConfirmVersionPageNoOption();
                 }
             }
             else
             {
-                if (leanerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(leanerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
+                if (learnerCriteria.WithOptions) return confirmApprenticePage.GoToWhichLearningOptionPage(learnerCriteria.HasMultiStandards).SelectLearningOptionAndContinue();
 
-                else return confirmApprenticePage.GoToDeclarationPage(leanerCriteria.HasMultiStandards);
+                else return confirmApprenticePage.GoToDeclarationPage(learnerCriteria.HasMultiStandards);
             }
         }       
     }

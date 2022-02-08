@@ -50,6 +50,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
 
+        protected virtual void Confirm() => formCompletionHelper.Click(ContinueButton);
+
         protected virtual void SaveAndContinue() => formCompletionHelper.Click(SaveContinueButton);
         
         protected void SelectRadioOptionByForAttribute(string value) => formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);

@@ -60,6 +60,86 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             organisationDetailsPage = adminStepshelper.SearchEpaoRegister(GoToEpaoAdminHomePage());
         }
 
+        [Given(@"the (Admin all roles user) is logged into the Admin Service Application")]
+        public void GivenTheAdminIsLoggedIntoTheAdminServiceApplication(string userName)
+        {
+            staffDashboardPage = GoToEpaoAdminHomePage();
+        }
+
+        [Given(@"the Admin can search using learner uln")]
+        [When(@"the Admin can search using learner uln")]
+        [Then(@"the Admin can search using learner uln")]
+        public void GivenOrThenTheAdminCanSearchUsingUln()
+        {
+            certificateDetailsPage = adminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
+        }
+
+        [When(@"the Admin amends the certificate")]
+        public void WhenTheAdminAmendsTheCertificate()
+        {
+            amendReasonPage = certificateDetailsPage.
+                ClickAmendCertificateLink();
+                
+        }
+
+        [Then(@"the reason for amend can be entered")]
+        public void ThenTheReasonForAmendCanBeEntered()
+        {
+            checkAndSubmitAssessmentDetailsPage = amendReasonPage.
+                EnterTicketReferenceAndSelectReason("1234567890", "Incorrect apprentice details");
+        }
+
+        [Then(@"the amend can be confirmed")]
+        public void ThenTheAmendCanBeConfirmed()
+        {
+            confirmationAmendPage = checkAndSubmitAssessmentDetailsPage.
+                ClickConfirmAmend();
+        }
+
+        [Then(@"the certificate history contains the reason for amending")]
+        public void ThenTheCertificateHistoryContainsTheReasonForAmending()
+        {
+            confirmationAmendPage.ClickSearchAgain().
+                SearchFor(ePAOAdminDataHelper.LearnerUln).
+                SelectACertificate().
+                VerifyActionHistoryItem(1, "AmendReason").
+                VerifyIncidentNumber(1, "1234567890").
+                VerifyFirstReason(1, "Incorrect apprentice details");
+        }
+
+        [When(@"the Admin reprints the certificate")]
+        public void WhenTheAdminReprintsTheCertificate()
+        {
+            reprintReasonPage = certificateDetailsPage.
+                ClickReprintCertificateLink();
+        }
+
+        [Then(@"the reason for reprint can be entered")]
+        public void ThenTheReasonForReprintCanBeEntered()
+        {
+            checkAndSubmitAssessmentDetailsPage = reprintReasonPage.
+                EnterTicketReferenceAndSelectReason("1234567890", "Delivery failed");
+        }
+
+        [Then(@"the reprint can be confirmed")]
+        public void ThenTheReprintCanBeConfirmed()
+        {
+            confirmationReprintPage = checkAndSubmitAssessmentDetailsPage.
+                ClickConfirmReprint();
+        }
+
+        [Then(@"the certificate history contains the reason for reprinting")]
+        public void ThenTheCertificateHistoryContainsTheReasonForReprinting()
+        {
+            confirmationReprintPage.ClickSearchAgain().
+                SearchFor(ePAOAdminDataHelper.LearnerUln).
+                SelectACertificate().
+                VerifyActionHistoryItem(1, "Reprint").
+                VerifyActionHistoryItem(2, "ReprintReason").
+                VerifyIncidentNumber(2, "1234567890").
+                VerifyFirstReason(2, "Delivery failed");
+        }
+
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 

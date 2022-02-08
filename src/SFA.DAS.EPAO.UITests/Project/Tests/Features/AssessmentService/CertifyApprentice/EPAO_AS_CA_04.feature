@@ -1,5 +1,7 @@
 ﻿Feature: EPAO_AS_CA_04
 
+#ignored as privately funded functionality has been removed
+@ignore
 @epao
 @assessmentservice
 @recordagrade
@@ -10,7 +12,9 @@ Scenario: EPAO_AS_CA_04A - Certify a privately funded Apprentice
 	When the User goes through certifying a Privately funded Apprentice
 	Then the User can navigates to record another grade
 	Then the Assessment is recorded as 'pass'
-
+	
+#ignored as privately funded functionality has been removed
+@ignore
 @epao
 @assessmentservice
 @recordagrade

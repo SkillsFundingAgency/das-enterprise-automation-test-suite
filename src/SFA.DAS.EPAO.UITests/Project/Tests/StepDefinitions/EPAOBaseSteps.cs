@@ -42,10 +42,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected readonly AdminStepshelper adminStepshelper;
         protected readonly EPAOWithdrawalHelper ePAOWithdrawalHelper;
 
-        protected CertificateDetailsPage certificateDetailsPage;
+        protected StaffDashboardPage staffDashboardPage;
         protected OrganisationDetailsPage organisationDetailsPage;
-        protected StaffDashboardPage staffdashboardPage;
-
+        protected CertificateDetailsPage certificateDetailsPage;
+        protected AmendReasonPage amendReasonPage;
+        protected ReprintReasonPage reprintReasonPage;
+        protected CheckAndSubmitAssessmentDetailsPage checkAndSubmitAssessmentDetailsPage;
+        protected ConfirmationAmendPage confirmationAmendPage;
+        protected ConfirmationReprintPage confirmationReprintPage;
+        
         protected AP_ApplicationOverviewPage applicationOverviewPage;
         protected AS_CreateAnAccountPage createAnAccountPage;
         protected AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage;
