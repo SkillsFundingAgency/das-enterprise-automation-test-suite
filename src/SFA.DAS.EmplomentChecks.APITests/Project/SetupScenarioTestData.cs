@@ -11,8 +11,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
         {
             var dataDictionary = new Dictionary<Tuple<int, string>, TestData>
             {
-                { new Tuple<int, string>(1, "TEST"), new TestData() { ULN = 9000000601, AccountId = 48874, NationalInsuranceNumber = "LJ000000A", PayeScheme = "111/AB00001" } },
-                { new Tuple<int, string>(1, "TEST2"), new TestData() { ULN = 9000000601, AccountId = 17701, NationalInsuranceNumber = "LJ000000A", PayeScheme = "111/AB00001" } },
+                { new Tuple<int, string>(1, "TEST"), new TestData() { ULN = 5000000284, AccountId = 48874, NationalInsuranceNumber = "AA678901C", PayeScheme = "111/AB00001" } },
+                { new Tuple<int, string>(1, "TEST2"), new TestData() { ULN = 5000000284, AccountId = 17701, NationalInsuranceNumber = "AA678901C", PayeScheme = "111/AB00001" } },
                 { new Tuple<int, string>(1, "PP"), new TestData() { ULN = 6456038986, AccountId = 230091, NationalInsuranceNumber = "LJ000000A", PayeScheme = "111/AB00001" } },
 
                 { new Tuple<int, string>(2, "TEST"), new TestData() { ULN = 1000000019, AccountId = 48875, NationalInsuranceNumber = "AS960509A", PayeScheme = "840/HZ00064" } },
@@ -40,6 +40,14 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
                 { new Tuple<int, string>(7, "TEST2"), new TestData() { ULN = 5000000063, AccountId = 5030, NationalInsuranceNumber = "AA789012C", PayeScheme = "100/RAAUSER193, 100/RAAUSER401, 100/RAAUSER402" } },
                 { new Tuple<int, string>(7, "PP"), new TestData() { ULN = 5805421088, AccountId = 49044, NationalInsuranceNumber = "LJ000000A", PayeScheme = "001/NK0005, 101/LE35388" } },
 
+
+                { new Tuple<int, string>(8, "TEST"), new TestData() { ULN = 7000000537, AccountId = 10219, NationalInsuranceNumber = "AA345678C", PayeScheme = "001/MP00185, 001/MP00186" } },
+                { new Tuple<int, string>(8, "TEST2"), new TestData() { ULN = 7000000537, AccountId = 2457, NationalInsuranceNumber = "AA345678C", PayeScheme = "001/MP00313, 001/MP00376" } },
+                { new Tuple<int, string>(8, "PP"), new TestData() { ULN = 4046783388, AccountId = 24314, NationalInsuranceNumber = "LJ000000A", PayeScheme = "001/MP00364, 001/MP00366" } },
+
+                { new Tuple<int, string>(9, "TEST"), new TestData() { ULN = 9000001500, AccountId = 28284, NationalInsuranceNumber = "AA890123C", PayeScheme = "001/SB034, 001/SB035" } },
+                { new Tuple<int, string>(9, "TEST2"), new TestData() { ULN = 9000001500, AccountId = 2680, NationalInsuranceNumber = "AA890123C", PayeScheme = "100/GDS00010, 100/GDS00011" } },
+                { new Tuple<int, string>(9, "PP"), new TestData() { ULN = 2771115661, AccountId = 206775, NationalInsuranceNumber = "LJ000000A", PayeScheme = "101/LE13812, 102/LE76077" } },
 
             };
 

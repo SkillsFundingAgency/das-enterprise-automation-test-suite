@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_04_PerformEmploymentCheck_NinoAndPayeAreNull
+Scenario: EC_API_05_PerformEmploymentCheck_NinoAndPayeAreNull
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	When apprentice employment check is triggered
 	And data is enriched with results from DC and Accounts
