@@ -18,11 +18,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmYourIdentityPage(ScenarioContext context, string email) : base(context)
+        public ConfirmYourIdentityPage(ScenarioContext context, string email, string password) : base(context)
         { 
             VerifyPage();
 
-            objectContext.UpdateUserCreds(email, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email));
+            objectContext.SetOrUpdateUserCreds(email, password, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email));
 
             objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email); 
         }

@@ -6,11 +6,22 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class AccountDetails
     {
-        public string OrgName { get; internal set; }
         internal int AccountIndex { get; private set; }
-        public string AccountId { get; internal set; }
-        public string HashedId { get; internal set; }
+        public string OrgName { get; private set; }
+        public string AccountId { get; private set; }
+        public string HashedId { get; private set; }
         public string PublicHashedid { get; internal set; }
+
+        internal AccountDetails(string accountId, string hashedId, string orgName, string publicHashedId, int index)
+        {
+            AccountIndex = index;
+            AccountId = accountId;
+            HashedId = hashedId;
+            OrgName = orgName;
+            PublicHashedid = publicHashedId;
+        }
+
+        public override string ToString() => $"AccountDetails ({AccountIndex}) : Organisation Name : '{OrgName}', AccountId : '{AccountId}', HashedId : '{HashedId}', PublicHashedId : '{PublicHashedid}'";
     }
 
     public class UserCreds
@@ -29,8 +40,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public List<AccountDetails> AccountDetails { get; private set; }
 
-        public override string ToString() => 
-            $"Email address:'{EmailAddress}', Password:'{Password}', {Environment.NewLine}" +
-            $"{string.Join(Environment.NewLine, AccountDetails.Select(a => $"AccountDetails ({a.AccountIndex}) : Organisation Name : '{a.OrgName}', AccountId : '{a.AccountId}', HashedId : '{a.HashedId}', PublicHashedId : '{a.PublicHashedid}'"))}";    
+        public override string ToString() => $"Email address:'{EmailAddress}', Password:'{Password}'{GetAccountDetails()}";
+
+        private string GetAccountDetails() => AccountDetails.Count == 0 ? "\"" : $",{Environment.NewLine}{string.Join(Environment.NewLine, AccountDetails.Select(a => a.ToString()))}";
     }
 }

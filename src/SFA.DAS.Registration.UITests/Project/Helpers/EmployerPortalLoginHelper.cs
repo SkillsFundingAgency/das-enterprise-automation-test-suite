@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            objectContext.UpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username), 0);
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
 
             return homePage;
         }
