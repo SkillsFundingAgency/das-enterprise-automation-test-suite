@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using SFA.DAS.TestDataCleanup;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
@@ -18,11 +17,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmYourIdentityPage(ScenarioContext context, string email, string password) : base(context)
+        public ConfirmYourIdentityPage(ScenarioContext context, string email) : base(context)
         { 
             VerifyPage();
-
-            objectContext.SetOrUpdateUserCreds(email, password);
 
             objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email); 
         }

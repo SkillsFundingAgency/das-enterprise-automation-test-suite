@@ -24,9 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
-        private readonly string _password;
-
-        public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {
@@ -89,18 +87,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private SetUpAsAUserPage EnterPassword()
         {
-            formCompletionHelper.EnterText(PasswordInput, _password);
+            formCompletionHelper.EnterText(PasswordInput, registrationDataHelper.Password);
             return this;
         }
 
         private SetUpAsAUserPage EnterPasswordConfirm()
         {
-            formCompletionHelper.EnterText(PasswordConfirmInput, _password);
+            formCompletionHelper.EnterText(PasswordConfirmInput, registrationDataHelper.Password);
             return this;
         }
 
         private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
 
-        private ConfirmYourIdentityPage GoToConfirmYourIdentityPage(string email) => new ConfirmYourIdentityPage(context, email, _password);
+        private ConfirmYourIdentityPage GoToConfirmYourIdentityPage(string email) => new ConfirmYourIdentityPage(context, email);
     }
 }

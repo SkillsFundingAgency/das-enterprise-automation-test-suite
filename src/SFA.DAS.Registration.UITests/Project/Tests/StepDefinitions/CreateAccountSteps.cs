@@ -80,8 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                    .SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the User adds Invalid PAYE details")]

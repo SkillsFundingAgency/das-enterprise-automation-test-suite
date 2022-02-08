@@ -91,12 +91,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _loginCredentialsHelper.SetIsLevy();
         }
 
-        [AfterScenario(Order = 20)]
-        public void CollectAccountDetails()
-        {
-            if (_isAddPayeDetails) _tryCatch.AfterScenarioException(() => { var email = _objectContext.GetRegisteredEmail(); _objectContext.SetOrUpdateUserCreds(email, string.Empty, _context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email)); });
-        }
-
         [AfterScenario(Order = 21)]
         public void DeletePayeDetails()
         {
