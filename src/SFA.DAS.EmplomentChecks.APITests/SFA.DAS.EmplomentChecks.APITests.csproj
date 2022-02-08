@@ -37,8 +37,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\EmploymentCheckE2E_ContinueWhenLearnerNotFoundOnPaye\" />
-  </ItemGroup>
-
 </Project>
