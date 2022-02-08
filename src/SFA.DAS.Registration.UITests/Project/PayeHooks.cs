@@ -64,7 +64,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
 
-            _objectContext.SetOrUpdateUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, null);
+            _objectContext.SetOrUpdateUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
 
             AddFunds(mongoDbDataGenerator, fundType);
         }

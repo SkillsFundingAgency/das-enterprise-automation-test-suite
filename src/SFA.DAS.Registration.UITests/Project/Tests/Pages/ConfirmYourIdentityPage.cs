@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         { 
             VerifyPage();
 
-            objectContext.SetOrUpdateUserCreds(email, password, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email));
+            objectContext.SetOrUpdateUserCreds(email, password);
 
             objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email); 
         }

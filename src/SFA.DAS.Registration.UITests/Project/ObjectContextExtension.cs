@@ -15,8 +15,9 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
         private const string RegisteredEmailAddress = "registeredemailaddress";
-        private static string AdditionalOrganisation(int index) => $"additionalorganisationkey_{index}";
         private const string RecentlyAddedOrganisationName = "recentlyaddedorganisationname";
+        private static string AdditionalOrganisation(int index) => $"additionalorganisationkey_{index}";
+        
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, string organisationName)
@@ -33,7 +34,9 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalOrganisation(index), secondAccountOrganisationName);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
-        
+
+        internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password) => objectContext.SetOrUpdateUserCreds(emailaddress, password, new List<(string accountId, string hashedId, string orgName, string publicHashedId)>());
+
         internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails)
         {
             var usercreds = objectContext.GetAllUserCreds();
@@ -57,6 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private static List<UserCreds> GetAllUserCreds(this ObjectContext objectContext) => objectContext.GetAll<UserCreds>().ToList();
 
         private static UserCreds GetUserCreds(List<UserCreds> userCreds, string emailaddress) => userCreds.SingleOrDefault(x => x.EmailAddress == emailaddress);
+
         private static void UpdateUserCreds(this ObjectContext objectContext, string emailaddress, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails)
         {
             var usercreds = GetUserCreds(objectContext.GetAllUserCreds(), emailaddress);
@@ -67,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
                 var index = userAccountDetails.Count;
 
-                if (userAccountDetails.Any(x => x.AccountId == accountId) || string.IsNullOrEmpty(accountId)) continue;
+                if (userAccountDetails.Any(x => x.AccountId == accountId)) continue;
 
                 userAccountDetails.Add(new AccountDetails(accountId, hashedId, orgName, publicHashedId, index));
             }
