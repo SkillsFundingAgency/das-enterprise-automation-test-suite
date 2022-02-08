@@ -1,7 +1,8 @@
-﻿@approvals
-@transfers
-Feature: TR_03_TransfersApprovalJourney
+﻿Feature: TR_03_TransfersApprovalJourney
 
+@regression
+@approvals
+@transfers
 @liveapprentice
 Scenario: TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
 	Given Receiver sends an approved cohort with 1 apprentices to the provider

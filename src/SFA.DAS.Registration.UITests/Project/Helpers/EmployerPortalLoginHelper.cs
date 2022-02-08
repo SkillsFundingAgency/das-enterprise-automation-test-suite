@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            (string accountId, string hashedAccountId) = _registrationSqlDataHelper.GetAccountIds(loginUser.Username);
+            (string accountId, string hashedAccountId, _ , _) = _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username);
 
             objectContext.SetHashedAccountId(hashedAccountId);
 
@@ -50,6 +50,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
 
-        public EasAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
+        public LoggedInAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }
