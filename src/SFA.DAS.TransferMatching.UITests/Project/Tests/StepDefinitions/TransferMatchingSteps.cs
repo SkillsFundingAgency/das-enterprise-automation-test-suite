@@ -86,17 +86,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can download excel file")]
         public void ThenTheLevyEmployerCanDownloadExcelFilen()
         {
-            _accountSignOutHelper.SignOut();
-
-            _objectContext.UpdateOrganisationName(_sender);
-
-            _multipleAccountsLoginHelper.ReLogin();
-
-            NavigateToTransferMatchingPage();
-
-            _objectContext.UpdateOrganisationName(_receiver);
-
-            GoToViewMyTransferPledgePage().GoToTransferPledgePage().DownloadExcel();
+            _accountSignOutHelper.SignOut();_objectContext.UpdateOrganisationName(_sender);_multipleAccountsLoginHelper.ReLogin();
+            NavigateToTransferMatchingPage();_objectContext.UpdateOrganisationName(_receiver);GoToViewMyTransferPledgePage().GoToTransferPledgePage().DownloadExcel();
         }
 
 
@@ -104,15 +95,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanCloseThePledge()
         {
             _accountSignOutHelper.SignOut();
-
             _objectContext.UpdateOrganisationName(_sender);
-
             _multipleAccountsLoginHelper.ReLogin();
-
             NavigateToTransferMatchingPage();
-
             _objectContext.UpdateOrganisationName(_receiver);
-
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().ConfirmClose();
         }
 
@@ -120,15 +106,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerDoesntCloseThePledge()
         {
             _accountSignOutHelper.SignOut();
-
             _objectContext.UpdateOrganisationName(_sender);
-
             _multipleAccountsLoginHelper.ReLogin();
-
             NavigateToTransferMatchingPage();
-
             _objectContext.UpdateOrganisationName(_receiver);
-
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().DontClose();
         }
 
