@@ -20,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_19_SenderDoesn\'tClosePledge")]
+    [NUnit.Framework.DescriptionAttribute("TM_19_SenderDoesntClosePledge")]
     public partial class TM_19_SenderDoesntClosePledgeFeature
     {
         
@@ -35,7 +35,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_19_SenderDoesn\'tClosePledge", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_19_SenderDoesntClosePledge", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_18_Sender can create a pledge and close it")]
+        [NUnit.Framework.DescriptionAttribute("TM_19_Sender can create a pledge and doesnt close it")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public virtual void TM_18_SenderCanCreateAPledgeAndCloseIt()
+        public virtual void TM_19_SenderCanCreateAPledgeAndDoesntCloseIt()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_18_Sender can create a pledge and close it", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_19_Sender can create a pledge and doesnt close it", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
