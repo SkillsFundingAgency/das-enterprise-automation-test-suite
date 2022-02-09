@@ -21,18 +21,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_AORN_02")]
-    [NUnit.Framework.CategoryAttribute("regression")]
-    [NUnit.Framework.CategoryAttribute("registration")]
-    [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
     public partial class RE_AORN_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "regression",
-                "registration",
-                "addnonlevyfunds"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "RE_AORN_02.feature"
 #line hidden
@@ -41,10 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AORN", "RE_AORN_02", null, ProgrammingLanguage.CSharp, new string[] {
-                        "regression",
-                        "registration",
-                        "addnonlevyfunds"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AORN", "RE_AORN_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -85,9 +76,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_AORN_02_Create an Employer Account through AORN route with paye details attach" +
             "ed to a Multiple Organisations")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public virtual void RE_AORN_02_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToAMultipleOrganisations()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "registration",
+                    "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_02_Create an Employer Account through AORN route with paye details attach" +
                     "ed to a Multiple Organisations", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -118,10 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

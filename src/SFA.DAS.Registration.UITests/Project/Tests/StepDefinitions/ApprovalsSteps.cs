@@ -6,13 +6,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprovalsSteps
     {
-        private readonly ApprovalsStepsHelper _stepsHelper;
+        private readonly AccountCreationStepsHelper _stepsHelper;
 
-        public ApprovalsSteps(ScenarioContext context) => _stepsHelper = new ApprovalsStepsHelper(context);
-
+        public ApprovalsSteps(ScenarioContext context) => _stepsHelper = new AccountCreationStepsHelper(context);
 
         [Given(@"The User creates NonLevyEmployer account and sign an agreement")]
         [Given(@"The User creates LevyEmployer account and sign an agreement")]
-        public void TheUserCreatesNonLevyEmployerAccountAndSignAnAgreement() => _stepsHelper.CreatesAccountAndSignAnAgreement();
+        public void TheUserCreatesNonLevyEmployerAccountAndSignAnAgreement() => _stepsHelper.CreateUserAccount();
     }
 }

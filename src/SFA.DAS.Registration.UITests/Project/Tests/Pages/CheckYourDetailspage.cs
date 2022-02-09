@@ -48,12 +48,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string GetPayeScheme() => pageInteractionHelper.GetText(PayeScheme);
       
-        public WhenDoYouWantToViewEmpAgreementPage ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-        {
-            Continue();
-            return new WhenDoYouWantToViewEmpAgreementPage(context);
-        }
-
         public SearchForYourOrganisationPage ClickOrganisationChangeLink()
         {
             formCompletionHelper.Click(OrganisationChangeLink);

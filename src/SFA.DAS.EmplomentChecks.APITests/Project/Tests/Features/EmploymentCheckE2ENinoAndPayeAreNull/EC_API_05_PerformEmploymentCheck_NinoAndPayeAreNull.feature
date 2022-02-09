@@ -1,0 +1,15 @@
+﻿Feature: EmploymentCheckE2ENinoAndPayeAreNull
+
+@api
+@regression
+@employmentcheckapi
+Scenario: EC_API_05_PerformEmploymentCheck_NinoAndPayeAreNull
+	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
+	When apprentice employment check is triggered
+	And data is enriched with results from DC and Accounts
+	And Nino and Paye/Scheme are not found
+	Then do not create an Employment Check request
+
+	Examples:
+		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode | ReturnMessage                                       |
+		| 5          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 |          | null       | NationalInsuranceNumber is null\|PayeScheme is null |
