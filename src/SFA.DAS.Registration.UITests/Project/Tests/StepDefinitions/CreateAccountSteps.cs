@@ -80,8 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                    .SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -139,10 +138,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer does not sign the Agreement")]
+        [Then(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
-
-        [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetHashedAccountId(new HomePage(_context).AccountId());
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -158,7 +155,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"a Levy Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
-            _accountCreationStepsHelper.SetFirstAccountOrganisationName(orgType);
+            _accountCreationStepsHelper.UpdateOrganisationName(orgType);
             CreateUserAccountAndAddOrg(orgType);
             SignTheAgreement();
         }
@@ -399,13 +396,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer is able to add another Account with (Company|PublicSector|Charity) Type Org to the same user login")]
         public void ThenTheEmployerIsAbleToAddAnotherAccountToTheSameUserLogin(OrgType orgType) =>
-            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, orgType, 1);
+            _homePage = _accountCreationStepsHelper.AddNewAccount(_homePage, 1, orgType);
 
         [Then(@"the Employer is able to switch between the Accounts")]
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()
         {
-            OpenAccount(_objectContext.GetFirstAccountOrganisationName());
-            OpenAccount(_objectContext.GetSecondAccountOrganisationName());
+            OpenAccount(_objectContext.GetOrganisationName());
+            OpenAccount(_objectContext.GetAdditionalOrganisationName(1));
         }
 
         [Then(@"the Employer Account is locked with 3 incorrect password attempts")]

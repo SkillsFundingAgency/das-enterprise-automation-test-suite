@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
@@ -7,6 +6,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
     public class VRFReceivedDetailsConfirmPage : VRFBasePage
     {
         protected override string PageTitle => "We have received your details";
+
         protected override By PageHeader => By.XPath("//h1[text()='We have received your details']");
 
         #region Locators
@@ -29,13 +29,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             return new EIHubPage(context);
         }
 
-        private void ReturnToEAS()
-        {
-            frameHelper.SwitchFrameAndAction(() =>
-            {
-                TestContext.Progress.WriteLine($"CaseId Summary: {pageInteractionHelper.GetText(CaseIdSummary)}");
-                formCompletionHelper.ClickElement(ReturnToEasLink);
-            });
-        }
+        private void ReturnToEAS() => frameHelper.SwitchFrameAndAction(() => formCompletionHelper.ClickElement(ReturnToEasLink));
     }
 }
