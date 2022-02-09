@@ -83,6 +83,56 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
 
+        [Then(@"the levy employer can download excel file")]
+        public void ThenTheLevyEmployerCanDownloadExcelFilen()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().DownloadExcel();
+        }
+
+
+        [Then(@"the levy employer can close the pledge")]
+        public void ThenTheLevyEmployerCanCloseThePledge()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().ConfirmClose();
+        }
+
+        [Then(@"the levy employer doesn't close the pledge")]
+        public void ThenTheLevyEmployerDoesntCloseThePledge()
+        {
+            _accountSignOutHelper.SignOut();
+
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _multipleAccountsLoginHelper.ReLogin();
+
+            NavigateToTransferMatchingPage();
+
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().DontClose();
+        }
+
+
         [Then(@"the levy employer can approve the application")]
         public void ThenTheLevyEmployerCanApproveTheApplication()
         {
