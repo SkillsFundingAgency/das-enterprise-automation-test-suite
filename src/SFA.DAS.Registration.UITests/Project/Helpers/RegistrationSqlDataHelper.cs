@@ -14,31 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string GetAccountLegalEntityPublicHashedId(string accountid, string orgname) => GetDataAsString($"select PublicHashedId from [employer_account].[AccountLegalEntity] where AccountId = {accountid} and [Name] = '{orgname}'");
 
-        public string GetAccountId(string email) => GetDataAsString(GetAccountIdQuery(email));
-
-        public (string accountId, string hashedId, string orgName, string publicHashedId) CollectAccountDetails(string email)
-        {
-            static string Join(List<string> list) => string.Join(",", list);
-
-            var ids = CollectAccountDetailsAsList(email);
-
-            List<string> accountId = new List<string>();
-            List<string> hashedId = new List<string>();
-            List<string> orgName = new List<string>();
-            List<string> publicHashedId = new List<string>();
-
-            foreach ((string accountId, string hashedId, string orgName, string publicHashedId) id in ids)
-            {
-                accountId.Add(id.accountId);
-                hashedId.Add(id.hashedId);
-                orgName.Add(id.orgName);
-                publicHashedId.Add(id.publicHashedId);
-            }
-
-            return (Join(accountId), Join(hashedId), Join(orgName), Join(publicHashedId));
-        }
-
-        public List<(string accountId, string hashedId, string orgName, string publicHashedId)> CollectAccountDetailsAsList(string email)
+        public List<(string accountId, string hashedId, string orgName, string publicHashedId)> CollectAccountDetails(string email)
         {
             var id = GetMultipleData($"SELECT id, HashedId, [Name], PublicHashedId FROM [employer_account].[Account] WHERE id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 

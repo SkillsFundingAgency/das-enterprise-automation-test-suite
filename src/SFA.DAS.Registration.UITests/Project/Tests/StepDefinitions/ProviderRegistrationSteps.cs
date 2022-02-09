@@ -65,7 +65,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo(0)
                 .SearchForAnOrganisation(EnumHelper.OrgType.Company)
                 .SelectYourOrganisation(EnumHelper.OrgType.Company)
-                .ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                .ContinueToAboutYourAgreementPage()
                 .SelectViewItLaterAndContinue();
         }
 
