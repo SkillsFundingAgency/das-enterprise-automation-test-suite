@@ -3,7 +3,6 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
-using NUnit.Framework;
 using System.Collections.Generic;
 using SFA.DAS.FrameworkHelpers;
 
@@ -51,7 +50,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(frameworkConfig);
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
-
+            
             var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
 
             _context.Set(driverLocationConfig);

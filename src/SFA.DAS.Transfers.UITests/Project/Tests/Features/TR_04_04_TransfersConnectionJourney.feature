@@ -1,12 +1,11 @@
-﻿@approvals
-@transfers
-Feature: TR_04_04_TransfersConnectionJourney
+﻿Feature: TR_04_04_TransfersConnectionJourney
 
 @regression
+@approvals
+@transfers
 @addtransferslevyfunds
 @addsecondlevyfunds
 @addthirdlevyfunds
-
 Scenario: TR_04_04 Transfers - Sucessfully create Transfer Request from Receiver to Sender
 	Given We have two Employer accounts
 	And First is a Sender connected to Second as a Receiver
