@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

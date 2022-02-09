@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.When("the Employer is able to Sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Employer is able to Sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -157,7 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.When("the Employer does not sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Employer does not sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
