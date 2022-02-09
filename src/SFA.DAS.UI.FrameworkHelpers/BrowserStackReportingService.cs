@@ -48,21 +48,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        private static RestClient Client(BrowserStackSetting options)
-        {
-            return new RestClient(options.AutomateSessions)
-            {
-                Authenticator = new HttpBasicAuthenticator(options.User, options.Key)
-            };
-        }
+        private static RestClient Client(BrowserStackSetting options) => new RestClient(options.AutomateSessions) { Authenticator = new HttpBasicAuthenticator(options.User, options.Key) };
 
-        private static RestRequest Request(string sessionId)
-        {
-            return new RestRequest($"{sessionId}.json", Method.PUT)
-            {
-                RequestFormat = DataFormat.Json
-            };
-        }
+        private static RestRequest Request(string sessionId) => new RestRequest($"{sessionId}.json", Method.PUT) { RequestFormat = DataFormat.Json };
 
         private static string JSonBody(string exceptionmessage) => JsonConvert.SerializeObject(new { status = "failed", reason = exceptionmessage });
 

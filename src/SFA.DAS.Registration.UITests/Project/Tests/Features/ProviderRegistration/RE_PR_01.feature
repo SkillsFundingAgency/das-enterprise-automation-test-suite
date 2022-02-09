@@ -1,5 +1,6 @@
 ﻿Feature: RE_PR_01
 
+@regression
 @registration
 @addnonlevyfunds
 @providerleadregistration

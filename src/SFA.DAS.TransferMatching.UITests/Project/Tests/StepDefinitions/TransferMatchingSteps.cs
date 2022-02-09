@@ -49,15 +49,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the levy employer can view the task")]
         public void ThenTheLevyEmployerCanViewTheTask()
-
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
+
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
             NavigateToTransferMatchingPage().GoToAccountHomePage().ClickTask();
-            
-
         }
-
 
         [Given(@"the another levy employer creates a pledge")]
         public void GivenTheAnotherLevyEmployerCreatesAPledge()
@@ -87,15 +85,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can approve the application")]
         public void ThenTheLevyEmployerCanApproveTheApplication()
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
             _multipleAccountsLoginHelper.ReLogin();
 
             NavigateToTransferMatchingPage();
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
         }
@@ -103,15 +101,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can auto approve the application")]
         public void ThenTheLevyEmployerCanAutoApproveTheApplication()
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
             _multipleAccountsLoginHelper.ReLogin();
 
             NavigateToTransferMatchingPage();
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
         }
@@ -119,15 +117,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can reject the application")]
         public void ThenTheLevyEmployerCanRejectTheApplication()
         {
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
             _multipleAccountsLoginHelper.ReLogin();
 
             NavigateToTransferMatchingPage();
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().RejectApplication();
         }
@@ -135,9 +133,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding()
         {
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
             LoginAsReceiver(_context.Get<NonLevyUser>(), false);
 
@@ -152,9 +150,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding()
         {
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
-            _accountSignOutHelper.SignOut();
+            SignOut();
 
             LoginAsReceiver(_context.Get<NonLevyUser>(), false);
 
@@ -174,7 +172,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             var signInPage = ApplyForTransferFunds();
 
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding(signInPage);
 
@@ -319,7 +317,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
         }
 
-    
         private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
             string actualErrorMessage = page.GetErrorMessage();
@@ -338,8 +335,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
-
-
 
         private void LoginAsReceiver(EasAccountUser login, bool isLevy)
         {

@@ -21,16 +21,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TR_04_01_TransfersConnectionJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    [NUnit.Framework.CategoryAttribute("transfers")]
     public partial class TR_04_01_TransfersConnectionJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals",
-                "transfers"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "TR_04_01_TransfersConnectionJourney.feature"
 #line hidden
@@ -39,9 +35,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_04_01_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals",
-                        "transfers"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_04_01_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -83,18 +77,22 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TR_04_01 Transfers - Sucessfully create Transfer Request between Employer Account" +
             "s")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
         public virtual void TR_04_01Transfers_SucessfullyCreateTransferRequestBetweenEmployerAccounts()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
+                    "approvals",
+                    "transfers",
                     "addtransferslevyfunds",
                     "addsecondlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_01 Transfers - Sucessfully create Transfer Request between Employer Account" +
                     "s", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,14 +112,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("We have two Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.When("First account creates transfer request to Second account and Second account accep" +
                         "ts the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("A transfer connection is established successfully between First account as Sender" +
                         " and Second account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

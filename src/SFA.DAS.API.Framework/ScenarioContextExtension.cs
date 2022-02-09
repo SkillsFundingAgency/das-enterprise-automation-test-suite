@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.API.Framework.Configs;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.API.Framework
 {
