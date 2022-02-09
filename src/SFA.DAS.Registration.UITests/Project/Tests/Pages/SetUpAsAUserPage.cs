@@ -9,6 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region constants
         private const string ExpectedEmailErrorText = "Email already registered.";
+        private readonly string _password;
         #endregion
 
         #region Locators
@@ -24,17 +25,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
-        public SetUpAsAUserPage(ScenarioContext context) : base(context) => VerifyPage();
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {
+            string email = objectContext.GetRegisteredEmail();
             pageInteractionHelper.VerifyPage(FirstNameInput($"[value='{registrationDataHelper.FirstName}']"));
             pageInteractionHelper.VerifyPage(LastNameInput($"[value='{registrationDataHelper.LastName}']"));
-            pageInteractionHelper.VerifyPage(EmailInput($"[value='{objectContext.GetRegisteredEmail().ToLower()}']"));
+            pageInteractionHelper.VerifyPage(EmailInput($"[value='{email.ToLower()}']"));
 
             EnterPassword().EnterPasswordConfirm().SetMeUp();
 
-            return new ConfirmYourIdentityPage(context);
+            return GoToConfirmYourIdentityPage(email);
         }
 
         public ConfirmYourIdentityPage Register(string email = null)
@@ -43,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterRegistrationDetailsAndContinue(email);
 
-            return new ConfirmYourIdentityPage(context);
+            return GoToConfirmYourIdentityPage(email);
         }
 
         public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
@@ -86,16 +88,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private SetUpAsAUserPage EnterPassword()
         {
-            formCompletionHelper.EnterText(PasswordInput, registrationDataHelper.Password);
+            formCompletionHelper.EnterText(PasswordInput, _password);
             return this;
         }
 
         private SetUpAsAUserPage EnterPasswordConfirm()
         {
-            formCompletionHelper.EnterText(PasswordConfirmInput, registrationDataHelper.Password);
+            formCompletionHelper.EnterText(PasswordConfirmInput, _password);
             return this;
         }
 
         private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
+
+        private ConfirmYourIdentityPage GoToConfirmYourIdentityPage(string email) => new ConfirmYourIdentityPage(context, email, _password);
     }
 }

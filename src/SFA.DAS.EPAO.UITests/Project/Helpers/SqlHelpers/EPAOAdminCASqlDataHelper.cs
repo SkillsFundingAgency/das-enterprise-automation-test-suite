@@ -64,8 +64,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
             query = GetTestData(query, learnerCriteria.IsActiveStandard, learnerCriteria.HasMultipleVersions, learnerCriteria.WithOptions, learnerCriteria.VersionConfirmed, learnerCriteria.OptionIsSet);
 
-            TestContext.Progress.WriteLine(query);
-
             return GetData(query, sqlParameters);
         }
 

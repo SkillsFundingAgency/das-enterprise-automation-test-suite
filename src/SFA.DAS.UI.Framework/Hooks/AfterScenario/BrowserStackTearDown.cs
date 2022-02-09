@@ -6,12 +6,11 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
     [Binding]
     public class BrowserStackTearDown
     {
-        private readonly BrowserStackTearDownHelper _helper;
+        private readonly ScenarioContext _context;
 
-        public BrowserStackTearDown(ScenarioContext context) => _helper = new BrowserStackTearDownHelper(context);
+        public BrowserStackTearDown(ScenarioContext context) => _context = context;
 
         [AfterScenario(Order = 12)]
-        public void InformBrowserStackOnFailure() => _helper.InformBrowserStackOnFailure();
+        public void InformBrowserStackOnFailure() => new BrowserStackTearDownHelper(_context).InformBrowserStackOnFailure();
     }
 }
-

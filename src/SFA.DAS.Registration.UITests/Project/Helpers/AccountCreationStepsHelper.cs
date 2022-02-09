@@ -25,73 +25,78 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
-        public ConfirmYourIdentityPage RegisterUserAccount() => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register();
+        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount().ContinueToGetApprenticeshipFunding(), 0);
 
-        public SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
+        public HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
-            return homepage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(orgType);
+            _objectContext.SetAdditionalOrganisationName(GetOrgName(orgType), index);
+
+            return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
-        public CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
+        internal ConfirmYourIdentityPage RegisterUserAccount() => 
+            RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
+
+        internal ConfirmYourIdentityPage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
+            indexPage.CreateAccount().Register(email);
+
+        internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
+            homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
+
+        internal CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
-        public TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN()
-                .ReEnterTheSameAornDetailsAndContinue();
+        internal TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => 
+            addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
 
-        public CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
+        internal CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
 
-        public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
+        internal CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
             searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);
 
-        public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage) =>
+        internal SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(1);
 
-        public AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) =>
-            indexPage.CreateAccount()
-                .Register(_registrationDataHelper.AnotherRandomEmail)
-                .EnterAccessCode()
-                .ContinueToGetApprenticeshipFunding();
+        internal AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) => CreateUserAccount(indexPage, _registrationDataHelper.AnotherRandomEmail);
 
-        public HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
-            homePage.GotoPAYESchemesPage()
-                .ClickAddNewSchemeButton()
-                .ContinueToGGSignIn()
-                .EnterPayeDetailsAndContinue(1)
-                .ClickContinueInConfirmPAYESchemePage()
-                .SelectContinueAccountSetupInPAYESchemeAddedPage();
+        internal AddAPAYESchemePage CreateUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterUserAccount(indexPage, email).ContinueToGetApprenticeshipFunding();
 
-        public PAYESchemesPage RemovePayeSchemeFromTheAccount(HomePage homePage) =>
-            homePage.GotoPAYESchemesPage()
-                .ClickNewlyAddedPayeDetailsLink()
-                .ClickRemovePAYESchemeButton()
-                .SelectYesRadioButtonAndContinue()
-                .VerifyPayeSchemeRemovedInfoMessage();
+        internal HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
+            homePage
+            .GotoPAYESchemesPage()
+            .ClickAddNewSchemeButton()
+            .ContinueToGGSignIn()
+            .EnterPayeDetailsAndContinue(1)
+            .ClickContinueInConfirmPAYESchemePage()
+            .SelectContinueAccountSetupInPAYESchemeAddedPage();
 
-        public HomePage AddNewAccount(HomePage homePage, OrgType orgType, int index)
-        {
-            _objectContext.SetSecondAccountOrganisationName(GetOrgName(orgType));
+        internal PAYESchemesPage RemovePayeSchemeFromTheAccount(HomePage homePage) =>
+            homePage
+            .GotoPAYESchemesPage()
+            .ClickNewlyAddedPayeDetailsLink()
+            .ClickRemovePAYESchemeButton()
+            .SelectYesRadioButtonAndContinue()
+            .VerifyPayeSchemeRemovedInfoMessage();
 
-            return homePage.GoToYourAccountsPage().AddNewAccount()
-                 .AddPaye()
-                 .ContinueToGGSignIn()
-                 .SignInTo(index)
-                 .SearchForAnOrganisation(orgType)
-                 .SelectYourOrganisation(orgType)
-                 .ContinueToAboutYourAgreementPage()
-                 .SelectViewAgreementNowAndContinue()
-                 .SignAgreement()
-                 .ClickOnViewYourAccountButton();
-        }
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) => 
+            addAPAYESchemePage
+            .AddPaye()
+            .ContinueToGGSignIn()
+            .SignInTo(index)
+            .SearchForAnOrganisation(orgType)
+            .SelectYourOrganisation(orgType)
+            .ContinueToAboutYourAgreementPage()
+            .SelectViewAgreementNowAndContinue()
+            .SignAgreement()
+            .ClickOnViewYourAccountButton();
 
-        public YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
+        internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
             homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
 
-        public void SetFirstAccountOrganisationName(OrgType orgType) =>
-            _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));
+        internal void UpdateOrganisationName(OrgType orgType) => _objectContext.UpdateOrganisationName(GetOrgName(orgType));
 
-        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(UrlConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
+        internal void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(UrlConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
 
         private string GetOrgName(OrgType orgType)
         {

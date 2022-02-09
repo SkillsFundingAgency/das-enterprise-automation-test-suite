@@ -16,9 +16,11 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         private readonly SetupScenarioTestData _setupScenarioTestData;
         private TestData _testData;
         private List<string> payeSchemes = new List<string>();
+        private ScenarioContext _context;
 
         public EmploymentCheckE2ESteps(ScenarioContext context)
         {
+            _context = context;
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
             _setupScenarioTestData = new SetupScenarioTestData();
             _testData = new TestData();
@@ -90,6 +92,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, "Unexpected Return Message returned.");
         }
 
+        [When(@"an employment check request is created for each unique Nino and paye scheme combination")]
         [Then(@"an employment check request is created for each unique Nino and paye scheme combination")]
         public void ThenAnEmploymentCheckRequestIsCreatedForEachUniqueNinoAndPayeSchemeCombination()
         {

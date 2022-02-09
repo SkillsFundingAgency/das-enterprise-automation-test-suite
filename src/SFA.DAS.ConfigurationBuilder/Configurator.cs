@@ -73,8 +73,6 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
-        public static string GetAgentTempDir() => GetHostingConfigSection("AGENT_TEMPDIRECTORY");
-
         private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
     }
 }

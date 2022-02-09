@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -16,15 +15,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             _objectContext.SetLoginCredentials(username, password, organisationName);
 
-            IsLevy = isLevy;
-            
-            Reportusername(username);
+            IsLevy = isLevy;            
         }
 
         public void SetIsLevy() => IsLevy = true;
 
         public LoggedInAccountUser GetLoginCredentials() => _objectContext.GetLoginCredentials();
-
-        private void Reportusername(string username) => TestContext.Progress.WriteLine($"Email : {username}");
     }
 }
