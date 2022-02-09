@@ -13,3 +13,13 @@ And new earnings are calculated
 When the Learner Withdraw Request is processed
 Then the first earnings should have been removed
 And the second earnings should have been removed
+
+Given an application has been withdrawn by compliance
+When Reinstatement is requested
+Then the apprenticeship incentive status is set to Active
+And WithdrawnByCompliance flag of the application apprenticeship is unset
+And the earnings are recalculated
+
+Given an application has been withdrawn by an employer
+When Reinstatement is requested
+Then the application is not reinstated
