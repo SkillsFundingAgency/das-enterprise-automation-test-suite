@@ -19,6 +19,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AccountSignOutHelper _accountSignOutHelper;
         private PledgeVerificationPage _pledgeVerificationPage;
+        private MyTransferPledgesPage _myTransferPledgesPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
@@ -27,6 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
+        
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -93,13 +95,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can close the pledge")]
         public void ThenTheLevyEmployerCanCloseThePledge()
         {
-            _accountSignOutHelper.SignOut();
-            _objectContext.UpdateOrganisationName(_sender);
-            _multipleAccountsLoginHelper.ReLogin();
-            NavigateToTransferMatchingPage();
-            _objectContext.UpdateOrganisationName(_receiver);
-            GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().ConfirmClose();
+           GoToTransferPledgePage().ClosePledge().ConfirmClose();
         }
+        
 
         [Then(@"the levy employer doesn't close the pledge")]
         public void ThenTheLevyEmployerDoesntCloseThePledge()
@@ -282,6 +280,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
 
         private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
+
+        private TransferPledgePage GoToTransferPledgePage() => _myTransferPledgesPage.GoToTransferPledgePage();
 
         private void GoToTransferMacthingApplyUrl()
         {
