@@ -37,7 +37,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Given(@"employment check record status is '([^']*)'")]
         public void GivenEmploymentCheckRecordHasBeenPickedForProcessing(int expectedStatus)
         {
-            int completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatus();
+            int? completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatus();
 
             Assert.AreEqual(expectedStatus, completionStatus, "Unexpected RequestCompletionStatus column value in [Business].[EmploymentCheck] table");
         }
