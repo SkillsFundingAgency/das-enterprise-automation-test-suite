@@ -52,6 +52,29 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return Convert.ToInt16(queryResult[0][0]);
         }
 
+        internal int getEmploymentCheckStatus()
+        {
+            int count = 0;
+
+            string query = $" select RequestCompletionStatus from [Business].[EmploymentCheck] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} ";
+
+            List<object[]> completionStatus = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            // Completion status [null] signifies that the record has not been processed yet.
+            // give it a max of 10 seconds for it to be picked up by the orchestrator
+
+            while (completionStatus[0][0] == null && count < 5)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                completionStatus = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
+
+            return Convert.ToInt16(completionStatus[0][0]);
+        }
+
         internal List<object[]> getRequestCompletionStatuses(int Id)
         {
             string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +

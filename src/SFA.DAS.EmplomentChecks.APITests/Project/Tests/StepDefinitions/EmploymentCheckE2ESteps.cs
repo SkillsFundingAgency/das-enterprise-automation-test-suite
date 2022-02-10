@@ -33,6 +33,16 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             await _employmentChecksSqlDbHelper.InsertData(_testData.ULN, _testData.AccountId, minDate, maxDate);
         }
 
+        [Then(@"employment check record status is '([^']*)'")]
+        [Given(@"employment check record status is '([^']*)'")]
+        public void GivenEmploymentCheckRecordHasBeenPickedForProcessing(int expectedStatus)
+        {
+            int completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatus();
+
+            Assert.AreEqual(expectedStatus, completionStatus, "Unexpected RequestCompletionStatus column value in [Business].[EmploymentCheck] table");
+        }
+
+
         [When(@"apprentice employment check is triggered")]
         public void WhenApprenticeEmploymentCheckIsTriggered()
         {

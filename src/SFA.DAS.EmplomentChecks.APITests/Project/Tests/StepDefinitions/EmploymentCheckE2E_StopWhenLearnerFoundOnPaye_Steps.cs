@@ -38,9 +38,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             var completionStatus = _employmentChecksSqlDbHelper.getRequestCompletionStatuses(requestId);
 
+            // RequestCompletionstatus 3 represents 'Abandoned' records
             for (int i= 0; i < completionStatus.Count; i++)
             {
-                Assert.AreEqual(20, completionStatus[i][0], "Completion Status is not as expected");
+                Assert.AreEqual(3, completionStatus[i][0], "Completion Status is not as expected");
             }
 
             // verify no subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
@@ -62,7 +63,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             var completionStatus = _employmentChecksSqlDbHelper.getRequestCompletionStatuses(requestId);
 
-            Assert.AreNotEqual(20, completionStatus[0][0], "Completion Status is set to 20 [Abandoned] which is not expected");
+            Assert.AreNotEqual(3, completionStatus[0][0], "Completion Status is set to 3 [Abandoned] which is not expected");
 
             // verify subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
 
