@@ -11,4 +11,4 @@ Scenario: EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes
 
 	Examples:
 		| TestCaseId | MinDate             | MaxDate             |
-		| 7          | 2014-03-06T00:00:00 | 2013-03-06T00:00:00 |
+		| 7          | 2014-03-06T00:00:00 | 2015-03-06T00:00:00 |

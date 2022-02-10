@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
-            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail();
+            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
             AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);

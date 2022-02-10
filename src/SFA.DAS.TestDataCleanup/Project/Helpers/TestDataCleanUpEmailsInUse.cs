@@ -110,15 +110,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         internal static string GetInUseEmails() { lock (_emails) { return string.Join(",", _emails); } }
 
-        internal static void AddInUseEmails(List<string> emails)
-        {
-            lock (_emails)
-            {
-                foreach (var email in emails)
-                {
-                    _emails.Add($"'{email}'");
-                }
-            }
-        }
+        internal static void AddInUseEmails(List<string> emails) { lock (_emails) { foreach (var email in emails) _emails.Add($"'{email}'"); } }
     }
 }
