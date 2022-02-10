@@ -47,12 +47,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
         {
             query = $"SELECT Id FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
             var applicationId = FetchStringQueryData(0);
+            
             query = $"SELECT Phase FROM [dbo].[IncenticeApplicationApprenticeship] WHERE IncentiveApplicationId = {applicationId}";
             var apprenticePhases = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
-            foreach(var apprentice in apprenticePhases)
-            {
-                Assert.AreEqual(apprentice[0].ToString(), phase);
-            }
+            
+            foreach(var apprentice in apprenticePhases) Assert.AreEqual(apprentice[0].ToString(), phase);
         }
 
         public void SetCaseDetailsToNull(string accountId)
