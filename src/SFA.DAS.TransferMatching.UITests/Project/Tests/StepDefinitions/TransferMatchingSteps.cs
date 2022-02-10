@@ -95,19 +95,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can close the pledge")]
         public void ThenTheLevyEmployerCanCloseThePledge()
         {
-           GoToTransferPledgePage().ClosePledge().ConfirmClose();
+            SignOut(); LoginAsSender(_context.GetUser<TransferMatchingUser>());
+            NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().ConfirmClose();
         }
         
 
         [Then(@"the levy employer doesn't close the pledge")]
         public void ThenTheLevyEmployerDoesntCloseThePledge()
         {
-            _accountSignOutHelper.SignOut();
-            _objectContext.UpdateOrganisationName(_sender);
-            _multipleAccountsLoginHelper.ReLogin();
-            NavigateToTransferMatchingPage();
-            _objectContext.UpdateOrganisationName(_receiver);
-            GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().DontClose();
+            SignOut(); LoginAsSender(_context.GetUser<TransferMatchingUser>());
+            NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge().DontClose();
         }
 
 
