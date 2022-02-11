@@ -49,7 +49,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private IWebElement SearchLinkUrl(string searchText)
         {
-            objectContext.SetAdditionalOrganisationAddedName(searchText);
+            objectContext.SetRecentlyAddedOrganisationName(searchText);
             return pageInteractionHelper.GetLink(OrganisationLink, searchText);
         }
     }

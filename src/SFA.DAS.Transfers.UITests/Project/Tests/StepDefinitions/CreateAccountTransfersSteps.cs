@@ -12,7 +12,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class CreateAccountTransfersSteps
     {
-        private readonly ApprovalsStepsHelper _approvalsStepsHelper;
+        private readonly AccountCreationStepsHelper _approvalsStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         private readonly RegistrationDataHelper _registrationDataHelper;
@@ -25,7 +25,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _approvalsStepsHelper = new ApprovalsStepsHelper(context);
+            _approvalsStepsHelper = new AccountCreationStepsHelper(context);
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
@@ -66,25 +66,25 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private void AccountsAreCreated(string noOfAccounts)
         {
-            _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
+            _homePage = _approvalsStepsHelper.CreateUserAccount();
 
-            _homePage = AddNewAccountAndSignAnAgreement(_registrationDataHelper.CompanyTypeOrg2, 1);
+            _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg2, 1);
 
-            if (noOfAccounts == "three") _homePage = AddNewAccountAndSignAnAgreement(_registrationDataHelper.CompanyTypeOrg3, 2);
+            if (noOfAccounts == "three") _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg3, 2);
 
             SetAccountDetails(noOfAccounts);
         }
 
-        private HomePage AddNewAccountAndSignAnAgreement(string orgName, int index)
+        private HomePage AddNewAccount(string orgName, int index)
         {
             UpdateOrganisationName(orgName);
 
-            return _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, index);
+            return _homePage = _approvalsStepsHelper.AddNewAccount(_homePage, index);
         }
 
         private void SetAccountDetails(string noOfAccounts)
         {
-            var accountDetails = _registrationSqlDataHelper.CollectAccountDetailsAsList(_objectContext.GetRegisteredEmail());
+            var accountDetails = _registrationSqlDataHelper.CollectAccountDetails(_objectContext.GetRegisteredEmail());
 
             _accountDetails.Add("First", (accountDetails[0].orgName, accountDetails[0].hashedId, accountDetails[0].publicHashedId));
             _accountDetails.Add("Second", (accountDetails[1].orgName, accountDetails[1].hashedId, accountDetails[1].publicHashedId));
@@ -102,7 +102,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
             ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
         }
-
 
         private void SenderConnectsToReceiver(string senderOrganisationName, string publicReceiverAccountId)
         {

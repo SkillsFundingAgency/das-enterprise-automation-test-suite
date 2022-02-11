@@ -39,11 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            (string accountId, string hashedAccountId, _ , _) = _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username);
-
-            objectContext.SetHashedAccountId(hashedAccountId);
-
-            objectContext.SetDBAccountId(accountId);
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
 
             return homePage;
         }
