@@ -191,11 +191,36 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             newSecondPendingPayment.Amount = 1500;
         }
 
+        [Given(@"an application has been withdrawn by compliance")]
+        public async Task GivenAnApplicationHasBeenWithdrawnByCompliance()
+        {
+            await AnExistingApprenticeshipIncentive();
+            await Withdraw(WithdrawalType.Compliance);
+        }
+
+        [Given(@"an application has been withdrawn by an employer")]
+        public async Task GivenAnApplicationHasBeenWithdrawnByEmployer()
+        {
+            await AnExistingApprenticeshipIncentive();
+            await Withdraw(WithdrawalType.Employer);
+        }
+
         [When(@"the Learner Withdraw Request is processed")]
         public async Task TheLearnerWithdrawRequestIsProcessed()
         {
-            await Helper.EIFunctionsHelper.Withdraw(TestData.ULN, TestData.IncentiveApplication.AccountLegalEntityId, WithdrawalType.Compliance);
+            await Withdraw(WithdrawalType.Compliance);
+        }
+
+        private async Task Withdraw(WithdrawalType withdrawalType)
+        {
+            await Helper.EIFunctionsHelper.Withdraw(TestData.ULN, TestData.IncentiveApplication.AccountLegalEntityId, withdrawalType);
             await Helper.EISqlHelper.WaitUntilIncentiveWithdrawn(TestData.ApprenticeshipIncentiveId, TimeSpan.FromSeconds(5));
+        }
+
+        [When(@"Reinstatement is requested")]
+        public async Task WhenReinstatementIsRequested()
+        {
+            await Helper.EIFunctionsHelper.Reinstate(TestData.ULN, TestData.IncentiveApplication.AccountLegalEntityId);
         }
 
         [Then(@"the first earnings should have been removed")]
@@ -216,6 +241,38 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var secondPendingPayment = Helper.EISqlHelper.GetSingleOrDefaultFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && p.EarningType == EarningType.SecondPayment);
             secondPendingPayment.Should().BeNull();
+        }
+
+        [Then(@"the apprenticeship incentive status is set to Active")]
+        public async Task ThenTheApprenticeshipIncentiveStatusIsSetToActive()
+        {
+            await Helper.EISqlHelper.WaitUntilEarningsExist(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
+            var apprenticeshipIncentive = Helper.EISqlHelper.GetFromDatabase<ApprenticeshipIncentive>(ai => ai.Id == TestData.ApprenticeshipIncentiveId);
+            apprenticeshipIncentive.Status.Should().Be(IncentiveStatus.Active);
+        }
+
+        [Then(@"WithdrawnByCompliance flag of the application apprenticeship is unset")]
+        public void ThenTheWithdrawnByComplianceFlagIsUnset()
+        {
+            var incentiveApplicationApprenticeship = Helper.EISqlHelper.GetFromDatabase<IncentiveApplicationApprenticeship>( iaa => iaa.IncentiveApplicationId == TestData.IncentiveApplication.Id);
+            incentiveApplicationApprenticeship.WithdrawnByCompliance.Should().BeFalse();
+        }
+
+        [Then(@"the earnings are recalculated")]
+        public void ThenTheEarningsAreRecalculated()
+        {
+            var pendingPayments = Helper.EISqlHelper.GetAllFromDatabase<PendingPayment>().Where(pp => pp.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
+            pendingPayments.Should().HaveCount(2);
+        }
+
+        [Then(@"the application is not reinstated")]
+        public async Task ThenTheApplicationIsNotReinstated()
+        {
+            var apprenticeshipIncentive = Helper.EISqlHelper.GetFromDatabase<ApprenticeshipIncentive>(ai => ai.Id == TestData.ApprenticeshipIncentiveId);
+            apprenticeshipIncentive.Status.Should().Be(IncentiveStatus.Withdrawn);
+
+            var incentiveApplicationApprenticeship = Helper.EISqlHelper.GetFromDatabase<IncentiveApplicationApprenticeship>(iaa => iaa.IncentiveApplicationId == TestData.IncentiveApplication.Id);
+            incentiveApplicationApprenticeship.WithdrawnByEmployer.Should().BeTrue();
         }
     }
 }
