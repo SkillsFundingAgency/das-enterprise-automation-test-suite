@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Login.Service.Project.Helpers
 {
-    public class LoggedInAccountUser : EasAccountUser { }
+    public class LoggedInAccountUser : EasAccountUser { public new string OrganisationName { get; set; } }
 
     public abstract class LoginUser
     {
@@ -10,11 +11,12 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
         public string Password { get; set; }
     }
+
     #region SingleAccountUser
 
     public abstract class EasAccountUser : LoginUser
     {
-        public string OrganisationName { get; set; }
+        public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
     }
@@ -58,8 +60,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     #region MultipleAccountUser
     public abstract class MultipleEasAccountUser : EasAccountUser
     {
-        public string SecondOrganisationName { get; set; }
-        public string ThirdOrganisationName { get; set; }
+        public string SecondOrganisationName => LegalEntities?.ElementAtOrDefault(1);
     }
 
     public class EIMultipleAccountUser : MultipleEasAccountUser { }

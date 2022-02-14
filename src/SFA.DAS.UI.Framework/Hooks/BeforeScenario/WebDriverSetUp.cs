@@ -19,10 +19,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             var webDriver = webDriverSetupHelper.SetupWebDriver();
 
-            if (!IsCloudExecution())
-            {
-                AddCapabilities(webDriver);
-            }
+            if (!IsCloudExecution()) AddCapabilities(webDriver);
         }
     }
 }

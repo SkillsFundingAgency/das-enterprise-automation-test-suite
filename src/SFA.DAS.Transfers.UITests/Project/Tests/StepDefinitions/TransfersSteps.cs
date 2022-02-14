@@ -80,7 +80,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"Receiver edits and sends an approved cohort to the provider")]
         public void WhenReceiverEditsAndSendsAnApprovedCohortToTheProvider()
         {
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             _employerStepsHelper.OpenRejectedCohort()
                 .SelectEditApprentice()
@@ -91,7 +91,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"Receiver sends a cohort to the provider for review and approval")]
         public void WhenReceiverSendsACohortToTheProviderForReviewAndApproval()
         {
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
@@ -99,7 +99,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"Receiver approves the cohort")]
         public void WhenReceiverApprovesTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             _employerStepsHelper.Approve();
         }
@@ -107,7 +107,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"Sender approves the cohort")]
         public void WhenSenderApprovesTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
             _employerStepsHelper.ApproveTransfersRequest();
         }
@@ -115,7 +115,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [When(@"Sender rejects the cohort")]
         public void WhenSenderRejectsTheCohort()
         {
-            _objectContext.UpdateOrganisationName(_sender);
+            UpdateOrganisationName(_sender);
 
             _employerStepsHelper.RejectTransfersRequest();
         }
@@ -123,7 +123,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {
-            _objectContext.UpdateOrganisationName(_receiver);
+            UpdateOrganisationName(_receiver);
 
             var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
 
@@ -140,5 +140,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
             _homePage = _multipleAccountsLoginHelper.Login(_transfersUser, true);
         }
+
+        private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }
 }

@@ -186,7 +186,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         {
             _email = _loginCredentialsHelper.GetLoginCredentials().Username;
 
-            _eISqlHelper.SetCaseDetailsToNull(_registrationSqlDataHelper.GetAccountIds(_email).accountId);
+            _eISqlHelper.SetCaseDetailsToNull(_objectContext.GetDBAccountId());
 
             return _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario().SubmitApprentices();
         }
