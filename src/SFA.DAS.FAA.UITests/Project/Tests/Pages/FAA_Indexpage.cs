@@ -7,7 +7,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Find an apprenticeship";
 
-        private By SignIn => By.CssSelector("#loginLink");
+        //private By SignIn => By.CssSelector("#loginLink");
+        //private By SignIn => By.LinkText("sign in");
+        private By SignIn => By.CssSelector("a[href *= 'signin']");
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
