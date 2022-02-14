@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
 
         [Then(@"an apprentice can change their email")]
-        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToMyApprenticeship();
+        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToHome();
 
         [Then(@"an apprentice can change their email before confirming account")]
         public void ThenAnApprenticeCanChangeTheirEmailBeforeConfirmingAccount() => UpdateEmailAddress().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         }
 
         [Then(@"an apprentice can change their password")]
-        public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToMyApprenticeship();
+        public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToHome();
 
         [Then(@"an apprentice can change their password before confirming account")]
         public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
