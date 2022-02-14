@@ -7,20 +7,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Are you sure this certificate needs amending?";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        protected By TicketReferenceField => By.Id("IncidentNumber");
-
         #region Helpers and Context
-
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected By TicketReferenceField => By.Id("IncidentNumber");
         #endregion
 
         public AmendReasonPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CheckAndSubmitAssessmentDetailsPage EnterTicketReferenceAndSelectReason(string incidentNumber, string reason)
+        public CheckAndSubmitAssessmentDetailsPage EnterTicketReferenceAndSelectReason()
         {
-            formCompletionHelper.EnterText(TicketReferenceField, incidentNumber);
-            SelectCheckBoxByText(reason);
+            formCompletionHelper.EnterText(TicketReferenceField, "1234567890");
+            SelectCheckBoxByText("Incorrect apprentice details");
             Continue();
             return new CheckAndSubmitAssessmentDetailsPage(context);
         }

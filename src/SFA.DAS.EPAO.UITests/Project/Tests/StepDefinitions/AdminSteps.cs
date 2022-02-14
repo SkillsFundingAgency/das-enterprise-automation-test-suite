@@ -86,7 +86,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheReasonForAmendCanBeEntered()
         {
             checkAndSubmitAssessmentDetailsPage = amendReasonPage.
-                EnterTicketReferenceAndSelectReason("1234567890", "Incorrect apprentice details");
+                EnterTicketReferenceAndSelectReason();
         }
 
         [Then(@"the amend can be confirmed")]
