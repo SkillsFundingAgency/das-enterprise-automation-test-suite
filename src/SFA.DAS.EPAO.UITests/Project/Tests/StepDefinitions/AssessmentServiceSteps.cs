@@ -287,25 +287,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             ePAOAdminSqlDataHelper.UpdateCertificateToPrinted(ePAOAdminDataHelper.LearnerUln);
         }
         
-        /// <summary>
-        /// Completes a certificate, submits the certificate and returns the recorded page
-        /// </summary>
-        /// <param name="grade"></param>
-        /// <param name="route"></param>
-        /// <param name="learnerCriteria"></param>
-        /// <param name="deleteCertificate"></param>
-        /// <returns></returns>
         private AS_AssessmentRecordedPage RecordAGrade(string grade, string route, LearnerCriteria learnerCriteria, bool deleteCertificate) => 
             assessmentRecordedPage = CertifyApprentice(grade, route, learnerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
 
-        /// <summary>
-        /// Completes a certificate and returns the check certificate page
-        /// </summary>
-        /// <param name="grade"></param>
-        /// <param name="route"></param>
-        /// <param name="learnerCriteria"></param>
-        /// <param name="deleteExistingCertificate"></param>
-        /// <returns></returns>
         private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LearnerCriteria learnerCriteria, bool deleteExistingCertificate) => 
             assessmentServiceStepsHelper.CertifyApprentice(grade, route, learnerCriteria, deleteExistingCertificate);
 
