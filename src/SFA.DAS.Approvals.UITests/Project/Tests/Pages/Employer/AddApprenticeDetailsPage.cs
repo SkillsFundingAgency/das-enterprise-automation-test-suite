@@ -27,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+        private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
+        private By DeliveryModelRadioLabel => By.CssSelector(".govuk-radios__label");
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -35,8 +37,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var course = apprenticeCourseDataHelper.Course;
 
             if (objectContext.IsSameApprentice()) course = apprenticeCourseDataHelper.OtherCourse;
-            
+
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
+
+            if (pageInteractionHelper.IsElementDisplayed(DeliveryModelSection))
+                formCompletionHelper.SelectRadioOptionByForAttribute(DeliveryModelRadioLabel, "DeliveryModelNormal");
         }
 
         public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
@@ -85,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
 
             Assert.True(options.All(x => !x.Contains("(Framework)")));
-            
+
             return this;
         }
 
@@ -112,7 +117,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             }
 
             if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
-            
+
 
             return apprenticeCourseDataHelper.CourseStartDate;
         }
