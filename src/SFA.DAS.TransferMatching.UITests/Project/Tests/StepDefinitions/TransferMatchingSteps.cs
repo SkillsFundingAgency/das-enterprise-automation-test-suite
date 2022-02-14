@@ -156,23 +156,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             GoToViewMyTransferPledgePage().GoToTransferPledgePage().GoToApproveAppliationPage().RejectApplication();
         }
 
-        [Then(@"the non levy employer can withdraw funding")]
-        public void ThenTheNonLevyEmployerCanWithdrawFunding()
-        {
-            UpdateOrganisationName(_sender);
-
-            SignOut();
-
-            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
-
-            NavigateToTransferMatchingPage()
-                .ViewApplicationsIhaveSubmitted()
-                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
-                .WithdrawFunding()
-                .ViewMyApplications()
-                .OpenPledgeApplication("WITHDRAWN");
-        }
-
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding()
         {
