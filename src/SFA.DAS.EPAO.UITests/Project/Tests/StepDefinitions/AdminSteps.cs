@@ -118,7 +118,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheReasonForReprintCanBeEntered()
         {
             checkAndSubmitAssessmentDetailsPage = reprintReasonPage.
-                EnterTicketReferenceAndSelectReason("1234567890", "Delivery failed");
+            EnterTicketReferenceAndSelectReason();
         }
 
         [Then(@"the reprint can be confirmed")]
