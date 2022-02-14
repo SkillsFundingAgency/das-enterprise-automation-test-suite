@@ -14,9 +14,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{_options.Name}-{name}"));
 
-        public void MarkTestAsFailed(string sessionId, string message)
+        public void MarkTestStatus(string sessionId, bool testStatus, string message)
         {
-            var response = Execute(sessionId, JSonBody(message));
+            var response = Execute(sessionId, JSonBody(testStatus, message));
 
             if (IsNotSucess(response)) throw new Exception(response.Content, response.ErrorException);
         }
@@ -34,8 +34,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private bool IsNotSucess(IRestResponse response) => response.StatusCode != HttpStatusCode.OK;
 
-        private static string JSonBody(string exceptionmessage) => JsonConvert.SerializeObject(new { status = "failed", reason = exceptionmessage });
+        private static string JSonBody(bool testStatus, string exceptionmessage)
+        {
+            object obj;
 
+            if (testStatus) obj = new { status = "passed" };
+
+            else obj = new { status = "failed", reason = exceptionmessage };
+
+            return JsonConvert.SerializeObject(obj);
+        }
         private static string UpdateNameJSonBody(string newname) => JsonConvert.SerializeObject(new { name = $"{newname}", });
 
         private static IRestRequest Request(string sessionId, object jsonObj) => Request(sessionId).AddJsonBody(jsonObj);
