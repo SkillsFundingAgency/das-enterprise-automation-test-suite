@@ -7,20 +7,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Are you sure this certificate needs reprinting?";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        protected By TicketReferenceField => By.Id("IncidentNumber");
-
         #region Helpers and Context
-
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected By TicketReferenceField => By.Id("IncidentNumber");
         #endregion
 
         public ReprintReasonPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CheckAndSubmitAssessmentDetailsPage EnterTicketReferenceAndSelectReason(string incidentNumber, string reason)
+        public CheckAndSubmitAssessmentDetailsPage EnterTicketReferenceAndSelectReason()
         {
-            formCompletionHelper.EnterText(TicketReferenceField, incidentNumber);
-            SelectCheckBoxByText(reason);
+            formCompletionHelper.EnterText(TicketReferenceField, "1234567890");
+            SelectCheckBoxByText("Delivery failed");
             Continue();
             return new CheckAndSubmitAssessmentDetailsPage(context);
         }
