@@ -45,6 +45,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             tableRowHelper = context.Get<TableRowHelper>();
         }
 
+        protected static string EnvironmentName => EnvironmentConfig.EnvironmentName;
+
         protected string GetUrl() => pageInteractionHelper.GetUrl();
 
         protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -9,7 +8,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Sign in";
 
-        private readonly IWebDriver _webDriver;
         private By UsernameField => By.CssSelector("#EmailAddress");
         private By PasswordField => By.CssSelector("#Password");
         private By SignInButton => By.CssSelector("#sign-in-button");
@@ -21,14 +19,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             VerifyPage(UsernameField);
 
-            _webDriver = context.GetWebDriver();
-            var environmentName = Configurator.EnvironmentName.ToLower() + ".";
+            var environmentName = EnvironmentName.ToLower() + ".";
+
             var currentURL = GetUrl();
 
             if (!currentURL.ToLower().Contains(environmentName))
             {
                 var newURL = currentURL.Replace("www.", environmentName) + "?ReturnUrl=%2F";
-                _webDriver.Navigate().GoToUrl(newURL);
+                
+                tabHelper.GoToUrl(newURL);
+                
                 VerifyPage(UsernameField);
             }
         }
