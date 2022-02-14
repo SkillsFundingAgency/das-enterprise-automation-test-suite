@@ -8,7 +8,7 @@
 
         public string Browser { get; set; }
 
-        public string ServerName => "http://hub-cloud.browserstack.com/wd/hub/";
+        public string ServerName => $"https://{User}:{Key}@hub-cloud.browserstack.com/wd/hub/";
 
         public string AutomateSessions => "https://www.browserstack.com/automate/sessions/";
 

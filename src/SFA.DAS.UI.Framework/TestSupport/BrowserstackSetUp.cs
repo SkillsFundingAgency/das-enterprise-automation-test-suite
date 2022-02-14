@@ -28,8 +28,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             AddAdditionalCapability(chromeOption, "os", options.Os);
             AddAdditionalCapability(chromeOption, "os_version", options.Osversion);
             AddAdditionalCapability(chromeOption, "resolution", options.Resolution);
-            AddAdditionalCapability(chromeOption, "browserstack.user", options.User);
-            AddAdditionalCapability(chromeOption, "browserstack.key", options.Key);
             AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}");
             AddAdditionalCapability(chromeOption, "project", options.Project);
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
@@ -41,7 +39,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.autoWait", "35");
             AddAdditionalCapability(chromeOption, "browserstack.maskCommands", "setValues, getValues, setCookies, getCookies");
 
-            var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
+            var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption.ToCapabilities());
 
             if (remoteWebDriver is IAllowsFileDetection allowsDetection)
                 allowsDetection.FileDetector = new LocalFileDetector();
@@ -56,6 +54,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         }
 
         private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue) =>
-            chromeOptions.AddAdditionalChromeOption(capabilityName, capabilityValue);
+            chromeOptions.AddAdditionalOption(capabilityName, capabilityValue);
     }
 }
