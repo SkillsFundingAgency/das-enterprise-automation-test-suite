@@ -112,6 +112,12 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 9
+ testRunner.Given("the Provider creates a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 11
  testRunner.When("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
