@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Reprint
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_ReprintCert_01")]
-    public partial class EPAO_AD_ReprintCert_01Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AD_ReprintCert_02")]
+    public partial class EPAO_AD_ReprintCert_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EPAO_AD_ReprintCert_01.feature"
+#line 1 "EPAO_AD_ReprintCert_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Admin/Certificates/Reprint", "EPAO_AD_ReprintCert_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Admin/Certificates/Reprint", "EPAO_AD_ReprintCert_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Reprint
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_ReprintCert_01 Reprint a Certificate")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AD_ReprintCert_02 Amend a Certificate - Change SendTo")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AD_ReprintCert_01ReprintACertificate()
+        public virtual void EPAO_AD_ReprintCert_02AmendACertificate_ChangeSendTo()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Reprint
                     "epaoadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_ReprintCert_01 Reprint a Certificate", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_ReprintCert_02 Amend a Certificate - Change SendTo", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -125,18 +125,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Admin can search using learner uln", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.When("the Admin reprints the certificate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Admin reprints the certificate with ticket reference \'INC123456\' and selects " +
+                        "reason \'Delivery failed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then("the ticket reference \'INC123456\' and reason for reprint \'Delivery failed\' can be " +
-                        "entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the SendTo can be changed from \'employer\' to \'apprentice\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.And("the reprint can be confirmed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the new address can be entered without employer name or recipient", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("the certificate history contains the incident number \'INC123456\' and reprint reas" +
-                        "on \'Delivery failed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the recipient is defaulted to the apprentice name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

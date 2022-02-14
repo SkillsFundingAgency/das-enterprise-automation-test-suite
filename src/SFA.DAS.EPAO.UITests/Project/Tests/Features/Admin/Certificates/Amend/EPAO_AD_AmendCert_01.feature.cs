@@ -125,13 +125,15 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Admin amends the certificate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("the reason for amend can be entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the ticket reference \'INC123456\' and reason for amend \'Incorrect apprentice detai" +
+                        "ls\' can be entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
  testRunner.And("the amend can be confirmed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("the certificate history contains the reason for amending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the certificate history contains the incident number \'INC123456\' and amend reason" +
+                        " \'Incorrect apprentice details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

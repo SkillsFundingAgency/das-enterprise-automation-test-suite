@@ -15,13 +15,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected By ButtonCssSelector => By.CssSelector(".button");
 
-        protected By RadioButtonCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
+        protected By RadioButtonInputCssSelector => By.CssSelector("input.govuk-radios__input");
+
+        protected By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
 
         protected By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
 
         protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
-        protected IWebElement GetElementByText(By locator, String text)
+        protected IWebElement GetElementByText(By locator, string text)
         {
             IList<IWebElement> elements = _webDriver.FindElements(locator);
 
@@ -29,6 +31,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 String str = elements[i].Text ?? elements[i].GetAttribute("innertext");
                 if (str.Contains(text))
+                {
+                    return elements[i];
+                }
+            }
+            return null;
+        }
+
+        protected IWebElement GetElementByAttribute(By locator, string attribute, string attributeValue)
+        {
+            IList<IWebElement> elements = _webDriver.FindElements(locator);
+
+            for (int i = 0; i < elements.Count; i++)
+            {
+                String str = elements[i].GetAttribute(attribute);
+                if (str.Contains(attributeValue))
                 {
                     return elements[i];
                 }

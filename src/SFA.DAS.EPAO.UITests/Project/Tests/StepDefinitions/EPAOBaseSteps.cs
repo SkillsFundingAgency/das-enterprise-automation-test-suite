@@ -45,6 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected StaffDashboardPage staffDashboardPage;
         protected OrganisationDetailsPage organisationDetailsPage;
         protected CertificateDetailsPage certificateDetailsPage;
+        protected CertificateAddressPage certificateAddressPage;
         protected AmendReasonPage amendReasonPage;
         protected ReprintReasonPage reprintReasonPage;
         protected CheckAndSubmitAssessmentDetailsPage checkAndSubmitAssessmentDetailsPage;

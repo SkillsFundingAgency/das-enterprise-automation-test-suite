@@ -11,6 +11,6 @@ Scenario: EPAO_AD_ReprintCert_01 Reprint a Certificate
 	And the Admin all roles user is logged into the Admin Service Application 
 	And the Admin can search using learner uln
 	When the Admin reprints the certificate
-	Then the reason for reprint can be entered
+	Then the ticket reference 'INC123456' and reason for reprint 'Delivery failed' can be entered
 	And the reprint can be confirmed
-	And the certificate history contains the reason for reprinting
+	And the certificate history contains the incident number 'INC123456' and reprint reason 'Delivery failed'

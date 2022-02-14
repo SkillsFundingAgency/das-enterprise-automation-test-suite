@@ -157,7 +157,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IEnumerable<string> GetStringCollectionFromElementsGroup(By locator) => FindElements(locator).Select(e => e.Text);
 
-        public bool IsElementPresent(By locator)
+        public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
+        {
+            var selected = GetElementByAttribute(RadioButtonInputCssSelector, "value", text)?.Selected ?? false;
+
+            if (isSelected != selected)
+            {
+                throw new Exception($"Radio option '{text}' selection verification failed: "
+                    + "\n Expected: " + isSelected
+                    + "\n Found: " + selected);
+            }
+        }
+
+    public bool IsElementPresent(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try

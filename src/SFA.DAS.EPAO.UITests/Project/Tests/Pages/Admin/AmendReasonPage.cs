@@ -9,15 +9,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         #region Helpers and Context
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        protected By TicketReferenceField => By.Id("IncidentNumber");
+        protected By IncidentNumberField => By.Id("IncidentNumber");
         #endregion
 
         public AmendReasonPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CheckAndSubmitAssessmentDetailsPage EnterTicketReferenceAndSelectReason()
+        public CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(string ticketReference, string amendReason)
         {
-            formCompletionHelper.EnterText(TicketReferenceField, "1234567890");
-            SelectCheckBoxByText("Incorrect apprentice details");
+            formCompletionHelper.EnterText(IncidentNumberField, ticketReference);
+            SelectCheckBoxByText(amendReason);
             Continue();
             return new CheckAndSubmitAssessmentDetailsPage(context);
         }
