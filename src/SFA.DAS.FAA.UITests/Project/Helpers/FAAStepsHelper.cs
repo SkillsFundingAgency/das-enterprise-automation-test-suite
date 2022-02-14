@@ -18,6 +18,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         private readonly ObjectContext _objectContext;
         private const string _applicationName = "FindApprenticeship";
         private readonly string _faaBaseUrl;
+        private readonly string _faa_SearchApprenticeshipUrl;
 
         public FAAStepsHelper(ScenarioContext context)
         {
@@ -27,6 +28,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             _faaDataHelper = context.Get<FAADataHelper>();
             _helper = new RestartWebDriverHelper(context);
             _faaBaseUrl = UrlConfig.FAA_BaseUrl;
+            _faa_SearchApprenticeshipUrl = UrlConfig.FAA_SearchApprenticeshipUrl;
         }
 
         public string GetApplicationStatus()
@@ -166,7 +168,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
-            _tabHelper.OpenInNewTab(_faaBaseUrl);
+            _tabHelper.OpenInNewTab(_faa_SearchApprenticeshipUrl);
 
             return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
         }
