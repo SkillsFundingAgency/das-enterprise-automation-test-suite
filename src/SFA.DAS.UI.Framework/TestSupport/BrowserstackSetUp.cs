@@ -13,9 +13,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class BrowserStackSetup
     {
-        private static readonly string _buildDateTime;
+        private static readonly string _buildDateTime, _buildDate;
 
-        static BrowserStackSetup() => _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
+        static BrowserStackSetup() 
+        {
+            var date = DateTime.Now;
+            _buildDate = date.ToString("ddMMMyyyy").ToUpper();
+            _buildDateTime = date.ToString("ddMMMyyyy_HH:mm:ss").ToUpper(); 
+        }
 
         public static IWebDriver Init(BrowserStackSetting options)
         {
@@ -57,7 +62,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 { "os", options.Os },
                 { "osVersion", options.Osversion },
                 { "resolution", options.Resolution },
-                { "projectName", options.Project },
+                { "projectName", $"{options.Project}_{_buildDate}" },
                 { "buildName", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}" },
                 { "sessionName", options.Name },
                 { "debug", "true" },
