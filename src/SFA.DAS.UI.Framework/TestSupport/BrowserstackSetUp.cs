@@ -4,6 +4,10 @@ using System;
 using OpenQA.Selenium.Chrome;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using System.Collections.Generic;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -17,43 +21,57 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             CheckBrowserStackLogin(options);
 
-            var chromeOption = new ChromeOptions
-            {
-                AcceptInsecureCertificates = true,
-                UnhandledPromptBehavior = UnhandledPromptBehavior.Accept
-            };
+            var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), GetDriverOptions(options));
 
-            AddAdditionalCapability(chromeOption, "browser", options.Browser);
-            AddAdditionalCapability(chromeOption, "browser_version", options.BrowserVersion);
-            AddAdditionalCapability(chromeOption, "os", options.Os);
-            AddAdditionalCapability(chromeOption, "os_version", options.Osversion);
-            AddAdditionalCapability(chromeOption, "resolution", options.Resolution);
-            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}");
-            AddAdditionalCapability(chromeOption, "project", options.Project);
-            AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
-            AddAdditionalCapability(chromeOption, "name", options.Name);
-            AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
-            AddAdditionalCapability(chromeOption, "browserstack.timezone", options.TimeZone);
-            AddAdditionalCapability(chromeOption, "browserstack.console", "info");
-            AddAdditionalCapability(chromeOption, "browserstack.idleTimeout", "300");
-            AddAdditionalCapability(chromeOption, "browserstack.autoWait", "35");
-            AddAdditionalCapability(chromeOption, "browserstack.maskCommands", "setValues, getValues, setCookies, getCookies");
-
-            var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption.ToCapabilities());
-
-            if (remoteWebDriver is IAllowsFileDetection allowsDetection)
-                allowsDetection.FileDetector = new LocalFileDetector();
+            if (remoteWebDriver is IAllowsFileDetection allowsDetection) allowsDetection.FileDetector = new LocalFileDetector();
 
             return remoteWebDriver;
         }
 
-        private static void CheckBrowserStackLogin(BrowserStackSetting options)
+        private static DriverOptions GetDriverOptions(BrowserStackSetting options)
         {
-            if (options.User == null || options.Key == null)
-                throw new Exception("Please enter browserstack credentials");
+            string browser = options.Browser;
+            DriverOptions capabilities = true switch
+            {
+                bool _ when browser.IsFirefox() => new FirefoxOptions(),
+                bool _ when browser.IsIe() => new InternetExplorerOptions(),
+                bool _ when browser.IsEdge() => new EdgeOptions(),
+                bool _ when browser.IsChrome() => new ChromeOptions(),
+                _ => throw new Exception("Browserstack : Driver name - " + browser + " does not match OR this framework does not support the webDriver specified"),
+            };
+
+            capabilities.BrowserVersion = options.BrowserVersion;
+            capabilities.AcceptInsecureCertificates = true;
+            capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+
+            capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
+
+            return capabilities;
         }
 
-        private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue) =>
-            chromeOptions.AddAdditionalOption(capabilityName, capabilityValue);
+        private static Dictionary<string, object> SetBrowserstackCapabilities(BrowserStackSetting options) => 
+            new Dictionary<string, object> 
+            {
+                { "userName", options.User },
+                { "accessKey", options.Key },
+                { "os", options.Os },
+                { "osversion", options.Osversion },
+                { "resolution", options.Resolution },
+                { "projectName", options.Project },
+                { "buildName", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}" },
+                { "sessionName", options.Name },
+                { "debug", "true" },
+                { "networkLogs", options.EnableNetworkLogs },
+                { "browserstack.timezone", options.TimeZone },
+                { "consoleLogs", "info" },
+                { "idleTimeout", "300" },
+                { "autoWait", "35" },
+                { "maskCommands", "setValues, getValues, setCookies, getCookies" }
+            };
+
+        private static void CheckBrowserStackLogin(BrowserStackSetting options)
+        {
+            if (options.User == null || options.Key == null) throw new Exception("Please enter browserstack credentials");
+        }
     }
 }
