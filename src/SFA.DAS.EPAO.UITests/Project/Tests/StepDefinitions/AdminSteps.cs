@@ -113,7 +113,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 EnterRecipientName(recipient).
                 EnterEmployerName(employer).
                 EnterAddress("Cheylesmore House", "5 Quinton Rd", string.Empty, "Coventry", "CV12WT").
-                EnterReasonForChangeAndContinue("A good reason");
+                EnterReasonForChangeAndContinue("Employer Name and Recipient details updated");
         }
 
         [Then(@"the recipient's name on the check page is '(.*)'")]

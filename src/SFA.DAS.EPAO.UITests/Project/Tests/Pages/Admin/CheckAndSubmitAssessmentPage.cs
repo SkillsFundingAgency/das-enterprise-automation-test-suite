@@ -7,12 +7,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Check and submit the assessment details";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        private By SendToChangeLink => By.XPath("//a[starts-with(@href, '/CertificateSendTo/SendTo')]");
-
         #region Helpers and Context
-
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        private By SendToChangeLink => By.XPath("//a[starts-with(@href, '/CertificateSendTo/SendTo')]");
         #endregion
 
         public CheckAndSubmitAssessmentDetailsPage(ScenarioContext context) : base(context) => VerifyPage();

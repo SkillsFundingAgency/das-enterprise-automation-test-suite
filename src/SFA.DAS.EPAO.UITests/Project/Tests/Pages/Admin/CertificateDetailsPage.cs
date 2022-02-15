@@ -8,15 +8,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Certificate";
 
+        #region Helpers and Context
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
         private By DeleteCertificateLink => By.LinkText("Delete certificate");
-
         private By AmendCertificateLink => By.LinkText("Amend certificate information");
-
         private By ReprintCertificateLink => By.LinkText("Request certificate reprint");
-
         private By ShowAllHistoryButton => By.LinkText("Show all history");
+        #endregion
 
         public CertificateDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

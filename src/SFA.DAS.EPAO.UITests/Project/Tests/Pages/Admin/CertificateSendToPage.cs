@@ -7,10 +7,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override string PageTitle => "Who would you like us to send the certificate to?";
 
-        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-
         #region Helpers and Context
-
+        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
         #endregion
 
         public CertificateSendToPage(ScenarioContext context) : base(context) => VerifyPage();
