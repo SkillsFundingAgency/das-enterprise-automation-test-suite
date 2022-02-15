@@ -17,9 +17,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static string IEWebDriver;
 
-        public readonly static string EnvironmentName;
+        internal readonly static string EnvironmentName;
 
-        public readonly static string ProjectName;
+        private readonly static string ProjectName;
 
         static Configurator()
         {
