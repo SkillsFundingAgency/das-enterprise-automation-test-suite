@@ -5,7 +5,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
     public class FATV2IndexPage : FATV2BasePage
     {
-        protected override string PageTitle => "Find apprenticeship training for your apprentice";
+        protected override string PageTitle => "Find apprenticeship training";
 
         #region Locators
         private By StartButton => By.LinkText("Start now");
