@@ -42,9 +42,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
         }
 
-        /*[Given(@"the User certifies an Apprentice as '(pass|fail)' using '(employer|apprentice)' route")]
-        public void GivenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string route) => RecordAGrade(grade, route, SetLearnerDetails(), true);*/
-
         [When(@"the User certifies an Apprentice as '(pass|fail)' using '(employer|apprentice)' route")]
         public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string route) => RecordAGrade(grade, route, SetLearnerDetails(), true); 
 
