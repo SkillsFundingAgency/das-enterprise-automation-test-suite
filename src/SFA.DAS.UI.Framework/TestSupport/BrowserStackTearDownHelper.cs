@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             try
             {
-                _browserStackReport.MarkTestStatus(GetSessionId(), testStatus, _context.TestError.Message);
+                _browserStackReport.MarkTestStatus(GetSessionId(), testStatus, _context.TestError?.Message);
             }
             catch (Exception ex)
             {
