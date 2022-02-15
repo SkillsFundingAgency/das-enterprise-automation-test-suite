@@ -9,9 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
         private By EmailField => By.Id("Email");
@@ -26,6 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
+        private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
+        private By DeliveryModelRadioLabel => By.CssSelector(".govuk-radios__label");
         private By AddButton => By.CssSelector("#addApprenticeship > button");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
@@ -38,6 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
             formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
+            if (pageInteractionHelper.IsElementDisplayed(DeliveryModelSection))
+                formCompletionHelper.SelectRadioOptionByForAttribute(DeliveryModelRadioLabel, "DeliveryModelNormal");
             formCompletionHelper.ClickElement(StartDateMonth);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);

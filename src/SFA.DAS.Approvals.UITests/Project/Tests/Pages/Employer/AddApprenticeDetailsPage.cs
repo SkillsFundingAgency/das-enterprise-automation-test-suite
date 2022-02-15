@@ -11,7 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By FirstNameField => By.Id("FirstName");
         private By LastNameField => By.Id("LastName");
@@ -26,9 +25,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
         private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
         private By DeliveryModelRadioLabel => By.CssSelector(".govuk-radios__label");
+        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
