@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_01 - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_02 - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_AmendCert_02.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_ReprintCert_02 - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -73,40 +66,6 @@
     <None Update="SFA.DAS.EPAO.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_03.feature.cs">
-      <DependentUpon>EPAO_AD_AmendCert_03.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_02.feature.cs">
-      <DependentUpon>EPAO_AD_AmendCert_02.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_ReprintCert_03.feature.cs">
-      <DependentUpon>EPAO_AD_ReprintCert_03.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_ReprintCert_02.feature.cs">
-      <DependentUpon>EPAO_AD_ReprintCert_02.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_03.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Admin\Certificates\Amend\EPAO_AD_AmendCert_02.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_ReprintCert_03.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Admin\Certificates\Reprint\EPAO_AD_ReprintCert_02.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
