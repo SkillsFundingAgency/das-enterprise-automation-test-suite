@@ -40,7 +40,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string SignOutLinkText => "Sign out";
         protected By Password => By.CssSelector("#Password");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true, bool shouldCookieBannerBePresent = false) : base(context)
         {
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
@@ -53,11 +53,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => verifyPage(verifypage),
-                () => VerifyPage(CookieBanner),
                 () => VerifyPage(FeedbackLinkOnBetaBanner),
                 () => verifyServiceHeader(verifyserviceheader),
                 () => { VerifyFooterLinks(); return true; }
             });
+
+            VerifyCookieBanner(shouldCookieBannerBePresent);
         }
 
         protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
@@ -109,5 +110,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         protected override void Continue() => formCompletionHelper.Click(ContinueButton);
+
+        private void VerifyCookieBanner(bool shouldCookieBannerBePresent)
+        {
+            if (shouldCookieBannerBePresent) 
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookieBanner));
+            else
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CookieBanner));
+        }
     }
 }
