@@ -30,37 +30,39 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public CertificateAddressPage EnterRecipientName(string recipientName)
         {
-            formCompletionHelper.EnterText(CertificateRecipientName, recipientName);
+            EnterText(CertificateRecipientName, recipientName);
             return this;
         }
 
         public CertificateAddressPage EnterRecipientDepartment(string department)
         {
-            formCompletionHelper.EnterText(CertificateRecipientDepartment, department);
+            EnterText(CertificateRecipientDepartment, department);
             return this;
         }
 
         public CertificateAddressPage EnterEmployerName(string employer)
         {
-            formCompletionHelper.EnterText(CertificateEmployerName, employer);
+            EnterText(CertificateEmployerName, employer);
             return this;
         }
 
-        public CertificateAddressPage EnterAddress(string addressLine1, string addressLine2, string addressLine3, string city, string postcode)
+        public CertificateAddressPage EnterAddress()
         {
-            formCompletionHelper.EnterText(CertificateAddresLine1, addressLine1);
-            formCompletionHelper.EnterText(CertificateAddresLine2, addressLine2);
-            formCompletionHelper.EnterText(CertificateAddresLine3, addressLine3);
-            formCompletionHelper.EnterText(CertificateCity, city);
-            formCompletionHelper.EnterText(CertificatePostcode, postcode);
+            EnterText(CertificateAddresLine1, ePAOAdminDataHelper.AddressLine1);
+            EnterText(CertificateAddresLine2, ePAOAdminDataHelper.AddressLine2);
+            EnterText(CertificateAddresLine3, ePAOAdminDataHelper.AddressLine3);
+            EnterText(CertificateCity, ePAOAdminDataHelper.TownName);
+            EnterText(CertificatePostcode, ePAOAdminDataHelper.PostCode);
             return this;
         }
         
         public CheckAndSubmitAssessmentDetailsPage EnterReasonForChangeAndContinue(string reasonForChange)
         {
-            formCompletionHelper.EnterText(CertificateReasonForChange, reasonForChange);
+            EnterText(CertificateReasonForChange, reasonForChange);
             Continue();
             return new CheckAndSubmitAssessmentDetailsPage(context);
         }
+
+        private void EnterText(By locator, string text) => formCompletionHelper.EnterText(locator, text);
     }
 }
