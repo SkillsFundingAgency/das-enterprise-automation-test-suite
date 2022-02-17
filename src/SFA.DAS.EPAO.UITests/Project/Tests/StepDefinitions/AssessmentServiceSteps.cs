@@ -62,11 +62,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the User should be able to Opt In for the new version of the Standard")]
         public void GivenTheUserShouldBeAbleToOptInForTheNewVersionOfTheStandard() =>
-            loggedInHomePage
-            .ApprovedStandardAndVersions()
-            .ClickOnAssociateProjectManagerLink()
-            .ClickOnAssociateProjectManagerOptInLinkForVersion1_1()
-            .ConfirmOptIn();
+            loggedInHomePage.ApprovedStandardAndVersions().ClickOnAssociateProjectManagerLink().ClickOnAssociateProjectManagerOptInLinkForVersion1_1().ConfirmOptIn();
 
         [Then(@"'(.*)' message is displayed")]
         public void ThenErrorMessageIsDisplayed(string errorMessage) => Assert.AreEqual(recordAGradePage.GetPageTitle(), errorMessage);
@@ -120,12 +116,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"navigates to Assessment page")]
-        public void GivenNavigatesToAssessmentPage()
-        {
-            SetLearnerDetails();
-
-            recordAGradePage = loggedInHomePage.GoToRecordAGradePage();
-        }
+        public void GivenNavigatesToAssessmentPage() { SetLearnerDetails(); recordAGradePage = loggedInHomePage.GoToRecordAGradePage(); }
 
         [Given(@"the User certifies an Apprentice as '(pass|fail)' with '(employer|apprentice)' route and records a grade")]
         public void WhenTheUserCertifiesAnApprenticeAndRecordsAGrade(string grade, string route)
@@ -138,20 +129,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the Change links navigate to the respective pages")]
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateReceiverLink().ClickBackLink();
+            CheckCommonLinks();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLinkvForApprenticeJourney().ClickBackLink();
         }
 
         [Then(@"the Change links navigate to employer pages")]
         public void ThenTheChangeLinksNavigateToTheEmployerPages()
         {
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
-            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateReceiverLink().ClickBackLink();
+            CheckCommonLinks();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickDepartmentChangeLinkForEmployerJourney().ClickBackLink();
             checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLinkForEmployerJourney().ClickBackLink();
         }
@@ -197,35 +182,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             else
                 userDetailsPage = editUserPermissionsPage.SelectAllPermissionCheckBoxes().ClickSaveButton();
 
-            _permissionsSelected = _permissionsSelected ? false : true;
+            _permissionsSelected = !_permissionsSelected;
         }
 
         [Then(@"the User is able to change the permissions")]
-        public void ThenTheUserIsAbleToChangeThePermissions()
-        {
-            if (_permissionsSelected)
-            {
-                Assert.IsTrue(userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(true));
-                Assert.IsTrue(userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(true));
-            }
-            else
-            {
-                Assert.IsTrue(userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(true));
-                Assert.IsFalse(userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(false));
-                Assert.IsFalse(userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' permission is displayed in 'User details' " + AddAssertResultText(false));
-                Assert.IsFalse(userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(false));
-                Assert.IsFalse(userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(false));
-                Assert.IsFalse(userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(false));
-                Assert.IsFalse(userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(false));
-            }
-        }
+        public void ThenTheUserIsAbleToChangeThePermissions() => 
+            Assert.Multiple(() => 
+            { 
+                IsViewDashboardPermissionDisplayed(true); 
+                IsChangeOrganisationDetailsPersmissionDisplayed(_permissionsSelected); 
+                IsPipelinePermissionDisplayed(_permissionsSelected); 
+                IsCompletedAssessmentsPermissionDisplayed(_permissionsSelected);
+                IsApplyForAStandardPermissionDisplayed(_permissionsSelected);
+                IsManageUsersPermissionDisplayed(_permissionsSelected);
+                IsRecordGradesPermissionDisplayed(_permissionsSelected);
+            });
 
-        private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is not shown in 'User details' page";
 
         [When(@"the User initiates inviting a new user journey")]
         public void WhenTheUserInitiatesInvitingANewUserJourney() => _newUserEmailId = assessmentServiceStepsHelper.InviteAUser(loggedInHomePage);
@@ -248,11 +220,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), ePAOApplyStandardData.ApplyStandardName);
 
         [Given(@"the certificate is printed")]
-        public void GivenTheCertificateIsSentToPrinter()
+        public void GivenTheCertificateIsSentToPrinter() => ePAOAdminSqlDataHelper.UpdateCertificateToPrinted(ePAOAdminDataHelper.LearnerUln);
+
+        private void CheckCommonLinks()
         {
-            ePAOAdminSqlDataHelper.UpdateCertificateToPrinted(ePAOAdminDataHelper.LearnerUln);
+            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
+            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
+            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
+            checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateReceiverLink().ClickBackLink();
         }
-        
+
         private AS_AssessmentRecordedPage RecordAGrade(string grade, string route, LearnerCriteria learnerCriteria, bool deleteCertificate) => 
             assessmentRecordedPage = CertifyApprentice(grade, route, learnerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
 
@@ -260,8 +237,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             assessmentServiceStepsHelper.CertifyApprentice(grade, route, learnerCriteria, deleteExistingCertificate);
 
         private LearnerCriteria SetLearnerDetails() => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, GetLearnerCriteria()));
-
-        private LearnerCriteria SetLearnerDetails(string enrolledStandard) => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetStaticTestData(GetStaticTestData(enrolledStandard)));
 
         private LearnerCriteria SetLearnerDetails(Func<List<string>> func)
         {
@@ -280,15 +255,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             return GetLearnerCriteria();
         }
 
-        public (string lastName, string uln) GetStaticTestData(string enrolledStandard)
-        {
-            return true switch
-            {
-                bool _ when (enrolledStandard == "PrivatelyFundedApprentice") => (ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln),
-                _ => (string.Empty, string.Empty)
-            };
-        }
-
         private LearnerCriteria GetLearnerCriteria() => _context.Get<LearnerCriteria>();
+
+        private void IsViewDashboardPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(expected));
+        private void IsChangeOrganisationDetailsPersmissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(expected));
+        private void IsPipelinePermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' " + AddAssertResultText(expected));
+        private void IsCompletedAssessmentsPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(expected));
+        private void IsApplyForAStandardPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(expected));
+        private void IsManageUsersPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(expected));
+        private void IsRecordGradesPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(expected));
+
+        private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is shown in 'User details' page";
     }
 }

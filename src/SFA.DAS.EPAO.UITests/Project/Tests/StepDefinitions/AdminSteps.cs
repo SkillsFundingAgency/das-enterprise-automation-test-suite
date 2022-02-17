@@ -24,14 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin can edit the organisation")]
-        public void ThenTheAdminCanEditTheOrganisation()
-        {
-            organisationDetailsPage = organisationDetailsPage
-                .EditOrganisation()
-                .EditDetails()
-                .VerifyOrganisationCharityNumber()
-                .VerifyOrganisationCompanyNumber();
-        }
+        public void ThenTheAdminCanEditTheOrganisation() => organisationDetailsPage = organisationDetailsPage.EditOrganisation().EditDetails().VerifyOrganisationCharityNumber().VerifyOrganisationCompanyNumber();
 
         [Then(@"the admin can search using organisation name")]
         public void ThenTheAdminCanSearchUsingOrganisationName() => SearchEpaoRegister(ePAOAdminDataHelper.OrganisationName);
