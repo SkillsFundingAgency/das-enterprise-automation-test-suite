@@ -14,8 +14,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected By InputCssSelector => By.CssSelector(".govuk-input");
 
         protected By ButtonCssSelector => By.CssSelector(".button");
+        
+        protected By RadioButtonInputCssSelector => By.CssSelector("input.govuk-radios__input");
 
-        protected By RadioButtonCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
+        protected By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
 
         protected By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
 

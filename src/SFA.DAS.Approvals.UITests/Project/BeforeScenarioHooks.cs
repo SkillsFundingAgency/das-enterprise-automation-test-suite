@@ -6,6 +6,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -63,6 +64,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingDataHelper());
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
+
+            _context.Set(new ManageFundingEmployerStepsHelper(_context));
         }
     }
 }

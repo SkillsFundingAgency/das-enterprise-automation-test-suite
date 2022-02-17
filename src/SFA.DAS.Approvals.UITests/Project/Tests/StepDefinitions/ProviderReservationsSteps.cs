@@ -12,7 +12,7 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderReservationsSteps
+    public class ProviderReservationsSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -20,8 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
-		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
-		private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
+        private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
         public ProviderReservationsSteps(ScenarioContext context)
         {
@@ -42,7 +42,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             homePage.GoToYourOrganisationsAndAgreementsPage()
                 .ClickViewAgreementLink()
-                .SetAgreementId();  
+                .SetAgreementId();
+        }
+
+        [Given(@"the Provider with create reservation permission logs in")]
+        public void GivenTheProviderWithCreateReservationPermissionLogsIn()
+        {
+            _providerStepsHelper.Login(_login);
+        }
+
+        [When(@"the Provider creates a reservation")]
+        public void WhenThenProviderCreatesAReservation()
+        {
+            _providerStepsHelper.StartCreateReservationAndGoToStartTrainingPage();
+        }
+
+        [Then(@"the Provider is told that funding can be reserved from (.*)")]
+        public void ThenTheEmployerIsPresentedWithFirstMonthSecondMonthAndThirdMonthForTheApprenticeshipStart(string monthReserveFrom) =>
+            _providerStepsHelper.VerifyReserveFromMonth(ParseMonth(monthReserveFrom));
+
+        [Then(@"the Provider is given options (.*), (.*) and (.*) to select start date")]
+        public void ThenGivenOptionsToSelectStartDate(string firstMonth, string secondMonth, string thirdMonth) =>
+            _providerStepsHelper.VerifySuggestedStartMonthOptions(ParseMonth(firstMonth), ParseMonth(secondMonth), ParseMonth(thirdMonth));
+
+        [Then(@"the Provider is (.*) to reserve funding for an apprenticeship course")]
+        public void ThenTheEmployerCanOrCannotReserveFundingForAnApprenticeshipCourse(string ableOrNotAble)
+        {
+            if (ableOrNotAble == "able")
+            {
+                _providerStepsHelper.CompleteCreateReservationFromStartTrainingPage();
+            }
+            else if (ableOrNotAble == "not able")
+            {
+                _providerStepsHelper.VerifyCreateReservationCannotBeCompleted();
+            }
         }
 
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
