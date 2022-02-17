@@ -28,20 +28,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
 
-        public void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
-        {
-            bool func(Func<IWebElement> webelement)
-            {
-                var actual = webelement().GetAttribute(attribute);
-                if (actual.Contains(value))
-                    return true;
-
-                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
-            }
-
-            _retryHelper.RetryOnWebDriverException(() => func(element));
-        }
-
         public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
 
         public void WaitForElementToBeClickable(By locator) => _webDriverWaitHelper.WaitForElementToBeClickable(locator);
@@ -159,17 +145,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
         {
-            var selected = GetElementByAttribute(RadioButtonInputCssSelector, "value", text)?.Selected ?? false;
-
-            if (isSelected != selected)
+            _retryHelper.RetryOnWebDriverException(() => 
             {
-                throw new Exception($"Radio option '{text}' selection verification failed: "
-                    + "\n Expected: " + isSelected
-                    + "\n Found: " + selected);
-            }
+                var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
+
+                if (isSelected != selected) throw new WebDriverException($"Radio option '{text}' selection verification failed: Expected: {isSelected} Found: {selected}");
+            });  
         }
 
-    public bool IsElementPresent(By locator)
+        public bool IsElementPresent(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
@@ -273,5 +257,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
+        private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
+        {
+            bool func(Func<IWebElement> webelement)
+            {
+                var actual = webelement().GetAttribute(attribute);
+
+                if (actual.Contains(value)) return true;
+
+                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
+            }
+
+            _retryHelper.RetryOnWebDriverException(() => func(element));
+        }
     }
 }

@@ -23,33 +23,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
-        protected IWebElement GetElementByText(By locator, string text)
+        protected IWebElement GetElementByText(By locator, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
+
+        protected IWebElement GetElementByAttribute(By locator, string attribute, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.GetAttribute(attribute));
+
+        protected IWebElement GetElementByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
         {
             IList<IWebElement> elements = _webDriver.FindElements(locator);
 
-            for (int i = 0; i < elements.Count; i++)
-            {
-                String str = elements[i].Text ?? elements[i].GetAttribute("innertext");
-                if (str.Contains(text))
-                {
-                    return elements[i];
-                }
-            }
-            return null;
-        }
+            for (int i = 0; i < elements.Count; i++) if (actualValue(elements[i]).Contains(expectedvalue)) return elements[i];
 
-        protected IWebElement GetElementByAttribute(By locator, string attribute, string attributeValue)
-        {
-            IList<IWebElement> elements = _webDriver.FindElements(locator);
-
-            for (int i = 0; i < elements.Count; i++)
-            {
-                String str = elements[i].GetAttribute(attribute);
-                if (str.Contains(attributeValue))
-                {
-                    return elements[i];
-                }
-            }
             return null;
         }
 
