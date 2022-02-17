@@ -20,26 +20,24 @@ namespace SFA.DAS.UI.Framework.TestSupport
             context.TryGetValue(out _browserStackReport);
         }
 
-        public void InformBrowserStackOnFailure()
+        public void MarkTestStatus()
         {
-            if (_context.TestError != null)
+            if (IsCloudExecution()) MarkTestStatus(_context.TestError == null);
+        }
+
+        private void MarkTestStatus(bool testStatus)
+        {
+            try
             {
-                switch (true)
-                {
-                    case bool _ when IsCloudExecution():
-                        try
-                        {
-                            _browserStackReport.MarkTestAsFailed(GetSessionId(), _context.TestError.Message);
-                        }
-                        catch (Exception ex)
-                        {
-                            _objectContext.SetBrowserstackResponse();
-                            _objectContext.SetAfterScenarioException(ex);
-                        }
-                        break;
-                }
+                _browserStackReport.MarkTestStatus(GetSessionId(), testStatus, _context.TestError?.Message);
+            }
+            catch (Exception ex)
+            {
+                _objectContext.SetBrowserstackResponse();
+                _objectContext.SetAfterScenarioException(ex);
             }
         }
+
 
         public void UpdateTestName(string name) { if (IsCloudExecution()) _browserStackReport.UpdateTestName(GetSessionId(), name); }
 

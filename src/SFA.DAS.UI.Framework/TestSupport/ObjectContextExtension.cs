@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static List<string> GetAuthUrl(this ObjectContext objectContext) => objectContext.Get<List<string>>(AuthUrlKey);
         public static void InitAuthUrl(this ObjectContext objectContext) => objectContext.Set(AuthUrlKey, AuthUrls);
         internal static void SetAuthUrl(this ObjectContext objectContext, string value) => objectContext.GetAuthUrl().Add(value);
-        internal static void SetBrowserstackResponse(this ObjectContext objectContext) => objectContext.Set(BrowserstackFailedToUpdateTestResult, true);
+        internal static void SetBrowserstackResponse(this ObjectContext objectContext) => objectContext.Replace(BrowserstackFailedToUpdateTestResult, true);
         public static bool FailedtoUpdateTestResultInBrowserStack(this ObjectContext objectContext) => objectContext.KeyExists<bool>(BrowserstackFailedToUpdateTestResult);
     }
 }
