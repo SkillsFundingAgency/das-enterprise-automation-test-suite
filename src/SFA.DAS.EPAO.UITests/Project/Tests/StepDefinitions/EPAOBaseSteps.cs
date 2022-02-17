@@ -44,12 +44,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected OrganisationDetailsPage organisationDetailsPage;
         protected CertificateDetailsPage certificateDetailsPage;
         protected CertificateAddressPage certificateAddressPage;
-        protected AmendReasonPage amendReasonPage;
-        protected ReprintReasonPage reprintReasonPage;
         protected CheckAndSubmitAssessmentDetailsPage checkAndSubmitAssessmentDetailsPage;
-        protected ConfirmationAmendPage confirmationAmendPage;
-        protected ConfirmationReprintPage confirmationReprintPage;
-        
+
         protected AP_ApplicationOverviewPage applicationOverviewPage;
         protected AS_CreateAnAccountPage createAnAccountPage;
         protected AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage;

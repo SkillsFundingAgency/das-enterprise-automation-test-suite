@@ -6,6 +6,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AdminSteps : EPAOBaseSteps
     {
+        private ConfirmReasonBasePage confirmReasonBasePage;
+        private ConfirmationAmendReprintBasePage confirmationAmendReprintBasePage;
+
         public AdminSteps(ScenarioContext context) : base(context) { }
 
         [Then(@"the admin can add organisation")]
@@ -71,22 +74,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheAddressContainsTheEmployerName(string employer) => checkAndSubmitAssessmentDetailsPage.VerifyEmployer(employer);
 
         [When(@"the Admin amends the certificate")]
-        public void WhenTheAdminAmendsTheCertificate() => amendReasonPage = certificateDetailsPage.ClickAmendCertificateLink();
+        public void WhenTheAdminAmendsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickAmendCertificateLink();
         
         [When(@"the Admin reprints the certificate")]
-        public void WhenTheAdminReprintsTheCertificate() => reprintReasonPage = certificateDetailsPage.ClickReprintCertificateLink();
+        public void WhenTheAdminReprintsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickReprintCertificateLink();
 
         [Then(@"the ticket reference '(.*)' and reason for amend '(.*)' can be entered")]
-        public void ThenTheReasonForAmendCanBeEntered(string ticketReference, string reasonForAmend) => checkAndSubmitAssessmentDetailsPage = amendReasonPage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForAmend);
+        public void ThenTheReasonForAmendCanBeEntered(string ticketReference, string reasonForAmend) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForAmend);
 
         [Then(@"the ticket reference '(.*)' and reason for reprint '(.*)' can be entered")]
-        public void ThenTheReasonForReprintCanBeEntered(string ticketReference, string reasonForReprint) => checkAndSubmitAssessmentDetailsPage = reprintReasonPage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForReprint);
+        public void ThenTheReasonForReprintCanBeEntered(string ticketReference, string reasonForReprint) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForReprint);
 
         [Then(@"the amend can be confirmed")]
-        public void ThenTheAmendCanBeConfirmed() => confirmationAmendPage = checkAndSubmitAssessmentDetailsPage.ClickConfirmAmend();
+        public void ThenTheAmendCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmAmend();
 
         [Then(@"the reprint can be confirmed")]
-        public void ThenTheReprintCanBeConfirmed() => confirmationReprintPage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
+        public void ThenTheReprintCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
 
         [Then(@"the certificate history contains the incident number '(.*)' and amend reason '(.*)'")]
         public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason) 
@@ -99,7 +102,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 
-        private CertificateDetailsPage SelectACertificate() => confirmationReprintPage.ClickSearchAgain().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
+        private CertificateDetailsPage SelectACertificate() => confirmationAmendReprintBasePage.ClickSearchAgain().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
 
         private CheckAndSubmitAssessmentDetailsPage EnterNewAdddress(string employer, string recipient) => checkAndSubmitAssessmentDetailsPage = certificateAddressPage.
                 EnterRecipientName(recipient).EnterEmployerName(employer).EnterAddress().
