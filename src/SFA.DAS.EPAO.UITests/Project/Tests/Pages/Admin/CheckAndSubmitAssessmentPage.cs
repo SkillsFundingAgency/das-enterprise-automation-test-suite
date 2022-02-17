@@ -22,25 +22,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public ConfirmationAmendPage ClickConfirmAmend()
         {
-            Confirm();
+            Continue();
             return new ConfirmationAmendPage(context);
         }
 
         public ConfirmationReprintPage ClickConfirmReprint()
         {
-            Confirm();
+            Continue();
             return new ConfirmationReprintPage(context);
         }
 
-        public void VerifyRecipient(string recipient)
-        {
-            pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), recipient);
-        }
+        public void VerifyRecipient(string recipient) => pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), recipient);
 
-        public void VerifyEmployer(string employer)
-        {
-            pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Address"), employer);
-        }
+        public void VerifyEmployer(string employer) => pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Address"), employer);
 
         public void VerifyRecipientIsApprentice()
         {
@@ -50,9 +44,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), $"{givenName} {familyName}");
         }
 
-        private By GetBySummaryValueLocator(string displayName)
-        {
-            return By.XPath($"//dt[contains(text(),\"{displayName}\")]/following-sibling::dd[@class='govuk-summary-list__value']");
-        }
+        private By GetBySummaryValueLocator(string displayName) => By.XPath($"//dt[contains(text(),\"{displayName}\")]/following-sibling::dd[@class='govuk-summary-list__value']");
     }
 }

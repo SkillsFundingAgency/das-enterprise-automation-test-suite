@@ -61,18 +61,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the (Admin all roles user) is logged into the Admin Service Application")]
-        public void GivenTheAdminIsLoggedIntoTheAdminServiceApplication(string userName)
-        {
-            staffDashboardPage = GoToEpaoAdminHomePage();
-        }
+        public void GivenTheAdminIsLoggedIntoTheAdminServiceApplication(string _) => staffDashboardPage = GoToEpaoAdminHomePage();
 
         [Given(@"the Admin can search using learner uln")]
         [When(@"the Admin can search using learner uln")]
         [Then(@"the Admin can search using learner uln")]
-        public void GivenWhenThenTheAdminCanSearchUsingUln()
-        {
-            certificateDetailsPage = adminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
-        }
+        public void GivenWhenThenTheAdminCanSearchUsingUln() => certificateDetailsPage = adminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
 
         [When(@"the Admin amends the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
         public void WhenTheAdminAmendsTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string amendReason)
@@ -117,36 +111,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the recipient's name on the check page is '(.*)'")]
-        public void ThenTheRecipientIsTheNewOneWhichWasEntered(string recipient)
-        {
-            checkAndSubmitAssessmentDetailsPage.VerifyRecipient(recipient);
-        }
+        public void ThenTheRecipientIsTheNewOneWhichWasEntered(string recipient) => checkAndSubmitAssessmentDetailsPage.VerifyRecipient(recipient);
 
         [Then(@"the recipient is defaulted to the apprentice name")]
-        public void ThenTheRecipientIsDefaultedToTheApprenticeName()
-        {
-            checkAndSubmitAssessmentDetailsPage.VerifyRecipientIsApprentice();
-        }
+        public void ThenTheRecipientIsDefaultedToTheApprenticeName() => checkAndSubmitAssessmentDetailsPage.VerifyRecipientIsApprentice();
 
         [Then(@"the address contains the employer name '(.*)'")]
-        public void ThenTheAddressContainsTheEmployerName(string employer)
-        {
-            checkAndSubmitAssessmentDetailsPage.VerifyEmployer(employer);
-        }
+        public void ThenTheAddressContainsTheEmployerName(string employer) => checkAndSubmitAssessmentDetailsPage.VerifyEmployer(employer);
 
         [When(@"the Admin amends the certificate")]
-        public void WhenTheAdminAmendsTheCertificate()
-        {
-            amendReasonPage = certificateDetailsPage.
-                ClickAmendCertificateLink();
-        }
+        public void WhenTheAdminAmendsTheCertificate() => amendReasonPage = certificateDetailsPage.ClickAmendCertificateLink();
         
         [When(@"the Admin reprints the certificate")]
-        public void WhenTheAdminReprintsTheCertificate()
-        {
-            reprintReasonPage = certificateDetailsPage.
-                ClickReprintCertificateLink();
-        }
+        public void WhenTheAdminReprintsTheCertificate() => reprintReasonPage = certificateDetailsPage.ClickReprintCertificateLink();
 
         [Then(@"the ticket reference '(.*)' and reason for amend '(.*)' can be entered")]
         public void ThenTheReasonForAmendCanBeEntered(string ticketReference, string reasonForAmend)
@@ -163,18 +140,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the amend can be confirmed")]
-        public void ThenTheAmendCanBeConfirmed()
-        {
-            confirmationAmendPage = checkAndSubmitAssessmentDetailsPage.
-                ClickConfirmAmend();
-        }
+        public void ThenTheAmendCanBeConfirmed() => confirmationAmendPage = checkAndSubmitAssessmentDetailsPage.ClickConfirmAmend();
 
         [Then(@"the reprint can be confirmed")]
-        public void ThenTheReprintCanBeConfirmed()
-        {
-            confirmationReprintPage = checkAndSubmitAssessmentDetailsPage.
-                ClickConfirmReprint();
-        }
+        public void ThenTheReprintCanBeConfirmed() => confirmationReprintPage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
 
         [Then(@"the certificate history contains the incident number '(.*)' and amend reason '(.*)'")]
         public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason)

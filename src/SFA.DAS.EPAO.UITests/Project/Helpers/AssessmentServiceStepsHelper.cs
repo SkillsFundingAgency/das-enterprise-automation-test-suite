@@ -4,7 +4,6 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -122,24 +121,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
-            if (route == "employer")
-            {
-                return SelectGradeEmployerRoute(grade);
-            }
+            if (route == "employer") return SelectGradeEmployerRoute(grade);
+            
+            else return SelectGradeApprenticeRoute(grade);
+        }
 
+        private AS_CheckAndSubmitAssessmentPage SelectGradeApprenticeRoute(string grade)
+        {
             if (grade == "pass")
-            {                
+            {
                 return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
-                .ClickAprenticeRadioButton()                
+                .ClickAprenticeRadioButton()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                .EnterEmployerAddressAndContinue()                
+                .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage();
             }
-            else if (grade == "PassWithExcellence")
-            {
-                return new AS_ConfirmAddressPage(_context)
-                    .ClickContinueInConfirmEmployerAddressPage();                  
-            }
+            else if (grade == "PassWithExcellence") PassWithExcellence();
 
             return new AS_CheckAndSubmitAssessmentPage(_context);
         }
@@ -155,14 +152,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .AddRecipientAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage();
             }
-            else if (grade == "PassWithExcellence")
-            {
-                return new AS_ConfirmAddressPage(_context)
-                    .ClickContinueInConfirmEmployerAddressPage();
-            }
-
+            else if (grade == "PassWithExcellence") PassWithExcellence();
+            
             return new AS_CheckAndSubmitAssessmentPage(_context);
         }
+
+        private AS_CheckAndSubmitAssessmentPage PassWithExcellence() => new AS_ConfirmAddressPage(_context).ClickContinueInConfirmEmployerAddressPage();
 
         private AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LearnerCriteria learnerCriteria)
         {
