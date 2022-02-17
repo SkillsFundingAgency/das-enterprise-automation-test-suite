@@ -12,7 +12,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         #region Helpers and Context
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By CertificateRecipientName => By.Id("Name");
-        private By CertificateRecipientDepartment => By.Id("Dept");
         private By CertificateEmployerName => By.Id("Employer");
         private By CertificateAddresLine1 => By.Id("AddressLine1");
         private By CertificateAddresLine2 => By.Id("AddressLine2");
@@ -31,12 +30,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public CertificateAddressPage EnterRecipientName(string recipientName)
         {
             EnterText(CertificateRecipientName, recipientName);
-            return this;
-        }
-
-        public CertificateAddressPage EnterRecipientDepartment(string department)
-        {
-            EnterText(CertificateRecipientDepartment, department);
             return this;
         }
 
@@ -63,6 +56,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new CheckAndSubmitAssessmentDetailsPage(context);
         }
 
-        private void EnterText(By locator, string text) => formCompletionHelper.EnterText(locator, text);
+        private void EnterText(By locator, string text) { if (!(string.IsNullOrEmpty(text))) formCompletionHelper.EnterText(locator, text); }
     }
 }
