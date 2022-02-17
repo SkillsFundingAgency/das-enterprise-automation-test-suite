@@ -114,9 +114,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private void VerifyCookieBanner(bool shouldCookieBannerBePresent)
         {
             if (shouldCookieBannerBePresent) 
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookieBanner));
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookieBanner), "Cookie banner is missing");
             else
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CookieBanner));
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CookieBanner), "Cookie banner is shown even though it is already accepted");
         }
     }
 }
