@@ -50,10 +50,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenWhenThenTheAdminCanSearchUsingUln() => certificateDetailsPage = adminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
 
         [When(@"the Admin amends the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
-        public void WhenTheAdminAmendsTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string amendReason) => EnterTicketRefeferenceAndSelectReason(ticketReference, amendReason);
+        public void WhenTheAdminAmendsTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string amendReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickAmendCertificateLink(), ticketReference, amendReason);
 
         [When(@"the Admin reprints the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
-        public void WhenTheAdminReprintTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string reprintReason) => EnterTicketRefeferenceAndSelectReason(ticketReference, reprintReason);
+        public void WhenTheAdminReprintTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string reprintReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickReprintCertificateLink(), ticketReference, reprintReason);
 
         [Then(@"the SendTo can be changed from '(employer|apprentice)' to '(employer|apprentice)'")]
         public void ThenTheSendToCanBeChangedFrom(string currentSentTo, string newSendTo) => certificateAddressPage = checkAndSubmitAssessmentDetailsPage.ClickChangeSendToLink().ChangeSendToRadioButtonAndContinue(currentSentTo, newSendTo);
@@ -108,8 +108,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 EnterRecipientName(recipient).EnterEmployerName(employer).EnterAddress().
                 EnterReasonForChangeAndContinue((string.IsNullOrEmpty(employer) && string.IsNullOrEmpty(recipient)) ? "Employer Name and Recipient details are not updated" : "Employer Name and Recipient details updated");
 
-        private CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(string ticketReference, string reason) =>
-             checkAndSubmitAssessmentDetailsPage = certificateDetailsPage.ClickReprintCertificateLink().EnterTicketRefeferenceAndSelectReason(ticketReference, reason);
+        private CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(ConfirmReasonBasePage page, string ticketReference, string reason) =>
+             checkAndSubmitAssessmentDetailsPage = page.EnterTicketRefeferenceAndSelectReason(ticketReference, reason);
 
         private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
 

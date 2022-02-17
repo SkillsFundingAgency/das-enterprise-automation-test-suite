@@ -7,7 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        private By SearchAgainLink => By.LinkText("Search again");
+        private By SearchAgainLink => By.PartialLinkText("Search");
 
         public ConfirmationAmendReprintBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
