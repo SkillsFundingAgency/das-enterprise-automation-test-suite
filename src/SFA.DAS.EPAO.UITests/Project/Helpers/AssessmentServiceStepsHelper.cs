@@ -48,25 +48,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return SelectGrade(decPage, grade, route);
         }
 
-        public AS_AssessmentRecordedPage CertifyPrivatelyFundedApprenticeValidDateScenario()
-        {
-            return CertifyPrivatelyFundedApprentice()
-                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
-                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                .EnterEmployerAddressAndContinue()
-                .ClickContinueInConfirmEmployerAddressPage()                
-                .ClickContinueInCheckAndSubmitAssessmentPage();   
-        }
-
-        public AS_AchievementDatePage CertifyPrivatelyFundedApprentice()
-        {
-            return GoToRecordAGradePage().SearchApprentice(true)
-                .GoToWhichVersionPage(false)
-                .ClickConfirmInConfirmVersionPageNoOption()
-                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-                .SelectGradeAsPass();
-        }
-
         public void RemoveChangeOrgDetailsPermissionForTheUser(AS_LoggedInHomePage loggedInHomePage)
         {
             loggedInHomePage.ClickManageUsersLink()

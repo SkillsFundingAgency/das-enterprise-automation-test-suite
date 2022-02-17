@@ -57,14 +57,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted() => assessmentServiceStepsHelper.DeleteCertificate(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
-        [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
-        {
-            SetPrivatelyFundedApprenticeLearnerDetails();
-
-            assessmentRecordedPage = assessmentServiceStepsHelper.CertifyPrivatelyFundedApprenticeValidDateScenario();
-        }
-
         [Then(@"the User can navigates to record another grade")]
         public void ThenTheUserCanNavigatesToRecordAnotherGrade() => assessmentRecordedPage.ClickRecordAnotherGradeLink();
 
@@ -125,7 +117,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             }
 
             recordAGradePage.EnterApprenticeDetailsAndContinue(familyName, uln);
-
         }
 
         [Given(@"navigates to Assessment page")]
@@ -135,28 +126,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             recordAGradePage = loggedInHomePage.GoToRecordAGradePage();
         }
-
-        [Given(@"the User is on the Apprenticeship achievement date page")]
-        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage()
-        {
-            SetPrivatelyFundedApprenticeLearnerDetails(); 
-            
-            assessmentServiceStepsHelper.CertifyPrivatelyFundedApprentice();
-        }
-
-        [When(@"the User enters the date before the Year 2017")]
-        public void WhenTheUserEntersTheDateBeforeTheYear2017()
-        {
-            achievementDatePage = new AS_AchievementDatePage(_context);
-
-            achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(2016);
-        }
-
-        [When(@"the User enters the future date")]
-        public void WhenTheUserEntersTheFutureDate() => achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(ePAOAssesmentServiceDataHelper.CurrentYear + 1);
-
-        [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
-        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(achievementDatePage.GetDateErrorText(), errorText);
 
         [Given(@"the User certifies an Apprentice as '(pass|fail)' with '(employer|apprentice)' route and records a grade")]
         public void WhenTheUserCertifiesAnApprenticeAndRecordsAGrade(string grade, string route)
@@ -289,8 +258,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LearnerCriteria learnerCriteria, bool deleteExistingCertificate) => 
             assessmentServiceStepsHelper.CertifyApprentice(grade, route, learnerCriteria, deleteExistingCertificate);
-
-        private LearnerCriteria SetPrivatelyFundedApprenticeLearnerDetails() => SetLearnerDetails("PrivatelyFundedApprentice");
 
         private LearnerCriteria SetLearnerDetails() => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, GetLearnerCriteria()));
 
