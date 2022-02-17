@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -29,9 +28,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected IWebElement GetElementByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
         {
-            IList<IWebElement> elements = _webDriver.FindElements(locator);
-
-            for (int i = 0; i < elements.Count; i++) if (actualValue(elements[i]).Contains(expectedvalue)) return elements[i];
+            foreach (var e in _webDriver.FindElements(locator)) if (actualValue(e).Contains(expectedvalue)) return e;
 
             return null;
         }
