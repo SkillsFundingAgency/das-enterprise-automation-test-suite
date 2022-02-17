@@ -25,9 +25,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             _stopWatchHelper.Start("SetupEmploymentCheckApiResponse");
 
-            var url = WebUtility.UrlEncode($"/employment-check/employmentchecks");
+            var url = WebUtility.UrlEncode($"/employment-check/RegisterCheck");
             var nullContent = new StringContent("{}", Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=put&url={url}&httpStatusCode=202", nullContent);
+            var response = await httpClient.PostAsync($"{baseUrl}/api-stub/save?httpMethod=put&url={url}&httpStatusCode=200", nullContent);
             response.EnsureSuccessStatusCode();
 
             _stopWatchHelper.Stop("SetupEmploymentCheckApiResponse");
@@ -37,8 +37,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             _stopWatchHelper.Start("EmploymentCheckApiDeleteMapping");
 
-            var url = WebUtility.UrlEncode($"/employment-check/employmentchecks");
-            await httpClient.DeleteAsync($"{baseUrl}/api-stub/delete?httpMethod=put&url={url}&httpStatusCode=202");
+            var url = WebUtility.UrlEncode($"/employment-check/RegisterCheck");
+            await httpClient.DeleteAsync($"{baseUrl}/api-stub/delete?httpMethod=put&url={url}&httpStatusCode=200");
 
             _stopWatchHelper.Stop("EmploymentCheckApiApiDeleteMapping");
         }
