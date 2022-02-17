@@ -32,7 +32,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
         protected By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
         protected By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
-        private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
         private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
@@ -40,7 +39,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private string SignOutLinkText => "Sign out";
         protected By Password => By.CssSelector("#Password");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true, bool shouldCookieBannerBePresent = false) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
@@ -57,8 +56,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 () => verifyServiceHeader(verifyserviceheader),
                 () => { VerifyFooterLinks(); return true; }
             });
-
-            VerifyCookieBanner(shouldCookieBannerBePresent);
         }
 
         protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
@@ -110,13 +107,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         protected override void Continue() => formCompletionHelper.Click(ContinueButton);
-
-        private void VerifyCookieBanner(bool shouldCookieBannerBePresent)
-        {
-            if (shouldCookieBannerBePresent) 
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookieBanner), "Cookie banner is missing");
-            else
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CookieBanner), "Cookie banner is shown even though it is already accepted");
-        }
     }
 }
