@@ -10,12 +10,28 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By PledgeApplicationSelector => By.CssSelector($"[href='applications/{objectContext.GetPledgeApplication(GetPledgeId())}]");
 
+        private By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
+
+        private By ClosePLedgeSelector => By.CssSelector("#main-content > div > div:nth-child(2) > div > div > form:nth-child(2) > button");
         public TransferPledgePage(ScenarioContext context) : base(context) { }
+
+        public ClosePledgePage ClosePledge()
+        {
+            formCompletionHelper.Click(ClosePLedgeSelector);
+            return new ClosePledgePage(context);
+        }
+
+        public TransferPledgePage DownloadExcel()
+        {
+            formCompletionHelper.Click(DownloadSelector);
+            return new TransferPledgePage(context);
+        }
 
         public ApproveAppliationPage GoToApproveAppliationPage()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetOrganisationName());
             return new ApproveAppliationPage(context);
         }
+
     }
 }
