@@ -1,5 +1,4 @@
-[
-  {
+{
     "correlationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "checkType": "Input Interface Testing - Outer API 4",
     "uln": 5000000284,
@@ -7,5 +6,4 @@
     "apprenticeshipId": 3,
     "minDate": "2022-02-07T10:15:24.195Z",
     "maxDate": "2022-03-07T10:15:24.195Z"
-  }
-]
+}
