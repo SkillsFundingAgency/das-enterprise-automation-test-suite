@@ -34,13 +34,19 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             int requestId = _employmentChecksSqlDbHelper.GetEmploymentCheckCacheRequestId(1);
 
+            // verify that RequestCompletionStatus for this paye is set to 2 [completed]
+            int status = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatus(requestId);
+
+            Assert.AreEqual(2, status, "Completion Status for the first paye scheme is not as expected");
+
             // verify following Paye Schemes have been abandoned in [Cache].[EmploymentCheckCacheRequest] table
 
-            var completionStatus = _employmentChecksSqlDbHelper.getRequestCompletionStatuses(requestId);
+            var completionStatuses = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatuses(requestId);
 
-            for (int i= 0; i < completionStatus.Count; i++)
+            // RequestCompletionstatus 3 represents 'Abandoned' records
+            for (int i= 0; i < completionStatuses.Count; i++)
             {
-                Assert.AreEqual(20, completionStatus[i][0], "Completion Status is not as expected");
+                Assert.AreEqual(3, completionStatuses[i][0], "Completion Status for the abandoned paye scheme is not as expected");
             }
 
             // verify no subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
@@ -60,9 +66,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             // verify that subsequest check for the next paye scheme is not abandoned in [Cache].[EmploymentCheckCacheRequest] table
 
-            var completionStatus = _employmentChecksSqlDbHelper.getRequestCompletionStatuses(requestId);
+            var completionStatus = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatuses(requestId);
 
-            Assert.AreNotEqual(20, completionStatus[0][0], "Completion Status is set to 20 [Abandoned] which is not expected");
+            Assert.AreNotEqual(3, completionStatus[0][0], "Completion Status is set to 3 [Abandoned] which is not expected");
 
             // verify subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
 
