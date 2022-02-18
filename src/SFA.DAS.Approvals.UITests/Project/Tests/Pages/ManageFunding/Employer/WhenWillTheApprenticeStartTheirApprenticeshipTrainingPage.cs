@@ -14,6 +14,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
+        private By ReservationResumeFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
+
+        private By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
+
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
@@ -37,10 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public void VerifyReserveFromMonth(DateTime? reserveFromMonth)
         {
             if (reserveFromMonth != null)
-            {
-                var by = By.CssSelector(".govuk-inset-text p:nth-child(2)");
-                pageInteractionHelper.VerifyText(by, reserveFromMonth?.ToString("MMMM yyyy"));
-            }
+                pageInteractionHelper.VerifyText(ReservationResumeFromDate, reserveFromMonth?.ToString("MMMM yyyy"));
         }
 
         public bool VerifySuggestedStartMonthOptions(DateTime? firstMonth, DateTime? secondMonth, DateTime? thirdMonth)
@@ -60,10 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
                 + "\n Found: '" + string.Join(",", actualMonths));
         }
 
-        public void VerifyProblem(string problem)
-        {
-            var by = By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
-            pageInteractionHelper.VerifyText(by, problem);
-        }
+        public void VerifyProblem(string problem) => pageInteractionHelper.VerifyText(ErrorSummary, problem);
+        
     }
 }
