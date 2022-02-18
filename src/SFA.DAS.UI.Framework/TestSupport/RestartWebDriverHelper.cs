@@ -23,7 +23,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public void RestartWebDriver(string url, string applicationName)
         {
-            _browserStackTearDownHelper.InformBrowserStackOnFailure();
+            _browserStackTearDownHelper.MarkTestStatus();
 
             _browserStackTearDownHelper.UpdateTestName(_objectContext.GetCurrentApplicationName());
 

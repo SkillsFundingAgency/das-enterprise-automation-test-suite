@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -14,7 +13,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected By InputCssSelector => By.CssSelector(".govuk-input");
 
         protected By ButtonCssSelector => By.CssSelector(".button");
-        
+
         protected By RadioButtonInputCssSelector => By.CssSelector("input.govuk-radios__input");
 
         protected By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
@@ -23,18 +22,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
-        protected IWebElement GetElementByText(By locator, String text)
-        {
-            IList<IWebElement> elements = _webDriver.FindElements(locator);
+        protected IWebElement GetElementByText(By locator, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
 
-            for (int i = 0; i < elements.Count; i++)
-            {
-                String str = elements[i].Text ?? elements[i].GetAttribute("innertext");
-                if (str.Contains(text))
-                {
-                    return elements[i];
-                }
-            }
+        protected IWebElement GetElementByAttribute(By locator, string attribute, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.GetAttribute(attribute));
+
+        protected IWebElement GetElementByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
+        {
+            foreach (var e in _webDriver.FindElements(locator)) if (actualValue(e).Contains(expectedvalue)) return e;
+
             return null;
         }
 

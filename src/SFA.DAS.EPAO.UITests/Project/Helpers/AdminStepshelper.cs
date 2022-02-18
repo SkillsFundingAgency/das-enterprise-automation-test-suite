@@ -8,6 +8,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public OrganisationDetailsPage AddOrganisation(StaffDashboardPage staffDashboardPage) => staffDashboardPage.AddOrganisation().EnterDetails();
 
+        public CertificateDetailsPage SearchAssessments(StaffDashboardPage staffDashboardPage, string uln) => staffDashboardPage.Search().SearchFor(uln).SelectACertificate();
+
         public OrganisationDetailsPage MakeEPAOOrganisationLive(StaffDashboardPage staffDashboardPage)
         {
             return SearchEpaoRegister(staffDashboardPage).VerifyOrganisationStatus("New")
