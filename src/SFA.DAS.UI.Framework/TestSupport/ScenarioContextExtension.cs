@@ -21,7 +21,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string PerfTestProviderPermissionsConfigKey = "perftestproviderpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
-        private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         private const string ARProjectConfigKey = "arprojectconfigkey";
         private const string EIProjectConfigKey = "eiprojectconfigkey";
@@ -42,7 +41,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
         public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
-        public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
         public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
         public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
         public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
@@ -66,7 +64,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetConsolidatedSupportConfig<T>(this ScenarioContext context) => Get<T>(context, ConsolidatedSupportProjectConfigKey);
-        public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
         public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
         public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
         public static T GetEIConfig<T>(this ScenarioContext context) => Get<T>(context, EIProjectConfigKey);
