@@ -80,8 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                    .SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -139,10 +138,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer does not sign the Agreement")]
+        [Then(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
-
-        [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetHashedAccountId(new HomePage(_context).AccountId());
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -405,7 +402,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToSwitchBetweenTheAccounts()
         {
             OpenAccount(_objectContext.GetOrganisationName());
-            OpenAccount(_objectContext.GetAdditionalAccount(1));
+            OpenAccount(_objectContext.GetAdditionalOrganisationName(1));
         }
 
         [Then(@"the Employer Account is locked with 3 incorrect password attempts")]

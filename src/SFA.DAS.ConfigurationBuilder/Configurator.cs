@@ -17,9 +17,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static string IEWebDriver;
 
-        public readonly static string EnvironmentName;
+        internal readonly static string EnvironmentName;
 
-        public readonly static string ProjectName;
+        private readonly static string ProjectName;
 
         static Configurator()
         {
@@ -72,8 +72,6 @@ namespace SFA.DAS.ConfigurationBuilder
         private static string GetProjectName() => GetHostingConfigSection("ProjectName");
 
         public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
-
-        public static string GetAgentTempDir() => GetHostingConfigSection("AGENT_TEMPDIRECTORY");
 
         private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
     }

@@ -33,6 +33,18 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task Reinstate(long uln, long accountLegalEntityId)
+        {
+            var request = new ReinstateApplicationRequest
+            {
+                ULN = uln,
+                AccountLegalEntityId = accountLegalEntityId
+            };
+
+            var response = await httpClient.PostAsync($"{baseUrl}/api/reinstate?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
         public async Task TriggerEmploymentCheck(long accountLegalEntityId, long uln)
         {
             var request = new EmploymentCheckRequest
@@ -58,6 +70,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         }
 
         public class WithdrawRequest
+        {
+            public WithdrawalType WithdrawalType { get; set; }
+            public long AccountLegalEntityId { get; set; }
+            public long ULN { get; set; }
+        }
+
+        public class ReinstateApplicationRequest
         {
             public WithdrawalType WithdrawalType { get; set; }
             public long AccountLegalEntityId { get; set; }

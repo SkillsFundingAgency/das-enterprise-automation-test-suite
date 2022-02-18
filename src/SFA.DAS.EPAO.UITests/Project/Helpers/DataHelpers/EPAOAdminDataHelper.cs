@@ -7,8 +7,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
     {
         public EPAOAdminDataHelper() : base()
         {
-            FirstName = GetRandomAlphabeticString(6);
-            LastName = GetRandomAlphabeticString(6);
+            GivenNames = GetRandomAlphabeticString(6);
+            FamilyName = GetRandomAlphabeticString(6);
             Email = $"TestContact_{RandomEmail}";
             NewOrganisationName = $"New Org {GetRandomAlphabeticString(10)}";
             NewOrganisationLegalName = $"{NewOrganisationName} Legal Name";
@@ -42,11 +42,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string LearnerUlnForExistingCertificate { get; set; }
 
-        public string FirstName { get; set; }
+        public string GivenNames { get; set; }
 
-        public string LastName { get; set; }
+        public string FamilyName { get; set; }
 
-        public string FullName => $"{FirstName} {LastName}";
+        public string FullName => $"{GivenNames} {FamilyName}";
 
         public string Email { get; }
 
