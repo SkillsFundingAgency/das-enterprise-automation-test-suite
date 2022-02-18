@@ -175,33 +175,31 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
 
         [Then(@"the levy employer currently receiving funds can not create pledge")]
-        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge()
-        {
-            new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
-
-            TheUserCanNotCreateTransferPledge();
-        }
-
+        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge() => CreateTransferPledge(true, false);
 
         [Then(@"the levy employer currently receiving funds can create pledge")]
-        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge()
-        {
-            new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
-
-            TheUserCanCreateTransferPledge();
-        }
-
+        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge() => CreateTransferPledge(true, true);
+        
         [Then(@"the user can not create transfer pledge")]
-        public void TheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "User can create transfer pledge");
+        public void TheUserCanNotCreateTransferPledge() => CreateTransferPledge(false, false);
 
         [Then(@"the user can create transfer pledge")]
-        public void TheUserCanCreateTransferPledge() => Assert.AreEqual(true, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "User can't create transfer pledge");
+        public void TheUserCanCreateTransferPledge() => CreateTransferPledge(false, true);
 
         [Then(@"the levy employer can not apply for transfer opportunities")]
-        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), "User can apply for transfer oppurtunity");
+        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(false);
 
         [Then(@"the levy employer is able to apply for transfer opportunities")]
-        public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => Assert.AreEqual(true, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), "User can't apply for transfer oppurtunity");
+        public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
+
+        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+
+        private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
+        {
+            if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
+
+            Assert.AreEqual(canCreateTransferPledge, NavigateToTransferMatchingPage().CanCreateTransferPledge(), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
+        }
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
 
