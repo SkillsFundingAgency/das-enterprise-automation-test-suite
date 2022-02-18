@@ -39,7 +39,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 
         private void UpdateOrgStatus(string status, string epaoid) => ExecuteSqlCommand($"Update Organisations Set Status = '{status}' Where EndPointAssessorOrganisationId = '{epaoid}'");
 
-        public void UpdateCertificateToPrinted(string learnerUln) => 
-            ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Printed' WHERE Uln = '{learnerUln}' AND CreatedAt > DATEADD(minute, -1, GETDATE())");
+        public void UpdateCertificateToPrinted(string learnerUln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Printed' WHERE Uln = {learnerUln}");
     }
 }
