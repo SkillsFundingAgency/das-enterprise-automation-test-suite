@@ -47,19 +47,51 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             string query = $" select top(1) Id from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Employed = {employmentStatus}";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
-
-            return Convert.ToInt16(queryResult[0][0]);
+            return Convert.ToInt32(GetDataAsString(query)); 
         }
 
-        internal List<object[]> getRequestCompletionStatuses(int Id)
+        internal int? getEmploymentCheckStatus()
+        {
+            int count = 0;
+            int i;
+
+            string query = $" select RequestCompletionStatus from [Business].[EmploymentCheck] " +
+                $" where Id = {employmentCheckId} ";
+
+            string completionStatus = GetDataAsString(query);
+
+            // Completion status [null] signifies that the record has not been processed yet.
+            // give it a max of 10 seconds for it to be picked up by the orchestrator
+
+            while (String.IsNullOrEmpty(completionStatus) && count < 5)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                completionStatus = GetDataAsString(query);
+            }
+
+            if (int.TryParse(completionStatus, out i)) return i;
+
+            return null;
+        }
+
+        internal List<object[]> getHmrcRequestCompletionStatuses(int Id)
         {
             string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id > {Id}";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            List<object[]> completionStatuses = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
-            return queryResult;
+            return completionStatuses;
+        }
+
+        internal int getHmrcRequestCompletionStatus (int Id)
+        {
+            string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id = {Id}";
+
+            return Convert.ToInt16(GetDataAsString(query));
         }
 
         internal int getNumberOfHmrcCallsAfterId(int EmploymentCheckCacheRequestId)
@@ -67,9 +99,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             string query = $" select COUNT(*) from[Cache].[EmploymentCheckCacheResponse] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and EmploymentCheckCacheRequestId > {EmploymentCheckCacheRequestId} ";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
-
-            return Convert.ToInt16(queryResult[0][0]);
+            return Convert.ToInt16(GetDataAsString(query));
         }
 
         internal bool? VerifyEmploymentStatusAgainstPayeScheme(int numberOfPayeScheme)
