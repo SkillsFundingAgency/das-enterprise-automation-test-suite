@@ -266,7 +266,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Then(@"the application is not reinstated")]
-        public async Task ThenTheApplicationIsNotReinstated()
+        public void ThenTheApplicationIsNotReinstated()
         {
             var apprenticeshipIncentive = Helper.EISqlHelper.GetFromDatabase<ApprenticeshipIncentive>(ai => ai.Id == TestData.ApprenticeshipIncentiveId);
             apprenticeshipIncentive.Status.Should().Be(IncentiveStatus.Withdrawn);
