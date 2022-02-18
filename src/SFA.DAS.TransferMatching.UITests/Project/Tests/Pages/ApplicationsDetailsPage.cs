@@ -13,7 +13,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
-        private By WithdrawalConfirmed = By.CssSelector("#IsDeclineConfirmed");
+        private By WithdrawalConfirmedSelector => By.CssSelector("#IsDeclinedConfirmed");
 
         private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 
@@ -24,7 +24,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             if (applicationStatus == "FUNDS AVAILABLE") VerifyPage(PageHeader, $"{GetPledgeId()}");
             else VerifyPage();
         }
-
         public ApplicationsDetailsPage SetPledgeApplication()
         {
             var applicationid = GetUrl().Split("/").ToList().LastOrDefault();
@@ -65,14 +64,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public SuccessfullyWithdrawnPage WithdrawFunding()
         {
-            SelectRadioOptionByText("No, decline the funding and withdraw the application");
-
-         
+           SelectRadioOptionByText("No, decline the funding and withdraw the application");
+            Continue();
+            VerifyConfirmError();
             ConfirmWithdrawal();
-
-
             Continue();
 
+     
             return new SuccessfullyWithdrawnPage(context);
         }
 
@@ -85,8 +83,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private void AcceptComplyWithRulesTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ComplyWithRulesSelector));
 
-        private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmed));
-
-
+        private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmedSelector));
     }
 }
