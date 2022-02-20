@@ -109,7 +109,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
+        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonLabelCssSelector, text);
 
         public void SelectRadioOptionByLocator(By locator) => ClickElement(_webDriver.FindElement(locator));
 

@@ -38,7 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor() => staffdashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true), FinancialHealthAssessmentLinkExists);
+        public void GivenTheAdminAppovesTheAssessor() => staffDashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true), FinancialHealthAssessmentLinkExists);
 
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
@@ -49,14 +49,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin approves the standard")]
-        public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
+        public void ThenTheAdminApprovesTheStandard() => staffDashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
         public void ThenMakeTheEpaoLive()
         {
             objectContext.SetOrganisationIdentifier(ePAOAdminSqlDataHelper.GetEPAOId(Username));
 
-            adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage);
+            adminStepshelper.MakeEPAOOrganisationLive(staffDashboardPage);
         }
 
         private AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser()
