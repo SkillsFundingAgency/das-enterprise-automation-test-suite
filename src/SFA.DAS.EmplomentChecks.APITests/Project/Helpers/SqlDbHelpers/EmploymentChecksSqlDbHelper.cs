@@ -77,7 +77,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
         internal int GetCheckFromEmploymentCheckTable(string checkType)
         {
             string query = $"SELECT * from [Business].[EmploymentCheck] " +
-                $" where CheckType = '{checkType}'";
+                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,CreatedOn)";
 
             var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
