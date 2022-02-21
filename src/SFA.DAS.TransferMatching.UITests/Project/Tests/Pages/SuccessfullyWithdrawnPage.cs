@@ -8,10 +8,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public SuccessfullyWithdrawnPage(ScenarioContext context) : base(context) { }
 
-        public MyApplicationsPage ViewMyApplications()
+        public AccountHomePage ReturnToMyAccount()
         {
-            formCompletionHelper.ClickLinkByText("View my applications");
-            return new MyApplicationsPage(context);
+            formCompletionHelper.ClickLinkByText("Return to my account");
+            return new AccountHomePage(context);
         }
     }
 }
