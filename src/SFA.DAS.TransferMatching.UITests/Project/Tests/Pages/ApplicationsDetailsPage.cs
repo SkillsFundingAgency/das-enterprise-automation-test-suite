@@ -13,7 +13,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
-        private By WithdrawalConfirmedSelector => By.CssSelector("#IsDeclinedConfirmed");
+        private By WithdrawalConfirmedSelector => By.CssSelector("input#IsDeclineConfirmed");
 
         private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 
@@ -70,7 +70,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             ConfirmWithdrawal();
             Continue();
 
-     
             return new SuccessfullyWithdrawnPage(context);
         }
 
