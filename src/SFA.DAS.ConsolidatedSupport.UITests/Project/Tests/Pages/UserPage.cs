@@ -27,10 +27,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By OrganisationTab => By.CssSelector("[data-test-id='tabs-nav-item-organizations']");
 
-        private By OrganisationInputSections => By.CssSelector(".modal-body .clearfix");
-
-        private By OrganisationInputFields => By.CssSelector(".ember-text-field.classic_input");
-
         private By OrganisationName => By.CssSelector("[data-test-id='organization-add-modal-name-input']");
 
         private By OrganisationDomain => By.CssSelector("[data-test-id='organization-add-modal-domain-input']");
@@ -53,10 +49,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(OrganisationTab), false);
 
             formCompletionHelper.EnterText(OrganisationName, dataHelper.NewOrgName);
-            formCompletionHelper.EnterText(OrganisationDomain, dataHelper.NewOrgDomain);
 
-//            CreateOrganisation("Name", dataHelper.NewOrgName);
-  //          CreateOrganisation("Domains", dataHelper.NewOrgDomain);
+            formCompletionHelper.EnterText(OrganisationDomain, dataHelper.NewOrgDomain);
 
             formCompletionHelper.ClickElement(AddOrganisationButton);
         }
@@ -69,15 +63,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             return InvokeAction(() =>
             {
-                var elements = FindElements(question);
-
-                foreach (var element in elements)
-                {
-                    if (FindlabelElements(element, question))
-                    {
+                foreach (var element in FindElements(question)) 
+                    if (FindlabelElements(element, question)) 
                         StringAssert.Contains(answer, element.Text, $"Question {question} is not updated");
-                    }
-                }
             }, IsOrganisation);
         }
 
@@ -85,9 +73,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             return InvokeAction(() =>
             {
-                var elements = FindElements(question);
-
-                foreach (var element in elements)
+                foreach (var element in FindElements(question))
                 {
                     if (FindlabelElements(element, question))
                     {
@@ -105,9 +91,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             return InvokeAction(() => 
             {
-                var elements = FindElements(question);
-
-                foreach (var element in elements)
+                foreach (var element in FindElements(question))
                 {
                     if (FindlabelElements(element, question))
                     {
@@ -133,19 +117,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             var labelElements = element.FindElements(UserLabel).ToList();
 
             return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question));
-        }
-
-        private void CreateOrganisation(string property, string value)
-        {
-            var elements = pageInteractionHelper.FindElements(OrganisationInputSections);
-
-            foreach (var element in elements)
-            {
-                if (element.Text.Contains(property))
-                {
-                    element.FindElement(OrganisationInputFields).SendKeys(value);
-                }
-            }
         }
     }
 }
