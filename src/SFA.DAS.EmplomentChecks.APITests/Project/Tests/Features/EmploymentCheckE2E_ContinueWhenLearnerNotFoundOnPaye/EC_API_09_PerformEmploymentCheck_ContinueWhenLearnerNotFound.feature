@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound
+Scenario: EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	When multiple paye schemes are found on account
 	And an employment check request is created for each unique Nino and paye scheme combination
