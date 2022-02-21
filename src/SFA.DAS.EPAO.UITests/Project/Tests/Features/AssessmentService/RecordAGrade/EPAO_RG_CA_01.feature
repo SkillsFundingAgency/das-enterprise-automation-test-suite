@@ -6,7 +6,7 @@
 @epaoca1standard1version0option
 Scenario: EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Version - No Options
 	Given the Assessor User is logged into Assessment Service Application
-	When the User certifies an Apprentice as 'pass'
+	When the User certifies an Apprentice as 'pass' using 'apprentice' route
 	Then the User can navigates to record another grade
 	And the Assessment is recorded as 'pass'
 
@@ -16,8 +16,8 @@ Scenario: EPAO_RG_CA_01A - Certify an Apprentice as Pass - 1 Standard - 1 Versio
 @epaoca1standard1version0option
 Scenario: EPAO_RG_CA_01B- Certify an Apprentice as Fail to Pass - 1 Standard - 1 Version - No Options
 	Given the Assessor User is logged into Assessment Service Application
-	When the User certifies an Apprentice as 'fail'
+	When the User certifies an Apprentice as 'fail' using 'apprentice' route
 	Then the User can navigates to record another grade
 	And the Assessment is recorded as 'fail'
-	When the User certifies same Apprentice as pass
+	When the User certifies same Apprentice as pass using 'apprentice' route
 	Then the Assessment is recorded as 'pass'

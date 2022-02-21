@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
 {
@@ -37,5 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
         public void UpdateOrgStatusToLive(string epaoid) => UpdateOrgStatus("Live", epaoid);
 
         private void UpdateOrgStatus(string status, string epaoid) => ExecuteSqlCommand($"Update Organisations Set Status = '{status}' Where EndPointAssessorOrganisationId = '{epaoid}'");
+
+        public void UpdateCertificateToPrinted(string learnerUln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Printed' WHERE Uln = {learnerUln}");
     }
 }

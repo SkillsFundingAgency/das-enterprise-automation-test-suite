@@ -4,8 +4,17 @@
 @assessmentservice
 @recordagrade
 @regression
-@epaoca2standard2version1option
-Scenario: EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page
+@epaoca1standard1version0option
+Scenario: EPAO_CA_02 - Attempt to certify an Apprentice with Invalid details
 	Given the Assessor User is logged into Assessment Service Application
-	When the User certifies an Apprentice as 'pass' and lands on Confirm Assessment Page
-	Then the Change links navigate to the respective pages
+	And navigates to Assessment page
+	When the User clicks on the continue button 'with out entering Any details'
+	Then the 'Family name and ULN missing error' is displayed
+	When the User clicks on the continue button 'by entering valid Family name and blank ULN'
+	Then the 'ULN missing error' is displayed
+	When the User clicks on the continue button 'by entering blank Family name and Valid ULN'
+	Then the 'Family name missing error' is displayed
+	When the User clicks on the continue button 'by entering valid Family name but ULN less than 10 digits'
+	Then the 'ULN validation error' is displayed
+	When the User clicks on the continue button 'by entering valid Family name and Invalid ULN'
+	Then 'We cannot find the apprentice details' message is displayed

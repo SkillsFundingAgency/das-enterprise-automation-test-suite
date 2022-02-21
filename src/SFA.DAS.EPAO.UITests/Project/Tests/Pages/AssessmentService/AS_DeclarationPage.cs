@@ -9,11 +9,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_DeclarationPage(ScenarioContext context) : base(context) => VerifyPage();
         
         public void ClickConfirmInDeclarationPage() => Continue();
-
-        public AS_WhatGradePage ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
-        {
-            Continue();
-            return new AS_WhatGradePage(context);
-        }
     }
 }
