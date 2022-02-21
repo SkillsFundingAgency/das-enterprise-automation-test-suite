@@ -52,7 +52,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             CreateOrganisation("Name", dataHelper.NewOrgName);
             CreateOrganisation("Domains", dataHelper.NewOrgDomain);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(OrganisationButtons).Single(x => x.Text == "Save"));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(OrganisationButtons).Single(x => x.Text == "Add"));
         }
 
         public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
