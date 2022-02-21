@@ -110,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the levy employer who are currently sending transfer funds login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("the levy employer can not apply for transfer opportunities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the levy employer is able to apply for transfer opportunities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
- testRunner.And("the levy employer currently receiving funds can not create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the levy employer currently receiving funds can create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
