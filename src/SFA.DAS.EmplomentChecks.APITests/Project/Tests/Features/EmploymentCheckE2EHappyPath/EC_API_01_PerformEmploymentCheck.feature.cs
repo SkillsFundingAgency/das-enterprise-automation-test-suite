@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath(string testCaseId, string minDate, string maxDate, string status1, string employed, string returnCode, string returnMessage, string status2, string[] exampleTags)
+        public virtual void EC_API_001_PerformEmploymentCheck_HappyPath(string testCaseId, string minDate, string maxDate, string status1, string employed, string returnCode, string returnMessage, string status2, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -93,7 +93,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("ReturnCode", returnCode);
             argumentsOfScenario.Add("ReturnMessage", returnMessage);
             argumentsOfScenario.Add("Status2", status2);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_01_PerformEmploymentCheck_HappyPath", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_001_PerformEmploymentCheck_HappyPath", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -138,26 +138,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck_HappyPath: 1")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_001_PerformEmploymentCheck_HappyPath: 1")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_1()
+        public virtual void EC_API_001_PerformEmploymentCheck_HappyPath_1()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "1", "true", "200", "OK", "2", ((string[])(null)));
+this.EC_API_001_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "1", "true", "200", "OK", "2", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck_HappyPath: 2")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_001_PerformEmploymentCheck_HappyPath: 2")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_2()
+        public virtual void EC_API_001_PerformEmploymentCheck_HappyPath_2()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "1", "false", "200", "OK", "2", ((string[])(null)));
+this.EC_API_001_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "1", "false", "200", "OK", "2", ((string[])(null)));
 #line hidden
         }
     }

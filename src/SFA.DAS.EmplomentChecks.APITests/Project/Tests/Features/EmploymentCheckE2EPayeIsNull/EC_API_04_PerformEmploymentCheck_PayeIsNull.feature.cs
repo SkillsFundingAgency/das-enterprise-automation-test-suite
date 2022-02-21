@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_04_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        public virtual void EC_API_004_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -91,7 +91,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("Employed", employed);
             argumentsOfScenario.Add("ReturnCode", returnCode);
             argumentsOfScenario.Add("ReturnMessage", returnMessage);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_04_PerformEmploymentCheck_PayeIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_004_PerformEmploymentCheck_PayeIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -132,14 +132,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_04_PerformEmploymentCheck_PayeIsNull: 4")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_004_PerformEmploymentCheck_PayeIsNull: 4")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_04_PerformEmploymentCheck_PayeIsNull_4()
+        public virtual void EC_API_004_PerformEmploymentCheck_PayeIsNull_4()
         {
 #line 6
-this.EC_API_04_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "PayeScheme is null", ((string[])(null)));
+this.EC_API_004_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "PayeScheme is null", ((string[])(null)));
 #line hidden
         }
     }

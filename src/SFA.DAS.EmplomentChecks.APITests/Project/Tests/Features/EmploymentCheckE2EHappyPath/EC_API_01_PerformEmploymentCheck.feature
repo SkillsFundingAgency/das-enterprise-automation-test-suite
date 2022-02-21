@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_01_PerformEmploymentCheck_HappyPath
+Scenario: EC_API_001_PerformEmploymentCheck_HappyPath
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	And employment check record status is '<Status1>'
 	When apprentice employment check is triggered
