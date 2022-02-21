@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterface_CheckIsRegisteredWithEmploymentCheck
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterface_InternalServerError_500Response
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("InputInterface_CheckIsRegisteredWithEmploymentCheck")]
-    public partial class InputInterface_CheckIsRegisteredWithEmploymentCheckFeature
+    [NUnit.Framework.DescriptionAttribute("InputInterface_InternalServerError_500Response")]
+    public partial class InputInterface_InternalServerError_500ResponseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EC_API_101_InputInterface_CheckIsRegistered.feature"
+#line 1 "EC_API_103_InputInterface_InternalServerError.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/InputInterface_CheckIsRegisteredWithEmploymentCheck", "InputInterface_CheckIsRegisteredWithEmploymentCheck", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/InputInterface_InternalServerError_500Response", "InputInterface_InternalServerError_500Response", "CheckType value exceeds 50 characters", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_101_InputInterface_CheckIsRegistered(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
+        public virtual void EC_API_103_InputInterface_InternalServerError(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,8 +90,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             argumentsOfScenario.Add("Registered", registered);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_101_InputInterface_CheckIsRegistered", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_103_InputInterface_InternalServerError", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,17 +111,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("Employer Incentives service are validing employment status of apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.When(string.Format("an employment check \'{0}\' request is successfully made to \'{1}\' with payload \'{2}" +
                             "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 11
  testRunner.Then(string.Format("a \'{0}\' response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 12
  testRunner.And(string.Format("the check is \'{0}\' in Employment Check business table", registered), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -129,14 +129,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_101_InputInterface_CheckIsRegistered: POST")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_103_InputInterface_InternalServerError: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_101_InputInterface_CheckIsRegistered_POST()
+        public virtual void EC_API_103_InputInterface_InternalServerError_POST()
         {
-#line 6
-this.EC_API_101_InputInterface_CheckIsRegistered("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_101.json", "OK", "true", ((string[])(null)));
+#line 8
+this.EC_API_103_InputInterface_InternalServerError("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_103.json", "InternalServerError", "false", ((string[])(null)));
 #line hidden
         }
     }
