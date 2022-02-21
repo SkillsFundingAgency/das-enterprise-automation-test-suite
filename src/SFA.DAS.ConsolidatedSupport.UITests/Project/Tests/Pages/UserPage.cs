@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -32,7 +31,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By OrganisationInputFields => By.CssSelector(".ember-text-field.classic_input");
 
-        private By OrganisationButtons => By.CssSelector(".modal-form-actions .btn");
+        private By OrganisationName => By.CssSelector("[data-test-id='organization-add-modal-name-input']");
+
+        private By OrganisationDomain => By.CssSelector("[data-test-id='organization-add-modal-domain-input']");
+
+        private By AddOrganisationButton => By.CssSelector("[data-test-id='organization-add-modal-submit-button']");
 
         public UserPage(ScenarioContext context) : base(context)
         {
@@ -49,10 +52,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(OrganisationTab), false);
 
-            CreateOrganisation("Name", dataHelper.NewOrgName);
-            CreateOrganisation("Domains", dataHelper.NewOrgDomain);
+            formCompletionHelper.EnterText(OrganisationName, dataHelper.NewOrgName);
+            formCompletionHelper.EnterText(OrganisationDomain, dataHelper.NewOrgDomain);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(OrganisationButtons).Single(x => x.Text == "Add"));
+//            CreateOrganisation("Name", dataHelper.NewOrgName);
+  //          CreateOrganisation("Domains", dataHelper.NewOrgDomain);
+
+            formCompletionHelper.ClickElement(AddOrganisationButton);
         }
 
         public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
