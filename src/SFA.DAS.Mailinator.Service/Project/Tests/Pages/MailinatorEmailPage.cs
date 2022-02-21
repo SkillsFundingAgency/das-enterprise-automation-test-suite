@@ -16,8 +16,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 
         private By TexthtmlMsgBody => By.CssSelector("#texthtml_msg_body");
 
-
-        private By EmailLink(string linktext) => By.CssSelector($"a[href*='{linktext}']");
+        private By EmailLink(string linktext) => By.XPath($"//a[contains(text(), '{linktext}')]");
 
         private By TextTab => By.CssSelector("#pills-textbuthtml-tab");
 
@@ -28,12 +27,8 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 
         internal void OpenLink(string linktext)
         {
-            formCompletionHelper.ClickElement(TextTab);
-
-            frameHelper.SwitchToFrame(TexthtmlMsgBody);
-
+            frameHelper.SwitchToFrame(EmailBodyFrame);
             formCompletionHelper.ClickElement(EmailLink(linktext));
-
             frameHelper.SwitchToDefaultContent();
         }
 
