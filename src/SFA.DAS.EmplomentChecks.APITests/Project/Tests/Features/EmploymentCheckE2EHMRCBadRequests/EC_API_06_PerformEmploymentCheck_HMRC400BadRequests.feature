@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_06_PerformEmploymentCheck_HMRC400BadRequests
+Scenario: EC_API_006_PerformEmploymentCheck_HMRC400BadRequests
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	When apprentice employment check is triggered
 	Then data is enriched with results from DC and Accounts

@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string status1, string employed, string status2, string[] exampleTags)
+        public virtual void EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string status1, string employed, string status2, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -91,7 +91,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("Status1", status1);
             argumentsOfScenario.Add("Employed", employed);
             argumentsOfScenario.Add("Status2", status2);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -139,14 +139,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound_8()
+        public virtual void EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound_8()
         {
 #line 6
-this.EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "1", "true", "2", ((string[])(null)));
+this.EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "1", "true", "2", ((string[])(null)));
 #line hidden
         }
     }
