@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyApprentice
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.RecordAGrade
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04")]
-    public partial class EPAO_AS_CA_04Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_RG_Employer_CA_11")]
+    public partial class EPAO_RG_Employer_CA_11Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EPAO_AS_CA_04.feature"
+#line 1 "EPAO_RG_Employer_CA_11.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/AssessmentService/CertifyApprentice", "EPAO_AS_CA_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/AssessmentService/RecordAGrade", "EPAO_RG_Employer_CA_11", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,22 +74,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04A - Certify a privately funded Apprentice")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_11A - Certify an Apprentice EmployerRoute as Pass - 1 Standard - 1 Ver" +
+            "sion - with Options")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca1standard2version0option")]
-        public virtual void EPAO_AS_CA_04A_CertifyAPrivatelyFundedApprentice()
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
+        public virtual void EPAO_RG_CA_11A_CertifyAnApprenticeEmployerRouteAsPass_1Standard_1Version_WithOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca1standard2version0option"};
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_04A - Certify a privately funded Apprentice", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_11A - Certify an Apprentice EmployerRoute as Pass - 1 Standard - 1 Ver" +
+                    "sion - with Options", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,37 +116,37 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("the User goes through certifying a Privately funded Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies an Apprentice as \'pass\' using \'employer\' route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
  testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.Then("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04B - Attempt to certify a privately funded Apprentice with Invalid da" +
-            "te")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_RG_CA_11B - Certify an Apprentice EmployerRoute as Fail to Pass - 1 Standard" +
+            " - 1 Version - with Options")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca1standard2version0option")]
-        public virtual void EPAO_AS_CA_04B_AttemptToCertifyAPrivatelyFundedApprenticeWithInvalidDate()
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version1option")]
+        public virtual void EPAO_RG_CA_11B_CertifyAnApprenticeEmployerRouteAsFailToPass_1Standard_1Version_WithOptions()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca1standard2version0option"};
+                    "epaoca1standard1version1option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_04B - Attempt to certify a privately funded Apprentice with Invalid da" +
-                    "te", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_RG_CA_11B - Certify an Apprentice EmployerRoute as Fail to Pass - 1 Standard" +
+                    " - 1 Version - with Options", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -169,21 +171,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 21
- testRunner.And("the User is on the Apprenticeship achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the User certifies an Apprentice as \'fail\' using \'employer\' route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
- testRunner.When("the User enters the date before the Year 2017", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the User can navigates to record another grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 23
- testRunner.Then("An achievement date cannot be before 01 01 2017 is displayed in the Apprenticeshi" +
-                        "p achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Assessment is recorded as \'fail\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
- testRunner.When("the User enters the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User certifies same Apprentice as pass using \'employer\' route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
- testRunner.Then("An achievement date cannot be in the future is displayed in the Apprenticeship ac" +
-                        "hievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Assessment is recorded as \'pass\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

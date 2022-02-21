@@ -19,8 +19,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public ContactDetailsPage AddContact()
         {
-            formCompletionHelper.EnterText(FirstName, ePAOAdminDataHelper.FirstName);
-            formCompletionHelper.EnterText(LastName, ePAOAdminDataHelper.LastName);
+            formCompletionHelper.EnterText(FirstName, ePAOAdminDataHelper.GivenNames);
+            formCompletionHelper.EnterText(LastName, ePAOAdminDataHelper.FamilyName);
             formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
             Continue();
