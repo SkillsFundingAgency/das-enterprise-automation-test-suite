@@ -90,7 +90,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_101_InputInterface_CheckIsRegistered", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,17 +110,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("Employer Incentives service are validing employment status of apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When(string.Format("an employment check \'{0}\' request is successfully made to \'{1}\' with payload \'{2}" +
                             "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("the check is registered in Employment Check business table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -134,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
         public virtual void EC_API_101_InputInterface_CheckIsRegistered_POST()
         {
-#line 7
+#line 6
 this.EC_API_101_InputInterface_CheckIsRegistered("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_101.json", "OK", ((string[])(null)));
 #line hidden
         }

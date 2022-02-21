@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound
+Scenario: EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	And employment check record status is '<Status1>'
 	When multiple paye schemes are found on account

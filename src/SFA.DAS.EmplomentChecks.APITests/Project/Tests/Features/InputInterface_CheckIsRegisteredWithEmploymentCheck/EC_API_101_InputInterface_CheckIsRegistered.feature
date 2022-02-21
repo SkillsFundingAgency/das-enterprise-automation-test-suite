@@ -3,7 +3,6 @@
 @api
 @regression
 @employmentcheckapi
-
 Scenario: EC_API_101_InputInterface_CheckIsRegistered
 	Given Employer Incentives service are validing employment status of apprentice
 	When an employment check '<Method>' request is successfully made to '<Endpoint>' with payload '<Payload>'

@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using NUnit.Framework;
+using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using System.Net;
@@ -9,12 +10,14 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
     [Binding]
     internal class InputInterface_CheckIsRegisteredSteps
     {
+        private ScenarioContext _context;
         private readonly Outer_EmploymentCheckApiClient _restClient;
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
         private IRestResponse apiResponse;
 
         public InputInterface_CheckIsRegisteredSteps(ScenarioContext context)
         {
+            _context = context;
             _restClient = context.GetRestClient<Outer_EmploymentCheckApiClient>();
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
         }
@@ -40,6 +43,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"the check is registered in Employment Check business table")]
         public void ThenTheCheckIsRegisteredInEmploymentCheckBusinessTable()
         {
+            string checkType = _context.ScenarioInfo.Title.Substring(0, 10);
+            int count = _employmentChecksSqlDbHelper.GetCheckFromEmploymentCheckTable(checkType);
+
+            Assert.AreEqual(1, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");
         }
 
 
