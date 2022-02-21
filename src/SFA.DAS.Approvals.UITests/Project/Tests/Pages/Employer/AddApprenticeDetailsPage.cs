@@ -35,13 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private void AddCourse()
         {
             var course = apprenticeCourseDataHelper.Course;
-
             if (objectContext.IsSameApprentice()) course = apprenticeCourseDataHelper.OtherCourse;
-
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, course);
-
-            if (pageInteractionHelper.IsElementDisplayed(DeliveryModelSection))
-                formCompletionHelper.SelectRadioOptionByForAttribute(DeliveryModelRadioLabel, "DeliveryModelNormal");
         }
 
         public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
@@ -118,7 +113,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
 
-
             return apprenticeCourseDataHelper.CourseStartDate;
         }
 
@@ -126,6 +120,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            if (pageInteractionHelper.IsElementDisplayed(DeliveryModelSection))
+                formCompletionHelper.SelectRadioOptionByForAttribute(DeliveryModelRadioLabel, "DeliveryModelNormal");
 
             if (tags.Contains("aslistedemployer")) return;
 
