@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
-    public struct LeanerCriteria
+    public struct LearnerCriteria
     {
         public readonly bool IsActiveStandard;
         public readonly bool HasMultipleVersions;
@@ -11,7 +11,7 @@
         public readonly bool VersionConfirmed;
         public readonly bool OptionIsSet;
 
-        public LeanerCriteria(bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards, bool versionConfirmed, bool optionIsSet)
+        public LearnerCriteria(bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards, bool versionConfirmed, bool optionIsSet)
         {
             IsActiveStandard = isActiveStandard; HasMultipleVersions = hasMultipleVersions; WithOptions = withOptions; HasMultiStandards = hasMultiStandards;
             VersionConfirmed = versionConfirmed; OptionIsSet = optionIsSet;

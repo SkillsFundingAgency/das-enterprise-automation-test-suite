@@ -11,7 +11,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By DayTextBox => By.Id("Day");
         private By MonthTextBox => By.Id("Month");
         private By YearTextBox => By.Id("Year");
-        private By DateError => By.Id("Day-error");
         #endregion
 
         public AS_GradeDateBasePage(ScenarioContext context) : base(context) => VerifyPage();
@@ -19,26 +18,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         /*PASS and FAIL scenarios return two different pages, so do NOT return any page for this method*/
         public void EnterAchievementGradeDateAndContinue() => EnterDateFieldsAndContinue();
 
-        public AS_SearchEmployerAddressPage EnterApprenticshipStartDateAndContinue()
-        {
-            EnterDateFieldsAndContinue();
-            return new AS_SearchEmployerAddressPage(context);
-        }
-
         public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
         {
             EnterDateFieldsAndContinue();
             return new AS_SearchEmployerAddressPage(context);
         }
-
-        public void EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(int year)
-        {
-            EnterDateFieldsAndContinue(true);
-            formCompletionHelper.EnterText(YearTextBox, year);
-            Continue();
-        }
-
-        public string GetDateErrorText() => pageInteractionHelper.GetText(DateError);
 
         private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {

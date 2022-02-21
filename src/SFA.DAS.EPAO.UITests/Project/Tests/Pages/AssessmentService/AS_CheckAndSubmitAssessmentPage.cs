@@ -11,10 +11,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By GradeChangeLink => By.XPath("//a[@href='/certificate/grade?redirecttocheck=true']");
         private By OptionChangeLink => By.XPath("//a[@href='/certificate/option?redirecttocheck=true']");
         private By AchievementDateChangeLink => By.XPath("//a[@href='/certificate/date?redirecttocheck=true']");
-        private By NameChangeLink => By.XPath("//dt[contains(text(), 'Name')]/../dd/a");
+        private By NameChangeLink => By.XPath("//a[@href='/certificate/sendto?redirecttocheck=true']");
+        private By CertificateReceiverLink => By.XPath("//a[@href='/certificate/sendto?redirecttocheck=true']");
         private By DepartmentChangeLink => By.XPath("//dt[contains(text(), 'Department')]/../dd/a");
         private By OrganisationChangeLink => By.XPath("//dt[contains(text(), 'Organisation')]/../dd/a");
-        private By AddressChangeLink => By.XPath("//dt[contains(text(), 'Address')]/../dd/a");
+        private By AddressChangeLink => By.XPath("//a[@href='/certificate/address/enter?redirecttocheck=true']");
         #endregion
 
         public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -49,10 +50,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_RecipientNamePage(context);
         }
 
+        public AS_WhoWouldYouLikeUsToSendTheCertificateToPage ClickCertificateReceiverLink()
+        {
+            formCompletionHelper.ClickElement(CertificateReceiverLink);
+            return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(context);
+        }
         public AS_RecipientNamePage ClickDepartmentChangeLink()
         {
             formCompletionHelper.ClickElement(DepartmentChangeLink);
             return new AS_RecipientNamePage(context);
+        }
+
+        public AS_AddRecipientsDetailsPage ClickDepartmentChangeLinkForEmployerJourney()
+        {
+            formCompletionHelper.ClickElement(DepartmentChangeLink);
+            return new AS_AddRecipientsDetailsPage(context);
         }
 
         public AS_EditEmployerAddress ClickOrganisationChangeLink()
@@ -65,6 +77,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.ClickElement(AddressChangeLink);
             return new AS_EditEmployerAddress(context);
+        }
+
+        public AS_SearchEmployerAddressPage ClickCertificateAddressChangeLinkvForApprenticeJourney()
+        {
+            formCompletionHelper.ClickElement(AddressChangeLink);
+            return new AS_SearchEmployerAddressPage(context);
+        }
+
+        public AS_SearchEmployerOrAddressPage ClickCertificateAddressChangeLinkForEmployerJourney()
+        {
+            formCompletionHelper.ClickElement(AddressChangeLink);
+            return new AS_SearchEmployerOrAddressPage(context);
         }
     }
 }
