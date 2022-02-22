@@ -46,8 +46,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\InputInterface_InternalServerError_500Response\" />
-  </ItemGroup>
-
 </Project>
