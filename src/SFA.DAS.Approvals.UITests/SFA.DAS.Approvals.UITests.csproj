@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ManageFunding\NonLevyEmployer\AP_MF_NLE_01_ReservesFunding - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ManageFunding\NonLevyProvider\AP_MF_NLE_03_ReservesFundingDynamicPause.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -34,15 +29,6 @@
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\ManageFunding\NonLevyEmployer\AP_MF_NLE_03_ReservesFundingDynamicPause.feature.cs">
-      <DependentUpon>AP_MF_NLE_03_ReservesFundingDynamicPause.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\ManageFunding\NonLevyProvider\AP_MF_NLP_02_ReservesFundingDynamicPause.feature.cs">
-      <DependentUpon>AP_MF_NLP_02_ReservesFundingDynamicPause.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -79,17 +65,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\NonLevyEmployer\AP_MF_NLE_03_ReservesFundingDynamicPause.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\NonLevyProvider\AP_MF_NLP_02_ReservesFundingDynamicPause.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
