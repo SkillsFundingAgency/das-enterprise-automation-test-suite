@@ -8,31 +8,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
     {
         public ReservationsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.ReservationsDbConnectionString) { }
 
-        public int InsertDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo, string title)
-        {
-            return InsertGlobalRule(activeFrom, activeTo, 1, 3, title);
-        }
+        public void UpdateDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) => UpdateGlobalRule(activeFrom, activeTo, 1, 3);
 
-        private int InsertGlobalRule(DateTime activeFrom, DateTime activeTo, int restriction, int ruleType, string title)
+        private void UpdateGlobalRule(DateTime activeFrom, DateTime activeTo, int restriction, int ruleType)
         {
             var activeFromDbDateTime = activeFrom.ToString("yyyy-MM-dd HH:mm:ss.fff");
             var activeToDbDateTime = activeTo.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            string insertQuery = $"INSERT INTO [dbo].[GlobalRule] (ActiveFrom, ActiveTo, Restriction, RuleType) " +
-                $"VALUES ('{activeFromDbDateTime}', '{activeToDbDateTime}', {restriction}, {ruleType})";
+            string updateQuery = $@"UPDATE [dbo].[GlobalRule]
+                                      SET   ActiveFrom = '{activeFromDbDateTime}',
+                                            ActiveTo = '{activeToDbDateTime}',
+                                            Restriction = {restriction}
+                                      WHERE RuleType = {ruleType}";
 
-            ExecuteSqlCommand(insertQuery);
-
-            string selectQuery = $"SELECT Id FROM [dbo].[GlobalRule] WHERE ActiveFrom = '{activeFromDbDateTime}' AND ActiveTo = '{activeToDbDateTime}' " +
-                $"AND Restriction = {restriction} AND RuleType = {ruleType}";
-
-            return Convert.ToInt32(TryGetDataAsObject(selectQuery, title));
+            ExecuteSqlCommand(updateQuery);            
         }
 
-        public void DeleteDynamicPauseGlobalRule(int id)
-        {
-            string query = $"DELETE FROM [dbo].[GlobalRule] WHERE Id = {id}";
-            ExecuteSqlCommand(query);
-        }
     }
 }

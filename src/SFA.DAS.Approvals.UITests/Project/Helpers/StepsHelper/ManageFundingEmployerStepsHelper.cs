@@ -46,19 +46,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
 
-        public void AddDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo)
-        {
-            var id = _reservationsSqlDataHelper.InsertDynamicPauseGlobalRule(activeFrom, activeTo, _context.ScenarioInfo.Title);
-            _context.Set(id, "DynamicPauseGlobalRuleId");
-        }
+        public void AddDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) => _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(activeFrom, activeTo);
 
-        public void RemoveDynamicPauseGlobalRule()
-        {
-            if (_context.TryGetValue("DynamicPauseGlobalRuleId", out int id))
-            {
-                _reservationsSqlDataHelper.DeleteDynamicPauseGlobalRule(id);
-            }
-        }
+        public void RemoveDynamicPauseGlobalRule() => _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(Convert.ToDateTime("2022-01-01"), Convert.ToDateTime("2022-01-01"));
 
         public SuccessfullyReservedFundingPage CreateReservation() => CreateReservation(GoToReserveFunding());
         
