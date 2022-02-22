@@ -77,7 +77,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
         internal int GetCheckFromEmploymentCheckTable(string checkType)
         {
             string query = $"SELECT * from [Business].[EmploymentCheck] " +
-                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,CreatedOn)";
+                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,GETDATE())";
 
             var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
@@ -214,7 +214,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
             // count variable is added to stop the infinite loop incase ProcessEmploymentCheckRequestsWithRateLimiterOrchestrator has crashed
-            while (result.Count == 0 && count < 15)
+            while (result.Count == 0 && count < 20)
             {
                 Thread.Sleep(2000);
                 count++;
