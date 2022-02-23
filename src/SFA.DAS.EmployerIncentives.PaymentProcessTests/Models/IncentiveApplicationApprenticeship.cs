@@ -21,7 +21,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public long ULN { get; set; }
         public DateTime PlannedStartDate { get; set; }
         public ApprenticeshipEmployerType ApprenticeshipEmployerTypeOnApproval { get; set; }
-        public decimal TotalIncentiveAmount { get; set; }
         public long? UKPRN { get; set; }
         public bool EarningsCalculated { get; set; }
         public bool WithdrawnByEmployer { get; set; }
@@ -31,6 +30,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
         public DateTime? EmploymentStartDate { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public Phase Phase { get; set; }
-        public bool HasEligibleEmploymentStartDate { get; set; }
+        public bool StartDatesAreEligible { get; set; }
     }
 }

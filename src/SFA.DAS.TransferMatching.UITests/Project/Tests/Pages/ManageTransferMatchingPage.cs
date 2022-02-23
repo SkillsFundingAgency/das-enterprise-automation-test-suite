@@ -11,7 +11,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
 
+        private By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
+
         public ManageTransferMatchingPage(ScenarioContext context) : base(context) { }
+
+        public AccountHomePage GoToAccountHomePage()
+        {
+            formCompletionHelper.ClickLinkByText("Home");
+            return new AccountHomePage(context);
+        }
 
         public PledgeAndTransferYourLevyFundsPage GotoCreateTransfersPledgePage()
         {

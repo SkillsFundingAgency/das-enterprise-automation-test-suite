@@ -39,17 +39,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            (string accountId, string hashedAccountId) = _registrationSqlDataHelper.GetAccountIds(loginUser.Username);
-
-            objectContext.SetHashedAccountId(hashedAccountId);
-
-            objectContext.SetDBAccountId(accountId);
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
 
             return homePage;
         }
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
 
-        public EasAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
+        public LoggedInAccountUser GetLoginCredentials() => loginCredentialsHelper.GetLoginCredentials();
     }
 }

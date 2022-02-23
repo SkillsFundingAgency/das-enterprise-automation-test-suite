@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         private By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
         private By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
         private By JourneymanBookbinderInDevelopmentStandardLink => By.LinkText("Journeyman bookbinder");
-        private By SurfaceFinisher => By.LinkText("Surface finisher");
+        private By Nutritionist => By.LinkText("Nutritionist");
         #endregion
 
         public AO_HomePage(ScenarioContext context) : base(context)
@@ -55,7 +55,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
         {
-            formCompletionHelper.Click(SurfaceFinisher);
+            formCompletionHelper.Click(Nutritionist);
             return new AO_ProposedStandardDetailsPage(context);
         }
     }

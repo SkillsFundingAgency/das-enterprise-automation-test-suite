@@ -12,6 +12,11 @@ namespace SFA.DAS.Login.Service
     {
         public static void SetNonEasLoginUser<T>(this ScenarioContext context, T value) => SetUser(context, value);
 
+        public static void SetNonEasLoginUser<T>(this ScenarioContext context, List<T> value)
+        {
+            foreach (T item in value) SetUser(context, item);
+        }
+
         public static void SetEasLoginUser(this ScenarioContext context, List<EasAccountUser> users)
         {
             var notNullUsers = users.Where(x => x != null).ToList();
@@ -23,10 +28,6 @@ namespace SFA.DAS.Login.Service
             for (int i = 0; i < notNullUsers.Count; i++)
             {
                 notNullUsers[i].LegalEntities = legalentities[i];
-
-                notNullUsers[i].OrganisationName = notNullUsers[i].LegalEntities.FirstOrDefault();
-
-                if (notNullUsers[i] is MultipleEasAccountUser) { ((MultipleEasAccountUser)notNullUsers[i]).SecondOrganisationName = notNullUsers[i].LegalEntities[1]; }
 
                 SetUser(context, notNullUsers[i]);
             }

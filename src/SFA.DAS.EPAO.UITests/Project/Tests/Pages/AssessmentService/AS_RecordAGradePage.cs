@@ -27,26 +27,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
         {
-            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.LastName, ePAOAdminDataHelper.LearnerUln);
+            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.FamilyName, ePAOAdminDataHelper.LearnerUln);
             return new AS_AssesmentAlreadyRecorded(context);
         }
 
-        public AS_ConfirmApprenticePage SearchApprentice(bool deleteCertificate)
+        public AS_ConfirmApprenticePage SearchApprentice(bool deleteExistingCertificate, string learnerFamilyName = null, string learnerUln = null)
         {
-            string apprenticeFamilyName = ePAOAdminDataHelper.LastName;
-            string leanerUln = ePAOAdminDataHelper.LearnerUln;
+            if (deleteExistingCertificate) 
+                _ePAOSqlDataHelper.DeleteCertificate(learnerUln ?? ePAOAdminDataHelper.LearnerUln);
 
-            if (deleteCertificate) _ePAOSqlDataHelper.DeleteCertificate(leanerUln);
-
-            EnterApprenticeDetailsAndContinue(apprenticeFamilyName, leanerUln);
+            EnterApprenticeDetailsAndContinue(learnerFamilyName ?? ePAOAdminDataHelper.FamilyName, learnerUln ?? ePAOAdminDataHelper.LearnerUln);
 
             return new AS_ConfirmApprenticePage(context);
         }
 
-        public void EnterApprenticeDetailsAndContinue(string familyName, string uLN)
+        public void EnterApprenticeDetailsAndContinue(string familyName, string uln)
         {
             formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
-            formCompletionHelper.EnterText(ULNTextBox, uLN);
+            formCompletionHelper.EnterText(ULNTextBox, uln);
             Continue();
         }
 
@@ -60,17 +58,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string leanerUln, bool deleteCertificate)
+        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string learnerUln, bool deleteCertificate)
         {
-            ePAOAdminDataHelper.LastName = apprenticeFamilyName;
-            ePAOAdminDataHelper.LearnerUln = leanerUln;
+            ePAOAdminDataHelper.FamilyName = apprenticeFamilyName;
+            ePAOAdminDataHelper.LearnerUln = learnerUln;
 
             return SearchApprentice(deleteCertificate);
         }
 
         public AS_CannotFindApprenticePage EnterApprenticeDetailsForExistingCertificateAndContinue()
         {
-            formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.LastName);
+            formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.FamilyName);
             formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
             Continue();
             return new AS_CannotFindApprenticePage(context);

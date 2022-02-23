@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -37,8 +38,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [AfterScenario(Order = 31)]
         public void DeletePledge() 
         {
-            if (_context.TestError == null)
-                _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeDetailList()));
+            if (_context.TestError == null) _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeDetailList()));
         }
     }
 }

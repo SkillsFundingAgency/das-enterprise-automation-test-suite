@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
@@ -29,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return GetTestData(() => GetData(query));
         }
 
-        public List<string> GetCATestData(string email, LeanerCriteria leanerCriteria) => GetTestData(() => GetTestData(email, leanerCriteria));
+        public List<string> GetCATestData(string email, LearnerCriteria learnerCriteria) => GetTestData(() => GetTestData(email, learnerCriteria));
 
         private List<string> GetTestData(Func<List<string>> func)
         {
@@ -53,7 +52,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return data;
         }
 
-        private List<string> GetTestData(string email, LeanerCriteria learnerCriteria)
+        private List<string> GetTestData(string email, LearnerCriteria learnerCriteria)
         {
             string query = FileHelper.GetSql(GetLearnersDataSqlFileName(learnerCriteria));
 
@@ -63,8 +62,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             };
 
             query = GetTestData(query, learnerCriteria.IsActiveStandard, learnerCriteria.HasMultipleVersions, learnerCriteria.WithOptions, learnerCriteria.VersionConfirmed, learnerCriteria.OptionIsSet);
-
-            TestContext.Progress.WriteLine(query);
 
             return GetData(query, sqlParameters);
         }
@@ -83,6 +80,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
             return sqlQueryFromFile;
         }
 
-        private string GetLearnersDataSqlFileName(LeanerCriteria leanerCriteria) => leanerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
+        private string GetLearnersDataSqlFileName(LearnerCriteria learnerCriteria) => learnerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
     }
 }

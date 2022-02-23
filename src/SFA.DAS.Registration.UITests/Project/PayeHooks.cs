@@ -3,7 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.TestDataExport.Helper;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -40,11 +40,15 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 26)]
         [Scope(Tag = "addanothernonlevypayedetails")]
-        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(FundType.NonLevyFund);
+        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(FundType.NonLevyFund, 1);
 
         [BeforeScenario(Order = 27)]
-        [Scope(Tag = "addanotherlevyfunds")]
-        public void SetUpAnotherLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund);
+        [Scope(Tag = "addsecondlevyfunds")]
+        public void SetUpSecondLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 1);
+
+        [BeforeScenario(Order = 27)]
+        [Scope(Tag = "addthirdlevyfunds")]
+        public void SetUpThirdLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 2);
 
         private void AddPayeDetails(FundType fundType)
         {
@@ -60,18 +64,18 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
 
-            _objectContext.SetUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg, 0);
+            _objectContext.SetOrUpdateUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
 
             AddFunds(mongoDbDataGenerator, fundType);
         }
 
-        private void AddAnotherPayeDetails(FundType fundType)
+        private void AddAnotherPayeDetails(FundType fundType, int index)
         {
             _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
             var anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context, string.Empty);
 
-            anotherMongoDbDataGenerator.AddGatewayUsers(1);
+            anotherMongoDbDataGenerator.AddGatewayUsers(index);
 
             AddFunds(anotherMongoDbDataGenerator, fundType);
         }
@@ -85,22 +89,6 @@ namespace SFA.DAS.Registration.UITests.Project
             mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
 
             _loginCredentialsHelper.SetIsLevy();
-        }
-
-        [AfterScenario(Order = 20)]
-        public void SetAccountId()
-        {
-            if (!_isAddPayeDetails) { return; }
-
-            _tryCatch.AfterScenarioException(() =>
-            {
-                var registrationSqlDataHelper = _context.Get<RegistrationSqlDataHelper>();
-
-                (string accountId, string hashedAccountId) = registrationSqlDataHelper.GetAccountIds(_objectContext.GetRegisteredEmail());
-
-                _objectContext.UpdateUserCreds(accountId, hashedAccountId, 0);
-            });
-
         }
 
         [AfterScenario(Order = 21)]

@@ -1,26 +1,23 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class EmailAndPasswordSuccessfulBasePage : ApprenticeCommitmentsBasePage
     {
-        private By PostLogoutRedirectUri => By.CssSelector(".PostLogoutRedirectUri");
+        public EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : base(context, verifyserviceheader: false) { }
 
-        public EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : base(context, verifyserviceheader: false)  { }
-
-        public ApprenticeOverviewPage ReturnToMyApprenticeship()
+        public ApprenticeHomePage ReturnToHome()
         {
-            ClickMyApprenticeship();
-            return new ApprenticeOverviewPage(context, false);
+            ClickOnRetunToHomeLink();
+            return new ApprenticeHomePage(context, false);
         }
 
         public CreateMyApprenticeshipAccountPage ReturnToCreateMyApprenticeshipAccountPage()
         {
-            ClickMyApprenticeship();
+            ClickOnRetunToHomeLink();
             return new CreateMyApprenticeshipAccountPage(context);
         }
 
-        private void ClickMyApprenticeship() => formCompletionHelper.ClickLinkByText(PostLogoutRedirectUri, "My apprenticeship");
+        private void ClickOnRetunToHomeLink() => formCompletionHelper.ClickLinkByText("Return to home");
     }
 }
