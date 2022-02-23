@@ -105,7 +105,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
 
-            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().
+                
+                ClickStartNow();
         }
 
         internal HomePage GoToHomePage(EasAccountUser loginUser) => _loginhelper.Login(loginUser, true);
