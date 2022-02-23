@@ -20,8 +20,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_Settings_05_UpdateEmailAddressForUnMatchedAccount")]
-    public partial class AC_Settings_05_UpdateEmailAddressForUnMatchedAccountFeature
+    [NUnit.Framework.DescriptionAttribute("AC_Settings_05_UpdateEmailAddressBeforeConfirmingTheAccount")]
+    public partial class AC_Settings_05_UpdateEmailAddressBeforeConfirmingTheAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_05_UpdateEmailAddressForUnMatchedAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_05_UpdateEmailAddressBeforeConfirmingTheAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Settings_05_UpdateEmailAddress before confirming account")]
+        [NUnit.Framework.DescriptionAttribute("AC_Settings_05_Update EmailAddress before confirming the account")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("accountsettingstest")]
         [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_Settings_05_UpdateEmailAddressBeforeConfirmingAccount()
+        public virtual void AC_Settings_05_UpdateEmailAddressBeforeConfirmingTheAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
                     "accountsettingstest",
                     "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_05_UpdateEmailAddress before confirming account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_05_Update EmailAddress before confirming the account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
