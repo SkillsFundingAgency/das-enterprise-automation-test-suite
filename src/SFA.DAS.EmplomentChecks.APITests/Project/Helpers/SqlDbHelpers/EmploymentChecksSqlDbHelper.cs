@@ -40,6 +40,26 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return employmentCheckId;
         }
 
+        internal void InsertEmploymentCheckRecordwithNino(long uln, string nino, string checkType)
+        {
+            var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string query = $"BEGIN TRAN " +
+                $" INSERT INTO [Business].[EmploymentCheck] " +
+                $" ([CorrelationId], [CheckType], [Uln], [ApprenticeshipId], [AccountId], [MinDate], [MaxDate], [CreatedOn]) " +
+                $" VALUES " +
+                $" ('{Guid.NewGuid()}', '{checkType}', {uln}, 456, 17701, '2020-01-01', '2020-01-31', '{now}')" +
+                $" INSERT INTO [Cache].[DataCollectionsResponse] " +
+                $" ([ApprenticeEmploymentCheckId], [CorrelationId], [Uln], [NiNumber], [CreatedOn]) " +
+                $" SELECT top 1 ec.id, ec.CorrelationId, ec.uln, '{nino}', '{now}' " +
+                $" FROM [Business].[EmploymentCheck] ec " +
+                $" where ec.uln = {uln} and ec.CheckType = '{checkType}' " +
+                $" order by CreatedOn desc " +
+                $" COMMIT";
+
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
+        }
+
         internal int GetEmploymentCheckCacheRequestId(int employmentStatus)
         {
             string query = $" select top(1) Id from [Cache].[EmploymentCheckCacheRequest] " +
