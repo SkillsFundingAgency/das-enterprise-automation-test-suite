@@ -101,21 +101,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
         [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding()
-        {
-            UpdateOrganisationName(_sender);
+        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
 
-            SignOut();
-
-            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
-
-            NavigateToTransferMatchingPage()
-                .ViewApplicationsIhaveSubmitted()
-                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
-                .VerifyAgreeToTermsIsMandatoryAndAcceptFunding()
-                .ViewMyApplications()
-                .OpenPledgeApplication("FUNDS AVAILABLE");
-        }
+        [Then(@"the non levy employer can withdraw funding")]
+        public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
 
         [Then(@"the pledge is available to apply")]
         public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
@@ -175,18 +164,42 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
 
         [Then(@"the levy employer currently receiving funds can not create pledge")]
-        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge()
-        {
-            new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
+        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge() => CreateTransferPledge(true, false);
 
-            TheUserCanNotCreateTransferPledge();
-        }
-
+        [Then(@"the levy employer currently receiving funds can create pledge")]
+        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge() => CreateTransferPledge(true, true);
+        
         [Then(@"the user can not create transfer pledge")]
-        public void TheUserCanNotCreateTransferPledge() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanCreateTransferPledge(), "User can create transfer pledge");
+        public void TheUserCanNotCreateTransferPledge() => CreateTransferPledge(false, false);
+
+        [Then(@"the user can create transfer pledge")]
+        public void TheUserCanCreateTransferPledge() => CreateTransferPledge(false, true);
 
         [Then(@"the levy employer can not apply for transfer opportunities")]
-        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => Assert.AreEqual(false, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), "User can apply for transfer oppurtunity");
+        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(false);
+
+        [Then(@"the levy employer is able to apply for transfer opportunities")]
+        public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
+
+        private ApplicationsDetailsPage OpenApprovedPledgeApplication()
+        {
+            UpdateOrganisationName(_sender);
+
+            SignOut();
+
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        }
+
+        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+
+        private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
+        {
+            if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
+
+            Assert.AreEqual(canCreateTransferPledge, NavigateToTransferMatchingPage().CanCreateTransferPledge(), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
+        }
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
 
@@ -257,8 +270,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .SubmitApplication()
                 .ContinueToMyAccount();
 
-            return NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
+
+        private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
 
         private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
         {

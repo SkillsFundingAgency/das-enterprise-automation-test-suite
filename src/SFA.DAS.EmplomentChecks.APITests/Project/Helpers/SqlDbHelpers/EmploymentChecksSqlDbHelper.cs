@@ -15,18 +15,16 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 
         public EmploymentChecksSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EmploymentCheckDbConnectionString) { _dbConfig = dbConfig; }
 
-        public async Task<int> InsertData(long uln, long accountId, DateTime minDate, DateTime maxDate)
+        public async Task<int> InsertData(string checkType, long uln, long accountId, DateTime minDate, DateTime maxDate)
         {
-            // 1. Delete any historic record created from previous runs
-            DeleteEmploymentCheck(uln, accountId);
 
-            // 2. Insert a new EmploymentCheck record in DB and get its Id
-            var now = DateTime.Now; 
+            // Insert a new EmploymentCheck record in DB and get its Id
+            var now = DateTime.Now;
 
             var check = new EmploymentChecksDb
             {
                 CorrelationId = Guid.NewGuid(),
-                CheckType = "EC_API",
+                CheckType = checkType,
                 Uln = uln,
                 ApprenticeshipId = 100012,
                 AccountId = accountId,
@@ -47,19 +45,61 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             string query = $" select top(1) Id from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Employed = {employmentStatus}";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
-
-            return Convert.ToInt16(queryResult[0][0]);
+            return Convert.ToInt32(GetDataAsString(query));
         }
 
-        internal List<object[]> getRequestCompletionStatuses(int Id)
+        internal int? getEmploymentCheckStatus()
+        {
+            int count = 0;
+            int i;
+
+            string query = $" select RequestCompletionStatus from [Business].[EmploymentCheck] " +
+                $" where Id = {employmentCheckId} ";
+
+            string completionStatus = GetDataAsString(query);
+
+            // Completion status [null] signifies that the record has not been processed yet.
+            // give it a max of 10 seconds for it to be picked up by the orchestrator
+
+            while (String.IsNullOrEmpty(completionStatus) && count < 5)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                completionStatus = GetDataAsString(query);
+            }
+
+            if (int.TryParse(completionStatus, out i)) return i;
+
+            return null;
+        }
+
+        internal int GetCheckFromEmploymentCheckTable(string checkType)
+        {
+            string query = $"SELECT * from [Business].[EmploymentCheck] " +
+                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,GETDATE())";
+
+            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            return queryResult.Count;
+        }
+
+        internal List<object[]> getHmrcRequestCompletionStatuses(int Id)
         {
             string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id > {Id}";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            List<object[]> completionStatuses = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
-            return queryResult;
+            return completionStatuses;
+        }
+
+        internal int getHmrcRequestCompletionStatus(int Id)
+        {
+            string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
+                $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id = {Id}";
+
+            return Convert.ToInt16(GetDataAsString(query));
         }
 
         internal int getNumberOfHmrcCallsAfterId(int EmploymentCheckCacheRequestId)
@@ -67,9 +107,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             string query = $" select COUNT(*) from[Cache].[EmploymentCheckCacheResponse] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and EmploymentCheckCacheRequestId > {EmploymentCheckCacheRequestId} ";
 
-            List<object[]> queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
-
-            return Convert.ToInt16(queryResult[0][0]);
+            return Convert.ToInt16(GetDataAsString(query));
         }
 
         internal bool? VerifyEmploymentStatusAgainstPayeScheme(int numberOfPayeScheme)
@@ -111,6 +149,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 $"DELETE FROM [Cache].[DataCollectionsResponse] WHERE ApprenticeEmploymentCheckId = @Id;" +
                 $"DELETE FROM [Cache].[EmploymentCheckCacheRequest] WHERE ApprenticeEmploymentCheckId = @Id;" +
                 $"DELETE FROM [Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = @Id;";
+
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
+        }
+
+        internal void DeleteEmploymentCheck(string checkType)
+        {
+            string query = $"BEGIN TRAN " +
+                $" DECLARE @Id bigint; " +
+                $" SELECT top 1 @Id = [Id] FROM [Business].[EmploymentCheck] " +
+                $" WHERE CheckType = '{checkType}'; " +
+                $" DELETE FROM[Business].[EmploymentCheck] WHERE Id = @Id; " +
+                $" DELETE FROM[Cache].[AccountsResponse] WHERE ApprenticeEmploymentCheckId = @Id; " +
+                $" DELETE FROM[Cache].[DataCollectionsResponse] WHERE ApprenticeEmploymentCheckId = @Id; " +
+                $" DELETE FROM[Cache].[EmploymentCheckCacheRequest] WHERE ApprenticeEmploymentCheckId = @Id; " +
+                $" DELETE FROM[Cache].[EmploymentCheckCacheResponse] WHERE ApprenticeEmploymentCheckId = @Id; " +
+                $" COMMIT";
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
         }
@@ -160,7 +214,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
             // count variable is added to stop the infinite loop incase ProcessEmploymentCheckRequestsWithRateLimiterOrchestrator has crashed
-            while (result.Count == 0 && count < 15)
+            while (result.Count == 0 && count < 20)
             {
                 Thread.Sleep(2000);
                 count++;

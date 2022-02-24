@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Organisations.EPAOSearch
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02")]
-    public partial class EPAO_AD_Search_02Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_03")]
+    public partial class EPAO_AD_Search_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EPAO_AD_Search_02.feature"
+#line 1 "EPAO_AD_Search_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Admin/EPAOSearch", "EPAO_AD_Search_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Admin/Organisations/EPAOSearch", "EPAO_AD_Search_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +74,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_03_Search with Organsiation Ukprn")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteorganisationcontact")]
-        [NUnit.Framework.CategoryAttribute("deleteorganisationstandards")]
-        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContact()
+        public virtual void EPAO_AD_Search_03_SearchWithOrgansiationUkprn()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "epaoadmin",
-                    "regression",
-                    "deleteorganisationcontact",
-                    "deleteorganisationstandards"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_03_Search with Organsiation Ukprn", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,11 +106,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
- testRunner.And("the admin can add contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
+ testRunner.Then("the admin can search using organisation ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

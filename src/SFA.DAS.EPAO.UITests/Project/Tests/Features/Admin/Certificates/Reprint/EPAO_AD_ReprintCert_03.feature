@@ -1,0 +1,18 @@
+﻿Feature: EPAO_AD_ReprintCert_03
+
+@epao
+@recordagrade
+@epaoadmin
+@regression
+Scenario: EPAO_AD_ReprintCert_03 Amend a Certificate - Change SendTo
+	Given the Assessor User is logged into Assessment Service Application
+	And the User certifies an Apprentice as 'pass' with 'apprentice' route and records a grade
+	And the certificate is printed
+	And the Admin all roles user is logged into the Admin Service Application 
+	And the Admin can search using learner uln
+	When the Admin reprints the certificate with ticket reference 'INC123456' and selects reason 'Delivery failed'
+	Then the SendTo can be changed from 'apprentice' to 'employer'
+	And the new address can be entered with employer name 'EFSA' and recipient 'HR Department'
+	And the recipient's name on the check page is 'HR Department'
+	And the address contains the employer name 'EFSA'
+	

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterface_InternalServerError_500Response
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_04")]
-    public partial class EPAO_AD_Search_04Feature
+    [NUnit.Framework.DescriptionAttribute("InputInterface_InternalServerError_500Response")]
+    public partial class InputInterface_InternalServerError_500ResponseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EPAO_AD_Search_04.feature"
+#line 1 "EC_API_103_InputInterface_InternalServerError.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Admin/EPAOSearch", "EPAO_AD_Search_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/InputInterface_InternalServerError_500Response", "InputInterface_InternalServerError_500Response", "CheckType value exceeds 50 characters - it is 51 characters", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,20 +73,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_04_Search Batches")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoadmin")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AD_Search_04_SearchBatches()
+        public virtual void EC_API_103_InputInterface_InternalServerError(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "epao",
-                    "epaoadmin",
-                    "regression"};
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_04_Search Batches", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("Registered", registered);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_103_InputInterface_InternalServerError", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +111,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Then("the admin can search batches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.Given("Employer Incentives service are validing employment status of apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.When(string.Format("an employment check \'{0}\' request is successfully made to \'{1}\' with payload \'{2}" +
+                            "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.Then(string.Format("a \'{0}\' response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And(string.Format("the check is \'{0}\' in Employment Check business table", registered), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_103_InputInterface_InternalServerError: POST")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_103_InputInterface_InternalServerError_POST()
+        {
+#line 8
+this.EC_API_103_InputInterface_InternalServerError("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_103.json", "InternalServerError", "false", ((string[])(null)));
+#line hidden
         }
     }
 }

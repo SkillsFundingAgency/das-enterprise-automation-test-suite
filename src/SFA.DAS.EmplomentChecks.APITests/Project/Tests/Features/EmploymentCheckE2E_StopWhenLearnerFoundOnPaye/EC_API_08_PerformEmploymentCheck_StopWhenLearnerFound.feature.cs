@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string employed, string[] exampleTags)
+        public virtual void EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound(string testCaseId, string minDate, string maxDate, string status1, string employed, string status2, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -88,8 +88,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
+            argumentsOfScenario.Add("Status1", status1);
             argumentsOfScenario.Add("Employed", employed);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Status2", status2);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,31 +116,37 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("multiple paye schemes are found on account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("employment check record status is \'{0}\'", status1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
+ testRunner.When("multiple paye schemes are found on account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
  testRunner.And("an employment check request is created for each unique Nino and paye scheme combi" +
                         "nation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
  testRunner.And(string.Format("Learner is found to be \'{0}\' on one of the paye schemes", employed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("abandon all the remaining paye schemes for the check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And(string.Format("employment check record status is \'{0}\'", status2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound: 8")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound_8()
+        public virtual void EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound_8()
         {
 #line 6
-this.EC_API_08_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "true", ((string[])(null)));
+this.EC_API_008_PerformEmploymentCheck_StopWhenLearnerFound("8", "2014-03-06T00:00:00", "2015-03-06T00:00:00", "1", "true", "2", ((string[])(null)));
 #line hidden
         }
     }

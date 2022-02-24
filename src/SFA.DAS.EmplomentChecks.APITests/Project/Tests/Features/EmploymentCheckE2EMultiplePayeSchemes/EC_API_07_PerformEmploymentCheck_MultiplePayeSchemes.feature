@@ -3,7 +3,7 @@
 @api
 @regression
 @employmentcheckapi
-Scenario: EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes
+Scenario: EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes
 	Given employment check has been requested for an apprentice with '<TestCaseId>', '<MinDate>', '<MaxDate>'
 	When apprentice employment check is triggered
 	And multiple paye schemes are found on account

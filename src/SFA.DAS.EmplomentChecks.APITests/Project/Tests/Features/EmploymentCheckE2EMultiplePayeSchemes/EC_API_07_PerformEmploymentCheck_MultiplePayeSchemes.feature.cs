@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes(string testCaseId, string minDate, string maxDate, string[] exampleTags)
+        public virtual void EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes(string testCaseId, string minDate, string maxDate, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -88,7 +88,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -127,14 +127,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes: 7")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes: 7")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes_7()
+        public virtual void EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes_7()
         {
 #line 6
-this.EC_API_07_PerformEmploymentCheck_MultiplePayeSchemes("7", "2014-03-06T00:00:00", "2015-03-06T00:00:00", ((string[])(null)));
+this.EC_API_007_PerformEmploymentCheck_MultiplePayeSchemes("7", "2014-03-06T00:00:00", "2015-03-06T00:00:00", ((string[])(null)));
 #line hidden
         }
     }
