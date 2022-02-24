@@ -135,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino_123456789()
         {
 #line 6
-this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("123456789", "EC_API_010", ((string[])(null)));
+this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("123456789", "Manual_Insert", ((string[])(null)));
 #line hidden
         }
     }

@@ -11,5 +11,5 @@ Scenario: EC_API_010_PerformEmploymentCheck_ManuallyInsertNino
 	And an employment check request to HMRC is created using the Nino provided
 
 Examples:
-	| ULN       | NINO       |
-	| 123456789 | EC_API_010 |
+	| ULN       | NINO          |
+	| 123456789 | Manual_Insert |
