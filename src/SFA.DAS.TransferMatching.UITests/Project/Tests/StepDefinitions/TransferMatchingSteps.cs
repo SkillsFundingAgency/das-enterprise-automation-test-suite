@@ -106,6 +106,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
 
+        [Then(@"the non levy employer can withdraw funding before approval")]
+        public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
+        {
+            UpdateOrganisationName(_receiver);
+            SignOut();
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+            OpenPledgeApplication("AWAITING APPROVAL").WithdrawBeforeApproval().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN");
+
+        }
+
         [Then(@"the pledge is available to apply")]
         public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
 
