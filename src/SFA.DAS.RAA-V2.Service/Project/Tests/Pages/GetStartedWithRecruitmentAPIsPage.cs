@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public GetStartedWithRecruitmentAPIsPage(ScenarioContext context) : base(context) { }
 
-        public APIListPage ClickAPIKeysHereLinkLink()
+        public APIListPage ClickAPIKeysHereLink()
         {
             formCompletionHelper.Click(APIKeysHereLink);
             return new APIListPage(context);

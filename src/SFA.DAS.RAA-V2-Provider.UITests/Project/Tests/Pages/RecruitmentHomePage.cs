@@ -19,6 +19,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
 
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
+        private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
+        private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
 
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 
@@ -32,6 +35,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(CreateVacancyLink);
             return new SelectEmployersPage(context);
+        }
+        public GetStartedWithRecruitmentAPIsPage NavigateToRecruitmentAPIs()
+        {
+            formCompletionHelper.Click(RecruitmentAPIsLink);
+            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
+            {
+                formCompletionHelper.ClickElement(PireanPreprodButton);
+            }
+            return new GetStartedWithRecruitmentAPIsPage(context);
         }
 
         public ManageRecruitPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();

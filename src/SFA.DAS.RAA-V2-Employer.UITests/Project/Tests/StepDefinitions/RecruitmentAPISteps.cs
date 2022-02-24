@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerSelectsTheRecruitmentAPIListPage()
         {
             _getStartedWithRecruitmentAPIsPage = _yourApprenticeshipAdvertsHomePage.ClickRecruitmentAPILink();
-            _aPIListPage = _getStartedWithRecruitmentAPIsPage.ClickAPIKeysHereLinkLink();
+            _aPIListPage = _getStartedWithRecruitmentAPIsPage.ClickAPIKeysHereLink();
         }
 
         [When(@"the employer selects Recruitment API from the list")]

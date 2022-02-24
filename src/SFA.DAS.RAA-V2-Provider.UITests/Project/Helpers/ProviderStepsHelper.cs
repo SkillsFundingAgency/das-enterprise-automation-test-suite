@@ -64,6 +64,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         private SelectEmployersPage CreateVacancy(bool newTab) => GoToRecruitmentHomePage(newTab).CreateVacancy();
 
         private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
+        public APIListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();
+        public KeyforAPIPage RenewRecruitmentAPIKey() => NavigateToAPIListPage().ClickViewRecruitmentAPILink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
+        public KeyforAPIPage RenewRecruitmentAPISandboxKey() => NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
+        public KeyforAPIPage RenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
 
         private EmployerNamePage SelectOrganisation(bool newTab, string empName) => SelectOrganisation(CreateVacancy(newTab), empName);
 
