@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterface_BadRequest_400Response
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount")]
-    public partial class AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccountFeature
+    [NUnit.Framework.DescriptionAttribute("InputInterface_BadRequest_400Response")]
+    public partial class InputInterface_BadRequest_400ResponseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_Settings_06_UpdatePasswordForUnMatchedAccount.feature"
+#line 1 "EC_API_102_InputInterface_BadRequest.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/InputInterface_BadRequest_400Response", "InputInterface_BadRequest_400Response", "CorreclationId is not provided in the request ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,22 +73,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Settings_06_Update password before confirming the account")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("accountsettingstest")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount()
+        public virtual void EC_API_102_InputInterface_BadRequest(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
+            string[] @__tags = new string[] {
+                    "api",
                     "regression",
-                    "accountsettingstest",
-                    "deleteuser"};
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_06_Update password before confirming the account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("Registered", registered);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_102_InputInterface_BadRequest", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,14 +111,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("an apprentice has created the account and about to validate personal details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+ testRunner.Given("Employer Incentives service are validing employment status of apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
- testRunner.Then("an apprentice can change their password before confirming account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.When(string.Format("an employment check \'{0}\' request is successfully made to \'{1}\' with payload \'{2}" +
+                            "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then(string.Format("a \'{0}\' response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And(string.Format("the check is \'{0}\' in Employment Check business table", registered), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_102_InputInterface_BadRequest: POST")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_102_InputInterface_BadRequest_POST()
+        {
+#line 9
+this.EC_API_102_InputInterface_BadRequest("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_102.json", "BadRequest", "false", ((string[])(null)));
+#line hidden
         }
     }
 }

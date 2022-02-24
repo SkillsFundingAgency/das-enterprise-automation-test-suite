@@ -14,7 +14,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly ApprenticeDataHelper datahelper;
         #endregion
 
-        private By NonDefaultSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
+        protected By NonDefaulCheckboxSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
 
         protected By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
@@ -46,7 +46,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected void SelectRandomCheckbox()
         {
-            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaultSelector);
+            var NonDefaultList = pageInteractionHelper.FindElements(NonDefaulCheckboxSelector);
 
             int randomvalue = tMDataHelper.GenerateRandomNumberLessThanMaxAmount(NonDefaultList.Count);
 

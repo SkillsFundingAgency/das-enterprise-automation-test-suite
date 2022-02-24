@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2E_ManuallyInsertNino
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount")]
-    public partial class AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccountFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EManuallyInsertNino")]
+    public partial class EmploymentCheckE2EManuallyInsertNinoFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_Settings_06_UpdatePasswordForUnMatchedAccount.feature"
+#line 1 "EC_API_010_PerformEmploymentCheck_ManuallyInsertNino.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2E_ManuallyInsertNino", "EmploymentCheckE2EManuallyInsertNino", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,22 +73,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Settings_06_Update password before confirming the account")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("accountsettingstest")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public virtual void AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount()
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino(string uLN, string nINO, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
+            string[] @__tags = new string[] {
+                    "api",
                     "regression",
-                    "accountsettingstest",
-                    "deleteuser"};
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_06_Update password before confirming the account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            argumentsOfScenario.Add("ULN", uLN);
+            argumentsOfScenario.Add("NINO", nINO);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,14 +108,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with ULN \'{0}\'", uLN), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
- testRunner.Given("an apprentice has created the account and about to validate personal details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And(string.Format("a NINO \'{0}\' has been manually inserted", nINO), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.Then("an apprentice can change their password before confirming account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("check is picked up for enrichment process", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("call to DC api is not made", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("an employment check request to HMRC is created using the Nino provided", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino: 123456789")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino_123456789()
+        {
+#line 6
+this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("123456789", "Manual_Insert", ((string[])(null)));
+#line hidden
         }
     }
 }
