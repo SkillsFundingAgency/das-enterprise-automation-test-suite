@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
@@ -9,10 +10,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly TryCatchExceptionHelper _tryCatch;
+        private readonly ObjectContext _objectContext;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
@@ -23,11 +26,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 
             _tryCatch.AfterScenarioException(() => 
             {
+                if (_objectContext.IsUserCreated()) NavigateToAdminPage().NavigateToUserPage().DeleteUser();
+                
+                if (!(_objectContext.IsOrgCreated())) return;
+
                 var adminPage = NavigateToAdminPage();
-
-                adminPage.NavigateToUserPage().DeleteUser();
-
-                adminPage = NavigateToAdminPage();
 
                 var orgCount = adminPage.NoOfOrganisation();
 

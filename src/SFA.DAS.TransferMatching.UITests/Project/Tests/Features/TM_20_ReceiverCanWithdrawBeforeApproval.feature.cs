@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterface_CheckIsRegisteredWithEmploymentCheck
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("InputInterface_CheckIsRegisteredWithEmploymentCheck")]
-    public partial class InputInterface_CheckIsRegisteredWithEmploymentCheckFeature
+    [NUnit.Framework.DescriptionAttribute("TM_20_ReceiverCanWithdrawBeforeApproval")]
+    public partial class TM_20_ReceiverCanWithdrawBeforeApprovalFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EC_API_101_InputInterface_CheckIsRegistered.feature"
+#line 1 "TM_20_ReceiverCanWithdrawBeforeApproval.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/InputInterface_CheckIsRegisteredWithEmploymentCheck", "InputInterface_CheckIsRegisteredWithEmploymentCheck", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_20_ReceiverCanWithdrawBeforeApproval", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,25 +73,18 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_101_InputInterface_CheckIsRegistered(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TM_20_Receiver can withdraw funding before sender has approved")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        public virtual void TM_20_ReceiverCanWithdrawFundingBeforeSenderHasApproved()
         {
-            string[] @__tags = new string[] {
-                    "api",
+            string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employmentcheckapi"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("Method", method);
-            argumentsOfScenario.Add("Endpoint", endpoint);
-            argumentsOfScenario.Add("Payload", payload);
-            argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            argumentsOfScenario.Add("Registered", registered);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_101_InputInterface_CheckIsRegistered", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_20_Receiver can withdraw funding before sender has approved", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,33 +104,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
- testRunner.Given("Employer Incentives service are validing employment status of apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
- testRunner.When(string.Format("an employment check \'{0}\' request is successfully made to \'{1}\' with payload \'{2}" +
-                            "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.Then(string.Format("a \'{0}\' response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the non levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And(string.Format("the check is \'{0}\' in Employment Check business table", registered), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the non levy employer can withdraw funding before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_101_InputInterface_CheckIsRegistered: POST")]
-        [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_101_InputInterface_CheckIsRegistered_POST()
-        {
-#line 6
-this.EC_API_101_InputInterface_CheckIsRegistered("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_101.json", "OK", "true", ((string[])(null)));
-#line hidden
         }
     }
 }
