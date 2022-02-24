@@ -34,18 +34,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public KeyforAPIPage ClickViewRecruitmentAPISandBoxLink()
         {
             formCompletionHelper.Click(RecruitmentAPISandBoxViewKeyLink);
-            if (pageInteractionHelper.IsElementDisplayed(RecruitmentAPIGetLink))
+            if (pageInteractionHelper.IsElementDisplayed(RecruitmentAPISandBoxGetKeyLink))
             {
-                formCompletionHelper.ClickElement(RecruitmentAPIGetLink);
+                formCompletionHelper.ClickElement(RecruitmentAPISandBoxGetKeyLink);
             }
             return new KeyforAPIPage(context);
         }
         public KeyforAPIPage ClickViewDisplayAPILink()
         {
             formCompletionHelper.Click(DisplayAPIViewKeyLink);
-            if (pageInteractionHelper.IsElementDisplayed(RecruitmentAPIGetLink))
+            if (pageInteractionHelper.IsElementDisplayed(DisplayAPIGetKeyLink))
             {
-                formCompletionHelper.ClickElement(RecruitmentAPIGetLink);
+                formCompletionHelper.ClickElement(DisplayAPIGetKeyLink);
             }
             return new KeyforAPIPage(context);
         }
