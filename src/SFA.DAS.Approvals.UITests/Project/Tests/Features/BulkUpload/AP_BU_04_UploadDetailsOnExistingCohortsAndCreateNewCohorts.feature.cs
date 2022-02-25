@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohortsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "approvals"};
+        private string[] _featureTags = ((string[])(null));
         
 #line 1 "AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts.feature"
 #line hidden
@@ -37,8 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

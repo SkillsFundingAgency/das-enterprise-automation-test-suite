@@ -78,10 +78,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_BU_05_Validation Rules")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
         public virtual void AP_BU_05_ValidationRules()
         {
             string[] tagsOfScenario = new string[] {
+                    "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Validation Rules", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -106,16 +108,61 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the first number is 50", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the second number is 70", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Category",
+                            "CohortRef",
+                            "AgreementID",
+                            "ULN",
+                            "FamilyName",
+                            "GivenNames",
+                            "DateOfBirth",
+                            "EmailAddress",
+                            "StdCode",
+                            "StartDate",
+                            "EndDate",
+                            "TotalPrice",
+                            "EPAOrgID",
+                            "ProviderRef",
+                            "Error Message"});
+                table1.AddRow(new string[] {
+                            "HappyPath",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            ""});
+                table1.AddRow(new string[] {
+                            "CohortRef length > 20",
+                            "MKRK7VMKRK7VMKRK7VPJ1",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "You must enter a valid Cohort Ref"});
 #line 9
- testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.Then("the result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
 #line hidden
             }
             this.ScenarioCleanup();
