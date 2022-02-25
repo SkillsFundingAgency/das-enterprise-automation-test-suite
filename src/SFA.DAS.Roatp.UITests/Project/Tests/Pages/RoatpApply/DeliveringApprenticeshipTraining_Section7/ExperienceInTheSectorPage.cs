@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "experience in the";
 
-        private By NoOption => By.CssSelector(".govuk-radios__label");
+        private By NoOption => RadioLabels;
 
         public ExperienceInTheSectorPage(ScenarioContext context) : base(context) => VerifyPage();
 
