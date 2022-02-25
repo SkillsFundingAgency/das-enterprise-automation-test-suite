@@ -77,6 +77,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.LoginToFAA
         [NUnit.Framework.DescriptionAttribute("FAA_Login_01 -  Login to FAA with Unactivated registered Email")]
         [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("faaloginwithnewcredentials")]
         public virtual void FAA_Login_01_LoginToFAAWithUnactivatedRegisteredEmail()
@@ -84,11 +85,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.LoginToFAA
             string[] tagsOfScenario = new string[] {
                     "faa",
                     "raa-v1",
+                    "raa-v2",
                     "regression",
                     "faaloginwithnewcredentials"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_Login_01 -  Login to FAA with Unactivated registered Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("Applicant is redirected to Activation Page when Login With Unactivated email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
