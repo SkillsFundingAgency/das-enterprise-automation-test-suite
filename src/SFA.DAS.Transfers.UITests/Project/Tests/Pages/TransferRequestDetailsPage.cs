@@ -8,7 +8,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         protected override string PageTitle => "Transfer request details";
 
         protected override By ContinueButton => By.Id("submit-approve-transfer");
-        private By ApprovalRadioButton => By.CssSelector(".govuk-radios__label");
+        private By ApprovalRadioButton => RadioLabels;
 
         public TransferRequestDetailsPage(ScenarioContext context) : base(context) { }
 

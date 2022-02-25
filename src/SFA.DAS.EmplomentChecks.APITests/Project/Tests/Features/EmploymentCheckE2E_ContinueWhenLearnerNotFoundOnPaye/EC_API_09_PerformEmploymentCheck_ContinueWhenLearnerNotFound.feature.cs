@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound(string testCaseId, string minDate, string maxDate, string employed, string[] exampleTags)
+        public virtual void EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound(string testCaseId, string minDate, string maxDate, string employed, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,7 +89,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Employed", employed);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -131,14 +131,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound: 9")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound: 9")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound_9()
+        public virtual void EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound_9()
         {
 #line 6
-this.EC_API_09_PerformEmploymentCheck_ContinueWhenLearnerNotFound("9", "2020-03-06T00:00:00", "2021-03-06T00:00:00", "false", ((string[])(null)));
+this.EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound("9", "2020-03-06T00:00:00", "2021-03-06T00:00:00", "false", ((string[])(null)));
 #line hidden
         }
     }

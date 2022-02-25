@@ -77,16 +77,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
         [NUnit.Framework.DescriptionAttribute("FAA_CA_01 - Create an FAA Account with Registerd Email")]
         [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FAA_CA_01_CreateAnFAAAccountWithRegisterdEmail()
         {
             string[] tagsOfScenario = new string[] {
                     "faa",
                     "raa-v1",
+                    "raa-v2",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_CA_01 - Create an FAA Account with Registerd Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,10 +108,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the Applicant should be told that Email is already registered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

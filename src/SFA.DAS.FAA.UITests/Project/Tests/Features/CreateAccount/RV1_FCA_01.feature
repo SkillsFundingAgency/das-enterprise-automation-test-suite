@@ -2,6 +2,7 @@
 
 @faa
 @raa-v1
+@raa-v2
 @regression
 Scenario: FAA_CA_01 - Create an FAA Account with Registerd Email
 	When an Applicant initiates Account creation journey
