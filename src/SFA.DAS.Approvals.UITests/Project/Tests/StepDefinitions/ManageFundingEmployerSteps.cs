@@ -6,7 +6,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
-
     [Binding]
     public class ManageFundingEmployerSteps : BaseSteps
     {
@@ -33,17 +32,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenGivenOptionsToSelectStartDate(string firstMonth, string secondMonth, string thirdMonth) => 
             _reservationStepsHelper.VerifySuggestedStartMonthOptions(ParseMonth(firstMonth), ParseMonth(secondMonth), ParseMonth(thirdMonth));
 
-        [Then(@"the Employer is (.*) to reserve funding for an apprenticeship course")]
+        [Then(@"the Employer is (able|not able) to reserve funding for an apprenticeship course")]
         public void ThenTheEmployerCanOrCannotReserveFundingForAnApprenticeshipCourse(string ableOrNotAble)
         {
-            if (ableOrNotAble == "able")
-            {
-                _reservationStepsHelper.CompleteCreateReservationFromStartTrainingPage();
-            }
-            else if(ableOrNotAble == "not able")
-            {
-                _reservationStepsHelper.VerifyCreateReservationCannotBeCompleted();
-            }
+            if (ableOrNotAble == "able") _reservationStepsHelper.CompleteCreateReservationFromStartTrainingPage();
+            else if(ableOrNotAble == "not able") _reservationStepsHelper.VerifyCreateReservationCannotBeCompleted();
         }
        
         [When(@"the Employer deletes all unused funding for an apprenticeship course")]

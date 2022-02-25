@@ -23,6 +23,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             ExecuteSqlCommand(updateQuery);            
         }
-
     }
 }

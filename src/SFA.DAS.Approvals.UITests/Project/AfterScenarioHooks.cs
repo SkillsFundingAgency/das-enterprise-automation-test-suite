@@ -10,7 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project
     [Binding]
     public class AfterScenarioHooks
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private readonly ApprenticeDataHelper _datahelper;
@@ -18,11 +17,10 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         public AfterScenarioHooks(ScenarioContext context)
         {
-            _context = context;
             _objectcontext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
-            _context.TryGetValue(out _datahelper);
-            _context.TryGetValue(out _manageFundingEmployerStepsHelper);
+            context.TryGetValue(out _datahelper);
+            context.TryGetValue(out _manageFundingEmployerStepsHelper);
         }
 
         [AfterScenario(Order = 10)]
