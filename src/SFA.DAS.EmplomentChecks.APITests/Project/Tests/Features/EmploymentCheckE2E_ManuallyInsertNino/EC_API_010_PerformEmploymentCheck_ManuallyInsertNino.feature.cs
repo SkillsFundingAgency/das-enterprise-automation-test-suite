@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino(string uLN, string nINO, string[] exampleTags)
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino(string testCaseId, string uLN, string nINO, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -85,6 +85,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("ULN", uLN);
             argumentsOfScenario.Add("NINO", nINO);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -109,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given(string.Format("employment check has been requested for an apprentice with ULN \'{0}\'", uLN), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\' and ULN \'{1}\'", testCaseId, uLN), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.And(string.Format("a NINO \'{0}\' has been manually inserted", nINO), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -128,14 +129,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino: 123456789")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino: 10")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino_123456789()
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino_10()
         {
 #line 6
-this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("123456789", "Manual_Insert", ((string[])(null)));
+this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("10", "123456789", "Manual_Insert", ((string[])(null)));
 #line hidden
         }
     }
