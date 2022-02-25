@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -55,6 +56,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (tags.Contains("aslistedemployer")) return;
 
             formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+        }
+
+        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
+        {
+            SelectRadioOptionByForAttribute("confirm-Manual");
+            Continue();
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
+        }
+
+        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectBulkUpload()
+        {
+            SelectRadioOptionByForAttribute("confirm-BulkCsv");
+            Continue();
+            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
+        }
+
+        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUploadV2()
+        {
+            SelectRadioOptionByForAttribute("confirm-BulkCsv");
+            Continue();
+            return new ProviderBeforeYouStartBulkUploadPage(context);
         }
     }
 }

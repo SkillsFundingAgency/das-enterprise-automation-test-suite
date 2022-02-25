@@ -1,4 +1,4 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts
 
 #@regression
