@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
         private By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
         private By MessageBox => By.Name("sendmessage");
-        private By CohortApproveOptions => By.CssSelector(".govuk-radios__label");
+        private By CohortApproveOptions => RadioLabels;
         private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private By FlashMessage => By.ClassName("govuk-panel__title");
 
