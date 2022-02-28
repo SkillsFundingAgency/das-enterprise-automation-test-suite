@@ -49,6 +49,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
                 { new Tuple<int, string>(9, "TEST2"), new TestData() { ULN = 9000001500, AccountId = 2680, NationalInsuranceNumber = "AA890123C", PayeScheme = "100/GDS00010, 100/GDS00011" } },
                 { new Tuple<int, string>(9, "PP"), new TestData() { ULN = 2771115661, AccountId = 206775, NationalInsuranceNumber = "LJ000000A", PayeScheme = "101/LE13812, 102/LE76077" } },
 
+                { new Tuple<int, string>(10, "TEST"), new TestData() { AccountId = 8369 } },
+                { new Tuple<int, string>(10, "TEST2"), new TestData() { AccountId = 1124 } },
+                { new Tuple<int, string>(10, "PP"), new TestData() { AccountId = 153 } },
+
             };
 
             var data = new Tuple<int, string>(scenarioId, EnvironmentConfig.EnvironmentName);
