@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
@@ -10,21 +9,21 @@ namespace SFA.DAS.Approvals.UITests.Project
     [Binding]
     public class AfterScenarioHooks
     {
-        private readonly ObjectContext _objectcontext;
+        private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private readonly ApprenticeDataHelper _datahelper;
         private readonly ManageFundingEmployerStepsHelper _manageFundingEmployerStepsHelper;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
-            _objectcontext = context.Get<ObjectContext>();
+            _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
         }
 
         [AfterScenario(Order = 10)]
-        public void AddUln() => _tryCatch.AfterScenarioException(() => _datahelper?.Ulns.ForEach((x) => _objectcontext.SetUln(x)));
+        public void AddUln() => _tryCatch.AfterScenarioException(() => _datahelper?.Ulns.ForEach((x) => _objectContext.SetUln(x)));
 
         [AfterScenario(Order = 11)]
         public void RemoveDynamicPauseGlobalRule() => _manageFundingEmployerStepsHelper.RemoveDynamicPauseGlobalRule();
