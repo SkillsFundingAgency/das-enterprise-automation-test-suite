@@ -9,34 +9,34 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 
         protected override bool TakeFullScreenShot => false;
 
-        protected override By PageHeader => By.ClassName("govuk-heading-xl");
-
         public EditProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
 
         #region Locators
-        private By EmailAddressTextBox => By.Id("EmailAddress");
-        private By TelephoneNumberTextBox => By.Id("PhoneNumber");
-        private By WebsiteTextBox => By.Id("Website");
-
+        private By EmailAddressTextBox => By.CssSelector("#EmailAddress");
+        private By TelephoneNumberTextBox => By.CssSelector("#PhoneNumber");
+        private By WebsiteTextBox => By.CssSelector("#Website");
         #endregion
 
-        public EditProvidersContactDetailsPage EnterProvidersContactDetails(string emailAddress, string telephoneNumber, string website)
+        private EditProvidersContactDetailsPage EnterProvidersContactDetails(string email, string telephone, string website)
         {
-            formCompletionHelper.EnterText(EmailAddressTextBox, emailAddress);
-            formCompletionHelper.EnterText(TelephoneNumberTextBox, telephoneNumber);
+            formCompletionHelper.EnterText(EmailAddressTextBox, email);
+            formCompletionHelper.EnterText(TelephoneNumberTextBox, telephone);
             formCompletionHelper.EnterText(WebsiteTextBox, website);
             return this;
         }
 
-        public EditProvidersContactDetailsPage ContinueWithInvalidDetails()
+        public EditProvidersContactDetailsPage DoNotEnterDetails() => StayOnEditProvidersContactDetailsPage();
+
+        public EditProvidersContactDetailsPage EnterInvalidDetails()
         {
-            ContinueToNextPage();
-            return new EditProvidersContactDetailsPage(context);
+            EnterProvidersContactDetails($"{dataHelper.RandomEmail}@gmail.com", $"{dataHelper.TelephoneNumber}ABC", dataHelper.RandomWebsiteAddress);
+            return StayOnEditProvidersContactDetailsPage();
         }
 
-        public ConfirmProvidersContactDetailsPage ContinueToConfirmProviderContactDetailsPage()
+        public ConfirmProvidersContactDetailsPage EnterValidDetails()
         {
-            ContinueToNextPage();
+            EnterProvidersContactDetails(dataHelper.RandomEmail, dataHelper.TelephoneNumber, dataHelper.RandomWebsiteAddress);
+            Continue();
             return new ConfirmProvidersContactDetailsPage(context);
         }
 
@@ -44,6 +44,12 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
         {
             formCompletionHelper.Click(BackLink);
             return new WhichEmployersAreYouInterestedInPage(context);
+        }
+
+        private EditProvidersContactDetailsPage StayOnEditProvidersContactDetailsPage()
+        {
+            Continue();
+            return new EditProvidersContactDetailsPage(context);
         }
     }
 }

@@ -7,9 +7,8 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
     public class AEDIndexPage : AEDBasePage
     {
         protected override string PageTitle => "";
-        protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
-        public AEDIndexPage(ScenarioContext context) : base(context)  { }
+        public AEDIndexPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");
@@ -17,16 +16,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 
         #endregion
 
-        public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink()
+        public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink() => GotoShareYourInterestWithTrainingProvidersPage(GetHelpWithFindingATrainingProviderLink);
+        
+        public ShareYourInterestWithTrainingProvidersPage ClickShareInterestButton() => GotoShareYourInterestWithTrainingProvidersPage(ShareInterestButton);
+        
+        private ShareYourInterestWithTrainingProvidersPage GotoShareYourInterestWithTrainingProvidersPage(By by)
         {
-            formCompletionHelper.Click(GetHelpWithFindingATrainingProviderLink);
-
-            return new ShareYourInterestWithTrainingProvidersPage(context);
-        }
-        public ShareYourInterestWithTrainingProvidersPage ClickShareInterestButton()
-        {
-            formCompletionHelper.Click(ShareInterestButton);
-
+            formCompletionHelper.Click(by);
             return new ShareYourInterestWithTrainingProvidersPage(context);
         }
     }

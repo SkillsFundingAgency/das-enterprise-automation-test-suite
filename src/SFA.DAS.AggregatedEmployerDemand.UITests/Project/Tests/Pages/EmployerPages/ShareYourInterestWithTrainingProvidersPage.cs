@@ -11,7 +11,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerP
 
         public ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 
-        private By StartNowButton => By.ClassName("govuk-button");
+        private By StartNowButton => By.CssSelector(".govuk-button");
 
         public GetHelpWithFindingATrainingProviderPage ClickStartNow()
         {

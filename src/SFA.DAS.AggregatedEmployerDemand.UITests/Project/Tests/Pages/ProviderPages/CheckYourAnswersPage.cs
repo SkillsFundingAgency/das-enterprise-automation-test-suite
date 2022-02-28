@@ -17,7 +17,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 
         public WeveSharedYourContactDetailsWithEmployersPage ContinueToWeveSharedYourContactDetailsWithEmployersPage()
         {
-            ContinueToNextPage();
+            Continue();
             return new WeveSharedYourContactDetailsWithEmployersPage(context);
         }
 

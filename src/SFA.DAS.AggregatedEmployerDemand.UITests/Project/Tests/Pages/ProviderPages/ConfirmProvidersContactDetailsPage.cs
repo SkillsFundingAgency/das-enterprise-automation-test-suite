@@ -9,13 +9,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 
         protected override bool TakeFullScreenShot => false;
 
-        protected override By PageHeader => By.ClassName("govuk-heading-xl");
-
         public ConfirmProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
 
         public CheckYourAnswersPage ContinueToProviderCheckYourAnswersPage()
         {
-            ContinueToNextPage();
+            Continue();
             return new CheckYourAnswersPage(context);
         }
 

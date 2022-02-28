@@ -10,7 +10,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
         
         public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
 
-        private By Confirm => By.Id("submit-demand");
+        private By Confirm => By.CssSelector("#submit-demand");
 
         public EmailVerificationPage ConfirmYourAnswers()
         {

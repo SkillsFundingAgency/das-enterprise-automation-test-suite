@@ -5,68 +5,32 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AEDSteps
+    public class AedSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly AEDStepsHelper _aEDStepsHelper;
-        private readonly AEDMailinatorStepsHelper _aEDMailinatorStepsHelper;
+        private readonly AedStepsHelper _aEDStepsHelper;
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
-        private CheckYourAnswersPage _checkYourAnswersPage;
+        private AEDIndexPage _aedIndexPage;
 
-        public AEDSteps(ScenarioContext context)
-        {
-            _context = context;
-            _aEDStepsHelper = new AEDStepsHelper(_context);
-            _aEDMailinatorStepsHelper = new AEDMailinatorStepsHelper(context);
-        }
+        public AedSteps(ScenarioContext context) => _aEDStepsHelper = new AedStepsHelper(context);
 
-        [Given(@"the User searches a course then navigates to the provider list")]
-        public void GivenTheUserSearchesACourseThenNavigatesToTheProviderList() => _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPage();
+        [Given(@"the employer has shared interest")]
+        public void GivenTheEmployerHasSharedInterest() => _aEDStepsHelper.RegisterInterest(0);
 
         [Given(@"the user selects get help with finding a training provider")]
         public void GivenTheUserSelectsGetHelpWithFindingATrainingProvider() => _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProvider();
 
         [Given(@"the user selects share interest with finding a training provider")]
-        public void GivenTheUserSelectsShareInterestWithFindingATrainingProvider() => _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProviderViaShortlistPage();
+        public void GivenTheUserSelectsShareInterestWithFindingATrainingProvider() => _getHelpWithFindingATrainingProviderPage = _aEDStepsHelper.GetHelpWithFindingATrainingProviderViaShortlistPage(_aedIndexPage);
 
         [Given(@"the user has navigated to shortlist page")]
-        public void GivenTheUserHasNavigatedToShortlistPage() => _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage();
+        public void GivenTheUserHasNavigatedToShortlistPage() => _aedIndexPage = _aEDStepsHelper.NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage();
 
-        [Given(@"the employer has shared interest '(.*)', '(.*)' and '(.*)'")]
-        public void GivenTheEmployerHasSharedInterest(string location, string organisationName, string organisationEmailAddress)
-        {
-            GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
-            GivenTheUserSelectsGetHelpWithFindingATrainingProvider();
-            WhenTheUserEntersTheLocationAs(location);
-            WhenTheUserSelectsNoApprentices();
-            WhenTheUserEntersTheOrganisationName(organisationName);
-            WhenTheUserEntersTheOrganisationEmailAddress(organisationEmailAddress);
-            ThenTheUserIsAbleToSubmitTheFormToRegisterInterest();
+        [Then(@"the user can register interest without apprentices")]
+        public void ThenTheUserCanRegisterInterestWithoutApprentices() => RegisterInterest(0);
+        
+        [Then(@"the user can register interest with apprentices")]
+        public void ThenTheUserCanRegisterInterestWithApprentices() => RegisterInterest(2);
 
-            _aEDMailinatorStepsHelper.OpenLink(organisationEmailAddress);
-        }
-
-        [When(@"the user enters the number of Apprentices as '(.*)'")]
-        public void WhenTheUserEntersTheNumberOfApprenticesAs(string noOfApprentices) => _getHelpWithFindingATrainingProviderPage = _getHelpWithFindingATrainingProviderPage.EnterNumberOfApprentices(noOfApprentices);
-
-        [When(@"the user enters the location as '(.*)'")]
-        public void WhenTheUserEntersTheLocationAs(string location) => _getHelpWithFindingATrainingProviderPage = _getHelpWithFindingATrainingProviderPage.EnterApprenticeshipLocation(location);
-
-        [When(@"the user enters the Organisation name '(.*)'")]
-        public void WhenTheUserEntersTheOrganisationName(string organisationName) => _getHelpWithFindingATrainingProviderPage = _getHelpWithFindingATrainingProviderPage.EnterOrganisationName(organisationName);
-
-        [When(@"the user enters the Organisation Email Address '(.*)'")]
-        public void WhenTheUserEntersTheOrganisationEmailAddress(string organisationEmailAddress) => _getHelpWithFindingATrainingProviderPage = _getHelpWithFindingATrainingProviderPage.EnterOrganisationEmailAddress(organisationEmailAddress);
-
-        [When(@"the user selects no Apprentices")]
-        public void WhenTheUserSelectsNoApprentices() => _getHelpWithFindingATrainingProviderPage = _getHelpWithFindingATrainingProviderPage.SelectNoApprentices();
-
-        [Then(@"the user is able to submit the form to register interest")]
-        public void ThenTheUserIsAbleToSubmitTheFormToRegisterInterest()
-        {
-            _checkYourAnswersPage = _getHelpWithFindingATrainingProviderPage.ContinueToCheckYourAnswersPage();
-
-            _checkYourAnswersPage.ConfirmYourAnswers();
-        }
+        private void RegisterInterest(int noOfApprentices) => _aEDStepsHelper.RegisterInterest(noOfApprentices, _getHelpWithFindingATrainingProviderPage);
     }
 }
