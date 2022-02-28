@@ -11,6 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     public class ManageFundingEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly ReservationsSqlDataHelper _reservationsSqlDataHelper;
         
         private WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage;
@@ -18,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ManageFundingEmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _reservationsSqlDataHelper = new ReservationsSqlDataHelper(context.Get<DbConfig>());
         }
 
@@ -46,9 +48,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
 
-        public void AddDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) => _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(activeFrom, activeTo);
+        public void AddDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) { _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(activeFrom, activeTo); _objectContext.SetUpdateDynamicPauseGlobalRule(); }
 
-        public void RemoveDynamicPauseGlobalRule() => _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(Convert.ToDateTime("2022-01-01"), Convert.ToDateTime("2022-01-01"));
+        public void RemoveDynamicPauseGlobalRule() { if (_objectContext.IsUpdateDynamicPauseGlobalRule()) _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(Convert.ToDateTime("2022-01-01"), Convert.ToDateTime("2022-01-01")); }
 
         public SuccessfullyReservedFundingPage CreateReservation() => CreateReservation(GoToReserveFunding());
         
