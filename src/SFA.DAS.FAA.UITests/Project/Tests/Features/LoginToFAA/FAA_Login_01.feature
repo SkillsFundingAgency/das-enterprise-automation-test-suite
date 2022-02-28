@@ -2,6 +2,7 @@
 
 @faa
 @raa-v1
+@raa-v2
 @regression
 @faaloginwithnewcredentials
 Scenario: FAA_Login_01 -  Login to FAA with Unactivated registered Email
