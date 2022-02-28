@@ -2,6 +2,7 @@
 {
     public class DbConfig
     {
+        public string DatamartDbConnectionString { get; set; }
         public string AccountsDbConnectionString { get; set; }
         public string FinanceDbConnectionString { get; set; }
         public string FcastDbConnectionString { get; set; }

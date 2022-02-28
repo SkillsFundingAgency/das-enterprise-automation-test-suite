@@ -12,6 +12,7 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             return new DbConfig
             {
+                DatamartDbConnectionString = GetConnectionString(_dbDevConfig.DatamartDbName),
                 AccountsDbConnectionString = GetConnectionString(_dbDevConfig.AccountsDbName),
                 FinanceDbConnectionString = GetConnectionString(_dbDevConfig.FinanceDbName),
                 FcastDbConnectionString = GetConnectionString(_dbDevConfig.FcastDbName),
