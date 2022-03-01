@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
 
         [Then(@"an apprentice can change their email")]
-        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToMyApprenticeship();
+        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToHome();
 
         [Then(@"an apprentice can change their email before confirming account")]
         public void ThenAnApprenticeCanChangeTheirEmailBeforeConfirmingAccount() => UpdateEmailAddress().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
@@ -24,12 +24,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an apprentice can change their personal details")]
         public void ThenAnApprenticeCanChangeTheirPersonalDetails()
         {
-            var page = GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
+            GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
             // DOB fields were disabled after a successful match before, but in Sprint28 AccoutsWeb rework, DOB field is made Editable.
         }
 
         [Then(@"an apprentice can change their password")]
-        public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToMyApprenticeship();
+        public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToHome();
 
         [Then(@"an apprentice can change their password before confirming account")]
         public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
@@ -40,18 +40,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private PasswordResetSuccessfulPage UpdatePassword()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
-            NavigateToMailinatorClickOnNotificationLink();
+            NavigateToMailinatorClickOnNotificationLink("change your password");
             return new ResetPasswordPage(_context).UpdatePassword();
         }
 
         private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
-            NavigateToMailinatorClickOnNotificationLink();
+            NavigateToMailinatorClickOnNotificationLink("Verify email address");
             return new ChangeYourEmailAddressPage(_context).UpdateEmailAddress();
         }
 
-        private void NavigateToMailinatorClickOnNotificationLink() => new MailinatorStepsHelper(_context, objectContext.GetApprenticeEmail()).OpenLink("https://login.");
+        private void NavigateToMailinatorClickOnNotificationLink(string linkText) => new MailinatorStepsHelper(_context, objectContext.GetApprenticeEmail()).OpenLink(linkText);
 
         private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
     }

@@ -32,7 +32,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
         protected By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
         protected By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
-        private By CookieBanner => By.CssSelector(".das-cookie-banner");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
         private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
@@ -53,7 +52,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => verifyPage(verifypage),
-                () => VerifyPage(CookieBanner),
                 () => VerifyPage(FeedbackLinkOnBetaBanner),
                 () => verifyServiceHeader(verifyserviceheader),
                 () => { VerifyFooterLinks(); return true; }

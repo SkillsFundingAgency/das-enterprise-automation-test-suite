@@ -25,7 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIJourney = "IsEIJourney";
         private const string SameApprentice = "IsSameApprentice";
         private const string EIApprenticeDetailList = "eiapprenticedetaillist";
+        private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
         #endregion
+
+        internal static void SetUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
+            objectContext.Set(UpdateDynamicPauseGlobalRule, true);
+        
 
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.Set(ProviderMakesReservationForNonLevyEmployers, true);
@@ -63,6 +68,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
+
+        internal static bool IsUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
+            objectContext.KeyExists<bool>(UpdateDynamicPauseGlobalRule);
 
         public static List<EIApprenticeDetail> GetEIApprenticeDetailList(this ObjectContext objectContext) => objectContext.Get<List<EIApprenticeDetail>>(EIApprenticeDetailList);
 

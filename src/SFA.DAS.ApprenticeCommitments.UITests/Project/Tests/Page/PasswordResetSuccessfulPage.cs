@@ -8,11 +8,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => "Password reset successful";
         protected override By ServiceHeader => NonClickableServiceHeader;
 
-        public PasswordResetSuccessfulPage(ScenarioContext context) : base(context)  { }
+        public PasswordResetSuccessfulPage(ScenarioContext context) : base(context) { }
 
         public SignIntoMyApprenticeshipPage ReturnToSignInPage()
         {
-            formCompletionHelper.ClickLinkByText($"{ServiceName}");
+            formCompletionHelper.ClickLinkByText("Return to home");
             return new SignIntoMyApprenticeshipPage(context);
         }
     }

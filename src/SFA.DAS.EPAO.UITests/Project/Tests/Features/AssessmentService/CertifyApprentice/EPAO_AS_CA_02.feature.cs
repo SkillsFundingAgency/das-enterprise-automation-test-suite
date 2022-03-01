@@ -74,22 +74,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_CA_02 - Attempt to certify an Apprentice with Invalid details")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("recordagrade")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("epaoca2standard2version1option")]
-        public virtual void EPAO_AS_CA_02B_VerifyChangeLinksOnTheConfirmAssessmentPage()
+        [NUnit.Framework.CategoryAttribute("epaoca1standard1version0option")]
+        public virtual void EPAO_CA_02_AttemptToCertifyAnApprenticeWithInvalidDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
                     "recordagrade",
                     "regression",
-                    "epaoca2standard2version1option"};
+                    "epaoca1standard1version0option"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_CA_02 - Attempt to certify an Apprentice with Invalid details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,10 +114,41 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("the User certifies an Apprentice as \'pass\' and lands on Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("navigates to Assessment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("the Change links navigate to the respective pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the User clicks on the continue button \'with out entering Any details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("the \'Family name and ULN missing error\' is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.When("the User clicks on the continue button \'by entering valid Family name and blank U" +
+                        "LN\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("the \'ULN missing error\' is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+ testRunner.When("the User clicks on the continue button \'by entering blank Family name and Valid U" +
+                        "LN\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("the \'Family name missing error\' is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+ testRunner.When("the User clicks on the continue button \'by entering valid Family name but ULN les" +
+                        "s than 10 digits\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 18
+ testRunner.Then("the \'ULN validation error\' is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 19
+ testRunner.When("the User clicks on the continue button \'by entering valid Family name and Invalid" +
+                        " ULN\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("\'We cannot find the apprentice details\' message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

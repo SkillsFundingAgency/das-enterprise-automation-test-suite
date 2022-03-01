@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By CompletionDate => By.Id("completionDate");
         private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
-        private By FlashMsgBox => By.CssSelector(".govuk-panel__title");
+        private By FlashMsgBox => PanelTitle;
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 

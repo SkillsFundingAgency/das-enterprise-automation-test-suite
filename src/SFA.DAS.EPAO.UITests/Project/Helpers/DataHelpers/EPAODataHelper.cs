@@ -19,6 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public int CurrentYear { get; }
         public string RandomEmail { get; }
         public string RandomWebsiteAddress { get; }
+
+        public string AddressLine1 => "5";
+        public string AddressLine2 => "QuintonRoad";
+        public string AddressLine3 => "Cheylesmore House";
         public string TownName => "Coventry";
         public string CountyName => "Warwick";
         public string PostCode => "CV1 2WT";
