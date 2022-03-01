@@ -3,6 +3,7 @@
 @raa-v2
 @raa-v2e
 @regression
+@recruitmentapikey
 Scenario: RV2_E_RA_03 - Renew Employer Display API Key
 	Given the Employer navigates to 'Recruit' Page
 	And the employer selects the Recruitment API list page

@@ -7,6 +7,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Key for API";
 
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
+
         #region Locators
         private readonly By RenewKeyLink = By.CssSelector("#renew-key");
         private readonly By DoYouNeedANewKeyDropDown = By.CssSelector(".govuk-details__summary-text");
