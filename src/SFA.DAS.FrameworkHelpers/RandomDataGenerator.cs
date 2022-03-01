@@ -50,6 +50,8 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string GenerateRandomEmail() => GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + "@example.com";
 
+        public static string GenerateRandomEmail(string email) { var emailsplit = email.Split("@"); return $"{emailsplit[0]}@{DateTime.Now.ToNanoSeconds()}{emailsplit[1]}"; }
+
         public static int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
 
         public static int GenerateRandomMonth() => GenerateRandomNumberBetweenTwoValues(1, 13);

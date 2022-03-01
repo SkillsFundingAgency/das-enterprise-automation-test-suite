@@ -110,7 +110,13 @@ namespace SFA.DAS.FrameworkHelpers
             return await dbConnection.InsertAsync(entity);
         }
 
-
-        private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : new AzureServiceTokenProvider().GetAccessTokenAsync(AzureResource).Result };
+        private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
+        { 
+            ConnectionString = connectionString, 
+            AccessToken = connectionString.Contains("User ID=") 
+                ? null 
+                : new AzureServiceTokenProvider().
+                    GetAccessTokenAsync(AzureResource).Result 
+        };
     }
 }
