@@ -1,46 +1,53 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
 using SFA.DAS.FAT_V2.UITests.Project.Helpers;
+using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
+using SFA.DAS.Mailinator.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 {
-    public class AEDStepsHelper
+    public class AedStepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly FATV2StepsHelper _fATV2StepsHelper;
 
-        public AEDStepsHelper(ScenarioContext context)
+        public AedStepsHelper(ScenarioContext context)
         {
             _context = context;
             _fATV2StepsHelper = new FATV2StepsHelper(_context);
         }
 
-        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider()
-        {
-            new AEDIndexPage(_context).ClickGetHelpWithFindingATrainingProviderLink().ClickStartNow();
+        public void RegisterInterest(int noOfApprentices) => RegisterInterest(noOfApprentices, GetHelpWithFindingATrainingProvider(NavigateToShareYourInterestWithTrainingProvidersPage()));
 
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+        public void RegisterInterest(int noOfApprentices, GetHelpWithFindingATrainingProviderPage getHelpWithFindingATrainingProviderPage)
+        {
+            getHelpWithFindingATrainingProviderPage.EnterValidDetails(noOfApprentices).ConfirmYourAnswers();
+
+            new MailinatorStepsHelper(_context, _context.Get<AedDataHelper>().RandomEmail).OpenLink("https://");
         }
 
-        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage()
-        {
-            new AEDIndexPage(_context).ClickShareInterestButton().ClickStartNow();
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider(AedIndexPage aEDIndexPage) => ClickStartNow(aEDIndexPage.ClickGetHelpWithFindingATrainingProviderLink());
 
-            return new GetHelpWithFindingATrainingProviderPage(_context);
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider() => GetHelpWithFindingATrainingProvider(GoToAedIndexPage());
+        
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage(AedIndexPage page) => ClickStartNow(page.ClickShareInterestButton());
+
+        public AedIndexPage NavigateToShareYourInterestWithTrainingProvidersPage()
+        {
+            _fATV2StepsHelper.ViewProvidersForThisCourse();
+
+            return GoToAedIndexPage();
         }
 
-        public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPage()
-        {
-            _fATV2StepsHelper.SelectTrainingCourseAndNavigateToProviderListPage();
-
-            return new AEDIndexPage(_context);
-        }
-
-        public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
+        public AedIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
         {
             _fATV2StepsHelper.ShortlistATrainingCourseAndNavigateToShortlistPage();
 
-            return new AEDIndexPage(_context);
+            return GoToAedIndexPage();
         }
+
+        private AedIndexPage GoToAedIndexPage() => new AedIndexPage(_context);
+
+        private GetHelpWithFindingATrainingProviderPage ClickStartNow(ShareYourInterestWithTrainingProvidersPage page) => page.ClickStartNow();
     }
 }

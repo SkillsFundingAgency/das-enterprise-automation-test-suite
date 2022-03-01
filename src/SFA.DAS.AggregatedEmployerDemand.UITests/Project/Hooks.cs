@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project
@@ -8,11 +6,11 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project
     [Binding]
     public class Hooks
     {
-        private readonly IWebDriver _webDriver;
+        private readonly ScenarioContext _context;
 
-        public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
+        public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToFATHomepage() => _webDriver.Navigate().GoToUrl(UrlConfig.FATV2_BaseUrl);
+        public void SetUpHelpers() => _context.Set(new AedDataHelper());
     }
 }
