@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
@@ -48,5 +45,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Provider renews the employer display API key")]
         public void GivenTheProviderRenewsTheEmployerDisplayAPIKey() => _providerStepsHelper.RenewDisplayAPIKey();
+
+        [Then(@"the provider does not renews the api key")]
+        public void ThenTheProviderDoesNotRenewsTheApiKey() => _providerStepsHelper.DoesNotRenewDisplayAPIKey();
     }
 }

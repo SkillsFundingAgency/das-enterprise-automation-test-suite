@@ -65,9 +65,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
         public APIListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();
-        public KeyforAPIPage RenewRecruitmentAPIKey() => NavigateToAPIListPage().ClickViewRecruitmentAPILink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
-        public KeyforAPIPage RenewRecruitmentAPISandboxKey() => NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
-        public KeyforAPIPage RenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickDoYouNeedANewKeyDropDown().ClickRenewKeyLink().SelectYesToRenewAPIKey().ClickContinueToRenewKey();
+        public KeyforAPIPage RenewRecruitmentAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPILink());
+        public KeyforAPIPage RenewRecruitmentAPISandboxKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink());
+        public KeyforAPIPage RenewDisplayAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewDisplayAPILink());
+
+        public KeyforAPIPage DoesNotRenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickRenewKeyLink().DoNotRenewApiKey();
+
+        private KeyforAPIPage RenewAPIKey(KeyforAPIPage page) => page.ClickRenewKeyLink().RenewAPIKey().VerifyApikeyRenewed();
 
         private EmployerNamePage SelectOrganisation(bool newTab, string empName) => SelectOrganisation(CreateVacancy(newTab), empName);
 

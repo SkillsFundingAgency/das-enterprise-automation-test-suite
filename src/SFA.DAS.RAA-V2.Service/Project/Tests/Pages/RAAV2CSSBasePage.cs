@@ -15,7 +15,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected readonly bool isRaaV2Employer;
 
         protected override By ContinueButton => By.CssSelector(".save-button");
-       
+
+        protected By PanelTitle => By.CssSelector(".govuk-panel__title");
+
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
             isRaaV2Employer = tags.Contains("raa-v2e");
@@ -25,6 +27,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             if (verifypage) { VerifyPage(); }
         }
+
+        protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
 
         protected new RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
         {

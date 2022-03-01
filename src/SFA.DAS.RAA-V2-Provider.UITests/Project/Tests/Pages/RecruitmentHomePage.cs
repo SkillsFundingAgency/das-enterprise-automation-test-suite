@@ -36,6 +36,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreateVacancyLink);
             return new SelectEmployersPage(context);
         }
+
         public GetStartedWithRecruitmentAPIsPage NavigateToRecruitmentAPIs()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);

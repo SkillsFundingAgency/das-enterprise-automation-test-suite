@@ -9,30 +9,23 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
+        protected override By ContinueButton => By.CssSelector("#continue-renew-key");
+
         #region Locators
-        private readonly By ViewKeyFirstLink = By.Id("view-key-for-VacanciesManageOuterApi");
-        private readonly By SelectYesRadioBUtton = By.Id("ConfirmRenew-yes");
-        private readonly By SelectNoRadioBUtton = By.Id("ConfirmRenew-no");
-        private readonly By ClickContinueButton = By.Id("continue-renew-key");
+        private By SelectYesRadioButton => By.CssSelector("#ConfirmRenew-yes");
+        private By SelectNoRadioButton => By.CssSelector("#ConfirmRenew-no");
         #endregion
 
         public AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : base(context) { }
 
-        public AreYouSureYouWantToRenewThisAPIKeyPage SelectYesToRenewAPIKey()
+        public KeyforAPIPage RenewAPIKey() => GoToKeyforAPIPage(SelectYesRadioButton);
+        
+        public KeyforAPIPage DoNotRenewApiKey() => GoToKeyforAPIPage(SelectNoRadioButton);
+        
+        private KeyforAPIPage GoToKeyforAPIPage(By by)
         {
-            formCompletionHelper.SelectRadioOptionByLocator(SelectYesRadioBUtton);
-            return new AreYouSureYouWantToRenewThisAPIKeyPage(context);
-        }
-
-        public AreYouSureYouWantToRenewThisAPIKeyPage SelectNoNotToRenewAPIKey()
-        {
-            formCompletionHelper.SelectRadioOptionByLocator(SelectNoRadioBUtton);
-            return new AreYouSureYouWantToRenewThisAPIKeyPage(context);
-        }
-
-        public KeyforAPIPage ClickContinueToRenewKey()
-        {
-            formCompletionHelper.Click(ClickContinueButton);
+            formCompletionHelper.SelectRadioOptionByLocator(by);
+            Continue();
             return new KeyforAPIPage(context);
         }
     }
