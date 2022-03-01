@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public KeyforAPIPage(ScenarioContext context) : base(context) { }
 
-        public KeyforAPIPage VerifyApikeyRenewed() { VerifyPanelTitle("Advert resubmitted to ESFA"); return this; }
+        public KeyforAPIPage VerifyApikeyRenewed() { VerifyPanelTitle("Key renewed"); return this; }
 
         public AreYouSureYouWantToRenewThisAPIKeyPage ClickRenewKeyLink()
         {
