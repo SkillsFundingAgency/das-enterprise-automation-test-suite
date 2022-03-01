@@ -28,7 +28,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 
         public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider(AedIndexPage aEDIndexPage) => ClickStartNow(aEDIndexPage.ClickGetHelpWithFindingATrainingProviderLink());
 
-        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider() => GetHelpWithFindingATrainingProvider(GoToAEDIndexPage());
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider() => GetHelpWithFindingATrainingProvider(GoToAedIndexPage());
         
         public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage(AedIndexPage page) => ClickStartNow(page.ClickShareInterestButton());
 
@@ -36,17 +36,17 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
         {
             _fATV2StepsHelper.ViewProvidersForThisCourse();
 
-            return GoToAEDIndexPage();
+            return GoToAedIndexPage();
         }
 
         public AedIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
         {
             _fATV2StepsHelper.ShortlistATrainingCourseAndNavigateToShortlistPage();
 
-            return GoToAEDIndexPage();
+            return GoToAedIndexPage();
         }
 
-        private AedIndexPage GoToAEDIndexPage() => new AedIndexPage(_context);
+        private AedIndexPage GoToAedIndexPage() => new AedIndexPage(_context);
 
         private GetHelpWithFindingATrainingProviderPage ClickStartNow(ShareYourInterestWithTrainingProvidersPage page) => page.ClickStartNow();
     }
