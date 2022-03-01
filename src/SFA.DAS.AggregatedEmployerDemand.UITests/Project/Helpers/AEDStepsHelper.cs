@@ -26,27 +26,27 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
             new MailinatorStepsHelper(_context, _context.Get<AedDataHelper>().RandomEmail).OpenLink("https://");
         }
 
-        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider(AEDIndexPage aEDIndexPage) => ClickStartNow(aEDIndexPage.ClickGetHelpWithFindingATrainingProviderLink());
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider(AedIndexPage aEDIndexPage) => ClickStartNow(aEDIndexPage.ClickGetHelpWithFindingATrainingProviderLink());
 
         public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider() => GetHelpWithFindingATrainingProvider(GoToAEDIndexPage());
         
-        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage(AEDIndexPage page) => ClickStartNow(page.ClickShareInterestButton());
+        public GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProviderViaShortlistPage(AedIndexPage page) => ClickStartNow(page.ClickShareInterestButton());
 
-        public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPage()
+        public AedIndexPage NavigateToShareYourInterestWithTrainingProvidersPage()
         {
             _fATV2StepsHelper.ViewProvidersForThisCourse();
 
             return GoToAEDIndexPage();
         }
 
-        public AEDIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
+        public AedIndexPage NavigateToShareYourInterestWithTrainingProvidersPageViaShortlistPage()
         {
             _fATV2StepsHelper.ShortlistATrainingCourseAndNavigateToShortlistPage();
 
             return GoToAEDIndexPage();
         }
 
-        private AEDIndexPage GoToAEDIndexPage() => new AEDIndexPage(_context);
+        private AedIndexPage GoToAEDIndexPage() => new AedIndexPage(_context);
 
         private GetHelpWithFindingATrainingProviderPage ClickStartNow(ShareYourInterestWithTrainingProvidersPage page) => page.ClickStartNow();
     }

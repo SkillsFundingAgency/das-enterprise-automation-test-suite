@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
 {
-    public class WhichEmployersAreYouInterestedInPage : AEDBasePage
+    public class WhichEmployersAreYouInterestedInPage : AedBasePage
     {
         protected override string PageTitle => "";
 

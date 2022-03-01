@@ -9,7 +9,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions
     {
         private readonly AedStepsHelper _aEDStepsHelper;
         private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
-        private AEDIndexPage _aedIndexPage;
+        private AedIndexPage _aedIndexPage;
 
         public AedSteps(ScenarioContext context) => _aEDStepsHelper = new AedStepsHelper(context);
 

@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 {
-    public class AEDIndexPage : AEDBasePage
+    public class AedIndexPage : AedBasePage
     {
         protected override string PageTitle => "";
 
-        public AEDIndexPage(ScenarioContext context) : base(context) { }
+        public AedIndexPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");

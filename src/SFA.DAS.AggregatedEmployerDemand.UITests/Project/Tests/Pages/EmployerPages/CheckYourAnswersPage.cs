@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
 {
-    public class CheckYourAnswersPage : AEDBasePage
+    public class CheckYourAnswersPage : AedBasePage
     {
         protected override string PageTitle => "Check your answers";
         
