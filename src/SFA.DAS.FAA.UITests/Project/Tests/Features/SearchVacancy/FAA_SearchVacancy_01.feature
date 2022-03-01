@@ -2,6 +2,7 @@
 
 @faa
 @raa-v1
+@raa-v2
 @regression
 Scenario: FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort results and distance on the vacancies
 	Given an applicant is on the Find an Apprenticeship Page

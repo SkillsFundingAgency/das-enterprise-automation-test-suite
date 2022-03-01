@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_ProviderCanNavigateBackToBeginningOfTheJourney")]
-    public partial class AED_ProviderCanNavigateBackToBeginningOfTheJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney")]
+    public partial class AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_ProviderCanNavigateBackToBeginningOfTheJourney.feature"
+#line 1 "AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderCanNavigateBackToBeginningOfTheJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney")]
+        [NUnit.Framework.DescriptionAttribute("AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney()
+        public virtual void AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCNBTBOTJ_01_ProviderCanNavigateBackToBeginningOfTheJourney", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,12 +105,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the employer has shared interest \'Coventry, West Midlands\', \'Quinton Testing Ltd\'" +
-                        " and \'mailmanprovider@mailinator.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the employer has shared interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("the provider has entered their contact details \'mailman@mailinator.com\', \'0190211" +
-                        "1222\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the provider has provided their contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
  testRunner.Then("the provider is able to navigate to beginning of the journey using the back links" +

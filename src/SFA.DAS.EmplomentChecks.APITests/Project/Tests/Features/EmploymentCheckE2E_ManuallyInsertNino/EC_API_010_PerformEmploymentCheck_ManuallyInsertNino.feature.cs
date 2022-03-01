@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2E_ManuallyInsertNino
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_ProviderCanEditTheirContactDetails")]
-    public partial class AED_ProviderCanEditTheirContactDetailsFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EManuallyInsertNino")]
+    public partial class EmploymentCheckE2EManuallyInsertNinoFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_ProviderCanEditTheirDetails.feature"
+#line 1 "EC_API_010_PerformEmploymentCheck_ManuallyInsertNino.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderCanEditTheirContactDetails", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2E_ManuallyInsertNino", "EmploymentCheckE2EManuallyInsertNino", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,18 +73,23 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_PCETCD_01_ProviderCanEditTheirContactDetails")]
-        [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_PCETCD_01_ProviderCanEditTheirContactDetails()
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino(string testCaseId, string uLN, string nINO, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "aggregatedemployerdemand",
-                    "regression"};
+            string[] @__tags = new string[] {
+                    "api",
+                    "regression",
+                    "employmentcheckapi"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCETCD_01_ProviderCanEditTheirContactDetails", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 5
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("ULN", uLN);
+            argumentsOfScenario.Add("NINO", nINO);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,26 +109,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("the employer has shared interest \'Coventry, West Midlands\', \'Quinton Testing Ltd\'" +
-                        " and \'mailmanprovider@mailinator.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 7
- testRunner.And("the provider has entered their contact details \'mailman@mailinator.com\', \'0190211" +
-                        "1222\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\' and ULN \'{1}\'", testCaseId, uLN), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("the provider selects the option to edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("a NINO \'{0}\' has been manually inserted", nINO), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("the provider chooses to edit the contact details \'mailmanprovider@mailinator.com\'" +
-                        ", \'01902222111\' and \'www.myproviderinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("check is picked up for enrichment process", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the provider is able to submit the edited details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("call to DC api is not made", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("an employment check request to HMRC is created using the Nino provided", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EC_API_010_PerformEmploymentCheck_ManuallyInsertNino: 10")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
+        public virtual void EC_API_010_PerformEmploymentCheck_ManuallyInsertNino_10()
+        {
+#line 6
+this.EC_API_010_PerformEmploymentCheck_ManuallyInsertNino("10", "123456789", "Manual_Insert", ((string[])(null)));
+#line hidden
         }
     }
 }

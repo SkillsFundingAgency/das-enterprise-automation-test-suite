@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_ProviderCanShowInterestInEmployerDemand")]
-    public partial class AED_ProviderCanShowInterestInEmployerDemandFeature
+    [NUnit.Framework.DescriptionAttribute("AED_E_02_EmployerSharesInterestOfANumberOfApprentices")]
+    public partial class AED_E_02_EmployerSharesInterestOfANumberOfApprenticesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_ProviderCanShowInterestInEmployerDemand.feature"
+#line 1 "AED_E_02_EmployerSharesInterestOfANumberOfApprentices.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderCanShowInterestInEmployerDemand", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AED_E_02_EmployerSharesInterestOfANumberOfApprentices", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_PCSIIED_ProviderCanRegistertheirInterest")]
+        [NUnit.Framework.DescriptionAttribute("AED_E_02_EmployerSharesInterestOfANumberOfApprentices")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_PCSIIED_ProviderCanRegistertheirInterest()
+        public virtual void AED_E_02_EmployerSharesInterestOfANumberOfApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCSIIED_ProviderCanRegistertheirInterest", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_E_02_EmployerSharesInterestOfANumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,18 +105,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the employer has shared interest \'Coventry, West Midlands\', \'Quinton Testing Ltd\'" +
-                        " and \'mailmanprovider@mailinator.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("the provider navigates to Find employers that need a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the user selects get help with finding a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.When("the provider shows the which employers they are interested in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("the provider is able to enter their details \'mailman@mailinator.com\', \'0190211122" +
-                        "2\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the user can register interest with apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
