@@ -33,5 +33,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new ApproveAppliationPage(context);
         }
 
+        public TransferPledgePage SortByApplicant()
+        {
+            formCompletionHelper.ClickLinkByText("Applicant");
+            formCompletionHelper.ClickLinkByText("Estimated cost 2021/22");
+            formCompletionHelper.ClickLinkByText("Typical duration");
+            formCompletionHelper.ClickLinkByText("Criteria");
+            formCompletionHelper.ClickLinkByText("Status");
+            return new TransferPledgePage(context);
+        }
     }
 }
