@@ -16,8 +16,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
-        protected By PanelTitle => By.CssSelector(".govuk-panel__title");
-
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
             isRaaV2Employer = tags.Contains("raa-v2e");

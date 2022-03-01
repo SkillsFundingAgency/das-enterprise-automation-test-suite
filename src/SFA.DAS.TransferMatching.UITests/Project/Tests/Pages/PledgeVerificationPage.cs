@@ -9,7 +9,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your pledge has been created as pledge";
 
-        protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+        protected override By PageHeader => PanelTitle;
 
         public PledgeVerificationPage(ScenarioContext context) : base(context) { }
 
