@@ -37,8 +37,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var request = new ReinstateApplicationRequest
             {
-                ULN = uln,
-                AccountLegalEntityId = accountLegalEntityId
+                Applications = new[] { 
+                    new Application {
+                        ULN = uln,
+                        AccountLegalEntityId = accountLegalEntityId
+                    }
+                }
             };
 
             var response = await httpClient.PostAsync($"{baseUrl}/api/reinstate?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
@@ -78,7 +82,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public class ReinstateApplicationRequest
         {
-            public WithdrawalType WithdrawalType { get; set; }
+            public Application[] Applications { get; set; }
+        }
+
+        public class Application
+        {
             public long AccountLegalEntityId { get; set; }
             public long ULN { get; set; }
         }
