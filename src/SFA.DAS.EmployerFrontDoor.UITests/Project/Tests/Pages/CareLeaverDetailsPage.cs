@@ -10,9 +10,6 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
     {
         private readonly ScenarioContext _context;
 
-        // protected override string PageTitle => "Sector-based Work Academy Programme(SWAP)";
-        //protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-
         private By CareLeaverLink => By.Id("scheme-header-link-care-leaver-covenant");
 
         public CareLeaverDetailsPage(ScenarioContext context) : base(context) => _context = context;
@@ -20,7 +17,6 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
 
         public CareLeaverDetailsPage CareLeaverScheme()
         {
-            // if (ApprenticeshipsDetailsPage.WaitUntilAnyElements(ApprenticeshipsLink))
             {
                 formCompletionHelper.ClickElement(CareLeaverLink);
             }

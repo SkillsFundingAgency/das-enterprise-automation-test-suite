@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EFD_TrainingOutside_11")]
-    public partial class EFD_TrainingOutside_11Feature
+    [NUnit.Framework.DescriptionAttribute("EFD_FilterSchemesButtonAndCheckBox_11")]
+    public partial class EFD_FilterSchemesButtonAndCheckBox_11Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TrainingOutside.feature"
+#line 1 "FilteSchemesButton.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "EFD_TrainingOutside_11", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "EFD_FilterSchemesButtonAndCheckBox_11", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EmployerFrontDoor_TrainingOutside_11 Check link")]
+        [NUnit.Framework.DescriptionAttribute("EmployerFrontDoor FilterSchemesButtonAndCheckBoxes_11")]
         [NUnit.Framework.CategoryAttribute("employerfrontdoor")]
         [NUnit.Framework.CategoryAttribute("apprenticeships")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EmployerFrontDoor_TrainingOutside_11CheckLink()
+        public virtual void EmployerFrontDoorFilterSchemesButtonAndCheckBoxes_11()
         {
             string[] tagsOfScenario = new string[] {
                     "employerfrontdoor",
                     "apprenticeships",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmployerFrontDoor_TrainingOutside_11 Check link", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmployerFrontDoor FilterSchemesButtonAndCheckBoxes_11", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,8 +107,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the user navigates to employment schemes page and verifies the TrainingOutside li" +
-                        "nk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the user navigates to employment schemes page and verifies the Filter Schemes and" +
+                        " Checkboxes button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

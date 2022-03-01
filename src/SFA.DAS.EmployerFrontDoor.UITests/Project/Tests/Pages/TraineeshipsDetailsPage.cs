@@ -10,22 +10,16 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
     {
         private readonly ScenarioContext _context;
 
-        // protected override string PageTitle => "Sector-based Work Academy Programme(SWAP)";
-        //protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-
         private By TraineeshipsLink => By.Id("scheme-header-link-traineeships");
 
         public TraineeshipsDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-
         public TraineeshipsDetailsPage TraineeshipsScheme()
         {
-            // if (ApprenticeshipsDetailsPage.WaitUntilAnyElements(ApprenticeshipsLink))
             {
                 formCompletionHelper.ClickElement(TraineeshipsLink);
             }
             return new TraineeshipsDetailsPage(_context);
         }
-
     }
 }

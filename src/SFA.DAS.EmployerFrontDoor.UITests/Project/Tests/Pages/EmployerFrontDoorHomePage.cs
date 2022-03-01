@@ -11,14 +11,9 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         private By CookieButton => By.Id("layout-cookie-button-accept");
-
         private By CloseCookieButton => By.Id("cookie-accept-close-button");
 
-        private By ApprenticeshipsLink => By.Id("scheme-header-link-Apprenticeships");
-
         public EmployerFrontDoorHomePage(ScenarioContext context) : base(context) => _context = context;
-        //public ApprenticeshipsDetailsPage(ScenarioContext context) : base(context) => _context = context;
-
         public EmployerFrontDoorHomePage AcceptCookieAndAlert()
         {
             if (pageInteractionHelper.WaitUntilAnyElements(CookieButton))
@@ -28,15 +23,6 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
             }
             return new EmployerFrontDoorHomePage(_context);
         }
-
-      /*  public void ApprenticeshipsScheme()
-        {
-            if (pageInteractionHelper.WaitUntilAnyElements(ApprenticeshipsLink)) 
-            {
-                formCompletionHelper.ClickElement(ApprenticeshipsLink);
-            }
-            
-        } */
     }
 }
 

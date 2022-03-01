@@ -16,6 +16,6 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.StepDefinitions
         {
             _stepsHelper.GoToEmployerFrontDoorHomePage();
         }
-
+    
     }
 }

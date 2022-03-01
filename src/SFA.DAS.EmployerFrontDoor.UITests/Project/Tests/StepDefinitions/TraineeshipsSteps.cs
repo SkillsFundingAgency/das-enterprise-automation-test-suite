@@ -12,7 +12,6 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.StepDefinitions
         private readonly EmployerFrontDoorStepsHelper _stepsHelper;
         public TraineeshipsSteps(ScenarioContext context) => _stepsHelper = new EmployerFrontDoorStepsHelper(context);
 
-
         [Given(@"the user navigates to employment schemes page and verifies the Traineeships link")]
         public void GivenTheUserNavigatesToEmploymentSchemesPageAndVerifiesTheTraineeshipsLink()
         {

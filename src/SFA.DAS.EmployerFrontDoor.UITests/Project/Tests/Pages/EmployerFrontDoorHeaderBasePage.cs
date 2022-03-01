@@ -13,12 +13,5 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
         readonly ScenarioContext _context;
         public EmployerFrontDoorHeaderBasePage(ScenarioContext context) : base(context) => _context = context;
 
-       // protected By ApprenticeshipsLink => By.Id("scheme-header-link-Apprenticeships");
-
-      /*  public ApprenticeshipsHubPage NavigateToApprenticeshipHubPage()
-        {
-            formCompletionHelper.ClickElement(ApprenticeshipsLink);
-            return new ApprenticeshipsHubPage(_context);  
-        } */
     }
 }

@@ -10,17 +10,12 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
     {
         private readonly ScenarioContext _context;
 
-        // protected override string PageTitle => "TLevels: industry placements";
-        //protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-
         private By EmpPrisonersLink => By.Id("scheme-header-link-employing-prisoners-and-prison-leavers");
 
         public EmpPrisonersDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-
         public EmpPrisonersDetailsPage EmpPrisonersScheme()
         {
-            // if (ApprenticeshipsDetailsPage.WaitUntilAnyElements(ApprenticeshipsLink))
             {
                 formCompletionHelper.ClickElement(EmpPrisonersLink);
             }

@@ -14,4 +14,3 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.StepDefinitions
         public void ThenTheLinksAreNotBroken() => new EmployerFrontDoorVerifyLinks(_context, false).VerifyLinks();
     }
 }
-

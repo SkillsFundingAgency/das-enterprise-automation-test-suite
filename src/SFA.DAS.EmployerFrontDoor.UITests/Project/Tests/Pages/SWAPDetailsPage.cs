@@ -10,17 +10,12 @@ namespace SFA.DAS.EmployerFrontDoor.UITests.Project.Tests.Pages
     {
         private readonly ScenarioContext _context;
 
-        // protected override string PageTitle => "Sector-based Work Academy Programme(SWAP)";
-        //protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-
         private By SWAPLink => By.Id("scheme-header-link-sector-based-work-academy-programme-swap");
 
         public SWAPDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-
         public SWAPDetailsPage SWAPScheme()
         {
-           // if (ApprenticeshipsDetailsPage.WaitUntilAnyElements(ApprenticeshipsLink))
             {
                 formCompletionHelper.ClickElement(SWAPLink);
             }
