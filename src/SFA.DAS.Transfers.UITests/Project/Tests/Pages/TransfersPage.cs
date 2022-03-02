@@ -18,7 +18,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         private By ConnectionsReceiveRows => By.CssSelector("#connections-receive tbody tr");
         private By TransfersSendRows => By.CssSelector("#transfers-send tbody tr");
         private By TransferReceiveRows => By.CssSelector("#transfers-receive tbody tr");
-        private By DetailsLink => By.LinkText("Details");
+        private By DetailsLink => By.PartialLinkText("Details");
 
         public TransfersPage(ScenarioContext context) : base(context) { }
 
