@@ -43,10 +43,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderUploadAmendedFilePage(context);
         }
 
-        public void SelectsToSaveAllButDontSendToEmployer()
+        public ProviderNewApprenticeDetailsSavedSuccessfully SelectsToSaveAllButDontSendToEmployer()
         {
             formCompletionHelper.SelectRadioOptionByLocator(SaveButDontSendToEmployerRadioButton);
             Continue();
+            return new ProviderNewApprenticeDetailsSavedSuccessfully(context);
         }
 
         public ProviderUploadAmendedFilePage SelectToUploadAnAmendedFileThroughLink()

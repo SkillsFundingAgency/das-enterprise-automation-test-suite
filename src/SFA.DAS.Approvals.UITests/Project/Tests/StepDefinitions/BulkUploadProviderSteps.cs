@@ -71,6 +71,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                      .SelectsToSaveAllButDontSendToEmployer();
+
+            
         }
 
         [Given(@"User selects to upload an amended file through link")]

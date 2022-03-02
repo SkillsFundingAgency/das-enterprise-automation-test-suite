@@ -119,6 +119,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("Correct Information is displayed on review apprentices details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.And("Provider selects to save all but don\'t send to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

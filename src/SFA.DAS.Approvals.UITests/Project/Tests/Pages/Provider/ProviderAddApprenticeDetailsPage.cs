@@ -9,11 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddApprenticeDetailsPage : AddApprenticeDetailsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
+        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By Uln => By.Id("Uln");
-
         private By AddButton => By.CssSelector("#addApprenticeship > button");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
