@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.RecruitmentAPIs
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AED_ProviderCanShowInterestInEmployerDemand")]
-    public partial class AED_ProviderCanShowInterestInEmployerDemandFeature
+    [NUnit.Framework.DescriptionAttribute("RV2_P_RA_04")]
+    public partial class RV2_P_RA_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AED_ProviderCanShowInterestInEmployerDemand.feature"
+#line 1 "RV2_P_RA_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AED_ProviderCanShowInterestInEmployerDemand", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/RecruitmentAPIs", "RV2_P_RA_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,21 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AED_PCSIIED_ProviderCanRegistertheirInterest")]
-        [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_RA_04 - Provider does not renew api key")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AED_PCSIIED_ProviderCanRegistertheirInterest()
+        [NUnit.Framework.CategoryAttribute("recruitmentapikey")]
+        public virtual void RV2_P_RA_04_ProviderDoesNotRenewApiKey()
         {
             string[] tagsOfScenario = new string[] {
-                    "aggregatedemployerdemand",
-                    "regression"};
+                    "raa-v2",
+                    "raa-v2e",
+                    "regression",
+                    "recruitmentapikey"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_PCSIIED_ProviderCanRegistertheirInterest", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_RA_04 - Provider does not renew api key", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,19 +108,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("the employer has shared interest \'Coventry, West Midlands\', \'Quinton Testing Ltd\'" +
-                        " and \'mailmanprovider@mailinator.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
- testRunner.And("the provider navigates to Find employers that need a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 8
- testRunner.When("the provider shows the which employers they are interested in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("the provider is able to enter their details \'mailman@mailinator.com\', \'0190211122" +
-                        "2\' and \'www.myinterestregister.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the provider does not renews the api key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

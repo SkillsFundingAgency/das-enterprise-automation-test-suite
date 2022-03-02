@@ -20,55 +20,26 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
 
         public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
 
-        public WeveSharedYourContactDetailsWithEmployersPage ConfirmAndShareProvidersDetailsWithEmployersContactDetails(string emailAddress, string telephoneNumber, string website)
+        public WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) => 
+            page.ContinueToProviderCheckYourAnswersPage()
+            .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
+
+        public WhichEmployersAreYouInterestedInPage NavigateBacktoWhichEmployersAreYouInterestedInPage(ConfirmProvidersContactDetailsPage page)
         {
-            return ProvidersCheckYourAnswers(emailAddress, telephoneNumber, website).ContinueToWeveSharedYourContactDetailsWithEmployersPage();
-        }
-
-        public WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit() => 
-            new ConfirmProvidersContactDetailsPage(_context).ContinueToProviderCheckYourAnswersPage().ContinueToWeveSharedYourContactDetailsWithEmployersPage();
-
-        public EditProvidersContactDetailsPage ChangeProviderContactDetails() => new CheckYourAnswersPage(_context).ChangeProviderContactDetails();
-
-        public WhichEmployersAreYouInterestedInPage NavigateBacktoWhichEmployersAreYouInterestedInPageFromCheckYourAnswersPage()
-        {
-            new CheckYourAnswersPage(_context).BackToProvidersContactDetailsPage()
+            return page.ContinueToProviderCheckYourAnswersPage().BackToProvidersContactDetailsPage()
                 .BackToEditProvidersContactDetailsPage()
                 .BackToWhichEmployersAreYouInterestedInPage()
-                .BackToFindEmployersThatNeedATrainingProviderPage();
-            return new WhichEmployersAreYouInterestedInPage(_context);
+                .BackToFindEmployersThatNeedATrainingProviderPage()
+                .ViewWhichEmployerNeedsATrainingProvider();
         }
 
-        public EditProvidersContactDetailsPage EnterIncorrectProviderContactDetailsBeforeResubmitting(string wrongEmailAddress, string wrongTelephoneNumber, string website)
+        public WeveSharedYourContactDetailsWithEmployersPage SubmitProviderLocationDetails(ConfirmProvidersContactDetailsPage page)
         {
-            return EnterProvidersContactDetails(wrongEmailAddress, wrongTelephoneNumber, website).ContinueWithInvalidDetails();
-        }
-
-        public EditProvidersContactDetailsPage AttemptToProgressWithoutEnteringProviderContactDetails() => new EditProvidersContactDetailsPage(_context).ContinueWithInvalidDetails();
-
-        public WhichEmployersAreYouInterestedInPage ChangeProviderLocationDetails() => new CheckYourAnswersPage(_context).ChangeProviderLocationDetails();
-
-        public WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderLocationDetailsAndSubmit()
-        {
-            return new WhichEmployersAreYouInterestedInPage(_context)
+            return page.ContinueToProviderCheckYourAnswersPage()
+                .ChangeProviderLocationDetails()
                 .CheckAndContinueWithfirstEmployerCheckboxAfterChange()
                 .ContinueToProviderCheckYourAnswersPage()
                 .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
-        }
-
-        public ConfirmProvidersContactDetailsPage ConfirmProvidersContactDetails(string emailAddress, string telephoneNumber, string website)
-        {
-            return EnterProvidersContactDetails(emailAddress, telephoneNumber, website).ContinueToConfirmProviderContactDetailsPage();
-        }
-
-        public CheckYourAnswersPage ProvidersCheckYourAnswers(string emailAddress, string telephoneNumber, string website)
-        {
-            return ConfirmProvidersContactDetails(emailAddress, telephoneNumber, website).ContinueToProviderCheckYourAnswersPage();
-        }
-
-        private EditProvidersContactDetailsPage EnterProvidersContactDetails(string emailAddress, string telephoneNumber, string website)
-        {
-            return new EditProvidersContactDetailsPage(_context).EnterProvidersContactDetails(emailAddress, telephoneNumber, website);
         }
     }
 }
