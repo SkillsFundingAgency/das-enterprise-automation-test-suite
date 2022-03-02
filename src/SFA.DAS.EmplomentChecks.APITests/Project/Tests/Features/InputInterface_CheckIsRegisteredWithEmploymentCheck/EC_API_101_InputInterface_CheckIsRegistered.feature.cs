@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_101_InputInterface_CheckIsRegistered(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void EC_API_101_InputInterface_CheckIsRegistered(string method, string endpoint, string payload, string responseStatus, string registered, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,6 +89,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.InputInterfac
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("Registered", registered);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_101_InputInterface_CheckIsRegistered", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -118,10 +119,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "\'", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("a \'{0}\' response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.And("the check is registered in Employment Check business table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the check is \'{0}\' in Employment Check business table", registered), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -135,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void EC_API_101_InputInterface_CheckIsRegistered_POST()
         {
 #line 6
-this.EC_API_101_InputInterface_CheckIsRegistered("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_101.json", "OK", ((string[])(null)));
+this.EC_API_101_InputInterface_CheckIsRegistered("POST", "/api/EmploymentCheck/RegisterCheck", "EC_API_101.json", "OK", "true", ((string[])(null)));
 #line hidden
         }
     }

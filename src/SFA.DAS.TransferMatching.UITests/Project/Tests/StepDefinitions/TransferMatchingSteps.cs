@@ -101,20 +101,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
         [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding()
+        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
+
+        [Then(@"the non levy employer can withdraw funding")]
+        public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
+
+        [Then(@"the non levy employer can withdraw funding before approval")]
+        public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
         {
-            UpdateOrganisationName(_sender);
-
+            UpdateOrganisationName(_receiver);
             SignOut();
-
             LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+            OpenPledgeApplication("AWAITING APPROVAL").WithdrawBeforeApproval().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN");
 
-            NavigateToTransferMatchingPage()
-                .ViewApplicationsIhaveSubmitted()
-                .OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE")
-                .VerifyAgreeToTermsIsMandatoryAndAcceptFunding()
-                .ViewMyApplications()
-                .OpenPledgeApplication("FUNDS AVAILABLE");
         }
 
         [Then(@"the pledge is available to apply")]
@@ -168,6 +167,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+        [Then(@"the levy employer can sort the pledges")]
+        public void TheLevyEmployerCanSortThePledges() => SortApplications();
+
         [Then(@"the levy employer can view pledges from verification page")]
         public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
@@ -192,6 +194,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer is able to apply for transfer opportunities")]
         public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
 
+        private ApplicationsDetailsPage OpenApprovedPledgeApplication()
+        {
+            UpdateOrganisationName(_sender);
+
+            SignOut();
+
+            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        }
+
         private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
 
         private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
@@ -210,6 +223,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
             return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge();
+        }
+
+        private TransferPledgePage SortApplications()
+        {
+            SignOut();
+
+            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SortByApplicant();
         }
 
         private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePage().GoToApproveAppliationPage();
@@ -270,8 +292,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .SubmitApplication()
                 .ContinueToMyAccount();
 
-            return NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
+
+        private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
 
         private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
         {

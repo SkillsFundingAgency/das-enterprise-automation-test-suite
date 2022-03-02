@@ -33,20 +33,22 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             _restClient.CreateRestRequest(method, endpoint, payload);
         }
 
-
-        [Then(@"a OK response is received")]
-        public void ThenAOKResponseIsReceived()
+        [Then(@"a '([^']*)' response is received")]
+        public void ThenAResponseIsReceived(HttpStatusCode code)
         {
-            apiResponse = _restClient.Execute(HttpStatusCode.OK);
+            apiResponse = _restClient.Execute(code);
         }
 
-        [Then(@"the check is registered in Employment Check business table")]
-        public void ThenTheCheckIsRegisteredInEmploymentCheckBusinessTable()
+        [Then(@"the check is '([^']*)' in Employment Check business table")]
+        public void ThenTheCheckIsInEmploymentCheckBusinessTable(bool registered)
         {
             string checkType = _context.ScenarioInfo.Title.Substring(0, 10);
             int count = _employmentChecksSqlDbHelper.GetCheckFromEmploymentCheckTable(checkType);
 
-            Assert.AreEqual(1, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");
+            if (registered) 
+                Assert.AreEqual(1, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");
+            else
+                Assert.AreEqual(0, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");
         }
 
 

@@ -12,6 +12,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
     {
         private readonly DbConfig _dbConfig;
         private int employmentCheckId;
+        private Guid correlationId;
 
         public EmploymentChecksSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EmploymentCheckDbConnectionString) { _dbConfig = dbConfig; }
 
@@ -40,6 +41,38 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return employmentCheckId;
         }
 
+        internal void InsertEmploymentCheckRecordwithNino(long uln, string nino, long accountId, string checkType)
+        {
+            var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            correlationId = Guid.NewGuid();
+
+            string query = $"BEGIN TRAN " +
+                $" INSERT INTO [Business].[EmploymentCheck] " +
+                $" ([CorrelationId], [CheckType], [Uln], [ApprenticeshipId], [AccountId], [MinDate], [MaxDate], [CreatedOn]) " +
+                $" VALUES " +
+                $" ('{correlationId}', '{checkType}', {uln}, 456, {accountId}, '2020-01-01', '2020-01-31', '{now}')" +
+                $" INSERT INTO [Cache].[DataCollectionsResponse] " +
+                $" ([ApprenticeEmploymentCheckId], [CorrelationId], [Uln], [NiNumber], [CreatedOn]) " +
+                $" SELECT top 1 ec.id, ec.CorrelationId, ec.uln, '{nino}', '{now}' " +
+                $" FROM [Business].[EmploymentCheck] ec " +
+                $" where ec.uln = {uln} and ec.CheckType = '{checkType}' " +
+                $" order by CreatedOn desc " +
+                $" COMMIT";
+
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
+        }
+
+        internal int getCountFromDataCollectionResponse(long uln)
+        {
+            string query = $" SELECT COUNT(*) FROM [Cache].[DataCollectionsResponse] " +
+                $" WHERE CorrelationId = '{correlationId}' AND Uln = '{uln}'";
+
+            Thread.Sleep(10000);
+
+            return int.Parse(GetDataAsString(query));
+        }
+
         internal int GetEmploymentCheckCacheRequestId(int employmentStatus)
         {
             string query = $" select top(1) Id from [Cache].[EmploymentCheckCacheRequest] " +
@@ -48,7 +81,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return Convert.ToInt32(GetDataAsString(query));
         }
 
-        internal int? getEmploymentCheckStatus()
+        internal int? getEmploymentCheckStatusWithId()
         {
             int count = 0;
             int i;
@@ -74,10 +107,36 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return null;
         }
 
+        internal int? getEmploymentCheckStatusWithCorrelationId()
+        {
+            int count = 0;
+            int i;
+
+            string query = $" select RequestCompletionStatus from [Business].[EmploymentCheck] " +
+                $" where CorrelationId = '{correlationId}' ";
+
+            string completionStatus = GetDataAsString(query);
+
+            // Completion status [null] signifies that the record has not been processed yet.
+            // give it a max of 10 seconds for it to be picked up by the orchestrator
+
+            while (String.IsNullOrEmpty(completionStatus) && count < 10)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                completionStatus = GetDataAsString(query);
+            }
+
+            if (int.TryParse(completionStatus, out i)) return i;
+
+            return null;
+        }
+
         internal int GetCheckFromEmploymentCheckTable(string checkType)
         {
             string query = $"SELECT * from [Business].[EmploymentCheck] " +
-                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,CreatedOn)";
+                $" where CheckType = '{checkType}' and CreatedOn >= DATEADD(SECOND,-20,GETDATE())";
 
             var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
@@ -214,7 +273,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 
             // count variable is added to stop the infinite loop incase ProcessEmploymentCheckRequestsWithRateLimiterOrchestrator has crashed
-            while (result.Count == 0 && count < 15)
+            while (result.Count == 0 && count < 20)
             {
                 Thread.Sleep(2000);
                 count++;
@@ -231,11 +290,31 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
         }
 
-        internal List<object[]> getEmploymentCheckCacheRequestRows()
+        internal List<object[]> getRelatedsPayeFromEmploymentCheckCacheRequestRows()
         {
             int count = 0;
 
             string query = $"SELECT PayeScheme from [Cache].[EmploymentCheckCacheRequest] where ApprenticeEmploymentCheckId = {employmentCheckId}";
+
+            List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+
+            // count variable is added to stop the infinite loop incase CreateEmploymentCheckCacheRequestsOrchestrator has crashed
+            while (result.Count == 0 && count < 15)
+            {
+                Thread.Sleep(2000);
+                count++;
+
+                result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
+            }
+
+            return result;
+        }
+
+        internal List<object[]> getEmploymentCheckCacheRequestRows()
+        {
+            int count = 0;
+
+            string query = $" SELECT * from [Cache].[EmploymentCheckCacheRequest] where CorrelationId = '{correlationId}' ";
 
             List<object[]> result = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, _dbConfig.EmploymentCheckDbConnectionString);
 

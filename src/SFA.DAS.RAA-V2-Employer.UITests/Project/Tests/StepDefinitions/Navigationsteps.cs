@@ -17,6 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(_context);
         }
 
+        [Given(@"the Employer navigates to 'Recruit' Page")]
         [When(@"the Employer navigates to 'Recruit' Page")]
         public void WhenTheEmployerNavigatesToPage() => _employerStepsHelper.GoToRecruitmentHomePage();
 
