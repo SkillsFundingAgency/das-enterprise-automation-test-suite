@@ -161,6 +161,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "You must enter a valid Cohort Ref"});
+                table1.AddRow(new string[] {
+                            "ULN < 10",
+                            "valid",
+                            "valid",
+                            "171649120",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "You must enter a valid Cohort ULN"});
 #line 9
  testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
 #line hidden

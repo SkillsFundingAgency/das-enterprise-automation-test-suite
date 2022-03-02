@@ -9,6 +9,7 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        protected readonly TableRowHelper tableRowHelper;
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
@@ -52,6 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             ApprenticeList = new List<ApprenticeDetails>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            tableRowHelper = context.Get<TableRowHelper>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -161,8 +164,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
         {            
             
-            
-            
             var items = table.CreateSet<MapApprenticeData>();
             var cohortRef = _objectContext.GetCohortReference();
             var courseCode = 17;
@@ -198,6 +199,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 {
                     result.CohortRef = item.CohortRef;
                 }
+
+                if (item.ULN != "valid")
+                {
+                    result.ULN = item.ULN;
+                }
             }
 
             ApprenticeList.Add(result);
@@ -214,6 +220,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             // 1. Create Csv File with bad data
             // 2. upload
             // 3. validate the error message (Najam will help me to sort this)
+
+            //tableRowHelper.GetColumn(linkText, statusSelector), expectedStatus, action);    
         }
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]

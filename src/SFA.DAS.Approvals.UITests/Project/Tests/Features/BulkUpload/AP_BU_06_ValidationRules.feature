@@ -10,5 +10,5 @@ Scenario: AP_BU_06_Validation Rules
  | Category					| CohortRef | AgreementID | ULN   | FamilyName | GivenNames | DateOfBirth | EmailAddress | StdCode | StartDate | EndDate | TotalPrice | EPAOrgID | ProviderRef | ErrorMessage |
  | HappyPath				| valid     | valid       | valid | valid      | valid      | valid       | valid        | valid   | valid     | valid   | valid      | valid    | valid       |               |
  | CohortRef length > 20	| MKRK7VMKRK7VMKRK7VPJ1	|valid			|valid	|valid		|valid		|valid			|valid			|valid		|valid		|valid		|valid		| valid		| valid			| You must enter a valid Cohort Ref	|
-
+ | ULN < 10					| valid     | valid       | 171649120 | valid      | valid      | valid       | valid        | valid   | valid     | valid   | valid      | valid    | valid       |  You must enter a valid Cohort ULN |
 
