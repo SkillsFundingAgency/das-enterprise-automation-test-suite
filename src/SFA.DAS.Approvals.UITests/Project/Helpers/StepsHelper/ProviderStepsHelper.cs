@@ -147,6 +147,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .UploadFile();
         }
 
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2_Vas(string fileLocation)
+        {
+            return
+                GoToProviderHomePage(false)
+                .GotoSelectJourneyPage()
+                .SelectBulkUploadV2()
+                .ContinueToUploadCsvFilePage()                
+                .UploadFile(fileLocation);
+        }
+
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
             GoToProviderHomePage();

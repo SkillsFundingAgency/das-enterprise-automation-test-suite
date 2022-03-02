@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohorts")]
+    [NUnit.Framework.DescriptionAttribute("AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohortsFeature
+    public partial class AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohortsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohorts", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,14 +77,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_BU_04_Do Not Allow Bulk Upload On Non Editable  Cohorts")]
+        [NUnit.Framework.DescriptionAttribute("AP_BU_05_Do Not Allow Bulk Upload On Non Editable  Cohorts")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
-        public virtual void AP_BU_04_DoNotAllowBulkUploadOnNonEditableCohorts()
+        public virtual void AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts()
         {
             string[] tagsOfScenario = new string[] {
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_04_Do Not Allow Bulk Upload On Non Editable  Cohorts", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Do Not Allow Bulk Upload On Non Editable  Cohorts", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the provider tries a bulk upload file to add apprentices in that cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("an error message is displaye", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.Given("the provider has a cohort which is with transfer-sender", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the provider tries a bulk upload file to add apprentices in that cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("an error message is displaye", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
  testRunner.Given("the provider has a cohort as a result of change of party", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the provider tries a bulk upload file to add apprentices in that cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("an error message is displaye", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

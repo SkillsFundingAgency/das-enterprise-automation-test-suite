@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -6,13 +7,19 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.UI.Framework.TestSupport;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps
+    public class EmployerSteps 
     {
         #region context&Helpers
         private readonly ScenarioContext _context;
@@ -21,20 +28,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper;
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
+        private BulkUploadDataHelper _bulkUploadDataHelper;
+        protected readonly ApprovalsConfig approvalsConfig;
+        private List<ApprenticeDetails> ApprenticeList;
 
         public EmployerSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();
+            _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();            
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _employerWithMultipleAccountsUser);
+            _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
+            _bulkUploadDataHelper = new BulkUploadDataHelper();
+            approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            ApprenticeList = new List<ApprenticeDetails>();
+            _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -139,6 +156,65 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+
+        [When(@"Provider add an apprentice uses details from below to create bulkupload")]
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
+        {            
+            
+            
+            
+            var items = table.CreateSet<MapApprenticeData>();
+            var cohortRef = _objectContext.GetCohortReference();
+            var courseCode = 17;
+
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
+            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
+            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+
+            var result = new ApprenticeDetails(courseCode)
+            {
+                CohortRef = cohortRef,
+                ULN = datahelper.Uln(),
+                FamilyName = datahelper.ApprenticeLastname,
+                GivenNames = datahelper.ApprenticeFirstname,
+                DateOfBirth = dateOfBirth,
+                StartDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseStartDate),
+                EndDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseEndDate),
+                TotalPrice = datahelper.TrainingPrice,
+                ProviderRef = datahelper.EmployerReference,
+                EmailAddress = emailAddress,
+                AgreementId = agreementId
+            };
+
+
+            foreach (var item in items)
+            {
+                if (item.CohortRef == "valid")
+                {
+                    result.CohortRef = cohortRef;
+                }
+                else
+                {
+                    result.CohortRef = item.CohortRef;
+                }
+            }
+
+            ApprenticeList.Add(result);
+
+            // 1. Create Csv File with bad data
+            string fileName = "BulkUpload_77.csv";
+            var fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation + fileName;
+            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+
+
+            // 2. upload
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2_Vas(fileLocation);
+
+            // 1. Create Csv File with bad data
+            // 2. upload
+            // 3. validate the error message (Najam will help me to sort this)
+        }
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
         [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]

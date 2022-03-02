@@ -88,6 +88,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public ProviderBulkUploadCsvFilePage UploadFile(string fileLocation)
+        {
+            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
+            formCompletionHelper.ClickElement(UploadFileButton);
+            return this;
+        }
+
         private ApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());

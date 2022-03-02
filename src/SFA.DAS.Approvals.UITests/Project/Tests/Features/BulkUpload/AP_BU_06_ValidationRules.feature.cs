@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_BU_05_ValidationRules")]
+    [NUnit.Framework.DescriptionAttribute("AP_BU_06_ValidationRules")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_BU_05_ValidationRulesFeature
+    public partial class AP_BU_06_ValidationRulesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_05_ValidationRules", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_06_ValidationRules", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,16 +77,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_BU_05_Validation Rules")]
+        [NUnit.Framework.DescriptionAttribute("AP_BU_06_Validation Rules")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
-        public virtual void AP_BU_05_ValidationRules()
+        public virtual void AP_BU_06_ValidationRules()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Validation Rules", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_06_Validation Rules", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "TotalPrice",
                             "EPAOrgID",
                             "ProviderRef",
-                            "Error Message"});
+                            "ErrorMessage"});
                 table1.AddRow(new string[] {
                             "HappyPath",
                             "valid",
