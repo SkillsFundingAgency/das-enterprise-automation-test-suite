@@ -41,7 +41,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return employmentCheckId;
         }
 
-        internal void InsertEmploymentCheckRecordwithNino(long uln, string nino, string checkType)
+        internal void InsertEmploymentCheckRecordwithNino(long uln, string nino, long accountId, string checkType)
         {
             var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
                 $" INSERT INTO [Business].[EmploymentCheck] " +
                 $" ([CorrelationId], [CheckType], [Uln], [ApprenticeshipId], [AccountId], [MinDate], [MaxDate], [CreatedOn]) " +
                 $" VALUES " +
-                $" ('{correlationId}', '{checkType}', {uln}, 456, 17701, '2020-01-01', '2020-01-31', '{now}')" +
+                $" ('{correlationId}', '{checkType}', {uln}, 456, {accountId}, '2020-01-01', '2020-01-31', '{now}')" +
                 $" INSERT INTO [Cache].[DataCollectionsResponse] " +
                 $" ([ApprenticeEmploymentCheckId], [CorrelationId], [Uln], [NiNumber], [CreatedOn]) " +
                 $" SELECT top 1 ec.id, ec.CorrelationId, ec.uln, '{nino}', '{now}' " +

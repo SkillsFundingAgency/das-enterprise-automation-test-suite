@@ -7,12 +7,13 @@ using SFA.DAS.Login.Service.Project.Helpers;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerAndProviderSteps
+    public class EmployerAndProviderSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
 
         public EmployerAndProviderSteps(ScenarioContext context)
         {
@@ -20,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
         }
 
 
@@ -34,5 +36,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.Approve();
         }
+
+        [Given(@"a dynamic pause rule exists from (.*) to (.*)")]
+        public void GivenADynamicPauseRuleExistsFromMonthActiveFromToMonthActiveTo(string monthActiveFrom, string monthActiveTo) =>
+            _reservationStepsHelper.AddDynamicPauseGlobalRule(ParseMonth(monthActiveFrom).Value, ParseMonth(monthActiveTo).Value);
     }
 }
