@@ -167,6 +167,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+        [Then(@"the levy employer can sort the pledges")]
+        public void TheLevyEmployerCanSortThePledges() => SortApplications();
+
         [Then(@"the levy employer can view pledges from verification page")]
         public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
@@ -220,6 +223,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
             return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge();
+        }
+
+        private TransferPledgePage SortApplications()
+        {
+            SignOut();
+
+            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SortByApplicant();
         }
 
         private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePage().GoToApproveAppliationPage();
