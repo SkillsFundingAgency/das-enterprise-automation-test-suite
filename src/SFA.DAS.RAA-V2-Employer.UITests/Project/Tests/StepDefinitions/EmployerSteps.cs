@@ -54,7 +54,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates an offline vacancy with disability confidence")]
         public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
 
-        [Given(@"the Employer clones and creates a vacancy")]
+        //[Given(@"the Employer clones and creates a vacancy")]
         public void GivenTheEmployerClonesAndCreatesAVacancy() => _employerStepsHelper.CloneAVacancy();
 
         [Given(@"the Employer can create a vacancy by entering all the Optional fields")]

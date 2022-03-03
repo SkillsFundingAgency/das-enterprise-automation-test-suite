@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
+        internal VacancyReferencePage CloneAnAdvert() => Checkandsubmityouradvert(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCreateAnApprenticeshipAdvertPage());
+
         internal void CreateANewAdvert(string employername, bool isEmployerAddress)
         {
             var createAdvertPage = _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
@@ -48,7 +50,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 
-            Checkandsubmityouradvert(createAdvertPage).SetVacancyReference();
+            Checkandsubmityouradvert(createAdvertPage);
 
         }
 
@@ -56,9 +58,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             return createAdvertPage
                 .CheckYourAnswers()
-                .SubmitAdvert();
+                .SubmitAdvert()
+                .SetVacancyReference();
         }
-
 
         private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername)
         {

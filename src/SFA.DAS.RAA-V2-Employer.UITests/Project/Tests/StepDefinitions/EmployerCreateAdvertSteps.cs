@@ -15,6 +15,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _employerCreateVacancyStepsHelper = new EmployerCreateAdvertStepsHelper(context);
         }
 
+        [Given(@"the Employer clones and creates an advert")]
+        public void TheEmployerClonesAndCreatesAnAdvert() => _employerCreateVacancyStepsHelper.CloneAnAdvert();
+
+
 
         [Given(@"the Employer creates an advert by selecting different work location")]
         public void TheEmployerCreatesAnAdvertBySelectingDifferentWorkLocation() => _employerCreateVacancyStepsHelper.CreateANewAdvert("legal-entity-name", false);

@@ -34,6 +34,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new VacancyPreviewPart2Page(context);
         }
 
+        public CreateAnApprenticeshipAdvertPage UpdateVacancyTitleAndGoToCreateAnApprenticeshipAdvertPage()
+        {
+            ChangeVacancyTitle();
+            return new CreateAnApprenticeshipAdvertPage(context);
+        }
+
         private void ChangeVacancyTitle()
         {
             formCompletionHelper.EnterText(Title, $"{rAAV2DataHelper.VacancyTitle}");
