@@ -2,6 +2,7 @@
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -16,6 +17,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By EmployerReason => By.CssSelector("#AnonymousReason");
 
         public EmployerNameBasePage(ScenarioContext context) : base(context) { }
+
+        public EmployerDescriptionPage ChooseRegisteredNameAndGotoEmployerDescriptionPage()
+        {
+            SelectRadioOptionByForAttribute("legal-entity-name");
+
+            var entityName = pageInteractionHelper.GetText(LegalEntityName);
+
+            SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
+
+            Continue();
+
+            return new EmployerDescriptionPage(context);
+        }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {

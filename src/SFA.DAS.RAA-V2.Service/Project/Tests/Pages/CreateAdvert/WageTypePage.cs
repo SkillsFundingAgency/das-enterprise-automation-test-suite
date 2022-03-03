@@ -2,7 +2,7 @@
 using TechTalk.SpecFlow;
 
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class WageTypePage : RAAV2CSSBasePage
     {
@@ -14,18 +14,25 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 
+        public SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
+        {
+            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            Continue();
+            return new SubmitNoOfPositionsPage(context);
+        }
+
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
             return ContinueToPreviewYourVacancyPage();
         }
-        
+
         public PreviewYourVacancyPage SelectNationalMinimumWageForApprentices()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
             return ContinueToPreviewYourVacancyPage();
         }
-        
+
         public PreviewYourVacancyPage SelectFixedWageType()
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");

@@ -1,11 +1,7 @@
-﻿using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.RAA_V2.Service.Project.Helpers;
+﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
@@ -14,23 +10,21 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
     public class EmployerStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _loginhelper;
-        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
+        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly StepsHelper _stepsHelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _loginhelper = new EmployerPortalLoginHelper(context);
-            _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
             _stepsHelper = new StepsHelper(context);
+            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
         internal EmployerVacancySearchResultPage YourAdvert()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
+            _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
 
-            return NavigateToRecruitmentHomePage().SearchYourAdverts();
+            return _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchYourAdverts();
         }
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
@@ -48,7 +42,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal VacancyReferencePage CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal VacancyReferencePage CloneAVacancy() =>  _stepsHelper.SubmitVacancy(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
@@ -111,25 +105,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 ClickStartNow();
         }
 
-        internal HomePage GoToHomePage(EasAccountUser loginUser) => _loginhelper.Login(loginUser, true);
-    
-        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
-        {
-            GoToHomePage(_context.GetUser<RAAV2EmployerUser>());
-
-            return NavigateToRecruitmentHomePage();
-        }
-
         private ManageRecruitPage SearchVacancyByVacancyReferenceInNewTab()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
+            _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
 
             return SearchVacancyByVacancyReference();
         }
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
-        private ApprenticeshipTrainingPage EnterVacancyTitle() => GoToRecruitmentHomePage().CreateAnAdvert().CreateNewAdvert().EnterVacancyTitle();
+        private ApprenticeshipTrainingPage EnterVacancyTitle() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnAdvert().CreateNewAdvert().EnterVacancyTitle();
 
         private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositionsAndNavigateToSelectOrganisationPage().SelectOrganisation();
 
@@ -140,7 +125,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseFoundATrainingProvider().ConfirmTrainingProviderAndContinue();
-
-        private YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new YourApprenticeshipAdvertsHomePage(_context, true);
     }
 }

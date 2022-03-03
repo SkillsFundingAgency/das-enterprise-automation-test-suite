@@ -19,6 +19,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
+        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage()
+        {
+            formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
+            formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
+            formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            Continue();
+            return new ApplicationProcessPage(context);
+        }
+
         public VacancyPreviewPart2Page EnterContactDetails()
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);

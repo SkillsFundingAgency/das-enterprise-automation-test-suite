@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DescriptionPage : RAAV2CSSBasePage
     {
@@ -21,6 +21,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAAV2DataHelper.VacancyOutcome);
             Continue();
             return new VacancyPreviewPart2Page(context);
+        }
+
+        public CreateAnApprenticeshipAdvertPage EnterAllDescription()
+        {
+            javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAAV2DataHelper.VacancyShortDescription);
+            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAAV2DataHelper.TrainingDetails);
+            javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAAV2DataHelper.VacancyOutcome);
+            Continue();
+            return new CreateAnApprenticeshipAdvertPage(context);
         }
     }
 }

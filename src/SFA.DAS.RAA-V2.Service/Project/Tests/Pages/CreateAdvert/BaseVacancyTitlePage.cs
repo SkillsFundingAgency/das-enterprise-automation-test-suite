@@ -2,13 +2,19 @@
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public abstract class BaseVacancyTitlePage : RAAV2CSSBasePage
     {
         private By Title => By.CssSelector("#Title");
 
         public BaseVacancyTitlePage(ScenarioContext context) : base(context) { }
+
+        public SelectOrganisationPage EnterAdvertTitleMultiOrg()
+        {
+            ChangeVacancyTitle();
+            return new SelectOrganisationPage(context);
+        }
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {

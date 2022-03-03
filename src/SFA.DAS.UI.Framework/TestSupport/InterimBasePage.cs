@@ -10,6 +10,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         protected virtual By TaskLists => By.CssSelector(".das-task-list > li");
 
+        protected virtual By TaskSection => By.CssSelector(".das-task-list__section");
+
         protected virtual By TaskItem => By.CssSelector(".das-task-list__item");
 
         protected virtual By TaskName => By.CssSelector(".das-task-list__task-name > .govuk-link");
@@ -20,7 +22,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
 
-        protected void VerifySections(string sectionName, string taskName, string status, int index, Action retryAction) => 
+        protected void VerifySectionStatus(string sectionName, string status, Action retryAction) => VerifyElement(() => GetSectionElement(sectionName).FindElement(TaskSection), status, retryAction);
+
+        protected void VerifySectionTaskStatus(string sectionName, string taskName, string status, int index, Action retryAction) => 
             VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, retryAction);
 
         protected void NavigateToTask(string sectionName, string taskName, int index , Action retryAction) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), retryAction);
@@ -33,7 +37,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return () =>
             {
-                var section = pageInteractionHelper.FindElements(TaskLists).Single(x => x.Text.StartsWith(sectionName));
+                var section = GetSectionElement(sectionName);
 
                 var tasks = section.FindElements(TaskItem);
 
@@ -47,5 +51,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 throw new NotFoundException(mesage);
             };
         }
+
+        private IWebElement GetSectionElement(string sectionName) => pageInteractionHelper.FindElements(TaskLists).Single(x => x.Text.StartsWith(sectionName));
     }
 }

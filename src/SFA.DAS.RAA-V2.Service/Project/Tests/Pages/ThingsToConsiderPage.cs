@@ -18,5 +18,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             Continue();
             return new VacancyPreviewPart2Page(context);
         }
+
+        public CreateAnApprenticeshipAdvertPage EnterThingsToConsiderAndReturnToCreateAdvert()
+        {
+            formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
+            Continue();
+            return new CreateAnApprenticeshipAdvertPage(context);
+        }
     }
 }
