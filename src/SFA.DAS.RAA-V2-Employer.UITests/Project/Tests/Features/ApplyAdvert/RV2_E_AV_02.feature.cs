@@ -74,18 +74,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_AV_02 - Create vacancy with different work location, Approve, Apply")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_AV_02 - Create advert with different work location, Approve, Apply")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_AV_02_CreateVacancyWithDifferentWorkLocationApproveApply()
+        public virtual void RV2_E_AV_02_CreateAdvertWithDifferentWorkLocationApproveApply()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AV_02 - Create vacancy with different work location, Approve, Apply", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AV_02 - Create advert with different work location, Approve, Apply", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the Employer creates a vacancy by selecting different work location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates a advert by selecting different work location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

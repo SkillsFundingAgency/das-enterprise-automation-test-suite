@@ -54,6 +54,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return employername switch
             {
                 "existing-trading-name" => ChooseExistingTradingNameAndGotoEmployerDescriptionPage(),
+                "anonymous" => ChooseAnonymousAndGotoEmployerDescriptionPage(),
                 _ => ChooseRegisteredNameAndGotoEmployerDescriptionPage()
             };
         }
@@ -81,6 +82,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             Continue();
 
+            return new EmployerDescriptionPage(context);
+        }
+
+        private EmployerDescriptionPage ChooseAnonymousAndGotoEmployerDescriptionPage()
+        {
+            SelectRadioOptionByForAttribute("anonymous");
+            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            SetEmployerName(rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
+            Continue();
             return new EmployerDescriptionPage(context);
         }
 

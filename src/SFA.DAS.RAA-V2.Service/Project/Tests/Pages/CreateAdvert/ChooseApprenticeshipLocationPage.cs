@@ -13,10 +13,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context) { }
 
-        public CreateAnApprenticeshipAdvertPage ChooseAddress()
+        public CreateAnApprenticeshipAdvertPage ChooseAddressAndGoToCreateApprenticeshipPage(bool isEmployerAddress)
         {
-            SelectRadioOptionByForAttribute("OtherLocation_1");
-            Continue();
+            if (isEmployerAddress) SelectRadioOptionByForAttribute("OtherLocation_1");
+            else DifferentLocation();
             return new CreateAnApprenticeshipAdvertPage(context);
         }
 

@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
-        internal void CreateANewAdvert(string employername)
+        internal void CreateANewAdvert(string employername, bool isEmployerAddress)
         {
             var createAdvertPage = _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(NotStarted); 
 
-            createAdvertPage = EmploymentDetails(createAdvertPage);
+            createAdvertPage = EmploymentDetails(createAdvertPage, isEmployerAddress);
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(Completed);
 
@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterThingsToConsiderAndReturnToCreateAdvert();
         }
 
-        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress)
         {
             return createAdvertPage
                 .ImportantDates()
@@ -88,7 +88,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterDuration()
                 .SelectNationalMinimumWageAndGoToNoOfPositions()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
-                .ChooseAddress();
+                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
         }
 
         private CreateAnApprenticeshipAdvertPage AdvertSummary(CreateAnApprenticeshipAdvertPage createAdvertPage)

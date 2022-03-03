@@ -60,10 +60,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer can create a vacancy by entering all the Optional fields")]
         public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
 
-        [Given(@"the Employer creates a vacancy by selecting different work location")]
+        //[Given(@"the Employer creates a vacancy by selecting different work location")]
         public void GivenTheEmployerCreatesAVacancyBySelectingDifferentWorkLocation() => _employerStepsHelper.CreateANewVacancy("legal-entity-name", false);
 
-        [Given(@"the Employer creates an anonymous vacancy")]
+        //[Given(@"the Employer creates an anonymous vacancy")]
         public void GivenTheEmployerCreatesAnAnonymousVacancy() => _employerStepsHelper.CreateANewVacancy("anonymous", true);
 
         //[Given(@"the Employer creates a vacancy by using a trading name")]
