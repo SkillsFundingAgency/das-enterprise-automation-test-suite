@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -29,9 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderReviewApprenticeDetailsBulkUploadPage(ScenarioContext context) : base(context) { }
 
-        public ProviderReviewApprenticeDetailsBulkUploadPage VerifyCorrectInformationIsDisplayed()
+        public ProviderReviewApprenticeDetailsBulkUploadPage VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
-           var apprenticeList = GetBulkuploadData();
             VerifyEmployerDetails(apprenticeList);
             return this;
         }
@@ -132,6 +132,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
+        /*
         private List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
             var apprenticeList = objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
@@ -160,9 +161,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return result;
         }
-
+        /*
      
     }
+
+    /*
 
     #region Helper Classes
 
@@ -203,4 +206,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     }
 
     #endregion
+
+    */
+    
+    }
 }

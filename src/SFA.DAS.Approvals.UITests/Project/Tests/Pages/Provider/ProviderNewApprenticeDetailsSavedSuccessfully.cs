@@ -1,4 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +19,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "New apprentice details saved successfully";
         private By cohortsSaveTable => By.CssSelector(".govuk-table__body");
         private By cohortsSaveTableRows => By.CssSelector("tbody tr");
+        private By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
+        private By Cohort => By.CssSelector("td.govuk-table__cell[data-label='CohortReference']");
+        private By NumberOfApprentices => By.CssSelector("td.govuk-table__cell[data-label='NumberOfApprenticeships']");
 
         public ProviderNewApprenticeDetailsSavedSuccessfully(ScenarioContext _context) : base(_context)
         {
@@ -22,14 +30,45 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         }
 
-        public void GetTable()
+        public ProviderNewApprenticeDetailsSavedSuccessfully VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
-            //var x = pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
-            var table = _pageInteractionHelper.FindElements(cohortsSaveTable).Where(x => x.Enabled && x.Displayed).ElementAtOrDefault(0);
-            var tableRows = table.FindElements(cohortsSaveTableRows);
+            int counter = 0;
+            var rows = pageInteractionHelper.FindElements(cohortsSaveTableRows);
+            foreach (var row in rows)
+            {
+                foreach (var cohort in apprenticeList[counter].CohortDetails)
+                {
+                    var expectedEmployerName = apprenticeList[counter].EmployerName;
+                    var expectedCohortRef = cohort.CohortRefText;                    
+                    var expectedNoOfApprentices = cohort.NumberOfApprentices.ToString();
 
+                    var actualEmployerName = row.FindElement(EmployerName).Text;
+                    var actualCohortRef = row.FindElement(Cohort).Text;
+                    var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
 
+                    Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
+                    Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
+                    Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
+                }                          
+
+                counter++;
+            }
+
+            return this;
         }
 
+        
+
     }
+
+    #region Helper Classes
+
+    public class FileUploadCohortsSaved
+    {
+        public string Employer { get; set; }
+        public string Cohort { get; set; }
+        public string NumberOfApprentices { get; set; }
+    }
+
+    # endregion
 }
