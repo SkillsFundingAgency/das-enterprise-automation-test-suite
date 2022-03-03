@@ -2,6 +2,7 @@
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -138,7 +139,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }
 
-        private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseTrainingProvider().ConfirmTrainingProviderAndContinue();
+        private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseFoundATrainingProvider().ConfirmTrainingProviderAndContinue();
 
         private YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new YourApprenticeshipAdvertsHomePage(_context, true);
     }

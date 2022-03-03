@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "What training will the apprentice take?";
+        protected override string PageTitle => "What training course will the apprentice take?";
         private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
         private By CancelLink => By.LinkText("Cancel");

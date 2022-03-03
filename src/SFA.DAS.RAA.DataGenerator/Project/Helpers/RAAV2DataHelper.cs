@@ -11,23 +11,23 @@ namespace SFA.DAS.RAA.DataGenerator
         public RAAV2DataHelper(VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = $"{RandomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
-            EmployerDescription = $"{RandomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
-            EmployerReason = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerTradingName = $"{RandomAlphabeticString(10)}_EmployerName";
+            EmployerDescription = $"{RandomAlphabeticString(10)}_EmployerDescription";
+            EmployerReason = RandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
-            ContactName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
+            ContactName = RandomAlphabeticString(5);
             Email = $"{ContactName}@lorem.com";
-            VacancyShortDescription = RandomDataGenerator.GenerateRandomAlphabeticString(15);
-            VacancyOutcome = RandomDataGenerator.GenerateRandomAlphabeticString(22);
-            VacancyBriefOverview = RandomDataGenerator.GenerateRandomAlphabeticString(50);
-            TrainingDetails = RandomDataGenerator.GenerateRandomAlphabeticString(28);
-            WorkkingWeek = RandomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyShortDescription = RandomAlphabeticString(15);
+            VacancyOutcome = RandomAlphabeticString(22);
+            VacancyBriefOverview = RandomAlphabeticString(50);
+            TrainingDetails = RandomAlphabeticString(28);
+            WorkkingWeek = RandomAlphabeticString(15);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             EditedVacancyClosing = VacancyStart.AddDays(14);
             EditedVacancyStart = EditedVacancyClosing.AddDays(14);
-            DesiredQualificationsSubject = RandomDataGenerator.GenerateRandomAlphabeticString(8);
-            OptionalMessage = RandomDataGenerator.GenerateRandomAlphabeticString(30);
+            DesiredQualificationsSubject = RandomAlphabeticString(8);
+            OptionalMessage = RandomAlphabeticString(30);
         }
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
@@ -89,6 +89,8 @@ namespace SFA.DAS.RAA.DataGenerator
         public string NumberOfVacancy => "2";
 
         public string OptionalMessage { get; }
+
+        public string RandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
 
         private string WebsiteUrl(string url) => $"www.{url}.com";
 

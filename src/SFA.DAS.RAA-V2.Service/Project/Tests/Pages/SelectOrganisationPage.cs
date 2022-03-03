@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class SelectOrganisationPage : RAAV2CSSBasePage

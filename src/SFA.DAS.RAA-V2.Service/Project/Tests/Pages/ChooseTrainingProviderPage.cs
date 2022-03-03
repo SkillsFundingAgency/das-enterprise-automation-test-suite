@@ -13,14 +13,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseTrainingProviderPage(ScenarioContext context) : base(context) { }
 
-        public ConfirmTrainingProviderPage ChooseTrainingProvider()
+        public ConfirmTrainingProviderPage ChooseFoundATrainingProvider()
         {
             SelectRadioOptionByForAttribute("found_yes");
 
+            return SelectTrainingProvider();
+        }
+
+        public ConfirmTrainingProviderPage SelectTrainingProvider()
+        {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, rAAV2DataHelper.Provider); return pageInteractionHelper.FindElement(FirstOption); });
-
+            
             Continue();
-
+            
             return new ConfirmTrainingProviderPage(context);
         }
     }
