@@ -74,12 +74,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.CloneVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CL_02 - Clone a vacancy, Approve, Apply and make Application Unsuccessful")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CL_02 - Clone an advert, Approve, Apply and make Application Unsuccessful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("clonevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_CL_02_CloneAVacancyApproveApplyAndMakeApplicationUnsuccessful()
+        public virtual void RV2_E_CL_02_CloneAnAdvertApproveApplyAndMakeApplicationUnsuccessful()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.CloneVacancy
                     "clonevacancy",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_02 - Clone a vacancy, Approve, Apply and make Application Unsuccessful", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_02 - Clone an advert, Approve, Apply and make Application Unsuccessful", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,7 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("the Employer clones and creates a vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer clones and creates an advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

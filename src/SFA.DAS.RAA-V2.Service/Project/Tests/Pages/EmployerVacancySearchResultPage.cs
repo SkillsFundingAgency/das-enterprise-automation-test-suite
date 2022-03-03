@@ -12,6 +12,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
+        public CreateAnApprenticeshipAdvertPage CreateAnApprenticeshipAdvertPage()
+        {
+            DraftVacancy();
+            return new CreateAnApprenticeshipAdvertPage(context);
+        }
+
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
             DraftVacancy();

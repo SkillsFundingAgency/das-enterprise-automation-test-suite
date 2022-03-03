@@ -22,6 +22,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 
+
+        public EmployerVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
+        {
+            formCompletionHelper.ClickLinkByText("Draft adverts");
+            return new EmployerVacancySearchResultPage(context);
+        }
+
         public CreateAnApprenticeshipAdvertPage CreateAnApprenticeshiAdvert()
         {
             AcceptCookies();
@@ -56,6 +63,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             base.AcceptCookies();
             return this;
         }
+
         public GetStartedWithRecruitmentAPIsPage ClickRecruitmentAPILink()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);

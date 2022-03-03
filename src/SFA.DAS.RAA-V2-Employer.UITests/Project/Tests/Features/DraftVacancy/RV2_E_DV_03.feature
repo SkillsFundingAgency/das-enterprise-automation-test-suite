@@ -3,6 +3,7 @@
 @raa-v2	
 @raa-v2e
 @regression	
+@ignore
 Scenario: RV2_E_DV_03 - Delete draft vacancy
 Given the Employer completes the first part of the journey
 When the Employer saves the vacancy as a draft

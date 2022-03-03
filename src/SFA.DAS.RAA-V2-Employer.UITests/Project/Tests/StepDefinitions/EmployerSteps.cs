@@ -45,7 +45,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer saves the vacancy as a draft")]
         public void WhenTheEmployerSavesTheVacancyAsADraft() => _vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
-        [When(@"Employer cancels after saving the title of the Vacancy")]
+        //[When(@"Employer cancels after saving the title of the Vacancy")]
         public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => _vacanciesPage = _employerStepsHelper.CancelVacancy();
 
         [Then(@"the Employer can cancel deleting the draft vacancy")]
@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can edit the vacancy")]
         public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancyDates();
 
-        [Then(@"the vacancy is saved as a draft")]
+        //[Then(@"the vacancy is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => _vacanciesPage.GoToApprenticeshipTrainingPage();
 
         [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]

@@ -8,8 +8,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         protected override string PageTitle => "What training course will the apprentice take?";
         private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
-        private By CancelLink => By.LinkText("Cancel");
-
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
@@ -32,7 +30,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public EmployerVacancySearchResultPage CancelVacancy()
         {
-            formCompletionHelper.Click(CancelLink);
+            EmployerCancelAdvert();
             return new EmployerVacancySearchResultPage(context);
         }
     }
