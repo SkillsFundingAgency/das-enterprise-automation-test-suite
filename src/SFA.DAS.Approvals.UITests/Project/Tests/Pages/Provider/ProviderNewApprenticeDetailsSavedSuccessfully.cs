@@ -34,24 +34,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             int counter = 0;
             var rows = pageInteractionHelper.FindElements(cohortsSaveTableRows);
-            foreach (var row in rows)
+            int rowCount = rows.Count;
+
+            foreach (var cohort in apprenticeList[counter].CohortDetails)
             {
-                foreach (var cohort in apprenticeList[counter].CohortDetails)
+                if (counter < rowCount)
                 {
-                    var expectedEmployerName = apprenticeList[counter].EmployerName;
-                    var expectedCohortRef = cohort.CohortRefText;                    
-                    var expectedNoOfApprentices = cohort.NumberOfApprentices.ToString();
+                    foreach (var row in rows) 
+                    {
+                        var expectedEmployerName = apprenticeList[counter].EmployerName;
+                        var expectedCohortRef = cohort.CohortRefText;
+                        var expectedNoOfApprentices = cohort.NumberOfApprentices.ToString();
 
-                    var actualEmployerName = row.FindElement(EmployerName).Text;
-                    var actualCohortRef = row.FindElement(Cohort).Text;
-                    var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
+                        var actualEmployerName = row.FindElement(EmployerName).Text;
+                        var actualCohortRef = row.FindElement(Cohort).Text;
+                        var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
 
-                    Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
-                    Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
-                    Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
-                }                          
+                        Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
+                        Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
+                        Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
 
-                counter++;
+                        counter++;
+                    }
+                }
+                else
+                {
+                    counter++;
+                }
+
+              
             }
 
             return this;

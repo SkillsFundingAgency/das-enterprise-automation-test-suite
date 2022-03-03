@@ -10,3 +10,4 @@ Scenario: AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers
 	And the Employer2 creates 2 cohorts and sends them to provider to add apprentices
 	When Provider add 2 apprentice details using bulkupload
 	And Correct Information is displayed on review apprentices details page
+	And Provider selects to save all but don't send to employer
