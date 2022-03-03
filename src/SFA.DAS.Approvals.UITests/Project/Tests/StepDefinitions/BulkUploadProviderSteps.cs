@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -6,6 +7,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +21,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         protected readonly ProviderConfig _providerConfig;
-        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
-        private List<ApprenticeDetails> ApprenticeList;
         protected readonly ApprovalsConfig approvalsConfig;
+        protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
@@ -33,13 +32,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public BulkUploadProviderSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
-            _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
-            ApprenticeList = new List<ApprenticeDetails>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
         [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
@@ -143,59 +139,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderFileDiscadSuccessPage(_context);
         }
 
-       /* [When(@"Provider add an apprentice uses details from below to create bulkupload")]
+        [When(@"Provider add an apprentice uses details from below to create bulkupload")]
         public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
         {
-            var items = table.CreateSet<MapApprenticeData>();
-            var cohortRef = _objectContext.GetCohortReference();
-            var courseCode = 17;
+            var apprenticeRecords = table.CreateSet<MapApprenticeData>();
 
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
-            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
-            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
-
-            var result = new ApprenticeDetails(courseCode)
-            {
-                CohortRef = cohortRef,
-                ULN = datahelper.Uln(),
-                FamilyName = datahelper.ApprenticeLastname,
-                GivenNames = datahelper.ApprenticeFirstname,
-                DateOfBirth = dateOfBirth,
-                StartDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseStartDate),
-                EndDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseEndDate),
-                TotalPrice = datahelper.TrainingPrice,
-                ProviderRef = datahelper.EmployerReference,
-                EmailAddress = emailAddress,
-                AgreementId = agreementId
-            };
-
-
-            foreach (var item in items)
-            {
-                if (item.CohortRef == "valid")
-                {
-                    result.CohortRef = cohortRef;
-                }
-                else
-                {
-                    result.CohortRef = item.CohortRef;
-                }
-            }
-
-            ApprenticeList.Add(result);
-
-            string fileName = "BulkUpload_77.csv";
-            var fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation + fileName;
-            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
-
-            // 2. upload
-            //formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
-            //formCompletionHelper.ClickElement(UploadFileButton);
-
-            // 1. Create Csv File with bad data
-            // 2. upload
-            // 3. validate the error message (Najam will help me to sort this)
-        }*/
+            _providerStepsHelper.ValidateApprenticeRecord(apprenticeRecords);
+        }        
     }
 }

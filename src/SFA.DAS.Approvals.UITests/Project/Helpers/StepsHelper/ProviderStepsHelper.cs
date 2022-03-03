@@ -9,6 +9,13 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using System.Collections.Generic;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using System.IO;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -18,6 +25,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private List<ApprenticeDetails> ApprenticeList;
+        private BulkUploadDataHelper _bulkUploadDataHelper;
+        protected readonly PageInteractionHelper _pageInteractionHelper;
+        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
+        protected readonly ApprovalsConfig _approvalsConfig;
 
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
@@ -28,6 +40,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
+            _bulkUploadDataHelper = new BulkUploadDataHelper();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
+            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -196,7 +212,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .UploadFile();
         }
 
-        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2_Vas(string fileLocation)
+        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(string fileLocation)
         {
             return
                 GoToProviderHomePage(false)
@@ -204,7 +220,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()                
                 .UploadFile(fileLocation);
-        }
+        }       
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
@@ -347,6 +363,78 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .GotoSelectJourneyPage()
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
+        }
+
+        public void ValidateApprenticeRecord(IEnumerable<MapApprenticeData> apprenticeRecords)
+        {
+            var cohortRef = _objectContext.GetCohortReference();
+            var courseCode = 17;
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
+            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
+            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+
+            //TODO : verify the path file need to be placed
+            string fileName = "BulkUpload_77.csv";
+            var fileLocation = Path.GetFullPath(@"..\..\..\") + _approvalsConfig.BulkUploadFileLocation + fileName;
+
+            foreach (var item in apprenticeRecords)
+            {
+                ApprenticeList = new List<ApprenticeDetails>();
+
+                var result = new ApprenticeDetails(courseCode)
+                {
+                    CohortRef = cohortRef,
+                    ULN = datahelper.Uln(),
+                    FamilyName = datahelper.ApprenticeLastname,
+                    GivenNames = datahelper.ApprenticeFirstname,
+                    DateOfBirth = dateOfBirth,
+                    StartDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseStartDate),
+                    EndDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseEndDate),
+                    TotalPrice = datahelper.TrainingPrice,
+                    ProviderRef = datahelper.EmployerReference,
+                    EmailAddress = emailAddress,
+                    AgreementId = agreementId
+                };
+
+                if (item.CohortRef != "valid") { result.CohortRef = item.CohortRef; }
+
+                if (item.AgreementID != "valid") { result.AgreementId = item.AgreementID; }
+
+                if (item.ULN != "valid") { result.ULN = item.ULN; }
+
+                if (item.FamilyName != "valid") { result.FamilyName = item.FamilyName; }
+
+                if (item.GivenNames != "valid") { result.GivenNames = item.GivenNames; }
+
+                if (item.DateOfBirth != "valid") { result.DateOfBirth = DateTime.Parse(item.DateOfBirth); }
+
+                if (item.EmailAddress != "valid") { result.EmailAddress = item.EmailAddress; }
+
+                if (item.StdCode != "valid") { result.StdCode = Int16.Parse(item.StdCode); }
+
+                if (item.StartDate != "valid") { result.StartDate = DateTime.Parse(item.StartDate); }
+
+                if (item.EndDate != "valid") { result.EndDate = DateTime.Parse(item.EndDate); }
+
+                if (item.TotalPrice != "valid") { result.TotalPrice = item.TotalPrice; }
+
+                if (item.ProviderRef != "valid") { result.ProviderRef = item.ProviderRef; }
+
+                ApprenticeList.Add(result);
+                // 1. Create Csv File with bad data               
+                _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+
+                // 2. upload
+                UploadApprenticeRecordToValidate(fileLocation);
+
+                // 3. validate the error message 
+                var errorMsg = _pageInteractionHelper.GetText(By.XPath("(//td[@class='govuk-table__cell'])[4]"));
+                var actualErrorMsg = item.ErrorMessage;
+
+                //TODO : page object model for validate page
+                //4. click back link
+            }
         }
     }
 }

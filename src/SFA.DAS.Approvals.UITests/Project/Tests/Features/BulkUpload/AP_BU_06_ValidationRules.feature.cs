@@ -130,22 +130,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "ProviderRef",
                             "ErrorMessage"});
                 table1.AddRow(new string[] {
-                            "HappyPath",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            ""});
-                table1.AddRow(new string[] {
                             "CohortRef length > 20",
                             "MKRK7VMKRK7VMKRK7VPJ1",
                             "valid",
