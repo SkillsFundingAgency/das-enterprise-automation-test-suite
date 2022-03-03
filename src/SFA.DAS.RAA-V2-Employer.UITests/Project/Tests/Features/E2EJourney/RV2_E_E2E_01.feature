@@ -5,8 +5,8 @@
 @v2_e2e
 @v2e_e2e
 @regression
-Scenario: RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Application Successful
-	Given the Employer creates a vacancy by using a registered name
+Scenario: RV2_E_E2E_01 - Create an advert with registered name, Approve, Apply and make Application Successful
+	Given the Employer creates an advert by using a registered name
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a Vacancy in FAA
 	Then Employer can make the application successful

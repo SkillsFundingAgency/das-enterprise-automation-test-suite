@@ -74,14 +74,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-            "cation Successful")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01 - Create an advert with registered name, Approve, Apply and make App" +
+            "lication Successful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("v2_e2e")]
         [NUnit.Framework.CategoryAttribute("v2e_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_E2E_01_CreateVacancyWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
+        public virtual void RV2_E_E2E_01_CreateAnAdvertWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
@@ -90,8 +90,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.E2EJourney
                     "v2e_e2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-                    "cation Successful", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_01 - Create an advert with registered name, Approve, Apply and make App" +
+                    "lication Successful", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Given("the Employer creates a vacancy by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates an advert by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

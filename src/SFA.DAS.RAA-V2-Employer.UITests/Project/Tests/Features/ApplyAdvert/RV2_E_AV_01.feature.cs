@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyVacancy
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyVacancy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ApplyVacancy", "RV2_E_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ApplyAdvert", "RV2_E_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

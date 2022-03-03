@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
-    public class EmployerCreateVacancyStepsHelper
+    public class EmployerCreateAdvertStepsHelper
     {
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
 
@@ -13,12 +13,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private static string InProgress => "IN PROGRESS";
 
-        public EmployerCreateVacancyStepsHelper(ScenarioContext context)
+        public EmployerCreateAdvertStepsHelper(ScenarioContext context)
         {
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
-        internal void CreateANewVacancy(string employername)
+        internal void CreateANewAdvert(string employername)
         {
             var createAdvertPage = _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
 
