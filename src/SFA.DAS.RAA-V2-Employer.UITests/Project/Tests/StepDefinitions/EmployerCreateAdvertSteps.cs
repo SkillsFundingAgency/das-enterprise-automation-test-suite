@@ -16,6 +16,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer creates a vacancy by using a registered name")]
-        public void GivenTheEmployerCreatesAVacancyByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewVacancy();
+        public void GivenTheEmployerCreatesAVacancyByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewVacancy("legal-entity-name");
+
+
+        [Given(@"the Employer creates a vacancy by using a trading name")]
+        public void GivenTheEmployerCreatesAVacancyByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewVacancy("existing-trading-name");
     }
 }

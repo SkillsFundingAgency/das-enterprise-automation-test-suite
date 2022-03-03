@@ -18,19 +18,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EmployerNameBasePage(ScenarioContext context) : base(context) { }
 
-        public EmployerDescriptionPage ChooseRegisteredNameAndGotoEmployerDescriptionPage()
-        {
-            SelectRadioOptionByForAttribute("legal-entity-name");
-
-            var entityName = pageInteractionHelper.GetText(LegalEntityName);
-
-            SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
-
-            Continue();
-
-            return new EmployerDescriptionPage(context);
-        }
-
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
             SelectRadioOptionByForAttribute("legal-entity-name");
@@ -60,6 +47,41 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
             Continue();
             return new ChooseApprenticeshipLocationPage(context);
+        }
+
+        public EmployerDescriptionPage ChooseEmployerNameForEmployerJourney(string employername)
+        {
+            return employername switch
+            {
+                "existing-trading-name" => ChooseExistingTradingNameAndGotoEmployerDescriptionPage(),
+                _ => ChooseRegisteredNameAndGotoEmployerDescriptionPage()
+            };
+        }
+
+        private EmployerDescriptionPage ChooseRegisteredNameAndGotoEmployerDescriptionPage()
+        {
+            SelectRadioOptionByForAttribute("legal-entity-name");
+
+            var entityName = pageInteractionHelper.GetText(LegalEntityName);
+
+            SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
+
+            Continue();
+
+            return new EmployerDescriptionPage(context);
+        }
+
+        private EmployerDescriptionPage ChooseExistingTradingNameAndGotoEmployerDescriptionPage()
+        {
+            SelectRadioOptionByForAttribute("existing-trading-name");
+
+            formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
+
+            SetEmployerName(rAAV2DataHelper.EmployerTradingName);
+
+            Continue();
+
+            return new EmployerDescriptionPage(context);
         }
 
         private void SetEmployerName(string value) => objectContext.SetEmployerName(value);

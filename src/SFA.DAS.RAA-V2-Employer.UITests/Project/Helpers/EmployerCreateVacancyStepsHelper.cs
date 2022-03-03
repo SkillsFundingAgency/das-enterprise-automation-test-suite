@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
-        internal void CreateANewVacancy()
+        internal void CreateANewVacancy(string employername)
         {
             var createAdvertPage = _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(NotStarted);
 
-            createAdvertPage = Abouttheemployer(createAdvertPage);
+            createAdvertPage = Abouttheemployer(createAdvertPage, employername);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
 
@@ -60,11 +60,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
 
-        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername)
         {
             return createAdvertPage
                 .EmployerName()
-                .ChooseRegisteredNameAndGotoEmployerDescriptionPage()
+                .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage()
                 .EnterContactDetailsAndGoToApplicationProcessPage()
                 .SelectApplicationMethod(true);

@@ -66,7 +66,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates an anonymous vacancy")]
         public void GivenTheEmployerCreatesAnAnonymousVacancy() => _employerStepsHelper.CreateANewVacancy("anonymous", true);
 
-        [Given(@"the Employer creates a vacancy by using a trading name")]
+        //[Given(@"the Employer creates a vacancy by using a trading name")]
         public void GivenTheEmployerCreatesAVacancyByUsingATradingName() => _employerStepsHelper.CreateANewVacancy("existing-trading-name", true);
 
         //[Given(@"the Employer creates a vacancy by using a registered name")]
