@@ -78,15 +78,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.WageOptions
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("newraa-v2")]
         public virtual void RV2_E_WO_02_EmployerVerifiesNationalMinimumWageForApprenticesOption()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
-                    "regression"};
+                    "regression",
+                    "newraa-v2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_WO_02 - Employer verifies ‘National Minimum Wage For Apprentices\' option", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,11 +108,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
         testRunner.When("Employer selects \'National Minimum Wage For Apprentices\' in the first part of the" +
                         " journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
         testRunner.Then("the Employer verify \'National Minimum Wage For Apprentices\' the wage option selec" +
                         "ted in the Preview page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

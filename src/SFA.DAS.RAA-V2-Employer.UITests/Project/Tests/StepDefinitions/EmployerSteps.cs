@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
         }
 
-        [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
+        //[When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
         public void WhenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
 
         [Given(@"the Employer completes the first part of the journey")]
@@ -51,7 +51,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can cancel deleting the draft vacancy")]
         public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _vacancyPreviewPart2Page = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy().NoDeleteVacancy();
 
-        [Given(@"the Employer creates an offline vacancy with disability confidence")]
+        //[Given(@"the Employer creates an offline vacancy with disability confidence")]
         public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
 
         //[Given(@"the Employer clones and creates a vacancy")]

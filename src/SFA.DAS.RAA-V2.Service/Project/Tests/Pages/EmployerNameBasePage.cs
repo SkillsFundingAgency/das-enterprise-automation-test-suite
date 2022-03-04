@@ -3,6 +3,7 @@ using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -20,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
-            SelectRadioOptionByForAttribute("legal-entity-name");
+            SelectRadioOptionByForAttribute(RAAV2Const.LegalEntityName);
 
             var entityName = pageInteractionHelper.GetText(LegalEntityName);
 
@@ -32,7 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
         {
-            SelectRadioOptionByForAttribute("existing-trading-name");
+            SelectRadioOptionByForAttribute(RAAV2Const.ExistingTradingName);
             formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
             SetEmployerName(rAAV2DataHelper.EmployerTradingName);
             Continue();
@@ -41,7 +42,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseApprenticeshipLocationPage ChooseAnonymous()
         {
-            SelectRadioOptionByForAttribute("anonymous");
+            SelectRadioOptionByForAttribute(RAAV2Const.Anonymous);
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             SetEmployerName(rAAV2DataHelper.EmployerDescription);
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
@@ -53,8 +54,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             return employername switch
             {
-                "existing-trading-name" => ChooseExistingTradingNameAndGotoEmployerDescriptionPage(),
-                "anonymous" => ChooseAnonymousAndGotoEmployerDescriptionPage(),
+                RAAV2Const.ExistingTradingName => ChooseExistingTradingNameAndGotoEmployerDescriptionPage(),
+                RAAV2Const.Anonymous => ChooseAnonymousAndGotoEmployerDescriptionPage(),
                 _ => ChooseRegisteredNameAndGotoEmployerDescriptionPage()
             };
         }

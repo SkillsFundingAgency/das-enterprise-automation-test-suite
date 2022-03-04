@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 
@@ -14,12 +15,38 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 
-        public SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
+        public SubmitNoOfPositionsPage ChooseWage(string wageType)
+        {
+            return wageType switch
+            {
+                RAAV2Const.NationalMinWages => SelectNationalMinimumWageAndGoToNoOfPositions(),
+                RAAV2Const.FixedWageType => SelectFixedWageTypeAndGoToNoOfPositions(),
+                _ => SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions(),
+            };
+            ;
+        }
+
+        private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
             Continue();
-            return new SubmitNoOfPositionsPage(context);
+            return GoToSubmitNoOfPositionsPage();
         }
+
+        private SubmitNoOfPositionsPage SelectFixedWageTypeAndGoToNoOfPositions()
+        {
+            SelectRadioOptionByForAttribute("wage-type-fixed");
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
+            return GoToSubmitNoOfPositionsPage();
+        }
+
+        private SubmitNoOfPositionsPage SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions()
+        {
+            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+            return GoToSubmitNoOfPositionsPage();
+        }
+
+        private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage() => new SubmitNoOfPositionsPage(context);
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {

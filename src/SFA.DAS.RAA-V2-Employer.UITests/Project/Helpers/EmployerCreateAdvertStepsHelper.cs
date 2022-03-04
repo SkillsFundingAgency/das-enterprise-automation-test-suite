@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
@@ -22,11 +23,28 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
+        internal void CreateOfflineVacancy()
+        {
+            CreateANewAdvert(true, false);
+
+            SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
+        }
+
         internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshiAdvert()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(_context); }
 
         internal VacancyReferencePage CloneAnAdvert() => Checkandsubmityouradvert(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCreateAnApprenticeshipAdvertPage());
 
-        internal void CreateANewAdvert(string employername, bool isEmployerAddress)
+        internal void CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
+
+        internal void CreateANewAdvert(string employername) => CreateANewAdvert(employername, true);
+
+        internal void CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
+
+        internal void CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvert(string.Empty, true, disabilityConfidence, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+
+        internal void CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvert(employername, isEmployerAddress, disabilityConfidence, wageType, true);
+
+        internal void CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA)
         {
             var createAdvertPage = CreateAnApprenticeshiAdvert();
 
@@ -38,7 +56,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(NotStarted); 
 
-            createAdvertPage = EmploymentDetails(createAdvertPage, isEmployerAddress);
+            createAdvertPage = EmploymentDetails(createAdvertPage, isEmployerAddress, disabilityConfidence, wageType);
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(Completed);
 
@@ -50,7 +68,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(NotStarted);
 
-            createAdvertPage = Abouttheemployer(createAdvertPage, employername);
+            createAdvertPage = Abouttheemployer(createAdvertPage, employername, isApplicationMethodFAA);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
 
@@ -59,6 +77,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             Checkandsubmityouradvert(createAdvertPage);
 
         }
+
+        private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
         private CreateAnApprenticeshipAdvertPage CreateAnApprenticeshiAdvert() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
 
@@ -70,14 +90,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SetVacancyReference();
         }
 
-        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername)
+        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername, bool isApplicationMethodFAA)
         {
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage()
                 .EnterContactDetailsAndGoToApplicationProcessPage()
-                .SelectApplicationMethod(true);
+                .SelectApplicationMethod(isApplicationMethodFAA);
         }
 
         private CreateAnApprenticeshipAdvertPage SkillsAndQualifications(CreateAnApprenticeshipAdvertPage createAdvertPage)
@@ -90,13 +110,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterThingsToConsiderAndReturnToCreateAdvert();
         }
 
-        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress)
+        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
-                .EnterImportantDates(false)
+                .EnterImportantDates(disabilityConfidence)
                 .EnterDuration()
-                .SelectNationalMinimumWageAndGoToNoOfPositions()
+                .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
         }
