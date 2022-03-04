@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshiAdvert()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(_context); }
 
-        internal VacancyReferencePage CloneAnAdvert() => Checkandsubmityouradvert(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCreateAnApprenticeshipAdvertPage());
+        internal VacancyReferencePage CloneAnAdvert() => CheckYourAnswers(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
 
         internal void CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
 
@@ -82,10 +82,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private CreateAnApprenticeshipAdvertPage CreateAnApprenticeshiAdvert() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert();
 
-        private VacancyReferencePage Checkandsubmityouradvert(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        private VacancyReferencePage Checkandsubmityouradvert(CreateAnApprenticeshipAdvertPage createAdvertPage) => CheckYourAnswers(createAdvertPage.CheckYourAnswers());
+
+        private VacancyReferencePage CheckYourAnswers(CheckYourAnswersPage checkYourAnswersPage)
         {
-            return createAdvertPage
-                .CheckYourAnswers()
+            return checkYourAnswersPage
                 .SubmitAdvert()
                 .SetVacancyReference();
         }

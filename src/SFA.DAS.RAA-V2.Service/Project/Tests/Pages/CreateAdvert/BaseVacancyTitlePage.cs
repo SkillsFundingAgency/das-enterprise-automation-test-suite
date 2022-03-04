@@ -34,10 +34,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new VacancyPreviewPart2Page(context);
         }
 
-        public CreateAnApprenticeshipAdvertPage UpdateVacancyTitleAndGoToCreateAnApprenticeshipAdvertPage()
+        public CheckYourAnswersPage UpdateVacancyTitleAndGoToCheckYourAnswersPage()
         {
             ChangeVacancyTitle();
-            return new CreateAnApprenticeshipAdvertPage(context);
+            return new CheckYourAnswersPage(context);
         }
 
         private void ChangeVacancyTitle()
