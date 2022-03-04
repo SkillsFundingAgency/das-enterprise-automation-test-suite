@@ -34,38 +34,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             int counter = 0;
             var rows = pageInteractionHelper.FindElements(cohortsSaveTableRows);
-            int rowCount = rows.Count;
 
-            foreach (var cohort in apprenticeList[counter].CohortDetails)
+            foreach (var row in rows)
             {
-                if (counter < rowCount)
-                {
-                    foreach (var row in rows) 
-                    {
-                        var expectedEmployerName = apprenticeList[counter].EmployerName;
-                        var expectedCohortRef = cohort.CohortRefText;
-                        var expectedNoOfApprentices = cohort.NumberOfApprentices.ToString();
+                var expectedEmployerName = apprenticeList[counter].EmployerName;
+                var cohortDetails = apprenticeList[counter].CohortDetails;
+                var actualEmployerName = row.FindElement(EmployerName).Text;              
 
-                        var actualEmployerName = row.FindElement(EmployerName).Text;
-                        var actualCohortRef = row.FindElement(Cohort).Text;
-                        var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
+                Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
+                ValidateRow(cohortDetails[counter], row);
 
-                        Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
-                        Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
-                        Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
-
-                        counter++;
-                    }
-                }
-                else
-                {
-                    counter++;
-                }
-
-              
+                counter++;
             }
 
             return this;
+        }
+
+        private void ValidateRow(FileUploadReviewCohortDetail cohortDetails, IWebElement row)
+        {
+
+                var expectedCohortRef = cohortDetails.CohortRef;
+                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
+
+                var actualCohortRef = row.FindElement(Cohort).Text;
+                var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
+
+                Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
+                Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
+
         }
 
         
