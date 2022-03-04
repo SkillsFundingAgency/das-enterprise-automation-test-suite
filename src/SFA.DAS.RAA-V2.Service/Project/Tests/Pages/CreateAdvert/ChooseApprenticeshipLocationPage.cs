@@ -17,6 +17,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         {
             if (isEmployerAddress) SelectRadioOptionByForAttribute("OtherLocation_1");
             else DifferentLocation();
+
+            Continue();
+
             return new CreateAnApprenticeshipAdvertPage(context);
         }
 
