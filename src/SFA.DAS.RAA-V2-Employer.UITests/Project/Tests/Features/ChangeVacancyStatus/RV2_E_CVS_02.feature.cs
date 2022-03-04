@@ -74,12 +74,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ChangeVacancySt
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CVS_02 - Create, Approve and Edit the vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CVS_02 - Create, Approve and Edit the advert")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newraa-v2")]
-        public virtual void RV2_E_CVS_02_CreateApproveAndEditTheVacancy()
+        public virtual void RV2_E_CVS_02_CreateApproveAndEditTheAdvert()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ChangeVacancySt
                     "regression",
                     "newraa-v2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVS_02 - Create, Approve and Edit the vacancy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVS_02 - Create, Approve and Edit the advert", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

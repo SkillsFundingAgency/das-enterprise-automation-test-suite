@@ -29,7 +29,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
-            Continue();
             return GoToSubmitNoOfPositionsPage();
         }
 
@@ -46,7 +45,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return GoToSubmitNoOfPositionsPage();
         }
 
-        private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage() => new SubmitNoOfPositionsPage(context);
+        private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage()
+        {
+            Continue(); 
+            return new SubmitNoOfPositionsPage(context);
+        }
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
