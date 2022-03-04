@@ -96,6 +96,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
-        private List<string> AvailableAddress => new List<string> {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        private List<string> AvailableAddress => new List<string> { "CV33", "CV35", "SM3", "SW11" };
     }
 }
