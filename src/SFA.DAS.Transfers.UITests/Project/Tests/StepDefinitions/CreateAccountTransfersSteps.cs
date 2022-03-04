@@ -53,15 +53,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
             _homePage = GoToHomePage(senderOrganisationName);
 
-            bool senderAssertion = CheckTransferConnectionStatus(receiverOrganisationName);
+            bool senderAssertion = CheckTransferConnectionStatus(receiverOrganisationName, "send");
 
             _homePage = GoToHomePage(receiverOrganisationName);
 
-            bool receiverAssertion = CheckTransferConnectionStatus(senderOrganisationName);
+            bool receiverAssertion = CheckTransferConnectionStatus(senderOrganisationName, "receive");
 
-            if (!senderAssertion)
-                if (!receiverAssertion)
-                    throw new Exception($"We don't have an approved transfers connection between {senderOrganisationName}({senderAccountId}) and {receiverOrganisationName}({receiverAccountId})");
+            if (!senderAssertion || !receiverAssertion)
+            {
+                throw new Exception($"We don't have an approved transfers connection between {senderOrganisationName}({senderAccountId}) and {receiverOrganisationName}({receiverAccountId})");
+            }
         }
 
         private void AccountsAreCreated(string noOfAccounts)
@@ -127,9 +128,9 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _homePage = OpenTransfers().ViewTransferConnectionRequestDetails(senderOrganisationName).AcceptTransferConnectionRequest().GoToHomePage();
         }
 
-        private HomePage GoToHomePage(string OrgName) { UpdateOrganisationName(OrgName); return _homePage.GoToYourAccountsPage().GoToHomePage(OrgName); }
+        private HomePage GoToHomePage(string orgName) { UpdateOrganisationName(orgName); return _homePage.GoToYourAccountsPage().GoToHomePage(orgName); }
 
-        private bool CheckTransferConnectionStatus(string OrgName) => OpenTransfers().CheckTransferConnectionStatus(OrgName);
+        private bool CheckTransferConnectionStatus(string orgName, string role) => OpenTransfers().CheckTransferConnectionStatus(orgName, role);
 
         private TransfersPage OpenTransfers() => new FinancePage(_context, true).OpenTransfers();
 
