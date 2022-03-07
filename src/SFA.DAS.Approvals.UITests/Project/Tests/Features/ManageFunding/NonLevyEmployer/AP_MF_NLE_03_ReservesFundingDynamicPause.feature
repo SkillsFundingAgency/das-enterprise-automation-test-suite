@@ -1,4 +1,6 @@
-﻿@ignore
+﻿#Note: Do not run this test in the automation pipeline as db changes make its complementary test: "AP_MF_NLP_02" to fail
+
+@ignore
 Feature: AP_MF_NLE_03_ReservesFundingDynamicPause
 A Non Levy Employer reserves funding for an apprenticeship course when dymamic pause rule exists
 
