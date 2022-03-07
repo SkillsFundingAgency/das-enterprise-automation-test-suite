@@ -9,6 +9,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class EmployerNameBasePage : RAAV2CSSBasePage
     {
+        private readonly string _employerName;
+
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
         private By NewTradingName => By.CssSelector("#NewTradingName");
@@ -17,7 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By EmployerReason => By.CssSelector("#AnonymousReason");
 
-        public EmployerNameBasePage(ScenarioContext context) : base(context) { }
+        public EmployerNameBasePage(ScenarioContext context) : base(context) => _employerName = rAAV2DataHelper.EmployerName;
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
@@ -34,8 +36,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
         {
             SelectRadioOptionByForAttribute(RAAV2Const.ExistingTradingName);
-            formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
-            SetEmployerName(rAAV2DataHelper.EmployerTradingName);
+            formCompletionHelper.EnterText(NewTradingName, _employerName);
+            SetEmployerName(_employerName);
             Continue();
             return new ChooseApprenticeshipLocationPage(context);
         }
@@ -77,9 +79,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("existing-trading-name");
 
-            formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
+            formCompletionHelper.EnterText(NewTradingName, _employerName);
 
-            SetEmployerName(rAAV2DataHelper.EmployerTradingName);
+            SetEmployerName(_employerName);
 
             Continue();
 
@@ -89,8 +91,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private EmployerDescriptionPage ChooseAnonymousAndGotoEmployerDescriptionPage()
         {
             SelectRadioOptionByForAttribute("anonymous");
-            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
-            SetEmployerName(rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerDescription, _employerName);
+            SetEmployerName(_employerName);
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
             Continue();
             return new EmployerDescriptionPage(context);

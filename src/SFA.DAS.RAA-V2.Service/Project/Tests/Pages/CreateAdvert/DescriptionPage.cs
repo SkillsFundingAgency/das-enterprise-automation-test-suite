@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DescriptionPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Description of the apprenticeship";
+        protected override string PageTitle => "About the apprenticeship";
 
         private By IframeBody => By.CssSelector(".mce-content-body ");
         private By OutcomeDescription => By.Id("OutcomeDescription_ifr");

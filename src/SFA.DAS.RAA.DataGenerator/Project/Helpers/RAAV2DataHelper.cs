@@ -11,10 +11,10 @@ namespace SFA.DAS.RAA.DataGenerator
         public RAAV2DataHelper(VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = $"{RandomAlphabeticString(10)}_EmployerName";
+            EmployerName = $"{RandomAlphabeticString(10)}_EmployerName";
             EmployerDescription = $"{RandomAlphabeticString(10)}_EmployerDescription";
             EmployerReason = RandomAlphabeticString(10);
-            EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
+            EmployerWebsiteUrl = WebsiteUrl(EmployerName);
             ContactName = RandomAlphabeticString(5);
             Email = $"{ContactName}@lorem.com";
             VacancyShortDescription = RandomAlphabeticString(15);
@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string Provider => AvailableProviders.RandomOrDefault();
 
-        public string EmployerTradingName { get; }
+        public string EmployerName { get; }
 
         public string EmployerDescription { get; }
 
