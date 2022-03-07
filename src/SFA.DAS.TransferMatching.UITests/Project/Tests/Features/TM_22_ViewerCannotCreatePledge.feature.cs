@@ -20,22 +20,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_21_SenderCanSortPledgeApplications")]
-    public partial class TM_21_SenderCanSortPledgeApplicationsFeature
+    [NUnit.Framework.DescriptionAttribute("TM_22_ViewerCannotCreatePledge")]
+    public partial class TM_22_ViewerCannotCreatePledgeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TM_21_SenderCanSortPledgeApplications.feature"
+#line 1 "TM_22_ViewerCannotCreatePledge.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_21_SenderCanSortPledgeApplications", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_22_ViewerCannotCreatePledge", "\tSimple calculator for adding two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_21_Sender can sort the pledges by the different fields")]
+        [NUnit.Framework.DescriptionAttribute("TM_22_Viewer user cannot create a pledge")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public virtual void TM_21_SenderCanSortThePledgesByTheDifferentFields()
+        public virtual void TM_22_ViewerUserCannotCreateAPledge()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_21_Sender can sort the pledges by the different fields", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_22_Viewer user cannot create a pledge", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,20 +104,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 7
- testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the Employer logins using existing view user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.When("the non levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.Then("the levy employer can sort the pledges", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the viewer cannot create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
