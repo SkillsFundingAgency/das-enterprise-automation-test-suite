@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ContactDetailsPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Add contact information";
+        protected override string PageTitle => $"Contact details for {objectContext.GetEmployerName()} (optional)";
 
         protected By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");

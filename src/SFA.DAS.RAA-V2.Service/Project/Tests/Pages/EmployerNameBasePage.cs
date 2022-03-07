@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class EmployerNameBasePage : RAAV2CSSBasePage
     {
-        private readonly string _employerName;
+        private string _employerName;
 
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
@@ -68,11 +68,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             var entityName = pageInteractionHelper.GetText(LegalEntityName);
 
-            SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
+            _employerName = EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim();
 
-            Continue();
-
-            return new EmployerDescriptionPage(context);
+            return GoToEmployerDescriptionPage();
         }
 
         private EmployerDescriptionPage ChooseExistingTradingNameAndGotoEmployerDescriptionPage()
@@ -81,19 +79,23 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             formCompletionHelper.EnterText(NewTradingName, _employerName);
 
-            SetEmployerName(_employerName);
-
-            Continue();
-
-            return new EmployerDescriptionPage(context);
+            return GoToEmployerDescriptionPage();
         }
 
         private EmployerDescriptionPage ChooseAnonymousAndGotoEmployerDescriptionPage()
         {
             SelectRadioOptionByForAttribute("anonymous");
+
             formCompletionHelper.EnterText(EmployerDescription, _employerName);
-            SetEmployerName(_employerName);
+            
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
+            
+            return GoToEmployerDescriptionPage();
+        }
+
+        private EmployerDescriptionPage GoToEmployerDescriptionPage() 
+        {
+            SetEmployerName(_employerName);
             Continue();
             return new EmployerDescriptionPage(context);
         }

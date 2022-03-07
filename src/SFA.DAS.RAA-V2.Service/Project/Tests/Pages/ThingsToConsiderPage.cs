@@ -6,6 +6,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ThingsToConsiderPage : RAAV2CSSBasePage
     {
+        protected override By PageHeader => By.CssSelector(".govuk-label--xl");
+
         protected override string PageTitle => "What else would you like the applicant to consider? (optional)";
 
         private By ThingsToConsider => By.CssSelector("#ThingsToConsider");
