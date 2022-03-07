@@ -198,6 +198,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer is able to apply for transfer opportunities")]
         public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
 
+        [Then(@"the levy employer can bulk reject application")]
+        public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
+
+        [Then(@"the levy employer cancels bulk reject application")]
+        public void ThenTheLevyEmployerCancelsBulkRejectApplication() => DontBulkReject();
+
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
@@ -228,6 +234,25 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge();
         }
+
+        private TransferPledgePage BulkReject()
+        {
+            SignOut();
+
+            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SelectBulkReject().BulkReject();
+        }
+
+        private TransferPledgePage DontBulkReject()
+        {
+            SignOut();
+
+            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SelectBulkReject().CancelBulkReject();
+        }
+
 
         private TransferPledgePage SortApplications()
         {
