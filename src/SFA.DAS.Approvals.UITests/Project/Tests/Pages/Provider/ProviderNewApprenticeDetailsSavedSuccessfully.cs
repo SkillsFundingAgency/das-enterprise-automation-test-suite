@@ -35,14 +35,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             int counter = 0;
             var rows = pageInteractionHelper.FindElements(cohortsSaveTableRows);
 
+            var flatennedList = apprenticeList
+                .SelectMany(
+                 x => x.CohortDetails, 
+                 (z, y) => new { z.EmployerName, z.AgreementId, z.CohortRef, y.NumberOfApprentices, CohortDetails = y})
+                .ToList();
+
             foreach (var row in rows)
             {
-                var expectedEmployerName = apprenticeList[counter].EmployerName;
-                var cohortDetails = apprenticeList[counter].CohortDetails;
+                var expectedEmployerName = flatennedList[counter].EmployerName;
+                var cohortDetails = flatennedList[counter].CohortDetails;
                 var actualEmployerName = row.FindElement(EmployerName).Text;              
 
                 Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
-                ValidateRow(cohortDetails[counter], row);
+                ValidateRow(cohortDetails, row);
 
                 counter++;
             }
