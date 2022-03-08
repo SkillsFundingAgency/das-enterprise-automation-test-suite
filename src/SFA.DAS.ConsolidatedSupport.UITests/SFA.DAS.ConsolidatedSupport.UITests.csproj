@@ -25,8 +25,8 @@
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 	  <PackageReference Include="RestEase" Version="1.5.0" />
 	  <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="97.0.4692.7100" />
-	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
-	  <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.40" />
+	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.52" />
+	  <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.52" />
   </ItemGroup>
 
 	<ItemGroup>
