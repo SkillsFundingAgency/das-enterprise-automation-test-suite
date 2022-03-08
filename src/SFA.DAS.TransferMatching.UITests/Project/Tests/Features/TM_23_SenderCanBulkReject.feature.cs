@@ -28,7 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TM_24_SenderCanBulkReject.feature"
+#line 1 "TM_23_SenderCanBulkReject.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -117,10 +117,7 @@ testRunner.Given("the levy employer logins using existing transfer matching acco
  testRunner.When("the non levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the levy employer cancels bulk reject application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
- testRunner.And("the levy employer can bulk reject application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the levy employer can bulk reject application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

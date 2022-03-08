@@ -83,7 +83,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
 
         [Then(@"the levy employer can download excel file")]
-        public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePage().DownloadExcel();
+        public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
 
         [Then(@"the levy employer can close the pledge")]
         public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose();
@@ -201,9 +201,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can bulk reject application")]
         public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
 
-        [Then(@"the levy employer cancels bulk reject application")]
-        public void ThenTheLevyEmployerCancelsBulkRejectApplication() => DontBulkReject();
-
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
@@ -226,46 +223,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
 
-        private ClosePledgePage ClosePledge()
-        {
-            SignOut(); 
-            
-            LoginAsSender(_context.GetUser<TransferMatchingUser>());
+        private ClosePledgePage ClosePledge() => GoToTransferPledgePageAsSender().ClosePledge();
 
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge();
-        }
+        private TransferPledgePage BulkReject() => GoToTransferPledgePageAsSender().SelectBulkReject().CancelBulkReject().SelectBulkReject().BulkReject();
 
-        private TransferPledgePage BulkReject()
+        private TransferPledgePage SortApplications() => GoToTransferPledgePageAsSender().SortByApplicant();
+
+        private TransferPledgePage GoToTransferPledgePageAsSender()
         {
             SignOut();
 
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SelectBulkReject().BulkReject();
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage();
         }
 
-        private TransferPledgePage DontBulkReject()
-        {
-            SignOut();
+        private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePageAsReceiver().GoToApproveAppliationPage();
 
-            LoginAsSender(_context.GetUser<TransferMatchingUser>());
-
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SelectBulkReject().CancelBulkReject();
-        }
-
-
-        private TransferPledgePage SortApplications()
-        {
-            SignOut();
-
-            LoginAsSender(_context.GetUser<TransferMatchingUser>());
-
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().SortByApplicant();
-        }
-
-        private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePage().GoToApproveAppliationPage();
-
-        private TransferPledgePage GoToTransferPledgePage()
+        private TransferPledgePage GoToTransferPledgePageAsReceiver()
         {
             SignOut();
 
