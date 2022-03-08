@@ -80,7 +80,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
                     "approvals",
                     "regression",
                     "reservefunds",
-                    "donotexecuteinparallel"};
+                    "donotexecuteinparallel",
+                    "testdonotexecuteinparallel"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -95,7 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             argumentsOfScenario.Add("ReserveFrom", reserveFrom);
             argumentsOfScenario.Add("ReserveAllowed", reserveAllowed);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -115,22 +116,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.And(string.Format("a dynamic pause rule exists from {0} to {1}", monthActiveFrom, monthActiveTo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.When("the Employer creates a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 14
  testRunner.Then(string.Format("the Employer is told that funding can be reserved from {0}", reserveFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 15
  testRunner.And(string.Format("the Employer is given options {0}, {1} and {2} to select start date", firstMonth, secondMonth, thirdMonth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
  testRunner.And(string.Format("the Employer is {0} to reserve funding for an apprenticeship course", reserveAllowed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -144,9 +145,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        [NUnit.Framework.CategoryAttribute("testdonotexecuteinparallel")]
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_0()
         {
-#line 9
+#line 10
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("0", "3", "", "", "", "3", "not able", ((string[])(null)));
 #line hidden
         }

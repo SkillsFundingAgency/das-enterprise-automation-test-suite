@@ -4,6 +4,7 @@
 @regression
 @approvals
 @approvalsnavigation
+@testdonotexecuteinparallel
 Scenario: AP_Nav_01_Navigate to EAS sub sites from Apprentice Page
 	Given the Employer logins using existing Levy Account
 	When the Employer navigates to 'Apprentice' Page
