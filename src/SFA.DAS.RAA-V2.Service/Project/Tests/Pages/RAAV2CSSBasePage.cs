@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
-        private By PageHeader_Label => By.CssSelector(".govuk-label--xl");
+        protected override By PageHeader => By.CssSelector($"{PageHeaderSelector}, .govuk-label--xl");
 
         private By CancelLink => By.LinkText("Cancel");
 
@@ -27,11 +27,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
 
-            if (verifypage) 
-            {
-                if (pageInteractionHelper.IsElementDisplayed(PageHeader)) VerifyPage();
-                else VerifyPage(PageHeader_Label, PageTitle);
-            }
+            if (verifypage) VerifyPage();
         }
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
