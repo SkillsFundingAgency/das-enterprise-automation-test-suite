@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
+        private By PageHeader_Label => By.CssSelector(".govuk-label--xl");
+
         private By CancelLink => By.LinkText("Cancel");
 
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
@@ -25,7 +27,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
 
-            if (verifypage) { VerifyPage(); }
+            if (verifypage) 
+            {
+                if (pageInteractionHelper.IsElementDisplayed(PageHeader)) VerifyPage();
+                else VerifyPage(PageHeader_Label, PageTitle);
+            }
         }
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);

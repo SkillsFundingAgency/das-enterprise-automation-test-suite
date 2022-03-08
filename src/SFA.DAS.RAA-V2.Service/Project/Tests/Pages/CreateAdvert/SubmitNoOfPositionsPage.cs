@@ -6,8 +6,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class SubmitNoOfPositionsPage : RAAV2CSSBasePage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-label--xl");
-
         protected override string PageTitle => "How many positions are there for this apprenticeship?";
 
         private By NumberOfPositions => By.CssSelector("#NumberOfPositions");
