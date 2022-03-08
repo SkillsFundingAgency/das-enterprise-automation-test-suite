@@ -152,6 +152,51 @@ this.ScenarioInitialize(scenarioInfo);
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("0", "3", "", "", "", "3", "not able", ((string[])(null)));
 #line hidden
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
+            "1")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("reservefunds")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        [NUnit.Framework.CategoryAttribute("testdonotexecuteinparallel")]
+        public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_1()
+        {
+#line 10
+this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-1", "2", "2", "", "", "2", "able", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
+            "2")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("reservefunds")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        [NUnit.Framework.CategoryAttribute("testdonotexecuteinparallel")]
+        public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_2()
+        {
+#line 10
+this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-2", "1", "1", "2", "", "1", "able", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
+            "3")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("reservefunds")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        [NUnit.Framework.CategoryAttribute("testdonotexecuteinparallel")]
+        public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_3()
+        {
+#line 10
+this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-3", "0", "0", "1", "2", "", "able", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore

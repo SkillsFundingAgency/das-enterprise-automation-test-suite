@@ -18,9 +18,9 @@ Scenario Outline: AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic p
 Examples:
 	| MonthActiveFrom | MonthActiveTo | FirstMonth | SecondMonth | ThirdMonth | ReserveFrom | ReserveAllowed |
 	| 0               | 3             |            |             |            | 3           | not able       |
-	#| -1              | 2             | 2          |             |            | 2           | able           |
-	#| -2              | 1             | 1          | 2           |            | 1           | able           |
-	#| -3              | 0             | 0          | 1           | 2          |             | able           |
+	| -1              | 2             | 2          |             |            | 2           | able           |
+	| -2              | 1             | 1          | 2           |            | 1           | able           |
+	| -3              | 0             | 0          | 1           | 2          |             | able           |
 
 # MonthActiveFrom and MonthActiveTo are the first day of the month e.g. MonthActiveFrom = 0 is the 1st day 
 # of the current month and MonthActiveTo = 3 is the first day of 3rd month from now; when start months
