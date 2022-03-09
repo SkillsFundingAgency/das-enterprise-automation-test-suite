@@ -3,7 +3,6 @@ Feature: AP_Nav_03
 
 @regression
 @approvalsnavigation
-@testdonotexecuteinparallel
 Scenario: AP_Nav_03_Navigate to different links from Apprentices Page
 	Given Employer navigates to Apprentices home page
 	Then Standard gov.uk footer should be displayed at the bottom of the page
