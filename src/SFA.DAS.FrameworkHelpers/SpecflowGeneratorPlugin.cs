@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow.Generator.Plugins;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Infrastructure;
@@ -6,7 +6,7 @@ using TechTalk.SpecFlow.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(SpecflowGeneratorPlugin))]
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public class SpecflowGeneratorPlugin : IGeneratorPlugin
     {

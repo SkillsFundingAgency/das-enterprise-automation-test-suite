@@ -2,7 +2,7 @@
 using TechTalk.SpecFlow.Generator;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.FrameworkHelpers
 {
     public class TestMethodTagDecorator : ITestMethodTagDecorator
     {
