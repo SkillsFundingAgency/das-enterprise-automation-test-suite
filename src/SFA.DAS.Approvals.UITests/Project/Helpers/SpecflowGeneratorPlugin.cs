@@ -4,11 +4,11 @@ using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.UnitTestProvider;
 
-[assembly: GeneratorPlugin(typeof(TestMethodTagGeneratorPlugin))]
+[assembly: GeneratorPlugin(typeof(SpecflowGeneratorPlugin))]
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class TestMethodTagGeneratorPlugin : IGeneratorPlugin
+    public class SpecflowGeneratorPlugin : IGeneratorPlugin
     {
         public void Initialize(GeneratorPluginEvents generatorPluginEvents,
             GeneratorPluginParameters generatorPluginParameters,
