@@ -3,6 +3,7 @@
 @regression
 @approvals
 @managefundingnavigation
+@donotexecuteinparallel
 @testdonotexecuteinparallel
 Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
 	Given the Employer logins using existing NonLevy Account
