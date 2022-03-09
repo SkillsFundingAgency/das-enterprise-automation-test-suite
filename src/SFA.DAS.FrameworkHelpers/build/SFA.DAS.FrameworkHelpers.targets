@@ -1,3 +1,0 @@
-﻿<PropertyGroup>
-	<_SampleGeneratorPluginPath>$(MSBuildThisFileDirectory)\netcoreapp3.1\SFA.DAS.FrameworkHelpers.dll</_SampleGeneratorPluginPath>
-</PropertyGroup>

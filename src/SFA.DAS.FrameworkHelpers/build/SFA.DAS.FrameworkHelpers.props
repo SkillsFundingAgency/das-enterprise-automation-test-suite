@@ -1,3 +1,0 @@
-﻿	<ItemGroup>
-        <SpecFlowGeneratorPlugins Include="$(_SampleGeneratorPluginPath)" />
-    </ItemGroup>
