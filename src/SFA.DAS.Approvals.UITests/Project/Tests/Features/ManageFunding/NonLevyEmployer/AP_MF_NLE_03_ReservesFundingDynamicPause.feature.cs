@@ -20,6 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.NonParallelizableAttribute]
     [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03_ReservesFundingDynamicPause")]
     public partial class AP_MF_NLE_03_ReservesFundingDynamicPauseFeature
     {
