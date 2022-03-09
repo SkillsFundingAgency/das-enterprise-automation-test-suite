@@ -1,5 +1,4 @@
-﻿
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
 using TechTalk.SpecFlow.Generator.Plugins;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Infrastructure;
@@ -7,16 +6,16 @@ using TechTalk.SpecFlow.UnitTestProvider;
 
 [assembly: GeneratorPlugin(typeof(TestMethodTagGeneratorPlugin))]
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     public class TestMethodTagGeneratorPlugin : IGeneratorPlugin
     {
-        public void Initialize(GeneratorPluginEvents generatorPluginEvents, 
+        public void Initialize(GeneratorPluginEvents generatorPluginEvents,
             GeneratorPluginParameters generatorPluginParameters,
-            UnitTestProviderConfiguration unitTestProviderConfiguration) 
+            UnitTestProviderConfiguration unitTestProviderConfiguration)
             => generatorPluginEvents.RegisterDependencies += RegisterDependencies;
 
-        private void RegisterDependencies(object sender, RegisterDependenciesEventArgs eventArgs) 
+        private void RegisterDependencies(object sender, RegisterDependenciesEventArgs eventArgs)
             => eventArgs.ObjectContainer.RegisterTypeAs<TestMethodTagDecorator, ITestMethodTagDecorator>(TestMethodTagDecorator.TAG_NAME);
     }
 }

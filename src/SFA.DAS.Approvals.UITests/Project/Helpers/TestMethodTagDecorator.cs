@@ -1,9 +1,8 @@
-﻿
-using System.CodeDom;
+﻿using System.CodeDom;
 using TechTalk.SpecFlow.Generator;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     public class TestMethodTagDecorator : ITestMethodTagDecorator
     {
