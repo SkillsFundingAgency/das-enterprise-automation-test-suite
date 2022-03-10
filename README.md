@@ -147,7 +147,8 @@ Note: This API framework is built with all standard libraries and ready to write
     { "assembly": "SFA.DAS.TestDataExport" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests" : false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }
 ```
@@ -219,7 +220,15 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 1. Mandatory tags (these mandatory tags are used for test execution)
 	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
-2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
+2. Framework tags (these reserved tags are used to drive the framework)
+ 	- ```@ignoreintest, @ignoreintest2, @ignoreinpp, @ignoreindemo ```(to ignore test excution in azure devops)
+	- ```@donotexecuteinparallel``` (to excluded a feature from running in parallel with any other feature) 
+	```text 
+	#the tag has to be mentioned at the feature level ex:
+	@donotexecuteinparallel 
+	Feature: FeatureName
+	```
+4. Reserved tags (these reserved tags are used to create test data)
 	- ```@addtransferslevyfunds``` (to create a levy account which makes sender eligible to transfer funds), ```@addlevyfunds``` (to create a levy funds), ```@donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
 	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse, @changeOfEmployer, @changeOfProvider``` (in approvals (including transfers), apprenticecommitments)
 	- ```@deleteuser, @aslistedemployer``` (in apprenticecommitments)
@@ -228,13 +237,12 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@deleteorganisationstandards, @resetapplyuserorganisationid, @deletestandardwithdrawal, @deleteorganisationcontact, @deleteorganisation, @makeorganisationlive``` (in EPAO)
 	- ```@apprenticeshipvacancy, @faaloginwithnewcredentials``` (in RAAV1)
 	- ```@clonevacancy``` (in RAAV2)
-	- ```@ignoreintest, @ignoreintest2, @ignoreinpp, @ignoreindemo ```(to ignore test excution in azure devops)
 	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
 	- Roatp related tags - ```@newroatpadmin, @newroatpadminreporting, @resetApplicationToNew, @resetFhaApplicationToNew, @roatpassessoradmin, @roatpmoderator, @roatpclarification, @rpallowlist, @roatpoutcome, @oldroatpadmin, @deletetrainingprovider, @oldroatpadmindownloadprovider, @roatpapply, @roatpapplye2e, @roatpapplyinprogressapplication, @roatpapplychangeukprn, @roatpapplycreateaccount, @roatpfulle2e, @roatpapplycreateaccount, @roatpfulle2eviaapply, @roatpfulle2eviaadmin, @roatpassessoradmin, @rpgateway```
-3. Optional tags / requirement specific tags
+5. Optional tags / requirement specific tags
 	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
 	- naming convention - all tags should be specified in lower cases and should start with your project name for ex: ```@<yourprojectnamee2e>```
-4. Non specflow tests
+6. Non specflow tests
 	- its not mandatory to tag non specflow tests for ex: Unit tests.
 
 ## To Execute tests from your desktop :
