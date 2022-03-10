@@ -43,33 +43,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             foreach (var row in rows)
             {
-                var expectedEmployerName = flatennedList[counter].EmployerName;
                 var cohortDetails = flatennedList[counter].CohortDetails;
-                var actualEmployerName = row.FindElement(EmployerName).Text;              
+
+                var expectedEmployerName = flatennedList[counter].EmployerName;
+                var expectedCohortRef = cohortDetails.CohortRef;
+                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
+                
+
+                var actualEmployerName = row.FindElement(EmployerName).Text;
+                var actualCohortRef = row.FindElement(Cohort).Text;
+                var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
 
                 Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
-                ValidateRow(cohortDetails, row);
+                Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
+                Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
 
                 counter++;
             }
 
             return this;
         }
-
-        private void ValidateRow(FileUploadReviewCohortDetail cohortDetails, IWebElement row)
-        {
-
-                var expectedCohortRef = cohortDetails.CohortRef;
-                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
-
-                var actualCohortRef = row.FindElement(Cohort).Text;
-                var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
-
-                Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
-                Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
-
-        }
-
         
 
     }

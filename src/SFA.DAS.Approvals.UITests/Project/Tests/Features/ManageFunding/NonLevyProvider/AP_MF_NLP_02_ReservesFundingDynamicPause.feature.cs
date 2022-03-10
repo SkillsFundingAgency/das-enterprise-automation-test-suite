@@ -21,12 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_MF_NLP_02_ReservesFundingDynamicPause")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_MF_NLP_02_ReservesFundingDynamicPauseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "approvals"};
         
 #line 1 "AP_MF_NLP_02_ReservesFundingDynamicPause.feature"
 #line hidden
@@ -36,7 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/NonLevyProvider", "AP_MF_NLP_02_ReservesFundingDynamicPause", "A Non Levy Provider reserves funding for an apprenticeship course when dymamic pa" +
-                    "use rule exists", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "use rule exists", ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

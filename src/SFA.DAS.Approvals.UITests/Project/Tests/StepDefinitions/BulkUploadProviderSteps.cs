@@ -46,6 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"Correct Information is displayed on review apprentices details page")]
         [When(@"Correct Information is displayed on review apprentices details page")]
+        [Then(@"Correct Information is displayed on review apprentices details page")]
         public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage()
         {
             var apprenticeList = GetBulkuploadData();

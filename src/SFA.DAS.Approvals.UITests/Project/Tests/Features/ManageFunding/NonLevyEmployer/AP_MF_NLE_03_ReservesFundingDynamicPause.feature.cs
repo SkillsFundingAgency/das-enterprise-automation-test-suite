@@ -21,12 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03_ReservesFundingDynamicPause")]
+    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
     public partial class AP_MF_NLE_03_ReservesFundingDynamicPauseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "ignore"};
         
 #line 1 "AP_MF_NLE_03_ReservesFundingDynamicPause.feature"
 #line hidden
@@ -36,7 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/NonLevyEmployer", "AP_MF_NLE_03_ReservesFundingDynamicPause", "A Non Levy Employer reserves funding for an apprenticeship course when dymamic pa" +
-                    "use rule exists", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "use rule exists", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -95,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             argumentsOfScenario.Add("ReserveFrom", reserveFrom);
             argumentsOfScenario.Add("ReserveAllowed", reserveAllowed);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -115,22 +118,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.And(string.Format("a dynamic pause rule exists from {0} to {1}", monthActiveFrom, monthActiveTo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("the Employer creates a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then(string.Format("the Employer is told that funding can be reserved from {0}", reserveFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.And(string.Format("the Employer is given options {0}, {1} and {2} to select start date", firstMonth, secondMonth, thirdMonth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.And(string.Format("the Employer is {0} to reserve funding for an apprenticeship course", reserveAllowed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -146,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_0()
         {
-#line 8
+#line 9
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("0", "3", "", "", "", "3", "not able", ((string[])(null)));
 #line hidden
         }
@@ -160,7 +163,7 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("0", "
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_1()
         {
-#line 8
+#line 9
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-1", "2", "2", "", "", "2", "able", ((string[])(null)));
 #line hidden
         }
@@ -174,7 +177,7 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-1", 
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_2()
         {
-#line 8
+#line 9
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-2", "1", "1", "2", "", "1", "able", ((string[])(null)));
 #line hidden
         }
@@ -188,7 +191,7 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-2", 
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists_3()
         {
-#line 8
+#line 9
 this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-3", "0", "0", "1", "2", "", "able", ((string[])(null)));
 #line hidden
         }
