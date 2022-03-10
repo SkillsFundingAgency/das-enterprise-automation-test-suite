@@ -44,6 +44,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
         }
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohort(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
+        {
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
+        }
+
         [Given(@"Correct Information is displayed on review apprentices details page")]
         [When(@"Correct Information is displayed on review apprentices details page")]
         [Then(@"Correct Information is displayed on review apprentices details page")]

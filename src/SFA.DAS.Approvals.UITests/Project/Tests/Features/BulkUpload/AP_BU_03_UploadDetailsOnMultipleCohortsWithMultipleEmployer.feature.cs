@@ -120,7 +120,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer2 creates 2 cohorts and sends them to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.When("Provider add 2 apprentice details using bulkupload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Provider uses BulkUpload to add 2 apprentice details into existing cohort and 2 a" +
+                        "pprentice details into a non-existing cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.And("Correct Information is displayed on review apprentices details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

@@ -89,10 +89,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var cohortReferencesWE = employerDetails.FindElements(CohortReferences);
             foreach (var cR in cohortReferencesWE)
             {
-                var expectedCohortDetails = cohortDetails[counter];
-                if (cR.Text != $"Cohort: {expectedCohortDetails.CohortRefText}")
+                //var expectedCohortDetails = cohortDetails[counter];
+                string expectedCohortDetails = cohortDetails[counter].CohortRef == "" ? "This will be created when you save or send to employers" : cohortDetails[counter].CohortRef;
+                if (cR.Text != $"Cohort: {expectedCohortDetails}")
                 {
-                    throw new System.Exception($"CohortRef match not found : {expectedCohortDetails.CohortRefText}");
+                    throw new System.Exception($"CohortRef match not found : {expectedCohortDetails}");
                 }
                 counter++;
             }

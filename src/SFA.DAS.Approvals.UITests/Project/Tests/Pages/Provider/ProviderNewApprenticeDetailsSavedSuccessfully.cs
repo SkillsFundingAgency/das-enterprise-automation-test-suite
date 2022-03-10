@@ -43,16 +43,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             foreach (var row in rows)
             {
-                var cohortDetails = flatennedList[counter].CohortDetails;
-
-                var expectedEmployerName = flatennedList[counter].EmployerName;
-                var expectedCohortRef = cohortDetails.CohortRef;
-                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
-                
-
                 var actualEmployerName = row.FindElement(EmployerName).Text;
                 var actualCohortRef = row.FindElement(Cohort).Text;
                 var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
+
+                var cohortDetails = flatennedList[counter].CohortDetails;
+                var expectedEmployerName = flatennedList[counter].EmployerName;
+                var expectedCohortRef = (cohortDetails.CohortRef == null || cohortDetails.CohortRef == "") ? actualCohortRef : cohortDetails.CohortRef;
+                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();             
 
                 Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
                 Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
