@@ -21,14 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03_ReservesFundingDynamicPause")]
-    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
+    [NUnit.Framework.NonParallelizableAttribute()]
+    [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
     public partial class AP_MF_NLE_03_ReservesFundingDynamicPauseFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "ignore"};
+                "donotexecuteinparallel"};
         
 #line 1 "AP_MF_NLE_03_ReservesFundingDynamicPause.feature"
 #line hidden
@@ -39,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/NonLevyEmployer", "AP_MF_NLE_03_ReservesFundingDynamicPause", "A Non Levy Employer reserves funding for an apprenticeship course when dymamic pa" +
                     "use rule exists", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+                        "donotexecuteinparallel"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,7 +81,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         public virtual void AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists(string monthActiveFrom, string monthActiveTo, string firstMonth, string secondMonth, string thirdMonth, string reserveFrom, string reserveAllowed, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore",
                     "approvals",
                     "regression",
                     "reservefunds"};
@@ -143,7 +143,6 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: 0" +
             "")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
@@ -157,7 +156,6 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("0", "
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
             "1")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
@@ -171,7 +169,6 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-1", 
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
             "2")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
@@ -185,7 +182,6 @@ this.AP_MF_NLE_03NonLevyEmployerReservesFundingWhenDynamicPauseRuleExists("-2", 
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists: -" +
             "3")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]

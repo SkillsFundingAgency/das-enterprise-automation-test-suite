@@ -1,12 +1,12 @@
-﻿@ignore
+﻿@donotexecuteinparallel
 Feature: AP_MF_NLE_03_ReservesFundingDynamicPause
 A Non Levy Employer reserves funding for an apprenticeship course when dymamic pause rule exists
 
-@ignore
+
 @approvals
 @regression
 @reservefunds
-Scenario: AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists
+Scenario Outline: AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists
 	Given the Employer logins using existing NonLevy Account
 	And a dynamic pause rule exists from <MonthActiveFrom> to <MonthActiveTo>
 	When the Employer creates a reservation

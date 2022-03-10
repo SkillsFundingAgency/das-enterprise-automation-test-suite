@@ -9,6 +9,7 @@
     { "assembly": "SFA.DAS.ConfigurationBuilder" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

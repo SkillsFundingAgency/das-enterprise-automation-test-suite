@@ -9,6 +9,7 @@
     { "assembly": "SFA.DAS.UI.Framework" }
   ],
   "generator": {
-    "allowRowTests": false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }
