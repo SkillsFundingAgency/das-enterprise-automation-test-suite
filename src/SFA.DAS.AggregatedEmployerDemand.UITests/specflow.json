@@ -13,6 +13,7 @@
     { "assembly": "SFA.DAS.FAT-V2.UITests" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }
