@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By WageType => By.CssSelector(".govuk-list .govuk-body");
 
-        protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
+        protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
         public ViewVacancyPage(ScenarioContext context) : base(context) { }
         
