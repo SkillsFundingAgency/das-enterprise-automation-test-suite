@@ -61,6 +61,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .VerifyCorrectInformationIsDisplayed(apprenticeList);
         }
 
+        [Then(@"Provider approves the cohorts and send them to employer to approve")]
+        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
+        {
+            var apprenticeList = GetBulkuploadData();
+
+            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
+                .SelectToApproveAllAndSendToEmployer()
+                .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }
+
+
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
         public void UserSelectsToUploadAnAmendedFile()

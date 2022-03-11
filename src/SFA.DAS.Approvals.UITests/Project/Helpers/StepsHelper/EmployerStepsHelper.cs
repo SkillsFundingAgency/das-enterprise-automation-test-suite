@@ -56,7 +56,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
-
         internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage)
         {
             return apprenticeDetailsPage
@@ -117,6 +116,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
+
         public void SetCohortReferenceList(string cohortReference)
         {
             var list = _objectContext.GetCohortReferenceList();

@@ -10,23 +10,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderReviewApprenticeDetailsBulkUploadPage : ApprovalsBasePage
     {
+        protected override string PageTitle => "Check new apprentice records";
         protected override By ContinueButton => By.Id("continue-button");
 
         protected By EmployerDetails => By.ClassName("bu-employer-details");
         protected By EmployerNameAndAgreementId => By.ClassName("bu-employer-name");
         protected By EmployerAgreementId => By.ClassName("bu-agreementId");
-
         protected By CohortReferences => By.ClassName("bu-cohort-ref");
         protected By ApprenticeCountAndTotalText => By.ClassName("bu-apprentice-count");
-
         protected By UploadAnAmendedFileRadioButton => By.Id("details-new-file");
-
         protected By UploadAnAmendedFileActionLink => By.Id("upload-amended-file-link");
         protected By SaveButDontSendToEmployerRadioButton => By.Id("details-save");
-
+        protected By ApproveAllAndSendToEmployerButton => By.Id("details-approve");
         protected By CancelUploadLink => By.Id("cancel-upload-link");
 
-        protected override string PageTitle => "Check new apprentice records";
 
         public ProviderReviewApprenticeDetailsBulkUploadPage(ScenarioContext context) : base(context) { }
 
@@ -50,6 +47,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNewApprenticeDetailsSavedSuccessfully(context);
         }
 
+        public ProviderNewApprenticesAddedAndSentToEmployer SelectToApproveAllAndSendToEmployer()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(ApproveAllAndSendToEmployerButton);
+            Continue();
+            return new ProviderNewApprenticesAddedAndSentToEmployer(context);
+        }
+        
         public ProviderUploadAmendedFilePage SelectToUploadAnAmendedFileThroughLink()
         {
             formCompletionHelper.Click(UploadAnAmendedFileActionLink);

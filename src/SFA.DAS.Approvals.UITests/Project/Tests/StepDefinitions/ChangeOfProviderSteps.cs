@@ -67,6 +67,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .EmployerDoesSecondApproval();
         }
 
+        [When(@"Levy employer approves the cohorts")]
+        public void WhenLevyEmployerApprovesTheCohorts()
+        {
+            new EmployerStepsHelper(_context)
+                .EmployerReviewCohort()
+                .EmployerDoesSecondApproval();
+        }
+
+
+
         [Then(@"a new live apprenticeship record is created with new Provider")]
         public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
         {

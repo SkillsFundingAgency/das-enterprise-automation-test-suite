@@ -1,9 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -13,31 +10,31 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderNewApprenticeDetailsSavedSuccessfully : ApprovalsBasePage
+    public class ProviderNewApprenticesAddedAndSentToEmployer : ApprovalsBasePage
     {
         protected readonly PageInteractionHelper _pageInteractionHelper;
-        protected override string PageTitle => "New apprentice details saved successfully";
+        protected override string PageTitle => "New apprentices added and sent to employer(s) for approval";
+
         private By cohortsSaveTableRows => By.CssSelector("tbody tr");
         private By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
         private By Cohort => By.CssSelector("td.govuk-table__cell[data-label='CohortReference']");
         private By NumberOfApprentices => By.CssSelector("td.govuk-table__cell[data-label='NumberOfApprenticeships']");
 
-        public ProviderNewApprenticeDetailsSavedSuccessfully(ScenarioContext _context) : base(_context)
+        public ProviderNewApprenticesAddedAndSentToEmployer(ScenarioContext _context) : base(_context)
         {
             _pageInteractionHelper = _context.Get<PageInteractionHelper>();
             VerifyPage();
-
         }
 
-        public ProviderNewApprenticeDetailsSavedSuccessfully VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
+        public ProviderNewApprenticesAddedAndSentToEmployer VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
             int counter = 0;
             var rows = pageInteractionHelper.FindElements(cohortsSaveTableRows);
 
             var flatennedList = apprenticeList
                 .SelectMany(
-                 x => x.CohortDetails, 
-                 (z, y) => new { z.EmployerName, z.AgreementId, z.CohortRef, y.NumberOfApprentices, CohortDetails = y})
+                 x => x.CohortDetails,
+                 (z, y) => new { z.EmployerName, z.AgreementId, z.CohortRef, y.NumberOfApprentices, CohortDetails = y })
                 .ToList();
 
             foreach (var row in rows)
@@ -49,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var cohortDetails = flatennedList[counter].CohortDetails;
                 var expectedEmployerName = flatennedList[counter].EmployerName;
                 var expectedCohortRef = (cohortDetails.CohortRef == null || cohortDetails.CohortRef == "") ? actualCohortRef : cohortDetails.CohortRef;
-                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();             
+                var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
 
                 Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
                 Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
@@ -60,18 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return this;
         }
-        
+
 
     }
-
-    #region Helper Classes
-
-    public class FileUploadCohortsSaved
-    {
-        public string Employer { get; set; }
-        public string Cohort { get; set; }
-        public string NumberOfApprentices { get; set; }
-    }
-
-    # endregion
 }
