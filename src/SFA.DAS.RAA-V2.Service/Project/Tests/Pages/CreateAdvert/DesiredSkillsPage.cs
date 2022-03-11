@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DesiredSkillsPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "What skills and personal qualities would you like the applicant to have?";
+        protected override string PageTitle => "What skills and personal qualities do applicants need to have?";
 
         private By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
