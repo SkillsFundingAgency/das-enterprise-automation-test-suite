@@ -89,18 +89,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
 
-        public TransactionCompletePage ConfirmYourApprenticeshipFromTheTopBanner()
+        public OverallApprenticeshipConfirmedPage ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage()
         {
             VerifyElement(AppreticeshipConfirmBannerHeader);
             VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
             formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
-            return new TransactionCompletePage(context);
+            return new OverallApprenticeshipConfirmedPage(context);
         }
 
-        public void VerifyPageAfterApprenticeshipConfirm()
+        public ApprenticeOverviewPage VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
         {
             VerifyElement(PageHeader, PageTitleAfterConfirmation);
             VerifyElement(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
+            return this;
         }
 
         public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }

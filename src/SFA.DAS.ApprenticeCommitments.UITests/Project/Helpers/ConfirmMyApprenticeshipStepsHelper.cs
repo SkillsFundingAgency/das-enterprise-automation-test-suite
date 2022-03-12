@@ -5,7 +5,6 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -31,8 +30,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
         }
 
-        public TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage) 
-            => ConfirmAllSections(apprenticeOverviewPage).ConfirmYourApprenticeshipFromTheTopBanner();
+        public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage)
+            => ConfirmAllSections(apprenticeOverviewPage).ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage();
 
         public ApprenticeOverviewPage ConfirmAllSections(ApprenticeOverviewPage apprenticeOverviewPage)
         {
@@ -49,7 +48,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYes();
 
         public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYes();
-        
+
         public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
 
         public ApprenticeOverviewPage ConfirmRolesAndResponsibilities(ApprenticeOverviewPage apprenticeOverviewPage) => VerifyAndConfirmRolesAndResponsibilities(apprenticeOverviewPage.GoToConfirmRolesAndResponsibilitiesPage());
@@ -57,18 +56,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmAllSections()
         {
             var apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.InComplete);
-            VerifyInCompleteTag(apprenticeOverviewPage);
+            VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.InComplete);
-            VerifyInCompleteTag(apprenticeOverviewPage);
+            VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.InComplete);
-            VerifyInCompleteTag(apprenticeOverviewPage);
+            VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
-            VerifyInCompleteTag(apprenticeOverviewPage);
+            VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
-            return VerifyInCompleteTag(apprenticeOverviewPage);
+            return VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
         }
 
-        public ApprenticeOverviewPage VerifyInCompleteTag(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyInCompleteTag().NavigateToOverviewPageFromLinkOnTheHomePage();
+        public ApprenticeOverviewPage VerifyCMADSectionStatusOnTheHomePageToBeInComplete(ApprenticeOverviewPage apprenticeOverviewPage)
+            => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyCMADSectionStatusToBeInCompleteOnHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
 
         public ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
         {

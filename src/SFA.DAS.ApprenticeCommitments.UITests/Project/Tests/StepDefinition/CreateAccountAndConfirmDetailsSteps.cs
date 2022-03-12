@@ -11,21 +11,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
-        [Then(@"the apprentice can create account")]
-        public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyInCompleteTag();
+        [Given(@"the apprentice creates the CMAD account")]
+        public void ThenTheApprenticeCanCreateAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyCMADSectionStatusToBeInCompleteOnHomePage();
 
         [Given(@"an apprentice has created and validated the account")]
-        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount() => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
-
-        [When(@"the apprentice confirms all the Apprenticeship sections")]
-        public void WhenTheApprenticeConfirmsAllTheApprenticeshipSections() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmAllSections();
-
-        [Then(@"the apprentice is able to confirm the Overall Apprenticeship status")]
-        public void ThenTheApprenticeIsAbleToConfirmTheOverallApprenticeshipStatus()
-        {
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBanner().VerifyTrainingNameOnPageHeader().NavigateBackToOverviewPage();
-            _apprenticeOverviewPage.VerifyPageAfterApprenticeshipConfirm();
-        }
+        public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
+            => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
 
         [Then(@"the apprentice is able to navigate to the Help and Support from the Overview page")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromTheOverviewPage()
@@ -47,18 +38,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to logout from the service")]
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeOverviewPage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
-
         [Then(@"the apprentice can create account and confirm their details")]
-        public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails() 
+        public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
             => ConfirmAllSectionsAndApprenticeship(createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage());
 
-        [Then(@"the apprentice can confirm apprenticeship")]
-        public void ThenTheApprenticeCanConfirmApprenticeship() 
-            => ConfirmAllSectionsAndApprenticeship(new ApprenticeHomePage(_context).NavigateToOverviewPageFromLinkOnTheHomePage())
+        [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
+        public void ThenTheApprenticeConfirmsTheOverallApprenticeship()
+            => ConfirmAllSectionsAndApprenticeship(new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink())
+            .VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage()
+            .NavigateBackToOverviewPage()
+            .VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
             .NavigateToHomePageFromTopNavigationLink()
-            .VerifyCompleteTag();
+            .VerifyCMADSectionStatusToBeCompleteOnHomePage();
 
-        private TransactionCompletePage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage) 
+        private OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage)
             => confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship(apprenticeOverviewPage);
     }
 }
