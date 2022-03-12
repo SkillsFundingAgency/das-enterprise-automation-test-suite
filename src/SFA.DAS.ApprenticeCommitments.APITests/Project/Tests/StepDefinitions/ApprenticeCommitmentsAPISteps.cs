@@ -43,7 +43,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
         [Then(@"das-commitments-api endpoint can be accessed")]
         public void ThenDasCommitmentsApiCanBeAccessed()
         {
-            var (_, apprenticeshipid, _, _, _, _, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetEmployerData();
+            var (_, apprenticeshipid, _, _, _, _, _, _, _, _, _, _) = _apprenticeCommitmentSqlHelper.GetCommitmentData();
 
             _innerApiRestClient.GetApprenticeship(apprenticeshipid, HttpStatusCode.OK);
         }

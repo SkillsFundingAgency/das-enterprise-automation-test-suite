@@ -3,7 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Hooks
 {
     [Binding]
     public class BeforeScenarioHooks

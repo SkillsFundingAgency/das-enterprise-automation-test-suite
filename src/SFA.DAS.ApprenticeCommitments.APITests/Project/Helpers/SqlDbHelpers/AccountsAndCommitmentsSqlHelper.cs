@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             return (providerData[0], providerData[1]);
         }
 
-        public (long accountid, long apprenticeshipid, string firstname, string lastname, DateTime dateOfBirth, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()
+        public (long accountid, long apprenticeshipid, string firstname, string lastname, DateTime dateOfBirth, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetCommitmentData()
         {
             var query = "SELECT TOP 1 C.EmployerAccountId, App.id, App.FirstName, App.LastName, App.TrainingName, C.AccountLegalEntityId, " +
                 "C.ProviderId, App.StartDate, App.EndDate, App.CreatedOn, App.DateOfBirth " +
@@ -50,6 +50,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 return (0, 0, string.Empty, string.Empty, default, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty, string.Empty);
             else
                 return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, DateTime.Parse(dateOfBirth), apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate, createdOn);
+        }
+
+        public string GetTrainingName(string email)
+        {
+            var query = $"SELECT TrainingName From Apprenticeship WHERE Email = '{email}'";
+            return GetData(query, _dbConfig.CommitmentsDbConnectionString)[0];
         }
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);

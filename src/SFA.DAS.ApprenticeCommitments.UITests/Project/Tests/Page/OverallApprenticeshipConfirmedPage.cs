@@ -12,11 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public OverallApprenticeshipConfirmedPage(ScenarioContext context) : base(context) { }
 
-        public ApprenticeOverviewPage NavigateBackToOverviewPage()
-        {
-            NavigateBack();
-            return new ApprenticeOverviewPage(context);
-        }
+        public void NavigateBackToOverviewPage() => NavigateBack();
 
         public OverallApprenticeshipConfirmedPage VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage()
         {
@@ -25,3 +21,4 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
     }
 }
+    

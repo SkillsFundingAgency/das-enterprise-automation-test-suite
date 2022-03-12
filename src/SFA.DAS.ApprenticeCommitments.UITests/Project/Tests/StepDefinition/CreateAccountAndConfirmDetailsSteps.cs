@@ -44,12 +44,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
         public void ThenTheApprenticeConfirmsTheOverallApprenticeship()
-            => ConfirmAllSectionsAndApprenticeship(new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink())
-            .VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage()
-            .NavigateBackToOverviewPage()
-            .VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
-            .NavigateToHomePageFromTopNavigationLink()
-            .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+        {
+            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+
+            ConfirmAllSectionsAndApprenticeship(_apprenticeOverviewPage).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
+
+            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
+                .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+        }
 
         private OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage)
             => confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship(apprenticeOverviewPage);
