@@ -116,6 +116,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("confirmed training provider already page is displayed for trying to confirm again" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 10
+ testRunner.And("the apprentice is able to change the answer and choose to confirm the Provider de" +
+                        "tails as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

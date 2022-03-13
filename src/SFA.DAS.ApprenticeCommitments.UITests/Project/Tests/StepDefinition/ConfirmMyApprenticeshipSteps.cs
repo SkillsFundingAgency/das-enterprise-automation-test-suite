@@ -63,6 +63,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
         }
 
+        [Then(@"the apprentice is able to change the answer and choose to confirm the Employer details as Incorrect")]
+        public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheEmployerDetailsAsIncorrect()
+        {
+            _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ChangeMyAnswerAction().SelectNoToConfirmEmployerPostChangingAnswer().ReturnToApprenticeOverviewPage();
+            confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
+        }
+
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
         public void ThenConfirmedTrainingProviderAlreadyPageIsDisplayedForTryingToConfirmAgain() =>
             _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ContinueToCMADOverviewPage();
@@ -72,6 +79,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.InComplete);
             _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourTrainingProviderPage().SelectNoToConfirmTrainingProvider().ReturnToApprenticeOverviewPage();
+            confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.WaitingForCorrection);
+        }
+
+        [Then(@"the apprentice is able to change the answer and choose to confirm the Provider details as Incorrect")]
+        public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheProviderDetailsAsIncorrect()
+        {
+            _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ChangeMyAnswerAction().SelectNoToConfirmTrainingProviderPostChangingAnswer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.WaitingForCorrection);
         }
 
@@ -87,14 +101,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeVerifiesAndConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.InComplete);
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.NavigateAndVerifyApprenticeshipDetails().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.NavigateAndVerifyApprenticeshipDetails().SelectNoToConfirmYourDetails().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
         }
 
         [Then(@"the apprentice confirms the Apprenticeship details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheApprenticeshipDetailsDisplayedAsIncorrect()
         {
-            _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourApprenticeshipDetailsPage().SelectNoConfirmYourDetails().ReturnToApprenticeOverviewPage();
+            _apprenticeOverviewPage = ApprenticeOverviewPage().GoToConfirmYourApprenticeshipDetailsPage().SelectNoToConfirmYourDetails().ReturnToApprenticeOverviewPage();
+        }
+
+        [Then(@"the apprentice is able to change the answer and choose to confirm the Apprenticeship details as Incorrect")]
+        public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheApprenticeshipDetailsAsIncorrect()
+        {
+            _alreadyConfirmedApprenticeshipDetailsPage = _apprenticeOverviewPage.GoToAlreadyConfirmedApprenticeshipDetailsPage().ChangeMyAnswerAction();
+            confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(_alreadyConfirmedApprenticeshipDetailsPage);
+            _alreadyConfirmedApprenticeshipDetailsPage.SelectNoToConfirmYourDetailsPostChangingAnswer().ReturnToApprenticeOverviewPage();
+            confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]

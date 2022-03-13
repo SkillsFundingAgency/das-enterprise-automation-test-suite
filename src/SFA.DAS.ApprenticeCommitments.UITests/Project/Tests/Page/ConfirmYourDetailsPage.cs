@@ -15,6 +15,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By EmployerHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetEmployerName()} is your employer's legal name registered with Companies House.  You may know them by their trading name instead.\")]");
         protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
         protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
+        protected By ChangeMyAnswerLink => By.XPath("//a[text()='I want to change my answer']");
+        private By ConfirmButton => By.Id("employer-provider-confirm");
 
         public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
@@ -30,16 +32,40 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new YouCantConfirmYourEmployerPage(context);
         }
 
+        public YouCantConfirmYourEmployerPage SelectNoToConfirmEmployerPostChangingAnswer()
+        {
+            SelectNoRadioOptionAndConfirm();
+            return new YouCantConfirmYourEmployerPage(context);
+        }
+
         public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProvider()
         {
             SelectNoRadioOption();
             return new YouCantConfirmYourTrainingProviderPage(context);
         }
 
-        public YouCantConfirmYourDetailsPage SelectNoConfirmYourDetails()
+        public YouCantConfirmYourTrainingProviderPage SelectNoToConfirmTrainingProviderPostChangingAnswer()
+        {
+            SelectNoRadioOptionAndConfirm();
+            return new YouCantConfirmYourTrainingProviderPage(context);
+        }
+
+        public YouCantConfirmYourDetailsPage SelectNoToConfirmYourDetails()
         {
             SelectNoRadioOption();
             return new YouCantConfirmYourDetailsPage(context);
+        }
+
+        public YouCantConfirmYourDetailsPage SelectNoToConfirmYourDetailsPostChangingAnswer()
+        {
+            SelectNoRadioOptionAndConfirm();
+            return new YouCantConfirmYourDetailsPage(context);
+        }
+
+        public void ChangeMyAnswerAction()
+        {
+            formCompletionHelper.Click(ChangeMyAnswerLink);
+            VerifyPage(GreenTickText, "You can now change your answer");
         }
 
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);
@@ -53,5 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }
 
         private void SelectNoRadioOption() { formCompletionHelper.SelectRadioOptionByText("No"); Continue(); }
+
+        private void SelectNoRadioOptionAndConfirm() { formCompletionHelper.SelectRadioOptionByText("No"); formCompletionHelper.Click(ConfirmButton); }
     }
 }

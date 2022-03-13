@@ -21,5 +21,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 () => VerifyPage(ProviderHelpSectionText)
             });
         }
+
+        public new AlreadyConfirmedTrainingProviderPage ChangeMyAnswerAction()
+        {
+            base.ChangeMyAnswerAction();
+            VerifyPage();
+            return this;
+        }
     }
 }

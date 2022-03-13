@@ -115,6 +115,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.And("confirmed employer already page is displayed for trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 10
+ testRunner.And("the apprentice is able to change the answer and choose to confirm the Employer de" +
+                        "tails as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

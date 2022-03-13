@@ -15,11 +15,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
-                () => pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo),
+                () => VerifyPage(GreenTickText, GreenTickTextInfo),
                 () => VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetEmployerName().Replace("  ", " ")),
                 () => VerifyPage(EmployerHelpSectionLink),
                 () => VerifyPage(EmployerHelpSectionText)
-            });          
+            });
+        }
+
+        public new AlreadyConfirmedEmployerPage ChangeMyAnswerAction()
+        {
+            base.ChangeMyAnswerAction();
+            VerifyPage();
+            return this;
         }
     }
 }
