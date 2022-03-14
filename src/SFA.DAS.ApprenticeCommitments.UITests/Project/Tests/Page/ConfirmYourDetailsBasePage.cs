@@ -6,7 +6,7 @@ using System;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class ConfirmYourDetailsPage : ApprenticeCommitmentsBasePage
+    public abstract class ConfirmYourDetailsBasePage : ApprenticeCommitmentsBasePage
     {
         private By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
         private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
@@ -23,9 +23,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By FieldValidtionError => By.CssSelector(".field-validation-error");
 
 
-        public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        public ConfirmYourDetailsBasePage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
-        public ApprenticeOverviewPage SelectYes()
+        public ApprenticeOverviewPage SelectYesAndContinueToOverviewPage()
         {
             SelectYesRadioOption();
             return new ApprenticeOverviewPage(context);

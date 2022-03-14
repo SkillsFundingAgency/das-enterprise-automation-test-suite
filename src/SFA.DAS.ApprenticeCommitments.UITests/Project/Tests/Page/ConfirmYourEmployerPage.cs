@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmYourEmployerPage : ConfirmYourDetailsPage
+    public class ConfirmYourEmployerPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => "Confirm your employer";
 
@@ -21,6 +21,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 () => VerifyPage(EmployerHelpSectionLink),
                 () => VerifyPage(EmployerHelpSectionText)
             });
+        }
+
+        public new ConfirmYourEmployerPage ClickOnConfirmButton()
+        {
+            base.ClickOnConfirmButton();
+            return this;
+        }
+
+        public new ConfirmYourEmployerPage VerifyErrorSummaryBoxAndErrorFieldText()
+        {
+            base.ClickOnConfirmButton();
+            return this;
         }
     }
 }

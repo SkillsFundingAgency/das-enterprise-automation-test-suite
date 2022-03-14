@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class AlreadyConfirmedEmployerPage : ConfirmYourDetailsPage
+    public class AlreadyConfirmedEmployerPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => "Confirm your employer";
         private string GreenTickTextInfo => "You have confirmed this is your employer";

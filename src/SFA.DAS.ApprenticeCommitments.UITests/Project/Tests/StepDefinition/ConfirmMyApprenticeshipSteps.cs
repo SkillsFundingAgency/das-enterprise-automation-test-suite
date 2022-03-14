@@ -56,7 +56,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain()
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToCMADOverviewPage();
-            confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
         }
 
         [Then(@"the apprentice confirms the Employer details displayed as Incorrect")]
@@ -71,14 +71,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheEmployerDetailsAsIncorrect()
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ChangeMyAnswerAction().SelectNoToConfirmEmployerPostChangingAnswer().ReturnToApprenticeOverviewPage();
-            confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
         }
 
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm employer page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmEmployerPage()
         {
-            _apprenticeOverviewPage.GoToConfirmYourEmployerPage().ClickOnConfirmButton();
-            new ConfirmYourEmployerPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
+            _apprenticeOverviewPage.GoToConfirmYourEmployerPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
         }
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
@@ -103,8 +103,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm provider page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmProviderPage()
         {
-            _apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().ClickOnConfirmButton();
-            new ConfirmYourTrainingProviderPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
+            _apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.Complete);
         }
 
         [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
@@ -141,8 +141,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm details page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmDetailsPage()
         {
-            _apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().ClickOnConfirmButton();
-            new ConfirmYourApprenticeshipDetailsPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
+            _apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.Complete);
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
