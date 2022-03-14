@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the employer reserves funding from the dynamic home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("the employer continue to add vacancy in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the employer continue to add advert in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
  testRunner.When("the Employer creates first Draft vacancy \'National Mininum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

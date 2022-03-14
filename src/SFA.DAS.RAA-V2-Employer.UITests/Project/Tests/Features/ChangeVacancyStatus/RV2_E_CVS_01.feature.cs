@@ -75,7 +75,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ChangeVacancySt
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_CVS_01 - Create, Approve and Close the vacancy")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -84,11 +83,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ChangeVacancySt
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
-                    "regression",
-                    "ignore"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVS_01 - Create, Approve and Close the vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,13 +96,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the Employer can create a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("the Employer can close the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

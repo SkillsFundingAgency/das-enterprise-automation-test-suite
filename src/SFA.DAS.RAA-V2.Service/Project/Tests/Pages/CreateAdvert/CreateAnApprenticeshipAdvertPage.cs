@@ -10,8 +10,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By TaskName => By.CssSelector(".das-task-list__item .govuk-link");
 
+        private By ReturnToApplicationsSelector => By.LinkText("Return to your applications");
+
         public CreateAnApprenticeshipAdvertPage(ScenarioContext context) : base(context) { }
 
+        public void RetrunToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
+    
         public CheckYourAnswersPage CheckYourAnswers()
         {
             NavigateToTask(Checkandsubmityouradvert, Checkandsubmityouradvert_1);

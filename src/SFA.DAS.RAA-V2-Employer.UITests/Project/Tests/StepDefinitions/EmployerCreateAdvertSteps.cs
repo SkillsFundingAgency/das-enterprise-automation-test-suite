@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
@@ -8,14 +9,28 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerCreateAdvertSteps
     {
+        private readonly ScenarioContext _context;
+
         private readonly EmployerCreateAdvertStepsHelper _employerCreateVacancyStepsHelper;
 
         private YourApprenticeshipAdvertsHomePage _yourApprenticeshipAdvertsHomePage;
 
+        private CreateAnApprenticeshipAdvertPage _createAnApprenticeshipAdvertPage;
+
         public EmployerCreateAdvertSteps(ScenarioContext context)
         {
+            _context = context;
             _employerCreateVacancyStepsHelper = new EmployerCreateAdvertStepsHelper(context);
         }
+
+        [When(@"the Employer creates first submitted advert")]
+        public void TheEmployerCreatesFirstSubmittedAdvert() => _employerCreateVacancyStepsHelper.CreateSubmittedVacancy(_createAnApprenticeshipAdvertPage);
+
+        [When(@"the Employer creates first Draft advert")]
+        public void TheEmployerCreatesFirstDraftAdvert() { _employerCreateVacancyStepsHelper.CreateDraftVacancy(_createAnApprenticeshipAdvertPage).RetrunToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
+
+        [Given(@"the employer continue to add advert in the Recruitment")]
+        public void TheEmployerContinueToAddAdvertInTheRecruitment() => _createAnApprenticeshipAdvertPage = _employerCreateVacancyStepsHelper.AddAnAdvert();
 
         [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
         public void EmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerCreateVacancyStepsHelper.CreateANewAdvert_WageType(wageType);

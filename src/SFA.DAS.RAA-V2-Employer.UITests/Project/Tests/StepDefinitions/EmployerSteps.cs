@@ -115,10 +115,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
 
-        [When(@"the Employer creates first Draft vacancy '(.*)'")]
+        //[When(@"the Employer creates first Draft vacancy '(.*)'")]
         public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateDraftVacancy(_whatDoYouWantToCallThisAdvertPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
 
-        [Given(@"the employer continue to add vacancy in the Recruitment")]
+        //[Given(@"the employer continue to add vacancy in the Recruitment")]
         public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _whatDoYouWantToCallThisAdvertPage = _employerStepsHelper.GoToAddAnAdvert();
 
         [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(DRAFT|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
@@ -154,7 +154,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can continue creating an advert")]
         public void ThenEmployerCanContinueCreatingAnAdvert() => _dynamicHomePage.ContinueCreatingYourAdvert();
 
-        [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
+        //[When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
         public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateSubmittedVacancy(_whatDoYouWantToCallThisAdvertPage, wageType);
 
         [Given(@"the Employer logs into Employer account")]

@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new EmployerVacancySearchResultPage(context);
         }
 
-        public CreateAnAdvertHomePage CreateAnApprenticeshiAdvert()
+        public CreateAnAdvertHomePage CreateAnApprenticeshipAdvert()
         {
             AcceptCookies();
             formCompletionHelper.Click(CreateAnAdvertButton);

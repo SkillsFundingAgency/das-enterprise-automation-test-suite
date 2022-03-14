@@ -3,6 +3,7 @@ using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
+using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
@@ -23,6 +24,33 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
+        internal void CreateSubmittedVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        {
+            createAdvertPage = AdvertSummary(createAdvertPage);
+
+            createAdvertPage = EmploymentDetails(createAdvertPage, true, false, RAAV2Const.NationalMinWages);
+
+            createAdvertPage = SkillsAndQualifications(createAdvertPage);
+
+            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+
+            CheckAndSubmitAdvert(createAdvertPage);
+        }
+
+        internal CreateAnApprenticeshipAdvertPage CreateDraftVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        {
+            createAdvertPage = AdvertSummary(createAdvertPage);
+
+            return EmploymentDetails(createAdvertPage, true, false, RAAV2Const.NationalMinWages);
+        }
+
+        internal CreateAnApprenticeshipAdvertPage AddAnAdvert()
+        {
+            new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
+
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().GoToCreateAnApprenticeshipAdvertPage();
+        }
+
         internal void CreateOfflineVacancy()
         {
             CreateANewAdvert(true, false);
@@ -32,7 +60,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshiAdvert()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(_context); }
 
-        internal VacancyReferencePage CloneAnAdvert() => CheckYourAnswers(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
+        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
 
         internal void CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
 
@@ -74,17 +102,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 
-            Checkandsubmityouradvert(createAdvertPage);
-
+            CheckAndSubmitAdvert(createAdvertPage);
         }
 
         private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
-        private CreateAnApprenticeshipAdvertPage CreateAnApprenticeshiAdvert() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshiAdvert().GoToCreateAnApprenticeshipAdvertPage();
+        private CreateAnApprenticeshipAdvertPage CreateAnApprenticeshiAdvert() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
 
-        private VacancyReferencePage Checkandsubmityouradvert(CreateAnApprenticeshipAdvertPage createAdvertPage) => CheckYourAnswers(createAdvertPage.CheckYourAnswers());
+        private VacancyReferencePage CheckAndSubmitAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage) => SubmitAndSetVacancyReference(createAdvertPage.CheckYourAnswers());
 
-        private VacancyReferencePage CheckYourAnswers(CheckYourAnswersPage checkYourAnswersPage)
+        private VacancyReferencePage SubmitAndSetVacancyReference(CheckYourAnswersPage checkYourAnswersPage)
         {
             return checkYourAnswersPage
                 .SubmitAdvert()
