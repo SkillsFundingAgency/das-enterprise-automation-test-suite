@@ -96,13 +96,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             return _stepsHelper.PreviewVacancyForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername, isEmployerAddress, disabilityConfidence);
         }
+
         internal WhatDoYouWantToCallThisAdvertPage GoToAddAnAdvert()
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
 
-            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().
-                
-                ClickStartNow();
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
         private ManageRecruitPage SearchVacancyByVacancyReferenceInNewTab()
