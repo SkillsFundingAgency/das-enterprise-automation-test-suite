@@ -26,7 +26,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "RP_AD_OUTCOME_01.feature"
 #line hidden
@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outcome", "RP_AD_OUTCOME_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outcome", "RP_AD_OUTCOME_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,28 +47,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -82,7 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
         [NUnit.Framework.CategoryAttribute("roatpoutcome")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01ACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRoute()
+        public void RP_AD_OUTCOME_01ACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRoute()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -93,21 +93,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Outcome
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provide" +
-                    "r route", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "r route", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -146,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("roatpoutcome")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01BCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteUnsuccessfulJourney()
+        public void RP_AD_OUTCOME_01BCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteUnsuccessfulJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -157,21 +147,11 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01B Complete Outcome of a Company type Application via Main provide" +
-                    "r route unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "r route unsuccessful Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -214,7 +194,7 @@ testRunner.And("verify the Application unsuccessful page is displayed", ((string
         [NUnit.Framework.CategoryAttribute("oldroatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01BACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteAppealJourney()
+        public void RP_AD_OUTCOME_01BACompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteAppealJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -226,21 +206,11 @@ testRunner.And("verify the Application unsuccessful page is displayed", ((string
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01BA Complete Outcome of a Company type Application via Main provid" +
-                    "er route Appeal Journey", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "er route Appeal Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 41
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -278,7 +248,7 @@ testRunner.Given("the application with UNSUCCESSFUL outcome is ready to be asses
         [NUnit.Framework.CategoryAttribute("roatpoutcome")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01CCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteInProgressJourney()
+        public void RP_AD_OUTCOME_01CCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteInProgressJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -289,21 +259,11 @@ testRunner.Given("the application with UNSUCCESSFUL outcome is ready to be asses
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01C Complete Outcome of a Company type Application via Main provide" +
-                    "r route In Progress Journey", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "r route In Progress Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 57
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -359,7 +319,7 @@ testRunner.Then("verify the provider is added to the register with status of Onb
         [NUnit.Framework.CategoryAttribute("oldroatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01DCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteSuccessfulAlreadyActiveJourney()
+        public void RP_AD_OUTCOME_01DCompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteSuccessfulAlreadyActiveJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -371,21 +331,11 @@ testRunner.Then("verify the provider is added to the register with status of Onb
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01D Complete Outcome of a Company type Application via Main provide" +
-                    "r route Successful already active Journey", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "r route Successful already active Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 78
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -430,7 +380,7 @@ testRunner.And("verify the Application successful page is displayed", ((string)(
         [NUnit.Framework.CategoryAttribute("oldroatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_OUTCOME_01ECompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteSuccessfulFitnessForFundingJourney()
+        public void RP_AD_OUTCOME_01ECompleteOutcomeOfACompanyTypeApplicationViaMainProviderRouteSuccessfulFitnessForFundingJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
@@ -442,21 +392,11 @@ testRunner.And("verify the Application successful page is displayed", ((string)(
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_OUTCOME_01E Complete Outcome of a Company type Application via Main provide" +
-                    "r route Successful fitness for funding Journey", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "r route Successful fitness for funding Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 95
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
