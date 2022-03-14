@@ -75,6 +75,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.DraftVacancy
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_DV_02 - Resume Create Vacancy from Draft status")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -83,10 +84,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.DraftVacancy
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
-                    "regression"};
+                    "regression",
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DV_02 - Resume Create Vacancy from Draft status", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,13 +98,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
 testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
 testRunner.When("the Employer saves the vacancy as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
 testRunner.Then("Employer is able to open the draft and create the vacancy by filling the data for" +
                         " the second part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

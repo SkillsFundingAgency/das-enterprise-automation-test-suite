@@ -74,19 +74,21 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ChangeVacancySt
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CVS_02 - Create, Approve and Edit the vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CVS_02 - Create, Approve and Edit the advert")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_E_CVS_02_CreateApproveAndEditTheVacancy()
+        [NUnit.Framework.CategoryAttribute("newraa-v2")]
+        public void RV2_E_CVS_02_CreateApproveAndEditTheAdvert()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
-                    "regression"};
+                    "regression",
+                    "newraa-v2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVS_02 - Create, Approve and Edit the vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVS_02 - Create, Approve and Edit the advert", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,13 +98,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer creates a vacancy by using a trading name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
- testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Employer creates an advert by using a trading name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
  testRunner.Then("the Employer can edit the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
