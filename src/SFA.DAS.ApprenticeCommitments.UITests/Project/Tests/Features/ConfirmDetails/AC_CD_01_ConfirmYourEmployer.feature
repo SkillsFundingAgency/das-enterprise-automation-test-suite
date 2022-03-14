@@ -8,3 +8,4 @@ Scenario: AC_CD_01_ConfirmYourEmployer
 	Then the apprentice is able to confirm the Employer
 	And confirmed employer already page is displayed for trying to confirm again
 	And the apprentice is able to change the answer and choose to confirm the Employer details as Incorrect
+	And an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm employer page

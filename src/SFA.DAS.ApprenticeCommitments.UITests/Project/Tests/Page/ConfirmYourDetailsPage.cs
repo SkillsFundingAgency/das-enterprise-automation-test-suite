@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using System.Collections.Generic;
+using System;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -16,7 +18,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
         protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
         protected By ChangeMyAnswerLink => By.XPath("//a[text()='I want to change my answer']");
-        private By ConfirmButton => By.Id("employer-provider-confirm");
+        protected By ErrorSummaryTitle => By.Id("error-summary-title");
+        protected By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
+        protected By FieldValidtionError => By.CssSelector(".field-validation-error");
+
 
         public ConfirmYourDetailsPage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
@@ -76,10 +81,23 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
 
+        public void ClickOnConfirmButton() => formCompletionHelper.Click(ConfirmButton);
+
+        public void VerifyErrorSummaryBoxAndErrorFieldText()
+        {
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(ErrorSummaryTitle,"There is a problem"),
+                () => VerifyPage(ErrorSummaryText,"Select an answer"),
+                () => VerifyPage(FieldValidtionError,"Select an answer")
+            });
+
+        }
+
         private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }
 
         private void SelectNoRadioOption() { formCompletionHelper.SelectRadioOptionByText("No"); Continue(); }
 
-        private void SelectNoRadioOptionAndConfirm() { formCompletionHelper.SelectRadioOptionByText("No"); formCompletionHelper.Click(ConfirmButton); }
+        private void SelectNoRadioOptionAndConfirm() { formCompletionHelper.SelectRadioOptionByText("No"); ClickOnConfirmButton(); }
     }
 }

@@ -27,6 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
         protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
+        protected By ConfirmButton => By.Id("employer-provider-confirm");
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");

@@ -8,3 +8,4 @@ Scenario: AC_CD_05_ConfirmApprenticeshipDetails
 	Then the apprentice is able to confirm the Apprenticeship details
 	And confirmed apprenticeship already page is displayed for trying to confirm again
 	And the apprentice is able to change the answer and choose to confirm the Apprenticeship details as Incorrect
+	And an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm details page

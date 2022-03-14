@@ -119,6 +119,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the apprentice is able to change the answer and choose to confirm the Employer de" +
                         "tails as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.And("an appropriate error displayed when the apprentice chooses CTA without making a s" +
+                        "election on Confirm employer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

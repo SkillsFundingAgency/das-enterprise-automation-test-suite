@@ -53,7 +53,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilities() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
-        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain() => _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToCMADOverviewPage();
+        public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain()
+        {
+            _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToCMADOverviewPage();
+            confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
+        }
 
         [Then(@"the apprentice confirms the Employer details displayed as Incorrect")]
         public void ThenTheApprenticeConfirmsTheEmployerDetailsDisplayedAsIncorrect()
@@ -68,6 +72,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ChangeMyAnswerAction().SelectNoToConfirmEmployerPostChangingAnswer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
+        }
+
+        [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm employer page")]
+        public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmEmployerPage()
+        {
+            _apprenticeOverviewPage.GoToConfirmYourEmployerPage().ClickOnConfirmButton();
+            new ConfirmYourEmployerPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
         }
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
@@ -87,6 +98,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ChangeMyAnswerAction().SelectNoToConfirmTrainingProviderPostChangingAnswer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.WaitingForCorrection);
+        }
+
+        [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm provider page")]
+        public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmProviderPage()
+        {
+            _apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().ClickOnConfirmButton();
+            new ConfirmYourTrainingProviderPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
         }
 
         [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
@@ -118,6 +136,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(_alreadyConfirmedApprenticeshipDetailsPage);
             _alreadyConfirmedApprenticeshipDetailsPage.SelectNoToConfirmYourDetailsPostChangingAnswer().ReturnToApprenticeOverviewPage();
             confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
+        }
+
+        [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm details page")]
+        public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmDetailsPage()
+        {
+            _apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().ClickOnConfirmButton();
+            new ConfirmYourApprenticeshipDetailsPage(_context).VerifyErrorSummaryBoxAndErrorFieldText();
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
