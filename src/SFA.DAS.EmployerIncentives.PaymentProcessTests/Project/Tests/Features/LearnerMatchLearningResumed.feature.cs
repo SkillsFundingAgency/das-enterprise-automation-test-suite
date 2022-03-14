@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
+        private static string[] featureTags = new string[] {
                 "employerincentivesPaymentsProcess",
                 "learnerMatchLearningResumed",
                 "eiRegression",
@@ -43,11 +43,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "LearnerMatchLearningResumed", "\tLearning resumed trigger for multiple academic years", ProgrammingLanguage.CSharp, new string[] {
-                        "employerincentivesPaymentsProcess",
-                        "learnerMatchLearningResumed",
-                        "eiRegression",
-                        "learnerMatchTests"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "LearnerMatchLearningResumed", "\tLearning resumed trigger for multiple academic years", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -59,53 +55,43 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Features
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1. Learning Stopped and Resumed - Phase 2")]
-        public virtual void _1_LearningStoppedAndResumed_Phase2()
+        public void _1_LearningStoppedAndResumed_Phase2()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Learning Stopped and Resumed - Phase 2", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Learning Stopped and Resumed - Phase 2", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -139,25 +125,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("2. Learning Stopped and Resumed - Phase 1")]
-        public virtual void _2_LearningStoppedAndResumed_Phase1()
+        public void _2_LearningStoppedAndResumed_Phase1()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Learning Stopped and Resumed - Phase 1", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Learning Stopped and Resumed - Phase 1", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }

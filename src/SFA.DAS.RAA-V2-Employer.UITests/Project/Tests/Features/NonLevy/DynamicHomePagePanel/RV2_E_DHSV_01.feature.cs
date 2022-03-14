@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "RV2_E_DHSV_01.feature"
 #line hidden
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/NonLevy/DynamicHomePagePanel", "RV2_E_DHSRV_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
-                    "ic homepage", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "ic homepage", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -48,28 +48,28 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -81,7 +81,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public virtual void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourneyAndRejectsTheVacancy()
+        public void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourneyAndRejectsTheVacancy()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
@@ -90,21 +90,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
                     "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey an" +
-                    "d rejects the vacancy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "d rejects the vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }

@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
+        private static string[] featureTags = new string[] {
                 "approvals"};
         
 #line 1 "AP_PP_01_ProviderPermission.feature"
@@ -37,8 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderPermission", "AP_PP_01_ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderPermission", "AP_PP_01_ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -50,28 +49,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -80,27 +79,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         [NUnit.Framework.DescriptionAttribute("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider")]
         [NUnit.Framework.CategoryAttribute("inprogress")]
         [NUnit.Framework.CategoryAttribute("CreateCohortPermission")]
-        public virtual void AP_PP_01EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
+        public void AP_PP_01EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "inprogress",
                     "CreateCohortPermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }

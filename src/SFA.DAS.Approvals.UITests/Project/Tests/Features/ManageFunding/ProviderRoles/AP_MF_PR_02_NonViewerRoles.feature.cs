@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
+        private static string[] featureTags = new string[] {
                 "ignore"};
         
 #line 1 "AP_MF_PR_02_NonViewerRoles.feature"
@@ -37,8 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/ProviderRoles", "MF_PR_02_NonViewerRoles", null, ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/ProviderRoles", "MF_PR_02_NonViewerRoles", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -50,28 +49,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -87,21 +86,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login for non Viewer user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login for non Viewer user", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -127,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginForNonViewerUser_Contributor()
+        public void VerfiyLoginForNonViewerUser_Contributor()
         {
 #line 5
 this.VerfiyLoginForNonViewerUser("Contributor", ((string[])(null)));
@@ -137,7 +126,7 @@ this.VerfiyLoginForNonViewerUser("Contributor", ((string[])(null)));
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor with approval")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginForNonViewerUser_ContributorWithApproval()
+        public void VerfiyLoginForNonViewerUser_ContributorWithApproval()
         {
 #line 5
 this.VerfiyLoginForNonViewerUser("Contributor with approval", ((string[])(null)));
@@ -147,7 +136,7 @@ this.VerfiyLoginForNonViewerUser("Contributor with approval", ((string[])(null))
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Account Owner")]
         [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
-        public virtual void VerfiyLoginForNonViewerUser_AccountOwner()
+        public void VerfiyLoginForNonViewerUser_AccountOwner()
         {
 #line 5
 this.VerfiyLoginForNonViewerUser("Account Owner", ((string[])(null)));

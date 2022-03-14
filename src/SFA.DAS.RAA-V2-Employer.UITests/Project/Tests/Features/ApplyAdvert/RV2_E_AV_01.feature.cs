@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyVacancy
 {
     using TechTalk.SpecFlow;
     using System;
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "RV2_E_AV_01.feature"
 #line hidden
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ApplyAdvert", "RV2_E_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ApplyVacancy", "RV2_E_AV_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,74 +47,62 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.ApplyAdvert
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_AV_01 - Create anonymous advert, Approve, Apply")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_AV_01 - Create anonymous vacancy, Approve, Apply")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("newraa-v2")]
-        public virtual void RV2_E_AV_01_CreateAnonymousAdvertApproveApply()
+        public void RV2_E_AV_01_CreateAnonymousVacancyApproveApply()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
-                    "regression",
-                    "newraa-v2"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AV_01 - Create anonymous advert, Approve, Apply", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AV_01 - Create anonymous vacancy, Approve, Apply", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the Employer creates an anonymous advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Given("the Employer creates an anonymous vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
