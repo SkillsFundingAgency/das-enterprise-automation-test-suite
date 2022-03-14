@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
 {
-    public class CheckYourAnswersPage : AEDBasePage
+    public class CheckYourAnswersPage : AedBasePage
     {
         protected override string PageTitle => "Check your answers";
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 
         public WeveSharedYourContactDetailsWithEmployersPage ContinueToWeveSharedYourContactDetailsWithEmployersPage()
         {
-            ContinueToNextPage();
+            Continue();
             return new WeveSharedYourContactDetailsWithEmployersPage(context);
         }
 

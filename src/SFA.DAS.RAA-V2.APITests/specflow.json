@@ -10,7 +10,8 @@
       { "assembly": "SFA.DAS.ConfigurationBuilder" },
       { "assembly": "SFA.DAS.TestDataExport" }
     ],
-    "generator": {
-      "allowRowTests": false
-    }
+  "generator": {
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
+  }
   }

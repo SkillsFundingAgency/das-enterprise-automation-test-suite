@@ -83,7 +83,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
 
         [Then(@"the levy employer can download excel file")]
-        public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePage().DownloadExcel();
+        public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
 
         [Then(@"the levy employer can close the pledge")]
         public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose();
@@ -137,6 +137,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer cannot exceed the maximum funding available")]
         public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
 
+        [Then(@"the viewer cannot create pledge")]
+        public void TheViewerCannotCreatePledge()
+        { NavigateToTransferMatchingPage().CanCreateTransferPledge(); }
+
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
@@ -167,6 +171,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+        [Then(@"the levy employer can sort the pledges")]
+        public void TheLevyEmployerCanSortThePledges() => SortApplications();
+
         [Then(@"the levy employer can view pledges from verification page")]
         public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
 
@@ -191,6 +198,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer is able to apply for transfer opportunities")]
         public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
 
+        [Then(@"the levy employer can bulk reject application")]
+        public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
+
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
@@ -213,18 +223,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
 
-        private ClosePledgePage ClosePledge()
+        private ClosePledgePage ClosePledge() => GoToTransferPledgePageAsSender().ClosePledge();
+
+        private TransferPledgePage BulkReject() => GoToTransferPledgePageAsSender().SelectBulkReject().CancelBulkReject().SelectBulkReject().BulkReject();
+
+        private TransferPledgePage SortApplications() => GoToTransferPledgePageAsSender().SortByApplicant();
+
+        private TransferPledgePage GoToTransferPledgePageAsSender()
         {
-            SignOut(); 
-            
+            SignOut();
+
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ClosePledge();
+            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage();
         }
 
-        private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePage().GoToApproveAppliationPage();
+        private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePageAsReceiver().GoToApproveAppliationPage();
 
-        private TransferPledgePage GoToTransferPledgePage()
+        private TransferPledgePage GoToTransferPledgePageAsReceiver()
         {
             SignOut();
 

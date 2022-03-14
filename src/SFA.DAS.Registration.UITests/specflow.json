@@ -12,6 +12,7 @@
     { "assembly": "SFA.DAS.ProviderLogin.Service" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

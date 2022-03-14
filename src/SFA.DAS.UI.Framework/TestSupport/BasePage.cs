@@ -27,6 +27,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
 
+        protected By PanelTitle => By.CssSelector(".govuk-panel__title");
+
         protected abstract string PageTitle { get; }
 
         protected virtual By AcceptCookieButton { get; }
