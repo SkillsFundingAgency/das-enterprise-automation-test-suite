@@ -57,7 +57,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         //[Given(@"the Employer clones and creates a vacancy")]
         public void GivenTheEmployerClonesAndCreatesAVacancy() => _employerStepsHelper.CloneAVacancy();
 
-        [Given(@"the Employer can create a vacancy by entering all the Optional fields")]
+        //[Given(@"the Employer can create a vacancy by entering all the Optional fields")]
         public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
 
         //[Given(@"the Employer creates a vacancy by selecting different work location")]

@@ -19,11 +19,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage()
+        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
         {
-            formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
-            formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-            formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            if (optionalFields)
+            {
+                formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
+                formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
+                formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            }
             Continue();
             return new ApplicationProcessPage(context);
         }

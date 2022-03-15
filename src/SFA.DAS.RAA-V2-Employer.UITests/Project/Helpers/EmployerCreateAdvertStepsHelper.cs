@@ -11,6 +11,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
+        public bool optionalFields;
 
         private static string NotStarted => "NOT STARTED";
 
@@ -21,6 +22,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         public EmployerCreateAdvertStepsHelper(ScenarioContext context)
         {
             _context = context;
+            optionalFields = false;
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
@@ -123,8 +125,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage()
-                .EnterContactDetailsAndGoToApplicationProcessPage()
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod(isApplicationMethodFAA);
         }
 
@@ -135,7 +137,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SelectSkillAndGoToQualificationsPage()
                 .EnterQualifications()
                 .ConfirmQualificationsAndContinue()
-                .EnterThingsToConsiderAndReturnToCreateAdvert();
+                .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
         }
 
         private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)

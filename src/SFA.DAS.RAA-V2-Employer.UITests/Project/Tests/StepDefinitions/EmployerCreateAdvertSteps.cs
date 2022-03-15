@@ -23,6 +23,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _employerCreateVacancyStepsHelper = new EmployerCreateAdvertStepsHelper(context);
         }
 
+        [Given(@"the Employer can create an advert by entering all the Optional fields")]
+        public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
+        {
+            _employerCreateVacancyStepsHelper.optionalFields = true;
+            
+            _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
+        }
+
         [When(@"the Employer creates first submitted advert")]
         public void TheEmployerCreatesFirstSubmittedAdvert() => _employerCreateVacancyStepsHelper.CreateSubmittedVacancy(_createAnApprenticeshipAdvertPage);
 

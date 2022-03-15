@@ -23,10 +23,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new VacancyPreviewPart2Page(context);
         }
 
-        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage()
+        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+            if (optionalFields) formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
             Continue();
             return new ContactDetailsPage(context);
         }
