@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         private By SearchVacancy => By.CssSelector(".search-submit button");
 
+        private By ReviewLink => By.LinkText("Review");
+
         public Reviewer_HomePage(ScenarioContext context) : base(context) { }
 
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
@@ -28,7 +30,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         {
             formCompletionHelper.EnterText(SearchTerm, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchVacancy);
-            formCompletionHelper.ClickLinkByText("Review");
+            formCompletionHelper.Click(ReviewLink);
             return new Reviewer_VacancyPreviewPage(context);
         }
     }
