@@ -130,37 +130,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "ProviderRef",
                             "ErrorMessage"});
                 table1.AddRow(new string[] {
-                            "CohortRef length > 20",
+                            "CohortUlnEmailDoB",
                             "MKRK7VMKRK7VMKRK7VPJ1",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "You must enter a valid Cohort Ref"});
-                table1.AddRow(new string[] {
-                            "ULN < 10",
-                            "valid",
                             "valid",
                             "171649120",
                             "valid",
+                            "2021-05-09",
+                            "valid",
+                            "X@Y",
+                            "valid",
+                            "2021-03-03",
+                            "2021-02",
                             "valid",
                             "valid",
                             "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "You must enter a valid Cohort ULN"});
+                            "You must enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a " +
+                                "valid email address\nEnter an end date that is after the start date"});
 #line 9
  testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
 #line hidden

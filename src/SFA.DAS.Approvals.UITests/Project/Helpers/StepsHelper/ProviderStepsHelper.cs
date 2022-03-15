@@ -24,9 +24,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        private List<ApprenticeDetails> ApprenticeList;
-        private BulkUploadDataHelper _bulkUploadDataHelper;
+        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;        
+        private List<ApprenticeDetail> ApprenticeList;
+        private BulkUploadValidationDataHelper _bulkUploadValidationDataHelper;
         protected readonly PageInteractionHelper _pageInteractionHelper;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
         protected readonly ApprovalsConfig _approvalsConfig;
@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
-            _bulkUploadDataHelper = new BulkUploadDataHelper();
+            _bulkUploadValidationDataHelper = new BulkUploadValidationDataHelper();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -220,7 +220,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()                
                 .UploadFile(fileLocation);
-        }       
+        }     
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
@@ -375,22 +375,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
 
             //TODO : verify the path file need to be placed
+            //"C:\\ESFA\\das-enterprise-automation-test-suite\\src\\SFA.DAS.Approvals.UITests\\BulkUpload.csvBulkUpload_77.csv"
             string fileName = "BulkUpload_77.csv";
             var fileLocation = Path.GetFullPath(@"..\..\..\") + _approvalsConfig.BulkUploadFileLocation + fileName;
-
+            int i = 0;
             foreach (var item in apprenticeRecords)
             {
-                ApprenticeList = new List<ApprenticeDetails>();
+                i++;
+                ApprenticeList = new List<ApprenticeDetail>();
 
-                var result = new ApprenticeDetails(courseCode)
+                var result = new ApprenticeDetail(courseCode.ToString())
                 {
                     CohortRef = cohortRef,
                     ULN = datahelper.Uln(),
                     FamilyName = datahelper.ApprenticeLastname,
                     GivenNames = datahelper.ApprenticeFirstname,
-                    DateOfBirth = dateOfBirth,
-                    StartDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseStartDate),
-                    EndDate = Convert.ToDateTime(_apprenticeCourseDataHelper.CourseEndDate),
+                    DateOfBirth = dateOfBirth.ToString("yyyy-MM-dd"),
+                    StartDate = _apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
+                    EndDate = _apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
                     TotalPrice = datahelper.TrainingPrice,
                     ProviderRef = datahelper.EmployerReference,
                     EmailAddress = emailAddress,
@@ -407,15 +409,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
                 if (item.GivenNames != "valid") { result.GivenNames = item.GivenNames; }
 
-                if (item.DateOfBirth != "valid") { result.DateOfBirth = DateTime.Parse(item.DateOfBirth); }
+                if (item.DateOfBirth != "valid") { result.DateOfBirth = item.DateOfBirth; }
 
                 if (item.EmailAddress != "valid") { result.EmailAddress = item.EmailAddress; }
 
-                if (item.StdCode != "valid") { result.StdCode = Int16.Parse(item.StdCode); }
+                if (item.StdCode != "valid") { result.StdCode = item.StdCode; }
 
-                if (item.StartDate != "valid") { result.StartDate = DateTime.Parse(item.StartDate); }
+                if (item.StartDate != "valid") { result.StartDate = item.StartDate; }
 
-                if (item.EndDate != "valid") { result.EndDate = DateTime.Parse(item.EndDate); }
+                if (item.EndDate != "valid") { result.EndDate = item.EndDate; }
 
                 if (item.TotalPrice != "valid") { result.TotalPrice = item.TotalPrice; }
 
@@ -423,17 +425,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
                 ApprenticeList.Add(result);
                 // 1. Create Csv File with bad data               
-                _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+                _bulkUploadValidationDataHelper.CreateBulkUploadFileToValidate(ApprenticeList, fileLocation);
 
                 // 2. upload
-                UploadApprenticeRecordToValidate(fileLocation);
+                if (i == 1) // first time start from provider home page 
+                    UploadApprenticeRecordToValidate(fileLocation);
+                else // next time onwards just go back and upload file and verify the message               
+                    new ProviderBulkUploadCsvFilePage(_context).UploadFile(fileLocation);
 
                 // 3. validate the error message 
                 var errorMsg = _pageInteractionHelper.GetText(By.XPath("(//td[@class='govuk-table__cell'])[4]"));
-                var actualErrorMsg = item.ErrorMessage;
-
-                //TODO : page object model for validate page
+                var actualErrorMsg = item.ErrorMessage;                
+                
                 //4. click back link
+                new ProviderFileUploadValidationErrorsPage(_context)
+                    .VerifyErrorMessage(item.ErrorMessage);                   
+                
             }
         }
     }
