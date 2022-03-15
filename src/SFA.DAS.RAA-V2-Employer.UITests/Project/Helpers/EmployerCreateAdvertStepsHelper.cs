@@ -26,10 +26,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
-        internal void CreateFirstAdvertAndSubmit(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        internal void SubmitDraftAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage)
         {
-            createAdvertPage = CreateFirstDraftVacancy(createAdvertPage);
-
             createAdvertPage = SkillsAndQualifications(createAdvertPage);
 
             createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
@@ -37,11 +35,22 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             CheckAndSubmitAdvert(createAdvertPage);
         }
 
-        internal CreateAnApprenticeshipAdvertPage CreateFirstDraftVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        internal CreateAnApprenticeshipAdvertPage CreateDraftAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage, bool createFirstDraftAdvert)
         {
-            return EmploymentDetails(FirstAdvertSummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
+            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertSummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
         }
 
+        internal void CreateFirstAdvertAndSubmit(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        {
+            createAdvertPage = CreateDraftAdvert(createAdvertPage, true);
+
+            createAdvertPage = SkillsAndQualifications(createAdvertPage);
+
+            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+
+            CheckAndSubmitAdvert(createAdvertPage);
+        }
+    
         internal CreateAnApprenticeshipAdvertPage AddAnAdvert()
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();

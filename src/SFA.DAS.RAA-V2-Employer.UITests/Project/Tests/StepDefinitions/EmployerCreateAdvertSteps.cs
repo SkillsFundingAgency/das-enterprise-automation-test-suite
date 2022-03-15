@@ -23,6 +23,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _employerCreateVacancyStepsHelper = new EmployerCreateAdvertStepsHelper(context);
         }
 
+        [Then(@"the Employer can open the draft and submits the advert")]
+        public void TheEmployerCanOpenTheDraftAndSubmitsTheAdvert()
+        {
+            var page = GoToYourAdvertFromDraftAdverts();
+
+            _employerCreateVacancyStepsHelper.SubmitDraftAdvert(page);
+        }
+
+        [Given(@"the Employer creates Draft advert")]
+        public void TheEmployerCreatesDraftAdvert() => CreateDraftAdvert(_createAnApprenticeshipAdvertPage, false);
+
         [Given(@"the Employer can create an advert by entering all the Optional fields")]
         public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
         {
@@ -35,7 +46,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCreatesFirstSubmittedAdvert() => _employerCreateVacancyStepsHelper.CreateFirstAdvertAndSubmit(_createAnApprenticeshipAdvertPage);
 
         [When(@"the Employer creates first Draft advert")]
-        public void TheEmployerCreatesFirstDraftAdvert() { _employerCreateVacancyStepsHelper.CreateFirstDraftVacancy(_createAnApprenticeshipAdvertPage).ReturnToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
+        public void TheEmployerCreatesFirstDraftAdvert() => CreateDraftAdvert(_createAnApprenticeshipAdvertPage, true);
 
         [Given(@"the employer continue to add advert in the Recruitment")]
         public void TheEmployerContinueToAddAdvertInTheRecruitment() => _createAnApprenticeshipAdvertPage = _employerCreateVacancyStepsHelper.AddAnAdvert();
@@ -50,7 +61,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void EmployerCancelsAfterSavingTheTitleOfTheAdvert() => _yourApprenticeshipAdvertsHomePage = _employerCreateVacancyStepsHelper.CancelAdvert();
 
         [Then(@"the advert is saved as a draft")]
-        public void ThenTheVacancyIsSavedAsADraft() => _yourApprenticeshipAdvertsHomePage.GoToYourAdvertFromDraftAdverts().CreateAnApprenticeshipAdvertPage();
+        public void ThenTheVacancyIsSavedAsADraft() => GoToYourAdvertFromDraftAdverts();
 
         [Given(@"the Employer clones and creates an advert")]
         public void TheEmployerClonesAndCreatesAnAdvert() => _employerCreateVacancyStepsHelper.CloneAnAdvert();
@@ -66,5 +77,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer creates an advert by using a trading name")]
         public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.ExistingTradingName);
+
+        private void CreateDraftAdvert(CreateAnApprenticeshipAdvertPage page, bool createFirstDraftAdvert)
+        {
+            page = _employerCreateVacancyStepsHelper.CreateDraftAdvert(page, createFirstDraftAdvert);
+
+            ReturnToApplications(page);
+        }
+
+        private void ReturnToApplications(CreateAnApprenticeshipAdvertPage page) { page.ReturnToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
+
+        private CreateAnApprenticeshipAdvertPage GoToYourAdvertFromDraftAdverts() => _yourApprenticeshipAdvertsHomePage.GoToYourAdvertFromDraftAdverts().CreateAnApprenticeshipAdvertPage();
     }
 }

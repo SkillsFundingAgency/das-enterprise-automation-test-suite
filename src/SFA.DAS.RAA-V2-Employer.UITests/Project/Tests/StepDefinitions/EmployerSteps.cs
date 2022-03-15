@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         //[Then(@"the vacancy is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => _vacanciesPage.GoToApprenticeshipTrainingPage();
 
-        [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
+//        [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
         public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(_vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
 
         [Then(@"the Employer is able to delete the draft vacancy")]
