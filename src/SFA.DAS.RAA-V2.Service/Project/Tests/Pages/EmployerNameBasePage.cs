@@ -65,12 +65,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private EmployerDescriptionPage ChooseRegisteredNameAndGotoEmployerDescriptionPage()
         {
             SelectRadioOptionByForAttribute("legal-entity-name");
+            
+            SetLegalEntityAsEmployerName();
 
+            return GoToEmployerDescriptionPage();
+        }
+
+        private void SetLegalEntityAsEmployerName()
+        {
             var entityName = pageInteractionHelper.GetText(LegalEntityName);
 
             _employerName = EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim();
-
-            return GoToEmployerDescriptionPage();
         }
 
         private EmployerDescriptionPage ChooseExistingTradingNameAndGotoEmployerDescriptionPage()
@@ -86,10 +91,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("anonymous");
 
-            formCompletionHelper.EnterText(EmployerDescription, _employerName);
+            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
-            
+
+            SetLegalEntityAsEmployerName();
+
             return GoToEmployerDescriptionPage();
         }
 
