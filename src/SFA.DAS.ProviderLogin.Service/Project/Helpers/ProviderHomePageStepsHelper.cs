@@ -16,7 +16,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         private readonly ObjectContext _objectContext;
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ProviderLoginUser _login;
-        private readonly string _providerUrl;
 
         public ProviderHomePageStepsHelper(ScenarioContext context)
         {
@@ -24,7 +23,6 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = _context.Get<TabHelper>();
             _config = context.GetProviderConfig<ProviderConfig>();
-            _providerUrl = UrlConfig.Provider_BaseUrl;
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
@@ -33,26 +31,13 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
-            if (newTab)
-            {
-                _tabHelper.OpenInNewTab(_providerUrl);
-            }
-            else
-            {
-                _tabHelper.GoToUrl(_providerUrl);
-            }
+            if (newTab) _tabHelper.OpenNewTab();
+            
+            _tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
 
             _objectContext.SetUkprn(login.Ukprn);
 
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
-                return _loginHelper.ReLogin(login);
-            }
-            else if (_loginHelper.IsIndexPageDisplayed())
-            {
-                return _loginHelper.Login(login);
-            }
-            return new ProviderHomePage(_context);
+            return GoToProviderHomePage(login);
         }
 
         public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
@@ -60,6 +45,15 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             var loginUser = new ProviderLoginUser { UserId = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
 
             return GoToProviderHomePage(loginUser, newTab);
+        }
+
+        private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
+        {
+            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.ReLogin(login);
+
+            else if (_loginHelper.IsIndexPageDisplayed()) return _loginHelper.Login(login);
+
+            return new ProviderHomePage(_context);
         }
     }
 }
