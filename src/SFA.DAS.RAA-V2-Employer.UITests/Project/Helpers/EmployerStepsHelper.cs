@@ -119,7 +119,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisationForNewAccount(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage)
         {
-            EnterTrainingDetails(whatDoYouWantToCallThisAdvertPage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).EnterNumberOfPositionsAndContinue();
+            EnterTrainingDetails(whatDoYouWantToCallThisAdvertPage.EnterVacancyTitleForTheFirstAdvert().SelectYes()).EnterNumberOfPositionsAndContinue();
             return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }
 

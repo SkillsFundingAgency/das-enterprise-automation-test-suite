@@ -32,10 +32,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer creates first submitted advert")]
-        public void TheEmployerCreatesFirstSubmittedAdvert() => _employerCreateVacancyStepsHelper.CreateSubmittedVacancy(_createAnApprenticeshipAdvertPage);
+        public void TheEmployerCreatesFirstSubmittedAdvert() => _employerCreateVacancyStepsHelper.CreateFirstAdvertAndSubmit(_createAnApprenticeshipAdvertPage);
 
         [When(@"the Employer creates first Draft advert")]
-        public void TheEmployerCreatesFirstDraftAdvert() { _employerCreateVacancyStepsHelper.CreateDraftVacancy(_createAnApprenticeshipAdvertPage).RetrunToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
+        public void TheEmployerCreatesFirstDraftAdvert() { _employerCreateVacancyStepsHelper.CreateFirstDraftVacancy(_createAnApprenticeshipAdvertPage).ReturnToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
 
         [Given(@"the employer continue to add advert in the Recruitment")]
         public void TheEmployerContinueToAddAdvertInTheRecruitment() => _createAnApprenticeshipAdvertPage = _employerCreateVacancyStepsHelper.AddAnAdvert();

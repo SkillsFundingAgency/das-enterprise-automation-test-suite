@@ -1,7 +1,6 @@
 ﻿Feature: RV2_E_DHFD_01
 As a Non Levy Employer, I want to add a vacancy after reserves funding from dynamic homepage
 	
-
 @raa-v2
 @raa-v2e
 @regression

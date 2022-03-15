@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new ApprenticeshipTrainingPage(context);
         }
 
-        public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstVacancy()
+        public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstAdvert()
         {
             ChangeVacancyTitle();
             return new HaveYouAlreadyFoundTrainingPage(context);

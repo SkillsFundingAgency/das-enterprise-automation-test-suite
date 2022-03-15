@@ -26,11 +26,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
 
-        internal void CreateSubmittedVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        internal void CreateFirstAdvertAndSubmit(CreateAnApprenticeshipAdvertPage createAdvertPage)
         {
-            createAdvertPage = AdvertSummary(createAdvertPage);
-
-            createAdvertPage = EmploymentDetails(createAdvertPage, true, false, RAAV2Const.NationalMinWages);
+            createAdvertPage = CreateFirstDraftVacancy(createAdvertPage);
 
             createAdvertPage = SkillsAndQualifications(createAdvertPage);
 
@@ -39,11 +37,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             CheckAndSubmitAdvert(createAdvertPage);
         }
 
-        internal CreateAnApprenticeshipAdvertPage CreateDraftVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        internal CreateAnApprenticeshipAdvertPage CreateFirstDraftVacancy(CreateAnApprenticeshipAdvertPage createAdvertPage)
         {
-            createAdvertPage = AdvertSummary(createAdvertPage);
-
-            return EmploymentDetails(createAdvertPage, true, false, RAAV2Const.NationalMinWages);
+            return EmploymentDetails(FirstAdvertSummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
         }
 
         internal CreateAnApprenticeshipAdvertPage AddAnAdvert()
@@ -113,55 +109,49 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private VacancyReferencePage CheckAndSubmitAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage) => SubmitAndSetVacancyReference(createAdvertPage.CheckYourAnswers());
 
-        private VacancyReferencePage SubmitAndSetVacancyReference(CheckYourAnswersPage checkYourAnswersPage)
-        {
-            return checkYourAnswersPage
+        private VacancyReferencePage SubmitAndSetVacancyReference(CheckYourAnswersPage checkYourAnswersPage) => 
+            checkYourAnswersPage
                 .SubmitAdvert()
                 .SetVacancyReference();
-        }
 
-        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername, bool isApplicationMethodFAA)
-        {
-            return createAdvertPage
+        private CreateAnApprenticeshipAdvertPage Abouttheemployer(CreateAnApprenticeshipAdvertPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
+            createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
                 .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod(isApplicationMethodFAA);
-        }
 
-        private CreateAnApprenticeshipAdvertPage SkillsAndQualifications(CreateAnApprenticeshipAdvertPage createAdvertPage)
-        {
-            return createAdvertPage
+        private CreateAnApprenticeshipAdvertPage SkillsAndQualifications(CreateAnApprenticeshipAdvertPage createAdvertPage) => 
+            createAdvertPage
                 .Skills()
                 .SelectSkillAndGoToQualificationsPage()
                 .EnterQualifications()
                 .ConfirmQualificationsAndContinue()
                 .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
-        }
 
-        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)
-        {
-            return createAdvertPage
+        private CreateAnApprenticeshipAdvertPage EmploymentDetails(CreateAnApprenticeshipAdvertPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType) => 
+            createAdvertPage
                 .ImportantDates()
                 .EnterImportantDates(disabilityConfidence)
                 .EnterDuration()
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
-        }
 
-        private CreateAnApprenticeshipAdvertPage AdvertSummary(CreateAnApprenticeshipAdvertPage createAdvertPage)
-        {
-            return EnterAdvertTitle(createAdvertPage)
-                .SelectOrganisationMultiOrg()
-                .EnterTrainingTitle()
+        private CreateAnApprenticeshipAdvertPage AdvertSummary(CreateAnApprenticeshipAdvertPage createAdvertPage) => 
+            AdvertSummary(EnterAdvertTitle(createAdvertPage).SelectOrganisationMultiOrg());
+
+        private CreateAnApprenticeshipAdvertPage FirstAdvertSummary(CreateAnApprenticeshipAdvertPage createAdvertPage) => 
+            AdvertSummary(createAdvertPage.AdvertTitle().EnterVacancyTitleForTheFirstAdvert().SelectYes());
+
+        private CreateAnApprenticeshipAdvertPage AdvertSummary(ApprenticeshipTrainingPage page) => 
+            page.EnterTrainingTitle()
                 .ConfirmTrainingproviderAndContinue()
                 .SelectTrainingProvider()
                 .ConfirmProviderAndContinueToSummaryPage()
                 .EnterShortDescription()
                 .EnterAllDescription();
-        }
 
         private SelectOrganisationPage EnterAdvertTitle(CreateAnApprenticeshipAdvertPage createAdvertPage) => createAdvertPage
                 .AdvertTitle()

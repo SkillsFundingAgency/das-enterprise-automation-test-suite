@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public CreateAnApprenticeshipAdvertPage(ScenarioContext context) : base(context) { }
 
-        public void RetrunToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
+        public void ReturnToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
     
         public CheckYourAnswersPage CheckYourAnswers()
         {
