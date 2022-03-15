@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         private readonly ScenarioContext _context;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
+        private ApprenticeHomePage _apprenticeHomePage;
 
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
@@ -21,39 +22,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to navigate to the Help and Support from the Overview page")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromTheOverviewPage()
         {
-            var apprenticeHomePage = _apprenticeOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
-            _apprenticeOverviewPage = apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
+            _apprenticeHomePage = new ApprenticeHomePage(_context, false).NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
+            _apprenticeOverviewPage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
             _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToOverviewPageWithBackLink();
         }
 
         [Then(@"the apprentice is able to navigate to Home page back and forth from Overview and Help pages")]
         public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromOverviewAndHelpPages()
         {
-            var apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
-            apprenticeHomePage = apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
-            apprenticeHomePage = apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
-            apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
+            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
+            _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
         }
 
         [Then(@"the apprentice is able to logout from the service")]
-        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeOverviewPage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
+        public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
         [Then(@"the apprentice can create account and confirm their details")]
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
-            => ConfirmAllSectionsAndApprenticeship(createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage());
-
-        [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
-        public void ThenTheApprenticeConfirmsTheOverallApprenticeship()
         {
-            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
-
-            ConfirmAllSectionsAndApprenticeship(_apprenticeOverviewPage).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
-
-            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
-                .VerifyCMADSectionStatusToBeCompleteOnHomePage();
-        }
-
-        private OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship(ApprenticeOverviewPage apprenticeOverviewPage)
-            => confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship(apprenticeOverviewPage);
+            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
+        }    
     }
 }

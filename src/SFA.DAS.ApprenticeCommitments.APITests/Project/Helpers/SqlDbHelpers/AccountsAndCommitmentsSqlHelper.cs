@@ -58,6 +58,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             return GetData(query, _dbConfig.CommitmentsDbConnectionString)[0];
         }
 
+        public string GetTrainingStartDate(string email)
+        {
+            var query = $"SELECT StartDate From Apprenticeship WHERE Email = '{email}'";
+            return GetData(query, _dbConfig.CommitmentsDbConnectionString)[0];
+        }
+
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
 
         public void ResetEmailForApprenticeshipRecord(long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);

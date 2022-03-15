@@ -224,7 +224,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetRowData(By tableIdentifier, By keyIdentifier, params string[] rowIdentifier) => FindElements(tableIdentifier).Where(x => x.FindElements(keyIdentifier).Any(y => rowIdentifier.Any(r => y?.Text == r))).SingleOrDefault()?.Text;
 
-        public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
+        public IWebElement FindElement(By locator) =>  _webDriver.FindElement(locator);
 
         public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
 

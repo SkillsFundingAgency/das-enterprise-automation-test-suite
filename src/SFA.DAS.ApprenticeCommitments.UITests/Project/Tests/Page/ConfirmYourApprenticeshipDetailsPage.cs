@@ -19,6 +19,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new ConfirmYourApprenticeshipDetailsPage VerifyErrorSummaryBoxAndErrorFieldText()
         {
             base.ClickOnConfirmButton();
+            base.VerifyErrorSummaryBoxAndErrorFieldText();
             return this;
         }
     }

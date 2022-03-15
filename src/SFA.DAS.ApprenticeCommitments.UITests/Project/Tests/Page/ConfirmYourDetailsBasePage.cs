@@ -18,10 +18,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By ProviderHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your training provider's name\")]");
         protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
         protected By ChangeMyAnswerLink => By.XPath("//a[text()='I want to change my answer']");
-        protected By ErrorSummaryTitle => By.Id("error-summary-title");
-        protected By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
-        protected By FieldValidtionError => By.CssSelector(".field-validation-error");
-
 
         public ConfirmYourDetailsBasePage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
@@ -85,13 +81,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyErrorSummaryBoxAndErrorFieldText()
         {
+            VerifyErrorSummaryTitle();
+
             MultipleVerifyPage(new List<Func<bool>>
             {
-                () => VerifyPage(ErrorSummaryTitle,"There is a problem"),
                 () => VerifyPage(ErrorSummaryText,"Select an answer"),
                 () => VerifyPage(FieldValidtionError,"Select an answer")
             });
-
         }
 
         private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }

@@ -32,6 +32,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public new ConfirmYourEmployerPage VerifyErrorSummaryBoxAndErrorFieldText()
         {
             base.ClickOnConfirmButton();
+            base.VerifyErrorSummaryBoxAndErrorFieldText();
             return this;
         }
     }
