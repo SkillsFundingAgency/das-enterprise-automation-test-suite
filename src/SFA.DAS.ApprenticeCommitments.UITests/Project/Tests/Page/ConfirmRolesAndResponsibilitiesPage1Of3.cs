@@ -16,8 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmRolesAndResponsibilitiesPage1of3 ConfirmYourRolesWithOutSelectionAndContinue()
         {
-            Continue();
-            VerifyErrorSummaryBoxAndErrorFieldText();
+            ClickContinueAndVerifyErrorSummaryBoxAndErrorFieldText();
             return this;
         }
     }

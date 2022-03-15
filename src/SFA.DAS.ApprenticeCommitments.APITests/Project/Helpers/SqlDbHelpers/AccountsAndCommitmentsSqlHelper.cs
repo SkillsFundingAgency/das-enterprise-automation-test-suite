@@ -52,16 +52,11 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, DateTime.Parse(dateOfBirth), apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate, createdOn);
         }
 
-        public string GetTrainingName(string email)
+        public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
         {
-            var query = $"SELECT TrainingName From Apprenticeship WHERE Email = '{email}'";
-            return GetData(query, _dbConfig.CommitmentsDbConnectionString)[0];
-        }
-
-        public string GetTrainingStartDate(string email)
-        {
-            var query = $"SELECT StartDate From Apprenticeship WHERE Email = '{email}'";
-            return GetData(query, _dbConfig.CommitmentsDbConnectionString)[0];
+            var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
+            var data = GetData(query, _dbConfig.CommitmentsDbConnectionString);
+            return (data[0], data[1]);
         }
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);

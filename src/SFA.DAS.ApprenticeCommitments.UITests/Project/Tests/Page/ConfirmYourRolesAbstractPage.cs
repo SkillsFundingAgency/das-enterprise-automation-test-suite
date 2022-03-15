@@ -18,8 +18,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
         }
 
-        protected void VerifyErrorSummaryBoxAndErrorFieldText()
+        protected void ClickContinueAndVerifyErrorSummaryBoxAndErrorFieldText()
         {
+            Continue();
+
             VerifyErrorSummaryTitle();
 
             MultipleVerifyPage(new List<Func<bool>>

@@ -88,8 +88,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {
-            _objectContext.SetTrainingName(_accountsAndCommitmentsSqlHelper.GetTrainingName(_objectContext.GetApprenticeEmail()));
-            _objectContext.SetTrainingStartDate(_accountsAndCommitmentsSqlHelper.GetTrainingStartDate(_objectContext.GetApprenticeEmail()));
+            var (trainingName, trainingStartDate) = _accountsAndCommitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
+
+            _objectContext.SetTrainingName(trainingName);
+            _objectContext.SetTrainingStartDate(trainingStartDate);
 
             return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionForPositiveMatch(true);
         }
