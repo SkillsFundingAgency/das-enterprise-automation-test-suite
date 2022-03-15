@@ -178,8 +178,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return IsElementDisplayed(locator);
         }
 
-            
-
         public bool IsElementDisplayed(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
