@@ -35,6 +35,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             CheckAndSubmitAdvert(createAdvertPage);
         }
 
+        internal CreateAnApprenticeshipAdvertPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshiAdvert(), false);
+
         internal CreateAnApprenticeshipAdvertPage CreateDraftAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage, bool createFirstDraftAdvert)
         {
             return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertSummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
