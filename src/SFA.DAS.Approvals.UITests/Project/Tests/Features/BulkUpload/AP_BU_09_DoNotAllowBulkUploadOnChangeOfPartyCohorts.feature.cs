@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts")]
+    [NUnit.Framework.DescriptionAttribute("AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohorts")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohortsFeature
+    public partial class AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohortsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         private string[] _featureTags = new string[] {
                 "approvals"};
         
-#line 1 "AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature"
+#line 1 "AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohorts.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohorts", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,16 +77,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_BU_05_Do Not Allow Bulk Upload On Non Editable Cohorts")]
+        [NUnit.Framework.DescriptionAttribute("AP_BU_09_Do Not Allow Bulk Upload On Change Of Party Cohorts")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
-        public virtual void AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts()
+        public virtual void AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohorts()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Do Not Allow Bulk Upload On Non Editable Cohorts", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_09_Do Not Allow Bulk Upload On Change Of Party Cohorts", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the provider tries a bulk upload file to add apprentices in that cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("Non Editable Cohorts error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

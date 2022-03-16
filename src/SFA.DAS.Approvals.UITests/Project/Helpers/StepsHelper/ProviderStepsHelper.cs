@@ -220,7 +220,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()                
                 .UploadFile(fileLocation);
-        }     
+        }
+
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference)
+        {
+            return
+                GoToProviderHomePage(false)
+                .GotoSelectJourneyPage()
+                .SelectBulkUploadV2()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFileWithCohortReference(cohortReference)
+                .UploadFile();
+        }
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
@@ -372,12 +383,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
             DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
             string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
-
-            //TODO : verify the path file need to be placed
-            //"C:\\ESFA\\das-enterprise-automation-test-suite\\src\\SFA.DAS.Approvals.UITests\\BulkUpload.csvBulkUpload_77.csv"
-            string fileName = "BulkUpload_77.csv";
-            var fileLocation = Path.GetFullPath(@"..\..\..\") + _approvalsConfig.BulkUploadFileLocation + fileName;
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();            
+            string fileLocation = Path.GetFullPath(@"..\..\..\Project\DataFiles\BulkUpload_6.csv");
+            
             int i = 0;
             foreach (var item in apprenticeRecords)
             {
@@ -430,17 +438,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 // 2. upload
                 if (i == 1) // first time start from provider home page 
                     UploadApprenticeRecordToValidate(fileLocation);
-                else // next time onwards just go back and upload file and verify the message               
+                else // next time onwards just go back and upload file               
                     new ProviderBulkUploadCsvFilePage(_context).UploadFile(fileLocation);
-
-                // 3. validate the error message 
-                var errorMsg = _pageInteractionHelper.GetText(By.XPath("(//td[@class='govuk-table__cell'])[4]"));
-                var actualErrorMsg = item.ErrorMessage;                
                 
-                //4. click back link
                 new ProviderFileUploadValidationErrorsPage(_context)
-                    .VerifyErrorMessage(item.ErrorMessage);                   
-                
+                    .VerifyErrorMessage(item.ErrorMessage);                
             }
         }
     }

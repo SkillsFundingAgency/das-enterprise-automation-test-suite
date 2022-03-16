@@ -48,16 +48,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 case "AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts":
                     fileName = "BulkUpload_4.csv";
                     break;
-                case "AP_BU_05_Upload Details On Multiple Cohorts With Multiple EmployersAP_BU_04_Do Not Allow Bulk Upload On Non Editable  Cohorts":
+                case "AP_BU_05_Do Not Allow Bulk Upload On Non Editable Cohorts":
                     fileName = "BulkUpload_5.csv";
                     break;
-                case "AP_BU_05_Validation Rules":
+                case "AP_BU_06_Validation Rules":
                     fileName = "BulkUpload_6.csv";
                     break;
                 case "AP_BU_07_Upload Details then Cancel":
                     fileName = "BulkUpload_7.csv";
                     break;
-
+                case "AP_BU_08_Do Not Allow Bulk Upload On Transfer Sender Cohorts":
+                    fileName = "BulkUpload_8.csv";
+                    break;
+                case "AP_BU_09_Do Not Allow Bulk Upload On Change Of Party Cohorts":
+                    fileName = "BulkUpload_9.csv";
+                    break;
             }
 
             fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation + fileName;
@@ -83,6 +88,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
             return this;
         }
+
+
+        public ProviderBulkUploadCsvFilePage CreateACsvFileWithCohortReference(string cohortReference, int numberOfApprenticesPerCohort = 1)
+        {          
+            for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++)
+            {
+                ApprenticeList.Add(SetApprenticeDetails(counter * 17, cohortReference));
+            }
+
+            objectContext.Replace("BulkuploadApprentices", ApprenticeList);
+            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+            return this;
+        }
+
+
 
         private List<string> GetCohortReferences()
         {
@@ -145,5 +165,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 AgreementId = agreementId
             };
         }
+
+
     }
 }
