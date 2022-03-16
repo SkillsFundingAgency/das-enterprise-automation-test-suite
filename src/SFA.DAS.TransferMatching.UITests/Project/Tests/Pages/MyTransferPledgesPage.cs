@@ -10,8 +10,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
         private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
-        private By ActiveStatusSelector => By.CssSelector("#main-content > div > div > div.govuk-grid-column-two-thirds > table > tbody > tr > td:nth-child(5) > strong");
-        private By ClosedStatusSelector => By.CssSelector("#main-content > div > div:nth-child(2) > div.govuk-grid-column-two-thirds > table > tbody > tr:nth-child(2) > td:nth-child(5) > strong");
+        private By ActiveStatusSelector => By.TagName("govuk-tag govuk-tag--dark-blue");
+        private By ClosedStatusSelector => By.TagName("govuk-tag govuk-tag--grey");
         public MyTransferPledgesPage(ScenarioContext context) : base(context) { }
 
         public TransferPledgePage GoToTransferPledgePage()

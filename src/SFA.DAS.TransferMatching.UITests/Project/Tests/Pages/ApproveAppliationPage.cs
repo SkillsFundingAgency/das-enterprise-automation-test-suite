@@ -9,8 +9,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected override string PageTitle => objectContext.GetOrganisationName();
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        private By EstimatedCostText => By.LinkText("The estimated total cost of training is based on the funding band maximum, the planned start date of training and the 20% completion payment.");
-        private By ApproveDisclaimerText => By.LinkText("You may wish to undertake your own in -house governance process before committing to fund a transfer.The receiving employer will provide you with their contact details as part of their application in order to do this. Before this is confirmed, you will need to choose how to approve the apprentice details on the next page.");
+        private By EstimatedCostText => By.CssSelector("#main-content > div:nth-child(3) > p:nth-child(7)");
+        private By ApproveDisclaimerText => By.CssSelector("#approval-content");
 
         public ApproveAppliationPage(ScenarioContext context) : base(context) { }
 
