@@ -26,6 +26,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
         }
 
-        private bool IsUnsupportedChromeDriverVersion(string chromedriverVersion) => chromedriverVersion.StartsWith("99.0.4844.51");
+        private bool IsUnsupportedChromeDriverVersion(string chromedriverVersion) => chromedriverVersion.StartsWith("99.0");
     }
 }
