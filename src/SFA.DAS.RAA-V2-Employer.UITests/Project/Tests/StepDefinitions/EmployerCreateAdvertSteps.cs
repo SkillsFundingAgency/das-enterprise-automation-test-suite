@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCanOpenTheDraftAndSubmitsTheAdvert() => _employerCreateVacancyStepsHelper.SubmitDraftAdvert(GoToYourAdvertFromDraftAdverts());
 
         [Given(@"the Employer creates Draft advert")]
-        public void TheEmployerCreatesDraftAdvert() => _employerCreateVacancyStepsHelper.CreateDraftAdvert();
+        public void TheEmployerCreatesDraftAdvert() => ReturnToApplications(_employerCreateVacancyStepsHelper.CreateDraftAdvert());
 
         [Given(@"the Employer can create an advert by entering all the Optional fields")]
         public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
