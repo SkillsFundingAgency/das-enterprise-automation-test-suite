@@ -97,12 +97,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             SetLegalEntityAsEmployerName();
 
-            return GoToEmployerDescriptionPage();
+            return GoToEmployerDescriptionPage(rAAV2DataHelper.EmployerDescription);
         }
 
-        private EmployerDescriptionPage GoToEmployerDescriptionPage() 
+        private EmployerDescriptionPage GoToEmployerDescriptionPage() => GoToEmployerDescriptionPage(_employerName);
+        
+        private EmployerDescriptionPage GoToEmployerDescriptionPage(string employerNameAsShownInTheAdvert)
         {
             SetEmployerName(_employerName);
+            objectContext.SetEmployerNameAsShownInTheAdvert(employerNameAsShownInTheAdvert);
             Continue();
             return new EmployerDescriptionPage(context);
         }
