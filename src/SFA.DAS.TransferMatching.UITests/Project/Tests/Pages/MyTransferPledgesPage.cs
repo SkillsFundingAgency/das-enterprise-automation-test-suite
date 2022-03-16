@@ -10,7 +10,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By CreatePledgesSelector => By.CssSelector("[href*='/pledges/create/inform']");
 
         private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
-
+        private By ActiveStatusSelector => By.TagName("govuk-tag govuk-tag--dark-blue");
+        private By ClosedStatusSelector => By.TagName("govuk-tag govuk-tag--grey");
         public MyTransferPledgesPage(ScenarioContext context) : base(context) { }
 
         public TransferPledgePage GoToTransferPledgePage()
@@ -24,7 +25,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreatePledgesSelector);
             return new PledgeAndTransferYourLevyFundsPage(context);
         }
+        public MyTransferPledgesPage ConfirmCloseStatus()
+        {
+            pageInteractionHelper.IsElementDisplayed(ClosedStatusSelector);
+            return new MyTransferPledgesPage(context);
+        }
+        public MyTransferPledgesPage ConfirmActiveStatus()
+        {
+            pageInteractionHelper.IsElementDisplayed(ActiveStatusSelector);
+            return new MyTransferPledgesPage(context);
+        }
 
         public void VerifyPledge() => VerifyElement(PledgeSelector);
+
     }
 }

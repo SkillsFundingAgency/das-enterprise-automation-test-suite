@@ -37,8 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
         {
             formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
-            formCompletionHelper.ClickElement(SearchButton);
-            return this;
+            
+            return pageInteractionHelper.InvokeAction(() => { formCompletionHelper.ClickElement(SearchButton); return new ProviderManageYourApprenticesPage(context); });
         }
 
         public ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
