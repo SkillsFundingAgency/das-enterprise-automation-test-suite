@@ -1,10 +1,14 @@
-﻿#@approvals
+﻿@approvals
 Feature: AP_BU_04_UploadDetailsOnExistingCohortsAndCreateNewCohorts
 
-#@regression
+@regression
 @newBUJourney
 Scenario: AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts
-	Given the provider has multiple editable cohorts
-	And the provider has permission to create new cohort
-	When the provider creates a bulk upload file to add apprentices in existing and new cohorts
-	Then the apprentice details are uploaded correctly in each cohort
+	Given the Employer logins using existing Levy Account
+	And the Employer create a cohort and send to provider to add apprentices
+	When Provider uses BulkUpload to add 2 apprentice details into existing cohort and 2 apprentice details into a non-existing cohort
+	Then Correct Information is displayed on review apprentices details page
+	And Provider approves the cohorts and send them to employer to approve
+	When Levy employer approves the cohorts
+	#Then New apprentice records become available in Manage Apprentice section
+	Then a new live apprenticeship record is created with new Provider

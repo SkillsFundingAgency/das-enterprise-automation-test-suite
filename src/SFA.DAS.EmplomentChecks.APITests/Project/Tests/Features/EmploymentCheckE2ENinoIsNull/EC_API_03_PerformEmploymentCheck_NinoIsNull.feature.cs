@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -88,9 +88,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
-            argumentsOfScenario.Add("Employed", employed);
-            argumentsOfScenario.Add("ReturnCode", returnCode);
-            argumentsOfScenario.Add("ReturnMessage", returnMessage);
+            argumentsOfScenario.Add("Status", status);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_003_PerformEmploymentCheck_NinoIsNull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -127,6 +125,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.And(string.Format("employment check record status is \'{0}\'", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -139,7 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull_3()
         {
 #line 6
-this.EC_API_003_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "", "null", "NationalInsuranceNumber is null", ((string[])(null)));
+this.EC_API_003_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", ((string[])(null)));
 #line hidden
         }
     }

@@ -12,6 +12,7 @@
     { "assembly": "SFA.DAS.FAA.UITests" }
   ],
   "generator": {
-    "allowRowTests": false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

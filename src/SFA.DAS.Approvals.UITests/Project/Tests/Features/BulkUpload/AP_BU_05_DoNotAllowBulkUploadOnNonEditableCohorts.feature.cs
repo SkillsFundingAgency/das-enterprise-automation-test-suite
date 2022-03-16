@@ -78,10 +78,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_BU_05_Do Not Allow Bulk Upload On Non Editable  Cohorts")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
         public virtual void AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts()
         {
             string[] tagsOfScenario = new string[] {
+                    "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Do Not Allow Bulk Upload On Non Editable  Cohorts", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

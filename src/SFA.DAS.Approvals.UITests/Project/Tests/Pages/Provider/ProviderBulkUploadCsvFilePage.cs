@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using System;
 using System.Collections.Generic;
@@ -43,6 +45,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 case "AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers":
                     fileName = "BulkUpload_3.csv";
                     break;
+                case "AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts":
+                    fileName = "BulkUpload_4.csv";
+                    break;
+                case "AP_BU_05_Upload Details On Multiple Cohorts With Multiple EmployersAP_BU_04_Do Not Allow Bulk Upload On Non Editable  Cohorts":
+                    fileName = "BulkUpload_5.csv";
+                    break;
+                case "AP_BU_05_Validation Rules":
+                    fileName = "BulkUpload_6.csv";
+                    break;
                 case "AP_BU_07_Upload Details then Cancel":
                     fileName = "BulkUpload_7.csv";
                     break;
@@ -52,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation + fileName;
         }
 
-        public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1)
+        public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
         {
            var listOfCohortReference = GetCohortReferences();
             foreach (var cohortRef in listOfCohortReference)
@@ -61,6 +72,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 {
                     ApprenticeList.Add(SetApprenticeDetails(counter * 17, cohortRef));
                 }
+            }
+
+            for (int i = 0; i < numberOfApprenticesWithoutCohortRef; i++)
+            {
+                ApprenticeList.Add(SetApprenticeDetails(i+1 * 17, ""));
             }
 
             objectContext.Replace("BulkuploadApprentices", ApprenticeList);
@@ -100,7 +116,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
             DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
             string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+            string agreementId;
+            
+            if (cohortRef == "" || cohortRef == null)
+            {
+                var employerUser = context.GetUser<LevyUser>();
+                var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            }
+            else 
+            {
+                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+            }
+            
 
             return new ApprenticeDetails(courseCode)
             {

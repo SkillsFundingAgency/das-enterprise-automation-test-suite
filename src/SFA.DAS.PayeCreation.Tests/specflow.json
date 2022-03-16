@@ -10,6 +10,7 @@
     { "assembly": "SFA.DAS.TestDataExport" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

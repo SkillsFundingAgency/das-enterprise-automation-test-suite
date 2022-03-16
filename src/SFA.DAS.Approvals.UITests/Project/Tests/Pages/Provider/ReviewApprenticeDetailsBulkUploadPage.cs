@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -9,29 +10,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderReviewApprenticeDetailsBulkUploadPage : ApprovalsBasePage
     {
+        protected override string PageTitle => "Check new apprentice records";
         protected override By ContinueButton => By.Id("continue-button");
 
         protected By EmployerDetails => By.ClassName("bu-employer-details");
         protected By EmployerNameAndAgreementId => By.ClassName("bu-employer-name");
         protected By EmployerAgreementId => By.ClassName("bu-agreementId");
-
         protected By CohortReferences => By.ClassName("bu-cohort-ref");
         protected By ApprenticeCountAndTotalText => By.ClassName("bu-apprentice-count");
-
         protected By UploadAnAmendedFileRadioButton => By.Id("details-new-file");
-
         protected By UploadAnAmendedFileActionLink => By.Id("upload-amended-file-link");
         protected By SaveButDontSendToEmployerRadioButton => By.Id("details-save");
-
+        protected By ApproveAllAndSendToEmployerButton => By.Id("details-approve");
         protected By CancelUploadLink => By.Id("cancel-upload-link");
 
-        protected override string PageTitle => "Check new apprentice records";
 
         public ProviderReviewApprenticeDetailsBulkUploadPage(ScenarioContext context) : base(context) { }
 
-        public ProviderReviewApprenticeDetailsBulkUploadPage VerifyCorrectInformationIsDisplayed()
+        public ProviderReviewApprenticeDetailsBulkUploadPage VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
-           var apprenticeList = GetBulkuploadData();
             VerifyEmployerDetails(apprenticeList);
             return this;
         }
@@ -50,6 +47,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNewApprenticeDetailsSavedSuccessfully(context);
         }
 
+        public ProviderNewApprenticesAddedAndSentToEmployer SelectToApproveAllAndSendToEmployer()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(ApproveAllAndSendToEmployerButton);
+            Continue();
+            return new ProviderNewApprenticesAddedAndSentToEmployer(context);
+        }
+        
         public ProviderUploadAmendedFilePage SelectToUploadAnAmendedFileThroughLink()
         {
             formCompletionHelper.Click(UploadAnAmendedFileActionLink);
@@ -89,10 +93,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var cohortReferencesWE = employerDetails.FindElements(CohortReferences);
             foreach (var cR in cohortReferencesWE)
             {
-                var expectedCohortDetails = cohortDetails[counter];
-                if (cR.Text != $"Cohort: {expectedCohortDetails.CohortRefText}")
+                //var expectedCohortDetails = cohortDetails[counter];
+                string expectedCohortDetails = cohortDetails[counter].CohortRef == "" ? "This will be created when you save or send to employers" : cohortDetails[counter].CohortRef;
+                if (cR.Text != $"Cohort: {expectedCohortDetails}")
                 {
-                    throw new System.Exception($"CohortRef match not found : {expectedCohortDetails.CohortRefText}");
+                    throw new System.Exception($"CohortRef match not found : {expectedCohortDetails}");
                 }
                 counter++;
             }
@@ -132,6 +137,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
+        /*
         private List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
             var apprenticeList = objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
@@ -160,9 +166,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return result;
         }
-
+        /*
      
     }
+
+    /*
 
     #region Helper Classes
 
@@ -203,4 +211,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     }
 
     #endregion
+
+    */
+    
+    }
 }
