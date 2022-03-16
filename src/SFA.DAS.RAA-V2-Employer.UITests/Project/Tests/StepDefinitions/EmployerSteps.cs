@@ -161,6 +161,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLogsIntoEmployerAccount() => _homePageStepsHelper.GotoEmployerHomePage();
 
         [Then(@"the Employer can review and resubmit the vacancy")]
-        public void ThenTheEmployerCanReviewAndResubmitTheVacancy() => _dynamicHomePage.ReviewYourVacancy().ResubmitVacancy().ConfirmVacancyResubmission();
+        public void ThenTheEmployerCanReviewAndResubmitTheVacancy() => _dynamicHomePage.ReviewYourVacancy().ResubmitVacancy();
     }
 }
