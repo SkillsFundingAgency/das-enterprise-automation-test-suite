@@ -75,8 +75,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .EmployerDoesSecondApproval();
         }
 
-
-
         [Then(@"a new live apprenticeship record is created with new Provider")]
         public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
         {

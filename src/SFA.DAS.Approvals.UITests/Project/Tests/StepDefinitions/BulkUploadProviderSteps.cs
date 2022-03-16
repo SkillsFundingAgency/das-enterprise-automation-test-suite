@@ -1,9 +1,11 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         protected readonly ProviderConfig _providerConfig;
@@ -27,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public BulkUploadProviderSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = _context.Get<ObjectContext>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
@@ -158,12 +162,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderFileDiscadSuccessPage(_context);
         }
 
+        [Then(@"New apprentice records become available in Manage Apprentice section")]
+        public void ThenNewApprenticeRecordsBecomeAvailableInManageApprenticeSection()
+        {
+            var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
+            string expectedStatus1 = "LIVE";
+            string expectedStatus2 = "WAITING TO START";
+
+            ProviderManageYourApprenticesPage providerManageYourApprenticesPage = _providerStepsHelper.GoToProviderHomePage(true).GoToProviderManageYourApprenticePage();
+
+            foreach (var apprentice in apprenticeList)
+            {
+                var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(apprentice.ULN).GetStatus(apprentice.ULN);
+                Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper()|| actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
+            }            
+
+        }
+
+
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
-            var _objectContext = _context.Get<ObjectContext>();
             var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
             var result = new List<FileUploadReviewEmployerDetails>();
+            
             foreach (var employer in groupedByEmployers)
             {
                 var employerDetail = new FileUploadReviewEmployerDetails();

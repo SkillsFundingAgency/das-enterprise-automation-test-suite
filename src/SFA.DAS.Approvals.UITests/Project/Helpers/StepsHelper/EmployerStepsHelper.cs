@@ -10,6 +10,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -35,9 +36,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
 
-        public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
+        public void Approve(string cohortRef = null) => EmployerReviewCohort(cohortRef).EmployerDoesSecondApproval();
 
         public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
+
+        public void ApproveMultipleCohorts()
+        {
+            List<string> cohortList =_objectContext.GetCohortReferenceList();
+            foreach (var cohort in cohortList)
+            {
+                Approve(cohort);
+            }
+
+        }
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
 
@@ -72,12 +83,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
-        internal ApproveApprenticeDetailsPage EmployerReviewCohort()
+        internal ApproveApprenticeDetailsPage EmployerReviewCohort(string cohortRef = null)
         {
             var employerReviewYourCohortPage = GoToEmployerApprenticesHomePage()
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
-                .SelectViewCurrentCohortDetails();
+                .SelectViewCurrentCohortDetails(cohortRef);
 
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage));
 
@@ -97,7 +108,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             {
                 var cohortSentYourTrainingProviderPage = EmployerCreateCohort(isTransferReciverEmployer);
                 var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
-                SetCohortReferenceList(cohortReference);
+                _objectContext.SetCohortReferenceList(cohortReference);
             }
         }
 
@@ -117,6 +128,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
+        /*
         public void SetCohortReferenceList(string cohortReference)
         {
             var list = _objectContext.GetCohortReferenceList();
@@ -128,7 +140,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             list.Add(cohortReference);
 
             _objectContext.SetCohortReferenceList(list);
-        }
+        }*/
 
         public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
 

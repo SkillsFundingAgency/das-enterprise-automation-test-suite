@@ -10,9 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeRequestsReadyToReview(ScenarioContext context) : base(context)  { }
 
-        public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
+        public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails(string cohortRef = null)
         {
-            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+            if (cohortRef == null || cohortRef == "")
+                tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+            else
+                tableRowHelper.SelectRowFromTableDescending("Details", cohortRef);
+
             return new ApproveApprenticeDetailsPage(context);
         }
     }

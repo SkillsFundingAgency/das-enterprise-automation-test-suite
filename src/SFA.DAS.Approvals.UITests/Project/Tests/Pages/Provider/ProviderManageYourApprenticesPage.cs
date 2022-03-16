@@ -31,10 +31,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ApplyFilter => By.XPath("//button[contains(text(),'Apply filters')]");
         private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
         private By DownloadAllDataLink => By.PartialLinkText("Download all data");
-
         private By NextPageLink => By.PartialLinkText("Next");
+        private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
 
-        private ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
+        public ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
         {
             formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             formCompletionHelper.ClickElement(SearchButton);
@@ -80,5 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public bool DownloadAllDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
+
+        public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
     }
 }

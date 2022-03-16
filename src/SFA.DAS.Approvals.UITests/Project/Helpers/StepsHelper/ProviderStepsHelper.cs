@@ -9,6 +9,7 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -188,7 +189,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef = 0)
         {
             return
-                GoToProviderHomePage(false)
+                GoToProviderHomePage(true)
                 .GotoSelectJourneyPage()
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()
@@ -322,6 +323,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .EnterNewPriceAndContinue()
                     .VerifyAndSubmitChangeOfEmployerRequest()
                     .VerifyChangeOfEmployerHasBeenRequested();
+        }
+
+        private void ValidateStatusOnManageYourApprenticesPage(ProviderManageYourApprenticesPage providerManageYourApprenticesPage, string keyword, string expectedStatus)
+        {
+            var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(keyword).GetStatus(keyword);
+            Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
         }
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage());
