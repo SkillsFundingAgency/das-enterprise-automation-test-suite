@@ -191,7 +191,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Non Editable Cohorts error message is displayed")]
         public void ThenNonEditableCohortsErrorMessageIsDisplayed()
         {
-            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
+            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
             new ProviderFileUploadValidationErrorsPage(_context)
                  .VerifyErrorMessage(errorMessage);
         }

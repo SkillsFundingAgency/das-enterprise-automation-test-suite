@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the provider has a cohort as a result of change of party", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider has a cohort which is with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When("the provider tries a bulk upload file to add apprentices in that cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

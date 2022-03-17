@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -17,14 +19,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public ProviderBulkUploadCsvFilePage VerifyErrorMessage(string errorMessage)    
-        {
-            //Method 1
-            //string featureFileErrorMessage = Regex.Replace(errorMessage, @"\s+", String.Empty);
-            //string fileUploadErrorMessage = Regex.Replace(_pageInteractionHelper.GetText(FileUploadErrorMessage), @"\s+", String.Empty);         
-
-            //Method 2
-            string featureFileErrorMessage = errorMessage.Replace("\n", "").Replace("\r", "");
-            string fileUploadErrorMessage = _pageInteractionHelper.GetText(FileUploadErrorMessage).Replace("\n", "").Replace("\r", "");         
+        {            
+            string featureFileErrorMessage = Regex.Replace(errorMessage, @"\s+", String.Empty);
+            string fileUploadErrorMessage = Regex.Replace(_pageInteractionHelper.GetText(FileUploadErrorMessage), @"\s+", String.Empty);
 
             Assert.AreEqual(featureFileErrorMessage, fileUploadErrorMessage);
 
