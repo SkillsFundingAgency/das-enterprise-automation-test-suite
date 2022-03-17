@@ -86,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   Where ProviderId = {ukprn}
                                   And EmployerAccountId = {EmployerAccountId}
                                   AND IsDeleted = 0
-                                  And WithParty = 1
+                                  And WithParty = 2
                                   AND ChangeOfPartyRequestId is not null
                                   Order by CreatedOn ASC";
 

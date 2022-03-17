@@ -208,7 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"an error message is displayed")]
         public void ThenAnErrorMessageIsDisplayed()
         {
-            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.\r\nYou cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
+            string errorMessage = "You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
             new ProviderFileUploadValidationErrorsPage(_context)
                             .VerifyErrorMessage(errorMessage);
         }
