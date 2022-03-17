@@ -4,9 +4,9 @@ using System.IO;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class BulkUploadValidationDataHelper
+    public class BulkUploadV2ValidationDataHelper
     {
-        public void CreateBulkUploadFileToValidate(List<ApprenticeDetail> apprenticeDetailsList, string fileLocation)
+        public void CreateBulkUploadFileToValidate(List<ApprenticeDetailsV2> apprenticeDetailsList, string fileLocation)
         {
             using (StreamWriter sw = File.CreateText(fileLocation))
             {
@@ -23,9 +23,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         }
     }
 
-    public class ApprenticeDetail
+    public class ApprenticeDetailsV2
     {
-        public ApprenticeDetail(string courseCode) => StdCode = courseCode;
+        public ApprenticeDetailsV2(string courseCode) => StdCode = courseCode;
 
         public string CohortRef { get; set; }
         public string ULN { get; set; }

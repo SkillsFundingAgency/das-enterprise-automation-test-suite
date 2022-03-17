@@ -17,17 +17,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ChooseFileButton => By.Id("attachment");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
         private List<ApprenticeDetails> ApprenticeList;
+        private List<ApprenticeDetailsV2> ApprenticeListV2;
         private string fileLocation;
 
         protected override string PageTitle => "Upload a CSV file";
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;
+        private readonly BulkUploadV2ValidationDataHelper _bulkUploadV2ValidationDataHelper;
 
         public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
         {
             SetFileLocation();
            
             ApprenticeList = new List<ApprenticeDetails>();
+            ApprenticeListV2 = new List<ApprenticeDetailsV2>();
             _bulkUploadDataHelper = new BulkUploadDataHelper();
+            _bulkUploadV2ValidationDataHelper = new BulkUploadV2ValidationDataHelper();
         }
 
         private void SetFileLocation()
@@ -89,6 +93,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public ProviderBulkUploadCsvFilePage CreateACsvFile(List<ApprenticeDetailsV2> apprenticeDetails)
+        {            
+            foreach (var apprenticeDetail in apprenticeDetails)
+            {
+                ApprenticeListV2.Add(apprenticeDetail);
+            }         
+
+            objectContext.Replace("BulkuploadApprentices", ApprenticeListV2);
+            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(ApprenticeListV2, fileLocation);
+            return this;
+        }
+
 
         public ProviderBulkUploadCsvFilePage CreateACsvFileWithCohortReference(string cohortReference, int numberOfApprenticesPerCohort = 1)
         {          
@@ -122,14 +138,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
             return this;
-        }
-
-        public ProviderBulkUploadCsvFilePage UploadFile(string fileLocation)
-        {
-            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
-            formCompletionHelper.ClickElement(UploadFileButton);
-            return this;
-        }
+        }      
 
         private ApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
