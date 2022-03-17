@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected readonly PageInteractionHelper _pageInteractionHelper;
         protected override string PageTitle => "New apprentices added and sent to employer(s) for approval";
+        private readonly ObjectContext _objectContext;
 
         private By cohortsSaveTableRows => By.CssSelector("tbody tr");
         private By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
@@ -23,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderNewApprenticesAddedAndSentToEmployer(ScenarioContext _context) : base(_context)
         {
             _pageInteractionHelper = _context.Get<PageInteractionHelper>();
+            _objectContext = _context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -51,6 +54,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.AreEqual(expectedEmployerName, actualEmployerName, "Validate correct employer name is displayed");
                 Assert.AreEqual(expectedCohortRef, actualCohortRef, "Validate correct cohort reference is displayed");
                 Assert.AreEqual(expectedNoOfApprentices, actualNoOfApprentices, "Validate correct no. of apprentices are displayed against cohort");
+
+                _objectContext.SetCohortReferenceList(actualCohortRef);
 
                 counter++;
             }
