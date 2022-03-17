@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public ProviderBulkUploadCsvFilePage VerifyErrorMessage(string errorMessage)    
-        {            
+        {
             string featureFileErrorMessage = Regex.Replace(errorMessage, @"\s+", String.Empty);
             string fileUploadErrorMessage = Regex.Replace(_pageInteractionHelper.GetText(FileUploadErrorMessage), @"\s+", String.Empty);
 

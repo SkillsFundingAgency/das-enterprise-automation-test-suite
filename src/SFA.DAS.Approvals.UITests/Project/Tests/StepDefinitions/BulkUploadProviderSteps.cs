@@ -188,6 +188,74 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }            
 
         }
+        [Given(@"the provider has a cohort which is with employer")]
+        public void GivenTheProviderHasACohortWhichIsWithEmployer()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWhichIsWithEmployer(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
+        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort()
+        {
+            var cohortReference = _objectContext.GetCohortReference();
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(cohortReference);
+        }
+
+        [Then(@"Non Editable Cohorts error message is displayed")]
+        public void ThenNonEditableCohortsErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                 .VerifyErrorMessage(errorMessage);
+        }
+
+        [Then(@"Transfer Sender Cohorts error message is displayed")]
+        public void ThenTransferSenderCohortsErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices via file on behalf of non-levy employers yet.\r\nYou cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                 .VerifyErrorMessage(errorMessage);
+        }
+
+        [Then(@"an error message is displayed")]
+        public void ThenAnErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                            .VerifyErrorMessage(errorMessage);
+        }
+
+        [Given(@"the provider has a cohort as a result of change of party")]
+        public void GivenTheProviderHasACohortAsAResultOfChangeOfParty()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [Given(@"the provider has a cohort which is with transfer-sender")]
+        public void GivenTheProviderHasACohortWhichIsWithTransfer_Sender()
+        {
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithTransferSender(Convert.ToInt32(_providerConfig.Ukprn));
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [When(@"Provider add an apprentice uses details from below to create bulkupload")]
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
+        {
+            var apprenticeRecords = table.CreateSet<MapApprenticeData>();
+
+            ValidateApprenticeRecord(apprenticeRecords);
+        }
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
@@ -279,7 +347,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 if (i == 1) // first time start from provider home page 
                     _providerStepsHelper.UploadApprenticeRecordToValidate(ApprenticeList);
                 else // next time onwards just go back and upload file               
-                    new ProviderBulkUploadCsvFilePage(_context).UploadFile();
+                    new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile(ApprenticeList).UploadFile();
 
                 new ProviderFileUploadValidationErrorsPage(_context)
                     .VerifyErrorMessage(item.ErrorMessage);
