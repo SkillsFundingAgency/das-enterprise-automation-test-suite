@@ -24,6 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         protected readonly ProviderConfig _providerConfig;
         protected readonly ApprovalsConfig approvalsConfig;
@@ -43,7 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             pageInteractionHelper = context.Get<PageInteractionHelper>();            
             _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());            
-            _objectContext = _context.Get<ObjectContext>();
         }
 
         [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
