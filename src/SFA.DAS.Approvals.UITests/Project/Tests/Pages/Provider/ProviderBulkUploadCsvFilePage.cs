@@ -36,40 +36,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SetFileLocation()
         {
-            var testTitle = context.ScenarioInfo.Title;
+            var testTitle = context.ScenarioInfo.Title.Substring(0, 8);
             string fileName = "BulkUpload.csv";
             switch (testTitle)
             {
-                case "AP_BU_01_Upload Details On Single Cohort":
+                case "AP_BU_01":
                     fileName = "BulkUpload_1.csv";
                     break;
-                case "AP_BU_02_Upload Details On Multiple Cohorts":
+                case "AP_BU_02":
                     fileName = "BulkUpload_2.csv";
                     break;
-                case "AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers":
+                case "AP_BU_03":
                     fileName = "BulkUpload_3.csv";
                     break;
-                case "AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts":
+                case "AP_BU_04":
                     fileName = "BulkUpload_4.csv";
                     break;
-                case "AP_BU_05_Do Not Allow Bulk Upload On Non Editable Cohorts":
+                case "AP_BU_05":
                     fileName = "BulkUpload_5.csv";
                     break;
-                case "AP_BU_06_Validation Rules":
+                case "AP_BU_06":
                     fileName = "BulkUpload_6.csv";
                     break;
-                case "AP_BU_07_Upload Details then Cancel":
+                case "AP_BU_07":
                     fileName = "BulkUpload_7.csv";
                     break;
-                case "AP_BU_08_Do Not Allow Bulk Upload On Transfer Sender Cohorts":
+                case "AP_BU_08":
                     fileName = "BulkUpload_8.csv";
                     break;
-                case "AP_BU_09_Do Not Allow Bulk Upload On Change Of Party Cohorts":
+                case "AP_BU_09":
                     fileName = "BulkUpload_9.csv";
                     break;
             }
 
-            fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation + fileName;
+            fileLocation = Path.GetFullPath(@"..\..\..\Project\DataFiles\") + fileName;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)

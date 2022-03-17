@@ -131,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ErrorMessage"});
                 table1.AddRow(new string[] {
                             "CohortRef length > 20",
-                            "MKRK7VMKRK7VMKRK7VPJ1",
+                            "ABC999",
                             "valid",
                             "valid",
                             "valid",
@@ -292,72 +292,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "Enter the end date using the format yyyy-mm, for example 2019-02"});
                 table1.AddRow(new string[] {
-                            "FamilyNameEmpty",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "First name must be entered"});
-                table1.AddRow(new string[] {
-                            "FamilyName > 100",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "FamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameF" +
-                                "amilyNameFamilyNameFamilyName",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "Enter a last name that is not longer than 100 characters"});
-                table1.AddRow(new string[] {
-                            "GivenNameEmpty",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "Last name must be entered"});
-                table1.AddRow(new string[] {
-                            "GivenName > 100",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "GivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenName" +
-                                "sGivenNamesGivenNamesGivenNames",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "Enter a last name that is not longer than 100 characters"});
-                table1.AddRow(new string[] {
                             "TotalPriceWithPence",
                             "valid",
                             "valid",
@@ -423,13 +357,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Enter the start date using the format yyyy-mm-dd, for example 2017-09-01"});
                 table1.AddRow(new string[] {
                             "CohortUlnEmailDoB",
-                            "MKRK7VMKRK7VMKRK7VPJ1",
+                            "9XZY99",
                             "valid",
                             "171649120",
                             "valid",
                             "2021-05-09",
                             "valid",
-                            "X@Y",
+                            "com@.com",
                             "valid",
                             "2021-03-03",
                             "2021-02",
@@ -438,6 +372,72 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "You must enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a " +
                                 "valid email address\nEnter an end date that is after the start date"});
+                table1.AddRow(new string[] {
+                            "GivenNameEmpty",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Last name must be entered"});
+                table1.AddRow(new string[] {
+                            "FamilyNameEmpty",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "First name must be entered"});
+                table1.AddRow(new string[] {
+                            "GivenName > 100",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "GivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenName" +
+                                "sGivenNamesGivenNamesGivenNames",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a last name that is not longer than 100 characters"});
+                table1.AddRow(new string[] {
+                            "FamilyName > 100",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "FamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameF" +
+                                "amilyNameFamilyNameFamilyName",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a last name that is not longer than 100 characters"});
 #line 9
  testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
 #line hidden
