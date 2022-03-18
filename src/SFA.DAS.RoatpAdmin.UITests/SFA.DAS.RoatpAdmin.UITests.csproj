@@ -14,8 +14,8 @@
     </PackageReference>
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
     <PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.2" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.52" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.52" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
   </ItemGroup>
 
   <ItemGroup>
