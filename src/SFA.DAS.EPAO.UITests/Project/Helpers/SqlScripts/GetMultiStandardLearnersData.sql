@@ -40,7 +40,7 @@ GROUP BY lrn1.ULN, lrn1.GivenNames, lrn1.familyname
 HAVING  
 MAX(CASE WHEN VersionConfirmed = 1 THEN 1 ELSE 0 END) = __VersionConfirmed__   
 AND 
-MAX(CASE WHEN ISNULL(CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionSet__ 
+MAX(CASE WHEN ISNULL(lrn1.CourseOption,'') = '' THEN 0 ELSE 1 END ) = __OptionSet__ 
 AND
 COUNT(*) > 1      
 ) ab1 order by NEWID() desc

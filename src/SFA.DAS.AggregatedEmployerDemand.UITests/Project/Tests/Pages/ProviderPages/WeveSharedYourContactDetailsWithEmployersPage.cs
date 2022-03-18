@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
 {
-    public class WeveSharedYourContactDetailsWithEmployersPage : AEDBasePage
+    public class WeveSharedYourContactDetailsWithEmployersPage : AedBasePage
     {
         protected override string PageTitle => "We’ve shared your contact details with employers";
 

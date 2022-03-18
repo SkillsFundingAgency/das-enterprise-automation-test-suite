@@ -26,7 +26,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "EC_API_01_PerformEmploymentCheck.feature"
 #line hidden
@@ -35,7 +35,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EHappyPath", "EmploymentCheckE2EHappyPath", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EHappyPath", "EmploymentCheckE2EHappyPath", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,33 +47,33 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath(string testCaseId, string minDate, string maxDate, string status1, string employed, string returnCode, string returnMessage, string status2, string[] exampleTags)
+        public virtual void EC_API_001_PerformEmploymentCheck_HappyPath(string testCaseId, string minDate, string maxDate, string status1, string employed, string returnCode, string returnMessage, string status2, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -93,21 +93,11 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("ReturnCode", returnCode);
             argumentsOfScenario.Add("ReturnMessage", returnMessage);
             argumentsOfScenario.Add("Status2", status2);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_01_PerformEmploymentCheck_HappyPath", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_001_PerformEmploymentCheck_HappyPath", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -138,26 +128,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck_HappyPath: 1")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_001_PerformEmploymentCheck_HappyPath: 1")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_1()
+        public void EC_API_001_PerformEmploymentCheck_HappyPath_1()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "1", "true", "200", "OK", "2", ((string[])(null)));
+this.EC_API_001_PerformEmploymentCheck_HappyPath("1", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "1", "true", "200", "OK", "2", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_01_PerformEmploymentCheck_HappyPath: 2")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_001_PerformEmploymentCheck_HappyPath: 2")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public virtual void EC_API_01_PerformEmploymentCheck_HappyPath_2()
+        public void EC_API_001_PerformEmploymentCheck_HappyPath_2()
         {
 #line 6
-this.EC_API_01_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "1", "false", "200", "OK", "2", ((string[])(null)));
+this.EC_API_001_PerformEmploymentCheck_HappyPath("2", "2016-05-01T00:00:00", "2016-11-01T00:00:00", "1", "false", "200", "OK", "2", ((string[])(null)));
 #line hidden
         }
     }

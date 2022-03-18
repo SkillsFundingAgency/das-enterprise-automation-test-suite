@@ -16,6 +16,7 @@
     { "assembly": "SFA.DAS.ApprenticeCommitments.APITests" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

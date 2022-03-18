@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
@@ -10,12 +9,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
     {
 
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
-        private ScenarioContext _context;
 
         public EmploymentCheckE2E_StopWhenLearnerFoundOnPaye_Steps(ScenarioContext context)
         {
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
-            _context = context;
         }
 
         [When(@"Learner is found to be '([^']*)' on one of the paye schemes")]

@@ -25,7 +25,7 @@ AS
 select count (StdCode) OVER (PARTITION BY uln, GivenNames, FamilyName) multi, uln, stdcode, familyname, GivenNames, VersionConfirmed, CourseOption from dbo.Learner
 )
 SELECT TOP 1
-learner.uln, learner.stdcode, StandardName, GivenNames, familyname FROM StandardsList
+learner.uln, learner.stdcode, StandardsList.StandardName, GivenNames, familyname FROM StandardsList
 JOIN  learner on learner.stdcode = StandardsList.stdcode
 LEFT JOIN [dbo].[certificates] ce1 on ce1.uln=learner.uln and ce1.StandardCode = learner.stdcode
 WHERE 1=1

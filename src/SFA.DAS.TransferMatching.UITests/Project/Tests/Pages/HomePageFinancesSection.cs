@@ -20,7 +20,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.Click(HomeButton);
             return new AccountHomePage(context);
         }
-
-
     }
 }

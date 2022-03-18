@@ -171,6 +171,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
+        public bool IsElementDisplayedAfterPageLoad(By locator)
+        {
+            _webDriverWaitHelper.WaitForPageToLoad();
+
+            return IsElementDisplayed(locator);
+        }
+
+            
+
         public bool IsElementDisplayed(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
@@ -242,7 +251,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
 
-        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+        public List<string> GetAvailableSelectOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+
+        public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
         public string GetUrl() => _webDriver.Url;
 

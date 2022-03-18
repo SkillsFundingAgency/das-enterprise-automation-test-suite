@@ -1,6 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using SFA.DAS.ConfigurationBuilder;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
@@ -8,8 +11,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     public class ManageFundingEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        private readonly ReservationsSqlDataHelper _reservationsSqlDataHelper;
         
-        public ManageFundingEmployerStepsHelper(ScenarioContext context) => _context = context;
+        private WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage;
+
+        public ManageFundingEmployerStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _reservationsSqlDataHelper = new ReservationsSqlDataHelper(context.Get<DbConfig>());
+        }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFundingHomePage().ClickReserveMoreFundingLink();
 
@@ -36,8 +48,46 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
 
+        public void AddDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) { _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(activeFrom, activeTo); _objectContext.SetUpdateDynamicPauseGlobalRule(); }
+
+        public void RemoveDynamicPauseGlobalRule() { if (_objectContext.IsUpdateDynamicPauseGlobalRule()) _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(Convert.ToDateTime("2022-01-01"), Convert.ToDateTime("2022-01-01")); }
+
         public SuccessfullyReservedFundingPage CreateReservation() => CreateReservation(GoToReserveFunding());
         
+        public void StartCreateReservationAndGoToStartTrainingPage()
+        {
+            _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage = GoToReserveFunding()
+                .ClickYesRadioButton()
+                .EnterSelectForACourseAndSubmit()
+                .ClickSaveAndContinueButton();
+        }
+
+        public void VerifyReserveFromMonth(DateTime? reserveFromMonth)
+        {
+            _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage.VerifyReserveFromMonth(reserveFromMonth);
+        }
+
+        public void VerifySuggestedStartMonthOptions(DateTime? firstMonth, DateTime? secondMonth, DateTime? thirdMonth)
+        {
+            _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage.VerifySuggestedStartMonthOptions(firstMonth, secondMonth, thirdMonth);
+        }
+
+        public void CompleteCreateReservationFromStartTrainingPage()
+        {
+            _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage
+                .ClickMonthRadioButton()
+                .ClickSaveAndContinueButton()
+                .ClickYesReserveFundingNowRadioButton()
+                .ClickConfirmButton();
+        }
+
+        public void VerifyCreateReservationCannotBeCompleted()
+        {
+            _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage
+                .ClickSaveAndContinueButtonAndExpectProblem()
+                .VerifyProblem("You must select a start date");
+        }
+
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
