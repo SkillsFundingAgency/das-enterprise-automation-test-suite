@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsPage
+    public class ConfirmHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => SectionHelper.Section4;
         protected override By ContinueButton => By.CssSelector("#apprentice-delivered-confirm");

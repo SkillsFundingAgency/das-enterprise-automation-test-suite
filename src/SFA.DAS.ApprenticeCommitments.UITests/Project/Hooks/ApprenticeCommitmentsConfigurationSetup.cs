@@ -5,7 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Hooks
 {
     [Binding]
     public class ApprenticeCommitmentsConfigurationSetup

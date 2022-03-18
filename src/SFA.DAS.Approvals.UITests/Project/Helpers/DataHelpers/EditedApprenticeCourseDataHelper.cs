@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public void SelectAnyStandardCourse(string selectedCourseName)
         {
-            var availableCourses = new List<string> { "Abattoir worker, Level: 2", "Able seafarer (deck), Level: 2", "Software tester, Level: 4" };
+            var availableCourses = new List<string> { "Abattoir worker, Level: 2", "Actuary, Level: 7", "Software tester, Level: 4" };
 
             availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
 
