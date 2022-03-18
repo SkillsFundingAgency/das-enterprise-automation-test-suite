@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -11,12 +11,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-apply-submit");
 
+        private By CompletedStatusSelector => By.TagName("govuk-tag app-task-list__group-header-tag");
         public CreateATransfersApplicationPage(ScenarioContext context) : base(context) { }
 
         public ApplicationSubmittedPage SubmitApplication()
         {
             Continue();
             return new ApplicationSubmittedPage(context);
+        }
+
+        public CreateATransfersApplicationPage VerifyStatusIsComplete()
+        {
+            pageInteractionHelper.IsElementDisplayed(CompletedStatusSelector);
+            return new CreateATransfersApplicationPage(context);
         }
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()

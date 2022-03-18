@@ -21,10 +21,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _testData = context.Get<TestData>();
         }
 
-        public async Task Submit(IncentiveApplication application)
+        public async Task Submit(IncentiveApplication application, int signedAgreementVersion = 6)
         {
             _stopWatchHelper.Start("SubmitIncentiveApplication");
-            await _sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId);
+            await _sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId, signedAgreementVersion);
             await _sqlHelper.CreateIncentiveApplication(application);
 
             foreach (var apprenticeship in application.Apprenticeships)
@@ -48,7 +48,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                     apprenticeship.Phase
                 );
 
-                await _eIServiceBusHelper.Publish(command);
+                await _eIServiceBusHelper.Send(command);
                 _testData.ApprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
                 _testData.IncentiveIds.Add(_testData.ApprenticeshipIncentiveId);
                 await _sqlHelper.WaitUntilEarningsExist(_testData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));

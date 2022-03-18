@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -21,7 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        private readonly PublishPaymentEvent _publishPaymentEvent;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -29,7 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _publishPaymentEvent = context.Get<PublishPaymentEvent>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -166,9 +163,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
-
-        [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId(_context.ScenarioInfo.Title));
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]

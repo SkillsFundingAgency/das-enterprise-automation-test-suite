@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +27,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
         public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
-
-        public void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
-        {
-            bool func(Func<IWebElement> webelement)
-            {
-                var actual = webelement().GetAttribute(attribute);
-                if (actual.Contains(value))
-                    return true;
-
-                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
-            }
-
-            _retryHelper.RetryOnWebDriverException(() => func(element));
-        }
 
         public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
 
@@ -69,7 +56,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 var actual = GetText(element, retryAction);
 
-                if (expected.Any(x=> x.Contains(actual))) return true;
+                if (expected.Any(x => actual.Contains(x))) return true;
 
                 throw new Exception("Page verification failed:"
                 + "\n Expected: " + string.Join(" OR ", expected) + " page"
@@ -156,6 +143,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IEnumerable<string> GetStringCollectionFromElementsGroup(By locator) => FindElements(locator).Select(e => e.Text);
 
+        public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
+        {
+            _retryHelper.RetryOnWebDriverException(() => 
+            {
+                var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
+
+                if (isSelected != selected) throw new WebDriverException($"Radio option '{text}' selection verification failed: Expected: {isSelected} Found: {selected}");
+            });  
+        }
+
         public bool IsElementPresent(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
@@ -173,6 +170,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 _webDriverWaitHelper.TurnOnImplicitWaits();
             }
         }
+
+        public bool IsElementDisplayedAfterPageLoad(By locator)
+        {
+            _webDriverWaitHelper.WaitForPageToLoad();
+
+            return IsElementDisplayed(locator);
+        }
+
+            
 
         public bool IsElementDisplayed(By locator)
         {
@@ -245,7 +251,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
 
-        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+        public List<string> GetAvailableSelectOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+
+        public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
         public string GetUrl() => _webDriver.Url;
 
@@ -260,5 +268,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
+        private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
+        {
+            bool func(Func<IWebElement> webelement)
+            {
+                var actual = webelement().GetAttribute(attribute);
+
+                if (actual.Contains(value)) return true;
+
+                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
+            }
+
+            _retryHelper.RetryOnWebDriverException(() => func(element));
+        }
     }
 }

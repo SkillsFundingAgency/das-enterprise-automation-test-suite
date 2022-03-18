@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -64,12 +65,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 23)]
         [Scope(Tag = "providerleadregistration")]
-        public void SetUpProviderLeadRegistrationDataHelpers()
-        {
-            _pregSqlDataHelper = new PregSqlDataHelper(_dbConfig);
-
-            _context.Set(_pregSqlDataHelper);
-        }
+        public void SetUpProviderLeadRegistrationDataHelpers() => _context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_dbConfig));
 
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]

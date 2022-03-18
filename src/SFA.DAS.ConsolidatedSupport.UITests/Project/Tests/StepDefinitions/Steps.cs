@@ -37,6 +37,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _objectContext.SetUserId($"{user.Id}");
 
             TestContext.Progress.WriteLine($"Ticket {user.Id} created - {user.Name}");
+
+            _objectContext.SetUserCreated();
         }
 
         [Then(@"the user contact details can be updated on the Zendesk portal")]
@@ -60,6 +62,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
 
             userpage.CreateOrganisation();
+
+            _objectContext.SetOrgCreated();
 
             _homePage = userpage.VerifyOrganisationName();
 

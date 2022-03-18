@@ -4,6 +4,7 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -54,7 +55,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new ResetPasswordPage(_context);
         }
 
-        public ForgottenPasswordConfirmPage ResetPasswordFromSignInPageForUnverifiedAccount(SignIntoMyApprenticeshipPage signIntoMyApprenticeshipPage) => signIntoMyApprenticeshipPage.ClickForgottenMyPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
+        public ForgottenPasswordConfirmPage ResetPasswordFromSignInPageForUnverifiedAccount(SignIntoMyApprenticeshipPage signIntoMyApprenticeshipPage) => signIntoMyApprenticeshipPage.ClickChangeYourPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
 
         public SignIntoMyApprenticeshipPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().UpdatePassword().ReturnToSignInPage();
 

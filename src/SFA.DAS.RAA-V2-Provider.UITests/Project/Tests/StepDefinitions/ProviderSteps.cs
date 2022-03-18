@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
@@ -40,5 +37,16 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
         public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
 
+        [Given(@"the Provider renews the employer recruitment API key")]
+        public void GivenTheProviderRenewsTheEmployerRecruitmentAPIKey() => _providerStepsHelper.RenewRecruitmentAPIKey();
+
+        [Given(@"the Provider renews the employer recruitment API sandbox key")]
+        public void GivenTheProviderRenewsTheEmployerRecruitmentAPISandboxKey() => _providerStepsHelper.RenewRecruitmentAPISandboxKey();
+
+        [Given(@"the Provider renews the employer display API key")]
+        public void GivenTheProviderRenewsTheEmployerDisplayAPIKey() => _providerStepsHelper.RenewDisplayAPIKey();
+
+        [Then(@"the provider does not renews the api key")]
+        public void ThenTheProviderDoesNotRenewsTheApiKey() => _providerStepsHelper.DoesNotRenewDisplayAPIKey();
     }
 }

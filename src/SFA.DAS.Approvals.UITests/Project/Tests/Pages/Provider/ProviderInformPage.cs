@@ -13,10 +13,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderInformPage(ScenarioContext context) : base(context)  { }
 
-        public ChangeOfEmployerSelectEmployerPage SelectChangeTheEmployer()
+        public ProviderCoESelectEmployerPage SelectChangeTheEmployer()
         {
             formCompletionHelper.Click(ChangeTheEmployerButton);
-            return new ChangeOfEmployerSelectEmployerPage(context);
+            return new ProviderCoESelectEmployerPage(context);
         }
     }
 }

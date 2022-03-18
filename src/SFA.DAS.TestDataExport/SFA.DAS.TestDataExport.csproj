@@ -7,10 +7,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="15.0.5" />
+	<ProjectReference Include="..\SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System.Net.Http;
 using System.Text;
@@ -10,10 +11,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
     {
         protected HttpClient httpClient;
         protected string baseUrl;
+        public string AuthenticationCode { get; set; }
 
         public EIFunctionsHelper(EIPaymentProcessConfig config)
         {
             baseUrl = config.EI_FunctionsBaseUrl;
+            AuthenticationCode = config.EI_FunctionsAppCode;
             httpClient = new HttpClient();
         }
 
@@ -26,7 +29,43 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 AccountLegalEntityId = accountLegalEntityId
             };
 
-            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task Reinstate(long uln, long accountLegalEntityId)
+        {
+            var request = new ReinstateApplicationRequest
+            {
+                ULN = uln,
+                AccountLegalEntityId = accountLegalEntityId
+            };
+
+            var response = await httpClient.PostAsync($"{baseUrl}/api/reinstate?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task TriggerEmploymentCheck(long accountLegalEntityId, long uln)
+        {
+            var request = new EmploymentCheckRequest
+            {
+                ULN = uln,
+                AccountLegalEntityId = accountLegalEntityId,
+                ServiceRequest = new ServiceRequest
+                {
+                    DecisionReference = "ABC123",
+                    TaskCreatedDate = DateTime.Now,
+                    TaskId = "ZZZ999"
+                }
+            };
+
+            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task TriggerEmploymentChecks()
+        {
+            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpTriggerRefreshEmploymentChecks?code={AuthenticationCode}", null);
             response.EnsureSuccessStatusCode();
         }
 
@@ -35,6 +74,27 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             public WithdrawalType WithdrawalType { get; set; }
             public long AccountLegalEntityId { get; set; }
             public long ULN { get; set; }
+        }
+
+        public class ReinstateApplicationRequest
+        {
+            public WithdrawalType WithdrawalType { get; set; }
+            public long AccountLegalEntityId { get; set; }
+            public long ULN { get; set; }
+        }
+
+        public class EmploymentCheckRequest
+        {
+            public long AccountLegalEntityId { get; set; }
+            public long ULN { get; set; }
+            public ServiceRequest ServiceRequest { get; set; }
+        }
+
+        public class ServiceRequest
+        {
+            public string TaskId { get; set; }
+            public string DecisionReference { get; set; }
+            public DateTime? TaskCreatedDate { get; set; }
         }
     }
 }

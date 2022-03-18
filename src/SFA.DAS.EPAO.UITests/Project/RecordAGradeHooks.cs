@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -36,6 +37,8 @@ namespace SFA.DAS.EPAO.UITests.Project
                 case bool _ when _tags.Contains("epaoca2standard1version1option"): SetLearnerCriteria(true, false, true, true, true, false); break;
                 case bool _ when _tags.Contains("epaoca2standard2version0option"): SetLearnerCriteria(true, true, false, true, false, false); break;
                 case bool _ when _tags.Contains("epaoca2standard2version1option"): SetLearnerCriteria(true, true, true, true, false, false); break;
+                case bool _ when _tags.Contains("epaoca1standard2version1versionconfirmed"): SetLearnerCriteria(true, true, false, false, true, false); break;
+                default: SetLearnerCriteria(true, false, false, false, true, false); break;
             };
         }
 
@@ -44,9 +47,9 @@ namespace SFA.DAS.EPAO.UITests.Project
 
         private void SetLearnerCriteria(bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool hasMultiStandards, bool versionConfirmed, bool optionSet)
         {
-            var leanerDetails = new LeanerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards, versionConfirmed, optionSet);
+            var learnerDetails = new LearnerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards, versionConfirmed, optionSet);
 
-            _context.Set(leanerDetails);
+            _context.Set(learnerDetails);
 
             _objectContext.SetLearnerCriteria(isActiveStandard, hasMultipleVersions, withOptions, hasMultiStandards);
         }

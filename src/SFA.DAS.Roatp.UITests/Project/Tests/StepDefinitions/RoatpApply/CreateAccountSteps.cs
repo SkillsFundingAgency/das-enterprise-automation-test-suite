@@ -4,8 +4,7 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

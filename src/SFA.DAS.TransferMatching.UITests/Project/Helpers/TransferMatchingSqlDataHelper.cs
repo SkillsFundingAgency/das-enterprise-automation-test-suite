@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -17,9 +17,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
                 sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__EmployerAccountId__", pledge.EmployerAccountId);
 
-                var sqlparams = new Dictionary<string, string> { { "@amount", pledge.Amount.ToString() }, { "@createdon", pledge.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss") } };
+                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__CreatedOn__", pledge.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss"));
 
-                ExecuteSqlCommand(sqlQueryFromFile, connectionString, sqlparams);
+                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Amount__", pledge.Amount.ToString());
+
+                ExecuteSqlCommand(sqlQueryFromFile, connectionString);
             }
         }
     }

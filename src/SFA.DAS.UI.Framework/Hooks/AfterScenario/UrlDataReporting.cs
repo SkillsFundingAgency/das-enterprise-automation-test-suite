@@ -1,0 +1,49 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using TechTalk.SpecFlow;
+using System.IO;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.UI.Framework.TestSupport;
+
+namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
+{
+    [Binding]
+    public class UrlDataReporting
+    {
+        private readonly ScenarioContext _context;
+        private static List<string> _urls;
+        private static string _directoryPath;
+
+        public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
+
+            [BeforeTestRun(Order = 10)]
+        public static void InitVariable() => _urls = new List<string>();
+
+        [AfterScenario(Order = 98)]
+        public void CollectUrlData()
+        {
+            var objectContext = _context.Get<ObjectContext>();
+
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
+            {
+                string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
+
+                var urldataset = objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
+
+                if (urldataset == null || urldataset?.Count == 0) return;
+
+                List<string> distinctUrls = urldataset.ToHashSet().ToList();
+
+                lock (_urls) { _urls.AddRange(distinctUrls); }
+
+                TestAttachmentHelper.AddTestAttachment(objectContext.GetDirectory(), fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
+            });
+        }
+
+        [AfterTestRun(Order = 10)]
+        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, _directoryPath, "UrlCollection");
+    }
+}

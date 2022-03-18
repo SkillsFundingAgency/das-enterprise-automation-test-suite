@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
@@ -18,6 +18,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+
+        private ApprovalsProviderHomePage _approvalsProviderHomePage;
+        private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -52,18 +55,62 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderMakingChangesPage ProviderMakeReservation(ProviderLoginUser login = null, bool newTab = true)
         {
-            var homePage = login != null
-                ? GoToProviderHomePage(login, newTab)
-                : NavigateToProviderHomePage();
+            Login(login, newTab);
 
-            return homePage
+            return _approvalsProviderHomePage
                    .GoToProviderGetFunding()
                    .StartReservedFunding()
                    .ChooseAnEmployer("NonLevy")
                    .ConfirmNonLevyEmployer()
-                   .AddTrainingCourseAndDate()
+                   .AddTrainingCourse()
+                   .SelectDate()
+                   .ClickSaveAndContinueButton()
                    .ConfirmReserveFunding()
                    .VerifySucessMessage();
+        }
+
+        public void Login(ProviderLoginUser login = null, bool newTab = true)
+        {
+            _approvalsProviderHomePage =  login != null
+                ? GoToProviderHomePage(login, newTab)
+                : NavigateToProviderHomePage();
+        }
+
+        public void StartCreateReservationAndGoToStartTrainingPage()
+        {
+            _providerApprenticeshipTrainingPage = _approvalsProviderHomePage
+                   .GoToProviderGetFunding()
+                   .StartReservedFunding()
+                   .ChooseAnEmployer("NonLevy")
+                   .ConfirmNonLevyEmployer();
+        }
+
+        public void VerifyReserveFromMonth(DateTime? reserveFromMonth)
+        {
+            _providerApprenticeshipTrainingPage.VerifyReserveFromMonth(reserveFromMonth);
+        }
+
+        public void VerifySuggestedStartMonthOptions(DateTime? firstMonth, DateTime? secondMonth, DateTime? thirdMonth)
+        {
+            _providerApprenticeshipTrainingPage.VerifySuggestedStartMonthOptions(firstMonth, secondMonth, thirdMonth);
+        }
+
+        public void CompleteCreateReservationFromStartTrainingPage()
+        {
+            _providerApprenticeshipTrainingPage
+                .AddTrainingCourse()
+                .SelectDate()
+                .ClickSaveAndContinueButton()
+                .ConfirmReserveFunding()
+                .VerifySucessMessage();
+        }
+
+        public void VerifyCreateReservationCannotBeCompleted()
+        {
+            _providerApprenticeshipTrainingPage
+                .AddTrainingCourse()
+                .ClickSaveAndContinueButtonAndExpectProblem()
+                .VerifyProblem("You must select a start date");
         }
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
@@ -105,7 +152,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage
                     .SelectAddAnApprenticeUsingReservation()
                     .CreateANewReservation()
-                    .AddTrainingCourseAndDate()
+                    .AddTrainingCourse()
+                    .SelectDate()
+                    .ClickSaveAndContinueButton()
                     .ConfirmReserveFunding()
                     .VerifySucessMessage()
                     .GoToAddApprenticeDetailsPage()
@@ -248,7 +297,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AddEmailAndSentToEmployerForApproval() => ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
-        public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
+        public ProviderCoERequestedPage StartChangeOfEmployerJourney()
         {
             return GoToProviderHomePage()
                     .GoToProviderManageYourApprenticePage()

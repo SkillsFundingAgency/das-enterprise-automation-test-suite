@@ -583,7 +583,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the learning is stopped")]
         public void ThenLearningisStopped()
         {
-            var changeOfCircumstance = Helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Single();
+            var changeOfCircumstance = Helper.EISqlHelper.GetAllFromDatabase<ChangeOfCircumstance>().Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             changeOfCircumstance.ApprenticeshipIncentiveId.Should().Be(TestData.ApprenticeshipIncentiveId);
             changeOfCircumstance.ChangeType.Should().Be(ChangeOfCircumstanceType.LearningStopped);

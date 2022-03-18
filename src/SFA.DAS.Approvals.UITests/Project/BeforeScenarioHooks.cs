@@ -1,12 +1,11 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -63,9 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
-            var nServiceBusHelper = _context.Get<NServiceBusHelper>();
-
-            _context.Set(new PublishPaymentEvent(nServiceBusHelper));
+            _context.Set(new ManageFundingEmployerStepsHelper(_context));
         }
     }
 }

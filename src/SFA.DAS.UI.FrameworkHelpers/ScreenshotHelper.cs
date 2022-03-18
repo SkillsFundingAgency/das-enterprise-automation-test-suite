@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Polly;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.IO;
 
@@ -80,7 +81,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             if (noOfChar > limitedWinChar)
             {
-                int excessChar = noOfChar - limitedWinChar - 4;
+                int excessChar = noOfChar - (limitedWinChar - 4);
 
                 imageName = $"{imageName.Substring(0, imageName.Length - excessChar)}.png";
 
@@ -90,6 +91,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (screenshotPath, imageName);
         }
 
-        private static string Combine(string screenshotsDirectory, string imageName) => Path.Combine(screenshotsDirectory, imageName);
+        private static string Combine(string screenshotsDirectory, string imageName)
+        {
+            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+
+            return Path.GetFullPath(screenshotPath);
+        }
     }
 } 

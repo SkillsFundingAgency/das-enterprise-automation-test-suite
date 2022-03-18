@@ -14,12 +14,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public AppliationApprovedPage ManuallyApproveApplication()
         {
-            SelectRadioOptionByText("Automatically approve the apprenticeship details");
+            SelectRadioOptionByText("Check and review apprenticeship details");
             Continue();
             return new AppliationApprovedPage(context);
         }
 
-
+        public AppliationApprovedPage AutoApproveApplication()
+        {
+            SelectRadioOptionByText("Automatically approve the apprenticeship details");
+            Continue();
+            return new AppliationApprovedPage(context);
+        }
     }
 }
 

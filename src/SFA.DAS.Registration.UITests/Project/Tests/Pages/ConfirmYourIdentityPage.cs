@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataCleanup;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -15,25 +17,29 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmYourIdentityPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ConfirmYourIdentityPage(ScenarioContext context, string email, string password) : base(context)
+        { 
+            VerifyPage();
+
+            objectContext.SetOrUpdateUserCreds(email, password);
+
+            objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email);
+        }
 
         public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {
-            EnterAccessCode().Continue();
+            EnterAccessCodeAndContinue();
 
             return new AddAPAYESchemePage(context);
         }
 
-        public ConfirmYourIdentityPage EnterAccessCode()
-        {
-            formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode);
-            return this;
-        }
-
         public InvitationsPage ContinueToInvitationsPage()
         {
-            Continue();
+            EnterAccessCodeAndContinue();
+
             return new InvitationsPage(context);
         }
+
+        private void EnterAccessCodeAndContinue() { formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode); Continue(); }
     }
 }

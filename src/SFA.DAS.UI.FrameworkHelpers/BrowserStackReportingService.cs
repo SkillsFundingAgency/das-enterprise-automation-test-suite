@@ -10,62 +10,46 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly BrowserStackSetting _options;
 
-        private readonly RestClient _restClient;
+        public BrowserStackReportingService(BrowserStackSetting options) => _options = options;
 
-        public BrowserStackReportingService(BrowserStackSetting options)
+        public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{_options.Name}-{name}"));
+
+        public void MarkTestStatus(string sessionId, bool testStatus, string message)
         {
-            _options = options;
-            _restClient = Client(options);
+            var response = Execute(sessionId, JSonBody(testStatus, message));
+
+            if (IsNotSucess(response)) throw new Exception(response.Content, response.ErrorException);
         }
 
-        public void UpdateTestName(string sessionId, string name)
+        private IRestResponse Execute(string sessionId, object jsonObj)
         {
-            var request = Request(sessionId);
+            var request = Request(sessionId, jsonObj);
 
-            request.AddJsonBody(UpdateNameJSonBody($"{_options.Name}-{name}"));
+            var response = Client(_options).Put(request);
 
-            var response = _restClient.Put(request);
+            if (IsNotSucess(response)) NUnit.Framework.TestContext.Progress.WriteLine($"{response.StatusCode} - {response.Content}");
 
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                NUnit.Framework.TestContext.Progress.WriteLine($"{response.StatusCode} - {response.Content}");
-            }
+            return response;
         }
 
-        public void MarkTestAsFailed(string sessionId, string message)
+        private bool IsNotSucess(IRestResponse response) => response.StatusCode != HttpStatusCode.OK;
+
+        private static string JSonBody(bool testStatus, string exceptionmessage)
         {
-            var request = Request(sessionId);
+            object obj;
 
-            request.AddJsonBody(JSonBody(message));
+            if (testStatus) obj = new { status = "passed" };
 
-            var response = _restClient.Put(request);
+            else obj = new { status = "failed", reason = exceptionmessage };
 
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                NUnit.Framework.TestContext.Progress.WriteLine($"{response.StatusCode} - {response.Content}");
-
-                throw new Exception(response.Content, response.ErrorException);
-            }
+            return JsonConvert.SerializeObject(obj);
         }
-
-        private static RestClient Client(BrowserStackSetting options)
-        {
-            return new RestClient(options.AutomateSessions)
-            {
-                Authenticator = new HttpBasicAuthenticator(options.User, options.Key)
-            };
-        }
-
-        private static RestRequest Request(string sessionId)
-        {
-            return new RestRequest($"{sessionId}.json", Method.PUT)
-            {
-                RequestFormat = DataFormat.Json
-            };
-        }
-
-        private static string JSonBody(string exceptionmessage) => JsonConvert.SerializeObject(new { status = "failed", reason = exceptionmessage });
-
         private static string UpdateNameJSonBody(string newname) => JsonConvert.SerializeObject(new { name = $"{newname}", });
+
+        private static IRestRequest Request(string sessionId, object jsonObj) => Request(sessionId).AddJsonBody(jsonObj);
+
+        private static RestRequest Request(string sessionId) => new RestRequest($"{sessionId}.json", Method.PUT) { RequestFormat = DataFormat.Json };
+
+        private static RestClient Client(BrowserStackSetting options) => new RestClient(options.AutomateSessions) { Authenticator = new HttpBasicAuthenticator(options.User, options.Key) };
     }
 }

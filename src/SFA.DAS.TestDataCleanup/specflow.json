@@ -6,10 +6,10 @@
     "feature": "en-GB"
   },
   "stepAssemblies": [
-    { "assembly": "SFA.DAS.ConfigurationBuilder" },
-    { "assembly": "SFA.DAS.TestDataExport" }
+    { "assembly": "SFA.DAS.ConfigurationBuilder" }
   ],
   "generator": {
-    "allowRowTests" : false
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
   }
 }

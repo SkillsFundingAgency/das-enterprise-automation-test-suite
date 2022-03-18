@@ -1,4 +1,4 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +14,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public RandomOrganisationNameHelper(string[] tags) => _tags = tags;
 
-        public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company, null);
+        public string GetCompanyTypeOrgName() => GetOrgName(OrgType.Company, new List<string>() { });
 
-        public string GetCompanyTypeOrgName(string existingOrgName) => GetOrgName(OrgType.Company2, existingOrgName);
+        public string GetCompanyTypeOrgName(List<string> existingOrgName) => GetOrgName(OrgType.Company2, existingOrgName);
 
-        public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector, null);
+        public string GetPublicSectorTypeOrgName() => GetOrgName(OrgType.PublicSector, new List<string>() { });
 
         public CharityTypeOrg GetCharityTypeOrg() => GetCharityOrg(OrgType.Charity, null);
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private CharityTypeOrg GetCharityScenarioSpecificOrgName(OrgType orgType) => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetScenarioSpecificOrgName(orgType));
 
-        private string GetOrgName(OrgType orgType, string existingOrgName)
+        private string GetOrgName(OrgType orgType, List<string> existingOrgName)
             => DoNotUseRandomOrgname() ? GetScenarioSpecificOrgName(orgType) : orgType == OrgType.PublicSector ? GetRandomOrgName(ListOfPublicSectorTypeOrganisation(), existingOrgName) : GetRandomOrgName(ListOfCompanyTypeOrganisation(), existingOrgName);
 
         private string GetScenarioSpecificOrgName(OrgType expOrgType)
@@ -45,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return orgName;
         }
 
-        private static string GetRandomOrgName(List<string> listoforg, string existingOrgName) => GetRandomOrgName(listoforg.Where(x => x != existingOrgName).ToList());
+        private static string GetRandomOrgName(List<string> listoforg, List<string> existingOrgName) => GetRandomOrgName(listoforg.Except(existingOrgName).ToList());
 
         private static T GetRandomOrgName<T>(List<T> listoforg) => RandomDataGenerator.GetRandomElementFromListOfElements(listoforg);
         
@@ -81,34 +81,22 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private static List<string> ListOfCompanyTypeOrganisation() => new List<string>()
         {
-            "SURREY LIMITED",
-            "CROYDON LIMITED",
-            "TWO LTD",
-            "TWO A ENTERPRISES LIMITED",
-            "THREE LTD",
-            "FOUR ACE LIMITED",
-            "FOUR ACRE CHEM LTD",
-            "FOUR ACRE FIELD LTD",
-            "FOUR ACRE SITE LTD",
-            "FIVE LIMITED",
-            "FIVE A DAY LTD",
-            "FIVE ACRE KOI SUPPLIES LTD",
-            "FIVE ACRES LIMITED",
-            "SIX LIMITED",
-            "SIX ADRIAN SQUARE LIMITED",
-            "SIX AND OUT LTD",
-            "SEVEN LIMITED",
-            "SEVEN ACRES FARM LTD",
-            "SEVEN AIR LIMITED",
-            "SEVEN AND FOUR LIMITED",
-            "EIGHT ACCOUNTING LTD",
-            "EIGHT AND FOUR LTD",
-            "EIGHT BRANDS LIMITED",
-            "NINE ALMINGTON LIMITED",
-            "NINE BLESSINGS LIMITED",
-            "NEXT IQ LTD",
-            "TEN ALEXANDER LIMITED",
-            "TEN BAT LTD"
+            "BOOTS UK LIMITED",
+            "TESCO PLC",
+            "ODEON CINEMAS LIMITED",
+            "VUE ENTERTAINMENT LIMITED",
+            "NEXT PLC",
+            "MONZO BANK LIMITED",
+            "SANTANDER UK PLC",
+            "SCREWFIX DIRECT LIMITED",
+            "TOOLSTATION LIMITED",
+            "WICKES BUILDING SUPPLIES LIMITED",
+            "BIRMINGHAM AIRPORT LIMITED",
+            "LHR AIRPORTS LIMITED",
+            "STANSTED AIRPORT LIMITED",
+            "GATWICK AIRPORT LIMITED",
+            "COSTCO ONLINE UK LIMITED",
+            "COSTCO WHOLESALE UK LIMITED"
         };
     }
 }

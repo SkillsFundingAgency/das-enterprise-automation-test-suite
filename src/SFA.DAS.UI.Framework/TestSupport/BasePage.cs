@@ -27,6 +27,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
 
+        protected By PanelTitle => By.CssSelector(".govuk-panel__title");
+
         protected abstract string PageTitle { get; }
 
         protected virtual By AcceptCookieButton { get; }
@@ -44,6 +46,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             tabHelper = context.Get<TabHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
         }
+
+        protected static string EnvironmentName => EnvironmentConfig.EnvironmentName;
 
         protected string GetUrl() => pageInteractionHelper.GetUrl();
 

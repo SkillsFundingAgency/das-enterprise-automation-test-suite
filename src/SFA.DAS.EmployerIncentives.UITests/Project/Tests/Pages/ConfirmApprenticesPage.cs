@@ -13,14 +13,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public DeclarationPage ConfirmApprentices()
         {
-            formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm");
+            ClickConfirmButton();
             return new DeclarationPage(context);
         }
 
         public NewLegalAgreementRequiredShutterPage ConfirmApprenticesForVersion4LegalAgreement()
         {
-            formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm");
+            ClickConfirmButton();
             return new NewLegalAgreementRequiredShutterPage(context);
         }
+
+        private void ClickConfirmButton() => formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm");
     }
 }

@@ -23,42 +23,37 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer logins using existing Unsigned NonLevy Account")]
-        public void GivenTheEmployerLoginsUsingExistingUnsignedNonLevyAccount() => Login(_context.GetUser<EINonLevyUnsignedUser>());
+        public void GivenTheEmployerLoginsUsingExistingUnsignedNonLevyAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<EINonLevyUnsignedUser>());
 
         [Given(@"the Employer logins using existing EI Levy Account")]
         [When(@"the Employer logins using existing EI Levy Account")]
-        public void TheEmployerLoginsUsingExistingEILevyAccount() => Login(_context.GetUser<EILevyUser>());
+        public void TheEmployerLoginsUsingExistingEILevyAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<EILevyUser>());
 
         [Given(@"the Employer logins using existing EI Levy Account to withdraw application")]
-        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToWithdrawApplication() => Login(_context.GetUser<EIWithdrawLevyUser>());
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToWithdrawApplication() => LoginAndDeleteIncentiveApplication(_context.GetUser<EIWithdrawLevyUser>());
 
         [Given(@"the Employer logins using existing Version4AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version4AgreementUser>());
+        public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => Login(_context.GetUser<Version4AgreementUser>());
 
         [Given(@"the Employer logins using existing Version5AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version5AgreementUser>());
+        public void GivenTheEmployerLoginsUsingExistingVersion5AgreementUserAccount() => Login(_context.GetUser<Version5AgreementUser>());
 
         [Given(@"the Employer logins using existing Version6AgreementUser Account")]
-        public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => SetOrgAndLogin(_context.GetUser<Version6AgreementUser>());
+        public void GivenTheEmployerLoginsUsingExistingVersion6AgreementUserAccount() => Login(_context.GetUser<Version6AgreementUser>());
 
-        private void SetOrgAndLogin(EasAccountUser loginUser)
-        {
-            _context.Get<ObjectContext>().UpdateOrganisationName(loginUser.OrganisationName);
-            _employerPortalLoginHelper.Login(loginUser, true);
-        }
+        [Given(@"the Employer logins using existing Version7AgreementUser Account")]
+        public void GivenTheEmployerLoginsUsingExistingVersion7AgreementUserAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<Version7AgreementUser>());
 
-        private HomePage Login(EasAccountUser user)
-        {
-            RemoveExistingApplications(user); 
-            
-            return _employerPortalLoginHelper.Login(user, true);
-        }
+        private HomePage Login(EasAccountUser loginUser) => _employerPortalLoginHelper.Login(loginUser, true);
 
-        public void RemoveExistingApplications(EasAccountUser user)
+        private HomePage LoginAndDeleteIncentiveApplication(EasAccountUser user)
         {
+            var homePage = Login(user);
+
             if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
-                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<RegistrationSqlDataHelper>().GetAccountIds(user.Username).accountId);
-        }
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<ObjectContext>().GetDBAccountId());
 
+            return homePage;
+        }
     }
 }

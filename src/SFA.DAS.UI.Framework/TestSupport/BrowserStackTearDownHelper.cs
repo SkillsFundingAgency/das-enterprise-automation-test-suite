@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenQA.Selenium.Remote;
+using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -17,44 +17,33 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _browserStackReport = context.Get<BrowserStackReportingService>();
+            context.TryGetValue(out _browserStackReport);
         }
 
-        public void InformBrowserStackOnFailure()
+        public void MarkTestStatus()
         {
-            if (_context.TestError != null)
-            {
-                var browser = _objectContext.GetBrowser();
-                var errorMessage = _context.TestError.Message;
+            if (IsCloudExecution()) MarkTestStatus(_context.TestError == null);
+        }
 
-                switch (true)
-                {
-                    case bool _ when browser.IsCloudExecution():
-                        try
-                        {
-                            _browserStackReport.MarkTestAsFailed(GetSessionId(), errorMessage);
-                        }
-                        catch (Exception ex)
-                        {
-                            _objectContext.SetBrowserstackResponse();
-                            _objectContext.SetAfterScenarioException(ex);
-                        }
-                        break;
-                }
+        private void MarkTestStatus(bool testStatus)
+        {
+            try
+            {
+                _browserStackReport.MarkTestStatus(GetSessionId(), testStatus, _context.TestError?.Message);
+            }
+            catch (Exception ex)
+            {
+                _objectContext.SetBrowserstackResponse();
+                _objectContext.SetAfterScenarioException(ex);
             }
         }
 
-        public void UpdateTestName(string name)
-        {
-            _browserStackReport.UpdateTestName(GetSessionId(), name);
-        }
 
-        private string GetSessionId()
-        {
-            var webDriver = _context.GetWebDriver();
-            RemoteWebDriver remoteWebDriver = (RemoteWebDriver)webDriver;
-            return remoteWebDriver.SessionId.ToString();
-        }
+        public void UpdateTestName(string name) { if (IsCloudExecution()) _browserStackReport.UpdateTestName(GetSessionId(), name); }
+
+        private string GetSessionId() => (_context.GetWebDriver() as WebDriver).SessionId.ToString();
+
+        private bool IsCloudExecution() => _objectContext.GetBrowser().IsCloudExecution();
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -37,8 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
         {
             formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
-            formCompletionHelper.ClickElement(SearchButton);
-            return this;
+            
+            return pageInteractionHelper.InvokeAction(() => { formCompletionHelper.ClickElement(SearchButton); return new ProviderManageYourApprenticesPage(context); });
         }
 
         public ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails()

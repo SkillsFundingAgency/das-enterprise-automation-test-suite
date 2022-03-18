@@ -1,4 +1,4 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA.DataGenerator
 {

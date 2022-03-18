@@ -1,5 +1,6 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -9,14 +10,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
-            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail();
+            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
             AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             CompanyTypeOrg = randomOrganisationNameHelper.GetCompanyTypeOrgName();
-            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrgName(CompanyTypeOrg);
+            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrgName(new List<string>() { CompanyTypeOrg });
+            CompanyTypeOrg3 = randomOrganisationNameHelper.GetCompanyTypeOrgName(new List<string>() { CompanyTypeOrg, CompanyTypeOrg2 });
             PublicSectorTypeOrg = randomOrganisationNameHelper.GetPublicSectorTypeOrgName();
             CharityTypeOrg1 = randomOrganisationNameHelper.GetCharityTypeOrg();
             CharityTypeOrg2 = randomOrganisationNameHelper.GetCharityTypeOrg(CharityTypeOrg1);
@@ -37,6 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CompanyTypeOrg { get; }
         public bool SetAccountNameAsOrgName { get; set; }
         public string CompanyTypeOrg2 { get; }
+        public string CompanyTypeOrg3 { get; }
         public string PublicSectorTypeOrg { get; }
         public string CharityTypeOrg1Number => CharityTypeOrg1.Number;
         public string CharityTypeOrg1Name => CharityTypeOrg1.Name;

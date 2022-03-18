@@ -7,18 +7,20 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.1700" />
-		<PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
-		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
 	</ItemGroup>
 
 	<ItemGroup>

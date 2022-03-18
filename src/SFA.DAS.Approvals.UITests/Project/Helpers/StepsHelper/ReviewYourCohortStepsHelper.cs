@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {

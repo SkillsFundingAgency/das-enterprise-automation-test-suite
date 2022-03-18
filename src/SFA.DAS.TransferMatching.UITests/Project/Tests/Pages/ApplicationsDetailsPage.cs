@@ -13,7 +13,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
-        private By WithdrawalConfirmed = By.CssSelector("#IsDeclineConfirmed");
+        private By WithdrawalConfirmedSelector => By.CssSelector("input#IsDeclineConfirmed");
+
+        private By WithdrawFundingSelector => By.CssSelector("input#IsWithdrawalConfirmed");
+
+        private By ContinueSelector => By.CssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div.govuk-button-group > button");
 
         private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 
@@ -66,14 +70,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public SuccessfullyWithdrawnPage WithdrawFunding()
         {
             SelectRadioOptionByText("No, decline the funding and withdraw the application");
-
-         
+            Continue();
+            VerifyConfirmError();
             ConfirmWithdrawal();
-
-
             Continue();
 
             return new SuccessfullyWithdrawnPage(context);
+        }
+
+        public SuccessfullyWithdrawnYourApplicationPage WithdrawBeforeApproval()
+        {
+            SelectRadioOptionByText("Yes, withdraw the application");
+            CompleteWithdraw();
+            formCompletionHelper.Click(ContinueSelector);
+
+            return new SuccessfullyWithdrawnYourApplicationPage(context);
         }
 
         private void VerifyTermsError() => VerifyElement(ErrorTitle, "You must agree to the terms and conditions before accepting funding for this application");
@@ -85,8 +96,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private void AcceptComplyWithRulesTerms() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ComplyWithRulesSelector));
 
-        private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmed));
+        private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmedSelector));
 
-
-    }
-}
+        private void CompleteWithdraw() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawFundingSelector));
+    } }

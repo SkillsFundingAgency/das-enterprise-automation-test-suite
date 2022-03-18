@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
@@ -41,6 +41,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             FetchActualQueryDataFromPaymentsTable(accountId, expectedEarningType);
             CalculateExpectedQueryData(ageCategory, expectedEarningType);
             AssertQueryData();
+        }
+
+        public void VerifyIncentivePhase(string email, string phase)
+        {
+            query = $"SELECT Id FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'";
+            var applicationId = FetchStringQueryData(0);
+            
+            query = $"SELECT Phase FROM [dbo].[IncenticeApplicationApprenticeship] WHERE IncentiveApplicationId = {applicationId}";
+            var apprenticePhases = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionString);
+            
+            foreach(var apprentice in apprenticePhases) Assert.AreEqual(apprentice[0].ToString(), phase);
         }
 
         public void SetCaseDetailsToNull(string accountId)
@@ -99,7 +110,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
             {
                 var currentDate = DateTime.Now;
 
-                if (startDate > new DateTime(currentDate.Year, currentDate.Month - 3, 01)) expectedDueDate = expectedDueDate.AddDays(89);
+                if (startDate > new DateTime(currentDate.Year, currentDate.Month, 01).AddMonths(-3)) expectedDueDate = expectedDueDate.AddDays(89);
                 else expectedDueDate = currentDate.AddDays(21);
             }
             else expectedDueDate = expectedDueDate.AddDays(364);
