@@ -86,7 +86,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
 
         [Then(@"the levy employer can close the pledge")]
-        public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose();
+        public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose().ConfirmCloseStatus();
 
         [Then(@"the levy employer doesn't close the pledge")]
         public void ThenTheLevyEmployerDoesntCloseThePledge() => ClosePledge().DontClose();
@@ -175,7 +175,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
         [Then(@"the levy employer can view pledges from verification page")]
-        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().VerifyPledge();
+        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmActiveStatus().VerifyPledge();
 
         [Then(@"the user can view transfer pledge")]
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
@@ -287,12 +287,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
+                .VerifyStatusIsComplete()
                 .GoToYourBusinessDetailsPage()
                 .EnterBusinessDetailsAndContinue()
+                .VerifyStatusIsComplete()
                 .GoToAboutYourApprenticeshipPage()
                 .EnterMoreDetailsAndContinue()
+                .VerifyStatusIsComplete()
                 .GoToContactDetailsPage()
                 .EnterContactDetailsAndContinue()
+                .VerifyStatusIsComplete()
                 .SubmitApplication()
                 .ContinueToMyAccount();
 
