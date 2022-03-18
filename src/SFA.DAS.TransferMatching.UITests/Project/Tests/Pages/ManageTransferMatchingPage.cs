@@ -8,12 +8,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected override string PageTitle => "Manage transfers";
 
         private By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
-
         private By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
-
         private By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
+        private By TransferAllowanceSection => By.CssSelector("#content > div.grid-row > div:nth-child(1)");
 
         public ManageTransferMatchingPage(ScenarioContext context) : base(context) { }
+
+        public ManageTransferMatchingPage VerifyTransferAllowanceText()
+        {
+            pageInteractionHelper.IsElementDisplayed(TransferAllowanceSection);
+            return this;
+        }
 
         public AccountHomePage GoToAccountHomePage()
         {

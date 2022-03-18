@@ -201,6 +201,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can bulk reject application")]
         public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
 
+        [Then(@"Then the levy employer can view transfer allowance")]
+        public void ThenTheLevyEmployerCanViewTransferAllowance()
+        {
+            NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
+        }
+
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
