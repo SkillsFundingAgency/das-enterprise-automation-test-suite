@@ -52,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer has Live apprentice")]
         [Given(@"the Employer has approved apprentice")]
+        [Given(@"the Employer creates an apprenticeship and the Provider approves it")]
         public void GivenTheEmployerHasApprovedApprentice() => ApproveCohortForLevyUser(true);
 
         [Given(@"the datalock has been successful")]
