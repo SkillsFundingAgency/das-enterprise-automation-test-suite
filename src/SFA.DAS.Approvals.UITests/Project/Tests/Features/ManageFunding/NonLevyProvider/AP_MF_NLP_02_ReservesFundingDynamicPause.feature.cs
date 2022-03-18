@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
+        private static string[] featureTags = new string[] {
                 "donotexecuteinparallel"};
         
 #line 1 "AP_MF_NLP_02_ReservesFundingDynamicPause.feature"
@@ -39,8 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ManageFunding/NonLevyProvider", "AP_MF_NLP_02_ReservesFundingDynamicPause", "A Non Levy Provider reserves funding for an apprenticeship course when dymamic pa" +
-                    "use rule exists", ProgrammingLanguage.CSharp, new string[] {
-                        "donotexecuteinparallel"});
+                    "use rule exists", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -52,28 +51,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -97,21 +96,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             argumentsOfScenario.Add("ThirdMonth", thirdMonth);
             argumentsOfScenario.Add("ReserveFrom", reserveFrom);
             argumentsOfScenario.Add("ReserveAllowed", reserveAllowed);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLP_02 Non Levy Provider reserves funding when dynamic pause rule exists", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLP_02 Non Levy Provider reserves funding when dynamic pause rule exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -149,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_0()
+        public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_0()
         {
 #line 8
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("0", "3", "", "", "", "3", "not able", ((string[])(null)));
@@ -162,7 +151,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("0", "
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_1()
+        public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_1()
         {
 #line 8
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-1", "2", "2", "", "", "2", "able", ((string[])(null)));
@@ -175,7 +164,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-1", 
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_2()
+        public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_2()
         {
 #line 8
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-2", "1", "1", "2", "", "1", "able", ((string[])(null)));
@@ -188,7 +177,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-2", 
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_3()
+        public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_3()
         {
 #line 8
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-3", "0", "0", "1", "2", "", "able", ((string[])(null)));

@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "RE_CA_PF_LY_01.feature"
 #line hidden
@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PerfTestDataPreparation", "RE_CA_PF_LY_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PerfTestDataPreparation", "RE_CA_PF_LY_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,28 +47,28 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -89,21 +89,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.PerfTestDataPrepar
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_PF_LY_01_Create a Levy Account and Sign the Agreement", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -131,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_1()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_1()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("1", ((string[])(null)));
@@ -146,7 +136,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("1", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_2()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_2()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("2", ((string[])(null)));
@@ -161,7 +151,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("2", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_3()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_3()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("3", ((string[])(null)));
@@ -176,7 +166,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("3", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_4()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_4()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("4", ((string[])(null)));
@@ -191,7 +181,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("4", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_5()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_5()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("5", ((string[])(null)));
@@ -206,7 +196,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("5", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_6()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_6()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("6", ((string[])(null)));
@@ -221,7 +211,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("6", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_7()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_7()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("7", ((string[])(null)));
@@ -236,7 +226,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("7", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_8()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_8()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("8", ((string[])(null)));
@@ -251,7 +241,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("8", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_9()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_9()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("9", ((string[])(null)));
@@ -266,7 +256,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("9", ((string[])(null)
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_10()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_10()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("10", ((string[])(null)));
@@ -281,7 +271,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("10", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_11()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_11()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("11", ((string[])(null)));
@@ -296,7 +286,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("11", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_12()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_12()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("12", ((string[])(null)));
@@ -311,7 +301,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("12", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_13()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_13()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("13", ((string[])(null)));
@@ -326,7 +316,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("13", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_14()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_14()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("14", ((string[])(null)));
@@ -341,7 +331,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("14", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_15()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_15()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("15", ((string[])(null)));
@@ -356,7 +346,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("15", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_16()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_16()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("16", ((string[])(null)));
@@ -371,7 +361,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("16", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_17()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_17()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("17", ((string[])(null)));
@@ -386,7 +376,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("17", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_18()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_18()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("18", ((string[])(null)));
@@ -401,7 +391,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("18", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_19()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_19()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("19", ((string[])(null)));
@@ -416,7 +406,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("19", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_20()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_20()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("20", ((string[])(null)));
@@ -431,7 +421,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("20", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_21()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_21()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("21", ((string[])(null)));
@@ -446,7 +436,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("21", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_22()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_22()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("22", ((string[])(null)));
@@ -461,7 +451,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("22", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_23()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_23()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("23", ((string[])(null)));
@@ -476,7 +466,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("23", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_24()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_24()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("24", ((string[])(null)));
@@ -491,7 +481,7 @@ this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("24", ((string[])(null
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("S3_LevyEmployerNavigation")]
         [NUnit.Framework.CategoryAttribute("AP01_LevyEmployerCreatesApprovesCohortAndProviderApproves")]
-        public virtual void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_25()
+        public void RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_25()
         {
 #line 9
 this.RE_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("25", ((string[])(null)));

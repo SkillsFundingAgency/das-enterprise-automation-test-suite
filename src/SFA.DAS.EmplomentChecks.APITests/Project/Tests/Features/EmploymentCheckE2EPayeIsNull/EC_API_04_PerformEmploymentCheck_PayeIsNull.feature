@@ -9,7 +9,8 @@ Scenario: EC_API_004_PerformEmploymentCheck_PayeIsNull
 	And data is enriched with results from DC and Accounts
 	And Paye/Scheme is not found
 	Then do not create an Employment Check request
+	And employment check record status is '<Status>'
 
-	Examples:
-		| TestCaseId | MinDate             | MaxDate             | Employed | ReturnCode | ReturnMessage      |
-		| 4          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 |          | null       | PayeScheme is null |
+Examples:
+	| TestCaseId | MinDate             | MaxDate             | Status |
+	| 4          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 | 2      |

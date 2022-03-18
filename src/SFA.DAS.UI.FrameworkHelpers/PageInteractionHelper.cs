@@ -171,6 +171,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
+        public bool IsElementDisplayedAfterPageLoad(By locator)
+        {
+            _webDriverWaitHelper.WaitForPageToLoad();
+
+            return IsElementDisplayed(locator);
+        }
+
+            
+
         public bool IsElementDisplayed(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
