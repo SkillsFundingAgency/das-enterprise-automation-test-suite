@@ -6,35 +6,44 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps
+    public class EmployerSteps 
     {
         #region context&Helpers
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ApprenticeDataHelper _dataHelper;
         private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
-        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;        
+        protected readonly TableRowHelper tableRowHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        
+        
+        protected readonly ApprovalsConfig approvalsConfig;
+        
 
         public EmployerSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();
+            _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();            
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _employerWithMultipleAccountsUser);
-            _dataHelper = context.Get<ApprenticeDataHelper>();
+            approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            tableRowHelper = context.Get<TableRowHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -138,7 +147,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();        
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
         [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]

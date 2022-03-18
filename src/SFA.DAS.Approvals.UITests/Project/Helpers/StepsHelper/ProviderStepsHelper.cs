@@ -10,6 +10,10 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -18,8 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-
+        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;        
+        protected readonly PageInteractionHelper _pageInteractionHelper;        
+        protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
 
@@ -28,7 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
+            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());            
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();            
+            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -194,6 +201,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()
                 .CreateACsvFile(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef)
+                .UploadFile();
+        }
+
+        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<ApprenticeDetailsV2> apprenticeDetails)
+        {
+            return
+                GoToProviderHomePage(false)
+                .GotoSelectJourneyPage()
+                .SelectBulkUploadV2()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFile(apprenticeDetails)
+                .UploadFile();
+        }
+
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference)
+        {
+            return
+                GoToProviderHomePage(false)
+                .GotoSelectJourneyPage()
+                .SelectBulkUploadV2()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFileWithCohortReference(cohortReference)
                 .UploadFile();
         }
 

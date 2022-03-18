@@ -11,4 +11,3 @@ Scenario: AP_BU_04_Upload Details On Existing Cohorts And Create New Cohorts
 	And Provider approves the cohorts and send them to employer to approve
 	When the Employer approves the cohorts
 	Then New apprentice records become available in Manage Apprentice section
-	#Then a new live apprenticeship record is created with new Provider

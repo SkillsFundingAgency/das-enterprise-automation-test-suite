@@ -64,6 +64,49 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             return Convert.ToString(GetDataAsObject(query)).Trim();
         }
-    
+
+        public string GetProviderCohortWhichIsWithEmployer(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 1
+                                  AND ChangeOfPartyRequestId is null
+                                  Order by CreatedOn ASC";
+
+            return Convert.ToString(GetDataAsObject(query)).Trim();
+        }
+
+        public string GetProviderCohortWithChangeOfParty(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 2
+                                  AND ChangeOfPartyRequestId is not null
+                                  Order by CreatedOn ASC";
+
+            return Convert.ToString(GetDataAsObject(query)).Trim();
+        }
+
+        public string GetProviderCohortWithTransferSender(int ukprn)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}                                  
+                                  AND IsDeleted = 0
+                                  And WithParty = 4
+                                  AND ChangeOfPartyRequestId is null
+                                  AND TransferSenderId is not null
+                                  AND TransferApprovalStatus is not null
+                                  Order by CreatedOn ASC";
+
+            return Convert.ToString(GetDataAsObject(query)).Trim();
+        }
+
     }
 }

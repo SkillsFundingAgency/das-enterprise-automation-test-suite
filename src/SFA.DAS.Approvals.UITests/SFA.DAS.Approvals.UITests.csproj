@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\BulkUpload\AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\BulkUpload\AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -78,10 +83,24 @@
     <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature.cs">
       <DependentUpon>AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature</DependentUpon>
     </Compile>
+    <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature.cs">
+      <DependentUpon>AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature.cs">
+      <DependentUpon>AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\BulkUpload\AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\BulkUpload\AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\BulkUpload\AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

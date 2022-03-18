@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_BU_05_ValidationRules")]
+    [NUnit.Framework.DescriptionAttribute("AP_BU_06_ValidationRules")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_BU_05_ValidationRulesFeature
+    public partial class AP_BU_06_ValidationRulesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_05_ValidationRules", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_06_ValidationRules", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,16 +77,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_BU_05_Validation Rules")]
+        [NUnit.Framework.DescriptionAttribute("AP_BU_06_Validation Rules")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
-        public virtual void AP_BU_05_ValidationRules()
+        public virtual void AP_BU_06_ValidationRules()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_05_Validation Rules", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_06_Validation Rules", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -128,26 +128,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "TotalPrice",
                             "EPAOrgID",
                             "ProviderRef",
-                            "Error Message"});
-                table1.AddRow(new string[] {
-                            "HappyPath",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            ""});
+                            "ErrorMessage"});
                 table1.AddRow(new string[] {
                             "CohortRef length > 20",
-                            "MKRK7VMKRK7VMKRK7VPJ1",
+                            "ABC999",
                             "valid",
                             "valid",
                             "valid",
@@ -161,6 +145,299 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "You must enter a valid Cohort Ref"});
+                table1.AddRow(new string[] {
+                            "ULN < 10",
+                            "valid",
+                            "valid",
+                            "171649120",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a 10-digit unique learner number"});
+                table1.AddRow(new string[] {
+                            "ULN-9999999999",
+                            "valid",
+                            "valid",
+                            "9999999999",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "The unique learner number of 9999999999 isn\'t valid"});
+                table1.AddRow(new string[] {
+                            "AgreementID < 6",
+                            "valid",
+                            "MK123",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a valid Agreement ID"});
+                table1.AddRow(new string[] {
+                            "EmailAddress",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "X@Y",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a valid email address"});
+                table1.AddRow(new string[] {
+                            "DateOfBirth < 15",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "2021-05-09",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "The apprentice\'s date of birth must show that they are at least 15 years old at t" +
+                                "he start of their training"});
+                table1.AddRow(new string[] {
+                            "DateOfBirth > 115",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "1904-05-01",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "The apprentice\'s date of birth must show that they are not older than 115 years o" +
+                                "ld at the start of their training"});
+                table1.AddRow(new string[] {
+                            "StartDate",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "2017-03-03",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "The start date must not be earlier than May 2017"});
+                table1.AddRow(new string[] {
+                            "EndDate",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "2021-03-03",
+                            "2021-02",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter an end date that is after the start date"});
+                table1.AddRow(new string[] {
+                            "EndDateFormat",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "2021-02-02",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter the end date using the format yyyy-mm, for example 2019-02"});
+                table1.AddRow(new string[] {
+                            "TotalPriceWithPence",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "19.23",
+                            "valid",
+                            "valid",
+                            "Enter the total cost of training in whole pounds using numbers only"});
+                table1.AddRow(new string[] {
+                            "ProviderRef > 20",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "012345678901234567890",
+                            "The Provider Ref must not be longer than 20 characters"});
+                table1.AddRow(new string[] {
+                            "StdCodeInValid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "59ab",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a valid standard code"});
+                table1.AddRow(new string[] {
+                            "StartDateFormat",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "2000-14",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter the start date using the format yyyy-mm-dd, for example 2017-09-01"});
+                table1.AddRow(new string[] {
+                            "CohortUlnEmailDoB",
+                            "9XZY99",
+                            "valid",
+                            "171649120",
+                            "valid",
+                            "2021-05-09",
+                            "valid",
+                            "com@.com",
+                            "valid",
+                            "2021-03-03",
+                            "2021-02",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "You must enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a " +
+                                "valid email address\nEnter an end date that is after the start date"});
+                table1.AddRow(new string[] {
+                            "GivenNameEmpty",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Last name must be entered"});
+                table1.AddRow(new string[] {
+                            "FamilyNameEmpty",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "First name must be entered"});
+                table1.AddRow(new string[] {
+                            "GivenName > 100",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "GivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenNameGivenName" +
+                                "sGivenNamesGivenNamesGivenNames",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a last name that is not longer than 100 characters"});
+                table1.AddRow(new string[] {
+                            "FamilyName > 100",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "FamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameFamilyNameF" +
+                                "amilyNameFamilyNameFamilyName",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "valid",
+                            "Enter a last name that is not longer than 100 characters"});
 #line 9
  testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
 #line hidden

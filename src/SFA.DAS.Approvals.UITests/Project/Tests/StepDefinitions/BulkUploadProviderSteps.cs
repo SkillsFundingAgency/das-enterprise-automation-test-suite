@@ -4,13 +4,18 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -21,19 +26,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         protected readonly ProviderConfig _providerConfig;
+        protected readonly ApprovalsConfig approvalsConfig;
+        protected readonly PageInteractionHelper pageInteractionHelper;        
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private List<ApprenticeDetailsV2> ApprenticeList;        
+        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
         #endregion
-
-        private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
         public BulkUploadProviderSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
+            approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();            
+            _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());            
         }
 
         [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
@@ -178,7 +188,74 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }            
 
         }
+        [Given(@"the provider has a cohort which is with employer")]
+        public void GivenTheProviderHasACohortWhichIsWithEmployer()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWhichIsWithEmployer(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
+        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort()
+        {
+            var cohortReference = _objectContext.GetCohortReference();
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(cohortReference);
+        }
+
+        [Then(@"Non Editable Cohorts error message is displayed")]
+        public void ThenNonEditableCohortsErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                 .VerifyErrorMessage(errorMessage);
+        }
+
+        [Then(@"Transfer Sender Cohorts error message is displayed")]
+        public void ThenTransferSenderCohortsErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices via file on behalf of non-levy employers yet.\r\nYou cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                 .VerifyErrorMessage(errorMessage);
+        }
+
+        [Then(@"an error message is displayed")]
+        public void ThenAnErrorMessageIsDisplayed()
+        {
+            string errorMessage = "You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
+            new ProviderFileUploadValidationErrorsPage(_context)
+                            .VerifyErrorMessage(errorMessage);
+        }
+
+        [Given(@"the provider has a cohort as a result of change of party")]
+        public void GivenTheProviderHasACohortAsAResultOfChangeOfParty()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [Given(@"the provider has a cohort which is with transfer-sender")]
+        public void GivenTheProviderHasACohortWhichIsWithTransfer_Sender()
+        {
+            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithTransferSender(Convert.ToInt32(_providerConfig.Ukprn));
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
+        [When(@"Provider add an apprentice uses details from below to create bulkupload")]
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
+        {
+            var apprenticeRecords = table.CreateSet<MapApprenticeData>();
+
+            ValidateApprenticeRecord(apprenticeRecords);
+        }
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
@@ -210,7 +287,72 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return result;
         }
 
+        public void ValidateApprenticeRecord(IEnumerable<MapApprenticeData> apprenticeRecords)
+        {
+            var cohortRef = _objectContext.GetCohortReference();
+            var courseCode = 17;
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
+            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
+            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();            
 
+            int i = 0;
+            foreach (var item in apprenticeRecords)
+            {
+                i++;
+                ApprenticeList = new List<ApprenticeDetailsV2>();
+
+                var result = new ApprenticeDetailsV2(courseCode.ToString())
+                {
+                    CohortRef = cohortRef,
+                    ULN = datahelper.Uln(),
+                    FamilyName = datahelper.ApprenticeLastname,
+                    GivenNames = datahelper.ApprenticeFirstname,
+                    DateOfBirth = dateOfBirth.ToString("yyyy-MM-dd"),
+                    StartDate = _apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
+                    EndDate = _apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
+                    TotalPrice = datahelper.TrainingPrice,
+                    ProviderRef = datahelper.EmployerReference,
+                    EmailAddress = emailAddress,
+                    AgreementId = agreementId
+                };
+
+                if (item.CohortRef != "valid") { result.CohortRef = item.CohortRef; }
+
+                if (item.AgreementID != "valid") { result.AgreementId = item.AgreementID; }
+
+                if (item.ULN != "valid") { result.ULN = item.ULN; }
+
+                if (item.FamilyName != "valid") { result.FamilyName = item.FamilyName; }
+
+                if (item.GivenNames != "valid") { result.GivenNames = item.GivenNames; }
+
+                if (item.DateOfBirth != "valid") { result.DateOfBirth = item.DateOfBirth; }
+
+                if (item.EmailAddress != "valid") { result.EmailAddress = item.EmailAddress; }
+
+                if (item.StdCode != "valid") { result.StdCode = item.StdCode; }
+
+                if (item.StartDate != "valid") { result.StartDate = item.StartDate; }
+
+                if (item.EndDate != "valid") { result.EndDate = item.EndDate; }
+
+                if (item.TotalPrice != "valid") { result.TotalPrice = item.TotalPrice; }
+
+                if (item.ProviderRef != "valid") { result.ProviderRef = item.ProviderRef; }
+
+                ApprenticeList.Add(result);
+                
+                //upload
+                if (i == 1) // first time start from provider home page 
+                    _providerStepsHelper.UploadApprenticeRecordToValidate(ApprenticeList);
+                else // next time onwards just go back and upload file               
+                    new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile(ApprenticeList).UploadFile();
+
+                new ProviderFileUploadValidationErrorsPage(_context)
+                    .VerifyErrorMessage(item.ErrorMessage);
+            }
+        }
     }
 
     #region Helper Classes
@@ -249,7 +391,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public string NumberOfApprenticeshipAndTotalCost =>
              $"{NumberOfApprenticeshipsText}, total cost: £{TotalCost:n0}";
 
-    }
+    }   
 
     #endregion
 }
