@@ -29,7 +29,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void GoToUrl(string uriString, string relativeUri) => GoToUrl(GetUrl(uriString, relativeUri));
 
-        public void OpenInNewTab(string url) { _webDriver.SwitchTo().NewWindow(WindowType.Tab); GoToUrl(url); }
+        public void OpenNewTab() => _webDriver.SwitchTo().NewWindow(WindowType.Tab);
+
+        public void OpenInNewTab(string url) { OpenNewTab(); GoToUrl(url); }
 
         public void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
 
