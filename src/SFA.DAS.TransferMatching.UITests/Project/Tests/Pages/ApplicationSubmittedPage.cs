@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your application has been submitted";
 
-        protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+        protected override By PageHeader => PanelTitle;
 
         public ApplicationSubmittedPage(ScenarioContext context) : base(context) { }
 

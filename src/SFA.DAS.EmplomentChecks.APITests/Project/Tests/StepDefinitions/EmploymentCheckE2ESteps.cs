@@ -39,7 +39,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Given(@"employment check record status is '([^']*)'")]
         public void GivenEmploymentCheckRecordHasBeenPickedForProcessing(int expectedStatus)
         {
-            int? completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatus();
+            int? completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatusWithId();
 
             Assert.AreEqual(expectedStatus, completionStatus, "Unexpected RequestCompletionStatus column value in [Business].[EmploymentCheck] table");
         }
@@ -110,7 +110,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         {
             payeSchemes = _testData.PayeScheme.Split(',').ToList();
 
-            var requests = _employmentChecksSqlDbHelper.getEmploymentCheckCacheRequestRows();
+            var requests = _employmentChecksSqlDbHelper.getRelatedsPayeFromEmploymentCheckCacheRequestRows();
 
             Assert.AreEqual(payeSchemes.Count, requests.Count, $"Incorrect number of EmploymentCheckCacheRequest returned.");
 

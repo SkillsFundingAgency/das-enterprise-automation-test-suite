@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_CA_PF_LY_01.feature"
 #line hidden
@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PerfTestDataPreparation/CreateAccount", "AP_CA_PF_LY_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PerfTestDataPreparation/CreateAccount", "AP_CA_PF_LY_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,28 +47,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -89,21 +89,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparati
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
-                    "to a provider", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "to a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -131,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("1", ((string[])(null)));
@@ -146,7 +136,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("2", ((string[])(null)));
@@ -161,7 +151,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("3", ((string[])(null)));
@@ -176,7 +166,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("4", ((string[])(null)));
@@ -191,7 +181,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("5", ((string[])(null)));
@@ -206,7 +196,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("6", ((string[])(null)));
@@ -221,7 +211,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("7", ((string[])(null)));
@@ -236,7 +226,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("8", ((string[])(null)));
@@ -251,7 +241,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("9", ((string[])(null)));
@@ -266,7 +256,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("10", ((string[])(null)));
@@ -281,7 +271,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("11", ((string[])(null)));
@@ -296,7 +286,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("12", ((string[])(null)));
@@ -311,7 +301,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("13", ((string[])(null)));
@@ -326,7 +316,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("14", ((string[])(null)));
@@ -341,7 +331,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("15", ((string[])(null)));
@@ -356,7 +346,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("16", ((string[])(null)));
@@ -371,7 +361,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("17", ((string[])(null)));
@@ -386,7 +376,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("18", ((string[])(null)));
@@ -401,7 +391,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("19", ((string[])(null)));
@@ -416,7 +406,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("20", ((string[])(null)));
@@ -431,7 +421,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("21", ((string[])(null)));
@@ -446,7 +436,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("22", ((string[])(null)));
@@ -461,7 +451,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("23", ((string[])(null)));
@@ -476,7 +466,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("24", ((string[])(null)));
@@ -491,7 +481,7 @@ this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAP
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("adddynamicfunds")]
         [NUnit.Framework.CategoryAttribute("AP02_ProviderCreatesApprovesCohortAndLevyEmployerApproves")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
+        public void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
         {
 #line 8
 this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("25", ((string[])(null)));

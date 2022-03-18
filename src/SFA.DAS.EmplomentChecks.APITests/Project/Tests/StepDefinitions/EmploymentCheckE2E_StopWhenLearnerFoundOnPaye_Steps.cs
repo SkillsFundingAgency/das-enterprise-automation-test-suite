@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions

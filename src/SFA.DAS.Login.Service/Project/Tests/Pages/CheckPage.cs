@@ -12,6 +12,6 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         public CheckPage(ScenarioContext context) : base(context) { }
 
-        public bool IsPageDisplayed() => pageInteractionHelper.IsElementDisplayed(Identifier);
+        public bool IsPageDisplayed() => pageInteractionHelper.IsElementDisplayedAfterPageLoad(Identifier);
     }
 }
