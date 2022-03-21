@@ -10,7 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
         private By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
         private By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
-        private By TransferAllowanceSection => By.CssSelector("#content > div.grid-row > div:nth-child(1)");
+        private By TransferAllowanceSection => By.TagName("column-two-thirds");
 
         public ManageTransferMatchingPage(ScenarioContext context) : base(context) { }
 
