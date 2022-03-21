@@ -44,6 +44,13 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedStatus, completionStatus, "Unexpected RequestCompletionStatus column value in [Business].[EmploymentCheck] table");
         }
 
+        [Then(@"business outcome for the check is set to '([^']*)'")]
+        public void ThenBusinessOutcomeForTheCheckIsSetTo(string errorType)
+        {
+            Assert.AreEqual(errorType, _employmentChecksSqlDbHelper.getErrorTypeFromEmploymentCheckTable(), "Unexpected Error Type found");
+        }
+
+
 
         [When(@"apprentice employment check is triggered")]
         public void WhenApprenticeEmploymentCheckIsTriggered()
