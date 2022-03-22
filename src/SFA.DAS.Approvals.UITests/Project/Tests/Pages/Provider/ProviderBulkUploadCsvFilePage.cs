@@ -69,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     break;
             }
 
-            fileLocation = Path.GetFullPath(@"..\..\..\") + "DataFiles\\" + fileName;
+            fileLocation = Path.GetFullPath(@"..\..\..\") + fileName;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
