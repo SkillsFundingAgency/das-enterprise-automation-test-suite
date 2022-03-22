@@ -22,8 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             string featureFileErrorMessage = Regex.Replace(errorMessage, @"\s+", String.Empty);
             string fileUploadErrorMessage = Regex.Replace(_pageInteractionHelper.GetText(FileUploadErrorMessage), @"\s+", String.Empty);
+            int index = featureFileErrorMessage.Length < 80 ? featureFileErrorMessage.Length : 80;
 
-            Assert.AreEqual(featureFileErrorMessage, fileUploadErrorMessage);
+            Assert.IsTrue(fileUploadErrorMessage.Contains(featureFileErrorMessage.Substring(0,index)));
 
             formCompletionHelper.Click(BackLink);
             return new ProviderBulkUploadCsvFilePage(context);

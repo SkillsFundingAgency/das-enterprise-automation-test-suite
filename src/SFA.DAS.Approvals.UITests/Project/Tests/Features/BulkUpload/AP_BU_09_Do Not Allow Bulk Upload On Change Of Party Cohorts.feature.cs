@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "AP_BU_09_DoNotAllowBulkUploadOnChangeOfPartyCohorts.feature"
+#line 1 "AP_BU_09_Do Not Allow Bulk Upload On Change Of Party Cohorts.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
