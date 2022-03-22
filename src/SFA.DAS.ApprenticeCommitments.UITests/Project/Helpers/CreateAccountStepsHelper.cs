@@ -20,6 +20,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly RetryAssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         protected readonly TabHelper tabHelper;
 
@@ -30,6 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             _assertHelper = context.Get<RetryAssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
             tabHelper = context.Get<TabHelper>();
         }
@@ -84,7 +86,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
 
-        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionForPositiveMatch(true);
+        public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
+        {
+            var (trainingName, trainingStartDate) = _accountsAndCommitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
+
+            _objectContext.SetTrainingName(trainingName);
+            _objectContext.SetTrainingStartDate(trainingStartDate);
+
+            return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionForPositiveMatch(true);
+        }
 
         private StartPage OpenInvitation(string registrationId)
         {

@@ -45,8 +45,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new HelpAndSupportPage(context);
         }
 
-        public ApprenticeHomePage VerifyCompleteTag() { VerifyElement(CompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyCMADSectionStatusToBeCompleteOnHomePage() { VerifyElement(CompleteStatusSelector); return this; }
 
-        public ApprenticeHomePage VerifyInCompleteTag() { VerifyElement(InCompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyCMADSectionStatusToBeInCompleteOnHomePage() { VerifyElement(InCompleteStatusSelector); return this; }
     }
 }

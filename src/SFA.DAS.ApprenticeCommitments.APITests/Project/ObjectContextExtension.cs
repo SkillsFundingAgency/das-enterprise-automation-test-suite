@@ -32,7 +32,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public static void SetFirstName(this ObjectContext objectContext, string value) => objectContext.Replace(FirstNameKey, value);
         public static void SetLastName(this ObjectContext objectContext, string value) => objectContext.Replace(LastNameKey, value);
         internal static void SetDateOfBirth(this ObjectContext objectContext, DateTime value) => objectContext.Replace(DateOfBirthKey, value);
-        internal static void SetTrainingName(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingNameKey, value);
+        public static void SetTrainingName(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingNameKey, value);
         internal static void SetEmployerAccountLegalEntityId(this ObjectContext objectContext, long value) => objectContext.Replace(EmployerAccountLegalEntityIdKey, value);
         internal static void SetApprenticeDetail(this ObjectContext objectContext, string fName, string lName, DateTime dob, string email)
         {
@@ -46,7 +46,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public static void UpdateApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Update(PasswordKey, value);
         internal static void SetProviderName(this ObjectContext objectContext, string value) => objectContext.Replace(ProviderNameKey, value);
         internal static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Replace(EmployerNameKey, value);
-        internal static void SetTrainingStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingStartDateKey, value);
+        public static void SetTrainingStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingStartDateKey, value);
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
         public static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDetails
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_CD_04_ConfirmProviderDetailsAsIncorrect")]
-    public partial class AC_CD_04_ConfirmProviderDetailsAsIncorrectFeature
+    [NUnit.Framework.DescriptionAttribute("TM_25_SenderCanViewTransferAllowance")]
+    public partial class TM_25_SenderCanViewTransferAllowanceFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "AC_CD_04_ConfirmProviderDetailsAsIncorrect.feature"
+#line 1 "TM_25_SenderCanViewTransferAllowance.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ConfirmDetails", "AC_CD_04_ConfirmProviderDetailsAsIncorrect", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_25_SenderCanViewTransferAllowance", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -47,63 +47,68 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmDe
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public void TestInitialize()
+        public virtual void TestInitialize()
         {
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public void TestTearDown()
+        public virtual void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public void ScenarioStart()
+        public virtual void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public void ScenarioCleanup()
+        public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_CD_04_ConfirmProviderDetailsAsIncorrect")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
+        [NUnit.Framework.DescriptionAttribute("TM_25_Sender can view transfer allowance info on transfer pledge page")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
-        public void AC_CD_04_ConfirmProviderDetailsAsIncorrect()
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        public virtual void TM_25_SenderCanViewTransferAllowanceInfoOnTransferPledgePage()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
                     "regression",
-                    "deleteuser"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CD_04_ConfirmProviderDetailsAsIncorrect", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_25_Sender can view transfer allowance info on transfer pledge page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
             {
                 testRunner.SkipScenario();
             }
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
- testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.Then("the apprentice confirms the Provider details displayed as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
- testRunner.And("the apprentice is able to confirm the Provider details again as correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Then the levy employer can view transfer allowance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

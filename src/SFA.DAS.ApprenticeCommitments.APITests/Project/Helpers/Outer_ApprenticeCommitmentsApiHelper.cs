@@ -118,7 +118,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()
         {
-            var (accountid, apprenticeshipid, firstname, lastname, dateOfBirth, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn) = _accountsAndCommitmentsSqlHelper.GetEmployerData();
+            var (accountid, apprenticeshipid, firstname, lastname, dateOfBirth, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn) = _accountsAndCommitmentsSqlHelper.GetCommitmentData();
 
             var (legalName, tradingName) = _accountsAndCommitmentsSqlHelper.GetProviderData(providerId);
 

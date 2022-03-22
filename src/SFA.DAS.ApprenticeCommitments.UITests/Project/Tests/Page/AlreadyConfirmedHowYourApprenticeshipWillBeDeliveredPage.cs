@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsPage
+    public class AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => SectionHelper.Section4;
         private string GreenTickTextInfo => "You have read through how your apprenticeship will be delivered";

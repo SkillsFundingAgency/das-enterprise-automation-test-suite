@@ -27,6 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
         protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
+        protected By ConfirmButton => By.Id("employer-provider-confirm");
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
@@ -38,6 +39,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
         private string SignOutLinkText => "Sign out";
         protected By Password => By.CssSelector("#Password");
+        protected By ErrorSummaryTitle => By.Id("error-summary-title");
+        protected By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
+        protected By FieldValidtionError => By.CssSelector(".field-validation-error");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
@@ -98,6 +102,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickLinkByText(SignOutLinkText);
             return new SignedOutPage(context);
         }
+
+        public void VerifyErrorSummaryTitle() => VerifyPage(ErrorSummaryTitle, "There is a problem");
 
         protected void AssertTopNavigationLinksNotToBePresent()
         {

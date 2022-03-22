@@ -10,7 +10,8 @@ Scenario: EC_API_003_PerformEmploymentCheck_NinoIsNull
 	And Nino is not found
 	Then do not create an Employment Check request
 	And employment check record status is '<Status>'
+	And business outcome for the check is set to '<ErrorType>'
 
 Examples:
-	| TestCaseId | MinDate             | MaxDate             | Status |
-	| 3          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 | 2      |
+	| TestCaseId | MinDate             | MaxDate             | Status | ErrorType    |
+	| 3          | 2014-03-06T00:00:00 | 2014-03-06T00:00:00 | 2      | NinoNotFound |
