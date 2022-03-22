@@ -207,6 +207,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
         }
 
+        [Then(@"the levy employer can filter pledges")]
+        public void ThenTheLevyEmployerCanFilterPledges()
+        {
+            NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
+        }
+
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
